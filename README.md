@@ -1,2 +1,2 @@
 # Argumentum
-Cards game about Fallacies
+Jeu de cartes autour des arguments fallacieux
