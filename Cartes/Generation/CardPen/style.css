@@ -1,0 +1,212 @@
+/* Couleurs familles */
+
+card.insuffisance {
+  background-color: #a901efff;
+}
+
+card.insuffisance .texte{
+  color: #120915ff;
+}
+
+card.insuffisance .header{
+  color: #380050ff;
+}
+
+card.insuffisance .title{
+  color: #380050ff;
+}
+
+card.influence {
+  background-color: #face00ff;
+}
+
+card.influence .texte{
+  color: #1e1800ff;
+}
+
+card.influence .header{
+  color: #504200ff;
+}
+
+card.influence .title{
+  color: #504200ff;
+}
+
+card.erreurMathématique {
+  background-color: #00c8a6ff;
+}
+
+card.erreurMathématique .texte{
+  color: #021c18ff;
+}
+
+card.erreurMathématique .header{
+  color: #054b3eff;
+}
+
+card.erreurMathématique .title{
+  color: #054b3eff;
+}
+
+card.paralogisme {
+  background-color: #6ab400ff;
+}
+
+card.paralogisme .texte{
+  color: #121e00ff;
+}
+
+card.paralogisme .header{
+  color: #2f5000ff;
+}
+
+card.paralogisme .title{
+  color: #2f5000ff;
+}
+
+card.détournementDeLaLangue {
+  background-color: #0039f0ff;
+}
+
+card.détournementDeLaLangue .texte{
+  color: #00071eff;
+}
+
+card.détournementDeLaLangue .header{
+  color: #001350ff;
+}
+
+card.détournementDeLaLangue .title{
+  color: #001350ff;
+}
+
+card.tricherie {
+  background-color: #e42065ff;
+}
+
+card.tricherie .texte{
+  color: #240510ff;
+}
+
+card.tricherie .header{
+  color: #47091fff;
+}
+
+card.tricherie .title{
+  color: #47091fff;
+}
+
+card.obstruction {
+  background-color: #ff2408ff;
+}
+
+card.obstruction .texte{
+  color: #1b0603ff;
+}
+
+card.obstruction .header{
+  color: #490f07ff;
+}
+
+card.obstruction .title{
+  color: #490f07ff;
+}
+
+safe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.header {
+  padding: 0pt;
+  align-items: stretch;
+  font-weight: 600;
+  font-size: 10pt;
+  text-transform: capitalize;
+  margin: 5pt;
+  min-height: 24pt;
+}
+
+.famille {
+  font-family: Cabin, bold;
+  font-size: 100%;
+  max-width: 70pt;
+  padding: 0% 0%;
+  float: left;
+}
+
+.ariane{
+  font-family: Cabin, bold;
+  text-align: right;
+  float: right;
+  max-width: 80pt;
+}
+
+.sous_famille {
+  font-size: 80%;
+}
+
+.Soussousfamille {
+  font-size: 70%;
+}
+
+.body {
+  margin: 5pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: Borsok;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 5pt;
+  padding-bottom: 10pt;
+  vertical-align: top;
+  height: 40pt;
+}
+
+img {
+  max-height: 95%;
+  max-width: 95%;
+  border-radius: 2pt;
+  margin: 5pt;
+  vertical-align: top;
+}
+
+.image {
+  height: 130pt;
+  text-align: center;
+}
+
+.texte {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 110pt;
+  padding-bottom: 5pt;
+}
+
+.desc_fr {
+  font-size: 10pt;
+  padding-bottom: 3pt;
+  text-align: justify;
+}
+
+.exemple_fr {
+  font-size: 10pt;
+  padding-bottom: 3pt;
+  text-align: justify;
+}
+
+.niveau {
+  padding-right: 2pt;
+  text-align: right;
+  color: white;
+  font-family: Big John;
+  font-size: 6pt;
+}
