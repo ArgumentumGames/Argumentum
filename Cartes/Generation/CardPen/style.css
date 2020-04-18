@@ -1,124 +1,79 @@
+/* -------------------------------------------------------------------------------- */
+/* Polices */
+/* -------------------------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+card { font-family: 'Poppins'; }
+
+/* -------------------------------------------------------------------------------- */
 /* Couleurs */
+/* -------------------------------------------------------------------------------- */
 
 card.insuffisance {
-  background-color: #a901efff;
-}
-
-card.insuffisance .texte{
-  color: #120915ff;
-}
-
-card.insuffisance .header{
-  color: #380050ff;
-}
-
-card.insuffisance .title{
-  color: #380050ff;
+  --color-background: #811da3;
+  --color-text-1: #601362;
+  --color-text-2: #8f5991;
+  --color-text-3: #a173a2;
 }
 
 card.influence {
-  background-color: #face00ff;
-}
-
-card.influence .texte{
-  color: #1e1800ff;
-}
-
-card.influence .header{
-  color: #504200ff;
-}
-
-card.influence .title{
-  color: #504200ff;
+  --color-background: #ff912e;
+  --color-text-1: #dc6800;
+  --color-text-2: #e6954c;
+  --color-text-3: #eaa668;
 }
 
 card.erreurMathématique {
-  background-color: #00c8a6ff;
-}
-
-card.erreurMathématique .texte{
-  color: #021c18ff;
-}
-
-card.erreurMathématique .header{
-  color: #054b3eff;
-}
-
-card.erreurMathématique .title{
-  color: #054b3eff;
+  --color-background: #08af93;
+  --color-text-1: #14555b;
+  --color-text-2: #5a888c;
+  --color-text-3: #749a9e;
 }
 
 card.paralogisme {
-  background-color: #6ab400ff;
-}
-
-card.paralogisme .texte{
-  color: #121e00ff;
-}
-
-card.paralogisme .header{
-  color: #2f5000ff;
-}
-
-card.paralogisme .title{
-  color: #2f5000ff;
+  --color-background: #8dc801;
+  --color-text-1: #476205;
+  --color-text-2: #7e9150;
+  --color-text-3: #92a26b;
 }
 
 card.détournementDeLaLangue {
-  background-color: #0039f0ff;
-}
-
-card.détournementDeLaLangue .texte{
-  color: #00071eff;
-}
-
-card.détournementDeLaLangue .header{
-  color: #001350ff;
-}
-
-card.détournementDeLaLangue .title{
-  color: #001350ff;
+  --color-background: #0054a4;
+  --color-text-1: #0c2861;
+  --color-text-2: #546890;
+  --color-text-3: #6f80a1;
 }
 
 card.tricherie {
-  background-color: #e42065ff;
-}
-
-card.tricherie .texte{
-  color: #240510ff;
-}
-
-card.tricherie .header{
-  color: #47091fff;
-}
-
-card.tricherie .title{
-  color: #47091fff;
+  --color-background: #f50085;
+  --color-text-1: #b20059;
+  --color-text-2: #c94c8a;
+  --color-text-3: #d1689d;
 }
 
 card.obstruction {
-  background-color: #ff2408ff;
+  --color-background: #dc0f0a;
+  --color-text-1: #960a07;
+  --color-text-2: #b55351;
+  --color-text-3: #c16e6c;
 }
 
-card.obstruction .texte{
-  color: #1b0603ff;
+card {
+  background-color: var(--color-background);
+  color: var(--color-text-1);
 }
 
-card.obstruction .header{
-  color: #490f07ff;
-}
+card .sous_famille { color: var(--color-text-2); }
 
-card.obstruction .title{
-  color: #490f07ff;
-}
+card .Soussousfamille { color: var(--color-text-3); }
 
 /* -------------------------------------------------------------------------------- */
-
+/* Structure */
+/* -------------------------------------------------------------------------------- */
 
 safe {
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
   padding: 10px;
 }
 
@@ -128,29 +83,31 @@ safe {
 
 .header {
   display: flex;
-  font-size: 10pt;
-  height: 30px;
+  height: 40px;
 }
 
-.famille, .ariane { width: 50%; }
-
 .famille {
-  font-family: Cabin, bold;
+  font-size: 9pt;
+  font-weight: bold;
+  line-height: 13pt;
   text-transform: uppercase;
+  width: 45%;
 }
 
 .ariane{
-  font-family: Cabin, bold;
+  font-weight: bold;
   text-align: right;
+  width: 55%;
 }
+
+.sous_famille, .Soussousfamille { line-height: 8pt; }
 
 .sous_famille {
-  font-size: 8pt;
+  font-size: 7pt;
+  padding: 4px 0 2px;
 }
 
-.Soussousfamille {
-  font-size: 7pt;
-}
+.Soussousfamille { font-size: 6pt; }
 
 /* -------------------------------------------------------------------------------- */
 /* Corps */
@@ -159,24 +116,24 @@ safe {
 .body {
   display: flex;
   flex-direction: column;
-  height: 370px;
+  height: 365px;
   justify-content: space-between;
 }
 
 .title {
-  font-family: Borsok;
   font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
+  line-height: 15pt;
   min-height: 30px;
   order: 1;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .image {
   order: 2;
   min-height: 0;
   flex-shrink: 1;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 }
 .image img {
@@ -193,19 +150,24 @@ safe {
 
 .desc_fr {
   font-size: 10pt;
-  padding-bottom: 3pt;
-  text-align: justify;
+  font-weight: bold;
+  line-height: 12pt;
+  padding-bottom: 6pt;
 }
 
 .exemple_fr {
-  font-size: 10pt;
-  padding-bottom: 3pt;
-  text-align: justify;
+  font-size: 8pt;
+  line-height: 10pt;
 }
 
+/* -------------------------------------------------------------------------------- */
+/* Pied de page */
+/* -------------------------------------------------------------------------------- */
+
+.footer { height: 20px; }
+
 .niveau {
-  padding-right: 2pt;
+  font-size: 8pt;
+  font-weight: bold;
   text-align: right;
-  font-family: Big John;
-  font-size: 6pt;
 }
