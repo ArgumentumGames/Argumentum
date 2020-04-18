@@ -1,4 +1,4 @@
-/* Couleurs familles */
+/* Couleurs */
 
 card.insuffisance {
   background-color: #a901efff;
@@ -112,50 +112,54 @@ card.obstruction .title{
   color: #490f07ff;
 }
 
+/* -------------------------------------------------------------------------------- */
+
+
 safe {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: #fff;
+  padding: 10px;
 }
 
+/* -------------------------------------------------------------------------------- */
+/* Entête */
+/* -------------------------------------------------------------------------------- */
+
 .header {
-  padding: 0pt;
-  align-items: stretch;
-  font-weight: 600;
+  display: flex;
   font-size: 10pt;
-  text-transform: capitalize;
-  margin: 5pt;
-  min-height: 24pt;
+  height: 30px;
 }
+
+.famille, .ariane { width: 50%; }
 
 .famille {
   font-family: Cabin, bold;
-  font-size: 100%;
-  max-width: 70pt;
-  padding: 0% 0%;
-  float: left;
+  text-transform: uppercase;
 }
 
 .ariane{
   font-family: Cabin, bold;
   text-align: right;
-  float: right;
-  max-width: 80pt;
 }
 
 .sous_famille {
-  font-size: 80%;
+  font-size: 8pt;
 }
 
 .Soussousfamille {
-  font-size: 70%;
+  font-size: 7pt;
 }
 
+/* -------------------------------------------------------------------------------- */
+/* Corps */
+/* -------------------------------------------------------------------------------- */
+
 .body {
-  margin: 5pt;
   display: flex;
   flex-direction: column;
+  height: 370px;
   justify-content: space-between;
 }
 
@@ -164,31 +168,27 @@ safe {
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  margin: 5pt;
-  padding-bottom: 10pt;
-  vertical-align: top;
-  height: 40pt;
-}
-
-img {
-  max-height: 95%;
-  max-width: 95%;
-  border-radius: 2pt;
-  margin: 5pt;
-  vertical-align: top;
+  min-height: 30px;
+  order: 1;
 }
 
 .image {
-  height: 130pt;
+  order: 2;
+  min-height: 0;
+  flex-shrink: 1;
+  padding: 10px;
   text-align: center;
+}
+.image img {
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .texte {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 110pt;
-  padding-bottom: 5pt;
+  order: 3;
 }
 
 .desc_fr {
@@ -206,7 +206,6 @@ img {
 .niveau {
   padding-right: 2pt;
   text-align: right;
-  color: white;
   font-family: Big John;
   font-size: 6pt;
 }
