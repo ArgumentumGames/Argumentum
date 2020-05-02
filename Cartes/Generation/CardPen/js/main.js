@@ -1324,13 +1324,17 @@ var cardpen = {};
                     formatted += Mustache.to_html(templateA + (c + 1) + templateB, { cardpen: cards[c] });
                 else {
                     Handlebars.registerHelper("normalize",
-                        function(item) {
-                            return item.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        function (text) {
+                            text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            return Handlebars.SafeString(text);
                         });
                     Handlebars.registerHelper('breaklines', function (text) {
                         text = Handlebars.Utils.escapeExpression(text);
                         text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
                         return new Handlebars.SafeString(text);
+                    });
+                    Handlebars.registerHelper("markdown", function (md) {
+                        return new Handlebars.SafeString(marked(md));
                     });
                     formatted += Handlebars.compile(templateA + (c + 1) + templateB)({ cardpen: cards[c] });
                 }
