@@ -1163,9 +1163,7 @@ var cardpen = {};
                     '</script>\n';
                 fullOutput += "<style>#cpOutput {display: block;}\n";
                 fullOutput += "#cpError {padding:5px;color:red;}</style>\n";
-            } else {
-
-            }
+            } 
             fullOutput += "<style>\n" + context.style.page(data, forImages) + "</style>\n";
             fullOutput += "<style>\n" + context.style.card(data) + "</style>\n";
             fullOutput += "<style>\n" + data.css + "</style>\n</head>\n<body>\n";
@@ -1324,11 +1322,18 @@ var cardpen = {};
                 }
                 if (data.useMustache)
                     formatted += Mustache.to_html(templateA + (c + 1) + templateB, { cardpen: cards[c] });
-                else
-                    Handlebars.registerHelper("Normalize", function (item) {
-                        return item.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                else {
+                    Handlebars.registerHelper("normalize",
+                        function(item) {
+                            return item.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        });
+                    Handlebars.registerHelper('breaklines', function (text) {
+                        text = Handlebars.Utils.escapeExpression(text);
+                        text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
+                        return new Handlebars.SafeString(text);
                     });
                     formatted += Handlebars.compile(templateA + (c + 1) + templateB)({ cardpen: cards[c] });
+                }
             }
             formatted += '</page></page>\n';
             return formatted;
