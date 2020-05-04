@@ -12,7 +12,8 @@ window.onload = function() {
 
 function imaginer(node,n) {
 	//Need to pass height and width due to an issue with oversized transparent canvases (#50).
-	domtoimage.toPng(node, { height: height, width: width, dpi: dpi }).then(function (dataUrl) {
+	//domtoimage.toPng(node, { height: height, width: width, dpi: dpi }).then(function (dataUrl) {
+    domtoimage.toPng(node, { height: height, width: width, scale: dpi / 150 }).then(function (dataUrl) {
 		cards[n] = dataUrl;
 		var img = new Image();
 		img.src = dataUrl;

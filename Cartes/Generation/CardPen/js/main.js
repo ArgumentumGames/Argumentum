@@ -1147,7 +1147,8 @@ var cardpen = {};
             fullOutput += externalLink;
             //Prepare for image.
             if (forImages) {
-                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
+                //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
+                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
@@ -1323,10 +1324,11 @@ var cardpen = {};
                 if (data.useMustache)
                     formatted += Mustache.to_html(templateA + (c + 1) + templateB, { cardpen: cards[c] });
                 else {
-                    Handlebars.registerHelper("normalize",
+                    Handlebars.registerHelper("unidecode",
                         function (text) {
-                            text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                            return Handlebars.SafeString(text);
+                            //text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            text = unidecode(text);
+                            return new Handlebars.SafeString(text);
                         });
                     Handlebars.registerHelper('breaklines', function (text) {
                         text = Handlebars.Utils.escapeExpression(text);

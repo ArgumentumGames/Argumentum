@@ -27,7 +27,7 @@ The first drawer is drawn at random. Each player has a small unique object (coin
 
 ### 1.       The drawer
 
-The drawer draws a scenario map from the two available picks and reads it aloud, except for the last sentence in italics at the bottom of the map.
+The drawer draws a scenario card from the two available piles and reads it aloud, except for the last sentence in italics at the bottom of the card.
 
 ### 2.       The smooth talker
 
