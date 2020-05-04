@@ -1129,7 +1129,7 @@ var cardpen = {};
 
             //Summon the goog.
             if (data.extCSS)
-                externalLink = '\t<link href="' + data.extCSS + '" rel="stylesheet">';
+                externalLink = '\t<link href="' + data.extCSS + '" rel="stylesheet" crossorigin="anonymous">';
 
             //Alter cardset to include image tags for mustache.
             cards = _.map(cardsParsed, function (val, idx) {
@@ -1148,7 +1148,7 @@ var cardpen = {};
             //Prepare for image.
             if (forImages) {
                 //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
+                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-even-more.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
