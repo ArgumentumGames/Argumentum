@@ -3,14 +3,25 @@
 
 var cards = [];
 var nodes = [];
+var zipButton;
 
-window.onload = async function() {
-    nodes = document.getElementsByTagName("card");
-	for (var n = 0; n < nodes.length; n++) {
-		//imaginer(nodes[n],n);
-        await imaginerSync(nodes[n], n);
-	}
+window.onload = function () {
+    zipButton = document.getElementById('zipButton');
+    zipButton.style.display = 'none';
+    
 }
+
+async function generateImages() {
+    var generateButton = document.getElementById('generateButton');
+    generateButton.style.display = 'none';
+	nodes = document.getElementsByTagName("card");
+    for (var n = 0; n < nodes.length; n++) {
+        //imaginer(nodes[n],n);
+        await imaginerSync(nodes[n], n);
+    }
+    zipButton.style.display = 'block';
+}
+
 
 function imaginer(node,n) {
 	//Need to pass height and width due to an issue with oversized transparent canvases (#50).
@@ -31,7 +42,7 @@ function imaginer(node,n) {
 
 async function imaginerSync(node, n) {
     try {
-        var dataUrl = await domtoimage.toPng(node, { height: height, width: width, scale: dpi / 150 });
+        var dataUrl = await domtoimage.toPng(node, { height: height, width: width, scale: dpi / 96 });
         cards[n] = dataUrl;
         var img = new Image();
         img.src = dataUrl;
