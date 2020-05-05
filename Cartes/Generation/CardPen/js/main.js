@@ -1022,7 +1022,7 @@ var cardpen = {};
         }
 
         function sanitize(fileName) {
-            var cleanName = fileName.replace(/\W+/g, '');
+            var cleanName = fileName.replace(/\W+/g, '_');
             if (cleanName.length === 0)
                 cleanName = "project" + Date.now().getUnixTime();
             return cleanName;
@@ -1171,7 +1171,8 @@ var cardpen = {};
             fullOutput += "<style>\n" + data.css + "</style>\n</head>\n<body>\n";
             if (forImages) {
                 fullOutput += "<div id='cpError'></div>\n";
-                fullOutput += "<button type='button' onclick='zipper();'>Zip Images</button>\n";
+                fullOutput += "<button id='generateButton' type='button' onclick='generateImages();'>Generate Images</button>\n";
+                fullOutput += "<button id='zipButton' type='button' onclick='zipper();'>Zip Images</button>\n";
                 fullOutput += "<div id='cpImages'></div>\n";
             }
             fullOutput += templateOutput + "\n</body>\n</html>\n";
