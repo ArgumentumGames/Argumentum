@@ -565,9 +565,9 @@ var cardpen = {};
                 document.getElementById("stored").classList.add("selected");
                 context.write.tryGenerate();
             } else if (defaultToEg) {
-                context.form.example();
+                //context.form.example();
                 document.getElementById("eg").classList.add("selected");
-                context.write.help();
+                //context.write.help();
             }
         }
 
