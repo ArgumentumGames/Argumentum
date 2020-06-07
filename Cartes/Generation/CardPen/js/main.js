@@ -1340,6 +1340,34 @@ var cardpen = {};
                     Handlebars.registerHelper("markdown", function (md) {
                         return new Handlebars.SafeString(marked(md));
                     });
+                    Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+                        switch (operator) {
+                        case '==':
+                            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                        case '===':
+                            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                        case '!=':
+                            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+                        case '!==':
+                            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+                        case '<':
+                            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+                        case '<=':
+                            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+                        case '>':
+                            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                        case '>=':
+                            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                        case '&&':
+                            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+                        case '||':
+                            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                        default:
+                            return options.inverse(this);
+                        }
+                    });
+                    cards[c].cards = cards;
                     formatted += Handlebars.compile(templateA + (c + 1) + templateB)({ cardpen: cards[c] });
                 }
             }
