@@ -1038,12 +1038,15 @@ var cardpen = {};
             xhr.overrideMimeType("application/json");
             xhr.open('GET', fileToLoad, true);
             xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == "200") {
-                    context.util.webCallback(xhr.responseText);
+                if (xhr.status === 200) {
+                    if (xhr.readyState === 4) {
+                        context.util.webCallback(xhr.responseText);    
+                    }
                 } else {
                     context.write.frame("<html>Unable to load example.</html>");
                 }
             };
+            context.write.frame("<html>Loading example file, please wait.</html>");
             xhr.send(null);
         }
 
