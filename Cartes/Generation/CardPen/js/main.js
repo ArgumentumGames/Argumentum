@@ -93,7 +93,7 @@ var cardpen = {};
             populate(selElt, options);
 
             //Examples
-            options = _.first(exampleFiles, 12);
+            options = _.first(exampleFiles, 30);
             selElt = document.getElementById("exampleList");
             populate2(selElt, options);
         }
@@ -1126,6 +1126,19 @@ var cardpen = {};
                 cardsParsed = cardsTemp.data;
             }
 
+            if (data.cindices !== "") {
+                var indicesParsed = data.cindices.split`,`.map(x => +x);
+                var tempCards = [];
+                for (var co = 0; co < cardsParsed.length; co++) {
+                    if (indicesParsed.indexOf(co)>-1) {
+                        tempCards.push(cardsParsed[co]);
+                    }
+                }
+                cardsParsed = tempCards;
+
+            }
+
+
             //Handle the noop case automatically, so the user doesn't have to fill it in.
             if (cardsParsed.length == 0)
                 cardsParsed = [{ noop: 1 }];
@@ -1429,7 +1442,8 @@ var cardpen = {};
         'data.useMustache': '#useMustache',
         'data.cardClass': '#cardClass',
         'data.rscount': '#rscount',
-        'data.rsstyle': 'input[name=rsstyle]'
+        'data.rsstyle': 'input[name=rsstyle]',
+        'data.cindices': '#cindices'
     });
 
 })(cardpen);

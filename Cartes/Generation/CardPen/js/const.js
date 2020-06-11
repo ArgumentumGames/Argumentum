@@ -69,18 +69,18 @@ var exampleFiles = ["Argumentum - Fallacies - Back - Francais",
 	"Argumentum - Fallacies - Back - English",
     "Argumentum - Fallacies - Face - Francais",
 	"Argumentum - Fallacies - Face - English",
-    "Argumentum - Fallacies - Face - v1 - Francais",
-    "Argumentum - Fallacies - Face - v1 - English",
     "Argumentum - Scenarii - Face - Francais",
     "Argumentum - Scenarii - Face - English",
-    //"Argumentum - Scenarii - Back - English",
+    "Argumentum - Scenarii - Back - English",
     "Argumentum - Scenarii - Back - Francais",
 	"Argumentum - Rules - English",
-    //"Argumentum - Rules - Francais",
+    "Argumentum - Rules - Francais",
     "Argumentum - Memo - Face - Francais",
     "Argumentum - Memo - Face - English",
     "Argumentum - Memo - Back - Francais",
 	"Argumentum - Memo - Back - English",
+    "Argumentum - Fallacies - Face - v1 - Francais",
+    "Argumentum - Fallacies - Face - v1 - English",
     "Pico",
     "Pico Oval",
 	"Xendo",
@@ -132,7 +132,8 @@ var exampleFiles = ["Argumentum - Fallacies - Back - Francais",
 		useMustache: false,
 		cardClass: '',
 		rscount: 1,
-		rsstyle: 'bunch'
+		rsstyle: 'bunch',
+		cindices: ''
 	};
 
 	var exampleForm = {
@@ -169,7 +170,8 @@ var exampleFiles = ["Argumentum - Fallacies - Back - Francais",
 		useMustache: false,
 		cardClass: '',
 		rscount: 1,
-		rsstyle: 'bunch'
+		rsstyle: 'bunch',
+        cindices: ''
 	};
 
 	var idkForm = {
@@ -206,5 +208,6 @@ var exampleFiles = ["Argumentum - Fallacies - Back - Francais",
 		useMustache: false,
 		cardClass: '',
 		rscount: 1,
-		rsstyle: 'bunch'
+		rsstyle: 'bunch',
+        cindices: ''
 	};
