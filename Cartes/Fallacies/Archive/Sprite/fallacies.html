@@ -1,0 +1,961 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="fr" http-equiv="Content-Language" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Charte Html pour l'identification des arguments fallacieux</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link href="http://www.democratie.biz/fallacies/rhetological_fallacies_francais.css" rel="stylesheet" type="text/css" />
+    <style>
+          .ui-widget {
+    font-family:  inherit;
+    font-size: inherit;
+}
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <h2>Int&eacute;gration PhpBB</h2>
+        <p>
+            La plateforme de forum PhpBB permet l'utilisation simplifiée de widgets Html 
+	appelés BBCodes (le bloc de citation d'un post est un exemple de BBCode).<br />
+            La page suivante documente la création de BBCodes personalisés:
+	<a href="https://www.phpbb.com/kb/article/adding-custom-bbcodes-in-phpbb3">https://www.phpbb.com/kb/article/adding-custom-bbcodes-in-phpbb3</a>
+        </p>
+        <h4>Exemple d&#39;intégration pour un argument fallacieux:</h4>
+        <div class="simpleContainer">
+            <p>PhpBB Code Usage: </p>
+            [argumentDAutoriteAnonyme]{SIMPLETEXT}[/argumentDAutoriteAnonyme]
+		<p>PhpBB Html Replacement: </p>
+            <code>&lt;div class="fallacieContainer"&gt;&lt;a class="argumentDAutoriteAnonyme" 
+		href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" 
+		target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; 
+		{SIMPLETEXT}&lt;/div&gt; &lt;div&gt; </code>
+        </div>
+    </div>
+    <div>
+        <h2>Int&eacute;gration Html simple</h2>
+        <div>
+            <h3>Prérequis</h3>
+            <p>
+                La feuille de style suivante doit être insérée dans la page ou l'application 
+		web que vous utilisez:
+		<a href="http://www.democratie.biz/fallacies/rhetological_fallacies_francais.css">http://www.democratie.biz/fallacies/rhetological_fallacies_francais.css</a><br />
+                Il vous suffit alors de copier et personaliser l'un des blocs suivants pour 
+		obtenir le même rendu.
+            </p>
+        </div>
+        <div>
+            <h3>Liste des fallacies:</h3>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-marron">Manipulations de l&#39;esprit</a></li>
+                    <li><a href="#tabs-rouge">Appel aux émotions</a></li>
+                    <li><a href="#tabs-violet">Déduction érronnée</a></li>
+                    <li><a href="#tabs-rose">Confusion entre causes et effets</a></li>
+                    <li><a href="#tabs-vert">Manipulation de contenu</a></li>
+                    <li><a href="#tabs-bleu">A l&#39;attaque</a></li>
+                </ul>
+                <div id="tabs-marron">
+                    <div id="divargumentDAutoriteAnonyme" class="simpleContainer">
+                        <h4>Argument d'autorit&eacute; anonyme</h4>
+                        <div>
+                            <a class="argumentDAutoriteAnonymeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>Code Html à copier: </p>
+                        <form method="post">
+                            <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;">&lt;div class="fallacieContainer"&gt;&lt;a class="argumentDAutoriteAnonyme" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                        </form>
+                        <p>Rendu : </p>
+                        <div class="fallacieContainer">
+                            <a class="argumentDAutoriteAnonyme" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+                        </div>
+                    </div>
+                    <div id="divargumentDAutorite" class="simpleContainer">
+                        <h4>Argument d'autorit&eacute;</h4>
+                        <div>
+                            <a class="argumentDAutoriteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>Code Html à copier: </p>
+                        <form method="post">
+                            <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="argumentDAutorite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                        </form>
+                        <p>Rendu : </p>
+                        <div class="fallacieContainer">
+                            <a class="argumentDAutorite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                        </div>
+                    </div>
+                    <div id="divappelALaPratiqueCourante" class="simpleContainer">
+                        <h4>Appel à la pratique courante</h4>
+                        <div>
+                            <a class="appelALaPratiqueCouranteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALaPratiqueCourante" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALaPratiqueCourante" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divpreuvesAnecdotiques" class="simpleContainer">
+                        <h4>Preuves anecdotiques</h4>
+                        <div>
+                            <a class="preuvesAnecdotiquesFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="preuvesAnecdotiques" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="preuvesAnecdotiques" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALIncredulite" class="simpleContainer">
+                        <h4>Appel à l&#39;incrédulité</h4>
+                        <div>
+                            <a class="appelALIncreduliteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALIncredulite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALIncredulite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALArgent" class="simpleContainer">
+                        <h4>Appel à l&#39;argent</h4>
+                        <div>
+                            <a class="appelALArgentFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALArgent" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALArgent" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divargumentDeLaNouveaute" class="simpleContainer">
+                        <h4>Argument de la nouveauté</h4>
+                        <div>
+                            <a class="argumentDeLaNouveauteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="argumentDeLaNouveaute" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="argumentDeLaNouveaute" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divraisonDeLaMajorite" class="simpleContainer">
+                        <h4>Raison de la majorité</h4>
+                        <div>
+                            <a class="raisonDeLaMajoriteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="raisonDeLaMajorite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="raisonDeLaMajorite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divmanipulationDesProbabilites" class="simpleContainer">
+                        <h4>Manipulation des probablités</h4>
+                        <div>
+                            <a class="manipulationDesProbabilitesFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="manipulationDesProbabilites" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="manipulationDesProbabilites" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALaTradition" class="simpleContainer">
+                        <h4>Appel à la tradition</h4>
+                        <div>
+                            <a class="appelALaTraditionFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALaTradition" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALaTradition" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                </div>
+                <div id="tabs-rouge">
+                    <div id="divargumentParLaConsequence" class="simpleContainer">
+                        <h4>Argument par la conséquence</h4>
+                        <div>
+                            <a class="argumentParLaConsequenceFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="argumentParLaConsequence" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="argumentParLaConsequence" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALaTerreur" class="simpleContainer">
+                        <h4>Appel à la terreur</h4>
+                        <div>
+                            <a class="appelALaTerreurFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALaTerreur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALaTerreur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALaFlatterie" class="simpleContainer">
+                        <h4>Appel à la flatterie</h4>
+                        <div>
+                            <a class="appelALaFlatterieFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALaFlatterie" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALaFlatterie" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALaNature" class="simpleContainer">
+                        <h4>Appel à la nature</h4>
+                        <div>
+                            <a class="appelALaNatureFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALaNature" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALaNature" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelALaPitie" class="simpleContainer">
+                        <h4>Appel à la pitié</h4>
+                        <div>
+                            <a class="appelALaPitieFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelALaPitie" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelALaPitie" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divappelAuRidicule" class="simpleContainer">
+                        <h4>Appel au ridicule</h4>
+                        <div>
+                            <a class="appelAuRidiculeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="appelAuRidicule" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="appelAuRidicule" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divargumentumAdOdium" class="simpleContainer">
+                        <h4>Argumentum Ad Odium</h4>
+                        <div>
+                            <a class="argumentumAdOdiumFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="argumentumAdOdium" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="argumentumAdOdium" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divvoeuPieux" class="simpleContainer">
+                        <h4>Voeu pieux</h4>
+                        <div>
+                            <a class="voeuPieuxFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="voeuPieux" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="voeuPieux" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                </div>
+                <div id="tabs-violet">
+                    <div id="divpreuvesAnecdotiques2" class="simpleContainer">
+                        <h4>Preuves anecdotiques 2</h4>
+                        <div>
+                            <a class="preuvesAnecdotiques2Full" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="preuvesAnecdotiques2" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="preuvesAnecdotiques2" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divcomposition" class="simpleContainer">
+                        <h4>Composition</h4>
+                        <div>
+                            <a class="compositionFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="composition" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="composition" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divdivision" class="simpleContainer">
+                        <h4>Division</h4>
+                        <div>
+                            <a class="divisionFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="division" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="division" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divargumentDuDesign" class="simpleContainer">
+                        <h4>Argument du design</h4>
+                        <div>
+                            <a class="argumentDuDesignFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="argumentDuDesign" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="argumentDuDesign" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="diverreurDuParieur" class="simpleContainer">
+                        <h4>Erreur du parieur</h4>
+                        <div>
+                            <a class="erreurDuParieurFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="erreurDuParieur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="erreurDuParieur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divgeneralisationHative" class="simpleContainer">
+                        <h4>Généralisation HGénéralisation hâtive</h4>
+                        <div>
+                            <a class="generalisationHativeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="generalisationHative" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="generalisationHative" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divconclusionHative" class="simpleContainer">
+                        <h4>Conclusion Hâtive</h4>
+                        <div>
+                            <a class="conclusionHativeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier: 
+                <form method="post">
+                    <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="conclusionHative" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="conclusionHative" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divjusteMilieu" class="simpleContainer">
+                        <h4>Juste Milieu</h4Juste milieu</h4>
+                        <div>
+                            <a class="justeMilieuFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="justeMilieu" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="justeMilieu" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divsolutionParfaite" class="simpleContainer">
+                        <h4>Solution parfaite</h4>
+                        <div>
+                            <a class="solutionParfaiteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="solutionParfaite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="solutionParfaite" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divrelativiteFallacieuse" class="simpleContainer">
+                        <h4>Relativité fallacieuse</h4>
+                        <div>
+                            <a class="relativiteFallacieuseFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="relativiteFallacieuse" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="relativiteFallacieuse" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divcoupDeProjecteur" class="simpleContainer">
+                        <h4>Coup de projecteur</h4>
+                        <div>
+                            <a class="coupDeProjecteurFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="coupDeProjecteur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="coupDeProjecteur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divgeneralisationGlobale" class="simpleContainer">
+                        <h4>Généralisation globale</h4>
+                        <div>
+                            <a class="generalisationGlobaleFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="generalisationGlobale" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="generalisationGlobale" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divequivocation" class="simpleContainer">
+                        <h4>Equivocation</h4>
+                        <div>
+                            <a class="equivocationFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="equivocation" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="equivocation" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                </div>
+                <div id="tabs-rose">
+                    <div id="divaffirmationDuConsequent" class="simpleContainer">
+                        <h4>Affirmation du conséquent</h4>
+                        <div>
+                            <a class="affirmationDuConsequentFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="affirmationDuConsequent" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="affirmationDuConsequent" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divargumentCirculaire" class="simpleContainer">
+                        <h4>Argument circulaire</h4>
+                        <div>
+                            <a class="argumentCirculaireFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="argumentCirculaire" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="argumentCirculaire" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divcumHocPropterHoc" class="simpleContainer">
+                        <h4>Cum Hoc Propter Hoc</h4>
+                        <div>
+                            <a class="cumHocPropterHocFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="cumHocPropterHoc" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="cumHocPropterHoc" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divdeniDesAntecedents" class="simpleContainer">
+                        <h4>Déni des antécédents</h4>
+                        <div>
+                            <a class="deniDesAntecedentsFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="deniDesAntecedents" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="deniDesAntecedents" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divignorerLaCauseCommune" class="simpleContainer">
+                        <h4>Ignorer la cause commune</h4>
+                        <div>
+                            <a class="ignorerLaCauseCommuneFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="ignorerLaCauseCommune" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="ignorerLaCauseCommune" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divpostHocErgoPropterHoc" class="simpleContainer">
+                        <h4>Post Hoc Ergo Propter Hoc</h4>
+                        <div>
+                            <a class="postHocErgoPropterHocFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="postHocErgoPropterHoc" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="postHocErgoPropterHoc" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divguerirLeMalParLeMal" class="simpleContainer">
+                        <h4>Guérir le mal par le mal</h4>
+                        <div>
+                            <a class="guerirLeMalParLeMalFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="guerirLeMalParLeMal" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="guerirLeMalParLeMal" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                </div>
+                <div id="tabs-vert">
+                    <div id="divsauvetageAdHoc" class="simpleContainer">
+                        <h4>Sauvetage Ad Hoc</h4>
+                        <div>
+                            <a class="sauvetageAdHocFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="sauvetageAdHoc" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="sauvetageAdHoc" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divpetitionDePrincipe" class="simpleContainer">
+                        <h4>Pétition de principe</h4>
+                        <div>
+                            <a class="petitionDePrincipeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="petitionDePrincipe" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="petitionDePrincipe" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divgeneralisationBiaisee" class="simpleContainer">
+                        <h4>Généralisation biaisée</h4>
+                        <div>
+                            <a class="generalisationBiaiseeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="generalisationBiaisee" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="generalisationBiaisee" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divbiaisDeConfirmation" class="simpleContainer">
+                        <h4>Biais de confirmation</h4>
+                        <div>
+                            <a class="biaisDeConfirmationFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="biaisDeConfirmation" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="biaisDeConfirmation" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divfauxDilemme" class="simpleContainer">
+                        <h4>Faux dilemme</h4>
+                        <div>
+                            <a class="fauxDilemmeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="fauxDilemme" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="fauxDilemme" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divmensonge" class="simpleContainer">
+                        <h4>Mensonge</h4>
+                        <div>
+                            <a class="mensongeFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="mensonge" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="mensonge" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divdetailTrompeur" class="simpleContainer">
+                        <h4>Détail trompeur</h4>
+                        <div>
+                            <a class="detailTrompeurFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="detailTrompeur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="detailTrompeur" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divfaussePiste" class="simpleContainer">
+                        <h4>Fausse piste</h4>
+                        <div>
+                            <a class="faussePisteFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="faussePiste" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="faussePiste" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divpenteSavoneuse" class="simpleContainer">
+                        <h4>Pente savoneuse</h4>
+                        <div>
+                            <a class="penteSavoneuseFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="penteSavoneuse" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="penteSavoneuse" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divsupressionDeDonneesPertinentes" class="simpleContainer">
+                        <h4>Supression de données pertinentes</h4>
+                        <div>
+                            <a class="supressionDeDonneesPertinentesFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="supressionDeDonneesPertinentes" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="supressionDeDonneesPertinentes" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divpostulatIndemontrable" class="simpleContainer">
+                        <h4>Postulat indémontrable</h4>
+                        <div>
+                            <a class="postulatIndemontrableFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="postulatIndemontrable" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="postulatIndemontrable" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                </div>
+                <div id="tabs-bleu">
+                    <div id="divattaquePersonnelle" class="simpleContainer">
+                        <h4>Attaque personnelle</h4>
+                        <div>
+                            <a class="attaquePersonnelleFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="attaquePersonnelle" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="attaquePersonnelle" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divchargeDeLaPreuve" class="simpleContainer">
+                        <h4>Charge de la preuve</h4>
+                        <div>
+                            <a class="chargeDeLaPreuveFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="chargeDeLaPreuve" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="chargeDeLaPreuve" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divattaquePersonnelleDeCirconstance" class="simpleContainer">
+                        <h4>Attaque personnelle de circonstance</h4>
+                        <div>
+                            <a class="attaquePersonnelleDeCirconstanceFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="attaquePersonnelleDeCirconstance" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="attaquePersonnelleDeCirconstance" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divsophismeGenetique" class="simpleContainer">
+                        <h4>Sophisme génétique</h4>
+                        <div>
+                            <a class="sophismeGenetiqueFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="sophismeGenetique" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="sophismeGenetique" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divculpabiliteParAssociation" class="simpleContainer">
+                        <h4>Culpabilité par association</h4>
+                        <div>
+                            <a class="culpabiliteParAssociationFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="culpabiliteParAssociation" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="culpabiliteParAssociation" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                    <div id="divhommeDePaille" class="simpleContainer">
+                        <h4>Homme de paille</h4>
+                        <div>
+                            <a class="hommeDePailleFull" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/"></a>
+                        </div>
+                        <p>
+                            Code Html à copier:  
+                            <form method="post">
+                                <textarea name="TextArea1" onclick="this.focus();this.select();" rows="3" style="width:80%;" >&lt;div class="fallacieContainer"&gt;&lt;a class="hommeDePaille" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank"&nbsp; title="Cliquez pour visualiser la liste des fallacies"&gt; &lt;/a&gt; Citez ici l'argument que vous estimez fallacieux&lt;/div&gt;</textarea>
+                            </form>
+                            <p>Rendu : </p>
+                            <div class="fallacieContainer">
+                                <a class="hommeDePaille" href="http://www.informationisbeautiful.net/visualizations/arguments-rhetologiques-fallacieux/" target="_blank" title="Cliquez pour visualiser la liste des fallacies"></a>Citez ici l'argument que vous estimez fallacieux
+				
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
