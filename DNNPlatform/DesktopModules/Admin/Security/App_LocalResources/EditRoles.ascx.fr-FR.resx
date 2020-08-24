@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="AdvancedSettings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres Avancés</value>
+  </data>
+  <data name="AdvancedSettingsHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">Cette section vous permet de spécifier des fonctions avancées pour vos groupes de sécurité.</value>
+  </data>
+  <data name="AssignToExistUsers.Help" xml:space="preserve">
+    <value xml:space="preserve">Attribuer ce rôle à tous les utilisateurs existants.</value>
+  </data>
+  <data name="AssignToExistUsers.Text" xml:space="preserve">
+    <value xml:space="preserve">Attribuer à des utilisateurs existants :</value>
+  </data>
+  <data name="AutoAssignment.Help" xml:space="preserve">
+    <value xml:space="preserve">Ce rôle est-il attribué automatiquement à chaque nouvel utilisateur lors de son inscription ?</value>
+  </data>
+  <data name="AutoAssignment.Text" xml:space="preserve">
+    <value xml:space="preserve">Attribué à l'inscription ?</value>
+  </data>
+  <data name="BasicSettings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres de Base</value>
+  </data>
+  <data name="BasicSettingsDescription.Text" xml:space="preserve">
+    <value xml:space="preserve">Cette section vous permet de spécifier les paramètres de base d'un rôle de sécurité.</value>
+  </data>
+  <data name="BillingPeriod.Help" xml:space="preserve">
+    <value xml:space="preserve">Ces deux valeurs sont à utiliser conjointement. Ex : 2 semaines ou 1 mois</value>
+  </data>
+  <data name="BillingPeriod.Text">
+    <value xml:space="preserve">Périodicité&amp;nbsp;</value>
+  </data>
+  <data name="cmdManage.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer les utilisateurs disposant de ce rôle</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres du rôle</value>
+  </data>
+  <data name="Description.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez une description pour ce groupe.</value>
+  </data>
+  <data name="Description.Text">
+    <value xml:space="preserve">Description&amp;nbsp;</value>
+  </data>
+  <data name="DuplicateRole.Text" xml:space="preserve">
+    <value xml:space="preserve">Un rôle portant se nom existe déjà. Le rôle n'a pas été ajouté.</value>
+  </data>
+  <data name="IncompatibleFee.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous devez sélectionner une fréquence de facturation si vous souhaitez saisir le montant d'un abonnement pour ce rôle.</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;h1&gt;A propos de la gestion des rôles de sécurité&lt;/h1&gt;&lt;p&gt;Les administrateurs peuvent gérer les rôles de sécurités définis pour leur site. Le module vous permet d'ajouter de nouveaux rôles de sécurité, de modifier des existants, de les supprimer et de gérer les utilisateurs associés à ceux-ci.&lt;/p&gt;</value>
+  </data>
+  <data name="plIcon.Help" xml:space="preserve">
+    <value xml:space="preserve">Choisissez une icône pour ce rôle.</value>
+  </data>
+  <data name="plIcon.Text" xml:space="preserve">
+    <value xml:space="preserve">Icône :</value>
+  </data>
+  <data name="plRoleGroups.Help" xml:space="preserve">
+    <value xml:space="preserve">Choisissez le groupe auquel ce rôle appartient.</value>
+  </data>
+  <data name="plRoleGroups.Text" xml:space="preserve">
+    <value xml:space="preserve">Appartient au groupe</value>
+  </data>
+  <data name="plRSVPCode.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez un code RSVP pour ce groupe.  Ce code fourni une méthode rapide aux utilisateurs désirant souscrire à un ou plusieur rôles.</value>
+  </data>
+  <data name="plRSVPCode.Text" xml:space="preserve">
+    <value xml:space="preserve">Code RSVP :</value>
+  </data>
+  <data name="plRSVPLink.Help" xml:space="preserve">
+    <value xml:space="preserve">Si un code de RSVP est fourni vous pouvez partager l'URL suivante</value>
+  </data>
+  <data name="plRSVPLink.Text" xml:space="preserve">
+    <value xml:space="preserve">Lien RSVP :</value>
+  </data>
+  <data name="ProcessorWarning.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;b&gt;ATTENTION :&lt;/b&gt; Vous devez préalablement configurer un Opérateur de Paiement dans "Site"&gt;"Paramétrage" avant de pouvoir permettre aux utilisateurs de pouvoir souscrire a des rôles ou services payant.</value>
+  </data>
+  <data name="PublicRole.Help" xml:space="preserve">
+    <value xml:space="preserve">Si le rôle est "public", tous les utilsateurs enregistrés pourront s'y abonner.</value>
+  </data>
+  <data name="PublicRole.Text" xml:space="preserve">
+    <value xml:space="preserve">Rôle public ?</value>
+  </data>
+  <data name="RoleName.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez un nom pour ce groupe.</value>
+  </data>
+  <data name="RoleName.Text" xml:space="preserve">
+    <value xml:space="preserve">Nom du rôle&amp;nbsp;</value>
+  </data>
+  <data name="securityModeListLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Choisissez le mode de sécurité de ce rôle/groupe.</value>
+  </data>
+  <data name="securityModeListLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Mode de sécurité :</value>
+  </data>
+  <data name="ServiceFee.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez le montant de l'abonnement des utilisateurs de ce groupe.</value>
+  </data>
+  <data name="ServiceFee.Text">
+    <value xml:space="preserve">Abonnement&amp;nbsp;</value>
+  </data>
+  <data name="statusListLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez l'état pour ce rôle/groupe</value>
+  </data>
+  <data name="statusListLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Statut :</value>
+  </data>
+  <data name="SystemRoleWarning.Text" xml:space="preserve">
+    <value xml:space="preserve">Ce rôle est un rôle système, seules des modifications minimes peuvent être apportées.</value>
+  </data>
+  <data name="TrialFee.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez le montant de l'abonnement de la période d'essai des utilisateurs de ce groupe.</value>
+  </data>
+  <data name="TrialFee.Text" xml:space="preserve">
+    <value xml:space="preserve">Montant de l'essai&amp;nbsp;</value>
+  </data>
+  <data name="TrialPeriod.Help" xml:space="preserve">
+    <value xml:space="preserve">Les deux informations fonctionnent en conjonction. Ex : 2 semaines ou 1 mois</value>
+  </data>
+  <data name="TrialPeriod.Text" xml:space="preserve">
+    <value xml:space="preserve">Durée d'essai&amp;nbsp;</value>
+  </data>
+  <data name="valBillingPeriod1.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;La valeur spécifiée pour l'abonnement n'est pas valide</value>
+  </data>
+  <data name="valBillingPeriod2.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;La durée de l'abonnement doit être supérieure à 0</value>
+  </data>
+  <data name="valRoleName.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;Vous devez spécifier un nom valide</value>
+  </data>
+  <data name="valRoleName2.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;Le nom est incorrect - les rôles ne peuvent pas contenir les caractères suivants : &amp; $ + , / ? ~ # &lt; &gt; ¿ ¡ « » ! . : * ' [ ]</value>
+  </data>
+  <data name="valServiceFee1.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;La valeur spécifiée pour l'abonnement n'est pas valide</value>
+  </data>
+  <data name="valServiceFee2.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;Le montant de l'abonnement doit être supérieur à 0</value>
+  </data>
+  <data name="valTrialFee1.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;La valeur spécifiée pour le montant de l'abonnement n'est pas valide</value>
+  </data>
+  <data name="valTrialFee2.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;Le montant de l'abonnement de la période d'essai doit être supérieur à 0</value>
+  </data>
+  <data name="valTrialPeriod1.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;La valeur d'essai spécifiée n'est pas valide</value>
+  </data>
+  <data name="valTrialPeriod2.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;br&gt;La durée de la période d'essai doit être supérieur à 0</value>
+  </data>
+  <!---->
+</root>

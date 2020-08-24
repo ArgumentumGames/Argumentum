@@ -1,0 +1,5 @@
+Id;Name;Description;License;Created;Link
+1;2sxc;A neat CMS extension for DNN;MIT;01.01.2012;https://2sxc.org/
+2;Koi;System to coordinate the CSS-Framework between theme and modules. ;MIT;01.06.2018;https://connect-koi.net/
+3;Razor Blade;Helpers for common Razor task;MIT;01.02.2019;https://github.com/DNN-Connect/razor-blade
+4;Image Resizer;Automatic, amazing image Resizer;MIT;06.05.2013;https://2sxc.org/learn-extensions/ImageResizer

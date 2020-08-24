@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="Active.Header">
+    <value xml:space="preserve">Actif</value>
+  </data>
+  <data name="cmdAddState.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un statut</value>
+  </data>
+  <data name="cmdAddWorkflow.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un flux</value>
+  </data>
+  <data name="ControlTitle_workflow.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer les flux</value>
+  </data>
+  <data name="Down.Text" xml:space="preserve">
+    <value xml:space="preserve">Vers le bas</value>
+  </data>
+  <data name="dshPermissions.Text" xml:space="preserve">
+    <value xml:space="preserve">Configuration du statut</value>
+  </data>
+  <data name="dshStates.Text">
+    <value xml:space="preserve">Statuts</value>
+  </data>
+  <data name="dshVersions.Text" xml:space="preserve">
+    <value xml:space="preserve">Historique des versions</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;P&gt;Le module Text/HTML peut restituer du texte brut, du texte enrichi, ou de l'HTML. Cinq modes d'édition sont proposés : &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Basic Text Box / Text&lt;/STRONG&gt;: Affiche le texte brut et les balises HTML.  Le texte saisi sur une nouvelle ligne est restitué par un retour à la ligne. Le style est 'Normal', et correspond à cette définition dans la feuille de style. 
+&lt;LI&gt;&lt;STRONG&gt;Basic Text Box / HTML&lt;/STRONG&gt;: Displays basic text in HTML format.
+&lt;LI&gt;&lt;STRONG&gt;Basic Text Box / Raw&lt;/STRONG&gt;: Displays basic text in HTML format. Text entered on a new line is not rendered as a line break.
+&lt;LI&gt;&lt;STRONG&gt;Rich Text Editor / HTML&lt;/STRONG&gt;: Allows you to paste HTML from other sources.
+&lt;LI&gt;&lt;STRONG&gt;Rich Text Editor / Design&lt;/STRONG&gt;: A full word processor or WYSIWYG (What You See is What You Get) editor with functionality such as hyperlinks, email links, File Manager image gallery, bullet points, spell check and more.</value>
+  </data>
+  <data name="plActive.Help" xml:space="preserve">
+    <value xml:space="preserve">Indiquer si le statut est actif</value>
+  </data>
+  <data name="plActive.Text">
+    <value xml:space="preserve">Actif</value>
+  </data>
+  <data name="plDeleted.Help" xml:space="preserve">
+    <value xml:space="preserve">Indiquer si ce flux est actif</value>
+  </data>
+  <data name="plDeleted.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="plDescription.Help" xml:space="preserve">
+    <value xml:space="preserve">Décrire le flux de traitement</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Description</value>
+  </data>
+  <data name="plHistory.Help" xml:space="preserve">
+    <value xml:space="preserve">Nombre maximum de version à conserver</value>
+  </data>
+  <data name="plHistory.Text">
+    <value xml:space="preserve">Historique</value>
+  </data>
+  <data name="plMaximumVersionHistory.Help" xml:space="preserve">
+    <value xml:space="preserve">Indiquer le nombre maximum de versions à conserver pour un module ( zero = illimité)</value>
+  </data>
+  <data name="plMaximumVersionHistory.Text">
+    <value xml:space="preserve">Historique</value>
+  </data>
+  <data name="plNotify.Help" xml:space="preserve">
+    <value xml:space="preserve">Indiquer si l'auteur et les vérificateurs doivent être avertis par courriel</value>
+  </data>
+  <data name="plNotify.Text">
+    <value xml:space="preserve">Notifier</value>
+  </data>
+  <data name="plPermissions.Help" xml:space="preserve">
+    <value xml:space="preserve">Indiquer qui doit vérifier le contenu à une étape donnée</value>
+  </data>
+  <data name="plPermissions.Text">
+    <value xml:space="preserve">Vérificateurs</value>
+  </data>
+  <data name="plState.Help" xml:space="preserve">
+    <value xml:space="preserve">Donner un nom au statut</value>
+  </data>
+  <data name="plState.Text">
+    <value xml:space="preserve">Statut</value>
+  </data>
+  <data name="plWorkflow1.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner un flux</value>
+  </data>
+  <data name="plWorkflow1.Text" xml:space="preserve">
+    <value xml:space="preserve">Flux de traitement</value>
+  </data>
+  <data name="plWorkflow2.Help" xml:space="preserve">
+    <value xml:space="preserve">Donner un nom au flux de traitement</value>
+  </data>
+  <data name="plWorkflow2.Text">
+    <value xml:space="preserve">Flux</value>
+  </data>
+  <data name="State.Header">
+    <value xml:space="preserve">Statut</value>
+  </data>
+  <data name="StateName.Required" xml:space="preserve">
+    <value xml:space="preserve">Vous devez entrer un nom pour cet état de workflow.</value>
+  </data>
+  <data name="Up.Text" xml:space="preserve">
+    <value xml:space="preserve">Vers le haut</value>
+  </data>
+  <data name="WorkflowExists.Text" xml:space="preserve">
+    <value xml:space="preserve">Un flux du même nom existe déjà</value>
+  </data>
+  <data name="WorkflowName.Required" xml:space="preserve">
+    <value xml:space="preserve">Vous devez entrer un nom pour ce workflow.</value>
+  </data>
+  <data name="WorkFlowStateHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">Cette section permet de gérer les Statuts de flux de tâches. Lorsqu'un flux est utilisé, on ne peut pas supprimer les Statuts qu'il utilise. De même le premier et le dernier Statut d'un flux ne peuvent être supprimés.</value>
+  </data>
+  <data name="plNotifyAdmin.Text" xml:space="preserve">
+    <value>Notifier les administrateurs</value>
+  </data>
+  <data name="plNotifyAdmin.Help" xml:space="preserve">
+    <value>Spécifie si les administrateurs devront recevoir des notifications par courriel. Peut être activé lorsque l’option "Notifier" est sélectionnée.</value>
+  </data>
+  <!---->
+</root>

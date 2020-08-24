@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddRole.Text">
+    <value xml:space="preserve">Ajouter ce rôle</value>
+  </data>
+  <data name="AddUser.Text">
+    <value xml:space="preserve">Ajouter l'utilisateur à ce rôle</value>
+  </data>
+  <data name="cmdAdd.Text">
+    <value xml:space="preserve">Attribuer le rôle</value>
+  </data>
+  <data name="cmdValidate.Text">
+    <value xml:space="preserve">Validé</value>
+  </data>
+  <data name="ControlTitle_user roles.Text">
+    <value xml:space="preserve">Utilisateur et groupes</value>
+  </data>
+  <data name="DeleteRoleFromUser.Text">
+    <value xml:space="preserve">Etes-vous certain de vouloir supprimer le rôle '{1}' pour '{0}' ?</value>
+  </data>
+  <data name="DeleteUsersFromRole.Text">
+    <value xml:space="preserve">Etes-vous certain de vouloir supprimer '{0}' du rôle '{1}' ?</value>
+  </data>
+  <data name="EffectiveDate.Header">
+    <value xml:space="preserve">Rôle obtenu le</value>
+  </data>
+  <data name="ExpiryDate.Header">
+    <value xml:space="preserve">Expire le</value>
+  </data>
+  <data name="IsOwner.Header">
+    <value xml:space="preserve">Est propriétaire</value>
+  </data>
+  <data name="lblIsOwner.Help">
+    <value xml:space="preserve">Définir cet utilisateur comme propriétaire de ce groupe.</value>
+  </data>
+  <data name="lblIsOwner.Text">
+    <value xml:space="preserve">Est propriétaire</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;A propos de la gestion des rôles&lt;/h1&gt;&lt;p&gt;Cet outil permet de gérer les rôles 
+de sécurité associés au site.&lt;/p&gt;</value>
+  </data>
+  <data name="NotAuthorized.Text">
+    <value xml:space="preserve">Vous n'êtes pas autorisé(e) à modifier ce rôle.</value>
+  </data>
+  <data name="plEffectiveDate.Help">
+    <value xml:space="preserve">Spécifiez la date à laquelle l'adhésion commencera (optionnel). N'entrez pas de valeur si vous souhaitez que l'adhésion débute immédiatement.</value>
+  </data>
+  <data name="plEffectiveDate.Text">
+    <value xml:space="preserve">A compter du</value>
+  </data>
+  <data name="plExpiryDate.Help">
+    <value xml:space="preserve">Spécifiez la date à laquelle l'appartenance à ce groupe arrive à échéance (optionnel). Ne spécifiez pas de valeur pour une durée illimitée.</value>
+  </data>
+  <data name="plExpiryDate.Text">
+    <value xml:space="preserve">Jusqu'au</value>
+  </data>
+  <data name="plRoles.Help">
+    <value xml:space="preserve">Choisissez un groupe</value>
+  </data>
+  <data name="plRoles.Text">
+    <value xml:space="preserve">Groupe</value>
+  </data>
+  <data name="plUsers.Help">
+    <value xml:space="preserve">Choisissez l'utilisateur</value>
+  </data>
+  <data name="plUsers.Text">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="RoleRemoveError.Text">
+    <value xml:space="preserve">Vous ne pouvez pas supprimer l'administrateur du site ou le groupe de l'utilisateur enregistré</value>
+  </data>
+  <data name="RoleTitle.Text">
+    <value xml:space="preserve">Gestion des utilisateurs ayant le rôle "&lt;b&gt;{0}&lt;/b&gt;" (Id: {1})</value>
+  </data>
+  <data name="SecurityRole.Header">
+    <value xml:space="preserve">Membre du groupe</value>
+  </data>
+  <data name="SendNotification.Text">
+    <value xml:space="preserve">Informer l'utilisateur de la modification par courriel ?</value>
+  </data>
+  <data name="UpdateRole.Text">
+    <value xml:space="preserve">Ajouter</value>
+  </data>
+  <data name="UserName.Header">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="UserTitle.Text">
+    <value xml:space="preserve">Gestion des droits pour : {0} (Id : {1})</value>
+  </data>
+  <data name="valDates.Text">
+    <value xml:space="preserve">&lt;br&gt;La date d'expiration doit être postérieure à la date de début</value>
+  </data>
+  <data name="valEffectiveDate.Text">
+    <value xml:space="preserve">&lt;br&gt;Date de début non valide</value>
+  </data>
+  <data name="valExpiryDate.Text">
+    <value xml:space="preserve">&lt;br&gt;Date d'expiration non valide</value>
+  </data>
+</root>

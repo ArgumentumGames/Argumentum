@@ -1,0 +1,39 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using System.Linq;
+@{
+  var persons = AsList(App.Data["Persons"]);
+}
+
+@RenderPage("_header.cshtml")
+
+
+<h2>Simple Sorting of Persons</h2>
+<h3>OrderBy(EntityId)</h3>
+<p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
+<ol>
+  @foreach(var person in persons.OrderBy(p => p.EntityId)) {
+    <li>@person.FirstName @person.LastName (#@person.EntityId)</li>
+  }
+</ol>
+
+<hr>
+<h3>OrderBy(FirstName)</h3>
+<p>This example shows A-Z ordering by a property which exists only on Person-entities. This is simple with <code>dynamic</code> objects</p>
+<ol>
+  @foreach(var person in persons.OrderBy(p => p.FirstName)) {
+    <li>@person.FirstName @person.LastName</li>
+  }
+</ol>
+
+<hr>
+<h3>OrderByDescending(Birthday)</h3>
+<p>This example shows Z-A ordering by a property.</p>
+<ol>
+  @foreach(var person in persons.OrderByDescending(p => p.Birthday)) {
+    <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
+  }
+</ol>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

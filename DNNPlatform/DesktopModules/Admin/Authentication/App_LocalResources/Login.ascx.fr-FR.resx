@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AssociateHelp.Text">
+    <value xml:space="preserve">Vous pouvez associer votre nom d’utilisateur à un compte existant en fournissant les informations nécessaires.</value>
+  </data>
+  <data name="AssociateTitle.Text">
+    <value xml:space="preserve">Associé avec un compte existant</value>
+  </data>
+  <data name="AssociationFailed.Text">
+    <value xml:space="preserve">Erreur lors de l’association de cette « identité » avec cet utilisateur. L’identifiant et le mot de passe sont sensibles à la casse.</value>
+  </data>
+  <data name="AuthenticatedHelp.Text">
+    <value xml:space="preserve">Connexion réussie. Cependant cette « identité » ne semble pas être membre de ce site. Vous pouvez associer celle-ci à un utilisateur existant (en fournissant les informations nécessaires) ou vous enregistrer en tant que nouveau membre.</value>
+  </data>
+  <data name="AuthenticatedTitle.Text">
+    <value xml:space="preserve">Authentifié</value>
+  </data>
+  <data name="cmdAssociate.Text">
+    <value xml:space="preserve">Associé avec un compte d'utilisateur</value>
+  </data>
+  <data name="cmdCreate.Text">
+    <value xml:space="preserve">Créer un nouveau compte</value>
+  </data>
+  <data name="cmdForgotPassword.Text">
+    <value xml:space="preserve">Mot de passe oublié ?</value>
+  </data>
+  <data name="cmdPassword.Text">
+    <value xml:space="preserve">Récupérer le mot de passe</value>
+  </data>
+  <data name="cmdProceed.Text">
+    <value xml:space="preserve">Procéder (changer de mot de passe plus tard)</value>
+  </data>
+  <data name="cmdRegister.Text">
+    <value xml:space="preserve">Inscription</value>
+  </data>
+  <data name="ControlTitle_.Text">
+    <value xml:space="preserve">Identification</value>
+  </data>
+  <data name="ControlTitle_login.Text">
+    <value xml:space="preserve">Identification</value>
+  </data>
+  <data name="ControlTitle_signin.Text">
+    <value xml:space="preserve">Identification</value>
+  </data>
+  <data name="CreateTitle.Text">
+    <value xml:space="preserve">Créér un nouveau compte</value>
+  </data>
+  <data name="EnterCode.Text">
+    <value xml:space="preserve">Saisissez votre code de vérification</value>
+  </data>
+  <data name="InvalidCode.Text">
+    <value xml:space="preserve">Code de vérification invalide</value>
+  </data>
+  <data name="IPAddressBanned.Text">
+    <value xml:space="preserve">Vous ne pouvez vous connecter à ce site web avec cette adresse IP.</value>
+  </data>
+  <data name="LoginFailed.Text">
+    <value xml:space="preserve">Connexion échouée. Le mot de passe est sensible à la casse.</value>
+  </data>
+  <data name="PasswordExpired.Text">
+    <value xml:space="preserve">Votre mot de passe a expiré le {0}. Veuillez le mettre à jour avant de continuer.</value>
+  </data>
+  <data name="PasswordExpiring.Text">
+    <value xml:space="preserve">Votre mot de passe expirera le {0}. Veuillez le mettre à jour avant de continuer.</value>
+  </data>
+  <data name="PasswordInvalid.Text">
+    <value xml:space="preserve">Vous devez entrer un mot de passe valide. Contactez l’administrateur du site si vous ne connaissez pas les critères de mot de passe valide.</value>
+  </data>
+  <data name="PasswordMismatch.Text">
+    <value xml:space="preserve">Les mots de passe ne correspondent pas.</value>
+  </data>
+  <data name="PasswordMissing.Text">
+    <value xml:space="preserve">Vous devez fournir votre mot de passe actuel afin de changer le mot de passe.</value>
+  </data>
+  <data name="PasswordNotDifferent.Text">
+    <value xml:space="preserve">Le nouveau mot de passe est identique à l'ancien. Entrez un mot de passe différent.</value>
+  </data>
+  <data name="PasswordSent.Text">
+    <value xml:space="preserve">Le mot de passe a été envoyé à&lt;br&gt;votre adresse de courriel.</value>
+  </data>
+  <data name="PasswordUpdate.Text">
+    <value xml:space="preserve">Veuillez mettre à jour votre mot de passe avant de continuer.</value>
+  </data>
+  <data name="plToken.Help">
+    <value xml:space="preserve">Le jeton unique qui identifie l'utilisateur.</value>
+  </data>
+  <data name="plToken.Text">
+    <value xml:space="preserve">Code utilisateur :</value>
+  </data>
+  <data name="plType.Help">
+    <value xml:space="preserve">Type d'identification</value>
+  </data>
+  <data name="plType.Text">
+    <value xml:space="preserve">Type :</value>
+  </data>
+  <data name="ProfileUpdate.Text">
+    <value xml:space="preserve">Mettez à jour votre profil avant de continuer.</value>
+  </data>
+  <data name="RegisterTitle.Text">
+    <value xml:space="preserve">Créer un nouveau compte</value>
+  </data>
+  <data name="Remember.Text">
+    <value xml:space="preserve">Reconnexion automatique</value>
+  </data>
+  <data name="UserLockedOut.Text">
+    <value xml:space="preserve">Ce compte a été bloqué suite à de multiples tentatives de connexions. Attendez {0} minutes avant d’essayer à nouveau. Si vous avez perdu votre mot de passe utilisez l’option de récupération de mot de passe avant de contacter un administrateur.</value>
+  </data>
+  <data name="UserLockedOut_ContactAdmin.Text">
+    <value xml:space="preserve">Ce compte a été verrouillé après un nombre trop important de tentatives de connexion infructueuses. Veuillez contacter l'administrateur du site.</value>
+  </data>
+  <data name="UsernameError.Text">
+    <value xml:space="preserve">L'utilisateur n'existe pas</value>
+  </data>
+  <data name="UserNotAuthorized.Text">
+    <value xml:space="preserve">Vous n'êtes pas autorisé à vous connecter à ce site.</value>
+  </data>
+</root>

@@ -1,0 +1,88 @@
+﻿<h3>DnnBootster Theme for Dnn Version2</h3>
+	DnnConsulting.net<br/>
+	Geoff Barlow<br />
+	<a href="mailto:info@dnnconsulting.nl">info@DnnConsulting.nl</a><br />
+	<a href=https://www.dnnconsulting.net>http://www.dnnconsulting.net</a><br />
+<hr/>
+	<h3>About the DnnBootster Theme version 2</h3>
+
+	<h4>Version 02.00.01</h4><br />
+	<ul>
+		<li>Updated Bootstrap from v4.0.0.beta to v4.0.0 stable Bootstrap</li>
+		<li>
+			The theme has been completely re-written to take advantage of ann the new goodness of Bootstrap 4
+		</li>
+	</ul>
+
+	<h4>Version 02.00.00</h4><br />
+	<ul>
+		<li>Updated Bootstrap from v3.3.7 to v4.0.0.beta</li>
+		<li>
+			The theme has been completely re-written to take advantage of ann the new goodness of Bootstrap 4
+		</li>
+		<li>Added 3 more icon sets</li>
+		<li>Added new page header styles</li>
+		<li>Added new list styles</li>
+		<li>Added new social button styles that are not dependent on a container</li>
+		<li>New cntainers that relate to Bootstrap 4</li>
+		<li>New top bar design</li>
+	</ul>
+
+	<h4>Version 01.00.04</h4><br />
+	<ul>
+		<li>
+			Updated Bootstrap from v3.3.6 to v3.3.7<br/>
+			v3.3.6 is still in the install but all skin files point to the newer version.
+		</li>
+		<li>
+			Updated Fontawesome from v4.5.0 to v4.6.3<br/>
+			v4.5.0 is still in the install but all skin files point to the newer version.
+		</li>
+		<li>A new navigation provider is available, 'clickableParent'. This was a pull request created by Justin Acton 
+		<li>Each theme now has styles for 'DnnPrimary' and 'dnnSecondary' button styles. This was a pull request created by Justin Acton</li>
+	</ul>
+
+	<h4>Version 01.00.03</h4><br />
+	Small change
+	<h5>Added</h5>
+	<ul>
+			<li>Improved the functionality of the standard Bootstrap slider, added swipe functionality</li>
+	</ul>
+
+	<h4>Version 01.00.02</h4><br />
+	Small changes
+	<h5>Added</h5>
+	<ul>
+			<li>Dedicated admin skin added</li>
+			<li>404 skin added</li>
+	</ul>
+	<h5>Bug Fixes/changes</h5>
+	<ul>
+			<li>
+				Changed the ContentPane container from "container-fluid" to "container", this is done 
+				because there is a dedicated admin skin for editing which uses the "container-fluid" class.
+			</li>
+	</ul>
+
+	<h4>Version 01.00.01</h4><br />
+	Small changes
+	<h5>Added</h5>
+	<ul>
+			<li>A popup skin so that the Dnn modals are displayed properly on mobile devices.</li>
+	</ul>
+	<h5>Bug Fixes</h5>
+	<ul>
+			<li>
+				Fix for the bootstrap Carousel in IE11, when the slider swaps images the screen size, the images 
+				first display full height, then changes to the proper responsive size, this causes an unpleasent jumping 
+				on the screen, this has now been sorted.
+			</li>
+	</ul>
+
+	<h4>Version 01.00.00</h4><br />
+	Initial release of the skin using Bootstrap v3.3.6 and DNN 8
+	<h5>Bug Fixes</h5>
+	<ul>
+			<li>None, first release</li>
+	</ul>
+</div>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="ControlTitle_viewsource.Text" xml:space="preserve">
+    <value>Afficher la source</value>
+  </data>
+  <data name="plSource.Help" xml:space="preserve">
+    <value>Vous pouvez afficher le contenu du fichier dans la zone de texte ci-dessous. Si vous êtes sur un ordinateur local alors vous pouvez modifier la source.</value>
+  </data>
+  <data name="plSource.Text" xml:space="preserve">
+    <value>Emplacement :</value>
+  </data>
+  <data name="SourceFile.Text" xml:space="preserve">
+    <value>Fichier Source - {0}</value>
+  </data>
+  <data name="plFile.Help" xml:space="preserve">
+    <value>Sélectionnez le fichier dont vous souhaitez afficher la source.</value>
+  </data>
+  <data name="plFile.Text" xml:space="preserve">
+    <value>Sélectionnez le fichier :</value>
+  </data>
+  <data name="NoFileTypeSelected.Text" xml:space="preserve">
+    <value>Vous devez sélectionner un type de fichier à modifier avant de cliquer sur le bouton de mise à jour.</value>
+  </data>
+  <data name="plLanguage.Text" xml:space="preserve">
+    <value>Langue :</value>
+  </data>
+  <data name="plLanguage.Help" xml:space="preserve">
+    <value>Sélectionnez votre language préféré pour le développement du module</value>
+  </data>
+  <data name="C#.Text">
+    <value>C#</value>
+  </data>
+  <data name="VB.Text" xml:space="preserve">
+    <value>Visual Basic (VB)</value>
+  </data>
+  <data name="plTemplate.Text" xml:space="preserve">
+    <value>Gabarit :</value>
+  </data>
+  <data name="plTemplate.Help" xml:space="preserve">
+    <value>Sélectionnez votre gabarit de développement de module préféré. Les modèles sont stockés dans le sous-dossier Templates la racine du dossier "Module Creator".</value>
+  </data>
+  <data name="plControl.Text" xml:space="preserve">
+    <value>Nom du contrôle :</value>
+  </data>
+  <data name="plControl.Help" xml:space="preserve">
+    <value>Entrez un nom unique pour votre contrôle de module.</value>
+  </data>
+  <data name="plType.Text" xml:space="preserve">
+    <value>Type de contrôle :</value>
+  </data>
+  <data name="plType.Help" xml:space="preserve">
+    <value>Sélectionnez le type de contrôle.</value>
+  </data>
+  <data name="cmdCreate.Text">
+    <value>Créer</value>
+  </data>
+  <data name="ControlCreated.Text" xml:space="preserve">
+    <value>Le fichier a été correctement créé.</value>
+  </data>
+  <data name="ControlUpdated.Text" xml:space="preserve">
+    <value>Le fichier a été correctement mis à jour.</value>
+  </data>
+  <data name="FolderNameInvalid.Text" xml:space="preserve">
+    <value>Le nom du dossier identifié pour ce module n'existe pas. Veuillez vérifier les paramètres de ce module dans la page Hôte &gt; Extensions.</value>
+  </data>
+  <data name="AddControlError.Text" xml:space="preserve">
+    <value>Vous devez sélectionner un modèle de module et fournir un nom de contrôle.</value>
+  </data>
+  <data name="cmdPackage.Text" xml:space="preserve">
+    <value>Créer un package</value>
+  </data>
+  <data name="cmdConfigure.Text">
+    <value>Configurer</value>
+  </data>
+  <data name="Add.Text">
+    <value>Ajouter</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Modifier</value>
+  </data>
+  <data name="AddFile.Text" xml:space="preserve">
+    <value>Ajouter fichier</value>
+  </data>
+  <data name="EditFile.Text" xml:space="preserve">
+    <value>Modifier fichier</value>
+  </data>
+  <data name="Snippet.Text" xml:space="preserve">
+    <value>Extraits de code</value>
+  </data>
+  <data name="cmdSave.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="cmdSaveAs.Text" xml:space="preserve">
+    <value>Enregistrer en tant que</value>
+  </data>
+  <data name="DeleteSnippet.Text" xml:space="preserve">
+    <value>Supprimer extrait ?</value>
+  </data>
+  <data name="View.Text">
+    <value>Voir</value>
+  </data>
+  
+</root>

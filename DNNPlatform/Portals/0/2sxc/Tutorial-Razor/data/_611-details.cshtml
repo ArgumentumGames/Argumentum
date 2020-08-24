@@ -1,0 +1,13 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@{
+  // the ID is already given by the caller, so we just get that
+  var id = (int)PageData["Id"];
+
+  // find the person with this Id using LINQ
+  var person = AsList(App.Data["Persons"])
+    .First(p => p.EntityId == id);
+}
+
+<img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
+<h3>Details of @person.FirstName @person.LastName</h3>
+<a href='@Link.To(parameters: "data611/true")'>back to list</a>

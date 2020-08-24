@@ -1,0 +1,17 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@* This adds all link/script tags *@
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles,scripts"})
+
+<div class="co-container-outer">
+	<div class="co-container-inner">
+    <div class="row">
+      <div class="clearfix co-content co-content-text-center text-center col col-md-8 col-md-push-2 mb-4" @Edit.TagToolbar(Content)>
+        <div class="co-title">
+          @* call sub-template to show the title with the correct H1-H6 tag *@
+          @RenderPage("../shared/_Header tag.cshtml")
+        </div>
+        <div class="co-text">@Html.Raw(Content.Text)</div>
+      </div>
+    </div>
+  </div>
+</div>

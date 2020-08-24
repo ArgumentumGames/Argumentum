@@ -1,0 +1,171 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="DnnC.Skins.DnnBootster" type="Skin" version="02.00.01">
+      <friendlyName>DnnBootster</friendlyName>
+      <description>A responsive DNN skin using Bootstrap v4.0.0. Requires installation via the Host/Extensions page.</description>
+      <owner>
+        <name>Geoff Barlow</name>
+        <organization>DnnConsulting.net</organization>
+        <url>https://www.DnnConsulting.net</url>
+        <email>info@DnnConsulting.nl</email>
+      </owner>
+      <azureCompatible>true</azureCompatible>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">08.00.00</dependency>
+      </dependencies>
+      <components>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>portals/_default/skins/DnnBootsterV2</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+        <component type="Skin">
+          <skinFiles>
+            <skinName>DnnBootsterV2</skinName>
+            <basePath />
+          </skinFiles>
+        </component>
+      </components>
+    </package>
+    
+    <package name="DnnC.Containers.DnnBootsterV2" type="Container" version="02.00.00">
+      <friendlyName>DnnBootsterV2</friendlyName>
+      <description>Containers for the DnnBootsterV2 Theme package.</description>
+      <owner>
+        <name>Geoff Barlow</name>
+        <organization>DnnConsulting.net</organization>
+        <url>https://www.DnnConsulting.net</url>
+        <email>info@DnnConsulting.nl</email>
+      </owner>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">08.00.00</dependency>
+      </dependencies>
+      <components>
+        <component type="Container">
+          <basePath>portals/_default/containers/DnnBootsterV2</basePath>
+          <containerFiles>
+            <containerName>DnnBootsterV2</containerName>
+            <containerFile>
+              <name>Clean.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Footer-clean.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Jumbotron.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-danger.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-dark.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-info.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-light.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-primary.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-secondary.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-success.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading-warning.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel-heading.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Panel.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Arrow-H1.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Arrow-H2.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Arrow-H3.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Arrow-H4.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Arrow-H5.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Arrow-H6.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Caret-H1.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Caret-H2.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Caret-H3.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Caret-H4.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Caret-H5.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Caret-H6.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-H1.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-H2.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-H3.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-H4.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-H5.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-H6.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Lined-H1.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Lined-H2.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Lined-H3.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Lined-H4.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Lined-H5.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>Title-Lined-H6.ascx</name>
+            </containerFile>
+          </containerFiles>
+        </component>
+      </components>            
+    </package>
+  </packages>
+</dotnetnuke>

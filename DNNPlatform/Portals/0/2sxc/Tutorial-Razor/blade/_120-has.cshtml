@@ -1,0 +1,84 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/_helpers.cshtml"); 
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
+  <p>
+      These demos show how to really check if a variable has text using Text.Has. This combines checks for...
+  </p>
+  <ul>
+    <li>null</li>
+    <li>empty</li>
+    <li>only html-nbsp</li>
+    <li>only html character #160 (also nbsp)</li>
+    <li>only new-line</li>
+  </ul>
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Text.Has(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Has_System_Object_System_Boolean_",
+  })
+
+  <div class="alert alert-success" role="alert">
+    Note that these examples use @hlp.TutLink("@helper", "html=home") and  @hlp.TutLink("emojis", "html210"), so click on the links if you don't understand that.
+  </div>
+</trim>
+
+<h2>Examples</h2>
+<table class="demo table table-hover">
+  <tr>
+    <th>Test</th>
+    <th>Code</th>
+    <th>Result</th>
+    <th>...when html counts</th>
+  </tr>
+  @RowEmojified("Null value", null)
+  @RowEmojified("Just spaces", "     ")
+  @RowEmojified("text with only line breaks", "\n\n")
+  @RowEmojified("tabs, spaces and line breaks", "\n\t  \n")
+  @RowEmojified("only nbsp characters", "&nbsp; &nbsp;")
+  @RowEmojified("char-code of nbsp characters", "&#160;")
+  @RowEmojified("real text", "real text")
+  @RowEmojified("Real text with nbps etc.", "real\n text &nbsp;")
+</table>
+
+@helper RowEmojified(string label, string value) {
+  var valueForShowing = value == null 
+    ? "null" 
+    : "\"" + value.Replace("\n", "\\n").Replace("\t", "\\t") + "\"";
+  <tr>
+    <td>@label</td>
+    <td>Text.Has(@valueForShowing)</td>
+    <td>@Boolmoji(Text.Has(value))</td>
+    <td>@Boolmoji(Text.Has(value, false))</td>
+  </tr>
+}
+
+@helper Boolmoji(bool value) {
+  @(value ? "✔️" : "❌")
+}
+
+<h2>Special case: &lt;BR&gt; Whitespace</h2>
+
+<ul>
+  <li>If your string is like Text.Has("&lt;br&gt;") it will be: @Text.Has("<br>")</li>
+  <li>If you want to ignore BRs, combine it with @hlp.TutLink("Tags.Br2Nl(...)", "blade220") </li>
+  <li>...resulting in: @Text.Has(Tags.Br2Nl("<br>"))</li>
+</ul>
+
+
+<hide>
+<style>
+  table.demo td {
+    white-space: pre-wrap;
+  }
+</style>
+
+
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CannotChangeSettings.Text">
+    <value xml:space="preserve">Ce site est membre d'un groupe de sites, ces paramètres sont contrôlés par le site principal.</value>
+  </data>
+  <data name="Column_Address.Help">
+    <value xml:space="preserve">Voir la colonne Adresse</value>
+  </data>
+  <data name="Column_Address.Text">
+    <value xml:space="preserve">Voir la colonne Adresse</value>
+  </data>
+  <data name="Column_Authorized.Help">
+    <value xml:space="preserve">Voir la colonne Autorisé</value>
+  </data>
+  <data name="Column_Authorized.Text">
+    <value xml:space="preserve">Voir la colonne Autorisé</value>
+  </data>
+  <data name="Column_CreatedDate.Help">
+    <value xml:space="preserve">Voir la colonne Date de création</value>
+  </data>
+  <data name="Column_CreatedDate.Text">
+    <value xml:space="preserve">Voir la colonne Date de création</value>
+  </data>
+  <data name="Column_DisplayName.Help">
+    <value xml:space="preserve">Voir la colonne Nom complet</value>
+  </data>
+  <data name="Column_DisplayName.Text">
+    <value xml:space="preserve">Voir la colonne Nom complet</value>
+  </data>
+  <data name="Column_Email.Help">
+    <value xml:space="preserve">Voir la colonne Email</value>
+  </data>
+  <data name="Column_Email.Text">
+    <value xml:space="preserve">Voir la colonne Email</value>
+  </data>
+  <data name="Column_FirstName.Help">
+    <value xml:space="preserve">Voir la colonne Prénom</value>
+  </data>
+  <data name="Column_FirstName.Text">
+    <value xml:space="preserve">Voir la colonne Prénom</value>
+  </data>
+  <data name="Column_LastLogin.Help">
+    <value xml:space="preserve">Voir la colonne Dernière connexion</value>
+  </data>
+  <data name="Column_LastLogin.Text">
+    <value xml:space="preserve">Voir la colonne Dernière connexion</value>
+  </data>
+  <data name="Column_LastName.Help">
+    <value xml:space="preserve">Voir la colonne Nom</value>
+  </data>
+  <data name="Column_LastName.Text">
+    <value xml:space="preserve">Voir la colonne Nom</value>
+  </data>
+  <data name="Column_Telephone.Help">
+    <value xml:space="preserve">Voir la colonne Téléphone</value>
+  </data>
+  <data name="Column_Telephone.Text">
+    <value xml:space="preserve">Voir la colonne Téléphone</value>
+  </data>
+  <data name="Combo.Text">
+    <value xml:space="preserve">Liste déroulante</value>
+  </data>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Paramètres du compte utilisateur</value>
+  </data>
+  <data name="ControlTitle_usersettings.Text">
+    <value xml:space="preserve">Paramétres utilisateurs</value>
+  </data>
+  <data name="Display_Mode.Help">
+    <value xml:space="preserve">Choisissez les paramètres par défaut pour la grille de données utilisateurs</value>
+  </data>
+  <data name="Display_Mode.Text">
+    <value xml:space="preserve">Présentation par défaut</value>
+  </data>
+  <data name="Display_SuppressPager.Help">
+    <value xml:space="preserve">Cochez cette case pour cacher le compteur de page si il n'y a qu'une page pour les enregistrements</value>
+  </data>
+  <data name="Display_SuppressPager.Text">
+    <value xml:space="preserve">Suppression du compteur de page ?</value>
+  </data>
+  <data name="FirstLetter.Text">
+    <value xml:space="preserve">Première lettre</value>
+  </data>
+  <data name="InvalidRegex.Text">
+    <value xml:space="preserve">la valeur de {0} n'est pas une expression régulière valide.</value>
+  </data>
+  <data name="MembersOnly.Text">
+    <value xml:space="preserve">Membres</value>
+  </data>
+  <data name="PasswordSettings.Text">
+    <value xml:space="preserve">Durée de vie du mot de passe</value>
+  </data>
+  <data name="PasswordSettingsHelp.Text">
+    <value xml:space="preserve">Permet de spécifier la durée de vie du mot de passe.</value>
+  </data>
+  <data name="Profile_ManageServices.Help">
+    <value xml:space="preserve">Cochez cette case pour activer le choix des services dans le profil de l'utilisateur</value>
+  </data>
+  <data name="Profile_ManageServices.Text">
+    <value xml:space="preserve">Afficher la gestion des services</value>
+  </data>
+  <data name="ProviderSettings.Text">
+    <value xml:space="preserve">Paramètres de Membership Provider</value>
+  </data>
+  <data name="ProviderSettingsHelp.Text">
+    <value xml:space="preserve">Cette section vous permet de spécifier les paramétres concernant les utilisateurs. Certains paramétres ne peuvent pas être modifiés car ils demandent l'édition du fichier web.config</value>
+  </data>
+  <data name="Records_PerPage.Help">
+    <value xml:space="preserve">Permet de spécifier le nombre d'utilisateur affiché par page.</value>
+  </data>
+  <data name="Records_PerPage.Text">
+    <value xml:space="preserve">Utilisateurs par page</value>
+  </data>
+  <data name="Security_DisplayNameFormat.Help">
+    <value xml:space="preserve">Vous pouvez spécifier le format d'affichage du nom de l'utilisateur. Le formatage peut utiliser des jetons de substitution : [FIRSTNAME] et[LASTNAME]. Ce formatage se substitue au pseudonyme qui ne pourra plus alors être modifié.</value>
+  </data>
+  <data name="Security_DisplayNameFormat.Text">
+    <value xml:space="preserve">Affichage du nom :</value>
+  </data>
+  <data name="Security_UsersControl.Help">
+    <value xml:space="preserve">Choix du type de présentation de la rubrique de gestion des rôles</value>
+  </data>
+  <data name="Security_UsersControl.Text">
+    <value xml:space="preserve">Présentation des groupes de rôles</value>
+  </data>
+  <data name="TextBox.Text">
+    <value xml:space="preserve">Zone de saisie</value>
+  </data>
+  <data name="UserAccounts.Text">
+    <value xml:space="preserve">Paramétres de comptes utilisateurs</value>
+  </data>
+</root>

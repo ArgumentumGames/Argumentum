@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Privé</value>
+  </data>
+  <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib">
+    <value>Faux</value>
+  </data>
+  <data name="$this.TrayAutoArrange" type="System.Boolean, mscorlib">
+    <value>Vrai</value>
+  </data>
+  <data name="lblHeader.Text">
+    <value>Informations</value>
+  </data>
+  <data name="lblModType.Text" xml:space="preserve">
+    <value>Type de module :</value>
+  </data>
+  <data name="lblModName.Text" xml:space="preserve">
+    <value>Nom du module :</value>
+  </data>
+  <data name="lblModInst.Text" xml:space="preserve">
+    <value>Instance de module :</value>
+  </data>
+  <data name="lblUName.Text" xml:space="preserve">
+    <value>Nom d'utilisateur :</value>
+  </data>
+  <data name="lblSettings.Text">
+    <value>Paramètres</value>
+  </data>
+  <data name="btnOK.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Fermer</value>
+  </data>
+  <data name="Error1.Text" xml:space="preserve">
+    <value>L'utilisateur n'a pas les autorisations nécessaires pour afficher cette page.</value>
+  </data>
+  <data name="lblPage.Text" xml:space="preserve">
+    <value>Page :</value>
+  </data>
+  <data name="lblSetFor.Text" xml:space="preserve">
+    <value>Modifier les paramètres pour...</value>
+  </data>
+  <data name="lblBrowAllow.Text" xml:space="preserve">
+    <value>Rôles autorisés :</value>
+  </data>
+  <data name="lblBrowser.Text" xml:space="preserve">
+    <value>Navigateur de fichiers :</value>
+  </data>
+  <data name="lblBrowsSec.Text" xml:space="preserve">
+    <value>Paramètres de navigateur de fichiers</value>
+  </data>
+  <data name="lblCSSURL.Text" xml:space="preserve">
+    <value>Éditeur de CSS</value>
+  </data>
+  <data name="lblPortal.Text" xml:space="preserve">
+    <value>Nom du site :</value>
+  </data>
+  <data name="lblStyles.Text" xml:space="preserve">
+    <value>Éditeur de styles</value>
+  </data>
+  <data name="lblToolbars.Text" xml:space="preserve">
+    <value>Barres d'outils :</value>
+  </data>
+  <data name="lnkRemove.Text" xml:space="preserve">
+    <value>Supprimer les paramètres</value>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Paramètres enregistrés. Actualiser l'éditeur ou recharger la page pour voir les changements.</value>
+  </data>
+  <data name="lblInfoDel.Text" xml:space="preserve">
+    <value>Paramètres supprimés</value>
+  </data>
+  <data name="lblBlanktext.Text" xml:space="preserve">
+    <value>Texte blanc :</value>
+  </data>
+  <data name="lblRole.Text">
+    <value>Rôle</value>
+  </data>
+  <data name="lblSelToolb.Text" xml:space="preserve">
+    <value>Sélectionner une barre d'outils</value>
+  </data>
+  <data name="Options.Text" xml:space="preserve">
+    <value>Options de l'éditeur personnalisé</value>
+  </data>
+  <data name="lblMainSet.Text" xml:space="preserve">
+    <value>Paramètres principaux</value>
+  </data>
+  <data name="lblBrowserDirs.Text" xml:space="preserve">
+    <value>Utiliser des sous-répertoires pour les non admins (..\Portals\0\fichiers-utilisateur\nom-utilisateur) :</value>
+  </data>
+  <data name="lblTemplates.Text" xml:space="preserve">
+    <value>Éditeur de modèles</value>
+  </data>
+  <data name="lblTemplFiles.Text" xml:space="preserve">
+    <value>Éditeur de fichiers de modèles</value>
+  </data>
+  <data name="lblCustomConfig.Text" xml:space="preserve">
+    <value>Fichier de configuration personnalisé :</value>
+  </data>
+  <data name="AddToolbar.Text" xml:space="preserve">
+    <value>Ajouter un nouveau jeu de barre d'outils</value>
+  </data>
+  <data name="CancelToolbar.Text" xml:space="preserve">
+    <value>Annuler la modification</value>
+  </data>
+  <data name="DeleteToolbar.Text" xml:space="preserve">
+    <value>Supprimer le jeu de barre d'outils sélectionné</value>
+  </data>
+  <data name="EditToolbar.Text" xml:space="preserve">
+    <value>Modifier le jeu de barre d'outils sélectionné</value>
+  </data>
+  <data name="lblCustomToolbars.Text" xml:space="preserve">
+    <value>Barres d'outils personnalisées</value>
+  </data>
+  <data name="lblToolbarList.Text" xml:space="preserve">
+    <value>Liste des barres d'outils personnalisées :</value>
+  </data>
+  <data name="lblToolbName.Text" xml:space="preserve">
+    <value>Nom de la barre d'outils :</value>
+  </data>
+  <data name="lblToolbSet.Text" xml:space="preserve">
+    <value>Boutons de barre d'outils disponibles</value>
+  </data>
+  <data name="SaveToolbar.Text" xml:space="preserve">
+    <value>Enregistrer le jeu de barre d'outils</value>
+  </data>
+  <data name="lblUseJquery.Text" xml:space="preserve">
+    <value>Utiliser adaptateur jQuery ?</value>
+  </data>
+  <data name="lblHeight.Text" xml:space="preserve">
+    <value>Hauteur de l'éditeur (px ou %) :</value>
+  </data>
+  <data name="lblWidth.Text" xml:space="preserve">
+    <value>Largeur de l'éditeur (px ou %) :</value>
+  </data>
+  <data name="lblImExport.Text" xml:space="preserve">
+    <value>Importer/exporter les paramètres actuels...</value>
+  </data>
+  <data name="lblResizeHeight.Text" xml:space="preserve">
+    <value>Hauteur par défaut du redimensionnement de l'image :</value>
+  </data>
+  <data name="lblResizeWidth.Text" xml:space="preserve">
+    <value>Largeur par défaut du redimensionnement de l'image :</value>
+  </data>
+  <data name="lnkExport.Text">
+    <value>Exporter</value>
+  </data>
+  <data name="lnkImport.Text">
+    <value>Importer</value>
+  </data>
+  <data name="BadImportXml.Text" xml:space="preserve">
+    <value>Fichier XML incorrect.</value>
+  </data>
+  <data name="Export.Text" xml:space="preserve">
+    <value>Paramètres de l'éditeur courant exportés</value>
+  </data>
+  <data name="Imported.Text" xml:space="preserve">
+    <value>Paramètres de l'éditeur importés pour</value>
+  </data>
+  <data name="lblInjectSyntaxJs.Text" xml:space="preserve">
+    <value>Injecter le lien vers SyntaxHighlighter JS :</value>
+  </data>
+  <data name="UploadFolderLabel.Text" xml:space="preserve">
+    <value>Dossier de chargement par défaut :</value>
+  </data>
+  <data name="BrowserRootFolder.Text" xml:space="preserve">
+    <value>Dossier racine du navigateur de fichiers :</value>
+  </data>
+  <data name="lblAutoCreateFileThumbNails.Text" xml:space="preserve">
+    <value>Créer automatiquement des miniatures d'images pour la prévisualisation :</value>
+  </data>
+  <data name="lblShowPageLinksTabFirst.Text" xml:space="preserve">
+    <value>Afficher l'onglet des liens de la page en premier</value>
+  </data>
+  <data name="lblUseAnchorSelector.Text" xml:space="preserve">
+    <value>Utiliser le sélecteur de l'ancre (détecte automatiquement tous les points d'ancrage sur la page sélectionnée) :</value>
+  </data>
+  <data name="FileListViewModeLabel.Text" xml:space="preserve">
+    <value>Mode d'affichage par défaut pour le listage des fichiers :</value>
+  </data>
+  <data name="SettingsExportTitle.Text" xml:space="preserve">
+    <value>Exportateur de paramètres</value>
+  </data>
+  <data name="SettingsImportTitle.Text" xml:space="preserve">
+    <value>Importateur de paramètres</value>
+  </data>
+  <data name="ExportNow.Text" xml:space="preserve">
+    <value>Exporter maintenant</value>
+  </data>
+  <data name="ImportNow.Text" xml:space="preserve">
+    <value>Importer maintenant</value>
+  </data>
+  <data name="FileListPageSizeLabel.Text" xml:space="preserve">
+    <value>Taille de la page de la liste des fichiers (0 = Pas de pagination) :</value>
+  </data>
+  <data name="Remove.Help" xml:space="preserve">
+    <value>Supprime le paramètre actuel pour {0} uniquement.</value>
+  </data>
+  <data name="Remove.Text" xml:space="preserve">
+    <value>Supprimer les {0} paramètres</value>
+  </data>
+  <data name="RemoveAll.Help" xml:space="preserve">
+    <value>Supprime les {0} paramètres du site complet.</value>
+  </data>
+  <data name="RemoveAll.Text" xml:space="preserve">
+    <value>Supprimer tous les {0} paramètres</value>
+  </data>
+  <data name="CreateGroupLabel.Text" xml:space="preserve">
+    <value>Créer un nouveau groupe</value>
+  </data>
+  <data name="CreateGroupTitle.Text" xml:space="preserve">
+    <value>Ajouter nouveau groupe à la barre d'outils ?</value>
+  </data>
+  <data name="DeleteGroup.Text" xml:space="preserve">
+    <value>Supprimer ce groupe de la barre d'outils ?</value>
+  </data>
+  <data name="DeleteToolbarButton.Text" xml:space="preserve">
+    <value>Supprimer ce bouton de barre d'outils ?</value>
+  </data>
+  <data name="EditGroupName.Text" xml:space="preserve">
+    <value>Cliquer pour modifier le nom de ce groupe</value>
+  </data>
+  <data name="NewGroupName.Text" xml:space="preserve">
+    <value>Nouveau groupe</value>
+  </data>
+  <data name="SaveGroupName.Text" xml:space="preserve">
+    <value>Sauvegarder le nom du groupe</value>
+  </data>
+  <data name="lblToolbarPriority.Text" xml:space="preserve">
+    <value>Régler la priorité de la barre d'outils</value>
+  </data>
+  <data name="ToolbarGroupsLabel.Text" xml:space="preserve">
+    <value>Groupes de barre d'outils</value>
+  </data>
+  <data name="CodeMirrorLabel.Text" xml:space="preserve">
+    <value>Thème CodeMirror (pour la coloration syntaxique de la source) :</value>
+  </data>
+  <data name="lblSkin.Text" xml:space="preserve">
+    <value>Peau :</value>
+  </data>
+  <data name="NoJava.Text" xml:space="preserve">
+    <value>&lt;strong&gt;CKEditor nécessite JavaScript pour fonctionner&lt;/ strong&gt;. Dans un navigateur sans support JavaScript, comme le vôtre, vous devriez toujours voir le contenu (données HTML) et vous devriez être en mesure de le modifier normalement, sans profiter de l’interface enrichie de l’éditeur.</value>
+  </data>
+  <data name="lblEditorConfig.Text" xml:space="preserve">
+    <value>Éditeur de configuration</value>
+  </data>
+  <data name="ModuleError.Text" xml:space="preserve">
+    <value>Les paramètres de l'éditeur pour une instance de module ne peut être consulté et chargé qu’à partir de l'instance du module.</value>
+  </data>
+  <data name="ModuleHeader.Text" xml:space="preserve">
+    <value>Gestionnaire de configuration pour CKEditor</value>
+  </data>
+  <data name="PortalOnlyLabel.Text" xml:space="preserve">
+    <value>Afficher les paramètres uniquement pour ce site ou pour tous les sites ?</value>
+  </data>
+  <data name="PortalOnly.Text" xml:space="preserve">
+    <value>Ce site uniquement</value>
+  </data>
+  <data name="Wait.Text" xml:space="preserve">
+    <value>Veuillez patienter...</value>
+  </data>
+  <data name="WaitMessage.Text" xml:space="preserve">
+    <value>Chargement des options de la page.</value>
+  </data>
+  <data name="ModuleHasSettingLabel.Text" xml:space="preserve">
+    <value>Contient les paramètres de module</value>
+  </data>
+  <data name="ModuleNoSettingLabel.Text" xml:space="preserve">
+    <value>Ne contient aucun paramètre de module</value>
+  </data>
+  <data name="PageHasSettingLabel.Text" xml:space="preserve">
+    <value>Contient les paramètres de la page</value>
+  </data>
+  <data name="PageNoSettingLabel.Text" xml:space="preserve">
+    <value>Ne contient aucun paramètres de la page</value>
+  </data>
+  <data name="PortalHasSettingLabel.Text" xml:space="preserve">
+    <value>Contient les paramètres de site</value>
+  </data>
+  <data name="PortalNoSettingLabel.Text" xml:space="preserve">
+    <value>Ne contient aucun paramètre de site</value>
+  </data>
+  <data name="IconLegendLabel.Text" xml:space="preserve">
+    <value>Légende de l'icône</value>
+  </data>
+  <data name="EditorConfigWarning.Text" xml:space="preserve">
+    <value>&lt;strong&gt;Informations :&lt;/ strong&gt; Les paramètres ci-dessous ne sont là que pour les experts, veuillez les modifier uniquement si vous savez ce que vous faites. Pour en savoir plus sur les paramètres ci-dessous, visiter la page suivante : &lt;a href="http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html"&gt;&lt;strong&gt;CKEditor JavaScript API Documentation Page&lt;/ strong&gt;&lt;/ a&gt;. Vous pouvez laisser les paramètres vierges pour charger les paramètres par défaut.</value>
+  </data>
+  <data name="ModuleInstance.Text">
+    <value>Module</value>
+  </data>
+  <data name="Page.Text">
+    <value>Page</value>
+  </data>
+  <data name="Portal.Text">
+    <value>Site</value>
+  </data>
+  <data name="RemoveModuleChild.Help" xml:space="preserve">
+    <value>Supprimer les paramètres de tous les modules sur la page en cours</value>
+  </data>
+  <data name="RemoveModuleChild.Text" xml:space="preserve">
+    <value>Supprimer tous les paramètres de module sur la page</value>
+  </data>
+  <data name="RemovePageChild.Help" xml:space="preserve">
+    <value>Supprime tous les paramètres des pages enfants de la page actuelle.</value>
+  </data>
+  <data name="RemovePageChild.Text" xml:space="preserve">
+    <value>Supprimer tous les paramètres des pages enfants</value>
+  </data>
+  <data name="RowBreak.Text" xml:space="preserve">
+    <value>Saut de ligne</value>
+  </data>
+  <data name="AddRowBreakLabel.Text" xml:space="preserve">
+    <value>Ajouter le saut de ligne</value>
+  </data>
+  <data name="AddRowBreakTitle.Text" xml:space="preserve">
+    <value>Ajouter nouveau saut de ligne à l'ensemble de la barre d'outils</value>
+  </data>
+  <data name="DefaultLinkMode0.Text" xml:space="preserve">
+    <value>URL relative</value>
+  </data>
+  <data name="DefaultLinkMode1.Text" xml:space="preserve">
+    <value>URL absolue</value>
+  </data>
+  <data name="DefaultLinkMode2.Text" xml:space="preserve">
+    <value>URL relative sécurisée</value>
+  </data>
+  <data name="DefaultLinkMode3.Text" xml:space="preserve">
+    <value>URL absolue sécurisée</value>
+  </data>
+  <data name="DefaultLinkModeLabel.Text" xml:space="preserve">
+    <value>Mode de liaison par défaut :</value>
+  </data>
+  <data name="DetailView.Text" xml:space="preserve">
+    <value>Voir détail</value>
+  </data>
+  <data name="IconsView.Text" xml:space="preserve">
+    <value>Mode icônes</value>
+  </data>
+  <data name="ListView.Text" xml:space="preserve">
+    <value>Mode liste</value>
+  </data>
+  <data name="BlanktextTT.Text" xml:space="preserve">
+    <value>Il s'agit du texte affiché par défaut lorsque le contenu du module est vide.</value>
+  </data>
+  <data name="NewsArcticlesArticlesList.Text" xml:space="preserve">
+    <value>Sélectionner un article :</value>
+  </data>
+  <data name="NewsArcticlesModuleList.Text" xml:space="preserve">
+    <value>Sélectionner la page et l'instance du module News Articles</value>
+  </data>
+  <data name="ToolbarNameMissing.Text" xml:space="preserve">
+    <value>Vous devez saisir un nom pour la barre d'outils</value>
+  </data>
+  <data name="ToolbarSetCreated.Text" xml:space="preserve">
+    <value>Nouveau jeu de barre d'outils "{0}" créé.</value>
+  </data>
+  <data name="ToolbarSetDeleted.Text" xml:space="preserve">
+    <value>Jeu de barre d'outils sélectionné supprimé.</value>
+  </data>
+  <data name="ToolbarSetSaved.Text" xml:space="preserve">
+    <value>Jeu de barre d'outils enregistré.</value>
+  </data>
+  <data name="CustomJsFileLabel.Text" xml:space="preserve">
+    <value>Fichier JS personnalisé :</value>
+  </data>
+  <data name="OverrideFileOnUploadLabel.Text" xml:space="preserve">
+    <value>Remplace le fichier s’il existe lors du chargement, sinon un nouveau fichier avec « _1 » sera créé :</value>
+  </data>
+  <data name="CopyPageChild.Help" xml:space="preserve">
+    <value>Copier les paramètres de la page actuelle vers l'ensemble de ses pages enfants.</value>
+  </data>
+  <data name="CopyPageChild.Text" xml:space="preserve">
+    <value>Copier les paramètres vers les pages enfants</value>
+  </data>
+  <data name="lblInfoCopyAll.Text" xml:space="preserve">
+    <value>Paramètres copiés vers l'ensemble des pages enfants.</value>
+  </data>
+  <data name="SizeLimitLabel.Text" xml:space="preserve">
+    <value>Limite de poids pour le chargement de fichier</value>
+  </data>
+  <data name="UploadFileLimitLabel.Text" xml:space="preserve">
+    <value>Limites pour le chargement de fichier</value>
+  </data>
+  <data name="AllPortals.Text" xml:space="preserve">
+    <value>Tous les sites</value>
+  </data>
+  <data name="HostHasSettingLabel.Text" xml:space="preserve">
+    <value>Contient les paramètres de l’hôte</value>
+  </data>
+  <data name="HostNoSettingLabel.Text" xml:space="preserve">
+    <value>Ne contient aucun paramètres de l’hôte</value>
+  </data>
+  <!---->
+</root>

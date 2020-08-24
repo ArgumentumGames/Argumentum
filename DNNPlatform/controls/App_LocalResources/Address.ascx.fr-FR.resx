@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CellRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le numéro de téléphone mobile est requis.</value>
+  </data>
+  <data name="CityRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le nom de la ville est requise.</value>
+  </data>
+  <data name="CountryRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le nom de votre pays est requis.</value>
+  </data>
+  <data name="FaxRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le numéro de télécopie est requis.</value>
+  </data>
+  <data name="plCell.Help">
+    <value xml:space="preserve">Saisissez un numéro de mobile.</value>
+  </data>
+  <data name="plCell.Text">
+    <value xml:space="preserve">Mobile :</value>
+  </data>
+  <data name="plCity.Help">
+    <value xml:space="preserve">Saisissez un nom de ville</value>
+  </data>
+  <data name="plCity.Text">
+    <value xml:space="preserve">Ville :</value>
+  </data>
+  <data name="plCountry.Help">
+    <value xml:space="preserve">Choisissez un pays</value>
+  </data>
+  <data name="plCountry.Text">
+    <value xml:space="preserve">Pays :</value>
+  </data>
+  <data name="plFax.Help">
+    <value xml:space="preserve">Saisissez le numéro de télécopie.</value>
+  </data>
+  <data name="plFax.Text">
+    <value xml:space="preserve">Télécopie :</value>
+  </data>
+  <data name="plPostal.Help">
+    <value xml:space="preserve">Saisissez le code postal</value>
+  </data>
+  <data name="plPostal.Text">
+    <value xml:space="preserve">Code postal :</value>
+  </data>
+  <data name="plProvince.Help">
+    <value xml:space="preserve">Sélectionnez une Province dans la liste</value>
+  </data>
+  <data name="plProvince.Text">
+    <value xml:space="preserve">Province :</value>
+  </data>
+  <data name="plRegion.Help">
+    <value xml:space="preserve">Sélectionnez un département dans la liste</value>
+  </data>
+  <data name="plRegion.Text">
+    <value xml:space="preserve">Département :</value>
+  </data>
+  <data name="plState.Help">
+    <value xml:space="preserve">Sélectionnez un Etat dans la liste</value>
+  </data>
+  <data name="plState.Text">
+    <value xml:space="preserve">Etat :</value>
+  </data>
+  <data name="plStreet.Help">
+    <value xml:space="preserve">Saisissez le numéro suivi du nom de la rue</value>
+  </data>
+  <data name="plStreet.Text">
+    <value xml:space="preserve">Rue :</value>
+  </data>
+  <data name="plTelephone.Help">
+    <value xml:space="preserve">Saisissez un numéro de téléphone.</value>
+  </data>
+  <data name="plTelephone.Text">
+    <value xml:space="preserve">Téléphone :</value>
+  </data>
+  <data name="plUnit.Help">
+    <value xml:space="preserve">Saisissez un complément d'adresse</value>
+  </data>
+  <data name="plUnit.Text">
+    <value xml:space="preserve">Numéro :</value>
+  </data>
+  <data name="plZip.Help">
+    <value xml:space="preserve">Saisissez le code ZIP</value>
+  </data>
+  <data name="plZip.Text">
+    <value xml:space="preserve">Code ZIP :</value>
+  </data>
+  <data name="PostalRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le code postal est requis.</value>
+  </data>
+  <data name="ProvinceRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;La Province est requise.</value>
+  </data>
+  <data name="RegionRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le département est requis.</value>
+  </data>
+  <data name="StateRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;L'Etat est requis.</value>
+  </data>
+  <data name="StreetRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le nom de la rue est requise.</value>
+  </data>
+  <data name="TelephoneRequired.Text">
+    <value xml:space="preserve">&lt;br&gt;Le numéro de téléphone est requis.</value>
+  </data>
+</root>

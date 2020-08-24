@@ -1,0 +1,61 @@
+@inherits ToSic.Sxc.Dnn.RazorComponentCode
+@using ToSic.Razor.Blade;
+
+@* Show post not found notification and stop processing *@
+@helper SetNotFoundHttpHeaders() {
+  Response.StatusCode = 404;
+	Response.TrySkipIisCustomErrors = true;
+}
+
+@helper PostMicroPreview(dynamic post, string context) {
+  var helpers = CreateInstance("shared/_Helpers.cshtml");
+  var title = context == "previous"
+    ? App.Resources.PreviousPost
+    : App.Resources.NextPost;
+
+  <div class="@context">
+    <a href="@helpers.LinkToDetailsPage(post)">
+      @if (Text.Has(post.Image)) {
+        <img src='@Tags.SafeUrl(post.Image + "?w=80&h=80&mode=crop&scale=both&quality=70")' alt="@post.Title" />
+      }
+      <span class="app-blog-previouslink-title">
+        <strong>@title:</strong>@post.Title
+      </span>
+    </a>
+  </div>
+}
+
+@* Show "Back to list" button *@
+@helper BackToListButton() {
+  <div class="backlink">
+    <a class="btn btn-outline-primary" href="@Tags.SafeUrl(Link.To())">@App.Resources.BackToHome</a>
+  </div>
+}
+
+@functions {
+  public void AddMetaTags(dynamic post) {
+    var sharingDescription = Text.Has(post.SharingDescription) ? post.SharingDescription : Tags.Strip(post.Teaser);
+    var metaImageUrl = Text.Has(post.Image)
+      ? Uri.EscapeUriString(Request.Url.Scheme + "://" + Request.Url.Host + post.Image.ToLower() + "?w=1200&h=630&mode=crop&scale=both&quality=70")
+      : "";
+
+    HtmlPage.Title = Text.Has(post.MetaTitle) ? post.MetaTitle : post.Title; // Adjust page title
+    HtmlPage.AddMeta("description", Text.Has(post.MetaDescription) ? post.MetaDescription : Tags.Strip(post.Teaser)); // Add Meta tag
+
+    // Add open graph meta information
+    HtmlPage.AddOpenGraph("og:type", "article");
+    HtmlPage.AddOpenGraph("og:title", post.Title);
+    HtmlPage.AddOpenGraph("og:site_name", App.Settings.Title);
+    HtmlPage.AddOpenGraph("og:url", Link.To(parameters: "post=" + post.UrlKey));
+    HtmlPage.AddOpenGraph("og:description", sharingDescription);
+    HtmlPage.AddOpenGraph("og:image", metaImageUrl);
+    HtmlPage.AddOpenGraph("og:image:height", "1200");
+    HtmlPage.AddOpenGraph("og:image:width", "630");
+
+    // Add twitter meta information
+    HtmlPage.AddMeta("twitter:card", "summary_large_image");
+    HtmlPage.AddMeta("twitter:title", post.Title);
+    HtmlPage.AddMeta("twitter:description", sharingDescription);
+    HtmlPage.AddMeta("twitter:image", metaImageUrl);
+  }
+}

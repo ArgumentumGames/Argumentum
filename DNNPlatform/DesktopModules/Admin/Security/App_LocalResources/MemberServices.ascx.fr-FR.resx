@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdRSVP.Text">
+    <value xml:space="preserve">Valider</value>
+  </data>
+  <data name="Description.Header">
+    <value xml:space="preserve">Description</value>
+  </data>
+  <data name="Every.Header">
+    <value xml:space="preserve">Chaque</value>
+  </data>
+  <data name="Expired.Text">
+    <value xml:space="preserve">Expiré</value>
+  </data>
+  <data name="ExpiryDate.Header">
+    <value xml:space="preserve">Date de fin</value>
+  </data>
+  <data name="Fee.Header">
+    <value xml:space="preserve">Montant</value>
+  </data>
+  <data name="Fee.Text">
+    <value xml:space="preserve">{0} Chaque {1} {2}</value>
+  </data>
+  <data name="Frequency_D.Text">
+    <value xml:space="preserve">Jour(s)</value>
+  </data>
+  <data name="Frequency_M.Text">
+    <value xml:space="preserve">Mois</value>
+  </data>
+  <data name="Frequency_W.Text">
+    <value xml:space="preserve">Semaine(s)</value>
+  </data>
+  <data name="Frequency_Y.Text">
+    <value xml:space="preserve">Année(s)</value>
+  </data>
+  <data name="Name.Header">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="NoFee.Text">
+    <value xml:space="preserve">Gratuit</value>
+  </data>
+  <data name="Period.Header">
+    <value xml:space="preserve">Périodicité</value>
+  </data>
+  <data name="plRSVPCode.Help">
+    <value xml:space="preserve">Vous pouvez souscrire à certains rôles en saisissant un code RSVP.  Si vous êtes en possession d'un tel code, saisissez le et cliquez sur "S'abonner"</value>
+  </data>
+  <data name="plRSVPCode.Text">
+    <value xml:space="preserve">Code RSVP :</value>
+  </data>
+  <data name="Renew.Text">
+    <value xml:space="preserve">Renouveller</value>
+  </data>
+  <data name="RSVPFailure.Text">
+    <value xml:space="preserve">Le code RSVP saisi n'existe pas ou n'est pas valide.</value>
+  </data>
+  <data name="RSVPHelp.Text">
+    <value xml:space="preserve">Si vous détenez un code RSVP, vous pouvez vous abonner au service correspondant en le saisissant dans le champ ci-dessous et en cliquant sur le bouton "S'abonner".</value>
+  </data>
+  <data name="RSVPSuccess.Text">
+    <value xml:space="preserve">Le rôle associé à ce code RSVP vous a été attribué. Pour activer vos droits, vous devez vous déconnecter pui vous reconnecter.</value>
+  </data>
+  <data name="ServicesHelp.Text">
+    <value xml:space="preserve">Cette section vous permet de gérer vos abonnements aux différents services (gratuits ou payants) disponibles sur ce site.&lt;br&gt;&lt;br&gt;Certains abonnement peuvent être activés à l'aide de code RSVP : saisissez le code en votre possession puis cliquez sur &lt;b&gt;"Valider"&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Les autres abonnements se gèrent simplement en choisissant d'y &lt;b&gt;"Souscrire"&lt;/b&gt; ou de se "Désabonner". Si le service auquel vous souhaitez vous abonner est payant, vous serez redirigé sur un site de paiement en ligne.&lt;br&gt;&lt;br&gt;Cette rubrique est accessible à tout moment.</value>
+  </data>
+  <data name="Subscribe.Text">
+    <value xml:space="preserve">Souscrire</value>
+  </data>
+  <data name="Trial.Header">
+    <value xml:space="preserve">Essai</value>
+  </data>
+  <data name="TrialFee.Text">
+    <value xml:space="preserve">{0} pour {1} {2}</value>
+  </data>
+  <data name="Unsubscribe.Text">
+    <value xml:space="preserve">Désabonnement</value>
+  </data>
+  <data name="UseTrial.Text">
+    <value xml:space="preserve">Essayer</value>
+  </data>
+</root>

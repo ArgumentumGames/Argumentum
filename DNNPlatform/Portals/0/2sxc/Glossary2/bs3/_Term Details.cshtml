@@ -1,0 +1,31 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@{
+  var term = AsList(Data).FirstOrDefault();
+  @* Show term not found notification and stop processing *@
+  if(term == null) {
+    <h1>@App.Resources.TermNotFoundTitle</h1>
+    <p>@App.Resources.TermNotFoundText</p>
+    <a href="@Tags.SafeUrl(Link.To())" class="btn btn-primary btn-sm">
+      @App.Resources.GoBackText
+    </a>
+    Code.SetNotFoundHttpHeaders();
+    return;
+  }
+
+  Code.SetMetaDescAndTitle(term);
+}
+
+<div @Edit.TagToolbar(term, toolbar: "-layout")>
+  <h1>@(Text.Has(term.Abbreviation) ? term.Abbreviation + " – " : "")@term.Title</h1>
+  <p>
+    <strong>@term.Summary</strong>
+  </p>
+  <p>@Html.Raw(term.Details)</p>
+  <a href='@Tags.SafeUrl(Link.To(parameters: "#" + term.Title.Substring(0, 1)))' class="btn btn-primary btn-sm">
+    @App.Resources.GoBackText
+  </a>
+</div>
+
+<link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="bottom" />

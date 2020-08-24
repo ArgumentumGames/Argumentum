@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="alternateItemTemplateLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Le modèle d'élément alternatif est utilisé pour afficher les détails pour chaque membre (alternativement). Le modèle d'élément sera utilisé pour tous les membres si ce champ est vide.</value>
+  </data>
+  <data name="alternateItemTemplateLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Autre modèle d'élément</value>
+  </data>
+  <data name="Ascending.Text">
+    <value xml:space="preserve">Croissant</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres de répertoire des membres</value>
+  </data>
+  <data name="DateCreated.Text" xml:space="preserve">
+    <value xml:space="preserve">Date de création :</value>
+  </data>
+  <data name="Descending.Text">
+    <value xml:space="preserve">Décroissant</value>
+  </data>
+  <data name="disablePagerLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Cochr ceci pour désactiver le bouton « Charger plus ».  Vous ne pourrez afficher que la première page.</value>
+  </data>
+  <data name="disablePagerLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Désactiver la pagination :</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value xml:space="preserve">Nom complet</value>
+  </data>
+  <data name="DisplaySearch_Both.Text" xml:space="preserve">
+    <value xml:space="preserve">Recherche simple et avancée</value>
+  </data>
+  <data name="DisplaySearch_None.Text">
+    <value xml:space="preserve">Aucune</value>
+  </data>
+  <data name="DisplaySearch_Simple.Text" xml:space="preserve">
+    <value xml:space="preserve">Recherche simple</value>
+  </data>
+  <data name="displaySearchLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner les options de la recherche. "Aucun" pour ne pas afficher les options; "Simple" pour afficher uniquement les options de recherche simple; "Recherche simple et avancée" pour afficher les deux options de recherche.</value>
+  </data>
+  <data name="displaySearchLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Afficher la recherche :</value>
+  </data>
+  <data name="Email.Text">
+    <value xml:space="preserve">Courriel</value>
+  </data>
+  <data name="enablePopUpLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Cocher cette case pour activer le modèle menu contextuel (Popup).</value>
+  </data>
+  <data name="enablePopUpLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Activer le menu contextuel :</value>
+  </data>
+  <data name="filterBySelectorLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Il est possible d’appliquer un filtre à la liste des membres affichés. Sélectionner le type de filtre à appliquer puis  le rôle, la relation ou un champ du profil depuis la liste déroulante.</value>
+  </data>
+  <data name="filterBySelectorLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Filtrer par :</value>
+  </data>
+  <data name="Filters.Text">
+    <value xml:space="preserve">Filtres</value>
+  </data>
+  <data name="Group.Text">
+    <value xml:space="preserve">Groupe</value>
+  </data>
+  <data name="itemTemplateLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Le modèle d'élément est utilisé pour afficher les détails sur le membre.</value>
+  </data>
+  <data name="itemTemplateLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Modèle d'élément :</value>
+  </data>
+  <data name="LastName.Text">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value xml:space="preserve">Pas de filtre</value>
+  </data>
+  <data name="pageSize.Error" xml:space="preserve">
+    <value xml:space="preserve">La page de taille doit être comprise entre 1 et 100</value>
+  </data>
+  <data name="pageSizeLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Vous pouvez définir la taille de chaque page en tapant un nombre compris entre 1 et 100.</value>
+  </data>
+  <data name="pageSizeLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Taille de la page :</value>
+  </data>
+  <data name="Paging.Text" xml:space="preserve">
+    <value xml:space="preserve">Options de pagination</value>
+  </data>
+  <data name="popUpTemplateLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Le modèle de menu contextuel est utilisé pour afficher les détails de chaque membre à l'intérieur d'une fenêtre pop up.</value>
+  </data>
+  <data name="popUpTemplateLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Modèle de menu contextuel (pop up) :</value>
+  </data>
+  <data name="ProfileProperty.Text" xml:space="preserve">
+    <value xml:space="preserve">Propriétés de profil</value>
+  </data>
+  <data name="Relationship.Text">
+    <value xml:space="preserve">Relation</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres de recherche</value>
+  </data>
+  <data name="searchField1Label.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le premier champ que vous souhaitez afficher dans la recherche avancée</value>
+  </data>
+  <data name="searchField1Label.Text" xml:space="preserve">
+    <value xml:space="preserve">Champ de recherche 1 :</value>
+  </data>
+  <data name="searchField2Label.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le deuxième champ que vous souhaitez afficher dans la recherche avancée</value>
+  </data>
+  <data name="searchField2Label.Text" xml:space="preserve">
+    <value xml:space="preserve">Champ de recherche 2 :</value>
+  </data>
+  <data name="searchField3Label.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le troisième champ que vous souhaitez afficher dans la recherche avancée</value>
+  </data>
+  <data name="searchField3Label.Text" xml:space="preserve">
+    <value xml:space="preserve">Domaine de recherche 3 :</value>
+  </data>
+  <data name="searchField4Label.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le quatrième champ que vous souhaitez afficher dans la recherche avancée</value>
+  </data>
+  <data name="searchField4Label.Text" xml:space="preserve">
+    <value xml:space="preserve">Champ de recherche 4 :</value>
+  </data>
+  <data name="sortFieldListLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez le champ à utiliser pour trier les membres.</value>
+  </data>
+  <data name="sortFieldListLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Champ de tri :</value>
+  </data>
+  <data name="sortOrderListLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez le sens de tri à utiliser pour trier les membres.</value>
+  </data>
+  <data name="sortOrderListLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Ordre de tri :</value>
+  </data>
+  <data name="Templates.Text">
+    <value xml:space="preserve">Modèles</value>
+  </data>
+  <data name="User.Text">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="UserId.Text" xml:space="preserve">
+    <value xml:space="preserve">ID de l'utilisateur :</value>
+  </data>
+  <data name="Username.Text">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="ExcludeHostUsersLabel.Help" xml:space="preserve">
+    <value>Si cochée, les super-utilisateurs (host users) n'apparaîtront pas dans les résultats de la recherche</value>
+  </data>
+  <data name="ExcludeHostUsersLabel.Text" xml:space="preserve">
+    <value>Exclure les super-utilisateurs :</value>
+  </data>
+  <data name="Prefix.Text">
+    <value>Civilité</value>
+  </data>
+  <data name="FirstName.Text">
+    <value>Prénom</value>
+  </data>
+  <data name="MiddleName.Text" xml:space="preserve">
+    <value>Second prénom</value>
+  </data>
+  <data name="Suffix.Text">
+    <value>Suffixe</value>
+  </data>
+  <data name="Unit.Text">
+    <value>Numéro</value>
+  </data>
+  <data name="Street.Text">
+    <value>Rue</value>
+  </data>
+  <data name="City.Text">
+    <value>Ville</value>
+  </data>
+  <data name="Region.Text">
+    <value>Région</value>
+  </data>
+  <data name="Country.Text">
+    <value>Pays</value>
+  </data>
+  <data name="PostalCode.Text" xml:space="preserve">
+    <value>Code postal</value>
+  </data>
+  <data name="Telephone.Text">
+    <value>Téléphone</value>
+  </data>
+  <data name="Cell.Text">
+    <value>Portable</value>
+  </data>
+  <data name="Fax.Text">
+    <value>Télécopie</value>
+  </data>
+  <data name="IM.Text" xml:space="preserve">
+    <value>Messagerie instantanée</value>
+  </data>
+  <data name="Website.Text">
+    <value>Site</value>
+  </data>
+  <data name="Biography.Text">
+    <value>Biographie</value>
+  </data>
+  <data name="TimeZone.Text" xml:space="preserve">
+    <value>Fuseau horaire</value>
+  </data>
+  <data name="PreferredLocale.Text" xml:space="preserve">
+    <value>Langue préférée</value>
+  </data>
+  <!---->
+</root>

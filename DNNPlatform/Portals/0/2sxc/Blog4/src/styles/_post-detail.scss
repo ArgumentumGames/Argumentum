@@ -1,0 +1,213 @@
+//
+//  This SCSS generates the css for the details-view
+//
+//  It is used by all CSS generators (Bootstrap3/4, etc.)
+//  To keep things simple, it uses the standard variables of
+//  bootstrap 4 conventions.
+//
+
+
+// Styling for post detail item
+section {
+   &.app-blog {
+      article {
+         margin-bottom: $grid-gutter-width*1.5;
+         &.post-detail {
+            // list item header
+            .header {
+               picture {
+                  display: block;
+                  margin-bottom: $grid-gutter-width;
+                  transition: background-color .3s ease-in-out;
+                  img {
+                        transition: opacity .3s ease-in-out;
+                        width:100%;
+                  }
+               }
+               h2 {
+                  transition: color .3s ease-in-out
+               }
+               .details {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+						margin: $grid-gutter-width/2 0;
+                  .person {
+                     margin-right: $grid-gutter-width/3;
+                     img {
+                        border-radius: 50%;
+                     }
+                  }
+                  time {
+                     font-size: 13px;
+                  }
+                  a {
+                     &.category {
+                        font-size: 13px;
+                        display: inline-block;
+                        padding: 0 5px;
+                     }
+                  }
+               }
+            } // list item content
+            .content {
+               margin-bottom: $grid-gutter-width;
+               p {
+                  &:first-of-type {
+                     margin-bottom: $grid-gutter-width*1.5;
+                  }
+               }
+            } // list item footer
+            .footer {
+               .tags {
+                  font-size: 13px;
+                  padding-bottom: $grid-gutter-width/2;
+                  margin-bottom: 10px;
+                  strong {
+                     line-height: 1.5;
+                     vertical-align: middle;
+                  }
+                  a {
+                     margin-right: 5px;
+                  }
+               }
+               .person {
+                  overflow: hidden;
+                  a {
+                     display: flex;
+                     flex-direction: row;
+                     align-items: center;
+                     img {
+                        border-radius: 50%;
+                        backface-visibility: hidden;
+                        margin-right: $grid-gutter-width/2;
+                     }
+                     h4 {
+                        font-size: 13px;
+                     }
+                  }
+               }
+               .authordetails {
+						font-size: 13px;
+                  img {
+							border-radius: 50%;
+							max-width:100px;
+                     float: right;
+                     display: block;
+                     margin-left: $grid-gutter-width;
+                     margin-bottom: 20px;
+						}
+						p {
+							font-size: 13px;
+						}
+
+               }
+               .backlink {
+                  margin-bottom: $grid-gutter-width;
+               }
+            } // hover States
+            .app-blog-readmorelink {
+               &:hover {
+                  picture {
+                     background-color: $primary;
+                     img {
+                        opacity: 0.5;
+                     }
+                  }
+                  h2 {
+                     color: $primary;
+                  }
+               }
+            }
+         }
+      }
+      .addthis_inline_share_toolbox {
+         margin: $grid-gutter-width 0;
+		}
+		aside {
+			.addthis_inline_share_toolbox {
+				padding-left:$grid-gutter-width;
+				min-width:350px;
+			}
+		}
+		hr {
+			margin: $grid-gutter-width 0
+		}
+	}
+	// Previous and next article links
+	.article-links {
+		margin-bottom:$grid-gutter-width;
+		overflow: hidden;
+	}
+	.previous, .next {
+			max-width: 48%;
+			font-size: 13px;
+			font-weight:700;
+			@include media-breakpoint-up(sm) {
+				max-width: 300px;
+			}
+			a {
+				&:before {
+					font-weight:300;
+					font-size: 50px;
+					transition: color .3s ease-in-out;
+					color: $primary;
+				}
+				&:hover {
+					text-decoration: none;
+					&:before {
+						color:$body-color;
+
+					}
+				}
+				strong {display:block; font-weight:500;}
+				img {
+					display:none;
+					width:70px;
+					@include media-breakpoint-up(lg) {
+						display:block;
+					}
+				}
+			}
+	}
+   .previous {
+
+      a {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: $body-color;
+
+            &:before {
+                  content:"‹";
+                  margin-right:5px;
+            }
+
+            img {
+            border-radius: 50%;
+            margin-right:$grid-gutter-width/3;
+            }
+
+      }
+	}
+	.next {
+
+      a {
+         display: flex;
+         flex-direction:row-reverse;
+			align-items: center;
+			text-align:right;
+			color: $body-color;
+
+			&:before {
+				content:"›";
+				margin-left:5px;
+			}
+         img {
+				border-radius: 50%;
+				margin-left:$grid-gutter-width/3;
+         }
+
+      }
+   }
+}

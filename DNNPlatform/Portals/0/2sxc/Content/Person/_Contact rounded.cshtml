@@ -1,0 +1,31 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+<div class="co-container-outer mb-4 mb-md-5">
+	<div class="co-container-inner">
+		<div class="row">
+			@foreach (var person in AsList(Data))	{
+				<div class="col-md-6 mb-4 mb-md-5" @Edit.TagToolbar(person)>
+					<div class="row">
+						<div class="col-4 mb-2">
+							@if (Text.Has(person.Photo)) {
+                <img class="img-fluid rounded-circle"
+                  src='@Tags.SafeUrl(person.Photo + "?w=379&h=379&mode=crop&scale=both&quality=90")'
+                  alt="@person.FullName" />
+							}
+							else {
+								<div class="bg-primary placeholder rounded-circle" style="padding-bottom:100%;"></div>
+							}
+						</div>
+
+						<div class="col-8" itemscope itemtype="http://schema.org/Person">
+							@RenderPage("_PersonData.cshtml", new { data = person})
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles,scripts,height,icons"})

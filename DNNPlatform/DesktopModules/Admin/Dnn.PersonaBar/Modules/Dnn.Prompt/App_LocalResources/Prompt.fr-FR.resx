@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Prompt.Text">
+    <value>Prompt</value>
+  </data>
+  <data name="Prompt_InvalidData.Text" xml:space="preserve">
+    <value>Vous avez envoyé des données non valides. Votre demande ne peut pas être traitée.</value>
+  </data>
+  <data name="Prompt_InvalidSyntax.Text" xml:space="preserve">
+    <value>Syntaxe invalide</value>
+  </data>
+  <data name="Prompt_NotAuthorized.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à accéder à cette ressource. Votre session a peut-être expiré. Si c'est le cas, connectez-vous à nouveau.</value>
+  </data>
+  <data name="Prompt_NotImplemented.Text" xml:space="preserve">
+    <value>Cette fonctionnalité n'a pas encore été implémentée.</value>
+  </data>
+  <data name="Prompt_ServerError.Text" xml:space="preserve">
+    <value>Le serveur a rencontré un problème et n'a pas pu traiter votre demande. Veuillez réessayer plus tard.</value>
+  </data>
+  <data name="Prompt_SessionTimedOut.Text" xml:space="preserve">
+    <value>Votre session a peut-être expiré. Si c'est le cas, connectez-vous à nouveau.</value>
+  </data>
+  <data name="CommandNotFound.Text" xml:space="preserve">
+    <value>Commande '{0}' introuvable.</value>
+  </data>
+  <data name="CommandOptionText.Text" xml:space="preserve">
+    <value>{0} ou {1}</value>
+  </data>
+  <data name="DidYouMean.Text" xml:space="preserve">
+    <value>Vouliez-vous dire '{0}'?</value>
+  </data>
+  <data name="Prompt_NoModules.Text" xml:space="preserve">
+    <value>Aucun module trouvé.</value>
+  </data>
+  <data name="Prompt_AddModuleError.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la tentative d'ajout du module. Veuillez consulter la visionneuse d'événements DNN pour plus de détails.</value>
+  </data>
+  <data name="Prompt_DesktopModuleNotFound.Text" xml:space="preserve">
+    <value>Impossible de trouver le module portant le nom '{0}' pour ce site</value>
+  </data>
+  <data name="Prompt_ModuleAdded.Text" xml:space="preserve">
+    <value>Ajout réussi de {0} nouveau(x) module{1}</value>
+  </data>
+  <data name="Prompt_ModuleCopied.Text" xml:space="preserve">
+    <value>Module copié avec succès.</value>
+  </data>
+  <data name="Prompt_ModuleDeleted.Text" xml:space="preserve">
+    <value>Module supprimé avec succès.</value>
+  </data>
+  <data name="Prompt_NoModulesAdded.Text" xml:space="preserve">
+    <value>Aucun module n'a été ajouté</value>
+  </data>
+  <data name="Prompt_SourceAndTargetPagesAreSame.Text" xml:space="preserve">
+    <value>L'ID de page source et l'ID de page cible ne peuvent pas être identiques.\n</value>
+  </data>
+  <data name="Prompt_ModuleMoved.Text" xml:space="preserve">
+    <value>Module dépalcé avec succès.</value>
+  </data>
+  <data name="Prompt_ErrorWhileCopying.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la copie du module. Voir la visionneuse d'événements DNN pour plus de détails.</value>
+  </data>
+  <data name="Prompt_ErrorWhileMoving.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors du déplacement du module. Voir la visionneuse d'événements DNN pour plus de détails.</value>
+  </data>
+  <data name="Prompt_FailedtoDeleteModule.Text" xml:space="preserve">
+    <value>Échec de la suppression du module ayant l'ID {0}. Veuillez consulter la visionneuse de journal pour plus de détails.</value>
+  </data>
+  <data name="Prompt_InsufficientPermissions.Text" xml:space="preserve">
+    <value>Vous n'avez pas assez d'autorisations pour effectuer cette opération.</value>
+  </data>
+  <data name="Prompt_ModuleNotFound.Text" xml:space="preserve">
+    <value>Impossible de trouver le module avec l'ID {0} sur la page avec l'ID {1}</value>
+  </data>
+  <data name="Prompt_NoModule.Text" xml:space="preserve">
+    <value>Aucun module trouvé avec l'ID {0}.</value>
+  </data>
+  <data name="Prompt_PageNotFound.Text" xml:space="preserve">
+    <value>Impossible de charger la page cible. Aucune page trouvée dans le site avec l'ID '{0}'</value>
+  </data>
+  <data name="Prompt_UserRestart.Text" xml:space="preserve">
+    <value>Utiliser un déclencheur pour redémarrer l'application</value>
+  </data>
+  <data name="Prompt_RestartApplication_Description.Text" xml:space="preserve">
+    <value>Lance un redémarrage de l'instance DNN et recharge la page.</value>
+  </data>
+  <data name="Prompt_Default.Text">
+    <value>Défaut</value>
+  </data>
+  <data name="Prompt_Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="Prompt_Options.Text">
+    <value>Options</value>
+  </data>
+  <data name="Prompt_Required.Text">
+    <value>Requis</value>
+  </data>
+  <data name="Prompt_Type.Text">
+    <value>Type</value>
+  </data>
+  <data name="Prompt_CommandNotFound.Text" xml:space="preserve">
+    <value>Impossible de trouver de l'aide pour cette commande</value>
+  </data>
+  <data name="Prompt_CommandHelpLearn.Text" xml:space="preserve">
+    <value>&lt;section class="dnn-prompt-inline-help"&gt; &lt;h3&gt;Comprendre les commandes de Prompt&lt;/h3&gt; &lt;p&gt; Comme avec la plupart des interfaces de ligne de commande, plus vous mémorisez de commandes, plus vous pouvez être efficace. si vous parvenez à comprendre le raisonnement derrière  le &lt;em&gt; comment &lt;/em&gt; les commandes d'invite sont nommées et structurées, il sera beaucoup plus facile de les apprendre et de les mémoriser. &lt;/p&gt; &lt;ol&gt; &lt;li&gt; &lt;strong&gt; L'invite est insensible à la casse &lt;/strong&gt;. Cela signifie que vous pouvez utiliser des noms de commandes ainsi que des noms d'options en minuscules, en majuscules ou les deux mélangé. Ceci est typique de la plupart des lignes de commande et c'est considéré comme plus simple pour un usage courant. &lt;/li&gt; &lt;li&gt; &lt;strong&gt;Les commandes sont soit 1 mot ou 2 mots séparés par un seul tiret (-) et aucun espace&lt;/strong&gt;. &lt;/li&gt; &lt;li&gt; &lt;strong&gt;Commandes en 1 seul mot:&lt;/strong&gt; Ils sont généralement réservés aux commandes qui interagissent avec Prompt lui-même ou le navigateur. En d'autres termes, la plupart de ces commandes ont lieu dans le navigateur. Certains exemples sont: &lt;code&gt;cls&lt;/code&gt; qui efface l'écran de l'invite et &lt;code&gt;reload&lt;/code&gt; qui commande au navigateur de rafraichir la page. Il existe également des commandes à deux mots qui fonctionnent sur le côté client, telles que &lt;code&gt;clear-history&lt;/code&gt; (Il existe également un raccourci pour la suppression de l'historique: &lt;code&gt;clh&lt;/code&gt;&lt;/li&gt; &lt;li&gt; &lt;strong&gt;Commandes à deux mots:&lt;/strong&gt; Ces commandes suivent le format &lt;code&gt;action-objet&lt;/code&gt;&amp;mdash;une action suivie d'un trait d'union puis suivi d'un composant ou d'un objet sur lequel l'action opère. &lt;/li&gt; &lt;/ol&gt; &lt;h4&gt;Action commune&lt;/h4&gt; &lt;p&gt;Ce n'est pas une liste complète de toutes les actions, mais couvre la plupart d'entre elles...&lt;/p&gt; &lt;table class="table"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Action&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td class="mono"&gt;list&lt;/td&gt; &lt;td&gt; Récupère une liste d'objets. L'hypothèse est que deux objets ou plus seront retournés donc la partie composante de la commande est au pluriel:&lt;br&gt; &lt;code&gt;list-pages&lt;/code&gt; ET NON PAS &lt;code&gt;list-page&lt;/code&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;get&lt;/td&gt; &lt;td&gt; Va récupérer un seul objet. Si la commande aboutit à plusieurs objets, seul le premier objet trouvé sera récupéré. Puisque cette commande opère sur un seul objet, le composant est au singulier et non au pluriel:&lt;br&gt; &lt;code&gt;get-page&lt;/code&gt; ET NON PAS &lt;code&gt;get-pages&lt;/code&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;new&lt;/td&gt; &lt;td&gt; Crée un nouvel objet. Nous avons choisi le mot &lt;code&gt; new &lt;/code&gt; car il requiert moins de typage que 'create' et il est plus précis que 'add', qui signifie ajouter quelque chose à quelque chose d'autre. &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;add&lt;/td&gt; &lt;td&gt; Ajoute quelque chose à quelque chose d'autre. Cela ne doit pas être confondu avec &lt;code&gt;new&lt;/code&gt; qui &lt;em&gt;crée&lt;/em&gt; un nouvel objet. Considérez &lt;code&gt;add-roles&lt;/code&gt; et &lt;code&gt;new-role&lt;/code&gt;. Le premier est utilisé pour &lt;em&gt;add&lt;/em&gt; un ou plusieurs  rôles de sécurité à un utilisateur (c.-à-d. Ajouter un rôle à la liste des rôles que l'utilisateur possède déjà), tandis que la dernière commande crée un nouveau rôle de sécurité dans le système DNN. &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;set&lt;/td&gt; &lt;td&gt; Modifie un objet. Cela peut signifier 'mettre à jour(update)' ou définir (pour la première fois) une valeur. Nous avons choisi le mot 'set' non seulement parce qu'il est court et facile à taper, mais aussi parce qu'il est plus précis dans plus de scénarios. 'Update' implique que vous modifiez une valeur qui a déjà été définie, mais elle est moins précise dans le cas où vous définissez une valeur pour la première fois. Et avons-nous mentionné que 'set' est moins long que 'update'? &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;delete&lt;/td&gt; &lt;td&gt; Supprime un objet. Les résultats de cette action dépendent du contexte. Si DNN fournit une fonctionnalité de corbeille comme pour les pages et les utilisateurs, la commande enverra l'objet à cette corbeille, ce qui permettra de le restaurer plus tard. Si cette fonctionnalité n'est pas disponible, l'objet sera définitivement supprimé &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;restore&lt;/td&gt; &lt;td&gt; Si un objet a déjà été supprimé et que DNN fournit une fonction de recyclage pour l'objet, l'objet sera alors restauré. &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;purge&lt;/td&gt; &lt;td&gt; Si l'objet a été précédemment supprimé et que DNN fournit une fonction de recyclage pour l'objet, cette commande supprimera définitivement l'objet. L'interface utilisateur DNN se réfère généralement à cela comme 'remove(supprimer)' mais nous avons estimé que 'purge' reflète plus précisément l'action. &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;h4&gt;Composants communs&lt;/h4&gt; &lt;p&gt;La plupart des composants doivent être familiers à tout utilisateur ayant une expérience d'administrateur DNN. Voici les plus communs:&lt;/p&gt; &lt;p&gt;Une note sur les composants pluriels et singuliers:  Chaque fois qu'une commande contient 1 ou plusieurs éléments, le composant sera au pluriel. &lt;code&gt;list-modules&lt;/code&gt;, par exemple. Lorsque la commande est conçue pour retourner un seul objet ou le premier objet, alors le composant sera au singulier comme dans &lt;code&gt;get-module&lt;/code&gt;&lt;/p&gt; &lt;table class="table"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Component&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td class="mono"&gt;user/users&lt;/td&gt; &lt;td&gt; Un utilisateur DNN &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;page/pages&lt;/td&gt; &lt;td&gt;Une page dans le site. NOTE: Pour des raisons historiques, DNN se réfère aux pages &lt;em&gt; en interne &lt;/em&gt; en tant que 'Tab' alors que l'interface utilisateur DNN les désigne comme des 'pages'. Nous avons choisi d'utiliser "page", mais vous pouvez voir des références à Tab ou TabID renvoyé à partir de commandes liées à la page. Pour les besoins de la ligne de commande, vous devriez seulement utiliser 'page' mais comprendre que 'page' et 'tab' sont synonymes.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;role/roles&lt;/td&gt; &lt;td&gt;Un rôle de sécurité DNN&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;task/tasks&lt;/td&gt; &lt;td&gt;'task' est un élément de planificateur DNN ou une tâche planifiée. Nous utilisons le mot 'task' en raison de sa brièveté.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;portal/portals&lt;/td&gt; &lt;td&gt;Un site DNN &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td class="mono"&gt;module/modules&lt;/td&gt; &lt;td&gt;Un module DNN. Selon la commande, il peut s'agir d'une définition de module ou d'une instance de module.&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;h4&gt;A Voir également&lt;/h4&gt; &lt;a data-cmd="help syntax" class="dnn-prompt-cmd-insert" href="#"&gt;Syntax de base&lt;/a&gt; &lt;a data-cmd="help" class="dnn-prompt-cmd-insert" href="#"&gt;Liste des commandes&lt;/a&gt; &lt;/section&gt;</value>
+  </data>
+  <data name="Prompt_CommandHelpSyntax.Text" xml:space="preserve">
+    <value>&lt;section class="dnn-prompt-inline-help"&gt; &lt;h3&gt;Syntax de base&lt;/h3&gt; &lt;p&gt; &lt;em&gt;La ligne de commande&lt;/em&gt; fonctionne de la même manière qu'un Terminal, Bash shell, Windows CMD shell, ou Powershell. Vous entrez une commande et tapez &lt;code&gt;ENTER&lt;/code&gt; et l'ordinateur retourne un résultat. Pour les commandes très simple comme &lt;code&gt;help&lt;/code&gt; ou &lt;code&gt;list-modules&lt;/code&gt;, c'est tout ce dont vous aurez besoin. Certaines commandes, cependant, peuvent nécessiter des données supplémentaires ou vous permettre de fournir des options supplémentaires. &lt;/p&gt; &lt;p&gt; spécification d'une cible ou d'un contexte pour une commande: Pour les commandes qui opèrent sur un objet comme un utilisateur, ou qui nécessitent un contexte comme une page, vous devez simplement fournir cette information après la commande. Par exemple, pour trouver l'utilisateur &lt;em&gt;jsmith&lt;/em&gt; en utilisant la commande &lt;code&gt;get-user&lt;/code&gt;, vous taperez: &lt;code&gt;get-user jsmith&lt;/code&gt; suivi de la touche &lt;code&gt;ENTER&lt;/code&gt; pour l'envoyer. Si vous spécifiez des options (voir le paragraphe suivant), ceux-ci devraient toujours &lt;em&gt; venir après &lt;/em&gt; la cible / le contexte de la commande. &lt;/p&gt; &lt;p&gt; Spécification des options pour les commandes: Certaines commandes nécessitent encore plus de données ou vous permettent de spécifier des informations de configuration facultatives. Dans &lt;em&gt;La ligne de commande&lt;/em&gt; nous appelons ça des &amp;quot;flags (options)&amp;quot;. Ceux-ci devraient venir &lt;em&gt; après &lt;/em&gt; n'importe quelle cible / contexte requis par la commande (voir le paragraphe ci-dessus) et &lt;em&gt; doit &lt;/em&gt; être précédé de deux traits d'union (&lt;code&gt;--&lt;/code&gt;). Il ne devrait pas y avoir d'espace entre les tirets et il ne devrait pas y avoir d'espace entre les tirets et le nom de l'option. Si l'option nécessite une valeur, elle s'ajoute après l'option. &lt;/p&gt; &lt;p&gt; Comme exemple d'utilisation d'option, prenez la commande &lt;code&gt;get-user&lt;/code&gt;. Par défaut, vous devez spécifier le nom d'utilisateur que vous voulez trouver. Cependant, vous pouvez également effectuer une recherche par leur adresse e-mail. Dans ce cas, vous utiliserez l'option &lt;code&gt;--email&lt;/code&gt;. Voici comment vous l'utiliseriez: &lt;/p&gt; &lt;code class="block"&gt; get-user --email jsmith@sample.com &lt;/code&gt; &lt;p&gt; Si la valeur d'une option contient plus d'un mot, placez-le entre guillemets: &lt;/p&gt; &lt;code class="block"&gt; set-page --title "My Page"&lt;/code&gt; &lt;h4&gt;A Voir également&lt;/h4&gt; &lt;a data-cmd="help learn" class="dnn-prompt-cmd-insert" href="#"&gt;Apprendre les commandes&lt;/a&gt; &lt;a data-cmd="help" class="dnn-prompt-cmd-insert" href="#"&gt;Liste des commandes&lt;/a&gt; &lt;/section&gt;</value>
+  </data>
+  <data name="Prompt_AddModule_Description.Text" xml:space="preserve">
+    <value>Ajoute un module à une page sur le site Web.</value>
+  </data>
+  <data name="Prompt_AddModule_FlagModuleName.Text" xml:space="preserve">
+    <value>Nom du module à ajouter. Cela doit être un nom de module existant unique.</value>
+  </data>
+  <data name="Prompt_AddModule_FlagModuleTitle.Text" xml:space="preserve">
+    <value>Indiquer le titre du module sur la page.</value>
+  </data>
+  <data name="Prompt_AddModule_FlagPageId.Text" xml:space="preserve">
+    <value>ID de la page sur laquelle ajouter un module.</value>
+  </data>
+  <data name="Prompt_AddModule_FlagPane.Text" xml:space="preserve">
+    <value>Spécifier la "pane" dans laquelle le module doit être ajouté. Par défaut, le module sera ajouté dans "ContentPane".</value>
+  </data>
+  <data name="Prompt_AddModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Ajouter un module à une page&lt;/h4&gt; &lt;code class="block"&gt;add-module --name "Html" --pageid 23 --pane TopPane&lt;/code&gt;</value>
+  </data>
+  <data name="Prompt_CopyModule_Description.Text" xml:space="preserve">
+    <value>Copie un module vers la page spécifiée.</value>
+  </data>
+  <data name="Prompt_CopyModule_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID du module à copier. L'utilisation de l'option est facultative. Vous pouvez simplement fournir la valeur ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_CopyModule_FlagIncludesettings.Text" xml:space="preserve">
+    <value>Si la valeur est 'true' (vrai), Prompt va copier les paramètres du module source dans le module copié.</value>
+  </data>
+  <data name="Prompt_CopyModule_FlagPageId.Text" xml:space="preserve">
+    <value>L'ID de la page qui contient le module que vous voulez copier.</value>
+  </data>
+  <data name="Prompt_CopyModule_FlagPane.Text" xml:space="preserve">
+    <value>Spécifiez la "pane" dans laquelle le module doit être copié. Si l'information n'est pas fournie, le module sera copié dans "ContentPane".</value>
+  </data>
+  <data name="Prompt_CopyModule_FlagToPageId.Text" xml:space="preserve">
+    <value>L'ID de la page cible. La page sur laquelle vous souhaitez copier le module.</value>
+  </data>
+  <data name="Prompt_DeleteModule_Description.Text" xml:space="preserve">
+    <value>Supprime de façon non définitive un module sur une page spécifique. Le module sera envoyé dans la corbeille DNN. Cela ne désinstalle pas les modules et n'affecte pas les définitions de module.</value>
+  </data>
+  <data name="Prompt_DeleteModule_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID du module à récupérer. L'utilisation de l'option est facultative. Vous pouvez simplement fournir l'ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_DeleteModule_FlagPageId.Text" xml:space="preserve">
+    <value>Indiquer l'ID de la page sur laquelle se trouve le module à supprimer.</value>
+  </data>
+  <data name="Prompt_DeleteModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Supprime et envoie un module à la corbeille&lt;/h4&gt; &lt;p&gt;Cela va supprimer un module sur une page spécifique et l'envoyer à la corbeille DNN&lt;/p&gt; &lt;code class="block"&gt;delete-module 345 --pageid 42&lt;/code&gt;</value>
+  </data>
+  <data name="Prompt_GetModule_Description.Text" xml:space="preserve">
+    <value>Récupère des détails sur un seul module dans une page spécifique</value>
+  </data>
+  <data name="Prompt_GetModule_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID du module à récupérer. L'utilisation de l'option est facultative. Vous pouvez simplement fournir l'ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_GetModule_FlagPageId.Text" xml:space="preserve">
+    <value>L'ID de la page qui contient le module.</value>
+  </data>
+  <data name="Prompt_GetModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Obtenir une information sur un module spécifique&lt;/h4&gt; &lt;p&gt;Le code ci-dessous récupère les détails d'un module dont l'ID est 345 sur une page ayant l'ID 48&lt;/p&gt; &lt;code class="block"&gt;get-module 359 --pageid 48&lt;/code&gt; &lt;p&gt;La version suivante est une version plus explicite du code ci-dessus.&lt;/p&gt; &lt;code class="block"&gt;get-module --id 359 --pageid 48&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;ModuleId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;359&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Title&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Navigation&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModuleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Console&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FriendlyName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Console&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModuleDefId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;102&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TabModuleId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;48&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AddedToPages&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;42, 46, 47, 48&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ListModules_Description.Text" xml:space="preserve">
+    <value>Récupére une liste de modules basée sur des critères de recherche.</value>
+  </data>
+  <data name="Prompt_ListModules_FlagDeleted.Text" xml:space="preserve">
+    <value>Lorsqu'elle est spécifiée, la commande trouve tous les modules du site qui se trouvent dans la corbeille. (Si &lt;span class="mono"&gt;--deleted&lt;/span&gt; est vrai), ou tous les modules qui ne sont &lt;em&gt;pas&lt;/em&gt; dans la corbeille (si l'opération &lt;span class="mono"&gt;--deleted&lt;/span&gt; est fausse). Si l'option est spécifiée mais qu'aucune valeur n'est donnée, elle sera par défaut &lt;span class="mono"&gt;true&lt;/span&gt;. Cette option peut être utilisé avec &lt;span class="mono"&gt;--name&lt;/span&gt; et &lt;span class="mono"&gt;--title&lt;/span&gt; pour affiner les résultats</value>
+  </data>
+  <data name="Prompt_ListModules_FlagMax.Text" xml:space="preserve">
+    <value>Taille maximale pour la page. Max 500.</value>
+  </data>
+  <data name="Prompt_ListModules_FlagModuleName.Text" xml:space="preserve">
+    <value>Le nom du module à rechercher. Cela accepte le caractère générique (*) pour effectuer des recherches partielles. Le nom du module 'Module Name' n'est pas la même chose que le nom convivial du module 'Friendly Name' ou le titre du module. Pour trouver le nom du module, &lt;code&gt;list-modules&lt;/code&gt; sur une page contenant le module. Les recherches sont insensibles à la casse</value>
+  </data>
+  <data name="Prompt_ListModules_FlagModuleTitle.Text" xml:space="preserve">
+    <value>Le titre du module à rechercher. Cela accepte les espaces génériques (*) représentant 0 caractères ou plus. Les recherches sont insensibles à la casse.</value>
+  </data>
+  <data name="Prompt_ListModules_FlagPage.Text" xml:space="preserve">
+    <value>Numéro de page à afficher.</value>
+  </data>
+  <data name="Prompt_ListModules_FlagPageId.Text" xml:space="preserve">
+    <value>Lorsque spécifié, la commande affiche uniquement les modules d'une page spécifique. L'utilisation de l'option est facultative. Vous pouvez simplement fournir la valeur ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_ListModules_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Liste les modules du site courant&lt;/h4&gt; &lt;code class="block"&gt;list-modules&lt;/code&gt; &lt;h4&gt;Liste les modules d'une page spécifique&lt;/h4&gt; &lt;code class="block"&gt;list-modules 72&lt;/code&gt; &lt;h4&gt;Liste les modules filtrés par leur Nom&lt;/h4&gt; &lt;p&gt;Ceci va retourner tous les modules 'XMod' et 'XMod Pro' dans le site actuel&lt;/p&gt; &lt;code class="block"&gt;list-modules --name XMod*&lt;/code&gt; &lt;h4&gt;Liste les modules d'une page spécifique filtrés par le Nom du module&lt;/h4&gt; &lt;p&gt;eci va retourner tous les modules 'XMod' et 'XMod Pro' dans la page dont l'id est 72&lt;/p&gt; &lt;code class="block"&gt;list-modules 72 --name XMod*&lt;/code&gt; &lt;h4&gt;Liste tous les modules filtrés par leur Nom et leur titre&lt;/h4&gt; &lt;p&gt;Cela retournera tous les modules du site dont le nom du module commence par Site &lt;strong&gt;et&lt;/strong&gt; Le titre commence par Configure.&lt;/p&gt; &lt;code class="block"&gt;list-modules --title Configure* --name Site*&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;ModuleId&lt;/th&gt; &lt;th&gt;Title&lt;/th&gt; &lt;th&gt;ModuleName&lt;/th&gt; &lt;th&gt;FriendlyName&lt;/th&gt; &lt;th&gt;ModuleDefId&lt;/th&gt; &lt;th&gt;TabModuleId&lt;/th&gt; &lt;th&gt;AddedToPages&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;394&lt;/td&gt; &lt;td&gt;Configure portal settings, page design and apply a template...&lt;/td&gt; &lt;td&gt;SiteWizard&lt;/td&gt; &lt;td&gt;Site Wizard&lt;/td&gt; &lt;td&gt;88&lt;/td&gt; &lt;td&gt;86&lt;/td&gt; &lt;td&gt;64&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;395&lt;/td&gt; &lt;td&gt;Configure the sitemap for submission to common search engines&lt;/td&gt; &lt;td&gt;Sitemap&lt;/td&gt; &lt;td&gt;Sitemap&lt;/td&gt; &lt;td&gt;106&lt;/td&gt; &lt;td&gt;87&lt;/td&gt; &lt;td&gt;65&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;h4&gt;Liste tous les modules supprimés du site&lt;/h4&gt; &lt;p&gt;Ceci retournera tous les modules qui se trouve dans la corbeille DNN&lt;/p&gt; &lt;code class="block"&gt;list-modules --deleted&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;ModuleId&lt;/th&gt; &lt;th&gt;Title&lt;/th&gt; &lt;th&gt;Pane&lt;/th&gt; &lt;th&gt;ModuleName&lt;/th&gt; &lt;th&gt;FriendlyName&lt;/th&gt; &lt;th&gt;ModuleDefId&lt;/th&gt; &lt;th&gt;TabModuleId&lt;/th&gt; &lt;th&gt;IsDeleted&lt;/th&gt; &lt;th&gt;TabId&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;358&lt;/td&gt; &lt;td&gt;Home Banner&lt;/td&gt; &lt;td&gt;ContentPane&lt;/td&gt; &lt;td&gt;DNN_HTML&lt;/td&gt; &lt;td&gt;HTML&lt;/td&gt; &lt;td&gt;120&lt;/td&gt; &lt;td&gt;106&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;td&gt;74&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;410&lt;/td&gt; &lt;td&gt;Module that was copied&lt;/td&gt; &lt;td&gt;ContentPane&lt;/td&gt; &lt;td&gt;DNN_HTML&lt;/td&gt; &lt;td&gt;HTML&lt;/td&gt; &lt;td&gt;120&lt;/td&gt; &lt;td&gt;104&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;td&gt;71&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;h4&gt;Liste tous les modules supprimé filtrés par leur Nom et leur titre&lt;/h4&gt; &lt;p&gt;Ceci retournera tous les modules de la corbeille dont le Nom se termine avec &amp;quot;HTML&amp;quot; et dont le titre contient &amp;quot;that&amp;quot;&lt;/p&gt; &lt;code class="block"&gt;list-modules --deleted --name *HTML --title *that*&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;ModuleId&lt;/th&gt; &lt;th&gt;Title&lt;/th&gt; &lt;th&gt;Pane&lt;/th&gt; &lt;th&gt;ModuleName&lt;/th&gt; &lt;th&gt;FriendlyName&lt;/th&gt; &lt;th&gt;ModuleDefId&lt;/th&gt; &lt;th&gt;TabModuleId&lt;/th&gt; &lt;th&gt;IsDeleted&lt;/th&gt; &lt;th&gt;TabId&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;410&lt;/td&gt; &lt;td&gt;Module that was copied&lt;/td&gt; &lt;td&gt;ContentPane&lt;/td&gt; &lt;td&gt;DNN_HTML&lt;/td&gt; &lt;td&gt;HTML&lt;/td&gt; &lt;td&gt;120&lt;/td&gt; &lt;td&gt;104&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;td&gt;71&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_MoveModule_Description.Text" xml:space="preserve">
+    <value>Déplace un module vers la page spécifiée</value>
+  </data>
+  <data name="Prompt_MoveModule_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID du module à copier. L'utilisation de l'option est facultative. Vous pouvez simplement fournir la valeur ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_MoveModule_FlagPageId.Text" xml:space="preserve">
+    <value>L'ID de la page qui contient le module que vous voulez copier.</value>
+  </data>
+  <data name="Prompt_MoveModule_FlagPane.Text" xml:space="preserve">
+    <value>Spécifiez la 'pane' dans lequel le module doit être déplacé. S'il n'est pas fourni, le module sera déplacé vers 'ContentPane'.</value>
+  </data>
+  <data name="Prompt_MoveModule_FlagToPageId.Text" xml:space="preserve">
+    <value>L'ID de la page cible. La page sur laquelle vous souhaitez copier le module.</value>
+  </data>
+  <data name="Prompt_MoveModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Déplacer un module d'une page à une autre&lt;/h4&gt; &lt;p&gt;Cette commande déplace le module avec l'ID 358 de la Page dont l'ID est 71 et le place sur la page dont l'ID est 75&lt;/p&gt; &lt;code class="block"&gt;move-module 358 --pageid 71 --topageid 75&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;ModuleId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;358&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Title&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;My Module&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModuleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;DNN_HTML&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FriendlyName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;HTML&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModuleDefId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;120&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TabModuleId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;107&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AddedToPages&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;71, 75&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan="3"&gt;Le module a été copié avec succès&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ClearCache_Description.Text" xml:space="preserve">
+    <value>Efface le cache du serveur et recharge la page.</value>
+  </data>
+  <data name="Prompt_ClearCache_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;code class="block"&gt; clear-cache &lt;/code&gt; &lt;h4&gt;Résultat&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt;&lt;td&gt;le Cache a été effacé&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;Rechargement dans 3 secondes&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ClearHistory_Description.Text" xml:space="preserve">
+    <value>Efface l'historique des commandes utilisées dans la session en cours</value>
+  </data>
+  <data name="Prompt_ClearLog_Description.Text" xml:space="preserve">
+    <value>Efface le journal des événements pour le site actuel.</value>
+  </data>
+  <data name="Prompt_ClearLog_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;code class="block"&gt; clear-log &lt;/code&gt; &lt;h4&gt;Résultat&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt;&lt;td&gt;&lt;em&gt;[Event Log Cleared]&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_Cls_Description.Text" xml:space="preserve">
+    <value>Efface l'ecran de Prompt. &lt;code&gt;cls&lt;/code&gt; est un raccourci pour &lt;a href="#clear-screen"&gt;&lt;code&gt;clear-screen&lt;/code&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Prompt_Echo_Description.Text" xml:space="preserve">
+    <value>Répète le premier argument reçu</value>
+  </data>
+  <data name="Prompt_Exit_Description.Text" xml:space="preserve">
+    <value>Quitte la console de Prompt</value>
+  </data>
+  <data name="Prompt_GetHost_Description.Text" xml:space="preserve">
+    <value>Récupère des informations sur l'instance DNN</value>
+  </data>
+  <data name="Prompt_GetHost_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Obtenir des informations sur l'instance DNN actuelle&lt;/h4&gt; &lt;code class="block"&gt; get-host &lt;/code&gt; &lt;h4&gt;Résultat&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;Product&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;DNN Platform&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Version&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;9.0.0.1002&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UpgradeAvailable&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Framework&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;4.6&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;IP Address&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;fe80::a952:8263:d357:ab90%5&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Permissions&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;ReflectionPermission, WebPermission, AspNetHostingPermission&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Site&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;dnnprompt.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Title&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;DNN Corp&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Url&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;http://www.dnnsoftware.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Email&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;support@dnnprompt.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Theme&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Gravity (2-Col)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Container&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Gravity (Title_h2)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EditTheme&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Gravity (2-Col)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EditContainer&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Gravity (Title_h2)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;PortalCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_GetPortal_Description.Text" xml:space="preserve">
+    <value>Récupère des informations de base sur le site actuel ou le site spécifié</value>
+  </data>
+  <data name="Prompt_GetPortal_FlagId.Text" xml:space="preserve">
+    <value>ID du site pour obtenir des informations. Seul l'hôte peut obtenir des informations sur les sites autres que les actuels.</value>
+  </data>
+  <data name="Prompt_GetPortal_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Obtenir des informations sur le site actuel&lt;/h4&gt; &lt;code class="block"&gt; get-portal &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;PortalId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;0&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;PortalName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;dnnsoftware.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CdfVersion&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RegistrationMode&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Verified&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DefaultPortalAlias&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;dnnsoftware.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;PageCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;34&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UserCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SiteTheme&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (Inner)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AdminTheme&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (Admin)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Container&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (NoTitle)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AdminContainer&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (Title_h2)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Language&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;en-US&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_GetSite_Description.Text" xml:space="preserve">
+    <value>Récupère des informations de base sur le site actuel ou le site spécifié</value>
+  </data>
+  <data name="Prompt_GetSite_FlagId.Text" xml:space="preserve">
+    <value>ID du site pour obtenir des informations. Seul l'hôte peut obtenir des informations sur les sites autres que les actuels.</value>
+  </data>
+  <data name="Prompt_GetSite_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Obtenir des informations sur le site actuel&lt;/h4&gt; &lt;code class="block"&gt; get-portal &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;PortalId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;0&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;PortalName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;dnnsoftware.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CdfVersion&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RegistrationMode&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Verified&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DefaultPortalAlias&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;dnnsoftware.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;PageCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;34&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UserCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SiteTheme&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (Inner)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AdminTheme&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (Admin)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Container&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (NoTitle)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AdminContainer&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Xcillion (Title_h2)&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Language&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;en-US&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ListCommands_Description.Text" xml:space="preserve">
+    <value>Liste toutes les commandes.</value>
+  </data>
+  <data name="Prompt_ListPortals_Description.Text" xml:space="preserve">
+    <value>Récupère une liste de sites pour l'instance DNN actuelle</value>
+  </data>
+  <data name="Prompt_ListSites_Description.Text" xml:space="preserve">
+    <value>Récupère une liste de sites pour l'instance DNN actuelle</value>
+  </data>
+  <data name="Prompt_Reload_Description.Text" xml:space="preserve">
+    <value>Recharge la page en cours</value>
+  </data>
+  <data name="Prompt_PagingMessage.Text" xml:space="preserve">
+    <value>Page {0} sur {1}.</value>
+  </data>
+  <data name="Prompt_PagingMessageWithLoad.Text" xml:space="preserve">
+    <value>Page {0} sur {1}. Appuyer sur n'importe quelle touche pour charger la page suivante. Appuyer sur CTRL + X pour terminer.</value>
+  </data>
+  <data name="Help_Default.Text">
+    <value>Défaut</value>
+  </data>
+  <data name="Help_Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="Help_Flag.Text">
+    <value>Signaler</value>
+  </data>
+  <data name="Help_Options.Text">
+    <value>Options</value>
+  </data>
+  <data name="Help_Required.Text">
+    <value>Requis</value>
+  </data>
+  <data name="Help_Type.Text">
+    <value>Type</value>
+  </data>
+  <data name="PromptGreeting.Text" xml:space="preserve">
+    <value>Prompt {0} Saisir \'help\' pour obtenir une liste de commandes</value>
+  </data>
+  <data name="ReloadingText.Text" xml:space="preserve">
+    <value>Rechargement dans 3 secondes</value>
+  </data>
+  <data name="SessionHisotryCleared.Text" xml:space="preserve">
+    <value>L'historique des commandes de session a été effacé.</value>
+  </data>
+  <data name="Prompt_GeneralCategory.Text" xml:space="preserve">
+    <value>Commandes générales</value>
+  </data>
+  <data name="Prompt_HostCategory.Text" xml:space="preserve">
+    <value>Commandes de l'hôte</value>
+  </data>
+  <data name="Prompt_ModulesCategory.Text" xml:space="preserve">
+    <value>Commandes de module</value>
+  </data>
+  <data name="Prompt_PortalCategory.Text" xml:space="preserve">
+    <value>Commandes du site</value>
+  </data>
+  <data name="Prompt_Help_Command.Text">
+    <value>Commande</value>
+  </data>
+  <data name="Prompt_Help_Commands.Text">
+    <value>Commandes</value>
+  </data>
+  <data name="Prompt_Help_Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="Prompt_Help_Learn.Text" xml:space="preserve">
+    <value>Apprendre les commandes de Prompt</value>
+  </data>
+  <data name="Prompt_Help_ListOfAvailableMsg.Text" xml:space="preserve">
+    <value>Voici une liste des commandes disponibles pour Prompt</value>
+  </data>
+  <data name="Prompt_Help_PromptCommands.Text" xml:space="preserve">
+    <value>Commandes de Prompt</value>
+  </data>
+  <data name="Prompt_Help_SeeAlso.Text" xml:space="preserve">
+    <value>Voir aussi</value>
+  </data>
+  <data name="Prompt_Help_Syntax.Text" xml:space="preserve">
+    <value>Présentation/Syntaxe de base</value>
+  </data>
+  <data name="Prompt_ClearCache_Error.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la tentative d'effacement du cache.</value>
+  </data>
+  <data name="Prompt_ClearCache_Success.Text" xml:space="preserve">
+    <value>Cache effacé.</value>
+  </data>
+  <data name="Prompt_ClearLog_Error.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la tentative d'effacement du journal des événements.</value>
+  </data>
+  <data name="Prompt_ClearLog_Success.Text" xml:space="preserve">
+    <value>Journal des événements effacé.</value>
+  </data>
+  <data name="Prompt_Echo_Nothing.Text" xml:space="preserve">
+    <value>Rien à afficher</value>
+  </data>
+  <data name="Prompt_Echo_ResultHtml.Text">
+    <value>&lt;h4&gt;&lt;/h4&gt;</value>
+  </data>
+  <data name="Prompt_FlagIsRequired.Text" xml:space="preserve">
+    <value>'[0]' est requis.</value>
+  </data>
+  <data name="Prompt_GetHost_Unauthorized.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à accéder à cette fonctionnalité.</value>
+  </data>
+  <data name="Prompt_GetHost__NoArgs.Text" xml:space="preserve">
+    <value>La commande get-host ne prend aucun argument ou option.</value>
+  </data>
+  <data name="Prompt_GetPortal_NoArgs.Text" xml:space="preserve">
+    <value>La commande get-portal ne prend aucun argument ou option.</value>
+  </data>
+  <data name="Prompt_GetPortal_NotFound.Text" xml:space="preserve">
+    <value>Impossible de trouver un site avec l'ID "{0}"</value>
+  </data>
+  <data name="Prompt_ListCommands_Error.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la tentative de listing des commandes.</value>
+  </data>
+  <data name="Prompt_ListCommands_Found.Text" xml:space="preserve">
+    <value>{0} commandes trouvées</value>
+  </data>
+  <data name="Prompt_ListCommands_H_Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="Prompt_ListCommands_H_Name.Text">
+    <value>Nom</value>
+  </data>
+  <data name="Prompt_ListCommands_H_Version.Text">
+    <value>Version</value>
+  </data>
+  <data name="Prompt_ListCommands__H_Category.Text">
+    <value>Catégorie</value>
+  </data>
+  <data name="Prompt_ListPortals_NoArgs.Text" xml:space="preserve">
+    <value>La commande list-portal ne prend aucun argument ou option</value>
+  </data>
+  <data name="Prompt_SetMode_Description.Text" xml:space="preserve">
+    <value>Définit le mode d'affichage DNN. Cela a le même effet que de cliquer sur les options appropriées dans la barre de contrôle DNN.</value>
+  </data>
+  <data name="Prompt_SetMode_FlagMode.Text" xml:space="preserve">
+    <value>L'un des trois modes d'affichage : &lt;code&gt;edit&lt;/code&gt;, &lt;code&gt;layout&lt;/code&gt;, or &lt;code&gt;view&lt;/code&gt;. Vous n'avez pas besoin de spécifier explicitement l'option &lt;span class="mono"&gt;--mode&lt;/span&gt;. Saisir simplement l'un des trois modes après la commande.</value>
+  </data>
+  <data name="Prompt_SetMode_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;div&gt; &lt;h4&gt;Modifier le mode d'affichage DNN&lt;/h4&gt; &lt;code class="block"&gt; set-mode layout &lt;/code&gt; OU &lt;code class="block"&gt; set-mode view &lt;/code&gt; OU &lt;code class="block"&gt; set-mode edit &lt;/code&gt; &lt;/div&gt;</value>
+  </data>
+  <data name="Prompt_UserRestart_Error.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la tentative de redémarrage de l'application.</value>
+  </data>
+  <data name="Prompt_UserRestart_Success.Text" xml:space="preserve">
+    <value>Application redémarrée</value>
+  </data>
+  <data name="Prompt_CopyModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Copier un module d'une page vers une autre&lt;/h4&gt; &lt;p&gt;Cette commande effectue une copie du module ayant l'ID 358 de la page ayant l'ID 71 vers la page ayant l'ID 75.&lt;/p&gt; &lt;code class="block"&gt;copy-module 358 --pageid 71 --topageid 75&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;ModuleId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;358&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Title&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;My Module&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModuleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;DNN_HTML&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FriendlyName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;HTML&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModuleDefId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;120&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TabModuleId&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;107&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AddedToPages&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;71, 75&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan="3"&gt;Successfully copied the module.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ListCommands_ResultHtml.Text">
+    <value>&lt;h4&gt;&lt;/h4&gt;</value>
+  </data>
+  <data name="Prompt_ListPortals_ResultHtml.Text">
+    <value>&lt;h4&gt;&lt;/h4&gt;</value>
+  </data>
+  <data name="Prompt_ListSites_ResultHtml.Text">
+    <value>&lt;h4&gt;&lt;/h4&gt;</value>
+  </data>
+  <data name="Prompt_RestartApplication_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt;&lt;td&gt;Application redémarrée&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;Rechargement dans 3 secondes&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <!---->
+</root>

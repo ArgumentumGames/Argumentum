@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plConfirm.Help">
+    <value xml:space="preserve">Resaisissez le mot de passe pour le confirmer</value>
+  </data>
+  <data name="plConfirm.Text">
+    <value xml:space="preserve">Confirmation :</value>
+  </data>
+  <data name="plEmail.Help">
+    <value xml:space="preserve">Saisissez votre adresse Email</value>
+  </data>
+  <data name="plEmail.Text">
+    <value xml:space="preserve">Adresse de courriel :</value>
+  </data>
+  <data name="plFirstName.Help">
+    <value xml:space="preserve">Saisissez votre Prénom</value>
+  </data>
+  <data name="plFirstName.Text">
+    <value xml:space="preserve">Prénom :</value>
+  </data>
+  <data name="plIM.Help">
+    <value xml:space="preserve">Saisissez votre identifiant de messagerie instantanée (Skype, Yahoo, Google...)</value>
+  </data>
+  <data name="plIM.Text">
+    <value xml:space="preserve">Pager :</value>
+  </data>
+  <data name="plLastName.Help">
+    <value xml:space="preserve">Saisissez votre Nom</value>
+  </data>
+  <data name="plLastName.Text">
+    <value xml:space="preserve">Nom :</value>
+  </data>
+  <data name="plPassword.Help">
+    <value xml:space="preserve">Choisissez votre mot de passe</value>
+  </data>
+  <data name="plPassword.Text">
+    <value xml:space="preserve">Mot de passe :</value>
+  </data>
+  <data name="plUserName.Help">
+    <value xml:space="preserve">Choisissez un nom d'utilisateur. Si il existe déjà, vous pourrez en choisir un autre.</value>
+  </data>
+  <data name="plUserName.Text">
+    <value xml:space="preserve">Nom d'utilisateur :</value>
+  </data>
+  <data name="plWebsite.Help">
+    <value xml:space="preserve">Saisissez l'adresse de votre site Web</value>
+  </data>
+  <data name="plWebsite.Text">
+    <value xml:space="preserve">Site web :</value>
+  </data>
+  <data name="valConfirm1.Text">
+    <value xml:space="preserve">&lt;br&gt;Vous devez confirmer votre mot de passe.</value>
+  </data>
+  <data name="valConfirm2.Text">
+    <value xml:space="preserve">&lt;br&gt;Les mots de passe saisis ne correspondent pas.</value>
+  </data>
+  <data name="valEmail1.Text">
+    <value xml:space="preserve">&lt;br&gt;L'adresse de courriel est requise.</value>
+  </data>
+  <data name="valEmail2.Text">
+    <value xml:space="preserve">&lt;br&gt;L'adresse de courriel  doit être valide.</value>
+  </data>
+  <data name="valFirstName.Text">
+    <value xml:space="preserve">&lt;br&gt;Le Prénom est requis.</value>
+  </data>
+  <data name="valLastName.Text">
+    <value xml:space="preserve">&lt;br&gt;Le Nom est requis.</value>
+  </data>
+  <data name="valPassword.Text">
+    <value xml:space="preserve">&lt;br&gt;Le mot de passe est requis.</value>
+  </data>
+  <data name="valUsername.Text">
+    <value xml:space="preserve">&lt;br&gt;Le nom d'utilisateur est requis.</value>
+  </data>
+</root>

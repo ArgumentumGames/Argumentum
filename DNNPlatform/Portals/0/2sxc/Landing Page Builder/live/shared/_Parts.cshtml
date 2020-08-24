@@ -1,0 +1,77 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using System.Text.RegularExpressions
+@using ToSic.Razor.Blade;
+
+@helper SectionStyle() {
+var presentation = Header.Presentation;
+@Tag.Attr("style", (Text.Has(presentation.BGImage) ? "background-image:url('"+Tags.SafeUrl(presentation.BGImage)+"?w=2560&scale=both&quality=70')" : ""))
+}
+
+@helper SectionClasses() {
+var presentation = Header.Presentation;
+<text>section-text-@presentation.TextOptimization section-bg-color-@presentation.BackgroundColor @(Text.Has(presentation.BGImage) ? "section-bg-img" : "")</text>
+}
+
+@helper BackgroundDiv() {
+var presentation = Header.Presentation;
+<div class="section-bg-img-overlay section-bg-effect-@presentation.BGImageEffects"></div>
+}
+
+@helper CtaList(dynamic ctas) {
+    if(ctas.Count != 0) {  
+        foreach (var cta in AsList(ctas)) {
+            <a href="@cta.Link" class="btn btn-primary btn-lg cta" data-id="@cta.EntityId" data-moduleid="@Dnn.Module.ModuleID" data-trackingevent="cta">@cta.Label</a>
+        }
+    }
+}
+
+@helper HeaderCta(dynamic ctas) {
+    if(ctas.Count > 0) {
+        <div class="row">
+            <div class="col-12 text-center">
+                @CtaList(ctas)
+            </div>
+        </div>
+    }
+}
+
+@helper VideoImageIconOrInnerContent(dynamic Data) {
+    <div class="col-12 col-md-6 mb-4 @(Data.UseInnerContent != null && Data.UseInnerContent ? "sc-content-block-list cta-form" : "")"
+        @Edit.ContextAttributes(Data, field: "InnerContent")>
+        @if (Data.UseInnerContent != null && Data.UseInnerContent) {
+            foreach (var innerContent in Data.InnerContent) {
+                @ToSic.Sxc.Blocks.Render.One(innerContent);
+            }
+        } else {
+            if(Text.Has(Data.VideoUrl)) {
+                var youTube = Regex.Match(Data.VideoUrl,
+                    @"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)");
+                var isYouTube = youTube.Success;
+                var youTubeUrl = isYouTube
+                    ? "https://www.youtube.com/embed/" + youTube.Groups[1].Value + "?controls=1&fs=1&modestbranding=0&rel=0&showinfo=0&autohide=1&iv_load_policy=3&theme=dark&wmode=transparent"
+                    : "";
+
+                <a data-fancybox="fancybox-@Dnn.Module.ModuleID" data-width="1280" data-height="720" data-caption="@Data.Title" href="@youTubeUrl">
+                    @if(Text.Has(Data.Image)) {
+                    <div class="content-video">
+                        <div class="overlay d-flex justify-content-center align-items-center w-100 h-100">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <img class="img-fluid" src='@Tags.SafeUrl(Data.Image + "?w=1050&amp;scale=both&amp;mode=max&amp;quality=70")' alt="@Data.Title">
+                    </div>
+                    } else {
+                        <div class="dnnFormMessage dnnFormWarning">Preview Image not found. Please add Preview Image or turn off Video-Lightbox</div>
+                    }
+                </a>
+            } 
+            else if (Text.Has(Data.Image)) {
+                <img class="img-fluid" src='@Tags.SafeUrl(Data.Image + "?w=1050&amp;scale=both&amp;mode=max&amp;quality=70")' alt="@Data.Title">
+            } 
+            else if (Text.Has(Data.Icon) ) {
+                <div class="text-center">
+                    <i class="content-icon fas @Data.Icon" aria-hidden="true"></i>
+                </div>
+            }
+        }
+    </div>
+}

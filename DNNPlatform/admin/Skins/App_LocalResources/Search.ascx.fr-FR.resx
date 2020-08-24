@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DropDownGlyph.AltText" xml:space="preserve">
+    <value xml:space="preserve">Choisissez le type de recherche</value>
+  </data>
+  <data name="NoResult.Text" xml:space="preserve">
+    <value xml:space="preserve">Aucun résultat trouvé</value>
+  </data>
+  <data name="Placeholder.Text">
+    <value xml:space="preserve">Rechercher...</value>
+  </data>
+  <data name="Search.Text">
+    <value xml:space="preserve">Chercher</value>
+  </data>
+  <data name="SeeMoreResults.Text" xml:space="preserve">
+    <value xml:space="preserve">Voir plus de résultats</value>
+  </data>
+  <data name="Site.Text">
+    <value xml:space="preserve">Site</value>
+  </data>
+  <data name="Site.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Rechercher sur le site</value>
+  </data>
+  <data name="URL.Text">
+    <value xml:space="preserve">http://www.google.com/custom?hl=en&amp;client=pub-9770992166002654&amp;sitesearch=[DOMAIN]&amp;q=[TEXT]</value>
+  </data>
+  <data name="Web.Text">
+    <value xml:space="preserve">Web</value>
+  </data>
+  <data name="Web.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Rechercher sur google</value>
+  </data>
+  <data name="SearchClearQuery.Text" xml:space="preserve">
+    <value>Effacer texte recherché</value>
+  </data>
+  <!---->
+</root>

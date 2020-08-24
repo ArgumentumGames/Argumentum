@@ -1,0 +1,72 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightRazor>
+@using System.Linq;
+@using DotNetNuke.Common;
+@using DotNetNuke.Entities.Users;
+@using NBrightCore;
+@using NBrightCore.common;
+@using NBrightDNN;
+@using Nevoweb.DNN.NBrightBuy.Components;
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+    // assign Model, so we can resolve var in VS
+    var info = (NBrightInfo)Model.List.First();
+    var uData = new UserData();
+
+}
+
+<!-- Client Menu -->
+@RenderTemplate("\\DesktopModules\\NBright\\NBrightBuy\\Themes\\Default\\Default\\ClientMenu.cshtml", Model)
+
+<div class="nbs myprofile">
+
+        <h1>@ResourceKey("Clients.ClientmenuProfile")</h1>
+
+        <div id="profileinputform">
+
+            <div class="updatedform" style="display:none;"><span>@ResourceKey("General.updated")</span></div>
+
+            <div id="profileinput" class="dnnForm">
+
+                <h2 class="dnnFormSectionHead"><span>@ResourceKey("Clients.lblUserName")</span></h2>
+
+                <div class="dnnFormItem">
+                  <div class="dnnLabel"><label>@ResourceKey("General.Email") :</label></div>
+                  @NBrightTextBox(info, "genxml/textbox/email", "required name='profileemail' class='required' type='email' datatype='email'")
+                </div>
+
+            </div>
+
+            <div class="formrow clearfix">
+              <a href="javascript:void(0)" class='profilesubmit primarybutton'>@ResourceKey("General.Save")</a>
+            </div>
+
+        </div>
+
+</div>
+<div class="documents">
+    <table>
+        <tbody>
+            @foreach (var purchaseddoc in uData.DocList)
+            {
+                var productid = purchaseddoc.Value.GetXmlPropertyInt("genxml/productid");
+                var productData = new ProductData(productid, Utils.GetCurrentCulture());
+                NBrightInfo doc = null;
+                foreach (var d in productData.Docs)
+                {
+                    if (d.GetXmlProperty("genxml/hidden/filename") == purchaseddoc.Value.GetXmlProperty("genxml/filename"))
+                    {
+                        doc = d;
+                    }
+                }
+                if (doc != null)
+                {
+                    <tr><td><i class='fa fa-file-pdf-o fa-lg'></i><a href='/DesktopModules/NBright/NBrightBuy/XmlConnector.ashx?cmd=docdownload&downloadname=@doc.GetXmlProperty("genxml/textbox/txtfilename")&filename=@doc.GetXmlProperty("genxml/hidden/filerelpath")' title='@doc.GetXmlProperty("genxml/textbox/txtdocdesc")'>@doc.GetXmlProperty("genxml/textbox/txttitle")</a></td></tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="clearfix"></div>

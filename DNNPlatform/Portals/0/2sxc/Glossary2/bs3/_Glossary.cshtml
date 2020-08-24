@@ -1,0 +1,42 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@{
+  var termGroups = AsList(App.Data["Term"])
+    .GroupBy(l => l.Title.Substring(0, 1).ToUpper())    // group by first letter
+    .OrderBy(s => s.Key);                               // sort asc
+}
+
+<div class="app-glossary" @Edit.TagToolbar(toolbar: "contentitems?contentType=Term")>
+  <nav class="navbar navbar-default">
+    <div class="navbar-header" data-toggle="collapse" data-target="#glossaryNav" aria-expanded="false">
+      <span>@App.Resources.GlossaryMenu</span>
+      <span class="collapsed app-glossary-toggle" title="@App.Resources.GlossaryMenu" ></span>
+    </div>
+    <div class="collapse navbar-collapse" id="glossaryNav">
+      <ul class="nav navbar-nav app-glossary-letterlist">
+      @foreach(var grp in termGroups) {
+        <li><a href='@Tags.SafeUrl("#" + grp.Key)'>@grp.Key</a></li>
+      }
+      </ul>
+    </div>
+  </nav>
+
+  <div class="app-glossary-terms">
+  @foreach (var grp in termGroups) {
+    <div class="app-glossary-item-wrapper">
+      <h2 id="@grp.Key">@grp.Key</h2>
+      @foreach (var term in grp) {
+        <div class="app-glossary-single-term" @Edit.TagToolbar(term, toolbar: "%delete&show=true")>
+          <strong>@(Text.Has(term.Abbreviation) ? term.Abbreviation + " – " : "")@term.Title</strong>
+          <p>@term.Summary</p>
+          <small><a href='@Tags.SafeUrl(Link.To(parameters: "term=" + term.UrlKey))'>@App.Resources.MoreText</a></small>
+        </div>
+      }
+    </div>
+  }
+  </div>
+</div>
+
+<link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="bottom" />
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="200:bottom"></script>

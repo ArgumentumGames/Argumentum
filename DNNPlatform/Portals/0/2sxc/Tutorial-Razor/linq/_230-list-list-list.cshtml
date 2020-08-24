@@ -1,0 +1,75 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using System.Linq;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@{
+  var persons = AsList(App.Data["Persons"]);
+  var books = AsList(App.Data["Books"]);
+}
+
+@RenderPage("_header.cshtml")
+
+<h2>Books.Authors.Awards, a List in a List in a List</h2>
+
+<h3>Show only books of Awarded Authors #1</h3>
+<p>This example first gets book, checks the authors and checks if they have awards with LINQ <code>Any()</code>. </p>
+@{
+  var booksWithAwardedAuthors = books
+    .Where(b => (b.Authors as Dynlist)
+      // this gets all the awards and combines (flattens) the list
+      .SelectMany(a => a.Awards as Dynlist) 
+      .Any()
+    );
+}
+<ol>
+  @foreach(var book in booksWithAwardedAuthors) {
+    var awards = (book.Authors as Dynlist).SelectMany(a => (a.Awards as Dynlist));
+    <li><strong>@book.Title</strong> 
+      with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
+    </li>
+  }
+</ol>
+<hr>
+
+
+<h3>Now the list of books NOT in that list</h3>
+<p>And now the opposite list, so all books which don't contain one of the books with authors. It gets the "other" books by filtering the list to exclude the ones it found first. That demonstrates how to use <code>Contains(x as object)</code>. The <code>Contains(...)</code> cannot work with <code>dynamic</code>, so we must tell it it's an object for it to work.</p>
+@{
+  var otherBooks = books
+    .Where(b => !(booksWithAwardedAuthors as Dynlist)
+      .Contains(b as object) // note: Contains() on dynamic objects needs 2sxc 9.42+ to work
+    );
+      
+}
+<ol>
+  @foreach(var book in otherBooks) {
+    <li><strong>@book.Title</strong></li>
+  }
+</ol>
+
+<hr>
+
+<h3>Now the same using GroupBy</h3>
+<p>Now let's do the same, but using <code>GroupBy</code> to group by awarded authors and not-awarded authors:</p>
+@{
+  var booksGroupedByAuthorAwards = books
+    .GroupBy(b => ((b.Authors as Dynlist).SelectMany(a => a.Awards as Dynlist).Any()));
+}
+<ul>
+  @foreach(var group in booksGroupedByAuthorAwards) {
+    <li>
+      Authors with Awards: @group.Key
+      <ul>
+        @foreach(var book in group) {
+          <li>
+            @book.Title
+          </li>
+        }
+      </ul>
+    </li>
+  }
+</ul>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

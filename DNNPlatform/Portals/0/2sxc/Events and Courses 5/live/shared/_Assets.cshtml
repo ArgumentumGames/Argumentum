@@ -1,0 +1,11 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using DotNetNuke.Framework.JavaScriptLibraries;
+@{
+  var Edition = (Dnn.User.IsSuperUser ? "staging" : "live");
+  JavaScript.RequestRegistration(CommonJs.jQuery);
+}
+@Edit.Enable(js: true)
+
+
+<link rel="stylesheet" href="@App.Path/live/dist/styles.min.css" />
+<script src="@App.Path/live/dist/scripts.min.js"></script>

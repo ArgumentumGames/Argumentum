@@ -1,0 +1,129 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Basic Html5 <code>Tag</code> API Introduction <em>v3.0</em></h2>
+  <p>
+    This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
+  </p>
+  <h3>Basic Principles</h3>
+  <ol>
+    <li>
+      <strong>Quick, Safe Construction</strong> <br>
+      <code>@@Tag.Div()</code> will created typed objects to generate Html5. The <code>Div</code> can be any known Html5 tag, so 
+      <code>@@Tag.Img()</code>,
+      <code>@@Tag.Table()</code>,
+      <code>@@Tag.Br()</code>
+      will all work. <br>
+      👉 Here is the  @Tag.A("complete list").Href("http://razor-blade.net/api/ToSic.Razor.Blade.Tag.html").Target("_blank")
+    </li>
+    <li>
+      <strong>Wrap Text and Tags in the constructor</strong> <br>
+      Use <code>@@Tag.Div("hello!")</code>
+      to put content into a tag. You can also put tags inside tags like 
+      <code>@@Tag.Div(Tag.H3("a title"))</code>, and also add an unlimited list of things with
+      <code>@@Tag.Div(Tag.H3("Title"), Tag.P("some intro text"), ...)</code>
+    </li>
+    <li>
+      <strong>Add more Text & Tags later on</strong><br>
+      Sometimes your code will want to add content step-by-step. You can always do this using
+      <code>.Add(...)</code>, so you can write
+      <code>@@Tag.Div(Tag.H3("title")).Add(Tag.P("body"))</code>
+    </li>
+    <li>
+      <strong>Replace the contents completely</strong><br>
+      Maybe you've contstructed some tags but now the code needs to throw away the previous content and replace it. Use 
+      <code>.Wrap(...)</code> for this. So <br>
+      <code>@@Tag.Div(Tag.H3("...")).Wrap("just reset the content")</code> 
+      will completely replace the whole contents with the text.
+    </li>
+    <li>
+      <strong>Set Common Attributes</strong> <br>
+      Each tag object has many commands on it like 
+      <code>Id(...)</code>, 
+      <code>Class(...)</code>,
+      <code>Style(...)</code>,
+      <code>Title(...)</code>.
+      The result of these commands is always the original object, so you can chain these (fluid API). So you can write 
+      <code>@@Tag.Div().Id("myId").Class("row highlighted")</code>. <br>
+      <em>Important: Some attributes are extra smart, like Class or Style, which will SmartJoin the values if called multiple times. Read the special tutorial for that. </em>
+    </li>
+    <li>
+      <strong>Set Tag-Specific Attributes</strong><br>
+      All known html5 objects are supported, and return specially typed objects. So you can write
+      <code>@@Tag.Img().Src("...")</code> or 
+      <code>@@Tag.A().Href(...)</code>, but 
+      <del><code>@@Tag.Img().Href(...)</code></del> won't work. <br>
+      <em>Important: Some attributes are extra smart, like <code>Src</code> on <code>Img</code> or <code>Srcset</code> on <code>Source</code>. Read the special tutorial for that. </em>
+    </li>
+  </ol>
+</trim>
+
+<trim>
+  <hr>
+  <h2>Demo Simple Tags like <code>h4</code> and <code>div</code></h2>
+  <div>
+    Instead of trying to merge strings like <br>
+    <code>&lt;div</code> and <code>id='@@yourId'</code> and <code>&gt;</code> followed by the content and closed by <code>&lt;/div&gt;</code> <br>
+    you would instead write: <br>
+    <code>@@Tag.Div("your content").Id("wrapper")</code> <br>
+    Here's what you get with an <code>@@Tag.H4(...)</code> and <code>@@Tag.Div(...)</code> and when you combine them...
+  </div>
+  <hr>
+</trim>
+
+@* this will place an HR in the page - not very useful, but just for a first example *@
+@Tag.H3("Example 1: This title was code-generated")
+
+@* now let's create a bootstrap-style box *@
+@Tag.Div("This div was coded").Class("alert alert-warning")
+
+@Tag.Div(
+  Tag.H4("Example2: This h4 title is inside the div"),
+  "and this text in the div ",
+  Tag.Em("follows the title")
+).Class("alert alert-warning")
+
+<trim>
+<hr>
+<h3>Example 3: Using <code>Tag.Div</code></h3>
+
+</trim>
+@(Tag.Div("This is the intro. ", 
+    Tag.B("I hope you like it"), 
+    Tag.I(" otherwise it's ok too"), 
+    " 😉")
+    .Id("wrapper")
+    .Class("alert")
+    .Class("alert-dark"))
+
+<trim>
+<hr>
+<h3>Example 4: Tag contents can also use <code>Wrap(...)</code> and <code>Add(...)</code></h2>
+<div>
+  Now the real power start: using the <code>Wrap</code> method, you can add more content to your tag - and this can be both text, more <code>Tag</code> objects or even lists of <code>Tag</code> objects. Wrap always replaces the content, and you could also use <code>Add(...)</code> instead to append stuff.
+</div>
+</trim>
+@{
+  var darkBox = Tag.Div()
+    .Class("alert alert-dark")
+    .Wrap(
+      "Did you know, that you can add text...",
+      Tag.Code("and tags"),
+      Tag.Div(
+        "as well as more ", 
+        Tag.B("tags"),
+        " and strings inside it?"
+      )
+        .Class("alert")
+        .Class("alert-danger")
+    );
+
+}
+@darkBox
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

@@ -1,0 +1,32 @@
+﻿.app-glossary {
+
+  .navbar {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #576066;
+
+    .navbar-toggler:focus {
+      outline: none;
+    }
+
+    .navbar-nav > li {
+      margin: 0;
+
+      @include media-breakpoint-down(sm) {
+        width: 25%;
+      }
+
+      > a{
+        padding: 8px 6px;
+        color: #576066;
+        font-weight: bold;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: #ccc;
+          color: #576066;
+        }
+      }
+    }
+  }
+}

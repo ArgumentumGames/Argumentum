@@ -1,0 +1,43 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<h2>Create and Show Variables</h2>
+<h3>Basic set variable and show</h3>
+<p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
+@{
+  var firstName = "Terry";
+}
+
+Name: @firstName
+
+
+<hr>
+<h3>Numbers and Dates</h3>
+@{
+  var age = 27;
+  var birthday = new DateTime(1999, 09, 09);
+}
+
+Age: @age <br>
+Birthday: @birthday <br>
+Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
+Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
+
+
+<hr>
+<h3>Arrays (lists of things)</h3>
+@{
+  var dogs = new string[] { "hound", "dackel", "doggy" };
+  birthday = new DateTime(1999, 09, 09);
+}
+
+Age: @age <br>
+Birthday: @birthday <br>
+Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
+Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

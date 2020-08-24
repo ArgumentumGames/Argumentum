@@ -1,0 +1,9 @@
+<div>
+  Business Unit:
+  <a [routerLink]="['/team']" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">
+    All
+  </a>
+  <a *ngFor="let bu of buList | async" [routerLink]="['/team/' + bu.Name]" routerLinkActive="selected">
+    | {{ bu.Name }}
+  </a>
+</div>

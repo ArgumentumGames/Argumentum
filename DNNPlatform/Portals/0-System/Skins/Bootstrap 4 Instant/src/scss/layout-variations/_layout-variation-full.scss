@@ -1,0 +1,36 @@
+@media all {
+    /*layout full*/
+    body.va-layout-full {
+      header {
+        box-shadow: 0 0 20px;
+      }
+      .ly-header-pane {
+        background: transparent;
+        &.container-fluid {
+          max-width: 100%;
+        }
+      }
+  
+      .container-fluid {
+        &.ly-content {
+          background: transparent;
+          position: relative;
+        }
+      }
+      footer {
+        height: 60px;
+        background: $primary;
+      }
+      .ly-fullwrapper {
+        min-height: 100%;
+        margin: 0 auto -60px;
+      }
+      #Form {
+        height: 100vh;
+      }
+      .ly-fullwrapper .ly-push {
+        height: 60px;
+      }
+    }
+  }
+  

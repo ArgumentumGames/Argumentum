@@ -1,0 +1,35 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<img src="@App.Path/koi/assets/koi.png?w=400" class="float-right">
+<h2>Auto-Include Bootstrap4 If Not Already Included</h2>
+<p>
+  In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap4</a> as the preferred CSS framework. Note that this works for other frameworks as well, with minor modifications. But if it's used on any page, you may have one of the following situations: 
+</p>
+<ul>
+  <li>Bootstrap4 could already be included - so you shouldn't do anything</li>
+  <li>A different CSS framework is included - so you should include Bootstrap4 automatically</li>
+  <li>The current CSS framework can't be detected, so to be safe, you should include Bootstrap 4 as well, until the theme is updated to broadcast what it's using</li>
+</ul>
+<p>
+  This page shows how to handle these problems with almost no code. Note that we've place the code in a separate file and use a helper to achieve this, as this allows us to re-use the code in multiple templates. <br>
+  <em>BTW: to see that this works, try switching the theme of this page to one without a <code>koi.json</code> or one with a different css-framework.</em>
+</p>
+
+
+</trim>
+@{  var bsCheck = CreateInstance("../shared/_bootstrap4.cshtml");  }
+@bsCheck.EnsureBootstrap4()
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/shared/",
+  File = "bootstrap4",
+  Size = 400
+}) 
+</hide>

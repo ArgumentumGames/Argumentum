@@ -1,0 +1,56 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@* tell 2sxc that we'll use the js API *@
+@Edit.Enable(js:true)
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Very basic WebApi Examples</h2>
+<p>
+  In this example, we'll assume your WebApi controller is called <code>Basic</code> (so the file is called <code>BasicController.cs</code> and has a class called <code>BasicController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. <br>
+  The second and third button calls the Api using a parameter <code>?number=7</code> and <code>?number=27</code> so you can see how url parameters are used.
+</p>
+
+<p>
+  Click to see the result of a WebApi call with the shared code:  
+</p>
+</trim>
+<button type="button" class="btn btn-primary" onclick="callBasicHello(this)">
+  Get Hello
+</button> 
+<button type="button" class="btn btn-primary" onclick="callSquare(this, 7)">
+  Square 7
+</button> <button type="button" class="btn btn-primary" onclick="callSquare(this, 27)">
+  Square 27
+</button> 
+
+<script>
+  function callBasicHello(moduleContext) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/basic/hello')
+      .then(function (results) {
+        alert(results);      
+      });
+  }
+
+  function callSquare(moduleContext, original) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/basic/square?number=' + original)
+      .then(function (results) {
+        alert(results);      
+      });
+  }
+</script>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "BasicController.cs",
+  Size = 500,
+  Language = "csharp",
+  TitlePath = "/api/",
+}) 
+</hide>

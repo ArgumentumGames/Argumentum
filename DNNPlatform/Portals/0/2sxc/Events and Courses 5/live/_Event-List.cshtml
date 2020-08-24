@@ -1,0 +1,72 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@RenderPage("shared/_Assets.cshtml") 
+
+@{
+  string detailsLink;
+  var events = AsList(Data["Events"]).GroupBy(c => c.Start.ToString("MM.yyyy"));
+  var eventPage = Dnn.Tab.FullUrl;
+  var resources = App.Resources;
+}
+
+<div class="app-events app-event-list"
+  @Edit.TagToolbar(
+    AsList(App.Data["EventSettings"]).FirstOrDefault(), toolbar: new [] {
+      "settings&hover=left&autoAddMore=start",
+      "group=add-event-buttons",
+      "+new&title=new event&group=add-event-buttons?contentType=Event&entityId=0",
+      "+contentitems&group=add-event-buttons?contentType=Event",
+      "+new&color=red&title=new event date&group=add-event-buttons?contentType=EventDate&entityId=0",
+    }
+  )
+>
+  @foreach (var e in events) {
+    var eventDate = e.First().Start;
+    @* Grouped months *@
+    <h2>
+      @e.First().Start.ToString("MMMM")
+      @* show year if not current year *@
+      @if (DateTime.Now.Year != eventDate.Year) {
+        <span class="year">@eventDate.ToString("yyyy")</span>
+      }
+    </h2>
+    
+    @* Events in month *@
+    foreach (var d in e) {
+      if (Edit.Enabled || d.Event.ShowInLanguage != false) {
+        var item = d.Event;
+        var detailslink = Link.To(parameters: "details=" + @d.EntityId) + "/" + item.UrlKey;
+          
+        <div class="row position-relative app-event-list-item mb-4" @Edit.TagToolbar(d.Event, toolbar: new [] {
+          "toolbar=empty", "+edit"
+        })>
+          <div class="col-12 col-md-6 col-lg-4 mb-2 mb-md-0">
+            <div class='app-img @(Text.Has(item.Image) ? "" : "app-noimg")'>
+                <div class="overlay" style='@(Text.Has(item.Image) ? "" : "background-image: url('" + App.Path + "/src/images/trans.png?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80')")'></div>
+                <img class="img-fluid" src="@(Text.Has(item.Image) ? item.Image : resources.PlaceHolderImg)?w=800&h=480&mode=crop&scale=both&quality=80&anchor=@item.CropAnchor" alt="@item.Title" />
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-8 position-static">
+            <div class="app-text">
+              <h2>@item.Title @((Text.Has(d.TitleAddition)) ? "- " + d.TitleAddition : "" ) @if(d.Event.ShowInLanguage == false && Edit.Enabled) { <span style="color:red;">(in dieser Sprache ausgeblendet)</span> }</h2>
+              <div class="event-meta mb-3">
+                <span class="app-events-date">@d.Start.ToString("d") @((d.End != null) ? "- " + d.End.ToString("d") : "")</span>
+                <span class="app-events-categories"> | @item.Category.Title</span>
+              </div>
+
+              @if(Text.Has(item.ShortDescription)) {
+                <p>@item.ShortDescription.Replace("\n", "<br />")</p>
+              }
+
+              <a class="stretched-link" href="@detailslink">@Html.Raw(resources.LabelReadMore)</a>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  }
+
+  @RenderPage("shared/_Paging.cshtml", new { eventPage = eventPage }) 
+</div>
+

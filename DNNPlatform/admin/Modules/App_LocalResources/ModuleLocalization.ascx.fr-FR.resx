@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BindConfirm.Text">
+    <value xml:space="preserve">La liaison à la version de la langue par défaut supprimera le contenu des versions de cultures spécifiques.  Cela est irreversible. Etes vous sur de vouloir  effectuer cette action?</value>
+  </data>
+  <data name="bindModule.Text">
+    <value xml:space="preserve">Langue de référence par défaut</value>
+  </data>
+  <data name="Edit.Header">
+    <value xml:space="preserve">Modifier</value>
+  </data>
+  <data name="Language.Header">
+    <value xml:space="preserve">Langue</value>
+  </data>
+  <data name="markModuleTranslated.Text">
+    <value xml:space="preserve">Consideré comme traduit</value>
+  </data>
+  <data name="markModuleUnTranslated.Text">
+    <value xml:space="preserve">Consideré comme non traduitt</value>
+  </data>
+  <data name="ModuleTitle.Header">
+    <value xml:space="preserve">Titre du module</value>
+  </data>
+  <data name="ModuleType.Header">
+    <value xml:space="preserve">Module</value>
+  </data>
+  <data name="NA.Text">
+    <value xml:space="preserve">Non disponible.</value>
+  </data>
+  <data name="Translated.Header">
+    <value xml:space="preserve">Traduit ?</value>
+  </data>
+  <data name="unbindModule.Text">
+    <value xml:space="preserve">Détacher de la langue par défaut</value>
+  </data>
+  <data name="UnBound.Header">
+    <value xml:space="preserve">Est détaché ?</value>
+  </data>
+</root>

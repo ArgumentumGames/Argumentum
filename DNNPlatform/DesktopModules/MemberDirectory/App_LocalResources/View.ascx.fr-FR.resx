@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="AcceptFriend.Text" xml:space="preserve">
+    <value xml:space="preserve">Accepter la demande d'ami</value>
+  </data>
+  <data name="AddFriend.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajouter comme ami</value>
+  </data>
+  <data name="AdvancedSearch.Text" xml:space="preserve">
+    <value xml:space="preserve">Recherche avancée</value>
+  </data>
+  <data name="City.Text">
+    <value xml:space="preserve">Ville</value>
+  </data>
+  <data name="Country.Text">
+    <value xml:space="preserve">Pays</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value xml:space="preserve">Nom complet</value>
+  </data>
+  <data name="Email.Text">
+    <value xml:space="preserve">Courriel</value>
+  </data>
+  <data name="Follow.Text">
+    <value xml:space="preserve">Suivre</value>
+  </data>
+  <data name="FriendPending.Text" xml:space="preserve">
+    <value xml:space="preserve">Demande d'ami en attente</value>
+  </data>
+  <data name="Loading.Text">
+    <value xml:space="preserve">Chargement....</value>
+  </data>
+  <data name="LoadMore.Text" xml:space="preserve">
+    <value xml:space="preserve">Charger plus</value>
+  </data>
+  <data name="Name.Text">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="NoMembers.Text" xml:space="preserve">
+    <value xml:space="preserve">Pas de membre trouvé pour ces critères de recherche.</value>
+  </data>
+  <data name="Prefix.Text">
+    <value xml:space="preserve">Civilité</value>
+  </data>
+  <data name="Refresh.Text" xml:space="preserve">
+    <value xml:space="preserve">Actualiser les résultats</value>
+  </data>
+  <data name="RemoveFriend.Text" xml:space="preserve">
+    <value xml:space="preserve">Supprimer ami</value>
+  </data>
+  <data name="Search.Text">
+    <value xml:space="preserve">Chercher</value>
+  </data>
+  <data name="SearchConnections.Text" xml:space="preserve">
+    <value xml:space="preserve">Liens de recherche...</value>
+  </data>
+  <data name="SearchError.Text" xml:space="preserve">
+    <value xml:space="preserve">Les recherches ne peuvent contenir uniquement des espaces et des caractères alphanumériques</value>
+  </data>
+  <data name="SendMessage.Text" xml:space="preserve">
+    <value xml:space="preserve">Envoyer un message</value>
+  </data>
+  <data name="ServerError.Text" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors du traitement de la demande. Veuillez réessayer plus tard.</value>
+  </data>
+  <data name="ServerErrorWithDescription.Text" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors du traitement de la demande :</value>
+  </data>
+  <data name="UnFollow.Text" xml:space="preserve">
+    <value xml:space="preserve">Ne plus suivre</value>
+  </data>
+  <data name="UserName.Text">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="Attachments.Text" xml:space="preserve">
+    <value>Pièce(s) jointe(s)</value>
+  </data>
+  <data name="AutoSuggestError.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de l'obtention des suggestions :</value>
+  </data>
+  <data name="Browse.Text">
+    <value>Parcourir</value>
+  </data>
+  <data name="Cancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="CreateMessageError.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la création du message. Veuillez réessayer plus tard.</value>
+  </data>
+  <data name="CreateMessageErrorWithDescription.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la création du message :</value>
+  </data>
+  <data name="DismissThis.Text" xml:space="preserve">
+    <value>Rejeter ceci</value>
+  </data>
+  <data name="Message.Text" xml:space="preserve">
+    <value>Votre message</value>
+  </data>
+  <data name="MessageSent.Text" xml:space="preserve">
+    <value>Votre message a été envoyé avec succès.</value>
+  </data>
+  <data name="MessageSentTitle.Text" xml:space="preserve">
+    <value>Message envoyé</value>
+  </data>
+  <data name="NoResults.Text" xml:space="preserve">
+    <value>Aucun résultat</value>
+  </data>
+  <data name="Remove.Text" xml:space="preserve">
+    <value>Supprimer la pièce jointe</value>
+  </data>
+  <data name="Searching.Text">
+    <value>Recherche...</value>
+  </data>
+  <data name="Send.Text">
+    <value>Envoyer</value>
+  </data>
+  <data name="Subject.Text">
+    <value>Sujet</value>
+  </data>
+  <data name="Throttling.Text" xml:space="preserve">
+    <value>Veuillez patienter avant d'envoyer un nouveau message.</value>
+  </data>
+  <data name="Title.Text" xml:space="preserve">
+    <value>Écrire un message</value>
+  </data>
+  <data name="To.Text" xml:space="preserve">
+    <value>Envoyer à</value>
+  </data>
+  <data name="Upload.Text" xml:space="preserve">
+    <value>Charger depuis l'ordinateur</value>
+  </data>
+  
+</root>

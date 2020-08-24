@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Afficher les paramètres de profil</value>
+  </data>
+  <data name="IncludeButton.Help">
+    <value xml:space="preserve">Cocher cette case pour inclure le bouton de modification du profil.</value>
+  </data>
+  <data name="IncludeButton.Text">
+    <value xml:space="preserve">Inclure le bouton de modification</value>
+  </data>
+  <data name="LoadDefault.Confirm">
+    <value xml:space="preserve">Cette action supprimera le modèle existant.  Êtes-vous certain de que vouloir continuer ?</value>
+  </data>
+  <data name="LoadDefault.Text">
+    <value xml:space="preserve">Charger par défaut</value>
+  </data>
+  <data name="plTemplate.Help">
+    <value xml:space="preserve">Entrez le modèle pour l'affichage de profil utilisateur.</value>
+  </data>
+  <data name="plTemplate.Text">
+    <value xml:space="preserve">Modèle de profil :</value>
+  </data>
+</root>

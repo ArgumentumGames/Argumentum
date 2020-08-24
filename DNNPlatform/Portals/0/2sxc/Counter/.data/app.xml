@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.02.01" ExportDate="2020-06-24T11:52:12.488802+02:00">
+  <Header>
+    <App Guid="0ea6610c-ac21-43ea-ae09-636ab04e4998" />
+    <Language Default="en-US" />
+    <Dimensions>
+      <Dimension DimensionID="104" Name="English (United States)" SystemKey="" ExternalKey="en-US" Active="true" />
+      <Dimension DimensionID="171" Name="Deutsch (Deutschland)" SystemKey="" ExternalKey="de-DE" Active="true" />
+    </Dimensions>
+  </Header>
+  <AttributeSets>
+    <AttributeSet StaticName="App-Resources" Name="App-Resources" Description="Stores resources like translations for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes />
+    </AttributeSet>
+    <AttributeSet StaticName="App-Settings" Name="App-Settings" Description="Stores settings for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes />
+    </AttributeSet>
+    <AttributeSet StaticName="a0edbea4-3414-495d-ab9e-45d54cdba62e" Name="Facts" Description="Facts" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="24c1731c-1916-45fc-a6c0-f92c22f2e0f2" Json="True" KeyNumber="2008">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Property / Title" Type="String" />
+            <Value Key="Name" Value="Eigenschaft / Titel" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="7f12c760-8ca6-4fc2-aa0c-3628b1a7da20" Json="True" KeyNumber="2008">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="bbe9b7aa-284c-4811-923e-19adff8e4db9" Json="True" KeyNumber="2008" />
+        </Attribute>
+        <Attribute StaticName="Icon" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="58cd8976-79bb-4d82-baf0-8121a383e88b" Json="True" KeyNumber="2019">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-font-icon-picker" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Icon (optional)" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Symbol (optional)" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="97a46644-5bc6-4b8f-a18f-e172fef78b8f" Json="True" KeyNumber="2019">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-font-icon-picker" AttributeSetName="@string-font-icon-picker" EntityGUID="d46199b4-5ce9-4d40-ad4a-78bd981d86d0" Json="True" KeyNumber="2019">
+            <Value Key="CssPrefix" Value=".fa-" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Files" Value="[App:Path]/dist/fontawesome/css/fontawesome-nobrands.min.css" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="PreviewCss" Value="fas" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Number" Type="Number" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="2fa88b26-7efd-4f70-b195-bb15f6e5f4ce" Json="True" KeyNumber="2006">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="Number" Type="String" />
+            <Value Key="Name" Value="Zahl" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Number" AttributeSetName="@Number" EntityGUID="dd644f41-bd76-460d-843f-fd45bb980bbc" Json="True" KeyNumber="2006">
+            <Value Key="AddressMask" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Decimals" Value="0" Type="Number">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegEx" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Unit" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="9f7f401d-f55e-4c65-b34a-e7ffdf71e246" Json="True" KeyNumber="2007">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-dropdown" Type="String" />
+            <Value Key="Name" Value="Unit" Type="String" />
+            <Value Key="Name" Value="Einheit" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="c5588485-3da1-4558-ab29-2ed09419c3cb" Json="True" KeyNumber="2007">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="59134faf-fdde-40a1-a85d-6370b29937bb" Json="True" KeyNumber="2007">
+            <Value Key="DropdownValues" Value="Kilometer:km&#xA;Swiss franc:CHF&#xA;Square meter:qm²&#xA;other/none:" Type="String" />
+            <Value Key="DropdownValues" Value="Kilometer:km&#xA;Schweizer Franken:CHF&#xA;Quadratmeter:qm²&#xA;andere/keine:" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="b5e2e0dd-3abb-4a84-9af5-a39d5ff97123" Name="ListSettings" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="c8cf2610-ff50-490d-ba38-02b4d63065c6" Json="True" KeyNumber="2015">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="Name" Value="Titel" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Only for internal use.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Nur f&amp;uuml;r den internen Gebrauch.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="a0c81a44-de94-44ef-924b-6d620ca1bacf" Json="True" KeyNumber="2015">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="3206d358-3af4-4317-995c-3bdd5be3ac58" Json="True" KeyNumber="2015" />
+        </Attribute>
+        <Attribute StaticName="Background" Type="Hyperlink" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1873a411-856e-451b-ab04-bf2fcfea6494" Json="True" KeyNumber="2017">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Background" Type="String" />
+            <Value Key="Name" Value="Hintergrund" Type="String">
+              <Dimension DimensionID="171" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="104" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="a38cff7a-e810-46e7-8d72-02c35758ec2e" Json="True" KeyNumber="2017">
+            <Value Key="Buttons" Value="adam,more" Type="String" />
+            <Value Key="DefaultDialog" Value="" Type="String" />
+            <Value Key="FileFilter" Value="" Type="String" />
+            <Value Key="Paths" Value="" Type="String" />
+            <Value Key="ServerResourceMapping" Value="" Type="String" />
+            <Value Key="ShowAdam" Value="True" Type="Boolean" />
+            <Value Key="ShowFileManager" Value="False" Type="Boolean" />
+            <Value Key="ShowImageManager" Value="False" Type="Boolean" />
+            <Value Key="ShowPagePicker" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+  </AttributeSets>
+  <Entities>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="4cf47fbc-1e7b-455e-9c2b-f83dce29e19f" Json="True" KeyNumber="121">
+      <Value Key="AllowRazorTemplates" Value="True" Type="Boolean" />
+      <Value Key="AllowTokenTemplates" Value="False" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="DisplayName" Value="Counter" Type="String" />
+      <Value Key="DisplayName" Value="Zähler" Type="String">
+        <Dimension DimensionID="171" ReadOnly="false" />
+      </Value>
+      <Value Key="Folder" Value="Counter" Type="String" />
+      <Value Key="Hidden" Value="False" Type="Boolean" />
+      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="RequiredDnnVersion" Value="07.02.00" Type="String" />
+      <Value Key="RequiredVersion" Value="11.00.00" Type="String" />
+      <Value Key="SupportsAjaxReload" Value="False" Type="Boolean" />
+      <Value Key="Version" Value="01.00.00" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="feb26a93-16d4-40a6-b158-607823b59186" KeyNumber="121" />
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="47ca82cc-99cc-4fa6-8bf9-ec7d5ac6c586" KeyNumber="121" />
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="a0edbea4-3414-495d-ab9e-45d54cdba62e" AttributeSetName="Facts" EntityGUID="d10407ea-5678-466c-9381-d22836ab6b40">
+      <Value Key="Icon" Value="fa-image" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Number" Value="500" Type="Number">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Demo Fact" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Demo Fakt" Type="String">
+        <Dimension DimensionID="171" ReadOnly="false" />
+      </Value>
+      <Value Key="Unit" Value="km" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="079ba8ba-9e0e-40e1-a9db-be300503a8a8" Json="True">
+      <Value Key="ContentDemoEntity" Value="d10407ea-5678-466c-9381-d22836ab6b40" Type="Entity" />
+      <Value Key="ContentTypeStaticName" Value="a0edbea4-3414-495d-ab9e-45d54cdba62e" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="False" Type="Boolean">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentDemoEntity" Value="2fbcb325-12aa-4333-a5a4-f4ce7ff42b9e" Type="Entity" />
+      <Value Key="ListContentTypeStaticName" Value="b5e2e0dd-3abb-4a84-9af5-a39d5ff97123" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Counter" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Zähler" Type="String">
+        <Dimension DimensionID="171" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="_Facts.cshtml" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="Default,ListContent" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="True" Type="Boolean">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="b5e2e0dd-3abb-4a84-9af5-a39d5ff97123" AttributeSetName="ListSettings" EntityGUID="2fbcb325-12aa-4333-a5a4-f4ce7ff42b9e">
+      <Value Key="Background" Value="file:4560" Type="Hyperlink" />
+      <Value Key="Title" Value="Demo Background" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Demo Hintergrund" Type="String">
+        <Dimension DimensionID="171" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="3937fa17-ef2d-40a7-b089-64164eb10bab" AttributeSetName="2sxcPolymorphismConfiguration" EntityGUID="37d7ecd0-8cf3-47cf-8557-3213f671326e" Json="True">
+      <Value Key="Mode" Value="Koi?cssFramework" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="5dbfac0c-87f7-4385-8355-8a81789dbed2" Json="True" KeyString="a0edbea4-3414-495d-ab9e-45d54cdba62e">
+      <Value Key="Description" Value="Facts" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Fact" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Fakt" Type="String">
+        <Dimension DimensionID="171" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="406d4023-d42f-4916-ad01-64a988ec8bda" Json="True" KeyString="b5e2e0dd-3abb-4a84-9af5-a39d5ff97123">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="List Settings" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Listen-Einstellungen" Type="String">
+        <Dimension DimensionID="171" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="104" ReadOnly="false" />
+      </Value>
+    </Entity>
+  </Entities>
+  <PortalFiles>
+    <File Id="4560" RelativePath="adam\Counter\JbO8L6oSM0OlpPTOf_Qrng\Background\ant-rozetsky-264641-unsplash.jpg" />
+    <File Id="1242" RelativePath="adam\Counter\1_SpVwANMECo7ORZaHx7JA\Backgroundimage\bart-zimny-345682.jpg" />
+    <File Id="1241" RelativePath="adam\Counter\1_SpVwANMECo7ORZaHx7JA\Hintergrundbild\asoggetti-531841-unsplash-1.jpg" />
+    <File Id="1245" RelativePath="adam\Counter\1TtGBD7Za0-NaBhAtET8CQ\Background\annie-spratt-256177.jpg" />
+    <File Id="1256" RelativePath="adam\Counter\1TtGBD7Za0-NaBhAtET8CQ\Background\ant-rozetsky-264641-unsplash.jpg" />
+    <File Id="4556" RelativePath="adam\Counter\dq_21PM5WEK7ajoeSNeQNw\Background\AdobeStock 133147 931.jpeg" />
+    <File Id="4558" RelativePath="adam\Counter\dq_21PM5WEK7ajoeSNeQNw\Background\nigel-tadyanehondo-wny6Y4MbyhA-unsplash.jpg" />
+    <File Id="1244" RelativePath="adam\Counter\hOCAaeEP-EGSYNyQsjfd-w\Background\annie-spratt-256177.jpg" />
+    <File Id="1243" RelativePath="adam\Counter\JbO8L6oSM0OlpPTOf_Qrng\Background\asoggetti-531841-unsplash.jpg" />
+    <File Id="4559" RelativePath="adam\Counter\JbO8L6oSM0OlpPTOf_Qrng\Background\asoggetti-531841-unsplash-1.jpg" />
+    <File Id="4557" RelativePath="adam\Counter\JbO8L6oSM0OlpPTOf_Qrng\Background\placeholder.jpg" />
+  </PortalFiles>
+  <PortalFolders>
+    <Folder Id="2528" RelativePath="adam/Counter/JbO8L6oSM0OlpPTOf_Qrng/Background/" />
+    <Folder Id="2526" RelativePath="adam/Counter/1_SpVwANMECo7ORZaHx7JA/Backgroundimage/" />
+    <Folder Id="2525" RelativePath="adam/Counter/1_SpVwANMECo7ORZaHx7JA/Hintergrundbild/" />
+    <Folder Id="2532" RelativePath="adam/Counter/1TtGBD7Za0-NaBhAtET8CQ/Background/" />
+    <Folder Id="10180" RelativePath="adam/Counter/dq_21PM5WEK7ajoeSNeQNw/Background/" />
+    <Folder Id="2530" RelativePath="adam/Counter/hOCAaeEP-EGSYNyQsjfd-w/Background/" />
+    <Folder Id="2523" RelativePath="adam/Counter/" />
+    <Folder Id="2524" RelativePath="adam/Counter/1_SpVwANMECo7ORZaHx7JA/" />
+    <Folder Id="2531" RelativePath="adam/Counter/1TtGBD7Za0-NaBhAtET8CQ/" />
+    <Folder Id="10179" RelativePath="adam/Counter/dq_21PM5WEK7ajoeSNeQNw/" />
+    <Folder Id="2529" RelativePath="adam/Counter/hOCAaeEP-EGSYNyQsjfd-w/" />
+    <Folder Id="2527" RelativePath="adam/Counter/JbO8L6oSM0OlpPTOf_Qrng/" />
+  </PortalFolders>
+</SexyContent>

@@ -1,0 +1,116 @@
+﻿.app-glossary .navbar-collapse{
+  padding: 0;
+}
+
+.app-glossary-letterlist {
+  display: block;
+  padding: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #576066;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.app-glossary-letterlist li{
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+}
+.app-glossary .app-glossary-letterlist > li > a{
+  padding: 8px 6px;
+  color: #576066;
+  font-weight: bold;
+}
+
+.app-glossary .app-glossary-letterlist > li > a:hover,
+.app-glossary .app-glossary-letterlist > li > a:focus,
+.app-glossary .app-glossary-letterlist > li > a:active {
+  background-color: #ccc;
+  color: #576066;
+}
+.app-glossary-item-wrapper{
+  margin-bottom: 45px;
+}
+.app-glossary-terms p{
+  margin: 0;
+}
+.app-glossary-single-term {
+  margin: 0 0 15px 0;
+}
+.app-glossary span{
+  display: none;
+}
+.app-glossary-toggle{
+  position: relative;
+  top: 4px;
+}
+
+@media all and (max-width: 768px){
+  .app-glossary-letterlist{
+      margin-top: 15px;
+  }
+  .app-glossary-manage-terms, .app-glossary-manage-app{
+      display: none!important;
+  }
+
+  .app-glossary .navbar-collapse{
+      padding: 0 15px;
+  }
+  .app-glossary .navbar-default{
+      border-top: 1px solid #576066;
+      border-bottom: 1px solid #576066;
+      margin-top: 15px;
+      padding: 12px 0;
+  }
+  .app-glossary .navbar-default .navbar-header{
+      cursor: pointer;
+  }
+  .app-glossary-terms h2{
+      font-size: 28px;
+  }
+  .app-glossary span{
+      font-weight: bold;
+      display: inline-block;
+  }
+  .app-glossary-letterlist > li{
+      display: block;
+      width: 25%;
+      float: left;
+  }
+  .app-glossary-letterlist{
+      border-top: none;
+      border-bottom: none;
+  }
+  .app-glossary-letterlist li:first-child{
+      margin: 0;
+  }
+  .app-glossary-letterlist:before{
+      display: none;
+  }
+  .app-glossary-toggle{
+      display: block;
+      float: right;
+      border-top: 1px solid inset #ccc;
+      position: relative;
+      right: 9px;
+  }
+
+  .app-glossary-toggle:before{
+      border-bottom: 3px solid #576066;
+      text-indent: -9999px;
+      display: block;
+      content: ' ';
+      width: 20px;
+      height: 10px;
+      position: absolute;
+  }
+  .app-glossary-toggle:after{
+      border-bottom: 3px solid #576066;
+      border-top: 3px solid #576066;
+      text-indent: -9999px;
+      display: block;
+      content: ' ';
+      width: 20px;
+      height: 17px;
+  }
+}

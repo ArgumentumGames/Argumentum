@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="Activity.Text">
+    <value>Activité</value>
+  </data>
+  <data name="Actions.Text">
+    <value>Actions</value>
+  </data>
+  <data name="ViewedActivites_desc.Text" xml:space="preserve">
+    <value>Page qui répertorie les diverses activités de notation disponibles sur le site.</value>
+  </data>
+  <data name="ViewedActivities.Text" xml:space="preserve">
+    <value>Activités consultées</value>
+  </data>
+  <data name="ViewedBadges.Text" xml:space="preserve">
+    <value>Badges consultés</value>
+  </data>
+  <data name="ViewedBadges_desc.Text" xml:space="preserve">
+    <value>Page qui répertorie les différents badges disponibles sur le site.</value>
+  </data>
+  <data name="Next.Text">
+    <value>Suivant</value>
+  </data>
+  <data name="NoResults.Text" xml:space="preserve">
+    <value>Aucun résultat trouvé</value>
+  </data>
+  <data name="Of.Text">
+    <value>de</value>
+  </data>
+  <data name="Prev.Text">
+    <value>Précédent</value>
+  </data>
+  <data name="Search.Text">
+    <value>Chercher</value>
+  </data>
+  <data name="Searching.Text">
+    <value>Recherche...</value>
+  </data>
+  <data name="Dialy.Text" version="deprecated">
+    <value>Quotidien</value>
+  </data>
+  <data name="Hourly.Text" version="deprecated" xml:space="preserve">
+    <value>Toutes les heures</value>
+  </data>
+  <data name="Instant.Text">
+    <value>Instant</value>
+  </data>
+  <data name="Never.Text">
+    <value>Jamais</value>
+  </data>
+  <data name="Weekly.Text" version="deprecated">
+    <value>Hebdomadaire</value>
+  </data>
+  <data name="ResultCount.Text">
+    <value>{0}</value>
+  </data>
+  <data name="SingleResultCount.Text">
+    <value>{0}</value>
+  </data>
+  <data name="Items.Text" xml:space="preserve">
+    <value>[ITEMS] éléments</value>
+  </data>
+  <data name="ItemsOnPage.Text" xml:space="preserve">
+    <value>[ITEMS] éléments sur [PAGES] pages</value>
+  </data>
+  <data name="OneItem.Text" xml:space="preserve">
+    <value>1 élément</value>
+  </data>
+  <data name="No.Text">
+    <value>Non</value>
+  </data>
+  <data name="UnsubscribeConfirm.Text" xml:space="preserve">
+    <value>Êtes-vous certain de vouloir vous désinscrire ?</value>
+  </data>
+  <data name="UnsubscribeConfirmTitle.Text">
+    <value>Désabonnement</value>
+  </data>
+  <data name="Yes.Text">
+    <value>Oui</value>
+  </data>
+  <data name="ItemsPerPage.Text" xml:space="preserve">
+    <value>Éléments par page :</value>
+  </data>
+  <data name="Save.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Daily.Text">
+    <value>Quotidien</value>
+  </data>
+  <!---->
+</root>

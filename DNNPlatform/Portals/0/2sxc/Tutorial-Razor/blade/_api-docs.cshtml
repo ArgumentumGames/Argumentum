@@ -1,0 +1,19 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@helper ApiLinks(string[] links) {
+  <div class="fleat-right alert alert-info">
+    <h3><em>RazorBlade</em> API Docs</h3>
+    @if(links.Length % 2 == 0) {
+      var sets = links.Length / 2;
+      <ul>
+        @for(var i = 0; i < sets; i++) {
+          <li>
+            <a href="@links[i*2+1]" target="_blank">@links[i*2]</a>
+          </li>
+        }
+        </ul>
+    } else {
+      <span>Error - bad links</span>
+    }
+  </div>
+}
+

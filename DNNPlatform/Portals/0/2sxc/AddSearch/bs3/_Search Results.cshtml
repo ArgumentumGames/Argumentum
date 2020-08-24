@@ -1,0 +1,15 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+
+<div class="app-add-search app-add-search-results">
+  <div class="input-group">
+    <input id="queryResults" type="text" class="addsearch form-control" placeholder="@App.Resources.PlaceholderText...">
+    <span class="input-group-btn">
+      <button onclick="addsearch.submit()" class="btn btn-default" type="button"><i class="fas fa-search"></i></button>
+    </span>
+  </div>
+
+  @* Search results will be rendered to this div *@
+  <div id="addsearch-results"></div>
+</div>
+
+@RenderPage("shared/_Assets.cshtml", new { ResultPage = true })

@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions.Header" version="deprecated">
+    <value xml:space="preserve">Actions</value>
+  </data>
+  <data name="AddContent.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajoutez un contenu...</value>
+  </data>
+  <data name="APPROVEContentHead.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Entrer un commentaire pour l'approbation du contenu</value>
+  </data>
+  <data name="Approved.Header" version="deprecated">
+    <value xml:space="preserve">Approuvé</value>
+  </data>
+  <data name="AutoSaveConfirmMessage.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Il y a des modifications non enregistrées datant d'une session précédente. Souhaitez-vous récupérer celles-ci ou charger le contenu sauvegardé ?</value>
+  </data>
+  <data name="chkApprove.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Approuver le contenu ?</value>
+  </data>
+  <data name="chkPublish.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Publier les modifications ?</value>
+  </data>
+  <data name="chkReject.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Rejeter le contenu ?</value>
+  </data>
+  <data name="cmdAutoSaveNo.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Charger le contenu sauvegardé</value>
+  </data>
+  <data name="cmdAutoSaveYes.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Récupérer les modifications non sauvegardées</value>
+  </data>
+  <data name="cmdBackToVersionHistory.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Retourner à l'historique des versions</value>
+  </data>
+  <data name="cmdCancel.Text">
+    <value xml:space="preserve">Annuler</value>
+  </data>
+  <data name="cmdCompare.Text" version="deprecated">
+    <value xml:space="preserve">Comparer</value>
+  </data>
+  <data name="cmdPreview.Text" version="deprecated">
+    <value xml:space="preserve">Aperçu</value>
+  </data>
+  <data name="cmdPreviewCurrent.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Prévisualiser le contenu actuel</value>
+  </data>
+  <data name="cmdSave.Text" version="deprecated">
+    <value xml:space="preserve">Enregistrer</value>
+  </data>
+  <data name="cmdSubmitComment.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un commentaire</value>
+  </data>
+  <data name="Comment.Header" version="deprecated">
+    <value xml:space="preserve">Commentaire</value>
+  </data>
+  <data name="Comment.Text" version="deprecated">
+    <value xml:space="preserve">Commentaire</value>
+  </data>
+  <data name="CommentRequiredMessage.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Vous devez entrer un commentaire</value>
+  </data>
+  <data name="ContentLocked.Error" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Ce contenu est verrouillé par [USER]. Vous ne pouvez enregistrer vos modifications tant qu’il n’est pas déverrouillé.</value>
+  </data>
+  <data name="ContentState.Error" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Ce contenu est dans le statut [STATE] et est maintenant verrouillé par [USER]. Vous ne pouvez enregistrer vos changements tant qu’il n’est pas en déverrouillé et replacé en tant que brouillon.</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value xml:space="preserve">Editeur de Texte/HTML</value>
+  </data>
+  <data name="Date.Header" version="deprecated">
+    <value xml:space="preserve">Date</value>
+  </data>
+  <data name="ddlContentPreview.Current" version="deprecated">
+    <value xml:space="preserve">(Actuel)</value>
+  </data>
+  <data name="ddlContentPreview.Unsaved" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">-- Contenu de l'éditeur non enregistré --</value>
+  </data>
+  <data name="ddlContentPreview.Version" version="deprecated">
+    <value xml:space="preserve">Version</value>
+  </data>
+  <data name="Delete.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Supprimer cette version</value>
+  </data>
+  <data name="Deleted.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Texte supprimé</value>
+  </data>
+  <data name="DeleteVersion.Confirm" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Êtes-vous sûr de vouloir supprimer définitivement la version [VERSION] ([STATE]) qui a été créée le [DateCreated] par [USERNAME]?</value>
+  </data>
+  <data name="Direct Publish.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Publier directement</value>
+  </data>
+  <data name="Draft.Text" version="deprecated">
+    <value xml:space="preserve">Brouillon</value>
+  </data>
+  <data name="dshAddComment.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un commentaire</value>
+  </data>
+  <data name="dshContentPreview.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Prévisualisation de contenu</value>
+  </data>
+  <data name="dshCurrentContent.Text" xml:space="preserve">
+    <value xml:space="preserve">Éditer contenu</value>
+  </data>
+  <data name="dshHistory.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Historique de l'élément</value>
+  </data>
+  <data name="dshMainContent.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Contenu principal</value>
+  </data>
+  <data name="dshMaster.Text" xml:space="preserve">
+    <value xml:space="preserve">Version langue primaire</value>
+  </data>
+  <data name="dshPreview.Text" version="deprecated">
+    <value xml:space="preserve">Aperçu</value>
+  </data>
+  <data name="dshSummary.Text" version="deprecated">
+    <value xml:space="preserve">Résumé</value>
+  </data>
+  <data name="dshVersions.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Historique de version</value>
+  </data>
+  <data name="Edit.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Restaurer le contenu de cette version</value>
+  </data>
+  <data name="EditPreviewState.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Modifier l'aperçu</value>
+  </data>
+  <data name="False.Text">
+    <value xml:space="preserve">Faux</value>
+  </data>
+  <data name="grdVersions.Compare" version="deprecated">
+    <value xml:space="preserve">Comparer</value>
+  </data>
+  <data name="Inserted.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Texte inséré</value>
+  </data>
+  <data name="Item.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Aperçu du contenu</value>
+  </data>
+  <data name="lbComparisonDesign.Text" version="deprecated">
+    <value xml:space="preserve">Conception</value>
+  </data>
+  <data name="lbComparisonHtml.Text" version="deprecated">
+    <value xml:space="preserve">HTML</value>
+  </data>
+  <data name="lblLockTransfer.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">&lt;br /&gt;Si le contenu reste verrouillé, le verrouillage vous sera transféré.</value>
+  </data>
+  <data name="lblPreviewWorkflowState.Text" version="deprecated">
+    <value xml:space="preserve">État</value>
+  </data>
+  <data name="lblSaveWithoutPublish.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">&lt;br /&gt;Sauver sans publier ramènera le contenu à l’état de brouillon.</value>
+  </data>
+  <data name="Legend.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Légende :</value>
+  </data>
+  <data name="LockContent.Action" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Verrouiller le contenu ?</value>
+  </data>
+  <data name="Modified.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Texte modifié</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;P align=left&gt;Le module Texte/HTML vous permet saisir&amp;nbsp;du texte, du texte enrichi ou du code HTML. Vous disposez de cinq types d’affichage : &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / Text &lt;/STRONG&gt;: Rendu de texte simple et affichage des balises HTML. Les sauts de lignes sont pris en compte. Le style de texte est par défaut "normal", rendu tel que spécifié dans votre feuille de style. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / HTML &lt;/STRONG&gt;: Affiche du texte simple. Les sauts de lignes ne sont pas automatiquement rendus. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / Raw &lt;/STRONG&gt;: Affiche du texte simple au format HTML. Les sauts de ligne ne sont pas automatiquement pris en compte. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Rich Text Editor / HTML &lt;/STRONG&gt;: Vous pouvez utiliser du code HTML. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Rich Text Editor / Design &lt;/STRONG&gt;: Un véritable traitement de texte WYSIWYG (What You See is What You Get) qui supporte des fonctionnalités telles que les liens hypertextes, lien vers une adresse Email, accès à la galerie d’images, puces, etc...&lt;/DIV&gt;&lt;/LI&gt;&lt;/OL&gt;</value>
+  </data>
+  <data name="NoHistory.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Il n'y a pas d'historique pour ce contenu.</value>
+  </data>
+  <data name="NoVersions.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Il n'y a pas d'historique des versions pour ce contenu.</value>
+  </data>
+  <data name="plActionOnSave.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Action après sauvegarde.</value>
+  </data>
+  <data name="plActionOnSave.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Lors de l'enregistrement</value>
+  </data>
+  <data name="plCurrentLockStatus.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Indique si le module est verrouillé, et si c’est le cas, affiche le nom de l’utilisateur qui l’a bloqué.</value>
+  </data>
+  <data name="plCurrentLockStatus.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Status du verrouillage</value>
+  </data>
+  <data name="plCurrentWorkflowInUse.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le workflow actuellement utilisé par ce module.</value>
+  </data>
+  <data name="plCurrentWorkflowInUse.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Workflow en cours d'utilisation</value>
+  </data>
+  <data name="plCurrentWorkflowState.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">État du workflow utilisé par ce module.</value>
+  </data>
+  <data name="plCurrentWorkflowState.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">L'état de flux de travail</value>
+  </data>
+  <data name="plCurrentWorkVersion.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Affiche le numéro de version de contenu</value>
+  </data>
+  <data name="plCurrentWorkVersion.Text" version="deprecated">
+    <value xml:space="preserve">Version</value>
+  </data>
+  <data name="plMaxVersions.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le nombre de versions maxi conservées pour tout contenu html.</value>
+  </data>
+  <data name="plMaxVersions.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Nombre maximal de versions</value>
+  </data>
+  <data name="plPreviewVersion.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Affiche le numéro de version du contenu</value>
+  </data>
+  <data name="plPreviewVersion.Text" version="deprecated">
+    <value xml:space="preserve">Version</value>
+  </data>
+  <data name="plPreviewWorkflowInUse.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le nom de la configuration du workflow que ce module utilise actuellement.</value>
+  </data>
+  <data name="plPreviewWorkflowInUse.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Workflow utilisé</value>
+  </data>
+  <data name="plPreviewWorkflowState.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">L'état du workflow du contenu affiché.</value>
+  </data>
+  <data name="plPreviewWorkflowState.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">L'état de flux de travail</value>
+  </data>
+  <data name="plPublish.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Indiquez si le contenu est prêt pour la publication</value>
+  </data>
+  <data name="plPublish.Text" version="deprecated">
+    <value xml:space="preserve">Publier</value>
+  </data>
+  <data name="plWorkflowState.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Affiche l'état actuel du contenu</value>
+  </data>
+  <data name="Published.Text" version="deprecated">
+    <value xml:space="preserve">Publié</value>
+  </data>
+  <data name="Ready For Review.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Prêt pour l'examen</value>
+  </data>
+  <data name="REJECTContentHead.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Entrer la raison du refus du contenu</value>
+  </data>
+  <data name="RollbackVersion.Confirm" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Êtes-vous certain de vouloir revenir à la version [OLDVERSION] ? La version actuelle est [CURRENTVERSION].</value>
+  </data>
+  <data name="Save Draft.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Sauver le brouillon</value>
+  </data>
+  <data name="SavingChanges.Error" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite durant les mises à jour de l'enregistrement automatique</value>
+  </data>
+  <data name="SavingChanges.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Sauvegarder les modifications...</value>
+  </data>
+  <data name="SelectVersionsToCompare.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner les deux versions à comparer</value>
+  </data>
+  <data name="State.Header" version="deprecated">
+    <value xml:space="preserve">État</value>
+  </data>
+  <data name="SUBMITContent.Text" version="deprecated">
+    <value xml:space="preserve">Envoyer</value>
+  </data>
+  <data name="SUBMITContentHead.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Entrer un commentaire pour l'envoi du contenu</value>
+  </data>
+  <data name="Summary.Text" version="deprecated">
+    <value xml:space="preserve">Résumé</value>
+  </data>
+  <data name="SummaryHelp.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">&lt;p&gt;Le résumé est recommandé lors de l’utilisation de téléphones mobiles pour lesquels seule une portion du contenu peut être affichée. S’il est complété alors le module affichera le résumé en tant que contenu principal tout en affichant un lien pour passer du résumé au contenu principal (complet). Pour utiliser cette fonctionnalité vous devez compléter les champs résumé et contenu principal.&lt;/p&gt;</value>
+  </data>
+  <data name="True.Text">
+    <value xml:space="preserve">Vrai</value>
+  </data>
+  <data name="UnlockContent.Action" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Déverrouiller le contenu ?</value>
+  </data>
+  <data name="User.Header" version="deprecated">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="Version.Header" version="deprecated">
+    <value xml:space="preserve">Version</value>
+  </data>
+  <data name="VersionsApprove.Text" version="deprecated">
+    <value xml:space="preserve">Approuver</value>
+  </data>
+  <data name="VersionsPreview.Text" version="deprecated">
+    <value xml:space="preserve">Aperçu</value>
+  </data>
+  <data name="VersionsReject.Text" version="deprecated">
+    <value xml:space="preserve">Rejeter</value>
+  </data>
+  <data name="VersionsRemove.Text" version="deprecated">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="VersionsRollback.Text" version="deprecated">
+    <value xml:space="preserve">Rollback</value>
+  </data>
+  <data name="WarningUnSavedChanges.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Cette page contient des modifications non enregistrées. Êtes-vous certain de vouloir quitter celle-ci ?</value>
+  </data>
+  <data name="Content Staging.Text" version="deprecated">
+    <value>Pré-publication</value>
+  </data>
+  <data name="cmdCancelSubmit.Text" version="deprecated">
+    <value>Annuler</value>
+  </data>
+  <data name="lblNoRecords.Text" version="deprecated" xml:space="preserve">
+    <value>Il n'y a pas d'historique pour ce contenu.</value>
+  </data>
+  <data name="plPublishDate.Help" version="deprecated" xml:space="preserve">
+    <value>Vous pouvez spécifier une date afin de programmer la publication de ce contenu, celui-ci sera publié immédiatement si c'est vide.</value>
+  </data>
+  <data name="plPublishDate.Text" version="deprecated" xml:space="preserve">
+    <value>Date de publication</value>
+  </data>
+  <data name="PublishDate.Error" version="deprecated" xml:space="preserve">
+    <value>La date de la publication doit être comprise entre la date de début et la date de fin du module.</value>
+  </data>
+  <data name="cmdHistory.Text" version="deprecated" xml:space="preserve">
+    <value>Historique de version</value>
+  </data>
+  <data name="cmdHideMasterContent.Text" version="deprecated" xml:space="preserve">
+    <value>Masquer la langue par défaut</value>
+  </data>
+  <data name="cmdShowMasterContent.Text" version="deprecated" xml:space="preserve">
+    <value>Afficher la langue par défaut</value>
+  </data>
+  <data name="liBasicText.Text" version="deprecated" xml:space="preserve">
+    <value>Texte simple</value>
+  </data>
+  <data name="liRichText.Text" version="deprecated" xml:space="preserve">
+    <value>Texte enrichi</value>
+  </data>
+  <data name="cmdClose.Text">
+    <value>Fermer</value>
+  </data>
+  <!---->
+</root>

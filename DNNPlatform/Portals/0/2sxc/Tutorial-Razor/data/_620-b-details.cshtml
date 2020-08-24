@@ -1,0 +1,32 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var helpers = CreateInstance("../shared/_helpers.cshtml"); 
+  var fancybox = CreateInstance("../shared/_fancybox.cshtml");
+}
+@fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-configure-automatic-switching.png", 400, 200, "float-right")
+</hide>
+<trim>
+<h2>Details using Automatic View-Switching</h2>
+<p>
+  You now see the details page. It was automatically shown, because the url contains <code>data620id</code>. Of course usually you would just go for <code>id</code> or <code>authorId</code> or something, but we needed a longer term, because this tutorial has so many views :). The image to the right shows where this configuration applied. 
+</p>
+</trim>
+
+@{
+  var urlId = Request.QueryString["data620id"];
+  int id = Int32.Parse(urlId);
+
+  // find the person with this Id using LINQ
+  var person = AsList(App.Data["Persons"])
+    .First(p => p.EntityId == id);
+}
+
+<img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
+<h3>Details of @person.FirstName @person.LastName</h3>
+<a href='@Link.To(parameters: "data620/true")'>back to list</a>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

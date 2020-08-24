@@ -1,0 +1,28 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+<div class="ga-wrapper">
+  <div class="ga-albums row">
+    @foreach (var album in AsList(Data)) {
+      var images = AsAdam(album, "Images").Files as Dynlist;
+      var albumThumbUrl = Text.Has(album.AlbumThumbnail)
+        ? album.AlbumThumbnail
+        : images.First().Url;
+
+      <div class="ga-album col-12 col-sm-6 col-md-6 col-lg-4" @Edit.TagToolbar(album)>
+        <a href='@Tags.SafeUrl(Link.To(parameters: "mid/" + Dnn.Module.ModuleID + "&album=" + album.Path))'>
+          <div class="ga-img">
+            <div class="overlay">
+              <div class="ga-album-title"><h5 class="ga-title">@album.Title</h5></div>
+              <div class="ga-files-count"><span class="badge badge-pill badge-dark float-right">@images.Count()</span></div>
+            </div>
+            <img class="img-fluid" src='@Tags.SafeUrl(albumThumbUrl + "?w=720&h=500&mode=crop&scale=both&quality=80")' alt="@album.Title" />
+          </div>
+        </a>
+      </div>
+    }
+  </div>
+</div>
+
+@RenderPage("shared/_Assets.cshtml")

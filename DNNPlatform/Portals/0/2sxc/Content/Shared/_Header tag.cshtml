@@ -1,0 +1,9 @@
+@*
+  this is a sub template which is re-used in many other templates.
+  it shows the header text inside an H-tag, but the number comes from the presentation settings
+*@
+@using ToSic.Razor.Blade;
+@if(Content.Presentation.HeadingType != "hide")
+{
+  @Tag.Custom(Content.Presentation.HeadingType, Content.Title)
+}

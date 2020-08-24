@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdUpdate.Text">
+    <value xml:space="preserve">Mettre à jour le code source</value>
+  </data>
+  <data name="ControlTitle_viewsource.Text">
+    <value xml:space="preserve">Afficher la source du contrôle du module</value>
+  </data>
+  <data name="NoFileTypeSelected.Text">
+    <value xml:space="preserve">Vous devez sélectionner un type de fichier à modifier avant de cliquer sur le bouton "Mettre à jour".</value>
+  </data>
+  <data name="plFile.Help">
+    <value xml:space="preserve">Sélectionnez le fichier dont vous souhaitez afficher la source.</value>
+  </data>
+  <data name="plFile.Text">
+    <value xml:space="preserve">Sélectionnez le fichier :</value>
+  </data>
+  <data name="plSource.Help">
+    <value xml:space="preserve">Vous pouvez afficher la source du module de contrôle dans la zone de texte ci-dessous.  Si vous exécutez sur un ordinateur local, vous pouvez également modifier et modifier la source.</value>
+  </data>
+  <data name="plSource.Text">
+    <value xml:space="preserve">Source du contrôle du module :</value>
+  </data>
+  <data name="SourceFile.Text">
+    <value xml:space="preserve">Fichier source - {0}</value>
+  </data>
+</root>

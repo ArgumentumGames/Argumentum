@@ -1,0 +1,51 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@* Show Menu of toolbars to add a new article, manage the articles and edit the view configuration *@
+@helper AdminToolbarMenu(dynamic viewConfiguration) {
+  <div class="app-news-admin-menu">
+    <div class="toolbar">
+      @Edit.Toolbar(toolbar: new [] {
+        "toolbar=empty",
+        "new?contentType=News&prefill:Date=" + DateTime.Now.Date.AddDays(1).ToString("yyyy-MM-dd") // tomorrow
+      })
+      <span>@App.Resources.LabelAdminMenuNew</span>
+
+      @Edit.Toolbar(toolbar: new [] {
+        "toolbar=empty",
+        "contentitems?contentType=News"
+      })
+      <span>@App.Resources.LabelAdminMenuManage</span>
+    </div>
+    <div>@Edit.Toolbar(viewConfiguration)</div>
+  </div>
+}
+
+@* Show info to admin whether the article will publish or is already expired *@
+@helper AdminArticleInformation(dynamic article) {
+  if(Edit.Enabled && article.ShowFrom != null && article.ShowFrom.Date > DateTime.Now.Date) {
+    <div class="alert alert-warning" role="alert">@(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("d"))</div>
+  }
+
+  if(Edit.Enabled && article.ShowTo != null && article.ShowTo.Date <= DateTime.Now.Date) {
+    <div class="alert alert-danger" role="alert">@(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d"))</div>
+  }
+}
+
+@* Show warning that the details page needs to be changed *@
+@helper AdminDetailsPageConfigWarning() {
+  if(App.Settings.DetailsPageShowWarning) {
+    <div class="alert alert-danger" role="alert">@Html.Raw(@App.Resources.LabelAdminDetailPageWarning)</div>
+  }
+}
+
+@functions {
+  /**
+  * Returns a safe url to a post details page
+  */
+  public dynamic LinkToDetailsPage(dynamic article) {
+    var detailsPageTabId = int.Parse((AsEntity(App.Settings).GetBestValue("DetailsPage")).Split(':')[1]);
+
+    return Tags.SafeUrl(Link.To(pageId: detailsPageTabId, parameters: "details=" + article.UrlKey));
+  }
+}

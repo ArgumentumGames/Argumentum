@@ -1,0 +1,33 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+
+@{
+  var showPopup = Content.Presentation.Activated == true          // popup activated?
+    && Content.Presentation.ActiveFrom.Date <= DateTime.Now.Date  // showFrom <= today?
+    && Content.Presentation.ActiveTo.Date >= DateTime.Now.Date    // showTo >= today?
+    && Request.Cookies["seenpopup"] == null;                      // cookie not set?
+}
+
+@* Do not delete warning and demo popup for admin *@
+@if(Edit.Enabled){
+  <div class="alert alert-warning d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      @App.Resources.DoNotDeleteWarning
+      @Edit.Toolbar(Content, toolbar: "settings&hover=left&autoAddMore=start")
+    </div>
+    <a id="app-popup-test-popup" class="btn btn-primary btn-sm text-white">@App.Resources.TestPopup</a>
+  </div>
+
+  <div class="app-popup admin">
+    @RenderPage("_popup-item.cshtml", new { popup = Content })
+  </div>
+}
+
+@if (showPopup == true && Edit.Enabled == false) {
+  <div class="app-popup" data-cookie-duration="@Content.Presentation.Duration">
+    @RenderPage("_popup-item.cshtml", new { popup = Content })
+  </div>
+}
+
+<script src="@App.Path/dist/lib/Cookie.js" data-enableoptimizations="true"></script>
+<script src="@App.Path/dist/scripts.min.js" data-enableoptimizations="true"></script>
+<link rel="stylesheet" type="text/css" href="@App.Path/dist/bs4.min.css" data-enableoptimizations="true" />

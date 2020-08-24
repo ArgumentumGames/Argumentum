@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All.Text">
+    <value xml:space="preserve">Tous</value>
+  </data>
+  <data name="And.Text" xml:space="preserve">
+    <value xml:space="preserve">[FILES] et [FOLDERS]</value>
+  </data>
+  <data name="Cancel.Text">
+    <value xml:space="preserve">Annuler</value>
+  </data>
+  <data name="ChooseFiles.Text" xml:space="preserve">
+    <value xml:space="preserve">Choisir les fichiers</value>
+  </data>
+  <data name="Close.Text">
+    <value xml:space="preserve">Fermer</value>
+  </data>
+  <data name="Copy.Error" xml:space="preserve">
+    <value xml:space="preserve">Erreur de copie</value>
+  </data>
+  <data name="Copy.Text">
+    <value xml:space="preserve">Copie</value>
+  </data>
+  <data name="CopyFiles.Text">
+    <value xml:space="preserve">Copier</value>
+  </data>
+  <data name="CopyFiles.Title" xml:space="preserve">
+    <value xml:space="preserve">Copier [SELECTION] vers...</value>
+  </data>
+  <data name="CreateFolder.Text" xml:space="preserve">
+    <value xml:space="preserve">Créer le dossier</value>
+  </data>
+  <data name="CreateFolderError.Title" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors de la création du dossier</value>
+  </data>
+  <data name="CreateNewFolderTitle.Text" xml:space="preserve">
+    <value xml:space="preserve">Créer nouveau dossier</value>
+  </data>
+  <data name="Delete.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="Delete.Title" xml:space="preserve">
+    <value xml:space="preserve">Supprimer [ITEMS] ...</value>
+  </data>
+  <data name="DeleteConfirm.Text" xml:space="preserve">
+    <value xml:space="preserve">Êtes-vous sûr de vouloir supprimer [ITEMS] ?</value>
+  </data>
+  <data name="DeleteFolder.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="DeleteItemsError.Title" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors de la suppression d'éléments</value>
+  </data>
+  <data name="Download.Text">
+    <value xml:space="preserve">Télécharger</value>
+  </data>
+  <data name="DuplicateCopy.Subtext" xml:space="preserve">
+    <value xml:space="preserve">Les éléments que vous essayez de copier existent déjà à cet emplacement</value>
+  </data>
+  <data name="DuplicateFilesExist.Text" xml:space="preserve">
+    <value xml:space="preserve">Fichiers doublons</value>
+  </data>
+  <data name="DuplicateMove.Subtext" xml:space="preserve">
+    <value xml:space="preserve">Les éléments que vous essayez de déplacer existent déjà à cet emplacement</value>
+  </data>
+  <data name="DuplicateUpload.Subtext" xml:space="preserve">
+    <value xml:space="preserve">Les éléments que vous essayez de charger existent déjà à cet emplacement</value>
+  </data>
+  <data name="EditModule.Text" xml:space="preserve">
+    <value xml:space="preserve">Modifier le module</value>
+  </data>
+  <data name="ExpandFile.Text" xml:space="preserve">
+    <value xml:space="preserve">Développer le fichier</value>
+  </data>
+  <data name="ExtensionChangeConfirmContent.Text" xml:space="preserve">
+    <value xml:space="preserve">Si vous modifiez une extension de nom de fichier, le fichier peut devenir inutilisable.&lt;br&gt;Êtes-vous certain de vouloir changer celle-ci ?</value>
+  </data>
+  <data name="ExtensionChangeConfirmTitle.Text" xml:space="preserve">
+    <value xml:space="preserve">Extension modifiée</value>
+  </data>
+  <data name="FileUploadAlreadyExists.Text" xml:space="preserve">
+    <value xml:space="preserve">Le fichier que vous souhaitez charger existe déjà à cet emplacement</value>
+  </data>
+  <data name="FileUploadEmptyFileIsNotSupported.Error" xml:space="preserve">
+    <value xml:space="preserve">Votre navigateur ne supporte pas le chargement de fichiers vides</value>
+  </data>
+  <data name="FileUploadErrorOccurred.Error" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors du chargement du fichier</value>
+  </data>
+  <data name="FileUploadStopped.Text" xml:space="preserve">
+    <value xml:space="preserve">Le chargement de fichier s'est arrêté</value>
+  </data>
+  <data name="FolderName.Help" xml:space="preserve">
+    <value xml:space="preserve">C'est le nom du dossier</value>
+  </data>
+  <data name="FolderName.Text" xml:space="preserve">
+    <value xml:space="preserve">Nom du dossier</value>
+  </data>
+  <data name="FolderType.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le type de dossier</value>
+  </data>
+  <data name="FolderType.Text" xml:space="preserve">
+    <value xml:space="preserve">Type de dossier</value>
+  </data>
+  <data name="GetUrl.Text" xml:space="preserve">
+    <value xml:space="preserve">Obtenir l'URL</value>
+  </data>
+  <data name="GetUrl.Title" xml:space="preserve">
+    <value xml:space="preserve">Obtenir l'URL</value>
+  </data>
+  <data name="GetUrlAltText.Text" xml:space="preserve">
+    <value xml:space="preserve">Cliquez puis appuyez sur CTRL + C pour copier...</value>
+  </data>
+  <data name="GetUrlError.Title" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors de l'obtention de l'URL</value>
+  </data>
+  <data name="GetUrlLabel.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">L'URL du fichier est :</value>
+  </data>
+  <data name="Items.Text">
+    <value xml:space="preserve">Elément(s)</value>
+  </data>
+  <data name="Keep.Text">
+    <value xml:space="preserve">Conserver</value>
+  </data>
+  <data name="KeepAll.Text" xml:space="preserve">
+    <value xml:space="preserve">Tout conserver</value>
+  </data>
+  <data name="KeepCompressed.Text" xml:space="preserve">
+    <value xml:space="preserve">Garder compressé</value>
+  </data>
+  <data name="LeftPaneFilesTab.Text">
+    <value xml:space="preserve">Fichiers</value>
+  </data>
+  <data name="LoadFolderContentError.Title" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors du chargement du contenu du dossier</value>
+  </data>
+  <data name="Loading.Text">
+    <value xml:space="preserve">chargement...</value>
+  </data>
+  <data name="LoadSubFoldersError.Title" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors du chargement des sous-dossiers</value>
+  </data>
+  <data name="ManageFolderTypes.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer les Types de dossiers</value>
+  </data>
+  <data name="MappedPath.Help" xml:space="preserve">
+    <value xml:space="preserve">Entrer le chemin d'accès à ce dossier dans le provider de dossier. Le chemin d'accès entré est relatif à la racine du provider, si le champ est laissé vide alors le dossier sera mappé à la racine du provider.</value>
+  </data>
+  <data name="MappedPath.Text" xml:space="preserve">
+    <value xml:space="preserve">Chemin d'accès mappé</value>
+  </data>
+  <data name="MappedPathRegExValidator.ErrorMessage" xml:space="preserve">
+    <value xml:space="preserve">Le chemin doit être relatif à la racine du provider</value>
+  </data>
+  <data name="MaxFileUploadSizeError.Text" xml:space="preserve">
+    <value xml:space="preserve">N'a pas pu être envoyé : la taille du fichier est supérieure à [MAXFILESIZE]</value>
+  </data>
+  <data name="Modified.Header" xml:space="preserve">
+    <value xml:space="preserve">Date de modification</value>
+  </data>
+  <data name="Move.Error" xml:space="preserve">
+    <value xml:space="preserve">Erreur de déplacement</value>
+  </data>
+  <data name="Move.Text">
+    <value xml:space="preserve">Déplacer</value>
+  </data>
+  <data name="Move.Title" xml:space="preserve">
+    <value xml:space="preserve">Déplacer [SELECTION] vers...</value>
+  </data>
+  <data name="Moving.Text" xml:space="preserve">
+    <value xml:space="preserve">Déplacer [SELECTION]</value>
+  </data>
+  <data name="Name.Header">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="NFiles.Text" xml:space="preserve">
+    <value xml:space="preserve">[NUM] Fichiers</value>
+  </data>
+  <data name="NFolders.Text" xml:space="preserve">
+    <value xml:space="preserve">[NUM] Dossiers</value>
+  </data>
+  <data name="NoConfirm.Text">
+    <value xml:space="preserve">Non</value>
+  </data>
+  <data name="NoItems.Text" xml:space="preserve">
+    <value xml:space="preserve">Ce dossier est vide</value>
+  </data>
+  <data name="NoItemsDeleted.Title" xml:space="preserve">
+    <value xml:space="preserve">[ITEMS] ne peuvent être supprimés</value>
+  </data>
+  <data name="NoItemsDeletedDescription.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous n'êtes pas autorisé à supprimer les éléments suivants :</value>
+  </data>
+  <data name="NoItemsSearch.Text" xml:space="preserve">
+    <value xml:space="preserve">Aucun élément ne correspond à votre recherche</value>
+  </data>
+  <data name="NoItemsSelected.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous devez sélectionner au moins un élément pour effectuer l'opération de suppression</value>
+  </data>
+  <data name="OkConfirm.Text">
+    <value xml:space="preserve">Ok</value>
+  </data>
+  <data name="OneFile.Text" xml:space="preserve">
+    <value xml:space="preserve">1 Fichier</value>
+  </data>
+  <data name="OneFolder.Text" xml:space="preserve">
+    <value xml:space="preserve">1 Dossier</value>
+  </data>
+  <data name="PagerFirstPage.Text">
+    <value xml:space="preserve">Première</value>
+  </data>
+  <data name="PagerFirstPage.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Aller à la première page</value>
+  </data>
+  <data name="PagerLastPage.Text">
+    <value xml:space="preserve">Dernière</value>
+  </data>
+  <data name="PagerLastPage.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Aller à la dernière page</value>
+  </data>
+  <data name="PagerNextPage.Text">
+    <value xml:space="preserve">Suivant</value>
+  </data>
+  <data name="PagerNextPage.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Aller à la page suivante</value>
+  </data>
+  <data name="PagerPageSize.Text" xml:space="preserve">
+    <value xml:space="preserve">Éléments par page :</value>
+  </data>
+  <data name="PagerPreviousPage.Text">
+    <value xml:space="preserve">Précédent</value>
+  </data>
+  <data name="PagerPreviousPage.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Aller à la page précédente</value>
+  </data>
+  <data name="PagerTextFormatMultiplePages.Text" xml:space="preserve">
+    <value xml:space="preserve">[ITEMS] éléments sur [PAGES] pages</value>
+  </data>
+  <data name="PagerTextFormatOnePage.Text" xml:space="preserve">
+    <value xml:space="preserve">[ITEMS] éléments</value>
+  </data>
+  <data name="PagerTextFormatOnePageOneItem.Text" xml:space="preserve">
+    <value xml:space="preserve">[ITEMS] élément</value>
+  </data>
+  <data name="ParentFolder.Header" xml:space="preserve">
+    <value xml:space="preserve">Dossier parent</value>
+  </data>
+  <data name="ParentFolder.Help" xml:space="preserve">
+    <value xml:space="preserve">Le dossier parent dans lequel le nouveau dossier sera créé</value>
+  </data>
+  <data name="ParentFolder.Text" xml:space="preserve">
+    <value xml:space="preserve">Dossier parent</value>
+  </data>
+  <data name="RefreshFolder.Text" xml:space="preserve">
+    <value xml:space="preserve">Actualiser le dossier</value>
+  </data>
+  <data name="Rename.Text">
+    <value xml:space="preserve">Renommer</value>
+  </data>
+  <data name="RenameFileError.Title" xml:space="preserve">
+    <value xml:space="preserve">Erreur d'attribution de nom de fichier</value>
+  </data>
+  <data name="RenameFolder.Text" xml:space="preserve">
+    <value xml:space="preserve">Renommer le dossier</value>
+  </data>
+  <data name="RenameFolderError.Title" xml:space="preserve">
+    <value xml:space="preserve">Erreur d'attribution de nom de dossier</value>
+  </data>
+  <data name="Replace.Text">
+    <value xml:space="preserve">Remplacer</value>
+  </data>
+  <data name="ReplaceAll.Text" xml:space="preserve">
+    <value xml:space="preserve">Remplacer tout</value>
+  </data>
+  <data name="rfvFolderName.ErrorMessage" xml:space="preserve">
+    <value xml:space="preserve">Nom du dossier nécessaire</value>
+  </data>
+  <data name="Save.Text">
+    <value xml:space="preserve">Enregistrer</value>
+  </data>
+  <data name="Search.Placeholder" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Entrer le terme recherché</value>
+  </data>
+  <data name="Search.Title" version="deprecated">
+    <value xml:space="preserve">Chercher</value>
+  </data>
+  <data name="SearchBreadcrumb.Text">
+    <value xml:space="preserve">Chercher</value>
+  </data>
+  <data name="SelectAll.Text" xml:space="preserve">
+    <value xml:space="preserve">Tout sélectionner</value>
+  </data>
+  <data name="Size.Header">
+    <value xml:space="preserve">Taille</value>
+  </data>
+  <data name="UnselectAll.Text" xml:space="preserve">
+    <value xml:space="preserve">Tout déselectionner</value>
+  </data>
+  <data name="UnzipFile.Text" xml:space="preserve">
+    <value xml:space="preserve">Décompresser le fichier</value>
+  </data>
+  <data name="UnzipFileErrorTitle.Text" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors de la décompression du fichier</value>
+  </data>
+  <data name="UploadError.Text" xml:space="preserve">
+    <value xml:space="preserve">Erreur lors du chargement du fichier</value>
+  </data>
+  <data name="UploadFiles.DropHere" xml:space="preserve">
+    <value xml:space="preserve">DEPOSEZ VOS FICHIERS ICI</value>
+  </data>
+  <data name="UploadFiles.Info" xml:space="preserve">
+    <value xml:space="preserve">Vous pouvez sélectionner plusieurs fichiers à la fois.</value>
+  </data>
+  <data name="UploadFiles.Title" xml:space="preserve">
+    <value xml:space="preserve">Charger des fichiers</value>
+  </data>
+  <data name="UploadFilesDragDrop.Info" xml:space="preserve">
+    <value xml:space="preserve">Ou glissez/déposez sur la zone bleue ci-dessous</value>
+  </data>
+  <data name="UploadingExtracting.Text" xml:space="preserve">
+    <value xml:space="preserve">Chargement et extraction...</value>
+  </data>
+  <data name="ViewFolderProperties.Text" xml:space="preserve">
+    <value xml:space="preserve">Afficher les propriétés de dossier</value>
+  </data>
+  <data name="ViewProperties.Text" xml:space="preserve">
+    <value xml:space="preserve">Afficher les propriétés</value>
+  </data>
+  <data name="ZipConfirmation.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous avez essayé de charger un fichier ZIP nommé [fichier].&lt;br&gt;Souhaitez-vous décompresser celui-ci ?</value>
+  </data>
+  <data name="InvalidGroup.Error" xml:space="preserve">
+    <value>L'ID de groupe n'est pas défini. Veuillez revenir à la page des groupes et sélectionner le groupe souhaité.</value>
+  </data>
+  <data name="GetFileUrlLabel.Text" xml:space="preserve">
+    <value>URL du fichier :</value>
+  </data>
+  <data name="InvalidUser.Error" xml:space="preserve">
+    <value>Le module est configuré en mode utilisateur, il ne peut pas être utilisé par un utilisateur non authentifié</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Gestion des fichiers</value>
+  </data>
+  <data name="ToolbarTitle.Actions.Text">
+    <value>Actions</value>
+  </data>
+  <data name="ToolbarTitle.Views.Text">
+    <value>Affichages</value>
+  </data>
+  <data name="Unlink.Text">
+    <value>Délier</value>
+  </data>
+  <data name="UnlinkFolder.Text" xml:space="preserve">
+    <value>Délier dossier</value>
+  </data>
+  <data name="UnlinkFolderError.Title" xml:space="preserve">
+    <value>Une erreur s'est produite en essayant de délier ce dossier</value>
+  </data>
+  <data name="Unlink.Title" xml:space="preserve">
+    <value>Délier dossier...</value>
+  </data>
+  <data name="UnlinkConfirm.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir délier le dossier ?</value>
+  </data>
+  <data name="DeleteConfirmWithMappedSubfolder.Text" xml:space="preserve">
+    <value>Remarque : Les dossiers sélectionnés contiennent [COUNT] dossier distant. Tout ceci sera délié de ce site et le dossier ainsi que les fichiers resteront à l'emplacement distant</value>
+  </data>
+  <data name="DeleteConfirmWithMappedSubfolders.Text" xml:space="preserve">
+    <value>Remarque : Les dossiers sélectionnés contiennent [COUNT] dossiers distants. Tout ceci sera délié de ce site et les dossiers ainsi que les fichiers resteront à l'emplacement distant</value>
+  </data>
+  <data name="FileLabel.Text">
+    <value>Fichier</value>
+  </data>
+  <data name="FileMultLabel.Text">
+    <value>Fichiers</value>
+  </data>
+  <data name="FolderLabel.Text">
+    <value>Dossier</value>
+  </data>
+  <data name="FolderMultLabel.Text">
+    <value>Dossiers</value>
+  </data>
+  <!---->
+</root>

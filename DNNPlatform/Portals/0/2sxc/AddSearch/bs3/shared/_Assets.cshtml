@@ -1,0 +1,26 @@
+@using Connect.Koi;
+@using DotNetNuke.Framework.JavaScriptLibraries;
+
+@* show warning for admin if koi.json is missing *@
+@if(Koi.IsUnknown && Dnn.User.IsInRole(Dnn.Portal.AdministratorRoleName)) {
+  <div class='dnnFormMessage dnnFormWarning'>
+    This component supports multiple CSS frameworks (Bootstrap3, Bootstrap4). It uses <a href='http://connect-koi.net/' target='_blank'>Koi</a> to detect the CSS framework of the theme/skin. Your theme doesn't broadcast it's CSS-Framework, so the output may look wrong. <br>
+    To fix this, <a href='http://connect-koi.net/dnn-themes'>add a koi.json file to your theme/skin folder</a>.<br>
+    <em>note: only admins see this message, and it will disappear when you add a correct koi.json</em>
+  </div>
+}
+
+@* Include styles of the App *@
+<link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="true" />
+
+@* Include libaries / scripts *@
+@{
+  // tell DNN to load jquery as it's needed by fancybox
+  JavaScript.RequestRegistration(CommonJs.jQuery);
+}
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" data-enableoptimizations="true" ></script>
+
+@if(PageData["ResultPage"] == true) {
+  <script src="https://addsearch.com/js/?key=@App.Settings.SearchKey&type=resultpage"></script>
+}

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Analytics.Text">
+    <value>Analytics</value>
+  </data>
+  <data name="nav_Dashboard.Text" xml:space="preserve">
+    <value>Tableau de bord</value>
+  </data>
+  <data name="nav_Logout.Text">
+    <value>Déconnexion</value>
+  </data>
+  <data name="Settings.Text" version="deprecated">
+    <value>Paramètres</value>
+  </data>
+  <data name="nav_Tasks.Text">
+    <value>Tâches</value>
+  </data>
+  <data name="nav_Edit.Text">
+    <value>Modifier</value>
+  </data>
+  <data name="nav_Manage.Text">
+    <value>Gérer</value>
+  </data>
+  <data name="nav_Content.Text">
+    <value>Contenu</value>
+  </data>
+  <data name="nav_Tools.Text">
+    <value>Outils</value>
+  </data>
+  <data name="nav_Accounts.Text">
+    <value>&amp;nbsp;</value>
+  </data>
+  <data name="nav_DocCenter.Text" xml:space="preserve">
+    <value>Centre de documentation</value>
+  </data>
+  <data name="nav_Help.Text">
+    <value>Aide</value>
+  </data>
+  <data name="nav_Site.Text" xml:space="preserve">
+    <value>Voir le site</value>
+  </data>
+  <data name="err_BetweenMinMax.Text" xml:space="preserve">
+    <value>La valeur ne peut être qu'entre la valeur minimale et la valeur maximale</value>
+  </data>
+  <data name="err_Email.Text" xml:space="preserve">
+    <value>Un courriel valide est requis.</value>
+  </data>
+  <data name="err_Minimum.Text" xml:space="preserve">
+    <value>Le texte doit posséder au moins {0} caractères</value>
+  </data>
+  <data name="err_MinLessThanMax.Text" xml:space="preserve">
+    <value>La valeur minimale doit être inférieure à la valeur maximale</value>
+  </data>
+  <data name="err_NoLargerThanExp.Text" xml:space="preserve">
+    <value>Les points de réputation ne peuvent pas être plus élevés que les points d'expérience</value>
+  </data>
+  <data name="err_NonDecimalNumber.Text" xml:space="preserve">
+    <value>Nombres décimaux non autorisés</value>
+  </data>
+  <data name="err_NonNegativeNumber.Text" xml:space="preserve">
+    <value>Nombres négatifs non autorisés</value>
+  </data>
+  <data name="err_NoUserFolder.Text" xml:space="preserve">
+    <value>{0} n'est propriétaire d'aucun asset.</value>
+  </data>
+  <data name="err_Number.Text" xml:space="preserve">
+    <value>Seuls les nombres sont autorisés</value>
+  </data>
+  <data name="err_OneActionNeeded.Text" xml:space="preserve">
+    <value>Il faut au moins une action</value>
+  </data>
+  <data name="err_PositiveNumber.Text" xml:space="preserve">
+    <value>Seuls les nombres positifs sont autorisés</value>
+  </data>
+  <data name="err_Required.Text" xml:space="preserve">
+    <value>Texte requis</value>
+  </data>
+  <data name="err_RoleAssignedToUser.Text" xml:space="preserve">
+    <value>Ce rôle est déjà attribué à cet utilisateur.</value>
+  </data>
+  <data name="nav_Home.Text">
+    <value>Accueil</value>
+  </data>
+  <data name="permissiongrid.Actions.Text">
+    <value>Actions</value>
+  </data>
+  <data name="permissiongrid.Add Content.Text" xml:space="preserve">
+    <value>Ajouter contenu</value>
+  </data>
+  <data name="permissiongrid.Add User.Text" xml:space="preserve">
+    <value>Ajouter un utilisateur</value>
+  </data>
+  <data name="permissiongrid.Add.Text">
+    <value>Ajouter</value>
+  </data>
+  <data name="permissiongrid.AllRoles.Text" xml:space="preserve">
+    <value>&lt;Tous les rôles&gt;</value>
+  </data>
+  <data name="permissiongrid.Copy.Text">
+    <value>Copie</value>
+  </data>
+  <data name="permissiongrid.Delete.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="permissiongrid.Display Name.Text" xml:space="preserve">
+    <value>Nom d'affichage :</value>
+  </data>
+  <data name="permissiongrid.Edit Content.Text" xml:space="preserve">
+    <value>Éditer contenu</value>
+  </data>
+  <data name="permissiongrid.Edit Tab.Text" xml:space="preserve">
+    <value>Contrôle total</value>
+  </data>
+  <data name="permissiongrid.Edit.Text" xml:space="preserve">
+    <value>Contrôle total</value>
+  </data>
+  <data name="permissiongrid.Export.Text">
+    <value>Exporter</value>
+  </data>
+  <data name="permissiongrid.Filter By Group.Text" xml:space="preserve">
+    <value>Filtrer par groupe</value>
+  </data>
+  <data name="permissiongrid.GlobalRoles.Text" xml:space="preserve">
+    <value>&lt;Rôles globaux&gt;</value>
+  </data>
+  <data name="permissiongrid.Import.Text">
+    <value>Importer</value>
+  </data>
+  <data name="permissiongrid.Manage Settings.Text" xml:space="preserve">
+    <value>Gestion des paramètres</value>
+  </data>
+  <data name="permissiongrid.Navigate.Text">
+    <value>Naviguer</value>
+  </data>
+  <data name="permissiongrid.Select Role.Text" xml:space="preserve">
+    <value>Sélectionner rôle</value>
+  </data>
+  <data name="permissiongrid.Type-roles.Text">
+    <value>Rôles</value>
+  </data>
+  <data name="permissiongrid.Type-users.Text">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="permissiongrid.View Tab.Text">
+    <value>Voir</value>
+  </data>
+  <data name="permissiongrid.View.Text">
+    <value>Voir</value>
+  </data>
+  <data name="nav_SiteAssets.Text" xml:space="preserve">
+    <value>Ressources du site</value>
+  </data>
+  <data name="nav_GlobalAssets.Text" xml:space="preserve">
+    <value>Ressources globales</value>
+  </data>
+  <data name="title_Tasks.Text">
+    <value>Tâches</value>
+  </data>
+  <data name="txt_ViewIndex.Text" xml:space="preserve">
+    <value>Affichage de {0} sur {1}</value>
+  </data>
+  <data name="btn_LoadMore.Text" xml:space="preserve">
+    <value>Charger plus</value>
+  </data>
+  <data name="Documentation.Text">
+    <value>Documentation</value>
+  </data>
+  <data name="Framework.Text" xml:space="preserve">
+    <value>Framework .Net</value>
+  </data>
+  <data name="LicenseKey.Text" xml:space="preserve">
+    <value>Clé de licence</value>
+  </data>
+  <data name="ServerName.Text" xml:space="preserve">
+    <value>Nom du serveur</value>
+  </data>
+  <data name="UpgradeLicense.Text" xml:space="preserve">
+    <value>[Mise à niveau vers Evoq]</value>
+  </data>
+  <data name="btn_CloseDialog.Text">
+    <value>OK</value>
+  </data>
+  <data name="CriticalUpdate.Text" xml:space="preserve">
+    <value>[Mise à jour critique]</value>
+  </data>
+  <data name="NormalUpdate.Text" xml:space="preserve">
+    <value>[Nouvelle mise à jour]</value>
+  </data>
+  <data name="nav_Settings.Text">
+    <value>Paramètres</value>
+  </data>
+  <data name="LockEditMode.Help" xml:space="preserve">
+    <value>Une fois verrouillé, l'icône apparaîtra en bleu et vous resterez en mode édition même si vous naviguez vers d'autres pages.</value>
+  </data>
+  <data name="LockEditMode.Text" xml:space="preserve">
+    <value>Cliquer pour verrouiller le mode d'édition.</value>
+  </data>
+  <data name="UnlockEditMode.Help" xml:space="preserve">
+    <value>Une fois déverrouillé, vous quitterez le mode édition lorsque vous naviguez vers une autre page ou que vous effectuez vos modifications.</value>
+  </data>
+  <data name="UnlockEditMode.Text" xml:space="preserve">
+    <value>Cliquez pour déverrouiller le mode d'édition.</value>
+  </data>
+  <!---->
+</root>

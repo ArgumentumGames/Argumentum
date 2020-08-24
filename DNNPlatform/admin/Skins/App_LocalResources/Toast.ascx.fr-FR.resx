@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="SeeAllMessage.Text" xml:space="preserve">
+    <value>Voir tous les messages</value>
+  </data>
+  <data name="SeeAllNotification.Text" xml:space="preserve">
+    <value>Voir toutes les notifications</value>
+  </data>
+  
+</root>

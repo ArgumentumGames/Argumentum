@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasicTextBox.Text">
+    <value xml:space="preserve">Texte simple</value>
+  </data>
+  <data name="CompareListDefaultOption.Text">
+    <value xml:space="preserve">Comparer</value>
+  </data>
+  <data name="EditorTitleLabel.Text">
+    <value xml:space="preserve">Editeur {0}</value>
+  </data>
+  <data name="Html.Text">
+    <value xml:space="preserve">HTML</value>
+  </data>
+  <data name="plRender.Help">
+    <value xml:space="preserve">Sélectionner le mode utilisé pour l'affichage de l'HTML</value>
+  </data>
+  <data name="plRender.Text">
+    <value xml:space="preserve">Mode d'affichage :</value>
+  </data>
+  <data name="plView.Help">
+    <value xml:space="preserve">Sélectionnez l'éditeur à utiliser</value>
+  </data>
+  <data name="plView.Text">
+    <value xml:space="preserve">Editeur :</value>
+  </data>
+  <data name="Raw.Text">
+    <value xml:space="preserve">Brut</value>
+  </data>
+  <data name="RichTextBox.Text">
+    <value xml:space="preserve">Texte enrichi</value>
+  </data>
+  <data name="Text.Text">
+    <value xml:space="preserve">Texte</value>
+  </data>
+  <data name="VersionLabel.Text">
+    <value xml:space="preserve">Version {0}</value>
+  </data>
+  <data name="VersionListDefaultOption.Text">
+    <value xml:space="preserve">Version</value>
+  </data>
+</root>

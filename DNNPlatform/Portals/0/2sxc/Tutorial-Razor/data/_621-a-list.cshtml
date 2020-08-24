@@ -1,0 +1,31 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var helpers = CreateInstance("../shared/_helpers.cshtml"); 
+  var fancybox = CreateInstance("../shared/_fancybox.cshtml");
+}
+@fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-design.png", 400, 200, "float-right")
+</hide>
+<trim>
+
+<h2>List Details using Automatic View-Switching and Query</h2>
+<p>
+  The previous examples showed you how to do auto-switch views. This example makes the code even easier, by telling the details-view to pick up the details-item from a query. You can see the query and how it's configured to the right.
+</p>
+</trim>
+
+  <h3>List of Persons</h3>
+<ul>
+  @foreach(var person in AsList(App.Data["Persons"])) {
+    <li>
+      <a href='@Link.To(parameters: "data621id/" + person.EntityId )'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

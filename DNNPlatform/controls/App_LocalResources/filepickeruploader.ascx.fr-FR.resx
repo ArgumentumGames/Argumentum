@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="DropFile.Text" xml:space="preserve">
+    <value xml:space="preserve">Déposer ici le(s) fichier(s)</value>
+  </data>
+  <data name="File.Text" xml:space="preserve">
+    <value xml:space="preserve">Fichier :</value>
+  </data>
+  <data name="Folder.Text" xml:space="preserve">
+    <value xml:space="preserve">Dossier :</value>
+  </data>
+  <data name="UploadFile.Text" xml:space="preserve">
+    <value xml:space="preserve">Charger le fichier</value>
+  </data>
+  <!---->
+</root>

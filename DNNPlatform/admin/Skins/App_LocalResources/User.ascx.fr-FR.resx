@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CheckMessages.Text" xml:space="preserve">
+    <value xml:space="preserve">Vérifier les Messages</value>
+  </data>
+  <data name="CheckNotifications.Text" xml:space="preserve">
+    <value xml:space="preserve">Vérifier les Notifications</value>
+  </data>
+  <data name="Messages.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;span&gt;{0}&lt;/span&gt;&lt;strong&gt; Messages&lt;/strong&gt;</value>
+  </data>
+  <data name="NewMessages.Text">
+    <value xml:space="preserve">({0})</value>
+  </data>
+  <data name="NoMessages.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;strong&gt; Messages&lt;/strong&gt;</value>
+  </data>
+  <data name="NoNotifications.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;strong&gt; Notifications&lt;/strong&gt;</value>
+  </data>
+  <data name="Notifications.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;span&gt;{0}&lt;/span&gt;&lt;strong&gt; Notifications&lt;/strong&gt;</value>
+  </data>
+  <data name="ProfileAvatar.Text" xml:space="preserve">
+    <value xml:space="preserve">Avatar de profil</value>
+  </data>
+  <data name="Register.Text">
+    <value xml:space="preserve">Inscription</value>
+  </data>
+  <data name="ToolTip.Text" xml:space="preserve">
+    <value xml:space="preserve">Cliquer ici pour accéder à votre page de profil</value>
+  </data>
+  <data name="ToolTipNewMessages.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous avez {0} nouveau(x) message(s). Cliquer ici pour accéder à votre profil.</value>
+  </data>
+  <data name="VisitMyProfile.Text" xml:space="preserve">
+    <value xml:space="preserve">Visiter mon profil</value>
+  </data>
+  <!---->
+</root>

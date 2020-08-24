@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Create.Text" xml:space="preserve">
+    <value>Créer nouveau rôle</value>
+  </data>
+  <data name="DuplicateRole.Text" xml:space="preserve">
+    <value>Le nom de rôle existe déjà.</value>
+  </data>
+  <data name="nav_Roles.Text">
+    <value>Rôles</value>
+  </data>
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Rechercher un rôle par mot clé</value>
+  </data>
+  <data name="Actions.Header">
+    <value>&amp;nbsp;</value>
+  </data>
+  <data name="AllGroups.Text" xml:space="preserve">
+    <value>[Tous les groupes]</value>
+  </data>
+  <data name="Auto.Header">
+    <value>Auto.</value>
+  </data>
+  <data name="GlobalRolesGroup.Text" xml:space="preserve">
+    <value>[Rôles globaux]</value>
+  </data>
+  <data name="GroupName.Header">
+    <value>Groupe</value>
+  </data>
+  <data name="LoadMore.Text" xml:space="preserve">
+    <value>Charger plus</value>
+  </data>
+  <data name="RoleName.Header" xml:space="preserve">
+    <value>Nom du rôle&amp;nbsp;</value>
+  </data>
+  <data name="Users.Header">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="AutoAssignment.Text" xml:space="preserve">
+    <value>Affectation automatique</value>
+  </data>
+  <data name="Cancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="NewGroup.Text" xml:space="preserve">
+    <value>Nouveau groupe</value>
+  </data>
+  <data name="Public.Text">
+    <value>Public</value>
+  </data>
+  <data name="plRoleGroups.Text" xml:space="preserve">
+    <value>Groupe de rôles</value>
+  </data>
+  <data name="Save.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="DuplicateRoleGroup.Text" xml:space="preserve">
+    <value>Le nom du groupe existe déjà.</value>
+  </data>
+  <data name="GroupName.Required" xml:space="preserve">
+    <value>Ce champ est requis</value>
+  </data>
+  <data name="GroupName.Text" xml:space="preserve">
+    <value>Nom du groupe</value>
+  </data>
+  <data name="RoleName.Text" xml:space="preserve">
+    <value>Nom du rôle&amp;nbsp;</value>
+  </data>
+  <data name="securityModeListLabel.Text" xml:space="preserve">
+    <value>Mode de sécurité</value>
+  </data>
+  <data name="statusListLabel.Text">
+    <value>Statut</value>
+  </data>
+  <data name="DeleteRole.Confirm" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir supprimer ce rôle ?</value>
+  </data>
+  <data name="NoData.Text" xml:space="preserve">
+    <value>Il n’y a pas de rôles dans ce groupe de rôles.</value>
+  </data>
+  <data name="RoleName.Required" xml:space="preserve">
+    <value>Ce champ est requis</value>
+  </data>
+  <data name="UpdateGroup.Text" xml:space="preserve">
+    <value>Mise à jour du groupe</value>
+  </data>
+  <data name="Add.Text">
+    <value>Ajouter</value>
+  </data>
+  <data name="AddUserPlaceHolder.Text" xml:space="preserve">
+    <value>Commencez à taper pour ajouter un utilisateur à ce rôle</value>
+  </data>
+  <data name="Expires.Header">
+    <value>Expiration</value>
+  </data>
+  <data name="Members.Header">
+    <value>Membres</value>
+  </data>
+  <data name="PageInfo.Text" xml:space="preserve">
+    <value>Page {0} sur {1}</value>
+  </data>
+  <data name="PageSummary.Text" xml:space="preserve">
+    <value>Affichage de {0}-{1} sur {2}</value>
+  </data>
+  <data name="Start.Header">
+    <value>Démarrer</value>
+  </data>
+  <data name="Users.Text">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="NoUsers.Text" xml:space="preserve">
+    <value>Il n’y a aucun utilisateur dans ce rôle.</value>
+  </data>
+  <data name="Search.Text">
+    <value>Chercher</value>
+  </data>
+  <data name="DeleteUser.Confirm" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir supprimer cet utilisateur du rôle ?</value>
+  </data>
+  <data name="DeleteRoleGroup.Confirm" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir supprimer ce groupe de rôles ?</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Approuvé</value>
+  </data>
+  <data name="Both.Text" xml:space="preserve">
+    <value>Les deux</value>
+  </data>
+  <data name="Disabled.Text">
+    <value>Désactivé</value>
+  </data>
+  <data name="Pending.Text" xml:space="preserve">
+    <value>En attente</value>
+  </data>
+  <data name="SecurityRole.Text" xml:space="preserve">
+    <value>Membre du groupe</value>
+  </data>
+  <data name="SocialGroup.Text" xml:space="preserve">
+    <value>Groupe social</value>
+  </data>
+  <data name="AssignToExistUsers.Text" xml:space="preserve">
+    <value>Attribuer aux utilisateurs existants</value>
+  </data>
+  <data name="ActionCancelled.Message">
+    <value>Annulé.</value>
+  </data>
+  <data name="AssignToExistUsers.Help" xml:space="preserve">
+    <value>Attribuer ce rôle à tous les utilisateurs existants.</value>
+  </data>
+  <data name="DeleteInconsistency.Error" xml:space="preserve">
+    <value>Une incohérence s’est produite. Actualisez la page et essayez à nouveau.</value>
+  </data>
+  <data name="DeleteRole.Error" xml:space="preserve">
+    <value>Impossible de supprimer le rôle. Veuillez essayer plus tard</value>
+  </data>
+  <data name="DeleteRole.Message" xml:space="preserve">
+    <value>Rôle supprimé avec succès.</value>
+  </data>
+  <data name="DeleteRoleGroup.Error" xml:space="preserve">
+    <value>Impossible de supprimer le groupe de rôles. Veuillez essayer plus tard.</value>
+  </data>
+  <data name="DeleteRoleGroup.Message" xml:space="preserve">
+    <value>Groupe de rôles supprimé avec succès.</value>
+  </data>
+  <data name="Description.Help" xml:space="preserve">
+    <value>Saisissez une description pour ce groupe.</value>
+  </data>
+  <data name="lblNewGroup.Text" xml:space="preserve">
+    <value>[Nouveau groupe]</value>
+  </data>
+  <data name="plRoleGroups.Help" xml:space="preserve">
+    <value>Choisissez le groupe auquel ce rôle appartient.</value>
+  </data>
+  <data name="PublicRole.Help" xml:space="preserve">
+    <value>Si le rôle est "public", tous les utilsateurs enregistrés pourront s'y abonner.</value>
+  </data>
+  <data name="RoleAdded.Error" xml:space="preserve">
+    <value>Impossible de créer le rôle. Veuillez essayer plus tard.</value>
+  </data>
+  <data name="RoleAdded.Message" xml:space="preserve">
+    <value>Rôle créé avec succès.</value>
+  </data>
+  <data name="RoleName.Help" xml:space="preserve">
+    <value>Saisissez un nom pour ce groupe.</value>
+  </data>
+  <data name="RoleUpdated.Error" xml:space="preserve">
+    <value>Impossible de mettre à jour le rôle. Veuillez essayer plus tard.</value>
+  </data>
+  <data name="RoleUpdated.Message" xml:space="preserve">
+    <value>Rôle mis à jour avec succès.</value>
+  </data>
+  <data name="securityModeListLabel.Help" xml:space="preserve">
+    <value>Choisissez le mode de sécurité de ce rôle/groupe.</value>
+  </data>
+  <data name="statusListLabel.Help" xml:space="preserve">
+    <value>Sélectionnez l'état pour ce rôle/groupe</value>
+  </data>
+  <data name="RoleGroupUpdated.Error" xml:space="preserve">
+    <value>Impossible de mettre à jour le groupe de rôles. Veuillez essayer plus tard.</value>
+  </data>
+  <data name="RoleGroupUpdated.Message" xml:space="preserve">
+    <value>Groupe de rôles correctement mis à jour.</value>
+  </data>
+  <data name="AutoAssignment.Help" xml:space="preserve">
+    <value>Cocher cette case si les utilisateurs sont automatiquement affectés à ce rôle.</value>
+  </data>
+  <data name="GroupDescription.Help" xml:space="preserve">
+    <value>Saisissez une description pour ce groupe de rôles.</value>
+  </data>
+  <data name="GroupDescription.Text">
+    <value>Description</value>
+  </data>
+  <data name="GroupName.Help" xml:space="preserve">
+    <value>Entrer un nom de groupe de rôles.</value>
+  </data>
+  <data name="PermissionsByRole.Text" xml:space="preserve">
+    <value>Autorisations par rôle</value>
+  </data>
+  <data name="SendEmail.Text" xml:space="preserve">
+    <value>Envoyer le message</value>
+  </data>
+  <data name="isOwner.Text" xml:space="preserve">
+    <value>Est propriétaire</value>
+  </data>
+  <data name="InSufficientPermissions.Text" xml:space="preserve">
+    <value>Vous n’avez pas les permissions pour effectuer cette action.</value>
+  </data>
+  <data name="UserNotFound.Text" xml:space="preserve">
+    <value>Utilisateur introuvable.</value>
+  </data>
+  <data name="InvalidRequest.Text" xml:space="preserve">
+    <value>Requête non valide.</value>
+  </data>
+  <data name="SecurityRoleDeleteNotAllowed.Text" xml:space="preserve">
+    <value>Rôles système ne peut pas être supprimés.</value>
+  </data>
+  <data name="CannotAssginUserToUnApprovedRole.Text" xml:space="preserve">
+    <value>Impossible d’affecter l’utilisateur à un rôle non approuvé.</value>
+  </data>
+  <data name="EditRole.Text" xml:space="preserve">
+    <value>Modifier le rôle</value>
+  </data>
+  <data name="UsersInRole.Text" xml:space="preserve">
+    <value>Utilisateurs ayant ce rôle</value>
+  </data>
+  <data name="Prompt_ListRolesFailed.Text" xml:space="preserve">
+    <value>Échec lors du listing des rôles.</value>
+  </data>
+  <data name="Prompt_NoRoles.Text" xml:space="preserve">
+    <value>Aucun rôle trouvé.</value>
+  </data>
+  <data name="Prompt_FlagEmpty.Text" xml:space="preserve">
+    <value>--{0} ne peut pas être vide.</value>
+  </data>
+  <data name="Prompt_InvalidRoleStatus.Text" xml:space="preserve">
+    <value>Valeur non valide transmise pour --{0}. En attente de 'pending', 'approved' ou 'disabled'</value>
+  </data>
+  <data name="Prompt_NoRoleWithId.Text" xml:space="preserve">
+    <value>Aucun rôle trouvé avec l’ID {0}</value>
+  </data>
+  <data name="Prompt_NothingToUpdate.Text" xml:space="preserve">
+    <value>Rien à mettre à jour !</value>
+  </data>
+  <data name="Prompt_RoleIdIsRequired.Text" xml:space="preserve">
+    <value>Vous devez spécifier un ID de rôle valide en tant que premier argument ou en utilisant l'option --id.</value>
+  </data>
+  <data name="Prompt_RoleIdNegative.Text" xml:space="preserve">
+    <value>La valeur RoleId doit être supérieure à zéro (0)</value>
+  </data>
+  <data name="Prompt_RoleIdNotInt.Text" xml:space="preserve">
+    <value>Le RoleId doit être un entier.</value>
+  </data>
+  <data name="Prompt_RoleNameRequired.Text" xml:space="preserve">
+    <value>Vous devez spécifier un nom pour le rôle en tant que premier argument ou en utilisant l'option --{0}. Les noms avec des espaces et les caractères spéciaux doivent être placés entre guillemets.</value>
+  </data>
+  <data name="Prompt_UnableToParseBool.Text" xml:space="preserve">
+    <value>Impossible d'analyser la valeur '{1}' de l'option --{0}. La valeur devrait être "True" ou "False"</value>
+  </data>
+  <data name="plRSVPCode.Text" xml:space="preserve">
+    <value>Code RSVP</value>
+  </data>
+  <data name="plRSVPCode.Help" xml:space="preserve">
+    <value>Saisissez un code RSVP pour ce groupe.  Ce code fourni une méthode rapide aux utilisateurs désirant souscrire à un ou plusieur rôles.</value>
+  </data>
+  <data name="plRSVPLink.Text" xml:space="preserve">
+    <value>Lien RSVP</value>
+  </data>
+  <data name="plRSVPLink.Help" xml:space="preserve">
+    <value>Si un code de RSVP est fourni vous pouvez partager l'URL suivante</value>
+  </data>
+  <data name="Prompt_DeleteRole_Description.Text" xml:space="preserve">
+    <value>Supprime définitivement le rôle de sécurité DNN donné. Vous ne pouvez pas supprimer les rôles de sécurité DNN intégrés tels que : Administrateur, Utilisateur enregistré, Abonné, ou Utilisateur non vérifié. &lt;small&gt;&lt;strong class="text-danger"&gt;AVERTISSEMENT: Il s'agit d'une action permanente et irréversible&lt;/strong&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="Prompt_DeleteRole_FlagId.Text" xml:space="preserve">
+    <value>L'ID du rôle de sécurité à supprimer. Cette valeur est requise, cependant si vous passez l'ID comme premier argument après la commande, vous n'avez pas besoin d'utiliser explicitement l'option &lt;span class="mono"&gt;--id&lt;/span&gt;.</value>
+  </data>
+  <data name="Prompt_DeleteRole_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Supprimer définitivement un rôle de sécurité DNN&lt;/h4&gt; &lt;code class="block"&gt; delete-role 11 &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;Rôle 'Public' (11) supprimé avec succès&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_GetRole_Description.Text" xml:space="preserve">
+    <value>Récupère les détails d'un rôle de sécurité DNN donné.</value>
+  </data>
+  <data name="Prompt_GetRole_FlagId.Text" xml:space="preserve">
+    <value>L'ID du rôle de sécurité. Cette valeur est requise, cependant si vous passez l'ID comme premier argument après la commande, vous n'avez pas besoin d'utiliser explicitement l'option &lt;span class="mono"&gt;--id&lt;/span&gt;.</value>
+  </data>
+  <data name="Prompt_GetRole_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Obtenir un rôle de sécurité DNN&lt;/h4&gt; &lt;code class="block"&gt; get-role 11 &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;RoleId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;11&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleGroupId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;-1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Public&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Description&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Role for all users&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;IsPublic&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AutoAssign&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UserCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CreatedDate&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;2016-12-31T14:53:44.033&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CreatedBy&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModifiedDate&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;2017-01-02T08:07:39.233&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ModifiedBy&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan="3"&gt;1 role found&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ListRoles_Description.Text" xml:space="preserve">
+    <value>Récupère une liste de rôles de sécurité DNN pour le site.</value>
+  </data>
+  <data name="Prompt_ListRoles_FlagMax.Text" xml:space="preserve">
+    <value>Taille maximale pour la page. Max 500.</value>
+  </data>
+  <data name="Prompt_ListRoles_FlagPage.Text" xml:space="preserve">
+    <value>Numéro de page à afficher.</value>
+  </data>
+  <data name="Prompt_ListRoles_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;div&gt; &lt;h4&gt;Obtenir des informations sur les rôles du site courant&lt;/h4&gt; &lt;code class="block"&gt; list-roles &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;RoleId&lt;/th&gt; &lt;th&gt;RoleGroupId&lt;/th&gt; &lt;th&gt;RoleName&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;th&gt;IsPublic&lt;/th&gt; &lt;th&gt;AutoAssign&lt;/th&gt; &lt;th&gt;UserCount&lt;/th&gt; &lt;th&gt;CreatedDate&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;0&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;td&gt;Administrators&lt;/td&gt; &lt;td&gt;Administrators of this Website&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2016-12-01T06:03:11.35&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;5&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;td&gt;My New Role&lt;/td&gt; &lt;td&gt;A test role&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;0&lt;/td&gt; &lt;td&gt;2016-12-15T07:28:16.49&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;td&gt;Registered Users&lt;/td&gt; &lt;td&gt;Registered Users&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;td&gt;2016-12-01T06:03:11.357&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;td&gt;Subscribers&lt;/td&gt; &lt;td&gt;A public role for site subscriptions&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;td&gt;2016-12-01T06:03:11.39&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;td&gt;Translator (en-US)&lt;/td&gt; &lt;td&gt;A role for English (United States) translators&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;0&lt;/td&gt; &lt;td&gt;2016-12-01T06:03:11.39&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;4&lt;/td&gt; &lt;td&gt;-1&lt;/td&gt; &lt;td&gt;Unverified Users&lt;/td&gt; &lt;td&gt;Unverified Users&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;td&gt;0&lt;/td&gt; &lt;td&gt;2016-12-01T06:03:11.393&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;/div&gt;</value>
+  </data>
+  <data name="Prompt_NewRole_Description.Text" xml:space="preserve">
+    <value>Crée un nouveau rôle de sécurité DNN pour le site.</value>
+  </data>
+  <data name="Prompt_NewRole_FlagAutoAssign.Text" xml:space="preserve">
+    <value>Lorsque ce paramètre est "true", ce rôle sera automatiquement attribué aux utilisateurs du site, y compris aux utilisateurs existants.</value>
+  </data>
+  <data name="Prompt_NewRole_FlagDescription.Text" xml:space="preserve">
+    <value>Une description du rôle.</value>
+  </data>
+  <data name="Prompt_NewRole_FlagIsPublic.Text" xml:space="preserve">
+    <value>Lorsque ce paramètre est "true", les utilisateurs pourront voir le rôle et s'affecter à ce dernier.</value>
+  </data>
+  <data name="Prompt_NewRole_FlagRoleName.Text" xml:space="preserve">
+    <value>Le nom du rôle de sécurité. Cette valeur est requise, cependant si vous passez le nom en tant que premier argument après la commande, vous n'avez pas besoin d'utiliser explicitement l'option &lt;span class="mono"&gt;--name&lt;/span&gt;.</value>
+  </data>
+  <data name="Prompt_NewRole_FlagStatus.Text" xml:space="preserve">
+    <value>Statut du rôle. Les valeurs possibles sont "approved", "pending" et "disabled".</value>
+  </data>
+  <data name="Prompt_NewRole_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Créer un nouveau rôle de sécurité DNN (syntaxe minimale)&lt;/h4&gt; &lt;code class="block"&gt; new-role Role1 &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;RoleId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;9&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleGroupId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;-1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Role1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Description&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;IsPublic&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AutoAssign&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;false&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UserCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;0&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CreatedDate&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;2016-12-31T14:53:44.033&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan="3"&gt;Role successfully created.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;h4&gt;Create A New DNN Security Role&lt;/h4&gt; &lt;code class="block"&gt; new-role "General Public" --description "Role for all users" --public true --autoassign true &lt;/code&gt; &lt;h4&gt;Results&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;RoleId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;10&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleGroupId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;-1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;General Public&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Description&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Role for all users&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;IsPublic&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AutoAssign&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UserCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CreatedDate&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;2016-12-31T15:06:02.563&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan="3"&gt;Role successfully created.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_SetRole_Description.Text" xml:space="preserve">
+    <value>Définit ou met à jour les propriétés d'un rôle de sécurité DNN. Seules les propriétés que vous spécifiez seront mises à jour sur le rôle.</value>
+  </data>
+  <data name="Prompt_SetRole_FlagAutoAssign.Text" xml:space="preserve">
+    <value>Lorsque ce paramètre est "true", ce rôle sera automatiquement attribué aux utilisateurs du site, y compris aux utilisateurs existants.</value>
+  </data>
+  <data name="Prompt_SetRole_FlagDescription.Text" xml:space="preserve">
+    <value>Une description du rôle.</value>
+  </data>
+  <data name="Prompt_SetRole_FlagId.Text" xml:space="preserve">
+    <value>L'ID du rôle de sécurité. Cette valeur est requise, cependant si vous passez l'ID comme premier argument après la commande, vous n'avez pas besoin d'utiliser explicitement l'option &lt;span class="mono"&gt;--id&lt;/span&gt;.</value>
+  </data>
+  <data name="Prompt_SetRole_FlagIsPublic.Text" xml:space="preserve">
+    <value>Lorsque ce paramètre est "true", les utilisateurs pourront voir le rôle et s'affecter à ce dernier.</value>
+  </data>
+  <data name="Prompt_SetRole_FlagRoleName.Text" xml:space="preserve">
+    <value>Le nom du rôle de sécurité.</value>
+  </data>
+  <data name="Prompt_SetRole_FlagStatus.Text" xml:space="preserve">
+    <value>Statut du rôle. Les valeurs possibles sont "approved", "pending" et "disabled".</value>
+  </data>
+  <data name="Prompt_SetRole_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Met à jour un rôle de sécurité DNN&lt;/h4&gt; &lt;code class="block"&gt; set-role 10 --name Public &lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; &lt;table class="command-result-tbl"&gt; &lt;tr&gt; &lt;td&gt;RoleId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;10&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleGroupId&lt;/td&gt;&lt;td&gt;:&lt;/td&gt;&lt;td&gt;-1&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;RoleName&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Public&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Description&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;Role for all users&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;IsPublic&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AutoAssign&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;true&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;UserCount&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;5&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CreatedDate&lt;/td&gt; &lt;td&gt;:&lt;/td&gt; &lt;td&gt;2016-12-31T14:53:44.033&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td colspan="3"&gt;Role successfully created.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_RolesCategory.Text" xml:space="preserve">
+    <value>Commandes de rôle</value>
+  </data>
+  <data name="RoleUpdated.SystemRoleError" xml:space="preserve">
+    <value>Impossible de modifier les rôles système.</value>
+  </data>
+  <!---->
+</root>

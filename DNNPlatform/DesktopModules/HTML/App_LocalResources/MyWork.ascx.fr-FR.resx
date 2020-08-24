@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_mywork.Text">
+    <value xml:space="preserve">Mon travail</value>
+  </data>
+  <data name="lblMessage.Text">
+    <value xml:space="preserve">Contenus à valider avant publication :</value>
+  </data>
+  <data name="lblNoRecords.Text">
+    <value xml:space="preserve">Pas de contenu associé à votre compte.</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">Soit la possibilité de tester en préproduction les articles qui vont être publiés avant de les transmettre du serveur de production.
+
+
+
+
+&lt;P&gt; Le texte / HTML rend Module texte brut, RTF ou HTML. Cinq points de vue différents d'édition sont disponibles: &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt; &lt;STRONG&gt; Basic Text Box / Texte &lt;/STRONG&gt;: tags Renders texte de base et HTML. Le texte saisi sur une nouvelle ligne est affichée comme un saut de ligne. Le style de texte est le style Normal, tel que défini dans votre feuille de style.
+&lt;/LI&gt;&lt;LI&gt; &lt;STRONG&gt; Basic Text Box / HTML &lt;/STRONG&gt;: Affiche le texte de base au format HTML.
+&lt;/LI&gt;&lt;LI&gt; &lt;STRONG&gt; Basic Text Box Raw / &lt;/STRONG&gt;: Affiche le texte de base au format HTML. Le texte saisi sur une nouvelle ligne n'est pas rendue comme un saut de ligne.
+&lt;/LI&gt;&lt;LI&gt; &lt;STRONG&gt; Rich Text Editor / HTML &lt;/STRONG&gt;: Permet de coller le code HTML à partir d'autres sources.
+&lt;/LI&gt;&lt;LI&gt; &lt;STRONG&gt; Rich Text Editor / Design &lt;/STRONG&gt;: Un traitement de texte intégral ou WYSIWYG (What You See What You Get) éditeur avec des fonctionnalités telles que des liens hypertexte, liens e-mail, fichier galerie d'images Manager, puces, sort contrôle et autres.&lt;/LI&gt;&lt;/OL&gt;</value>
+  </data>
+  <data name="Page.Header">
+    <value xml:space="preserve">Page</value>
+  </data>
+</root>

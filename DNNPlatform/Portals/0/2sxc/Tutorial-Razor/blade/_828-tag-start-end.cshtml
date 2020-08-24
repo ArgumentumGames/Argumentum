@@ -1,0 +1,32 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Fluent Tag API <code>TagStart</code>/<code>TagEnd</code> <em>v3</em></h2>
+  <div>
+    A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
+  </div>
+  @rzrHelp.ApiLinks(new string[] { 
+    ".TagStart", "https://razor-blade.net/api/ToSic.Razor.Markup.TagBase.html#ToSic_Razor_Markup_TagBase_TagStart",
+    ".TagEnd", "https://razor-blade.net/api/ToSic.Razor.Markup.TagBase.html#ToSic_Razor_Markup_TagBase_TagEnd", 
+  })
+  <hr>
+  <h3>The result</h3>
+</trim>
+
+@{
+  var successBox = Tag.Div().Class("alert alert-success");
+}
+@successBox.TagStart
+  This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
+  because it may be easier for you that way.
+@successBox.TagEnd
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

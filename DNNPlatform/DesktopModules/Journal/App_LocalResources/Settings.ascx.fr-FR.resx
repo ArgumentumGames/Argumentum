@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="AllowFiles.Help" xml:space="preserve">
+    <value xml:space="preserve">Choisir si oui ou non les utilisateurs devraient être autorisés à joindre des fichiers aux messages de journal.</value>
+  </data>
+  <data name="AllowFiles.Text" xml:space="preserve">
+    <value xml:space="preserve">Activer les fichiers joints</value>
+  </data>
+  <data name="AllowPhotos.Help" xml:space="preserve">
+    <value xml:space="preserve">Choisir si oui ou non les utilisateurs doivent être en mesure de joindre des photos à des message de journal.</value>
+  </data>
+  <data name="AllowPhotos.Text" xml:space="preserve">
+    <value xml:space="preserve">Activer les photos en pièce jointe</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres du journal</value>
+  </data>
+  <data name="DefaultPageSize.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le nombre d'éléments de journal qui doivent être affichés sur une page.</value>
+  </data>
+  <data name="DefaultPageSize.Text" xml:space="preserve">
+    <value xml:space="preserve">Taille de page par défaut</value>
+  </data>
+  <data name="EnableEditor.Help" xml:space="preserve">
+    <value xml:space="preserve">Utiliser cette option pour activer ou désactiver la saisie directe dans le journal à l'aide de l'éditeur du journal.</value>
+  </data>
+  <data name="EnableEditor.Text" xml:space="preserve">
+    <value xml:space="preserve">Activer l'éditeur du journal</value>
+  </data>
+  <data name="JournalFilters.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez les types du Journal que vous souhaitez afficher.</value>
+  </data>
+  <data name="JournalFilters.Text" xml:space="preserve">
+    <value xml:space="preserve">Types du journal</value>
+  </data>
+  <data name="MaxMessageLength.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner le nombre maximum de caractères que peut contenir un message du journal.</value>
+  </data>
+  <data name="MaxMessageLength.Text" xml:space="preserve">
+    <value xml:space="preserve">Maximum de caractères par message</value>
+  </data>
+  <data name="MessageLength_Unlimited.Text">
+    <value>Illimité</value>
+  </data>
+  <data name="AllowResize.Help" xml:space="preserve">
+    <value>Choisissez si OUI ou NON les grandes photos chargées doivent être redimensionnées. Seules les photos de plus de 400px seront redimensionnées.</value>
+  </data>
+  <data name="AllowResize.Text" xml:space="preserve">
+    <value>Redimensionner des photos</value>
+  </data>
+  <!---->
+</root>

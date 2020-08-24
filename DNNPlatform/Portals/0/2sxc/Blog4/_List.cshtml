@@ -1,0 +1,69 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@{
+  var helpers = CreateInstance("shared/_Helpers.cshtml");
+  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+  var headerInfo = Code.GetListHeader(filteredCategory);
+}
+
+<section class="app-blog" @Edit.TagToolbar(Content)>
+  @* Show title and if filtered, additional descriptions *@
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+      <div class="category-header">
+        <h1>@headerInfo.Title</h1>
+        @Html.Raw(headerInfo.Description)
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+      @* Mobile Category filter *@
+      <aside class="d-xs-block d-lg-none">
+        @RenderPage("shared/_Category Filter.cshtml", new { MobileView = true, FilteredCategory = filteredCategory })
+      </aside>
+
+      @* List the posts *@
+      @foreach(var post in AsList(Data["Posts"])) {
+        <article class="list-item" @Edit.TagToolbar(post, toolbar: new [] {
+          "-layout",
+          "%new&show=true?contentType=BlogPost&entityId=0&prefill:PublicationMoment=" + DateTime.Now.ToString("yyyy-MM-dd"),
+          "%delete&show=true"
+        })>
+          <div class="app-blog-readmorelink">
+            <a class="link-overlay" href="@helpers.LinkToDetailsPage(post)"></a>
+
+            <div class="header">
+              @* Image of the post *@
+              @RenderPage("shared/_Post Image.cshtml", new { Post = post, Width = 1200, Height = 630 })
+
+              @* Information about the post like title, author, categories *@
+              @RenderPage("shared/_Post Information.cshtml", new { Post = post, HeadingType = "h2"})
+            </div>
+
+            <div class="content">
+              @Html.Raw(post.Teaser)
+              <span class="readmore btn btn-outline-primary">@App.Resources.ReadMore</span>
+            </div>
+          </div>
+        </article>
+      }
+
+      @* Show pagination if configured *@
+      @if (Content.ShowPagination) {
+        @RenderPage("shared/_List Paging.cshtml")
+      }
+    </div>
+
+    @* Desktop Category filter *@
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+      <aside class="d-none d-lg-block">
+        @RenderPage("shared/_Category Filter.cshtml", new { FilteredCategory = filteredCategory })
+      </aside>
+    </div>
+  </div>
+</section>
+
+@RenderPage("shared/_Assets.cshtml", new {scripts = true})

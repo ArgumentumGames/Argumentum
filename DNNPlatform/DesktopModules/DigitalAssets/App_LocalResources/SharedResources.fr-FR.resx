@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="CopyToolBarButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Copie</value>
+  </data>
+  <data name="CopyToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Copie</value>
+  </data>
+  <data name="CreateFolderToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Créer nouveau dossier</value>
+  </data>
+  <data name="CreateFolderToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Créer nouveau dossier</value>
+  </data>
+  <data name="DeleteToolBarButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="DeleteToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="DestinationFolderCannotMatchSourceFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">Le dossier de destination ne peut pas être le même que le dossier source</value>
+  </data>
+  <data name="DownloadToolBarButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Télécharger</value>
+  </data>
+  <data name="DownloadToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Télécharger</value>
+  </data>
+  <data name="FieldCreated.DisplayName" xml:space="preserve">
+    <value xml:space="preserve">Créé le</value>
+  </data>
+  <data name="FieldCreatedBy.DisplayName" xml:space="preserve">
+    <value xml:space="preserve">Créé par</value>
+  </data>
+  <data name="FieldModified.DisplayName">
+    <value xml:space="preserve">Modifié</value>
+  </data>
+  <data name="FieldModifiedBy.DisplayName" xml:space="preserve">
+    <value xml:space="preserve">Modifié par</value>
+  </data>
+  <data name="FieldSize.DisplayName">
+    <value xml:space="preserve">Taille</value>
+  </data>
+  <data name="FieldTotalFiles.DisplayName" xml:space="preserve">
+    <value xml:space="preserve">Total des fichiers</value>
+  </data>
+  <data name="FieldType.DisplayName">
+    <value xml:space="preserve">Type</value>
+  </data>
+  <data name="FileAlreadyExists.Error" xml:space="preserve">
+    <value xml:space="preserve">Le fichier existe déjà dans la destination</value>
+  </data>
+  <data name="FolderAlreadyExists.Error" xml:space="preserve">
+    <value xml:space="preserve">Impossible de créer le dossier ({0}), un dossier existe déjà à cet endroit.</value>
+  </data>
+  <data name="FolderDoesNotExists.Error" xml:space="preserve">
+    <value xml:space="preserve">Le dossier n'existe pas</value>
+  </data>
+  <data name="FolderFileNameHasInvalidcharacters.Error" xml:space="preserve">
+    <value xml:space="preserve">Le nom contient des caractères non valides. Veuillez préciser un nom sans {0}</value>
+  </data>
+  <data name="FolderFileNameIsReserved.Error" xml:space="preserve">
+    <value xml:space="preserve">Le nom est réservé. Essayez un autre nom</value>
+  </data>
+  <data name="FolderNameRequired.ErrorMessage" xml:space="preserve">
+    <value xml:space="preserve">Nom de dossier nécessaire</value>
+  </data>
+  <data name="GetUrlToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Obtenir l'URL</value>
+  </data>
+  <data name="GetUrlToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Obtenir l'URL</value>
+  </data>
+  <data name="GridViewToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Mode liste</value>
+  </data>
+  <data name="GridViewToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Liste</value>
+  </data>
+  <data name="ListViewToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Mode icônes</value>
+  </data>
+  <data name="ListViewToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Icônes</value>
+  </data>
+  <data name="MappedPathRegExValidator.ErrorMessage" xml:space="preserve">
+    <value xml:space="preserve">MappedPath ne peut pas être un chemin absolu</value>
+  </data>
+  <data name="MoveNotAllowedBetweenFolderTypes.Error" xml:space="preserve">
+    <value xml:space="preserve">L'opération de déplacement de dossier entre ces deux types de dossiers n'est pas autorisée.</value>
+  </data>
+  <data name="MoveToolBarButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Déplacer</value>
+  </data>
+  <data name="MoveToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Déplacer</value>
+  </data>
+  <data name="PreviewPanelTitle.Text">
+    <value xml:space="preserve">Aperçu</value>
+  </data>
+  <data name="Published.Text">
+    <value xml:space="preserve">Publié</value>
+  </data>
+  <data name="RefreshFolderToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Vider le cache</value>
+  </data>
+  <data name="RefreshFolderToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Actualiser le dossier</value>
+  </data>
+  <data name="RefreshMenuItemExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Vider le cache</value>
+  </data>
+  <data name="RenameToolBarButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Renommez</value>
+  </data>
+  <data name="RenameToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Renommez</value>
+  </data>
+  <data name="RootFolder.Text">
+    <value xml:space="preserve">Racine</value>
+  </data>
+  <data name="SizeB.Text" version="deprecated">
+    <value xml:space="preserve">O</value>
+  </data>
+  <data name="SizeGb.Text" version="deprecated">
+    <value xml:space="preserve">Go</value>
+  </data>
+  <data name="SizeKb.Text" version="deprecated">
+    <value xml:space="preserve">Ko</value>
+  </data>
+  <data name="SizeMb.Text" version="deprecated">
+    <value xml:space="preserve">Mo</value>
+  </data>
+  <data name="SyncMenuItemExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Synchroniser ce dossier</value>
+  </data>
+  <data name="SyncRecursivelyMenuItemExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Synchroniser ce dossier &amp; les sous-dossiers</value>
+  </data>
+  <data name="SyncToolBarMenuButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Sync</value>
+  </data>
+  <data name="SyncToolBarMenuButtonExtensionPoint.Text">
+    <value xml:space="preserve">Sync</value>
+  </data>
+  <data name="ToggleLeftPaneToolBarButtonExtensionPoint.AltText">
+    <value xml:space="preserve">Activer/désactiver</value>
+  </data>
+  <data name="ToggleLeftPaneToolBarButtonExtensionPoint.Text">
+    <value xml:space="preserve">Activer/désactiver</value>
+  </data>
+  <data name="Unpublished.Text">
+    <value xml:space="preserve">Dépublié</value>
+  </data>
+  <data name="UnzipFileToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Décompresser le fichier</value>
+  </data>
+  <data name="UnzipFileToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Décompresser le fichier</value>
+  </data>
+  <data name="UploadFilesToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Charger des fichiers</value>
+  </data>
+  <data name="UploadFilesToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Charger des fichiers</value>
+  </data>
+  <data name="UserHasNoPermissionToAdd.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour ajouter des dossiers à cet emplacement</value>
+  </data>
+  <data name="UserHasNoPermissionToBrowseFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour parcourir ce dossier</value>
+  </data>
+  <data name="UserHasNoPermissionToCopyFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour copier ce dossier</value>
+  </data>
+  <data name="UserHasNoPermissionToDeleteFiles.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour supprimer des fichiers dans ce dossier</value>
+  </data>
+  <data name="UserHasNoPermissionToDeleteFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour supprimer ce dossier</value>
+  </data>
+  <data name="UserHasNoPermissionToDownload.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur n'a aucune permission pour télécharger ce fichier</value>
+  </data>
+  <data name="UserHasNoPermissionToEditFile.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour modifier ce fichier</value>
+  </data>
+  <data name="UserHasNoPermissionToEditFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour modifier ce dossier</value>
+  </data>
+  <data name="UserHasNoPermissionToMoveFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour déplacer de dossier</value>
+  </data>
+  <data name="UserHasNoPermissionToReadFile.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour ouvrir ce fichier</value>
+  </data>
+  <data name="UserHasNoPermissionToReadFolder.Error" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne dispose d'aucune autorisation pour ouvrir ce dossier</value>
+  </data>
+  <data name="ViewPropertiesSelectionToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Afficher les propriétés</value>
+  </data>
+  <data name="ViewPropertiesSelectionToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Afficher les propriétés</value>
+  </data>
+  <data name="ViewPropertiesToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value xml:space="preserve">Afficher les propriétés de dossier</value>
+  </data>
+  <data name="ViewPropertiesToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value xml:space="preserve">Afficher les propriétés de dossier</value>
+  </data>
+  <data name="ZoomImage.AltText" xml:space="preserve">
+    <value xml:space="preserve">Ouvrir le fichier dans un nouvel onglet</value>
+  </data>
+  <data name="FileDoesNotExists.Error" xml:space="preserve">
+    <value>Le fichier n'existe pas</value>
+  </data>
+  <data name="MyFolder.Text" xml:space="preserve">
+    <value>Mon dossier</value>
+  </data>
+  <data name="ManageFolderTypesToolBarButtonExtensionPoint.AltText" xml:space="preserve">
+    <value>Gérer les Types de dossiers</value>
+  </data>
+  <data name="ManageFolderTypesToolBarButtonExtensionPoint.Text" xml:space="preserve">
+    <value>Gérer les Types de dossiers</value>
+  </data>
+  <data name="UnlinkToolBarButtonExtensionPoint.AltText">
+    <value>Délier</value>
+  </data>
+  <data name="UnlinkToolBarButtonExtensionPoint.Text">
+    <value>Délier</value>
+  </data>
+  <data name="UserHasNoPermissionToUnlinkFolder.Error" xml:space="preserve">
+    <value>L'utilisateur ne dispose d'aucune autorisation pour délier ce dossier</value>
+  </data>
+  <!---->
+</root>

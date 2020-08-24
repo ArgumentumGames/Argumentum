@@ -1,0 +1,34 @@
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Reuse functions</h2>
+<p>
+  When you need a function in many places, it's best to put it into an own <code>cshtml</code> file and access it using <code>CreateInstance</code>. 
+</p>
+</trim>
+
+<hr>
+<h2>Using shared library of functions</h2>
+<trim>
+<p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
+</trim>
+@{
+  var lib = CreateInstance("_functions.cshtml");
+}
+<div>Hello from lib: @lib.SayHello()</div>
+<div>
+  <img src='@lib.QrPath("https://2sxc.org")' width="75px">
+</div>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath,
+  File = "functions",
+  Size = 400, 
+  Language = "csharp"
+}) 
+</hide>

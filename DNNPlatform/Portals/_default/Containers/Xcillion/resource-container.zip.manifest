@@ -1,0 +1,120 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>404.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>404.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Boxed.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Boxed.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>NoTitle.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_centered.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_centered.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_circles.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_circles.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_elegant.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_elegant.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_hexagon.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_hexagon.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_open_rectangle.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_open_rectangle.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_rectangle.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_rectangle.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_slashed.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h2_slashed.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h3.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h3.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h3_centered.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h3_centered.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h4.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h4.jpg</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h4_centered.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Title_h4_centered.jpg</name>
+    </file>
+  </files>
+</dotnetnuke>

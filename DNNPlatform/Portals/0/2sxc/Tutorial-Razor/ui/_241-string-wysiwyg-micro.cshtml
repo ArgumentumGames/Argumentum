@@ -1,0 +1,46 @@
+<hide>
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@RenderPage("_header.cshtml")
+@{
+  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+}
+
+<h2>2sxc Custom Micro-WYSIWYG Input Field</h2>
+<div class="alert alert-info">
+  <p>
+    Creating an own WYSIWYG would be super difficult. 
+    This is why we decided to create a simple API where you can use the existing WYSIWYG and just reconfigure it. 
+    For the configuration you will need to understand the TinyMCE API and the names of our callbacks, but then it's really easy. 
+  </p>
+  <p>You can learn how to:</p>
+  <ol>
+    <li>Use <code>connector.loadScript(...)</code> to load the builtin WYSIWYG</li>
+    <li>...and wait for the callback to ensure it's ready</li>
+    <li>Create a inner <code>field-string-wysiwyg</code></li>
+    <li>Set the mode to <code>edit</code> (instead of <code>preview</code>)</li>
+    <li>Attach the <code>connector</code> so the inner object has it as well</li>
+    <li>Attach the <code>reconfigure</code> object</li>
+    <li>Create your own <code>Reconfigurator</code> which can make changes</li>
+    <li>Use <code>configureOptions</code> to set a different toolbar</li>
+  </ol>
+  </div>
+<hr>
+</hide>
+
+<h2>String WYSIWYG Micro Custom Input Field</h2>
+<p>
+  This example shows a reduced WYSIWYG with only 4 buttons. <br>
+  Hit this edit button to have a look: @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringWysiwygMicro" })
+</p>
+
+<hide>
+@RenderPage("_warning-and-links.cshtml")
+
+@RenderPage("../shared/_source-code.cshtml", new {
+  Path = VirtualPath,
+  File = "../system/field-string-wysiwyg-micro/index.js",
+  Size = 850,
+  Language = "javascript",
+  Title = "Source of [App]/system/field-string-wysiwyg-micro/index.js"
+})
+</hide>

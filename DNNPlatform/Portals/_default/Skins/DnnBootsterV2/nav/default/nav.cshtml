@@ -1,0 +1,59 @@
+﻿@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic; 
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+
+@{ 
+    var root = Model.Source.root; 
+}
+
+@helper RenderNodes(IList<MenuNode> nodes) {
+if (nodes.Count > 0)
+{
+        <ul class="navbar-nav ml-auto">
+            @foreach (var node in nodes)
+            {
+                var isActive = "";
+                if (node.Selected) { isActive = "active"; }
+
+
+                if (node.HasChildren())
+                {
+                    <li class="nav-item @isActive dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="@node.Url" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                            @node.Text
+                        </a>
+                        @RenderChildNodes(node.Children, 0)
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item @isActive"><a class="nav-link" href="@node.Url">@node.Text</a></li>
+                }
+            }
+        </ul>
+	}<!-- ./ node count -->
+}<!-- ./ helper -->
+
+@helper RenderChildNodes(IList<MenuNode> nodes, int nLevel) {
+    if (nodes.Count > 0)
+    {
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            @foreach (var node in nodes)
+            {
+                if (node.HasChildren())
+                {
+                    nLevel += 1;
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="@node.Url">@node.Text <span class="caret"></span></a>
+                        @RenderChildNodes(node.Children, nLevel)
+                    </li>
+                }
+                else
+                {
+                    <li><a class="dropdown-item" href="@node.Url">@node.Text</a></li> }
+            }
+          
+        </ul>
+    }
+}
+@RenderNodes(root.Children)

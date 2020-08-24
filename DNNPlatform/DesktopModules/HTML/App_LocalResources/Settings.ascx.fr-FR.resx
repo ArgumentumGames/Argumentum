@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="chkReplace.Text" xml:space="preserve">
+    <value xml:space="preserve">Remplacer les paramètres existants ?</value>
+  </data>
+  <data name="cmdWorkflow.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer les flux de travail</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres du module</value>
+  </data>
+  <data name="Module.Text">
+    <value xml:space="preserve">Module</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">Il n'y a aucune aide disponible pour le moment.</value>
+  </data>
+  <data name="Page.Text">
+    <value xml:space="preserve">Page</value>
+  </data>
+  <data name="plApplyTo.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez l'objet qui s'applique à ce workflow.</value>
+  </data>
+  <data name="plApplyTo.Text" xml:space="preserve">
+    <value xml:space="preserve">Appliquer le flux de publication à :</value>
+  </data>
+  <data name="plDecorate.Help" xml:space="preserve">
+    <value xml:space="preserve">Permet de modifier l'aspect visuel des balises HTML afin d'obtenir un rendu unifié sur l'ensemble du site.</value>
+  </data>
+  <data name="plDecorate.Text" xml:space="preserve">
+    <value xml:space="preserve">Utiliser la "décoration" de formulaire</value>
+  </data>
+  <data name="plEnableAutoSave.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Lorsque cette option est activée, tout changement sera automatiquement sauvegardé en fonction de l’intervalle de temps configuré. Ce paramètre est global et s’appliquera à l’ensemble des modules du même type</value>
+  </data>
+  <data name="plEnableAutoSave.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Activer la sauvegarde automatique :</value>
+  </data>
+  <data name="plMaxVersions.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Définir le nombre maximum de versions à conserver dans l'historique pour chaque instance du module HTML. Lors de la publication des résultats de nouveaux contenus au-delà de ce nombre, la plus ancienne version sera définitivement supprimée jusqu'à ce que le nombre restant de versions corresponde à ce nombre. Si vous modifiez ce numéro à une valeur inférieure, les versions excédentaires déjà archivées pour une instance du module HTML spécifique ne seront pas supprimées du système jusqu'à ce que le nouveau contenu soit publié pour cette instance du module.</value>
+  </data>
+  <data name="plMaxVersions.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Historique maxi</value>
+  </data>
+  <data name="plModuleWorkflowOverride.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Si activé, la configuration du workflow au niveau de la page peut être supplanté au niveau du module. Si  désactivé,  tous les modules HTML prendront  la configuration par défaut de la page.</value>
+  </data>
+  <data name="plModuleWorkflowOverride.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Supplanter le flux du module</value>
+  </data>
+  <data name="plPageWorkflowOverride.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Si activé, la configuration du workflow au niveau du site peut être surchargée au niveau de la page. Si désactivé, tous les modules HTML de toutes les pages doivent utiliser la configuration du flux défini pour le site.</value>
+  </data>
+  <data name="plPageWorkflowOverride.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Supplanter le flux de page</value>
+  </data>
+  <data name="plReplaceTokens.Help" xml:space="preserve">
+    <value xml:space="preserve">Cochez &lt;strong&gt;Chaines de remplacement&lt;/strong&gt; pour remplacer les chaines du type "[objet:propriété|format]" par des objets représentant une page, un module, un paramètre du site ou un utilisateur avec la valeur appropriée.&lt;br /&gt;
+Note : l'édition directe et la mise en cache seront désactivés si l'option est activée.</value>
+  </data>
+  <data name="plReplaceTokens.Text" xml:space="preserve">
+    <value xml:space="preserve">Chaines de remplacement :</value>
+  </data>
+  <data name="plSearchDescLength.Help" xml:space="preserve">
+    <value xml:space="preserve">Définir la longueur maximale de la description qui est utilisée dans la recherche.</value>
+  </data>
+  <data name="plSearchDescLength.Text" xml:space="preserve">
+    <value xml:space="preserve">Longueur max de la description dans la recherche :</value>
+  </data>
+  <data name="plTimetoAutoSave.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Indique l’intervalle de temps pour la sauvegarde automatique. Le nombre doit être compris entre 10 et 120 secondes. Ce paramètre est global et s’appliquera à l’ensemble des modules du même type.</value>
+  </data>
+  <data name="plTimetoAutoSave.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Délai pour la sauvegarde automatique (secondes) :</value>
+  </data>
+  <data name="plWorkflow.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez un workflow de contenu</value>
+  </data>
+  <data name="plWorkflow.Text">
+    <value xml:space="preserve">Workflow</value>
+  </data>
+  <data name="valMaxVersions.ErrorMessage" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">L'historique maximum doit être un nombre</value>
+  </data>
+  <data name="valSearchDescLength.ErrorMessage" xml:space="preserve">
+    <value xml:space="preserve">La longueur max de la description est requise.</value>
+  </data>
+  <data name="valTimeAutoSave.ErrorMessage" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le délai pour la sauvegarde automatique doit être un nombre</value>
+  </data>
+  <data name="Site.Text" version="deprecated">
+    <value>Site</value>
+  </data>
+  <data name="chkCopy.Text" xml:space="preserve">
+    <value>Copier les paramètres de workflow aux pages enfants ?</value>
+  </data>
+  
+</root>

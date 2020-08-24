@@ -1,0 +1,36 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@*
+  this is a partial template which is re-used in many other templates, so it's shared here
+  its shows the person data like name, position, concact data and description
+*@
+@{
+  var person = PageData["data"];
+}
+<div class="mb-2">
+  <div class="lead font-weight-bold" itemprop="name">@person.FullName</div>
+  @if (Text.Has(person.Position)) {
+    <div class="mb-2 lead font-weight-normal" itemprop="jobTitle">@person.Position</div>
+  }
+  <div itemprop="description">@Html.Raw((string)person.Description)</div>
+</div>
+<div class="co-p">
+  @if (Text.Has(person.Mobile)) {
+    <div itemprop="telephone">
+      <i class="fas fa-mobile text-center" style="width:30px;" aria-hidden="true"></i>
+      <a href="tel:@person.Mobile.Replace(" ", "")" itemprop="telephone">@person.Mobile</a>
+    </div>
+  }
+  @if (Text.Has(person.Phone)) {
+    <div itemprop="telephone">
+      <i class="fas fa-phone text-center" style="width:30px;" aria-hidden="true"></i>
+      <a href="tel:@person.Phone.Replace(" ", "")" itemprop="telephone">@person.Phone</a>
+    </div>
+  }
+   @if (Text.Has(person.Email)) {
+    <div itemprop="email">
+      <i class="fas fa-envelope text-center" style="width:30px;"></i>
+      @RenderPage("../shared/_TryToEncryptMail.cshtml", new { email = person.Email })
+    </div>
+  }
+</div>

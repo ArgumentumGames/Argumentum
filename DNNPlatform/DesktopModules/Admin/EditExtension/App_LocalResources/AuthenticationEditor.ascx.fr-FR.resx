@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AuthenticationType.Text" xml:space="preserve">
+    <value>Type d'authentification :</value>
+  </data>
+  <data name="AuthenticationType.Help" xml:space="preserve">
+    <value>Type de système d'authentification (ex : LiveID, OpenID...)</value>
+  </data>
+  <data name="IsEnabled.Help" xml:space="preserve">
+    <value>Cocher pour activer le système d'authentification</value>
+  </data>
+  <data name="IsEnabled.Text" xml:space="preserve">
+    <value>Activé ?</value>
+  </data>
+  <data name="LoginControlSrc.Help" xml:space="preserve">
+    <value>La source du contrôle de connexion pour ce système d'authentification</value>
+  </data>
+  <data name="LoginControlSrc.Text" xml:space="preserve">
+    <value>Source de contrôle de connexion :</value>
+  </data>
+  <data name="LogoffControlSrc.Help" xml:space="preserve">
+    <value>La source du contrôle de déconnexion pour ce système d'authentification</value>
+  </data>
+  <data name="LogoffControlSrc.Text" xml:space="preserve">
+    <value>Source du contrôle de déconnexion</value>
+  </data>
+  <data name="SettingsControlSrc.Help" xml:space="preserve">
+    <value>La source du contrôle des paramètres pour ce système d'authentification</value>
+  </data>
+  <data name="SettingsControlSrc.Text" xml:space="preserve">
+    <value>Source de contrôle de paramètres :</value>
+  </data>
+  <data name="AuthenticationSettings.Text" xml:space="preserve">
+    <value>Paramètres d'authentification</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Mettre à jour les paramètres d'authentification</value>
+  </data>
+  <data name="HostHelp.Text" xml:space="preserve">
+    <value>Cet éditeur vous permet de configurer le provider d'authentification. Vous pouvez configurer l’endroit contenant les fichiers sources et pouvez activer le provider. Les providers activés sont disponibles pour les administrateurs qui peuvent configurer ceux-ci pour leur site.</value>
+  </data>
+  <data name="AdminHelp.Text" xml:space="preserve">
+    <value>Cet éditeur vous permet de configurer le provider d'authentification.</value>
+  </data>
+  <data name="NoSettings.Text" xml:space="preserve">
+    <value>Ce système d'authentification n'a aucun paramètre de configuré.</value>
+  </data>
+  <!---->
+</root>

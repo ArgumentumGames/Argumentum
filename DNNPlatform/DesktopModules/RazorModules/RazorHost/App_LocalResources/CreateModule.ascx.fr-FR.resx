@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdCreate.Text">
+    <value xml:space="preserve">Créer le module</value>
+  </data>
+  <data name="ControlTitle_createmodule.Text">
+    <value xml:space="preserve">Créer le module</value>
+  </data>
+  <data name="FolderExists.Text">
+    <value xml:space="preserve">Le dossier que vous avez sélectionné existe déjà. Veuillez choisir un autre nom.</value>
+  </data>
+  <data name="ImportControl.ErrorMessage">
+    <value xml:space="preserve">Il y a eu une erreur lors de l'importation du contrôle du module, veuillez consulter le journal des événements pour plus de détails.</value>
+  </data>
+  <data name="ManifestCreationError.Text">
+    <value xml:space="preserve">Il y a eu une erreur inattendue lors de la création du manifeste. Vérifiez l'observateur d'événements pour plus d'informations.</value>
+  </data>
+  <data name="ManifestText.Text">
+    <value xml:space="preserve">&lt;dotnetnuke type="Package" version="5.0"&gt;
+  &lt;packages&gt;
+    &lt;package name="{0}" type="Module" version="01.00.00"&gt;
+      &lt;friendlyName&gt;{0}&lt;/friendlyName&gt;
+      &lt;description&gt;{1}&lt;/description&gt;
+      &lt;owner&gt;
+        &lt;name/&gt;
+        &lt;organization/&gt;
+        &lt;url/&gt;
+        &lt;email/&gt;
+      &lt;/owner&gt;
+      &lt;license src="license.txt"/&gt;
+      &lt;releaseNotes src="releaseNotes.txt" /&gt;
+      &lt;dependencies&gt;
+        &lt;dependency type="coreversion"&gt;05.06.00&lt;/dependency&gt;
+        &lt;dependency type="type"&gt;System.Tuple&lt;/dependency&gt;
+      &lt;/dependencies&gt;
+      &lt;components&gt;
+        &lt;component type="Module"&gt;
+          &lt;desktopModule&gt;
+            &lt;moduleName&gt;{0}&lt;/moduleName&gt;
+            &lt;foldername&gt;RazorModules/{2}&lt;/foldername&gt;
+            &lt;businessControllerClass /&gt;
+            &lt;supportedFeatures /&gt;
+            &lt;moduleDefinitions&gt;
+              &lt;moduleDefinition&gt;
+                &lt;friendlyName&gt;{0}&lt;/friendlyName&gt;
+                &lt;defaultCacheTime&gt;0&lt;/defaultCacheTime&gt;
+                &lt;moduleControls&gt;
+                  &lt;moduleControl&gt;
+                    &lt;controlKey /&gt;
+                    &lt;controlSrc&gt;DesktopModules/RazorModules/{2}/{3}&lt;/controlSrc&gt;
+                    &lt;supportsPartialRendering&gt;False&lt;/supportsPartialRendering&gt;
+                    &lt;controlTitle /&gt;
+                    &lt;controlType&gt;View&lt;/controlType&gt;
+                    &lt;iconFile /&gt;
+                    &lt;helpUrl /&gt;
+                    &lt;viewOrder&gt;0&lt;/viewOrder&gt;
+                  &lt;/moduleControl&gt;
+                &lt;/moduleControls&gt;
+              &lt;/moduleDefinition&gt;
+            &lt;/moduleDefinitions&gt;
+          &lt;/desktopModule&gt;
+        &lt;/component&gt;
+        &lt;component type="Assembly"&gt;
+          &lt;assemblies&gt;
+            &lt;basePath&gt;bin&lt;/basePath&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;DotNetNuke.Modules.RazorHost.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;DotNetNuke.Web.Razor.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;System.Web.Helpers.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;System.Web.Razor.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;System.Web.WebPages.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;System.Web.WebPages.Razor.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;WebMatrix.Data.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;WebMatrix.WebData.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;Microsoft.Web.Helpers.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+            &lt;assembly&gt;
+              &lt;name&gt;Microsoft.Web.Infrastructure.dll&lt;/name&gt;
+            &lt;/assembly&gt;
+          &lt;/assemblies&gt;
+        &lt;/component&gt;
+        &lt;component type="File"&gt;
+          &lt;files&gt;
+            &lt;basePath&gt;DesktopModules\RazorModules\{2}&lt;/basePath&gt;
+            &lt;file&gt;
+              &lt;name&gt;{3}&lt;/name&gt;
+            &lt;/file&gt;
+            &lt;file&gt;
+              &lt;name&gt;{4}&lt;/name&gt;
+            &lt;/file&gt;
+          &lt;/files&gt;
+        &lt;/component&gt;
+        &lt;component type="File"&gt;
+          &lt;files&gt;
+            &lt;basePath&gt;App_Code&lt;/basePath&gt;
+            &lt;file&gt;
+              &lt;path&gt;RazorHelpers&lt;/path&gt;
+              &lt;name&gt;Facebook.cshtml&lt;/name&gt;
+            &lt;/file&gt;
+          &lt;/files&gt;
+        &lt;/component&gt;
+        &lt;component type="File"&gt;
+          &lt;files&gt;
+            &lt;basePath&gt;DesktopModules\RazorModules&lt;/basePath&gt;
+            &lt;file&gt;
+              &lt;name&gt;web.config&lt;/name&gt;
+            &lt;/file&gt;
+          &lt;/files&gt;
+        &lt;/component&gt;
+        &lt;component type="Config"&gt;
+          &lt;config&gt;
+            &lt;configFile&gt;web.config&lt;/configFile&gt;
+            &lt;install&gt;
+              &lt;configuration&gt;
+                &lt;nodes&gt;
+                  &lt;node path="/configuration/system.web/compilation" action="update" collision="ignore" targetpath="codeSubDirectories"&gt;
+                    &lt;codeSubDirectories /&gt;
+                  &lt;/node&gt;
+                  &lt;node path="/configuration/system.web/compilation/codeSubDirectories" action="update" key="directoryName" collision="overwrite"&gt;
+                    &lt;add directoryName="RazorHelpers"/&gt;
+                  &lt;/node&gt;
+                  &lt;node path="/configuration/appSettings" action="update" key="key" collision="overwrite"&gt;
+                    &lt;add key="enableSimpleMembership" value="false" /&gt;
+                  &lt;/node&gt;
+                  &lt;node path="/configuration/appSettings" action="update" key="key" collision="overwrite"&gt;
+                    &lt;add key="autoFormsAuthentication" value="false" /&gt;
+                  &lt;/node&gt;
+                &lt;/nodes&gt;
+              &lt;/configuration&gt;
+            &lt;/install&gt;
+            &lt;uninstall&gt;
+              &lt;configuration&gt;
+                &lt;nodes&gt;
+                  &lt;node path="/configuration/appSettings/add[@key='enableSimpleMembership']" action="remove" /&gt;
+                  &lt;node path="/configuration/appSettings/add[@key='autoFormsAuthentication']" action="remove" /&gt;
+                &lt;/nodes&gt;
+              &lt;/configuration&gt;
+            &lt;/uninstall&gt;
+          &lt;/config&gt;
+        &lt;/component&gt;
+      &lt;/components&gt;
+    &lt;/package&gt;
+  &lt;/packages&gt;
+&lt;/dotnetnuke&gt;</value>
+  </data>
+  <data name="ModuleControlCreationError.Text">
+    <value xml:space="preserve">Il y a eu une erreur lors de la création du contrôle de module. Vérifiez l'observateur d'événements pour plus d'informations.</value>
+  </data>
+  <data name="ModuleControlText.Text">
+    <value xml:space="preserve">&lt;%@ Control AutoEventWireup="false" Inherits="DotNetNuke.Web.Razor.RazorModuleBase" %&gt;</value>
+  </data>
+  <data name="plAddPage.Help">
+    <value xml:space="preserve">Cocher cette case afin de créer une page de test pour votre nouveau module.</value>
+  </data>
+  <data name="plAddPage.Text">
+    <value xml:space="preserve">Ajouter une page de test ?</value>
+  </data>
+  <data name="plDescription.Help">
+    <value xml:space="preserve">Vous pouvez spécifier une description pour votre module.</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Description :</value>
+  </data>
+  <data name="plFolder.Help">
+    <value xml:space="preserve">Entrer le nom du dossier pour ce nouveau module. Ce dossier sera créé dans "DesktopModules/RazorModules".</value>
+  </data>
+  <data name="plFolder.Text">
+    <value xml:space="preserve">Dossier :</value>
+  </data>
+  <data name="plName.Help">
+    <value xml:space="preserve">Entrer un nom convivial pour votre module.</value>
+  </data>
+  <data name="plName.Text">
+    <value xml:space="preserve">Nom du module :</value>
+  </data>
+  <data name="plSource.Text">
+    <value xml:space="preserve">Source du script :</value>
+  </data>
+  <data name="ScriptCopyError.Text">
+    <value xml:space="preserve">Il y a eu une erreur inattendue lors de la copie du script dans le dossier cible. Vérifiez l'observateur d'événements pour plus d'informations.</value>
+  </data>
+  <data name="scriptsLabel.Help">
+    <value xml:space="preserve">Sélectionner le script que vous souhaitez utiliser dans la liste.</value>
+  </data>
+  <data name="scriptsLabel.Text">
+    <value xml:space="preserve">Sélectionner le script :</value>
+  </data>
+  <data name="SourceControl.Text">
+    <value xml:space="preserve">Contrôle du module - {0}</value>
+  </data>
+  <data name="SourceFile.Text">
+    <value xml:space="preserve">Source du script - {0}</value>
+  </data>
+  <data name="TabExists.Text">
+    <value xml:space="preserve">Le nom de page existe pour le nom de ce module. Le module a été créé mais la page de test n'a pu être générée.</value>
+  </data>
+  <data name="valFolder.Text">
+    <value xml:space="preserve">Le dossier est requis.&lt;br/&gt;</value>
+  </data>
+  <data name="valName.Text">
+    <value xml:space="preserve">Le nom est requis.&lt;br/&gt;</value>
+  </data>
+</root>

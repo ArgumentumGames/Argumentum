@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action">
+    <value xml:space="preserve">Nouveau rôle</value>
+  </data>
+  <data name="AddGroup.Action">
+    <value xml:space="preserve">Nouveau groupe de rôles</value>
+  </data>
+  <data name="Auto.Header">
+    <value xml:space="preserve">Auto.</value>
+  </data>
+  <data name="ControlTitle_.Text">
+    <value xml:space="preserve">Gestion des rôles</value>
+  </data>
+  <data name="Description.Header">
+    <value xml:space="preserve">Description</value>
+  </data>
+  <data name="Every.Header">
+    <value xml:space="preserve">Chaque</value>
+  </data>
+  <data name="Fee.Header">
+    <value xml:space="preserve">Montant</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;A propos des rôles&lt;/h1&gt;&lt;p&gt;Cet outil permet à l'administrateur de gérer les rôles de sécurité du site.&lt;/p&gt;</value>
+  </data>
+  <data name="Name.Header">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="Period.Header">
+    <value xml:space="preserve">Périodicité</value>
+  </data>
+  <data name="plRoleGroups.Help">
+    <value xml:space="preserve">Sélectionnez le groupe de rôles à afficher</value>
+  </data>
+  <data name="plRoleGroups.Text">
+    <value xml:space="preserve">Groupe de rôles :</value>
+  </data>
+  <data name="Public.Header">
+    <value xml:space="preserve">Public</value>
+  </data>
+  <data name="Trial.Header">
+    <value xml:space="preserve">Essai</value>
+  </data>
+  <data name="UserCount.Header">
+    <value xml:space="preserve">Utilisateurs</value>
+  </data>
+  <data name="UserRoles.Text">
+    <value xml:space="preserve">Gérer les utilisateurs</value>
+  </data>
+  <data name="UserSettings.Action">
+    <value xml:space="preserve">Paramètres utilisateurs</value>
+  </data>
+</root>

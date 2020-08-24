@@ -1,0 +1,18 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Custom("your-tag")</code> <em>v3</em></h2>
+  <div>
+    All Html5 tags are available under <code>Tag.xxx()</code>. In case you need a custom tag - like an <code>@Tag.Custom("app-root").ToString()</code> 
+    for angular, you'll need the <code>@@Tag.Custom(...)</code>.
+  </div>
+</trim>
+
+@Tag.Custom("app-root")
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

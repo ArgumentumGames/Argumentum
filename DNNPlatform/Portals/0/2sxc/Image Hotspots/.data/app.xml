@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.02.00" ExportDate="2020-06-02T13:31:00.9852911+02:00">
+  <Header>
+    <App Guid="a5ad73c1-748a-481f-b08b-f00f5df60e5e" />
+    <Language Default="en-US" />
+    <Dimensions>
+      <Dimension DimensionID="156" Name="English (United States)" SystemKey="" ExternalKey="en-US" Active="true" />
+      <Dimension DimensionID="157" Name="Deutsch (Deutschland)" SystemKey="" ExternalKey="de-DE" Active="true" />
+    </Dimensions>
+  </Header>
+  <AttributeSets>
+    <AttributeSet StaticName="App-Resources" Name="App-Resources" Description="Stores resources like translations for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes />
+    </AttributeSet>
+    <AttributeSet StaticName="App-Settings" Name="App-Settings" Description="Stores settings for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="HotspotSetting" Type="Entity" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="4eec13c2-f6d5-49ae-8314-090edb64447d" Json="True" KeyNumber="4109">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="HotspotSetting" Type="String" />
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="1229fabd-c506-44c6-865d-6e392d827bf4" Json="True" KeyNumber="4109">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableDelete" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EntityType" Value="HotspotSettings" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="e6e0d6ae-df07-4a1b-abbd-716203412f7c" Name="Hotspot" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="6b3fd312-d8bb-46d1-9355-5e5bddd7ea3f" Json="True" KeyNumber="3755">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="Name" Value="Titlel" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Can be empty&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Kann leer bleiben&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="8da4a6f3-53ba-470a-8ece-ab3be94f94a7" Json="True" KeyNumber="3755">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="c84c0b32-aedf-4eb9-9a20-d90d3d991b1c" Json="True" KeyNumber="3755" />
+        </Attribute>
+        <Attribute StaticName="Image" Type="Hyperlink" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="d91a9e78-5289-4766-8022-3885d1ba8ec5" Json="True" KeyNumber="3758">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Image" Type="String" />
+            <Value Key="Name" Value="Bild" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Select image for the Fancybox. Can be empty.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Bild f&amp;uuml;r die Fancybox ausw&amp;auml;hlen. Kann leer sein.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="b127e591-5005-4f20-9a7a-f419e8898a4f" Json="True" KeyNumber="3758">
+            <Value Key="Buttons" Value="adam,more" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultDialog" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="FileFilter" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Paths" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ServerResourceMapping" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowAdam" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowFileManager" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowImageManager" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowPagePicker" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Description" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="45c32520-362f-4f3e-bd29-22fb4352b6f5" Json="True" KeyNumber="3759">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
+            <Value Key="Name" Value="Description" Type="String" />
+            <Value Key="Name" Value="Beschreibung" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Description text in the Fancybox&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Beschreibungstext in der Fancybox&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="38efabd1-dd8a-4da0-b860-54b2abb0f77d" Json="True" KeyNumber="3759">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="6c857daa-4351-4413-ae45-f210cb6c7aa5" Json="True" KeyNumber="3759">
+            <Value Key="ButtonAdvanced" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ButtonSource" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Dialog" Value="inline" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="OverlayLayout" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a0bc71e4-13c0-4842-97e7-171ecef73f94" Json="True" KeyNumber="4093">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="display-flex-column" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-dropdown" Type="String" />
+            <Value Key="Name" Value="Overlay Layout" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;Select how text/image should be aligned in the Fancybox.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;W&amp;auml;hle aus wie Text/Bild in der Fancybox ausgerichtet sein sollen.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="95c40893-b22f-4f01-882a-d309f8c4c55f" Json="True" KeyNumber="4093">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="572224bd-4d08-499c-b2b9-be092bce7f80" Json="True" KeyNumber="4093">
+            <Value Key="DropdownValues" Value="Text Top, Image Bottom:display-flex-column&#xA;Text Right, Image Left:display-flex-row" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="GroupPositionSettings" Type="Empty" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="819f1f4d-7485-44f8-aa1b-6e5f3d236640" Json="True" KeyNumber="4092">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-default" Type="String" />
+            <Value Key="Name" Value="Position Settings" Type="String" />
+            <Value Key="Name" Value="Positions Einstellung" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Here you will find the position information of the hotspot (in percent). Basically you don't have to adjust anything here, the values are calculated automatically when you create the hotspot.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Hier findest du die Positionsangeben des Hotspots (in Prozent). Grunds&amp;auml;tzlich musst du hier nichts anpassen, die Werte werden beim erstellen automatisch berechnet.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="cda51672-dd27-4e65-bf8c-0c57b6f3c211" Json="True" KeyNumber="4092">
+            <Value Key="DefaultCollapsed" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="X" Type="Number" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="94d631af-66ee-47de-864e-f8d3ee5b25a6" Json="True" KeyNumber="3756">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="X" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;X axis (in percent)&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;X-Achse (in Prozent)&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Number" AttributeSetName="@Number" EntityGUID="50f4d7b8-d830-42ec-9da9-96b47b9092a1" Json="True" KeyNumber="3756">
+            <Value Key="AddressMask" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Decimals" Value="0.0" Type="Number">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegEx" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Y" Type="Number" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="9a55f536-8157-4667-b30f-a908512cabfc" Json="True" KeyNumber="3757">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="Y" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;Y axis (in percent)&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Y-Achse (in Prozent)&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Number" AttributeSetName="@Number" EntityGUID="af38d766-f667-4b54-a904-e1210dd0917b" Json="True" KeyNumber="3757">
+            <Value Key="AddressMask" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Decimals" Value="0.0" Type="Number">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegEx" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" Name="HotspotSettings" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="aecaf22a-48ae-4598-a4eb-0471031c46bd" Json="True" KeyNumber="4108">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="Name" Value="Titel" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;For internal use&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;F&amp;uuml;r internen Gebrauch&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="6028d4cc-e88c-4fab-bfa9-638a3691781e" Json="True" KeyNumber="4108">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="fa56fb77-24ec-4aad-ae98-f1da90b8bcb0" Json="True" KeyNumber="4108" />
+        </Attribute>
+        <Attribute StaticName="HotspotIcon" Type="Hyperlink" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="fca62a5c-09f8-4071-b026-c58bea44dc82" Json="True" KeyNumber="4103">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Hotspot Icon" Type="String" />
+            <Value Key="Name" Value="Hotspot Symbol" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="1cb67160-d330-4a96-8534-4739bada60e8" Json="True" KeyNumber="4103">
+            <Value Key="Buttons" Value="adam,more" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultDialog" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="FileFilter" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Paths" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ServerResourceMapping" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowAdam" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowFileManager" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowImageManager" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowPagePicker" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="HotspotWidth" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1a708505-2de5-481d-a0cd-816888a05a73" Json="True" KeyNumber="4104">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Hotspot Width" Type="String" />
+            <Value Key="Name" Value="Hotspot Breite" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="645ad771-957a-48d8-8058-68adacabed19" Json="True" KeyNumber="4104">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="c7db666f-b9fa-4e2a-b321-a63d11aabf47" Json="True" KeyNumber="4104" />
+        </Attribute>
+        <Attribute StaticName="HotspotHeight" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="3e883b7d-22df-4610-af47-d465043b03c1" Json="True" KeyNumber="4105">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Hotspot Height" Type="String" />
+            <Value Key="Name" Value="Hotspot Höhe" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="c3fbc604-fb7d-4bfe-af4b-f5fb65b1243b" Json="True" KeyNumber="4105">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="f9797e12-a8b5-4c04-87c6-c761988eba94" Json="True" KeyNumber="4105" />
+        </Attribute>
+        <Attribute StaticName="HotspotOffsetX" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="55e80d83-ce3b-4774-8a7c-4c7b1d83c8a1" Json="True" KeyNumber="4106">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Hotspot Offset X-axis" Type="String" />
+            <Value Key="Name" Value="Hotspot X-Achsenversatz" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="be8d7479-6520-4709-b899-487d2ceaa6a7" Json="True" KeyNumber="4106">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="86ff820e-c1ee-4d13-bb2f-31b3a0895c2c" Json="True" KeyNumber="4106" />
+        </Attribute>
+        <Attribute StaticName="HotspotOffsetY" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b74b7a4e-0714-4c9d-b1f2-aba12c3bbb0f" Json="True" KeyNumber="4107">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Hotspot Offset Y-axis" Type="String" />
+            <Value Key="Name" Value="Hotspot Y-Achsenversatz" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="9350be08-d08e-49d0-aad2-124433192c75" Json="True" KeyNumber="4107">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="0da25397-d267-4f89-8113-3380c1c11c0b" Json="True" KeyNumber="4107" />
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="e4d84b0f-ea4f-4f52-a60c-bf049fcd1a73" Name="Image" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7d2b67c3-cf9a-4451-9d1b-3a9b8b98e309" Json="True" KeyNumber="3752">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="Name" Value="Titel" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Can be empty&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Kann leer sein&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="50d745f8-0646-4cb9-bac2-3feaa740fe21" Json="True" KeyNumber="3752">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="99db43a0-3782-4a9b-8341-aa481c17e11d" Json="True" KeyNumber="3752" />
+        </Attribute>
+        <Attribute StaticName="Image" Type="Hyperlink" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b5a69395-053d-4229-9b78-4ac07eb8b670" Json="True" KeyNumber="3753">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Image" Type="String" />
+            <Value Key="Name" Value="Bild" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Select the picture on which the hotspots should be displayed.&lt;/p&gt;" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;Bild ausw&amp;auml;hlen auf welchen die Hotspots angezeigt werden sollen.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="bf39841b-a196-4b31-ad3a-738d25f30045" Json="True" KeyNumber="3753">
+            <Value Key="Buttons" Value="adam,more" Type="String" />
+            <Value Key="DefaultDialog" Value="Adam" Type="String" />
+            <Value Key="FileFilter" Value="" Type="String" />
+            <Value Key="Paths" Value="" Type="String" />
+            <Value Key="ServerResourceMapping" Value="" Type="String" />
+            <Value Key="ShowAdam" Value="True" Type="Boolean" />
+            <Value Key="ShowFileManager" Value="False" Type="Boolean" />
+            <Value Key="ShowImageManager" Value="False" Type="Boolean" />
+            <Value Key="ShowPagePicker" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="GroupHotspots" Type="Empty" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8342581b-81a9-4803-9448-88cbad98e1d2" Json="True" KeyNumber="4091">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-default" Type="String" />
+            <Value Key="Name" Value="Hotspots" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;Alle Hotspots dieses Bildes&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="28925326-f325-4225-8d0b-ff1c6f30aafd" Json="True" KeyNumber="4091">
+            <Value Key="DefaultCollapsed" Value="True" Type="Boolean">
+              <Dimension DimensionID="156" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Hotspots" Type="Entity" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="facc91f3-b313-4084-8908-0ce7e5d7ecff" Json="True" KeyNumber="3754">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="Hotspots" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;All hotspots on the current image&lt;/p&gt;" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;Alle Hotspots auf dem aktuellen Bild&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="157" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="aa30beba-7312-44db-8092-c6c04670d655" Json="True" KeyNumber="3754">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean" />
+            <Value Key="EnableAddExisting" Value="False" Type="Boolean" />
+            <Value Key="EnableCreate" Value="True" Type="Boolean" />
+            <Value Key="EnableDelete" Value="True" Type="Boolean" />
+            <Value Key="EnableEdit" Value="True" Type="Boolean" />
+            <Value Key="EnableRemove" Value="True" Type="Boolean" />
+            <Value Key="EntityType" Value="Hotspot" Type="String" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+  </AttributeSets>
+  <Entities>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="0c288f70-ab6b-4e6b-99dc-0ef5d3f576f7" Json="True" KeyNumber="179">
+      <Value Key="AllowRazorTemplates" Value="True" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="AllowTokenTemplates" Value="False" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="DisplayName" Value="Image Hotspots" Type="String" />
+      <Value Key="Folder" Value="Image Hotspots" Type="String" />
+      <Value Key="Hidden" Value="False" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="RequiredDnnVersion" Value="07.02.00" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="RequiredVersion" Value="11.01.00" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Version" Value="01.00.00" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="aac9c44c-4253-44c9-ac75-d7942f1c57d2" KeyNumber="179">
+      <Value Key="HotspotSetting" Value="4b0b491f-69b4-4d57-bdad-7e32eb68cac7" Type="Entity" />
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="ec4ce964-d4aa-4fcf-ac70-ddcf008eb2e8" KeyNumber="179" />
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="b0d757e1-066c-40d0-b1ee-423f1a3c349c" Json="True">
+      <Value Key="ContentDemoEntity" Value="8efad1ad-ec92-4890-9d25-d1d7eb3fa7ec" Type="Entity">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="ContentTypeStaticName" Value="e4d84b0f-ea4f-4f52-a60c-bf049fcd1a73" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="False" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Image" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Bild" Type="String">
+        <Dimension DimensionID="157" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="_Image.cshtml" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e4d84b0f-ea4f-4f52-a60c-bf049fcd1a73" AttributeSetName="Image" EntityGUID="8efad1ad-ec92-4890-9d25-d1d7eb3fa7ec">
+      <Value Key="Hotspots" Value="b8396edc-e514-4072-9c97-af454fb40ecb,9482fba1-6cf1-4863-b3cb-3d16a776cd68,94830c44-fb70-4789-8ab5-31ef794f2626,cb569fe3-0989-45fd-9565-db2b39d31632" Type="Entity" />
+      <Value Key="Image" Value="file:4484" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Car Demo" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e6e0d6ae-df07-4a1b-abbd-716203412f7c" AttributeSetName="Hotspot" EntityGUID="b8396edc-e514-4072-9c97-af454fb40ecb">
+      <Value Key="Description" Value="&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:4512" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="OverlayLayout" Value="display-flex-column" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Schalthebel" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="X" Value="51.34" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Y" Value="63.39" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e6e0d6ae-df07-4a1b-abbd-716203412f7c" AttributeSetName="Hotspot" EntityGUID="cb569fe3-0989-45fd-9565-db2b39d31632">
+      <Value Key="Description" Value="&lt;h2&gt;Bordcomputer&lt;/h2&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:4511" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="OverlayLayout" Value="display-flex-column" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Bordcomputer" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="X" Value="49.05" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Y" Value="22.36" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e6e0d6ae-df07-4a1b-abbd-716203412f7c" AttributeSetName="Hotspot" EntityGUID="94830c44-fb70-4789-8ab5-31ef794f2626">
+      <Value Key="Description" Value="&lt;h2&gt;Bedienelemente&lt;/h2&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:4509" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="OverlayLayout" Value="display-flex-row" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Bedienelemente" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="X" Value="26.22" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Y" Value="47.55" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e6e0d6ae-df07-4a1b-abbd-716203412f7c" AttributeSetName="Hotspot" EntityGUID="9482fba1-6cf1-4863-b3cb-3d16a776cd68">
+      <Value Key="Description" Value="&lt;h2&gt;Soundanlage&lt;/h2&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:4510" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="OverlayLayout" Value="display-flex-row" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Boxen" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="X" Value="70.34" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Y" Value="60.9" Type="Number">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" AttributeSetName="HotspotSettings" EntityGUID="4b0b491f-69b4-4d57-bdad-7e32eb68cac7">
+      <Value Key="HotspotHeight" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotIcon" Value="file:4504" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetX" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetY" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotWidth" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Red Dot" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" AttributeSetName="HotspotSettings" EntityGUID="a55543c1-04fc-4ebf-ba5b-8a74171b9fe3">
+      <Value Key="HotspotHeight" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotIcon" Value="file:4505" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetX" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetY" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotWidth" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Blue Dot" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" AttributeSetName="HotspotSettings" EntityGUID="b212e82e-61df-446c-bdd8-e73b215a4895">
+      <Value Key="HotspotHeight" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotIcon" Value="file:4506" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetX" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetY" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotWidth" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="White Star" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" AttributeSetName="HotspotSettings" EntityGUID="565c3ec3-9e72-4a2e-a798-a302f12f2af0">
+      <Value Key="HotspotHeight" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotIcon" Value="file:4507" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetX" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetY" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotWidth" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Plus Circle" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" AttributeSetName="HotspotSettings" EntityGUID="a5633a09-8153-422b-b9ff-5316de85950b">
+      <Value Key="HotspotHeight" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotIcon" Value="file:4498" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetX" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetY" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotWidth" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Star" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="7b958e1a-081f-40ca-97f5-19d334b6750f" AttributeSetName="HotspotSettings" EntityGUID="b2b7f232-2afb-470b-a5f8-afc4dd8fede8">
+      <Value Key="HotspotHeight" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotIcon" Value="file:4499" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetX" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotOffsetY" Value="15" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="HotspotWidth" Value="30px" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="White Cross" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="28717270-9705-453e-a09f-d795e93ef662" Json="True" KeyString="e4d84b0f-ea4f-4f52-a60c-bf049fcd1a73">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Image" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Bild" Type="String">
+        <Dimension DimensionID="157" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="13c3032c-d8c3-4c87-b641-57eff2a7832e" Json="True" KeyString="7b958e1a-081f-40ca-97f5-19d334b6750f">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Hotspot Settings" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Hotspot Einstellungen" Type="String">
+        <Dimension DimensionID="157" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="156" ReadOnly="false" />
+      </Value>
+    </Entity>
+  </Entities>
+  <PortalFiles>
+    <File Id="4484" RelativePath="adam\Image Hotspots\rdH6jpLskEidJdHX6z-n7A\Image\car-interior.jpg" />
+    <File Id="4512" RelativePath="adam\Image Hotspots\3G45uBTlckCcl69FT7QOyw\Image\knauf.jpg" />
+    <File Id="4511" RelativePath="adam\Image Hotspots\459Wy4kJ_UWVZdsrOdMWMg\Image\board-computer.jpg" />
+    <File Id="4509" RelativePath="adam\Image Hotspots\RAyDlHD7iUeKtTHveU8mJg\Image\lenkrad.jpg" />
+    <File Id="4510" RelativePath="adam\Image Hotspots\ofuClPFsY0izyz0Wp3bNaA\Image\audio.jpg" />
+    <File Id="4504" RelativePath="adam\Image Hotspots\H0kLS7RpV029rX4y62jKxw\HotspotIcon\reddot.png" />
+    <File Id="4505" RelativePath="adam\Image Hotspots\wUNVpfwEv066W4p0Fxuf4w\HotspotIcon\bluedot.png" />
+    <File Id="4506" RelativePath="adam\Image Hotspots\LugSst9hbES92Oc7IVpIlQ\HotspotIcon\white-star.png" />
+    <File Id="4507" RelativePath="adam\Image Hotspots\wz5cVnKeLkqnmKMC8S8q8A\HotspotIcon\plus-circle.svg" />
+    <File Id="4498" RelativePath="adam\Image Hotspots\CTpjpVOBK0K5_1MW3oWVCw\HotspotIcon\star.svg" />
+    <File Id="4508" RelativePath="adam\Image Hotspots\MvK3svsqC0el-K_E3Y_t6A\HotspotIcon\x-white-bg.png" />
+  </PortalFiles>
+  <PortalFolders>
+    <Folder Id="9913" RelativePath="adam/Image Hotspots/rdH6jpLskEidJdHX6z-n7A/Image/" />
+    <Folder Id="9915" RelativePath="adam/Image Hotspots/3G45uBTlckCcl69FT7QOyw/Image/" />
+    <Folder Id="9917" RelativePath="adam/Image Hotspots/459Wy4kJ_UWVZdsrOdMWMg/Image/" />
+    <Folder Id="9919" RelativePath="adam/Image Hotspots/RAyDlHD7iUeKtTHveU8mJg/Image/" />
+    <Folder Id="9921" RelativePath="adam/Image Hotspots/ofuClPFsY0izyz0Wp3bNaA/Image/" />
+    <Folder Id="9923" RelativePath="adam/Image Hotspots/H0kLS7RpV029rX4y62jKxw/HotspotIcon/" />
+    <Folder Id="9925" RelativePath="adam/Image Hotspots/wUNVpfwEv066W4p0Fxuf4w/HotspotIcon/" />
+    <Folder Id="9927" RelativePath="adam/Image Hotspots/LugSst9hbES92Oc7IVpIlQ/HotspotIcon/" />
+    <Folder Id="9929" RelativePath="adam/Image Hotspots/wz5cVnKeLkqnmKMC8S8q8A/HotspotIcon/" />
+    <Folder Id="9931" RelativePath="adam/Image Hotspots/CTpjpVOBK0K5_1MW3oWVCw/HotspotIcon/" />
+    <Folder Id="9933" RelativePath="adam/Image Hotspots/MvK3svsqC0el-K_E3Y_t6A/HotspotIcon/" />
+    <Folder Id="7581" RelativePath="adam/Image Hotspots/" />
+    <Folder Id="9914" RelativePath="adam/Image Hotspots/3G45uBTlckCcl69FT7QOyw/" />
+    <Folder Id="9916" RelativePath="adam/Image Hotspots/459Wy4kJ_UWVZdsrOdMWMg/" />
+    <Folder Id="9930" RelativePath="adam/Image Hotspots/CTpjpVOBK0K5_1MW3oWVCw/" />
+    <Folder Id="9922" RelativePath="adam/Image Hotspots/H0kLS7RpV029rX4y62jKxw/" />
+    <Folder Id="9926" RelativePath="adam/Image Hotspots/LugSst9hbES92Oc7IVpIlQ/" />
+    <Folder Id="9932" RelativePath="adam/Image Hotspots/MvK3svsqC0el-K_E3Y_t6A/" />
+    <Folder Id="9920" RelativePath="adam/Image Hotspots/ofuClPFsY0izyz0Wp3bNaA/" />
+    <Folder Id="9918" RelativePath="adam/Image Hotspots/RAyDlHD7iUeKtTHveU8mJg/" />
+    <Folder Id="9912" RelativePath="adam/Image Hotspots/rdH6jpLskEidJdHX6z-n7A/" />
+    <Folder Id="9924" RelativePath="adam/Image Hotspots/wUNVpfwEv066W4p0Fxuf4w/" />
+    <Folder Id="9928" RelativePath="adam/Image Hotspots/wz5cVnKeLkqnmKMC8S8q8A/" />
+  </PortalFolders>
+</SexyContent>

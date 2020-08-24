@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="Hide.Text" xml:space="preserve">
+    <value xml:space="preserve">Vue simple</value>
+  </data>
+  <data name="IconFile.Text" xml:space="preserve">
+    <value xml:space="preserve">Petites icônes</value>
+  </data>
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value xml:space="preserve">Grandes icônes</value>
+  </data>
+  <data name="IconNone.Text" xml:space="preserve">
+    <value xml:space="preserve">Aucun icônes</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;p&gt;Cliquez sur un élément pour accéder à cette page.&lt;/p&gt;</value>
+  </data>
+  <data name="Show.Text" xml:space="preserve">
+    <value xml:space="preserve">Vue détaillée</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Caractéristiques de base</value>
+  </data>
+  <!---->
+</root>

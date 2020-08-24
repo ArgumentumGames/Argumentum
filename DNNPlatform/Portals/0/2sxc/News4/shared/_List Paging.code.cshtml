@@ -1,0 +1,17 @@
+@inherits ToSic.Sxc.Dnn.RazorComponentCode
+@using ToSic.Razor.Blade;
+
+@functions {
+  /**
+  * Generate a paging-link, preserving current category parameters
+  */
+  public dynamic LinkToPageNumber(int pageNumber){
+    var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+
+    var categoryParam = filteredCategory != null
+      ? "category=" + filteredCategory.UrlKey + "&"
+      : "";
+
+    return Tags.SafeUrl(Link.To(parameters: categoryParam + "page=" + pageNumber));
+  }
+}

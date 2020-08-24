@@ -1,0 +1,34 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var helpers = CreateInstance("../shared/_helpers.cshtml");
+}
+</hide>
+@using DotNetNuke.Entities.Tabs;
+@using System.Collections.Generic;
+<trim>
+<h2>Example from DNN Data</h2>
+<p>
+  DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. To read more about the DNN APIs, check out the API docs for <a href="https://dotnetnukeru.com/dnndocs/api/html/T_DotNetNuke_Entities_Tabs_TabController.htm" target="_blank">TabController</a> and <a href="https://dotnetnukeru.com/dnndocs/api/html/T_DotNetNuke_Entities_Tabs_TabInfo.htm" target="_blank">TabInfo</a>. Please note that the API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
+</p>
+</trim>
+@{
+  // get the pages
+  var controller = new TabController();
+  var pages = TabController.GetPortalTabs(Dnn.Portal.PortalId, 0, true, false);
+  var current = TabController.CurrentPage;
+}
+<ul>
+  @foreach(TabInfo page in pages) {
+    <li class='@(page.TabID == current.TabID ? "selected" : "")'>
+      <a href="@page.FullUrl" target="_blank">
+        @page.TabName (#@page.TabID)
+      </a>
+    </li>
+  }
+</ul>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

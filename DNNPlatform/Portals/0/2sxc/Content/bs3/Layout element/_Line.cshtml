@@ -1,0 +1,12 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles"})
+
+@{
+	var lineHalf = PageData["lineHalf"] ? "ly-primaryhr-half" : "";
+}
+
+<div class="co-container-outer">
+	<div class="co-container-inner co-separatingline" @Edit.TagToolbar(Content)>
+		<hr class="ly-primaryhr @lineHalf"/>
+	</div>
+</div>

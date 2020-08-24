@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDenied.ErrorMessage">
+    <value xml:space="preserve">L'accès a été refusé.</value>
+  </data>
+  <data name="AccountNotFound.ErrorMessage">
+    <value xml:space="preserve">Le compte spécifié n'a pas été trouvé.</value>
+  </data>
+  <data name="AuthenticationFailure.ErrorMessage">
+    <value xml:space="preserve">Une erreur d'authentification s'est produite.</value>
+  </data>
+  <data name="CredentialsRequired.ErrorMessage">
+    <value xml:space="preserve">Veuillez fournir vos informations d'identification avant l'actualisation de la liste des conteneurs.</value>
+  </data>
+  <data name="ListContainers.ErrorMessage">
+    <value xml:space="preserve">Une erreur s'est produite en essayant d'obtenir la liste des conteneurs.</value>
+  </data>
+  <data name="MultipleFolderMappingsWithSameSettings.ErrorMessage">
+    <value xml:space="preserve">Il y a un autre FolderMapping utilisant le même compte et conteneur. Choisissez un compte ou un conteneur différent.</value>
+  </data>
+  <data name="NewContainer.ErrorMessage">
+    <value xml:space="preserve">Une erreur s'est produite lors de la création du nouveau conteneur.</value>
+  </data>
+  <data name="NewContainer.Text">
+    <value xml:space="preserve">Nouveau conteneur</value>
+  </data>
+  <data name="plAccountKey.Help">
+    <value xml:space="preserve">Entrez la clé de compte. Une clé d'accès primaire ou secondaire "Azure" peut être utilisée en tant que clé de compte.</value>
+  </data>
+  <data name="plAccountKey.Text">
+    <value xml:space="preserve">Clé de compte</value>
+  </data>
+  <data name="plAccountName.Help">
+    <value xml:space="preserve">Entrer le nom du compte.</value>
+  </data>
+  <data name="plAccountName.Text">
+    <value xml:space="preserve">Nom de compte</value>
+  </data>
+  <data name="plContainerName.Help">
+    <value xml:space="preserve">Sélectionner ou entrer le nom du conteneur.</value>
+  </data>
+  <data name="plContainerName.Text">
+    <value xml:space="preserve">Nom du conteneur</value>
+  </data>
+  <data name="plDirectLink.Help">
+    <value xml:space="preserve">Si coché, le chemin d'accès pour les fichiers de ce type de dossier pointera vers le chemin d'accès réel. Dans le cas contraire le chemin sera caché au travers du LinkClick.</value>
+  </data>
+  <data name="plDirectLink.Text">
+    <value xml:space="preserve">Utiliser lien direct</value>
+  </data>
+  <data name="plUseHttps.Help">
+    <value xml:space="preserve">Sélectionner cette option si vous souhaitez utiliser les paramètres HTTPS par défaut.</value>
+  </data>
+  <data name="plUseHttps.Text">
+    <value xml:space="preserve">Utiliser les points de terminaison HTTPS (HTTPS endpoints)</value>
+  </data>
+  <data name="RefreshContainerList.Text">
+    <value xml:space="preserve">&lt;Rafraichir&gt;</value>
+  </data>
+  <data name="SelectContainer.Text">
+    <value xml:space="preserve">&lt;Sélectionner un conteneur&gt;</value>
+  </data>
+  <data name="SelectExistingContainer.Text">
+    <value xml:space="preserve">Sélectionner un conteneur existant</value>
+  </data>
+  <data name="valAccountKey.ErrorMessage">
+    <value xml:space="preserve">Clé de compte nécessaire</value>
+  </data>
+  <data name="valAccountName.ErrorMessage">
+    <value xml:space="preserve">Nom de compte requis</value>
+  </data>
+  <data name="valContainerName.ErrorMessage">
+    <value xml:space="preserve">Nom du conteneur requis</value>
+  </data>
+</root>

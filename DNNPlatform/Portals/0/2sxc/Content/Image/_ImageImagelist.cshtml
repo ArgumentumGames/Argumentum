@@ -1,0 +1,50 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@*
+	This is a sub-template of the image templates
+*@
+
+@{
+	var width = PageData["width"];
+	var height = PageData["height"];
+	var columns = PageData["gridColumns"];
+
+	var retina = false;
+	var zoomW = retina ? 3200 : 1600;
+	var zoomH = retina ? 1800 : 900;
+	var quality = 75;
+	var lightboxQuality = 90;
+}
+
+<div class="co-container-outer">
+	<div class="co-container-inner">
+		<div class="row">
+			@foreach (var img in AsList(Data)) {
+
+				<div class='@((columns) > 10 ? "col-12" : "col-12 col-sm-6") col-lg-@columns mb-3' @Edit.TagToolbar(img)>
+
+					@if (img.Presentation.ImageLightbox != false) {
+             @:<a class="fancybox" href="@Tags.SafeUrl(img.Image + "?quality=" + lightboxQuality + "&maxwidth=" + zoomW + "&maxheight=" + zoomH)" data-caption="@(img.Presentation.TitleLightbox != false ? img.Title : "")" data-fancbox="@Dnn.Module.ModuleID">
+					}
+					<figure>
+							<div class="overlay w-100 h-100"></div>
+              @if(img.Presentation.TitleLegend != false) {
+								<figcaption class="pt-1 px-3 px-md-4 pb-3 pb-md-4 text-white">@img.Title</figcaption>
+							}
+
+              <img class="w-100"
+                src='@Tags.SafeUrl(img.Image + "?w=" + width + "&h=" + height + "&anchor=" + img.CropAnchor + "&mode=crop&scale=both&quality=" + quality)'
+                alt="@img.Title" />
+					</figure>
+
+					@if (img.Presentation.ImageLightbox != false) {
+						@:</a>
+					}
+
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+@RenderPage("../shared/_Assets.cshtml", new { parts = "fancybox,styles,scripts,height"})

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdExport.Text">
+    <value xml:space="preserve">Exporter</value>
+  </data>
+  <data name="ControlTitle_exportmodule.Text" xml:space="preserve">
+    <value xml:space="preserve">Export de module</value>
+  </data>
+  <data name="Error.Text" xml:space="preserve">
+    <value xml:space="preserve">Une erreur s'est produite lors de l'exportation.</value>
+  </data>
+  <data name="ExportNotSupported.Text" xml:space="preserve">
+    <value xml:space="preserve">Le module spécifié ne supporte pas ce type de contenu.</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;h1&gt;Export de module&lt;/h1&gt;&lt;p&gt;Cette fonction vous permet d'exporter le contenu du module dans le dossier spécifié.&lt;/p&gt;</value>
+  </data>
+  <data name="NoContent.Text" xml:space="preserve">
+    <value xml:space="preserve">Le module spécifié est vide.</value>
+  </data>
+  <data name="plFile.Help" xml:space="preserve">
+    <value xml:space="preserve">Entrer un nom pour le fichier d'exportation.</value>
+  </data>
+  <data name="plFile.Text">
+    <value xml:space="preserve">Fichier</value>
+  </data>
+  <data name="plFolder.Help" xml:space="preserve">
+    <value xml:space="preserve">Choisir le dossier dans lequel exporter le fichier.</value>
+  </data>
+  <data name="plFolder.Text">
+    <value xml:space="preserve">Dossier</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Racine</value>
+  </data>
+  <data name="Validation.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous devez choisir un dossier pour l'exportation.</value>
+  </data>
+  <!---->
+</root>

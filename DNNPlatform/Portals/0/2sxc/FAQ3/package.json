@@ -1,0 +1,33 @@
+{
+  "name": "2sic-faq-app",
+  "version": "03.00.01",
+  "description": "The standard App for 2sic to use as FAQ.",
+  "main": "(none)",
+  "scripts": {
+    "build-prod": "webpack"
+  },
+  "author": "2sic internet solutions",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^2.1.1",
+    "file-loader": "^5.0.2",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "@types/jquery": "^3.3.31",
+    "autoprefixer": "^9.6.4",
+    "cpx": "^1.5.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "ts-loader": "^5.4.4",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
+    "webpackbar": "^3.2.0"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.3.29"
+  }
+}

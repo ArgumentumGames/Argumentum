@@ -1,0 +1,33 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@{
+  var post = PageData["Post"];
+  var author = post.author;
+}
+
+@* Post title *@
+@Tag.Custom(PageData["HeadingType"]).Class("mt-3").Wrap(Tags.Nl2Br(post.Title))
+
+<div class="details">
+  @* Link to authors post *@
+  <div class="person">
+    <a href='@Tags.SafeUrl(Link.To(parameters: "author=" + author.FullName))'>
+      @if(Text.Has(author.Image)) {
+        <img src='@Tags.SafeUrl(author.Image + "?w=40&h=40&mode=crop&scale=both&quality=80")' alt="@author.FullName" />
+      } else {
+        @author.FullName
+      }
+    </a>
+  </div>
+
+  @* Post Date *@
+  <time pubdate datetime='@post.PublicationMoment.ToString("d")'>@post.PublicationMoment.ToString("d")</time>
+
+  @* List categories of post *@
+  @foreach(var category in post.Categories) {
+    <a class="category" href='@Tags.SafeUrl(Link.To(parameters: "category=" + category.Key))' title="@category.Name">
+      @category.Name
+    </a>
+  }
+</div>
