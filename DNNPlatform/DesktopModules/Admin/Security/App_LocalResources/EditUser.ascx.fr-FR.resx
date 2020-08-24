@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountInfo.Text" xml:space="preserve">
+    <value xml:space="preserve">Informations de compte</value>
+  </data>
+  <data name="AccountSettings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres du compte</value>
+  </data>
+  <data name="cmdDelete.Text">
+    <value xml:space="preserve">Désinscription</value>
+  </data>
+  <data name="cmdProfile.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer le profil</value>
+  </data>
+  <data name="cmdServices.Text" xml:space="preserve">
+    <value xml:space="preserve">Mes groupes</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value xml:space="preserve">Mettre à jour</value>
+  </data>
+  <data name="cmdUser.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer le compte</value>
+  </data>
+  <data name="ErrorDialogTitle.Text" xml:space="preserve">
+    <value xml:space="preserve">Erreur inattendue</value>
+  </data>
+  <data name="PasswordSettings.Text" xml:space="preserve">
+    <value xml:space="preserve">Gérer le mot de passe</value>
+  </data>
+  <data name="SuccessMessage.Text" xml:space="preserve">
+    <value xml:space="preserve">URL du profil mise à jour avec succès.</value>
+  </data>
+  <data name="UserSubscribed.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous vous êtes abonné avec succès au rôle {0}.</value>
+  </data>
+  <data name="UserUnSubscribed.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous vous êtes désabonné avec succès au rôle {0}.</value>
+  </data>
+  <data name="UserUpdated.Text" xml:space="preserve">
+    <value xml:space="preserve">Mise à jour du compte réussie.</value>
+  </data>
+  <data name="UserUpdatedError.Text" xml:space="preserve">
+    <value xml:space="preserve">Il y a eu une erreur inattendue lors de la mise à jour de votre compte.</value>
+  </data>
+  <data name="VanityUrlHeader.Text" xml:space="preserve">
+    <value xml:space="preserve">Remarque : Vous ne pouvez modifier votre URL de profil public seulement qu'une seule fois.</value>
+  </data>
+  <data name="VanityUrlLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Vous pouvez entrer une URL personnalisée pour identifier votre profil que vous pouvez ensuite partager avec les autres membres de la communauté.</value>
+  </data>
+  <data name="VanityUrlLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">URL du profil :</value>
+  </data>
+  <data name="cmdCommunications.Text">
+    <value>Communications</value>
+  </data>
+  <data name="ControlTitle_profile.Text">
+    <value>Profil</value>
+  </data>
+  <data name="DisplayNameNotUnique.Text" xml:space="preserve">
+    <value>Le nom d'affichage que vous avez saisi est déjà utilisé, veuillez en choisir un autre.</value>
+  </data>
+  <data name="cmdHMACGenerate.Text" xml:space="preserve">
+    <value>Générer ID HMAC</value>
+  </data>
+  <data name="HMACAppIdLabel.Text" xml:space="preserve">
+    <value>HMAC App Id</value>
+  </data>
+  <data name="HMACAppSecretLabel.Text" xml:space="preserve">
+    <value>HMAC App Secret</value>
+  </data>
+  <!---->
+</root>

@@ -1,0 +1,76 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@{
+  var sample1 = "We love Tokyo, Z&uuml;rich &amp; M&uuml;nchen";
+  var realLength = 31;
+}
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Text.Crop(...) and Text.Ellipsis(...) <em>v1.1</em></h2>
+  <p>
+      These demos show how to crop text properly, because Razor Blade handles a lot of issues you'll usually have cropping text. 
+  </p>
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Text.Crop(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Crop_System_String_System_Int32_",
+    "Text.Ellipsis(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Ellipsis_System_String_System_Int32_System_String_"
+  })
+
+
+<h2>Example Text</h2>
+Original which visually has @realLength characters:
+
+<ul>
+    <li>The human view - how it looks for users: <br>
+      <code>
+        @Html.Raw(sample1)<br>
+        123456789-123456789-123456789-1
+      </code>
+    </li>
+    <li>The truth - how the string looks internally: <br>
+      <code>
+        @sample1<br>
+        123456789-1234567.....89-123....456.....789-1
+      </code>
+    </li>
+</ul>
+
+
+<h2>Word-Split Problems</h2>
+<div>
+    This demonstrates how strings are cut off in the middle of words if we don't use razor blade. It also breaks html entities like &amp;amp; (the &amp; character) or umlauts because ü = &amp;uuml;.
+</div>
+</trim>
+
+<table class="table table-hover table-sm">
+  <!-- headers -->
+  <tr>
+      <th></th>
+      <th><em>Using C# Method</em></th>
+      <th colspan="2"><em>Razor Blade</em></th>
+  </tr>
+  <tr>
+      <th>Len</th>
+      <th>C# Substring</th>
+      <th>Text.Crop(...)</th>
+      <th>Text.Ellipsis(...)</th>
+  </tr>
+  <!-- the code --> 
+  @for(var len = 1; len <= 32; len++) {
+      <tr>
+          <td>@len</td>
+          <td>@sample1.Substring(0, len)...</td>
+          <td>@Html.Raw(Text.Crop(sample1, len))</td>
+          <td>@Html.Raw(Text.Ellipsis(sample1, len))</td>
+      </tr>
+  }
+</table>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

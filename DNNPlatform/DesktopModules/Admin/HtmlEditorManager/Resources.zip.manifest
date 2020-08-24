@@ -1,0 +1,32 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ProviderConfiguration.ascx.resx</name>
+    </file>
+    <file>
+      <path>Images/</path>
+      <name>HtmlEditorManager_Standard_16x16.png</name>
+    </file>
+    <file>
+      <path>Images/</path>
+      <name>HtmlEditorManager_Standard_32x32.png</name>
+    </file>
+    <file>
+      <path />
+      <name>module.css</name>
+    </file>
+    <file>
+      <path>Controls/App_LocalResources/</path>
+      <name>InvalidConfiguration.ascx.resx</name>
+    </file>
+    <file>
+      <path>Controls/</path>
+      <name>InvalidConfiguration.ascx</name>
+    </file>
+    <file>
+      <path>Views/</path>
+      <name>ProviderConfiguration.ascx</name>
+    </file>
+  </files>
+</dotnetnuke>

@@ -1,0 +1,43 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+@{
+  var pets = new string[] { "dog", "cat", "mouse"};
+  var owners = new string[] { "Daniel", "John", "Markus"};
+}
+
+<trim>
+<h2>Loops - <code>for</code> and <code>foreach</code></h2>
+<h3>Using a <code>foreach</code> - the most common way of looping</h3>
+</trim>
+<ul>
+@foreach(var pet in pets) {
+  <li>@pet</li>
+}
+</ul>
+
+<trim>
+<hr>
+<h3>Basic <code>for</code></h3>
+</trim>
+<ul>
+@for(var i = 0; i < pets.Length; i++) {
+  <li>@pets[i]</li>
+}
+</ul>
+
+<trim>
+<hr>
+<h3>Using a <code>for</code> index with two lists (arrays)</h3>
+</trim>
+<ul>
+@for(var i = 0; i < pets.Length; i++) {
+  <li>@pets[i] - owned by @owners[i]</li>
+}
+</ul>
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

@@ -1,0 +1,34 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Entities.Users
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+    var info = (NBrightInfo)Model.List.First();
+    var prdData = new ProductData(info.ItemID, info.PortalId, info.Lang);
+}
+
+
+
+@foreach (var nbiClient in prdData.GetClients())
+{
+    var displaydefault = "";
+    var userid = nbiClient.ItemID;
+    if (userid == prdData.Info.UserId)
+    {
+        displaydefault = "-check";
+        userid = 0;
+    }
+
+<tr>
+    <td>@nbiClient.GetXmlProperty("genxml/textbox/firstname") @nbiClient.GetXmlProperty("genxml/textbox/lastname")</td>
+    <td>@nbiClient.GetXmlProperty("genxml/textbox/email")</td>
+    <td>@nbiClient.GetXmlProperty("genxml/textbox/username")</td>
+    <td><a class="entryowner" categoryid="@nbiClient.ItemID" itemid="@info.ItemID" userid="@(nbiClient.ItemID)" href="javascript:void(0)"><i class="fa fa@(displaydefault)-circle"></i></a></td>
+    <td><a title="Add" class="removeclient selectuserid@(nbiClient.ItemID)" itemid="@(info.ItemID)" userid="@(nbiClient.ItemID)" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a></td>
+</tr>
+}
+

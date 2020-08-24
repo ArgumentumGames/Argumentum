@@ -1,0 +1,76 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@{
+  var helpers = CreateInstance("shared/_Helpers.cshtml");
+
+  var article = AsList(Data).FirstOrDefault();
+
+  @* Show article not found notification and stop processing *@
+  if(article == null) {
+    <h1>@App.Resources.LabelEventNotExists</h1>
+    <p>@App.Resources.LabelEventNotExistsText</p>
+
+    @* Show "Back to list" button *@
+    @Code.BackToListButton()
+    Code.SetNotFoundHttpHeaders();
+    return;
+  }
+
+  var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
+  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+  Code.AddMetaTags(article);
+}
+
+<div class="app-news app-news-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
+  @* Head of the article *@
+  <div class="app-content">
+    @* "Will publish"/"expired" notes for admin *@
+    @helpers.AdminArticleInformation(article)
+
+    <h2>@article.Title</h2>
+
+    @* Show Date and categories *@
+    <span class='app-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
+    @if(displayCategories) {
+      <span class="app-categories">
+        @foreach (var cat in article.Categories) {
+          <a href='@Tags.SafeUrl(Link.To(parameters: "category=" + cat.UrlKey))'>@cat.Name</a>
+        }
+      </span>
+    }
+  </div>
+
+  @* Body of the article *@
+  <div class="app-content">
+    @* Show image or placeholder *@
+    @if (article.Lightbox) {
+      @:<a class="fancybox" href='@Tags.SafeUrl(imageUrl + "?w=1200&h=1200&mode=max&scale=both&quality=80")' title="@article.Title">
+    }
+      <div class="app-news-detail-img">
+        <span class="overlay"></span>
+        <img class="img-fluid"
+          src='@Tags.SafeUrl(imageUrl + "?w=800&mode=max&scale=both&quality=80&anchor=" + article.CropAnchor)'
+          alt="@article.Title" />
+      </div>
+    @if (article.Lightbox) {
+      @:</a>
+    }
+
+    @* Teaser *@
+    @if(article.ShowTeaserInDetail) {
+      <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+    }
+
+    @* Body of the post - will also create inner content blocks / apps *@
+    <div class="app-news-detail-body">
+      @ToSic.Sxc.Blocks.Render.All(article, field: "InnerContent", merge: article.Content)
+    </div>
+  </div>
+</div>
+
+@* Show "Back to list" button *@
+@Code.BackToListButton()
+
+@RenderPage("shared/_Assets.cshtml", new { scripts = true} )

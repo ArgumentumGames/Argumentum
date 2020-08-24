@@ -1,0 +1,44 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+@using System.Configuration
+@using System.Data
+@using System.Data.SqlClient
+
+<trim>
+<h2>The top 10 files found in this portal as returned from DB</h2>
+<p>
+  This example queries the DNN SQL for the files using <code>DataReader</code> objects. You can find more about this <a href="https://2sxc.org/en/Docs/Feature/feature/2579" target="_blank">here</a>. More intro-material for direct database access in this <a href="http://www.codeproject.com/Articles/4416/Beginners-guide-to-accessing-SQL-Server-through-C" target="_blank">article on codeplex</a>.
+</p>
+</trim>
+@{
+  // load the sql connection name from Web.Config
+  // the default connection string for DNN is SiteSqlServer
+  var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
+
+  var con = new SqlConnection(conString);
+  con.Open();
+
+  // You should always write parameters using the @-syntaxt,
+  // and never write them directly into the SQL using string-concatenation
+  // to protect yourself from SQL injection attacks
+  var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
+  command.Parameters.Add("@PortalId", Dnn.Portal.PortalId);
+  var myReader = command.ExecuteReader();
+}
+<ol>
+  @while (myReader.Read())
+  {
+    <li>@myReader["FileName"]</li>
+  }
+</ol>
+@{
+  myReader.Close();
+}
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

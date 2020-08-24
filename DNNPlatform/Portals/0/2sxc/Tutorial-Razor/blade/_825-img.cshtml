@@ -1,0 +1,45 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Img().Src(...)</code> and <code>Srcset(...)</code> <em>v3</em></h2>
+  <div>
+    One of the magic bits of the Html5 tags is that they are smart. For example, url properties like <code>Src()</code> or <code>Href()</code> will safely encode if they are not yet encoded. 
+    This is super important for CMS solutions where the image file may easily contain umlaut characters or spaces. <br>
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Img()", "https://razor-blade.net/api/ToSic.Razor.Html5.Img.html",
+    ".Src()", "https://razor-blade.net/api/ToSic.Razor.Html5.Img.html#ToSic_Razor_Html5_Img_Src_System_String_", 
+    ".Srcset()", "https://razor-blade.net/api/ToSic.Razor.Html5.Img.html#ToSic_Razor_Html5_Img_Srcset_System_String_", 
+  })
+
+    <em>Note that it's <code>Srcset()</code> and not <code>SrcSet</code>. For consistency, everything is always lower case. </em>
+  </div>
+</trim>
+<hr>
+@{
+  // demo of path with umlauts and japanese characters
+  var kaizenUrl = "überschrift-small.png?name=改善";
+  var path = App.Path + "/blade/assets/tag-img/";
+  var kaizenFullPath =  path + kaizenUrl;
+  var kaizenFullHd = kaizenFullPath.Replace("small", "large");
+}
+This file is called @kaizenUrl <br>
+@Tag.Img().Src(kaizenFullPath)
+<hide>
+<pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
+<hr>
+</hide>
+
+And now the same thing with <code>Srcset</code> which allows high-density images: <br>
+@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
+<hide>
+<pre>@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2).ToString()</pre>
+
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

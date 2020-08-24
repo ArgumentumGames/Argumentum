@@ -1,0 +1,142 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@{
+  var parts = CreateInstance("_Parts.cshtml");
+  var sliderStyleWidth = Text.Has(Content.Width) ? Content.Width : App.Settings.Width;
+  var sliderStyleHeight = Text.Has(Content.Height) ? Content.Height : App.Settings.Height;
+}
+
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true">
+
+<div @Edit.TagToolbar(Content, toolbar: new [] { "settings&hover=left&autoAddMore=start" })>
+  <div class='aspect-ratio height-@sliderStyleHeight.Replace(":", "-")' style='@(sliderStyleHeight.IndexOf(":") > 0 ? "--aspect-ratio:" + sliderStyleHeight.Replace(":", "/") : "")'>
+    <div class="inner">
+      @* Slider main container and wrapper *@
+      <div class="swiper-container swiper-@Content.EntityId" style="width: @sliderStyleWidth; height: @sliderStyleHeight">
+        <div class="swiper-wrapper">
+          @* Slides *@
+          @foreach (var slide in Content.Slides)
+          {
+            var contentEffect = Text.First(slide.ContentEffect, Content.ContentEffect, App.Settings.ContentEffect, "none");
+
+            <div class="swiper-slide" data-swiper-autoplay="@(slide.ShowDuration ?? Content.ShowDuration ?? App.Settings.ShowDuration)" @(Content.IsDemoItem ? "" : Edit.TagToolbar(slide, toolbar: new[] { "%delete&show=true" } ))>
+              <div class="image-wrapper @parts.WrapperClasses(slide)">
+                @Picture(slide.Image.ToLower(), slide.Title)
+
+                @if(Text.Has(slide.Title) || Text.Has(slide.Text) || Text.Has(slide.LinkText)){
+                  <div class="overlay overlay-@contentEffect"></div>
+                }
+                <div class="container-fluid h-100">
+                  <div class="@parts.RowClasses(slide)">
+                    <div class="col-12 py-4">
+                      <div class="@parts.ContentClasses(slide)">
+                      @if(Text.Has(slide.Title)){
+                        <p class="lead" data-swiper-parallax="-250">
+                          @slide.Title 
+                        </p>
+                      }
+                      @if(Text.Has(slide.Text)){
+                        <div class="co-slidertext" data-swiper-parallax="-500">
+                          @Html.Raw(slide.Text)
+                        </div>
+                      }
+                      @if(Text.Has(slide.LinkText)){
+                        <div data-swiper-parallax="-750">
+                          <a class="btn btn-primary" href="@Tags.SafeUrl(slide.Link)" target='(slide.LinkBlankTarget == true ? "_blank" : "")'>@slide.LinkText</a>
+                        </div>
+                      }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
+          @* if we don't have slides, show a dummy slide and provide buttons to start adding *@
+          @if(Content.Slides.Count == 0) {
+            <div class="container" @Edit.TagToolbar(Content.Slides)>
+              <div class="arrow">
+                <div class="line"></div>
+                <div class="point"></div>
+              </div>
+              <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                  <h2>Empty Slider</h2>
+                  <p>Please use the toolbar in the top right corner to add new slides.</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        @* Pagination *@
+        @if(Content.Pagination ?? App.Settings.Pagination) {
+          <div class="swiper-pagination"></div>
+        }
+
+        @* Navigation buttons (right left arrows) *@
+        @if(Content.Navigation ?? App.Settings.Navigation) {
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        }
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="@App.Path/dist/scripts.min.js" data-enableoptimizations="false"></script>
+
+<script>
+  // Initialize the swiper which is identified by the Id of this configuration
+  appSwiperInit(
+    @Content.EntityId, 
+    '@(Content.Autoplay ?? App.Settings.Autoplay)', 
+    @(Content.AnimationDuration ?? App.Settings.AnimationDuration),
+    @Html.Raw(Content.Effect.Configuration),
+    @Html.Raw(App.Settings.EffectFallback)
+  );
+</script>
+
+<style>
+  @@supports (--custom:property) {
+    [style*="--aspect-ratio"] {
+      position: relative;
+      width: 100%;
+      padding-top: calc(100% / (var(--aspect-ratio)));
+    }
+  }
+</style>
+
+@functions {
+  string RatioParams(float ratio, float wReal) {
+    var hReal = Convert.ToInt32(wReal / ratio);
+    return "&w=" + wReal + "&h=" + hReal;
+  }
+
+  string SrcSet(string url, float ratio, int width) {
+    return Tags.SafeUrl(url + RatioParams(ratio, width)) + " " + width + "w";
+  }
+}
+
+@helper Picture(string imgUrl, string title) {
+  var jpgQ = 70;
+  var webpQ = 60;
+  var defW = 800;
+  var defH = 350;
+  var ratio = Convert.ToSingle(defW) / defH;
+  var sizes = new[] { 320, 480, 640, 800, 1000, 1600 };
+  imgUrl = imgUrl + "?mode=crop&scale=both";
+  var imgWebp = imgUrl + "&format=webp&quality=" + webpQ;
+  var imgJpg = imgUrl + "&format=jpeg&quality=" + jpgQ;
+  var setWebp = string.Join(",\n", sizes.Select(s => SrcSet(imgWebp, ratio, s)));
+  var setJpg = string.Join(",\n", sizes.Select(s => SrcSet(imgJpg, ratio, s)));
+  <picture>
+    @if(App.Settings.OptimizationsEnableWebP != null && App.Settings.OptimizationsEnableWebP) {
+      <source srcset='@setWebp' type="image/webp">
+      <source srcset='@setJpg' type="image/jpeg">
+    }
+    <img src="@Tags.SafeUrl(imgJpg + RatioParams(ratio, 1600))" alt="@title" />
+  </picture>
+}

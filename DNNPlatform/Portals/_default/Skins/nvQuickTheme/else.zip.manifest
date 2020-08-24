@@ -1,0 +1,56 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>menus/main/</path>
+      <name>MainMenu-menudef.xml</name>
+    </file>
+    <file>
+      <path>menus/main/</path>
+      <name>MainMenu.txt</name>
+    </file>
+    <file>
+      <path>menus/razor/</path>
+      <name>RazorMenu.cshtml</name>
+    </file>
+    <file>
+      <path>menus/razor/</path>
+      <name>menudef.xml</name>
+    </file>
+    <file>
+      <path>partials/</path>
+      <name>_footer.ascx</name>
+    </file>
+    <file>
+      <path>partials/</path>
+      <name>_header.ascx</name>
+    </file>
+    <file>
+      <path>partials/</path>
+      <name>_includes-popUpSkin.ascx</name>
+    </file>
+    <file>
+      <path>partials/</path>
+      <name>_includes.ascx</name>
+    </file>
+    <file>
+      <path>partials/</path>
+      <name>_registers-popUpSkin.ascx</name>
+    </file>
+    <file>
+      <path>partials/</path>
+      <name>_registers.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>default.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>popUpSkin.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>skin.doctype.xml</name>
+    </file>
+  </files>
+</dotnetnuke>

@@ -1,0 +1,768 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.color-swatch {
+  width: 18%;
+  height: 50px;
+  line-height: 50px;
+  display: inline-block; }
+
+.highlight {
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8; }
+
+.paneOutline_display {
+  margin: 2px 1px;
+  height: 50px;
+  line-height: 50px;
+  background: #eee;
+  border: 1px solid #ccc;
+  text-align: center; }
+
+.admin {
+  top: 53px !important;
+  z-index: 9; }
+
+.header-spacer {
+  margin-top: 102px; }
+
+.header-spacer-admin {
+  margin-top: 155px; }
+
+.dnnbooster header span, .dnnbooster header span.normal {
+  text-decoration: none;
+  -webkit-transition: all 0.5s ease-in-out;
+  -khtml-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  font-size: 0.75rem; }
+
+.dnnbooster header .topbar {
+  height: 40px;
+  font-size: 0.75rem;
+  line-height: 40px; }
+  .dnnbooster header .topbar .general-functions a:link, .dnnbooster header .topbar .general-functions a:visited, .dnnbooster header .topbar .general-functions a:focus, .dnnbooster header .topbar .general-functions a:active {
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease-in-out;
+    -khtml-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; }
+  .dnnbooster header .topbar .general-functions .open > .dropdown-menu {
+    -webkit-transform: scale, 1, 1;
+    -khtml-transform: scale, 1, 1;
+    -moz-transform: scale, 1, 1;
+    -ms-transform: scale, 1, 1;
+    -o-transform: scale, 1, 1;
+    transform: scale, 1, 1;
+    opacity: 1; }
+  .dnnbooster header .topbar .general-functions .dropdown-menu {
+    opacity: .3;
+    display: block;
+    -webkit-origin: top;
+    -khtml-origin: top;
+    -moz-origin: top;
+    -ms-origin: top;
+    -o-origin: top;
+    origin: top;
+    -webkit-transition: all 0.2s linear;
+    -khtml-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+    -webkit-transform: scale(1, 0);
+    -khtml-transform: scale(1, 0);
+    -moz-transform: scale(1, 0);
+    -ms-transform: scale(1, 0);
+    -o-transform: scale(1, 0);
+    transform: scale(1, 0);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index: 1005 !important;
+    width: 40px;
+    min-width: inherit;
+    border-top-color: transparent;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    margin-top: -1px; }
+  .dnnbooster header .topbar .general-functions .dropdown-toggle:after {
+    display: none; }
+  .dnnbooster header .topbar .general-functions li {
+    float: right;
+    border: none;
+    margin: 0;
+    border-right: solid 1px; }
+    .dnnbooster header .topbar .general-functions li li {
+      border: none; }
+    .dnnbooster header .topbar .general-functions li .buttonGroup {
+      list-style: none;
+      margin: 0 !important; }
+    .dnnbooster header .topbar .general-functions li .material-icons {
+      font-size: 1.8em;
+      display: block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center; }
+    .dnnbooster header .topbar .general-functions li a {
+      font-size: 12px;
+      display: block;
+      border: none;
+      line-height: 38px;
+      text-align: center; }
+    .dnnbooster header .topbar .general-functions li:first-child {
+      border-left: none; }
+    .dnnbooster header .topbar .general-functions li:first-child a:before {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .notification-holder a {
+      display: block;
+      position: relative;
+      height: 40px;
+      width: 40px;
+      font-size: 0;
+      text-align: center; }
+    .dnnbooster header .topbar .general-functions li .notification-holder .buttonGroup .userDisplayName, .dnnbooster header .topbar .general-functions li .notification-holder .buttonGroup .userProfileImg, .dnnbooster header .topbar .general-functions li .notification-holder .buttonGroup .userMessages {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .notification-holder .buttonGroup .userNotifications strong:before {
+      font-family: 'Material Icons';
+      content: "forum";
+      font-weight: 400;
+      font-size: 24px; }
+    .dnnbooster header .topbar .general-functions li .notification-holder .buttonGroup .userNotifications span {
+      line-height: 18px;
+      -webkit-border-radius: 50%;
+      -khtml-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      background-clip: padding-box;
+      /* stops bg color from leaking outside the border: */
+      font-weight: 400;
+      font-size: 10px;
+      text-align: center;
+      width: 18px;
+      top: 50%;
+      right: 10px;
+      z-index: 10;
+      display: block;
+      position: absolute;
+      overflow: hidden; }
+    .dnnbooster header .topbar .general-functions li .message-holder a {
+      display: block;
+      position: relative;
+      height: 40px;
+      width: 40px;
+      font-size: 0;
+      -webkit-transition: all 0.5s ease-in-out;
+      -khtml-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out; }
+    .dnnbooster header .topbar .general-functions li .message-holder .buttonGroup .userDisplayName {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .message-holder .buttonGroup .userProfileImg {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .message-holder .buttonGroup .userNotifications {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .message-holder .buttonGroup .userMessages strong:before {
+      font-family: 'Material Icons';
+      content: "mail_outline";
+      font-weight: 400;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 40px;
+      -webkit-font-smoothing: antialiased; }
+    .dnnbooster header .topbar .general-functions li .message-holder .buttonGroup .userMessages span {
+      line-height: 18px;
+      -webkit-border-radius: 50%;
+      -khtml-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      background-clip: padding-box;
+      /* stops bg color from leaking outside the border: */
+      font-weight: 400;
+      font-size: 10px;
+      text-align: center;
+      width: 18px;
+      top: 50%;
+      right: 10px;
+      z-index: 10;
+      display: block;
+      position: absolute;
+      overflow: hidden; }
+    .dnnbooster header .topbar .general-functions li .profile-holder a {
+      display: block;
+      position: relative;
+      height: 40px;
+      width: 40px;
+      font-size: 0;
+      text-align: center;
+      border-left: solid 1px; }
+    .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userDisplayName {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userMessages {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userNotifications {
+      display: none; }
+    .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userProfileImg {
+      height: 40px;
+      width: 40px; }
+      .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userProfileImg a {
+        -webkit-transition: all 0.5s ease-in-out;
+        -khtml-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        text-align: center; }
+      .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userProfileImg img {
+        -webkit-border-radius: 50%;
+        -khtml-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        background-clip: padding-box;
+        /* stops bg color from leaking outside the border: */
+        border: solid 2px blue;
+        width: 25px; }
+        .dnnbooster header .topbar .general-functions li .profile-holder .buttonGroup .userProfileImg img:hover {
+          border: solid 2px;
+          -webkit-transition: all 0.5s ease-in-out;
+          -khtml-transition: all 0.5s ease-in-out;
+          -moz-transition: all 0.5s ease-in-out;
+          -ms-transition: all 0.5s ease-in-out;
+          -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out; }
+  .dnnbooster header .topbar .language-object .Language {
+    padding: 0 3px; }
+    .dnnbooster header .topbar .language-object .Language img {
+      height: 20px;
+      border: solid 1px transparent;
+      opacity: .6; }
+    .dnnbooster header .topbar .language-object .Language.selected img {
+      opacity: 1; }
+
+.dnnbooster header .search-bar {
+  padding: 5px 0; }
+  .dnnbooster header .search-bar .SearchButton {
+    display: none;
+    visibility: hidden; }
+  .dnnbooster header .search-bar .searchInputContainer {
+    width: 100%;
+    z-index: 15; }
+    .dnnbooster header .search-bar .searchInputContainer .NormalTextBox {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      font-size: 1rem;
+      padding: 0 20px;
+      border: none;
+      outline: none; }
+    .dnnbooster header .search-bar .searchInputContainer a.dnnSearchBoxClearText {
+      right: 10px;
+      top: 15px;
+      margin: 0; }
+    .dnnbooster header .search-bar .searchInputContainer ul.searchSkinObjectPreview {
+      border-top: none;
+      width: 100%;
+      padding: 0; }
+
+.dnnbooster header .navbar {
+  padding: 0; }
+  .dnnbooster header .navbar .navbar-brand {
+    height: 62px; }
+  .dnnbooster header .navbar img {
+    height: 40px !important;
+    width: auto; }
+  .dnnbooster header .navbar .navbar-nav .nav-link {
+    line-height: 62px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.875rem; }
+    .dnnbooster header .navbar .navbar-nav .nav-link:hover {
+      -webkit-transition: all 0.5s ease-in-out;
+      -khtml-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out; }
+  .dnnbooster header .navbar .navbar-nav .nav-item .dropdown-menu {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 40px;
+    -webkit-border-radius: 0;
+    -khtml-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    margin: 0;
+    padding: 0;
+    border: 0; }
+    .dnnbooster header .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item:focus, .dnnbooster header .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+      text-decoration: none; }
+    .dnnbooster header .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-submenu {
+      position: relative; }
+    .dnnbooster header .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-submenu a::after {
+      -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      position: absolute;
+      right: 6px;
+      top: 45%; }
+    .dnnbooster header .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-submenu .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-left: .1rem;
+      margin-right: .1rem; }
+  .dnnbooster header .navbar .navbar-toggler {
+    background: none;
+    cursor: pointer;
+    position: relative;
+    width: 46px;
+    height: 46px;
+    margin: 8px 0;
+    margin-right: 15px;
+    font-size: 1.25rem;
+    line-height: 1rem;
+    border: solid 1px red;
+    border: none;
+    outline: none; }
+    .dnnbooster header .navbar .navbar-toggler .toggle-bar {
+      display: block;
+      position: absolute;
+      left: 25%;
+      height: 2px;
+      width: 75%;
+      -webkit-transform: rotate(0deg);
+      -khtml-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: 0.25s ease-in-out;
+      -khtml-transition: 0.25s ease-in-out;
+      -moz-transition: 0.25s ease-in-out;
+      -ms-transition: 0.25s ease-in-out;
+      -o-transition: 0.25s ease-in-out;
+      transition: 0.25s ease-in-out; }
+      .dnnbooster header .navbar .navbar-toggler .toggle-bar.top {
+        top: 25%; }
+      .dnnbooster header .navbar .navbar-toggler .toggle-bar.middle1, .dnnbooster header .navbar .navbar-toggler .toggle-bar.middle2 {
+        top: 50%; }
+      .dnnbooster header .navbar .navbar-toggler .toggle-bar.bottom {
+        top: 75%; }
+    .dnnbooster header .navbar .navbar-toggler.open .toggle-bar.top {
+      top: 18px;
+      width: 0%;
+      left: 50%; }
+    .dnnbooster header .navbar .navbar-toggler.open .toggle-bar.middle1 {
+      -webkit-transform: rotate(45deg);
+      -khtml-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg); }
+    .dnnbooster header .navbar .navbar-toggler.open .toggle-bar.middle2 {
+      -webkit-transform: rotate(-45deg);
+      -khtml-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg); }
+    .dnnbooster header .navbar .navbar-toggler.open .toggle-bar.bottom {
+      top: 18px;
+      width: 0%;
+      left: 50%; }
+
+.dnnbooster .page-header {
+  background-size: cover;
+  padding: 20px 0;
+  margin-bottom: 20px; }
+  .dnnbooster .page-header.background-01 {
+    background: url("../img/header-01-bg.jpg") no-repeat bottom center; }
+  .dnnbooster .page-header.background-02 {
+    background: url("../img/header-02-bg.jpg") no-repeat bottom center; }
+  .dnnbooster .page-header.background-03 {
+    background: url("../img/header-03-bg.jpg") no-repeat bottom center; }
+  .dnnbooster .page-header.background-04 {
+    background: url("../img/header-04-bg.png") repeat top left; }
+  .dnnbooster .page-header.background-05 {
+    background: url("../img/header-05-bg.png") repeat top left; }
+  .dnnbooster .page-header.background-06 {
+    background: url("../img/header-06-bg.png") repeat top left; }
+  .dnnbooster .page-header.background-07 {
+    background: url("../img/header-07-bg.png") repeat top left; }
+  .dnnbooster .page-header.background-08 {
+    background: url("../img/header-08-bg.png") repeat top left; }
+  .dnnbooster .page-header.background-09 {
+    background: url("../img/header-09-bg.png") repeat top left; }
+  .dnnbooster .page-header.background-10 {
+    background: url("../img/header-10-bg.png") repeat top left; }
+  .dnnbooster .page-header h1 {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 2rem; }
+  .dnnbooster .page-header p {
+    font-size: 0.75rem;
+    margin: 0; }
+
+.dnnbooster footer {
+  padding: 30px 0 0 0; }
+  .dnnbooster footer a:hover {
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease-in-out;
+    -khtml-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; }
+  .dnnbooster footer .legal-footer {
+    font-size: 0.75rem;
+    padding: 30px 0 10px 0; }
+
+.dnnbooster .bootsterContainer.dnnc-clean {
+  margin: 0;
+  padding: 0;
+  border: none; }
+  .dnnbooster .bootsterContainer.dnnc-clean h1.lined, .dnnbooster .bootsterContainer.dnnc-clean h2.lined, .dnnbooster .bootsterContainer.dnnc-clean h3.lined, .dnnbooster .bootsterContainer.dnnc-clean h4.lined, .dnnbooster .bootsterContainer.dnnc-clean h5.lined, .dnnbooster .bootsterContainer.dnnc-clean h6.lined {
+    border-bottom: solid 1px; }
+
+.dnnbooster .bootsterContainer.dnnc-footer-clean, .dnnbooster .bootsterContainer.dnnc-footer-clean p {
+  color: #fff; }
+
+.dnnbooster .bootsterContainer.dnnc-panel {
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid;
+  font-weight: 600;
+  font-size: 1rem; }
+  .dnnbooster .bootsterContainer.dnnc-panel .contentpane {
+    padding: 20px; }
+    .dnnbooster .bootsterContainer.dnnc-panel .contentpane p {
+      margin-bottom: 0; }
+  .dnnbooster .bootsterContainer.dnnc-panel .panel-heading {
+    padding: 10px 20px;
+    border-bottom: 1px solid; }
+  .dnnbooster .bootsterContainer.dnnc-panel span {
+    margin-bottom: 0; }
+
+.dnnbooster .list {
+  list-style-type: none; }
+  .dnnbooster .list li:before {
+    font-family: FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 10px;
+    line-height: 28px; }
+  .dnnbooster .list li {
+    list-style-position: inside;
+    text-indent: -22px;
+    padding-left: 22px; }
+    .dnnbooster .list li > ul > li {
+      list-style-position: inside;
+      text-indent: -44px;
+      padding-left: 44px; }
+  .dnnbooster .list li > ul {
+    padding-left: 20px; }
+  .dnnbooster .list li > ul > li > ul {
+    padding-left: 40px; }
+  .dnnbooster .list li > ul > li > ul > li > ul {
+    padding-left: 60px; }
+  .dnnbooster .list.angle-double li:before {
+    content: "\f101"; }
+  .dnnbooster .list.arrow li:before {
+    content: "\f061"; }
+  .dnnbooster .list.arrow-circle li:before {
+    content: "\f0a9"; }
+  .dnnbooster .list.chevron li:before {
+    content: "\f054"; }
+  .dnnbooster .list.chevron-circle li:before {
+    content: "\f138"; }
+  .dnnbooster .list.caret li:before {
+    content: "\f0da"; }
+  .dnnbooster .list.caret-square li:before {
+    content: "\f152"; }
+  .dnnbooster .list.tick li:before {
+    content: "\f00c"; }
+  .dnnbooster .list.tick-circle li:before {
+    content: "\f05d"; }
+  .dnnbooster .list.cross li:before {
+    content: "\f00d"; }
+  .dnnbooster .list.cross-circle li:before {
+    content: "\f05c"; }
+  .dnnbooster .list.link li:before {
+    content: "\f0c1"; }
+  .dnnbooster .list.anchor li:before {
+    content: "\f13d"; }
+  .dnnbooster .list.hand li:before {
+    content: "\f0a4"; }
+  .dnnbooster .list.cog li:before {
+    content: "\f013"; }
+
+.dnnbooster .social-list {
+  list-style-type: none; }
+  .dnnbooster .social-list li {
+    display: inline-block;
+    height: 30px;
+    width: 30px; }
+    .dnnbooster .social-list li:hover {
+      -webkit-transition: all 0.5s ease-in-out;
+      -khtml-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out; }
+    .dnnbooster .social-list li a {
+      line-height: 30px;
+      width: 30px;
+      display: block;
+      text-align: center; }
+    .dnnbooster .social-list li.facebook:hover a {
+      background: #3b5998;
+      color: white; }
+    .dnnbooster .social-list li.twitter:hover a {
+      background: #00b6f1;
+      color: white; }
+    .dnnbooster .social-list li.google:hover a {
+      background: #df4a32;
+      color: white; }
+    .dnnbooster .social-list li.linkedin:hover a {
+      background: #007bb6;
+      color: white; }
+    .dnnbooster .social-list li.tumblr:hover a {
+      background: #35465d;
+      color: white; }
+    .dnnbooster .social-list li.skype:hover a {
+      background: #00aff0;
+      color: white; }
+    .dnnbooster .social-list li.vimeo:hover a {
+      background: #45bbff;
+      color: white; }
+    .dnnbooster .social-list li.yahoo:hover a {
+      background: #430297;
+      color: white; }
+    .dnnbooster .social-list li.pinterest:hover a {
+      background: #cb2027;
+      color: white; }
+    .dnnbooster .social-list li.youtube:hover a {
+      background: #ff0000;
+      color: white; }
+    .dnnbooster .social-list li.vine:hover a {
+      background: #00b489;
+      color: white; }
+    .dnnbooster .social-list li.slack:hover a {
+      background: #3aaf85;
+      color: white; }
+    .dnnbooster .social-list li.instagram:hover a {
+      background: #c32aa3;
+      color: white; }
+    .dnnbooster .social-list li.dribbble:hover a {
+      background: #ea4c89;
+      color: white; }
+    .dnnbooster .social-list li.flickr:hover a {
+      background: #f40083;
+      color: white; }
+    .dnnbooster .social-list li.foursquare:hover a {
+      background: #fc4575;
+      color: white; }
+    .dnnbooster .social-list li.behance:hover a {
+      background: #1769ff;
+      color: white; }
+    .dnnbooster .social-list li.snapchat:hover a {
+      background: #fffc00;
+      color: white; }
+    .dnnbooster .social-list li.whatsapp:hover a {
+      background: #25d366;
+      color: white; }
+    .dnnbooster .social-list li.dropbox:hover a {
+      background: #007ee5;
+      color: white; }
+    .dnnbooster .social-list li.vk:hover a {
+      background: #45668e;
+      color: white; }
+    .dnnbooster .social-list li.github:hover a {
+      background: #000000;
+      color: white; }
+    .dnnbooster .social-list li.reddit:hover a {
+      background: #ff5700;
+      color: white; }
+    .dnnbooster .social-list li.stumbleupon:hover a {
+      background: #eb4924;
+      color: white; }
+    .dnnbooster .social-list li.soundcloud:hover a {
+      background: #ff5500;
+      color: white; }
+    .dnnbooster .social-list li.spotify:hover a {
+      background: #1ed760;
+      color: white; }
+    .dnnbooster .social-list li.quora:hover a {
+      background: #aa2200;
+      color: white; }
+  .dnnbooster .social-list.small li {
+    height: 20px;
+    width: 20px; }
+    .dnnbooster .social-list.small li a {
+      line-height: 20px;
+      width: 20px; }
+  .dnnbooster .social-list.large li {
+    height: 40px;
+    width: 40px; }
+    .dnnbooster .social-list.large li a {
+      line-height: 40px;
+      width: 40px; }
+  .dnnbooster .social-list.square-border li a {
+    border: solid 1px; }
+  .dnnbooster .social-list.round li a {
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */ }
+  .dnnbooster .social-list.round.small li a {
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */ }
+  .dnnbooster .social-list.round.large li a {
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */ }
+  .dnnbooster .social-list.round-border li a {
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    border: solid 1px; }
+  .dnnbooster .social-list.round-border.small li a {
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    border: solid 1px; }
+  .dnnbooster .social-list.round-border.large li a {
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    border: solid 1px; }
+
+.dnnbooster ol, .dnnbooster ul {
+  margin-left: 0;
+  margin-bottom: 0; }
+
+.dnnbooster .to-left {
+  text-align: left; }
+
+.dnnbooster .to-right {
+  text-align: right; }
+
+.dnnbooster a:link, .dnnbooster a:visited, .dnnbooster a:active, .dnnbooster a:focus {
+  font-weight: 600; }
+
+.dnnbooster a:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.5s ease-in-out;
+  -khtml-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
+
+.dnnbooster .carousel .carousel-indicators .active {
+  background-color: #83b836; }
+
+.dnnbooster .carousel.carousel-fade .carousel-item {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  -webkit-transform: opacity 0.75s ease-in-out;
+  -khtml-transform: opacity 0.75s ease-in-out;
+  -moz-transform: opacity 0.75s ease-in-out;
+  -ms-transform: opacity 0.75s ease-in-out;
+  -o-transform: opacity 0.75s ease-in-out;
+  transform: opacity 0.75s ease-in-out; }
+  .dnnbooster .carousel.carousel-fade .carousel-item.active {
+    opacity: 1; }
+
+.dnnbooster .carousel .carousel-indicators {
+  z-index: 8;
+  margin-right: 0;
+  margin-left: 0; }
+
+@media (max-width: 768px) {
+  .dnnbooster .navbar-nav .nav-link {
+    padding-right: 15px;
+    padding-left: 15px; }
+  .dnnbooster .dropdown-menu {
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    text-align: left;
+    list-style: none;
+    border: none;
+    -webkit-border-radius: 0;
+    -khtml-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */ }
+    .dnnbooster .dropdown-menu .dropdown-item {
+      padding: 0 15px;
+      line-height: 40px;
+      font-weight: 400; }
+      .dnnbooster .dropdown-menu .dropdown-item:before {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: '\f054';
+        padding-right: 5px; }
+  .dnnbooster .to-left {
+    text-align: center; }
+  .dnnbooster .to-right {
+    text-align: center; } }

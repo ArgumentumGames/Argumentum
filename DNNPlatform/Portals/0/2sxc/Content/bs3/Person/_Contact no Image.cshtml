@@ -1,0 +1,18 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@* This adds all link/script tags *@
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles,scripts,height,icons"})
+
+<div class="co-container-outer">
+	<div class="co-container-inner co-person-wrapper">
+    <div class="row">
+      @foreach (var person in AsList(Data))
+      {
+        <div class="co-person co-person-noimage co-sync-height-with-neighbors col col-sm-6 mb-4" @Edit.TagToolbar(person)>
+          <div class="co-person-text" itemscope itemtype="http://schema.org/Person">
+            @RenderPage("_PersonData.cshtml", new { data = person})
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

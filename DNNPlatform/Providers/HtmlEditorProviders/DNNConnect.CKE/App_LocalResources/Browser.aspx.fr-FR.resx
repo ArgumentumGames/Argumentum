@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System">
+    <value>Privé</value>
+  </data>
+  <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib">
+    <value>Faux</value>
+  </data>
+  <data name="$this.TrayAutoArrange" type="System.Boolean, mscorlib">
+    <value>Vrai</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Fermer la fenêtre</value>
+  </data>
+  <data name="cmdClose.Text">
+    <value>OK</value>
+  </data>
+  <data name="lblConFiles.Text" xml:space="preserve">
+    <value>Fichiers contenus :</value>
+  </data>
+  <data name="lblCurrent.Text" xml:space="preserve">
+    <value>Répertoire courant :</value>
+  </data>
+  <data name="lblSubDirs.Text" xml:space="preserve">
+    <value>Répertoires :</value>
+  </data>
+  <data name="cmdDownload.Help" xml:space="preserve">
+    <value>Télécharger le fichier sélectionné.</value>
+  </data>
+  <data name="cmdDownload.Text" xml:space="preserve">
+    <value>Télécharger le fichier</value>
+  </data>
+  <data name="cmdUpload.Help" xml:space="preserve">
+    <value>Charger un nouveau fichier.</value>
+  </data>
+  <data name="cmdUpload.Text" xml:space="preserve">
+    <value>Charger un fichier</value>
+  </data>
+  <data name="Error1.Text" xml:space="preserve">
+    <value>L'utilisateur n'a pas les autorisations requises pour effectuer cette tâche.</value>
+  </data>
+  <data name="Error2.Text" xml:space="preserve">
+    <value>Cette extension de fichier n'est pas autorisée.</value>
+  </data>
+  <data name="Error3.Text" xml:space="preserve">
+    <value>Cette extension de fichier n'est pas autorisée.</value>
+  </data>
+  <data name="Error4.Text" xml:space="preserve">
+    <value>L'utilisateur n'a pas l'autorisation d'afficher ce dossier.</value>
+  </data>
+  <data name="Error5.Text" xml:space="preserve">
+    <value>Aucun fichier sélectionné.</value>
+  </data>
+  <data name="cmdUploadCancel.Text" xml:space="preserve">
+    <value>Annuler le chargement</value>
+  </data>
+  <data name="cmdUploadNow.Text" xml:space="preserve">
+    <value>Télécharger maintenant</value>
+  </data>
+  <data name="lblUrlType.Text" xml:space="preserve">
+    <value>Choisir le type d'URL :</value>
+  </data>
+  <data name="lblChoosetab.Text" xml:space="preserve">
+    <value>Choisir une page :</value>
+  </data>
+  <data name="cmdCreate.Help" xml:space="preserve">
+    <value>Créer un nouveau sous-dossier</value>
+  </data>
+  <data name="cmdCreate.Text" xml:space="preserve">
+    <value>Créer nouveau dossier</value>
+  </data>
+  <data name="cmdDelete.Help" xml:space="preserve">
+    <value>Supprimer le fichier sélectionné.</value>
+  </data>
+  <data name="cmdDelete.Text" xml:space="preserve">
+    <value>Supprimer le fichier</value>
+  </data>
+  <data name="cmdCreateFolder.Text" xml:space="preserve">
+    <value>Créer maintenant</value>
+  </data>
+  <data name="chkAspect.Text" xml:space="preserve">
+    <value>Maintenir le rapport l / h</value>
+  </data>
+  <data name="chkHumanFriendy.Text" xml:space="preserve">
+    <value>URL conviviale</value>
+  </data>
+  <data name="cmdResizeCancel.Text" xml:space="preserve">
+    <value>Annuler redimensionnement</value>
+  </data>
+  <data name="cmdResizeNow.Text" xml:space="preserve">
+    <value>Redimensionner maintenant</value>
+  </data>
+  <data name="cmdResizer.Help" xml:space="preserve">
+    <value>Modifier l'image sélectionnée.</value>
+  </data>
+  <data name="cmdResizer.Text" xml:space="preserve">
+    <value>Éditeur d'images</value>
+  </data>
+  <data name="lblHeight.Text" xml:space="preserve">
+    <value>Nouvelle hauteur :</value>
+  </data>
+  <data name="lblThumbName.Text" xml:space="preserve">
+    <value>Nouveau nom de fichier :</value>
+  </data>
+  <data name="lblWidth.Text" xml:space="preserve">
+    <value>Nouvelle largeur :</value>
+  </data>
+  <data name="AreYouSure.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer ce fichier ?</value>
+  </data>
+  <data name="lblImgQuality.Text" xml:space="preserve">
+    <value>Qualité d'image (compression) :</value>
+  </data>
+  <data name="cmdCrop.Text">
+    <value>Recadrer</value>
+  </data>
+  <data name="cmdCropCancel.Text" xml:space="preserve">
+    <value>Annuler la modification</value>
+  </data>
+  <data name="cmdCropNow.Text" xml:space="preserve">
+    <value>Créer une nouvelle image</value>
+  </data>
+  <data name="cmdResize2.Text">
+    <value>Redimensionner</value>
+  </data>
+  <data name="cmdRotate.Text">
+    <value>Rotation</value>
+  </data>
+  <data name="cmdZoom.Text">
+    <value>Zoom</value>
+  </data>
+  <data name="imgOriginal.Text" xml:space="preserve">
+    <value>Image d'origine (mise à l'échelle pour s'adapter à l'écran)</value>
+  </data>
+  <data name="imgResized.Text" xml:space="preserve">
+    <value>Aperçu de l'image redimensionnée (mise à l'échelle pour s'adapter à l'écran)</value>
+  </data>
+  <data name="lblClearPreview.Text" xml:space="preserve">
+    <value>Effacer l'aperçu</value>
+  </data>
+  <data name="lblCropInfo.Text" xml:space="preserve">
+    <value>Ici vous trouverez la nouvelle image modifiée</value>
+  </data>
+  <data name="lblOriginal.Text" xml:space="preserve">
+    <value>Original :</value>
+  </data>
+  <data name="lblOtherTools.Text" xml:space="preserve">
+    <value>Autres outils :</value>
+  </data>
+  <data name="lblPreview.Text" xml:space="preserve">
+    <value>Aperçu :</value>
+  </data>
+  <data name="lblResizeHeader.Text" xml:space="preserve">
+    <value>Éditeur d'image : redimensionner</value>
+  </data>
+  <data name="lblResizeHeader2.Text" xml:space="preserve">
+    <value>Éditeur d'image : recadrer, zoomer &amp; tourner</value>
+  </data>
+  <data name="lblShowPreview.Text" xml:space="preserve">
+    <value>Afficher l'aperçu</value>
+  </data>
+  <data name="cmdCreateCancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="lblNewFoldName.Text" xml:space="preserve">
+    <value>Nouveau nom du dossier :</value>
+  </data>
+  <data name="LabelAnchor.Text" xml:space="preserve">
+    <value>Sélectionner une ancre de la page :</value>
+  </data>
+  <data name="TrackClicks.Text" xml:space="preserve">
+    <value>Suivre le nombre de fois que ce lien sera cliqué :</value>
+  </data>
+  <data name="absLnk.Text" xml:space="preserve">
+    <value>URL absolue - &lt;em&gt;'http://www.monsiteweb.com/images/monimage.jpg'&lt;/em&gt;</value>
+  </data>
+  <data name="lnkClick.Text" xml:space="preserve">
+    <value>URL relative sécurisée  - &lt;em&gt;'/LinkClick.aspx?fileticket=xyz'&lt;/em&gt;</value>
+  </data>
+  <data name="relLnk.Text" xml:space="preserve">
+    <value>URL relative - &lt;em&gt;'/images/monimage.jpg'&lt;/em&gt;</value>
+  </data>
+  <data name="Wait.Text" xml:space="preserve">
+    <value>Veuillez patienter...</value>
+  </data>
+  <data name="WaitMessage.Text" xml:space="preserve">
+    <value>Chargement de la page et analyse des points d'ancrage.</value>
+  </data>
+  <data name="ExtraTabOptions.Text" xml:space="preserve">
+    <value>Options d'onglet :</value>
+  </data>
+  <data name="LabelTabLanguage.Text" xml:space="preserve">
+    <value>Paramètre de langue additionnel :</value>
+  </data>
+  <data name="None.Text">
+    <value>Aucune</value>
+  </data>
+  <data name="FileLink.Text" xml:space="preserve">
+    <value>Lien du fichier</value>
+  </data>
+  <data name="PageLink.Text" xml:space="preserve">
+    <value>Lien vers la page</value>
+  </data>
+  <data name="DetailView.Text" xml:space="preserve">
+    <value>Voir détail</value>
+  </data>
+  <data name="DetailViewTitle.Text" xml:space="preserve">
+    <value>Montre tous les fichiers avec une grande image d’aperçu, le nom du fichier et ses informations.</value>
+  </data>
+  <data name="IconsView.Text" xml:space="preserve">
+    <value>Mode icônes</value>
+  </data>
+  <data name="IconsViewTitle.Text" xml:space="preserve">
+    <value>Montre tous les fichiers avec aperçu sous forme de tuiles.</value>
+  </data>
+  <data name="ListView.Text" xml:space="preserve">
+    <value>Mode liste</value>
+  </data>
+  <data name="ListViewTitle.Text" xml:space="preserve">
+    <value>Montre une petite image d’aperçu, le nom du fichier et ses informations.</value>
+  </data>
+  <data name="FirstPage.Text" xml:space="preserve">
+    <value>Première Page</value>
+  </data>
+  <data name="GoTo.Text" xml:space="preserve">
+    <value>Aller à</value>
+  </data>
+  <data name="LastPage.Text" xml:space="preserve">
+    <value>Dernière Page</value>
+  </data>
+  <data name="NextPage.Text" xml:space="preserve">
+    <value>Page suivante</value>
+  </data>
+  <data name="PreviousPage.Text" xml:space="preserve">
+    <value>Page précédente</value>
+  </data>
+  <data name="SortAscending.Help" xml:space="preserve">
+    <value>Trier la liste des fichiers par leur nom dans l'ordre croissant.</value>
+  </data>
+  <data name="SortAscending.Text" xml:space="preserve">
+    <value>Tri croissant</value>
+  </data>
+  <data name="SortDescending.Help" xml:space="preserve">
+    <value>Trier la liste des fichiers par leur nom dans l'ordre décroissant.</value>
+  </data>
+  <data name="SortDescending.Text" xml:space="preserve">
+    <value>Sort Descending</value>
+  </data>
+  <data name="lnkAbsClick.Text" xml:space="preserve">
+    <value>URL absolue sécurisée  - &lt;em&gt;'http://www.monsiteweb.com/LinkClick.aspx?fileticket=xyz'&lt;/em&gt;</value>
+  </data>
+  <data name="SpaceUsed.Text" xml:space="preserve">
+    <value>Espace utilisé : {0} sur {1}</value>
+  </data>
+  <data name="UnlimitedSpace.Text">
+    <value>[illimité]</value>
+  </data>
+  <data name="Syncronize.Help" xml:space="preserve">
+    <value>Synchroniser le dossier avec la base de données</value>
+  </data>
+  <data name="Syncronize.Text" xml:space="preserve">
+    <value>Synchroniser le dossier</value>
+  </data>
+  <data name="FileSizeRestriction.Text" xml:space="preserve">
+    <value>La limite de poids lors d'un chargement de fichier est de {0} Mo. &lt;br /&gt; Les types de fichier autorisés sont : "{1}"</value>
+  </data>
+  <data name="FileToBig.Text" xml:space="preserve">
+    <value>Le fichier est trop volumineux pour être chargé.</value>
+  </data>
+  <data name="OverrideFile.Text" xml:space="preserve">
+    <value>Remplacer le fichier s’il existe déjà, sinon un nouveau fichier avec « _1 » sera créé ?</value>
+  </data>
+  <data name="FileToBigMessage.Text" xml:space="preserve">
+    <value>Le fichier chargé dépasse le poids autorisé.</value>
+  </data>
+  <data name="AddFiles.Text" xml:space="preserve">
+    <value>Ajouter fichier(s)...</value>
+  </data>
+  <data name="DropHere.Text" xml:space="preserve">
+    <value>Déposer ici le(s) fichier(s)</value>
+  </data>
+  <data name="StartUploads.Text" xml:space="preserve">
+    <value>Commencer le chargement</value>
+  </data>
+  <data name="BrowserModus.Image.Text">
+    <value>Image</value>
+  </data>
+  <data name="BrowserModus.Link.Text">
+    <value>Lien</value>
+  </data>
+  <data name="Created.Text" xml:space="preserve">
+    <value>Créé le</value>
+  </data>
+  <data name="lblBrowserModus.Text" xml:space="preserve">
+    <value>Modus-Navigateur : {0}</value>
+  </data>
+  <data name="Size.Text">
+    <value>Taille</value>
+  </data>
+  <data name="RootFolder.Text" xml:space="preserve">
+    <value>Dossier racine</value>
+  </data>
+  <!---->
+</root>

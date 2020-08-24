@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All.Text">
+    <value xml:space="preserve">Tous</value>
+  </data>
+  <data name="Crawler_document.Text" version="deprecated">
+    <value xml:space="preserve">Documents</value>
+  </data>
+  <data name="Crawler_file.Text" version="deprecated">
+    <value xml:space="preserve">Documents</value>
+  </data>
+  <data name="Crawler_tab.Text">
+    <value xml:space="preserve">Pages</value>
+  </data>
+  <data name="Crawler_url.Text" version="deprecated">
+    <value xml:space="preserve">Pages</value>
+  </data>
+  <data name="Module_Answers.Text">
+    <value xml:space="preserve">Réponses</value>
+  </data>
+  <data name="Module_Blogs.Text">
+    <value xml:space="preserve">Blogs</value>
+  </data>
+  <data name="Module_Events.Text">
+    <value xml:space="preserve">Événements</value>
+  </data>
+  <data name="Module_Ideas.Text">
+    <value xml:space="preserve">Idées</value>
+  </data>
+  <data name="Module_Text/HTML.Text">
+    <value xml:space="preserve">Pages</value>
+  </data>
+  <data name="Crawler_user.Text">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="Module_Journal.Text">
+    <value>Journal</value>
+  </data>
+  <data name="Module_Group Directory.Text" xml:space="preserve">
+    <value>Répertoire du groupe</value>
+  </data>
+  <!---->
+</root>

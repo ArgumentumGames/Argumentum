@@ -1,0 +1,33 @@
+{
+  "name": "2sxc-mobius-forms",
+  "version": "10.00.00",
+  "description": "2sxc Forms",
+  "main": "",
+  "scripts": {
+    "build-prod": "webpack",
+    "copy-staging2live": "(ROBOCOPY staging live /MIR /XD) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
+  },
+  "author": "2sic internet solutions",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "css-loader": "^2.1.1",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.13.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^2.1.2",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
+    "webpackbar": "^3.2.0"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.3.29",
+    "smokejs": "^3.1.0"
+  }
+}

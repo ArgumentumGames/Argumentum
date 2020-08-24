@@ -1,0 +1,46 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@{
+  var termGroups = AsList(App.Data["Term"])
+    .GroupBy(l => l.Title.Substring(0, 1).ToUpper())    // group by first letter
+    .OrderBy(s => s.Key);                               // sort asc
+}
+
+<div class="app-glossary" @Edit.TagToolbar(toolbar: "contentitems?contentType=Term")>
+  <nav class="navbar navbar-expand-md navbar-light px-0 py-1 py-md-0">
+    <span class="navbar-brand d-block d-md-none font-weight-bold">@App.Resources.GlossaryMenu</span>
+    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#glossaryNav" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse pr-5 pr-md-0 my-2 my-md-0" id="glossaryNav">
+      <ul class="navbar-nav flex-row flex-wrap">
+        @foreach(var grp in termGroups) {
+          <li class="nav-item">
+            <a class="nav-link" href='@Tags.SafeUrl("#" + grp.Key)'>@grp.Key</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </nav>
+
+  @foreach (var grp in termGroups) {
+    <div class="mb-5">
+      <h2 id="@grp.Key" class="mt-3">@grp.Key</h2>
+      @foreach (var term in grp) {
+        <div class="mb-2" @Edit.TagToolbar(term, toolbar: new [] {
+          "%delete&show=true",
+          "%new&show=true?contentType=Term&entityId=0",
+          "-layout"
+        })>
+          <strong>@(Text.Has(term.Abbreviation) ? term.Abbreviation + " – " : "")@term.Title</strong>
+          <p class="mb-0">@term.Summary</p>
+          <small><a href='@Tags.SafeUrl(Link.To(parameters: "term=" + term.UrlKey))'>@App.Resources.MoreText</a></small>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<link rel="stylesheet" href="@App.Path/dist/bs4.min.css" data-enableoptimizations="bottom" />
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="200:bottom"></script>

@@ -1,0 +1,67 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/_helpers.cshtml"); 
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Tags BR/NewLine Conversions <em>v1.1</em></h2>
+  <p>
+    These demos show how to convert BR tags to spaces, New-Lines or New-Lines to BRs. 
+  </p>
+  @rzrHelp.ApiLinks(new string[] { 
+    "Tags.Br2Nl(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Br2Nl_System_String_",
+    "Tags.Br2Space(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Br2Space_System_String_",
+    "Tags.Nl2Br(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Nl2Br_System_String_",
+  })
+</trim>
+@using ToSic.Razor.Blade;
+@{
+    var val1 = "This is a text.\nSecond line.\nThird line.";
+    var val1br = Tags.Nl2Br(val1);
+    var val1Back = Tags.Br2Nl(val1br);
+    var val1Space = Tags.Br2Space(val1br);
+}
+
+<h2>Simple example</h2>
+
+<table class="table table-hover">
+  <tr>
+    <th class="w-25">This is...</th>
+    <th class="w-33">Shown as plain text</th>
+    <th class="w-33">Shown as HTML</th>
+  </tr>
+  <tr>
+    <td>Original</td>
+    <td><textarea rows="4">@val1</textarea></td>
+    <td>@val1</td>
+  </tr>
+  <tr>
+    <td>Converting with Tags.Nl2Br(...)</td>
+    <td><textarea rows="4">@val1br</textarea></td>
+    <td>@Html.Raw(val1br)</td>
+  </tr>
+  <tr>
+    <td>Convert the br back with Tags.Br2Nl</td>
+    <td><textarea rows="4">@val1Back</textarea></td>
+    <td>@val1Back</td>
+  </tr>
+  <tr>
+    <td>Cleaning BR as Space with Tags.Br2Space</td>
+    <td><textarea rows="4">@val1Space</textarea></td>
+    <td>@val1Space</td>
+  </tr>
+
+</table>
+
+<hide>
+  <style>
+    textarea {
+        width: 100%;
+        /* height: 50px; */
+    }
+  </style>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres des résultats de la recherche</value>
+  </data>
+  <data name="filtersRequired.Text" xml:space="preserve">
+    <value xml:space="preserve">Au moins un type de contenu doit être sélectionné</value>
+  </data>
+  <data name="linkTargetOnSamePage.Text" xml:space="preserve">
+    <value xml:space="preserve">Sur la même page</value>
+  </data>
+  <data name="linkTargetOpenNewPage.Text" xml:space="preserve">
+    <value xml:space="preserve">Dnas une nouvelle page</value>
+  </data>
+  <data name="plEnableWildSearch.Help" xml:space="preserve">
+    <value xml:space="preserve">Une recherche peut être effectuée en tapant les mots partiels, par exemple taper « org » trouvera « organisation » ou « organiser ». Désactiver cette option si l'affichage des résultats prend trop de temps.</value>
+  </data>
+  <data name="plEnableWildSearch.Text" xml:space="preserve">
+    <value xml:space="preserve">Activer les recherches génériques/partielles "wildcard" par défaut</value>
+  </data>
+  <data name="plResultsScopeForFilters.Help" xml:space="preserve">
+    <value xml:space="preserve">Limiter les résultats de la recherche en sélectionnant le(s) type(s) de contenu</value>
+  </data>
+  <data name="plResultsScopeForFilters.Text" xml:space="preserve">
+    <value xml:space="preserve">Portée des résultats pour le(s) type(s) de contenu</value>
+  </data>
+  <data name="plResultsScopeForPortals.Help" xml:space="preserve">
+    <value xml:space="preserve">Limiter les résultats de la recherche en sélectionnant le(s) site(s)</value>
+  </data>
+  <data name="plResultsScopeForPortals.Text" xml:space="preserve">
+    <value xml:space="preserve">Portée de résultats pour le(s) site(s)</value>
+  </data>
+  <data name="plTitleLinkTarget.Help" xml:space="preserve">
+    <value xml:space="preserve">Déterminer si le lien s'ouvrira dans la même page ou dans une nouvelle fenêtre</value>
+  </data>
+  <data name="plTitleLinkTarget.Text" xml:space="preserve">
+    <value xml:space="preserve">Cible du lien</value>
+  </data>
+  <data name="portalsRequired.Text" xml:space="preserve">
+    <value xml:space="preserve">Au moins un site doit être sélectionné</value>
+  </data>
+  <data name="plShowDescriptionForSnippet.Help" xml:space="preserve">
+    <value>Voir la description au lieu de l’extrait de code. L'extrait sera toujours affiché si la description n’est pas présente.</value>
+  </data>
+  <data name="plShowDescriptionForSnippet.Text" xml:space="preserve">
+    <value>Voir la description à la place de l’extrait de la recherche</value>
+  </data>
+  <data name="plShowFriendlyTitle.Help" xml:space="preserve">
+    <value>Afficher le titre de la page au lieu de son nom interne.</value>
+  </data>
+  <data name="plShowFriendlyTitle.Text" xml:space="preserve">
+    <value>Afficher titre convivial (friendly)</value>
+  </data>
+  <!---->
+</root>

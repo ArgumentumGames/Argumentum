@@ -1,0 +1,38 @@
+﻿//
+// This SCSS generates the css for the general styles
+//
+// It is used by all CSS generators (Bootstrap3/4, etc.)
+// To keep things simple, it uses the standard variables of
+// bootstrap 4 conventions.
+
+@media all {
+  .app-empdir-wrapper {
+    a {
+      &.card {
+        &:hover {
+          cursor: pointer;
+        }
+
+        .img-placeholder {
+          padding-bottom: 100%;
+        }
+      }
+    }
+  }
+
+  .app-empdir-details {
+    .emp-image {
+      min-width: 140px;
+    }
+
+    .img-placeholder {
+      padding-bottom: 100%;
+
+      @include media-breakpoint-down(sm) {
+        padding-bottom: 0;
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+}

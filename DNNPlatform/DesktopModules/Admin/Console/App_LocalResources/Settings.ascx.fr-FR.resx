@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllowResize.Help" xml:space="preserve">
+    <value xml:space="preserve">Permettre aux utilisateurs de redimensionner les icônes.</value>
+  </data>
+  <data name="AllowResize.Text" xml:space="preserve">
+    <value xml:space="preserve">Icônes redimensionnables</value>
+  </data>
+  <data name="AllowViewChange.Help" xml:space="preserve">
+    <value xml:space="preserve">Permettre la commutation entre les vues détaillées et simples.</value>
+  </data>
+  <data name="AllowViewChange.Text" xml:space="preserve">
+    <value xml:space="preserve">Permettre le changement de vue</value>
+  </data>
+  <data name="ConsoleWidth.Help" xml:space="preserve">
+    <value xml:space="preserve">Laisser cette valeur vide pour permettre aux icônes de s’agrandir à l’horizontal. Entrer une valeur pour minimiser la largeur de la console. Par exemple entrez 400 pour avoir 2 colonnes d’icônes.</value>
+  </data>
+  <data name="ConsoleWidth.Text">
+    <value xml:space="preserve">Largeur</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres de la console</value>
+  </data>
+  <data name="DefaultSize.Help" xml:space="preserve">
+    <value xml:space="preserve">Détermine la taille de l'icône.</value>
+  </data>
+  <data name="DefaultSize.Text" xml:space="preserve">
+    <value xml:space="preserve">Taille d'icône par défaut</value>
+  </data>
+  <data name="DefaultView.Help" xml:space="preserve">
+    <value xml:space="preserve">Détermine la vue par défaut. La vue simple affichera des icônes avec la description des pages en infobulle. La vue détaille affichera une liste avec la description pour chaque élément.</value>
+  </data>
+  <data name="DefaultView.Text" xml:space="preserve">
+    <value xml:space="preserve">Vue par défaut</value>
+  </data>
+  <data name="Friends.Text">
+    <value xml:space="preserve">Amis</value>
+  </data>
+  <data name="Group.Text">
+    <value xml:space="preserve">Groupe</value>
+  </data>
+  <data name="Hide.Text" xml:space="preserve">
+    <value xml:space="preserve">Vue simple</value>
+  </data>
+  <data name="IconFile.Text" xml:space="preserve">
+    <value xml:space="preserve">Petites icônes (16px)</value>
+  </data>
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value xml:space="preserve">Icônes larges (32px)</value>
+  </data>
+  <data name="IconNone.Text" xml:space="preserve">
+    <value xml:space="preserve">Aucun icônes</value>
+  </data>
+  <data name="IncludeParent.Help" xml:space="preserve">
+    <value xml:space="preserve">Cochez cette case pour inclure également la page parente.</value>
+  </data>
+  <data name="IncludeParent.Text" xml:space="preserve">
+    <value xml:space="preserve">Inclure parent</value>
+  </data>
+  <data name="Members.Text">
+    <value xml:space="preserve">Membres</value>
+  </data>
+  <data name="Mode.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez le mode du module.</value>
+  </data>
+  <data name="Mode.Text">
+    <value xml:space="preserve">Mode</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;p&gt;Le module console affiche les pages enfants avec des icônes/liens ou des catégories. Le module possède 4 modes d'affichage différents :&lt;ul&gt;&lt;li&gt;petites icônes avec les détails en infobulle (Petites icônes, Vue simple)&lt;/li&gt;&lt;li&gt;icônes larges avec les détails en infobulle (Icônes larges, Vue simple)&lt;/li&gt;&lt;li&gt;liste de petites icônes avec les détails  (Petites icônes, Vue détaillée)&lt;/li&gt;&lt;li&gt;liste d'icônes larges avec les détails  (Icônes larges, Vue détaillée)&lt;/P&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Paramètres de la page dont le module console dépend:&lt;/h3&gt;&lt;table cellpadding="4" border="1" style="border:solid 1px #dcdcdc;border-collapse:collapse;"&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Nom de la page&lt;/td&gt;&lt;td&gt;Le nom de la page est affiché en tant que titre du lien&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Description de la page&lt;/td&gt;&lt;td&gt;&lt;p&gt;La description de la page est affichée en tant qu'infobulle ou via les détails&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Désactivé&lt;/td&gt;&lt;td&gt;&lt;p&gt;Les titres des catégories sont affichés si la page est désactivée. Les pages enfants de celle-ci seront affichées sont le titre.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Fichier icône&lt;/td&gt;&lt;td&gt;&lt;p&gt;L'icône est affichée dans la vue avec petites icônes.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Fichier icône large&lt;/td&gt;&lt;td&gt;L'icône est affichée dans la vue avec  icônes larges.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;i&gt;Astuce: Le paramètre 'Inclus dans le menu' cachera les pages du menu mais pas de la console.&lt;/i&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;Paramètres du module console&lt;/h3&gt;&lt;table cellpadding="4" border="1" style="border:solid 1px #dcdcdc;border-collapse:collapse;"&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Afficher enfant de&lt;/td&gt;&lt;td&gt;&lt;p&gt;Sélectionner une page affichera toutes les pages enfants de celle-ci. Laisser ce champ vide pour afficher toutes les pages enfant de la page actuelle.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Taille de l'icône&lt;/td&gt;&lt;td&gt;Détermine la taille par défaut de l'icône.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Permettre le redimensionnement des icônes&lt;/td&gt;&lt;td&gt;Permet à l'utilisateur de redimensionner les icônes&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Vue par défaut&lt;/td&gt;&lt;td&gt;&lt;p&gt;Détermine la vue par défaut. La vue simple affichera les icônes avec la description en infobulle tandis que la vue détaillée affichera une liste avec la description pour chaque élément.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Permettre le changement de vue&lt;/td&gt;&lt;td&gt;&lt;p&gt;Autorise l'utilisateur à alterner entre la vue simple et la vue détaillée.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Afficher infobulle&lt;/td&gt;&lt;td&gt;&lt;p&gt;Affiche une infobulle avec la description détaillée lors du passage du curseur de la souris sur les icônes en mode Vue simple.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Icônes redimensionnables&lt;/td&gt;&lt;td&gt;&lt;p&gt;Laisser cette valeur vide pour permettre aux icônes de s'agrandir à l'horizontal. Entrer une valeur pour minimiser la largeur de la console. Par exemple entrez 400 pour avoir 2 colonnes d'icônes.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;i&gt;Astuce: Vous pouvez empêcher les utilisateurs de modifier le squelette de la page en décochant &amp;quot;Permettre le changement de vue&amp;quot; et &amp;quot;Icônes redimensionnables&amp;quot;&lt;/i&gt;</value>
+  </data>
+  <data name="Normal.Text">
+    <value xml:space="preserve">Normal</value>
+  </data>
+  <data name="Owner.Text">
+    <value xml:space="preserve">Propriétaire</value>
+  </data>
+  <data name="ParentTab.Help" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner une page qui affichera toutes ses pages enfants. Laisser ce champ vierge pour afficher toutes les pages enfants pour la actuelle.</value>
+  </data>
+  <data name="ParentTab.Text" xml:space="preserve">
+    <value xml:space="preserve">Montrer aux enfants de</value>
+  </data>
+  <data name="Profile.Text">
+    <value xml:space="preserve">Profil</value>
+  </data>
+  <data name="Show.Text" xml:space="preserve">
+    <value xml:space="preserve">Vue détaillée</value>
+  </data>
+  <data name="ShowTooltip.Help" xml:space="preserve">
+    <value xml:space="preserve">Affiche une infobulle avec une description détaillée au survol des icônes dans la vue simple.</value>
+  </data>
+  <data name="ShowTooltip.Text" xml:space="preserve">
+    <value xml:space="preserve">Afficher les info-bulles</value>
+  </data>
+  <data name="tabsLabel.Help" xml:space="preserve">
+    <value xml:space="preserve">Vous pouvez gérer la visibilité des pages individuelles.</value>
+  </data>
+  <data name="tabsLabel.Text" xml:space="preserve">
+    <value xml:space="preserve">Paramètres de visibilité de la page :</value>
+  </data>
+  <data name="User.Text">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Help" xml:space="preserve">
+    <value>Si activé alors la liste des pages sera réorganisée de manière à placer les pages ayant des pages enfants en fin de liste. Cela permet d’avoir l’ensemble des pages de même niveau regroupé au même endroit.</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Text" xml:space="preserve">
+    <value>Trier les éléments par hiérarchie</value>
+  </data>
+  <data name="IncludeHiddenPages.Help" xml:space="preserve">
+    <value>Pages cachées incluses si coché</value>
+  </data>
+  <data name="IncludeHiddenPages.Text" xml:space="preserve">
+    <value>Inclure les pages cachées</value>
+  </data>
+  <!---->
+</root>

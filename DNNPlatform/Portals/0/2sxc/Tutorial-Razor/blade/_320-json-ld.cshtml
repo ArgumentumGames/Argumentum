@@ -1,0 +1,37 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> add JSON-LD Headers <em>v1.1</em></h2>
+  <div>
+    This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
+  </div>
+</trim>
+
+@{
+  // example adding a json-ld as a string
+  HtmlPage.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+}
+@{
+  // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
+  var jsonLd = new Dictionary<string, object> {
+    { "@context", "https://schema.org"},
+    { "@type", "Organization"},
+    { "url", "http://www.example.com"},
+    { "name", "Unlimited Ball Bearings Corp."},
+    { "contactPoint", new Dictionary<string, object> {
+      {"@type", "ContactPoint"},
+      {"telephone", "+1-401-555-1212"},
+      {"contactType", "Customer service"}
+    }}
+  };
+
+  HtmlPage.AddJsonLd(jsonLd);
+}
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

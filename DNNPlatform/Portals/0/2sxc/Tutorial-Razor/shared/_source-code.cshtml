@@ -1,0 +1,75 @@
+@using System.Text.RegularExpressions;
+@using ToSic.Razor.Blade;
+@{
+  // get parameters
+  var titleInParams = PageData["Title"] as string;
+  var filePath = PageData["Path"];
+  var file = PageData["File"];
+  var titlePath = PageData["TitlePath"] as string;
+
+  var wrap = PageData["Wrap"] != null ? (Boolean)PageData["Wrap"] : false;
+
+  if(file != null) {
+    if(file.IndexOf(".") == -1) {
+      file = "_" + file + ".cshtml";
+    }
+    var lastSlash = filePath.LastIndexOf("/");
+    filePath = filePath.Substring(0, lastSlash) + "/" + file;
+  }
+  var fileInTitle = titlePath + file;
+  var title = titleInParams ?? "Source Code of " + (file == null ? "this file" : fileInTitle);
+  var paramSize = PageData["Size"];
+  int size = paramSize != null ? (paramSize as int?).Value : 600;
+  var language = "ace/mode/" + (PageData["Language"] ?? "razor");
+
+  // load source code
+  var fullPath = (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) ? Server.MapPath(filePath) : filePath;  string source = System.IO.File.ReadAllText(fullPath);
+
+  // remove the unimportant parts which might confuse the user
+  const string hideMarker = "@* hide *@";
+  var hideFrom = source.IndexOf(hideMarker);
+  if(hideFrom > 0)
+  {
+    source = source.Substring(0, hideFrom) + "...";
+  }
+
+  // trim unnecessary comments
+  var patternTrim = @"(?:<trim>)([\s\S]*?)(?:</trim>)";
+
+  source = Regex.Replace(source, patternTrim, m => { 
+    var part = Tags.Strip(m.ToString());
+    return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
+  });
+
+  // hide unnecessary parts
+  var patternHide = @"(?:<hide>)([\s\S]*?)(?:</hide>)";
+
+  source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->" );
+
+  var rndId = Guid.NewGuid().ToString();
+
+}
+
+<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" async="false"></script>
+
+<hr>
+<h2>@title</h2>
+<p>
+  Below you'll see the source code of the file. Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
+</p>
+
+<pre id='@("source" + rndId)' style="height: @(size + "px"); font-size: 16px">@source</pre>
+
+<script>
+    var editor = ace.edit('@("source" + rndId)', { 
+      useWrapMode: true,
+      maxLines: 30
+    });
+    editor.setTheme("ace/theme/sqlserver");
+    editor.session.setMode("@language");
+    editor.session.setOptions({
+      wrap: @(wrap ? "true" : "false"),
+    })
+</script>
+

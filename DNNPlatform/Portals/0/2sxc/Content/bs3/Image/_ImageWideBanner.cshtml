@@ -1,0 +1,22 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@* This adds all link/script tags *@
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles"})
+
+@{
+  // this is the parameter passed in from the calling page
+  var width = PageData["width"];
+  var height = PageData["height"];
+
+	var quality = 75;
+}
+<div class="co-container-outer">
+	<div class="co-container-inner">
+    <div class="co-header" @Edit.TagToolbar(Content)>
+      @(Tag.Img()
+        .Class("co-header-image")
+        .Src(Content.Image + "?w=" + width + "&h=" + height + "&anchor=" + Content.CropAnchor + "&mode=crop&scale=both&quality=" + quality)
+        .Alt(Content.Title))
+    </div>
+  </div>
+</div>

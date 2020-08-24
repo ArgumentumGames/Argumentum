@@ -1,0 +1,38 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@* This adds all link/script tags *@
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles"})
+
+@{
+  // get helper commands
+  var linkHelper = CreateInstance("_LinkHelper.cshtml");
+}
+
+<div class="co-container-outer">
+	<div class="co-container-inner co-button-wrapper text-center mb-4">
+    @foreach (var link in AsList(Data))
+    {
+      // run helper command
+      var linkInfo = linkHelper.LinkInfos(link.Link, link.Window, link.Icon);
+
+      <div @Edit.TagToolbar(link)>
+        <div class="co-title">
+          @if(link.Presentation.HeadingType != "hide")
+          {
+            @((Tag.Custom(link.Presentation.HeadingType)).Wrap(
+              link.Title,
+              Tag.Br(),
+              Tag.Small(link.Description)
+            ))
+          }
+        </div>
+        @if(linkInfo.Found) {
+          <a target="@linkInfo.Window" class="btn btn-primary" href="@link.Link">
+            <i class="co-icon fas @linkInfo.Icon" aria-hidden="true"></i>
+            <span>@link.LinkText</span>
+          </a>
+        }
+      </div>
+    }
+  </div>
+</div>

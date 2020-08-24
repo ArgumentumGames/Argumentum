@@ -1,0 +1,42 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@* This adds all link/script tags *@
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles,scripts,height"})
+
+@{
+  // get helper commands
+  var linkHelper = CreateInstance("_LinkHelper.cshtml");
+}
+
+<div class="co-container-outer">
+	<div class="co-container-inner co-navigation co-navigation-@(Dnn.Module.ModuleID) co-navigation-icon co-navigation-text">
+    <div class="row">
+      @foreach (var link in AsList(Data))
+      {
+        var linkInfo = linkHelper.LinkInfos(link.Link, link.Window, link.Icon);
+
+        <div class="col col-xs-12 col-sm-6 col-md-4 sync-height-with-neighbors mb-4" @Edit.TagToolbar(link)>
+          @if(linkInfo.Found)
+          {
+            @Tag.A().Class("co-link-box").Title(link.Title).Href(link.Link).Target(linkInfo.Window).TagStart
+          }
+          <div class="row">
+            <div class="col col-xs-2"><i class="co-icon text-primary fas @linkInfo.Icon" aria-hidden="true"></i></div>
+            <div class="col col-xs-10">
+              <h3>@link.Title</h3>
+              <p>@Html.Raw(Tags.Nl2Br(link.Description))</p>
+              @if(Text.Has(link.Link))
+              {
+                <span class="text-primary co-link">@link.LinkText&nbsp;<span>&rsaquo;</span></span>
+              }
+            </div>
+          </div>
+          @if(linkInfo.Found)
+          {
+            @Tag.A().TagEnd
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasicSettings.Text" xml:space="preserve">
+    <value>Configuration de base</value>
+  </data>
+  <data name="cmdCancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="cmdExport.Text" xml:space="preserve">
+    <value>Créer modèle</value>
+  </data>
+  <data name="ControlTitle_template.Text" xml:space="preserve">
+    <value>Créer le modèle de site</value>
+  </data>
+  <data name="DefaultLanguage.Text" xml:space="preserve">
+    <value>{0} est la langue par défaut du site sélectionné</value>
+  </data>
+  <data name="ErrorPages.Text" xml:space="preserve">
+    <value>Vous devez sélectionner au moins une page à exporter.</value>
+  </data>
+  <data name="ExportedMessage.Text" xml:space="preserve">
+    <value>Le nouveau modèle de site a été enregistré dans le dossier :&lt;br/&gt;&lt;b&gt;{0}&lt;/ b&gt;</value>
+  </data>
+  <data name="lblAdminOnly.Text" xml:space="preserve">
+    <value>Visible uniquement aux administrateurs</value>
+  </data>
+  <data name="lblDisabled.Text" xml:space="preserve">
+    <value>Page désactivée</value>
+  </data>
+  <data name="lblEveryone.Text" xml:space="preserve">
+    <value>Page visible pour tout le monde</value>
+  </data>
+  <data name="lblFiles.Help" xml:space="preserve">
+    <value>Cocher cette option si vous souhaitez exporter tous les dossiers/fichiers du site lors de la création du nouveau gabarit.</value>
+  </data>
+  <data name="lblFiles.Text" xml:space="preserve">
+    <value>Inclure les fichiers</value>
+  </data>
+  <data name="lblHidden.Text" xml:space="preserve">
+    <value>Page invisible dans le menu</value>
+  </data>
+  <data name="lblHome.Text" xml:space="preserve">
+    <value>Page d’accueil du site</value>
+  </data>
+  <data name="lblLanguages.Help" xml:space="preserve">
+    <value>Cette option permet de sélectionner quelles langues seront présentes dans le gabarit lors de l'exportation des pages.</value>
+  </data>
+  <data name="lblLanguages.Text" xml:space="preserve">
+    <value>Exporter les langues</value>
+  </data>
+  <data name="lblModules.Help" xml:space="preserve">
+    <value>Cocher cette option afin d’inclure le module de déploiement des permissions dans le gabarit exporté. Soyez conscient que si vous activez cette option il sera nécessaire d’exporter les rôles.</value>
+  </data>
+  <data name="lblModules.Text" xml:space="preserve">
+    <value>Inclure les autorisations de déploiement de module</value>
+  </data>
+  <data name="lblMultilanguage.Help" xml:space="preserve">
+    <value>Si le site exporté avait le contenu localisé d’activé alors vous devez décider si vous souhaitez créer un gabarit de site multilingue ou un gabarit de site monolingue.</value>
+  </data>
+  <data name="lblMultilanguage.Text" xml:space="preserve">
+    <value>Exporter en tant que site multilingue</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>La langue par défaut ({0}) sera toujours exportée.</value>
+  </data>
+  <data name="lblNoteSingleLanguage.Text" xml:space="preserve">
+    <value>Remarque : la langue par défaut est &lt;b&gt;: {0}&lt;/b&gt;</value>
+  </data>
+  <data name="lblPages.Help" xml:space="preserve">
+    <value>Sélectionner les pages à exporter.&lt;br /&gt;Si vous avez l'intention d'utiliser le modèle exporté pour créer un nouveau site, assurez-vous de sélectionner une partie ou l'intégralité des pages d'administration. Si aucune page admin n'est disponible dans le modèle, le nouveau site n'aura pas de menu admin.</value>
+  </data>
+  <data name="lblPages.Text" xml:space="preserve">
+    <value>Pages à exporter</value>
+  </data>
+  <data name="lblProfile.Help" xml:space="preserve">
+    <value>Cocher cette option si vous souhaitez exporter les définitions de propriétés de profil lors de la création du nouveau gabarit.</value>
+  </data>
+  <data name="lblProfile.Text" xml:space="preserve">
+    <value>Inclure les propriétés de profil</value>
+  </data>
+  <data name="lblRedirect.Text" xml:space="preserve">
+    <value>Redirection de page</value>
+  </data>
+  <data name="lblRegistered.Text" xml:space="preserve">
+    <value>Visible des utilisateurs identifiés</value>
+  </data>
+  <data name="lblRoles.Help" xml:space="preserve">
+    <value>Cocher cette option si vous souhaitez exporter les rôles lors de la création du nouveau gabarit.</value>
+  </data>
+  <data name="lblRoles.Text" xml:space="preserve">
+    <value>Inclure les rôles</value>
+  </data>
+  <data name="lblSecure.Text" xml:space="preserve">
+    <value>Visible aux rôles dédiés uniquement</value>
+  </data>
+  <data name="lblSelectLanguages.Text" xml:space="preserve">
+    <value>-- Sélectionner langues --</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;A propos de la création de gabarits&lt;/h1&gt;&lt;p&gt;Cette fonction permet de créer des gabarits qui pourront être utilisés pour créer de nouveaux sites&lt;/p&gt;</value>
+  </data>
+  <data name="nav_Sites.Text">
+    <value>Sites</value>
+  </data>
+  <data name="plContent.Help" xml:space="preserve">
+    <value>Cocher cette option si vous souhaitez exporter tous les modules lors de la création du nouveau gabarit.</value>
+  </data>
+  <data name="plContent.Text" xml:space="preserve">
+    <value>Inclure le contenu</value>
+  </data>
+  <data name="plDescription.Help" xml:space="preserve">
+    <value>Décrivez ce gabarit en quelques lignes</value>
+  </data>
+  <data name="plDescription.Text" xml:space="preserve">
+    <value>Description du modèle</value>
+  </data>
+  <data name="plPortals.Help" xml:space="preserve">
+    <value>Sélectionnez le site qui servira de gabarit</value>
+  </data>
+  <data name="plPortals.Text">
+    <value>Site</value>
+  </data>
+  <data name="plTemplateName.Help" xml:space="preserve">
+    <value>Donnez un nom pour le Fichier de gabarit qui sera créé</value>
+  </data>
+  <data name="plTemplateName.Text" xml:space="preserve">
+    <value>Nom du fichier modèle</value>
+  </data>
+  <data name="PortalSetup.Text">
+    <value>Configuration</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Configuration avancée</value>
+  </data>
+  <data name="titleTemplateInfo.Text" xml:space="preserve">
+    <value>Info du modèle de site</value>
+  </data>
+  <data name="valDescription.ErrorMessage" xml:space="preserve">
+    <value>Une description du modèle est requise</value>
+  </data>
+  <data name="valFileName.ErrorMessage" xml:space="preserve">
+    <value>Vous devez donner un nom au gabarit</value>
+  </data>
+  <data name="SiteDetails_Pages.Text">
+    <value>Pages</value>
+  </data>
+  <data name="SiteDetails_SiteID.Text" xml:space="preserve">
+    <value>ID site</value>
+  </data>
+  <data name="SiteDetails_Updated.Text" xml:space="preserve">
+    <value>Mis à jour</value>
+  </data>
+  <data name="SiteDetails_Users.Text">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="CancelPortalDelete.Text">
+    <value>Non</value>
+  </data>
+  <data name="ConfirmPortalDelete.Text">
+    <value>Oui</value>
+  </data>
+  <data name="deletePortal.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer {0} ?</value>
+  </data>
+  <data name="AddNewSite.Header" xml:space="preserve">
+    <value>Ajouter un nouveau site</value>
+  </data>
+  <data name="AssignCurrentUserAsAdmin.Label" xml:space="preserve">
+    <value>Assigner l’utilisateur actuel en tant qu’administrateur</value>
+  </data>
+  <data name="cmdCreateSite.Text" xml:space="preserve">
+    <value>Appliquer cette configuration</value>
+  </data>
+  <data name="Description.Label">
+    <value>Description</value>
+  </data>
+  <data name="Directory.Text">
+    <value>Répertoire</value>
+  </data>
+  <data name="Domain.Text">
+    <value>Domaine</value>
+  </data>
+  <data name="HomeDirectory.Label" xml:space="preserve">
+    <value>Répertoire de base</value>
+  </data>
+  <data name="SiteTemplate.Label" xml:space="preserve">
+    <value>Modèle de site</value>
+  </data>
+  <data name="SiteType.Label" xml:space="preserve">
+    <value>Type de site :</value>
+  </data>
+  <data name="SiteUrl.Label" xml:space="preserve">
+    <value>URL du site</value>
+  </data>
+  <data name="Title.Label">
+    <value>Titre</value>
+  </data>
+  <data name="CreateSite_AdminEmail.Label">
+    <value>Courriel</value>
+  </data>
+  <data name="CreateSite_AdminFirstName.Label">
+    <value>Prénom</value>
+  </data>
+  <data name="CreateSite_AdminLastName.Label">
+    <value>Nom</value>
+  </data>
+  <data name="CreateSite_AdminPassword.Label" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="CreateSite_AdminPasswordConfirm.Label" xml:space="preserve">
+    <value>Confirmer le mot de passe</value>
+  </data>
+  <data name="CreateSite_AdminUserName.Label" xml:space="preserve">
+    <value>Nom d’utilisateur de l'administrateur</value>
+  </data>
+  <data name="CreateSite_SelectTemplate.Overlay" xml:space="preserve">
+    <value>Cliquer pour sélectionner le modèle</value>
+  </data>
+  <data name="EmailRequired.Error" xml:space="preserve">
+    <value>Email requis.</value>
+  </data>
+  <data name="FirstNameRequired.Error" xml:space="preserve">
+    <value>Le prénom est requis.</value>
+  </data>
+  <data name="LastNameRequired.Error" xml:space="preserve">
+    <value>Le nom de famille est requis.</value>
+  </data>
+  <data name="PasswordConfirmRequired.Error" xml:space="preserve">
+    <value>&lt;br&gt;Vous devez confirmer votre mot de passe.</value>
+  </data>
+  <data name="PasswordRequired.Error" xml:space="preserve">
+    <value>Mot de passe requis. Veuillez entrer un minimum de 7 caractères.</value>
+  </data>
+  <data name="SiteAliasRequired.Error" xml:space="preserve">
+    <value>Un alias de site est requis.</value>
+  </data>
+  <data name="SiteTitleRequired.Error" xml:space="preserve">
+    <value>Le titre du site est requis.</value>
+  </data>
+  <data name="UsernameRequired.Error" xml:space="preserve">
+    <value>Le nom d’utilisateur est requis.</value>
+  </data>
+  <data name="PortalDeletionDenied.Text" xml:space="preserve">
+    <value>La suppression du site n'est pas autorisée.</value>
+  </data>
+  <data name="PortalNotFound.Text" xml:space="preserve">
+    <value>Site introuvable.</value>
+  </data>
+  <data name="LoadMore.Button" xml:space="preserve">
+    <value>Charger plus</value>
+  </data>
+  <data name="ErrorAncestorPages.Text" xml:space="preserve">
+    <value>Vous devez sélectionner tous les "ancêtres" depuis le "niveau racine" afin d'y inclure une page enfant.</value>
+  </data>
+  <data name="ChildExists.Text" xml:space="preserve">
+    <value>Le site enfant spécifié existe dejà.&lt;br&gt;Choisissez un nom différent svp.</value>
+  </data>
+  <data name="DuplicatePortalAlias.Text" xml:space="preserve">
+    <value>L'alias spécifié existe déjà. Choisissez un autre nom.</value>
+  </data>
+  <data name="DuplicateWithTab.Text" xml:space="preserve">
+    <value>Il existe déjà une page avec le même nom que celui saisi pour l'alias du site de ce site. Veuillez changer l'alias du site et essayez à nouveau.</value>
+  </data>
+  <data name="InvalidHomeFolder.Text" xml:space="preserve">
+    <value>Le dossier racine spécifié n'est pas valide.</value>
+  </data>
+  <data name="InvalidName.Text" xml:space="preserve">
+    <value>Le nom du site ne doit pas contenir des espaces ou des ponctuations.</value>
+  </data>
+  <data name="InvalidPassword.Text" xml:space="preserve">
+    <value>Les mots de passes saisis ne correspondent pas.</value>
+  </data>
+  <data name="SendMail.Error" xml:space="preserve">
+    <value>Une erreur est survenue lors de l'envoi des emails de confirmations - {0}. Cependant le site web à été créé. &lt;a href='{1}' {2}&gt; Cliquez ici pour accéder au nouveau site&lt;/a&gt;</value>
+  </data>
+  <data name="UnknownEmailAddress.Error" xml:space="preserve">
+    <value>Il n'y a aucune adresse de courriel de spécifiée au niveau du site et/ou de l'hôte.</value>
+  </data>
+  <data name="UnknownSendMail.Error" xml:space="preserve">
+    <value>Une erreur est survenue lors de l'envoi des emails de confirmations. Cependant le site web à été créé. &lt;a href='{0}' {1}&gt; Cliquez ici pour accéder au nouveau site&lt;/a&gt;</value>
+  </data>
+  <data name="BackToSites.Text" xml:space="preserve">
+    <value>&lt; Retour aux sites</value>
+  </data>
+  <data name="DeleteSite.Text" xml:space="preserve">
+    <value>Supprimer le site</value>
+  </data>
+  <data name="ExportTemplate.Text" xml:space="preserve">
+    <value>Créer le gabarit</value>
+  </data>
+  <data name="SiteSettings.Text">
+    <value>Paramétrage</value>
+  </data>
+  <data name="ViewSite.Text" xml:space="preserve">
+    <value>Voir le site</value>
+  </data>
+  <data name="SiteExport.Text" xml:space="preserve">
+    <value>Exportation du site</value>
+  </data>
+  <data name="SiteImport.Text" xml:space="preserve">
+    <value>Importation du site</value>
+  </data>
+  <data name="AddNewSite.Text" xml:space="preserve">
+    <value>Ajouter un nouveau site</value>
+  </data>
+  <data name="Sites.Text">
+    <value>Sites</value>
+  </data>
+  <data name="Description.Text">
+    <value>Description</value>
+  </data>
+  <!---->
+</root>

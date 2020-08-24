@@ -1,0 +1,34 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Safe Attributes API @@Tag.Attr <em>v3</em></h2>
+  <div>
+    Here we'll go through some examples using <code>@@Tag.Attr(...)</code>
+  </div>
+</trim>
+
+<trim>
+<hr>
+<h2>Creating Simple Attributes</h2>
+</trim>
+@{
+  var titleWithIssues = "I said \"check this out!\" \n\n even 'different quotes' and line breaks work!";
+  var cls = "alert alert-";
+  cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
+}
+<div @Tag.Attr("title", titleWithIssues) 
+  @Tag.Attr("class", cls)
+  @Tag.Attr("number", 27)>
+  <trim>
+  This is a simple demo showing how to add the <code>title</code> and <code>class</code> attribute using code. <br>
+  It switches between warning/primary depending of the second being odd or even. Refresh the page to see the difference. <br>
+  If you mouse-over, you'll also see the tooltips showing stuff which would cause trouble otherwise.
+  </trim>
+</div>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

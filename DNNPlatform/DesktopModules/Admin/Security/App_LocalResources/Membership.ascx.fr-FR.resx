@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="Approved.Help" xml:space="preserve">
+    <value xml:space="preserve">Utilisateur autorisé ?.</value>
+  </data>
+  <data name="Approved.Text" xml:space="preserve">
+    <value xml:space="preserve">Autorisé :</value>
+  </data>
+  <data name="cmdAuthorize.Text" xml:space="preserve">
+    <value xml:space="preserve">Autoriser l'utilisateur</value>
+  </data>
+  <data name="cmdPassword.Text" xml:space="preserve">
+    <value xml:space="preserve">Forcer le changement de mot de passe</value>
+  </data>
+  <data name="cmdUnAuthorize.Text" xml:space="preserve">
+    <value xml:space="preserve">Interdire l'accès</value>
+  </data>
+  <data name="cmdUnLock.Text" xml:space="preserve">
+    <value xml:space="preserve">Déverrouillage du compte</value>
+  </data>
+  <data name="CreatedDate.Help" xml:space="preserve">
+    <value xml:space="preserve">Date d'inscription de cet utilisateur</value>
+  </data>
+  <data name="CreatedDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Date de création :</value>
+  </data>
+  <data name="IsDeleted.Help" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur a-t-il été supprimé</value>
+  </data>
+  <data name="IsDeleted.Text">
+    <value xml:space="preserve">Supprimé</value>
+  </data>
+  <data name="IsOnLine.Help" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur en ligne :</value>
+  </data>
+  <data name="IsOnLine.Text" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur en ligne :</value>
+  </data>
+  <data name="LastActivityDate.Help" xml:space="preserve">
+    <value xml:space="preserve">Date de la dernière activité de l'utilisateur</value>
+  </data>
+  <data name="LastActivityDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Date de la dernière activité :</value>
+  </data>
+  <data name="LastLockoutDate.Help" xml:space="preserve">
+    <value xml:space="preserve">Dernière date à laquelle l'utilisateur a été bloqué pour cause d'erreurs de saisie de mot de passe répétées</value>
+  </data>
+  <data name="LastLockoutDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Dernière date de bloquage :</value>
+  </data>
+  <data name="LastLoginDate.Help" xml:space="preserve">
+    <value xml:space="preserve">Date de dernière connexion :</value>
+  </data>
+  <data name="LastLoginDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Date de dernière connexion :</value>
+  </data>
+  <data name="LastPasswordChangeDate.Help" xml:space="preserve">
+    <value xml:space="preserve">Dernier changement de mot de passe :</value>
+  </data>
+  <data name="LastPasswordChangeDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Dernier changement de mot de passe :</value>
+  </data>
+  <data name="LockedOut.Help" xml:space="preserve">
+    <value xml:space="preserve">Le compte est-il bloqué suite à un trop grand nombre de tentative de connexions infructueuses</value>
+  </data>
+  <data name="LockedOut.Text">
+    <value xml:space="preserve">Verrouillé</value>
+  </data>
+  <data name="Never.Text">
+    <value xml:space="preserve">Jamais</value>
+  </data>
+  <data name="OptionUnavailable.Text" xml:space="preserve">
+    <value xml:space="preserve">L'option de réinitialisation de mot de passe est actuellement indisponible.</value>
+  </data>
+  <data name="UpdatePassword.Help" xml:space="preserve">
+    <value xml:space="preserve">Forcer l'utilisateur à mettre à jour son mot de passe</value>
+  </data>
+  <data name="UpdatePassword.Text" xml:space="preserve">
+    <value xml:space="preserve">Mise à jour du mot de passe :</value>
+  </data>
+  <data name="DemoteFromSuperUser.Text" xml:space="preserve">
+    <value>Rétrograder en tant que "simple" utilisateur.</value>
+  </data>
+  <data name="PromoteToSuperUser.Text" xml:space="preserve">
+    <value>Promouvoir en tant que super utilisateur.</value>
+  </data>
+  <data name="UserFolder.Help" xml:space="preserve">
+    <value>Le dossier servant à stocker les fichiers de l'utilisateur</value>
+  </data>
+  <data name="UserFolder.Text" xml:space="preserve">
+    <value>Dossier utilisateur</value>
+  </data>
+  <!---->
+</root>

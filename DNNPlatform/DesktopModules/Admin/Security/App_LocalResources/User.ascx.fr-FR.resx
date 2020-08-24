@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="CaptchaText.Text" xml:space="preserve">
+    <value xml:space="preserve">Saisissez le code apparaissant ci-dessus</value>
+  </data>
+  <data name="cmdAdd.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un utilisateur</value>
+  </data>
+  <data name="cmdRemove.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="cmdRestore.Text">
+    <value xml:space="preserve">Rétablir</value>
+  </data>
+  <data name="ComparePasswordsValidator.ErrorMessage" xml:space="preserve">
+    <value xml:space="preserve">Le mot de passe et sa confirmation ne correspondent pas.</value>
+  </data>
+  <data name="ConfirmUnRegister.Text" xml:space="preserve">
+    <value xml:space="preserve">Etes-vous certain(e) de vouloir vous désinscrire ?</value>
+  </data>
+  <data name="CreateUser.Text" xml:space="preserve">
+    <value xml:space="preserve">Créer l'utilisateur</value>
+  </data>
+  <data name="Delete.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="HideSiteList.Text" xml:space="preserve">
+    <value xml:space="preserve">Masquer la liste des sites</value>
+  </data>
+  <data name="InvalidCaptcha.Text" xml:space="preserve">
+    <value xml:space="preserve">Code de sécurité incorrect</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value xml:space="preserve">Mot de passe</value>
+  </data>
+  <data name="PasswordHelpAdmin.Text" xml:space="preserve">
+    <value xml:space="preserve">Saisissez un mot de passe pour cet utilisateur ou laissez le système se charger de sa création</value>
+  </data>
+  <data name="PasswordHelpUser.Text" xml:space="preserve">
+    <value xml:space="preserve">Saisissez un mot de passe</value>
+  </data>
+  <data name="plAnswer.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez la réponse à la question secrète.</value>
+  </data>
+  <data name="plAnswer.Text" xml:space="preserve">
+    <value xml:space="preserve">Réponse secrète :</value>
+  </data>
+  <data name="plAuthorize.Help" xml:space="preserve">
+    <value xml:space="preserve">Autoriser cet utilisateur</value>
+  </data>
+  <data name="plAuthorize.Text" xml:space="preserve">
+    <value xml:space="preserve">Autorisé :</value>
+  </data>
+  <data name="plConfirm.Help" xml:space="preserve">
+    <value xml:space="preserve">Re-saisissez le mot de passe pour confirmation</value>
+  </data>
+  <data name="plConfirm.Text" xml:space="preserve">
+    <value xml:space="preserve">Confirmation :</value>
+  </data>
+  <data name="plNotify.Help" xml:space="preserve">
+    <value xml:space="preserve">Envoyez un message à l'adresse Email de l'utilisateur</value>
+  </data>
+  <data name="plNotify.Text" xml:space="preserve">
+    <value xml:space="preserve">Notification :</value>
+  </data>
+  <data name="plPassword.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez votre mot de passe</value>
+  </data>
+  <data name="plPassword.Text" xml:space="preserve">
+    <value xml:space="preserve">Mot de passe :</value>
+  </data>
+  <data name="plQuestion.Help" xml:space="preserve">
+    <value xml:space="preserve">Saisissez une question secrète qui vous aidera à retrouver le mot de passe</value>
+  </data>
+  <data name="plQuestion.Text" xml:space="preserve">
+    <value xml:space="preserve">Question secrète :</value>
+  </data>
+  <data name="plRandom.Help" xml:space="preserve">
+    <value xml:space="preserve">Cochez cette case afin d'obtenir un mot de passe généré automatiquement par le système</value>
+  </data>
+  <data name="plRandom.Text" xml:space="preserve">
+    <value xml:space="preserve">Mot de passe auto généré</value>
+  </data>
+  <data name="UnRegister.Text">
+    <value xml:space="preserve">Désinscription</value>
+  </data>
+  <data name="UpdateUserName.Text" xml:space="preserve">
+    <value xml:space="preserve">Remarque : Cet utilisateur est enregistré dans {0} sites</value>
+  </data>
+  <data name="ViewSiteList.Text" xml:space="preserve">
+    <value xml:space="preserve">Voir la liste des sites</value>
+  </data>
+  <data name="DisplayNameNotUnique.Text" xml:space="preserve">
+    <value>Le nom d'affichage que vous avez saisi est déjà utilisé, veuillez en choisir un autre.</value>
+  </data>
+  <!---->
+</root>

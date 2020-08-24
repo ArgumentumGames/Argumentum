@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Servers.Text">
+    <value>Serveurs</value>
+  </data>
+  <data name="Servers.Text">
+    <value>Serveurs</value>
+  </data>
+  <data name="tabApplicationTitle.Text">
+    <value>Application</value>
+  </data>
+  <data name="tabDatabaseTitle.Text" xml:space="preserve">
+    <value>Base de données</value>
+  </data>
+  <data name="tabLogsTitle.Text" xml:space="preserve">
+    <value>Journal d'évènements</value>
+  </data>
+  <data name="tabPerformanceTitle.Text">
+    <value>Performance</value>
+  </data>
+  <data name="tabServerSettingsTitle.Text" xml:space="preserve">
+    <value>Paramètres du serveur</value>
+  </data>
+  <data name="tabSmtpServerTitle.Text" xml:space="preserve">
+    <value>Serveur SMTP</value>
+  </data>
+  <data name="tabSystemInfoTitle.Text" xml:space="preserve">
+    <value>Information système</value>
+  </data>
+  <data name="tabWebTitle.Text">
+    <value>Web</value>
+  </data>
+  <data name="ServerInfo_Framework.Help" xml:space="preserve">
+    <value>La version de .NET.</value>
+  </data>
+  <data name="ServerInfo_Framework.Text" xml:space="preserve">
+    <value>.NET Framework Version :</value>
+  </data>
+  <data name="ServerInfo_HostName.Help" xml:space="preserve">
+    <value>Le nom de l'ordinateur hôte.</value>
+  </data>
+  <data name="ServerInfo_HostName.Text" xml:space="preserve">
+    <value>Nom d'hôte :</value>
+  </data>
+  <data name="ServerInfo_Identity.Help" xml:space="preserve">
+    <value>Le compte d'utilisateur Windows sous lequel l'application est exécutée. Ceci est le compte qui doit disposer d’autorisations sur le dossier adéquate du serveur.</value>
+  </data>
+  <data name="ServerInfo_Identity.Text" xml:space="preserve">
+    <value>ASP.NET identity :</value>
+  </data>
+  <data name="ServerInfo_IISVersion.Help" xml:space="preserve">
+    <value>La version de Internet Information Server (IIS).</value>
+  </data>
+  <data name="ServerInfo_IISVersion.Text" xml:space="preserve">
+    <value>Web Server Version :</value>
+  </data>
+  <data name="ServerInfo_OSVersion.Help" xml:space="preserve">
+    <value>La version de Windows sur le serveur.</value>
+  </data>
+  <data name="ServerInfo_OSVersion.Text" xml:space="preserve">
+    <value>OS Version :</value>
+  </data>
+  <data name="ServerInfo_PhysicalPath.Help" xml:space="preserve">
+    <value>L'emplacement physique de la racine du site sur le serveur.</value>
+  </data>
+  <data name="ServerInfo_PhysicalPath.Text" xml:space="preserve">
+    <value>Chemin d'accès physique :</value>
+  </data>
+  <data name="ServerInfo_RelativePath.Help" xml:space="preserve">
+    <value>La position relative de l'application par rapport à la racine du site.</value>
+  </data>
+  <data name="ServerInfo_RelativePath.Text" xml:space="preserve">
+    <value>Chemin d'accès relatif :</value>
+  </data>
+  <data name="ServerInfo_ServerTime.Help" xml:space="preserve">
+    <value>La date et l'heure actuelles pour ce serveur web.</value>
+  </data>
+  <data name="ServerInfo_ServerTime.Text" xml:space="preserve">
+    <value>Heure du serveur :</value>
+  </data>
+  <data name="ServerInfo_Url.Help" xml:space="preserve">
+    <value>L'URL principale pour ce site.</value>
+  </data>
+  <data name="ServerInfo_Url.Text" xml:space="preserve">
+    <value>URL du site :</value>
+  </data>
+  <data name="errorMessageLoadingWebTab.Text" xml:space="preserve">
+    <value>Erreur lors du chargement de l'onglet Web</value>
+  </data>
+  <data name="clearCacheButtonLabel.Text" xml:space="preserve">
+    <value>Effacer le cache</value>
+  </data>
+  <data name="errorMessageClearingCache.Text" xml:space="preserve">
+    <value>Erreur lors de la tentative de suppression du cache</value>
+  </data>
+  <data name="errorMessageLoadingApplicationTab.Text" xml:space="preserve">
+    <value>Erreur lors du chargement de l'onglet Application</value>
+  </data>
+  <data name="errorMessageRestartingApplication.Text" xml:space="preserve">
+    <value>Erreur lors de la tentative de redémarrage de l'application</value>
+  </data>
+  <data name="HostInfo_CachingProvider.Help" xml:space="preserve">
+    <value>Le provider de cache par défaut pour ce site.</value>
+  </data>
+  <data name="HostInfo_CachingProvider.Text" xml:space="preserve">
+    <value>Fournisseur de mise en cache :</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlEnabled.Help" xml:space="preserve">
+    <value>Indique si la réécriture d'URL (friendly) est activée pour ce site.</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlEnabled.Text" xml:space="preserve">
+    <value>Réécriture d'URLs activées :</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlProvider.Help" xml:space="preserve">
+    <value>Le fournisseur de Friendly URL par défaut pour le site.</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlProvider.Text" xml:space="preserve">
+    <value>Fournisseur (provider) d'URL conviviale</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlType.Help" xml:space="preserve">
+    <value>Affiche le type de réécriture d'URL (friendly) utilisée pour ce site.</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlType.Text" xml:space="preserve">
+    <value>Forme des réécritures d'URL :</value>
+  </data>
+  <data name="HostInfo_HtmlEditorProvider.Help" xml:space="preserve">
+    <value>Le fournisseur de l'éditeur HTML par défaut pour le site.</value>
+  </data>
+  <data name="HostInfo_HtmlEditorProvider.Text" xml:space="preserve">
+    <value>Fournisseur de l'éditeur HTML :</value>
+  </data>
+  <data name="HostInfo_LoggingProvider.Help" xml:space="preserve">
+    <value>Le provider de log par défaut pour ce site.</value>
+  </data>
+  <data name="HostInfo_LoggingProvider.Text" xml:space="preserve">
+    <value>Provider de logs</value>
+  </data>
+  <data name="HostInfo_Permissions.Help" xml:space="preserve">
+    <value>Le Code Accès Sécuritaire (CAS) disponible pour ce site.</value>
+  </data>
+  <data name="HostInfo_Permissions.Text" xml:space="preserve">
+    <value>Autorisations de CAS :</value>
+  </data>
+  <data name="HostInfo_SchedulerMode.Help" xml:space="preserve">
+    <value>Le mode défini pour la planification. La méthode « minuterie » maintient un thread séparé pour exécuter les tâches prévues. Alternativement, la méthode «  requête » exécute des tâches lorsque les demandes HTTP sont faites. Le planificateur peut également être désactivé.</value>
+  </data>
+  <data name="HostInfo_SchedulerMode.Text" xml:space="preserve">
+    <value>Mode du planificateur :</value>
+  </data>
+  <data name="HostInfo_WebFarmEnabled.Help" xml:space="preserve">
+    <value>Indique si le site fonctionne dans une ferme de serveurs Web.</value>
+  </data>
+  <data name="HostInfo_WebFarmEnabled.Text" xml:space="preserve">
+    <value>Ferme de serveurs web activée :</value>
+  </data>
+  <data name="infoMessageClearingCache.Text" xml:space="preserve">
+    <value>Effacement du cache</value>
+  </data>
+  <data name="infoMessageRestartingApplication.Text" xml:space="preserve">
+    <value>Redémarrage de l'application</value>
+  </data>
+  <data name="plDataProvider.Help" xml:space="preserve">
+    <value>Le fournisseur de données par défaut pour cette application.</value>
+  </data>
+  <data name="plDataProvider.Text" xml:space="preserve">
+    <value>Fournisseur de données :</value>
+  </data>
+  <data name="plGUID.Help" xml:space="preserve">
+    <value>Identificateur global unique servant à identifier l'application</value>
+  </data>
+  <data name="plGUID.Text" xml:space="preserve">
+    <value>Hôte GUID :</value>
+  </data>
+  <data name="plProduct.Help" xml:space="preserve">
+    <value>L'application que vous utilisez</value>
+  </data>
+  <data name="plProduct.Text" xml:space="preserve">
+    <value>Produit :</value>
+  </data>
+  <data name="plVersion.Help" xml:space="preserve">
+    <value>La version de cette application.</value>
+  </data>
+  <data name="plVersion.Text" xml:space="preserve">
+    <value>Version :</value>
+  </data>
+  <data name="restartApplicationButtonLabel.Text" xml:space="preserve">
+    <value>Redémarrer l'application</value>
+  </data>
+  <data name="UserRestart.Text" xml:space="preserve">
+    <value>Utiliser un déclencheur pour redémarrer l'application</value>
+  </data>
+  <data name="DbInfo_ProductEdition.Help" xml:space="preserve">
+    <value>La version de SQL Server installée.</value>
+  </data>
+  <data name="DbInfo_ProductEdition.Text" xml:space="preserve">
+    <value>Édition du produit :</value>
+  </data>
+  <data name="DbInfo_ProductVersion.Help" xml:space="preserve">
+    <value>La version de SQL Server</value>
+  </data>
+  <data name="DbInfo_ProductVersion.Text" xml:space="preserve">
+    <value>Version de base de données :</value>
+  </data>
+  <data name="DbInfo_ServicePack.Help" xml:space="preserve">
+    <value>Service Pack(s) installé(s).</value>
+  </data>
+  <data name="DbInfo_ServicePack.Text" xml:space="preserve">
+    <value>Service pack :</value>
+  </data>
+  <data name="DbInfo_SoftwarePlatform.Help" xml:space="preserve">
+    <value>La description complète du serveur SQL installé.</value>
+  </data>
+  <data name="DbInfo_SoftwarePlatform.Text" xml:space="preserve">
+    <value>Plate-forme logicielle :</value>
+  </data>
+  <data name="errorMessageLoadingDatabaseTab.Text" xml:space="preserve">
+    <value>Erreur lors du chargement de l'onglet Base de données</value>
+  </data>
+  <data name="BackupFinished.Text">
+    <value>Terminé</value>
+  </data>
+  <data name="BackupName.Text" xml:space="preserve">
+    <value>Nom de la sauvegarde</value>
+  </data>
+  <data name="BackupSize.Text" xml:space="preserve">
+    <value>Taille (Kb)</value>
+  </data>
+  <data name="BackupStarted.Text">
+    <value>Démarré</value>
+  </data>
+  <data name="BackupType.Text" xml:space="preserve">
+    <value>Type de sauvegarde</value>
+  </data>
+  <data name="FileName.Text" xml:space="preserve">
+    <value>Nom de fichier</value>
+  </data>
+  <data name="FileType.Text" xml:space="preserve">
+    <value>Type de fichier</value>
+  </data>
+  <data name="Name.Text">
+    <value>Nom</value>
+  </data>
+  <data name="NoBackups.Text" xml:space="preserve">
+    <value>Cette base de données n'a pas été sauvegardée.</value>
+  </data>
+  <data name="plBackups.Text" xml:space="preserve">
+    <value>Historique des sauvegardes de base de données :</value>
+  </data>
+  <data name="plFiles.Text" xml:space="preserve">
+    <value>Fichiers de base de données :</value>
+  </data>
+  <data name="Size.Text">
+    <value>Taille</value>
+  </data>
+  <data name="EmailTest.Text">
+    <value>Tester</value>
+  </data>
+  <data name="errorMessageLoadingSmtpServerTab.Text" xml:space="preserve">
+    <value>Erreur lors du chargement de l'onglet Serveur SMTP</value>
+  </data>
+  <data name="GlobalSettings.Text" xml:space="preserve">
+    <value>Il s'agit de paramètres globaux. Les modifications apportées à ces paramètres affecteront tous vos sites.</value>
+  </data>
+  <data name="GlobalSmtpHostSetting.Text">
+    <value>Global</value>
+  </data>
+  <data name="plBatch.Help" xml:space="preserve">
+    <value>Nombre de messages envoyés par le planificateur de messagerie à chaque traitement.</value>
+  </data>
+  <data name="plBatch.Text" xml:space="preserve">
+    <value>Nombre de messages envoyés à chaque traitement :</value>
+  </data>
+  <data name="plConnectionLimit.Help" xml:space="preserve">
+    <value>Le nombre maximal de connexions autorisées sur cet objet ServicePoint. La valeur maximale est 2147483647. La valeur par défaut est 2.</value>
+  </data>
+  <data name="plConnectionLimit.Text" xml:space="preserve">
+    <value>Limite de connexion :</value>
+  </data>
+  <data name="plMaxIdleTime.Help" xml:space="preserve">
+    <value>Durée, en millisecondes, pendant laquelle une connexion associée à l'objet ServicePoint peut rester inactive avant d'être fermée et réutilisée pour une autre connexion. La valeur maximale est 2147483647. La valeur par défaut est 100 000 (100 secondes).</value>
+  </data>
+  <data name="plMaxIdleTime.Text" xml:space="preserve">
+    <value>Temps "Idle" maximum :</value>
+  </data>
+  <data name="plSMTPAuthentication.Help" xml:space="preserve">
+    <value>Entrez la méthode d'authentification du serveur SMTP. La valeur par défaut est Anonyme.</value>
+  </data>
+  <data name="plSMTPAuthentication.Text" xml:space="preserve">
+    <value>Identification SMTP :</value>
+  </data>
+  <data name="plSMTPEnableSSL.Help" xml:space="preserve">
+    <value>Utilisé pour les services SMTP nécessitant une connexion sécurisée. Ce paramètre n'est généralement pas nécessaire.</value>
+  </data>
+  <data name="plSMTPEnableSSL.Text" xml:space="preserve">
+    <value>SMTP SSL :</value>
+  </data>
+  <data name="plSMTPMode.Help" xml:space="preserve">
+    <value>Le mode hôte utilise les paramètres SMTP définis au niveau de l'application. Le « niveau site » vous permet de sélectionner vos propres options vis-à-vis du SMTP.</value>
+  </data>
+  <data name="plSMTPMode.Text" xml:space="preserve">
+    <value>Mode serveur SMTP :</value>
+  </data>
+  <data name="plSMTPPassword.Help" xml:space="preserve">
+    <value>Entrer le mot de passe pour le serveur SMTP.</value>
+  </data>
+  <data name="plSMTPPassword.Text" xml:space="preserve">
+    <value>Mot de Passe :</value>
+  </data>
+  <data name="plSMTPServer.Help" xml:space="preserve">
+    <value>Veuillez saisir le nom (adresse) et le port du serveur SMTP à utiliser pour l'envoi d'emails à partir de ce site.</value>
+  </data>
+  <data name="plSMTPServer.Text" xml:space="preserve">
+    <value>Serveur SMTP :</value>
+  </data>
+  <data name="plSMTPUsername.Help" xml:space="preserve">
+    <value>Entrer le nom d’utilisateur pour le serveur SMTP.</value>
+  </data>
+  <data name="plSMTPUsername.Text" xml:space="preserve">
+    <value>Nom d'utilisateur :</value>
+  </data>
+  <data name="SaveButtonText.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="SiteSmtpHostSetting.Text">
+    <value>{0}</value>
+  </data>
+  <data name="SMTPAnonymous.Text">
+    <value>Anonyme</value>
+  </data>
+  <data name="SMTPBasic.Text" xml:space="preserve">
+    <value>De base</value>
+  </data>
+  <data name="SMTPNTLM.Text" xml:space="preserve">
+    <value>Identification Windows</value>
+  </data>
+  <data name="errorMessageLoadingLog.Text" xml:space="preserve">
+    <value>Erreur lors du chargement du journal.</value>
+  </data>
+  <data name="errorMessageLoadingLogsTab.Text" xml:space="preserve">
+    <value>Erreur lors du chargement de l'onglet Journaux</value>
+  </data>
+  <data name="Logs_LogFiles.Text" xml:space="preserve">
+    <value>Fichiers journaux :</value>
+  </data>
+  <data name="Logs_LogFilesDefaultOption.Text" xml:space="preserve">
+    <value>Veuillez sélectionner un fichier journal à consulter</value>
+  </data>
+  <data name="Logs_LogFilesTooltip.Text" xml:space="preserve">
+    <value>Liste des fichiers journaux disponibles.</value>
+  </data>
+  <data name="errorMessageUpdatingSmtpServerTab.Text" xml:space="preserve">
+    <value>Erreur lors de la mise à jour des paramètres du serveur SMTP</value>
+  </data>
+  <data name="errorMessageLoadingPerformanceTab.Text" xml:space="preserve">
+    <value>Erreur lors du chargement de l'onglet Performance</value>
+  </data>
+  <data name="PerformanceTab_CacheSetting.Help" xml:space="preserve">
+    <value>Ajuster le niveau de performances.</value>
+  </data>
+  <data name="PerformanceTab_CacheSetting.Text" xml:space="preserve">
+    <value>Paramètre de cache</value>
+  </data>
+  <data name="PerformanceTab_Heavy.Text" xml:space="preserve">
+    <value>Cache important</value>
+  </data>
+  <data name="PerformanceTab_Light.Text" xml:space="preserve">
+    <value>Cache léger</value>
+  </data>
+  <data name="PerformanceTab_Memory.Text" xml:space="preserve">
+    <value>En mémoire</value>
+  </data>
+  <data name="PerformanceTab_Moderate.Text" xml:space="preserve">
+    <value>Cache moyen</value>
+  </data>
+  <data name="PerformanceTab_None.Text">
+    <value>Aucune</value>
+  </data>
+  <data name="PerformanceTab_Page.Text">
+    <value>Page</value>
+  </data>
+  <data name="PerformanceTab_PageStatePersistenceMode.Help" xml:space="preserve">
+    <value>Sélectionner le mode à utiliser pour la persistance d'état de la page. Cela peut être un champ caché sur la page (par défaut) ou en mémoire (cache).</value>
+  </data>
+  <data name="PerformanceTab_PageStatePersistenceMode.Text" xml:space="preserve">
+    <value>Persistance de l'état de page :</value>
+  </data>
+  <data name="PerformanceTab_AuthCacheability.Help" xml:space="preserve">
+    <value>Spécifie la valeur du cache HTTP pour les utilisateurs authentifiés.</value>
+  </data>
+  <data name="PerformanceTab_AuthCacheability.Text" xml:space="preserve">
+    <value>Mise en cache authentifiée</value>
+  </data>
+  <data name="PerformanceTab_CachingProvider.Help" xml:space="preserve">
+    <value>Fournisseur de mise en cache</value>
+  </data>
+  <data name="PerformanceTab_CachingProvider.Text" xml:space="preserve">
+    <value>Fournisseur de mise en cache</value>
+  </data>
+  <data name="PerformanceTab_ClientResourceManagementInfo.Text" xml:space="preserve">
+    <value>Le super utilisateur dicte le comportement par défaut de gestion des ressources client, mais si vous choisissez de le faire, vous pouvez configurer votre site afin qu'il se comporte différemment. Les paramètres au niveau de l'hôte sont actuellement définis comme suit :</value>
+  </data>
+  <data name="PerformanceTab_ClientResourceManagementTitle.Text" xml:space="preserve">
+    <value>Gestion des ressources client</value>
+  </data>
+  <data name="PerformanceTab_ClientResourcesManagementMode.Help" xml:space="preserve">
+    <value>Le mode hôte utilise les paramètres de gestion des ressources client définis au niveau de l'application. Le réglage au niveau du site vous permet de sélectionner vos propres paramètres de gestion des ressources client.</value>
+  </data>
+  <data name="PerformanceTab_ClientResourcesManagementMode.Text" xml:space="preserve">
+    <value>Mode de gestion des ressources client</value>
+  </data>
+  <data name="PerformanceTab_CurrentHostVersion.Text" xml:space="preserve">
+    <value>Version actuelle de l’hôte :</value>
+  </data>
+  <data name="PerformanceTab_EnableCompositeFiles.Help" xml:space="preserve">
+    <value>Les fichiers composites sont des combinaisons de ressources (JavaScript et CSS) créées afin de réduire le nombre de fichiers à charger par le navigateur. Ceci réduira significativement le temps de chargement de vos pages.</value>
+  </data>
+  <data name="PerformanceTab_EnableCompositeFiles.Text" xml:space="preserve">
+    <value>Activer les fichiers composites</value>
+  </data>
+  <data name="PerformanceTab_GlobalClientResourcesManagementMode.Text">
+    <value>Global</value>
+  </data>
+  <data name="PerformanceTab_IncrementVersion.Text" xml:space="preserve">
+    <value>Incrémenter la version</value>
+  </data>
+  <data name="PerformanceTab_MinifyCss.Help" xml:space="preserve">
+    <value>La minification CSS réduira la taille du code CSS en utilisant des expressions régulières pour supprimer les commentaires, les espaces et les "CSS morts". Ceci n'est disponible que lorsque les fichiers composites sont activés.</value>
+  </data>
+  <data name="PerformanceTab_MinifyCss.Text" xml:space="preserve">
+    <value>Réduire CSS</value>
+  </data>
+  <data name="PerformanceTab_MinifyJs.Help" xml:space="preserve">
+    <value>La réduction JS réduira le poids du Javscript en utilisant JSMin. Cette option requiert l’activation des fichiers composites.</value>
+  </data>
+  <data name="PerformanceTab_MinifyJs.Text" xml:space="preserve">
+    <value>Réduire JS</value>
+  </data>
+  <data name="PerformanceTab_ModuleCacheProviders.Help" xml:space="preserve">
+    <value>Sélectionner le fournisseur de cache de module par défaut. Ce paramètre peut être supplanté par chaque module.</value>
+  </data>
+  <data name="PerformanceTab_ModuleCacheProviders.Text" xml:space="preserve">
+    <value>Fournisseur de cache du module</value>
+  </data>
+  <data name="PerformanceTab_PageCacheProviders.Help" xml:space="preserve">
+    <value>Sélectionner le fournisseur de mise en cache de page par défaut. Le fournisseur de mise en cache doit être activé en définissant la durée de vie du cache sur chaque page.</value>
+  </data>
+  <data name="PerformanceTab_PageCacheProviders.Text" xml:space="preserve">
+    <value>Fournisseur de cache de sortie de page</value>
+  </data>
+  <data name="PerformanceTab_SiteClientResourcesManagementMode.Text" xml:space="preserve">
+    <value>Mon site web {0}</value>
+  </data>
+  <data name="PerformanceTab_SslForCacheSyncrhonization.Help" xml:space="preserve">
+    <value>Par défaut, la synchronisation du cache s'effectuera en HTTP. Cocher ceci pour utiliser SSL pour la synchronisation du cache.</value>
+  </data>
+  <data name="PerformanceTab_SslForCacheSyncrhonization.Text" xml:space="preserve">
+    <value>Utiliser SSL pour la synchronisation du cache</value>
+  </data>
+  <data name="PerformanceTab_UnauthCacheability.Help" xml:space="preserve">
+    <value>Spécifie la valeur du cache HTTP pour les utilisateurs non authentifiés.</value>
+  </data>
+  <data name="PerformanceTab_UnauthCacheability.Text" xml:space="preserve">
+    <value>Mise en cache non authentifiée</value>
+  </data>
+  <data name="EmailSentMessage.Text" xml:space="preserve">
+    <value>Email envoyé correctement de {0} à {1}</value>
+  </data>
+  <data name="errorMessageSendingTestEmail.Text" xml:space="preserve">
+    <value>Une erreur s'est produite lors de l'envoi de l'e-mail de test</value>
+  </data>
+  <data name="NoIntegerValueError.Text" xml:space="preserve">
+    <value>Ceci doit être un nombre entier positif.</value>
+  </data>
+  <data name="PerformanceTab_CurrentPortalVersion.Text" xml:space="preserve">
+    <value>Version du site :</value>
+  </data>
+  <data name="errorMessageIncrementingVersion.Text" xml:space="preserve">
+    <value>Erreur lors de l'incrémentation du numéro de version.</value>
+  </data>
+  <data name="errorMessageSavingPerformanceSettingsTab.Text" xml:space="preserve">
+    <value>Erreur lors de l'enregistrement des paramètres de performances</value>
+  </data>
+  <data name="PerformanceTab_AjaxWarning.Text" xml:space="preserve">
+    <value>Attention : la mise en mémoire de la persistance de l'état de la page peut provoquer des problèmes Ajax.</value>
+  </data>
+  <data name="PerformanceTab_MinifactionWarning.Text" xml:space="preserve">
+    <value>Remarque importante concernant les paramètres de minification.&lt;br/&gt;Si les paramètres de minification sont modifiés lorsque les fichiers composites sont activés, vous devez d'abord enregistrer les paramètres de minification en cliquant sur Enregistrer, puis incrémenter le numéro de version. Cela créera de nouveaux fichiers composites en utilisant les nouveaux paramètres de minification.</value>
+  </data>
+  <data name="PerformanceTab_PortalVersionConfirmMessage.Text" xml:space="preserve">
+    <value>Cette action obligera tous les visiteurs du site à télécharger de nouvelles versions des fichiers CSS et JavaScript. Vous ne devez le faire que si vous êtes certain que les fichiers ont été modifiés et que vous souhaitez que ces modifications soient répercutées sur le navigateur côté client.&lt;br /&gt;&lt;br /&gt;Voulez-vous vraiment augmenter le numéro de version de votre site ?</value>
+  </data>
+  <data name="PerformanceTab_PortalVersionConfirmNo.Text">
+    <value>Non</value>
+  </data>
+  <data name="PerformanceTab_PortalVersionConfirmYes.Text">
+    <value>Oui</value>
+  </data>
+  <data name="SaveConfirmationMessage.Text" xml:space="preserve">
+    <value>Sauvegarde réussie</value>
+  </data>
+  <data name="VersionIncrementedConfirmation.Text" xml:space="preserve">
+    <value>Version incrémentée avec succès</value>
+  </data>
+  <!---->
+</root>

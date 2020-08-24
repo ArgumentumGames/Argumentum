@@ -1,0 +1,18 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+<div class='iframe-holder' style='width:100%; max-width:100%;' @Edit.TagToolbar(Content)>
+  <iframe
+    src="@Tags.SafeUrl(Content.EmbedURL)"
+    scrolling='@(Content.EnableScrollbar == true ? "yes" : "no")'
+    style='max-width: 100%;
+        box-sizing: border-box;
+        border-top: 0px;
+        border-bottom: 0px;
+        margin: 0;
+        padding: 0;
+        height: @(Content.Height)px;
+        width: @(Content.Width)%;
+        overflow: @(Content.EnableScrollbar == true ? "auto" : "hidden");'>
+  </iframe>
+<div>

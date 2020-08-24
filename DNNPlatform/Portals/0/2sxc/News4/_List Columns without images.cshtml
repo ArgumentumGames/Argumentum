@@ -1,0 +1,41 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@{
+  var helpers = CreateInstance("shared/_helpers.cshtml");
+
+  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+}
+
+@* Show Toolbar Menu if admin *@
+@if(Edit.Enabled) {
+  @helpers.AdminToolbarMenu(Content)
+  @helpers.AdminDetailsPageConfigWarning()
+}
+
+<div class="app-news app-news-list">
+  @* Show title *@
+  <h1 class="mb-3">
+    @(filteredCategory != null ? filteredCategory.PageTitle : Content.Title)
+  </h1>
+
+  @* List the articles *@
+  <div class="row">
+    @foreach (var article in AsList(Data["News"])) {
+      <div class="col-12 col-md-6 col-lg-4" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
+        <div class="app-details-link">
+          <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
+          @* Show Title, Date, Category, Teaser and read more button *@
+          @RenderPage("shared/_Article Information.cshtml", new { Article = article, HeadingType = "h3" })
+        </div>
+      </div>
+    }
+  </div>
+
+  @* Show pagination if configured *@
+  @if (Content.ShowPagination) {
+    @RenderPage("shared/_List Paging.cshtml")
+  }
+</div>
+
+@RenderPage("shared/_Assets.cshtml")

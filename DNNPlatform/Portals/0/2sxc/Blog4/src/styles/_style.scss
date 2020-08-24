@@ -1,0 +1,57 @@
+//
+// This SCSS generates the css for the general styles
+//
+// It is used by all CSS generators (Bootstrap3/4, etc.)
+// To keep things simple, it uses the standard variables of
+// bootstrap 4 conventions.
+//
+
+// Kategorie nav
+
+body.va-layout-full {
+   nav {
+		&.co-category-list-container {
+			background:#FFF;
+			padding: $grid-gutter-width/2  $grid-gutter-width;
+		}
+	}
+}
+nav {
+	&.co-category-list-container {
+		padding: 0px;
+		border-left:5px solid $primary;
+		padding-left:$grid-gutter-width;
+		min-width:100%;
+			@include media-breakpoint-up(lg) {
+				width:310px;
+			}
+		h5 {
+      color: lighten( $body-color, 10% );
+      .rss-button {
+        width: 30px;
+      }
+		}
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding:0;
+			li {
+				a {
+					padding: $grid-gutter-width/4 0;
+					display:block;
+					transition:color .3s ease-in-out;
+
+					&:hover,
+					&:focus
+					{
+
+					}
+				}
+				span {
+					background:$gray-200;
+					color:lighten($body-color, 30%);
+				}
+			}
+		}
+	}
+}

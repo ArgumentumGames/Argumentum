@@ -1,0 +1,59 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@*
+  this is a partial template which is re-used in many other templates,
+  so it's shared here
+
+  expects
+  * "width" - an int
+*@
+
+@{
+  // configuration
+  var retina = true;
+  var quality = 75;
+  var lightboxQuality = 90;
+
+  // this is the parameter passed in from the calling page
+  var imgItem = PageData["img"];
+  int width = PageData["width"];
+  if(retina) {
+    width += width; // double if retina
+    quality = 50;
+    lightboxQuality = 75;
+  }
+
+  // prepare the title, either the default or the additional image caption
+  var title="";
+  if(imgItem.Presentation.TitleLightbox != false){
+    title = Text.Has(imgItem.ImageCaption) ? imgItem.ImageCaption : imgItem.Title;
+  }
+
+  // has image?
+  var hasImage = Text.Has(imgItem.Image);
+}
+
+@if(hasImage) {
+  <div class="co-img-wrapper">
+    @if (imgItem.Presentation.ImageLightbox != false) {
+      @Tag.A().Class("fancybox").Href(imgItem.Image + "?maxwidth=1400&maxheight=990&quality=" + lightboxQuality).Attr("data-caption", title).TagStart
+    }
+
+    <figure>
+      <div class="co-overlay">
+        @if(Text.Has(imgItem.ImageCaption)){
+          <figcaption class="pt-1">@imgItem.ImageCaption</figcaption>
+        }
+      </div>
+
+      @(Tag.Img()
+        .Class("img-responsive")
+        .Src(imgItem.Image + "?w=" + width + "&scale=both&quality=" + quality)
+        .Alt(title))
+    </figure>
+
+    @if (imgItem.Presentation.ImageLightbox != false) {
+      @Tag.A().TagEnd
+    }
+  </div>
+}

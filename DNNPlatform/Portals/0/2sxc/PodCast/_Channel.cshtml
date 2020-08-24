@@ -1,0 +1,108 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+@{
+  var episodes = Content.Parents("Episode") as Dynlist;
+  /* Counter which is brought for the identification of the individual episodes  */
+  var episodeNumber = 0;
+}
+
+<div class="container mb-4"  @Edit.TagToolbar(Content, toolbar: new [] { "settings&hover=left&autoAddMore=start" })>
+  <div class="row">
+    @* Left column with image, episode counter and channel description *@
+    <div class="col-12 col-md-4">
+      <div class="card border-0">
+        <img class="w-100 rounded-sm" src='@Tags.SafeUrl(Content.Image + "?w=1000&h=1000&mode=crop&quality=75")' />
+        <div class="card-body p-0">
+          <p class="card-text">
+            <p class="text-muted">@episodes.Count() @App.Resources.Episodes</p>
+            <hr>
+            <div class="pc-channel-description-desktop d-none d-md-block">@Html.Raw(Content.Description)</div>
+          </p>
+        </div>
+      </div>
+    </div>
+    @* Right column with the rest of the channel information and the episode listing *@
+    <div class="col-12 col-md-8">
+      <div class="card border-0 mb-4">
+        @* Channel Information *@
+        <div class="card-body p-0">
+          @if(Content.IsDemoItem){
+            <div class="alert alert-warning">
+              @Html.Raw(App.Resources.WarningIsShowingDemo)
+            </div>
+          }
+          <h3 class="card-title pc-channel-title">@Content.Title</h3>
+          <h5 class="card-subtitle mb-3 pc-owner-name">@Content.Owner.FullName</h5>
+          <div class="pc-channel-description-mobile d-block d-md-none">@Html.Raw(Content.Description)</div>
+          <div class="pc-channel-category-rss d-flex">
+            <p class="card-text text-muted mb-0 align-self-end">
+              @(Text.Has(Content.Category.SubCategory) ? Content.Category.SubCategory : Content.Category.MainCategory)
+            </p>
+            <a class="badge badge-pill d-flex justify-content-center bg-secondary flex-grow-1"
+              href='@Tags.SafeUrl(Link.To(parameters: "mid/" + Dnn.Module.ModuleID + "/rss/true/channelid/" + Content.EntityId + "/standalone/true"))'
+              target="_blank">
+              <i class="fas fa-rss align-self-center"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      @* Listing of episodes *@
+      @if(!Content.IsDemoItem) {
+        @Edit.Toolbar(toolbar: new [] {
+          "toolbar=empty",
+          "new?contentType=Episode&prefill:Date=" + @DateTime.Now.ToString("yyyy-MM-dd")
+            + "&prefill:Channels=" + Content.EntityGuid.ToString()
+            + "&prefill:Author=" + Content.Owner.EntityGuid.ToString()
+        })
+      }
+      <ul class="list-group">
+        @foreach(var episode in episodes.OrderByDescending(e => e.Date)) {
+          episodeNumber++;
+          @* Episode information *@
+          <li class="list-group-item border-right-0 border-left-0 p-0 pb-3 pt-3" @(Content.IsDemoItem ? "" : Edit.TagToolbar(episode, toolbar: new [] {
+            "-layout",
+            "%delete&show=true"
+          }))>
+            <p class="text-muted pc-episode-date font-weight-bold">@episode.Date.ToString("dd MMM yyyy")</p>
+            <h5 class="m-0">@episode.Title</h5>
+            <div class="text-muted">@Html.Raw(episode.Description)</div>
+            @* jPlayer audio player *@
+            <div id="jquery_jplayer_@episodeNumber" class="jp-jplayer episode-audio-@episodeNumber"
+                data-episode-audio="@episode.Audio"
+                data-episode-number="@episodeNumber">
+            </div>
+            <div class="pc-play-button-duration d-flex align-items-center">
+              <div id="jp_container_@episodeNumber" class="jp-audio d-inline-block mr-2 jp-audio-@episodeNumber">
+                <div class="jp-interface position-relative bg-primary py-2 jp-interface-@episodeNumber">
+                  <div class="jp-controls-holder d-flex align-items-center text-center jp-controls-holder-@episodeNumber">
+                    <div class="jp-controls flex-grow-1">
+                      <button class="jp-play pc-text-tertiary jp-play-@episodeNumber bg-transparent border-0" type="button">
+                        <i class="fas fa-play"></i>
+                      </button>
+                    </div>
+                    <div class="jp-current-time flex-grow-1 text-right pc-text-tertiary jp-current-time-@episodeNumber">&nbsp;</div>
+                    <div class="jp-progress position-relative mx-2 pc-bg-tertiary jp-progress-@episodeNumber">
+                      <div class="jp-seek-bar position-absoulte overflow-hidden pc-bg-tertiary">
+                        <div class="jp-play-bar h-100 bg-secondary jp-play-bar-@episodeNumber"></div>
+                      </div>
+                      <div class="pc-drag-handler position-absolute p-0 bg-secondary pc-drag-handler-@episodeNumber" data-episode-number="@episodeNumber"></div>
+                    </div>
+                    <div class="jp-duration flex-grow-1 pc-text-tertiary jp-duration-@episodeNumber">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+              <span class="pc-episode-duration pc-episode-duration-@episodeNumber text-muted">@episode.Duration</span>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="@App.Path/dist/bs4.min.css" data-enableoptimizations="true"/>
+<script type="text/javascript" src="@App.Path/dist/lib/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js"></script>

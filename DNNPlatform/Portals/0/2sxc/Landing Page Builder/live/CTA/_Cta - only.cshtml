@@ -1,0 +1,27 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@{ var parts = CreateInstance("../shared/_Parts.cshtml"); }
+
+<section class='app-landingpage-builder app-lp-cta-standalone @parts.SectionClasses()'
+    @parts.SectionStyle()
+    @Edit.TagToolbar(Header, toolbar: "settings&hover=left&autoAddMore=start")
+    >
+    @parts.BackgroundDiv()
+    <div class="container-fluid d-flex align-items-center">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-8 text-center mb-4" @Edit.TagToolbar(Content) @Edit.Attribute("quick-edit-config", new { modules = new { enable = true }})>
+                @if (Text.Has(Content.Title)) {
+                    <h1>@Content.Title</h1>
+                }
+                @if (Text.Has(Content.Body)) {
+                    <div class="content-body mb-3">
+                        @Html.Raw(Content.Body)
+                    </div>
+                }
+                @parts.CtaList(Content.CTA)
+            </div>
+        </div>
+    </div>
+</section>
+
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles,scripts" })

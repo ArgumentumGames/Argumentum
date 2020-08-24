@@ -1,0 +1,44 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@* Shows album title and introduction *@
+@helper AlbumTitle(dynamic album) {
+  if (album.Presentation.HeadingType != "hidden") {
+    @Tag.Custom(album.Presentation.HeadingType).Wrap(album.Title)
+  } else if(Edit.Enabled) {
+    <h2>(@App.Resources.TitleNotDisplayed)</h2>
+  }
+  <div class="mb-4">@Html.Raw(album.Introduction)</div>
+}
+
+@functions {
+  /**
+  * Returns the images, sorted by the passed setting
+  */
+  public dynamic GetImagesSorted(dynamic album) {
+    var images = AsAdam(album, "Images").Files as Dynlist;
+
+    switch ((string)album.Presentation.SortMode) {
+      case "File asc":
+        images = images.OrderBy(c => c.FileName);
+        break;
+      case "File desc":
+        images = images.OrderByDescending(c => c.FileName);
+        break;
+      case "Title asc":
+        images = images.OrderBy(c => !c.HasMetadata).ThenBy(c => !c.HasMetadata ? "" : ((dynamic)c.Metadata).Title);
+        break;
+      case "Title desc":
+        images = images.OrderBy(c => !c.HasMetadata).ThenByDescending(c => !c.HasMetadata ? "" : ((dynamic)c.Metadata).Title);
+        break;
+      case "Upload asc":
+        images = images.OrderBy(c => c.Modified);
+        break;
+      case "Upload desc":
+        images = images.OrderByDescending(c => c.Modified);
+        break;
+    }
+    return images;
+  }
+}

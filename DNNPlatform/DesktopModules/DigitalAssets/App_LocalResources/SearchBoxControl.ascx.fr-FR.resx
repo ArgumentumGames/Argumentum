@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="Search.Placeholder" xml:space="preserve">
+    <value>Entrer le terme à rechercher</value>
+  </data>
+  <data name="Search.Title">
+    <value>Chercher</value>
+  </data>
+  
+</root>

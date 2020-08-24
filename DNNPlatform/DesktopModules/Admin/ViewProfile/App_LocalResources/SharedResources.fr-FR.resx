@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DefaultTemplate.Text">
+    <value xml:space="preserve">&lt;div id="UserProfile"&gt;
+	&lt;img alt="Profile Avatar" class="ProfilePhoto" width="120" height="120" src="[PROFILE:PHOTO]" /&gt;
+	&lt;div class="ProfileAddress"&gt;
+		&lt;div class="ProfileName"&gt;[USER:DISPLAYNAME]&lt;/div&gt;
+		&lt;div&gt;[PROFILE:STREET]&lt;/div&gt;
+		&lt;div&gt;[PROFILE:CITY], [PROFILE:REGION]  [PROFILE:POSTALCODE]&lt;/div&gt;
+		&lt;div&gt;[PROFILE:COUNTRY]&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="ProfileContact"&gt;[PROFILE:TELEPHONE] [PROFILE:WEBSITE] [PROFILE:IM]&lt;/div&gt;&lt;div style="clear:both;"&gt;&lt;/div&gt;
+	&lt;div class="ProfileBio"&gt;[PROFILE:BIOGRAPHY]&lt;/div&gt;
+&lt;/div&gt;</value>
+  </data>
+</root>

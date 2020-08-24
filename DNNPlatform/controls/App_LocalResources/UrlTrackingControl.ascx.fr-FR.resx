@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="Clicks.Text" xml:space="preserve">
+    <value xml:space="preserve">Nombre de clics</value>
+  </data>
+  <data name="Created.Text" xml:space="preserve">
+    <value xml:space="preserve">Créé le&amp;nbsp;</value>
+  </data>
+  <data name="Date.Header">
+    <value xml:space="preserve">Date:</value>
+  </data>
+  <data name="EndDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Fin d&amp;#146;enregistrement&amp;nbsp;</value>
+  </data>
+  <data name="LastClick.Text" xml:space="preserve">
+    <value xml:space="preserve">Dernier clic</value>
+  </data>
+  <data name="StartDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Début d&amp;#146;enregistrement&amp;nbsp;</value>
+  </data>
+  <data name="TrackingUrl.Text" xml:space="preserve">
+    <value xml:space="preserve">Suivi d&amp;#146;URL&amp;nbsp;</value>
+  </data>
+  <data name="Url.Text" version="deprecated">
+    <value xml:space="preserve">URL</value>
+  </data>
+  <data name="User.Header">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="URL.Text">
+    <value>URL</value>
+  </data>
+  
+</root>

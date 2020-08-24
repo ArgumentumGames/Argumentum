@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Recyclebin.Text">
+    <value>Corbeille</value>
+  </data>
+  <data name="recyclebin_Actions.Text">
+    <value>Actions</value>
+  </data>
+  <data name="recyclebin_CancelConfirm.Text">
+    <value>Non</value>
+  </data>
+  <data name="recyclebin_Delete.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="recyclebin_DeleteConfirm.Text">
+    <value>Oui</value>
+  </data>
+  <data name="recyclebin_DeletedDate.Text">
+    <value>Date</value>
+  </data>
+  <data name="recyclebin_EmptyRecycleBin.Text" xml:space="preserve">
+    <value>Vider définitivement la corbeille</value>
+  </data>
+  <data name="recyclebin_EmptyRecycleBinConfirm.Text" xml:space="preserve">
+    <value>Voulez-vous vider la corbeille ?</value>
+  </data>
+  <data name="recyclebin_Modules.Text">
+    <value>Modules</value>
+  </data>
+  <data name="recyclebin_ModuleTitle.Text" xml:space="preserve">
+    <value>Titre du module</value>
+  </data>
+  <data name="recyclebin_NoConfirm.Text">
+    <value>Non</value>
+  </data>
+  <data name="recyclebin_NoItems.Text" xml:space="preserve">
+    <value>La corbeille est actuellement vide</value>
+  </data>
+  <data name="recyclebin_NoModules.Text" xml:space="preserve">
+    <value>Pas de module dans la corbeille</value>
+  </data>
+  <data name="recyclebin_NoPages.Text" xml:space="preserve">
+    <value>Aucune page dans la corbeille</value>
+  </data>
+  <data name="recyclebin_Page.Text">
+    <value>Page</value>
+  </data>
+  <data name="recyclebin_Pages.Text">
+    <value>Pages</value>
+  </data>
+  <data name="recyclebin_RemoveModuleConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez supprimer ce module.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RemoveModulesConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez supprimer les modules sélectionnés.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RemovePageConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez supprimer cette page.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RemovePagesConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez supprimer les pages sélectionnées.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_Restore.Text">
+    <value>Rétablir</value>
+  </data>
+  <data name="recyclebin_RestoreModuleConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez restaurer ce module.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RestoreModulesConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez restaurer les modules sélectionnés.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RestorePageConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez restaurer cette page.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RestorePageInvalid.Text" xml:space="preserve">
+    <value>Vous devez restaurer la page parente avant toute chose.</value>
+  </data>
+  <data name="recyclebin_RestorePagesConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez restaurer les pages sélectionnées.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RestorePagesInvalid.Text" xml:space="preserve">
+    <value>Vous devez sélectionner la ou les page(s) parente(s) de la/des page(s) sélectionnée(s).</value>
+  </data>
+  <data name="recyclebin_Title.Text">
+    <value>Corbeille</value>
+  </data>
+  <data name="recyclebin_UnableToSelectAllModules.Text" xml:space="preserve">
+    <value>Impossible de supprimer/restaurer de manière permanente un module dont la page associée est dans la corbeille.</value>
+  </data>
+  <data name="recyclebin_YesConfirm.Text">
+    <value>Oui</value>
+  </data>
+  <data name="Service_RemoveTabError.Text" xml:space="preserve">
+    <value>Erreur lors de la suppression de la page : {0}</value>
+  </data>
+  <data name="Service_RemoveTabModuleError.Text" xml:space="preserve">
+    <value>Erreur lors de la suppression des modules de la page : {0}</value>
+  </data>
+  <data name="Service_RestoreModuleError.Text" xml:space="preserve">
+    <value>Erreur lors de la restauration du module {0} sur la page {1}. Page supprimée.</value>
+  </data>
+  <data name="Service_RestoreTabError.Text" xml:space="preserve">
+    <value>La page {0} ne peut pas être restaurée tant que son parent n'est pas restauré en premier.</value>
+  </data>
+  <data name="Service_RestoreTabModuleError.Text" xml:space="preserve">
+    <value>Une erreur est survenue lors de la restauration de la page : {0}</value>
+  </data>
+  <data name="recyclebin_Users.Text">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="recyclebin_Username.Text" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="recyclebin_UserDisplayName.Text" xml:space="preserve">
+    <value>Nom complet</value>
+  </data>
+  <data name="recyclebin_NoUsers.Text" xml:space="preserve">
+    <value>Aucun utilisateur dans la corbeille</value>
+  </data>
+  <data name="recyclebin_RestoreUserConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez restaurer cet utilisateur.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RestoreUsersConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez restaurer les utilisateurs sélectionnés.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RemoveUserConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez supprimer cet utilisateur.&lt;/p&gt;</value>
+  </data>
+  <data name="recyclebin_RemoveUsersConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Veuillez confirmer que vous souhaitez supprimer les utilisateurs sélectionnés.&lt;/p&gt;</value>
+  </data>
+  <data name="Service_RemoveUserError.Text" xml:space="preserve">
+    <value>Erreur lors de la suppression de l'utilisateur : {0}</value>
+  </data>
+  <data name="Service_EmptyRecycleBinError.Text" xml:space="preserve">
+    <value>Certains éléments n’étaient pas supprimés.</value>
+  </data>
+  <data name="Service_RestoreUserError.Text" xml:space="preserve">
+    <value>Erreur lors de la restauration de l'utilisateur.</value>
+  </data>
+  <data name="CanNotDeleteModule.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à supprimer le module avec l'ID "{0}".</value>
+  </data>
+  <data name="ModuleNotSoftDeleted.Text" xml:space="preserve">
+    <value>Le module avec l'ID "{0}" n'est pas supprimé.</value>
+  </data>
+  <data name="Prompt_FlagNotInt.Text" xml:space="preserve">
+    <value>--{0} doit être un nombre entier\n</value>
+  </data>
+  <data name="Prompt_FlagNotPositiveInt.Text" xml:space="preserve">
+    <value>--{0} doit être supérieur à 0\n</value>
+  </data>
+  <data name="Prompt_MainParamRequired.Text" xml:space="preserve">
+    <value>Le {0} est requis. Veuillez utiliser l'option --{1} ou le passer comme premier argument après le nom de la commande\n</value>
+  </data>
+  <data name="ModuleNotFound.Text" xml:space="preserve">
+    <value>Le module avec l'ID "{0}" est introuvable.</value>
+  </data>
+  <data name="Prompt_ModulePurgedSuccessfully.Text" xml:space="preserve">
+    <value>Le module avec l'ID "{0}" a été purgé avec succès.</value>
+  </data>
+  <data name="Service_RemoveTabWithChildError.Text" xml:space="preserve">
+    <value>La page {0} ne peut pas être supprimée tant que ses enfants n'ont pas été supprimés en premier.</value>
+  </data>
+  <data name="Prompt_FlagRequired.Text" xml:space="preserve">
+    <value>--{0} est requis\n</value>
+  </data>
+  <data name="Prompt_ModuleRestoredSuccessfully.Text" xml:space="preserve">
+    <value>Le module avec l'ID "{0}" restauré avec succès.</value>
+  </data>
+  <data name="CanNotDeleteTab.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à supprimer la page avec l'ID "{0}".</value>
+  </data>
+  <data name="PageNotFound.Text" xml:space="preserve">
+    <value>La page avec l'ID "{0}" est introuvable.&lt;br /&gt;</value>
+  </data>
+  <data name="Prompt_PagePurgedSuccessfully.Text" xml:space="preserve">
+    <value>La page avec l'ID "{0}" a été purgée avec succès.</value>
+  </data>
+  <data name="Prompt_PageRestoredSuccessfully.Text" xml:space="preserve">
+    <value>La page avec l'ID "{0}" et le nom "{1}" a été restaurée avec succès.</value>
+  </data>
+  <data name="TabNotSoftDeleted.Text" xml:space="preserve">
+    <value>La page avec l'ID "{0}" n'est pas supprimée.</value>
+  </data>
+  <data name="PageNotFoundWithName.Text" xml:space="preserve">
+    <value>La page avec le nom "{0}" est introuvable.&lt;br /&gt;</value>
+  </data>
+  <data name="Prompt_RestorePageNoParams.Text" xml:space="preserve">
+    <value>Vous devez spécifier un ID de page ou un nom de page.</value>
+  </data>
+  <data name="UserNotFound.Text" xml:space="preserve">
+    <value>L'utilisateur avec l'ID "{0}" est introuvable.</value>
+  </data>
+  <data name="Prompt_PurgeModule_Description.Text" xml:space="preserve">
+    <value>Supprime définitivement un module. Le module doit d'abord être supprimé (corbeille) en premier.</value>
+  </data>
+  <data name="Prompt_PurgeModule_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID du module à supprimer définitivement. L'utilisation de l'option est facultative. Vous pouvez simplement fournir l'ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_PurgeModule_FlagPageId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID de page sur lequel le module a été ajouté à l'origine.</value>
+  </data>
+  <data name="Prompt_PurgeModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Purger un module spécifique&lt;/h4&gt;          &lt;p&gt;Le code ci-dessous purge le module dont l'ID est 359&lt;/p&gt;          &lt;code class="block"&gt;purge-module 359 --page 20&lt;/code&gt;          &lt;h4&gt;Résultats&lt;/h4&gt;          Le module avec l'identifiant "359" a été purgé avec succès.</value>
+  </data>
+  <data name="Prompt_PurgePage_Description.Text" xml:space="preserve">
+    <value>Supprime définitivement une page du site qui avait été précédemment supprimée et envoyée à la corbeille DNN.</value>
+  </data>
+  <data name="Prompt_PurgePage_FlagDeleteChildren.Text" xml:space="preserve">
+    <value>Spécifie que si une page a des enfants, la commande doit les supprimer tous ou afficher une erreur.</value>
+  </data>
+  <data name="Prompt_PurgePage_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID de page à purger. L'utilisation de l'option "name" est facultative. Vous pouvez simplement fournir l'ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_PurgePage_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;div&gt; &lt;h4&gt;Purger via son ID une page supprimée&lt;/h4&gt; &lt;code class="block"&gt; purge-page 999 &lt;/code&gt; OU &lt;code class="block"&gt; purge-page --id 999 &lt;/code&gt; &lt;h4&gt;Purger une page supprimée et toutes ses pages enfants&lt;/h4&gt; &lt;code class="block"&gt; purge-page --id 999 --deletechildren true &lt;/code&gt; &lt;/div&gt;</value>
+  </data>
+  <data name="Prompt_PurgeUser_Description.Text" xml:space="preserve">
+    <value>Supprime définitivement l'utilisateur spécifié du site. L'utilisateur &lt;strong&gt;doit&lt;/strong&gt; être déjà supprimé. Si vous saisissez une commande &lt;code&gt;get-user&lt;/code&gt; et que la propriété &lt;code&gt;IsDeleted&lt;/code&gt; n'est pas &lt;code&gt;true&lt;/code&gt;, vous obtiendrez alors une erreur. Vous devez d'abord utiliser la commande &lt;code&gt;delete-user&lt;/code&gt; sur l'utilisateur.</value>
+  </data>
+  <data name="Prompt_PurgeUser_FlagId.Text" xml:space="preserve">
+    <value>L'ID de l'utilisateur Si l'option n'est pas utilisée, l'ID de l'utilisateur doit être le premier argument.</value>
+  </data>
+  <data name="Prompt_PurgeUser_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Supprimer définitivement un utilisateur&lt;/h4&gt; &lt;p&gt;Supprimer définitivement l'utilisateur avec l'ID 345. Si vous saisissez la commande : &lt;code&gt;get-user 345&lt;/code&gt;, vous recevrez un message 'utilisateur non trouvé'.' &lt;/p&gt; &lt;code class="block"&gt;purge-user 345&lt;/code&gt; &lt;p&gt;Ceci est la forme plus explicite du code ci-dessus.&lt;/p&gt; &lt;code class="block"&gt;purge-user --id 345&lt;/code&gt;</value>
+  </data>
+  <data name="Prompt_UserPurged.Text" xml:space="preserve">
+    <value>L'utilisateur a été définitivement retiré du site.</value>
+  </data>
+  <data name="Prompt_CannotPurgeUser.Text" xml:space="preserve">
+    <value>Impossible de purger l'utilisateur qui n'a pas été supprimé en premier. Essayez delete-user.</value>
+  </data>
+  <data name="Prompt_RestoreModule_Description.Text" xml:space="preserve">
+    <value>Restaure un module à partir de la corbeille DNN.</value>
+  </data>
+  <data name="Prompt_RestoreModule_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID du module à récupérer. L'utilisation de l'option est facultative. Vous pouvez simplement fournir l'ID comme premier argument.</value>
+  </data>
+  <data name="Prompt_RestoreModule_FlagPageId.Text" xml:space="preserve">
+    <value>L'ID de la page sur laquelle le module à restaurer était placé avant la suppression.</value>
+  </data>
+  <data name="Prompt_RestoreModule_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Restaurer un module depuis la corbeille&lt;/h4&gt; &lt;code class="block"&gt;restore-module 359 --pageid 71&lt;/code&gt; &lt;h4&gt;Résultats&lt;/h4&gt; Le module avec l'ID "359" a été restauré avec succès.</value>
+  </data>
+  <data name="Prompt_RestorePage_Description.Text" xml:space="preserve">
+    <value>Restaure une page à partir de la corbeille DNN.</value>
+  </data>
+  <data name="Prompt_RestorePage_FlagId.Text" xml:space="preserve">
+    <value>Spécifie explicitement l'ID de la page à supprimer. L'utilisation de l'option "name" est facultative. Vous pouvez simplement fournir l'ID comme premier argument. Requis si &lt;span class="mono"&gt;--parentid&lt;/span&gt; et &lt;span class="mono"&gt;--name&lt;/span&gt; ne sont pas spécifiés.</value>
+  </data>
+  <data name="Prompt_RestorePage_FlagName.Text" xml:space="preserve">
+    <value>Spécifie le nom (et non le titre) de la page à restaurer. Cela peut être combiné avec &lt;span class="mono"&gt;--parentid&lt;/span&gt; pour cibler un nom de page avec une page parente spécifique. Requis si &lt;span class="mono"&gt;--parentid&lt;/span&gt; et &lt;span class="mono"&gt;--name&lt;/span&gt; ne sont pas spécifiés.</value>
+  </data>
+  <data name="Prompt_RestorePage_FlagParentId.Text" xml:space="preserve">
+    <value>Obligatoire si vous souhaitez supprimer une page par son nom et que celle-ci est l'enfant d'une autre page. Dans ce cas, indiquez l'ID de la page parente.</value>
+  </data>
+  <data name="Prompt_RestorePage_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;div&gt; &lt;h4&gt;Restaurer via son ID une page supprimée&lt;/h4&gt; &lt;code class="block"&gt; restore-page 999 &lt;/code&gt; OR &lt;code class="block"&gt; restore-page --id 999 &lt;/code&gt; &lt;h4&gt;Restaurer une page avec un nom de page spécifique&lt;/h4&gt; &lt;code class="block"&gt; restore-page --name "Page1"&lt;/code&gt; &lt;h4&gt;Restaurer une page avec un nom de page spécifique et un parent donné&lt;/h4&gt; &lt;code class="block"&gt; restore-page --name "Page1" --parentid 30 &lt;/code&gt; &lt;/div&gt;</value>
+  </data>
+  <data name="Prompt_RestoreUser_Description.Text" xml:space="preserve">
+    <value>Restaure un utilisateur qui a été supprimé mais pas purgé.</value>
+  </data>
+  <data name="Prompt_RestoreUser_FlagId.Text" xml:space="preserve">
+    <value>L'ID de l'utilisateur Si l'option n'est pas utilisée, l'ID de l'utilisateur doit être le premier argument.</value>
+  </data>
+  <data name="Prompt_RestoreUser_ResultHtml.Text" xml:space="preserve">
+    <value>&lt;h4&gt;Restaurer un utilisateur supprimé a Deleted User&lt;/h4&gt; &lt;p&gt;Restaure l'utilisateur ayant l'ID 345. Si l'utilisateur n'a pas été supprimé vous recevrez un message indiquant qu'il n'y a rien à restaurer. Si l'utilisateur a déjà été purgé ou 'retiré' via l'interface utilisateur de DNN, vous recevrez un message 'utilisateur non trouvé'. &lt;/p&gt; &lt;code class="block"&gt;restore-user 345&lt;/code&gt; &lt;p&gt;Ceci est la forme explicite du code ci-dessus.&lt;/p&gt; &lt;code class="block"&gt;restore-user --id 345&lt;/code&gt;</value>
+  </data>
+  <data name="Prompt_RecylcleBinCategory.Text" xml:space="preserve">
+    <value>Commandes de la corbeille</value>
+  </data>
+  <data name="UserRestored.Text" xml:space="preserve">
+    <value>Utilisateur restauré avec succès.</value>
+  </data>
+  <data name="Prompt_RestoreNotRequired.Text" xml:space="preserve">
+    <value>Utilisateur non supprimé Restauration non requise.</value>
+  </data>
+  <data name="Service_RemoveTabParentTabError" xml:space="preserve">
+    <value>La page {0} ne peut pas être supprimée tant que ses enfants n'ont pas été supprimés en premier.</value>
+  </data>
+  <!---->
+</root>

@@ -1,0 +1,54 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@{
+  var filteredCategory = PageData["FilteredCategory"];
+  var wrapperId = PageData["MobileView"] == true ? "" : "sidebar";
+
+  @* Get all Blog Posts from the App, to ignore filters *@
+  var postsForCounting = Edit.Enabled
+    ? AsList(App.Data["BlogPost"])
+    : AsList(App.Data["BlogPost"]).Where(p => p.PublicationMoment.CompareTo(DateTime.Now) <= 0);
+}
+
+<div id="@wrapperId" class="sidebar app-blog-detail-right">
+  <div class="sidebar__inner">
+    <nav class="co-category-list-container mb-3">
+      <h5 class="pb-2 d-flex justify-content-between">
+        @App.Resources.Categories
+        <a class="badge badge-pill bg-primary rss-button"
+          href='@Tags.SafeUrl(Link.To(parameters: "mid/" + Dnn.Module.ModuleID + "/feed/true/standalone/true"))'
+          target="_blank">
+          <i class="fas fa-rss align-self-center text-white"></i>
+        </a>
+      </h5>
+      <ul>
+        <li class="@(filteredCategory == null ? "font-weight-bold" : "")">
+          <a href='@Tags.SafeUrl(Link.To())'>
+            @App.Resources.ShowAll<span class="badge badge-pill badge-primary float-right">@postsForCounting.Count()</span>
+          </a>
+        </li>
+        @* Categories will be appended to here *@
+        @foreach (var cat in AsList(App.Data["Category"])) {
+          var catCount = postsForCounting.Where(p => (p.Categories as Dynlist).Any(postC => postC.EntityId == cat.EntityId)).Count();
+          var active = "";
+          if(filteredCategory != null) {
+            active = cat.Key == filteredCategory.Key ? "font-weight-bold" : active;
+          }
+
+          <li class="@active">
+            <a href='@Tags.SafeUrl(Link.To(parameters: "category=" + cat.Key))'>
+              @cat.Name
+              <span class="badge badge-pill badge-primary float-right">@catCount</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+    @if(PageData["EnableSocialSharing"] == true) {
+      <script type="text/javascript" src="@App.Settings.SocialAddThisJS" ></script>
+      <div class="addthis_inline_share_toolbox"></div>
+    }
+  </div>
+</div>

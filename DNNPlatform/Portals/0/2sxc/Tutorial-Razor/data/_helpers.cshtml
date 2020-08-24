@@ -1,0 +1,10 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@helper ShowPersonListItem(dynamic person) {
+  <li>
+    @if(Text.Has(person.Mugshot)) {
+      <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
+    }
+    @person.FirstName @person.LastName
+  </li>
+}

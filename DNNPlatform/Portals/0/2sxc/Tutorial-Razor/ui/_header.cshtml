@@ -1,0 +1,5 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@CreateInstance("../shared/_helpers.cshtml").TitleAndBreadcrumb("Customize Edit UI/UX", "Customize Edit UX", "ui/home")
+
+@* disable the quick-e, because it will appear since our settings activates all *@
+<div quick-edit-config='{ "enable": false }'></div>

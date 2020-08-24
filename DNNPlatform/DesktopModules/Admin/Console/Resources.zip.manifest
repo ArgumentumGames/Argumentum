@@ -1,0 +1,36 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Settings.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ViewConsole.ascx.resx</name>
+    </file>
+    <file>
+      <path>Scripts/</path>
+      <name>jquery.console.js</name>
+    </file>
+    <file>
+      <path />
+      <name>Settings.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>ViewConsole.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>08.00.00.txt</name>
+    </file>
+    <file>
+      <path />
+      <name>module.css</name>
+    </file>
+    <file>
+      <path />
+      <name>console.png</name>
+    </file>
+  </files>
+</dotnetnuke>

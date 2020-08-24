@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="AlternateTemplate.Default" xml:space="preserve">
+    <value xml:space="preserve">&lt;span class="Language" title="[CULTURE:NATIVENAME]"&gt;&lt;a href="[URL]" &gt;&lt;img src="[I][FLAGSRC]" alt="[CULTURE:NAME]" /&gt;&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="CommonFooterTemplate.Default">
+    <value xml:space="preserve">&lt;/div&gt;</value>
+  </data>
+  <data name="CommonHeaderTemplate.Default" xml:space="preserve">
+    <value xml:space="preserve">&lt;div class="language-object"&gt;</value>
+  </data>
+  <data name="ItemTemplate.Default" xml:space="preserve">
+    <value xml:space="preserve">&lt;a href="[URL]" class="Language" title="[CULTURE:NATIVENAME]"&gt;&lt;img src="[I][FLAGSRC]" alt="[CULTURE:NATIVENAME]" border="0" /&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Label.Text" xml:space="preserve">
+    <value xml:space="preserve">Selectionner la langue :</value>
+  </data>
+  <data name="SelectedItemTemplate.Default" xml:space="preserve">
+    <value xml:space="preserve">&lt;span class="Language selected" title="[CULTURE:NATIVENAME]" &gt;&lt;img src="[I][FLAGSRC]" alt="[CULTURE:NAME]" /&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="FooterTemplate.Default">
+    <value>&amp;nbsp;</value>
+  </data>
+  <data name="HeaderTemplate.Default">
+    <value>&amp;nbsp;</value>
+  </data>
+  <data name="SeparatorTemplate.Default">
+    <value>&amp;nbsp;</value>
+  </data>
+  
+</root>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DefaultRoleGroup.Help">
+    <value xml:space="preserve">Spécifiez le groupe de rôles à utiliser pour les nouveaux groupes créés.  Cela devrait être le même groupe de rôles que celui utilisé pour vos groupes principaux.</value>
+  </data>
+  <data name="GroupListPage.Help">
+    <value xml:space="preserve">Sélectionnez la page où les utilisateurs vont afficher la liste des groupes.</value>
+  </data>
+  <data name="GroupModeration.Help">
+    <value xml:space="preserve">Sélectionnez cette option si vous souhaitez que les groupes soient approuvés avant d'être publics.</value>
+  </data>
+  <data name="GroupModeration.Text">
+    <value xml:space="preserve">Approbation nécessaire pour les groupes</value>
+  </data>
+  <data name="GroupViewPage.Help">
+    <value xml:space="preserve">Sélectionnez la page où les utilisateurs iront pour afficher un groupe particulier.</value>
+  </data>
+</root>

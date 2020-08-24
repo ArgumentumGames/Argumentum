@@ -1,0 +1,52 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+@using ToSic.Razor.Blade;
+@using System;
+@{
+  var path = App.Path + "/basics/assets/urls/";
+  var exampleImgName = "göögle plus.png";
+  var resizeParameters = "?w=100";
+  var safeUrl = Uri.EscapeUriString(path + exampleImgName + resizeParameters);
+}
+<trim>
+<h2>Safely Linking URLs with Umlauts and similar</h2>
+</trim>
+
+<img src='@safeUrl' id="demo-logo">
+
+<hide>
+<p>
+  👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Uri.EscapeUriString(exampleImgName)</code>
+</p>
+<p>
+  Sometimes you have files with unexpected characters - like umlauts or spaces. The best way to encode this is using <code>Uri.EscapeUriString(...)</code>. 
+</p>
+<h3>Important notes</h3>
+<ul>
+  <li>
+    Two characters won't resolve properly on a standard web server: <code>+</code> and <code>%</code>. There are ways to work around this, but we would avoid them at all cost. 
+  </li>
+  <li>
+    Other characters like <code>spaces</code>, umlauts (<code>öäè</code>) etc. are no problem. 
+  </li>
+  <li>
+    You may also find suggestions to use <code>Server.UrlEcode(...)</code>. This often doesn't work! 
+  </li>
+  <li>
+    Remember to add <code>@@using System</code> to make this fly
+  </li>
+</ul>
+
+
+<style>
+  #demo-logo {
+    float: left;
+    width: 50px;
+    padding-right: 20px;
+  }
+</style>
+
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

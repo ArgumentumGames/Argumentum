@@ -1,0 +1,137 @@
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600);
+
+body {
+  color: #2b2b2b;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 24px;
+  background: #f6f6f6 !important;
+}
+.pagemaster {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding: 40px 0 0 0;
+}
+.page {
+  background: white;
+  width: 1240px;
+  position: relative;
+  margin: 0 auto;
+}
+.langpane {position:absolute;top:20px;right:20px;text-transform:uppercase;font-size:11px;}
+.langpane a:link, .langpane a:visited, .langpane a:active {
+  background: rgb(80, 80, 80);/* fallback color */
+  background: rgba(0, 0, 0, 0.2);
+  display: block;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  float: left;
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+  color: white;
+  text-decoration: none;
+  line-height: 24px;
+  text-align: center;
+}
+.langpane a:hover, a.langsel:link, a.langsel:visited, a.langsel:active, a.langsel:hover {background:rgb(80, 80, 80);/* fallback color */background:rgba(0, 0, 0, 0.4);color:white;text-decoration:none;}
+.contentpane {padding:80px 40px !important;}
+.bottom {background:#f6f6f6;padding:20px 0;text-align:center;}
+.footer {color:#929292;font-size:12px;}
+.footer span {display:inline-block;height:24px;line-height:24px;vertical-align:middle;}
+
+/* MISC */
+i.nwb-icon {display:inline-block;width:24px;height:24px;background:url("nwb-icon.png") no-repeat;vertical-align:middle;margin:0 5px;}
+.clearfix {clear:both;}
+
+/* Password Information */
+#Passwords{margin:2em 0;padding:0;}
+#Passwords li{display:inline-block;height:62px;width:305px;background:url(images/Icons.png) no-repeat -256px -64px;margin:0 15px 0 0;padding:0;list-style-type:none;}
+#Passwords li.Host{margin:0;}
+#Passwords span.SubHead{display:block;color:#FFF;font-size:14px;padding:11px 0 8px 15px;}
+#Passwords span.Password{color:#FFF;padding:0 0 0 15px;}
+p.Disclaimer{clear:both;color:#666666;font-size:11px;line-height:14px;}
+
+/* Panes - In Layout Mode */
+.paneOutline{border:0;}
+.paneOutline span.SubHead center{border:1px #ccc dotted;border-left:0;border-right:0;line-height:2.5em;}
+
+#iPopUp{display:none;}
+.eipbackimg{z-index:1000;}
+
+/* DNN Default */
+.ControlPanel, .PagingTable { background:#d9d9d9; border:1px #667 solid; padding:2px; margin:0 auto; width:960px;}
+.ControlPanel table td {padding:2px;}
+.Head {color:#333;font-size:20px;font-family:Tahoma, Arial, Helvetica;font-weight:normal;}
+.SubHead {color:#036;font-size:11px;font-family:Tahoma, Arial, Helvetica;font-weight:700;}
+.SubSubHead {color:#000;font-size:11px;font-family:Tahoma, Arial, Helvetica;font-weight:700;}
+.Normal, .NormalDisabled { color:#595959;font-size:12px; font-family:Segoe UI, Arial, Helvetica;}
+.NormalDisabled {color:#c0c0c0;}
+.NormalBold { color:#595959;font-size:12px;font-family:Segoe UI, Arial, Helvetica;font-weight:700;}
+.NormalRed {color:#F00; font-size:12px;font-family:Segoe UI, Arial, Helvetica;font-weight:700;}
+.NormalTextBox {font-size:12px;font-family:Segoe UI, Arial, Helvetica;font-weight:normal;}
+.DataGrid_AlternatingItem {background-color:#FFF;color:#F00;font-size:10px;font-family:Tahoma, Arial, Helvetica;font-weight:normal;}
+.DataGrid_Container {background-color:Transparent;}
+.DataGrid_Footer {background-color:#FFF;}
+.DataGrid_Header {background-color:Transparent;color:#000;font-size:10px;font-family:Tahoma, Arial, Helvetica;font-weight:700;text-align:center;}
+.DataGrid_Item {background-color:Transparent;color:#000;font-size:10px;font-family:Tahoma, Arial, Helvetica;font-weight:normal;}
+.DataGrid_SelectedItem {background-color:#c0c0c0;color:#00F;font-size:10px;font-family:Tahoma, Arial, Helvetica;font-weight:normal;}
+.CommandButton {font-size:11px;font-family:Tahoma, Arial, Helvetica;font-weight:normal;}
+A.CommandButton:link, A.CommandButton:visited { color:#3969b7; text-decoration:underline; font-weight:700;}
+A.CommandButton:hover { color:#83A3D8; text-decoration:underline;}
+A.CommandButton:active { color:#000; text-decoration:underline;}
+.StandardButton {padding:0 5px;background:#DDD;color:#000;font-size:11px;font-family:Verdana, sans-serif;font-weight:normal;}
+h1, h2, h3, h4, h5, h6 {color:#383637;font-family: 'Open Sans', sans-serif;font-weight:300;margin:0;line-height:normal;}
+h1 {font-size:38px;line-height:auto;}
+h2 {font-size:22px;line-height:30px;}
+h3 {font-size:22px;line-height:30px;color:#bdcd00;}
+h1 a:link, h1 a:visited, h1 a:active, h1 a:hover {text-decoration:none;color:#383637;}
+h2 a:link, h2 a:visited, h2 a:active, h2 a:hover {text-decoration:none;color:#383637;}
+h3 a:link, h3 a:visited, h3 a:active, h3 a:hover {text-decoration:none;color:#bdcd00;}
+strong { font-weight:700;} em { font-style:italic;}
+tfoot, thead {color:#036;font-size:12px;font-family:Tahoma, Arial, Helvetica;}
+th {color:#036;font-size:12px;font-family:Tahoma, Arial, Helvetica;font-weight:700;vertical-align:baseline;}
+a:link, a:visited {color:#76aedd;text-decoration:none;}
+a:active, a:hover {color:#05548d;text-decoration:underline;}
+/* IE10 FIX */
+a:active {background-color:transparent;}
+/* DNN7 FIX */
+h1, h2, h3, p {margin:12px 0;}
+ul {margin:12px 0;padding:0;}
+ul.splist {margin-bottom:20px;}
+blockquote {font-style:italic;font-size:20px;line-height:30px;color:#989898;font-family:'Open Sans', sans-serif;font-weight:300;}
+.Normal ul, .Normal li { margin-left:10px; padding-left:0px;}
+.Normal ul li {list-style-type:disc; margin-left:10px; padding-left:0px;}
+.Normal ul li li {list-style-type:circle;}
+.Normal ul li li li {list-style-type:circle;}
+.Normal ol li{list-style-type:decimal;}
+.Normal ol ol li {list-style-type:lower-alpha;}
+.Normal ol ol ol li {list-style-type:lower-roman;}
+.Normal ol ul li {list-style-type:disc;}
+hr {border:0;height:10px;background:#f3f3f3;margin:20px 0;}
+/* DEBUG */
+/* Module titles and text don�t always extend to the right edge of the container making it easier to spot. */
+.dnnActionMenu {right:10px;left:auto;width:95px;}
+.DNNEmptyPane {padding:0 !important;}
+
+.personalBarContainer {
+    display: none;
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* for 1240px and less */
+@media screen and (max-width:1240px) {
+.page {width:1000px;}
+}
+/* for 640px and less - Only portrait for retina display */
+@media all and (max-width:640px),
+            screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1920px) and (orientation: portrait),
+            screen and (-webkit-min-device-pixel-ratio: 2.0) and (max-width: 1280px) and (orientation: portrait) {
+.page {width:auto;}
+}

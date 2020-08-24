@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plPortalID.Text">
+    <value>Site</value>
+  </data>
+  <data name="plPortalID.Help" xml:space="preserve">
+    <value>Sélectionnez le site que vous souhaitez afficher.</value>
+  </data>
+  <data name="plLogType.Text">
+    <value>Type</value>
+  </data>
+  <data name="plLogType.Help" xml:space="preserve">
+    <value>Filtrer les événements affichés dans le journal.</value>
+  </data>
+  <data name="plShowRecords.Text" xml:space="preserve">
+    <value>Afficher les enregistrements</value>
+  </data>
+  <data name="plShowRecords.Help" xml:space="preserve">
+    <value>Sélectionnez les enregistrements que vous souhaitez afficher.</value>
+  </data>
+  <data name="ColorCoding.Text" xml:space="preserve">
+    <value>Code couleur actif</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Paramètres d'enregistrement</value>
+  </data>
+  <data name="Legend.Text" xml:space="preserve">
+    <value>Légende des couleurs</value>
+  </data>
+  <data name="Date.Text">
+    <value>Date</value>
+  </data>
+  <data name="Type.Text" xml:space="preserve">
+    <value>Type de log</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Portal.Text">
+    <value>Site</value>
+  </data>
+  <data name="Summary.Text">
+    <value>Résumé</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Supprimer la sélection</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Effacer les logs</value>
+  </data>
+  <data name="SendExceptions.Text" xml:space="preserve">
+    <value>Envoyer les exceptions</value>
+  </data>
+  <data name="ExceptionsWarning.Text" xml:space="preserve">
+    <value>&lt;b&gt;Attention&lt;/b&gt; : En utilisant ces fonctionnalités ci-dessous, vous &lt;i&gt; pouvez &lt;/ i&gt; envoyer des données sensibles sur Internet en texte clair (&lt;i&gt; non &lt;/i&gt; crypté). Avant d'envoyer ces exceptions, veuillez consulter le contenu de vos entrées de journal afin de vérifier qu'aucunes données sensibles y sont contenues. Seules les entrées de journal cochées ci-dessus seront envoyées.</value>
+  </data>
+  <data name="SendExceptionsEmail.Text" xml:space="preserve">
+    <value>Envoyer les exceptions par courriel</value>
+  </data>
+  <data name="plEmailAddress.Text" xml:space="preserve">
+    <value>Adresse e-mail</value>
+  </data>
+  <data name="plEmailAddress.Help" xml:space="preserve">
+    <value>Veuillez entrer l'adresse e-mail de la personne à qui vous souhaitez envoyer les entrées du journal. Les adresses multiples doivent être séparées par une virgule ou un point-virgule.</value>
+  </data>
+  <data name="SendMessage.Text" xml:space="preserve">
+    <value>Message (optionnel)</value>
+  </data>
+  <data name="SendMessage.Help" xml:space="preserve">
+    <value>Inclure le message facultatif avec les entrées de journal.</value>
+  </data>
+  <data name="btnEmail.Text" xml:space="preserve">
+    <value>E-mail sélectionné</value>
+  </data>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Ajouter un enregistrement</value>
+  </data>
+  <data name="NoEntries.Text" xml:space="preserve">
+    <value>Il n'y a pas de log.</value>
+  </data>
+  <data name="Showing.Text" xml:space="preserve">
+    <value>Affichage de {0} à {1} sur {2}</value>
+  </data>
+  <data name="DeleteSuccess.Text" xml:space="preserve">
+    <value>L'exception sélectionnée a été effacée avec succès</value>
+  </data>
+  <data name="EmailSuccess.Text" xml:space="preserve">
+    <value>Votre message a été envoyé.</value>
+  </data>
+  <data name="EmailFailure.Text" xml:space="preserve">
+    <value>Votre message &lt;b&gt;n'a pas&lt;/b&gt; été envoyé.</value>
+  </data>
+  <data name="ServiceUnavailable.Text" xml:space="preserve">
+    <value>Les services web sont indisponibles pour le moment.</value>
+  </data>
+  <data name="ServerName.Text" xml:space="preserve">
+    <value>&lt;b&gt;Nom du serveur&lt;/b&gt;:</value>
+  </data>
+  <data name="LogCleared.Text" xml:space="preserve">
+    <value>Les logs ont été effacé.</value>
+  </data>
+  <data name="ClickRow.Text" xml:space="preserve">
+    <value>Cliquez sur une ligne pour afficher les détails</value>
+  </data>
+  <data name="ExceptionCode.Text">
+    <value>Anomalie</value>
+  </data>
+  <data name="ItemCreatedCode.Text" xml:space="preserve">
+    <value>Objet créé</value>
+  </data>
+  <data name="ItemUpdatedCode.Text" xml:space="preserve">
+    <value>Objet mis à jour</value>
+  </data>
+  <data name="ItemDeletedCode.Text" xml:space="preserve">
+    <value>Objet effacé</value>
+  </data>
+  <data name="SuccessCode.Text" xml:space="preserve">
+    <value>Operation réussie</value>
+  </data>
+  <data name="FailureCode.Text" xml:space="preserve">
+    <value>Echec de l'opération</value>
+  </data>
+  <data name="AdminOpCode.Text" xml:space="preserve">
+    <value>Operation administrative</value>
+  </data>
+  <data name="AdminAlertCode.Text" xml:space="preserve">
+    <value>Alerte !</value>
+  </data>
+  <data name="HostAlertCode.Text" xml:space="preserve">
+    <value>Alerte de l'hôte</value>
+  </data>
+  <data name="ToEmail.Text" xml:space="preserve">
+    <value>à l'adresse e-mail spécifiée</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Journal d'évènements</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;A propos du journal des logs&lt;/h1&gt;&lt;p&gt;Cet outil vous permet de tracer les évènements survenus sur votre système.&lt;/p&gt;</value>
+  </data>
+  <data name="SecurityException.Text" xml:space="preserve">
+    <value>Exception de sécurité</value>
+  </data>
+  <data name="plSubject.Help" xml:space="preserve">
+    <value>Saisissez un sujet.</value>
+  </data>
+  <data name="plSubject.Text">
+    <value>Sujet</value>
+  </data>
+  <data name="InavlidEmailAddress.Text" xml:space="preserve">
+    <value>'{0}' n'est pas une adresse valide.</value>
+  </data>
+  <data name="Viewer.Text">
+    <value>Visionneuse</value>
+  </data>
+  <data name="ClearLog.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir effacer toutes les entrées du journal ?</value>
+  </data>
+  <data name="SelectException.Text" xml:space="preserve">
+    <value>Veuillez sélectionner au moins une entrée du journal.</value>
+  </data>
+  <data name="LogEntryDefaultMsg.Text" xml:space="preserve">
+    <value>Ci-joint les entrées de mon journal d'erreurs.</value>
+  </data>
+  <data name="LogEntryDefaultSubject.Text" xml:space="preserve">
+    <value>Journaux d'erreurs</value>
+  </data>
+  <data name="LogType.Header" xml:space="preserve">
+    <value>Type de log&amp;nbsp;</value>
+  </data>
+  <data name="Portal.Header">
+    <value>Site</value>
+  </data>
+  <data name="Active.Header">
+    <value>Actif</value>
+  </data>
+  <data name="FileName.Header" xml:space="preserve">
+    <value>Nom de fichier</value>
+  </data>
+  <data name="Edit.EditText">
+    <value>Modifier</value>
+  </data>
+  <data name="plIsActive.Text">
+    <value>Journaux</value>
+  </data>
+  <data name="plIsActive.Help" xml:space="preserve">
+    <value>Cocher cette case pour activer la journalisation.</value>
+  </data>
+  <data name="plLogTypeKey.Text" xml:space="preserve">
+    <value>Type de log</value>
+  </data>
+  <data name="plLogTypeKey.Help" xml:space="preserve">
+    <value>Type d'événement enregistré dans les journaux</value>
+  </data>
+  <data name="plLogTypePortalID.Text">
+    <value>Site</value>
+  </data>
+  <data name="plLogTypePortalID.Help" xml:space="preserve">
+    <value>Le site auquel cet événement de journal est associé.</value>
+  </data>
+  <data name="plKeepMostRecent.Text" xml:space="preserve">
+    <value>Conserver les plus récents</value>
+  </data>
+  <data name="plFileName.Text" xml:space="preserve">
+    <value>Nom du fichier</value>
+  </data>
+  <data name="plFileName.Help" xml:space="preserve">
+    <value>Le nom de fichier du fichier journal.</value>
+  </data>
+  <data name="plEmailNotificationStatus.Text" xml:space="preserve">
+    <value>Notification par email</value>
+  </data>
+  <data name="plEmailNotificationStatus.Help" xml:space="preserve">
+    <value>Cochez cette case pour envoyer un message électronique lorsque cet événement se produit.</value>
+  </data>
+  <data name="plThreshold.Text" xml:space="preserve">
+    <value>Seuil d’occurrences</value>
+  </data>
+  <data name="plMailFromAddress.Text">
+    <value>Expéditeur</value>
+  </data>
+  <data name="plMailFromAddress.Help" xml:space="preserve">
+    <value>Adresse e-mail à parir de laquelle sera envoyée la notification.</value>
+  </data>
+  <data name="plMailToAddress.Text">
+    <value>Destinataire</value>
+  </data>
+  <data name="plMailToAddress.Help" xml:space="preserve">
+    <value>Adresse mail à laquelle sera envoyé la notification</value>
+  </data>
+  <data name="EmailSettings.Text" xml:space="preserve">
+    <value>Paramètres de notification par Email</value>
+  </data>
+  <data name="ConfigDeleted.Text" xml:space="preserve">
+    <value>Paramètre de journal supprimé.</value>
+  </data>
+  <data name="ConfigUpdated.Text" xml:space="preserve">
+    <value>Paramètre de journal mis à jour.</value>
+  </data>
+  <data name="ConfigAdded.Text" xml:space="preserve">
+    <value>Paramètre de journal ajouté.</value>
+  </data>
+  <data name="LogEntry.Text" xml:space="preserve">
+    <value>Entrée des logs</value>
+  </data>
+  <data name="LogEntries.Text" xml:space="preserve">
+    <value>Entrées des logs</value>
+  </data>
+  <data name="Occurence.Text">
+    <value>Occurrence</value>
+  </data>
+  <data name="Occurences.Text">
+    <value>Occurrences</value>
+  </data>
+  <data name="In.Text">
+    <value>dans</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Paramètres d'enregistrement</value>
+  </data>
+  <data name="DeleteError.Text" xml:space="preserve">
+    <value>Le paramètre de journal sélectionné n'a pas pu être supprimé. Vous devez d'abord supprimer toutes les entrées de journal existantes.</value>
+  </data>
+  <data name="TimeType_1.Text">
+    <value>Secondes</value>
+  </data>
+  <data name="TimeType_2.Text">
+    <value>Minutes</value>
+  </data>
+  <data name="TimeType_3.Text">
+    <value>Heures</value>
+  </data>
+  <data name="TimeType_4.Text">
+    <value>Jours</value>
+  </data>
+  <data name="nav_AdminLogs.Text" xml:space="preserve">
+    <value>Journaux Admin</value>
+  </data>
+  <data name="AdminLogs.Header" xml:space="preserve">
+    <value>Journaux Admin</value>
+  </data>
+  <data name="ConfigAddError.Text" xml:space="preserve">
+    <value>Le paramètre de journal n'a pas pu être ajouté. Veuillez réessayer plus tard.</value>
+  </data>
+  <data name="ConfigBtnCancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="ConfigBtnDelete.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="ConfigBtnSave.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="ConfigDeleteCancelled.Text" xml:space="preserve">
+    <value>Annulation de suppression.</value>
+  </data>
+  <data name="ConfigDeletedWarning.Text" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer le paramètre de journal sélectionné?</value>
+  </data>
+  <data name="ConfigDeleteInconsistency.Text" xml:space="preserve">
+    <value>Une erreur d'incohérence s'est produite. Veuillez actualiser la page et réessayer.</value>
+  </data>
+  <data name="ConfigUpdateError.Text" xml:space="preserve">
+    <value>Le paramètre de journal n'a pas pu être mis à jour. Veuillez réessayer plus tard.</value>
+  </data>
+  <data name="False.Text">
+    <value>Faux</value>
+  </data>
+  <data name="LogSettings.Header" xml:space="preserve">
+    <value>Paramètres du journal</value>
+  </data>
+  <data name="no.Text">
+    <value>Non</value>
+  </data>
+  <data name="True.Text">
+    <value>Vrai</value>
+  </data>
+  <data name="yes.Text">
+    <value>Oui</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="btnSend.Text">
+    <value>Envoyer</value>
+  </data>
+  <data name="EntriesPerPage.Text" xml:space="preserve">
+    <value>entrées par page</value>
+  </data>
+  <data name="LogDeleteWarning.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir supprimer les journaux sélectionnés ?</value>
+  </data>
+  <data name="ShowingOne.Text" xml:space="preserve">
+    <value>Affichage de 1 entrée</value>
+  </data>
+  <data name="ShowingTotal.Text" xml:space="preserve">
+    <value>Affichage de {0} entrées</value>
+  </data>
+  <data name="MailToAddress.Message" xml:space="preserve">
+    <value>Un message valide est requis.</value>
+  </data>
+  <data name="Email.Message" xml:space="preserve">
+    <value>Une adresse mail valide est requise.</value>
+  </data>
+  <data name="UnAuthorizedToSendLog.Text" xml:space="preserve">
+    <value>Vous n’êtes pas autorisé à envoyer ces entrées de journal.</value>
+  </data>
+  <data name="AllTypes.Text" xml:space="preserve">
+    <value>Tous les types</value>
+  </data>
+  <!---->
+</root>

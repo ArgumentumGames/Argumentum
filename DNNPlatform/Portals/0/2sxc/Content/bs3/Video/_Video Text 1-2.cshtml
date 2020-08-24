@@ -1,0 +1,25 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+
+@*
+  Bootstrap 4 or Unknown CSS Framework
+*@
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles, fancybox"})
+
+@{
+  var videoId = System.Text.RegularExpressions.Regex.Match(Content.VideoLink, "v=([^&]+)");
+  var youtubeMatch = new System.Text.RegularExpressions.Regex(@"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)").Match(Content.VideoLink);
+}
+<div class="co-container-outer mb-4 mb-md-5">
+  <div class="co-container-inner" @Edit.TagToolbar(Content)>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        @RenderPage("_Video-Part.cshtml", new { width = 420, height = 236 })
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        @* call sub-template to show the title with the correct H1-H6 tag *@
+        @RenderPage("../shared/_Header tag.cshtml")
+        @Html.Raw(Content.Text)
+      </div>
+    </div>
+  </div>
+</div>

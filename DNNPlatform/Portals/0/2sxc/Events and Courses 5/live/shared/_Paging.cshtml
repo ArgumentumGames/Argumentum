@@ -1,0 +1,32 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@{
+  var paging = AsList(Data["Paging"]).FirstOrDefault();
+  var eventPage = PageData["eventPage"];
+}
+
+<div class="app-events-paging mt-4">
+  @if (!(paging.PageNumber <= 1)) {
+    <a class="app-events-prev-pager" href="@LinkToPageNumber((int)(paging.PageNumber) - 1, eventPage)">&lsaquo;</a>
+  }
+  @if (@paging.PageSize >= 0) {
+    for(int i = 1; i <= @paging.PageCount; i++) {
+      if (i == paging.PageNumber) {
+        <a class="app-events-paging-active">@i</a>
+      } else {
+        <a href="@LinkToPageNumber(i, eventPage)">@i</a>
+      }
+    }
+  }
+  @if (!(paging.PageNumber >= paging.PageCount)) {
+    <a class="app-events-next-pager" href="@LinkToPageNumber((int)(paging.PageNumber) + 1, eventPage)">&rsaquo;</a>
+  }
+</div>
+
+@functions {
+  // generate a paging-link number
+  public string LinkToPageNumber(int pageNumber, String eventP){
+    string url = (@eventP + "/page/" + pageNumber);
+    return url.ToLower();
+  }
+}

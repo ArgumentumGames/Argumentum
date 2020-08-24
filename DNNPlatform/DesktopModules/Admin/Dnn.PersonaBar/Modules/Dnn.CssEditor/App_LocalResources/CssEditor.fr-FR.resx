@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="StylesheetEditor.Text" xml:space="preserve">
+    <value>CSS personnalisée</value>
+  </data>
+  <data name="SaveStyleSheet.Text" xml:space="preserve">
+    <value>Enregistrer la feuille de style</value>
+  </data>
+  <data name="RestoreDefault.Text" xml:space="preserve">
+    <value>Restaurer par défaut</value>
+  </data>
+  <data name="nav_CssEditor.Text" xml:space="preserve">
+    <value>CSS personnalisée</value>
+  </data>
+  <data name="ConfirmRestore.Text" xml:space="preserve">
+    <value>Voulez-vous vraiment restaurer la feuille de style par défaut ? Toutes les modifications apportées à la feuille de style actuelle seront perdues.</value>
+  </data>
+  <data name="RestoreButton.Text">
+    <value>Oui</value>
+  </data>
+  <data name="CancelButton.Text">
+    <value>Non</value>
+  </data>
+  <data name="StyleSheetSaved.Text" xml:space="preserve">
+    <value>Feuille de style enregistrée avec succès.</value>
+  </data>
+  <data name="StyleSheetRestored.Text" xml:space="preserve">
+    <value>Feuille de style restaurée avec succès.</value>
+  </data>
+  <!---->
+</root>

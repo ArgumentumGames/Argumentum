@@ -1,0 +1,51 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@*
+  this is a partial template which is re-used in many other templates,
+  so it's shared here
+
+  expects
+  * "width" - an int
+*@
+
+@{
+  // configuration
+  var retina = true;
+  var quality = 75;
+  var lightboxQuality = 90;
+
+  // this is the parameter passed in from the calling page
+  var imgItem = PageData["img"];
+  int width = PageData["width"];
+  if(retina) {
+    width += width; // double if retina
+    quality = 50;
+    lightboxQuality = 75;
+  }
+
+  // prepare the title, either the default or the additional image caption
+  var title="";
+  if(imgItem.Presentation.TitleLightbox != false){
+    title = Text.Has(imgItem.ImageCaption) ? imgItem.ImageCaption : imgItem.Title;
+  }
+
+  // has image?
+  var hasImage = Text.Has(imgItem.Image);
+}
+
+@if(hasImage) {
+  if (imgItem.Presentation.ImageLightbox != false) {
+    @:<a class="fancybox" href='@Tags.SafeUrl(imgItem.Image + "?maxwidth=1400&maxheight=990&quality=" + lightboxQuality)' data-caption="@title">
+  }
+    <figure>
+      <div class="overlay w-100 h-100"></div>
+      @if(Text.Has(imgItem.ImageCaption)){
+        <figcaption class="pt-1 px-4 pb-4 text-white">@imgItem.ImageCaption</figcaption>
+      }
+
+      <img class="img-fluid" src='@Tags.SafeUrl(imgItem.Image + "?w=" + width + "&scale=both&quality=" + quality)' alt="@title" />
+    </figure>
+  if (imgItem.Presentation.ImageLightbox != false) {
+    @:</a>
+  }
+}

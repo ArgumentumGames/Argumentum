@@ -1,0 +1,47 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using System.Diagnostics;
+@functions {
+  public FileVersionInfo GetRazorBladeVersion() {
+    var pathToRazorDll = "~/bin/ToSic.Razor.dll";
+    pathToRazorDll = System.Web.HttpContext.Current.Server.MapPath(pathToRazorDll);
+    var exists = File.Exists(pathToRazorDll);
+    return exists
+      ? FileVersionInfo.GetVersionInfo(pathToRazorDll)
+      : null;
+  }
+
+  public double VersionDouble() {
+    var verInfo = GetRazorBladeVersion();
+    if(verInfo == null) return 0;
+
+    var major = verInfo.FileMajorPart;
+    var minor = verInfo.FileMinorPart;
+    return Convert.ToDouble(major + "." + minor.ToString("D2"));
+  }
+
+  public string VersionInfo(double version, double expected) {
+    var cls = expected <= version ? "secondary" : "danger";
+    return "<span class='badge badge-" + cls + "'>v" + expected.ToString("0.00") + "</span>";
+  }
+}
+
+
+@helper RazorVersionBox(double expected) {
+  double version = VersionDouble();
+  var exists = version != 0;
+  bool versionOk = version >= expected;
+
+  if(!exists) {
+    <div class="alert alert-danger" role="alert">
+      We can not find <code>ToSic.Razor.dll</code> in your <code>bin</code> folder. It seems you have not installed <em>RazorBlade</em>. <a href="https://azing.org/dnn-community/r/zbh8JC5T" target="_blank">Please install it</a> to continue.
+    </div>
+  } else if(versionOk) {
+    <div class="alert alert-primary" role="alert">
+      Your RazorBlade version is @version.ToString("00.00") - which is what you need for all these tutorials. 
+    </div>
+  } else {
+    <div class="alert alert-warning" role="alert">
+      Your RazorBlade version is @version.ToString("00.00"). Only the examples marked like @Html.Raw(VersionInfo(1.2, 1.2)) will work. The examples marked like @Html.Raw(VersionInfo(0, 1.2)) will not work unless you  <a href="https://azing.org/dnn-community/r/zbh8JC5T" target="_blank">install a newer version</a>.
+    </div>
+  }
+}

@@ -1,0 +1,76 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+@using ToSic.Razor.Blade;
+@{
+  var samples = new string[] {
+    "This        contains multi-spaces and \t\t\t tabs",
+    "This has \n  \n line-breaks"
+  };
+}
+<trim>
+  <h2><em>RazorBlade</em> Text.Zip(...) <em>v1.1</em></h2>
+  <p>
+    These demos show how to Zip (clean/compress) text properly, because Razor Blade handles a lot of issues you'll usually have cleaning up text. Scenarios might be:
+  </p>
+  <ul>
+    <li>Multi-line text</li>
+    <li>Cleane-up html, which may have more spaces and line-breaks than expected</li>
+    <li>Just any text pasted from somewhere, which could even contain surprise white-space</li>
+  </ul>
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Text.Zip(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Zip_System_String_", 
+  })
+
+  <h2>Example Text</h2>
+  <div>
+    The example texts which have invisible problem characters:
+  </div>
+  <ol>
+    @foreach(var s in samples) {
+      <li>
+        <code>@Html.Raw(ShowHiddenCharacters(s))</code>
+      </li>
+    }
+  </ol>
+</trim>
+
+<h2>Correct and incorrect Character Counts</h2>
+
+<table class="table table-hover" width="100%">
+    <!-- table header -->
+    <tr>
+        <th>Html output hides the problems</th>
+        <th class="table-warning">Whitespace output showing problems</th>
+        <th>Length</th>
+        <th class="table-success">Output using Text.Zip(...)</th>
+        <th>Zip Length</th>
+    </tr>
+    <!-- the real code -->
+    @foreach(var s in samples) {
+      <tr>
+        <td>@s </td>
+        <td  class="table-warning" style="white-space: pre-wrap;">@s</td>
+        <td>@s.Length </td>
+        <td class="table-success" style="white-space: pre-wrap;">@Text.Zip(s)</td>
+        <td>@Text.Zip(s).Length</td>
+      </tr>
+    }
+</table>
+
+<hide>
+@functions{
+  private string ShowHiddenCharacters(string original) {
+    return original
+      .Replace("\n", "↵")
+      .Replace(" ", "&nbsp;")
+      .Replace("\t", "↦");
+  }
+}
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

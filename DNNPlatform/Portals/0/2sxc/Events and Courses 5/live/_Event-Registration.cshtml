@@ -1,0 +1,143 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@RenderPage("shared/_Assets.cshtml") 
+
+@{
+  // todo: rename formParts
+  var formParts = CreateInstance("shared/_FormParts.cshtml");
+  var course = AsList(App.Data["Event"])
+                .FirstOrDefault(x => x.EntityId == Convert.ToInt32(Request.QueryString["cid"]));
+  var eventDate = AsList(App.Data["EventDate"])
+                  .FirstOrDefault(ed => ed.EntityId == Convert.ToInt32(Request.QueryString["did"]));
+  var resources = App.Resources;
+  var title = course == null ? "" : course.Title;
+
+  HtmlPage.Title = resources.CourseRegistrationTitle + " | " + title + " | " + Dnn.Module.ParentTab.TabName + " | " + Dnn.Portal.PortalName;
+}
+
+@* Show warning if 404, event not found *@
+@if (course == null) {
+    <div class="alert alert-danger" role="alert">
+        <span class="sr-only">Error:</span>
+        @resources.CourseNotFoundError
+    </div>
+} else {
+  @* Show warning if App-Settings not configured *@
+  if(!Text.Has(App.Settings.OwnerMail) || !Text.Has(App.Settings.MailFrom)) {
+    <div class="alert alert-warning" @Edit.TagToolbar()>
+      @Html.Raw(resources.MessageDefaultMailSettings.Replace("<p>", "").Replace("</p>", ""))
+    </div>
+  }
+
+  <div class="app-course app-events-form" @Edit.TagToolbar(eventDate) data-string-required="@resources.ValidationRequired" data-string-email="@resources.ValidationEmail">
+    @* Title *@
+    <h1 class="mb-4">@resources.CourseRegistrationTitle - @course.Title @((!String.IsNullOrEmpty(eventDate.TitleAddition)) ? resources.TitleAdditionPrefix + " " + eventDate.TitleAddition + " " + resources.TitleAdditionSuffix : "" )</h1>
+    
+    <div class="form event-form cform-id-@Dnn.Module.ModuleID">
+      @* Inputs *@
+      @formParts.Textbox(resources.LabelCourseNumber, "CourseNumber", true, disabled: true, value: ((eventDate.Id != null) ? eventDate.Id : course.id))
+      @formParts.Textbox(resources.LabelCourseName, "CourseName", true, disabled: true, value: course.Title )
+      @formParts.Textbox(resources.LabelCourseLocation, "CourseLocation", true, disabled: true, value: course.Location)
+      
+      @* Event Notes *@
+      <div class="form-group row">
+        @formParts.Label(resources.LabelCourseDate, "Date")
+        <div class="col-sm-9">
+          @{
+              var compDate = eventDate.Start.ToString("d") + ((eventDate.End != null) ? " - " + eventDate.End.ToString("d")  : "");
+          }
+          <textarea required class="form-control" id="Date" name="Date" disabled="disabled" rows="3">@(Text.Has(eventDate.TimeSpecifics) ? eventDate.TimeSpecifics : compDate)</textarea>
+        </div>
+      </div>
+      
+      @* Salutation *@
+      <h3>@resources.CourseParticipantData</h3>
+      <div class="form-group row">
+        @formParts.Label(resources.LabelParticipantSalutation, "Salutation")
+        <div class="col-sm-9">
+          <div class="radio">
+            <label>
+                <input name="Salutation" type="radio" value="@resources.LabelMrs">
+                @resources.LabelMrs
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+                <input name="Salutation" type="radio" value="@resources.LabelMr">
+                @resources.LabelMr
+            </label>
+          </div>
+            
+        </div>
+      </div>
+
+      @* Inputs *@
+      @formParts.Textbox(resources.LabelParticipantFirstName, "FirstName", true)
+      @formParts.Textbox(resources.LabelParticipantLastName, "LastName", true)
+      @formParts.Textbox(resources.LabelParticipantStreet, "Street")
+      @formParts.Textbox(resources.LabelParticipantZIPCity, "ZIPCity")
+      
+      @* Country Select *@
+      <div class="form-group row form-required">
+        @formParts.Label(resources.LabelParticipantCountry, "Country")
+        <div class="col-sm-9">
+          <select class="form-control" id="Country" name="Country" required>
+            <option value="">@resources.PleaseSelectCountry</option>
+            @foreach(var country in resources.CountrySelection.Split('\n')) {
+              <option value="@country">@country</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      @* Inputs *@
+      @formParts.Textbox(resources.LabelParticipantPhone, "Phone")
+      @formParts.Textbox(resources.LabelParticipantMobilePhone, "MobilePhone")
+      @formParts.Textbox(resources.LabelParticipantMail, "Mail", true, "email")
+      
+      @* Privacy/Terms Checkbox *@
+      <div class="form-group row form-required">
+        <label class="col-sm-3" for="AGB">@resources.AppAgbLabel</label>
+        <div class="col-sm-9">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" id="AGB" name="AGB" required /> @Html.Raw(resources.AcceptAgb.Replace("<p>", "").Replace("</p>", ""))
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group row form-required">
+        <label class="col-sm-3" for="Accept">@resources.AppCostsLabel</label>
+        <div class="col-sm-9">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" id="Accept" name="Accept" required /> @Html.Raw(resources.AcceptCosts.Replace("<p>", "").Replace("</p>", ""))
+            </label>
+          </div>
+        </div>
+      </div>
+
+      @* Submit Button *@
+      <div class="form-group row">
+        <div class="col-md-9 offset-sm-3")>
+          <button type="button" class="form-submit btn btn-primary">@Html.Raw(resources.ButtonRegister)</button>
+        </div>
+      </div>
+
+      <input type="hidden" id="EventDateEntity" name="EventDateEntity" value="@eventDate.EntityGuid" >
+      <input type="hidden" id="Course" name="Course" value="@course.EntityGuid">
+    </div>
+
+    @* Response Messages *@
+    <div class="form-info-success alert alert-success" style="display:none;">
+      <strong>@resources.SuccessThanks</strong>
+      @resources.SuccessMessage
+    </div>
+
+    <div class="form-info-error alert alert-danger" style="display:none;">
+      @resources.CourseRegistrationError
+    </div>
+  </div>
+}

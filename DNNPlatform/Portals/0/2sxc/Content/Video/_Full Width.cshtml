@@ -1,0 +1,20 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+
+<div class="co-container-outer mb-4 mb-md-5">
+  <div class="co-container-inner" @Edit.TagToolbar(Content)>
+    <div class="row">
+      <div class="col-12">
+        @* call sub-template to show the title with the correct H1-H6 tag *@
+        @RenderPage("../shared/_Header tag.cshtml")
+      </div>
+      <div class="col-12 mb-2">
+        @RenderPage("_Video-Part.cshtml", new { width = 1280, height = 640 })
+      </div>
+      <div class="col-12">
+        @Html.Raw(Content.Text)
+      </div>
+    </div>
+  </div>
+</div>
+
+@RenderPage("../shared/_Assets.cshtml", new { parts = "styles,fancybox,icons"})

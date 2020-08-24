@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.02.01" ExportDate="2020-06-24T14:39:16.0425492+02:00">
+  <Header>
+    <App Guid="cba74160-8edb-4118-b905-94fb40da5d31" />
+    <Language Default="en-US" />
+    <Dimensions>
+      <Dimension DimensionID="100" Name="English (United States)" SystemKey="" ExternalKey="en-US" Active="true" />
+      <Dimension DimensionID="101" Name="Deutsch (Deutschland)" SystemKey="" ExternalKey="de-DE" Active="true" />
+    </Dimensions>
+  </Header>
+  <AttributeSets>
+    <AttributeSet StaticName="App-Resources" Name="App-Resources" Description="Stores resources like translations for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="PlaceholderText" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5feedd5c-5cbf-460e-823d-27dd99f5f210" Json="True" KeyNumber="1995">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Placeholder Text" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Platzhalter Text" Type="String">
+              <Dimension DimensionID="101" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="2aa26282-13d0-4d3a-bd70-5b025bda70d9" Json="True" KeyNumber="1995">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="RowCount" Value="1" Type="Number">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="56207afc-c827-4189-87ca-4c5cb1fc9355" Json="True" KeyNumber="1995">
+            <Value Key="RowCount" Value="" Type="Number">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="App-Settings" Name="App-Settings" Description="Stores settings for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="SearchPage" Type="Hyperlink" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="ed1c84d4-27ae-4cb9-9120-db1e601f9ba7" Json="True" KeyNumber="1993">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Search results page" Type="String" />
+            <Value Key="Name" Value="Suchergebnis-Seite" Type="String">
+              <Dimension DimensionID="101" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="a1cb7ea7-ec7a-4041-b32a-8adf688dbbae" Json="True" KeyNumber="1993">
+            <Value Key="Buttons" Value="pagepicker" Type="String" />
+            <Value Key="DefaultDialog" Value="" Type="String" />
+            <Value Key="FileFilter" Value="" Type="String" />
+            <Value Key="Paths" Value="" Type="String" />
+            <Value Key="ServerResourceMapping" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="ShowAdam" Value="False" Type="Boolean" />
+            <Value Key="ShowFileManager" Value="False" Type="Boolean" />
+            <Value Key="ShowImageManager" Value="False" Type="Boolean" />
+            <Value Key="ShowPagePicker" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="SearchKey" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="466011a9-f126-499f-b0c0-6cadb416f34d" Json="True" KeyNumber="1994">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="AddSearch Key" Type="String" />
+            <Value Key="Name" Value="AddSearch Schlüssel" Type="String">
+              <Dimension DimensionID="101" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="4938d00c-f7c5-4621-98ad-5b533e36799b" Json="True" KeyNumber="1994">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="100" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="2d1c2a69-f210-4226-939e-2561cfc795b7" Json="True" KeyNumber="1994" />
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+  </AttributeSets>
+  <Entities>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="592c01e8-6926-4999-9ffb-451b0479da43" Json="True" KeyNumber="117">
+      <Value Key="AllowRazorTemplates" Value="True" Type="Boolean">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="AllowTokenTemplates" Value="False" Type="Boolean">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="DisplayName" Value="AddSearch" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="Folder" Value="AddSearch" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="Hidden" Value="False" Type="Boolean">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="OriginalId" Value="" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="RequiredDnnVersion" Value="07.02.00" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="RequiredVersion" Value="11.00.00" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="Version" Value="02.00.00" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="7803c02e-ced7-43ee-8358-15825c09660c" KeyNumber="117">
+      <Value Key="SearchKey" Value="18f2e78289ce101635154e64b4540db9&amp;categories=0xapp-dev.2sxc.org" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchPage" Value="page:2590" Type="Hyperlink">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="dedf8fdf-d758-4ecc-81e6-ae7ddd892731" KeyNumber="117">
+      <Value Key="PlaceholderText" Value="Search" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+      <Value Key="PlaceholderText" Value="Suche" Type="String">
+        <Dimension DimensionID="101" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="9c3bab1b-6492-46b4-a5b7-d2a52627c718" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="False" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Search Results" Type="String" />
+      <Value Key="Name" Value="Suchergebnisse" Type="String">
+        <Dimension DimensionID="101" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="_Search Results.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="1f9dec8e-ff55-4638-9c96-a0ddecf2ad8f" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="False" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Search Field" Type="String" />
+      <Value Key="Name" Value="Suchfeld" Type="String">
+        <Dimension DimensionID="101" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="_Search Input.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="00e2349f-b821-4d14-8c87-ec898a2c2a41" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="False" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Search Field Mobile" Type="String" />
+      <Value Key="Name" Value="Suchfeld Mobile" Type="String">
+        <Dimension DimensionID="101" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="_Search Input Mobile.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="3937fa17-ef2d-40a7-b089-64164eb10bab" AttributeSetName="2sxcPolymorphismConfiguration" EntityGUID="fbf6140c-c2ca-43af-b76a-897532d25b30" Json="True">
+      <Value Key="Mode" Value="Koi?cssFramework" Type="String">
+        <Dimension DimensionID="100" ReadOnly="false" />
+      </Value>
+    </Entity>
+  </Entities>
+  <PortalFiles />
+  <PortalFolders>
+    <Folder Id="10181" RelativePath="adam/AddSearch/" />
+  </PortalFolders>
+</SexyContent>

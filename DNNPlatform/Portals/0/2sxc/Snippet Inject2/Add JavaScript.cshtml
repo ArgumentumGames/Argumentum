@@ -1,0 +1,18 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+
+@if(Edit.Enabled) {
+  <div style="color: #856404;
+    background-color: #fff3cd;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: space-between;">
+    @App.Resources.DoNotDeleteWarning
+    @Edit.Toolbar(Content)
+  </div>
+}
+
+<script>
+  @Html.Raw(Content.Script)
+</script>

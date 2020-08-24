@@ -1,0 +1,14 @@
+@* Code-Behind files must inherit from RazorComponentCode *@
+@inherits ToSic.Sxc.Dnn.RazorComponentCode
+
+@* Functions can just be called by the parent like normal C# functions*@
+@functions {
+  public string Hello() {
+    return "Hello from inner code";
+  }
+}
+
+@* Helpers can be used in the razor code like @Message *@
+@helper Message(string message) {
+  <div class="alert alert-success" >@message</div>
+}

@@ -1,0 +1,24 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>AzureFolderProvider/App_LocalResources/</path>
+      <name>Settings.ascx.resx</name>
+    </file>
+    <file>
+      <path>AzureFolderProvider/</path>
+      <name>Settings.ascx</name>
+    </file>
+    <file>
+      <path>AzureFolderProvider/Images/</path>
+      <name>FolderAzure_16x16_Standard.png</name>
+    </file>
+    <file>
+      <path>AzureFolderProvider/Images/</path>
+      <name>FolderAzure_32x32_Standard.png</name>
+    </file>
+    <file>
+      <path />
+      <name>09.02.00.txt</name>
+    </file>
+  </files>
+</dotnetnuke>

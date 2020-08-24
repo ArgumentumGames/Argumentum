@@ -1,0 +1,91 @@
+@using ToSic.Razor.Blade;
+
+@helper Title(string title) {
+  // set browser title for SEO
+  HtmlPage.Title = title + " DNN / 2sxc Razor Tutorials";
+  @InitializedPageAssets()
+  @TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+  <h1 @Edit.TagToolbar()>@title</h1>
+}
+
+@helper Breadcrumb(string name, string topicUrl) {
+  <a href='@Link.To(parameters: "")'>Tutorial Home</a>
+
+  if(!string.IsNullOrEmpty(name)) {
+    <text> › </text>
+    <a href="@Link.To(parameters: topicUrl)">@name</a>
+  }
+}
+
+@helper TitleAndBreadcrumb(string title, string name, string topicUrl) {
+  @Title(title)
+  @Breadcrumb(name, topicUrl)
+  <hr>
+}
+
+@helper TitleLogo(string path, string link) {
+  <a href="@link" target="_blank">
+    <img src="@App.Path/@path?w=75&h=75" class="float-right ml-3">
+  </a>
+}
+
+@helper TutLink(string label, string target) {
+  target = target + (target.Contains("/") ? "" : "/page");
+  <a href='@Link.To(parameters: target)'>@label</a>
+}
+
+@helper TutorialLink(string label, string target, string newText = null) {
+  <li>
+    <strong>
+      @TutLink(label, target)
+      @Highlighted(newText)
+    </strong>
+  </li>
+}
+
+@helper TutorialLink(string label, string target, string description, string newText = null, string appendix = null) {
+  <li>
+    <strong>
+      @TutLink(label, target)
+      @Highlighted(newText)
+      @Html.Raw(appendix)
+    </strong><br>
+    @description
+  </li>
+}
+
+@helper TutorialLinkHome(string label, string target, string description, string newText = null) {
+  <li>
+    <strong>
+    <a href='@Link.To(parameters: target + "/home")'>
+      @label
+      @Highlighted(newText)
+    </a>
+    </strong><br>
+    @Html.Raw(description)
+  </li>
+}
+
+@helper Highlighted(string specialText) {
+  if(specialText != null) {
+    <span class="text-warning"> @specialText</span>
+  }
+}
+
+@helper InitializedPageAssets() {
+  var bsCheck = CreateInstance("_bootstrap4.cshtml");
+  @bsCheck.EnsureBootstrap4()
+  <link rel="stylesheet" href="@App.Path/assets/styles.css" enableoptimizations="true" />
+  <script type="text/javascript" src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js" 
+    data-enableoptimizations="true"></script>
+}
+
+@helper ExternalLink(string target, string description) {
+  <a href="@target" target="_blank">@description</a>
+}
+
+@helper LiExtLink(string target, string description) {
+  <li>
+    @ExternalLink(target, description)
+  </li>
+}

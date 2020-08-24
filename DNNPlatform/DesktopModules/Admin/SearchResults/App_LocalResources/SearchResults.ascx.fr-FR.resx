@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="AddTag.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un tag</value>
+  </data>
+  <data name="Advanced.Text">
+    <value xml:space="preserve">Avancé</value>
+  </data>
+  <data name="AdvancedSearchHint.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;table class="dnnSearchResult-hint-tbl dnnTableDisplay"&gt; &lt;tr&gt; &lt;th style="width: 150px"&gt;&lt;span&gt;Type&lt;/span&gt; &lt;/th&gt; &lt;th style="width: 250px"&gt;&lt;span&gt;Exemple&lt;/span&gt; &lt;/th&gt; &lt;th&gt;&lt;span&gt;Notes&lt;/span&gt; &lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;&amp;quot;Floue&amp;quot;&lt;/td&gt; &lt;td&gt;bien~&lt;/td&gt; &lt;td&gt;Contient les termes proches du mot &amp;quot;&lt;i&gt;bien&amp;quot;&lt;/i&gt;, comme &amp;quot;&lt;i&gt;mien&amp;quot;&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Partielle&lt;/td&gt; &lt;td&gt;chat*&lt;/td&gt; &lt;td&gt;&lt;p&gt;Contient les termes commençant par  &lt;i&gt;chat&lt;/i&gt;, comme &lt;i&gt;chateau&lt;/i&gt; et le terme  &lt;i&gt;chat&lt;/i&gt; lui-même.&lt;/p&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Mot exact&lt;/td&gt; &lt;td&gt;orange&lt;/td&gt; &lt;td&gt;Contient le terme &lt;i&gt;orange&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Phrase exacte&lt;/td&gt; &lt;td&gt;"DNN est incroyable"&lt;/td&gt; &lt;td&gt;Contient la phrase exacte &lt;i&gt;DNN est incroyable&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;OR&lt;/td&gt; &lt;td&gt;vélo orange&lt;/td&gt; &lt;td&gt;Contient le terme  &lt;i&gt;vélo&lt;/i&gt; ou &lt;i&gt;orange&lt;/i&gt;, ou les deux. &lt;B&gt;OR doit être en majuscule&lt;/B&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;&lt;/td&gt; &lt;td&gt;vélo &lt;strong&gt;OR&lt;/strong&gt; orange&lt;/td&gt; &lt;td&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;AND&lt;/td&gt; &lt;td&gt;+vélo +orange&lt;/td&gt; &lt;td&gt;Contient à la fois &lt;i&gt;vélo&lt;/i&gt; et &lt;i&gt;orange&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;&lt;/td&gt; &lt;td&gt;vélo &lt;strong&gt;AND&lt;/strong&gt; orange&lt;/td&gt; &lt;td&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Combo&lt;/td&gt; &lt;td&gt;méthodologie &lt;strong&gt;AND&lt;/strong&gt; (agile &lt;strong&gt;OR&lt;/strong&gt; extreme)&lt;/td&gt; &lt;td&gt;Contient  &lt;i&gt;méthodologie&lt;/i&gt; mais aussi   &lt;i&gt;agile&lt;/i&gt; et/ou &lt;i&gt;extreme.&lt;/i&gt;&lt;b&gt; AND doit être en majuscule&lt;/b&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="AllFeaturesSelected.Text">
+    <value xml:space="preserve">Toutes</value>
+  </data>
+  <data name="Author.Text" xml:space="preserve">
+    <value xml:space="preserve">Auteur :</value>
+  </data>
+  <data name="btnClear.Text">
+    <value xml:space="preserve">Effacer</value>
+  </data>
+  <data name="btnSearch.Text">
+    <value xml:space="preserve">Chercher</value>
+  </data>
+  <data name="Comments.Text" xml:space="preserve">
+    <value xml:space="preserve">Commentaires :</value>
+  </data>
+  <data name="CurrentPageIndex.Text" xml:space="preserve">
+    <value xml:space="preserve">Page :</value>
+  </data>
+  <data name="Date.Text">
+    <value xml:space="preserve">Date</value>
+  </data>
+  <data name="LastModified.Text" xml:space="preserve">
+    <value xml:space="preserve">Mis à jour :</value>
+  </data>
+  <data name="lblAdvancedDates.Help" xml:space="preserve">
+    <value xml:space="preserve">Limiter les résultats de recherche en fonction de la date de dernière modication</value>
+  </data>
+  <data name="lblAdvancedDates.Text" xml:space="preserve">
+    <value xml:space="preserve">Dernière modification :</value>
+  </data>
+  <data name="lblAdvancedExactSearch.Help" xml:space="preserve">
+    <value xml:space="preserve">Les résultats de la recherche doivent contenir les mots clés exacts</value>
+  </data>
+  <data name="lblAdvancedExactSearch.Text" xml:space="preserve">
+    <value xml:space="preserve">Recherche exacte :</value>
+  </data>
+  <data name="lblAdvancedScope.Help" xml:space="preserve">
+    <value xml:space="preserve">Limiter les résultats de la recherche pour la source spécifiée</value>
+  </data>
+  <data name="lblAdvancedScope.Text" xml:space="preserve">
+    <value xml:space="preserve">Filtrer :</value>
+  </data>
+  <data name="lblAdvancedTags.Help" xml:space="preserve">
+    <value xml:space="preserve">Limiter les résultats de la recherche avec les tags spécifiés</value>
+  </data>
+  <data name="lblAdvancedTags.Text" xml:space="preserve">
+    <value xml:space="preserve">Filtrer par tags :</value>
+  </data>
+  <data name="Likes.Text" xml:space="preserve">
+    <value xml:space="preserve">Aime :</value>
+  </data>
+  <data name="linkAdvancedTip.Text" xml:space="preserve">
+    <value xml:space="preserve">Conseils avancés</value>
+  </data>
+  <data name="NoResults.Text" xml:space="preserve">
+    <value xml:space="preserve">Aucun résultat trouvé</value>
+  </data>
+  <data name="optionAll.Text">
+    <value xml:space="preserve">Tous</value>
+  </data>
+  <data name="optionDay.Text" xml:space="preserve">
+    <value xml:space="preserve">1 jour</value>
+  </data>
+  <data name="optionMonth.Text" xml:space="preserve">
+    <value xml:space="preserve">30 jours</value>
+  </data>
+  <data name="optionQuarter.Text" xml:space="preserve">
+    <value xml:space="preserve">90 jours</value>
+  </data>
+  <data name="optionWeek.Text" xml:space="preserve">
+    <value xml:space="preserve">7 jours</value>
+  </data>
+  <data name="optionYear.Text" xml:space="preserve">
+    <value xml:space="preserve">1 an</value>
+  </data>
+  <data name="Relevance.Text">
+    <value xml:space="preserve">Pertinence</value>
+  </data>
+  <data name="ResultPerPage.Text" xml:space="preserve">
+    <value xml:space="preserve">Résultats par page :</value>
+  </data>
+  <data name="ResultsCount.Text" xml:space="preserve">
+    <value xml:space="preserve">{0} résultats</value>
+  </data>
+  <data name="Source.Text" xml:space="preserve">
+    <value xml:space="preserve">Source :</value>
+  </data>
+  <data name="Tags.Text" xml:space="preserve">
+    <value xml:space="preserve">Tags :</value>
+  </data>
+  <data name="Views.Text" xml:space="preserve">
+    <value xml:space="preserve">Vues :</value>
+  </data>
+  <data name="DefaultText.Text" xml:space="preserve">
+    <value>Entrer le terme recherché</value>
+  </data>
+  <!---->
+</root>

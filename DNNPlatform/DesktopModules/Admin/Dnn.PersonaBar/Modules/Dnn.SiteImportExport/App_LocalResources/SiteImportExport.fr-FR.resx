@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_SiteImportExport.Text" xml:space="preserve">
+    <value>Import / Export</value>
+  </data>
+  <data name="SiteImportExport.Header" xml:space="preserve">
+    <value>Import / Export</value>
+  </data>
+  <data name="ImportButton.Text" xml:space="preserve">
+    <value>Importer des données</value>
+  </data>
+  <data name="ExportButton.Text" xml:space="preserve">
+    <value>Exporter des données</value>
+  </data>
+  <data name="LastImport.Text" xml:space="preserve">
+    <value>Dernière importation</value>
+  </data>
+  <data name="LastExport.Text" xml:space="preserve">
+    <value>Dernière exportation</value>
+  </data>
+  <data name="LastUpdate.Text" xml:space="preserve">
+    <value>Dernière mise à jour</value>
+  </data>
+  <data name="JobDate.Header">
+    <value>Date</value>
+  </data>
+  <data name="JobType.Header">
+    <value>Type</value>
+  </data>
+  <data name="JobUser.Header" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="JobPortal.Header">
+    <value>Site</value>
+  </data>
+  <data name="JobStatus.Header">
+    <value>Statut</value>
+  </data>
+  <data name="LegendExport.Text" xml:space="preserve">
+    <value>Exportation du site</value>
+  </data>
+  <data name="LegendImport.Text" xml:space="preserve">
+    <value>Importation du site</value>
+  </data>
+  <data name="LogSection.Text" xml:space="preserve">
+    <value>Journal d'importation / exportation</value>
+  </data>
+  <data name="ShowSiteLabel.Text" xml:space="preserve">
+    <value>Site :</value>
+  </data>
+  <data name="ShowFilterLabel.Text" xml:space="preserve">
+    <value>Filtrer :</value>
+  </data>
+  <data name="JobTypeAll.Text" xml:space="preserve">
+    <value>Toutes les importations et exportations</value>
+  </data>
+  <data name="JobTypeImport.Text" xml:space="preserve">
+    <value>Toutes les importations</value>
+  </data>
+  <data name="JobTypeExport.Text" xml:space="preserve">
+    <value>Toutes les exportations</value>
+  </data>
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Recherche par mot clé</value>
+  </data>
+  <data name="SummaryNoteTitle.Text" xml:space="preserve">
+    <value>* Note :</value>
+  </data>
+  <data name="SummaryNoteDescription.Text" xml:space="preserve">
+    <value>Les fichiers d'exportation de votre site sont stockés en toute sécurité dans le dossier App_Data/ExportImport de votre site web.</value>
+  </data>
+  <data name="ExportSummary.Text" xml:space="preserve">
+    <value>Résumé de l’exportation</value>
+  </data>
+  <data name="NoJobs.Text" xml:space="preserve">
+    <value>Aucune tâche trouvée.</value>
+  </data>
+  <data name="BackToImportExport.Text" xml:space="preserve">
+    <value>Retour à l’Import / Export</value>
+  </data>
+  <data name="Export.Text" xml:space="preserve">
+    <value>Exporter des données</value>
+  </data>
+  <data name="Import.Text" xml:space="preserve">
+    <value>Importer des données</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Paramètres d’exportation</value>
+  </data>
+  <data name="Site.Text">
+    <value>Site</value>
+  </data>
+  <data name="Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="Name.Text">
+    <value>Nom</value>
+  </data>
+  <data name="IncludeInExport.Text" xml:space="preserve">
+    <value>Inclure dans l'exportation</value>
+  </data>
+  <data name="PagesInExport.Text" xml:space="preserve">
+    <value>Pages dans l'exportation</value>
+  </data>
+  <data name="BeginExport.Text" xml:space="preserve">
+    <value>Commencer l’exportation</value>
+  </data>
+  <data name="Cancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="Content.Text">
+    <value>Contenu</value>
+  </data>
+  <data name="ProfileProperties.Text" xml:space="preserve">
+    <value>Propriétés de profil</value>
+  </data>
+  <data name="Permissions.Text">
+    <value>Permissions</value>
+  </data>
+  <data name="Extensions.Text">
+    <value>Extensions</value>
+  </data>
+  <data name="DeletionsInExport.Text" xml:space="preserve">
+    <value>Inclure les suppressions</value>
+  </data>
+  <data name="ExportName.ErrorMessage" xml:space="preserve">
+    <value>Nom requis</value>
+  </data>
+  <data name="ExportRequestSubmitted" xml:space="preserve">
+	<value>Votre exportation de données a été placée dans la file d'attente et commencera sous peu.</value>
+  </data>
+  <data name="ExportRequestSubmit.ErrorMessage" xml:space="preserve">
+    <value>Impossible de soumettre la demande de site d'exportation. Veuillez réessayer.</value>
+  </data>
+  <data name="ImportRequestSubmitted" xml:space="preserve">
+	<value>Votre importation de données a été placée dans la file d'attente et commencera sous peu.</value>
+  </data>
+  <data name="ImportRequestSubmit.ErrorMessage" xml:space="preserve">
+    <value>Impossible de soumettre la demande d'importation du site. Veuillez réessayer.</value>
+  </data>
+  <data name="JobStatus0.Text">
+    <value>Soumis</value>
+  </data>
+  <data name="JobStatus1.Text" xml:space="preserve">
+    <value>En cours</value>
+  </data>
+  <data name="JobStatus2.Text">
+    <value>Terminé</value>
+  </data>
+  <data name="JobStatus3.Text" xml:space="preserve">
+    <value>A échoué</value>
+  </data>
+  <data name="JobStatus4.Text">
+    <value>Annulé</value>
+  </data>
+  <data name="CreatedOn.Text" xml:space="preserve">
+    <value>Créé le</value>
+  </data>
+  <data name="CompletedOn.Text" xml:space="preserve">
+    <value>Terminé le</value>
+  </data>
+  <data name="ExportFile.Text" xml:space="preserve">
+    <value>Fichier d’exportation</value>
+  </data>
+  <data name="lblLanguages.Help" xml:space="preserve">
+    <value>Cette option permet de sélectionner quelles langues seront présentes dans le gabarit lors de l'exportation des pages.</value>
+  </data>
+  <data name="lblLanguages.Text" xml:space="preserve">
+    <value>Exporter les langues</value>
+  </data>
+  <data name="lblSelectLanguages.Text" xml:space="preserve">
+    <value>-- Sélectionner langues --</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>La langue par défaut ({0}) sera toujours exportée.</value>
+  </data>
+  <data name="AllSites.Text" xml:space="preserve">
+    <value>--TOUS LES SITES--</value>
+  </data>
+  <data name="SelectImportPackage.Text" xml:space="preserve">
+    <value>Sélectionner le paquet à importer</value>
+  </data>
+  <data name="ClicktoSelect.Text" xml:space="preserve">
+    <value>Cliquer pour sélectionner le paquet</value>
+  </data>
+  <data name="ClicktoDeselect.Text" xml:space="preserve">
+    <value>Cliquer pour désélectionner le paquet</value>
+  </data>
+  <data name="PackageDescription.Text" xml:space="preserve">
+    <value>Description du paquet</value>
+  </data>
+  <data name="Continue.Text">
+    <value>Continuer</value>
+  </data>
+  <data name="NoPackages.Text" xml:space="preserve">
+    <value>Aucune importation de paquet trouvée</value>
+  </data>
+  <data name="SelectException.Text" xml:space="preserve">
+    <value>Veuillez sélectionner un paquet à importer et réessayer.</value>
+  </data>
+  <data name="AnalyzingPackage.Text" xml:space="preserve">
+    <value>Analyse du paquet pour importation de site...</value>
+  </data>
+  <data name="AnalyzedPackage.Text" xml:space="preserve">
+    <value>Fichiers vérifiés</value>
+  </data>
+  <data name="ImportSummary.Text" xml:space="preserve">
+    <value>Résumé de l’importation</value>
+  </data>
+  <data name="Pages.Text">
+    <value>Pages</value>
+  </data>
+  <data name="Users.Text">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="UsersStep1.Text" xml:space="preserve">
+    <value>Utilisateurs (étape 1 / 2)</value>
+  </data>
+  <data name="UsersStep2.Text" xml:space="preserve">
+    <value>Utilisateurs (étape 2 / 2)</value>
+  </data>
+  <data name="Roles.Text" xml:space="preserve">
+    <value>Rôles et groupes</value>
+  </data>
+  <data name="Vocabularies.Text">
+    <value>Vocabulaires</value>
+  </data>
+  <data name="PageTemplates.Text" xml:space="preserve">
+    <value>Modèles de page</value>
+  </data>
+  <data name="IncludeProfileProperties.Text" xml:space="preserve">
+    <value>Inclure les propriétés de profil</value>
+  </data>
+  <data name="IncludePermissions.Text" xml:space="preserve">
+    <value>Inclure les autorisations</value>
+  </data>
+  <data name="IncludeExtensions.Text" xml:space="preserve">
+    <value>Inclure les extensions</value>
+  </data>
+  <data name="IncludeDeletions.Text" xml:space="preserve">
+    <value>Inclure les suppressions</value>
+  </data>
+  <data name="IncludeContent.Text" xml:space="preserve">
+    <value>Inclure le contenu</value>
+  </data>
+  <data name="FolderName.Text" xml:space="preserve">
+    <value>Nom du dossier</value>
+  </data>
+  <data name="Timestamp.Text">
+    <value>Timestamp</value>
+  </data>
+  <data name="Assets.Text">
+    <value>Assets</value>
+  </data>
+  <data name="TotalExportSize.Text" xml:space="preserve">
+    <value>Taille totale de l'exportation</value>
+  </data>
+  <data name="ExportMode.Text" xml:space="preserve">
+    <value>Mode d’exportation</value>
+  </data>
+  <data name="OverwriteCollisions.Text" xml:space="preserve">
+    <value>Écraser les "collisions"</value>
+  </data>
+  <data name="FinishImporting.Text" xml:space="preserve">
+    <value>Pour terminer l'importation de données sur votre site, cliquer sur Continuer ci-dessous, ou cliquer sur Annuler pour annuler l'importation.</value>
+  </data>
+  <data name="ExportModeComplete.Text">
+    <value>Complet</value>
+  </data>
+  <data name="ExportModeDifferential.Text">
+    <value>Différentiel</value>
+  </data>
+  <data name="ConfirmCancel.Text" xml:space="preserve">
+    <value>Oui, annuler</value>
+  </data>
+  <data name="ConfirmDelete.Text" xml:space="preserve">
+    <value>Oui, supprimer</value>
+  </data>
+  <data name="KeepImport.Text">
+    <value>Non</value>
+  </data>
+  <data name="Yes.Text">
+    <value>Oui</value>
+  </data>
+  <data name="No.Text">
+    <value>Non</value>
+  </data>
+  <data name="CancelExport.Text" xml:space="preserve">
+    <value>Annuler l’exportation</value>
+  </data>
+  <data name="CancelImport.Text" xml:space="preserve">
+    <value>Annuler l’importation</value>
+  </data>
+  <data name="CancelImportMessage.Text" xml:space="preserve">
+    <value>L'annulation annulera le processus d'importation. Êtes-vous certain de vouloir annuler ?</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="JobCancelled.Text" xml:space="preserve">
+    <value>La tâche a été annulée.</value>
+  </data>
+  <data name="JobDeleted.Text" xml:space="preserve">
+    <value>La tâche a été supprimée.</value>
+  </data>
+  <data name="JobCancel.ErrorMessage" xml:space="preserve">
+    <value>Impossible d’annuler cette tâche, veuillez recommencer.</value>
+  </data>
+  <data name="JobDelete.ErrorMessage" xml:space="preserve">
+    <value>Impossible de supprimer cette tâche, veuillez recommencer.</value>
+  </data>
+  <data name="CancelJobMessage.Text" xml:space="preserve">
+    <value>L'annulation annulera le processus. Êtes-vous certain de vouloir annuler ?</value>
+  </data>
+  <data name="DeleteJobMessage.Text" xml:space="preserve">
+    <value>Êtes-vous certain de vouloir supprimer cette tâche.</value>
+  </data>
+  <data name="SortByDateNewest.Text" xml:space="preserve">
+    <value>Date (plus récent)</value>
+  </data>
+  <data name="SortByDateOldest.Text" xml:space="preserve">
+    <value>Date (plus ancien)</value>
+  </data>
+  <data name="SortByName.Text" xml:space="preserve">
+    <value>Nom (ordre alphabétique)</value>
+  </data>
+  <data name="ShowSortLabel.Text" xml:space="preserve">
+    <value>Trier par :</value>
+  </data>
+  <data name="Website.Text">
+    <value>Site</value>
+  </data>
+  <data name="Mode.Text">
+    <value>Mode</value>
+  </data>
+  <data name="FileSize.Text">
+    <value>Taille</value>
+  </data>
+  <data name="VerifyPackage.Text" xml:space="preserve">
+    <value>Un instant, nous vérifions le paquet...</value>
+  </data>
+  <data name="DeletedPortal.Text">
+    <value>Supprimé</value>
+  </data>
+  <data name="RunNow.Text" xml:space="preserve">
+    <value>Exécuter maintenant</value>
+  </data>
+  <data name="NoExportItem.ErrorMessage" xml:space="preserve">
+    <value>Impossible de soumettre la demande d'exportation de site. Veuillez sélectionner "exporter élément(s)" et réessayer.</value>
+  </data>
+  <data name="EmptyDateTime.Text" xml:space="preserve">
+    <value>-- --</value>
+  </data>
+  <data name="SwitchOn.Text">
+    <value>On</value>
+  </data>
+  <data name="SwitchOff.Text">
+    <value>Off</value>
+  </data>
+  <!---->
+</root>

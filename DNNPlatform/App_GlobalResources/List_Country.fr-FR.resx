@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AC.Text">
+    <value>Île de l'Ascension</value>
+  </data>
+  <data name="AD.Text">
+    <value>Andorre</value>
+  </data>
+  <data name="AE.Text">
+    <value>Émirats arabes unis</value>
+  </data>
+  <data name="AF.Text">
+    <value>Afghanistan</value>
+  </data>
+  <data name="AG.Text">
+    <value>Antigua-et-Barbuda</value>
+  </data>
+  <data name="AI.Text">
+    <value>Anguilla</value>
+  </data>
+  <data name="AL.Text">
+    <value>Albanie</value>
+  </data>
+  <data name="AM.Text">
+    <value>Arménie</value>
+  </data>
+  <data name="AN.Text">
+    <value>Antilles néerlandaises</value>
+  </data>
+  <data name="AO.Text">
+    <value>Angola</value>
+  </data>
+  <data name="AQ.Text">
+    <value>Antarctique</value>
+  </data>
+  <data name="AR.Text">
+    <value>Argentine</value>
+  </data>
+  <data name="AS.Text">
+    <value>Samoa américaines</value>
+  </data>
+  <data name="AT.Text">
+    <value>Autriche</value>
+  </data>
+  <data name="AU.Text">
+    <value>Australie</value>
+  </data>
+  <data name="AW.Text">
+    <value>Aruba</value>
+  </data>
+  <data name="AX.Text">
+    <value>Îles Åland</value>
+  </data>
+  <data name="AZ.Text">
+    <value>Azerbaïdjan</value>
+  </data>
+  <data name="BA.Text">
+    <value>Bosnie-Herzégovine</value>
+  </data>
+  <data name="BB.Text">
+    <value>Barbade</value>
+  </data>
+  <data name="BD.Text">
+    <value>Bangladesh</value>
+  </data>
+  <data name="BE.Text">
+    <value>Belgique</value>
+  </data>
+  <data name="BF.Text">
+    <value>Burkina Faso</value>
+  </data>
+  <data name="BG.Text">
+    <value>Bulgarie</value>
+  </data>
+  <data name="BH.Text">
+    <value>Bahreïn</value>
+  </data>
+  <data name="BI.Text">
+    <value>Burundi</value>
+  </data>
+  <data name="BJ.Text">
+    <value>Bénin</value>
+  </data>
+  <data name="BL.Text">
+    <value>Saint-Barthélémy</value>
+  </data>
+  <data name="BM.Text">
+    <value>Bermudes</value>
+  </data>
+  <data name="BN.Text">
+    <value>Brunéi Darussalam</value>
+  </data>
+  <data name="BO.Text">
+    <value>Bolivie</value>
+  </data>
+  <data name="BR.Text">
+    <value>Brésil</value>
+  </data>
+  <data name="BS.Text">
+    <value>Bahamas</value>
+  </data>
+  <data name="BT.Text">
+    <value>Bhoutan</value>
+  </data>
+  <data name="BV.Text">
+    <value>Île Bouvet</value>
+  </data>
+  <data name="BW.Text">
+    <value>Botswana</value>
+  </data>
+  <data name="BY.Text">
+    <value>Bélarus</value>
+  </data>
+  <data name="BZ.Text">
+    <value>Belize</value>
+  </data>
+  <data name="CA.Text">
+    <value>Canada</value>
+  </data>
+  <data name="CC.Text">
+    <value>Îles Cocos - Keeling</value>
+  </data>
+  <data name="CD.Text">
+    <value>République démocratique du Congo</value>
+  </data>
+  <data name="CF.Text">
+    <value>République centrafricaine</value>
+  </data>
+  <data name="CG.Text">
+    <value>Congo</value>
+  </data>
+  <data name="CH.Text">
+    <value>Suisse</value>
+  </data>
+  <data name="CI.Text">
+    <value>Côte d’Ivoire</value>
+  </data>
+  <data name="CK.Text">
+    <value>Îles Cook</value>
+  </data>
+  <data name="CL.Text">
+    <value>Chili</value>
+  </data>
+  <data name="CM.Text">
+    <value>Cameroun</value>
+  </data>
+  <data name="CN.Text">
+    <value>Chine</value>
+  </data>
+  <data name="CO.Text">
+    <value>Colombie</value>
+  </data>
+  <data name="CP.Text">
+    <value>Île Clipperton</value>
+  </data>
+  <data name="CR.Text">
+    <value>Costa Rica</value>
+  </data>
+  <data name="CS.Text">
+    <value>Serbie-et-Monténégro</value>
+  </data>
+  <data name="CU.Text">
+    <value>Cuba</value>
+  </data>
+  <data name="CV.Text">
+    <value>Cap-Vert</value>
+  </data>
+  <data name="CX.Text">
+    <value>Île Christmas</value>
+  </data>
+  <data name="CY.Text">
+    <value>Chypre</value>
+  </data>
+  <data name="CZ.Text">
+    <value>République tchèque</value>
+  </data>
+  <data name="DE.Text">
+    <value>Allemagne</value>
+  </data>
+  <data name="DG.Text">
+    <value>Diego Garcia</value>
+  </data>
+  <data name="DJ.Text">
+    <value>Djibouti</value>
+  </data>
+  <data name="DK.Text">
+    <value>Danemark</value>
+  </data>
+  <data name="DM.Text">
+    <value>Dominique</value>
+  </data>
+  <data name="DO.Text">
+    <value>République dominicaine</value>
+  </data>
+  <data name="DZ.Text">
+    <value>Algérie</value>
+  </data>
+  <data name="EA.Text">
+    <value>Ceuta et Melilla</value>
+  </data>
+  <data name="EC.Text">
+    <value>Équateur</value>
+  </data>
+  <data name="EE.Text">
+    <value>Estonie</value>
+  </data>
+  <data name="EG.Text">
+    <value>Égypte</value>
+  </data>
+  <data name="EH.Text">
+    <value>Sahara occidental</value>
+  </data>
+  <data name="ER.Text">
+    <value>Érythrée</value>
+  </data>
+  <data name="ES.Text">
+    <value>Espagne</value>
+  </data>
+  <data name="ET.Text">
+    <value>Éthiopie</value>
+  </data>
+  <data name="EU.Text">
+    <value>Union européenne</value>
+  </data>
+  <data name="FI.Text">
+    <value>Finlande</value>
+  </data>
+  <data name="FJ.Text">
+    <value>Fidji</value>
+  </data>
+  <data name="FK.Text">
+    <value>Îles Malouines</value>
+  </data>
+  <data name="FM.Text">
+    <value>États fédérés de Micronésie</value>
+  </data>
+  <data name="FO.Text">
+    <value>Îles Féroé</value>
+  </data>
+  <data name="FR.Text">
+    <value>France</value>
+  </data>
+  <data name="GA.Text">
+    <value>Gabon</value>
+  </data>
+  <data name="GB.Text">
+    <value>Royaume-Uni</value>
+  </data>
+  <data name="GD.Text">
+    <value>Grenade</value>
+  </data>
+  <data name="GE.Text">
+    <value>Géorgie</value>
+  </data>
+  <data name="GF.Text">
+    <value>Guyane française</value>
+  </data>
+  <data name="GG.Text">
+    <value>Guernesey</value>
+  </data>
+  <data name="GH.Text">
+    <value>Ghana</value>
+  </data>
+  <data name="GI.Text">
+    <value>Gibraltar</value>
+  </data>
+  <data name="GL.Text">
+    <value>Groenland</value>
+  </data>
+  <data name="GM.Text">
+    <value>Gambie</value>
+  </data>
+  <data name="GN.Text">
+    <value>Guinée</value>
+  </data>
+  <data name="GP.Text">
+    <value>Guadeloupe</value>
+  </data>
+  <data name="GQ.Text">
+    <value>Guinée équatoriale</value>
+  </data>
+  <data name="GR.Text">
+    <value>Grèce</value>
+  </data>
+  <data name="GS.Text">
+    <value>Géorgie du Sud et les îles Sandwich du Sud</value>
+  </data>
+  <data name="GT.Text">
+    <value>Guatemala</value>
+  </data>
+  <data name="GU.Text">
+    <value>Guam</value>
+  </data>
+  <data name="GW.Text">
+    <value>Guinée-Bissau</value>
+  </data>
+  <data name="GY.Text">
+    <value>Guyana</value>
+  </data>
+  <data name="HK.Text">
+    <value>R.A.S. chinoise de Hong Kong</value>
+  </data>
+  <data name="HM.Text">
+    <value>Îles Heard et MacDonald</value>
+  </data>
+  <data name="HN.Text">
+    <value>Honduras</value>
+  </data>
+  <data name="HR.Text">
+    <value>Croatie</value>
+  </data>
+  <data name="HT.Text">
+    <value>Haïti</value>
+  </data>
+  <data name="HU.Text">
+    <value>Hongrie</value>
+  </data>
+  <data name="IC.Text">
+    <value>Îles Canaries</value>
+  </data>
+  <data name="ID.Text">
+    <value>Indonésie</value>
+  </data>
+  <data name="IE.Text">
+    <value>Irlande</value>
+  </data>
+  <data name="IL.Text">
+    <value>Israël</value>
+  </data>
+  <data name="IM.Text">
+    <value>Île de Man</value>
+  </data>
+  <data name="IN.Text">
+    <value>Inde</value>
+  </data>
+  <data name="IO.Text">
+    <value>Territoire britannique de l'océan Indien</value>
+  </data>
+  <data name="IQ.Text">
+    <value>Irak</value>
+  </data>
+  <data name="IR.Text">
+    <value>Iran</value>
+  </data>
+  <data name="IS.Text">
+    <value>Islande</value>
+  </data>
+  <data name="IT.Text">
+    <value>Italie</value>
+  </data>
+  <data name="JE.Text">
+    <value>Jersey</value>
+  </data>
+  <data name="JM.Text">
+    <value>Jamaïque</value>
+  </data>
+  <data name="JO.Text">
+    <value>Jordanie</value>
+  </data>
+  <data name="JP.Text">
+    <value>Japon</value>
+  </data>
+  <data name="KE.Text">
+    <value>Kenya</value>
+  </data>
+  <data name="KG.Text">
+    <value>Kirghizistan</value>
+  </data>
+  <data name="KH.Text">
+    <value>Cambodge</value>
+  </data>
+  <data name="KI.Text">
+    <value>Kiribati</value>
+  </data>
+  <data name="KM.Text">
+    <value>Comores</value>
+  </data>
+  <data name="KN.Text">
+    <value>Saint-Kitts-et-Nevis</value>
+  </data>
+  <data name="KP.Text">
+    <value>Corée du Nord</value>
+  </data>
+  <data name="KR.Text">
+    <value>Corée du Sud</value>
+  </data>
+  <data name="KW.Text">
+    <value>Koweït</value>
+  </data>
+  <data name="KY.Text">
+    <value>Îles Caïmans</value>
+  </data>
+  <data name="KZ.Text">
+    <value>Kazakhstan</value>
+  </data>
+  <data name="LA.Text">
+    <value>Laos</value>
+  </data>
+  <data name="LB.Text">
+    <value>Liban</value>
+  </data>
+  <data name="LC.Text">
+    <value>Sainte-Lucie</value>
+  </data>
+  <data name="LI.Text">
+    <value>Liechtenstein</value>
+  </data>
+  <data name="LK.Text">
+    <value>Sri Lanka</value>
+  </data>
+  <data name="LR.Text">
+    <value>Libéria</value>
+  </data>
+  <data name="LS.Text">
+    <value>Lesotho</value>
+  </data>
+  <data name="LT.Text">
+    <value>Lituanie</value>
+  </data>
+  <data name="LU.Text">
+    <value>Luxembourg</value>
+  </data>
+  <data name="LV.Text">
+    <value>Lettonie</value>
+  </data>
+  <data name="LY.Text">
+    <value>Libye</value>
+  </data>
+  <data name="MA.Text">
+    <value>Maroc</value>
+  </data>
+  <data name="MC.Text">
+    <value>Monaco</value>
+  </data>
+  <data name="MD.Text">
+    <value>Moldavie</value>
+  </data>
+  <data name="ME.Text">
+    <value>Monténégro</value>
+  </data>
+  <data name="MF.Text">
+    <value>Saint-Martin</value>
+  </data>
+  <data name="MG.Text">
+    <value>Madagascar</value>
+  </data>
+  <data name="MH.Text">
+    <value>Îles Marshall</value>
+  </data>
+  <data name="MK.Text">
+    <value>Macédoine</value>
+  </data>
+  <data name="ML.Text">
+    <value>Mali</value>
+  </data>
+  <data name="MM.Text">
+    <value>Myanmar</value>
+  </data>
+  <data name="MN.Text">
+    <value>Mongolie</value>
+  </data>
+  <data name="MO.Text">
+    <value>R.A.S. chinoise de Macao</value>
+  </data>
+  <data name="MP.Text">
+    <value>Îles Mariannes du Nord</value>
+  </data>
+  <data name="MQ.Text">
+    <value>Martinique</value>
+  </data>
+  <data name="MR.Text">
+    <value>Mauritanie</value>
+  </data>
+  <data name="MS.Text">
+    <value>Montserrat</value>
+  </data>
+  <data name="MT.Text">
+    <value>Malte</value>
+  </data>
+  <data name="MU.Text">
+    <value>Maurice</value>
+  </data>
+  <data name="MV.Text">
+    <value>Maldives</value>
+  </data>
+  <data name="MW.Text">
+    <value>Malawi</value>
+  </data>
+  <data name="MX.Text">
+    <value>Mexique</value>
+  </data>
+  <data name="MY.Text">
+    <value>Malaisie</value>
+  </data>
+  <data name="MZ.Text">
+    <value>Mozambique</value>
+  </data>
+  <data name="NA.Text">
+    <value>Namibie</value>
+  </data>
+  <data name="NC.Text">
+    <value>Nouvelle-Calédonie</value>
+  </data>
+  <data name="NE.Text">
+    <value>Niger</value>
+  </data>
+  <data name="NF.Text">
+    <value>Île Norfolk</value>
+  </data>
+  <data name="NG.Text">
+    <value>Nigéria</value>
+  </data>
+  <data name="NI.Text">
+    <value>Nicaragua</value>
+  </data>
+  <data name="NL.Text">
+    <value>Pays-Bas</value>
+  </data>
+  <data name="NO.Text">
+    <value>Norvège</value>
+  </data>
+  <data name="NP.Text">
+    <value>Népal</value>
+  </data>
+  <data name="NR.Text">
+    <value>Nauru</value>
+  </data>
+  <data name="NU.Text">
+    <value>Niue</value>
+  </data>
+  <data name="NZ.Text">
+    <value>Nouvelle-Zélande</value>
+  </data>
+  <data name="OM.Text">
+    <value>Oman</value>
+  </data>
+  <data name="PA.Text">
+    <value>Panama</value>
+  </data>
+  <data name="PE.Text">
+    <value>Pérou</value>
+  </data>
+  <data name="PF.Text">
+    <value>Polynésie française</value>
+  </data>
+  <data name="PG.Text">
+    <value>Papouasie-Nouvelle-Guinée</value>
+  </data>
+  <data name="PH.Text">
+    <value>Philippines</value>
+  </data>
+  <data name="PK.Text">
+    <value>Pakistan</value>
+  </data>
+  <data name="PL.Text">
+    <value>Pologne</value>
+  </data>
+  <data name="PM.Text">
+    <value>Saint-Pierre-et-Miquelon</value>
+  </data>
+  <data name="PN.Text">
+    <value>Pitcairn</value>
+  </data>
+  <data name="PR.Text">
+    <value>Porto Rico</value>
+  </data>
+  <data name="PS.Text">
+    <value>Territoire palestinien</value>
+  </data>
+  <data name="PT.Text">
+    <value>Portugal</value>
+  </data>
+  <data name="PW.Text">
+    <value>Palaos</value>
+  </data>
+  <data name="PY.Text">
+    <value>Paraguay</value>
+  </data>
+  <data name="QA.Text">
+    <value>Qatar</value>
+  </data>
+  <data name="QO.Text">
+    <value>régions éloignées de l’Océanie</value>
+  </data>
+  <data name="RE.Text">
+    <value>Réunion</value>
+  </data>
+  <data name="RO.Text">
+    <value>Roumanie</value>
+  </data>
+  <data name="RS.Text">
+    <value>Serbie</value>
+  </data>
+  <data name="RU.Text">
+    <value>Russie</value>
+  </data>
+  <data name="RW.Text">
+    <value>Rwanda</value>
+  </data>
+  <data name="SA.Text">
+    <value>Arabie saoudite</value>
+  </data>
+  <data name="SB.Text">
+    <value>Îles Salomon</value>
+  </data>
+  <data name="SC.Text">
+    <value>Seychelles</value>
+  </data>
+  <data name="SD.Text">
+    <value>Soudan</value>
+  </data>
+  <data name="SE.Text">
+    <value>Suède</value>
+  </data>
+  <data name="SG.Text">
+    <value>Singapour</value>
+  </data>
+  <data name="SH.Text">
+    <value>Sainte-Hélène</value>
+  </data>
+  <data name="SI.Text">
+    <value>Slovénie</value>
+  </data>
+  <data name="SJ.Text">
+    <value>Svalbard et Île Jan Mayen</value>
+  </data>
+  <data name="SK.Text">
+    <value>Slovaquie</value>
+  </data>
+  <data name="SL.Text">
+    <value>Sierra Leone</value>
+  </data>
+  <data name="SM.Text">
+    <value>Saint-Marin</value>
+  </data>
+  <data name="SN.Text">
+    <value>Sénégal</value>
+  </data>
+  <data name="SO.Text">
+    <value>Somalie</value>
+  </data>
+  <data name="SR.Text">
+    <value>Suriname</value>
+  </data>
+  <data name="ST.Text">
+    <value>Sao Tomé-et-Principe</value>
+  </data>
+  <data name="SV.Text">
+    <value>El Salvador</value>
+  </data>
+  <data name="SY.Text">
+    <value>Syrie</value>
+  </data>
+  <data name="SZ.Text">
+    <value>Swaziland</value>
+  </data>
+  <data name="TA.Text">
+    <value>Tristan da Cunha</value>
+  </data>
+  <data name="TC.Text">
+    <value>Îles Turks et Caïques</value>
+  </data>
+  <data name="TD.Text">
+    <value>Tchad</value>
+  </data>
+  <data name="TF.Text">
+    <value>Terres australes françaises</value>
+  </data>
+  <data name="TG.Text">
+    <value>Togo</value>
+  </data>
+  <data name="TH.Text">
+    <value>Thaïlande</value>
+  </data>
+  <data name="TJ.Text">
+    <value>Tadjikistan</value>
+  </data>
+  <data name="TK.Text">
+    <value>Tokelau</value>
+  </data>
+  <data name="TL.Text">
+    <value>Timor oriental</value>
+  </data>
+  <data name="TM.Text">
+    <value>Turkménistan</value>
+  </data>
+  <data name="TN.Text">
+    <value>Tunisie</value>
+  </data>
+  <data name="TO.Text">
+    <value>Tonga</value>
+  </data>
+  <data name="TR.Text">
+    <value>Turquie</value>
+  </data>
+  <data name="TT.Text">
+    <value>Trinité-et-Tobago</value>
+  </data>
+  <data name="TV.Text">
+    <value>Tuvalu</value>
+  </data>
+  <data name="TW.Text">
+    <value>Taïwan</value>
+  </data>
+  <data name="TZ.Text">
+    <value>Tanzanie</value>
+  </data>
+  <data name="UA.Text">
+    <value>Ukraine</value>
+  </data>
+  <data name="UG.Text">
+    <value>Ouganda</value>
+  </data>
+  <data name="UM.Text">
+    <value>Îles Mineures Éloignées des États-Unis</value>
+  </data>
+  <data name="US.Text">
+    <value>États-Unis</value>
+  </data>
+  <data name="UY.Text">
+    <value>Uruguay</value>
+  </data>
+  <data name="UZ.Text">
+    <value>Ouzbékistan</value>
+  </data>
+  <data name="VA.Text">
+    <value>État de la Cité du Vatican</value>
+  </data>
+  <data name="VC.Text">
+    <value>Saint-Vincent-et-les Grenadines</value>
+  </data>
+  <data name="VE.Text">
+    <value>Venezuela</value>
+  </data>
+  <data name="VG.Text">
+    <value>Îles Vierges britanniques</value>
+  </data>
+  <data name="VI.Text">
+    <value>Îles Vierges des États-Unis</value>
+  </data>
+  <data name="VN.Text">
+    <value>Viêt Nam</value>
+  </data>
+  <data name="VU.Text">
+    <value>Vanuatu</value>
+  </data>
+  <data name="WF.Text">
+    <value>Wallis-et-Futuna</value>
+  </data>
+  <data name="WS.Text">
+    <value>Samoa</value>
+  </data>
+  <data name="YE.Text">
+    <value>Yémen</value>
+  </data>
+  <data name="YT.Text">
+    <value>Mayotte</value>
+  </data>
+  <data name="ZA.Text">
+    <value>Afrique du Sud</value>
+  </data>
+  <data name="ZM.Text">
+    <value>Zambie</value>
+  </data>
+  <data name="ZW.Text">
+    <value>Zimbabwe</value>
+  </data>
+  <data name="ZZ.Text">
+    <value>région indéterminée</value>
+  </data>
+</root>

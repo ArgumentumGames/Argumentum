@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdExecute.Text" xml:space="preserve">
+    <value>Executer la fusion</value>
+  </data>
+  <data name="cmdUpload.Text" xml:space="preserve">
+    <value>Charger le script XML de fusion</value>
+  </data>
+  <data name="ERROR_Merge.Text" xml:space="preserve">
+    <value>Le système a rencontré une erreur en cherchant à appliquer les changements de configuration. Veuillez vous reporter au fichier d'évènements pour plus d'information.</value>
+  </data>
+  <data name="plScriptNote.Text">
+    <value>*NOTE:</value>
+  </data>
+  <data name="plScriptNoteDesc.Text" xml:space="preserve">
+    <value>Une fois chargé, vous pouvez modifier le script dans le champ ci-dessous avant de l'exécuter</value>
+  </data>
+  <data name="plScript.Text" xml:space="preserve">
+    <value>Script de fusion</value>
+  </data>
+  <data name="cmdLoad.Text">
+    <value>Charger</value>
+  </data>
+  <data name="Configuration.Text">
+    <value>Fichiers</value>
+  </data>
+  <data name="Merge.Text" xml:space="preserve">
+    <value>Fusionner des scripts</value>
+  </data>
+  <data name="plConfigHelp.Text" xml:space="preserve">
+    <value>- Sélectionnez un fichier de configuration à modifier -</value>
+  </data>
+  <data name="plConfig.Text" xml:space="preserve">
+    <value>Ficher de configuration</value>
+  </data>
+  <data name="SaveWarning.Text" xml:space="preserve">
+    <value>La modification du fichier web.config va recharger votre site Web et les performances pourront être réduites pendant le rechargement de l'application par le serveur Web. Voulez-vous continuer?</value>
+  </data>
+  <data name="ERROR_ConfigurationFormat.Text" xml:space="preserve">
+    <value>Ce fichier de configuration n'est pas un fichier XML valide. Veuillez corriger le problème de format et réessayer : {0}</value>
+  </data>
+  <data name="LoadConfigWarning.Text" xml:space="preserve">
+    <value>Avertissement: Vous allez perdre vos modifications actuelles si vous chargez un nouveau fichier de configuration.</value>
+  </data>
+  <data name="MergeConfirm.Text" xml:space="preserve">
+    <value>Confirrmez-vous la fusion de ces changements avec le fichier config?</value>
+  </data>
+  <data name="SaveConfirm.Text" xml:space="preserve">
+    <value>Confirmez-vous l'enregistrement de ce fichier config ?</value>
+  </data>
+  <data name="SelectConfig.Text" xml:space="preserve">
+    <value>Sélection un fichier config...</value>
+  </data>
+  <data name="Success.Text" xml:space="preserve">
+    <value>Changements effectués.</value>
+  </data>
+  <data name="cmdSave.Text" xml:space="preserve">
+    <value>Enregistrer les changements</value>
+  </data>
+  <data name="fileLabel.Help" xml:space="preserve">
+    <value>Vous pouvez modifier le fichier avant d'effectuer les changements</value>
+  </data>
+  <data name="fileLabel.Text" xml:space="preserve">
+    <value>Fichier :</value>
+  </data>
+  <data name="scriptLabel.Help" xml:space="preserve">
+    <value>Vous pouvez modifier le script de fusion avant de l'exécuter</value>
+  </data>
+  <data name="scriptLabel.Text" xml:space="preserve">
+    <value>Script :</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Gestionnaire de configuration</value>
+  </data>
+  <data name="nav_ConfigConsole.Text" xml:space="preserve">
+    <value>Gestionnaire de configuration</value>
+  </data>
+  <data name="ConfigConsole.Text" xml:space="preserve">
+    <value>Gestionnaire de configuration</value>
+  </data>
+  <data name="SaveButton.Text">
+    <value>Oui</value>
+  </data>
+  <data name="CancelButton.Text">
+    <value>Non</value>
+  </data>
+  <data name="ConfigFilesTab.Text" xml:space="preserve">
+    <value>Fichiers de configuration</value>
+  </data>
+  <data name="MergeScriptsTab.Text" xml:space="preserve">
+    <value>Fusionner des scripts</value>
+  </data>
+  <!---->
+</root>

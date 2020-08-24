@@ -1,0 +1,15 @@
+@using DotNetNuke.Framework.JavaScriptLibraries;
+
+@* Include styles of the App *@
+<link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="true" />
+
+@* Include libaries / scripts *@
+@if(PageData["scripts"] == true) {
+  // tell DNN to load jquery as it's needed by fancybox
+  JavaScript.RequestRegistration(CommonJs.jQuery);
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" data-enableoptimizations="bottom" />
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js" data-enableoptimizations="bottom"></script>
+  <script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js" data-enableoptimizations="bottom"></script>
+}

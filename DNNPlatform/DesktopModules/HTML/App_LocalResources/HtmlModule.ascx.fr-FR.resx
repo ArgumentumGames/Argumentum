@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value xml:space="preserve">Éditer contenu</value>
+  </data>
+  <data name="AddContent.Text" xml:space="preserve">
+    <value xml:space="preserve">Cliquer ici pour modifier le contenu</value>
+  </data>
+  <data name="AddContentFromActionMenu.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous devez être en mode édition pour entrer dans le contenu</value>
+  </data>
+  <data name="AddContentFromToolBar.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez « Modifier le contenu » dans le menu (icône représentant un crayon).</value>
+  </data>
+  <data name="Bold.ToolTip">
+    <value xml:space="preserve">Gras</value>
+  </data>
+  <data name="Cancel.ToolTip">
+    <value xml:space="preserve">Annuler</value>
+  </data>
+  <data name="CreateLink.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Créer hyperlien</value>
+  </data>
+  <data name="Edit.ToolTip">
+    <value xml:space="preserve">Modifier</value>
+  </data>
+  <data name="Indent.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Augmenter le retrait</value>
+  </data>
+  <data name="Italic.ToolTip">
+    <value xml:space="preserve">Italique</value>
+  </data>
+  <data name="JustifyCenter.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Justifier au centre</value>
+  </data>
+  <data name="JustifyLeft.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Justifier à gauche</value>
+  </data>
+  <data name="JustifyRight.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Justifier à droite</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;P align=left&gt;Le module Texte/HTML vous permet saisir&amp;nbsp;du texte, du texte enrichi ou du code HTML. Vous disposez de cinq types d’affichage : &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / Text &lt;/STRONG&gt;: Rendu de texte simple et affichage des balises HTML. Les sauts de lignes sont pris en compte. Le style de texte est par défaut "normal", rendu tel que spécifié dans votre feuille de style. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / HTML &lt;/STRONG&gt;: Affiche du texte simple. Les sauts de lignes ne sont pas automatiquement rendus. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / Raw &lt;/STRONG&gt;: Affiche du texte simple au format HTML. Les sauts de ligne ne sont pas automatiquement pris en compte. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Rich Text Editor / HTML &lt;/STRONG&gt;: Vous pouvez utiliser du code HTML. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Rich Text Editor / Design &lt;/STRONG&gt;: Un véritable traitement de texte WYSIWYG (What You See is What You Get) qui supporte des fonctionnalités telles que les liens hypertextes, lien vers une adresse Email, accès à la galerie d’images, puces, etc...&lt;/DIV&gt;&lt;/LI&gt;&lt;/OL&gt;</value>
+  </data>
+  <data name="ModuleHelp.Text1" xml:space="preserve">
+    <value xml:space="preserve">&lt;P align=left&gt;Le module Texte/HTML vous permet saisir&amp;nbsp;du texte, du texte enrichi ou du code HTML. Vous disposez de cinq types d’affichage : &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / Text &lt;/STRONG&gt;: Rendu de texte simple et affichage des balises HTML. Les sauts de lignes sont pris en compte. Le style de texte est par défaut "normal", rendu tel que spécifié dans votre feuille de style. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / HTML &lt;/STRONG&gt;: Affiche du texte simple. Les sauts de lignes ne sont pas automatiquement rendus. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Basic Text Box / Raw &lt;/STRONG&gt;: Affiche du texte simple au format HTML. Les sauts de ligne ne sont pas automatiquement pris en compte. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Rich Text Editor / HTML &lt;/STRONG&gt;: Vous pouvez utiliser du code HTML. &lt;/DIV&gt;
+&lt;LI align="left"&gt;
+&lt;DIV align=left&gt;&lt;STRONG&gt;Rich Text Editor / Design &lt;/STRONG&gt;: Un véritable traitement de texte WYSIWYG (What You See is What You Get) qui supporte des fonctionnalités telles que les liens hypertextes, lien vers une adresse Email, accès à la galerie d’images, puces, etc...&lt;/DIV&gt;&lt;/LI&gt;&lt;/OL&gt;</value>
+  </data>
+  <data name="MyWork.Action" xml:space="preserve">
+    <value xml:space="preserve">Mon travail</value>
+  </data>
+  <data name="MyWork.Action1" xml:space="preserve">
+    <value xml:space="preserve">Mon travail</value>
+  </data>
+  <data name="OrderedList.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Liste ordonnée</value>
+  </data>
+  <data name="Outdent.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Réduire le retrait</value>
+  </data>
+  <data name="Save.ToolTip">
+    <value xml:space="preserve">Enregistrer</value>
+  </data>
+  <data name="Underline.ToolTip">
+    <value xml:space="preserve">Souligner</value>
+  </data>
+  <data name="UnorderedList.ToolTip" xml:space="preserve">
+    <value xml:space="preserve">Liste non ordonnée</value>
+  </data>
+  <data name="Workflow.Action">
+    <value xml:space="preserve">Workflow</value>
+  </data>
+  <data name="ModuleDoesNotBelongToPageWarning.Text" xml:space="preserve">
+    <value>Ce module n'appartient pas à la page. Veuillez aller sur &lt;a href='{0}'&gt;sa page&lt;/a&gt; pour modifier ce module.</value>
+  </data>
+  <data name="MasterPageNotFound.Text" xml:space="preserve">
+    <value>Ce module ne fait pas partie de la page, mais sa page maître est introuvable. &lt;a href='#' class='makeMasterPage{0}'&gt;Faire de cette page la page maître ?&lt;/a&gt;</value>
+  </data>
+  <data name="NotEditableForNoLicense.Text" xml:space="preserve">
+    <value>Vous utilisez une version sans licence et non supportée de {0} et le module n'est pas modifiable. Veuillez contacter customersuccess@dnnsoftware.com pour avoir des informations sur la façon d'obtenir une licence valide.</value>
+  </data>
+  <!---->
+</root>

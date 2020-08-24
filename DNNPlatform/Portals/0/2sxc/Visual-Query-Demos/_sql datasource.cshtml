@@ -1,0 +1,10 @@
+<div class="sc-element">
+    @Edit.Toolbar()
+    <h1>Demo showing Sql data (Portals-list)</h1>
+    
+    <ol>
+    @foreach(var portal in AsDynamic(Data.List)){
+        <li>@portal.EntityTitle (@portal.PortalID)</li>
+    }
+    </ol>
+</div>

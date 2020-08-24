@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdEditor.Text" xml:space="preserve">
+    <value>Paramètres du module</value>
+  </data>
+  <data name="cmdExtension.Text">
+    <value>Info</value>
+  </data>
+  <data name="cmdLicense.Text">
+    <value>Licence</value>
+  </data>
+  <data name="EditTitle.Text">
+    <value>Détails</value>
+  </data>
+  <data name="cmdReleaseNotes.Text" xml:space="preserve">
+    <value>Note de mise à jour</value>
+  </data>
+  <data name="cmdSecurity.Text">
+    <value>Sécurité</value>
+  </data>
+  <data name="Permissions.Help" xml:space="preserve">
+    <value>Cochez les cases à cocher pour définir des autorisations pour ce paquet.</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Permissions de Package :</value>
+  </data>
+  <data name="chkDelete.Text" xml:space="preserve">
+    <value>Effacer les fichiers</value>
+  </data>
+  <data name="cmdDelete.Text" xml:space="preserve">
+    <value>Désinstaller l'extension</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="cmdUpdateLicense.Text" xml:space="preserve">
+    <value>Mettre à jour la licence</value>
+  </data>
+  <data name="cmdUpdateReleaseNotes.Text" xml:space="preserve">
+    <value>Mise à jour</value>
+  </data>
+  <data name="cmdPackage.Text" xml:space="preserve">
+    <value>Créer un package</value>
+  </data>
+  <data name="EditHelp.Text" xml:space="preserve">
+    <value>Dans cette section, vous pouvez configurer les informations de paquet de cette Extension.</value>
+  </data>
+  <data name="cmdCreate.Text" xml:space="preserve">
+    <value>Ajouter une extension</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Edition de l'Extension</value>
+  </data>
+  <data name="ExtensionSettings.Text" xml:space="preserve">
+    <value>Paramètres d'Extension</value>
+  </data>
+  <data name="PackageSettings.Text" xml:space="preserve">
+    <value>Paramètres du Package</value>
+  </data>
+  <data name="Languages.Action" xml:space="preserve">
+    <value>Editeur de Langue</value>
+  </data>
+  <data name="TimeZones.Action" xml:space="preserve">
+    <value>Editeur de Fuseau Horaire</value>
+  </data>
+  <data name="ManageSkins.Action" xml:space="preserve">
+    <value>Gérer les thèmes</value>
+  </data>
+  <data name="cmdCreateLanguage.Text" xml:space="preserve">
+    <value>Ajouter une Langue</value>
+  </data>
+  <data name="cmdCreateModule.Text" xml:space="preserve">
+    <value>Ajouter un module</value>
+  </data>
+  <data name="cmdCreateSkin.Text" xml:space="preserve">
+    <value>Ajouter un Thème</value>
+  </data>
+  <data name="cmdUpdateLanguage.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="cmdUpdateModule.Text" xml:space="preserve">
+    <value>Mettre à jour le Module</value>
+  </data>
+  <data name="cmdUpdateSkin.Text" xml:space="preserve">
+    <value>Mise à jour du Thème</value>
+  </data>
+  <data name="EditLanguageHelp.Text" xml:space="preserve">
+    <value>Dans cette section, vous pouvez configurer les informations de package pour ce pack de langue.</value>
+  </data>
+  <data name="EditModuleHelp.Text" xml:space="preserve">
+    <value>Dans cette section, vous pouvez configurer les informations de package pour ce module.</value>
+  </data>
+  <data name="EditSkinHelp.Text" xml:space="preserve">
+    <value>Dans cette section, vous pouvez configurer les informations de package pour ce thème.</value>
+  </data>
+  <data name="DuplicateName.Text" xml:space="preserve">
+    <value>Les paquets doivent avoir un nom unique</value>
+  </data>
+  <data name="Core.Text">
+    <value>Noyau</value>
+  </data>
+  <data name="Package.Text">
+    <value>Paquet</value>
+  </data>
+  <data name="plPackageType.Help" xml:space="preserve">
+    <value>Sélectionnez le type de Pack de langue vous voulez créer</value>
+  </data>
+  <data name="plPackageType.Text" xml:space="preserve">
+    <value>Type de Pack de Langue :</value>
+  </data>
+  <data name="PackageType.Error" xml:space="preserve">
+    <value>Vous devez sélectionner un Type de Pack de langue.</value>
+  </data>
+  <data name="cmdCreateContainer.Text" xml:space="preserve">
+    <value>Ajouter un Container</value>
+  </data>
+  <data name="PackageUpdated.Text" xml:space="preserve">
+    <value>Extension mise à jour</value>
+  </data>
+  <data name="UpgradeMessage.Text" xml:space="preserve">
+    <value>Cliquez ici pour obtenir un mise à jour</value>
+  </data>
+  <data name="LanguageMessage.Text" xml:space="preserve">
+    <value>Cliquer ici pour obtenir le pack de langue</value>
+  </data>
+  <data name="AdminHeading.Text" xml:space="preserve">
+    <value>Configurer les paramètres d'extension de {0} pour ce site</value>
+  </data>
+  <data name="HostHeading.Text" xml:space="preserve">
+    <value>Configurer les paramètres d'extension {0}</value>
+  </data>
+  <data name="Controls.Help" xml:space="preserve">
+    <value>Affiche le module de définition des contrôles de module.</value>
+  </data>
+  <!---->
+</root>

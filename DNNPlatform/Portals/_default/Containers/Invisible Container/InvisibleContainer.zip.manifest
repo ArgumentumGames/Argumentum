@@ -1,0 +1,16 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>default.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>LICENSE</name>
+    </file>
+    <file>
+      <path />
+      <name>README.md</name>
+    </file>
+  </files>
+</dotnetnuke>

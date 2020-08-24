@@ -1,0 +1,8 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ExportImport.resx</name>
+    </file>
+  </files>
+</dotnetnuke>

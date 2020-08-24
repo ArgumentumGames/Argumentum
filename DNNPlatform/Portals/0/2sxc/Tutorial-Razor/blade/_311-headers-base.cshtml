@@ -1,0 +1,29 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> set Base tag in header <em>v3</em></h2>
+  <div>
+    This page sets the Base tag in the header. Look at the source of this page to see the result. <br>
+    There are two ways to do this:
+  </div>
+  <ul>
+    <li>
+      <code>HtmlPage.AddBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
+    </li>
+    <li>
+      <code>HtmlPage.AddBase("/some/page")</code> create the base tag with the specified url. 
+    </li>
+  </ul>
+</trim>
+
+@{
+  HtmlPage.AddBase();
+}
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

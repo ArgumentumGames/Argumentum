@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cancelCreate.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="ControlTitle_createvocabulary.Text" xml:space="preserve">
+    <value>Créer un nouveau vocabulaire</value>
+  </data>
+  <data name="ControlTitle_editvocabulary.Text">
+    <value>Editer</value>
+  </data>
+  <data name="SaveVocabulary.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="CurrentTerm.Text" xml:space="preserve">
+    <value>Modifier le terme</value>
+  </data>
+  <data name="DeleteVocabulary.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="Terms.Text">
+    <value>Termes</value>
+  </data>
+  <data name="Title.Text">
+    <value>Editer</value>
+  </data>
+  <data name="DeleteTerm.Text">
+    <value>Supprimer</value>
+  </data>
+  <data name="SaveTerm.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="AddTerm.Text">
+    <value>Nouveau</value>
+  </data>
+  <data name="CreateTerm.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="NewTerm.Text" xml:space="preserve">
+    <value>Nouveau terme</value>
+  </data>
+  <data name="TermValidationError.Message" xml:space="preserve">
+    <value>Il y avait une erreur de validation de l'expression.  Les termes doivent inclure un nom.</value>
+  </data>
+  <data name="TermValidationError.MessageHeader" xml:space="preserve">
+    <value>Erreur de validation</value>
+  </data>
+  <data name="ControlTitle_edit.Text">
+    <value>Editer</value>
+  </data>
+  <data name="ParentTerm.Text" xml:space="preserve">
+    <value>Terme parent</value>
+  </data>
+  <data name="ParentTerm.ToolTip" xml:space="preserve">
+    <value>Le terme parent pour ce terme hiérarchique.</value>
+  </data>
+  <data name="TermName.Text">
+    <value>Nom</value>
+  </data>
+  <data name="TermName.ToolTip" xml:space="preserve">
+    <value>Le nom du terme.</value>
+  </data>
+  <data name="TermName.Required" xml:space="preserve">
+    <value>Le nom du terme est un champ obligatoire.</value>
+  </data>
+  <data name="Application.Text">
+    <value>Application</value>
+  </data>
+  <data name="Description.Text">
+    <value>Description</value>
+  </data>
+  <data name="Description.ToolTip" xml:space="preserve">
+    <value>La description du vocabulaire.</value>
+  </data>
+  <data name="Hierarchy.Text">
+    <value>Hiérarchie</value>
+  </data>
+  <data name="Name.Required" xml:space="preserve">
+    <value>Un nom est requis pour un vocabulaire.</value>
+  </data>
+  <data name="Name.Text">
+    <value>Nom</value>
+  </data>
+  <data name="Name.ToolTip" xml:space="preserve">
+    <value>Le nom du vocabulaire.</value>
+  </data>
+  <data name="Portal.Text">
+    <value>Site</value>
+  </data>
+  <data name="Scope.Text">
+    <value>Portée</value>
+  </data>
+  <data name="Scope.ToolTip" xml:space="preserve">
+    <value>La portée de ce vocabulaire, à l'échelle de l'application ou spécifique au site.</value>
+  </data>
+  <data name="Simple.Text">
+    <value>Simple</value>
+  </data>
+  <data name="Type.Text">
+    <value>Type</value>
+  </data>
+  <data name="Type.ToolTip" xml:space="preserve">
+    <value>Le type de vocabulaire, hiérarchique ou simple.</value>
+  </data>
+  <data name="VocabularyExists.Error" xml:space="preserve">
+    <value>Le vocabulaire « {0} » existe dans la liste.</value>
+  </data>
+  <data name="Create.Text" xml:space="preserve">
+    <value>Créer un nouveau vocabulaire</value>
+  </data>
+  <data name="Description.Header">
+    <value>Description</value>
+  </data>
+  <data name="Name.Header">
+    <value>Nom</value>
+  </data>
+  <data name="Scope.Header">
+    <value>Portée</value>
+  </data>
+  <data name="Type.Header">
+    <value>Type</value>
+  </data>
+  <data name="Create.ToolTip" xml:space="preserve">
+    <value>Cliquer sur ce bouton pour créer un nouveau vocabulaire.</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Modifier</value>
+  </data>
+  <data name="Confirm.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir ajouter un vocabulaire ?</value>
+  </data>
+  <data name="ControlTitle_.Text">
+    <value>Vocabulaires</value>
+  </data>
+  <data name="nav_Vocabularies.Text">
+    <value>Vocabulaires</value>
+  </data>
+  <data name="TermExists.Error" xml:space="preserve">
+    <value>Le terme "{0}" existe dans la liste.</value>
+  </data>
+  <data name="ConfirmDeletion_Vocabulary.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer "{0}" ?</value>
+  </data>
+  <data name="ConfirmDeletion_Term.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer le terme "{0}" ?</value>
+  </data>
+  <data name="LoadMore.Text" xml:space="preserve">
+    <value>Charger plus</value>
+  </data>
+  <data name="RequiredField.Text" xml:space="preserve">
+    <value>Champ obligatoire</value>
+  </data>
+  <data name="CreateVocabulary.Text">
+    <value>Créer</value>
+  </data>
+  <data name="NoVocabularyTerms.Error" xml:space="preserve">
+    <value>Aucun vocabulaire trouvé.</value>
+  </data>
+  <data name="Close.Text">
+    <value>Fermer</value>
+  </data>
+  <data name="All.Text">
+    <value>Tous</value>
+  </data>
+  <data name="BackToVocabularies.Text" xml:space="preserve">
+    <value>Revenir aux vocabulaires</value>
+  </data>
+  <data name="EditFieldHelper.Text" xml:space="preserve">
+    <value>Appuyez sur Entrée lorsque terminé, ou ESC pour annuler</value>
+  </data>
+  <!---->
+</root>

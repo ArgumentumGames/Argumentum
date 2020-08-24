@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="CancelButton.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="cmdCopyPerm.Text" xml:space="preserve">
+    <value>Appliquer les permissions aux sous-pages</value>
+  </data>
+  <data name="DialogTitle.Text" xml:space="preserve">
+    <value>Info dossier {0}</value>
+  </data>
+  <data name="FolderNameLabel.Help" xml:space="preserve">
+    <value>Modifier le nom du dossier actuel</value>
+  </data>
+  <data name="FolderNameLabel.Text" xml:space="preserve">
+    <value>Nom du dossier</value>
+  </data>
+  <data name="FolderTypeLabel.Help" xml:space="preserve">
+    <value>Cette valeur indique le type de dossier du dossier actuel</value>
+  </data>
+  <data name="FolderTypeLabel.Text" xml:space="preserve">
+    <value>Type de dossier</value>
+  </data>
+  <data name="GeneralTab.Text">
+    <value>Général</value>
+  </data>
+  <data name="lblCopyPerm.Help" xml:space="preserve">
+    <value>Copie les autorisations du dossier actuellement sélectionné vers les sous-dossiers.</value>
+  </data>
+  <data name="lblCopyPerm.Text" xml:space="preserve">
+    <value>Copier les autorisations pour les sous-dossiers :</value>
+  </data>
+  <data name="PermissionCopyError.Text" xml:space="preserve">
+    <value>Erreur lors de la copie des autorisations</value>
+  </data>
+  <data name="PermissionsCopied.Text" xml:space="preserve">
+    <value>Autorisations copiées avec succès</value>
+  </data>
+  <data name="PermissionsTab.Text">
+    <value>Permissions</value>
+  </data>
+  <data name="SaveButton.Text">
+    <value>Enregistrer</value>
+  </data>
+  <data name="UserCannotChangePermissionsError.Text" xml:space="preserve">
+    <value>Vous ne pouvez pas modifier les autorisations de ce dossier</value>
+  </data>
+  <data name="UserCannotEditFolderError.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à modifier ce dossier</value>
+  </data>
+  <data name="UserCannotReadFolderError.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à lire ce dossier</value>
+  </data>
+  
+</root>

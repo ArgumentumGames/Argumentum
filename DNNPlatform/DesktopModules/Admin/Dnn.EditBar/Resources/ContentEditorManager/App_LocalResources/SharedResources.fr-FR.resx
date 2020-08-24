@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="25% + 50% + 25%.Text" xml:space="preserve">
+    <value>Trois colonnes 25-50-25</value>
+  </data>
+  <data name="25% + 75%.Text" xml:space="preserve">
+    <value>Deux colonnes 25-75</value>
+  </data>
+  <data name="33% + 33% + 33%.Text" xml:space="preserve">
+    <value>Trois colonnes 33-33-33</value>
+  </data>
+  <data name="50% + 50%.Text" xml:space="preserve">
+    <value>Deux colonne 50-50</value>
+  </data>
+  <data name="75% + 25%.Text" xml:space="preserve">
+    <value>Deux colonnes 75-25</value>
+  </data>
+  <data name="AddModule.Text" xml:space="preserve">
+    <value>Ajouter le module</value>
+  </data>
+  <data name="Blank.Text">
+    <value>Blank</value>
+  </data>
+  <data name="Cancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="CancelConfirm.Text" xml:space="preserve">
+    <value>Êtes-vous certain de vouloir annuler l’ajout de ce module sur la page ?</value>
+  </data>
+  <data name="CloseLabel.Text">
+    <value>Fermer</value>
+  </data>
+  <data name="ConfirmNo.Text">
+    <value>Non</value>
+  </data>
+  <data name="ConfirmTitle.Text">
+    <value>Confirmer</value>
+  </data>
+  <data name="ConfirmYes.Text">
+    <value>Oui</value>
+  </data>
+  <data name="ContentLayout.Delete.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer cette disposition ?</value>
+  </data>
+  <data name="ContentLayout.Text" xml:space="preserve">
+    <value>Disposition du contenu</value>
+  </data>
+  <data name="DiscardLabel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="DragTip.Text" xml:space="preserve">
+    <value>&lt;p&gt;AJOUTER MODULE :&lt;/p&gt;&lt;p&gt;Cliquer puis glisser/déposer le module dans l'emplacement désiré&lt;/p&gt;</value>
+  </data>
+  <data name="EditBarMessageLabel.Text" xml:space="preserve">
+    <value>Les changements indiqués ne sont pas publiés</value>
+  </data>
+  <data name="NoModules.Text" xml:space="preserve">
+    <value>Il n’y a aucun module disponible pour une utilisation sur cette page.</value>
+  </data>
+  <data name="PendingSave.Text" xml:space="preserve">
+    <value>Vous n'avez pas fini d'ajouter le module, Etes-vous sûr de vouloir continuer sans sauvegarder ?</value>
+  </data>
+  <data name="PublishLabel.Text">
+    <value>Publier</value>
+  </data>
+  <data name="Service_CopyPermissionError.Text" xml:space="preserve">
+    <value>Erreur lors de la copie des autorisations vers les sous-pages.</value>
+  </data>
+  <data name="Service_CopyPermissionSuccessful.Text" xml:space="preserve">
+    <value>Copie des autorisations vers les sous-pages réussie.</value>
+  </data>
+  <data name="Service_LayoutNotExist.Text" xml:space="preserve">
+    <value>La disposition a déjà été supprimée.</value>
+  </data>
+  <data name="Service_ModuleNotExist.Text" xml:space="preserve">
+    <value>Le module a déjà été supprimé.</value>
+  </data>
+  <data name="System.Text">
+    <value>Système</value>
+  </data>
+  <data name="Service_RestoreTabModuleError.Text" xml:space="preserve">
+    <value>Erreur lors de la restauration de la page :&lt;br&gt;{0}</value>
+  </data>
+  <data name="Service_RemoveTabModuleError.Text" xml:space="preserve">
+    <value>Erreur lros de la suppression de la page :&lt;br&gt;{0}</value>
+  </data>
+  <data name="Service_RestoreModuleError.Text" xml:space="preserve">
+    <value>Erreur lors de la restauration du module {0} sur la page {1}. Page supprimée.</value>
+  </data>
+  <data name="Service_RestoreTabError.Text" xml:space="preserve">
+    <value>La page {0} ne pourra être restaurée qu'une fois la page parente restaurée.&lt;br&gt;</value>
+  </data>
+  <data name="DeleteModuleConfirm.Text" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer ce module ?</value>
+  </data>
+  <data name="SearchPlaceHolder.Text">
+    <value>Chercher</value>
+  </data>
+  <data name="Category_Recommended.Text">
+    <value>Recommandé</value>
+  </data>
+  <data name="Category_All.Text">
+    <value>Tous</value>
+  </data>
+  <data name="Service_RemoveTabError.Text" xml:space="preserve">
+    <value>Impossible de supprimer la page {0}, ses sous-pages doivent être supprimées en premier.&lt;br&gt;</value>
+  </data>
+  <data name="AddExistingModule.Text" xml:space="preserve">
+    <value>Ajouter un module existant</value>
+  </data>
+  <data name="pagePicker_clearButtonTooltip.Text">
+    <value>Effacer</value>
+  </data>
+  <data name="pagePicker_loadingResultText.Text" xml:space="preserve">
+    <value>...Chargement des résultats</value>
+  </data>
+  <data name="pagePicker_resultsText.Text">
+    <value>Résultats</value>
+  </data>
+  <data name="pagePicker_searchButtonTooltip.Text">
+    <value>Chercher</value>
+  </data>
+  <data name="pagePicker_searchInputPlaceHolder.Text" xml:space="preserve">
+    <value>Nom de page</value>
+  </data>
+  <data name="pagePicker_selectedItemCollapseTooltip.Text" xml:space="preserve">
+    <value>Cliquer pour réduire</value>
+  </data>
+  <data name="pagePicker_selectedItemExpandTooltip.Text" xml:space="preserve">
+    <value>Cliquer pour agrandir</value>
+  </data>
+  <data name="pagePicker_selectItemDefaultText.Text" xml:space="preserve">
+    <value>&lt;Non spécifié&gt;</value>
+  </data>
+  <data name="pagePicker_sortAscendingButtonTitle.Text">
+    <value>A-Z</value>
+  </data>
+  <data name="pagePicker_sortAscendingButtonTooltip.Text" xml:space="preserve">
+    <value>Tri par ordre croissant</value>
+  </data>
+  <data name="pagePicker_unsortedOrderButtonTooltip.Text" xml:space="preserve">
+    <value>Enlever le tri</value>
+  </data>
+  <data name="pagerPicker_sortDescendingButtonTooltip.Text" xml:space="preserve">
+    <value>Tri par ordre décroissant</value>
+  </data>
+  <data name="MakeCopy.Text" xml:space="preserve">
+    <value>Faire une copie</value>
+  </data>
+  <data name="Page.Text" xml:space="preserve">
+    <value>Page :</value>
+  </data>
+  <data name="Site.Text" xml:space="preserve">
+    <value>Site :</value>
+  </data>
+  <!---->
+</root>

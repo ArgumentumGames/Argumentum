@@ -1,0 +1,43 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using DotNetNuke.Framework.JavaScriptLibraries;
+@{
+    var helpers = CreateInstance("_Helpers.cshtml");
+    JavaScript.RequestRegistration(CommonJs.jQuery);
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" data-enableoptimizations="false" />
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="false">
+
+<div class="hotspots" @helpers.HotspotsAttr(Dnn.Module.ModuleID, Content) @Edit.TagToolbar(Content)>
+    @foreach (var hotspot in Content.Hotspots) {
+        <div class="hotspot" @helpers.HotspotDataAndStyle(hotspot, Content, Dnn.Module.ModuleID)>
+            @* <div class="hotspot-pulse"></div> *@
+            <img src="@App.Settings.HotspotSetting.HotspotIcon" alt="@hotspot.Title" class="heartbeat">
+        </div>
+    }
+    <img src="@Content.Image" class="hotspot-image">
+</div>
+
+@foreach (var hotspot in Content.Hotspots) {
+    <div id="hotspot-content-@hotspot.EntityId-@Dnn.Module.ModuleID" class="sc-element fancybox-hotspot-content" style="display: none">
+        @Edit.Toolbar(hotspot, toolbar: new[] { "%delete&show=true" } )
+        <div class="@hotspot.OverlayLayout">
+            @if(Text.Has(hotspot.Image)) {
+                var size = (hotspot.OverlayLayout == "display-flex-row" ? "h=600" : "w=900");
+                <div class="image-wrapper">
+                    <img src="@hotspot.Image?@size&quality=80" alt="@hotspot.Title">
+                </div>
+            }
+
+            @if(Text.Has(hotspot.Description)) {
+                <div class="fancybox-copy">
+                    @Html.Raw(hotspot.Description)
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js" data-enableoptimizations="false"></script>
+<script src="@App.Path/dist/scripts.min.js" data-enableoptimizations="false"></script>

@@ -1,0 +1,13 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+
+<div class="row mb-4 mb-md-5" @Edit.TagToolbar(Content)>
+	<div class="col-md-4 order-md-1">
+		<img class="img-fluid" src='@Content.Image?w=540&h=405&mode=crop&scale=both' alt="@Content.Name" />
+	</div>
+	<div class="col-md-8 order-md-4">
+        <h1>
+            @Content.Name
+        </h1>
+        @Html.Raw(Content.Description)
+	</div>
+</div>

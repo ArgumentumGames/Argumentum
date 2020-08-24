@@ -1,0 +1,44 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Picture()</code> with many sources <em>v3</em></h2>
+  <div>
+    <code>picture</code> tags are the future of <code>img</code> tags. But it can be messy to create them, so here goes 😉. 
+    This example will return a small image if your screen is small, a large one otherwise. Try resizing the width of your browser to test. The image will become blurry if the browser is less than 800px wide.
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Picture()", "https://razor-blade.net/api/ToSic.Razor.Html5.Picture.html",
+    "Source()", "https://razor-blade.net/api/ToSic.Razor.Html5.Source.html", 
+  })
+  </div>
+</trim>
+<hr>
+@{
+  var path = App.Path + "/blade/assets/tag-img/";
+  var small = "überschrift-small.png";
+  var large = "überschrift-large.png";
+}
+@Tag.Picture(
+  Tag.Source().Srcset(path + large).Media("(min-width: 800px)"),
+  Tag.Img().Src(path + small)
+)
+<hide>
+<pre>@Tag.Picture(
+  Tag.Source().Srcset(path + large).Media("(min-width: 800px)"),
+  Tag.Img().Src(path + small)
+).ToString()</pre>
+
+<style>
+  picture, picture source, picture img {
+    width: 100%;
+  }
+</style>
+
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

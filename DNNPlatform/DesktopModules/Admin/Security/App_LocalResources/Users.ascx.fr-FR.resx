@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+   
+
+  <note></note>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value xml:space="preserve">Ajouter un nouvel utilisateur</value>
+  </data>
+  <data name="Address.Header">
+    <value xml:space="preserve">Adresse</value>
+  </data>
+  <data name="Authorized.Header">
+    <value xml:space="preserve">Autorisé</value>
+  </data>
+  <data name="Biography.Text">
+    <value xml:space="preserve">Biographie</value>
+  </data>
+  <data name="Cell.Text">
+    <value xml:space="preserve">Portable</value>
+  </data>
+  <data name="City.Text">
+    <value xml:space="preserve">Ville</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value xml:space="preserve">Gestion des utilisateurs</value>
+  </data>
+  <data name="Country.Text">
+    <value xml:space="preserve">Pays</value>
+  </data>
+  <data name="CreatedDate.Header" xml:space="preserve">
+    <value xml:space="preserve">Date de création</value>
+  </data>
+  <data name="Delete.Confirm" xml:space="preserve">
+    <value xml:space="preserve">Êtes-vous certain de vouloir supprimer cet utilisateur ?</value>
+  </data>
+  <data name="Delete.Text">
+    <value xml:space="preserve">Effacer</value>
+  </data>
+  <data name="DeleteUnAuthorized.Action" xml:space="preserve">
+    <value xml:space="preserve">Supprimer les comptes non-autorisés</value>
+  </data>
+  <data name="DeleteUnauthorized.Text" xml:space="preserve">
+    <value xml:space="preserve">Supprimer les comptes non-autorisés</value>
+  </data>
+  <data name="DisplayDate.Text" xml:space="preserve">
+    <value xml:space="preserve">Date affichée :</value>
+  </data>
+  <data name="DisplayName.Header" xml:space="preserve">
+    <value xml:space="preserve">Nom complet</value>
+  </data>
+  <data name="Email.Header">
+    <value xml:space="preserve">Courriel</value>
+  </data>
+  <data name="Email.Text">
+    <value xml:space="preserve">Courriel</value>
+  </data>
+  <data name="Fax.Text">
+    <value xml:space="preserve">Télécopie</value>
+  </data>
+  <data name="Filter.Text">
+    <value xml:space="preserve">A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</value>
+  </data>
+  <data name="First.Text">
+    <value xml:space="preserve">Premier</value>
+  </data>
+  <data name="FirstName.Header">
+    <value xml:space="preserve">Prénom</value>
+  </data>
+  <data name="FirstName.Text">
+    <value xml:space="preserve">Prénom</value>
+  </data>
+  <data name="IM.Text" xml:space="preserve">
+    <value xml:space="preserve">Messagerie instantanée</value>
+  </data>
+  <data name="Last.Text">
+    <value xml:space="preserve">Dernier</value>
+  </data>
+  <data name="LastLogin.Header" xml:space="preserve">
+    <value xml:space="preserve">Dernier accès</value>
+  </data>
+  <data name="LastName.Header">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="LastName.Text">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="ManageProfile.Action" xml:space="preserve">
+    <value xml:space="preserve">Gestion des propriétés de profil</value>
+  </data>
+  <data name="MiddleName.Text" xml:space="preserve">
+    <value xml:space="preserve">Second prénom</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;h1&gt;A propos du module &amp;quot;User Account&amp;quot;&lt;/h1&gt;&lt;p&gt;Ce module permet la gestion des 
+paramètres de compte par l'utilisateur.&lt;/p&gt;</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value xml:space="preserve">Nom complet</value>
+  </data>
+  <data name="Next.Text">
+    <value xml:space="preserve">Suivant</value>
+  </data>
+  <data name="Online.Text" xml:space="preserve">
+    <value xml:space="preserve">En ligne</value>
+  </data>
+  <data name="PostalCode.Text" xml:space="preserve">
+    <value xml:space="preserve">Code postal</value>
+  </data>
+  <data name="PreferredLocale.Text" xml:space="preserve">
+    <value xml:space="preserve">Langue préférée</value>
+  </data>
+  <data name="PreferredTimeZone.Text" xml:space="preserve">
+    <value xml:space="preserve">Fuseau horaire préféré</value>
+  </data>
+  <data name="Prefix.Text">
+    <value xml:space="preserve">Civilité</value>
+  </data>
+  <data name="Previous.Text">
+    <value xml:space="preserve">Précédent</value>
+  </data>
+  <data name="RecordsPage.Text" xml:space="preserve">
+    <value xml:space="preserve">Enregistrements par page :</value>
+  </data>
+  <data name="Region.Text">
+    <value xml:space="preserve">Région</value>
+  </data>
+  <data name="Remove.Confirm" xml:space="preserve">
+    <value xml:space="preserve">Êtes-vous certain de vouloir supprimer définitivement cet utilisateur ?</value>
+  </data>
+  <data name="Remove.Text">
+    <value xml:space="preserve">Supprimer</value>
+  </data>
+  <data name="RemoveDeleted.Action" xml:space="preserve">
+    <value xml:space="preserve">Effacer les utilisateurs supprimés</value>
+  </data>
+  <data name="Restore.Confirm" xml:space="preserve">
+    <value xml:space="preserve">Êtes-vous certain de vouloir restaurer cet utilisateur ?</value>
+  </data>
+  <data name="Restore.Text">
+    <value xml:space="preserve">Rétablir</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value xml:space="preserve">Rechercher :</value>
+  </data>
+  <data name="Street.Text">
+    <value xml:space="preserve">Rue</value>
+  </data>
+  <data name="Suffix.Text">
+    <value xml:space="preserve">Suffixe</value>
+  </data>
+  <data name="Telephone.Header">
+    <value xml:space="preserve">Téléphone</value>
+  </data>
+  <data name="Telephone.Text">
+    <value xml:space="preserve">Téléphone</value>
+  </data>
+  <data name="TimeZone.Text" xml:space="preserve">
+    <value xml:space="preserve">Fuseau horaire</value>
+  </data>
+  <data name="Unit.Text">
+    <value xml:space="preserve">Numéro</value>
+  </data>
+  <data name="UserDeleted.Text" xml:space="preserve">
+    <value xml:space="preserve">Compte supprimé avec succès</value>
+  </data>
+  <data name="Username.Header">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="Username.Text">
+    <value xml:space="preserve">Utilisateur</value>
+  </data>
+  <data name="UserRoles.Text" xml:space="preserve">
+    <value xml:space="preserve">Gestion des rôles et groupes de rôles</value>
+  </data>
+  <data name="UserSettings.Action" xml:space="preserve">
+    <value xml:space="preserve">Configuration des utilisateurs</value>
+  </data>
+  <data name="Website.Text" xml:space="preserve">
+    <value xml:space="preserve">Site Web</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value>Nom complet</value>
+  </data>
+  <data name="PagerPageSize.Text" xml:space="preserve">
+    <value>Éléments par page :</value>
+  </data>
+  <data name="PagerTextFormat.Text" xml:space="preserve">
+    <value>{4} Page {0} sur {1}, utilisateurs {2} à {3} sur {5}</value>
+  </data>
+  
+</root>

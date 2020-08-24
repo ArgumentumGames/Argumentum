@@ -1,0 +1,35 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<!-- unimportant stuff, hidden -->
+@using ToSic.Razor.Blade;
+@using System.Linq;
+Example from CSV... <!-- unimportant stuff, hidden -->
+@{
+  // get the query
+  var query = App.Query["FallaciesFromCSV"];
+
+  // get the data from the query
+  var fallacies = AsList(query);
+
+
+}
+<div @Edit.TagToolbar(Content)>
+   <ul>
+  @foreach(var fallacy in fallacies) {
+    <!-- this li will have class=selected if it's the current one -->
+    <li>
+      <!-- this creates a link to the current tutorial (data220) and product=id -->
+      <a href='@Link.To(parameters: "fallacy/" + fallacy.EntityId)'>
+        @fallacy.text_en (#@fallacy.path)
+      </a>
+       <br>
+        <em>
+          @fallacy.desc_en 
+          (<a href="@fallacy.link_en" target="_blank">find out more</a>)
+        </em>
+     </li>
+  }
+</ul>
+
+<!-- unimportant stuff, hidden -->
+</div>
+

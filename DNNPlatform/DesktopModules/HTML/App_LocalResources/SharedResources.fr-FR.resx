@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApproveContent.Action">
+    <value xml:space="preserve">Approuver</value>
+  </data>
+  <data name="ContentLocked.Error" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Ce contenu est verrouillé par [USER]. Vous ne pouvez enregistrer vos modifications tant qu’il n’est pas déverrouillé.</value>
+  </data>
+  <data name="Lock.Action" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Verrouiller le contenu</value>
+  </data>
+  <data name="More.Text" version="deprecated">
+    <value xml:space="preserve">plus</value>
+  </data>
+  <data name="NotificationBody_Approval.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le contenu de la page à l’adresse suivante est passé du statut [OLDSTATE] au statut [STATE]. &lt;br /&gt;&lt;a href='[URL]'&gt;[URL]&lt;/a&gt; &lt;br /&gt; Commentaire : [COMMENT]</value>
+  </data>
+  <data name="NotificationBody_CancelSubmission.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le contenu de la page à l'URL ci-dessous a été rappelé et est maintenant en état de workflow [STATE]. &lt;br /&gt;&lt;a href='[URL]'&gt;[URL]&lt;/a&gt; &lt;br /&gt; Commentaire : [COMMENT]</value>
+  </data>
+  <data name="NotificationBody_DefaultComment.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">(Aucun commentaire n'a été fourni)</value>
+  </data>
+  <data name="NotificationBody_Publishing.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le contenu de la page correspondant à l'adresse URL ci-dessous a été publié. &lt;br /&gt;&lt;a href='[URL]'&gt;[URL]&lt;/a&gt; &lt;br /&gt; Commentaire : [COMMENT]</value>
+  </data>
+  <data name="NotificationBody_Rejection.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le contenu de la page à l’adresse suivante a été rejeté du statut [OLDSTATE] et requiert maintenant une approbation avant d’être publié. &lt;br /&gt;&lt;a href='[URL]'&gt;[URL]&lt;/a&gt; &lt;br /&gt; Commentaire : [COMMENT]</value>
+  </data>
+  <data name="NotificationBody_Submission.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Le contenu de la page à l’adresse suivante est à l’état de workflow [STATE] et requiert maintenant votre vérification et approbation. &lt;br /&gt;&lt;a href='[URL]'&gt;[URL]&lt;/a&gt; &lt;br /&gt; Commentaire : [COMMENT]</value>
+  </data>
+  <data name="NotificationSubject.Text" xml:space="preserve">
+    <value xml:space="preserve">Notification de contenu à valider</value>
+  </data>
+  <data name="plRenderType.Help" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Si cette option est cochée, le résumé sera affiché.Vous pourrez cliquer sur "plus"afin de basculer du contenu global au résumé</value>
+  </data>
+  <data name="plRenderType.Text" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Afficher le résumé</value>
+  </data>
+  <data name="PublishContent.Action">
+    <value xml:space="preserve">Publier</value>
+  </data>
+  <data name="RejectContent.Action">
+    <value xml:space="preserve">Rejeter</value>
+  </data>
+  <data name="Summary.Text" version="deprecated">
+    <value xml:space="preserve">résumé</value>
+  </data>
+  <data name="Unlock.Action" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">Déverrouiller le contenu</value>
+  </data>
+  <data name="UserCannotEdit.Error" version="deprecated" xml:space="preserve">
+    <value xml:space="preserve">L'utilisateur ne peut pas modifier le contenu de ce module</value>
+  </data>
+  <data name="NotificationBody.Text" version="deprecated" xml:space="preserve">
+    <value>Le contenu est dans l'état [STATE] sur la page suivante de votre site : 
+&lt;br /&gt;
+&lt;a href='[URL]'&gt;[URL]&lt;/a&gt;</value>
+  </data>
+  <data name="DropDownList.SelectFolderDefaultText" xml:space="preserve">
+    <value>Derniers chargements</value>
+  </data>
+  <data name="AdvancedEditor.Text" xml:space="preserve">
+    <value>Éditeur avancé</value>
+  </data>
+  <data name="ClassicEditor.Text" xml:space="preserve">
+    <value>Éditeur classique</value>
+  </data>
+  <data name="ErrorSavingText.Text" xml:space="preserve">
+    <value>Erreur lors de l'enregistrement du contenu HTML</value>
+  </data>
+  <data name="imageEditing_confirmDownloadImageCancel.Text">
+    <value>Annuler</value>
+  </data>
+  <data name="imageEditing_confirmDownloadImageNo.Text">
+    <value>Non</value>
+  </data>
+  <data name="imageEditing_confirmDownloadImageText.Text" xml:space="preserve">
+    <value>Les URL des images ne peuvent être modifiées. Souhaitez-vous importer cette image ?</value>
+  </data>
+  <data name="imageEditing_confirmDownloadImageYes.Text">
+    <value>Oui</value>
+  </data>
+  <data name="imageEditing_cantSaveImage.Text" xml:space="preserve">
+    <value>Erreur lors de l'enregistrement de l'image</value>
+  </data>
+  <!---->
+</root>

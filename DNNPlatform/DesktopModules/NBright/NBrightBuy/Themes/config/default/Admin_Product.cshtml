@@ -1,0 +1,68 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using DotNetNuke.Entities.Users
+@using NBrightDNN
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+
+<!-- fields required to send required ajax cart to server -->
+<span id="selectparams_Product_Admin">
+    <input id="p1_userid" type="hidden" value="@UserController.Instance.GetCurrentUserInfo().UserID" />
+    <input id="p1_razortemplate" type="hidden" value="" />
+    <input id="p1_themefolder" type="hidden" value="config" />
+    <input id="p1_uilang" type="hidden" value="@Model.Lang" />
+    <input id="p1_pagesize" type="hidden" value="20" />
+    <input id="p1_pagenumber" type="hidden" value="1" />
+    <input id="p1_searchtext" type="hidden" value="" />
+    <input id="p1_selecteditemid" type="hidden" value="" />
+    <input id="p1_moveproductid" type="hidden" value="" />
+    <input id="p1_movetoproductid" type="hidden" value="" />
+    <input id="p1_searchcategory" type="hidden" value="" />
+    <input id="p1_searchproperty" type="hidden" value="" />
+    <input id="p1_cascade" type="hidden" value="True" />
+    <input id="p1_addqty" type="hidden" value="1" />
+    <input id="p1_editlang" type="hidden" value="@Model.Lang" />
+    <input id="p1_nextlang" type="hidden" value="" /> <!-- editlanguage to be used after save.  editlang, must stay the same during save. -->
+    <input id="p1_selectedoptionid" type="hidden" value="" />
+    <input id="p1_selectedgroupref" type="hidden" value="" />
+    <input id="p1_selectedrelatedid" type="hidden" value="" />
+    <input id="p1_searchtextrelated" type="hidden" value="" />
+    <input id="p1_selecteduserid" type="hidden" value="" />
+    <input id="p1_imguploadlist" type="hidden" value="" />
+    <input id="p1_docuploadlist" type="hidden" value="" />
+    <input id="p1_selectedcatid" type="hidden" value="" />
+    <input id="p1_orderby" type="hidden" value="{bycategoryproduct}" />
+    <input id="p1_searchdisabled" type="hidden" value="" />
+    <input id="p1_searchenabled" type="hidden" value="" />
+    <input id="p1_searchhidden" type="hidden" value="" />
+    <input id="p1_searchvisible" type="hidden" value="" />
+    <input id="p1_accordianactive" type="hidden" value="0" />
+    <input id="p1_xpath" type="hidden" value="" />    
+</span>
+
+
+<div id="loader" class="processing" style="display:none;">@ResourceKey("General.ProcessingDiv")</div>
+
+<div id="pageactionssource">
+    <!-- Page actions are moved into header bar - also exist at page bottom-->
+    <div class="col-xs-10 col-sm-10">
+        <a href="javascript:void(0)" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="actionbuttonwrapper">
+            <a id="product_admin_cmdAddNew" class="btn btn-primary" href="javascript:void(0)" title="@ResourceKey("General.cmdAdd")">@ResourceKey("General.cmdAddButton")</a>
+            <a id="product_admin_cmdSave" style="display: none;" class="btn btn-primary" href="javascript:void(0)">@ResourceKey("General.cmdSaveButton")</a>
+            <a id="product_admin_cmdSaveExit" style="display: none;" class="btn btn-primary" href="javascript:void(0)">@ResourceKey("General.cmdSaveExitButton")</a>
+            <a id="product_admin_cmdSaveAs" style="display: none;" class="btn btn-warning" href="javascript:void(0)">@ResourceKey("General.cmdSaveAsButton")</a>
+            <a id="product_admin_cmdDelete" style="display: none;" class="btn btn-danger" href="javascript:void(0)">@ResourceKey("General.cmdDeleteButton")</a>
+            <a id="product_admin_cmdReturn" style="display: none;" class="btn btn-default" href="javascript:void(0)">@ResourceKey("General.cmdReturnButton")</a>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 top-panel-right">
+        @EditLanguageButton()
+    </div>
+</div>
+
+
+<div id="datadisplay"></div>
+

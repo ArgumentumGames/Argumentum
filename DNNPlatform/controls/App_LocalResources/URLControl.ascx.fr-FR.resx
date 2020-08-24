@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!---->
+  <note></note>
+  <data name="Add.Text" xml:space="preserve">
+    <value xml:space="preserve">Ajouter une nouvelle URL</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value xml:space="preserve">Sélectionner un fichier existant</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value xml:space="preserve">Supprimer cette URL de la liste&lt;BR&gt;</value>
+  </data>
+  <data name="File.Text" xml:space="preserve">
+    <value xml:space="preserve">Nom du fichier :&lt;BR&gt;</value>
+  </data>
+  <data name="FileType.Text" xml:space="preserve">
+    <value xml:space="preserve">Fichier (un fichier de votre site)</value>
+  </data>
+  <data name="Folder.Text" xml:space="preserve">
+    <value xml:space="preserve">Emplacement du fichier :&lt;BR&gt;</value>
+  </data>
+  <data name="Image.Text" xml:space="preserve">
+    <value xml:space="preserve">Image :&lt;br/&gt;</value>
+  </data>
+  <data name="ImageType.Text" xml:space="preserve">
+    <value xml:space="preserve">Image système</value>
+  </data>
+  <data name="Log.Text" xml:space="preserve">
+    <value xml:space="preserve">Enregistrer l'utilisateur, la date et l'heure pour chaque lien cliqué ?&lt;BR&gt;</value>
+  </data>
+  <data name="NewWindow.Text" xml:space="preserve">
+    <value xml:space="preserve">Ouvrir le lien dans une nouvelle fenêtre ?&lt;BR&gt;</value>
+  </data>
+  <data name="NoneType.Text">
+    <value xml:space="preserve">Aucun</value>
+  </data>
+  <data name="NoPermission.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous n'avez pas la permission d'afficher les documents de ce site</value>
+  </data>
+  <data name="NoUser.Text" xml:space="preserve">
+    <value xml:space="preserve">Le nom d'utilisateur saisi ne correspond pas à un utilisateur de ce site.</value>
+  </data>
+  <data name="NoWritePermission.Text" xml:space="preserve">
+    <value xml:space="preserve">Vous n'avez pas la permission de charger des fichiers sur ce site</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Racine</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value xml:space="preserve">Charger le fichier selectionné&lt;BR&gt;</value>
+  </data>
+  <data name="Select.Text" xml:space="preserve">
+    <value xml:space="preserve">Sélectionnez une URL existante</value>
+  </data>
+  <data name="Tab.Text" xml:space="preserve">
+    <value xml:space="preserve">Page :</value>
+  </data>
+  <data name="TabType.Text" xml:space="preserve">
+    <value xml:space="preserve">Page (page de votre site)</value>
+  </data>
+  <data name="Track.Text" xml:space="preserve">
+    <value xml:space="preserve">Compter le nombre de fois où ce lien est cliqué ?&lt;BR&gt;</value>
+  </data>
+  <data name="Type.Text" xml:space="preserve">
+    <value xml:space="preserve">Type de lien :</value>
+  </data>
+  <data name="Upload.Text" xml:space="preserve">
+    <value xml:space="preserve">Charger un nouveau fichier</value>
+  </data>
+  <data name="UploadError.Text" xml:space="preserve">
+    <value xml:space="preserve">Le type de fichier {1} n'est pas valide dans ce contexte. Types de fichiers valides : {0}</value>
+  </data>
+  <data name="URL.Text" xml:space="preserve">
+    <value xml:space="preserve">Adresse : (URL)&lt;BR&gt;</value>
+  </data>
+  <data name="URLType.Text" xml:space="preserve">
+    <value xml:space="preserve">URL (lien vers une ressource extérieure)</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value xml:space="preserve">Saisissez le nom d'utilisateur d'un membre de votre site :&lt;BR&gt;</value>
+  </data>
+  <data name="UserType.Text" xml:space="preserve">
+    <value xml:space="preserve">Utilisateur (un membre de votre site)</value>
+  </data>
+  <!---->
+</root>

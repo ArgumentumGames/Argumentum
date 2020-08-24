@@ -1,0 +1,12 @@
+{
+    "title": "This is a JSON title",
+    "isCool": true,
+    "subItem": {
+        "title": "sub-item title"
+    },
+    "tags": [
+        "some tag",
+        "another tag",
+        "a third tag"
+    ]
+}

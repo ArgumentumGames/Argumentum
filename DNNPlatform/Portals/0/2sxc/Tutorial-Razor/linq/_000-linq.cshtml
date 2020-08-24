@@ -1,0 +1,60 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+
+<trim>
+<p>
+  Learn how to leverage LINQ (Language INtegrated Query) of C# to sort, filter, group content-items. This demo uses the folloing data in app:
+</p>
+<ul>
+  <li><strong>Persons</strong> - various people who are used in the data. A person can also have one or many favorite books. </li>
+  <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
+</ul>
+
+<h2>Some notes before we start</h2>
+<p>
+  All our code uses some general stuff explained here:
+</p>
+
+<ul>
+  <li>to enable LINQ commands we always need: <br>
+  <code>@@using System.Linq</code></li>
+  <li>since LINQ often can't guess object types we are using, we often need to cast lists to: <br>
+  <code>IEnumerable&lt;dynamic&gt;</code> <br>
+  Since this makes our code harder to read, so we shorted that to <code>Dynlist</code> by adding this line to the beginning of the files: <br>
+  <code>@@using Dynlist = System.Collections.Generic.IEnumerable&lt;dynamic&gt;;</code> </li>
+  <li>most of the code starts by retrieving a list of <strong>Books</strong> and <strong>Authors</strong>. This is done using: <br>
+  <code>App.Data["Books"]</code></li>
+  <li>Since we want to use <code>dynamic</code> types (which lets us write things like <code>book.Name</code>, we usually wrap it with: <br>
+  <code>AsList(App.Data["Books"])</code></li>
+  <li>You'll sometimes see <code>@@RenderPage(...)</code> - this is not important for the LINQ examples, so you can ignore this for now.</li>
+</ul>
+</trim>
+
+<hr>
+<h2>LINQ Examples</h2>
+
+<ol>
+  @helpers.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
+  @helpers.TutorialLink("Get First() / Last() item in a list", "linq106")
+  @helpers.TutorialLink("Take() / Skip() items in a list", "linq107")
+  @helpers.TutorialLink("Count() items in a list", "linq108")
+
+  @helpers.TutorialLink("Basic sorting of lists", "linq120")
+
+  @helpers.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
+  @helpers.TutorialLink("Group books by authors in 3 ways", "linq220")
+  @helpers.TutorialLink("Access a list in list in list", "linq230")
+
+  @helpers.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
+</ol>
+
+<hr>
+<h2>More Information around LINQ</h2>
+<ol>
+  @helpers.LiExtLink("https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/", "LINQ Manual from Microsoft")
+  @helpers.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq-guide", "LINQ guide to working with dynamic things in C# in the 2sxc wiki")
+  @helpers.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq", "Using LINQ with 2sxc from the wiki")
+</ol>

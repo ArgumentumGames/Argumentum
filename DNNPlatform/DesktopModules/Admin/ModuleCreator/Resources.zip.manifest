@@ -1,0 +1,284 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>CreateModule.ascx.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>ViewSource.ascx.resx</name>
+    </file>
+    <file>
+      <path />
+      <name>CreateModule.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>viewsource.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>08.00.00.txt</name>
+    </file>
+    <file>
+      <path />
+      <name>module.css</name>
+    </file>
+    <file>
+      <path />
+      <name>icon.png</name>
+    </file>
+    <file>
+      <path />
+      <name>logo.png</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>ModuleCreator.js</name>
+    </file>
+    <file>
+      <path>Templates/C#/Class File/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Class File/</path>
+      <name>template.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/DAL2/</path>
+      <name>01.00.00.sql</name>
+    </file>
+    <file>
+      <path>Templates/C#/DAL2/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/DAL2/</path>
+      <name>templateController.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/DAL2/</path>
+      <name>templateInfo.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/DAL2/</path>
+      <name>uninstall.sql</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - Inline Script/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - Inline Script/</path>
+      <name>template.ascx</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - Inline Script/</path>
+      <name>template.ascx.resx</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - Razor/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - Razor/</path>
+      <name>_template.cshtml</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - User Control/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - User Control/</path>
+      <name>template.ascx</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - User Control/</path>
+      <name>template.ascx.resx</name>
+    </file>
+    <file>
+      <path>Templates/C#/Module - User Control/</path>
+      <name>_CONTROL_.ascx.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/Scheduled Job/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Scheduled Job/</path>
+      <name>templateJob.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/Settings - User Control/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Settings - User Control/</path>
+      <name>Settings.ascx</name>
+    </file>
+    <file>
+      <path>Templates/C#/Settings - User Control/</path>
+      <name>Settings.ascx.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/Settings - User Control/</path>
+      <name>Settings.ascx.resx</name>
+    </file>
+    <file>
+      <path>Templates/C#/Web Service API/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/C#/Web Service API/</path>
+      <name>templateAPIController.cs</name>
+    </file>
+    <file>
+      <path>Templates/C#/Web Service API/</path>
+      <name>templateRouteMapper.cs</name>
+    </file>
+    <file>
+      <path>Templates/VB/Class File/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Class File/</path>
+      <name>template.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/DAL2/</path>
+      <name>01.00.00.sql</name>
+    </file>
+    <file>
+      <path>Templates/VB/DAL2/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/DAL2/</path>
+      <name>templateController.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/DAL2/</path>
+      <name>templateInfo.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/DAL2/</path>
+      <name>uninstall.sql</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - Inline Script/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - Inline Script/</path>
+      <name>template.ascx</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - Inline Script/</path>
+      <name>template.ascx.resx</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - Razor/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - Razor/</path>
+      <name>_template.vbhtml</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - User Control/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - User Control/</path>
+      <name>template.ascx</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - User Control/</path>
+      <name>template.ascx.resx</name>
+    </file>
+    <file>
+      <path>Templates/VB/Module - User Control/</path>
+      <name>_CONTROL_.ascx.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/Scheduled Job/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Scheduled Job/</path>
+      <name>templateJob.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/Settings - User Control/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Settings - User Control/</path>
+      <name>Settings.ascx</name>
+    </file>
+    <file>
+      <path>Templates/VB/Settings - User Control/</path>
+      <name>Settings.ascx.resx</name>
+    </file>
+    <file>
+      <path>Templates/VB/Settings - User Control/</path>
+      <name>Settings.ascx.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/Web Service API/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/VB/Web Service API/</path>
+      <name>templateController.vb</name>
+    </file>
+    <file>
+      <path>Templates/VB/Web Service API/</path>
+      <name>templateRouteMapper.vb</name>
+    </file>
+    <file>
+      <path>Templates/Web/HTML Document/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/Web/HTML Document/</path>
+      <name>template.html</name>
+    </file>
+    <file>
+      <path>Templates/Web/JavaScript/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/Web/JavaScript/</path>
+      <name>template.js</name>
+    </file>
+    <file>
+      <path>Templates/Web/Module - HTML/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/Web/Module - HTML/</path>
+      <name>template.ascx</name>
+    </file>
+    <file>
+      <path>Templates/Web/Module - HTML/</path>
+      <name>template.html</name>
+    </file>
+    <file>
+      <path>Templates/Web/Style Sheet/</path>
+      <name>Module.css</name>
+    </file>
+    <file>
+      <path>Templates/Web/Style Sheet/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/Web/XML Document/</path>
+      <name>readme.txt</name>
+    </file>
+    <file>
+      <path>Templates/Web/XML Document/</path>
+      <name>template.xml</name>
+    </file>
+  </files>
+</dotnetnuke>

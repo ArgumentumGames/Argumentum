@@ -1,0 +1,129 @@
+@import "../../../_default/Skins/2sxcBootstrap-B4/src/scss/_variables.scss";
+@import "../../../_default/Skins/2sxcBootstrap-B4/node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+
+.app-events {
+  &.app-event-list {
+    .app-event-list-item {
+      .app-img {
+        position: relative;
+
+        &.app-noimg {
+          background: #e9ecef;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          background-color: rgba($dark, .0);
+          background-repeat: no-repeat;
+          background-position: center center;
+          transition: background-color .3s ease-in-out;
+        }
+      }
+
+      &:hover {
+        .overlay {
+          background-color: rgba($dark, .4);
+        }
+
+        h2 {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .app-events-infocontainer {
+    flex: 1 1 50%;
+
+    h6 {
+      border-bottom: 1px solid $primary;
+      padding-bottom: 4px;
+      margin-bottom: 0;
+    }
+  }
+
+  .app-events-further-events {
+    li {
+      padding: 0;
+
+      &.current {
+        background-color: #e9ecef;
+      }
+
+      a {
+        display: block;
+        padding: $list-group-item-padding-y $list-group-item-padding-x;
+      }
+    }
+  }
+
+  .btn {
+    &.btn-primary {
+      &:hover {
+        background: #fff;
+        color: $primary;
+      }
+    }
+  }
+
+  .app-events-date,
+  .app-events-categories {
+    font-size: $font-size-base * 0.8;
+    text-transform: uppercase;
+  }
+
+  .app-events-paging {
+    width: 100%;
+    text-align: center;
+    
+    > a {
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 50%;
+      transition: background .2s ease, color .2s ease;
+
+      &.app-events-paging-active,
+      &:hover {
+          background: $primary;
+          color: #fff;
+      }
+
+      &.app-events-prev-pager,
+      &.app-events-next-pager {
+          &:hover {
+            background: #fff;
+            color: $primary;
+          }
+      }
+    }
+  }  
+}
+
+// FORM VALIDATION
+.event-form {
+  .form-required {
+    label {
+      &:after {
+        content: ' *';
+        color: #C4151C;
+      }
+    }
+  }
+  
+  .form-control {
+    &.error {
+      border-color: #C4151C;
+    }
+  }
+}
