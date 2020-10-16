@@ -13,7 +13,8 @@ window.onload = function () {
 
 async function generateImages() {
     var generateButton = document.getElementById('generateButton');
-    generateButton.style.display = 'none';
+	generateButton.style.display = 'none';
+    domtoimage.getFontsBefore();
 	nodes = document.getElementsByTagName("card");
     for (var n = 0; n < nodes.length; n++) {
         //imaginer(nodes[n],n);
@@ -33,25 +34,27 @@ function imaginer(node,n) {
 		document.getElementById("cpImages").appendChild(img);
 	}).catch(function (error) {
 		var msg = 'Something went wrong!  Your browser may not support image generation.';
+        if (console)
+            console.error(msg, error);
 		document.getElementById("cpError").innerHTML = msg;
-		if (console) 
-			console.error(msg, error);
+		
 	});
 }
 
 
 async function imaginerSync(node, n) {
     try {
-        var dataUrl = await domtoimage.toPng(node, { height: height, width: width, scale: dpi / 96 });
+		var dataUrl = await domtoimage.toPng(node, { height: height, width: width, scale: dpi / 96, cachedFonts: true });
         cards[n] = dataUrl;
         var img = new Image();
         img.src = dataUrl;
         document.getElementById("cpImages").appendChild(img);
     } catch (error) {
-        var msg = 'Something went wrong!  Your browser may not support image generation.';
-        document.getElementById("cpError").innerHTML = msg;
+		var msg = 'Something went wrong!  Your browser may not support image generation.';
         if (console)
             console.error(msg, error);
+        document.getElementById("cpError").innerHTML = msg;
+       
     }
 }
 

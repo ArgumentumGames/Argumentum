@@ -65,10 +65,13 @@
 	var roundSizes = ["circle","pokerChip"];
 	var paperSizes = ["letter","a4","legal","a3","ledger"];
 
-var exampleFiles = ["Argumentum - Fallacies - Back - Francais",
+var exampleFiles = [
+    "Argumentum - Fallacies - Back - Francais",
 	"Argumentum - Fallacies - Back - English",
     "Argumentum - Fallacies - Face - Francais",
 	"Argumentum - Fallacies - Face - English",
+    "Argumentum - Fallacies - Face - Francais - Bis",
+    "Argumentum - Fallacies - Face - English - Bis",
     "Argumentum - Scenarii - Face - Francais",
     "Argumentum - Scenarii - Face - English",
     "Argumentum - Scenarii - Back - English",
