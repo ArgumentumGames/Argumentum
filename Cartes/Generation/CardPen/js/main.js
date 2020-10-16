@@ -1164,8 +1164,7 @@ var cardpen = {};
             //Prepare for image.
             if (forImages) {
                 //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
-                //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-even-more.js"></script>\n';
+                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
                 fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
