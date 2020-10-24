@@ -17,7 +17,7 @@ namespace Mindmapper
 
 
         public string SourcePath { get; set; } = @"..\..\..\Data\Argumentum Fallacies - Taxonomy.csv";
-        public string DestPath { get; set; } = @"..\..\..\Data\\Argumentum_Fallacies_MindMap_Fr.mm";
+        public string DestPath { get; set; } = @"..\..\..\Data\Argumentum_Fallacies_MindMap_Fr.mm";
 
         public string TitleExpression { get; set; } = @"{fallacy.TextFr}";
 

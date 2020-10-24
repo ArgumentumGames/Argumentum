@@ -14,11 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Published\**" />
     <Compile Remove="publish\**" />
-    <EmbeddedResource Remove="Published\**" />
     <EmbeddedResource Remove="publish\**" />
-    <None Remove="Published\**" />
     <None Remove="publish\**" />
   </ItemGroup>
 
