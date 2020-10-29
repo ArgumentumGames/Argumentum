@@ -3,15 +3,11 @@
 
 var cards = [];
 var nodes = [];
-var zipButton;
 
-window.onload = function () {
-    zipButton = document.getElementById('zipButton');
-    zipButton.style.display = 'none';
-    
-}
 
 async function generateImages() {
+    var zipButton = document.getElementById('zipButton');
+    zipButton.style.display = 'none';
     var generateButton = document.getElementById('generateButton');
 	generateButton.style.display = 'none';
     domtoimage.getFontsBefore();

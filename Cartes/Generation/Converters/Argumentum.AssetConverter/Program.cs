@@ -10,16 +10,12 @@ namespace Argumentum.AssetConverter
         {
             var sw = Stopwatch.StartNew();
             var config = AssetConverterConfig.GetConfig(Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json"));
-            config.Apply();
+            Console.WriteLine($"Config loaded: {sw.Elapsed}");
+            config.Apply(sw);
 
             Console.WriteLine($"Generation finished in {sw.Elapsed.TotalSeconds} seconds, press any key to close");
             Console.ReadKey();
         }
-
-
-
-        
-
 
 
     }
