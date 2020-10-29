@@ -1187,7 +1187,7 @@ var cardpen = {};
             if (forImages) {
                 fullOutput += "<div id='cpError'></div>\n";
                 fullOutput += "<button id='generateButton' type='button' onclick='generateImages();'>Generate Images</button>\n";
-                fullOutput += "<button id='zipButton' type='button' onclick='zipper();'>Zip Images</button>\n";
+                fullOutput += "<button id='zipButton' type='button' style='display: none;' onclick='zipper();'>Zip Images</button>\n";
                 fullOutput += "<div id='cpImages'></div>\n";
             }
             fullOutput += templateOutput + "\n</body>\n</html>\n";
