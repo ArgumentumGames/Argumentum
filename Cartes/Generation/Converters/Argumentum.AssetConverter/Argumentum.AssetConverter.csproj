@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Target\" />
+    <Folder Include="Published\" />
   </ItemGroup>
 
 </Project>

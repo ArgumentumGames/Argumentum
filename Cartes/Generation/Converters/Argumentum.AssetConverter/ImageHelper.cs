@@ -42,18 +42,36 @@ namespace Argumentum.AssetConverter
 
         }
 
-        public static void ResizeInMM(MagickImage image, decimal widthmm, decimal lengthmm)
+        public static void ResizeInMM(MagickImage image, decimal widthmm, decimal lengthmm, decimal bordermm)
         {
             if (image.Density.Units == DensityUnit.Undefined)
             {
                 image.Density = new Density(300, DensityUnit.PixelsPerInch);
             }
             image.Density = image.Density.ChangeUnits(DensityUnit.PixelsPerCentimeter);
+            
             var targetGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
             targetGeometry.IgnoreAspectRatio = true;
+
+            IMagickGeometry extentGeometry = null ;
+            if (bordermm>0)
+            {
+                extentGeometry = targetGeometry;
+                widthmm = widthmm - (2 * bordermm);
+                lengthmm = lengthmm - (2 * bordermm);
+                targetGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
+                targetGeometry.IgnoreAspectRatio = true;
+            }
+
             //image.Resize(targetGeometry);
             image.AdaptiveResize(targetGeometry);
-
+            if (extentGeometry != null)
+            {
+                image.BorderColor = MagickColors.White;
+                image.BackgroundColor = MagickColors.White;
+                image.MatteColor = MagickColors.White;
+                image.Extent(extentGeometry, Gravity.Center, MagickColors.White);
+            }
 
         }
 
