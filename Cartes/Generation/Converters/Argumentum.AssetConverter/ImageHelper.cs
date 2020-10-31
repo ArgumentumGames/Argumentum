@@ -75,7 +75,9 @@ namespace Argumentum.AssetConverter
 
         }
 
-
-
+        internal static void Modulate(MagickImage image, double modulation)
+        {
+            image.Modulate(new Percentage(100), new Percentage(100), new Percentage(modulation));
+        }
     }
 }
