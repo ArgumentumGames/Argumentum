@@ -12,7 +12,7 @@ namespace Argumentum.AssetConverter
 
     public enum ConverterMode
     {
-        BatchImagePngToCnykJpegs,
+        BatchImageProcessor,
         WebBasedImageGeneration
     }
 
@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter
         {
             switch (Mode)
             {
-                case ConverterMode.BatchImagePngToCnykJpegs:
+                case ConverterMode.BatchImageProcessor:
                     BatchImageConverterConfig.Apply();
                     break;
                 case ConverterMode.WebBasedImageGeneration:
