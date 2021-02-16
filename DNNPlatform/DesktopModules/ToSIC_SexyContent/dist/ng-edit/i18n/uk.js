@@ -4,7 +4,8 @@
       "Save": "SAVE (CTRL + S)",
       "Save.Tip": "save and close (CTRL + S saves and doesn't close)",
       "Exit.Tip": "exit - if something changed, you will be asked to save",
-      "Return.Tip": "return to previous dialog"
+      "Return.Tip": "return to previous dialog",
+      "History.Tip": "history / previous versions"
     }
   },
   "SaveMode": {
@@ -97,7 +98,8 @@
   "ItemCard": {
     "DefaultTitle": "Редагувати елемент",
     "SlotUsedTrue": "цей елемент відкритий для редагування. Натисніть тут для блокування / видаліть його і поверніть до значення по замовчуванню.",
-    "SlotUsedFalse": "цей елемент заблокований і залишиться пустим або значенням по замовчуванню. Значення наведені для вашої зручності. Натисніть тут для розблокування, якщо необхідно."
+    "SlotUsedFalse": "цей елемент заблокований і залишиться пустим або значенням по замовчуванню. Значення наведені для вашої зручності. Натисніть тут для розблокування, якщо необхідно.",
+    "CopyHint": "(copy)"
   },
   "ValidationMessage": {
     "NotValid": "Not valid",
@@ -160,9 +162,7 @@
       }
     },
     "DateTime": {
-      "Open": "open calendar",
-      "Cancel": "Cancel",
-      "Set": "Set"
+      "Open": "open calendar"
     },
     "String": {
       "Dropdown": "switch to dropdown select",

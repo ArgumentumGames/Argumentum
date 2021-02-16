@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>NgDialogs</title>
+  <title>Content Management</title>
   <base href="./">
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,23 +30,29 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
 
-      // get sxcver from the url. If there is none, load it from the session storage
-      var sxcVersion = getParameterByName('sxcver');
-      if (!sxcVersion) sxcVersion = getParameterByName('sxcver', sessionStorage.getItem('eav-url'));
-      if (!sxcVersion) sxcVersion = Math.floor(Math.random() * 99999);
+      // Ensure that 2sxc.api.min is always reloaded to prevent caching of old code
+      // If last digit is a 0, then we're missing a real build number, so use a random one to ensure cache breaking
+      // fix https://github.com/2sic/2sxc/issues/2216
+      var vBuild = getParameterByName('sxcver');
+      if (!vBuild) vBuild = getParameterByName('sxcver', sessionStorage.getItem('eav-url'));
+      if (!vBuild) vBuild = Math.floor(Math.random() * 99999);
+      var vParts = vBuild.substr(vBuild.indexOf("=") + 1).split('.');
+      for (var vi = 0; vi < vParts.length; vi++) vParts[vi] = Number(vParts[vi]);
+      if (vParts[3] === 0) vParts[3] = Math.floor(Math.random() * 100000);
+      var cacheBreak = vParts.join('.');
 
       // the version to append to each asset, to ensure reload after an upgrade
-      window.sxcVersion = sxcVersion;
-      // create an empty _jsApi so $2sxc can initialize - must fill afterwards!
+      window.sxcVersion = cacheBreak;
+      // create an empty _jsApi so $2sxc won't look for the meta-header - must fill afterwards!
       window._jsApi = {};
       // first load the main 2sxc because it contains some url-param methods
-      document.write('<script src="../../js/2sxc.api.min.js?sxcver=' + sxcVersion + '"></scr' + 'ipt>');
+      document.write('<script src="../../js/2sxc.api.min.js?cacheBreak=' + cacheBreak + '"></scr' + 'ipt>');
     })();
   </script>
-</head>
+<link rel="stylesheet" href="styles.1489ef00134da2c2824d.css"></head>
 
 <body>
   <app-root></app-root>
-<script src="runtime.d9d4d3f94e139bd435a7.js" defer></script><script src="polyfills-es5.ffeba92d27b1ec1aa3c8.js" nomodule defer></script><script src="polyfills.b07cefb2d5529b33f8e1.js" defer></script><script src="styles.48db0d977587279a8d30.js" defer></script><script src="scripts.3036435dcccd39ba819a.js" defer></script><script src="vendor.d854f953bc6df7d0a5a8.js" defer></script><script src="main.59245a0c8ac523f4cf75.js" defer></script></body>
+<script src="runtime.f7a283e8432caa54683a.js" defer></script><script src="polyfills-es5.ed98802290e585ca9d4c.js" nomodule defer></script><script src="polyfills.cf9be6af550757bcbca2.js" defer></script><script src="scripts.73fcf960a2785aaf6d7b.js" defer></script><script src="vendor.067cde006f8b5b6b8e7f.js" defer></script><script src="main.2b53ec73e9e656ce0e39.js" defer></script></body>
 
 </html>

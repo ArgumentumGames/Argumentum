@@ -4,7 +4,8 @@
       "Save": "SAVE (CTRL + S)",
       "Save.Tip": "save and close (CTRL + S saves and doesn't close)",
       "Exit.Tip": "exit - if something changed, you will be asked to save",
-      "Return.Tip": "return to previous dialog"
+      "Return.Tip": "return to previous dialog",
+      "History.Tip": "history / previous versions"
     }
   },
   "SaveMode": {
@@ -97,7 +98,8 @@
   "ItemCard": {
     "DefaultTitle": "Mise a jour d'item",
     "SlotUsedTrue": "Cet item est en mode modif. Click here to lock / remove it and revert to default.",
-    "SlotUsedFalse": "Cet item est verrouillé et restera vide ou par défault. Les valeurs sont montrées a titre indicatif. Cliquer ici pour déverrouiller si nécessaire."
+    "SlotUsedFalse": "Cet item est verrouillé et restera vide ou par défault. Les valeurs sont montrées a titre indicatif. Cliquer ici pour déverrouiller si nécessaire.",
+    "CopyHint": "(copy)"
   },
   "ValidationMessage": {
     "NotValid": "Not valid",
@@ -160,9 +162,7 @@
       }
     },
     "DateTime": {
-      "Open": "open calendar",
-      "Cancel": "Cancel",
-      "Set": "Set"
+      "Open": "open calendar"
     },
     "String": {
       "Dropdown": "switch to dropdown select",

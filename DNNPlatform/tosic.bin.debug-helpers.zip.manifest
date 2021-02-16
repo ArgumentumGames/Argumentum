@@ -30,10 +30,6 @@
     </file>
     <file>
       <path>bin/</path>
-      <name>ToSic.Eav.Tokens.pdb</name>
-    </file>
-    <file>
-      <path>bin/</path>
       <name>ToSic.Eav.WebApi.pdb</name>
     </file>
     <file>
@@ -55,6 +51,10 @@
     <file>
       <path>bin/</path>
       <name>ToSic.Sxc.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.WebApi.pdb</name>
     </file>
   </files>
 </dotnetnuke>

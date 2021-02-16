@@ -4,7 +4,8 @@
       "Save": "SAVE (CTRL + S)",
       "Save.Tip": "save and close (CTRL + S saves and doesn't close)",
       "Exit.Tip": "exit - if something changed, you will be asked to save",
-      "Return.Tip": "return to previous dialog"
+      "Return.Tip": "return to previous dialog",
+      "History.Tip": "history / previous versions"
     }
   },
   "SaveMode": {
@@ -97,7 +98,8 @@
   "ItemCard": {
     "DefaultTitle": "Bewerk item",
     "SlotUsedTrue": "dit item is open voor bewerken. Klik hier om te vergrendelen / verwijder het an keer terug naar de standaard.",
-    "SlotUsedFalse": "dit item is vergrendeld en zal leeg/standaard blijven. De waarden worden getoond voor uw gemak. Klik hier om te ontgrendelen indien nodig."
+    "SlotUsedFalse": "dit item is vergrendeld en zal leeg/standaard blijven. De waarden worden getoond voor uw gemak. Klik hier om te ontgrendelen indien nodig.",
+    "CopyHint": "(copy)"
   },
   "ValidationMessage": {
     "NotValid": "Not valid",
@@ -160,9 +162,7 @@
       }
     },
     "DateTime": {
-      "Open": "open calendar",
-      "Cancel": "Cancel",
-      "Set": "Set"
+      "Open": "open calendar"
     },
     "String": {
       "Dropdown": "switch to dropdown select",

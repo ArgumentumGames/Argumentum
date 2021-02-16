@@ -4,7 +4,8 @@
       "Save": "GRAVAR (CTRL + S)",
       "Save.Tip": "gravar e fechar (CTRL + S grava mas não fecha)",
       "Exit.Tip": "sair - se alguma coisa foi alterada, vai-lhe ser questionado se quer gravar",
-      "Return.Tip": "voltar ao formulário anterior"
+      "Return.Tip": "voltar ao formulário anterior",
+      "History.Tip": "history / previous versions"
     }
   },
   "SaveMode": {
@@ -97,7 +98,8 @@
   "ItemCard": {
     "DefaultTitle": "Editar item",
     "SlotUsedTrue": "este item está aberto para edição. Clique aqui para tranca-lo / remove-lo e reverter ao valor padrão.",
-    "SlotUsedFalse": "este item está trancado e vai permanecer vazia/padrão. Os valores são mostrados para sua conveniência. Clique aqui para destrancar se necessário."
+    "SlotUsedFalse": "este item está trancado e vai permanecer vazia/padrão. Os valores são mostrados para sua conveniência. Clique aqui para destrancar se necessário.",
+    "CopyHint": "(copy)"
   },
   "ValidationMessage": {
     "NotValid": "Inválido",
@@ -160,9 +162,7 @@
       }
     },
     "DateTime": {
-      "Open": "abrir calendário",
-      "Cancel": "Cancelar",
-      "Set": "Definir"
+      "Open": "abrir calendário"
     },
     "String": {
       "Dropdown": "mudar para seleção vertical",
