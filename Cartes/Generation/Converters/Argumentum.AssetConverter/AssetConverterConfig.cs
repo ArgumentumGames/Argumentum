@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Xml.Serialization;
+using Argumentum.AssetConverter.Dnn2sxc;
+using Argumentum.AssetConverter.Mindmapper;
 using Utf8Json;
 using Utf8Json.Formatters;
 using Utf8Json.Resolvers;
@@ -13,7 +15,9 @@ namespace Argumentum.AssetConverter
     public enum ConverterMode
     {
         BatchImageProcessor,
-        WebBasedImageGeneration
+        WebBasedImageGeneration,
+        Mindmapper,
+        Dnn2sxc
     }
 
 
@@ -21,12 +25,15 @@ namespace Argumentum.AssetConverter
     {
 
        
-        public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration;
-
+        public ConverterMode Mode { get; set; } = ConverterMode.Dnn2sxc;
 
         public BatchImageConverterConfig BatchImageConverterConfig { get; set; } = new BatchImageConverterConfig();
 
         public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
+
+        public MindmapCreatorConfig MindmapCreatorConfig { get; set; } = new MindmapCreatorConfig();
+
+        public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
 
 
 
@@ -56,13 +63,19 @@ namespace Argumentum.AssetConverter
                 case ConverterMode.WebBasedImageGeneration:
                     WebBasedGeneratorConfig.Apply(objSw);
                     break;
+                case ConverterMode.Mindmapper:
+                    MindmapCreatorConfig.Run(null);
+                    break;
+                case ConverterMode.Dnn2sxc:
+                    Dnn2sxcConfig.Apply(objSw);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             return true;
         }
 
-       
+
 
     }
 }

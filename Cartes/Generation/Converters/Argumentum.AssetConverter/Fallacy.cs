@@ -1,15 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Text;
+using CsvHelper;
 using CsvHelper.Configuration;
 
-
-namespace Mindmapper
+namespace Argumentum.AssetConverter
 {
 
 
     public class Fallacy
     {
+
+
+        public static IList<Fallacy> LoadFallacies(string filePath)
+        {
+            IEnumerable<Fallacy> fallacies;
+            Console.WriteLine($"Loading csv fallacies from file {filePath}");
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Context.RegisterClassMap<FallacyClassMap>();
+                fallacies = csv.GetRecords<Fallacy>().SkipLast(1).ToList();
+            }
+            Console.WriteLine($"Loaded {fallacies.Count()} fallacies");
+            return fallacies.ToList();
+        }
+
         public string PK { get; set; }
         public string Path { get; set; }
         public string DecimalPath { get; set; }
