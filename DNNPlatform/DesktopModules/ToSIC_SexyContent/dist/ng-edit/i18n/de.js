@@ -4,7 +4,8 @@
       "Save": "Speichern (CTRL + S)",
       "Save.Tip": "speichern und schliessen - mit CTRL + S nur speichern",
       "Exit.Tip": "verlassen - bei Änderungen wird zum Speichern aufgefordert",
-      "Return.Tip": "zurück zum vorherigen Dialog"
+      "Return.Tip": "zurück zum vorherigen Dialog",
+      "History.Tip": "Änderungen / Vorversionen"
     }
   },
   "SaveMode": {
@@ -97,7 +98,8 @@
   "ItemCard": {
     "DefaultTitle": "Element bearbeiten",
     "SlotUsedTrue": "Dieses Element kann bearbeitet werden. Klicke um die Bearbeitung zu sperren - eingegebene Werte werden dann mit den Standardwerten ersetzt.",
-    "SlotUsedFalse": "Dieses Element kann nicht bearbeitet werden und zeigt die Standardwerte an. Klicke um das Element freizuschalten."
+    "SlotUsedFalse": "Dieses Element kann nicht bearbeitet werden und zeigt die Standardwerte an. Klicke um das Element freizuschalten.",
+    "CopyHint": "(Kopie)"
   },
   "ValidationMessage": {
     "NotValid": "Ungültig",
@@ -160,9 +162,7 @@
       }
     },
     "DateTime": {
-      "Open": "Kalendar öffnen",
-      "Cancel": "Abbrechen",
-      "Set": "Speichern"
+      "Open": "Kalendar öffnen"
     },
     "String": {
       "Dropdown": "Auswahl",

@@ -4,7 +4,8 @@
       "Save": "SAVE (CTRL + S)",
       "Save.Tip": "save and close (CTRL + S saves and doesn't close)",
       "Exit.Tip": "exit - if something changed, you will be asked to save",
-      "Return.Tip": "return to previous dialog"
+      "Return.Tip": "return to previous dialog",
+      "History.Tip": "history / previous versions"
     }
   },
   "SaveMode": {
@@ -97,7 +98,8 @@
   "ItemCard": {
     "DefaultTitle": "Editar elemento",
     "SlotUsedTrue": "este elemento está abierto para edición. Pulse aquí para bloquearlo / eliminarlo y devolverlo a predeterminado.",
-    "SlotUsedFalse": "este elemento está bloqueado y permanecerá vacío/predeterminado. Los valores se muestran a su conveniencia. Pulse aquí para desbloquearlo si es necesario."
+    "SlotUsedFalse": "este elemento está bloqueado y permanecerá vacío/predeterminado. Los valores se muestran a su conveniencia. Pulse aquí para desbloquearlo si es necesario.",
+    "CopyHint": "(copy)"
   },
   "ValidationMessage": {
     "NotValid": "Not valid",
@@ -160,9 +162,7 @@
       }
     },
     "DateTime": {
-      "Open": "open calendar",
-      "Cancel": "Cancel",
-      "Set": "Set"
+      "Open": "open calendar"
     },
     "String": {
       "Dropdown": "switch to dropdown select",

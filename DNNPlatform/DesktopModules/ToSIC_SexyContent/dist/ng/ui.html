@@ -1,125 +1,44 @@
 <!doctype html>
 <html>
+  <head>
+    <script>
+      // Ensure that 2sxc.api.min is always reloaded to prevent caching of old code
+      // If last digit is a 0, then we're missing a real build number, so use a random one to ensure cache breaking
+      // fix https://github.com/2sic/2sxc/issues/2216
+      var vBuild = window.location.search;
+      var vParts = vBuild.substr(vBuild.indexOf("=") + 1).split('.');
+      for (var vi = 0; vi < vParts.length; vi++) vParts[vi] = Number(vParts[vi]);
+      if (vParts[3] === 0) vParts[3] = Math.floor(Math.random() * 100000);
+      var cacheBreak = vParts.join('.');
+      document.write('<base href="' + window.location.pathname + '">');
+      document.write('<script src="../../js/2sxc.api.min.js?cacheBreak=' + cacheBreak + '"></scr' + 'ipt>');
+    </script>
 
-<head>
-  <script>
-    var
-      path = window.location.pathname,
-      jsVersionCacheId = window.location.search;
+    <script>
+      // This must be a new script tag, so that the previously dynamic-script tag has already been run
+      // Tell 2sxc all the parameters it needs to work properly
+      $2sxc.env.load({
+        page: $2sxc.urlParams.require('tid'),
+        rvt: $2sxc.urlParams.require('rvt'),
+        api: $2sxc.urlParams.require('api'),
+      });
 
-    // create an empty _jsApi so $2sxc can initialize - must fill afterwards!
-    // window._jsApi = {};
-
-    document.write('<base href="' + path + '">');
-    document.write('<script src="../../js/2sxc.api.min.js' + jsVersionCacheId + '"></scr' + 'ipt>');
-    // must now close the script tag, so that the added tag is parsed before all other code
-
-  </script>
-  <script>
-    // console.log('quick-edit: ng-ui loading...');
-    var apiUrl = $2sxc.urlParams.require('portalroot') + 'desktopmodules/2sxc/api/';
-    createFakeSf(apiUrl);
-    loadEnvironment();
-
-    // Create a fake DNN Service-Framework, required by $2sxc to work properly
-    function createFakeSf(apiUrl) {
-      if ($2sxc.urlParams.require('mid') === '') alert('ModuleId (mid) missing - cannot continue');
-      if (window.$ === undefined) window.$ = {};
-      window.$.ServicesFramework = function (id) {
-        return {
-          name: "This is a fake DNN ServicesFramework",
-          description: "It enables stuff requiring (but not really needing) the sf to work",
-          getTabId: function () {
-            return $2sxc.urlParams.require("tid");
-          },
-          getAntiForgeryValue: function () {
-            return $2sxc.urlParams.require("rvt");
-          },
-          getServiceRoot: function () {
-            return apiUrl;
-          }
-        }
-      };
-    };
-
-    // New initializer for 10.25
-    function loadEnvironment() {
-      var jsApi = {
-        page: $2sxc.urlParams.require("tid"),
-        rvt: $2sxc.urlParams.require("rvt"),
-        root: $2sxc.urlParams.require("portalroot"),
-        api: $2sxc.urlParams.require("portalroot") + "desktopmodules/2sxc/api/"
+      // send message to the angular-observable to restart the app
+      window.reboot = function () {
+        // if called too early, the bootController doesn't exist yet
+        if (window.bootController) window.bootController.reboot();
       }
-      $2sxc.env.load(jsApi);
-    }
+    </script>
 
-    // add a script right then and there to the document, correctly cache-busting
-    function addScript(src) {
-      var async = src.async || false;
-      src = typeof src === "string" ? src : src.url;
-      var script = document.createElement('script');
-      script.setAttribute('defer', 'defer');
-      script.src = src + jsVersionCacheId;
+    <meta charset="utf-8">
+    <title>Quick Dialog</title>
 
-      // needs doc.write to ensure in-sync loading of the files
-      if (async) return document.getElementsByTagName("head")[0].appendChild(script);
-      document.write(script.outerHTML);
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style type="text/css">@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNa.woff) format('woff');}.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;font-feature-settings:'liga';}@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');}.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;}</style>
+  <link rel="stylesheet" href="styles.f5dc737e6ba5faf776ac.css"></head>
 
-    function addStyle(src) {
-      var style = document.createElement("link");
-      style.setAttribute("rel", "stylesheet");
-      style.setAttribute("type", "text/css");
-      style.setAttribute("href", src + jsVersionCacheId);
-      document.getElementsByTagName("head")[0].appendChild(style);
-    }
-
-    var scripts = [
-        // 'inline.bundle.js', // purpose unknown
-        'runtime.js', // webpack?
-        'polyfills.js', // js polyfills
-        'vendor.js', // dependencies
-        'main.js' // our app, with everything
-      ],
-      styles = [
-        'styles.css'
-      ];
-
-    // send message to the angular-observable to restart the app
-    window.reboot = function () {
-      // if called to early, the bootController doesn't exist yet
-      if (window.bootController)
-        window.bootController.reboot();
-    }
-
-  </script>
-  <meta charset="utf-8">
-  <title>Quick Dialog</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!--
-  dummy area to capture automatically added style tag which doesn't have cache-breaker
-  <link rel="stylesheet" href="styles.css"></head>
- -->
-
-  <script>
-    document.write("</head>");
-  </script>
-
-<body>
-  <app-root></app-root>
-  <script>
-    var s;
-    // now add the scripts as needed
-    for (s = 0; s < scripts.length; s++) addScript(scripts[s]);
-    for (s = 0; s < styles.length; s++) addStyle(styles[s]);
-
-  </script>
-<!--
-  dummy area to capture automatically added script tags which don't have cache-breaker
-  <script src="runtime.js" defer></script><script src="polyfills-es5.js" nomodule defer></script><script src="polyfills.js" defer></script><script src="vendor.js" defer></script><script src="main.js" defer></script></body>
--->
-
+  <body>
+    <app-root></app-root>
+  <script src="runtime.0e49e2b53282f40c8925.js" defer=""></script><script src="polyfills-es5.7ae85b3db7ca95b948de.js" nomodule="" defer=""></script><script src="polyfills.b88b206a318bcb1ee9fa.js" defer=""></script><script src="vendor.0368559431d974dda180.js" defer=""></script><script src="main.6ef10ce665e3269394f0.js" defer=""></script></body>
 </html>
