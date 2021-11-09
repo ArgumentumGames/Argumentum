@@ -12,7 +12,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Chromium;
 using OpenQA.Selenium.DevTools;
-using OpenQA.Selenium.DevTools.Page;
+//using OpenQA.Selenium.DevTools.Page;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
@@ -46,92 +46,9 @@ namespace Argumentum.AssetConverter
 
         }
 
-        private void GenerateDocuments(Dictionary<string, List<MagickImage>> docImages)
-        {
-            Console.WriteLine($"Generation pdf documents: {sw.Elapsed}");
-            foreach (var docImageList in docImages)
-            {
-                var collec = new MagickImageCollection(docImageList.Value);
-                var targetFile = Path.Combine(Environment.CurrentDirectory, docImageList.Key);
-                collec.Write(targetFile);
-                Console.WriteLine($"Generated pdf document {targetFile}: {sw.Elapsed}");
-            }
-        }
-
-
-        Dictionary<string, List<MagickImage>> GenerateDocumentImages(Dictionary<string, CardSetHarvest> harvestDictionary)
-        {
-            Dictionary<string, List<MagickImage>> toReturn = new Dictionary<string, List<MagickImage>>();
-
-            foreach (var configDocument in Config.Documents)
-            {
-                foreach (var configCardSet in configDocument.CardSets)
-                {
-                    Console.WriteLine($"Generating card set images for {configDocument.DocumentName} - {configCardSet.CardSetName}: {sw.Elapsed}");
-                    List<MagickImage> targetList;
-                    if (!toReturn.TryGetValue(configDocument.DocumentName, out targetList))
-                    {
-                        targetList = new List<MagickImage>();
-                        toReturn[configDocument.DocumentName] = targetList;
-                    }
-
-                    var currentHarvest = harvestDictionary[configCardSet.CardSetName];
-                    var backImages = new Dictionary<string, MagickImage>();
-                    if (currentHarvest.Backs != null)
-                    {
-                        foreach (var currentHarvestBack in currentHarvest.Backs)
-                        {
-                            var backName = currentHarvestBack.Key.ToLowerInvariant();
-                            var backImageUrl = currentHarvestBack.Value;
-                            var backImage = configCardSet.LoadAndProcessImageUrl(backImageUrl);
-                            if (backName.Contains('-'))
-                            {
-                                backName = backName.Substring(backName.LastIndexOf('-'));
-                            }
-
-                            backImages[backName] = backImage;
-                        }
-                    }
-
-                    foreach (var currentHarvestFace in currentHarvest.Faces)
-                    {
-                        var faceName = currentHarvestFace.Key.ToLowerInvariant();
-                        var faceImageUrl = currentHarvestFace.Value;
-                        var faceImage = configCardSet.LoadAndProcessImageUrl(faceImageUrl);
-                        for (int i = 0; i < configCardSet.NbCopies; i++)
-                        {
-                            targetList.Add(new MagickImage(faceImage));
-                            if (backImages.Count > 0)
-                            {
-                                if (backImages.Count == 1)
-                                {
-                                    targetList.Add(new MagickImage(backImages.Values.First()));
-                                }
-                                else
-                                {
-
-                                    var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
-                                    targetList.Add(new MagickImage(backImages[targetBackName]));
-                                }
-                            }
-
-                        }
-
-                    }
-                }
-            }
-
-            
-
-            return toReturn;
-        }
-
 
         Dictionary<string, CardSetHarvest> HarvestImages()
         {
-
-
-
 
             Dictionary<string, CardSetHarvest> harvestDictionary;
             //var jsonHarvestName = Path.Combine(Environment.CurrentDirectory, "harvest.json");
@@ -148,7 +65,7 @@ namespace Argumentum.AssetConverter
             foreach (var configCardSet in Config.CardSets)
             {
 
-                var jsonHarvestName = configCardSet.GetSerializationName();
+                var jsonHarvestName = configCardSet.GetHarvestSerializationName(Config);
                 if (File.Exists(jsonHarvestName))
                 {
                     using var configStream = File.OpenRead(jsonHarvestName);
@@ -177,7 +94,7 @@ namespace Argumentum.AssetConverter
 
                         foreach (var configCardSet in Config.CardSets)
                         {
-                            if (! harvestDictionary.ContainsKey(configCardSet.Name))
+                            if (!harvestDictionary.ContainsKey(configCardSet.Name))
                             {
                                 var currentHarvest = new CardSetHarvest();
                                 var faces = GenerateImages(driver, configCardSet.FaceExampleName);
@@ -188,7 +105,7 @@ namespace Argumentum.AssetConverter
                                     currentHarvest.Backs = backs;
                                 }
 
-                                var jsonHarvestName = configCardSet.GetSerializationName();
+                                var jsonHarvestName = configCardSet.GetHarvestSerializationName(Config);
                                 var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
                                 File.WriteAllText(jsonHarvestName, strNewConfig);
                                 Console.WriteLine($"Serialized Harvest {jsonHarvestName}: {sw.Elapsed}");
@@ -197,7 +114,7 @@ namespace Argumentum.AssetConverter
                                 harvestDictionary[configCardSet.Name] = currentHarvest;
                             }
 
-                            
+
                         }
                     }
                     catch (Exception e)
@@ -224,8 +141,107 @@ namespace Argumentum.AssetConverter
         }
 
 
+
+        Dictionary<DocumentConfig, List<MagickImage>> GenerateDocumentImages(Dictionary<string, CardSetHarvest> harvestDictionary)
+        {
+            Dictionary<DocumentConfig, List<MagickImage>> toReturn = new Dictionary<DocumentConfig, List<MagickImage>>();
+
+            foreach (var configDocument in Config.Documents)
+            {
+                List<MagickImage> targetList;
+
+                if (!toReturn.TryGetValue(configDocument, out targetList))
+                {
+                    targetList = new List<MagickImage>();
+                    toReturn[configDocument] = targetList;
+                }
+
+                foreach (var configCardSet in configDocument.CardSets)
+                {
+                    Console.WriteLine($"Generating card set images for {configDocument.DocumentName} - {configCardSet.CardSetName}: {sw.Elapsed}");
+
+
+
+                    var currentHarvest = harvestDictionary[configCardSet.CardSetName];
+                    var backImages = new Dictionary<string, MagickImage>();
+                    if (currentHarvest.Backs != null)
+                    {
+                        foreach (var currentHarvestBack in currentHarvest.Backs)
+                        {
+                            var backName = currentHarvestBack.Key.ToLowerInvariant();
+                            var backImageUrl = currentHarvestBack.Value;
+                            var backImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, configCardSet, backName, backImageUrl);
+                            if (backName.Contains('-'))
+                            {
+                                backName = backName.Substring(backName.LastIndexOf('-'));
+                            }
+
+                            backImages[backName] = backImage;
+                        }
+                    }
+
+                    foreach (var currentHarvestFace in currentHarvest.Faces)
+                    {
+                        var faceName = currentHarvestFace.Key.ToLowerInvariant();
+                        var faceImageUrl = currentHarvestFace.Value;
+                        var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, configCardSet, faceName, faceImageUrl);
+                        for (int i = 0; i < configCardSet.NbCopies; i++)
+                        {
+                            targetList.Add(new MagickImage(faceImage));
+                            if (backImages.Count > 0)
+                            {
+                                if (backImages.Count == 1)
+                                {
+                                    targetList.Add(new MagickImage(backImages.Values.First()));
+                                }
+                                else
+                                {
+
+                                    var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
+                                    targetList.Add(new MagickImage(backImages[targetBackName]));
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+
+               
+
+            }
+
+
+
+            return toReturn;
+        }
+
+
+        private void GenerateDocuments(Dictionary<DocumentConfig, List<MagickImage>> docImages)
+        {
+            Console.WriteLine($"Generation pdf documents: {sw.Elapsed}");
+            var pdfDirectory = Config.GetPdfsDirectory();
+
+            foreach (var docImageList in docImages)
+            {
+                var densityDirectory = Path.Combine(pdfDirectory, $@".\density-{docImageList.Key.TargetDensity}\");
+                if (!Directory.Exists(densityDirectory))
+                {
+                    Directory.CreateDirectory(densityDirectory);
+                }
+                var collec = new MagickImageCollection(docImageList.Value);
+                var targetFile = Path.Combine(densityDirectory, docImageList.Key.DocumentName);
+                collec.Write(targetFile);
+                Console.WriteLine($"Generated pdf document {targetFile}: {sw.Elapsed}");
+            }
+        }
+
+
+
+      
+
         //private List<ImageMagick.MagickImage> GenerateImages(string exampleName)
-        private Dictionary<string, string> GenerateImages(RemoteWebDriver driver, string exampleName)
+        private Dictionary<string, string> GenerateImages(ChromeDriver driver, string exampleName)
         {
             var toReturn = new Dictionary<string, string>();
 
