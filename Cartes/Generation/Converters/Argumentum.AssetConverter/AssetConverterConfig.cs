@@ -25,7 +25,7 @@ namespace Argumentum.AssetConverter
     {
 
        
-        public ConverterMode Mode { get; set; } = ConverterMode.Dnn2sxc;
+        public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration;
 
         public BatchImageConverterConfig BatchImageConverterConfig { get; set; } = new BatchImageConverterConfig();
 

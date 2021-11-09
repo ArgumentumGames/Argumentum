@@ -4,7 +4,7 @@ using ImageMagick;
 
 namespace Argumentum.AssetConverter
 {
-    public class ImageHelper
+    public static class ImageHelper
     {
 
         private const string base64ContentGroupName = "base64Content";
@@ -30,7 +30,7 @@ namespace Argumentum.AssetConverter
         }
 
 
-        public static void ConvertToCmyk(MagickImage image)
+        public static void ConvertToCmyk(this MagickImage image)
         {
 
             image.Alpha(AlphaOption.Remove);
@@ -42,7 +42,7 @@ namespace Argumentum.AssetConverter
 
         }
 
-        public static void ResizeInMM(MagickImage image, decimal widthmm, decimal lengthmm, decimal bordermm)
+        public static void ResizeInMM(this MagickImage image, decimal widthmm, decimal lengthmm, decimal bordermm)
         {
             if (image.Density.Units == DensityUnit.Undefined)
             {
@@ -64,6 +64,7 @@ namespace Argumentum.AssetConverter
             }
 
             //image.Resize(targetGeometry);
+            
             image.AdaptiveResize(targetGeometry);
             if (extentGeometry != null)
             {

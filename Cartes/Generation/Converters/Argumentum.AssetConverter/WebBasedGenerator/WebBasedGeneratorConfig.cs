@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 
 namespace Argumentum.AssetConverter
 {
@@ -123,6 +124,60 @@ namespace Argumentum.AssetConverter
                     }),
                 },
             });
+
+
+        public string BaseTargetDirectoryName { get; set; } = @".\Target\";
+
+        public string HarvestDirectoryName { get; set; } = @".\Harvest\";
+
+
+        public string ImagesDirectoryName { get; set; } = @".\Images\";
+
+        public string PdfsDirectoryName { get; set; } = @".\Pdfs\";
+
+        public string GetBaseTargetDirectory()
+        {
+            var toReturn =  Path.Combine(System.Environment.CurrentDirectory, BaseTargetDirectoryName);
+            if (!Directory.Exists(toReturn))
+            {
+                Directory.CreateDirectory(toReturn);
+            }
+
+            return toReturn;
+        }
+
+        public string GetHarvestDirectory()
+        {
+            var toReturn = Path.Combine(GetBaseTargetDirectory(), HarvestDirectoryName);
+            if (!Directory.Exists(toReturn))
+            {
+                Directory.CreateDirectory(toReturn);
+            }
+
+            return toReturn;
+        }
+
+        public string GetImagesDirectory()
+        {
+            var toReturn = Path.Combine(GetBaseTargetDirectory(), ImagesDirectoryName);
+            if (!Directory.Exists(toReturn))
+            {
+                Directory.CreateDirectory(toReturn);
+            }
+
+            return toReturn;
+        }
+
+        public string GetPdfsDirectory()
+        {
+            var toReturn = Path.Combine(GetBaseTargetDirectory(), PdfsDirectoryName);
+            if (!Directory.Exists(toReturn))
+            {
+                Directory.CreateDirectory(toReturn);
+            }
+
+            return toReturn;
+        }
 
 
 
