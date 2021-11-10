@@ -14,7 +14,7 @@ namespace Argumentum.AssetConverter
 
         public List<DocumentCardSet> CardSets { get; set; }
 
-        public int TargetDensity { get; set; } = 70;
+        public int TargetDensity { get; set; } = 0;
 
         public MagickFormat ImageFormat { get; set; } = MagickFormat.Png;
 
