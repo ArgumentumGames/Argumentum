@@ -97,11 +97,11 @@ namespace Argumentum.AssetConverter
                             if (!harvestDictionary.ContainsKey(configCardSet.Name))
                             {
                                 var currentHarvest = new CardSetHarvest();
-                                var faces = GenerateImages(driver, configCardSet.FaceExampleName);
+                                var faces = GenerateImages(driver, configCardSet.FaceExampleName, configCardSet.PauseFaceForEdits);
                                 currentHarvest.Faces = faces;
                                 if (!string.IsNullOrEmpty(configCardSet.BackExampleName))
                                 {
-                                    var backs = GenerateImages(driver, configCardSet.BackExampleName);
+                                    var backs = GenerateImages(driver, configCardSet.BackExampleName, configCardSet.PauseBackForEdits);
                                     currentHarvest.Backs = backs;
                                 }
 
@@ -241,7 +241,8 @@ namespace Argumentum.AssetConverter
       
 
         //private List<ImageMagick.MagickImage> GenerateImages(string exampleName)
-        private Dictionary<string, string> GenerateImages(ChromeDriver driver, string exampleName)
+        private Dictionary<string, string> GenerateImages(ChromeDriver driver, string exampleName,
+            bool pauseForEdits)
         {
             var toReturn = new Dictionary<string, string>();
 
@@ -251,6 +252,11 @@ namespace Argumentum.AssetConverter
             Console.WriteLine($"Generating example {exampleName}: {sw.Elapsed}");
             dropdown.FindElement(By.XPath($"//option[. = '{exampleName}']")).Click();
             Thread.Sleep(TimeSpan.FromSeconds(5));
+            if (pauseForEdits)
+            {
+                Console.WriteLine($"Chrome est en pause le temps de faire vos éditions.\n Appuyez sur une touche pour démarrer la génération");
+                Console.Read();
+            }
             var objIFrame = driver.FindElement(By.Id("cpOutput"));
 
             //var objSession = ((ChromiumDriver) driver).CreateDevToolsSession();
