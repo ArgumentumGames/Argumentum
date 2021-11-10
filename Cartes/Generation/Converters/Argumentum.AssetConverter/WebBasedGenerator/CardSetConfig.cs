@@ -97,8 +97,9 @@ namespace Argumentum.AssetConverter
 
         public string BackExampleName { get; set; }
 
+        public bool PauseFaceForEdits { get; set; }
 
-        
+        public bool PauseBackForEdits { get; set; }
 
         public string GetHarvestSerializationName(WebBasedGeneratorConfig config)
         {
