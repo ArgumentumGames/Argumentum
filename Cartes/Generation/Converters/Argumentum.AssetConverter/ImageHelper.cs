@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using ImageMagick;
 
@@ -27,6 +28,74 @@ namespace Argumentum.AssetConverter
             byte[] imageContent = Convert.FromBase64String(base64Content);
 
             return new MagickImage(imageContent);
+        }
+
+
+
+        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, WebBasedGeneratorConfig config, DocumentConfig docConfig,
+             string imageName, string imageUrl, double sourceDpi)
+        {
+            MagickImage toReturn;
+            var imagesFolderName = config.GetImagesDirectory();
+
+            var densityFolderName = Path.Combine(imagesFolderName, $@".\density-{docConfig.TargetDensity}\");
+            if (!Directory.Exists(densityFolderName))
+            {
+                Directory.CreateDirectory(densityFolderName);
+            }
+
+            var cardSetFolderName = Path.Combine(densityFolderName, $@".\{documentCardSet.CardSetName}\");
+            if (!Directory.Exists(cardSetFolderName))
+            {
+                Directory.CreateDirectory(cardSetFolderName);
+            }
+
+            var imageFileName = $"{imageName}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
+            imageFileName = Path.Combine(cardSetFolderName, imageFileName);
+            if (File.Exists(imageFileName))
+            {
+                toReturn = new MagickImage(imageFileName);
+            }
+            else
+            {
+                toReturn = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
+                toReturn.Density = new Density(sourceDpi);
+                if (documentCardSet.SaveOriginalImage)
+                {
+                    var originalFolderName = Path.Combine(imagesFolderName, $@".\original\");
+                    if (!Directory.Exists(originalFolderName))
+                    {
+                        Directory.CreateDirectory(originalFolderName);
+                    }
+                    var cardSetOriginalFolderName = Path.Combine(originalFolderName, $@".\{documentCardSet.CardSetName}\");
+                    if (!Directory.Exists(cardSetOriginalFolderName))
+                    {
+                        Directory.CreateDirectory(cardSetOriginalFolderName);
+                    }
+                    var imageOriginalFileName = $"{imageName}.png";
+                    imageOriginalFileName = Path.Combine(cardSetOriginalFolderName, imageOriginalFileName);
+                    toReturn.Write(imageOriginalFileName);
+
+                }
+
+                if (documentCardSet.ConvertToCmyk)
+                {
+                    toReturn.ConvertToCmyk();
+                }
+                if (documentCardSet.WidthMM > 0 && documentCardSet.HeigthMM > 0)
+                {
+                    toReturn.ResizeInMM(documentCardSet.WidthMM, documentCardSet.HeigthMM, documentCardSet.BorderMM);
+                }
+
+                if (docConfig.TargetDensity > 0)
+                {
+                    toReturn.Resample(docConfig.TargetDensity, docConfig.TargetDensity);
+                }
+
+                toReturn.Write(imageFileName, docConfig.ImageFormat);
+            }
+
+            return toReturn;
         }
 
 

@@ -166,11 +166,11 @@ namespace Argumentum.AssetConverter
                     var backImages = new Dictionary<string, MagickImage>();
                     if (currentHarvest.Backs != null)
                     {
-                        foreach (var currentHarvestBack in currentHarvest.Backs)
+                        foreach (var currentHarvestBack in currentHarvest.Backs.Images)
                         {
                             var backName = currentHarvestBack.Key.ToLowerInvariant();
                             var backImageUrl = currentHarvestBack.Value;
-                            var backImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, configCardSet, backName, backImageUrl);
+                            var backImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument,  backName, backImageUrl, currentHarvest.Backs.Dpi);
                             if (backName.Contains('-'))
                             {
                                 backName = backName.Substring(backName.LastIndexOf('-'));
@@ -180,11 +180,11 @@ namespace Argumentum.AssetConverter
                         }
                     }
 
-                    foreach (var currentHarvestFace in currentHarvest.Faces)
+                    foreach (var currentHarvestFace in currentHarvest.Faces.Images)
                     {
                         var faceName = currentHarvestFace.Key.ToLowerInvariant();
                         var faceImageUrl = currentHarvestFace.Value;
-                        var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, configCardSet, faceName, faceImageUrl);
+                        var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
                         for (int i = 0; i < configCardSet.NbCopies; i++)
                         {
                             targetList.Add(new MagickImage(faceImage));
@@ -241,10 +241,10 @@ namespace Argumentum.AssetConverter
       
 
         //private List<ImageMagick.MagickImage> GenerateImages(string exampleName)
-        private Dictionary<string, string> GenerateImages(ChromeDriver driver, string exampleName,
+        private CardPenHarvest GenerateImages(ChromeDriver driver, string exampleName,
             bool pauseForEdits)
         {
-            var toReturn = new Dictionary<string, string>();
+            var toReturn = new CardPenHarvest();
 
             driver.FindElement(By.Id("exampleList")).Click();
             Thread.Sleep(TimeSpan.FromSeconds(5));
@@ -278,6 +278,9 @@ namespace Argumentum.AssetConverter
             //Console.WriteLine($"Waiting for image display {sw.Elapsed}");
             new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
 
+            var dpi = (long)driver.ExecuteScript("return dpi;");
+
+            toReturn.Dpi = Convert.ToInt32(dpi);
 
             Func<IWebDriver, IWebElement> generateButtonLambda = (IWebDriver drv) => drv.FindElement(By.Id("generateButton"));
             var generateButton = new WebDriverWait(driver, TimeSpan.FromSeconds(5)).Until(drv => generateButtonLambda(drv));
@@ -319,9 +322,8 @@ namespace Argumentum.AssetConverter
 
             for (int i = 0; i < generatedImages.Count; i++)
             {
-                toReturn[cardNames[i]] = generatedImages[i].GetAttribute("src");
+                toReturn.Images[cardNames[i]] = generatedImages[i].GetAttribute("src");
             }
-
 
             driver.SwitchTo().ParentFrame();
 

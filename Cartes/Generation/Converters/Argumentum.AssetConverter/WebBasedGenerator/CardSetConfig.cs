@@ -24,13 +24,17 @@ namespace Argumentum.AssetConverter
     public class DocumentCardSet
     {
 
-
         public string CardSetName { get; set; }
 
 
-        public string TemplateDocumentName { get; set; }
+        //public string TemplateDocumentName { get; set; }
 
         public int NbCopies { get; set; } = 1;
+
+
+        public bool SaveOriginalImage { get; set; } = true;
+
+        public bool ConvertToCmyk { get; set; } = true;
 
         public decimal HeigthMM { get; set; }
 
@@ -41,49 +45,7 @@ namespace Argumentum.AssetConverter
        
 
 
-        public MagickImage LoadAndProcessImageUrl(WebBasedGeneratorConfig config, DocumentConfig docConfig,
-            DocumentCardSet documentCardSet, string imageName, string imageUrl)
-        {
-            MagickImage toReturn;
-            var densityFolderName = config.GetImagesDirectory();
-
-            densityFolderName = Path.Combine(densityFolderName, $@".\density-{docConfig.TargetDensity}\");
-            if (!Directory.Exists(densityFolderName))
-            {
-                Directory.CreateDirectory(densityFolderName);
-            }
-
-            var cardSetFolderName = Path.Combine(densityFolderName, $@".\{documentCardSet.CardSetName}\");
-            if (!Directory.Exists(cardSetFolderName))
-            {
-                Directory.CreateDirectory(cardSetFolderName);
-            }
-
-            imageName = $"{imageName}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
-            var imageFileName = Path.Combine(cardSetFolderName, imageName);
-            if (File.Exists(imageFileName))
-            {
-                toReturn = new MagickImage(imageFileName);
-            }
-            else
-            {
-                toReturn = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
-                ImageHelper.ConvertToCmyk(toReturn);
-                if (WidthMM > 0 && HeigthMM > 0)
-                {
-                    ImageHelper.ResizeInMM(toReturn, WidthMM, HeigthMM, BorderMM);
-                }
-
-                if (docConfig.TargetDensity > 0)
-                {
-                    toReturn.Resample(docConfig.TargetDensity, docConfig.TargetDensity);
-                }
-
-                toReturn.Write(imageFileName, docConfig.ImageFormat);
-            }
-
-            return toReturn;
-        }
+        
 
     }
 
