@@ -7,16 +7,18 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using ImageMagick;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Chromium;
-using OpenQA.Selenium.DevTools;
-//using OpenQA.Selenium.DevTools.Page;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Interactions;
+using Microsoft.Playwright;
+//using OpenQA.Selenium;
+//using OpenQA.Selenium.Chrome;
+//using OpenQA.Selenium.Chromium;
+//using OpenQA.Selenium.DevTools;
+////using OpenQA.Selenium.DevTools.Page;
+//using OpenQA.Selenium.Firefox;
+//using OpenQA.Selenium.Remote;
+//using OpenQA.Selenium.Support.UI;
+//using OpenQA.Selenium.Interactions;
 using Utf8Json;
 
 
@@ -39,15 +41,17 @@ namespace Argumentum.AssetConverter
         public void Run()
         {
             sw = Stopwatch.StartNew();
-            var harvestDictionary = HarvestImages();
+            //var harvestDictionary = HarvestImages();
+            var harvestDictionary = Task.Run(async () => await HarvestImages()).Result; 
             var docImages = GenerateDocumentImages(harvestDictionary);
+            
             GenerateDocuments(docImages);
             //Console.WriteLine($"Generation finished. Total duration: {sw.Elapsed}");
 
         }
 
 
-        Dictionary<string, CardSetHarvest> HarvestImages()
+        async Task<Dictionary<string, CardSetHarvest>>  HarvestImages()
         {
 
             Dictionary<string, CardSetHarvest> harvestDictionary;
@@ -78,30 +82,51 @@ namespace Argumentum.AssetConverter
 
             if (harvestDictionary.Count < Config.CardSets.Count)
             {
-                var options = new ChromeOptions();
-                options.BinaryLocation = Config.ChromeBinaryPath;
-                using (var driver = new ChromeDriver(options))
+                //var options = new ChromeOptions();
+                //options.BinaryLocation = Config.ChromeBinaryPath;
+
+                var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
+                if (exitCode != 0)
                 {
+                    throw new Exception($"Playwright exited with code {exitCode}");
+                }
+
+                using var playwright = await Playwright.CreateAsync();
+                await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+                {
+                    Headless = false,
+                    //SlowMo = 50,
+                });
+
+                //using (var driver = new ChromeDriver(options))
+                //{
                     try
                     {
-                        driver.Manage().Window.Minimize();
-                        //js = (IJavaScriptExecutor)driver;
-                        //vars = new Dictionary<String, Object>();
-                        driver.Navigate().GoToUrl(Config.CardpenUrl);
+                        //driver.Manage().Window.Minimize();
+                        ////js = (IJavaScriptExecutor)driver;
+                        ////vars = new Dictionary<String, Object>();
+                        //driver.Navigate().GoToUrl(Config.CardpenUrl);
+                        //driver.FindElement(By.Id("eg")).Click();
 
-                        driver.FindElement(By.Id("eg")).Click();
-                        Thread.Sleep(TimeSpan.FromSeconds(5));
+
+                        var page = await browser.NewPageAsync();
+                        await page.GotoAsync(Config.CardpenUrl);
+
+
+
+
+                    Thread.Sleep(TimeSpan.FromSeconds(5));
 
                         foreach (var configCardSet in Config.CardSets)
                         {
                             if (!harvestDictionary.ContainsKey(configCardSet.Name))
                             {
                                 var currentHarvest = new CardSetHarvest();
-                                var faces = GenerateImages(driver, configCardSet.FaceExampleName, configCardSet.PauseFaceForEdits);
+                                var faces = await GenerateImages(page, configCardSet.FaceCardSetInfo, configCardSet.PauseFaceForEdits);
                                 currentHarvest.Faces = faces;
                                 if (!string.IsNullOrEmpty(configCardSet.BackExampleName))
                                 {
-                                    var backs = GenerateImages(driver, configCardSet.BackExampleName, configCardSet.PauseBackForEdits);
+                                    var backs = await GenerateImages(page, configCardSet.BackCardSetInfo, configCardSet.PauseBackForEdits);
                                     currentHarvest.Backs = backs;
                                 }
 
@@ -122,11 +147,11 @@ namespace Argumentum.AssetConverter
                         Console.WriteLine(e);
                         throw;
                     }
-                    finally
-                    {
-                        driver.Quit();
-                    }
-                }
+                    //finally
+                    //{
+                    //    driver.Quit();
+                    //}
+                //}
             }
 
 
@@ -241,91 +266,181 @@ namespace Argumentum.AssetConverter
       
 
         //private List<ImageMagick.MagickImage> GenerateImages(string exampleName)
-        private CardPenHarvest GenerateImages(ChromeDriver driver, string exampleName,
+        private async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetInfo cardSet,
             bool pauseForEdits)
         {
             var toReturn = new CardPenHarvest();
 
-            driver.FindElement(By.Id("exampleList")).Click();
-            Thread.Sleep(TimeSpan.FromSeconds(5));
-            var dropdown = driver.FindElement(By.Id("exampleList"));
-            Console.WriteLine($"Generating example {exampleName}: {sw.Elapsed}");
-            dropdown.FindElement(By.XPath($"//option[. = '{exampleName}']")).Click();
-            Thread.Sleep(TimeSpan.FromSeconds(5));
+            
+
+            switch (cardSet.CardSetType)
+            {
+                case CardSetType.ExampleByName:
+                    //driver.FindElement(By.Id("exampleList")).Click();
+                    //var playwright = Task.Run(async () => await Playwright.CreateAsync()).Result ;
+                    
+                    //var dropdown = driver.FindElement(By.Id("exampleList"));
+                    var dropdown = driver.Locator("#exampleList");
+                    if (!await dropdown.IsVisibleAsync())
+                    {
+                        var exampleButton = driver.Locator("#eg");
+                        await exampleButton.ClickAsync();
+                        //Thread.Sleep(TimeSpan.FromSeconds(5));
+                    }
+
+                    await dropdown.ClickAsync();
+                    Console.WriteLine($"Generating example {cardSet.ExampleName}: {sw.Elapsed}");
+                    //dropdown.FindElement(By.XPath($"//option[. = '{cardSet.ExampleName}']")).Click();
+                    await dropdown.SelectOptionAsync(cardSet.ExampleName);
+                    //Thread.Sleep(TimeSpan.FromSeconds(5));
+                    break;
+                case CardSetType.CustomJson:
+                    //driver.FindElement(By.Id("load")).Click();
+                    //var importInput= driver.FindElement(By.Id("import"));
+                    var importInput = driver.Locator("#import");
+                    if (!await importInput.IsVisibleAsync())
+                    {
+                        var exampleButton = driver.Locator("#load");
+                        await exampleButton.ClickAsync();
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                    }
+                    
+                    var customFilePath = cardSet.CustomJsonFileName;
+                    if (!Path.IsPathFullyQualified(cardSet.CustomJsonFileName))
+                    {
+                        customFilePath = Path.Combine(Environment.CurrentDirectory, customFilePath);
+                    }
+                    Console.WriteLine($"Generating CardSet {customFilePath}: {sw.Elapsed}");
+                    await driver.SetInputFilesAsync("#import", customFilePath);
+                    Thread.Sleep(TimeSpan.FromSeconds(5));
+
+
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+           
             if (pauseForEdits)
             {
                 Console.WriteLine($"Chrome est en pause le temps de faire vos éditions.\n Appuyez sur une touche pour démarrer la génération");
                 Console.Read();
             }
-            var objIFrame = driver.FindElement(By.Id("cpOutput"));
+            //var objIFrame = driver.FindElement(By.Id("cpOutput"));
+            var objIFrame = driver.FrameLocator("#cpOutput");
+
 
             //var objSession = ((ChromiumDriver) driver).CreateDevToolsSession();
 
 
-            driver.SwitchTo().Frame(objIFrame);
+            //driver.SwitchTo().Frame(objIFrame);
             //Console.WriteLine($"Waiting for html display {sw.Elapsed}");
 
-            new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
-            driver.SwitchTo().ParentFrame();
+            //new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
+            var objCardTag = objIFrame.Locator("card");
+            //await objCardTag.WaitForAsync(new LocatorWaitForOptions(){State = WaitForSelectorState.Attached});
+            while (await objCardTag.CountAsync()==0)
+            {
+                Thread.Sleep(100);
+            }
+
+
+            //driver.SwitchTo().ParentFrame();
 
             
-            driver.FindElement(By.CssSelector(".image")).Click();
+            //driver.FindElement(By.CssSelector(".image")).Click();
+            await driver.Locator(".image").ClickAsync();
 
-            Thread.Sleep(TimeSpan.FromSeconds(5));
+            //Thread.Sleep(TimeSpan.FromSeconds(5));
 
             //objIFrame = new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.Id("cpOutput")));
-            driver.SwitchTo().Frame(objIFrame);
-            //Console.WriteLine($"Waiting for image display {sw.Elapsed}");
-            new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
+            //driver.SwitchTo().Frame(objIFrame);
+            Console.WriteLine($"Waiting for image display {sw.Elapsed}");
+            //new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
+            //await objCardTag.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached });
+            while (await objCardTag.CountAsync() == 0)
+            {
+                Thread.Sleep(100);
+            }
 
-            var dpi = (long)driver.ExecuteScript("return dpi;");
+            //var dpi = (long)driver.ExecuteScript("return dpi;");
+            //var dpi = await driver.EvaluateAsync("return dpi;");
+            //var dpi = await driver.EvaluateAsync("dpi");
+
+            var dpi = await driver.Locator("#dpi").InputValueAsync();
+
 
             toReturn.Dpi = Convert.ToInt32(dpi);
 
-            Func<IWebDriver, IWebElement> generateButtonLambda = (IWebDriver drv) => drv.FindElement(By.Id("generateButton"));
-            var generateButton = new WebDriverWait(driver, TimeSpan.FromSeconds(5)).Until(drv => generateButtonLambda(drv));
-            //new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => generateButtonLambda(drv).Displayed && generateButtonLambda(drv).Enabled);
-            //Thread.Sleep(TimeSpan.FromSeconds(2));
+            //Func<IWebDriver, IWebElement> generateButtonLambda = (IWebDriver drv) => drv.FindElement(By.Id("generateButton"));
+            //var generateButton = new WebDriverWait(driver, TimeSpan.FromSeconds(5)).Until(drv => generateButtonLambda(drv));
+            var objGenerateButton = objIFrame.Locator("#generateButton");
+            await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached });
 
-            var zipButtoLambda = new Func<IWebDriver, IWebElement>((IWebDriver drv) => drv.FindElement(By.Id("zipButton")));
+
+
+            //var zipButtoLambda = new Func<IWebDriver, IWebElement>((IWebDriver drv) => drv.FindElement(By.Id("zipButton")));
 
             //Thread.Sleep(TimeSpan.FromSeconds(1));
 
-            var zipButton = zipButtoLambda(driver);
+            //var zipButton = zipButtoLambda(driver);
+            var zipButton = objIFrame.Locator("#zipButton"); ;
+            
             Thread.Sleep(TimeSpan.FromSeconds(5));
-            generateButton.Click();
+            //generateButton.Click();
+            await objGenerateButton.ClickAsync();
             //Console.WriteLine($"Waiting for Generated images  {sw.Elapsed}");
-            new WebDriverWait(driver, TimeSpan.FromSeconds(600)).Until(drv => zipButtoLambda(drv).Displayed && zipButtoLambda(drv).Enabled);
+            //new WebDriverWait(driver, TimeSpan.FromSeconds(600)).Until(drv => zipButtoLambda(drv).Displayed && zipButtoLambda(drv).Enabled);
+
+            await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached  });
+            await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible,Timeout = 0 });
+            var zipHandler = await zipButton.ElementHandleAsync();
+            await zipHandler.WaitForElementStateAsync(ElementState.Enabled);
+
             //Console.WriteLine($"images generated {sw.Elapsed}");
-            var generatedImagesDiv = driver.FindElement(By.Id("cpImages"));
-            var generatedImages = generatedImagesDiv.FindElements(By.TagName("img"));
+            //var generatedImagesDiv = driver.FindElement(By.Id("cpImages"));
+            var generatedImagesDiv = objIFrame.Locator("#cpImages");
+
+            //var generatedImages = generatedImagesDiv.FindElements(By.TagName("img"));
+            var generatedImages = generatedImagesDiv.Locator("img");
 
             var cardNames = new List<string>();
 
-            var cardsHtml = driver.FindElements(By.TagName("card"));
-            for (var idxCard = 0; idxCard < cardsHtml.Count; idxCard++)
+            //var cardsHtml = driver.FindElements(By.TagName("card"));
+            var cardsHtml = objIFrame.Locator("card");
+            for (var idxCard = 0; idxCard < await cardsHtml.CountAsync(); idxCard++)
             {
                 var strCardName = idxCard.ToString(CultureInfo.InvariantCulture).PadLeft(3, '0');
-                var cardElement = cardsHtml[idxCard];
-                var cardCssName = cardElement.FindElements(By.ClassName("cardName"));
-                if (cardCssName.Count > 0)
+                //var cardElement = cardsHtml[idxCard];
+                var cardElement = cardsHtml.Nth(idxCard);
+                //var cardCssName = cardElement.FindElements(By.ClassName("cardName"));
+                var cardCssName = cardElement.Locator(".cardName");
+                //if (cardCssName.Count > 0)
+                if (await cardCssName.CountAsync() > 0)
                 {
-                    strCardName = cardCssName[0].GetAttribute("textContent").Trim('-');
+                    //strCardName = cardCssName[0].GetAttribute("textContent").Trim('-');
+                    var currentCard = cardCssName.Nth(0);
+                    //strCardName = (await currentCard.GetAttributeAsync("textContent"))?.Trim('-');
+                    strCardName = (await currentCard.TextContentAsync())?.Trim('-');
                 }
                 cardNames.Add(strCardName);
             }
 
-            if (generatedImages.Count != cardNames.Count)
+            if (await generatedImages.CountAsync() != cardNames.Count)
             {
                 throw new ApplicationException("not same number of generated cards and card names");
             }
 
-            for (int i = 0; i < generatedImages.Count; i++)
+            for (int i = 0; i < await generatedImages.CountAsync(); i++)
             {
-                toReturn.Images[cardNames[i]] = generatedImages[i].GetAttribute("src");
+                //toReturn.Images[cardNames[i]] = generatedImages[i].GetAttribute("src");
+                var currentGeneratedImage = generatedImages.Nth(i);
+                var currentCardName = cardNames[i];
+                toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
             }
 
-            driver.SwitchTo().ParentFrame();
+            //driver.SwitchTo().ParentFrame();
 
             return toReturn;
         }
