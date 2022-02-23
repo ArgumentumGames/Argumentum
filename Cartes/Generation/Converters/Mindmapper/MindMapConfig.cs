@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Dynamic.Core.CustomTypeProviders;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
@@ -164,6 +165,11 @@ namespace Mindmapper
             HashSet<Type> types = DefaultProvider.GetCustomTypes();
             types.Add(typeof(HttpUtility));
             return types;
+        }
+
+        public Dictionary<Type, List<MethodInfo>> GetExtensionMethods()
+        {
+            throw new NotImplementedException();
         }
 
         public Type ResolveType(string typeName)
