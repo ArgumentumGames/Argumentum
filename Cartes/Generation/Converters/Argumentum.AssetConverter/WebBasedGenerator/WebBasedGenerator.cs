@@ -302,7 +302,7 @@ namespace Argumentum.AssetConverter
                     {
                         var exampleButton = driver.Locator("#load");
                         await exampleButton.ClickAsync();
-                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                        Thread.Sleep(TimeSpan.FromSeconds(2));
                     }
                     
                     var customFilePath = cardSet.CustomJsonFileName;
@@ -352,7 +352,7 @@ namespace Argumentum.AssetConverter
             //driver.FindElement(By.CssSelector(".image")).Click();
             await driver.Locator(".image").ClickAsync();
 
-            //Thread.Sleep(TimeSpan.FromSeconds(5));
+            Thread.Sleep(TimeSpan.FromSeconds(5));
 
             //objIFrame = new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.Id("cpOutput")));
             //driver.SwitchTo().Frame(objIFrame);
@@ -382,7 +382,7 @@ namespace Argumentum.AssetConverter
 
             //var zipButtoLambda = new Func<IWebDriver, IWebElement>((IWebDriver drv) => drv.FindElement(By.Id("zipButton")));
 
-            //Thread.Sleep(TimeSpan.FromSeconds(1));
+            Thread.Sleep(TimeSpan.FromSeconds(1));
 
             //var zipButton = zipButtoLambda(driver);
             var zipButton = objIFrame.Locator("#zipButton"); ;
