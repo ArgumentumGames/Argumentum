@@ -1,4 +1,8 @@
-﻿*Rules of the game: 4 to 8 players*
+﻿Playing Argumentum consist of a succession of role-playing games where each player embodies in turn the status of smooth talker, his interlocutor or the jury according to random scenarios. While having fun, players learn to recognize, decode and therefore deconstruct fallacious arguments.
+
+Argumentum is based on a classification of these fallacious arguments, arranged into families and subfamilies that are indicated at the top of the cards. For example, flattery is a subcategory of the appeal to emotions. Memo cards summarize this classification.
+
+*Rules of the game: 4 to 8 players*
 
 ## Game material
 
@@ -51,9 +55,9 @@ The members of the jury take note of the revealed cards, one of them can read th
 
 If the smooth talker's card is designated by the whole jury, each draw a card except the smooth talker. His left neighbor becomes the next drawer.
 
-Otherwise, the winner of the round is the one whose card has got the most votes, either as a smooth talker or as a member of the jury. He then keeps his card which is worth 1 deck and puts it face up in front of him. He does not draw a new card. In the event of a tie, the players who found the player's card are declared winners, and if there is no tie, the player who found the player's card wins.
+Otherwise, the winner of the round is the one whose card has obtained the most votes, either as a smooth talker or as a member of the jury. He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
 
-With the exception of the winner, the members of the jury who have obtained votes or who have found the card of the smooth talker draw 2 cards. The other players, including the player who did not win the round, draw 1 card. Played cards are returned to the deck.
+With the exception of the winner, each player earns 1 point if their card has been chosen by at least one member of the jury and another point if they have found the smooth talker's card. The other players, including the smooth talker if he has not won the round, draw a card. Played cards are returned to the deck.
 
 The winner's left-hand neighbour becomes the drawer for the next round.
 
