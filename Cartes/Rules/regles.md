@@ -1,8 +1,8 @@
-*Règles du jeu : de 4 à 8 joueurs*
-## Description
-Argumentum est un jeu de cartes d’éducation populaire à la rhétorique au travers de la découverte des arguments fallacieux. Les parties consistent en une succession de jeux de rôles où chaque joueur incarne tour à tour le statut de baratineur, de son interlocuteur ou du public en fonction de scénarios de situations tirés au hasard. Aussi, tout en s’amusant, les joueurs d’Argumentum apprennent à reconnaître, à décoder et donc à déconstruire les arguments fallacieux.
+Les parties d’Argumentum consistent en une succession de jeux de rôles où chaque joueur incarne tour à tour le statut de baratineur, de son interlocuteur ou du jury  en fonction de scénarios tirés au hasard. Aussi, tout en s’amusant, les joueurs apprennent à reconnaître, à décoder et donc à déconstruire les arguments fallacieux.
 
-Argumentum s’appuie sur une classification  des arguments fallacieux, rangés en familles et en sous-familles. Ainsi, certaines cartes d’argument fallacieuse en recouvre d’autres qui sont plus précises (par exemple, flatterie est une sous catégorie de l’appel aux émotions).
+Argumentum s’appuie sur une classification de ces arguments fallacieux, rangés en familles et en sous-familles qui sont indiqués en haut de la carte. Par exemple, flatterie est une sous catégorie de l’appel aux émotions. Les cartes mémo résument cette classification.
+
+*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
 
@@ -55,7 +55,7 @@ Les membres du jury prennent connaissance des cartes révélées, l’un d’eux
 
 Si la carte du baratineur est désignée par l’ensemble du jury, chacun pioche une carte à l’exception du baratineur. Son voisin de gauche devient le prochain piocheur.
 
-Sinon, le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de votes, baratineur ou membre du jury. Il marque 3 points, et dispose la carte qui a gagné face ouverte devant lui. Il ne pioche pas de nouvelle carte. En cas d’égalité, les joueurs ayant retrouvé la carte du baratineur sont déclarés vainqueurs, et à défaut le baratineur l’emporte.
+Sinon, le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de votes, baratineur ou membre du jury. Il marque 3 points. Il ne pioche pas de nouvelle carte. En cas d’égalité, les joueurs ayant retrouvé la carte du baratineur sont déclarés vainqueurs, et à défaut le baratineur l’emporte.
 
 À l’exception du vainqueur, chaque joueur gagne 1 point si sa carte a été désignée par au moins un membre du jury et un autre point s’il a trouvé la carte du baratineur.
 Les autres joueurs, y compris le baratineur s’il n’a pas gagné la manche, piochent une carte. Les cartes jouées sont remises au tas.
