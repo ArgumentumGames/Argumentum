@@ -193,7 +193,7 @@ namespace Argumentum.AssetConverter
                     {
                         foreach (var currentHarvestBack in currentHarvest.Backs.Images)
                         {
-                            var backName = currentHarvestBack.Key.ToLowerInvariant();
+                            var backName = $"{currentHarvestBack.Key.ToLowerInvariant()}" ;
                             var backImageUrl = currentHarvestBack.Value;
                             var backImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument,  backName, backImageUrl, currentHarvest.Backs.Dpi);
                             if (backName.Contains('-'))
@@ -205,12 +205,13 @@ namespace Argumentum.AssetConverter
                         }
                     }
 
-                    CardImages currentCard = null;
+                    
                     for (int i = 0; i < configCardSet.NbCopies; i++)
                     {
+                        CardImages currentCard = null;
                         foreach (var currentHarvestFace in currentHarvest.Faces.Images)
                         {
-                            var faceName = currentHarvestFace.Key.ToLowerInvariant();
+                            var faceName = $"face_{currentHarvestFace.Key.ToLowerInvariant()}";
                             var faceImageUrl = currentHarvestFace.Value;
                             var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
                             if (currentCard == null)
@@ -289,7 +290,7 @@ namespace Argumentum.AssetConverter
                         for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
                         {
                             var frontsAndBack = cardsPerBack[backIndex];
-                            var backThenFronts = new[] { frontsAndBack.Key }.Union(frontsAndBack.Select(card => card.Front));
+                            var backThenFronts = new[] { frontsAndBack.Key }.Concat(frontsAndBack.Select(card => card.Front));
                             collec = new MagickImageCollection(backThenFronts);
                             var newName = $"{baseName.Substring(0, indexInsert)}-{backIndex+1}{baseName.Substring(indexInsert)}";
                             targetFiles.Add((newName,collec));
