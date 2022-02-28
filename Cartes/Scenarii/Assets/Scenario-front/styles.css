@@ -1,0 +1,223 @@
+/* -------------------------------------------------------------------------------- */
+/* Polices */
+/* -------------------------------------------------------------------------------- */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css');
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 300;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Light tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 500;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Medium tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 700;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Bold tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 900;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Black tr.woff') format('woff');
+}
+
+
+
+card {
+    font-size: 100%;
+    font-family: 'Bebas Neue', sans-serif;
+    margin: 0;
+}
+
+
+/* -------------------------------------------------------------------------------- */
+
+/* Structure */
+
+/* -------------------------------------------------------------------------------- */
+
+bleed { /*width:auto;*/ }
+
+cut { /*width:auto;*/ }
+
+safe {
+    /*width:auto;*/
+    background-color: #fff;
+    position: relative;
+    padding: 0.04in 0.01in;
+    /*display: flex;
+  flex-direction: column;
+  justify-content: space-between;*/
+}
+
+.cardName { display: none; }
+
+/* -------------------------------------------------------------------------------- */
+
+/* Entête */
+
+/* -------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------------- */
+
+/* Corps */
+
+/* -------------------------------------------------------------------------------- */
+
+.body {
+    padding: 10%;
+    height: 100%;
+    border: 1.8px solid #000;
+    border-radius: 0.125in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-family: 'DINPro';
+    line-height: 1em;
+    text-align: center;
+    min-height: 15.7%;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+    color: #fff;
+    border-radius: 6px 6px 0 0;
+    background-color: #af1313;
+}
+
+.texte {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-family: 'DINPro';
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.enjeu {
+    font-size: 0.8em;
+    line-height: 1.3;
+    padding-bottom: 0.5em;
+}
+
+.roles {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    line-height: 1;
+    border-top: 2px solid #af1313;
+    border-bottom: 2px solid #af1313;
+    padding: 1em 0;
+}
+
+.roles img { margin-right: 0.3em; }
+
+.roles span { flex-grow: 0; }
+
+.roles .piocheur img {
+    width: 2em;
+    height: 2em;
+}
+
+.roles .baratineur img {
+    width: 1.7em;
+    height: 1.7em;
+}
+
+
+.roles > div {
+    display: flex;
+    align-items: center;
+    flex-basis: 50%;
+}
+
+.piocheur {
+    background-repeat: no-repeat;
+    background-size: 10%;
+    justify-content: center;
+}
+
+.baratineur {
+    background-repeat: no-repeat;
+    background-size: 10%;
+    margin-left: 5%;
+    justify-content: center;
+}
+
+.contexte {
+    font-size: 0.8em;
+    line-height: 1.1;
+    padding-bottom: 0.5em;
+    font-weight: bold;
+}
+
+
+.suggestion {
+    font-size: 0.7em;
+    line-height: 1.1em;
+    font-family: 'DINPro';
+    display: flex;
+    margin-left: -6%;
+    align-items: flex-start;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.suggestion img {
+    width: 1.8em;
+    margin-right: 3%;
+}
+
+/* -------------------------------------------------------------------------------- */
+
+/* Pied de page */
+
+/* -------------------------------------------------------------------------------- */
+
+.footer {
+    position: absolute;
+    padding: 0.3em;
+    bottom: -2.8%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    box-sizing: content-box;
+}
+
+.footer img {
+    max-width: 0.5em;
+    max-height: 0.5em;
+    margin: 0.2em;
+}
+
+.footer img:first-child {
+    max-width: 0.7em;
+    max-height: 0.7em;
+}
+
+.footer div {
+    font-size: 0.6em;
+    background-color: #fff;
+    margin-left: 0.3em;
+}
