@@ -13,7 +13,7 @@ namespace Argumentum.AssetConverter
 
         public MagickFormat ImageFormat { get; set; } = MagickFormat.Png;
 
-        public CardDocumentFormat DocumentFormat { get; set; }
+        public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.BackFirstOneDocPerBack;
 
     }
 
