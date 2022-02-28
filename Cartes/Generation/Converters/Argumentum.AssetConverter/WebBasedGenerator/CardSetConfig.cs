@@ -64,6 +64,9 @@ namespace Argumentum.AssetConverter
     public class CardSetInfo
     {
 
+        public bool IsSet => (CardSetType == CardSetType.ExampleByName && !string.IsNullOrEmpty(ExampleName))
+                             || (CardSetType == CardSetType.CustomJson && !string.IsNullOrEmpty(CustomJsonFileName));
+
         public CardSetType CardSetType { get; set; }
 
         public string ExampleName { get; set; }

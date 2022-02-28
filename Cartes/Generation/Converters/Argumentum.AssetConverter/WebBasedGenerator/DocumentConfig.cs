@@ -5,8 +5,6 @@ namespace Argumentum.AssetConverter
 {
     public class DocumentConfig
     {
-
-
         public string DocumentName { get; set; }
 
         public List<DocumentCardSet> CardSets { get; set; }
@@ -15,5 +13,15 @@ namespace Argumentum.AssetConverter
 
         public MagickFormat ImageFormat { get; set; } = MagickFormat.Png;
 
+        public CardDocumentFormat DocumentFormat { get; set; }
+
     }
+
+    public enum CardDocumentFormat
+    {
+        AlternateFaceAndBack,
+        BackFirstOneDocPerBack
+    }
+
+
 }
