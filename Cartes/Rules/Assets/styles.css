@@ -1,0 +1,365 @@
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 300;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Light tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 500;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Medium tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 700;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Bold tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 900;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Black tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: "TrendSlabW00-Four";
+    src: url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.eot"); /* IE9*/
+    src: url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.woff2") format("woff2"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.woff") format("woff"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.svg#TrendSlabW00-Four") format("svg"); /* iOS 4.1- */
+}
+
+.insuffisance {
+    --color-background: #811da3;
+    --color-text-1: #601362;
+    --color-text-2: #8f5991;
+    --color-text-3: #a173a2;
+}
+
+.influence {
+    --color-background: #ff66eb;
+    --color-text-1: #b3009b;
+    --color-text-2: #cc00b1;
+    --color-text-3: #e566d4;
+}
+
+.erreurMathématique {
+    --color-background: #08af93;
+    --color-text-1: #14555b;
+    --color-text-2: #5a888c;
+    --color-text-3: #749a9e;
+}
+
+.paralogisme {
+    --color-background: #8dc801;
+    --color-text-1: #476205;
+    --color-text-2: #7e9150;
+    --color-text-3: #92a26b;
+}
+
+.détournementDeLaLangue {
+    --color-background: #0054a4;
+    --color-text-1: #0c2861;
+    --color-text-2: #546890;
+    --color-text-3: #6f80a1;
+}
+
+.tricherie {
+    --color-background: #ffc307ff;
+    --color-text-1: #9e7800ff;
+    --color-text-2: #c49500ff;
+    --color-text-3: #d6b755ff;
+}
+
+.obstruction {
+    --color-background: #dc0f0a;
+    --color-text-1: #960a07;
+    --color-text-2: #b55351;
+    --color-text-3: #c16e6c;
+}
+
+
+body {
+    font-family: 'DINPro',sans-serif;
+    font-size: 100%;
+    line-height: 1.25;
+}
+
+card {
+}
+
+.card2 h2:nth-of-type(1) {
+    --color-background: #e7ceec;
+    --color-box: #8605aa;
+}
+
+.card2 h2:nth-of-type(2) {
+    --color-background: #f8efd0;
+    --color-box: #daaf01;
+}
+
+.card3 h2:nth-of-type(1) {
+    --color-background: #cdede8;
+    --color-box: #01a986;
+}
+
+.card4 h3:nth-of-type(1) {
+    --color-background: #e1f1cd;
+    --color-box: #69b402;
+}
+
+.card4 h3:nth-of-type(2) {
+    --color-background: #ffe6fc;
+    --color-box: #ff66eb;
+}
+
+.card4 h3:nth-of-type(3) {
+    --color-background: #cad7ea;
+    --color-box: #022cb2;
+}
+
+.card5 h3:nth-of-type(1) {
+    --color-background: #eed0d0;
+    --color-box: #ab1516;
+}
+
+.card5 h3:nth-of-type(2) {
+    --color-background: #e8cdee;
+    --color-box: #8603b1;
+}
+
+.card6 h2:nth-of-type(1) {
+    --color-background: #f8f0cc;
+    --color-box: #daaf01;
+}
+
+
+.card2 h2:nth-of-type(1), .card2 h2:nth-of-type(2),
+.card3 h2:nth-of-type(1), .card4 h3:nth-of-type(1),
+.card4 h3:nth-of-type(2), .card4 h3:nth-of-type(3),
+.card5 h3:nth-of-type(1), .card5 h3:nth-of-type(2),
+.card6 h2:nth-of-type(1) {
+    font-size: 0.7em;
+    background-color: var(--color-background);
+    padding: 0.3em;
+    font-weight: bold;
+    border-bottom: 0.2em solid var(--color-box);
+    text-transform: uppercase;
+    padding-left: 15%;
+    padding-top: 0.4em;
+}
+
+card:not(.card1) h2:before, h3:before {
+    content: '';
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: #fff;
+    left: 1.7em;
+    margin-top: 0.2em;
+    background-color: var(--color-box);
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.card4 h3:nth-of-type(1):before {
+    content: '01';
+}
+
+.card4 h3:nth-of-type(2):before {
+    content: '02';
+}
+
+.card4 h3:nth-of-type(3):before {
+    content: '03';
+}
+
+.card5 h3:nth-of-type(1):before {
+    content: '04';
+}
+
+.card5 h3:nth-of-type(2):before {
+    content: '05';
+}
+
+.card4 h2:first-child {
+    font-size: 1.2em;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1;
+}
+
+em {
+    font-size: 1.3em;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1;
+}
+
+safe {
+    padding: 0em 0.4em;
+}
+
+.card1 h1 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: 500 !important;
+}
+
+h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.card1 h1 {
+    font-family: 'TrendSlabW00-Four', sans-serif;
+    color: #fff9e7;
+    font-size: 3em;
+    text-align: left;
+    line-height: 1;
+    z-index: 2;
+    top: 0.5em;
+    padding: 0.5em 0.1em 0 0.5em;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.card1 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2em;
+    color: #d9c1b4;
+    letter-spacing: 0.04em;
+    text-align: left;
+    font-weight: 500;
+    padding-left: 1.3em;
+    margin-top: 0.2em;
+    ;
+}
+
+p, ul {
+    padding-left: 19%;
+    font-size: 0.57em;
+    line-height: 1.1;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.card2 p:first-child {
+    padding: 0 !important;
+    font-size: 0.9em;
+}
+
+.boardImage {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+    .boardImage img {
+        width: 90%;
+    }
+
+.kidsImage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin-top: 6em;
+}
+
+    .kidsImage img {
+        width: 100%;
+    }
+
+.card1 {
+    background: url('../../Rules/Assets/bg-rules.jpg');
+    background-size: 100% 100%;
+}
+
+    .card1 bleed {
+        text-align: center;
+        background: url('../../Rules/Assets/rules-board.png') no-repeat;
+        background-size: 80%;
+        background-position: 50% 15%
+    }
+
+    .card1 safe {
+        position: relative;
+        background: url('../../Rules/Assets/rules-kids.png') no-repeat;
+        background-size: 100%;
+        background-position: 50% 93%;
+        z-index: 4;
+        bottom: 0;
+    }
+
+
+        .card1 safe > div {
+            position: relative;
+        }
+
+
+.totalPlayer {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+.rulesItem {
+    margin-bottom: 1em;
+}
+
+.rulesBox {
+    padding: 0 !important;
+    width: 3em;
+    height: 3em;
+    margin-top: 3%;
+    margin-left: -2%;
+    background-color: var(--color-box);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+    .rulesBox > div {
+        font-size: 1.5em;
+    }
+
+.colorPalette {
+    display: flex;
+    position: absolute;
+    right: 1.5em;
+    bottom: 1.5em;
+}
+
+.card1 .colorPalette {
+    display: none;
+}
+
+.colorPalette > div {
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0.1em;
+}
+
+.colorPalette > div {
+    background-color: var(--color-background);
+}
