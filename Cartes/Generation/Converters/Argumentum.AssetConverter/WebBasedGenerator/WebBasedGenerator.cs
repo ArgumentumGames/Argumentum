@@ -124,7 +124,7 @@ namespace Argumentum.AssetConverter
                                 var currentHarvest = new CardSetHarvest();
                                 var faces = await GenerateImages(page, configCardSet.FaceCardSetInfo, configCardSet.PauseFaceForEdits);
                                 currentHarvest.Faces = faces;
-                                if (!string.IsNullOrEmpty(configCardSet.BackExampleName))
+                                if (configCardSet.BackCardSetInfo.IsSet)
                                 {
                                     var backs = await GenerateImages(page, configCardSet.BackCardSetInfo, configCardSet.PauseBackForEdits);
                                     currentHarvest.Backs = backs;
@@ -167,17 +167,17 @@ namespace Argumentum.AssetConverter
 
 
 
-        Dictionary<DocumentConfig, List<MagickImage>> GenerateDocumentImages(Dictionary<string, CardSetHarvest> harvestDictionary)
+        Dictionary<DocumentConfig, List<CardImages>> GenerateDocumentImages(Dictionary<string, CardSetHarvest> harvestDictionary)
         {
-            Dictionary<DocumentConfig, List<MagickImage>> toReturn = new Dictionary<DocumentConfig, List<MagickImage>>();
+            Dictionary<DocumentConfig, List<CardImages>> toReturn = new Dictionary<DocumentConfig, List<CardImages>>();
 
             foreach (var configDocument in Config.Documents)
             {
-                List<MagickImage> targetList;
+                List<CardImages> targetList;
 
                 if (!toReturn.TryGetValue(configDocument, out targetList))
                 {
-                    targetList = new List<MagickImage>();
+                    targetList = new List<CardImages>();
                     toReturn[configDocument] = targetList;
                 }
 
@@ -205,34 +205,49 @@ namespace Argumentum.AssetConverter
                         }
                     }
 
-                    foreach (var currentHarvestFace in currentHarvest.Faces.Images)
+                    CardImages currentCard = null;
+                    for (int i = 0; i < configCardSet.NbCopies; i++)
                     {
-                        var faceName = currentHarvestFace.Key.ToLowerInvariant();
-                        var faceImageUrl = currentHarvestFace.Value;
-                        var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
-                        for (int i = 0; i < configCardSet.NbCopies; i++)
+                        foreach (var currentHarvestFace in currentHarvest.Faces.Images)
                         {
-                            targetList.Add(new MagickImage(faceImage));
+                            var faceName = currentHarvestFace.Key.ToLowerInvariant();
+                            var faceImageUrl = currentHarvestFace.Value;
+                            var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
+                            if (currentCard == null)
+                            {
+                                currentCard = new CardImages();
+                                targetList.Add(currentCard);
+                                //currentCard.Front = new MagickImage(faceImage);
+                                currentCard.Front = faceImage;
+                            }
+                            else
+                            {
+                                //currentCard.Back = new MagickImage(faceImage);
+                                currentCard.Back = faceImage;
+                                currentCard = null;
+                            }
+                            
                             if (backImages.Count > 0)
                             {
                                 if (backImages.Count == 1)
                                 {
-                                    targetList.Add(new MagickImage(backImages.Values.First()));
+                                    //currentCard.Back = new MagickImage(backImages.Values.First());
+                                    currentCard.Back = backImages.Values.First();
                                 }
                                 else
                                 {
 
                                     var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
-                                    targetList.Add(new MagickImage(backImages[targetBackName]));
+                                    //currentCard.Back = new MagickImage(backImages[targetBackName]);
+                                    currentCard.Back = backImages[targetBackName];
                                 }
+                                currentCard = null;
                             }
-
                         }
-
                     }
                 }
 
-               
+
 
             }
 
@@ -242,7 +257,7 @@ namespace Argumentum.AssetConverter
         }
 
 
-        private void GenerateDocuments(Dictionary<DocumentConfig, List<MagickImage>> docImages)
+        private void GenerateDocuments(Dictionary<DocumentConfig, List<CardImages>> docImages)
         {
             Console.WriteLine($"Generation pdf documents: {sw.Elapsed}");
             var pdfDirectory = Config.GetPdfsDirectory();
@@ -254,10 +269,44 @@ namespace Argumentum.AssetConverter
                 {
                     Directory.CreateDirectory(densityDirectory);
                 }
-                var collec = new MagickImageCollection(docImageList.Value);
-                var targetFile = Path.Combine(densityDirectory, docImageList.Key.DocumentName);
-                collec.Write(targetFile);
-                Console.WriteLine($"Generated pdf document {targetFile}: {sw.Elapsed}");
+
+                var targetFiles = new List<(string fileName, MagickImageCollection documentImages)>();
+                MagickImageCollection collec;
+                switch (docImageList.Key.DocumentFormat)
+                {
+                    case CardDocumentFormat.AlternateFaceAndBack:
+                        collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
+                        {
+                            return new[] { s.Front, s.Back };
+                        }));
+                        var targetFile = Path.Combine(densityDirectory, docImageList.Key.DocumentName);
+                        targetFiles.Add((targetFile, collec));
+                        break;
+                    case CardDocumentFormat.BackFirstOneDocPerBack:
+                        var baseName = Path.Combine(densityDirectory, docImageList.Key.DocumentName);
+                        var indexInsert = baseName.LastIndexOf('.');
+                        var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
+                        for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
+                        {
+                            var frontsAndBack = cardsPerBack[backIndex];
+                            var backThenFronts = new[] { frontsAndBack.Key }.Union(frontsAndBack.Select(card => card.Front));
+                            collec = new MagickImageCollection(backThenFronts);
+                            var newName = $"{baseName.Substring(0, indexInsert)}-{backIndex+1}{baseName.Substring(indexInsert)}";
+                            targetFiles.Add((newName,collec));
+                        }
+                       
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                foreach (var targetFile in targetFiles)
+                {
+                    targetFile.documentImages.Write(targetFile.fileName);
+                    Console.WriteLine($"Generated pdf document {targetFile.fileName}: {sw.Elapsed}");
+                }
+               
+                
             }
         }
 
@@ -446,6 +495,15 @@ namespace Argumentum.AssetConverter
         }
 
 
+
+    }
+
+
+    public class CardImages
+    {
+        public MagickImage Front { get; set; }
+
+        public MagickImage Back { get; set; }
 
     }
 
