@@ -8,12 +8,21 @@ namespace Argumentum.AssetConverter
     {
         static void Main(string[] args)
         {
-            var sw = Stopwatch.StartNew();
-            var config = AssetConverterConfig.GetConfig(Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json"));
-            Console.WriteLine($"Config loaded: {sw.Elapsed}");
-            config.Apply(sw);
+            try
+            {
+                var sw = Stopwatch.StartNew();
+                var config = AssetConverterConfig.GetConfig(Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json"));
+                Console.WriteLine($"Config loaded: {sw.Elapsed}");
+                config.Apply(sw);
 
-            Console.WriteLine($"Generation finished in {sw.Elapsed.TotalSeconds} seconds, press any key to close");
+                Console.WriteLine($"Generation finished in {sw.Elapsed.TotalSeconds} seconds, press any key to close");
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+            }
             Console.ReadKey();
         }
 
