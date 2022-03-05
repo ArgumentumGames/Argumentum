@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using ImageMagick;
 
@@ -11,6 +12,8 @@ namespace Argumentum.AssetConverter
         private const string base64ContentGroupName = "base64Content";
 
         private static Regex urlExtractorRegex = new Regex(@$"^data:[a-z]+\/(?:[a-z]+);base64,(?<{base64ContentGroupName}>.*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+
 
         public static MagickImage LoadImageFromPath(string sourceFile)
         {
@@ -24,10 +27,25 @@ namespace Argumentum.AssetConverter
 
             var settings = new MagickReadSettings();
             settings.ColorSpace = ColorSpace.sRGB;
-            var base64Content = urlExtractorRegex.Match(srcUrl).Groups[base64ContentGroupName].Captures[0].Value;
-            byte[] imageContent = Convert.FromBase64String(base64Content);
+            if (urlExtractorRegex.IsMatch(srcUrl))
+            {
+                var base64Content = urlExtractorRegex.Match(srcUrl).Groups[base64ContentGroupName].Captures[0].Value;
+                byte[] imageContent = Convert.FromBase64String(base64Content);
 
-            return new MagickImage(imageContent);
+                return new MagickImage(imageContent);
+            }
+            else
+            {
+                var readSettings = new MagickReadSettings() { Format = MagickFormat.Svg };
+                var svgString = srcUrl.Substring(srcUrl.IndexOf("<svg", StringComparison.InvariantCultureIgnoreCase));
+                byte[] byteArray = Encoding.UTF8.GetBytes(svgString);
+                MemoryStream stream = new MemoryStream(byteArray);
+                using (var objStream = new MemoryStream(byteArray))
+                {
+                    return new MagickImage(objStream, readSettings);
+                }
+            }
+            
         }
 
 
