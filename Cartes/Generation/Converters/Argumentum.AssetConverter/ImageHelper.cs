@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using ImageMagick;
 
@@ -11,6 +12,8 @@ namespace Argumentum.AssetConverter
         private const string base64ContentGroupName = "base64Content";
 
         private static Regex urlExtractorRegex = new Regex(@$"^data:[a-z]+\/(?:[a-z]+);base64,(?<{base64ContentGroupName}>.*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+
 
         public static MagickImage LoadImageFromPath(string sourceFile)
         {
@@ -24,15 +27,30 @@ namespace Argumentum.AssetConverter
 
             var settings = new MagickReadSettings();
             settings.ColorSpace = ColorSpace.sRGB;
-            var base64Content = urlExtractorRegex.Match(srcUrl).Groups[base64ContentGroupName].Captures[0].Value;
-            byte[] imageContent = Convert.FromBase64String(base64Content);
+            if (urlExtractorRegex.IsMatch(srcUrl))
+            {
+                var base64Content = urlExtractorRegex.Match(srcUrl).Groups[base64ContentGroupName].Captures[0].Value;
+                byte[] imageContent = Convert.FromBase64String(base64Content);
 
-            return new MagickImage(imageContent);
+                return new MagickImage(imageContent);
+            }
+            else
+            {
+                var readSettings = new MagickReadSettings() { Format = MagickFormat.Svg };
+                var svgString = srcUrl.Substring(srcUrl.IndexOf("<svg", StringComparison.InvariantCultureIgnoreCase));
+                byte[] byteArray = Encoding.UTF8.GetBytes(svgString);
+                MemoryStream stream = new MemoryStream(byteArray);
+                using (var objStream = new MemoryStream(byteArray))
+                {
+                    return new MagickImage(objStream, readSettings);
+                }
+            }
+            
         }
 
 
 
-        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, WebBasedGeneratorConfig config, DocumentConfig docConfig,
+        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, bool isBack, WebBasedGeneratorConfig config, DocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
             MagickImage toReturn;
@@ -82,9 +100,16 @@ namespace Argumentum.AssetConverter
                 {
                     toReturn.ConvertToCmyk();
                 }
-                if (documentCardSet.WidthMM > 0 && documentCardSet.HeigthMM > 0)
+
+                var documentCard = documentCardSet.FrontCards;
+                if (isBack)
                 {
-                    toReturn.ResizeInMM(documentCardSet.WidthMM, documentCardSet.HeigthMM, documentCardSet.BorderMM);
+                    documentCard = documentCardSet.BackCards;
+                }
+
+                if (documentCard.WidthMM > 0 && documentCard.HeigthMM > 0)
+                {
+                    toReturn.ResizeInMM(documentCard.WidthMM, documentCard.HeigthMM, documentCard.BorderMM);
                 }
 
                 if (docConfig.TargetDensity > 0)

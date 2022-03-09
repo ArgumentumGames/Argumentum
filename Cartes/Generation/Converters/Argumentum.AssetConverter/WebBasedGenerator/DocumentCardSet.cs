@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Argumentum.AssetConverter
 {
     public class DocumentCardSet
@@ -15,16 +17,9 @@ namespace Argumentum.AssetConverter
 
         public bool ConvertToCmyk { get; set; } = true;
 
-        public decimal HeigthMM { get; set; }
+        public DocumentCard FrontCards { get; set; } = new DocumentCard();
 
-        public decimal WidthMM { get; set; }
-
-        public decimal BorderMM { get; set; }
-
-       
-
-
-        
+        public DocumentCard BackCards { get; set; } = new DocumentCard();
 
     }
 }
