@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter
 
 
 
-        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, WebBasedGeneratorConfig config, DocumentConfig docConfig,
+        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, bool isBack, WebBasedGeneratorConfig config, DocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
             MagickImage toReturn;
@@ -100,9 +100,16 @@ namespace Argumentum.AssetConverter
                 {
                     toReturn.ConvertToCmyk();
                 }
-                if (documentCardSet.WidthMM > 0 && documentCardSet.HeigthMM > 0)
+
+                var documentCard = documentCardSet.FrontCards;
+                if (isBack)
                 {
-                    toReturn.ResizeInMM(documentCardSet.WidthMM, documentCardSet.HeigthMM, documentCardSet.BorderMM);
+                    documentCard = documentCardSet.BackCards;
+                }
+
+                if (documentCard.WidthMM > 0 && documentCard.HeigthMM > 0)
+                {
+                    toReturn.ResizeInMM(documentCard.WidthMM, documentCard.HeigthMM, documentCard.BorderMM);
                 }
 
                 if (docConfig.TargetDensity > 0)

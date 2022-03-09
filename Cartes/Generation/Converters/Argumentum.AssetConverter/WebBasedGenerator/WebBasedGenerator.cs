@@ -66,7 +66,10 @@ namespace Argumentum.AssetConverter
             //{
 
             harvestDictionary = new Dictionary<string, CardSetHarvest>();
-            foreach (var configCardSet in Config.CardSets)
+            var usedCardSets = Config.Documents.SelectMany(d => d.CardSets.Select(dc => dc.CardSetName)).Distinct()
+                .ToArray();
+            var targetCardSets = Config.CardSets.Where(c => usedCardSets.Contains(c.Name)).ToArray();
+            foreach (var configCardSet in targetCardSets)
             {
 
                 var jsonHarvestName = configCardSet.GetHarvestSerializationName(Config);
@@ -80,7 +83,7 @@ namespace Argumentum.AssetConverter
 
             }
 
-            if (harvestDictionary.Count < Config.CardSets.Count)
+            if (harvestDictionary.Count < targetCardSets.Count())
             {
                 //var options = new ChromeOptions();
                 //options.BinaryLocation = Config.ChromeBinaryPath;
@@ -117,16 +120,16 @@ namespace Argumentum.AssetConverter
 
                     Thread.Sleep(TimeSpan.FromSeconds(5));
 
-                        foreach (var configCardSet in Config.CardSets)
+                        foreach (var configCardSet in targetCardSets)
                         {
                             if (!harvestDictionary.ContainsKey(configCardSet.Name))
                             {
                                 var currentHarvest = new CardSetHarvest();
-                                var faces = await GenerateImages(page, configCardSet.FaceCardSetInfo, configCardSet.PauseFaceForEdits);
+                                var faces = await GenerateImages(page, configCardSet.FaceCardSetInfo);
                                 currentHarvest.Faces = faces;
                                 if (configCardSet.BackCardSetInfo.IsSet)
                                 {
-                                    var backs = await GenerateImages(page, configCardSet.BackCardSetInfo, configCardSet.PauseBackForEdits);
+                                    var backs = await GenerateImages(page, configCardSet.BackCardSetInfo);
                                     currentHarvest.Backs = backs;
                                 }
 
@@ -195,7 +198,7 @@ namespace Argumentum.AssetConverter
                         {
                             var backName = $"{currentHarvestBack.Key.ToLowerInvariant()}" ;
                             var backImageUrl = currentHarvestBack.Value;
-                            var backImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument,  backName, backImageUrl, currentHarvest.Backs.Dpi);
+                            var backImage = configCardSet.LoadAndProcessImageUrl(true, Config, configDocument,  backName, backImageUrl, currentHarvest.Backs.Dpi);
                             if (backName.Contains('-'))
                             {
                                 backName = backName.Substring(backName.LastIndexOf('-'));
@@ -213,7 +216,7 @@ namespace Argumentum.AssetConverter
                         {
                             var faceName = $"face_{currentHarvestFace.Key.ToLowerInvariant()}";
                             var faceImageUrl = currentHarvestFace.Value;
-                            var faceImage = configCardSet.LoadAndProcessImageUrl(Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
+                            var faceImage = configCardSet.LoadAndProcessImageUrl(false, Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
                             if (currentCard == null)
                             {
                                 currentCard = new CardImages();
@@ -316,8 +319,7 @@ namespace Argumentum.AssetConverter
       
 
         //private List<ImageMagick.MagickImage> GenerateImages(string exampleName)
-        private async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetInfo cardSet,
-            bool pauseForEdits)
+        private async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetInfo cardSet)
         {
             var toReturn = new CardPenHarvest();
 
@@ -372,7 +374,7 @@ namespace Argumentum.AssetConverter
             }
 
            
-            if (pauseForEdits)
+            if (cardSet.PauseForEdits)
             {
                 Console.WriteLine($"Chrome est en pause le temps de faire vos éditions.\n Appuyez sur une touche pour démarrer la génération");
                 Console.Read();
