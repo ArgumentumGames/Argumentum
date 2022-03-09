@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.IO;
 using System.Net.Http.Headers;
+using System.Text.Json.Serialization;
 using CsvHelper;
 
 namespace Argumentum.AssetConverter
@@ -10,7 +11,7 @@ namespace Argumentum.AssetConverter
 
         public string Name { get; set; }
 
-
+        [JsonIgnore()]
         public string FaceExampleName
         {
             get => null;
@@ -18,6 +19,7 @@ namespace Argumentum.AssetConverter
             {
                 if (!string.IsNullOrEmpty(value))
                 {
+                    FaceCardSetInfo.CardSetType = CardSetType.ExampleByName;
                     FaceCardSetInfo.ExampleName = value;
                 }
             }
@@ -25,7 +27,7 @@ namespace Argumentum.AssetConverter
 
         public CardSetInfo FaceCardSetInfo { get; set; } = new CardSetInfo();
 
-
+        [JsonIgnore()]
         public string BackExampleName
         {
             get => null;
@@ -33,6 +35,7 @@ namespace Argumentum.AssetConverter
             {
                 if (!string.IsNullOrEmpty(value))
                 {
+                    BackCardSetInfo.CardSetType = CardSetType.ExampleByName;
                     BackCardSetInfo.ExampleName = value;
                 }
             }
@@ -41,11 +44,7 @@ namespace Argumentum.AssetConverter
         public CardSetInfo BackCardSetInfo { get; set; } = new CardSetInfo();
 
 
-        
 
-        public bool PauseFaceForEdits { get; set; }
-
-        public bool PauseBackForEdits { get; set; }
 
         public string GetHarvestSerializationName(WebBasedGeneratorConfig config)
         {
@@ -53,27 +52,4 @@ namespace Argumentum.AssetConverter
         }
 
     }
-
-    public enum CardSetType
-    {
-        ExampleByName,
-        CustomJson
-    }
-
-
-    public class CardSetInfo
-    {
-
-        public bool IsSet => (CardSetType == CardSetType.ExampleByName && !string.IsNullOrEmpty(ExampleName))
-                             || (CardSetType == CardSetType.CustomJson && !string.IsNullOrEmpty(CustomJsonFileName));
-
-        public CardSetType CardSetType { get; set; }
-
-        public string ExampleName { get; set; }
-
-
-        public string CustomJsonFileName { get; set; }
-
-    }
-
 }
