@@ -251,8 +251,8 @@ safe {
     }
 
 .texte {
-    display: flex;
-    flex-flow: column wrap;
+    /*display: flex;
+    flex-flow: column wrap;*/
     justify-content: space-between;
     background-color: var(--color-background);
     margin: 0% -1% -1% -1%;

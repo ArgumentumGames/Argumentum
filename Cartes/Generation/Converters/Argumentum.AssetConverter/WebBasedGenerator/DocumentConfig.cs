@@ -16,12 +16,4 @@ namespace Argumentum.AssetConverter
         public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.BackFirstOneDocPerBack;
 
     }
-
-    public enum CardDocumentFormat
-    {
-        AlternateFaceAndBack,
-        BackFirstOneDocPerBack
-    }
-
-
 }
