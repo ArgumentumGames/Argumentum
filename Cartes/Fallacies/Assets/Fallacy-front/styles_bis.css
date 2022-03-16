@@ -217,6 +217,7 @@ safe {
     .title > div {
         flex-shrink: 1;
         width: 100%;
+        overflow-wrap: normal
     }
 
 .imageSection {
