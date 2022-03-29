@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mindmapper", "Mindmapper\Mindmapper.csproj", "{6E5CDF78-B59F-4562-91BA-25A5B9B93CC1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argumentum.AssetConverter", "Argumentum.AssetConverter\Argumentum.AssetConverter.csproj", "{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argumentum.AssetConverter", "Argumentum.AssetConverter\Argumentum.AssetConverter.csproj", "{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E5CDF78-B59F-4562-91BA-25A5B9B93CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E5CDF78-B59F-4562-91BA-25A5B9B93CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E5CDF78-B59F-4562-91BA-25A5B9B93CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E5CDF78-B59F-4562-91BA-25A5B9B93CC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Release|Any CPU.ActiveCfg = Release|Any CPU

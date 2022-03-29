@@ -10,6 +10,7 @@ namespace Argumentum.AssetConverter
         public string ChromeBinaryPath { get; set; } = @"E:\LiberKey\MyApps\GoogleChromePortable\App\Chrome-bin\chrome.exe";
 
         public string CardpenUrl { get; set; }= @"http://argumentum.myia.org/portals/0/argumentum/Generation/CardPen/index.html";
+        //http://cardpen.dnndev.me/Generation/CardPen/index.html
 
         //public int TestCards { get; set; } = 2;
 
@@ -234,6 +235,98 @@ namespace Argumentum.AssetConverter
                         },
                     }),
                 },
+                 new DocumentConfig()
+                {
+                    DocumentName = "Argumentum-TarotCards-Print&Play.pdf",
+                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    CardSets = new List<DocumentCardSet>(new[]
+                    {
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Rules-Print&Play",
+                            NbCopies = 1,
+                            ConvertToCmyk = true,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                                {
+                                    BorderMM = 0,
+                                    HeigthMM = 113,
+                                    WidthMM = 60,
+                                },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 113,
+                                WidthMM = 60,
+                            }
+                        },
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Memo-Print&Play",
+                            NbCopies = 5,
+                            ConvertToCmyk = true,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 113,
+                                WidthMM = 60,
+                            },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 113,
+                                WidthMM = 60,
+                            }
+                        },
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Fallacies-Print&Play",
+                            NbCopies = 1,
+                            ConvertToCmyk = true,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 113,
+                                WidthMM = 60,
+                            },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 113,
+                                WidthMM = 60,
+                            }
+                        },
+                    }),
+                },
+                new DocumentConfig()
+                {
+                    DocumentName = "Argumentum-PokerCards-Print&Play.pdf",
+                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    CardSets = new List<DocumentCardSet>(new[]
+                    {
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Scenarii-Print&Play",
+                            NbCopies = 1,
+                            ConvertToCmyk = true,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 89,
+                                WidthMM = 58,
+                            },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 89,
+                                WidthMM = 58,
+                            }
+                        }
+                    }),
+                },
             });
 
 
@@ -374,6 +467,60 @@ namespace Argumentum.AssetConverter
                     {
                         CardSetType = CardSetType.ExampleByName,
                         ExampleName = "Argumentum - Fallacies - Back - Francais",
+                    }
+                },
+                new CardSetConfig(){
+                    Name ="Fallacies-Print&Play",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
+                        CustomJsonFileName = "Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Print_and_Play.json"
+                    },
+                    BackCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Fallacies - Back - Francais",
+                        CustomJsonFileName = "Argumentum_Fallacies_Back_Francais.json"
+                    }
+                },
+                new CardSetConfig(){
+                    Name ="Scenarii-Print&Play",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Scenarii - Face - Francais",
+                        CustomJsonFileName = "Argumentum_Scenarii_Face_Francais_edition_fevrier_2022_Print_and_Play.json"
+                    },
+                    BackCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Scenarii - Back - Francais",
+                        CustomJsonFileName = "Argumentum_Scenarii_Back_Francais.json"
+                    }
+                },
+                new CardSetConfig(){
+                    Name ="Rules-Print&Play",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Rules - Francais",
+                        CustomJsonFileName = "Argumentum_Rules_Francais_edition_fevrier_2022_Print_and_Play.json"
+                    }
+                },
+                new CardSetConfig(){
+                    Name ="Memo-Print&Play",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Memo - Face - Francais",
+                        CustomJsonFileName = "Argumentum_Memo_Face_Francais_Print_and_Play.json"
+                    },
+                    BackCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Memo - Back - Francais",
+                        CustomJsonFileName = "Argumentum_Memo_Back_Francais_Print_and_Play.json"
                     }
                 },
             });
