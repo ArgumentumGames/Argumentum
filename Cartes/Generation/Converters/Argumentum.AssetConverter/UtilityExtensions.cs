@@ -59,5 +59,33 @@ namespace Argumentum.AssetConverter
                 });
         }
 
+
+        public static T[][] ToJaggedArray<T>(this IList<T> source, int columnLength)
+        {
+            var rowLength = (int) Math.Ceiling((float)source.Count / (float)columnLength);
+            var toReturn = new T[rowLength][];
+            for (int rowIndex = 0; rowIndex < rowLength; rowIndex++)
+            {
+                var startIndex = rowIndex * columnLength;
+                var nbRowItems = Math.Min(columnLength, source.Count - startIndex);
+                toReturn[rowIndex] = new T[nbRowItems];
+                for (int colIndex = 0; colIndex < columnLength; colIndex++)
+                {
+                    var globalIndex = startIndex + colIndex;
+                    if (globalIndex < source.Count)
+                    {
+                        toReturn[rowIndex][colIndex] = source[globalIndex];
+                    }
+                }
+            }
+
+            return toReturn;
+        }
+
+        public static T[] Flatten<T>(this T[][] source)
+        {
+            return source.SelectMany(x => x).ToArray();
+        }
+
     }
 }
