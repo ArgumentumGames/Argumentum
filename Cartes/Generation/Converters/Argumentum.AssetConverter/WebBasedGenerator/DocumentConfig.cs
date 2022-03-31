@@ -17,5 +17,10 @@ namespace Argumentum.AssetConverter
 
         public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.BackFirstOneDocPerBack;
 
+        public bool NoBack { get; set; }
+
+        public string PageSize { get; set; } = "A4";
+
+        public string Header { get; set; } = "";
     }
 }

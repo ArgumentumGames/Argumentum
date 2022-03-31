@@ -92,8 +92,10 @@ namespace Argumentum.AssetConverter
                     }
                     var imageOriginalFileName = $"{imageName}.png";
                     imageOriginalFileName = Path.Combine(cardSetOriginalFolderName, imageOriginalFileName);
-                    toReturn.Write(imageOriginalFileName);
-
+                    if (!File.Exists(imageOriginalFileName))
+                    {
+                        toReturn.Write(imageOriginalFileName);
+                    }
                 }
 
                 if (documentCardSet.ConvertToCmyk)

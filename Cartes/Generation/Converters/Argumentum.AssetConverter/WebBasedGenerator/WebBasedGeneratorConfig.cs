@@ -20,6 +20,7 @@ namespace Argumentum.AssetConverter
                 new DocumentConfig()
                 {
                     DocumentName = "Argumentum-TarotCards.pdf",
+                    Enabled = false,
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -84,6 +85,7 @@ namespace Argumentum.AssetConverter
                 new DocumentConfig()
                 {
                     DocumentName = "Argumentum-PokerCards.pdf",
+                    Enabled = false,
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -110,6 +112,7 @@ namespace Argumentum.AssetConverter
                 new DocumentConfig()
                 {
                     DocumentName = "Argumentum-TarotCards-2.pdf",
+                    Enabled = false,
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -174,6 +177,7 @@ namespace Argumentum.AssetConverter
                 new DocumentConfig()
                 {
                     DocumentName = "Argumentum-TarotCards-3.pdf",
+                    Enabled = false,
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -237,8 +241,10 @@ namespace Argumentum.AssetConverter
                 },
                  new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-TarotCards-Print&Play.pdf",
+                    DocumentName = "Argumentum-TarotCards-Print&Play-A4.pdf",
+                    Enabled = false,
                     DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    PageSize = "A4",
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -302,8 +308,10 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-PokerCards-Print&Play.pdf",
+                    DocumentName = "Argumentum-PokerCards-Print&Play-A4.pdf",
+                    Enabled = false,
                     DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    PageSize = "A4",
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -327,6 +335,67 @@ namespace Argumentum.AssetConverter
                         }
                     }),
                 },
+                new DocumentConfig()
+                {
+                    DocumentName = "Argumentum-Fallacies-Web-A4.pdf",
+                    Enabled = false,
+                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    PageSize = "A4",
+                    NoBack = true,
+                    CardSets = new List<DocumentCardSet>(new[]
+                    {
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Fallacies-Web-Light",
+                            NbCopies = 1,
+                            ConvertToCmyk = false,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 72,
+                                WidthMM = 72,
+                            },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 72,
+                                WidthMM = 72,
+                            }
+                        }
+                    }),
+                },
+                new DocumentConfig()
+                {
+                    DocumentName = "Argumentum-Fallacies-Web-A0.pdf",
+                    Enabled = false,
+                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    PageSize = "A0",
+                    NoBack = true,
+                    Header = "Logo_Argumentum.svg",
+                    CardSets = new List<DocumentCardSet>(new[]
+                    {
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Fallacies-Web",
+                            NbCopies = 1,
+                            ConvertToCmyk = true,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 72,
+                                WidthMM = 72,
+                            },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 72,
+                                WidthMM = 72,
+                            }
+                        }
+                    }),
+                }
             });
 
 
@@ -523,6 +592,24 @@ namespace Argumentum.AssetConverter
                         CustomJsonFileName = "Argumentum_Memo_Back_Francais_Print_and_Play.json"
                     }
                 },
+                new CardSetConfig(){
+                    Name ="Fallacies-Web",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
+                        CustomJsonFileName = "Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web.json"
+                    }
+                },
+                new CardSetConfig(){
+                    Name ="Fallacies-Web-Light",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
+                        CustomJsonFileName = "Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_light.json"
+                    }
+                }
             });
 
         public void Apply(Stopwatch objSw)

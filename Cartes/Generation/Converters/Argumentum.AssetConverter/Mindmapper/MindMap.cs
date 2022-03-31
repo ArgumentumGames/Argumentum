@@ -104,7 +104,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		
         
         [XmlElement(ElementName = "richcontent")]
-		public Richcontent Richcontent { get; set; } = new Richcontent();
+		public List<Richcontent> Richcontents { get; set; } = new List<Richcontent>();
 
 
 		[XmlElement(ElementName = "font")]
@@ -118,8 +118,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string POSITION { get; set; }
 		[XmlAttribute(AttributeName = "STYLE")]
 		public string STYLE { get; set; }
-		[XmlElement(ElementName = "icon")]
-		public Icon Icon { get; set; }
+
+        [XmlElement(ElementName = "icon")] public List<Icon> Icons { get; set; } = new List<Icon>();
+
 		[XmlAttribute(AttributeName = "LINK")]
 		public string LINK { get; set; }
 		[XmlElement(ElementName = "cloud")]

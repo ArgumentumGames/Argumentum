@@ -18,7 +18,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
         public string SourcePath { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
-        public string DestPath { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr.mm";
+        public string DestPath { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
 
         public string TitleExpression { get; set; } = @"{fallacy.TextFr}";
 
@@ -29,6 +29,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 </p>
 ";
 
+        public string CardExpression { get; set; } =
+            @"
+<p>
+    <img src=""https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Assets/Fallacy-front/{fallacy.Path}.png"" width=""50"" height=""50""/>{fallacy.TextFr}
+</p>
+";
+
         public string ExampleExpression { get; set; } = 
 @"
 <p>
@@ -36,7 +43,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 </p>
 ";
 
-        public string LinkExpression { get; set; } = @"{fallacy.LinkFr}";
+        public string LinkExpression { get; set; } = @"{fallacy.LinkFrFallbackEn}";
 
         [IgnoreDataMember]
         [JsonIgnore]
@@ -57,6 +64,18 @@ namespace Argumentum.AssetConverter.Mindmapper
                 return fallacy => DescriptionExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"<font size='4'>{HttpUtility.HtmlEncode(fallacy.DescFr)}</font>";
             }
         }
+
+        [IgnoreDataMember]
+        [JsonIgnore]
+        public Func<Fallacy, string> CardFunc
+        {
+            get
+            {
+                return fallacy => CardExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"<font size='4'>{HttpUtility.HtmlEncode(fallacy.DescFr)}</font>";
+            }
+        }
+
+
 
         [IgnoreDataMember]
         [JsonIgnore]
@@ -81,12 +100,12 @@ namespace Argumentum.AssetConverter.Mindmapper
         public Dictionary<int, string> Colors { get; set; } = new Dictionary<int, string>()
         {
             {1, "#8605ab"},
-            {2, "#daaf02"},
-            {3, "#6ab203"},
-            {4, "#01a987"},
-            {5, "#022cb2"},
-            {6, "#bc0546"},
-            {7, "#af1313"},
+            {2, "#ff66eb"},
+            {3, "#08af93"},
+            {4, "#8dc801"},
+            {5, "#0054a4"},
+            {6, "#ffc307"},
+            {7, "#dc0f0a"},
 
         };
 

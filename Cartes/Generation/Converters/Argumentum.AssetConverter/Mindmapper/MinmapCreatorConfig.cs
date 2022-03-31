@@ -56,9 +56,15 @@ namespace Argumentum.AssetConverter.Mindmapper
                     }
                     var descDoc = new XmlDocument();
                     descDoc.LoadXml($"{config.DescFunc(fallacy)}");
-                    fallacyNode.Richcontent.Html.Body.Elements.Add(descDoc.DocumentElement);
+                    
+                    var descRichContent = new Richcontent();
+                    fallacyNode.Richcontents.Add(descRichContent);
+                    descRichContent.TYPE = "NOTE";
+                    descRichContent.Html.Body.Elements.Add(descDoc.DocumentElement);
+
                     descDoc.LoadXml($"{config.ExampleFunc(fallacy)}");
-                    fallacyNode.Richcontent.Html.Body.Elements.Add(descDoc.DocumentElement);
+                    descRichContent.Html.Body.Elements.Add(descDoc.DocumentElement);
+                    
                     nodesByPath[localPath] = fallacyNode;
 
                     var lastDotIndex = localPath.LastIndexOf('.');
@@ -118,6 +124,22 @@ namespace Argumentum.AssetConverter.Mindmapper
                     if (fallacy.Depth >= config.EdgeSizes.Count)
                     {
                         fallacyNode.COLOR = HLSColor.GetDarkerColor(config.Colors[familyNb]);
+                    }
+
+                    if (fallacy.Carte.HasValue)
+                    {
+                        //fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
+                        //if (fallacy.Path.StartsWith("1.1"))
+                        //{
+                            var cardDoc = new XmlDocument();
+                            cardDoc.LoadXml($"{config.CardFunc(fallacy)}");
+                            var cardRichContent = new Richcontent();
+                            fallacyNode.Richcontents.Add(cardRichContent);
+                            cardRichContent.TYPE = "NODE";
+                            cardRichContent.Html.Body.Elements.Add(cardDoc.DocumentElement);
+                        //}
+
+
                     }
                 }
 

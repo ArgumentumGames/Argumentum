@@ -29,6 +29,8 @@ namespace Argumentum.AssetConverter
             return fallacies.ToList();
         }
 
+        public string LinkFrFallbackEn => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
+        public string FileName => $"{Path}_{TextFr.ToLower().Replace(" ","_")}";
         public string PK { get; set; }
         public string Path { get; set; }
         public string DecimalPath { get; set; }
