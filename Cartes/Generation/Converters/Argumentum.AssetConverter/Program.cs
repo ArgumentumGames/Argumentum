@@ -11,12 +11,21 @@ namespace Argumentum.AssetConverter
             try
             {
                 var sw = Stopwatch.StartNew();
-                var config = AssetConverterConfig.GetConfig(Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json"));
-                Console.WriteLine($"Config loaded: {sw.Elapsed}");
-                config.Apply(sw);
+                bool newConfig;
+                var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+                var config = AssetConverterConfig.GetConfig(configFileName, out newConfig);
+                if (newConfig)
+                {
+                    Console.WriteLine($"New Config file created : {sw.Elapsed} \n {configFileName} ");
+                    Console.WriteLine($"Please edit configuration File and relaunch application");
+                }
+                else
+                {
+                    Console.WriteLine($"Config loaded: {sw.Elapsed}");
+                    config.Apply(sw);
 
-                Console.WriteLine($"Generation finished in {sw.Elapsed.TotalSeconds} seconds, press any key to close");
-                
+                    Console.WriteLine($"Generation finished in {sw.Elapsed.TotalSeconds} seconds, press any key to close");
+                }
             }
             catch (Exception e)
             {

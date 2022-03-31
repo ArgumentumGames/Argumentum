@@ -11,21 +11,11 @@ using Utf8Json.Resolvers;
 
 namespace Argumentum.AssetConverter
 {
-
-    public enum ConverterMode
-    {
-        BatchImageProcessor,
-        WebBasedImageGeneration,
-        Mindmapper,
-        Dnn2sxc
-    }
-
-
     public class AssetConverterConfig
     {
 
-       
-        public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration;
+
+        public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration; //ConverterMode.Mindmapper;
 
         public BatchImageConverterConfig BatchImageConverterConfig { get; set; } = new BatchImageConverterConfig();
 
@@ -37,16 +27,20 @@ namespace Argumentum.AssetConverter
 
 
 
-        public static AssetConverterConfig GetConfig(string path)
+        public static AssetConverterConfig GetConfig(string path, out bool newConfig)
         {
             AssetConverterConfig toReturn;
             CompositeResolver.RegisterAndSetAsDefault(new IJsonFormatter[] { new TimeSpanFormatter() }, new IJsonFormatterResolver[] { StandardResolver.Default });
+            newConfig = false;
             if (!File.Exists(path))
             {
                 toReturn = new AssetConverterConfig();
                 var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(toReturn));
                 File.WriteAllText(path, strNewConfig);
+                newConfig = true;
             }
+
+            
             using var configStream = File.OpenRead(path);
             toReturn = JsonSerializer.Deserialize<AssetConverterConfig>(configStream);
             return toReturn;

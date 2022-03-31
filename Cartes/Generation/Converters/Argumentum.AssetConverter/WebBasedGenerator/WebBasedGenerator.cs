@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using ImageMagick;
@@ -13,6 +14,7 @@ using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using Svg.Skia;
 using Utf8Json;
 
 
@@ -208,7 +210,12 @@ namespace Argumentum.AssetConverter
                         CardImages currentCard = null;
                         foreach (var currentHarvestFace in currentHarvest.Faces.Images)
                         {
-                            var faceName = $"face_{currentHarvestFace.Key.ToLowerInvariant()}";
+
+                            var faceName = $"{currentHarvestFace.Key.ToLowerInvariant()}";
+                            if (!configDocument.NoBack)
+                            {
+                                faceName = $"face_{faceName}";
+                            }
                             var faceImageUrl = currentHarvestFace.Value;
                             var faceImage = configCardSet.LoadAndProcessImageUrl(false, Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
                             if (currentCard == null)
@@ -217,6 +224,10 @@ namespace Argumentum.AssetConverter
                                 targetList.Add(currentCard);
                                 //currentCard.Front = new MagickImage(faceImage);
                                 currentCard.Front = faceImage;
+                                if (configDocument.NoBack)
+                                {
+                                    currentCard = null;
+                                }
                             }
                             else
                             {
@@ -312,8 +323,11 @@ namespace Argumentum.AssetConverter
 
         private void GeneratePrintAndPlay(string fileName, DocumentConfig docConfig, List<CardImages> images)
         {
-            
-            var pageSize = PageSizes.A4;
+
+            var pageSizeType = typeof(PageSizes);
+            var dynProp = pageSizeType.GetProperty(docConfig.PageSize, BindingFlags.Static | BindingFlags.Public);
+
+            var pageSize = (PageSize)  dynProp.GetValue(null);
             var pageMarginMm = 7f;
             //var imagePaddingMm = 2f;
 
@@ -360,27 +374,28 @@ namespace Argumentum.AssetConverter
                         var pageCardsArray = pageCards.ToArray();
 
                         //var cardArray = pageCards.ToList().ToJaggedArray(nbColumns);
-
-                        GenerateCardsPage(container, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, false);
-                        GenerateCardsPage(container, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, true);
+                        if (!docConfig.NoBack)
+                        {
+                            GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => cardImages.Back);
+                            pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
+                                .ToArray().Flatten();
+                        }
+                        
+                        GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => cardImages.Front);
                     }
 
                     
                 })
                 .WithMetadata(docMetadata)
                 .GeneratePdf(fileName);
-
+            Console.WriteLine($"Generated pdf document {fileName}: {sw.Elapsed}");
 
         }
 
-        private static void GenerateCardsPage(IDocumentContainer container, PageSize pageSize, float pageMarginMm,
-            int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, bool cardsFront)
+        private static void GenerateCardsPage(IDocumentContainer container, DocumentConfig docConfig, PageSize pageSize, float pageMarginMm,
+            int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, Func<CardImages, MagickImage> frontOrBack)
         {
-            if (cardsFront)
-            {
-                pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
-                    .ToArray().Flatten();
-            }
+           
             container.Page(page =>
             {
                 page.Size(pageSize);
@@ -388,9 +403,16 @@ namespace Argumentum.AssetConverter
                 page.PageColor(Colors.White);
                 page.DefaultTextStyle(x => x.FontSize(20));
 
-                //page.Header()
-                //    .Text("Hello PDF!")
-                //    .SemiBold().FontSize(36).FontColor(Colors.Blue.Medium);
+                if (!string.IsNullOrEmpty(docConfig.Header))
+                {
+                    page.Header()
+                        .AlignCenter()
+                        .Height(pageSize.Height / 20)
+                        .Padding(pageSize.Width / 70)
+                        .Image(docConfig.Header, ImageScaling.FitHeight);
+                       
+                }
+
 
                 page.Content()
                     .Padding(0)
@@ -398,37 +420,6 @@ namespace Argumentum.AssetConverter
                     .AlignTop()
                     .Column(c =>
                     {
-                        //foreach (var cardRow in cardArray)
-                        //{
-                        //    c.Item()
-                        //        //.Scale(0.8f)
-                        //        .PaddingVertical(0, Unit.Millimetre)
-                        //        .Row(x =>
-                        //        {
-                        //            foreach (var cardImages in cardRow)
-                        //            {
-                        //                x.RelativeItem()
-                        //                    //.Scale(1)
-                        //                    .Column(y =>
-                        //                {
-                        //                    using (var memStream = new MemoryStream())
-                        //                    {
-                        //                        cardImages.Front.Write(memStream);
-                        //                        y.Item().Image(memStream.ToArray(),ImageScaling.Resize);
-                        //                    }
-                        //                });
-
-                        //                //x.Column(x =>
-                        //                //{
-                        //                //    //x.Spacing(20);
-                        //                //    //x.Item().Text(Placeholders.LoremIpsum());
-                        //                //    //x.Item().Image(Placeholders.Image(200, 100));
-                        //                //    x.Item().Image();
-                        //                //});    
-                        //            }
-
-                        //        });
-                        //}
 
                         c.Item()
                             .AlignCenter()
@@ -436,7 +427,7 @@ namespace Argumentum.AssetConverter
                             .Grid(g =>
                             {
                                 g.AlignCenter();
-                                g.Spacing(2,Unit.Millimetre);
+                                g.Spacing(2, Unit.Millimetre);
                                 g.Columns(nbColumns);
                                 for (int cardIndex = 0; cardIndex < pageCardsArray.Length; cardIndex++)
                                 {
@@ -446,17 +437,10 @@ namespace Argumentum.AssetConverter
                                         .AlignMiddle()
                                         .Width(cardWidthPoints);
                                     var pageCard = pageCardsArray[cardIndex];
-                                    if (pageCard!=null)
+                                    if (pageCard != null)
                                     {
-                                        MagickImage toPrint;
-                                        if (cardsFront)
-                                        {
-                                            toPrint = pageCard.Front;
-                                        }
-                                        else
-                                        {
-                                            toPrint = pageCard.Back;
-                                        }
+                                        MagickImage toPrint = frontOrBack(pageCard);
+
 
                                         if (!string.IsNullOrEmpty(toPrint.FileName))
                                         {
@@ -653,7 +637,7 @@ namespace Argumentum.AssetConverter
                     //strCardName = cardCssName[0].GetAttribute("textContent").Trim('-');
                     var currentCard = cardCssName.Nth(0);
                     //strCardName = (await currentCard.GetAttributeAsync("textContent"))?.Trim('-');
-                    strCardName = (await currentCard.TextContentAsync())?.Trim('-');
+                    strCardName = (await currentCard.TextContentAsync())?.Trim('-').Replace(" ","_");
                 }
                 cardNames.Add(strCardName);
             }
