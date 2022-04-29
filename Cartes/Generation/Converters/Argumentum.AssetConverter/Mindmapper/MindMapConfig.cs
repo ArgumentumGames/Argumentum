@@ -32,9 +32,12 @@ namespace Argumentum.AssetConverter.Mindmapper
         public string CardExpression { get; set; } =
             @"
 <p>
-    <img src=""https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Assets/Fallacy-front/{fallacy.Path}.png"" width=""50"" height=""50""/>{fallacy.TextFr}
+    <img src=""../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/{fallacy.FileName}.png"" width=""60"" height=""60""/>{fallacy.TextFr}
 </p>
 ";
+
+        //
+        // https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Assets/Fallacy-front/{fallacy.Path}.png
 
         public string ExampleExpression { get; set; } = 
 @"

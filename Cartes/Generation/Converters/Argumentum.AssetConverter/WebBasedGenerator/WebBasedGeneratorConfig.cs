@@ -337,6 +337,36 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
+                    DocumentName = "Argumentum-Fallacies-Web-Thumbnails.pdf",
+                    Enabled = true,
+                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    PageSize = "A4",
+                    NoBack = true,
+                    CardSets = new List<DocumentCardSet>(new[]
+                    {
+                        new DocumentCardSet()
+                        {
+                            CardSetName = "Fallacies-Web-Thumbnails",
+                            NbCopies = 1,
+                            ConvertToCmyk = false,
+                            SaveOriginalImage = true,
+                            FrontCards = new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 20,
+                                WidthMM = 20,
+                            },
+                            BackCards =  new DocumentCard()
+                            {
+                                BorderMM = 0,
+                                HeigthMM = 72,
+                                WidthMM = 72,
+                            }
+                        }
+                    }),
+                },
+                new DocumentConfig()
+                {
                     DocumentName = "Argumentum-Fallacies-Web-A4.pdf",
                     Enabled = false,
                     DocumentFormat = CardDocumentFormat.PrintAndPlay,
@@ -608,6 +638,15 @@ namespace Argumentum.AssetConverter
                         CardSetType = CardSetType.CustomJson,
                         ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
                         CustomJsonFileName = "Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_light.json"
+                    }
+                },
+                new CardSetConfig(){
+                    Name ="Fallacies-Web-Thumbnails",
+                    FaceCardSetInfo = new CardSetInfo()
+                    {
+                        CardSetType = CardSetType.CustomJson,
+                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
+                        CustomJsonFileName = "Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_thumbnails.json"
                     }
                 }
             });
