@@ -128,15 +128,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 
                     if (fallacy.Carte.HasValue)
                     {
-                        //fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
+                        fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
                         //if (fallacy.Path.StartsWith("1.1"))
                         //{
-                            var cardDoc = new XmlDocument();
-                            cardDoc.LoadXml($"{config.CardFunc(fallacy)}");
-                            var cardRichContent = new Richcontent();
-                            fallacyNode.Richcontents.Add(cardRichContent);
-                            cardRichContent.TYPE = "NODE";
-                            cardRichContent.Html.Body.Elements.Add(cardDoc.DocumentElement);
+                        //var cardDoc = new XmlDocument();
+                        //    cardDoc.LoadXml($"{config.CardFunc(fallacy)}");
+                        //    var cardRichContent = new Richcontent();
+                        //    fallacyNode.Richcontents.Add(cardRichContent);
+                        //    cardRichContent.TYPE = "NODE";
+                        //    cardRichContent.Html.Body.Elements.Add(cardDoc.DocumentElement);
                         //}
 
 

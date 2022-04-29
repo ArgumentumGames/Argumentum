@@ -328,7 +328,8 @@ namespace Argumentum.AssetConverter
             var dynProp = pageSizeType.GetProperty(docConfig.PageSize, BindingFlags.Static | BindingFlags.Public);
 
             var pageSize = (PageSize)  dynProp.GetValue(null);
-            var pageMarginMm = 7f;
+            //var pageMarginMm = 7f;
+            var pageMarginMm = 0f;
             //var imagePaddingMm = 2f;
 
 
@@ -427,7 +428,7 @@ namespace Argumentum.AssetConverter
                             .Grid(g =>
                             {
                                 g.AlignCenter();
-                                g.Spacing(2, Unit.Millimetre);
+                                g.Spacing(0, Unit.Millimetre);
                                 g.Columns(nbColumns);
                                 for (int cardIndex = 0; cardIndex < pageCardsArray.Length; cardIndex++)
                                 {
