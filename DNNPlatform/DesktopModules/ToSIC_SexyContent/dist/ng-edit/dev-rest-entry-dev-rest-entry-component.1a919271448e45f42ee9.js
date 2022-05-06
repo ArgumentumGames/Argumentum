@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{"0dR2":function(e,n,t){"use strict";t.r(n),t.d(n,"DevRestEntryComponent",(function(){return r}));var c=t("EM62"),o=t("sEIs"),r=function(){function e(){}return e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=c.Gb({type:e,selectors:[["app-dev-rest-entry"]],decls:1,vars:0,template:function(e,n){1&e&&c.Nb(0,"router-outlet")},directives:[o.e],encapsulation:2,changeDetection:0}),e}()}}]);
-//# sourceMappingURL=https://sources.2sxc.org/11.11.04/ng-edit/dev-rest-entry-dev-rest-entry-component.1a919271448e45f42ee9.js.map

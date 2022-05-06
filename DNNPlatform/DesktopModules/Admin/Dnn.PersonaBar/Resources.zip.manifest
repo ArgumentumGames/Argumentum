@@ -50,6 +50,10 @@
     </file>
     <file>
       <path>css/</path>
+      <name>theme.css</name>
+    </file>
+    <file>
+      <path>css/</path>
       <name>tokenInput.css</name>
     </file>
     <file>

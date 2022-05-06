@@ -1,6 +1,14 @@
 ﻿<dotnetnuke type="ResourceFile" version="5.0">
   <files>
     <file>
+      <path>install/Connect_Dnn_Koi_01.03.00_Install/koi/</path>
+      <name>License.txt</name>
+    </file>
+    <file>
+      <path>install/Connect_Dnn_Koi_01.03.00_Install/koi/</path>
+      <name>ReleaseNotes.txt</name>
+    </file>
+    <file>
       <path />
       <name>icon.png</name>
     </file>

@@ -1,0 +1,54 @@
+@inherits Custom.Hybrid.Razor12
+@using System.Linq;
+@using ToSic.Razor.Blade;
+@{
+  // Optionally get selected category from Query 
+  // If there is nothing in the Category-filter, then it's a virtual entity with all properties being null
+  var filterCat = AsDynamic(Data.GetStream("Category", emptyIfNotFound: true).FirstOrDefault()).Key;
+
+  // 1.1. Get all Blog Posts from the App, to ignore filters (note that admins also get unpublished posts)
+  var allPosts = AsList(App.Data["BlogPost"]);
+  
+  // 1.2 Get all categories which have posts and keep the Count for showing
+  var catsWithPosts = AsList(App.Data["Category"])
+    .Select(Cat => new {
+      Cat,
+      PostsCount = Cat.Parents("BlogPost").Count  // Count all the BlogPosts pointing to this category
+    })
+    .Where(set => set.PostsCount > 0);            // ...and only keep categories which have posts
+}
+
+<div class="app-blog5-sidebar mb-3">
+  @* 2. Categories Title + RSS Link*@
+  <h5 class="pb-2 d-flex justify-content-between">
+    @Resources.Categories
+    <a class="badge badge-pill bg-primary rss-button"
+      href='@Link.To(api: "api/Blog/Rss", parameters: filterCat == null ? "" : "category=" + filterCat)'
+      target="_blank">
+      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-rss fa-w-14"><path fill="white" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z" class=""></path></svg>
+    </a>
+  </h5>
+
+  <ul>
+    @* 3.1. Link for the all-categories *@
+    <li class='@(filterCat == null ? "font-weight-bold" : "")'>
+      <a href='@Link.To()'>
+        @Resources.ShowAll<span class="badge badge-pill badge-primary float-right">@allPosts.Count()</span>
+      </a>
+    </li>
+
+    @* 3.2 Show each used Category + count *@
+    @foreach (var cat in catsWithPosts) {
+      <li class='@(cat.Cat.Key == filterCat ? "font-weight-bold" : "")'>
+        <a href='@Link.To(parameters: "category=" + cat.Cat.Key)'>
+          @cat.Cat.Name
+          <span class="badge badge-pill badge-primary float-right">@cat.PostsCount</span>
+        </a>
+      </li>
+    }
+  </ul>
+  @if(DynamicModel.EnableSocialSharing == true) {
+    <script type="text/javascript" src="@Settings.SocialAddThisJS" ></script>
+    <div class="addthis_inline_share_toolbox mt-4"></div>
+  }
+</div>

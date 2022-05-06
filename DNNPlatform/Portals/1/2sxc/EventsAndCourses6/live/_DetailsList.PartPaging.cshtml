@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Get some helpers for later on
+  var paging = AsList(Data["Paging"]).FirstOrDefault();
+  var eventPage = DynamicModel.EventPage;
+}
+
+<div class="app-events6-paging mt-4">
+  @if (paging.PageNumber > 1) {
+    <a class="app-events6-prev-pager" href="@LinkToPageNumber((int)(paging.PageNumber) - 1, eventPage)">&lsaquo;</a>
+  }
+  @if (@paging.PageSize >= 0) {
+    for(int i = 1; i <= @paging.PageCount; i++) {
+      <a @(i == paging.PageNumber ? "class=app-events6-paging-active" : "href=" + @LinkToPageNumber(i, eventPage))>@i</a>
+    }
+  }
+  @if (paging.PageNumber < paging.PageCount) {
+    <a class="app-events6-next-pager" href="@LinkToPageNumber((int)(paging.PageNumber) + 1, eventPage)">&rsaquo;</a>
+  }
+</div>
+
+@functions {
+  // generate a paging-link number
+  public string LinkToPageNumber(int pageNumber, string eventP){
+    string url = Link.To(parameters: "page=" + pageNumber);
+    return url.ToLower();
+  }
+}

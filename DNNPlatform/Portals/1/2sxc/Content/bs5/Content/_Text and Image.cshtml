@@ -1,0 +1,48 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  /* This Template is used in ca. 5 Views which show title, text and image */
+
+  // define dom attribute for fancybox
+  var fancyboxAttribute = "app-content-fancybox-group";
+  var isTextFirst = Settings.TextFirst;
+
+  // Determine the widths of each part, based on 12 Bootstrap Cols
+  var colsText = isTextFirst ? Settings.ColsElement1 : 12 - Settings.ColsElement1;
+  var colsImg = 12 - colsText;
+
+  var allContent = AsList(Data);
+  var allContentLength = allContent.Count();
+  var hasMultipleItems = allContentLength > 1;
+}
+
+@if (hasMultipleItems && Edit.Enabled) { <div class='pt-4' @Edit.TagToolbar(Header)></div> }
+@for(var iteration = 0; iteration < allContentLength; iteration++)
+{
+  var item = allContent.ElementAt(iteration);
+  <div class='row @(iteration == (allContentLength - 1) ? "" : "mb-4 mb-lg-5")' @Edit.TagToolbar(item)>
+    <div class='col-md-@colsText order-md-@(isTextFirst ? "first" : "last")'>
+      @* call sub-template to show the title with the correct H1-H6 tag *@
+      @Html.Partial("../shared/_Header tag.cshtml", new { Title = item.Title })
+
+      @* If the image doesn't have it's own column, its between title/text *@
+      @if (colsImg == 0) {
+        @Html.Partial("_Text and Image.Part-Image.cshtml", new { Item = item })
+      }
+
+      @Html.Raw(item.Text)
+    </div>
+    @* If the image has it's own column, it's here *@
+    @if (colsImg != 0) {
+      <div class='col-md-@colsImg order-md-@(!isTextFirst ? "first" : "last")'>
+        @* call sub-template to show the image with all possible options *@
+        @Html.Partial("_Text and Image.Part-Image.cshtml", new { Item = item, Columns = colsImg, FancyboxAttribute = fancyboxAttribute})
+      </div>
+    }
+  </div>
+  
+  if (!Header.AlternatePositions) { continue; }
+  isTextFirst = !isTextFirst;
+}
+
+@Html.Partial("../Shared/_Assets.cshtml", new { parts = "fancybox,styles", FancyboxAttribute = fancyboxAttribute })
+@* Html.Partial("../shared/_Assets.cshtml", new { parts = "scripts"}) *@

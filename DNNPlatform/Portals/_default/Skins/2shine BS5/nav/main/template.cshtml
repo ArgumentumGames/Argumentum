@@ -1,0 +1,41 @@
+@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic; 
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic> 
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes) {
+	if (nodes.Count > 0) {
+		<ul class="@(nodes[0].Depth == 0 ? "nav" : "dropdown-menu")">
+			@foreach (var node in nodes) {
+				var cssClasses = new List<string>();
+				cssClasses.Add("nav-item");
+				cssClasses.Add("nav-" + node.TabId);
+				if (node.First) { cssClasses.Add("first"); }
+				if (node.Last) { cssClasses.Add("last"); }
+				if (node.HasChildren()) { cssClasses.Add("has-child dropdown"); }
+				if (node.Breadcrumb) { cssClasses.Add("active"); } else { cssClasses.Add("inactive"); }
+				if (!node.Enabled) { cssClasses.Add("disabled"); }
+				var classString = new HtmlString((cssClasses.Count == 0) ? "" : (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
+				<li @classString>
+					@if (node.Enabled) {
+						var linkCssClasses = new List<string>();
+						
+						if (node.HasChildren()) { linkCssClasses.Add("dropdown-toggle"); }
+						if (nodes[0].Depth != 0) { linkCssClasses.Add("dropdown-item"); } else { linkCssClasses.Add("nav-link"); }
+						var linkClassString = new HtmlString((linkCssClasses.Count == 0) ? "" : (" class=\"" + String.Join(" ", linkCssClasses.ToArray()) + "\""));
+						
+						<a @linkClassString target="@(node.Target)" href="@node.Url">@node.Text</a>
+					} else {
+						if(node.HasChildren()) {
+							<span class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@node.Text</span>
+						} else {
+							<span class="nav-link">@node.Text</span>
+						}
+					}
+					@RenderNodes(node.Children)
+				</li>
+			}
+		</ul>
+	}
+}
+@RenderNodes(root.Children)

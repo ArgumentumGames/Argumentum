@@ -1,0 +1,21 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var post = DynamicModel.Post;
+  var imgSettings = DynamicModel.Settings ?? Settings.Images.Blog;
+  var blogImg = Link.Image(post.Image, imgSettings, parameters: "anchor=" + post.CropAnchor);
+}
+
+@* Image of the post *@
+@if (Text.Has(post.Image)) {
+  <picture>
+    <img loading="lazy" class="img-fluid" src="@blogImg" alt="@post.Title" />
+  </picture>
+}
+
+@* Show info to admin when the post will publish *@
+@if(Edit.Enabled && post.PublicationMoment.CompareTo(DateTime.Now) > 0) {
+  <div class='alert alert-warning @(Text.Has(post.Image) ? "mb-0" : "mb-3")' role="alert">
+    @(Resources.LabelAdminPostPublishInfo + " " + post.PublicationMoment.Date.ToString("d") + " " + post.PublicationMoment.TimeOfDay)
+  </div>
+}

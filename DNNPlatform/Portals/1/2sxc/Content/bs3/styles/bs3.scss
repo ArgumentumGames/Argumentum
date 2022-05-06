@@ -1,0 +1,77 @@
+//
+// This SCSS generates the css file for bootstrap 3 themes
+// To regenerate the SCSS using your variables (custom colors, etc.)
+// update the reference to your _variables.scss of your skin
+// and re-run the following npm task:
+// npm run start-bs3
+//
+
+// Add header-comments to the final file
+@import "sass-comments.scss";
+
+
+// Include needed variables from Bootstrap 3
+// You must adapt the path to match your Bootstrap 3 skin
+@import "../../../_default/skins/2sxcBootstrap-B3/src/_variables.scss";
+
+// Map all relevant variables to bs4 convention
+// so we can use bs4 standard variable names in the other SCSS files
+@import "bs4-polyfills/_map-bs3-vars-to-bs4.scss";
+
+// Include mixins which are defined in Boostrap 4 but not in Bootstrap 3
+// this is important because the other SCSS use bootstrap 4 conventions
+// and they wouldn't work otherwise
+@import "bs4-polyfills/_breakpoints.scss";
+
+
+@import "_style.scss"; // General CSS stuff for everything
+
+
+
+
+.mb-4,
+.mb-4.mb-md-5 {
+    margin-bottom: $grid-gutter-width !important;
+}
+
+.h-100 {
+  height: 100%!important;
+}
+
+.w-100 {
+  width: 100%!important;
+}
+
+.text-white {
+  color: #fff!important;
+}
+
+.mb-4 {
+  margin-bottom: 3rem!important;
+}
+
+.mb-3 {
+  margin-bottom: 2rem!important;
+}
+
+.mb-2 {
+  margin-bottom: 1rem!important;
+}
+
+.lead {
+  font-size: 1.25rem;
+}
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.alert-dark {
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+}

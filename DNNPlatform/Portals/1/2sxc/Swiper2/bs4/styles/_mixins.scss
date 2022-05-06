@@ -1,0 +1,19 @@
+@mixin setBackgroundGradient($class-1, $class-2, $class-3, $color-1, $color-2, $color-wide-1, $color-wide-2, $color-3: "", $color-wide-3: "") {
+    #{$class-1,$class-2,$class-3} {
+      .overlay-gradient {
+        @if $color-3 == "" {
+          background: linear-gradient(0deg, $color-1, $color-2);
+        } @else {
+          background: linear-gradient(0deg, $color-1, $color-2, $color-3);
+        }
+      }
+
+      .overlay-gradient-wide {
+        @if $color-wide-3 == "" {
+          background: linear-gradient(0deg, $color-wide-1, $color-wide-2);
+        } @else {
+          background: linear-gradient(0deg, $color-wide-1, $color-wide-2, $color-wide-3);
+        }
+      }
+    }
+}

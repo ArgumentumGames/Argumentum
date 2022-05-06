@@ -1,0 +1,28 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // get helper commands and run it to get additional information about the link
+  var linkHelper = CreateInstance("LinkHelper.cs");
+  var linkInfo = linkHelper.LinkInfos(Content);
+}
+
+<div class="text-center py-5" @Edit.TagToolbar(Content)>
+  @if (Content.Presentation.HeadingType != "hide") {
+    @(Tag.Custom(Content.Presentation.HeadingType)
+      .Class("mb-4")
+      .Wrap(
+        Content.Title,
+        Tag.Br(),
+        Tag.Small(Content.Description)
+      )
+    )
+  }
+  @if (linkInfo.Found) {
+    <a target="@linkInfo.Window" class="btn btn-lg btn-outline-primary" href="@Tags.SafeUrl(Content.Link)">
+      <i class="co-icon fas @linkInfo.Icon" aria-hidden="true"></i>
+      <span>@Content.LinkText</span>
+    </a>
+  }
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,icons"})

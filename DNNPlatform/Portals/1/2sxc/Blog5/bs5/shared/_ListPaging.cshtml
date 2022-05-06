@@ -1,0 +1,56 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  /** Part List Paging - Show a pager (if activated) **/
+
+  // Paging information is provided by the Query in the "Paging" stream
+  var pagingInfo = AsDynamic(Data["Paging"].FirstOrDefault());
+  int current = (int)pagingInfo.PageNumber;
+  int max = (int)pagingInfo.PageCount;
+
+  // Stop here if we dont' have pages to show
+  if (max <= 1) {  return; }
+
+  // Prepare basic checks
+  var enablePrev = current > 1;
+  var enableNext = current < max;
+}
+<nav>
+  <ul class="pagination justify-content-center">
+    @* Show previous button *@
+    <li class='page-item @(enablePrev ? "" : "disabled")' aria-hidden="true">
+      <a class="page-link" href='@LinkToPage(current - 1, enablePrev)'>@Resources.PagePrevious</a>
+    </li>
+
+    @* Show button for every page *@
+    @for (int i = 1; i <= max; i++) {
+      <li class='page-item @(i == current ? "active" : "")'>
+        <a class="page-link" href='@LinkToPage(i)'>@i</a>
+      </li>
+    }
+
+    @* Show next button *@
+    <li class='page-item @(enableNext ? "" : "disabled")' aria-hidden="true">
+      <a class="page-link" href='@LinkToPage(current + 1, enableNext)'>@Resources.PageNext</a>
+    </li>
+  </ul>
+</nav>
+
+@functions {
+  /// <summary>
+  /// Generate a paging-link, preserving current filter parameters
+  /// </summary>
+  public dynamic LinkToPage(int pageNumber, bool enabled = true) {
+    // If not enabled we must make sure we don't generate links for Google which shouldn't exist
+    // For example next-buttons going to pages which is past the last page
+    if (!enabled) {
+      return Link.To();
+    }
+
+    // Create page=X parameter
+    // Note: We should never have a page=1 parameter, otherwise two different links exist for page 1
+    var newParams = pageNumber <= 1
+      ? CmsContext.Page.Parameters.Remove("page")
+      : CmsContext.Page.Parameters.Set("page", pageNumber.ToString());
+    return Link.To(parameters: newParams); 
+  }
+}

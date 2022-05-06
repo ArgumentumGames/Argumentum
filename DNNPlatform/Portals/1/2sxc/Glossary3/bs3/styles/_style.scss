@@ -1,0 +1,120 @@
+﻿.app-glossary3 {
+  .navbar-collapse {
+    padding: 0;
+  }
+  
+  .app-glossary3-letterlist {
+    display: block;
+    padding: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #576066;
+    width: 100%;
+    margin-top: 40px;
+  }
+  
+  .app-glossary3-letterlist li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+  }
+  .app-glossary3-letterlist > li > a {
+    padding: 8px 6px;
+    color: #576066;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .app-glossary3-letterlist > li > a:hover,
+  .app-glossary3-letterlist > li > a:focus,
+  .app-glossary3-letterlist > li > a:active {
+    background-color: #ccc;
+    color: #576066;
+  }
+  .app-glossary3-item-wrapper {
+    margin-bottom: 45px;
+  }
+  .app-glossary3-terms p {
+    margin: 0;
+  }
+  .app-glossary3-single-term {
+    margin: 0 0 15px 0;
+  }
+  span {
+    display: none;
+  }
+  .app-glossary3-toggle {
+    position: relative;
+    top: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .app-glossary3-letterlist {
+      margin-top: 15px;
+    }
+    .app-glossary3-manage-terms,
+    .app-glossary3-manage-app {
+      display: none !important;
+    }
+  
+    .navbar-collapse {
+      padding: 0 15px;
+    }
+    .navbar-default {
+      border-top: 1px solid #576066;
+      border-bottom: 1px solid #576066;
+      margin-top: 15px;
+      padding: 12px 0;
+    }
+    .navbar-default .navbar-header {
+      cursor: pointer;
+    }
+    .app-glossary3-terms h2 {
+      font-size: 28px;
+    }
+    span {
+      font-weight: bold;
+      display: inline-block;
+    }
+    .app-glossary3-letterlist > li {
+      display: block;
+      width: 25%;
+      float: left;
+    }
+    .app-glossary3-letterlist {
+      border-top: none;
+      border-bottom: none;
+    }
+    .app-glossary3-letterlist li:first-child {
+      margin: 0;
+    }
+    .app-glossary3-letterlist:before {
+      display: none;
+    }
+    .app-glossary3-toggle {
+      display: block;
+      float: right;
+      border-top: 1px solid inset #ccc;
+      position: relative;
+      right: 9px;
+    }
+  
+    .app-glossary3-toggle:before {
+      border-bottom: 3px solid #576066;
+      text-indent: -9999px;
+      display: block;
+      content: " ";
+      width: 20px;
+      height: 10px;
+      position: absolute;
+    }
+    .app-glossary3-toggle:after {
+      border-bottom: 3px solid #576066;
+      border-top: 3px solid #576066;
+      text-indent: -9999px;
+      display: block;
+      content: " ";
+      width: 20px;
+      height: 17px;
+    }
+  }
+}

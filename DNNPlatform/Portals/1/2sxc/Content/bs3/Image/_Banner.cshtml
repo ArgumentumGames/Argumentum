@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Most Params come come from System-Settings, Height from View Settings
+  var height = (int)(Settings.ImageHeight ?? 400); // Should be set on all banner-views
+}
+
+<div class="co-container-outer">
+  <div class="co-container-inner">
+    <div class="co-header" @Edit.TagToolbar(Content)>
+      <img class="w-100"
+        src='@(Link.Image(Content.Image, Settings.Images.Content, height: height) + "&anchor=" + Content.CropAnchor)'
+        alt="@Content.Title" />
+    </div>
+  </div>
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles" })

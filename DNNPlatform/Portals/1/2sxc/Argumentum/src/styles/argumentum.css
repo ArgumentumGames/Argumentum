@@ -1,0 +1,276 @@
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 300;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Light tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 500;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Medium tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 700;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Bold tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DINPro';
+    font-style: normal;
+    font-weight: 900;
+    src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Black tr.woff') format('woff');
+}
+
+@font-face {
+    font-family: "TrendSlabW00-Four";
+    src: url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.eot"); /* IE9*/
+    src: url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.woff2") format("woff2"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.woff") format("woff"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("http://db.onlinewebfonts.com/t/8039f2717fa244ff6675db6a39c54d74.svg#TrendSlabW00-Four") format("svg"); /* iOS 4.1- */
+}
+
+.insuffisance {
+    --color-background: #811da3;
+    --color-text-1: #601362;
+    --color-text-2: #8f5991;
+    --color-text-3: #a173a2;
+}
+
+.influence {
+    --color-background: #ff66eb;
+    --color-text-1: #b3009b;
+    --color-text-2: #cc00b1;
+    --color-text-3: #e566d4;
+}
+
+.erreurMathématique {
+    --color-background: #08af93;
+    --color-text-1: #14555b;
+    --color-text-2: #5a888c;
+    --color-text-3: #749a9e;
+}
+
+.paralogisme {
+    --color-background: #8dc801;
+    --color-text-1: #476205;
+    --color-text-2: #7e9150;
+    --color-text-3: #92a26b;
+}
+
+.détournementDeLaLangue {
+    --color-background: #0054a4;
+    --color-text-1: #0c2861;
+    --color-text-2: #546890;
+    --color-text-3: #6f80a1;
+}
+
+.tricherie {
+    --color-background: #ffc307ff;
+    --color-text-1: #9e7800ff;
+    --color-text-2: #c49500ff;
+    --color-text-3: #d6b755ff;
+}
+
+.obstruction {
+    --color-background: #dc0f0a;
+    --color-text-1: #960a07;
+    --color-text-2: #b55351;
+    --color-text-3: #c16e6c;
+}
+
+
+.rule {
+    font-family: 'DINPro',sans-serif;
+    font-size: 100%;
+    line-height: 1.25;
+}
+
+    .rule h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5em;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: 700;
+        padding-left: 0;
+        margin-top: 0.2em;
+    }
+
+    .rule div:nth-of-type(1) > h2,
+    .rule div:nth-of-type(3) > h2
+     {
+        --color-background: #f8efd0;
+        --color-box: #daaf01;
+    }
+
+    .rule div:nth-of-type(2) > h2:nth-of-type(1),
+    .rule:nth-of-type(2) div > h2:nth-of-type(1) {
+        --color-background: #e7ceec;
+        --color-box: #8605aa;
+    }
+
+    .rule div:nth-of-type(2) > h2:nth-of-type(2),
+    .rule:nth-of-type(3) div > h2:nth-of-type(1) {
+        --color-background: #cdede8;
+        --color-box: #01a986;
+    }
+
+    .rule h2:nth-of-type(4),
+    .rule div:nth-of-type(3) > h2:nth-of-type(1),
+    .rule:nth-of-type(4) div > h2:nth-of-type(1) {
+        --color-background: #cad7ea;
+        --color-box: #022cb2;
+    }
+
+    .rule h2:nth-of-type(5),
+    .rule div:nth-of-type(3) > h2:nth-of-type(2),
+    .rule:nth-of-type(5) div > h2:nth-of-type(1) {
+        --color-background: #eed0d0;
+        --color-box: #ab1516;
+    }
+
+    .rule h3:nth-of-type(1) {
+        --color-background: #e1f1cd;
+        --color-box: #69b402;
+    }
+
+    .rule h3:nth-of-type(2) {
+        --color-background: #ffe6fc;
+        --color-box: #ff66eb;
+    }
+
+    .rule h3:nth-of-type(3) {
+        --color-background: #cad7ea;
+        --color-box: #022cb2;
+    }
+
+    .rule h3:nth-of-type(4) {
+        --color-background: #eed0d0;
+        --color-box: #ab1516;
+    }
+
+    .rule h3:nth-of-type(5) {
+        --color-background: #e8cdee;
+        --color-box: #8603b1;
+    }
+
+    .rule h3:nth-of-type(6) {
+        --color-background: #a0ecdf;
+        --color-box: #08af93;
+    }
+
+
+
+
+    .rule h2:nth-of-type(1), .rule h2:nth-of-type(2),
+    .rule h2:nth-of-type(3), .rule h2:nth-of-type(4) {
+        font-size: 0.9em;
+        background-color: var(--color-background);
+        padding: 0.4em;
+        font-weight: bold;
+        border-bottom: 0.2em solid var(--color-box);
+        text-transform: uppercase;
+        padding-left: 6em;
+        padding-top: 0.5em;
+        margin-bottom: 1.3em;
+        margin-top: 1.3em;
+    }
+
+    .rule h3:nth-of-type(1),
+    .rule h3:nth-of-type(2), .rule h3:nth-of-type(3),
+    .rule h3:nth-of-type(4), .rule h3:nth-of-type(5),
+    .rule h3:nth-of-type(6) {
+        font-size: 0.7em;
+        background-color: var(--color-background);
+        padding: 0.3em;
+        font-weight: bold;
+        border-bottom: 0.2em solid var(--color-box);
+        text-transform: uppercase;
+        margin-left: 7%;
+        padding-left: 15%;
+        margin-top: 2em;
+        margin-bottom: 1.2em;
+    }
+
+
+    .rule h2:before, .rule h3:before {
+        content: '';
+        font-size: 1.2em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        color: #fff;
+        left: 1.7em;
+        margin-top: 0.2em;
+        background-color: var(--color-box);
+        width: 2.5em;
+        height: 2.5em;
+    }
+
+    .rule h3:before {
+        margin-left: 7%;
+    }
+
+    .rule h3:nth-of-type(1):before {
+        content: '01';
+    }
+
+    .rule h3:nth-of-type(2):before {
+        content: '02';
+    }
+
+    .rule h3:nth-of-type(3):before {
+        content: '03';
+    }
+
+    .rule h3:nth-of-type(4):before {
+        content: '04';
+    }
+
+    .rule h3:nth-of-type(5):before {
+        content: '05';
+    }
+
+    .rule h3:nth-of-type(6):before {
+        content: '06';
+    }
+
+
+    .rule p, .rule ul {
+        padding-left: 20%;
+        font-size: 0.8em;
+        line-height: 1.1;
+        -webkit-font-variant-ligatures: no-common-ligatures;
+        font-variant-ligatures: no-common-ligatures;
+    }
+
+    .rule em {
+        font-size: 1.3em;
+        font-style: normal;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+.link-overlay {
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+}
+
+.nbPlayers {
+    margin-top: 2em;
+}

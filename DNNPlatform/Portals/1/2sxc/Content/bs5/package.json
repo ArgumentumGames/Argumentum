@@ -1,0 +1,12 @@
+{
+  "name": "app-content-templates",
+  "version": "12.05.00",
+  "description": "Bootstrap 5",
+  "main": "(none)",
+  "author": "2sic internet solutions 2020",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

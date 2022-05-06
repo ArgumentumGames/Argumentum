@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor12
+
+<div class="co-container-outer mb-4 mb-md-5">
+  <div class="co-container-inner">
+    <div class="row">
+      @foreach (var person in AsList(Data)) {
+        <div class="col-md-4 mb-4" itemscope itemtype="http://schema.org/Person" @Edit.TagToolbar(person)>
+          @Html.Partial("_Part Properties.cshtml", new { data = person })
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,scripts,icons"})

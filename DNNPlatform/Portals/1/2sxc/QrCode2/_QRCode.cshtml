@@ -1,0 +1,54 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // The view identifier determines if the code should be visible or only on printing
+  var printOnly = CmsContext.View.Identifier == "print";
+
+  // sets qrlink to specified url  
+  var qrLink = Content.LinkCurrentPage ? Link.To(parameters: CmsContext.Page.Parameters) : Content.Link;
+
+  // This ID is used to identify our unique code in the HTML DOM
+  var qrDomId = "qr-code-js" + CmsContext.Module.Id;
+}
+
+<div @Edit.TagToolbar(Content) class='@(printOnly ? "app-qrcode2-print-only" : "")'>
+  <a class="@qrDomId" href='@qrLink' target="_blank"></a>
+  @if(Content.DisplayLinkOrTitle) {
+    var displayText = Text.Has(Content.Title) ? Content.Title : Content.Link;
+    <div style="display: @Content.DisplayLinkOrTitle">@displayText</div>
+  }
+</div>
+
+@* Show a special message to admins if the QR-Code is invisible otherwise *@
+@if(printOnly && Edit.Enabled) {
+  <div class="alert alert-info" @Edit.TagToolbar(Content)>
+    @Resources.PrintQrAdminHint    
+  </div>
+}
+
+@* These styles control the visibility of print-only QR-codes *@
+@if (printOnly) {
+  <style>
+    @@media screen { .app-qrcode2-print-only { display: none; } }
+    @@media print  { .app-qrcode2-print-only { display: block; } }
+  </style>
+}
+
+@* Include assets *@
+@{
+  // Use either the qr-code settings of the current item or use the defaults
+  var qrParams = Content.QrCodeSettings.EntityId != 0 ? Content.QrCodeSettings : App.Settings.QrCodeSettings;
+
+  // Activate turnOn - see https://r.2sxc.org/turnon
+  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+
+  // Passed to QrCode generation
+  var qrCodeOptions = new {
+    color = "#" + qrParams.Color.Trim('#'),
+    width = qrParams.Size,
+    height = qrParams.Size
+  };
+}
+
+<turnOn turn-on='{ "run": "window.appQr2.init()", "data": { "domId": "@qrDomId", "options": @Html.Raw(Convert.Json.ToJson(qrCodeOptions)) }}'></turnOn>
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="bottom"></script>

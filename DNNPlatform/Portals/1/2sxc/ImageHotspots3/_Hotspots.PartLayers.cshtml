@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+    var hotspotsSettings = DynamicModel.HotspotsSettings;
+}
+@* This creates the hidden layers which will appear when hotspots are clicked *@
+@foreach (var hotspot in hotspotsSettings.Hotspots) {
+  var imgIsAbove = hotspot.OverlayLayout == "img/text"; // alternative is img-text
+  var layoutClass = imgIsAbove ? "" : "display-flex-row";
+
+  // Set image height / width based on layout type
+  var imageWidth = (int)hotspotsSettings.OverlayImageMaxWidth * (imgIsAbove ? 1 : 0.75);
+  var imageHeight = (int)hotspotsSettings.OverlayImageMaxHeight * (imgIsAbove ? 0.7 : 1 );
+
+  var toolbar = Content.IsDemoItem ? "" : Edit.TagToolbar(hotspot, toolbar: new[] { "%delete&show=true" });
+  <div id="hotspot3-content-@hotspot.EntityId-@CmsContext.Module.Id" class="hotspot3-fancybox-content" style="display: none" @toolbar>
+    <div class="@layoutClass">
+      @if(Text.Has(hotspot.Image)) {
+        <div>
+          <img loading="lazy" src='@Link.Image(hotspot.Image, Settings.Images.Lightbox, width: imageWidth, height: imageHeight, resizeMode: "max")' alt="@hotspot.Title">
+        </div>
+      }
+
+      @if(Text.Has(hotspot.Description)) {
+        <div class="hotspot3-fancybox-text">
+          @Html.Raw(hotspot.Description)
+        </div>
+      }
+    </div>
+  </div>
+}

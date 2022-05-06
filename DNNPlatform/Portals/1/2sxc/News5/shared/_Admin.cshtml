@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor12
+
+<div class="app-news5-admin-menu">
+  <div class="toolbar">
+    @Edit.Toolbar(toolbar: new [] {
+      "toolbar=empty",
+      "new?contentType=News&prefill:Date=" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "&prefill:ShowFrom=" + DateTime.Now.Date.ToString("yyyy-MM-dd")+ "&prefill:ShowTo=" + DateTime.Now.Date.AddYears(200).ToString("yyyy-MM-dd")
+    })
+    <span>@Resources.LabelAdminMenuNew</span>
+
+    @Edit.Toolbar(toolbar: new [] {
+      "toolbar=empty",
+      "contentitems?contentType=News"
+    })
+    <span>@Resources.LabelAdminMenuManage</span>
+  </div>
+  <div>@Edit.Toolbar(DynamicModel.Content)</div>
+</div>

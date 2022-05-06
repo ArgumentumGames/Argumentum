@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
+@{
+  // 1. Get Services for Css and Page
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  // Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon
+  var page = GetService<IPageService>();  // Service to set titles etc. on the page
+
+  page.Activate("turnOn");
+}
+
+@* Include styles & scripts of the App *@
+
+@if(DynamicModel.ResultPage == true) {
+  <script src="https://addsearch.com/js/?key=@App.Settings.SearchKey&type=resultpage"></script>
+  return;
+}
+
+<turnOn turn-on='{ "run": "window.appSearch3.init()", "data": { "wrapperAttribute": "@DynamicModel.WrapperAttribute" } }'></turnOn>
+<link rel="stylesheet" href="@App.Path/@CmsContext.View.Edition/dist/styles.min.css" data-enableoptimizations="true" />
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="bottom"></script>

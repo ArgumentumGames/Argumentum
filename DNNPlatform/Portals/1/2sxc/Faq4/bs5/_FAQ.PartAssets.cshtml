@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+    // 1. Get Services for Css and Page
+    var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+    var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
+
+    // 2. Include Bootstrap4 if the framework isn't known
+    if (pageCss.IsUnknown) {
+        page.Activate("Bootstrap4");
+    }
+    
+    // Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon
+    page.Activate("FontAwesome5", "turnOn");
+
+    var accordionOptions = new {
+        tagStickyHeader = "header",           // This is the sticky header in the page, the height of which must be respected on scroll
+        classIsExpanded = "is-expanded",      // This marks open accordions
+        attrParent = "data-accordion-parent", // This attribute marks the title tag which will trigger expand/collapse, the value must be same as in the child
+        attrChild = "data-accordion-child"    // This attribute contains a key which is used in the #-fragment for navigating to a section
+    };
+    var jsonOptions = Html.Raw(Convert.Json.ToJson(accordionOptions));
+}
+<turnOn turn-on='{ "run": "window.appFaq4.init()", "data": { "moduleId": "app-faq4-js-@CmsContext.Module.Id" } }'></turnOn>
+<turnOn turn-on='{ "run": "window.appFaq4.initAccordion()", "data": { "domId": "@DynamicModel.DomId", "options": @jsonOptions }}'></turnOn>
+<script src="@App.Path/bs5/dist/scripts.min.js" data-enableoptimizations="true" ></script>
+<link rel="stylesheet" href="@App.Path/bs5/dist/styles.min.css" data-enableoptimizations="true" />

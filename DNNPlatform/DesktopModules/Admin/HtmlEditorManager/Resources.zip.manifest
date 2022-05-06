@@ -17,10 +17,6 @@
       <name>module.css</name>
     </file>
     <file>
-      <path>Controls/App_LocalResources/</path>
-      <name>InvalidConfiguration.ascx.resx</name>
-    </file>
-    <file>
       <path>Controls/</path>
       <name>InvalidConfiguration.ascx</name>
     </file>

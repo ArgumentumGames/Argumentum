@@ -1,0 +1,28 @@
+//
+// This SCSS generates the css file for bootstrap 4 themes
+// To regenerate the SCSS using your variables (custom colors, etc.)
+// update the reference to your _variables.scss of your skin
+// and re-run the following npm
+// npm run build-prod
+
+// Add header-comments to the final file
+@import "sass-comments.scss";
+
+// Include needed functions and mixins from Bootstrap 4
+@import "../../node_modules/bootstrap/scss/_functions";
+
+// If you want to use breakpoints, you have to use the mixins and breakpoint sass 
+// @import "../../node_modules/bootstrap/scss/mixins";
+// @import "../../node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+
+// Choose which variables file you want to use
+// Either the one from the skin. To use the skin variables, adjust the path as needed
+// Or the one on this app - to only make changes here
+// @import "../../../_default/Skins/Bootstrap 4 Instant/src/scss/_variables.scss";
+@import "_variables.scss";
+
+// Now the standard bootstrap functionality
+// It will use our variables
+@import "../../node_modules/bootstrap/scss/variables";
+
+@import "_style.scss"; // General CSS stuff for everything

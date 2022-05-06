@@ -1,0 +1,45 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@{
+  var milestones = AsList(Data).OrderByDescending(milestone => milestone.Date);
+  var milestonesByYear = milestones.GroupBy(milestone => milestone.Date.ToString("yyyy"));
+}
+
+<div class="app-timeline app-timeline-@CmsContext.Module.Id">
+  @foreach(var milestonesOfYear in milestonesByYear.ToList()) {
+    var milestoneIndex = 0;
+    <div class="app-timeline-head row col-12 pb-md-4 justify-content-md-center">
+      <div class="col-4 pb-4 pb-md-0 col-md-2 app-timeline-milestone-center">
+        <h2>@milestonesOfYear.Key</h2>
+      </div>
+    </div>
+    
+    foreach (var milestone in milestonesOfYear.ToList()) {
+      milestoneIndex++;
+      <div class='@((milestoneIndex % 2) == 0 ? "app-timeline-right" : "") row col-12 align-items-md-center app-timeline-milestone pb-md-4 sc-element'>
+        @Edit.Toolbar(milestone)
+
+        <div class="col-8 col-md-5 app-timeline-milestone-content">
+          <h3>@milestone.Title</h3>
+          <div class="app-timeline-content-date">
+            @milestone.Date.ToString("dd. MMMM yyyy")
+          </div>
+          @Html.Raw(milestone.Text)
+        </div>
+        <div class="col-4 col-md-2 pb-4 pb-md-0 app-timeline-milestone-center">
+          <div class="app-timeline-img d-flex justify-content-center">
+            @Html.Partial("../shared/_IconAndImage.cshtml", new { Milestone = milestone })
+          </div>
+        </div>
+        <div class="col-5 col-md-5 app-timeline-milestone-date">
+          <div class='@((milestoneIndex % 2) == 0 ? "app-timeline-rightdate" : "") app-timeline-date'>
+            @milestone.Date.ToString("dd. MMMM yyyy")
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml")

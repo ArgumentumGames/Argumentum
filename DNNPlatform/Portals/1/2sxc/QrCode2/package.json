@@ -1,0 +1,34 @@
+{
+  "name": "app-qrcode2",
+  "version": "02.00.00",
+  "description": "QrCode App for .net CMSs",
+  "main": "(none)",
+  "scripts": {
+    "build-prod": "webpack"
+  },
+  "author": "2sic internet solutions",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "@types/qrcode-svg": "^1.1.1",
+    "autoprefixer": "^10.2.5",
+    "css-loader": "^5.2.4",
+    "file-loader": "^6.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss-loader": "^5.2.0",
+    "sass": "^1.32.12",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.1.1",
+    "ts-loader": "^9.1.2",
+    "typescript": "^4.2.4",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpackbar": "^4.0.0"
+  },
+  "dependencies": {
+    "qrcode-svg": "^1.1.0"
+  }
+}

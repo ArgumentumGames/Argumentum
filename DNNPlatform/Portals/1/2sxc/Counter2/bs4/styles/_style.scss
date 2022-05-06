@@ -1,0 +1,81 @@
+$counter-color : $white;
+
+.app-counter2 {
+  .app-counter2-wrapper {
+    .app-counter2-col {
+      margin: 0 0 $grid-gutter-width;
+
+      .app-counter2-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        padding: 0;
+        padding: $grid-gutter-width/3;
+        
+        @include media-breakpoint-up(md) {
+          padding: $grid-gutter-width;
+        }
+
+        svg {
+          color: $primary;
+          margin-bottom: 10px
+        }
+
+        .lead {
+          font-size: 2.3rem;
+          font-weight: 700;
+          margin: $grid-gutter-width/2 0;
+        }
+      }
+    }
+  }
+
+
+  // Special stylings for counter with background
+  &.app-counter2-background {
+    background-position: center center;
+    background-size: Cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    // paddings only make sence when an background image is set
+    padding-left: $grid-gutter-width / 1;
+    padding-right: $grid-gutter-width / 1;
+
+    @include media-breakpoint-up(md) {
+      padding-left: $grid-gutter-width * 1.5;
+      padding-right: $grid-gutter-width * 1.5;
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding-left: $grid-gutter-width * 3;
+      padding-right: $grid-gutter-width * 3;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-top: $grid-gutter-width * 2;
+    }  
+    
+    // font color, background opacity when background image is set
+    .app-counter2-wrapper {
+        .app-counter2-col {
+          margin: $grid-gutter-width * 3 0;
+
+          @include media-breakpoint-down(md) {          
+            margin: 0 0 $grid-gutter-width * 2 0;
+          }
+
+          .app-counter2-item {
+            background: rgba($primary, 0.8);
+            color: $white;
+
+            svg {
+              color: $white;
+            };
+          }
+        }
+    }
+  }
+}

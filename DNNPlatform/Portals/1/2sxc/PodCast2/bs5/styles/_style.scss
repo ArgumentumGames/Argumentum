@@ -1,0 +1,50 @@
+$tertiary: #fff !default;
+
+.app-podcast2 {
+  @mixin sizeAndBorderRadius($size, $border-radius) {
+    height: $size;
+    width: $size;
+    border-radius: $border-radius;
+  }
+
+  .pc-bg-tertiary {
+    background-color: $tertiary;
+  }
+
+  .pc-text-tertiary {
+    color: $tertiary;
+  }
+
+
+  .card {
+    & .pc-channel-title {
+      font-size: 1.5rem;
+    }
+
+    & .pc-owner-name {
+      font-weight: 500;
+    }
+
+    & .pc-channel-category-rss {
+      svg {
+        path {
+          fill: white;
+        }
+      }
+      & > p {
+        flex: 4;
+      }
+
+      & > a {
+        max-width: 30px;
+        color: $tertiary;
+      }
+    }
+  }
+
+  .list-group {
+    & .pc-episode-date {
+      font-size: 0.7rem;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  // Get the PageServices for setting Titles and HTTP error headers
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+
+  var term = AsList(Data).FirstOrDefault();
+
+  // Show term not found notification and stop processing
+  if(term == null) {
+    <h1>@Resources.TermNotFoundTitle</h1>
+    <p>@Resources.TermNotFoundText</p>
+    <a href="@Link.To()" class="btn btn-outline-primary btn-sm">@Resources.GoBackText</a>
+    page.SetHttpStatus(404);
+    return;
+  }
+
+  // Appends " – " to abbreviation if exists
+  var titleAbbreviation = (Text.Has(term.Abbreviation) ? term.Abbreviation + " – " : "");
+  var fullTermTitle = titleAbbreviation + term.Title;
+
+  // Set the title of the page
+  page.SetTitle(fullTermTitle + " | ");  // will prepend to the existing title
+
+  // Set the description meta tag to term summary
+  page.AddMeta("description", term.summary);
+}
+
+<div @Edit.TagToolbar(term, toolbar: "-layout")>
+  <h1>@fullTermTitle</h1>
+  <p>
+    <strong>@term.Summary</strong>
+  </p>
+  <p>@Html.Raw(term.Details)</p>
+  <a href='@Link.To(parameters: "#" + term.Title.Substring(0, 1))' class="btn btn-outline-primary btn-sm">
+    @Resources.GoBackText
+  </a>
+</div>
+
+@Html.Partial("./_Glossary.PartAssets.cshtml")

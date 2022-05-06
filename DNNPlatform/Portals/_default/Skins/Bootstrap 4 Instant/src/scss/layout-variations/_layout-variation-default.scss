@@ -1,0 +1,27 @@
+@media all {
+	body.va-layout-default {
+		.container-fluid {
+			@include media-breakpoint-up(xl) {
+				max-width: 1400px;
+			}
+		}
+		.ly-header-pane {
+			@include media-breakpoint-up(xl) {
+				margin-top: $grid-gutter-width*2;
+			}
+		}
+		.ly-header-pane-empty {
+			background: transparent;
+			height: 1px;
+		}
+		.ly-fullwrapper .ly-push {
+			display: none;
+		}
+		footer {
+			@include media-breakpoint-up(lg) {
+				margin-bottom: $grid-gutter-width;
+			}
+		
+		}
+	}
+}

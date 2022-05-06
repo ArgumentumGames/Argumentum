@@ -1,0 +1,26 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
+@{
+  // 1. Get Services for Css and Page
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  var page = GetService<IPageService>();  // Service to set titles etc. on the page
+
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (pageCss.IsUnknown) {
+    page.Activate("Bootstrap4");
+  }
+  
+  // Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon
+  page.Activate("FontAwesome5", "turnOn", "2sxc.JsCore");
+}
+
+<link rel="stylesheet" type="text/css" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true"/>
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="true"></script>
+<turnOn turn-on='{ 
+  "run": "window.appTimelineJs2.init()", 
+  "data": { 
+    "domAttribute": "@DynamicModel.DomAttribute", 
+    "moduleId": "@CmsContext.Module.Id" 
+  }}'>
+</turnOn>

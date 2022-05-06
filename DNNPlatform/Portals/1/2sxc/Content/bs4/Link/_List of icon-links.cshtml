@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // get helper commands
+  var linkHelper = CreateInstance("LinkHelper.cs");
+}
+
+<div class="co-container-outer mb-4 mb-md-5">
+  <div class="co-container-inner">
+    <div class="row">
+    @foreach (var link in AsList(Data)) {
+      var linkInfo = linkHelper.LinkInfos(link);
+
+      <div class="col-md-6 col-lg-4 mb-4 mb-md-5 co-linkblock" @Edit.TagToolbar(link)>
+        @if (linkInfo.Found) {
+          @:<a href="@link.Link" target="@linkInfo.Window" title="@link.Title">
+        }
+          <i class="mb-3 text-primary fas @linkInfo.Icon" aria-hidden="true" style="font-size: 40px;"></i>
+          <h4>@link.Title</h4>
+          <p>@Html.Raw(Tags.Nl2Br(link.Description))</p>
+        @if (linkInfo.Found) {
+          <span>@link.LinkText&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+          @:</a>
+        }
+      </div>
+    }
+    </div>
+  </div>
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,scripts,icons"})

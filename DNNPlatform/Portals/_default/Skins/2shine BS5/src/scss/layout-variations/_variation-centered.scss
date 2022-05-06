@@ -1,0 +1,29 @@
+@media all {
+  /*layout centered*/
+  body.to-shine-variation-centered {
+    header {
+      background: transparent;
+      .container {
+        background: $white;
+      }
+
+    }
+
+    main#to-shine-page-main,
+    #to-shine-page-header-pane,
+    footer#to-shine-page-footer,
+    header#to-shine-page-header {
+      background: $white;
+      width: 100%;
+      margin: 0 auto;
+      @include media-breakpoint-up(xxl) {
+        max-width: 1320px;
+      }
+    }
+    footer#to-shine-page-footer {
+      background: rgb(0,131,201);
+      background: linear-gradient(90deg, rgba(0,131,201,1) 0%, rgba(88,190,187,1) 100%);
+    }
+    
+  }
+}

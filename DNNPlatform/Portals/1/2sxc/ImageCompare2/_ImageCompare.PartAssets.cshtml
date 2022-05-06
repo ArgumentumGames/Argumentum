@@ -1,0 +1,8 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  // Activate turnOn - see https://r.2sxc.org/turnon
+  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+}
+<turnOn turn-on='{ "run": "window.appImageCompare2.init()", "data": { "domId": "@DynamicModel.DomId" } }'></turnOn>
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true">
+<script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="bottom"></script>

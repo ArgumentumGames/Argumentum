@@ -10,11 +10,11 @@
     </file>
     <file>
       <path>menus/razor/</path>
-      <name>RazorMenu.cshtml</name>
+      <name>menudef.xml</name>
     </file>
     <file>
       <path>menus/razor/</path>
-      <name>menudef.xml</name>
+      <name>RazorMenu.cshtml</name>
     </file>
     <file>
       <path>partials/</path>

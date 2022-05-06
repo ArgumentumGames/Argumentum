@@ -1,0 +1,28 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>SharedResources.resx</name>
+    </file>
+    <file>
+      <path>Scripts/</path>
+      <name>connector.js</name>
+    </file>
+    <file>
+      <path>Images/</path>
+      <name>GoogleTagManager_32X32_Standard.png</name>
+    </file>
+    <file>
+      <path />
+      <name>Connector.css</name>
+    </file>
+    <file>
+      <path />
+      <name>connector.htm</name>
+    </file>
+    <file>
+      <path />
+      <name>GoogleTagManager.config</name>
+    </file>
+  </files>
+</dotnetnuke>

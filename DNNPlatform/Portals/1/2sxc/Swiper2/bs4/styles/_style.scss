@@ -1,0 +1,158 @@
+//
+// This SCSS generates the css for the general styles
+//
+// It is used by all CSS generators (Bootstrap3/4, etc.)
+// To keep things simple, it uses the standard variables of
+// bootstrap 4 conventions.
+
+// imports mixin to reduce redundant code
+@import "./mixins";
+
+.app-swiper2 {
+  @supports (--custom:property) {
+    &[style*="--aspect-ratio"] {
+      position: relative;
+      width: 100%;
+      padding-top: calc(100% / (var(--aspect-ratio)));
+    }
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &[style*="--aspect-ratio"] {
+    .swiper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  .swiper {
+    width: 100%;
+    height: 50vh;
+    .swiper-slide {
+      .image-wrapper {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        &.dark-content {
+          p {
+            color: #000;
+            text-shadow: 0px 0px 16px rgba(255, 255, 255, 0.8);
+
+          }
+
+          @include setBackgroundGradient("&.content-position-cc", "&.content-position-cl", "&.content-position-cr", rgba(255,255,255,0) 25%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 10%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 75%, rgba(255,255,255,0) 90%);   
+          @include setBackgroundGradient("&.content-position-bc", "&.content-position-bl", "&.content-position-br", rgba(255,255,255,0.4) 25%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);   
+          @include setBackgroundGradient("&.content-position-tc", "&.content-position-tl", "&.content-position-tr", rgba(255,255,255,0) 50%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%);   
+        }
+
+        .overlay-none {
+          display: none;
+        }
+
+        &.content-effect-gradient,
+        &.content-effect-gradient-wide {
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+          }
+        }            
+        
+        @include setBackgroundGradient("&.content-position-cc", "&.content-position-cl", "&.content-position-cr", rgba(255,255,255,0) 25%, rgba(0,0,0,0.4) 50%, rgba(255,255,255,0) 10%, rgba(0,0,0,0.4) 50%, rgba(255,255,255,0) 75%, rgba(255,255,255,0) 90%);   
+        @include setBackgroundGradient("&.content-position-bc", "&.content-position-bl", "&.content-position-br", rgba(0,0,0,0.4) 25%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.4) 50%, rgba(255,255,255,0) 100%);   
+        @include setBackgroundGradient("&.content-position-tc", "&.content-position-tl", "&.content-position-tr", rgba(255,255,255,0) 50%, rgba(0,0,0,0.4) 75%, rgba(255,255,255,0) 0%, rgba(0,0,0,0.4) 50%);
+      }
+
+      p {
+        color: #fff;
+        font-size: $font-size-base*1.25;
+        text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.8);
+        margin: 0 0 $font-size-base * 0.6875;
+        
+        &.lead { 
+          margin-bottom: $grid-gutter-width/2;
+          font-size: $font-size-base*1.8;	
+          font-weight: 600;
+
+          @include media-breakpoint-up(md)  {
+            line-height: 1.2em;
+            font-size: $font-size-base*3;	
+          }		
+          @include media-breakpoint-up(lg)  {
+            line-height: 1.2em;
+            font-size: $font-size-base*4;	
+          }				
+          @include media-breakpoint-up(xl)  {
+            line-height: 1.2em;
+            font-size: $font-size-base*5;	
+          }				
+        }
+      }	
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+      text-shadow: 0px 0px 8px rgba(0, 0, 0, 1);
+    }
+
+    .swiper-pagination-bullet {
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #fff;
+    }
+  }
+}
+
+.app-swiper2-empty-slides {
+  .arrow {
+    position: absolute;
+    width: 120px;
+    top: 20px;
+    right: 50px;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+  }
+  
+  .line {
+    margin-top: 14px;
+    width: 90px;
+    background: #000;
+    height: 10px;
+    float: left;
+  }
+  
+  .point {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid #000;
+    float: right;
+  }
+}

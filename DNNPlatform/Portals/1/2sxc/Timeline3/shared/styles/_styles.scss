@@ -1,0 +1,197 @@
+.app-timeline {
+  .app-timeline-head {
+    margin: 0 auto;
+    .app-timeline-date-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    h2 {
+      position: relative;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      z-index: 10;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 70px;
+      text-align: center;
+      color: #fff;
+      margin: 0 auto;
+      background: $primary;
+    }
+  }
+
+  .app-timeline-head,
+  .app-timeline-milestone {
+    position: relative;
+    margin: 0 auto;
+    z-index: 2;
+
+    &.app-timeline-right {
+      display: flex;
+      flex-direction: row-reverse;
+
+      @include media-breakpoint-down(sm) {
+        flex-direction: row;
+      }
+
+      .app-timeline-milestone-content {
+        text-align: left;
+      }
+    }
+
+    &:after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      z-index: -1;
+      left: calc(50% - 1px);
+      background-color: #d4d4d4;
+      visibility: visible;
+
+      @include media-breakpoint-down(sm) {
+        visibility: hidden;          
+      }
+    }
+
+    .app-timeline-milestone-content {
+      text-align: right;
+    }
+
+    .app-timeline-content-date {
+      display: none;
+    }
+
+    .app-timeline-date {
+      font-weight: bold;
+      font-size: small;
+
+      @include media-breakpoint-down (md){
+        font-weight: bold;
+        font-size: small;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .app-timeline-milestone-content {
+        order: 3;
+        padding-bottom: 50px;
+        text-align: left;
+        p {
+          font-size: 0.8rem;
+        }
+
+        .app-timeline-content-date {
+          display: block;
+          font-weight: bold;
+          font-size: small;
+        }
+      }
+
+      .app-timeline-milestone-center {
+        position: relative;
+        order: 1;
+
+        &:after {
+          content: " ";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 2px;
+          z-index: -1;
+          left: calc(50% - 1px);
+          background-color: #d4d4d4;
+          visibility: hidden;
+
+          @include media-breakpoint-down(sm) {
+            visibility: visible;          
+          }
+        }
+      }
+
+      .app-timeline-milestone-date {
+        order: 2;
+        display: none;
+      }
+    }
+
+    .app-timeline-rightdate {
+      text-align: right;
+    }
+
+    .app-timeline-icon-bg {
+      height: 40px;
+      width: 40px;
+      background: $primary;
+      border-radius: 50%;
+      margin: 0 auto;
+      text-align: center;
+
+      &.app-timeline-overlay {
+        background: rgba($primary, 0.5);
+        height: 125px;
+        width: 125px;
+        top: 0;
+        position: absolute;
+
+        @include media-breakpoint-down (md){
+          width: 80px;
+          height: 80px; 
+        }
+
+        @include media-breakpoint-down(sm) {
+          width: 70px;
+          height: 70px;
+        }
+
+        .app-timeline-icon {
+          line-height: 125px;
+
+          @include media-breakpoint-down (md){
+            line-height: 80px;
+          }
+
+          @include media-breakpoint-down(sm) {
+            line-height: 70px;
+          }
+        }
+      }
+    }
+
+    .app-timeline-img-wrapper {
+      position: relative;
+      .app-timeline-img {
+        width: 125px;
+
+        @include media-breakpoint-down (md){
+          width: 80px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          width: 70px;
+          height: 70px;
+        }
+
+        &:last-child {
+          margin-bottom: 30px;
+        }
+      }
+
+      .app-timeline-empty {
+        height: 20px;
+        width: 20px;
+        background: $primary;
+        border-radius: 50%;
+      }
+
+      .app-timeline-icon {
+        color: white;
+        position: relative;
+        line-height: 40px;
+      }
+    }
+  }
+}

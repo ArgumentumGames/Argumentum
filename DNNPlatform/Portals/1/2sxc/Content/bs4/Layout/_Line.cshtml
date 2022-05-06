@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  var lineHalf = CmsContext.View.Identifier == "half" ? "w-50 m-auto py-4" : "w-100 py-4";
+}
+
+<div class="co-container-outer">
+	<div class="co-container-inner">
+		<hr class="@lineHalf"/>
+	</div>
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles"})

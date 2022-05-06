@@ -1,0 +1,21 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var milestone = DynamicModel.Milestone; 
+}
+
+<div class="app-timeline-img-wrapper @(Text.Has(milestone.Image) || Text.Has(milestone.Icon) ? " " : "app-timeline-circle")">
+  @if(Text.Has(milestone.Image)) {
+    <div class="app-timeline-img">
+      <img class="img-fluid rounded-circle" loading="lazy" src='@Link.Image(milestone.Image, width: 400, height: 400, resizeMode: "crop")' />
+    </div>
+  } else if (Text.Has(milestone.icon)) {
+    <div class="app-timeline-icon-bg @(Text.Has(milestone.Image) ? "app-timeline-overlay" :"")">
+      <div class="app-timeline-icon">
+        <i class="fas @milestone.Icon"></i>
+      </div>
+    </div>
+  } else {
+    <div class="app-timeline-empty"></div>
+  }
+</div>

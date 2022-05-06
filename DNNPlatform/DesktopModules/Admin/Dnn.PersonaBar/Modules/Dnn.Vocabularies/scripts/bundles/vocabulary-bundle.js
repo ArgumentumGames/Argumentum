@@ -1,2 +1,3836 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=40)}([function(e,t){e.exports=window.dnn.nodeModules.React},function(e,t){e.exports=window.dnn.nodeModules.CommonComponents},function(e,t,n){"use strict";var r={LOAD_MORE:"LOAD_MORE",LOAD_TAB_DATA:"LOAD_TAB_DATA"},o={RETRIEVED_VOCABULARY_LIST:"RETRIEVED_VOCABULARY_LIST",UPDATED_VOCABULARY:"UPDATED_VOCABULARY",ADDED_VOCABULARY:"ADDED_VOCABULARY",DELETED_VOCABULARY:"DELETED_VOCABULARY",FAILED_TO_ADD_VOCABULARY:"FAILED_TO_ADD_VOCABULARY"},a={GET_VOCABULARY_TERMS:"GET_VOCABULARY_TERMS",RETRIEVED_VOCABULARY_TERMS:"RETRIEVED_VOCABULARY_TERMS",UPDATED_VOCABULARY_TERM:"UPDATED_VOCABULARY_TERM",ADDED_VOCABULARY_TERM:"ADDED_VOCABULARY_TERM",DELETED_VOCABULARY_TERM:"DELETED_VOCABULARY_TERM",SET_TERM_SELECTED:"SET_TERM_SELECTED",CLEAR_TERMS_SELECTED:"CLEAR_TERMS_SELECTED"},i={SELECT_PANEL:"SELECT_PANEL"};n.d(t,"a",function(){return r}),n.d(t,"c",function(){return o}),n.d(t,"d",function(){return a}),n.d(t,"b",function(){return i})},function(e,t,n){"use strict";var r={init:function(e){if(!e||!e.utility)throw new Error("Utilities is undefined.");this.utilities=e.utility,this.moduleName=e.moduleName,this.settings=e.settings},canEdit:function(){return this.settings.isHost||this.settings.isAdmin||this.settings.permissions&&!0===this.settings.permissions.EDIT},isHost:function(){return this.settings.isHost},utilities:null,moduleName:null,settings:null};t.a=r},function(e,t,n){"use strict";e.exports=function(e){var t=[];return t.toString=function(){return this.map(function(t){var n=function(e,t){var n=e[1]||"",r=e[3];if(!r)return n;if(t&&"function"==typeof btoa){var o=(i=r,"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(i))))+" */"),a=r.sources.map(function(e){return"/*# sourceURL="+r.sourceRoot+e+" */"});return[n].concat(a).concat([o]).join("\n")}var i;return[n].join("\n")}(t,e);return t[2]?"@media "+t[2]+"{"+n+"}":n}).join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var r={},o=0;o<this.length;o++){var a=this[o][0];null!=a&&(r[a]=!0)}for(o=0;o<e.length;o++){var i=e[o];null!=i[0]&&r[i[0]]||(n&&!i[2]?i[2]=n:n&&(i[2]="("+i[2]+") and ("+n+")"),t.push(i))}},t}},function(e,t,n){var r,o,a={},i=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),l=function(e){var t={};return function(e,n){if("function"==typeof e)return e();if(void 0===t[e]){var r=function(e,t){return t?t.querySelector(e):document.querySelector(e)}.call(this,e,n);if(window.HTMLIFrameElement&&r instanceof window.HTMLIFrameElement)try{r=r.contentDocument.head}catch(e){r=null}t[e]=r}return t[e]}}(),c=null,s=0,u=[],p=n(26);function d(e,t){for(var n=0;n<e.length;n++){var r=e[n],o=a[r.id];if(o){o.refs++;for(var i=0;i<o.parts.length;i++)o.parts[i](r.parts[i]);for(;i<r.parts.length;i++)o.parts.push(v(r.parts[i],t))}else{var l=[];for(i=0;i<r.parts.length;i++)l.push(v(r.parts[i],t));a[r.id]={id:r.id,refs:1,parts:l}}}}function f(e,t){for(var n=[],r={},o=0;o<e.length;o++){var a=e[o],i=t.base?a[0]+t.base:a[0],l={css:a[1],media:a[2],sourceMap:a[3]};r[i]?r[i].parts.push(l):n.push(r[i]={id:i,parts:[l]})}return n}function m(e,t){var n=l(e.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=u[u.length-1];if("top"===e.insertAt)r?r.nextSibling?n.insertBefore(t,r.nextSibling):n.appendChild(t):n.insertBefore(t,n.firstChild),u.push(t);else if("bottom"===e.insertAt)n.appendChild(t);else{if("object"!=typeof e.insertAt||!e.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=l(e.insertAt.before,n);n.insertBefore(t,o)}}function y(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e);var t=u.indexOf(e);t>=0&&u.splice(t,1)}function b(e){var t=document.createElement("style");if(void 0===e.attrs.type&&(e.attrs.type="text/css"),void 0===e.attrs.nonce){var r=function(){0;return n.nc}();r&&(e.attrs.nonce=r)}return h(t,e.attrs),m(e,t),t}function h(e,t){Object.keys(t).forEach(function(n){e.setAttribute(n,t[n])})}function v(e,t){var n,r,o,a;if(t.transform&&e.css){if(!(a="function"==typeof t.transform?t.transform(e.css):t.transform.default(e.css)))return function(){};e.css=a}if(t.singleton){var i=s++;n=c||(c=b(t)),r=E.bind(null,n,i,!1),o=E.bind(null,n,i,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(e){var t=document.createElement("link");return void 0===e.attrs.type&&(e.attrs.type="text/css"),e.attrs.rel="stylesheet",h(t,e.attrs),m(e,t),t}(t),r=function(e,t,n){var r=n.css,o=n.sourceMap,a=void 0===t.convertToAbsoluteUrls&&o;(t.convertToAbsoluteUrls||a)&&(r=p(r));o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var i=new Blob([r],{type:"text/css"}),l=e.href;e.href=URL.createObjectURL(i),l&&URL.revokeObjectURL(l)}.bind(null,n,t),o=function(){y(n),n.href&&URL.revokeObjectURL(n.href)}):(n=b(t),r=function(e,t){var n=t.css,r=t.media;r&&e.setAttribute("media",r);if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,n),o=function(){y(n)});return r(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;r(e=t)}else o()}}e.exports=function(e,t){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(t=t||{}).attrs="object"==typeof t.attrs?t.attrs:{},t.singleton||"boolean"==typeof t.singleton||(t.singleton=i()),t.insertInto||(t.insertInto="head"),t.insertAt||(t.insertAt="bottom");var n=f(e,t);return d(n,t),function(e){for(var r=[],o=0;o<n.length;o++){var i=n[o];(l=a[i.id]).refs--,r.push(l)}e&&d(f(e,t),t);for(o=0;o<r.length;o++){var l;if(0===(l=r[o]).refs){for(var c=0;c<l.parts.length;c++)l.parts[c]();delete a[l.id]}}}};var g,T=(g=[],function(e,t){return g[e]=t,g.filter(Boolean).join("\n")});function E(e,t,n,r){var o=n?"":r.css;if(e.styleSheet)e.styleSheet.cssText=T(t,o);else{var a=document.createTextNode(o),i=e.childNodes;i[t]&&e.removeChild(i[t]),i.length?e.insertBefore(a,i[t]):e.appendChild(a)}}},function(e,t,n){e.exports=n(27)()},function(e,t){e.exports=window.dnn.nodeModules.ReactRedux},function(e,t){e.exports=window.dnn.nodeModules.Redux},function(e,t){e.exports=window.dnn.nodeModules.ReactCollapse},function(e,t){e.exports=window.dnn.nodeModules.ReactCustomScrollBars},function(e,t){e.exports=window.dnn.nodeModules.ReduxThunk},function(e,t){e.exports=window.dnn.nodeModules.ReactDOM},function(e,t){e.exports=window.dnn.nodeModules.ReduxImmutableStateInvariant},function(e,t){e.exports=window.dnn.nodeModules.ReduxDevTools},function(e,t){e.exports=window.dnn.nodeModules.ReduxDevToolsLogMonitor},function(e,t){e.exports=window.dnn.nodeModules.ReduxDevToolsDockMonitor},function(e,t,n){e.exports=n(39)},function(e,t,n){var r=n(29);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(32);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(33);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(34);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(35);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(38);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(25);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){(e.exports=n(4)(!1)).push([e.i,"",""])},function(e,t){e.exports=function(e){var t="undefined"!=typeof window&&window.location;if(!t)throw new Error("fixUrls requires window.location");if(!e||"string"!=typeof e)return e;var n=t.protocol+"//"+t.host,r=n+t.pathname.replace(/\/[^\/]*$/,"/");return e.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(e,t){var o,a=t.trim().replace(/^"(.*)"$/,function(e,t){return t}).replace(/^'(.*)'$/,function(e,t){return t});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(a)?e:(o=0===a.indexOf("//")?a:0===a.indexOf("/")?n+a:r+a.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")})}},function(e,t,n){"use strict";var r=n(28);function o(){}function a(){}a.resetWarningCache=o,e.exports=function(){function e(e,t,n,o,a,i){if(i!==r){var l=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw l.name="Invariant Violation",l}}function t(){return e}e.isRequired=e;var n={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,elementType:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t,checkPropTypes:a,resetWarningCache:o};return n.PropTypes=n,n}},function(e,t,n){"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"},function(e,t,n){(t=e.exports=n(4)(!1)).push([e.i,'/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._1Q7-DkePapyqxJ1Cmdh1BU {\n  display: table;\n  width: 100%;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU.false {\n  border-top: 2px solid #1E88C3;\n  border-bottom: 2px solid #1E88C3;\n  position: relative;\n  top: -1px;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU:not(:last-child) div.collapsible-header {\n  border-bottom: 1px solid #C8C8C8;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header {\n  text-transform: uppercase;\n  color: #b2bdc3;\n  width: 100%;\n  float: left;\n  position: relative;\n  padding: 22px 22px 16px;\n  box-sizing: border-box;\n  cursor: pointer;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header * {\n  pointer-events: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .delete-button {\n  pointer-events: all;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header.false {\n  border-bottom: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .collapse-icon {\n  position: absolute;\n  right: 20px;\n  top: 21px;\n  font-size: 30px;\n  line-height: 16px;\n  cursor: pointer;\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Chrome/Safari/Opera */\n  -khtml-user-select: none;\n  /* Konqueror */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* IE/Edge */\n  user-select: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .collapse-icon:after {\n  border: 6px solid transparent;\n  border-bottom: 6px solid #4B4E4F;\n  content: "";\n  position: absolute;\n  left: -15px;\n  top: 0;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .collapse-icon.collapsed:after {\n  border-top: 6px solid #4B4E4F;\n  border-bottom: 6px solid transparent;\n  top: 5px;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .term-header-collapsible > div {\n  float: left;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .term-header-collapsible > div > .dnn-grid-system {\n  padding: 45px 0;\n  transition: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .vocab-footer {\n  text-align: center;\n  padding-bottom: 55px;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .vocab-footer > .dnn-ui-common-button {\n  margin-left: 11px;\n}\n.term-header .term-icon svg {\n  width: 25px;\n  float: left;\n  height: 25px;\n  margin-right: 15px;\n  margin-top: -5px;\n  fill: #6F7273;\n}\n.term-header .term-label {\n  color: #46292B;\n}\n.term-header .term-label .dnn-text-overflow-wrapper {\n  font-size: 10pt;\n}\n.term-header .term-label * {\n  pointer-events: all !important;\n}\n.term-header .delete-button {\n  display: inline;\n  pointer-events: none !important;\n}\n.term-header .delete-button svg {\n  pointer-events: all !important;\n  margin-left: 10px;\n  margin-bottom: -2px;\n  width: 16px;\n  height: 16px;\n}\n.term-header .delete-button svg g,\n.term-header .delete-button svg polygon {\n  pointer-events: none !important;\n}\n',""]),t.locals={collapsibleComponent:"_1Q7-DkePapyqxJ1Cmdh1BU"}},function(e,t,n){"use strict";n.r(t),t.default='<?xml version="1.0" encoding="utf-8"?>\r\n\x3c!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --\x3e\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t viewBox="0 0 2048 2048" fill="currentColor" style="enable-background:new 0 0 2048 2048;" xml:space="preserve">\r\n<path d="M1788.9,709.7l-448.7-448.7l-1,1v-0.6H261.8v1530.4h1530.4V709.7H1788.9z M1458.2,1174.5c-57,0-104.9-38.7-119-91.2h-190.3\r\n\tc-14.9,51.2-62.2,88.7-118.2,88.7c-56,0-103.3-37.4-118.2-88.7H722.3c-13.8,52.8-61.9,91.8-119.1,91.8c-68,0-123.1-55.1-123.1-123.1\r\n\ts55.1-123.1,123.1-123.1c57.5,0,105.8,39.4,119.3,92.7h188.1c12.4-54.9,61.5-95.8,120.1-95.8c58.6,0,107.7,41,120.1,95.8h187.9\r\n\tc13.4-53.6,61.8-93.2,119.5-93.2c68,0,123.1,55.1,123.1,123.1S1526.2,1174.5,1458.2,1174.5z M1339.1,709.7V359.4l350.3,350.3H1339.1\r\n\tz"/>\r\n</svg>\r\n'},function(e,t,n){"use strict";n.r(t),t.default='<?xml version="1.0" encoding="utf-8"?>\r\n\x3c!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --\x3e\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t viewBox="0 0 2048 2048" fill="currentColor" style="enable-background:new 0 0 2048 2048;" xml:space="preserve">\r\n<path d="M1794.9,709.7l-448.7-448.7l-1,1v-0.6H267.8v1530.4h1530.4V709.7H1794.9z M1458.2,1442.6c-68,0-123.1-55.1-123.1-123.1\r\n\tc0-56.3,37.7-103.7,89.2-118.4v-123.3H628.1v121.1c56.1,11.5,98.2,61.1,98.2,120.6c0,68-55.1,123.1-123.1,123.1\r\n\tS480,1387.5,480,1319.4c0-55.2,36.3-101.8,86.2-117.5v-186h13.4h48.4h371.7v-131c-52-14.4-90.2-62.1-90.2-118.7\r\n\tc0-68,55.1-123.1,123.1-123.1s123.1,55.1,123.1,123.1c0,58.1-40.2,106.7-94.2,119.7v130h362.7h61.8v61.8v121.8\r\n\tc54.6,12.6,95.2,61.5,95.2,120C1581.3,1387.5,1526.2,1442.6,1458.2,1442.6z M1345.1,709.7V359.4l350.3,350.3H1345.1z"/>\r\n</svg>\r\n'},function(e,t,n){(t=e.exports=n(4)(!1)).push([e.i,"/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n.AjqC8R5fyT52anSSrLnge {\n  padding: 0 30px 30px 40px;\n  display: block;\n  box-sizing: border-box;\n  float: left;\n  width: 100%;\n  height: auto;\n  border-right: 1px solid #ddd;\n  margin-bottom: 15px;\n}\n.AjqC8R5fyT52anSSrLnge .dnn-editable-field:first-child {\n  padding-top: 2px;\n}\n",""]),t.locals={vocabulariesLeftPane:"AjqC8R5fyT52anSSrLnge"}},function(e,t,n){(t=e.exports=n(4)(!1)).push([e.i,"/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._2-JLfinRboEzFzNHAnL31t {\n  background: #FAFAFA;\n  padding: 15px 25px;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-title {\n  font-size: 13px;\n  text-transform: uppercase;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n._2-JLfinRboEzFzNHAnL31t .parent-display {\n  padding: 8px;\n  background-color: white;\n  border: 1px solid #bfbfbf;\n  cursor: pointer;\n}\n._2-JLfinRboEzFzNHAnL31t .parent-tree {\n  background: white;\n  padding: 15px 25px;\n}\n._2-JLfinRboEzFzNHAnL31t .parent-tree .term-name:hover {\n  color: #2FA5EB;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-single-line-input-with-error,\n._2-JLfinRboEzFzNHAnL31t .dnn-multi-line-input-with-error {\n  width: 100%;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-footer {\n  text-align: right;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-footer button {\n  margin-right: 11px;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-footer button:last-child {\n  margin-right: 0;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group > label {\n  font-weight: bold;\n  margin-bottom: 5px;\n  display: block;\n  color: #46292B;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group input,\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group textarea,\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group select {\n  color: #46292B;\n  border-radius: 0px;\n  width: 100%;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group textarea {\n  height: 60px;\n  padding: 5px;\n  margin-bottom: 0;\n}\n",""]),t.locals={addTermBox:"_2-JLfinRboEzFzNHAnL31t"}},function(e,t,n){(t=e.exports=n(4)(!1)).push([e.i,"/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._33e9wKHLVMJiEijO7ey92C {\n  cursor: pointer;\n}\n._33e9wKHLVMJiEijO7ey92C.selected > div > div > span {\n  color: #21A3DA;\n}\n._33e9wKHLVMJiEijO7ey92C.selected > div > div > span * {\n  color: #333;\n}\n._33e9wKHLVMJiEijO7ey92C > div:first-child {\n  display: inline-block;\n  position: relative;\n  padding-right: 25px;\n}\n._33e9wKHLVMJiEijO7ey92C > div:first-child:hover .edit-button {\n  display: block;\n}\n._33e9wKHLVMJiEijO7ey92C .edit-svg {\n  margin-right: 5px;\n  position: absolute;\n  left: -17px;\n  top: 3px;\n}\n._33e9wKHLVMJiEijO7ey92C .edit-svg svg {\n  width: 12px;\n  height: 12px;\n  fill: #6F7273;\n}\n._33e9wKHLVMJiEijO7ey92C span {\n  font-size: 15px;\n  font-weight: bold;\n  display: block;\n  margin-bottom: 5px;\n  color: #6F7273;\n}\n._33e9wKHLVMJiEijO7ey92C .edit-button {\n  width: 16px;\n  height: 16px;\n  position: absolute;\n  right: 0;\n  top: 0;\n  margin-left: 10px;\n  display: none;\n}\n",""]),t.locals={termLi:"_33e9wKHLVMJiEijO7ey92C"}},function(e,t,n){(t=e.exports=n(4)(!1)).push([e.i,"/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list-label {\n  font-weight: bold;\n  text-transform: uppercase;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button {\n  float: right;\n  font-weight: bold;\n  cursor: pointer;\n  color: #C8C8C8;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:hover {\n  color: #6F7273;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:hover svg {\n  fill: #6F7273;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:active {\n  color: #1E88C3;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:active svg {\n  fill: #1E88C3;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button svg {\n  width: 16px;\n  height: 16px;\n  float: left;\n  margin-right: 5px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list {\n  padding: 0 30px 15px;\n  position: relative;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content {\n  transition: 0.5s;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content ul.root-level {\n  list-style: none;\n  padding: 5px 15px;\n  min-height: 285px;\n  margin-top: 5px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content ul.root-level.Hierarchy {\n  padding: 5px 25px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content ul.root-level ul {\n  padding: 0 15px;\n  list-style: none;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content.closed {\n  opacity: 0;\n  z-index: -1;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content.open {\n  opacity: 1;\n  z-index: 10;\n  transition-delay: 0.5s;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-ul {\n  padding: 0 15px;\n  list-style: none;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-ul.root-level {\n  padding: 5px 25px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-ul.term-list-level li.selected > div > div > span {\n  color: #6F7273;\n}\n",""]),t.locals={vocabulariesRightPane:"_3Gj_kj90tDJ1kTBvV1ggmC"}},function(e,t,n){var r=n(37);"string"==typeof r&&(r=[[e.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(5)(r,o);r.locals&&(e.exports=r.locals)},function(e,t,n){(e.exports=n(4)(!1)).push([e.i,".vocabulary-list .dnn-persona-bar-page-body .vocabulary-error {\n  font-size: 15px;\n  padding: 25px;\n  color: #C8C8C8;\n  text-transform: uppercase;\n}\n",""])},function(e,t,n){(t=e.exports=n(4)(!1)).push([e.i,"/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box {\n  padding: 25px 50px;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-single-line-input-with-error,\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-multi-line-input-with-error {\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box label {\n  float: left;\n  margin-right: 15px;\n  font-weight: bold;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-radio-buttons {\n  float: left;\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-radio-buttons label:first-child {\n  width: 65px;\n  word-wrap: break-word;\n  margin-bottom: 15px;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group {\n  margin-bottom: 15px;\n  float: left;\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group > label {\n  font-weight: bold;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group input,\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group textarea,\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group select {\n  border-radius: 0px;\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group textarea {\n  height: 100px;\n  padding: 5px;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .action-buttons {\n  float: left;\n  width: 100%;\n  text-align: center;\n  margin: 20px 0;\n  position: relative;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .action-buttons .required-help-text {\n  position: absolute;\n  top: 15px;\n  left: 0;\n  color: #6F7273;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .action-buttons button:first-child {\n  margin-right: 15px;\n}\n",""]),t.locals={createVocabulary:"_3wAZB1r5A5ZIgQKEkLpIKU"}},function(e,t,n){"use strict";n.r(t);var r=n(0),o=n.n(r),a=(n(6),n(7)),i=n(1),l=n(2),c=n(3);function s(){return(s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function u(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var p=new(function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e)}var t,n,r;return t=e,(n=[{key:"getServiceFramework",value:function(e){var t=c.a.utilities.sf;return t.moduleRoot="PersonaBar",t.controller=e,t}},{key:"getVocabularyList",value:function(e,t,n){var r=this.getServiceFramework("Vocabularies");e=s({},e,{scopeTypeId:e.scopeTypeId>0?e.scopeTypeId:"*"}),r.get("GetVocabularies?"+function(e){var t=[];for(var n in e)e.hasOwnProperty(n)&&t.push(encodeURIComponent(n)+"="+encodeURIComponent(e[n]));return t.join("&")}(e),{},t,n)}},{key:"addVocabulary",value:function(e,t,n){this.getServiceFramework("Vocabularies").post("CreateVocabulary",e,t,n)}},{key:"updateVocabulary",value:function(e,t,n){this.getServiceFramework("Vocabularies").post("UpdateVocabulary",e,t,n)}},{key:"deleteVocabulary",value:function(e,t,n){this.getServiceFramework("Vocabularies").post("DeleteVocabulary?vocabularyId="+e,{},t,n)}}])&&u(t.prototype,n),r&&u(t,r),e}()),d={loadMore:function(e){return function(t){p.getVocabularyList(e,function(n){t({type:l.a.LOAD_MORE,loadMore:!0,payload:e,data:{vocabularyList:n.Results,totalCount:n.TotalResults}})})}},loadTab:function(e){return function(t){p.getVocabularyList(e,function(n){t({type:l.a.LOAD_TAB_DATA,loadMore:!0,payload:e,tabIndex:e.scopeTypeId,data:{vocabularyList:n.Results,totalCount:n.TotalResults}})})}}},f={getVocabularyList:function(e,t,n){return function(r){p.getVocabularyList(e,function(e){r({type:l.c.RETRIEVED_VOCABULARY_LIST,loadMore:t,data:{vocabularyList:e.Results,totalCount:e.TotalResults}}),n&&n(e)},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},addVocabulary:function(e,t,n){return function(r){p.addVocabulary(e,function(o){e.VocabularyId=o.VocabularyId,e.Type=2===e.ScopeTypeId?"Hierarchy":"Simple",r({type:l.c.ADDED_VOCABULARY,payload:{addedVocabulary:e,totalCount:t}}),n&&n()},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},updateVocabulary:function(e,t){return function(n){p.updateVocabulary(e,function(){n({type:l.c.UPDATED_VOCABULARY,data:{updatedTerm:e,index:t}})},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},deleteVocabulary:function(e,t,n,r){return function(o){p.deleteVocabulary(e,function(){o({type:l.c.DELETED_VOCABULARY,payload:{index:t,totalCount:n}}),r&&r()},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}}};function m(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var y=new(function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e)}var t,n,r;return t=e,(n=[{key:"getServiceFramework",value:function(e){var t=c.a.utilities.sf;return t.moduleRoot="PersonaBar",t.controller=e,t}},{key:"getVocabularyTerms",value:function(e,t,n){this.getServiceFramework("Vocabularies").get("GetTermsByVocabularyId?vocabularyId="+e+"&pageIndex=0",{},t,n)}},{key:"addVocabularyTerm",value:function(e,t,n){this.getServiceFramework("Vocabularies").post("CreateTerm",e,t,n)}},{key:"updateVocabularyTerm",value:function(e,t,n){this.getServiceFramework("Vocabularies").post("UpdateTerm",e,t,n)}},{key:"deleteVocabularyTerm",value:function(e,t,n){this.getServiceFramework("Vocabularies").post("DeleteTerm?termId="+e,{},t,n)}}])&&m(t.prototype,n),r&&m(t,r),e}()),b={getVocabularyTerms:function(e){return function(t){y.getVocabularyTerms(e,function(e){t({type:l.d.RETRIEVED_VOCABULARY_TERMS,data:{vocabularyTerms:e.Results,totalCount:e.TotalResults}})},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},addVocabularyTerm:function(e,t,n){return function(r){y.addVocabularyTerm(e,function(o){e.TermId=o.TermId,r({type:l.d.ADDED_VOCABULARY_TERM,payload:{addedTerm:e,totalCount:t}}),n&&n()},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},updateVocabularyTerm:function(e,t,n){return function(r){y.updateVocabularyTerm(e,function(){r({type:l.d.UPDATED_VOCABULARY_TERM,payload:{updatedTerm:e,index:t}}),n&&n()},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},deleteVocabularyTerm:function(e,t,n){return function(r){y.deleteVocabularyTerm(e,function(){r({type:l.d.DELETED_VOCABULARY_TERM,payload:{vocabularyTerms:t,totalCount:n}})},function(e){var t=JSON.parse(e.responseText);c.a.utilities.notifyError(t.Message)})}},setTermSelected:function(e,t){return function(n){n({type:l.d.SET_TERM_SELECTED,payload:{updatedTerm:e,index:t}})}},clearSelected:function(e){return function(t){t({type:l.d.CLEAR_TERMS_SELECTED,payload:{vocabularyTerms:e}})}}},h={selectPanel:function(e){return function(t){t({type:l.b.SELECT_PANEL,payload:{selectedPage:e}})}}},v=n(18),g=n.n(v),T={get:function(e){var t=c.a.moduleName;return c.a.utilities.getResx(t,e)}};function E(e){return(E="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function O(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function C(e){return(C=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function x(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function _(e,t){return(_=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var S=n(30).default,A=n(31).default,w=function(e){function t(){var e,n,r;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),n=this,(e=!(r=C(t).call(this))||"object"!==E(r)&&"function"!=typeof r?x(n):r).state={collapsed:!0,repainting:!1},e.timeout=0,e.handleClick=e.handleClick.bind(x(e)),e}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&_(e,t)}(t,r["Component"]),n=t,(a=[{key:"componentDidMount",value:function(){this.props.closeOnClick&&(document.addEventListener("click",this.handleClick),this._isMounted=!0)}},{key:"componentWillUnmount",value:function(){document.removeEventListener("click",this.handleClick),this._isMounted=!1}},{key:"handleClick",value:function(e){if(this._isMounted)if(!this.node.contains(e.target)&&"string"==typeof e.target.className&&e.target.className.indexOf("false")>-1){if(e.target.className.indexOf("delete-button")>-1)return;this.timeout=475,this.collapse()}else this.timeout=0}},{key:"uncollapse",value:function(){this.setState({collapsed:!1})}},{key:"collapse",value:function(){this.setState({collapsed:!0})}},{key:"toggle",value:function(e){if(this.state.collapsed)this.uncollapse();else{if(e.target.parentNode.className.indexOf("delete-button")>-1)return;this.collapse()}}},{key:"onDelete",value:function(){var e=this,t=this.props;t.onDelete(t.term,t.index,function(){e.collapse()})}},{key:"render",value:function(){var e=this,t=this.props,n=this.state,r=1===t.type?S:A;return o.a.createElement("div",{ref:function(t){return e.node=t},className:g.a.collapsibleComponent+" "+n.collapsed+(t.className?" "+t.className:"")},o.a.createElement("div",{className:"collapsible-header "+n.collapsed,onClick:this.toggle.bind(this)},o.a.createElement("div",{className:"term-header"},o.a.createElement("div",{className:"term-icon",dangerouslySetInnerHTML:{__html:r}}),o.a.createElement("div",{className:"term-label"},o.a.createElement(i.TextOverflowWrapper,{text:t.header,maxWidth:200}))),!t.disabled&&o.a.createElement("span",{className:"collapse-icon "+(this.state.collapsed?"collapsed":"")})),o.a.createElement(i.Collapsible,{className:"term-header-collapsible",isOpened:!this.state.collapsed,style:{float:"left"}},!n.collapsed&&t.children,!n.collapsed&&o.a.createElement(i.GridCell,{className:"vocab-footer"},!t.term.IsSystem&&c.a.canEdit()&&o.a.createElement(i.Button,{type:"secondary",onClick:this.onDelete.bind(this)},T.get("DeleteTerm")),o.a.createElement(i.Button,{type:"secondary",onClick:this.collapse.bind(this)},T.get("Close")))))}}])&&O(n.prototype,a),l&&O(n,l),t}(),L=n(19),I=n.n(L);function V(e){return(V="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function k(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function R(e,t){return!t||"object"!==V(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function D(e){return(D=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function P(e,t){return(P=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var B=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),R(this,D(t).call(this))}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&P(e,t)}(t,r["Component"]),n=t,(a=[{key:"onEnter",value:function(e,t){var n=this.props;n.onEnter(e,t,n.index)}},{key:"canEdit",value:function(){var e=this.props;return c.a.isHost()||"Portal"===e.scopeType&&c.a.canEdit()}},{key:"render",value:function(){var e=this.props;return o.a.createElement("div",{className:I.a.vocabulariesLeftPane},o.a.createElement(i.EditableField,{label:T.get("Description"),value:e.description,onEnter:this.onEnter.bind(this,"Description"),inputType:"textArea",editable:this.canEdit(),helpText:T.get("EditFieldHelper")}),o.a.createElement(i.EditableField,{label:T.get("Type"),value:T.get(e.type),onEnter:this.onEnter.bind(this,"Type"),editable:!1}),o.a.createElement(i.EditableField,{label:T.get("Scope"),value:T.get(e.scopeType),onEnter:this.onEnter.bind(this,"ScopeType"),editable:!1}))}}])&&k(n.prototype,a),l&&k(n,l),t}(),j=n(10),N=n(9),M=n.n(N),U=n(20),J=n.n(U),H={width:"100%",height:"110px",border:"1px solid #BFBFBF",borderTop:"none",background:"white",boxSizing:"border-box"},F=function(e){var t=e.isOpened,n=e.editMode,r=e.termBeingEdited,a=e.termTreeVisible,l=e.parentDisplay,c=e.parentTermTree,s=e.parentTreeOpened,u=e.toggleParentTree,p=e.onTermValueChange,d=e.deleteTerm,f=e.closeAddTerm,m=e.onUpdateTerm,y=e.error;return o.a.createElement(M.a,{isOpened:t},o.a.createElement("div",{className:J.a.addTermBox},o.a.createElement("p",{className:"add-term-title"},n?T.get("CurrentTerm"):T.get("AddTerm")),o.a.createElement(i.InputGroup,null,o.a.createElement(i.SingleLineInputWithError,{inputId:"create-term-name",withLabel:!0,label:T.get("TermName")+"*",value:r.Name,onChange:p.bind(void 0,"Name"),error:y,errorMessage:T.get("TermValidationError.Message")})),o.a.createElement(i.InputGroup,null,o.a.createElement(i.MultiLineInputWithError,{inputId:"create-term-description",withLabel:!0,label:T.get("Description"),value:r.Description,onChange:p.bind(void 0,"Description")})),a&&o.a.createElement(i.InputGroup,{style:{marginBottom:32}},o.a.createElement("label",null,T.get("ParentTerm")),o.a.createElement("p",{className:"parent-display",onClick:u},l&&l.Name||""),o.a.createElement(M.a,{isOpened:s,fixedHeight:115,keepCollapsedContent:!0},o.a.createElement(j.Scrollbars,{style:H},o.a.createElement("ul",{className:"term-ul root-level parent-tree"},c)))),o.a.createElement("div",{className:"add-term-footer"},n&&o.a.createElement(i.Button,{type:"secondary",onClick:d},T.get("DeleteTerm")),o.a.createElement(i.Button,{type:"secondary",onClick:f},T.get("cancelCreate")),o.a.createElement(i.Button,{type:"primary",onClick:m},T.get("SaveTerm")))))},z=n(21),G=n.n(z);function K(e){return(K="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function Q(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Y(e,t){return!t||"object"!==K(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function Z(e){return(Z=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function q(e,t){return(q=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var W=function(e){function t(){var e;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),(e=Y(this,Z(t).call(this))).state={isOpened:!1},e}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&q(e,t)}(t,r["Component"]),n=t,(a=[{key:"toggleTerm",value:function(e){e&&e.preventDefault(),this.setState({isOpened:!this.state.isOpened})}},{key:"onLiClick",value:function(e){e.preventDefault(),this.props.isEditable?this.toggleTerm():this.onClick()}},{key:"UNSAFE_componentWillReceiveProps",value:function(e){e.closeAll&&this.setState({isOpened:!1})}},{key:"onClick",value:function(){var e=this.props;e.onClick(e.term)}},{key:"render",value:function(){var e=this.props,t=this.state,n=G.a.termLi+(e.children.length>0?" has-children":"")+(t.isOpened?" opened":"")+(e.term.selected?" selected":"");return o.a.createElement("li",{className:n},o.a.createElement("div",null,e.children.length>0&&!t.isOpened&&o.a.createElement("div",{dangerouslySetInnerHTML:{__html:i.SvgIcons.ArrowRightIcon},className:"edit-svg",onClick:this.toggleTerm.bind(this)}),e.children.length>0&&t.isOpened&&o.a.createElement("div",{dangerouslySetInnerHTML:{__html:i.SvgIcons.ArrowDownIcon},className:"edit-svg",onClick:this.toggleTerm.bind(this)}),o.a.createElement("div",{onClick:this.onLiClick.bind(this)},o.a.createElement("span",{className:"term-name",dangerouslySetInnerHTML:{__html:e.term.Name}}),e.isEditable&&c.a.canEdit()&&o.a.createElement("div",{className:"edit-button",onClick:this.onClick.bind(this),dangerouslySetInnerHTML:{__html:i.SvgIcons.EditIcon}}))),o.a.createElement(M.a,{isOpened:t.isOpened},e.children))}}])&&Q(n.prototype,a),l&&Q(n,l),t}(),$=n(22),X=n.n($);function ee(e){return(ee="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function te(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function ne(e,t){return!t||"object"!==ee(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function re(e){return(re=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function oe(e,t){return(oe=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function ae(e,t){if("Simple"===t)return e;var n=[];return e.forEach(function(e){if(e.ParentTermId<0)e.ChildTerms=[],n.find(function(t){return t.TermId===e.TermId})||(n=n.concat(e));else{var t=function e(t,n){if(t){var r={};return t.forEach(function(t){return t.TermId===n?r=t:e(t.ChildTerms,n)?r=e(t.ChildTerms,n):void 0}),r}}(n,e.ParentTermId);t&&(t.ChildTerms||(t.ChildTerms=[]),t.ChildTerms.find(function(t){return t.TermId===e.TermId})||(t.ChildTerms=t.ChildTerms.concat(e)))}}),n}var ie=function(e){function t(){var e;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),(e=ne(this,re(t).call(this))).state={editBoxOpened:!1,_editBoxOpened:!1,editMode:!1,parentTreeOpened:!1,open:!1,termBeingEdited:{TermId:-1,Name:"",Description:"",VocabularyId:-1,ParentTermId:-1},nameError:!0,triedToSubmitTerm:!1},e}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&oe(e,t)}(t,r["Component"]),n=t,(a=[{key:"UNSAFE_componentWillMount",value:function(){var e=this.state.termBeingEdited,t=this.props;e.VocabularyId=t.vocabularyId,this.setState({termBeingEdited:e})}},{key:"componentDidMount",value:function(){var e=this.props;e.getVocabularyTerms(e.vocabularyId,e.index)}},{key:"openAddTerm",value:function(e,t,n){var r=this;n&&n.preventDefault();var o=this.state.termBeingEdited,a=this.props;o={TermId:-1,Name:"",Description:"",VocabularyId:a.vocabularyId,ParentTermId:"Hierarchy"===t&&a.vocabularyTerms.length>0&&a.vocabularyTerms[0].TermId||-1},e||delete o.TermId,this.setState({editBoxOpened:!0,termBeingEdited:o,editMode:e,triedToSubmitTerm:!1,nameError:!0}),setTimeout(function(){r.setState({_editBoxOpened:!0})},500);var i=JSON.parse(JSON.stringify(a.vocabularyTerms)).find(function(e){return e.TermId===o.ParentTermId});i&&(i.selected=!0,a.selectParentTerm(i))}},{key:"closeAddTerm",value:function(){var e=this,t=this.props;setTimeout(function(){e.setState({termBeingEdited:{TermId:-1,Name:"",Description:"",VocabularyId:t.vocabularyId,ParentTermId:"Hierarchy"===t.type&&t.vocabularyTerms.length>0&&t.vocabularyTerms[0].TermId||-1},editBoxOpened:!1})},500),this.setState({_editBoxOpened:!1})}},{key:"toggleParentTree",value:function(e){e&&e.preventDefault();var t=this.state;this.setState({parentTreeOpened:!t.parentTreeOpened})}},{key:"onTermValueChange",value:function(e,t){var n=t.target.value,r=this.state;r.termBeingEdited[e]=n,r.triedToSubmitTerm=!1,r.nameError="Name"===e&&""===n,this.setState({state:r})}},{key:"onUpdateTerm",value:function(e){var t=this;e.preventDefault();var n=this.props,r=this.state;"Simple"===n.type&&delete r.termBeingEdited.ParentTermId,this.setState({triedToSubmitTerm:!0}),r.nameError||n.onUpdateTerm(r.termBeingEdited,r.editMode,function(){t.closeAddTerm()})}},{key:"onEditTerm",value:function(e){var t=this.props;if(this.canEdit()){this.openAddTerm(!0);var n=this.state.termBeingEdited;n=e,this.setState({termBeingEdited:n,triedToSubmitTerm:!1,nameError:!1});var r=JSON.parse(JSON.stringify(t.vocabularyTerms)).find(function(e){return e.TermId===n.ParentTermId});r&&(r.selected=!0,t.selectParentTerm(r))}}},{key:"getChildTerms",value:function(e,t,n){var r=this,a=[];return e.ChildTerms&&(a=e.ChildTerms.map(function(a){var i=r.getChildTerms(a,t,n);return o.a.createElement("ul",{className:"term-ul",key:"ul-"+e.TermId},o.a.createElement(W,{term:a,onClick:t,isEditable:n,key:"term-"+e.TermId},i))})),a}},{key:"onSelectParent",value:function(e){var t=this,n=this.state.termBeingEdited,r=this.props;n.ParentTermId=e.TermId,this.setState({termBeingEdited:n},function(){t.toggleParentTree(),r.selectParentTerm(e)})}},{key:"deleteTerm",value:function(){var e=this,t=this.props,n=this.state;c.a.utilities.confirm(T.get("ConfirmDeletion_Term").replace("{0}",n.termBeingEdited.Name),T.get("DeleteTerm"),T.get("cancelCreate"),function(){t.onDeleteTerm(n.termBeingEdited.TermId),e.closeAddTerm()})}},{key:"toggle",value:function(){this.setState({open:!this.state.open})}},{key:"canEdit",value:function(){var e=this.props;return c.a.isHost()||"Portal"===e.scopeType&&c.a.canEdit()}},{key:"render",value:function(){var e=this,t=this.props,n=this.state;if(!t.vocabularyTerms)return o.a.createElement("p",null,"Empty");var r=JSON.parse(JSON.stringify(t.vocabularyTerms)),a=ae(r,t.type),l=a.map(function(t){var n=e.getChildTerms(t,e.onEditTerm.bind(e),!0);return o.a.createElement(W,{term:t,onClick:e.onEditTerm.bind(e),isEditable:e.canEdit(),key:"term-"+t.TermId},n)}),c=ae(function(e){return e.map(function(e){return delete e.ChildTerms,e})}(r).filter(function(e){return e.TermId!==n.termBeingEdited.TermId}),t.type,n.termBeingEdited.TermId);c=c.map(function(t){var n=e.getChildTerms(t,e.onSelectParent.bind(e),!1);return o.a.createElement(W,{term:t,onClick:e.onSelectParent.bind(e),isEditable:!1,key:"term-"+t.TermId},n)});var s=t.vocabularyTerms.find(function(e){return e.TermId===n.termBeingEdited.ParentTermId});return o.a.createElement(i.GridCell,{className:X.a.vocabulariesRightPane},o.a.createElement(i.GridCell,{className:"term-list"},n.editBoxOpened&&o.a.createElement(F,{isOpened:n._editBoxOpened,editMode:n.editMode,error:n.triedToSubmitTerm&&n.nameError,termBeingEdited:n.termBeingEdited,termTreeVisible:"Hierarchy"===t.type&&a.length>0&&(!n.editMode||n.termBeingEdited.ParentTermId>0),parentDisplay:s,parentTermTree:c,parentTreeOpened:n.parentTreeOpened,toggleParentTree:this.toggleParentTree.bind(this),onTermValueChange:this.onTermValueChange.bind(this),deleteTerm:this.deleteTerm.bind(this),closeAddTerm:this.closeAddTerm.bind(this),onUpdateTerm:this.onUpdateTerm.bind(this)}),!n._editBoxOpened&&o.a.createElement(i.GridCell,{className:"term-list-content "+(this.state.editBoxOpened?"closed":"open")},o.a.createElement("span",{className:"term-list-label"},T.get("Terms")+" ("+t.totalTermCount+")"),this.canEdit()&&o.a.createElement("div",{className:"add-term-button do-not-close",dangerouslySetInnerHTML:{__html:i.SvgIcons.AddIcon+" "+T.get("AddTerm")},onClick:this.openAddTerm.bind(this,!1,t.type)}),o.a.createElement(j.Scrollbars,{style:{width:"345px",height:"300px",border:"1px solid #DBDBDB",marginTop:10}},o.a.createElement("ul",{className:"term-ul root-level term-list-level "+t.type},l)))))}}])&&te(n.prototype,a),l&&te(n,l),t}();n(36);function le(e){return(le="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function ce(){return(ce=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function se(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function ue(e){return(ue=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function pe(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function de(e,t){return(de=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var fe={display:"block",margin:"20px auto"};function me(e){return{TermId:e.TermId,Name:e.Name,Description:e.Description,VocabularyId:e.VocabularyId,ParentTermId:e.ParentTermId}}var ye=function(e){function t(){var e,n,r;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),n=this,(e=!(r=ue(t).call(this))||"object"!==le(r)&&"function"!=typeof r?pe(n):r).onDescriptionUpdate=e.onDescriptionUpdate.bind(pe(e)),e.state={vocabularyList:[],isOpened:!1},e}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&de(e,t)}(t,r["Component"]),n=t,(a=[{key:"getNextPage",value:function(e,t,n){return{pageIndex:e||0,pageSize:t,scopeTypeId:n||0}}},{key:"componentDidMount",value:function(){var e=this.props;e.dispatch(f.getVocabularyList(this.getNextPage(e.pagination.pageIndex,e.pagination.pageSize,e.pagination.scopeTypeId)))}},{key:"getVocabularyTerms",value:function(e,t){this.props.dispatch(b.getVocabularyTerms(e,t))}},{key:"updateVocabulary",value:function(e,t,n,r){var o=ce({},e[n]);return o[t]=r,o}},{key:"onUpdateTerm",value:function(e,t,n){var r=this.props;if(t){var o=r.vocabularyTerms.findIndex(function(t){return t.TermId===e.TermId});r.dispatch(b.updateVocabularyTerm(me(e),o,n))}else{var a=r.totalTermCount;r.dispatch(b.addVocabularyTerm(me(e),++a,n))}}},{key:"onDescriptionUpdate",value:function(e,t,n){var r=this.props,o=r.vocabularyList,a=this.updateVocabulary(o,e,n,t);r.dispatch(f.updateVocabulary(a,n))}},{key:"onLoadMore",value:function(e){e.preventDefault();var t=this.props,n=t.pagination.pageIndex,r=this.getNextPage(++n,t.pagination.pageSize,t.pagination.scopeTypeId);t.dispatch(d.loadMore(r))}},{key:"handleSelect",value:function(e){var t=this.props;t.dispatch(d.loadTab(this.getNextPage(0,t.pagination.pageSize,e)))}},{key:"onDeleteVocabulary",value:function(e,t,n){var r=this,o=this.props;c.a.utilities.confirm(T.get("ConfirmDeletion_Vocabulary").replace("{0}",e.Name),T.get("DeleteVocabulary"),T.get("cancelCreate"),function(){var a=o.totalCount;n&&n(),o.dispatch(f.deleteVocabulary(e.VocabularyId,t,--a,function(){if(o.vocabularyList.length<o.totalCount){var e=o.pagination.pageIndex,t=r.getNextPage(e,o.pagination.pageSize,o.pagination.scopeTypeId);o.dispatch(d.loadMore(t))}}))})}},{key:"onDeleteTerm",value:function(e){var t=this.props,n=function(e,t){return t.filter(function(n){return function(e,t,n){for(;t.TermId!==e&&t.ParentTermId>-1;)t=n.find(function(e){return e.TermId===t.ParentTermId});return t}(e,n,t).TermId!==e})}(e,t.vocabularyTerms);t.dispatch(b.deleteVocabularyTerm(e,n,n.length))}},{key:"selectParentTerm",value:function(e){var t=this.props,n=JSON.parse(JSON.stringify(t.vocabularyTerms)).map(function(e){return delete e.selected,e}),r=t.vocabularyTerms.findIndex(function(t){return t.TermId===e.TermId});e.selected=!0,t.dispatch(b.clearSelected(n)),t.dispatch(b.setTermSelected(e,r))}},{key:"render",value:function(){var e=this,t=this.props.vocabularyList,n=this.props,r=t.map(function(r,a){return o.a.createElement(w,{header:r.Name,type:r.TypeId,term:r,index:a,key:"vocabularyTerm-"+a,closeOnClick:!0,onDelete:e.onDeleteVocabulary.bind(e)},o.a.createElement(i.GridSystem,null,o.a.createElement(B,{description:r.Description,type:r.Type,onEnter:e.onDescriptionUpdate,index:a,scopeType:r.ScopeType}),o.a.createElement(ie,{vocabularyId:r.VocabularyId,getVocabularyTerms:e.getVocabularyTerms.bind(e),onUpdateTerm:e.onUpdateTerm.bind(e),vocabularyTerms:n.vocabularyTerms,selectParentTerm:e.selectParentTerm.bind(e),totalTermCount:n.totalTermCount,index:a,type:r.Type,scopeType:r.ScopeType,onDeleteTerm:e.onDeleteTerm.bind(e),parentTerms:t})))}),a=n.vocabularyList.length<n.totalCount;return o.a.createElement("div",{className:"vocabulary-list"},o.a.createElement(i.PersonaBarPageBody,null,o.a.createElement(i.DnnTabs,{onSelect:this.handleSelect.bind(this),selectedIndex:n.tabIndex,tabHeaders:[T.get("All"),T.get("Application"),T.get("Portal")],type:"secondary"},r.length>0&&r||o.a.createElement("p",{className:"vocabulary-error"},T.get("NoVocabularyTerms.Error")),r.length>0&&r||o.a.createElement("p",{className:"vocabulary-error"},T.get("NoVocabularyTerms.Error")),r.length>0&&r||o.a.createElement("p",{className:"vocabulary-error"},T.get("NoVocabularyTerms.Error")))),a&&o.a.createElement(i.Button,{type:"primary",style:fe,onClick:this.onLoadMore.bind(this)},T.get("LoadMore")))}}])&&se(n.prototype,a),l&&se(n,l),t}();var be=Object(a.connect)(function(e){return{vocabularyList:e.vocabulary.vocabularyList,totalCount:e.vocabulary.totalCount,totalTermCount:e.vocabularyTermList.totalCount,vocabularyTerms:e.vocabularyTermList.vocabularyTerms,pagination:e.pagination,tabIndex:e.pagination.tabIndex,scopeTypeId:e.pagination.scopeTypeId}})(ye),he=n(23),ve=n.n(he);function ge(e){return(ge="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function Te(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Ee(e,t){return!t||"object"!==ge(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function Oe(e){return(Oe=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function Ce(e,t){return(Ce=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var xe=function(e){function t(){var e;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),(e=Ee(this,Oe(t).call(this))).state={term:{Name:"",Description:"",TypeId:1,ScopeTypeId:2},error:{name:!0},triedToSubmit:!1},e}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&Ce(e,t)}(t,r["Component"]),n=t,(a=[{key:"componentDidMount",value:function(){this.setState({term:{Name:"",Description:"",TypeId:1,ScopeTypeId:2}})}},{key:"onCloseVocabulary",value:function(){this.props.onCloseVocabulary()}},{key:"onTermValueChange",value:function(e,t){var n="object"===ge(t)?t.target.value:parseInt(t),r=this.state,o=this.state.term;o[e]=n,r.triedToSubmit=!1,""===n&&"Name"===e?r.error.name=!0:""!==n&&"Name"===e&&(r.error.name=!1),this.setState({state:r,term:o})}},{key:"getNextPage",value:function(e,t,n){return{pageIndex:e||0,pageSize:t,scopeTypeId:n||0}}},{key:"onAddNewVocabulary",value:function(e){var t=this;e.preventDefault();var n=this.props,r=this.state;if(this.setState({triedToSubmit:!0}),!r.error.name){var o=n.totalCount;n.dispatch(f.addVocabulary(r.term,++o,function(){t.onCloseVocabulary(),n.dispatch(d.loadTab(t.getNextPage(0,1e4,r.term.ScopeTypeId)))}))}}},{key:"render",value:function(){var e=this.props,t=this.state,n=[{label:T.get("Simple"),value:1},{label:T.get("Hierarchy"),value:2}],r=[{label:T.get("Portal"),value:2},{label:T.get("Application"),value:1}];return o.a.createElement(i.PersonaBarPageBody,{backToLinkProps:{text:T.get("BackToVocabularies"),onClick:this.onCloseVocabulary.bind(this)},className:ve.a.createVocabulary,style:{height:"calc(100% - 100px)"}},e.isOpen&&o.a.createElement(i.GridCell,{className:"create-box"},o.a.createElement(i.InputGroup,null,o.a.createElement(i.SingleLineInputWithError,{inputId:"create-vocabulary-name",withLabel:!0,label:T.get("TermName")+"*",error:t.error.name&&t.triedToSubmit,errorMessage:T.get("TermValidationError.Message"),value:t.term.Name,onChange:this.onTermValueChange.bind(this,"Name")})),o.a.createElement(i.InputGroup,null,o.a.createElement(i.MultiLineInputWithError,{inputId:"create-vocabulary-description",withLabel:!0,label:T.get("Description"),value:t.term.Description,onChange:this.onTermValueChange.bind(this,"Description")})),o.a.createElement(i.RadioButtons,{onChange:this.onTermValueChange.bind(this,"TypeId"),options:n,label:T.get("Type.Header")+":",buttonGroup:"vocabularyType",buttonWidth:130,value:t.term.TypeId}),c.a.isHost()&&o.a.createElement(i.RadioButtons,{onChange:this.onTermValueChange.bind(this,"ScopeTypeId"),options:r,label:T.get("Scope.Header")+":",buttonGroup:"scopeType",buttonWidth:130,value:t.term.ScopeTypeId}),o.a.createElement(i.GridCell,{className:"action-buttons"},o.a.createElement(i.Button,{type:"secondary",onClick:this.onCloseVocabulary.bind(this)},T.get("cancelCreate")),o.a.createElement(i.Button,{type:"primary",onClick:this.onAddNewVocabulary.bind(this)},T.get("CreateVocabulary")),o.a.createElement("span",{className:"required-help-text"},"* ",T.get("RequiredField")))))}}])&&Te(n.prototype,a),l&&Te(n,l),t}();var _e=Object(a.connect)(function(e){return{totalCount:e.vocabulary.totalCount,vocabularyAddedIsValid:e.vocabulary.vocabularyAddedIsValid,pagination:e.pagination}})(xe);function Se(e){return(Se="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function Ae(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function we(e,t){return!t||"object"!==Se(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function Le(e){return(Le=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function Ie(e,t){return(Ie=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var Ve=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),we(this,Le(t).call(this))}var n,a,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&Ie(e,t)}(t,r["Component"]),n=t,(a=[{key:"openCreateVocabulary",value:function(){this.props.dispatch(h.selectPanel(1))}},{key:"closeCreateVocabulary",value:function(){this.props.dispatch(h.selectPanel(0))}},{key:"navigateMap",value:function(e,t,n){n.preventDefault(),this.props.dispatch(h.selectPanel(e,t))}},{key:"render",value:function(){var e=this.props;return o.a.createElement("div",{className:"taxonomy-app"},o.a.createElement(i.PersonaBarPage,{isOpen:0===e.selectedPage},o.a.createElement(i.PersonaBarPageHeader,{title:T.get("ControlTitle_")},c.a.canEdit()&&o.a.createElement(i.Button,{type:"primary",size:"large",onClick:this.openCreateVocabulary.bind(this)},T.get("Create"))),o.a.createElement(be,null)),o.a.createElement(i.PersonaBarPage,{isOpen:1===e.selectedPage},o.a.createElement(i.PersonaBarPageHeader,{title:T.get("Create"),onCreateVocabulary:this.openCreateVocabulary.bind(this)}),1===e.selectedPage&&o.a.createElement(_e,{onCloseVocabulary:this.closeCreateVocabulary.bind(this),isOpen:1===e.selectedPage})))}}])&&Ae(n.prototype,a),l&&Ae(n,l),t}();var ke=Object(a.connect)(function(e){return{selectedPage:e.visiblePanel.selectedPage,selectedPageVisibleIndex:e.visiblePanel.selectedPageVisibleIndex}})(Ve);function Re(e){return(Re="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function De(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Pe(e,t){return!t||"object"!==Re(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function Be(e){return(Be=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function je(e,t){return(je=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}var Ne=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),Pe(this,Be(t).call(this))}var n,a,i;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&je(e,t)}(t,r["Component"]),n=t,(a=[{key:"render",value:function(){return o.a.createElement("div",{className:"taxonomy-Root"},o.a.createElement(ke,null))}}])&&De(n.prototype,a),i&&De(n,i),t}();t.default=Ne},function(e,t,n){"use strict";n.r(t);var r=n(0),o=n.n(r),a=n(12),i=n(7),l=n(3),c={init:function(){var e=window.dnn.initVocabularies();l.a.init(e),n(24)},dispatch:function(){throw new Error("dispatch method needs to be overwritten from the Redux store")}},s=n(8),u=n(11),p=n.n(u),d=n(13),f=n.n(d),m=n(2);function y(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){b(e,t,n[t])})}return e}function b(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function h(e){return function(e){if(Array.isArray(e)){for(var t=0,n=new Array(e.length);t<e.length;t++)n[t]=e[t];return n}}(e)||function(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function v(e,t,n){return[].concat(h(e.slice(0,t)),[n],h(e.slice(t+1)))}function g(e){return function(e){if(Array.isArray(e)){for(var t=0,n=new Array(e.length);t<e.length;t++)n[t]=e[t];return n}}(e)||function(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function T(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){E(e,t,n[t])})}return e}function E(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function O(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){C(e,t,n[t])})}return e}function C(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function x(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){_(e,t,n[t])})}return e}function _(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var S=Object(s.combineReducers)({vocabulary:function(){var e,t,n,r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{vocabularyList:[],vocabularyTerms:[],totalTermCount:0,totalCount:0,vocabularyAddedIsValid:!0},o=arguments.length>1?arguments[1]:void 0;switch(o.type){case m.a.LOAD_MORE:return y({},r,{vocabularyList:(e=JSON.parse(JSON.stringify(r.vocabularyList)),t=o.data.vocabularyList,n=e,t.forEach(function(t){e.find(function(e){return e.VocabularyId===t.VocabularyId})||n.push(t)}),n),totalCount:o.data.totalCount});case m.a.LOAD_TAB_DATA:case m.c.RETRIEVED_VOCABULARY_LIST:return y({},r,{vocabularyList:o.data.vocabularyList,totalCount:o.data.totalCount});case m.c.UPDATED_VOCABULARY:return y({},r,{vocabularyList:v(r.vocabularyList,o.data.index,o.data.updatedTerm)});case m.c.UPDATED_VOCABULARY_TERM:return y({},r,{vocabularyTerms:[].concat(h(r.vocabularyTerms.slice(0,o.payload.index)),[o.payload.updatedTerm],h(r.vocabularyTerms.slice(o.payload.index+1)))});case m.c.ADDED_VOCABULARY_TERM:return y({},r,{vocabularyTerms:[].concat(h(r.vocabularyTerms),[o.payload.addedTerm]),totalTermCount:o.payload.totalCount});case m.c.ADDED_VOCABULARY:return{vocabularyAddedIsValid:!0,vocabularyList:r.vocabularyList.concat(o.payload.addedVocabulary),totalCount:o.payload.totalCount};case m.c.RETRIEVED_VOCABULARY_TERMS:return y({},r,{vocabularyTerms:o.data.vocabularyTerms,totalTermCount:o.data.totalCount});case m.c.DELETED_VOCABULARY:return y({},r,{vocabularyList:[].concat(h(r.vocabularyList.slice(0,o.payload.index)),h(r.vocabularyList.slice(o.payload.index+1))),totalCount:o.payload.totalCount});case m.c.FAILED_TO_ADD_VOCABULARY:return y({},r,{vocabularyAddedIsValid:!1});default:return y({},r)}},pagination:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{tabIndex:0,pageIndex:0,scopeTypeId:"*",pageSize:10},t=arguments.length>1?arguments[1]:void 0;switch(t.type){case m.a.LOAD_MORE:return O({},e,{pageIndex:t.payload.pageIndex,scopeTypeId:t.payload.scopeTypeId});case m.a.LOAD_TAB_DATA:return O({},e,{pageIndex:0,tabIndex:t.tabIndex,scopeTypeId:t.payload.scopeTypeId});default:return O({},e)}},vocabularyTermList:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{vocabularyTerms:[],totalCount:0},t=arguments.length>1?arguments[1]:void 0;switch(t.type){case m.d.UPDATED_VOCABULARY_TERM:return T({},e,{vocabularyTerms:[].concat(g(e.vocabularyTerms.slice(0,t.payload.index)),[t.payload.updatedTerm],g(e.vocabularyTerms.slice(t.payload.index+1)))});case m.d.ADDED_VOCABULARY_TERM:return T({},e,{vocabularyTerms:[].concat(g(e.vocabularyTerms),[t.payload.addedTerm]),totalCount:t.payload.totalCount});case m.d.RETRIEVED_VOCABULARY_TERMS:return T({},e,{vocabularyTerms:t.data.vocabularyTerms,totalCount:t.data.totalCount});case m.d.DELETED_VOCABULARY_TERM:return T({},e,{vocabularyTerms:t.payload.vocabularyTerms,totalCount:t.payload.totalCount});case m.d.SET_TERM_SELECTED:return T({},e,{vocabularyTerms:[].concat(g(e.vocabularyTerms.slice(0,t.payload.index)),[t.payload.updatedTerm],g(e.vocabularyTerms.slice(t.payload.index+1)))});case m.d.CLEAR_TERMS_SELECTED:return T({},e,{vocabularyTerms:t.payload.vocabularyTerms});default:return T({},e)}},visiblePanel:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{selectedPage:0},t=arguments.length>1?arguments[1]:void 0;switch(t.type){case m.b.SELECT_PANEL:return x({},e,{selectedPage:t.payload.selectedPage});default:return x({},e)}}}),A=n(14),w=n(15),L=n.n(w),I=n(16),V=n.n(I),k=Object(A.createDevTools)(o.a.createElement(V.a,{toggleVisibilityKey:"ctrl-h",changePositionKey:"ctrl-q"},o.a.createElement(L.a,null))),R=!0;var D,P=n(17),B=n.n(P),j=Object(s.createStore)(S,D,Object(s.compose)(R?Object(s.applyMiddleware)(p.a):Object(s.applyMiddleware)(p.a,f()()),k.instrument()));c.dispatch=j.dispatch,c.init();var N=document.getElementById("vocabularies-panel");Object(a.render)(o.a.createElement(i.Provider,{store:j},o.a.createElement(B.a,null)),N)}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "http://localhost:8080/dist/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.React;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (false) { var throwOnDirectAccess, ReactIs; } else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(27)();
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.CommonComponents;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// CONCATENATED MODULE: ./src/constants/actionTypes/pagination.js
+var paginationActionTypes = {
+  LOAD_MORE: "LOAD_MORE",
+  LOAD_TAB_DATA: "LOAD_TAB_DATA"
+};
+/* harmony default export */ var pagination = (paginationActionTypes);
+// CONCATENATED MODULE: ./src/constants/actionTypes/vocabulary.js
+var vocabularyActionTypes = {
+  RETRIEVED_VOCABULARY_LIST: "RETRIEVED_VOCABULARY_LIST",
+  UPDATED_VOCABULARY: "UPDATED_VOCABULARY",
+  ADDED_VOCABULARY: "ADDED_VOCABULARY",
+  DELETED_VOCABULARY: "DELETED_VOCABULARY",
+  FAILED_TO_ADD_VOCABULARY: "FAILED_TO_ADD_VOCABULARY"
+};
+/* harmony default export */ var vocabulary = (vocabularyActionTypes);
+// CONCATENATED MODULE: ./src/constants/actionTypes/vocabularyTermList.js
+var vocabularyTermActionTypes = {
+  GET_VOCABULARY_TERMS: "GET_VOCABULARY_TERMS",
+  RETRIEVED_VOCABULARY_TERMS: "RETRIEVED_VOCABULARY_TERMS",
+  UPDATED_VOCABULARY_TERM: "UPDATED_VOCABULARY_TERM",
+  ADDED_VOCABULARY_TERM: "ADDED_VOCABULARY_TERM",
+  DELETED_VOCABULARY_TERM: "DELETED_VOCABULARY_TERM",
+  SET_TERM_SELECTED: "SET_TERM_SELECTED",
+  CLEAR_TERMS_SELECTED: "CLEAR_TERMS_SELECTED"
+};
+/* harmony default export */ var vocabularyTermList = (vocabularyTermActionTypes);
+// CONCATENATED MODULE: ./src/constants/actionTypes/visiblePanel.js
+var visiblePanel_paginationActionTypes = {
+  SELECT_PANEL: "SELECT_PANEL"
+};
+/* harmony default export */ var visiblePanel = (visiblePanel_paginationActionTypes);
+// CONCATENATED MODULE: ./src/constants/actionTypes/index.js
+/* concated harmony reexport pagination */__webpack_require__.d(__webpack_exports__, "a", function() { return pagination; });
+/* concated harmony reexport vocabulary */__webpack_require__.d(__webpack_exports__, "c", function() { return vocabulary; });
+/* concated harmony reexport vocabularyTermList */__webpack_require__.d(__webpack_exports__, "d", function() { return vocabularyTermList; });
+/* concated harmony reexport visiblePanel */__webpack_require__.d(__webpack_exports__, "b", function() { return visiblePanel; });
+
+
+
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var utils = {
+  init: function init(options) {
+    if (!options || !options.utility) {
+      throw new Error("Utilities is undefined.");
+    }
+
+    this.utilities = options.utility;
+    this.moduleName = options.moduleName;
+    this.settings = options.settings;
+  },
+  canEdit: function canEdit() {
+    return this.settings.isHost || this.settings.isAdmin || this.settings.permissions && this.settings.permissions.EDIT === true;
+  },
+  isHost: function isHost() {
+    return this.settings.isHost;
+  },
+  utilities: null,
+  moduleName: null,
+  settings: null
+};
+/* harmony default export */ __webpack_exports__["a"] = (utils);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return '@media ' + item[2] + '{' + content + '}';
+      } else {
+        return content;
+      }
+    }).join('');
+  }; // import a list of modules into the list
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (i = 0; i < modules.length; i++) {
+      var item = modules[i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || '';
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+  return '/*# ' + data + ' */';
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(26);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReactRedux;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.Redux;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReactCollapse;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReactCustomScrollBars;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReduxThunk;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReactDOM;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReduxImmutableStateInvariant;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReduxDevTools;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReduxDevToolsLogMonitor;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = window.dnn.nodeModules.ReduxDevToolsDockMonitor;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* eslint-disable no-undef */
+if (true) {
+  module.exports = __webpack_require__(39);
+} else {}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(29);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(32);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(33);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(34);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(35);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(38);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(25);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "", ""]);
+
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = __webpack_require__(28);
+
+function emptyFunction() {}
+function emptyFunctionWithReset() {}
+emptyFunctionWithReset.resetWarningCache = emptyFunction;
+
+module.exports = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    var err = new Error(
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+    err.name = 'Invariant Violation';
+    throw err;
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    elementType: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim,
+
+    checkPropTypes: emptyFunctionWithReset,
+    resetWarningCache: emptyFunction
+  };
+
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._1Q7-DkePapyqxJ1Cmdh1BU {\n  display: table;\n  width: 100%;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU.false {\n  border-top: 2px solid #1E88C3;\n  border-bottom: 2px solid #1E88C3;\n  position: relative;\n  top: -1px;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU:not(:last-child) div.collapsible-header {\n  border-bottom: 1px solid #C8C8C8;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header {\n  text-transform: uppercase;\n  color: #b2bdc3;\n  width: 100%;\n  float: left;\n  position: relative;\n  padding: 22px 22px 16px;\n  box-sizing: border-box;\n  cursor: pointer;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header * {\n  pointer-events: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .delete-button {\n  pointer-events: all;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header.false {\n  border-bottom: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .collapse-icon {\n  position: absolute;\n  right: 20px;\n  top: 21px;\n  font-size: 30px;\n  line-height: 16px;\n  cursor: pointer;\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Chrome/Safari/Opera */\n  -khtml-user-select: none;\n  /* Konqueror */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* IE/Edge */\n  user-select: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .collapse-icon:after {\n  border: 6px solid transparent;\n  border-bottom: 6px solid #4B4E4F;\n  content: \"\";\n  position: absolute;\n  left: -15px;\n  top: 0;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU div.collapsible-header .collapse-icon.collapsed:after {\n  border-top: 6px solid #4B4E4F;\n  border-bottom: 6px solid transparent;\n  top: 5px;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .term-header-collapsible > div {\n  float: left;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .term-header-collapsible > div > .dnn-grid-system {\n  padding: 45px 0;\n  transition: none;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .vocab-footer {\n  text-align: center;\n  padding-bottom: 55px;\n}\n._1Q7-DkePapyqxJ1Cmdh1BU .vocab-footer > .dnn-ui-common-button {\n  margin-left: 11px;\n}\n.term-header .term-icon svg {\n  width: 25px;\n  float: left;\n  height: 25px;\n  margin-right: 15px;\n  margin-top: -5px;\n  fill: #6F7273;\n}\n.term-header .term-label {\n  color: #46292B;\n}\n.term-header .term-label .dnn-text-overflow-wrapper {\n  font-size: 10pt;\n}\n.term-header .term-label * {\n  pointer-events: all !important;\n}\n.term-header .delete-button {\n  display: inline;\n  pointer-events: none !important;\n}\n.term-header .delete-button svg {\n  pointer-events: all !important;\n  margin-left: 10px;\n  margin-bottom: -2px;\n  width: 16px;\n  height: 16px;\n}\n.term-header .delete-button svg g,\n.term-header .delete-button svg polygon {\n  pointer-events: none !important;\n}\n", ""]);
+
+// Exports
+exports.locals = {
+	"collapsibleComponent": "_1Q7-DkePapyqxJ1Cmdh1BU"
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\r\n\t viewBox=\"0 0 2048 2048\" fill=\"currentColor\" style=\"enable-background:new 0 0 2048 2048;\" xml:space=\"preserve\">\r\n<path d=\"M1788.9,709.7l-448.7-448.7l-1,1v-0.6H261.8v1530.4h1530.4V709.7H1788.9z M1458.2,1174.5c-57,0-104.9-38.7-119-91.2h-190.3\r\n\tc-14.9,51.2-62.2,88.7-118.2,88.7c-56,0-103.3-37.4-118.2-88.7H722.3c-13.8,52.8-61.9,91.8-119.1,91.8c-68,0-123.1-55.1-123.1-123.1\r\n\ts55.1-123.1,123.1-123.1c57.5,0,105.8,39.4,119.3,92.7h188.1c12.4-54.9,61.5-95.8,120.1-95.8c58.6,0,107.7,41,120.1,95.8h187.9\r\n\tc13.4-53.6,61.8-93.2,119.5-93.2c68,0,123.1,55.1,123.1,123.1S1526.2,1174.5,1458.2,1174.5z M1339.1,709.7V359.4l350.3,350.3H1339.1\r\n\tz\"/>\r\n</svg>\r\n");
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\r\n\t viewBox=\"0 0 2048 2048\" fill=\"currentColor\" style=\"enable-background:new 0 0 2048 2048;\" xml:space=\"preserve\">\r\n<path d=\"M1794.9,709.7l-448.7-448.7l-1,1v-0.6H267.8v1530.4h1530.4V709.7H1794.9z M1458.2,1442.6c-68,0-123.1-55.1-123.1-123.1\r\n\tc0-56.3,37.7-103.7,89.2-118.4v-123.3H628.1v121.1c56.1,11.5,98.2,61.1,98.2,120.6c0,68-55.1,123.1-123.1,123.1\r\n\tS480,1387.5,480,1319.4c0-55.2,36.3-101.8,86.2-117.5v-186h13.4h48.4h371.7v-131c-52-14.4-90.2-62.1-90.2-118.7\r\n\tc0-68,55.1-123.1,123.1-123.1s123.1,55.1,123.1,123.1c0,58.1-40.2,106.7-94.2,119.7v130h362.7h61.8v61.8v121.8\r\n\tc54.6,12.6,95.2,61.5,95.2,120C1581.3,1387.5,1526.2,1442.6,1458.2,1442.6z M1345.1,709.7V359.4l350.3,350.3H1345.1z\"/>\r\n</svg>\r\n");
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n.AjqC8R5fyT52anSSrLnge {\n  padding: 0 30px 30px 40px;\n  display: block;\n  box-sizing: border-box;\n  float: left;\n  width: 100%;\n  height: auto;\n  border-right: 1px solid #ddd;\n  margin-bottom: 15px;\n}\n.AjqC8R5fyT52anSSrLnge .dnn-editable-field:first-child {\n  padding-top: 2px;\n}\n", ""]);
+
+// Exports
+exports.locals = {
+	"vocabulariesLeftPane": "AjqC8R5fyT52anSSrLnge"
+};
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._2-JLfinRboEzFzNHAnL31t {\n  background: #FAFAFA;\n  padding: 15px 25px;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-title {\n  font-size: 13px;\n  text-transform: uppercase;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n._2-JLfinRboEzFzNHAnL31t .parent-display {\n  padding: 8px;\n  background-color: white;\n  border: 1px solid #bfbfbf;\n  cursor: pointer;\n}\n._2-JLfinRboEzFzNHAnL31t .parent-tree {\n  background: white;\n  padding: 15px 25px;\n}\n._2-JLfinRboEzFzNHAnL31t .parent-tree .term-name:hover {\n  color: #2FA5EB;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-single-line-input-with-error,\n._2-JLfinRboEzFzNHAnL31t .dnn-multi-line-input-with-error {\n  width: 100%;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-footer {\n  text-align: right;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-footer button {\n  margin-right: 11px;\n}\n._2-JLfinRboEzFzNHAnL31t .add-term-footer button:last-child {\n  margin-right: 0;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group > label {\n  font-weight: bold;\n  margin-bottom: 5px;\n  display: block;\n  color: #46292B;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group input,\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group textarea,\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group select {\n  color: #46292B;\n  border-radius: 0px;\n  width: 100%;\n}\n._2-JLfinRboEzFzNHAnL31t .dnn-ui-common-input-group textarea {\n  height: 60px;\n  padding: 5px;\n  margin-bottom: 0;\n}\n", ""]);
+
+// Exports
+exports.locals = {
+	"addTermBox": "_2-JLfinRboEzFzNHAnL31t"
+};
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._33e9wKHLVMJiEijO7ey92C {\n  cursor: pointer;\n}\n._33e9wKHLVMJiEijO7ey92C.selected > div > div > span {\n  color: #21A3DA;\n}\n._33e9wKHLVMJiEijO7ey92C.selected > div > div > span * {\n  color: #333;\n}\n._33e9wKHLVMJiEijO7ey92C > div:first-child {\n  display: inline-block;\n  position: relative;\n  padding-right: 25px;\n}\n._33e9wKHLVMJiEijO7ey92C > div:first-child:hover .edit-button {\n  display: block;\n}\n._33e9wKHLVMJiEijO7ey92C .edit-svg {\n  margin-right: 5px;\n  position: absolute;\n  left: -17px;\n  top: 3px;\n}\n._33e9wKHLVMJiEijO7ey92C .edit-svg svg {\n  width: 12px;\n  height: 12px;\n  fill: #6F7273;\n}\n._33e9wKHLVMJiEijO7ey92C span {\n  font-size: 15px;\n  font-weight: bold;\n  display: block;\n  margin-bottom: 5px;\n  color: #6F7273;\n}\n._33e9wKHLVMJiEijO7ey92C .edit-button {\n  width: 16px;\n  height: 16px;\n  position: absolute;\n  right: 0;\n  top: 0;\n  margin-left: 10px;\n  display: none;\n}\n", ""]);
+
+// Exports
+exports.locals = {
+	"termLi": "_33e9wKHLVMJiEijO7ey92C"
+};
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list-label {\n  font-weight: bold;\n  text-transform: uppercase;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button {\n  float: right;\n  font-weight: bold;\n  cursor: pointer;\n  color: #C8C8C8;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:hover {\n  color: #6F7273;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:hover svg {\n  fill: #6F7273;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:active {\n  color: #1E88C3;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button:active svg {\n  fill: #1E88C3;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .add-term-button svg {\n  width: 16px;\n  height: 16px;\n  float: left;\n  margin-right: 5px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list {\n  padding: 0 30px 15px;\n  position: relative;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content {\n  transition: 0.5s;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content ul.root-level {\n  list-style: none;\n  padding: 5px 15px;\n  min-height: 285px;\n  margin-top: 5px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content ul.root-level.Hierarchy {\n  padding: 5px 25px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content ul.root-level ul {\n  padding: 0 15px;\n  list-style: none;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content.closed {\n  opacity: 0;\n  z-index: -1;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-list-content.open {\n  opacity: 1;\n  z-index: 10;\n  transition-delay: 0.5s;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-ul {\n  padding: 0 15px;\n  list-style: none;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-ul.root-level {\n  padding: 5px 25px;\n}\n._3Gj_kj90tDJ1kTBvV1ggmC .term-list .term-ul.term-list-level li.selected > div > div > span {\n  color: #6F7273;\n}\n", ""]);
+
+// Exports
+exports.locals = {
+	"vocabulariesRightPane": "_3Gj_kj90tDJ1kTBvV1ggmC"
+};
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(37);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, ".vocabulary-list .dnn-persona-bar-page-body .vocabulary-error {\n  font-size: 15px;\n  padding: 25px;\n  color: #C8C8C8;\n  text-transform: uppercase;\n}\n", ""]);
+
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "/* START EVOQ COLOR PALETTE */\n/* END EVOQ COLOR PALETTE */\n/* START ATTENTION COLORS */\n/* END ATTENTION COLORS */\n/* SVG HOVER STATES */\nsvg {\n  fill: #C8C8C8;\n}\nsvg:hover {\n  fill: #6F7273;\n}\nsvg:active {\n  fill: #1E88C3;\n}\n/* END SVG HOVER STATES */\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box {\n  padding: 25px 50px;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-single-line-input-with-error,\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-multi-line-input-with-error {\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box label {\n  float: left;\n  margin-right: 15px;\n  font-weight: bold;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-radio-buttons {\n  float: left;\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-radio-buttons label:first-child {\n  width: 65px;\n  word-wrap: break-word;\n  margin-bottom: 15px;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group {\n  margin-bottom: 15px;\n  float: left;\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group > label {\n  font-weight: bold;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group input,\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group textarea,\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group select {\n  border-radius: 0px;\n  width: 100%;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .dnn-ui-common-input-group textarea {\n  height: 100px;\n  padding: 5px;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .action-buttons {\n  float: left;\n  width: 100%;\n  text-align: center;\n  margin: 20px 0;\n  position: relative;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .action-buttons .required-help-text {\n  position: absolute;\n  top: 15px;\n  left: 0;\n  color: #6F7273;\n}\n._3wAZB1r5A5ZIgQKEkLpIKU .create-box .action-buttons button:first-child {\n  margin-right: 15px;\n}\n", ""]);
+
+// Exports
+exports.locals = {
+	"createVocabulary": "_3wAZB1r5A5ZIgQKEkLpIKU"
+};
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.React"
+var external_window_dnn_nodeModules_React_ = __webpack_require__(0);
+var external_window_dnn_nodeModules_React_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_React_);
+
+// EXTERNAL MODULE: D:/a/1/s/node_modules/prop-types/index.js
+var prop_types = __webpack_require__(1);
+var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReactRedux"
+var external_window_dnn_nodeModules_ReactRedux_ = __webpack_require__(7);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.CommonComponents"
+var external_window_dnn_nodeModules_CommonComponents_ = __webpack_require__(2);
+
+// EXTERNAL MODULE: ./src/constants/actionTypes/index.js + 4 modules
+var actionTypes = __webpack_require__(3);
+
+// EXTERNAL MODULE: ./src/utils/index.jsx
+var utils = __webpack_require__(4);
+
+// CONCATENATED MODULE: ./src/services/vocabularyService.js
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+ //import "fetch-ie8";
+
+function serializeQueryStringParameters(obj) {
+  var s = [];
+
+  for (var p in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, p)) {
+      s.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+  }
+
+  return s.join("&");
+}
+
+var vocabularyService_VocabularyService =
+/*#__PURE__*/
+function () {
+  function VocabularyService() {
+    _classCallCheck(this, VocabularyService);
+  }
+
+  _createClass(VocabularyService, [{
+    key: "getServiceFramework",
+    value: function getServiceFramework(controller) {
+      var sf = utils["a" /* default */].utilities.sf;
+      sf.moduleRoot = "PersonaBar";
+      sf.controller = controller;
+      return sf;
+    }
+  }, {
+    key: "getVocabularyList",
+    value: function getVocabularyList(searchParameters, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      searchParameters = _extends({}, searchParameters, {
+        scopeTypeId: searchParameters.scopeTypeId > 0 ? searchParameters.scopeTypeId : "*"
+      });
+      sf.get("GetVocabularies?" + serializeQueryStringParameters(searchParameters), {}, callback, failureCallback);
+    }
+  }, {
+    key: "addVocabulary",
+    value: function addVocabulary(vocabulary, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.post("CreateVocabulary", vocabulary, callback, failureCallback);
+    }
+  }, {
+    key: "updateVocabulary",
+    value: function updateVocabulary(payload, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.post("UpdateVocabulary", payload, callback, failureCallback);
+    }
+  }, {
+    key: "deleteVocabulary",
+    value: function deleteVocabulary(vocabularyId, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.post("DeleteVocabulary?vocabularyId=" + vocabularyId, {}, callback, failureCallback);
+    }
+  }]);
+
+  return VocabularyService;
+}();
+
+var vocabularyService = new vocabularyService_VocabularyService();
+/* harmony default export */ var services_vocabularyService = (vocabularyService);
+// CONCATENATED MODULE: ./src/actions/pagination.js
+
+
+var paginationActions = {
+  loadMore: function loadMore(searchParameters) {
+    return function (dispatch) {
+      services_vocabularyService.getVocabularyList(searchParameters, function (data) {
+        dispatch({
+          type: actionTypes["a" /* pagination */].LOAD_MORE,
+          loadMore: true,
+          payload: searchParameters,
+          data: {
+            vocabularyList: data.Results,
+            totalCount: data.TotalResults
+          }
+        });
+      });
+    };
+  },
+  loadTab: function loadTab(searchParameters) {
+    return function (dispatch) {
+      services_vocabularyService.getVocabularyList(searchParameters, function (data) {
+        dispatch({
+          type: actionTypes["a" /* pagination */].LOAD_TAB_DATA,
+          loadMore: true,
+          payload: searchParameters,
+          tabIndex: searchParameters.scopeTypeId,
+          data: {
+            vocabularyList: data.Results,
+            totalCount: data.TotalResults
+          }
+        });
+      });
+    };
+  }
+};
+/* harmony default export */ var pagination = (paginationActions);
+// CONCATENATED MODULE: ./src/actions/vocabulary.js
+
+
+
+var vocabularyActions = {
+  getVocabularyList: function getVocabularyList(searchParameters, loadMore, callback) {
+    return function (dispatch) {
+      services_vocabularyService.getVocabularyList(searchParameters, function (data) {
+        dispatch({
+          type: actionTypes["c" /* vocabulary */].RETRIEVED_VOCABULARY_LIST,
+          loadMore: loadMore,
+          data: {
+            vocabularyList: data.Results,
+            totalCount: data.TotalResults
+          }
+        });
+
+        if (callback) {
+          callback(data);
+        }
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  addVocabulary: function addVocabulary(vocabulary, totalCount, callback) {
+    return function (dispatch) {
+      services_vocabularyService.addVocabulary(vocabulary, function (data) {
+        vocabulary.VocabularyId = data.VocabularyId;
+        vocabulary.Type = vocabulary.ScopeTypeId === 2 ? "Hierarchy" : "Simple";
+        dispatch({
+          type: actionTypes["c" /* vocabulary */].ADDED_VOCABULARY,
+          payload: {
+            addedVocabulary: vocabulary,
+            totalCount: totalCount
+          }
+        });
+
+        if (callback) {
+          callback();
+        }
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  updateVocabulary: function updateVocabulary(payload, index) {
+    return function (dispatch) {
+      services_vocabularyService.updateVocabulary(payload, function () {
+        dispatch({
+          type: actionTypes["c" /* vocabulary */].UPDATED_VOCABULARY,
+          data: {
+            updatedTerm: payload,
+            index: index
+          }
+        });
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  deleteVocabulary: function deleteVocabulary(vocabularyId, index, totalCount, callback) {
+    return function (dispatch) {
+      services_vocabularyService.deleteVocabulary(vocabularyId, function () {
+        dispatch({
+          type: actionTypes["c" /* vocabulary */].DELETED_VOCABULARY,
+          payload: {
+            index: index,
+            totalCount: totalCount
+          }
+        });
+
+        if (callback) {
+          callback();
+        }
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  }
+};
+/* harmony default export */ var actions_vocabulary = (vocabularyActions);
+// CONCATENATED MODULE: ./src/services/vocabularyTermService.js
+function vocabularyTermService_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function vocabularyTermService_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function vocabularyTermService_createClass(Constructor, protoProps, staticProps) { if (protoProps) vocabularyTermService_defineProperties(Constructor.prototype, protoProps); if (staticProps) vocabularyTermService_defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var vocabularyTermService_VocabularyTermService =
+/*#__PURE__*/
+function () {
+  function VocabularyTermService() {
+    vocabularyTermService_classCallCheck(this, VocabularyTermService);
+  }
+
+  vocabularyTermService_createClass(VocabularyTermService, [{
+    key: "getServiceFramework",
+    value: function getServiceFramework(controller) {
+      var sf = utils["a" /* default */].utilities.sf;
+      sf.moduleRoot = "PersonaBar";
+      sf.controller = controller;
+      return sf;
+    }
+  }, {
+    key: "getVocabularyTerms",
+    value: function getVocabularyTerms(vocabularyTermId, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.get("GetTermsByVocabularyId?vocabularyId=" + vocabularyTermId + "&pageIndex=0", {}, callback, failureCallback);
+    }
+  }, {
+    key: "addVocabularyTerm",
+    value: function addVocabularyTerm(payload, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.post("CreateTerm", payload, callback, failureCallback);
+    }
+  }, {
+    key: "updateVocabularyTerm",
+    value: function updateVocabularyTerm(payload, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.post("UpdateTerm", payload, callback, failureCallback);
+    }
+  }, {
+    key: "deleteVocabularyTerm",
+    value: function deleteVocabularyTerm(termId, callback, failureCallback) {
+      var sf = this.getServiceFramework("Vocabularies");
+      sf.post("DeleteTerm?termId=" + termId, {}, callback, failureCallback);
+    }
+  }]);
+
+  return VocabularyTermService;
+}();
+
+var vocabularyTermService = new vocabularyTermService_VocabularyTermService();
+/* harmony default export */ var services_vocabularyTermService = (vocabularyTermService);
+// CONCATENATED MODULE: ./src/actions/vocabularyTermList.js
+
+
+
+var vocabularyTermActions = {
+  getVocabularyTerms: function getVocabularyTerms(vocabularyId) {
+    return function (dispatch) {
+      services_vocabularyTermService.getVocabularyTerms(vocabularyId, function (data) {
+        dispatch({
+          type: actionTypes["d" /* vocabularyTermList */].RETRIEVED_VOCABULARY_TERMS,
+          data: {
+            vocabularyTerms: data.Results,
+            totalCount: data.TotalResults
+          }
+        });
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  addVocabularyTerm: function addVocabularyTerm(term, totalCount, callback) {
+    return function (dispatch) {
+      services_vocabularyTermService.addVocabularyTerm(term, function (data) {
+        term.TermId = data.TermId;
+        dispatch({
+          type: actionTypes["d" /* vocabularyTermList */].ADDED_VOCABULARY_TERM,
+          payload: {
+            addedTerm: term,
+            totalCount: totalCount
+          }
+        });
+
+        if (callback) {
+          callback();
+        }
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  updateVocabularyTerm: function updateVocabularyTerm(payload, index, callback) {
+    return function (dispatch) {
+      services_vocabularyTermService.updateVocabularyTerm(payload, function () {
+        dispatch({
+          type: actionTypes["d" /* vocabularyTermList */].UPDATED_VOCABULARY_TERM,
+          payload: {
+            updatedTerm: payload,
+            index: index
+          }
+        });
+
+        if (callback) {
+          callback();
+        }
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  deleteVocabularyTerm: function deleteVocabularyTerm(termId, vocabularyTerms, totalCount) {
+    return function (dispatch) {
+      services_vocabularyTermService.deleteVocabularyTerm(termId, function () {
+        dispatch({
+          type: actionTypes["d" /* vocabularyTermList */].DELETED_VOCABULARY_TERM,
+          payload: {
+            vocabularyTerms: vocabularyTerms,
+            totalCount: totalCount
+          }
+        });
+      }, function (failureMessage) {
+        var errorMessage = JSON.parse(failureMessage.responseText);
+        utils["a" /* default */].utilities.notifyError(errorMessage.Message);
+      });
+    };
+  },
+  setTermSelected: function setTermSelected(updatedTerm, index) {
+    return function (dispatch) {
+      dispatch({
+        type: actionTypes["d" /* vocabularyTermList */].SET_TERM_SELECTED,
+        payload: {
+          updatedTerm: updatedTerm,
+          index: index
+        }
+      });
+    };
+  },
+  clearSelected: function clearSelected(vocabularyTerms) {
+    return function (dispatch) {
+      dispatch({
+        type: actionTypes["d" /* vocabularyTermList */].CLEAR_TERMS_SELECTED,
+        payload: {
+          vocabularyTerms: vocabularyTerms
+        }
+      });
+    };
+  }
+};
+/* harmony default export */ var vocabularyTermList = (vocabularyTermActions);
+// CONCATENATED MODULE: ./src/actions/visiblePanel.js
+
+var visiblePanelActions = {
+  selectPanel: function selectPanel(panel) {
+    return function (dispatch) {
+      dispatch({
+        type: actionTypes["b" /* visiblePanel */].SELECT_PANEL,
+        payload: {
+          selectedPage: panel
+        }
+      });
+    };
+  }
+};
+/* harmony default export */ var visiblePanel = (visiblePanelActions);
+// CONCATENATED MODULE: ./src/actions/index.js
+
+
+
+
+
+// EXTERNAL MODULE: ./src/components/VocabularyList/TermHeader/style.less
+var style = __webpack_require__(18);
+var style_default = /*#__PURE__*/__webpack_require__.n(style);
+
+// CONCATENATED MODULE: ./src/resources/index.jsx
+
+var resx = {
+  get: function get(key) {
+    var moduleName = utils["a" /* default */].moduleName;
+    return utils["a" /* default */].utilities.getResx(moduleName, key);
+  }
+};
+/* harmony default export */ var resources = (resx);
+// CONCATENATED MODULE: ./src/components/VocabularyList/TermHeader/index.jsx
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function TermHeader_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function TermHeader_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function TermHeader_createClass(Constructor, protoProps, staticProps) { if (protoProps) TermHeader_defineProperties(Constructor.prototype, protoProps); if (staticProps) TermHeader_defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+/* eslint-disable quotes */
+
+var SimpleType = __webpack_require__(30).default;
+
+var HierarchyType = __webpack_require__(31).default;
+
+var TermHeader_TermHeader =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(TermHeader, _Component);
+
+  function TermHeader() {
+    var _this;
+
+    TermHeader_classCallCheck(this, TermHeader);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TermHeader).call(this));
+    _this.state = {
+      collapsed: true,
+      repainting: false
+    };
+    _this.timeout = 0;
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  TermHeader_createClass(TermHeader, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var props = this.props;
+
+      if (!props.closeOnClick) {
+        return;
+      }
+
+      document.addEventListener("click", this.handleClick);
+      this._isMounted = true;
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener("click", this.handleClick);
+      this._isMounted = false;
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick(event) {
+      // Note: this workaround is needed in IE. The remove event listener in the componentWillUnmount is called
+      // before the handleClick handler is called, but in spite of that, the handleClick is executed. To avoid
+      // the "findDOMNode was called on an unmounted component." error we need to check if the component is mounted before execute this code
+      if (!this._isMounted) {
+        return;
+      }
+
+      if (!this.node.contains(event.target) && typeof event.target.className === "string" && event.target.className.indexOf("false") > -1) {
+        if (event.target.className.indexOf("delete-button") > -1) {
+          return;
+        }
+
+        this.timeout = 475;
+        this.collapse();
+      } else {
+        this.timeout = 0;
+      }
+    }
+  }, {
+    key: "uncollapse",
+    value: function uncollapse() {
+      this.setState({
+        collapsed: false
+      });
+    }
+  }, {
+    key: "collapse",
+    value: function collapse() {
+      this.setState({
+        collapsed: true
+      });
+    }
+  }, {
+    key: "toggle",
+    value: function toggle(event) {
+      if (this.state.collapsed) {
+        this.uncollapse();
+      } else {
+        if (event.target.parentNode.className.indexOf("delete-button") > -1) {
+          return;
+        }
+
+        this.collapse();
+      }
+    }
+  }, {
+    key: "onDelete",
+    value: function onDelete() {
+      var _this2 = this;
+
+      var props = this.props;
+      props.onDelete(props.term, props.index, function () {
+        _this2.collapse();
+      });
+    }
+    /* eslint-disable react/no-danger */
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var props = this.props,
+          state = this.state;
+      var svgIcon = props.type === 1 ? SimpleType : HierarchyType;
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          ref: function ref(node) {
+            return _this3.node = node;
+          },
+          className: "" + style_default.a.collapsibleComponent + " " + state.collapsed + (props.className ? " " + props.className : "")
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "collapsible-header " + state.collapsed,
+          onClick: this.toggle.bind(this)
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "term-header"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "term-icon",
+          dangerouslySetInnerHTML: {
+            __html: svgIcon
+          }
+        }),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "term-label"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["TextOverflowWrapper"], {
+          text: props.header,
+          maxWidth: 200
+        }))), !props.disabled &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("span", {
+          className: "collapse-icon " + (this.state.collapsed ? "collapsed" : "")
+        })),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Collapsible"], {
+          className: "term-header-collapsible",
+          isOpened: !this.state.collapsed,
+          style: {
+            float: "left"
+          }
+        }, !state.collapsed && props.children, !state.collapsed &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridCell"], {
+          className: "vocab-footer"
+        }, !props.term.IsSystem && utils["a" /* default */].canEdit() &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+          type: "secondary",
+          onClick: this.onDelete.bind(this)
+        }, resources.get("DeleteTerm")),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+          type: "secondary",
+          onClick: this.collapse.bind(this)
+        }, resources.get("Close")))))
+      );
+    }
+  }]);
+
+  return TermHeader;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+TermHeader_TermHeader.propTypes = {
+  header: prop_types_default.a.string,
+  type: prop_types_default.a.string,
+  label: prop_types_default.a.node,
+  children: prop_types_default.a.node,
+  disabled: prop_types_default.a.bool,
+  className: prop_types_default.a.string,
+  closeOnClick: prop_types_default.a.bool,
+  term: prop_types_default.a.object,
+  onDelete: prop_types_default.a.func,
+  index: prop_types_default.a.number
+};
+/* harmony default export */ var VocabularyList_TermHeader = (TermHeader_TermHeader);
+// EXTERNAL MODULE: ./src/components/VocabularyList/LeftPane/style.less
+var LeftPane_style = __webpack_require__(19);
+var LeftPane_style_default = /*#__PURE__*/__webpack_require__.n(LeftPane_style);
+
+// CONCATENATED MODULE: ./src/components/VocabularyList/LeftPane/LeftPane.jsx
+function LeftPane_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { LeftPane_typeof = function _typeof(obj) { return typeof obj; }; } else { LeftPane_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return LeftPane_typeof(obj); }
+
+function LeftPane_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function LeftPane_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function LeftPane_createClass(Constructor, protoProps, staticProps) { if (protoProps) LeftPane_defineProperties(Constructor.prototype, protoProps); if (staticProps) LeftPane_defineProperties(Constructor, staticProps); return Constructor; }
+
+function LeftPane_possibleConstructorReturn(self, call) { if (call && (LeftPane_typeof(call) === "object" || typeof call === "function")) { return call; } return LeftPane_assertThisInitialized(self); }
+
+function LeftPane_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function LeftPane_getPrototypeOf(o) { LeftPane_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return LeftPane_getPrototypeOf(o); }
+
+function LeftPane_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) LeftPane_setPrototypeOf(subClass, superClass); }
+
+function LeftPane_setPrototypeOf(o, p) { LeftPane_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return LeftPane_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var LeftPane_LeftPane =
+/*#__PURE__*/
+function (_Component) {
+  LeftPane_inherits(LeftPane, _Component);
+
+  function LeftPane() {
+    LeftPane_classCallCheck(this, LeftPane);
+
+    return LeftPane_possibleConstructorReturn(this, LeftPane_getPrototypeOf(LeftPane).call(this));
+  }
+
+  LeftPane_createClass(LeftPane, [{
+    key: "onEnter",
+    value: function onEnter(key, value) {
+      var props = this.props;
+      props.onEnter(key, value, props.index);
+    }
+  }, {
+    key: "canEdit",
+    value: function canEdit() {
+      var props = this.props;
+      return utils["a" /* default */].isHost() || props.scopeType === "Portal" && utils["a" /* default */].canEdit();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: LeftPane_style_default.a.vocabulariesLeftPane
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["EditableField"], {
+          label: resources.get("Description"),
+          value: props.description,
+          onEnter: this.onEnter.bind(this, "Description"),
+          inputType: "textArea",
+          editable: this.canEdit(),
+          helpText: resources.get("EditFieldHelper")
+        }),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["EditableField"], {
+          label: resources.get("Type"),
+          value: resources.get(props.type),
+          onEnter: this.onEnter.bind(this, "Type"),
+          editable: false
+        }),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["EditableField"], {
+          label: resources.get("Scope"),
+          value: resources.get(props.scopeType),
+          onEnter: this.onEnter.bind(this, "ScopeType"),
+          editable: false
+        }))
+      );
+    }
+  }]);
+
+  return LeftPane;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+LeftPane_LeftPane.propTypes = {
+  description: prop_types_default.a.string,
+  type: prop_types_default.a.string,
+  scope: prop_types_default.a.string,
+  onEnter: prop_types_default.a.func,
+  index: prop_types_default.a.number
+};
+/* harmony default export */ var VocabularyList_LeftPane_LeftPane = (LeftPane_LeftPane);
+// CONCATENATED MODULE: ./src/components/VocabularyList/LeftPane/index.jsx
+
+/* harmony default export */ var VocabularyList_LeftPane = (VocabularyList_LeftPane_LeftPane);
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReactCustomScrollBars"
+var external_window_dnn_nodeModules_ReactCustomScrollBars_ = __webpack_require__(10);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReactCollapse"
+var external_window_dnn_nodeModules_ReactCollapse_ = __webpack_require__(9);
+var external_window_dnn_nodeModules_ReactCollapse_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_ReactCollapse_);
+
+// EXTERNAL MODULE: ./src/components/VocabularyList/RightPane/AddTermBox/style.less
+var AddTermBox_style = __webpack_require__(20);
+var AddTermBox_style_default = /*#__PURE__*/__webpack_require__.n(AddTermBox_style);
+
+// CONCATENATED MODULE: ./src/components/VocabularyList/RightPane/AddTermBox/index.jsx
+var _this = undefined;
+
+
+
+
+
+
+
+
+var parentTermTreeStyle = {
+  width: "100%",
+  height: "110px",
+  border: "1px solid #BFBFBF",
+  borderTop: "none",
+  background: "white",
+  boxSizing: "border-box"
+};
+
+var AddTermBox_AddTermBox = function AddTermBox(_ref) {
+  var isOpened = _ref.isOpened,
+      editMode = _ref.editMode,
+      termBeingEdited = _ref.termBeingEdited,
+      termTreeVisible = _ref.termTreeVisible,
+      parentDisplay = _ref.parentDisplay,
+      parentTermTree = _ref.parentTermTree,
+      parentTreeOpened = _ref.parentTreeOpened,
+      toggleParentTree = _ref.toggleParentTree,
+      onTermValueChange = _ref.onTermValueChange,
+      deleteTerm = _ref.deleteTerm,
+      closeAddTerm = _ref.closeAddTerm,
+      onUpdateTerm = _ref.onUpdateTerm,
+      error = _ref.error;
+  return (
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReactCollapse_default.a, {
+      isOpened: isOpened
+    },
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement("div", {
+      className: AddTermBox_style_default.a.addTermBox
+    },
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement("p", {
+      className: "add-term-title"
+    }, editMode ? resources.get("CurrentTerm") : resources.get("AddTerm")),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["InputGroup"], null,
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["SingleLineInputWithError"], {
+      inputId: "create-term-name",
+      withLabel: true,
+      label: resources.get("TermName") + "*",
+      value: termBeingEdited.Name,
+      onChange: onTermValueChange.bind(_this, "Name"),
+      error: error,
+      errorMessage: resources.get("TermValidationError.Message")
+    })),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["InputGroup"], null,
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["MultiLineInputWithError"], {
+      inputId: "create-term-description",
+      withLabel: true,
+      label: resources.get("Description"),
+      value: termBeingEdited.Description,
+      onChange: onTermValueChange.bind(_this, "Description")
+    })), termTreeVisible &&
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["InputGroup"], {
+      style: {
+        marginBottom: 32
+      }
+    },
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement("label", null, resources.get("ParentTerm")),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement("p", {
+      className: "parent-display",
+      onClick: toggleParentTree
+    }, parentDisplay && parentDisplay.Name || ""),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReactCollapse_default.a, {
+      isOpened: parentTreeOpened,
+      fixedHeight: 115,
+      keepCollapsedContent: true
+    },
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReactCustomScrollBars_["Scrollbars"], {
+      style: parentTermTreeStyle
+    },
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement("ul", {
+      className: "term-ul root-level parent-tree"
+    }, parentTermTree)))),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement("div", {
+      className: "add-term-footer"
+    }, editMode &&
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+      type: "secondary",
+      onClick: deleteTerm
+    }, resources.get("DeleteTerm")),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+      type: "secondary",
+      onClick: closeAddTerm
+    }, resources.get("cancelCreate")),
+    /*#__PURE__*/
+    external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+      type: "primary",
+      onClick: onUpdateTerm
+    }, resources.get("SaveTerm")))))
+  );
+};
+
+AddTermBox_AddTermBox.propTypes = {
+  isOpened: prop_types_default.a.bool,
+  editMode: prop_types_default.a.bool,
+  termBeingEdited: prop_types_default.a.object,
+  termTreeVisible: prop_types_default.a.bool,
+  parentDisplay: prop_types_default.a.object,
+  parentTermTree: prop_types_default.a.node,
+  parentTreeOpened: prop_types_default.a.bool,
+  toggleParentTree: prop_types_default.a.func,
+  onTermValueChange: prop_types_default.a.func,
+  deleteTerm: prop_types_default.a.func,
+  closeAddTerm: prop_types_default.a.func,
+  onUpdateTerm: prop_types_default.a.func,
+  error: prop_types_default.a.bool
+};
+/* harmony default export */ var RightPane_AddTermBox = (AddTermBox_AddTermBox);
+// EXTERNAL MODULE: ./src/components/VocabularyList/RightPane/Term/style.less
+var Term_style = __webpack_require__(21);
+var Term_style_default = /*#__PURE__*/__webpack_require__.n(Term_style);
+
+// CONCATENATED MODULE: ./src/components/VocabularyList/RightPane/Term/index.jsx
+function Term_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Term_typeof = function _typeof(obj) { return typeof obj; }; } else { Term_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Term_typeof(obj); }
+
+function Term_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function Term_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function Term_createClass(Constructor, protoProps, staticProps) { if (protoProps) Term_defineProperties(Constructor.prototype, protoProps); if (staticProps) Term_defineProperties(Constructor, staticProps); return Constructor; }
+
+function Term_possibleConstructorReturn(self, call) { if (call && (Term_typeof(call) === "object" || typeof call === "function")) { return call; } return Term_assertThisInitialized(self); }
+
+function Term_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function Term_getPrototypeOf(o) { Term_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return Term_getPrototypeOf(o); }
+
+function Term_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) Term_setPrototypeOf(subClass, superClass); }
+
+function Term_setPrototypeOf(o, p) { Term_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Term_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var Term_Term =
+/*#__PURE__*/
+function (_Component) {
+  Term_inherits(Term, _Component);
+
+  function Term() {
+    var _this;
+
+    Term_classCallCheck(this, Term);
+
+    _this = Term_possibleConstructorReturn(this, Term_getPrototypeOf(Term).call(this));
+    _this.state = {
+      isOpened: false
+    };
+    return _this;
+  }
+
+  Term_createClass(Term, [{
+    key: "toggleTerm",
+    value: function toggleTerm(event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      this.setState({
+        isOpened: !this.state.isOpened
+      });
+    }
+  }, {
+    key: "onLiClick",
+    value: function onLiClick(event) {
+      event.preventDefault();
+      var props = this.props;
+
+      if (props.isEditable) {
+        this.toggleTerm();
+      } else {
+        this.onClick();
+      }
+    }
+  }, {
+    key: "UNSAFE_componentWillReceiveProps",
+    value: function UNSAFE_componentWillReceiveProps(props) {
+      if (props.closeAll) {
+        this.setState({
+          isOpened: false
+        });
+      }
+    }
+  }, {
+    key: "onClick",
+    value: function onClick() {
+      var props = this.props;
+      props.onClick(props.term);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var props = this.props,
+          state = this.state;
+      var className = Term_style_default.a.termLi + (props.children.length > 0 ? " has-children" : "") + (state.isOpened ? " opened" : "") + (props.term.selected ? " selected" : "");
+      /* eslint-disable react/no-danger */
+
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("li", {
+          className: className
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", null, props.children.length > 0 && !state.isOpened &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          dangerouslySetInnerHTML: {
+            __html: external_window_dnn_nodeModules_CommonComponents_["SvgIcons"].ArrowRightIcon
+          },
+          className: "edit-svg",
+          onClick: this.toggleTerm.bind(this)
+        }), props.children.length > 0 && state.isOpened &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          dangerouslySetInnerHTML: {
+            __html: external_window_dnn_nodeModules_CommonComponents_["SvgIcons"].ArrowDownIcon
+          },
+          className: "edit-svg",
+          onClick: this.toggleTerm.bind(this)
+        }),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          onClick: this.onLiClick.bind(this)
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("span", {
+          className: "term-name",
+          dangerouslySetInnerHTML: {
+            __html: props.term.Name
+          }
+        }), props.isEditable && utils["a" /* default */].canEdit() &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "edit-button",
+          onClick: this.onClick.bind(this),
+          dangerouslySetInnerHTML: {
+            __html: external_window_dnn_nodeModules_CommonComponents_["SvgIcons"].EditIcon
+          }
+        }))),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReactCollapse_default.a, {
+          isOpened: state.isOpened
+        }, props.children))
+      );
+    }
+  }]);
+
+  return Term;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+Term_Term.propTypes = {
+  term: prop_types_default.a.object,
+  children: prop_types_default.a.node,
+  isEditable: prop_types_default.a.bool,
+  onClick: prop_types_default.a.func
+};
+/* harmony default export */ var RightPane_Term = (Term_Term);
+// EXTERNAL MODULE: ./src/components/VocabularyList/RightPane/style.less
+var RightPane_style = __webpack_require__(22);
+var RightPane_style_default = /*#__PURE__*/__webpack_require__.n(RightPane_style);
+
+// CONCATENATED MODULE: ./src/components/VocabularyList/RightPane/index.jsx
+function RightPane_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { RightPane_typeof = function _typeof(obj) { return typeof obj; }; } else { RightPane_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return RightPane_typeof(obj); }
+
+function RightPane_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function RightPane_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function RightPane_createClass(Constructor, protoProps, staticProps) { if (protoProps) RightPane_defineProperties(Constructor.prototype, protoProps); if (staticProps) RightPane_defineProperties(Constructor, staticProps); return Constructor; }
+
+function RightPane_possibleConstructorReturn(self, call) { if (call && (RightPane_typeof(call) === "object" || typeof call === "function")) { return call; } return RightPane_assertThisInitialized(self); }
+
+function RightPane_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function RightPane_getPrototypeOf(o) { RightPane_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return RightPane_getPrototypeOf(o); }
+
+function RightPane_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) RightPane_setPrototypeOf(subClass, superClass); }
+
+function RightPane_setPrototypeOf(o, p) { RightPane_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return RightPane_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+
+
+function findInChildren(list, parentTermId) {
+  if (!list) {
+    return null;
+  }
+
+  var parentTerm = null;
+
+  for (var i = 0; i < list.length && !parentTerm; i++) {
+    var term = list[i];
+    parentTerm = term.TermId === parentTermId ? term : findInChildren(term.ChildTerms, parentTermId);
+  }
+
+  return parentTerm;
+}
+
+function getVocabularyTermList(terms, type) {
+  if (type === "Simple") {
+    return terms;
+  }
+
+  var _terms = [];
+  terms.forEach(function (term) {
+    if (term.ParentTermId < 0) {
+      term.ChildTerms = [];
+
+      if (!_terms.find(function (_term) {
+        return _term.TermId === term.TermId;
+      })) {
+        _terms = _terms.concat(term);
+      }
+    } else {
+      var parent = findInChildren(_terms, term.ParentTermId);
+
+      if (parent) {
+        if (!parent.ChildTerms) {
+          parent.ChildTerms = [];
+        }
+
+        if (!parent.ChildTerms.find(function (_term) {
+          return _term.TermId === term.TermId;
+        })) {
+          parent.ChildTerms = parent.ChildTerms.concat(term);
+        }
+      }
+    }
+  });
+  return _terms;
+}
+
+function removeChildTerms(terms) {
+  return terms.map(function (term) {
+    delete term.ChildTerms;
+    return term;
+  });
+}
+
+var RightPane_RightPane =
+/*#__PURE__*/
+function (_Component) {
+  RightPane_inherits(RightPane, _Component);
+
+  function RightPane() {
+    var _this;
+
+    RightPane_classCallCheck(this, RightPane);
+
+    _this = RightPane_possibleConstructorReturn(this, RightPane_getPrototypeOf(RightPane).call(this));
+    _this.state = {
+      editBoxOpened: false,
+      _editBoxOpened: false,
+      editMode: false,
+      parentTreeOpened: false,
+      open: false,
+      termBeingEdited: {
+        TermId: -1,
+        Name: "",
+        Description: "",
+        VocabularyId: -1,
+        ParentTermId: -1
+      },
+      nameError: true,
+      triedToSubmitTerm: false
+    };
+    return _this;
+  }
+
+  RightPane_createClass(RightPane, [{
+    key: "UNSAFE_componentWillMount",
+    value: function UNSAFE_componentWillMount() {
+      var termBeingEdited = this.state.termBeingEdited;
+      var props = this.props;
+      termBeingEdited.VocabularyId = props.vocabularyId;
+      this.setState({
+        termBeingEdited: termBeingEdited
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var props = this.props;
+      props.getVocabularyTerms(props.vocabularyId, props.index);
+    }
+  }, {
+    key: "openAddTerm",
+    value: function openAddTerm(editMode, type, event) {
+      var _this2 = this;
+
+      if (event) {
+        event.preventDefault();
+      }
+
+      var termBeingEdited = this.state.termBeingEdited;
+      var props = this.props;
+      termBeingEdited = {
+        TermId: -1,
+        Name: "",
+        Description: "",
+        VocabularyId: props.vocabularyId,
+        ParentTermId: type === "Hierarchy" ? props.vocabularyTerms.length > 0 && props.vocabularyTerms[0].TermId || -1 : -1
+      };
+
+      if (!editMode) {
+        delete termBeingEdited.TermId;
+      }
+
+      this.setState({
+        editBoxOpened: true,
+        termBeingEdited: termBeingEdited,
+        editMode: editMode,
+        triedToSubmitTerm: false,
+        nameError: true
+      });
+      setTimeout(function () {
+        _this2.setState({
+          _editBoxOpened: true
+        });
+      }, 500);
+      var parentTerm = JSON.parse(JSON.stringify(props.vocabularyTerms)).find(function (term) {
+        return term.TermId === termBeingEdited.ParentTermId;
+      });
+
+      if (parentTerm) {
+        parentTerm.selected = true;
+        props.selectParentTerm(parentTerm);
+      }
+    }
+  }, {
+    key: "closeAddTerm",
+    value: function closeAddTerm() {
+      var _this3 = this;
+
+      var props = this.props;
+      setTimeout(function () {
+        _this3.setState({
+          termBeingEdited: {
+            TermId: -1,
+            Name: "",
+            Description: "",
+            VocabularyId: props.vocabularyId,
+            ParentTermId: props.type === "Hierarchy" ? props.vocabularyTerms.length > 0 && props.vocabularyTerms[0].TermId || -1 : -1
+          },
+          editBoxOpened: false
+        });
+      }, 500);
+      this.setState({
+        _editBoxOpened: false
+      });
+    }
+  }, {
+    key: "toggleParentTree",
+    value: function toggleParentTree(event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      var state = this.state;
+      this.setState({
+        parentTreeOpened: !state.parentTreeOpened
+      });
+    }
+  }, {
+    key: "onTermValueChange",
+    value: function onTermValueChange(key, event) {
+      var value = event.target.value;
+      var state = this.state;
+      state.termBeingEdited[key] = value;
+      state.triedToSubmitTerm = false;
+
+      if (key === "Name" && value === "") {
+        state.nameError = true;
+      } else {
+        state.nameError = false;
+      }
+
+      this.setState({
+        state: state
+      });
+    }
+  }, {
+    key: "onUpdateTerm",
+    value: function onUpdateTerm(event) {
+      var _this4 = this;
+
+      event.preventDefault();
+      var props = this.props,
+          state = this.state;
+
+      if (props.type === "Simple") {
+        delete state.termBeingEdited.ParentTermId;
+      }
+
+      this.setState({
+        triedToSubmitTerm: true
+      });
+
+      if (state.nameError) {
+        return;
+      }
+
+      props.onUpdateTerm(state.termBeingEdited, state.editMode, function () {
+        _this4.closeAddTerm();
+      });
+    }
+  }, {
+    key: "onEditTerm",
+    value: function onEditTerm(term) {
+      var props = this.props;
+
+      if (!this.canEdit()) {
+        return;
+      }
+
+      this.openAddTerm(true);
+      var termBeingEdited = this.state.termBeingEdited;
+      termBeingEdited = term;
+      this.setState({
+        termBeingEdited: termBeingEdited,
+        triedToSubmitTerm: false,
+        nameError: false
+      });
+      var parentTerm = JSON.parse(JSON.stringify(props.vocabularyTerms)).find(function (term) {
+        return term.TermId === termBeingEdited.ParentTermId;
+      });
+
+      if (parentTerm) {
+        parentTerm.selected = true;
+        props.selectParentTerm(parentTerm);
+      }
+    }
+  }, {
+    key: "getChildTerms",
+    value: function getChildTerms(term, clickFunction, isEditable) {
+      var _this5 = this;
+
+      var children = [];
+
+      if (term.ChildTerms) {
+        children = term.ChildTerms.map(function (child) {
+          var _children = _this5.getChildTerms(child, clickFunction, isEditable);
+
+          return (
+            /*#__PURE__*/
+            external_window_dnn_nodeModules_React_default.a.createElement("ul", {
+              className: "term-ul",
+              key: "ul-" + term.TermId
+            },
+            /*#__PURE__*/
+            external_window_dnn_nodeModules_React_default.a.createElement(RightPane_Term, {
+              term: child,
+              onClick: clickFunction,
+              isEditable: isEditable,
+              key: "term-" + term.TermId
+            }, _children))
+          );
+        });
+      }
+
+      return children;
+    }
+  }, {
+    key: "onSelectParent",
+    value: function onSelectParent(term) {
+      var _this6 = this;
+
+      var termBeingEdited = this.state.termBeingEdited;
+      var props = this.props;
+      termBeingEdited.ParentTermId = term.TermId;
+      this.setState({
+        termBeingEdited: termBeingEdited
+      }, function () {
+        _this6.toggleParentTree();
+
+        props.selectParentTerm(term);
+      });
+    }
+  }, {
+    key: "deleteTerm",
+    value: function deleteTerm() {
+      var _this7 = this;
+
+      var props = this.props,
+          state = this.state;
+      utils["a" /* default */].utilities.confirm(resources.get("ConfirmDeletion_Term").replace("{0}", state.termBeingEdited.Name), //confirm message
+      resources.get("DeleteTerm"), //delete button text
+      resources.get("cancelCreate"), //cancel text
+      function () {
+        props.onDeleteTerm(state.termBeingEdited.TermId);
+
+        _this7.closeAddTerm();
+      });
+    }
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      this.setState({
+        open: !this.state.open
+      });
+    }
+  }, {
+    key: "canEdit",
+    value: function canEdit() {
+      var props = this.props;
+      return utils["a" /* default */].isHost() || props.scopeType === "Portal" && utils["a" /* default */].canEdit();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this8 = this;
+
+      var props = this.props,
+          state = this.state;
+
+      if (!props.vocabularyTerms) {
+        return (
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement("p", null, "Empty")
+        );
+      }
+
+      var _vocabularyTerms = JSON.parse(JSON.stringify(props.vocabularyTerms));
+
+      var vocabularyTerms = getVocabularyTermList(_vocabularyTerms, props.type);
+      var terms = vocabularyTerms.map(function (term) {
+        var children = _this8.getChildTerms(term, _this8.onEditTerm.bind(_this8), true);
+
+        return (
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement(RightPane_Term, {
+            term: term,
+            onClick: _this8.onEditTerm.bind(_this8),
+            isEditable: _this8.canEdit(),
+            key: "term-" + term.TermId
+          }, children)
+        );
+      });
+      var parentTermTree = getVocabularyTermList(removeChildTerms(_vocabularyTerms).filter(function (term) {
+        return term.TermId !== state.termBeingEdited.TermId;
+      }), props.type, state.termBeingEdited.TermId);
+      parentTermTree = parentTermTree.map(function (term) {
+        var children = _this8.getChildTerms(term, _this8.onSelectParent.bind(_this8), false);
+
+        return (
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement(RightPane_Term, {
+            term: term,
+            onClick: _this8.onSelectParent.bind(_this8),
+            isEditable: false,
+            key: "term-" + term.TermId
+          }, children)
+        );
+      });
+      var parentDisplay = props.vocabularyTerms.find(function (term) {
+        return term.TermId === state.termBeingEdited.ParentTermId;
+      });
+      /* eslint-disable react/no-danger */
+
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridCell"], {
+          className: RightPane_style_default.a.vocabulariesRightPane
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridCell"], {
+          className: "term-list"
+        }, state.editBoxOpened &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(RightPane_AddTermBox, {
+          isOpened: state._editBoxOpened,
+          editMode: state.editMode,
+          error: state.triedToSubmitTerm && state.nameError,
+          termBeingEdited: state.termBeingEdited,
+          termTreeVisible: props.type === "Hierarchy" && vocabularyTerms.length > 0 && (!state.editMode || state.termBeingEdited.ParentTermId > 0),
+          parentDisplay: parentDisplay,
+          parentTermTree: parentTermTree,
+          parentTreeOpened: state.parentTreeOpened,
+          toggleParentTree: this.toggleParentTree.bind(this),
+          onTermValueChange: this.onTermValueChange.bind(this),
+          deleteTerm: this.deleteTerm.bind(this),
+          closeAddTerm: this.closeAddTerm.bind(this),
+          onUpdateTerm: this.onUpdateTerm.bind(this)
+        }), !state._editBoxOpened &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridCell"], {
+          className: "term-list-content " + (!this.state.editBoxOpened ? "open" : "closed")
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("span", {
+          className: "term-list-label"
+        }, resources.get("Terms") + " (" + props.totalTermCount + ")"), this.canEdit() &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "add-term-button do-not-close",
+          dangerouslySetInnerHTML: {
+            __html: external_window_dnn_nodeModules_CommonComponents_["SvgIcons"].AddIcon + " " + resources.get("AddTerm")
+          },
+          onClick: this.openAddTerm.bind(this, false, props.type)
+        }),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReactCustomScrollBars_["Scrollbars"], {
+          style: {
+            width: "345px",
+            height: "300px",
+            border: "1px solid #DBDBDB",
+            marginTop: 10
+          }
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("ul", {
+          className: "term-ul root-level term-list-level " + props.type
+        }, terms)))))
+      );
+    }
+  }]);
+
+  return RightPane;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+RightPane_RightPane.propTypes = {
+  vocabularyTerms: prop_types_default.a.array,
+  totalTermCount: prop_types_default.a.number,
+  type: prop_types_default.a.string,
+  scopeType: prop_types_default.a.string,
+  index: prop_types_default.a.number,
+  selectParentTerm: prop_types_default.a.func
+};
+/* harmony default export */ var VocabularyList_RightPane = (RightPane_RightPane);
+// EXTERNAL MODULE: ./src/components/VocabularyList/style.less
+var VocabularyList_style = __webpack_require__(36);
+
+// CONCATENATED MODULE: ./src/components/VocabularyList/index.jsx
+function VocabularyList_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { VocabularyList_typeof = function _typeof(obj) { return typeof obj; }; } else { VocabularyList_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return VocabularyList_typeof(obj); }
+
+function VocabularyList_extends() { VocabularyList_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return VocabularyList_extends.apply(this, arguments); }
+
+function VocabularyList_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function VocabularyList_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function VocabularyList_createClass(Constructor, protoProps, staticProps) { if (protoProps) VocabularyList_defineProperties(Constructor.prototype, protoProps); if (staticProps) VocabularyList_defineProperties(Constructor, staticProps); return Constructor; }
+
+function VocabularyList_possibleConstructorReturn(self, call) { if (call && (VocabularyList_typeof(call) === "object" || typeof call === "function")) { return call; } return VocabularyList_assertThisInitialized(self); }
+
+function VocabularyList_getPrototypeOf(o) { VocabularyList_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return VocabularyList_getPrototypeOf(o); }
+
+function VocabularyList_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function VocabularyList_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) VocabularyList_setPrototypeOf(subClass, superClass); }
+
+function VocabularyList_setPrototypeOf(o, p) { VocabularyList_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return VocabularyList_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+
+
+
+var loadMoreButtonStyle = {
+  display: "block",
+  margin: "20px auto"
+};
+
+function getTermUpdates(term) {
+  return {
+    TermId: term.TermId,
+    Name: term.Name,
+    Description: term.Description,
+    VocabularyId: term.VocabularyId,
+    ParentTermId: term.ParentTermId
+  };
+}
+
+function getRootParentTerm(termId, term, termList) {
+  while (term.TermId !== termId && term.ParentTermId > -1) {
+    term = termList.find(function (_term) {
+      return _term.TermId === term.ParentTermId;
+    });
+  }
+
+  return term;
+}
+
+function removeTermFromList(termId, vocabularyTermList) {
+  return vocabularyTermList.filter(function (term) {
+    var rootParentTerm = getRootParentTerm(termId, term, vocabularyTermList);
+    return rootParentTerm.TermId !== termId;
+  });
+}
+
+var VocabularyList_VocabularyListComponent =
+/*#__PURE__*/
+function (_Component) {
+  VocabularyList_inherits(VocabularyListComponent, _Component);
+
+  function VocabularyListComponent() {
+    var _this;
+
+    VocabularyList_classCallCheck(this, VocabularyListComponent);
+
+    _this = VocabularyList_possibleConstructorReturn(this, VocabularyList_getPrototypeOf(VocabularyListComponent).call(this));
+    _this.onDescriptionUpdate = _this.onDescriptionUpdate.bind(VocabularyList_assertThisInitialized(_this));
+    _this.state = {
+      vocabularyList: [],
+      isOpened: false
+    };
+    return _this;
+  }
+
+  VocabularyList_createClass(VocabularyListComponent, [{
+    key: "getNextPage",
+    value: function getNextPage(pageIndex, pageSize, scopeTypeId) {
+      return {
+        pageIndex: pageIndex || 0,
+        pageSize: pageSize,
+        scopeTypeId: scopeTypeId || 0
+      };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var props = this.props;
+      props.dispatch(actions_vocabulary.getVocabularyList(this.getNextPage(props.pagination.pageIndex, props.pagination.pageSize, props.pagination.scopeTypeId)));
+    }
+  }, {
+    key: "getVocabularyTerms",
+    value: function getVocabularyTerms(vocabularyId, index) {
+      var props = this.props;
+      props.dispatch(vocabularyTermList.getVocabularyTerms(vocabularyId, index));
+    }
+  }, {
+    key: "updateVocabulary",
+    value: function updateVocabulary(vocabularyList, key, index, value) {
+      var newValue = VocabularyList_extends({}, vocabularyList[index]);
+
+      newValue[key] = value;
+      return newValue;
+    }
+  }, {
+    key: "onUpdateTerm",
+    value: function onUpdateTerm(termBeingEdited, editMode, callback) {
+      var props = this.props;
+
+      if (editMode) {
+        var index = props.vocabularyTerms.findIndex(function (term) {
+          return term.TermId === termBeingEdited.TermId;
+        });
+        props.dispatch(vocabularyTermList.updateVocabularyTerm(getTermUpdates(termBeingEdited), index, callback));
+      } else {
+        var totalTermCount = props.totalTermCount;
+        props.dispatch(vocabularyTermList.addVocabularyTerm(getTermUpdates(termBeingEdited), ++totalTermCount, callback));
+      }
+    }
+  }, {
+    key: "onDescriptionUpdate",
+    value: function onDescriptionUpdate(key, value, index) {
+      var props = this.props;
+      var vocabularyList = props.vocabularyList;
+      var newValue = this.updateVocabulary(vocabularyList, key, index, value);
+      props.dispatch(actions_vocabulary.updateVocabulary(newValue, index));
+    }
+  }, {
+    key: "onLoadMore",
+    value: function onLoadMore(event) {
+      event.preventDefault();
+      var props = this.props;
+      var pageIndex = props.pagination.pageIndex; //copy page index
+
+      var nextPage = this.getNextPage(++pageIndex, props.pagination.pageSize, props.pagination.scopeTypeId);
+      props.dispatch(pagination.loadMore(nextPage));
+    }
+  }, {
+    key: "handleSelect",
+    value: function handleSelect(index
+    /*,last*/
+    ) {
+      var props = this.props;
+      props.dispatch(pagination.loadTab(this.getNextPage(0, props.pagination.pageSize, index))); //index acts as scopeTypeId
+    }
+  }, {
+    key: "onDeleteVocabulary",
+    value: function onDeleteVocabulary(vocabulary, index, callback) {
+      var _this2 = this;
+
+      var props = this.props;
+      utils["a" /* default */].utilities.confirm(resources.get("ConfirmDeletion_Vocabulary").replace("{0}", vocabulary.Name), //confirm delete message
+      resources.get("DeleteVocabulary"), //confirm delete text
+      resources.get("cancelCreate"), //cancel text
+      function () {
+        var totalCount = props.totalCount;
+
+        if (callback) {
+          callback();
+        }
+
+        props.dispatch(actions_vocabulary.deleteVocabulary(vocabulary.VocabularyId, index, --totalCount, function () {
+          if (props.vocabularyList.length < props.totalCount) {
+            var pageIndex = props.pagination.pageIndex; //copy page index
+
+            var currentPage = _this2.getNextPage(pageIndex, props.pagination.pageSize, props.pagination.scopeTypeId);
+
+            props.dispatch(pagination.loadMore(currentPage));
+          }
+        }));
+      });
+    }
+  }, {
+    key: "onDeleteTerm",
+    value: function onDeleteTerm(termId) {
+      var props = this.props;
+      var vocabularyTerms = removeTermFromList(termId, props.vocabularyTerms);
+      props.dispatch(vocabularyTermList.deleteVocabularyTerm(termId, vocabularyTerms, vocabularyTerms.length));
+    }
+  }, {
+    key: "selectParentTerm",
+    value: function selectParentTerm(term) {
+      var props = this.props;
+      var vocabularyTerms = JSON.parse(JSON.stringify(props.vocabularyTerms));
+      var previousTerms = vocabularyTerms.map(function (_term) {
+        delete _term.selected;
+        return _term;
+      });
+      var index = props.vocabularyTerms.findIndex(function (_term) {
+        return _term.TermId === term.TermId;
+      });
+      term.selected = true;
+      props.dispatch(vocabularyTermList.clearSelected(previousTerms));
+      props.dispatch(vocabularyTermList.setTermSelected(term, index));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var vocabularyList = this.props.vocabularyList;
+      var props = this.props;
+      var renderedVocabularyList = vocabularyList.map(function (term, index) {
+        return (
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement(VocabularyList_TermHeader, {
+            header: term.Name,
+            type: term.TypeId,
+            term: term,
+            index: index,
+            key: "vocabularyTerm-" + index,
+            closeOnClick: true,
+            onDelete: _this3.onDeleteVocabulary.bind(_this3)
+          },
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridSystem"], null,
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement(VocabularyList_LeftPane, {
+            description: term.Description,
+            type: term.Type,
+            onEnter: _this3.onDescriptionUpdate,
+            index: index,
+            scopeType: term.ScopeType
+          }),
+          /*#__PURE__*/
+          external_window_dnn_nodeModules_React_default.a.createElement(VocabularyList_RightPane, {
+            vocabularyId: term.VocabularyId,
+            getVocabularyTerms: _this3.getVocabularyTerms.bind(_this3),
+            onUpdateTerm: _this3.onUpdateTerm.bind(_this3),
+            vocabularyTerms: props.vocabularyTerms,
+            selectParentTerm: _this3.selectParentTerm.bind(_this3),
+            totalTermCount: props.totalTermCount,
+            index: index,
+            type: term.Type,
+            scopeType: term.ScopeType,
+            onDeleteTerm: _this3.onDeleteTerm.bind(_this3),
+            parentTerms: vocabularyList
+          })))
+        );
+      });
+      var loadMoreEnabled = props.vocabularyList.length < props.totalCount;
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "vocabulary-list"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["PersonaBarPageBody"], null,
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["DnnTabs"], {
+          onSelect: this.handleSelect.bind(this),
+          selectedIndex: props.tabIndex,
+          tabHeaders: [resources.get("All"), resources.get("Application"), resources.get("Portal")],
+          type: "secondary"
+        }, renderedVocabularyList.length > 0 && renderedVocabularyList ||
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("p", {
+          className: "vocabulary-error"
+        }, resources.get("NoVocabularyTerms.Error")), renderedVocabularyList.length > 0 && renderedVocabularyList ||
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("p", {
+          className: "vocabulary-error"
+        }, resources.get("NoVocabularyTerms.Error")), renderedVocabularyList.length > 0 && renderedVocabularyList ||
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("p", {
+          className: "vocabulary-error"
+        }, resources.get("NoVocabularyTerms.Error")))), loadMoreEnabled &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+          type: "primary",
+          style: loadMoreButtonStyle,
+          onClick: this.onLoadMore.bind(this)
+        }, resources.get("LoadMore")))
+      );
+    }
+  }]);
+
+  return VocabularyListComponent;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+VocabularyList_VocabularyListComponent.propTypes = {
+  dispatch: prop_types_default.a.func.isRequired,
+  vocabularyList: prop_types_default.a.array,
+  totalCount: prop_types_default.a.number,
+  totalTermCount: prop_types_default.a.number,
+  vocabularyTerms: prop_types_default.a.array,
+  pagination: prop_types_default.a.object,
+  tabIndex: prop_types_default.a.number,
+  scopeTypeId: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.number])
+};
+
+function mapStateToProps(state) {
+  return {
+    vocabularyList: state.vocabulary.vocabularyList,
+    totalCount: state.vocabulary.totalCount,
+    totalTermCount: state.vocabularyTermList.totalCount,
+    vocabularyTerms: state.vocabularyTermList.vocabularyTerms,
+    pagination: state.pagination,
+    tabIndex: state.pagination.tabIndex,
+    scopeTypeId: state.pagination.scopeTypeId
+  };
+}
+
+/* harmony default export */ var VocabularyList = (Object(external_window_dnn_nodeModules_ReactRedux_["connect"])(mapStateToProps)(VocabularyList_VocabularyListComponent));
+// EXTERNAL MODULE: ./src/components/CreateVocabulary/style.less
+var CreateVocabulary_style = __webpack_require__(23);
+var CreateVocabulary_style_default = /*#__PURE__*/__webpack_require__.n(CreateVocabulary_style);
+
+// CONCATENATED MODULE: ./src/components/CreateVocabulary/index.jsx
+function CreateVocabulary_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { CreateVocabulary_typeof = function _typeof(obj) { return typeof obj; }; } else { CreateVocabulary_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return CreateVocabulary_typeof(obj); }
+
+function CreateVocabulary_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function CreateVocabulary_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function CreateVocabulary_createClass(Constructor, protoProps, staticProps) { if (protoProps) CreateVocabulary_defineProperties(Constructor.prototype, protoProps); if (staticProps) CreateVocabulary_defineProperties(Constructor, staticProps); return Constructor; }
+
+function CreateVocabulary_possibleConstructorReturn(self, call) { if (call && (CreateVocabulary_typeof(call) === "object" || typeof call === "function")) { return call; } return CreateVocabulary_assertThisInitialized(self); }
+
+function CreateVocabulary_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function CreateVocabulary_getPrototypeOf(o) { CreateVocabulary_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return CreateVocabulary_getPrototypeOf(o); }
+
+function CreateVocabulary_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) CreateVocabulary_setPrototypeOf(subClass, superClass); }
+
+function CreateVocabulary_setPrototypeOf(o, p) { CreateVocabulary_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return CreateVocabulary_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+
+var CreateVocabulary_CreateVocabulary =
+/*#__PURE__*/
+function (_Component) {
+  CreateVocabulary_inherits(CreateVocabulary, _Component);
+
+  function CreateVocabulary() {
+    var _this;
+
+    CreateVocabulary_classCallCheck(this, CreateVocabulary);
+
+    _this = CreateVocabulary_possibleConstructorReturn(this, CreateVocabulary_getPrototypeOf(CreateVocabulary).call(this));
+    _this.state = {
+      term: {
+        Name: "",
+        Description: "",
+        TypeId: 1,
+        ScopeTypeId: 2
+      },
+      error: {
+        name: true
+      },
+      triedToSubmit: false
+    };
+    return _this;
+  }
+
+  CreateVocabulary_createClass(CreateVocabulary, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        term: {
+          Name: "",
+          Description: "",
+          TypeId: 1,
+          ScopeTypeId: 2
+        }
+      });
+    }
+  }, {
+    key: "onCloseVocabulary",
+    value: function onCloseVocabulary() {
+      var props = this.props;
+      props.onCloseVocabulary();
+    }
+  }, {
+    key: "onTermValueChange",
+    value: function onTermValueChange(key, event) {
+      var value = CreateVocabulary_typeof(event) === "object" ? event.target.value : parseInt(event); //event is value
+
+      var state = this.state;
+      var term = this.state.term;
+      term[key] = value;
+      state.triedToSubmit = false;
+
+      if (value === "" && key === "Name") {
+        state.error["name"] = true;
+      } else if (value !== "" && key === "Name") {
+        state.error["name"] = false;
+      }
+
+      this.setState({
+        state: state,
+        term: term
+      });
+    }
+  }, {
+    key: "getNextPage",
+    value: function getNextPage(pageIndex, pageSize, scopeTypeId) {
+      return {
+        pageIndex: pageIndex || 0,
+        pageSize: pageSize,
+        scopeTypeId: scopeTypeId || 0
+      };
+    }
+  }, {
+    key: "onAddNewVocabulary",
+    value: function onAddNewVocabulary(event) {
+      var _this2 = this;
+
+      event.preventDefault();
+      var props = this.props,
+          state = this.state;
+      this.setState({
+        triedToSubmit: true
+      });
+
+      if (state.error.name) {
+        return;
+      }
+
+      var totalCount = props.totalCount;
+      props.dispatch(actions_vocabulary.addVocabulary(state.term, ++totalCount, function () {
+        _this2.onCloseVocabulary();
+
+        props.dispatch(pagination.loadTab(_this2.getNextPage(0, 10000, state.term.ScopeTypeId))); //index acts as scopeTypeId 
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var props = this.props,
+          state = this.state;
+      var typeOptions = [{
+        label: resources.get("Simple"),
+        value: 1
+      }, {
+        label: resources.get("Hierarchy"),
+        value: 2
+      }];
+      var scopeOptions = [{
+        label: resources.get("Portal"),
+        value: 2
+      }, {
+        label: resources.get("Application"),
+        value: 1
+      }];
+      return (
+        /*#__PURE__*/
+        //inline style for height to allow proper calculating
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["PersonaBarPageBody"], {
+          backToLinkProps: {
+            text: resources.get("BackToVocabularies"),
+            onClick: this.onCloseVocabulary.bind(this)
+          },
+          className: CreateVocabulary_style_default.a.createVocabulary,
+          style: {
+            height: "calc(100% - 100px)"
+          }
+        }, props.isOpen &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridCell"], {
+          className: "create-box"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["InputGroup"], null,
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["SingleLineInputWithError"], {
+          inputId: "create-vocabulary-name",
+          withLabel: true,
+          label: resources.get("TermName") + "*",
+          error: state.error.name && state.triedToSubmit,
+          errorMessage: resources.get("TermValidationError.Message"),
+          value: state.term.Name,
+          onChange: this.onTermValueChange.bind(this, "Name")
+        })),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["InputGroup"], null,
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["MultiLineInputWithError"], {
+          inputId: "create-vocabulary-description",
+          withLabel: true,
+          label: resources.get("Description"),
+          value: state.term.Description,
+          onChange: this.onTermValueChange.bind(this, "Description")
+        })),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["RadioButtons"], {
+          onChange: this.onTermValueChange.bind(this, "TypeId"),
+          options: typeOptions,
+          label: resources.get("Type.Header") + ":",
+          buttonGroup: "vocabularyType",
+          buttonWidth: 130,
+          value: state.term.TypeId
+        }), utils["a" /* default */].isHost() &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["RadioButtons"], {
+          onChange: this.onTermValueChange.bind(this, "ScopeTypeId"),
+          options: scopeOptions,
+          label: resources.get("Scope.Header") + ":",
+          buttonGroup: "scopeType",
+          buttonWidth: 130,
+          value: state.term.ScopeTypeId
+        }),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["GridCell"], {
+          className: "action-buttons"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+          type: "secondary",
+          onClick: this.onCloseVocabulary.bind(this)
+        }, resources.get("cancelCreate")),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+          type: "primary",
+          onClick: this.onAddNewVocabulary.bind(this)
+        }, resources.get("CreateVocabulary")),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("span", {
+          className: "required-help-text"
+        }, "* ", resources.get("RequiredField")))))
+      );
+    }
+  }]);
+
+  return CreateVocabulary;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+CreateVocabulary_CreateVocabulary.propTypes = {
+  dispatch: prop_types_default.a.func.isRequired,
+  totalCount: prop_types_default.a.number,
+  onCloseVocabulary: prop_types_default.a.func,
+  isOpen: prop_types_default.a.bool
+};
+
+function CreateVocabulary_mapStateToProps(state) {
+  return {
+    totalCount: state.vocabulary.totalCount,
+    vocabularyAddedIsValid: state.vocabulary.vocabularyAddedIsValid,
+    pagination: state.pagination
+  };
+}
+
+/* harmony default export */ var components_CreateVocabulary = (Object(external_window_dnn_nodeModules_ReactRedux_["connect"])(CreateVocabulary_mapStateToProps)(CreateVocabulary_CreateVocabulary));
+// CONCATENATED MODULE: ./src/components/App.jsx
+function App_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { App_typeof = function _typeof(obj) { return typeof obj; }; } else { App_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return App_typeof(obj); }
+
+function App_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function App_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function App_createClass(Constructor, protoProps, staticProps) { if (protoProps) App_defineProperties(Constructor.prototype, protoProps); if (staticProps) App_defineProperties(Constructor, staticProps); return Constructor; }
+
+function App_possibleConstructorReturn(self, call) { if (call && (App_typeof(call) === "object" || typeof call === "function")) { return call; } return App_assertThisInitialized(self); }
+
+function App_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function App_getPrototypeOf(o) { App_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return App_getPrototypeOf(o); }
+
+function App_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) App_setPrototypeOf(subClass, superClass); }
+
+function App_setPrototypeOf(o, p) { App_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return App_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+
+
+var App_App =
+/*#__PURE__*/
+function (_Component) {
+  App_inherits(App, _Component);
+
+  function App() {
+    App_classCallCheck(this, App);
+
+    return App_possibleConstructorReturn(this, App_getPrototypeOf(App).call(this));
+  }
+
+  App_createClass(App, [{
+    key: "openCreateVocabulary",
+    value: function openCreateVocabulary() {
+      var props = this.props;
+      props.dispatch(visiblePanel.selectPanel(1));
+    }
+  }, {
+    key: "closeCreateVocabulary",
+    value: function closeCreateVocabulary() {
+      var props = this.props;
+      props.dispatch(visiblePanel.selectPanel(0));
+    }
+  }, {
+    key: "navigateMap",
+    value: function navigateMap(page, index, event) {
+      event.preventDefault();
+      var props = this.props;
+      props.dispatch(visiblePanel.selectPanel(page, index));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "taxonomy-app"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["PersonaBarPage"], {
+          isOpen: props.selectedPage === 0
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["PersonaBarPageHeader"], {
+          title: resources.get("ControlTitle_")
+        }, utils["a" /* default */].canEdit() &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["Button"], {
+          type: "primary",
+          size: "large",
+          onClick: this.openCreateVocabulary.bind(this)
+        }, resources.get("Create"))),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(VocabularyList, null)),
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["PersonaBarPage"], {
+          isOpen: props.selectedPage === 1
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_CommonComponents_["PersonaBarPageHeader"], {
+          title: resources.get("Create"),
+          onCreateVocabulary: this.openCreateVocabulary.bind(this)
+        }), props.selectedPage === 1 &&
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(components_CreateVocabulary, {
+          onCloseVocabulary: this.closeCreateVocabulary.bind(this),
+          isOpen: props.selectedPage === 1
+        })))
+      );
+    }
+  }]);
+
+  return App;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+App_App.propTypes = {
+  dispatch: prop_types_default.a.func.isRequired,
+  selectedPage: prop_types_default.a.number
+};
+
+function App_mapStateToProps(state) {
+  return {
+    selectedPage: state.visiblePanel.selectedPage,
+    selectedPageVisibleIndex: state.visiblePanel.selectedPageVisibleIndex
+  };
+}
+
+/* harmony default export */ var components_App = (Object(external_window_dnn_nodeModules_ReactRedux_["connect"])(App_mapStateToProps)(App_App));
+// CONCATENATED MODULE: ./src/containers/Root.prod.js
+function Root_prod_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Root_prod_typeof = function _typeof(obj) { return typeof obj; }; } else { Root_prod_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Root_prod_typeof(obj); }
+
+function Root_prod_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function Root_prod_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function Root_prod_createClass(Constructor, protoProps, staticProps) { if (protoProps) Root_prod_defineProperties(Constructor.prototype, protoProps); if (staticProps) Root_prod_defineProperties(Constructor, staticProps); return Constructor; }
+
+function Root_prod_possibleConstructorReturn(self, call) { if (call && (Root_prod_typeof(call) === "object" || typeof call === "function")) { return call; } return Root_prod_assertThisInitialized(self); }
+
+function Root_prod_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function Root_prod_getPrototypeOf(o) { Root_prod_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return Root_prod_getPrototypeOf(o); }
+
+function Root_prod_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) Root_prod_setPrototypeOf(subClass, superClass); }
+
+function Root_prod_setPrototypeOf(o, p) { Root_prod_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Root_prod_setPrototypeOf(o, p); }
+
+
+
+
+var Root_prod_Root =
+/*#__PURE__*/
+function (_Component) {
+  Root_prod_inherits(Root, _Component);
+
+  function Root() {
+    Root_prod_classCallCheck(this, Root);
+
+    return Root_prod_possibleConstructorReturn(this, Root_prod_getPrototypeOf(Root).call(this));
+  }
+
+  Root_prod_createClass(Root, [{
+    key: "render",
+    value: function render() {
+      return (
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement("div", {
+          className: "taxonomy-Root"
+        },
+        /*#__PURE__*/
+        external_window_dnn_nodeModules_React_default.a.createElement(components_App, null))
+      );
+    }
+  }]);
+
+  return Root;
+}(external_window_dnn_nodeModules_React_["Component"]);
+
+/* harmony default export */ var Root_prod = __webpack_exports__["default"] = (Root_prod_Root);
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.React"
+var external_window_dnn_nodeModules_React_ = __webpack_require__(0);
+var external_window_dnn_nodeModules_React_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_React_);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReactDOM"
+var external_window_dnn_nodeModules_ReactDOM_ = __webpack_require__(12);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReactRedux"
+var external_window_dnn_nodeModules_ReactRedux_ = __webpack_require__(7);
+
+// EXTERNAL MODULE: ./src/utils/index.jsx
+var utils = __webpack_require__(4);
+
+// CONCATENATED MODULE: ./src/globals/taxonomy.js
+
+var vocabularies = {
+  init: function init() {
+    // This setting is required and define the public path 
+    // to allow the web application to download assets on demand 
+    // eslint-disable-next-line no-undef
+    // __webpack_public_path__ = options.publicPath;        
+    var options = window.dnn.initVocabularies();
+    utils["a" /* default */].init(options); // delay the styles loading after the __webpack_public_path__ is set
+    // this allows the fonts associated to be loaded properly in production
+
+    __webpack_require__(24);
+  },
+  dispatch: function dispatch() {
+    throw new Error("dispatch method needs to be overwritten from the Redux store");
+  }
+};
+/* harmony default export */ var taxonomy = (vocabularies);
+// EXTERNAL MODULE: external "window.dnn.nodeModules.Redux"
+var external_window_dnn_nodeModules_Redux_ = __webpack_require__(8);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReduxThunk"
+var external_window_dnn_nodeModules_ReduxThunk_ = __webpack_require__(11);
+var external_window_dnn_nodeModules_ReduxThunk_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_ReduxThunk_);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReduxImmutableStateInvariant"
+var external_window_dnn_nodeModules_ReduxImmutableStateInvariant_ = __webpack_require__(13);
+var external_window_dnn_nodeModules_ReduxImmutableStateInvariant_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_ReduxImmutableStateInvariant_);
+
+// EXTERNAL MODULE: ./src/constants/actionTypes/index.js + 4 modules
+var actionTypes = __webpack_require__(3);
+
+// CONCATENATED MODULE: ./src/reducers/vocabularyReducer.js
+function _objectSpread2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+
+function updateVocabularyList(vocabularyList, index, value) {
+  return [].concat(_toConsumableArray(vocabularyList.slice(0, index)), [value], _toConsumableArray(vocabularyList.slice(index + 1)));
+}
+
+function insertRecords(vocabularyList, addedList) {
+  var newVocabularyList = vocabularyList;
+  addedList.forEach(function (vocabulary) {
+    var alreadyThere = vocabularyList.find(function (_vocabulary) {
+      return _vocabulary.VocabularyId === vocabulary.VocabularyId;
+    });
+
+    if (!alreadyThere) {
+      newVocabularyList.push(vocabulary);
+    }
+  });
+  return newVocabularyList;
+}
+
+function vocabularyList() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    vocabularyList: [],
+    vocabularyTerms: [],
+    totalTermCount: 0,
+    totalCount: 0,
+    vocabularyAddedIsValid: true
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case actionTypes["a" /* pagination */].LOAD_MORE:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyList: insertRecords(JSON.parse(JSON.stringify(state.vocabularyList)), action.data.vocabularyList),
+        totalCount: action.data.totalCount
+      });
+
+    case actionTypes["a" /* pagination */].LOAD_TAB_DATA:
+    case actionTypes["c" /* vocabulary */].RETRIEVED_VOCABULARY_LIST:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyList: action.data.vocabularyList,
+        totalCount: action.data.totalCount
+      });
+
+    case actionTypes["c" /* vocabulary */].UPDATED_VOCABULARY:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyList: updateVocabularyList(state.vocabularyList, action.data.index, action.data.updatedTerm)
+      });
+
+    case actionTypes["c" /* vocabulary */].UPDATED_VOCABULARY_TERM:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyTerms: [].concat(_toConsumableArray(state.vocabularyTerms.slice(0, action.payload.index)), [action.payload.updatedTerm], _toConsumableArray(state.vocabularyTerms.slice(action.payload.index + 1)))
+      });
+
+    case actionTypes["c" /* vocabulary */].ADDED_VOCABULARY_TERM:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyTerms: [].concat(_toConsumableArray(state.vocabularyTerms), [action.payload.addedTerm]),
+        totalTermCount: action.payload.totalCount
+      });
+
+    case actionTypes["c" /* vocabulary */].ADDED_VOCABULARY:
+      return {
+        vocabularyAddedIsValid: true,
+        vocabularyList: state.vocabularyList.concat(action.payload.addedVocabulary),
+        totalCount: action.payload.totalCount
+      };
+
+    case actionTypes["c" /* vocabulary */].RETRIEVED_VOCABULARY_TERMS:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyTerms: action.data.vocabularyTerms,
+        totalTermCount: action.data.totalCount
+      });
+
+    case actionTypes["c" /* vocabulary */].DELETED_VOCABULARY:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyList: [].concat(_toConsumableArray(state.vocabularyList.slice(0, action.payload.index)), _toConsumableArray(state.vocabularyList.slice(action.payload.index + 1))),
+        totalCount: action.payload.totalCount
+      });
+
+    case actionTypes["c" /* vocabulary */].FAILED_TO_ADD_VOCABULARY:
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        vocabularyAddedIsValid: false
+      });
+
+    default:
+      return _objectSpread2({}, state);
+  }
+}
+// CONCATENATED MODULE: ./src/reducers/vocabularyTermListReducer.js
+function vocabularyTermListReducer_toConsumableArray(arr) { return vocabularyTermListReducer_arrayWithoutHoles(arr) || vocabularyTermListReducer_iterableToArray(arr) || vocabularyTermListReducer_nonIterableSpread(); }
+
+function vocabularyTermListReducer_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function vocabularyTermListReducer_iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function vocabularyTermListReducer_arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function vocabularyTermListReducer_objectSpread2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { vocabularyTermListReducer_defineProperty(target, key, source[key]); }); } return target; }
+
+function vocabularyTermListReducer_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+function vocabularyTermList() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    vocabularyTerms: [],
+    totalCount: 0
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case actionTypes["d" /* vocabularyTermList */].UPDATED_VOCABULARY_TERM:
+      return vocabularyTermListReducer_objectSpread2(vocabularyTermListReducer_objectSpread2({}, state), {}, {
+        vocabularyTerms: [].concat(vocabularyTermListReducer_toConsumableArray(state.vocabularyTerms.slice(0, action.payload.index)), [action.payload.updatedTerm], vocabularyTermListReducer_toConsumableArray(state.vocabularyTerms.slice(action.payload.index + 1)))
+      });
+
+    case actionTypes["d" /* vocabularyTermList */].ADDED_VOCABULARY_TERM:
+      return vocabularyTermListReducer_objectSpread2(vocabularyTermListReducer_objectSpread2({}, state), {}, {
+        vocabularyTerms: [].concat(vocabularyTermListReducer_toConsumableArray(state.vocabularyTerms), [action.payload.addedTerm]),
+        totalCount: action.payload.totalCount
+      });
+
+    case actionTypes["d" /* vocabularyTermList */].RETRIEVED_VOCABULARY_TERMS:
+      return vocabularyTermListReducer_objectSpread2(vocabularyTermListReducer_objectSpread2({}, state), {}, {
+        vocabularyTerms: action.data.vocabularyTerms,
+        totalCount: action.data.totalCount
+      });
+
+    case actionTypes["d" /* vocabularyTermList */].DELETED_VOCABULARY_TERM:
+      return vocabularyTermListReducer_objectSpread2(vocabularyTermListReducer_objectSpread2({}, state), {}, {
+        vocabularyTerms: action.payload.vocabularyTerms,
+        totalCount: action.payload.totalCount
+      });
+
+    case actionTypes["d" /* vocabularyTermList */].SET_TERM_SELECTED:
+      return vocabularyTermListReducer_objectSpread2(vocabularyTermListReducer_objectSpread2({}, state), {}, {
+        vocabularyTerms: [].concat(vocabularyTermListReducer_toConsumableArray(state.vocabularyTerms.slice(0, action.payload.index)), [action.payload.updatedTerm], vocabularyTermListReducer_toConsumableArray(state.vocabularyTerms.slice(action.payload.index + 1)))
+      });
+
+    case actionTypes["d" /* vocabularyTermList */].CLEAR_TERMS_SELECTED:
+      return vocabularyTermListReducer_objectSpread2(vocabularyTermListReducer_objectSpread2({}, state), {}, {
+        vocabularyTerms: action.payload.vocabularyTerms
+      });
+
+    default:
+      return vocabularyTermListReducer_objectSpread2({}, state);
+  }
+}
+// CONCATENATED MODULE: ./src/reducers/paginationReducer.js
+function paginationReducer_objectSpread2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { paginationReducer_defineProperty(target, key, source[key]); }); } return target; }
+
+function paginationReducer_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+function pagination() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    tabIndex: 0,
+    pageIndex: 0,
+    scopeTypeId: "*",
+    pageSize: 10
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case actionTypes["a" /* pagination */].LOAD_MORE:
+      return paginationReducer_objectSpread2(paginationReducer_objectSpread2({}, state), {}, {
+        pageIndex: action.payload.pageIndex,
+        scopeTypeId: action.payload.scopeTypeId
+      });
+
+    case actionTypes["a" /* pagination */].LOAD_TAB_DATA:
+      return paginationReducer_objectSpread2(paginationReducer_objectSpread2({}, state), {}, {
+        pageIndex: 0,
+        tabIndex: action.tabIndex,
+        scopeTypeId: action.payload.scopeTypeId
+      });
+
+    default:
+      return paginationReducer_objectSpread2({}, state);
+  }
+}
+// CONCATENATED MODULE: ./src/reducers/visiblePanelReducer.js
+function visiblePanelReducer_objectSpread2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { visiblePanelReducer_defineProperty(target, key, source[key]); }); } return target; }
+
+function visiblePanelReducer_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+function visiblePanel() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    selectedPage: 0
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case actionTypes["b" /* visiblePanel */].SELECT_PANEL:
+      return visiblePanelReducer_objectSpread2(visiblePanelReducer_objectSpread2({}, state), {}, {
+        selectedPage: action.payload.selectedPage
+      });
+
+    default:
+      return visiblePanelReducer_objectSpread2({}, state);
+  }
+}
+// CONCATENATED MODULE: ./src/reducers/rootReducer.js
+
+
+
+
+
+var rootReducer = Object(external_window_dnn_nodeModules_Redux_["combineReducers"])({
+  vocabulary: vocabularyList,
+  pagination: pagination,
+  vocabularyTermList: vocabularyTermList,
+  visiblePanel: visiblePanel
+});
+/* harmony default export */ var reducers_rootReducer = (rootReducer);
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReduxDevTools"
+var external_window_dnn_nodeModules_ReduxDevTools_ = __webpack_require__(14);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReduxDevToolsLogMonitor"
+var external_window_dnn_nodeModules_ReduxDevToolsLogMonitor_ = __webpack_require__(15);
+var external_window_dnn_nodeModules_ReduxDevToolsLogMonitor_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_ReduxDevToolsLogMonitor_);
+
+// EXTERNAL MODULE: external "window.dnn.nodeModules.ReduxDevToolsDockMonitor"
+var external_window_dnn_nodeModules_ReduxDevToolsDockMonitor_ = __webpack_require__(16);
+var external_window_dnn_nodeModules_ReduxDevToolsDockMonitor_default = /*#__PURE__*/__webpack_require__.n(external_window_dnn_nodeModules_ReduxDevToolsDockMonitor_);
+
+// CONCATENATED MODULE: ./src/containers/DevTools.js
+
+
+
+
+/* harmony default export */ var DevTools = (Object(external_window_dnn_nodeModules_ReduxDevTools_["createDevTools"])(
+/*#__PURE__*/
+external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReduxDevToolsDockMonitor_default.a, {
+  toggleVisibilityKey: "ctrl-h",
+  changePositionKey: "ctrl-q"
+},
+/*#__PURE__*/
+external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReduxDevToolsLogMonitor_default.a, null))));
+// CONCATENATED MODULE: ./src/store/configureStore.js
+
+
+
+
+
+/* eslint-disable no-undef */
+
+var IS_PRODUCTION = "production" === "production";
+function configureStore(initialState) {
+  var store = Object(external_window_dnn_nodeModules_Redux_["createStore"])(reducers_rootReducer, initialState, Object(external_window_dnn_nodeModules_Redux_["compose"])(IS_PRODUCTION ? Object(external_window_dnn_nodeModules_Redux_["applyMiddleware"])(external_window_dnn_nodeModules_ReduxThunk_default.a) : Object(external_window_dnn_nodeModules_Redux_["applyMiddleware"])(external_window_dnn_nodeModules_ReduxThunk_default.a, external_window_dnn_nodeModules_ReduxImmutableStateInvariant_default()()), DevTools.instrument()));
+  return store;
+}
+// EXTERNAL MODULE: ./src/containers/Root.js
+var Root = __webpack_require__(17);
+var Root_default = /*#__PURE__*/__webpack_require__.n(Root);
+
+// CONCATENATED MODULE: ./src/main.jsx
+
+
+
+
+
+
+var main_store = configureStore();
+taxonomy.dispatch = main_store.dispatch;
+taxonomy.init();
+var appContainer = document.getElementById("vocabularies-panel");
+Object(external_window_dnn_nodeModules_ReactDOM_["render"])(
+/*#__PURE__*/
+external_window_dnn_nodeModules_React_default.a.createElement(external_window_dnn_nodeModules_ReactRedux_["Provider"], {
+  store: main_store
+},
+/*#__PURE__*/
+external_window_dnn_nodeModules_React_default.a.createElement(Root_default.a, null)), appContainer);
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=vocabulary-bundle.js.map

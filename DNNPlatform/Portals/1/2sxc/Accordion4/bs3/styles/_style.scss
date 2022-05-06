@@ -1,0 +1,87 @@
+﻿.app-accordion4-wrapper {
+  margin-bottom: $grid-gutter-width;
+  .app-accordion4-title {
+    border-bottom: 1px solid $gray-200;
+    cursor: pointer;
+    position: relative;
+    color: $body-color;
+    transition: color 0.3s linear, border-color 0.3s linear;
+    &:hover {
+      color: $primary;
+      border-color: $primary;
+    }
+    > svg {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: $primary;
+      border-radius: 50%;
+
+      &.fa-chevron-up {
+          display: none;
+          padding: 4px 4px 5px;
+      }
+
+      &.fa-chevron-down {
+          padding: 5px 4px 4px;
+      }
+
+    }
+    &.is-expanded {
+      border: none;
+    }
+    &.is-expanded {
+      > svg {
+        background: $gray-200;  
+
+        &.fa-chevron-up {
+            display: block;
+        }
+
+        &.fa-chevron-down {
+            display: none;
+        }
+      }
+    }
+    h2,
+    h3 {
+      display: block;
+      font-size: $font-size-base;
+      font-weight: bold;
+      padding: $grid-gutter-width/2.5 $grid-gutter-width;
+      position: relative;
+      margin: 0;
+      &.app-accordion4-no-icon {
+        padding-left: 0;
+      }
+      span {
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+  .app-accordion4-content {
+    display: none;
+    background-color: transparent;
+    padding: $grid-gutter-width/1.5;
+    @include media-breakpoint-up(md) {
+      padding: $grid-gutter-width;
+    }
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      margin-bottom: $grid-gutter-width/2.5;
+      color: $primary;
+    }
+    .app-accordion4-content {
+      margin-bottom: $grid-gutter-width/3;
+      @include media-breakpoint-up(md) {
+        margin-bottom: $grid-gutter-width/2;
+      }
+    }
+  }
+}

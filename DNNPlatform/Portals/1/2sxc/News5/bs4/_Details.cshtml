@@ -1,0 +1,83 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@{
+  // Get some helper commands for later on
+  var helpers = CreateInstance("../shared/Helpers.cs");
+  var detailsCode = CreateInstance("Details.cs"); 
+
+  // Get the PageServices HTTP error headers
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+
+  var article = AsList(Data).FirstOrDefault();
+  var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
+
+  @* Show article not found notification and stop processing *@
+  if(article == null) {
+    <h1>@Resources.LabelEventNotExists</h1>
+    <p>@Resources.LabelEventNotExistsText</p>
+
+    @* Show "Back to list" button *@
+    @detailsCode.BackToListButton()
+    page.SetHttpStatus(404);
+    return;
+  }
+
+  var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
+  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+  page.AddMeta("description", Tags.Strip(article.Teaser));
+  page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+}
+
+<div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
+  @* Head of the article *@
+  <div class="app-news5-content">
+    @* "Will publish"/"expired" notes for admin *@
+    @helpers.AdminArticleInformation(article)
+
+    <h2>@article.Title</h2>
+
+    @* Show Date and categories *@
+    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
+    @if(displayCategories) {
+      <span class="app-news5-categories">
+        @foreach (var cat in article.Categories) {
+          <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
+        }
+      </span>
+    }
+  </div>
+
+  @* Body of the article *@
+  <div class="app-news5-content">
+    @* Show image or placeholder *@
+    @if (article.Lightbox) {
+      @:<a class="fancybox" href='@Link.Image(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+    }
+      <div class="app-news5-detail-img">
+        <span class="overlay"></span>
+        <img loading="lazy" class="img-fluid"
+          src='@Link.Image(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
+          alt="@article.Title" />
+      </div>
+    @if (article.Lightbox) {
+      @:</a>
+    }
+
+    @* Teaser *@
+    @if(article.ShowTeaserInDetail) {
+      <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+    }
+
+    @* Body of the post - will also create inner content blocks / apps *@
+    <div class="app-news5-detail-body">
+      @render.All(article, field: "InnerContent", merge: article.Content)
+    </div>
+  </div>
+</div>
+
+@* Show "Back to list" button *@
+@detailsCode.BackToListButton()
+
+@Html.Partial("./_Assets.cshtml", new { scripts = true} )

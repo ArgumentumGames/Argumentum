@@ -1,0 +1,54 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  // Get some helper commands for later on
+  var helpers = CreateInstance("../shared/Helpers.cs");
+
+  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+}
+
+@* Show Toolbar Menu if admin *@
+@if(Edit.Enabled) {
+  @Html.Partial("../shared/_Admin.cshtml", new { Content = Content})
+  @helpers.AdminDetailsPageConfigWarning()
+}
+<div class="app-news5 app-news5-list">
+  @* Show title *@
+  <h1 class="mb-3">
+    @(filteredCategory != null ? filteredCategory.PageTitle : Content.Title)
+  </h1>
+
+  @* Show category filter if configured *@
+  @if (App.Settings.ActivateCategories) {
+    @Html.Partial("../shared/_Category Filter.cshtml", new { FilteredCategory = filteredCategory})
+  }
+
+  @* List the articles *@
+  <div class="row">
+    @foreach (var article in AsList(Data["News"])) {
+      <div class="col-12" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
+        <div class="app-news5-details-link">
+          <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
+          <div class="row">
+            <div class="mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
+              @* Show image or placeholder *@
+              @Html.Partial("../shared/_Article Image.cshtml", new { Article = article })
+            </div>
+            <div class="col-12 col-md-6 col-lg-8">
+              @* Show Title, Date, Category, Teaser and read more link *@
+              @Html.Partial("../shared/_Article Information.cshtml", new { Article = article, HeadingType = "h2" })
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  @* Show pagination if configured *@
+  @if (Content.ShowPagination == true) {
+    @Html.Partial("../shared/_List Paging.cshtml")
+  }
+</div>
+
+@Html.Partial("./_Assets.cshtml")

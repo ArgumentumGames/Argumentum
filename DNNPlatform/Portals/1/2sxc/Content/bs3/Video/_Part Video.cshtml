@@ -1,0 +1,66 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using System.Text.RegularExpressions;
+@{
+  /* Partial template which is re-used in _Video.cshtml to show the video preview and link-to-lightbox for the video */
+
+  var video = DynamicModel.Video;
+
+  // Check if the link is a youtube, and convert that to a youtube embed
+	var youTubeLink = Regex.Match(Text.First(video.VideoLink, Content.VideoLink), @"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)");
+  var youTubeUrl = youTubeLink.Success
+    ? "https://www.youtube.com/embed/" + youTubeLink.Groups[1].Value + "?controls=1&fs=1&modestbranding=0&rel=0&showinfo=0&autohide=1&iv_load_policy=3&theme=dark&wmode=transparent&autoplay=true"
+    : "";
+
+  // configuration
+  var quality = (int)Settings.Images.Content.Quality;
+
+  // this is the parameter passed in from the calling page
+  // Figure out width of the image based on max-width of a content-image and 12 Bootstrap Columns
+  var imgColumns = (int)(DynamicModel.Columns ?? 12);
+  var width = (int)(Settings.Images.Content.Width * imgColumns / 12);
+  int height = (int)(width * 9/16);
+
+  var image = Text.First(video.Image, Content.Image);
+  var title = Text.First(video.Title, Content.Title);
+  var hasVideoLightbox = Text.First(video.Presentation.VideoLightbox, Content.Presentation.VideoLightbox);
+}
+@if (hasVideoLightbox != false) {
+  // open in lightbox
+  // define dom attribute for fancybox
+  var fancyboxAttribute = "app-content-fancybox-videos"; 
+  <a @fancyboxAttribute class="co-video" data-width="1280" data-height="720" data-caption="@title" href="@youTubeUrl">
+    @if (Text.Has(image)) {
+    <figure>
+      <div class="overlay d-flex justify-content-center align-items-center w-100 h-100">
+        <i class="fab fa-youtube"></i>
+      </div>
+      <img class="img-responsive"
+        src='@Link.Image(image, width: width, height: height, resizeMode: "crop", scaleMode: "both", quality: quality)'
+        alt="@title" />
+    </figure>
+    } else {
+      <div class="dnnFormMessage dnnFormWarning">Preview Image not found. Please add Preview Image or turn off Video-Lightbox</div>
+    }
+  </a>
+  @* activate scripts because they are needed by fancybox *@
+  @Html.Partial("../shared/_Assets.cshtml", new { parts = "videos,fancybox", FancyboxAttribute = fancyboxAttribute })
+} else {
+  // no lightbox, show directly
+
+  <div class="co-video-embed embed-responsive embed-responsive-16by9">
+    @if (youTubeLink.Success) {
+      <img src="https://img.youtube.com/vi/@youTubeLink.Groups[1].Value/maxresdefault.jpg" class="img-responsive lazy">
+
+      <div class="overlay d-flex justify-content-center align-items-center w-100 h-100" data-youtube="iframe-@CmsContext.Module.Id">
+        <i class="fab fa-youtube"></i>
+      </div>
+
+      <iframe id="iframe-@CmsContext.Module.Id" data-youtube-src="@youTubeUrl" allowfullscreen></iframe>
+    } else {
+      <div class="dnnFormMessage dnnFormWarning">Video not found. Please check Video-Link.</div>
+    }
+  </div>
+  @* activate scripts because they are needed for the iframe-embed mode *@
+  @Html.Partial("../shared/_Assets.cshtml", new { parts = "videos" })
+}

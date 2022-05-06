@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // 1. Get Services for Css and Page
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
+
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (pageCss.IsUnknown) {
+    page.Activate("Bootstrap4");
+  }
+
+  page.Activate("turnOn"); // see https://r.2sxc.org/turnon
+}
+
+<turnOn turn-on='{"run": "window.appJobs2.init()", "data": { "domAttribute": "@DynamicModel.DomAttribute", "currentCategory": "@CmsContext.Page.Parameters["category"]" }}'></turnOn>
+<link rel="stylesheet" href='@App.Path/dist/@(pageCss.Is("bs3") ? "bs3" : "bs4").min.css' data-enableoptimizations="true">
+<script src="@App.Path/dist/scripts.min.js" data-enableoptimizations="true"></script>

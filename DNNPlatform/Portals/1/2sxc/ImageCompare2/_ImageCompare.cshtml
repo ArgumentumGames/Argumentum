@@ -1,0 +1,45 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+    // Info: we're not using Bootstrap classes because ATM this App is CSS-Neutral
+    // For more extensive/custom use, we suggest use Bootstrap classes
+
+    // Figure out positioning of text based on View Settings, usually left, right or none
+    var contentPosition = CmsContext.View.Identifier;
+    var showContent = contentPosition != "none";
+    var imagePositionClass = contentPosition == "left" ? "app-imagecompare2-after-text" : "";
+    var imgWidthClass = showContent ? "app-imagecompare2-img50" : "";
+
+    // Merge settings of current item with defaults to get resize parameters
+    var resizeSettings = AsDynamic(Content.ImageSettings, Settings.ImageSettings);
+    var resizeFactor = showContent && Content.ImageSettings.EntityId == 0 ? 0.5 : 1;
+    
+    var labelBefore = Content.ShowLabels ? Content.BeforeLabel : "";
+    var labelAfter = Content.ShowLabels ? Content.AfterLabel : "";
+
+    var domId = "app-imagecompare2-id" + CmsContext.Module.Id;
+}
+<div class="app-imagecompare2-main" @Edit.TagToolbar(Content)>
+  @* if we don't show the content/body, the title will still be needed, but above the image *@
+  @if (!showContent) {
+    <h2>@Content.Title</h2>
+  }
+  <div class="app-imagecompare2-content">
+    <div class="@imgWidthClass @imagePositionClass">
+        <div id="@domId" class="beer-slider" data-beer-label="@labelBefore"> 
+          <img loading="lazy" src="@Link.Image(Content.LeftImage, resizeSettings, factor: resizeFactor)" />
+          <div class="beer-reveal" data-beer-label="@labelAfter">
+            <img loading="lazy" src="@Link.Image(Content.RightImage, resizeSettings, factor: resizeFactor)" />
+          </div>
+        </div>
+    </div>
+    @if (showContent) {
+      <div class="content-text">
+        <h2>@Content.Title</h2>
+        @Html.Raw(Content.DescriptionText)
+      </div>
+    }
+  </div>
+</div>
+
+@Html.Partial("_ImageCompare.PartAssets.cshtml", new { DomId = domId })

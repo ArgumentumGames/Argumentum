@@ -1,0 +1,81 @@
+//
+// This SCSS generates the css for the general styles
+//
+// It is used by all CSS generators (Bootstrap3/4, etc.)
+// To keep things simple, it uses the standard variables of
+// bootstrap 4 conventions.
+.app-add-search3 {
+  input:focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+
+  button:focus,
+  button:active {
+    outline: none !important;
+  }
+  &.input-group svg {
+    height: 16px;
+  }
+}
+
+
+/*Styling Search Results*/
+#addsearch-results {
+  #addsearch-logo-img {
+    display: none!important;
+  }
+
+  .addsearch-result-item-container {
+    transition: background-color .3s linear;
+    &:hover {
+      background-color: #eee!important;
+    }
+
+    .addsearch-result-item-sub {
+      border-bottom: 1px solid rgb(236, 236, 236)!important;
+      padding-bottom: 10px!important;
+      padding-top: 5px!important;
+
+      @include media-breakpoint-up(md) {
+        padding-bottom: 20px!important;
+        padding-top: 10px!important;
+      }
+
+      h1 a,
+      h2 a {
+        color: #333!important;
+        font-weight: normal!important;
+
+        @include media-breakpoint-up(md) {
+          font-size: 20px!important;
+        }
+      }
+
+      p {
+        @include media-breakpoint-up(md) {
+          font-size: 16px!important;
+          line-height: 20px!important;
+        }
+
+        span.document_url {
+          color: $primary!important;
+          @include media-breakpoint-up(md) {
+            font-style: normal;
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    #addsearch-fuzzy span {
+      height: 20px!important;
+      font-size: 14px!important;
+      line-height: 14px!important;
+      background-color: #f7f7f7;
+      border-bottom: 2px solid #ececec;
+    }
+  }
+}

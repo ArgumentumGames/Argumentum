@@ -1,0 +1,97 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Get current post to show from the View-Query + some Helpers
+  var post = AsList(Data).FirstOrDefault();
+  var detailsHelpers = CreateInstance("DetailsHelper.cs");
+
+  @* Preflight: check if post found, else show notification and stop processing *@
+  if(post == null) {
+    <h1>@Resources.LabelPostNotExists</h1>
+    <p>@Resources.LabelPostNotExistsText</p>
+    @detailsHelpers.BackToListButton()
+    // Set 404 status if the post was not found
+    GetService<ToSic.Sxc.Web.IPageService>().SetHttpStatus(404, "Error: Blog Post not Found.");
+    return;
+  }
+
+	// Add open-graph meta-tags to page header
+  detailsHelpers.AddMetaTags(post);
+
+  // Shortcut to author, makes the code simpler
+  var author = post.Author;
+
+  // Render Service helps to create inner-content on the main body
+  var renderSvc = GetService<ToSic.Sxc.Blocks.IRenderService>();
+}
+
+<section class="row app-blog5 app-blog5-post-detail">
+  <article class="col-lg-8 mb-4" @Edit.TagToolbar(post, toolbar: new [] { "-layout", "%delete&show=true" })>
+
+    @* 1. Header containing the main image, title and date information *@
+    <div class="app-blog5-post-header">
+      @Html.Partial("shared/_MainImage.cshtml", new { Post = post })
+      @Html.Partial("shared/_AuthorDateAndCategories.cshtml", new { Post = post, HeadingType = "h1"})
+    </div>
+
+    @* 2. Body of the post - will also create inner content blocks / apps *@
+    <div class="app-blog5-post-content mb-4">
+      @renderSvc.All(post, field: "InnerContent", merge: post.Content)
+    </div>
+
+    @* 3. Footer with Tags, Links to prev/next and sharing buttons *@
+    <div class="app-blog5-post-footer">
+      @* 3.1 Tags of post *@
+      @if(AsList(post.Tags as object).Any()) {
+        <div class="app-blog5-tags d-flex align-items-center">
+          <strong class="mr-2">@(post.Tags.Count > 1 ? @Resources.Tags : @Resources.Tag): </strong>
+          @foreach (var tag in post.Tags) {
+            <a class="btn btn-sm btn-light mr-2" href='@Link.To(parameters: "tag=" + tag.Tag)' title="@tag.Name">@tag.Name</a>
+          }
+        </div>
+      }
+
+      <hr />
+
+      @* 3.3 Author *@
+      <div class="app-blog5-post-author-details d-flex">
+        <div>
+          @Html.Raw(author.ShortBio)
+          @Resources.ReadMoreAuthor <a href='@Link.To(parameters: "author=" + author.FullName)'>@author.FullName</a>
+        </div>
+        @if(Text.Has(author.Image)) {
+          <div>
+            <img loading="lazy" src='@Link.Image(author.Image, Settings.Images.Author)' class="rounded-circle" alt="@author.FullName" />
+          </div>
+        }
+      </div>
+      <hr />
+
+      @* 3.4 Preview of previous and next post *@
+      @{
+        var previousPost = AsList(Data["Previous"]).FirstOrDefault();
+        var nextPost = AsList(Data["Next"]).FirstOrDefault();
+      }
+      
+      <div class='app-blog5-article-links d-flex align-items-center @(previousPost == null ? "justify-content-end" : "justify-content-between")'>
+        @if (previousPost != null) {
+          @detailsHelpers.PostMicroPreview(previousPost, "previous")
+        }
+        @if (nextPost != null) {
+          @detailsHelpers.PostMicroPreview(nextPost, "next")
+        }
+      </div>
+      <hr />
+
+      @* 3.5 "Back to list" button *@
+      @detailsHelpers.BackToListButton()
+    </div>
+  </article>
+
+  @* 4b Desktop Category filter *@
+  <div class="col-lg-4">
+      @Html.Partial("shared/_Categories.cshtml", new { EnableSocialSharing = true})
+  </div>
+</section>
+
+@Html.Partial("shared/_Assets.cshtml")

@@ -1,0 +1,50 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@* Other Dates of Event *@
+@{
+  var futureDates = AsList(Data["FutureDates"]);
+  var pastDates = futureDates.Where(d => d.End.Date < DateTime.Now.Date).Count();
+  var eventToolbar = new [] {
+    "toolbar=empty",
+    "settings?show=always",
+    "+new&title=" + Resources.AddNewEventDate + "?contentType=EventDate&prefill:Event="+DynamicModel.Item.EntityGuid,
+    "contentitems&title=" + Resources.LabelRegistrations + "?contentType=Registrations&filter:Course=" + DynamicModel.Item.EntityTitle
+  };
+}
+
+<div class="app-events6-further-events" @Edit.TagToolbar(toolbar: eventToolbar)>
+  @if(futureDates.Count() == 0 && Edit.Enabled) {
+    <h5 class="mb-4 mt-4">@Resources.NoEventDates</h5>
+  } else if(futureDates.Count() > 1 || Edit.Enabled) {              
+    <h5 class="mb-3 mt-4">@Resources.AllDatesOfThisEvent (@(futureDates.Count() - pastDates))</h5>
+  }
+
+  @if(futureDates.Count() > 0) {
+    if(Edit.Enabled && pastDates > 0) {
+      <small><a href="javascript:void(0)" class="js-app-events6-toggle-expired-dates">@App.Resources.BtnToggleExpiredDate</a></small>
+    }
+    <ul class="list-group list-group-flush mb-4">
+      @foreach (var d in futureDates) {
+        var currentEventClass = (DynamicModel.HasEventDate && d.EntityId == DynamicModel.EventDate.EntityId) ? "current" : "";
+        var hiddenEvent = ((DynamicModel.HasEventDate && d.End.Date < DateTime.Now.Date) || (d.End.Date < DateTime.Now.Date) ? "event-hidden" : "");
+        var dateRegistrations = d.Parents("Registrations");
+        var regCount = dateRegistrations == null ? 0 : dateRegistrations.Count;
+        <li class="list-group-item mb-0 @currentEventClass @hiddenEvent"
+          @Edit.TagToolbar(d, toolbar: new [] {
+            "toolbar=empty", "+edit", "+delete?entityId=" + d.EntityId + "&show=true", "+contentitems&title=" + Resources.LabelRegistrations + "?contentType=Registrations&filter:EventDate=" + d.Start
+          })
+        >
+          <a href="@Link.To(parameters: "details=" + DynamicModel.Item.EntityId + "&dateid=" + d.EntityId)">
+            <strong>@d.Start.ToString("d")  @(!d.EndDateIsStartDate ? " - " + d.End.ToString("d") : "")</strong>
+            @(Text.Has(d.TitleAddition) ? " - " + d.TitleAddition : "")
+            @(Text.Has(d.TimeSpecifics) ? " - " + d.TimeSpecifics : "")
+            @if (Edit.Enabled) {
+              @("(" + regCount + " " + Resources.LabelRegistrations + ")")
+            }
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</div>

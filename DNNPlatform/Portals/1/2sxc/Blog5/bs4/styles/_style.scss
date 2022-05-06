@@ -1,0 +1,245 @@
+.app-blog5 {
+  &.app-blog5-post-detail {
+    .app-blog5-post-content {
+      p:first-of-type {
+        margin-bottom: $grid-gutter-width * 1.5;
+      }
+    }
+  }
+
+  .app-blog5-list-item {
+    position: relative;
+
+    // https://w3bits.com/css-image-hover-zoom/
+    // https://w3bits.com/labs/css-image-hover-zoom/
+    &.effect-zoom {
+      picture {
+        overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+      }
+
+      img {
+        transition: transform .5s ease;
+      }
+      &:hover img {
+        transform: scale(1.2);
+      }
+    }
+
+    /* Effects for Mouse-Over */
+    &.effect-darken {
+      picture {
+        background-color: $primary;
+      }
+      
+      &:hover {
+        picture {
+          img {
+            opacity: 0.8;
+          }
+        }
+  
+        h2,
+        h5 {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  picture {
+    display: block;
+    transition: background-color 0.3s ease-in-out;
+
+    img {
+      transition: opacity 0.3s ease-in-out;
+      backface-visibility: hidden;
+      width: 100%;
+    }
+  }
+
+  h2 {
+    transition: color 0.3s ease-in-out;
+  }
+
+  hr {
+    margin: $grid-gutter-width 0;
+  }
+
+  .app-blog5-post-header {
+    .post-meta {
+      time {
+        font-size: 13px;
+      }
+
+      a.post-category {
+        font-size: 13px;
+        display: inline-block;
+        padding: 0 5px;
+      }
+    }
+  }
+
+  .app-blog5-post-footer {
+    .app-blog5-tags {
+      font-size: 13px;
+      padding-bottom: $grid-gutter-width/2;
+      margin-bottom: 10px;
+    }
+
+    .app-blog5-post-author-details {
+      font-size: 13px;
+      img {
+        max-width: 100px;
+        margin-left: $grid-gutter-width;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
+  // Previous and next article links
+  .app-blog5-article-links {
+    margin-bottom: $grid-gutter-width;
+    overflow: hidden;
+
+    .previous,
+    .next {
+      max-width: 48%;
+      font-size: 13px;
+      font-weight: 700;
+
+      @include media-breakpoint-up(sm) {
+        max-width: 300px;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: $body-color;
+
+        &:before {
+          font-weight: 300;
+          font-size: 50px;
+          transition: color 0.3s ease-in-out;
+          color: $primary;
+        }
+
+        &:hover {
+          text-decoration: none;
+          &:before {
+            color: $body-color;
+          }
+        }
+        strong {
+          display: block;
+          font-weight: 500;
+        }
+
+        img {
+          width: 70px;
+        }
+      }
+    }
+
+    .previous {
+      a {
+        flex-direction: row;
+
+        &:before {
+          content: "‹";
+          margin-right: 5px;
+        }
+
+        img {
+          margin-right: $grid-gutter-width/3;
+        }
+      }
+    }
+
+    .next {
+      a {
+        flex-direction: row-reverse;
+
+        &:before {
+          content: "›";
+          margin-left: 5px;
+        }
+
+        img {
+          margin-left: $grid-gutter-width/3;
+        }
+      }
+    }
+  }
+}
+
+.app-blog5-sidebar {
+  position: sticky;
+  top: 145px;
+  padding: 0px;
+  border-left: 5px solid $primary;
+  padding-left: $grid-gutter-width;
+  min-width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    width: 310px;
+  }
+
+  .rss-button {
+    width: 30px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      a {
+        display: block;
+        line-height: 32px;
+      }
+
+      span {
+        background: $gray-200;
+        color: $body-color;
+      }
+    }
+  }
+}
+
+// Styling for post list items in va-layout-full
+body.va-layout-full {
+  section {
+    &.app-blog5 {
+      article {
+        background: #fff;
+        padding-bottom: $grid-gutter-width/2;
+        transition: box-shadow 0.3s ease-in-out;
+        .app-blog5-post-header,
+        .app-blog5-post-content,
+        .app-blog5-post-footer,
+        #disqus_thread {
+          padding: 0 $grid-gutter-width;
+        }
+        .app-blog5-post-header picture {
+          margin-right: -$grid-gutter-width;
+          margin-left: -$grid-gutter-width;
+        }
+        &.app-blog5-list-item:hover {
+          -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+          -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .addthis_inline_share_toolbox {
+        background: #fff;
+        margin-top: 1px;
+        padding: $grid-gutter-width;
+      }
+    }
+  }
+}

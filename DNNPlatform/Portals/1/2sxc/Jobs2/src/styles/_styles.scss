@@ -1,0 +1,71 @@
+// Styles for theoutput of the categories and positions
+.app-jobs2 {
+  .app-jobs2-categories-list {
+    margin-bottom: $grid-gutter-width/2;
+  }
+
+  .app-jobs2-list {
+    transition: opacity .4s ease-in-out;
+    padding: $grid-gutter-width/2;
+
+    .app-jobs2-job {
+      padding: $grid-gutter-width/2;
+      transition: background .2s ease;
+
+      &.po-odd {
+        background: #F9f9f9;
+
+        &:hover {
+          background: #E1E5E5;
+        }
+      }
+
+      &:hover {
+        background: #E1E5E5;
+
+        .app-jobs2-link {
+          text-decoration: underline;
+          color: $primary;
+        }
+      }
+
+      h3 {
+        margin: 0;
+      }
+
+      > .app-jobs2-link-box {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .app-jobs2-categories-list {
+        margin: 0 0 7px 0;
+        
+        > span {
+          font-size: 13px;
+          color: $gray-500;
+
+          &:first-of-type:after {
+            content: "";
+          }
+          &:after {
+            content: ",";
+          }
+          &:last-of-type:after {
+            content: "";
+          }
+        }
+      }    
+    }
+
+    .app-jobs2-categories-container {
+      text-align: right;
+      
+      > span {
+        color: $primary;
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  /* This is a partial template which is re-used in the Content-Templates */
+
+  // Parameter passed in from the calling page - if we don't have an image, exit
+  var imgItem = DynamicModel.Item;  // The content-item with the image
+  if (!Text.Has(imgItem.Image)) { return; }
+
+  // Figure out width of the image based on max-width of a content-image and 12 Bootstrap Columns
+  // The resulting value will be something like "12/12" or "4/12" which is used by the Link.Image(...)
+  var resizeFactor = (DynamicModel.Columns ?? 12) + "/12";
+
+  // prepare the title, either the default or the additional image caption
+  var lightboxCaption = "";
+  if (imgItem.Presentation.TitleLightbox != false) {
+    lightboxCaption = Text.First(imgItem.ImageCaption, imgItem.Title);
+  }
+}
+@if (imgItem.Presentation.ImageLightbox != false) {
+  @:<a @DynamicModel.FancyboxAttribute href='@Link.Image(imgItem.Image, Settings.Images.Lightbox)' data-caption="@lightboxCaption">
+}
+  <figure class='@(imgItem.Presentation.ImageLightbox != false ? "effect-zoom" : "")'>
+    @if (Text.Has(imgItem.ImageCaption)) {
+      <figcaption class="pt-1 px-4 pb-4 text-white">@imgItem.ImageCaption</figcaption>
+    }
+
+    <img loading="lazy" class="img-fluid" src='@Link.Image(imgItem.Image, Settings.Images.Content, factor: resizeFactor)' alt="@Text.First(imgItem.ImageCaption, imgItem.Title)" />
+  </figure>
+@if (imgItem.Presentation.ImageLightbox != false) {
+  @:</a>
+}
