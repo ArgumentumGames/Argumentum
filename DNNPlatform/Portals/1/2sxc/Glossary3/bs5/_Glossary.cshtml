@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  var termGroups = AsList(App.Data["Term"])
+    .GroupBy(l => l.Title.Substring(0, 1).ToUpper())    // group by first letter
+    .OrderBy(s => s.Key);                               // sort asc
+}
+
+<div class="app-glossary3" @Edit.TagToolbar(toolbar: "contentitems?contentType=Term")>
+  <nav class="navbar navbar-expand-md navbar-light px-0 py-1 py-md-0">
+    <span class="navbar-brand d-block d-md-none fw-bold">@Resources.GlossaryMenu</span>
+    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#glossary-nav-@Content.EntityId" data-bs-target="#glossary-nav-@Content.EntityId" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse pe-5 pe-md-0 my-2 my-md-0" id="glossary-nav-@Content.EntityId">
+      <ul class="navbar-nav flex-row flex-wrap">
+        @foreach(var grp in termGroups) {
+          <li class="nav-item">
+            <a class="nav-link" href='@Tags.SafeUrl("#" + grp.Key)'>@grp.Key</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </nav>
+  @Html.Partial("./_Glossary.PartTermGroups.cshtml", new { TermGroups = termGroups } )
+</div>
+
+@Html.Partial("./_Glossary.PartAssets.cshtml")

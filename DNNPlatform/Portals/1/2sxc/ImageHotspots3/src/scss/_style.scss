@@ -1,0 +1,129 @@
+// ** Information in case you're new to this**
+// This is an SCSS file. 
+// It generates the css file using Bootstrap4 standards.
+// To regenerate the SCSS using your variables (custom colors, etc.)
+// you can update the reference to your _variables.scss of your skin
+// please read the readme.md in this folder.
+
+
+// ** Add header-comments to the final file **
+// The following comment will be included in the final CSS
+// which helps users understand where it comes from
+/*!
+ * This file was auto-generated using SASS
+ * You can manually modify it - but usually you will want to 
+ * Re-generate it using the SASS variables of your theme
+*/
+
+.app-hotspot3 {
+  .hotspot3-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hotspots {
+    display: inline-block;
+    position: relative;
+
+    .hotspot3-marker {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      
+      img {
+        width: 100%;
+        height: 100%;
+
+        &.heartbeat {
+          animation: heartbeat 2s infinite;
+        }
+        
+        &.bounce {
+          animation: bounce 1s infinite;
+        }
+      }
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+    
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }
+  
+  @keyframes heartbeat {
+    0% {transform: scale(1);}
+    25% {transform: scale(.97);}
+    35% {transform: scale(.9);}
+    45% {transform: scale(1.1);}
+    55% {transform: scale(.9);}
+    65% {transform: scale(1.1);}
+    75% {transform: scale(1.03);}
+    100% {transform: scale(1);}
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+.fancybox__content {
+  &.hotspot3-fancybox-content {
+    padding: 0;
+    max-width: 80vw;
+    min-width: 320px;
+    opacity: 0;
+    background-color: #fff;
+  }
+
+  .display-flex-row {
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  img {    
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  .hotspot3-fancybox-text {
+    min-width: 320px;
+    
+    h2, h3, h4, h5, h6 {
+      margin: 16px 16px 8px;
+    }
+
+    p {
+      margin: 8px 16px 16px;
+    }
+
+    @media (min-width: 1024px) {
+      h2, h3, h4, h5, h6 {
+        margin: 32px 32px 16px;
+      }
+
+      p {
+        margin: 16px 32px 32px;
+      }
+    }
+  }
+}
+

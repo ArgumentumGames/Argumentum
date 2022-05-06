@@ -1,0 +1,42 @@
+﻿.app-glossary3 {
+  .navbar {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #576066;
+
+    .navbar-toggler:focus {
+      outline: none;
+    }
+
+    .navbar-nav > li {
+      margin: 0;
+
+      @include media-breakpoint-down(sm) {
+        width: 25%;
+      }
+
+      > a{
+        padding: 8px 6px;
+        color: #576066;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: #ccc;
+          color: #576066;
+        }
+      }
+    }
+  }
+}
+
+// styles to override oqtane mobile menu styling
+@media (max-width: 767px) {
+  .app-glossary3 {
+    .navbar {
+      position: unset !important;
+      top: unset !important;
+    }
+  }
+}

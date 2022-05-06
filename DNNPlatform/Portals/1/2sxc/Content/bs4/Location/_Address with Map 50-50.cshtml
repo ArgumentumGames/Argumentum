@@ -1,0 +1,77 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var mapFirst = CmsContext.View.Identifier == "map-first";
+
+  // Build Helper object and get map infos
+  var locationHelper = CreateInstance("LocationHelper.cs");
+  var mapInfo = locationHelper.MapInfos(Content);
+
+  // Combine the Presentation with Resources & Settings to get the best possible settings/resources
+  // Uses the DynamicStack feature https://r.2sxc.org/dynamic-stack
+  var mapResources = AsDynamic(Content.Presentation, Resources);
+
+  // defines a unique dom Id for google map
+  var googleMapDomId = "app-content-google-map-js-" + @CmsContext.Module.Id;
+}
+
+<div class="co-container-outer mb-4 mb-md-5">
+  <div class="co-container-inner" @Edit.TagToolbar(Content)>
+    <div class="row">
+      <div class="col-md-6 order-md-1 d-flex align-items-center">
+        <address itemscope itemtype="http://schema.org/LocalBusiness">
+          <div class="mb-2 pr-md-5" itemprop="name">
+            <h4>@Content.Company</h4>
+            @if (Text.Has(Content.Description)) {
+              <div itemprop="description">@Html.Raw(Content.Description)</div>
+            }
+          </div>
+          <div class="mb-2" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            @if (Text.Has(Content.Street)) {
+              <span itemprop="streetAddress">
+              @if (Text.Has(Content.Street)) {
+                @Html.Raw(Tags.Nl2Br(Content.Street))<br>
+              }
+              </span>
+            }
+            @if (Text.Has(Content.City)) {
+              if (Text.Has(Content.ZipCode)) {
+                <span itemprop="postalCode">@Content.ZipCode</span>
+              }
+              <span itemprop="addressLocality">@Content.City</span><br>
+            }
+            @if (Text.Has(Content.Country)) {
+              <span itemprop="addressCountry">@Content.Country</span><br>
+            }
+          </div>
+          <div class="mb-2">
+            @if (Text.Has(Content.Mail)) {
+              <div itemprop="email">
+                <span class="fas fa-envelope"></span>
+                @Html.Partial("../shared/_TryToEncryptMail.cshtml", new { Email = Content.Mail })
+              </div>
+            }
+            @if (Text.Has(Content.Tel)) {
+              <span class="fas fa-phone" aria-hidden="true"></span> <a href='tel:@Content.Tel.Replace(" ", "")' itemprop="telephone">@Content.Tel</a><br/>
+            }
+            @if (Text.Has(Content.Fax)) {
+              <span class="fas fa-fax" aria-hidden="true"></span> <span itemprop="faxNumber">@Content.Fax</span><br/>
+            }
+            @if (Settings.MapsEnableDirections) {
+              <span class="fas fa-map-marker-alt"></span> <a target="_blank" href="@mapInfo.DirectionUrl">@mapResources.MapsLabelDirections</a>
+            }
+          </div>
+        </address>
+      </div>
+      <div class='col-md-6 @(mapFirst ? "order-md-0" : "order-md-1")'>
+        <div class="app-content-js-google-map-container embed-responsive embed-responsive-16by9">
+          <div class="embed-responsive-item" id="@googleMapDomId"></div>
+          @Html.Partial("_Part GoogleMapsWarning.cshtml")
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,scripts,icons"})
+@Html.Partial("_Part GoogleMaps.cshtml", new { DomId = googleMapDomId })

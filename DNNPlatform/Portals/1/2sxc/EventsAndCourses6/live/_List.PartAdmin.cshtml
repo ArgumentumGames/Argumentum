@@ -1,0 +1,10 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@if (Edit.Enabled) {
+  <div class="alert alert-info d-flex align-items-center">
+    <strong>@Resources.Admin </strong>
+    <button type="button" class="btn btn-secondary ml-2" onclick="$2sxc.cms.run(this, 'contentitems', { contentType: 'Event' })">@Resources.BtnEvents</button>
+    <button type="button" class="btn btn-secondary ml-2" onclick="$2sxc.cms.run(this, 'contentitems', { contentType: 'Registrations' })">@Resources.BtnRegistrations</button>
+    <button type="button" class="btn btn-primary ml-2" onclick="$2sxc.cms.run(this, 'new', { contentType: 'Event', entityId: 0 })">@Resources.BtnNewEvent</button>
+  </div>
+}

@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  var allContent = AsList(Data);
+  var allContentLength = allContent.Count();
+  var hasMultipleItems = allContentLength > 1;
+}
+
+@if (hasMultipleItems && Edit.Enabled) { <div class='pt-4' @Edit.TagToolbar(Header)></div> }
+@for(var iteration = 0; iteration < allContentLength; iteration++)
+{
+  var item = allContent.ElementAt(iteration);
+  <div class='@(iteration == (allContentLength - 1) ? "" : "mb-4 mb-lg-5")' @Edit.TagToolbar(item)>
+    @* call sub-template to show the title with the correct H1-H6 tag *@
+    @Html.Partial("../shared/_Header tag.cshtml", new { Title = item.Title })
+  </div>
+}
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,scripts" })

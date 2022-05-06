@@ -1,0 +1,17 @@
+// ** Information in case you're new to this**
+// This is an SCSS file. 
+// It generates the css file using Bootstrap4 standards.
+// To regenerate the SCSS using your variables (custom colors, etc.)
+// you can update the reference to your _variables.scss of your skin
+// please read the readme.md in this folder.
+
+// Include needed functions and mixins from Bootstrap 4
+@import "../../node_modules/bootstrap/scss/_functions";
+
+// Include needed variables and mixins from Bootstrap 4 this
+// You must adapt these paths to match your Bootstrap 4 skin
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+
+// General CSS stuff for everything
+@import "_styles.scss"; 

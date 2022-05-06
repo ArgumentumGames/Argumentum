@@ -1,0 +1,35 @@
+@media all {
+  .to-shine-mainnav-variation-left {
+    .nav {
+      .first {
+        a {
+          padding-left: 0;
+        }
+      }
+
+      .last {
+        a {
+          padding-right: $nav-link-padding-x;
+        }
+      }
+    }
+  }
+  .nav {
+    .last{
+      a {
+          padding-right: 0;
+      }
+    }
+    .active {
+      a {
+          color: darken($primary, 15%);
+      }
+    }
+  }
+
+  @media all and (min-width: 992px) {
+    .nav .nav-item:not(.disabled) .dropdown-menu { display: none; }
+    .nav .nav-item:not(.disabled):hover .nav-link {   }
+    .nav .nav-item:not(.disabled):hover .dropdown-menu { display: block; }
+  }
+}

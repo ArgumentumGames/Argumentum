@@ -1,0 +1,127 @@
+// Column View Bootstrap
+.app-news5 {
+
+    // General Styles
+    &.sc-element>.sc-menu>li>a>div {
+        background-color: #666666;
+    }
+    &.app-news5-edit {
+        padding-top: 40px;
+	}
+
+	// Column View Bootstrap
+    &.app-news5-list {
+        .col,
+        > .row > .col-12  {
+            margin-bottom: $grid-gutter-width;
+            @include media-breakpoint-up(lg) {
+                margin-bottom: $grid-gutter-width*1.5;
+            }
+        }
+
+        // Categorie Info
+        .app-news5-catinfo {
+            margin-bottom: $grid-gutter-width/1.5;
+        }
+        .app-news5-details-link {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height:100%;
+
+            .link-overlay {
+                position: absolute;
+                display: block;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 100%;
+                z-index: 20;
+            }
+
+            a:not(.link-overlay) {
+                position: relative;
+                z-index: 30;
+            }
+
+			// App-Image with overlay and fallback
+            .app-news5-img {
+                position: relative;
+                text-align: center;
+
+                &.app-news5-noimg {
+                    background: #e9ecef;
+                    height: 100%;
+                    position: relative;
+                }
+
+                span {
+                    position: absolute;
+                    background-color: rgba($dark, .0);
+                    top: 0;
+                    bottom: 0;
+                    width: 100%;
+                    z-index: 10;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    transition: background-color .3s ease-in-out;
+                }
+			}
+
+			// App-Text with readmore
+            .app-news5-text {
+                flex: 1 1 auto;
+                 h3, h2 {
+                    &.app-news5-list {
+                        margin-top: $grid-gutter-width/2;
+                        @include media-breakpoint-up(xs) {
+                            margin-top: 0;
+                        }
+                    }
+                }
+                span {
+                    font-size: $font-size-base * 0.8;
+                    font-weight: bold;
+                }
+                .app-news5-date {
+                    &.app-date-border {
+                        border-right: 1px solid $body-color;
+                        padding-right: 8px;
+                        margin-right: 4px;
+                    }
+                }
+                .app-news5-categories {
+                    a {
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        margin-right: 8px;
+                    }
+                }
+                p {
+                    margin-top: $grid-gutter-width/2;
+                }
+            }
+            .app-news5-readmore {
+                color: $primary;
+			}
+
+			// Hover Styling
+            &:hover {
+                .app-news5-img {
+                    span {
+                        background-color: rgba($dark, .4);
+                    }
+                }
+                .app-news5-text {
+                    h3, h2 {
+                        color: $primary;
+                    }
+                }
+                .app-news5-readmore {
+                    color: $body-color;
+                }
+            }
+        }
+	}
+	// END Column View Bootstrap
+}

@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.Razor12
+@* This inherits statement gets you features like App, CmsContext, Data etc. - you can delete this comment *@
+@using ToSic.Sxc.Services; @* Make it easier to use https://r.2sxc.org/services *@
+
+@{
+    var ruleEntity =  AsList(Data).FirstOrDefault();
+}
+
+<link rel="stylesheet" href="@App.Path/src/styles/argumentum.css" data-enableoptimizations="150" />
+
+<div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
+    <div class="col-md-4">
+        <h1>@ruleEntity.EntityTitle
+        </h1>
+        <h5>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h5>
+        <h2>@Resources.RuleSummary</h2>
+        @Html.Raw(ruleEntity.Summary)
+    </div>
+    <div class="col-md-8">
+        <h2>@Resources.RuleMaterial</h2>
+        @Html.Raw(ruleEntity.Material)
+        <h2>@Resources.RuleInstallation</h2>
+        @Html.Raw(ruleEntity.Installation)
+    </div>
+    <div class="col-md-12">
+        @Html.Raw(ruleEntity.Content)
+@if (ruleEntity.Variants!="")
+{
+        <h2>@Resources.RuleVariants</h2>
+         @Html.Raw(ruleEntity.Variants)
+}
+        
+    </div>
+</div>

@@ -1,0 +1,6 @@
+/*!
+ * This file was auto-generated using SASS
+ * You can manually modify it - but usually you will want to 
+ * Re-generate it using the SASS variables of your theme
+*/.fade{transition:opacity .15s linear}@media(prefers-reduced-motion:reduce){.fade{transition:none}}.fade:not(.show){opacity:0}.collapse:not(.show){display:none}.collapsing{height:0;overflow:hidden;position:relative;transition:height .35s ease}@media(prefers-reduced-motion:reduce){.collapsing{transition:none}}.app-glossary3 .navbar{border-bottom:1px solid #576066;border-top:1px solid #ccc}.app-glossary3 .navbar .navbar-toggler:focus{outline:none}.app-glossary3 .navbar .navbar-nav>li{margin:0}@media(max-width:767.98px){.app-glossary3 .navbar .navbar-nav>li{width:25%}}.app-glossary3 .navbar .navbar-nav>li>a{color:#576066;cursor:pointer;font-weight:700;padding:8px 6px}.app-glossary3 .navbar .navbar-nav>li>a:active,.app-glossary3 .navbar .navbar-nav>li>a:focus,.app-glossary3 .navbar .navbar-nav>li>a:hover{background-color:#ccc;color:#576066}@media(max-width:767px){.app-glossary3 .navbar{position:unset!important;top:unset!important}}
+/*# sourceMappingURL=styles.min.css.map */

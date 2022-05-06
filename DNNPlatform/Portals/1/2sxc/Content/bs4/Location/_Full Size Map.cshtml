@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Build Helper object and get map infos
+  var locationHelper = CreateInstance("LocationHelper.cs");
+  var mapInfo = locationHelper.MapInfos(Content);
+
+  // Combine the Presentation with Resources & Settings to get the best possible settings/resources
+  // Uses the DynamicStack feature https://r.2sxc.org/dynamic-stack
+  var mapResources = AsDynamic(Content.Presentation, Resources);
+
+  // defines a unique dom Id for google map
+  var googleMapDomId = "app-content-google-map-js-" + @CmsContext.Module.Id;
+}
+
+<div class="co-container-outer mb-4 mb-md-5">
+	<div class="co-container-inner" @Edit.TagToolbar(Content)>
+		<div class="app-content-js-google-map-container embed-responsive embed-responsive-21by9">
+			<div class="embed-responsive-item" id="@googleMapDomId"></div>
+
+      @Html.Partial("_Part GoogleMapsWarning.cshtml")
+		</div>
+	</div>
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "scripts,icons"})
+@Html.Partial("_Part GoogleMaps.cshtml", new { DomId = googleMapDomId })

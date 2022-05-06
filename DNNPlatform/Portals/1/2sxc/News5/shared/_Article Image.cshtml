@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var article = DynamicModel.Article;
+  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+}
+
+<div class="app-news5-img">
+  <span class="overlay"></span>
+  <img loading="lazy" class="img-fluid"
+    src='@Link.Image(url: imageUrl, width: 800, height: 480, resizeMode: "crop", quality: 80)'
+    alt="@article.Title" />
+</div>

@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var mapSettings = AsDynamic(Content.Presentation.GoogleMaps, Settings.GoogleMaps);
+  var secureData = GetService<ToSic.Sxc.Services.ISecureDataService>();
+  
+  // Decrypt the Api key and find out where it's from. If it's from preset, then we must show the warning
+  var apiKey = secureData.Parse(mapSettings.ApiKey); 
+  var warn = apiKey.IsSecuredBy("preset");
+}
+@if(warn) {
+  <div class="alert alert-danger position-absolute bottom-0 start-0">
+    @Html.Raw(Resources.GoogleMaps.WarningApiKeyForDemoOnly)
+  </div>
+}

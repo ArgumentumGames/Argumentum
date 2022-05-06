@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  // 1. Get Services for Css and Page
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
+
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (pageCss.IsUnknown) {
+    page.Activate("Bootstrap4");
+  }
+
+  // 3. Include styles of the App
+  <link rel="stylesheet" href="@App.Path/bs5/dist/styles.min.css" data-enableoptimizations="true" />
+}

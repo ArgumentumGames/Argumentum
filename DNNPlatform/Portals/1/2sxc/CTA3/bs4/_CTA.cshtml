@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var pres = Content.Presentation;
+  var btnToolbar = new [] { "toolbar=empty", "+edit" };
+
+  // only show the pattern if no image is given
+  var bgPatternStyle = Text.Has(pres.BackgroundImage) ? "" : pres.BackgroundType;
+
+  // set background image styling if image is given 
+  var bgImageStyle = Text.Has(pres.BackgroundImage) ? "background-image: url('" + Link.Image(pres.BackgroundImage, Settings.Images.Section, height: 0) + "')" : "";
+}
+
+<div class='container-fluid app-cta3-wrapper mb-4 @bgPatternStyle' style='@bgImageStyle' @Edit.TagToolbar(Content)>
+  <div class="backgroundimage-overlay" style='display: @(pres.ShowImageOverlay ? "block" : "none")'></div>
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2 app-cta3 @pres.TextColor @pres.TextAlignment">
+      @if(pres.HeadingType != "hide") {
+        @Tag.Custom(pres.HeadingType, Content.Title)
+      }
+      @if(Text.Has(Content.Text)) {
+        <div class="app-cta3-text">
+          @Html.Raw(Content.Text)
+        </div>
+      }
+      <div class="app-cta3-buttons">
+        @foreach (var btn in Content.Buttons) {
+          <a href="@btn.ButtonLink" class="btn app-cta3-btn" target="@btn.ButtonTarget" @Edit.TagToolbar(btn, toolbar: btnToolbar, condition: !Content.IsDemoItem)>
+            @btn.ButtonText
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+@Html.Partial("./_CTA.PartAssets.cshtml")
+

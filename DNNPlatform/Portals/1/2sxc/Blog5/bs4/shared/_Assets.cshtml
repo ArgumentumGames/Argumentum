@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  // get CSS information about the current Theme
+  var pageCss = GetService<Connect.Koi.ICss>();
+  var pageService = GetService<ToSic.Sxc.Web.IPageService>();
+
+  // show warning for admin if koi.json is missing
+  if(pageCss.IsUnknown && CmsContext.User.IsSiteAdmin) {
+    <div class='dnnFormMessage dnnFormWarning'>
+      @Html.Raw(Connect.Koi.Messages.CssInformationMissing) <br>
+      @Html.Raw(Connect.Koi.Messages.OnlyAdminsSeeThis)
+    </div>
+  }
+
+  // Include bootstrap 4 if the framework isn't known
+  if(pageCss.IsUnknown) {
+    pageService.Activate("Bootstrap4");
+  }
+}
+
+@* Include styles of the App *@
+<link rel="stylesheet" href="@App.Path/bs4/dist/styles.min.css" data-enableoptimizations="true" />

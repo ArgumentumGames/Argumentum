@@ -1,0 +1,147 @@
+@media all {
+	/*DNN Overrides and default styles (do not change) */
+	/* box-sizing Fixes for DNN components, 3dr party plugins, modules */
+	#ControlBar_ControlPanel * {
+		box-sizing: content-box;
+	}
+	#ControlBar_ControlPanel .mark {
+		background-color: transparent;
+		padding: 0;
+	}
+	#ControlNav > li > a {
+		text-decoration: none;
+	}
+	.actionMenu * {
+		box-sizing: content-box;
+	}
+	.dnnCheckbox .mark {
+		padding: 0;
+		background: none;
+	}
+	.ui-dialog {
+		color: black;
+		font-family: Arial, sans-serif;
+	}
+
+	ul,
+	ol {
+		margin: 0;
+	}
+	ul {
+		list-style-type: disc;
+		ul {
+			list-style-type: circle;
+		}
+	}
+
+	a.to-shine-page-login,
+	a.to-shine-page-login:link,
+	a.to-shine-page-login:visited {
+		color: $tosic-footer-background;
+		font-size: 10px;
+	}
+	a.to-shine-page-login:hover {
+		color: $tosic-footer-color;
+	}
+	#ControlBar_ControlPanel #ServiceImg {
+		display: none;
+	}
+
+	// ----------------------------------------------------------------------------------------------------
+	// 9. Final adjustments / tweaking / DNN workarounds
+
+	// 9.1 Fix links which look like buttons so the text doesn't get underlined
+	a.btn-primary.btn-primary {
+		&:link,
+		&:visited,
+		&:hover {
+			color: #fff;
+		}
+	}
+	a.btn.btn {
+		&:link,
+		&:visited,
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	// 9.2 Override width of DNNEmptyPane for 2sxc Quick-Edit control (DNN9)
+	body:not(.dnnEditState) .DNNEmptyPane {
+		width: 100%;
+	}
+	// Login
+	body {
+		.dnnLabel {
+			display: block;
+			float: none;
+			position: relative;
+			width: 100%;
+			padding-right: 20px;
+			margin-right: 18px;
+			overflow: visible;
+			text-align: left;
+			font-size: 14px;
+		}
+		.dnnLoginService input[type="text"],
+		.dnnLoginService input[type="password"] {
+			width: 100%;
+			min-width: 200px;
+			margin-bottom: 5px;
+		}
+		.dnnPrimaryAction,
+		.dnnFormItem input[type="submit"],
+		a.dnnPrimaryAction {
+			border-color: $primary;
+			background: $primary;
+			box-shadow: none;
+			color: #fff;
+			text-shadow: none;
+			font-size: 14px;
+			font-weight: normal;
+			padding: 6px 15px;
+		}
+		.dnnPrimaryAction:hover,
+		.dnnFormItem input[type="submit"]:hover,
+		a.dnnPrimaryAction:hover {
+			border-color: $primary;
+			background: $primary;
+			color: #fff;
+		}
+		.dnnFormItem button,
+		.dnnFormItem input[type="button"],
+		.dnnFormItem input[type="reset"],
+		.dnnSecondaryAction,
+		a.dnnSecondaryAction,
+		ul.dnnAdminTabNav li a,
+		.dnnLogin .LoginTabGroup span {
+			background: #f5f5f5;
+			font-size: 14px;
+			font-weight: normal;
+			box-shadow: none;
+			text-shadow: none;
+			color: #333;
+			padding: 6px 15px;
+		}
+		.dnnActions {
+			padding-left: 0;
+		}
+		.dnnFormItem > label.dnnFormLabel,
+		.dnnFormItem > span.dnnFormLabel {
+			display: block;
+			margin: 0;
+			width: 0%;
+			text-align: left;
+		}
+		.dnnBoxLabel {
+			font-size: 14px;
+		}
+		.dnnLogin {
+			text-align: center;
+			#dnn_ctr_Login_pnlLogin {
+				margin: 0 auto;
+				width: 500px;
+			}
+		}
+	}
+}

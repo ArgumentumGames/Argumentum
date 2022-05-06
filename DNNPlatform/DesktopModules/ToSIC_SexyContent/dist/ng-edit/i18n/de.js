@@ -2,20 +2,25 @@
   "Form": {
     "Buttons": {
       "Save": "Speichern (CTRL + S)",
-      "Save.Tip": "speichern und schliessen - mit CTRL + S nur speichern",
-      "Exit.Tip": "verlassen - bei Änderungen wird zum Speichern aufgefordert",
-      "Return.Tip": "zurück zum vorherigen Dialog",
-      "History.Tip": "Änderungen / Vorversionen"
+      "SaveAndClose": "Speichern und schliessen",
+      "Exit.Tip": "Verlassen - bei Änderungen wird zum Speichern aufgefordert",
+      "Return.Tip": "Zurück zum vorherigen Dialog",
+      "History.Tip": "Änderungen / Vorversionen",
+      "Metadata.Tip": "Dies sind Metadaten für:",
+      "Note": {
+        "Add": "Notiz hinzufügen",
+        "ItemNotSaved": "To add a note, please save item first"
+      }
     }
   },
-  "SaveMode": {
+  "PublishStatus": {
     "Label": "Status:",
     "show": "anzeigen",
     "show.Tip": "Änderungen sind öffentlich",
     "hide": "verstecken",
-    "hide.Tip": "dieses Element ist nicht öffentlich",
+    "hide.Tip": "Dieses Element ist nicht öffentlich",
     "branch": "entwurf",
-    "branch.Tip": "nur Redakteure sehen Änderungen",
+    "branch.Tip": "Nur Redakteure sehen Änderungen",
     "Dialog": {
       "Title": "Speichern",
       "Intro": "Entscheide, wie du speichern möchtest. Standard ist anzeigen / veröffentlichen.",
@@ -34,11 +39,12 @@
     }
   },
   "Message": {
-    "Saved": "gespeichert",
-    "Saving": "saving...",
-    "DebugEnabled": "debug aktiviert",
-    "DebugDisabled": "debug deaktiviert",
-    "SwitchedLanguageToDefault": "We have switched language to default {{language}} because it's missing some or all values",
+    "Saved": "Gespeichert",
+    "Saving": "Speichern...",
+    "Deleted": "Gelöscht",
+    "Deleting": "Löschen...",
+    "DeleteError": "Löschen hat versagt. Bitte genauen Grund aus der Konsole entnehmen. ",
+    "SwitchedLanguageToDefault": "Es fehlen Werte in der Primärsprache, deshalb wurde auf die Standardsprache {{language}} umgestellt.",
     "CantSwitchLanguage": "Sprachwechsel erst möglich wenn alle Pflichtfelder in der aktuellen Sprache befüllt sind"
   },
   "LangMenu": {
@@ -57,25 +63,25 @@
       "Intro": "Du kannst auf verschiedene Arten übersetzen, auch Sprachen aneinander koppeln.",
       "NoTranslate": {
         "Title": "Nicht übersetzen",
-        "Body": "verwendet den Wert aus der Primärsprache {{primary}}"
+        "Body": "Verwendet den Wert aus der Primärsprache {{primary}}"
       },
       "FromPrimary": {
         "Title": "Übersetzen von: {{primary}}",
-        "Body": "beginne beim Übersetzen mit dem Wert in der Primärsprache"
+        "Body": "Beginne beim Übersetzen mit dem Wert in der Primärsprache"
       },
       "FromOther": {
         "Title": "Übersetzen von: ...",
-        "Body": "beginne beim Übersetzen mit dem Wert in einer anderen Sprache",
+        "Body": "Beginne beim Übersetzen mit dem Wert in einer anderen Sprache",
         "Subtitle": "Vorlagensprache"
       },
       "LinkReadOnly": {
         "Title": "Von anderer Sprache erben (nur anzeigen)",
-        "Body": "nutzt den Wert einer anderen sprache, ist jedoch nicht bearbeitbar",
+        "Body": "Nutzt den Wert einer anderen sprache, ist jedoch nicht bearbeitbar",
         "Subtitle": "Sprache, von der geerbt wird"
       },
       "LinkShared": {
         "Title": "Mit anderer Sprache verbinden (bearbeitbar)",
-        "Body": "verbindet Sprachen zusammen, damit sie den gleichen Wert verwenden",
+        "Body": "Verbindet Sprachen zusammen, damit sie den gleichen Wert verwenden",
         "Subtitle": "Sprache, die verbunden wird"
       },
       "PickLanguageIntro": "Nur Sprachen mit bestehendem Inhalt können ausgewählt werden."
@@ -83,13 +89,19 @@
   },
   "Errors": {
     "UnsavedChanges": "Du hast Änderungen.",
-    "SaveErrors": "Um zu speichern, bitte folgende Probleme beheben:"
+    "SaveErrors": "Um zu speichern, bitte folgende Probleme beheben:",
+    "FormulaConfiguration": "Es gibt einen Fehler bei den Formulareinstellungen. Bitte dem Admin melden",
+    "FormulaCalculation": "Es gibt einen Fehler bei den Formularberechnungen. Bitte dem Admin melden"
   },
   "General": {
     "Buttons": {
       "NotSave": "Änderungen verwerfen",
-      "Save": "speichern",
-      "Debug": "debug"
+      "Save": "Speichern"
+    },
+    "CopyHint": "Dies ist eine Kopie und wird als neues Element gespeichert",
+    "ReadOnlyHint": {
+      "Form": "Form is read only",
+      "Language": "Language is read only"
     }
   },
   "Data": {
@@ -98,57 +110,64 @@
   "ItemCard": {
     "DefaultTitle": "Element bearbeiten",
     "SlotUsedTrue": "Dieses Element kann bearbeitet werden. Klicke um die Bearbeitung zu sperren - eingegebene Werte werden dann mit den Standardwerten ersetzt.",
-    "SlotUsedFalse": "Dieses Element kann nicht bearbeitet werden und zeigt die Standardwerte an. Klicke um das Element freizuschalten.",
-    "CopyHint": "(Kopie)"
+    "SlotUsedFalse": "Dieses Element kann nicht bearbeitet werden und zeigt die Standardwerte an. Klicke um das Element freizuschalten."
   },
   "ValidationMessage": {
     "NotValid": "Ungültig",
     "Required": "Pflichtfeld",
     "RequiredShort": "Pflichtfeld",
-    "Min": "Wert muss grösser als {{param.Min}} sein",
-    "Max": "Wert muss kleiner als {{param.Max}} sein",
+    "Min": "Dieser Wert sollte mindestens {{param.Min}} sein",
+    "Max": "Dieser Wert sollte höchstens {{param.Max}} sein",
     "Pattern": "Bitte richtig eingeben",
-    "Decimals": "Diese Zahl kann {{param.Decimals}} Dezimalstellen haben"
+    "Decimals": "Diese Zahl kann {{param.Decimals}} Dezimalstellen haben",
+    "JsonError": "JSON ist nicht valide",
+    "JsonWarning": "JSON ist nicht valide"
   },
   "Fields": {
     "Entity": {
-      "Choose": "bestehendes Element auswählen",
-      "New": "neues Element erstellen",
+      "Choose": "Bestehendes Element auswählen",
+      "New": "Neues Element erstellen",
+      "Empty": "Leer",
+      "EmptySlot": "leerer Eintrag",
       "EntityNotFound": "(Element nicht gefunden)",
       "DragMove": "Ziehen um die Liste neu zu ordnen",
       "Edit": "Element bearbeiten",
       "Remove": "Aus Liste entfernen",
-      "Delete": "Löschen"
+      "Delete": "Löschen",
+      "Loading": "Lädt...",
+      "Search": "Suchen"
     },
     "EntityQuery": {
       "QueryNoItems": "Keine Elemente gefunden",
       "QueryError": "Fehler: Die Abfrage konnte nicht ausgeführt werden. In der Konsole findest du genauere Details.",
-      "QueryStreamNotFound": "Fehler: Die Abfrage enthielt keinen Stream mit dem Namen "
+      "QueryStreamNotFound": "Fehler: Die Abfrage enthielt keinen Stream mit dem Namen"
     },
     "Hyperlink": {
       "Default": {
         "Tooltip": "Dateien einfach hierher ziehen. Weitere Infos: 2sxc.org/help?tag=adam. ADAM - gesponsored ♡ von 2sic.com",
         "Sponsor": "ADAM - gesponsored ♡ von 2sic.com",
         "Fullscreen": "Grossdialog öffnen",
-        "AdamTip": "schnell-upload mit ADAM",
+        "AdamTip": "Schnell upload mit ADAM",
         "PageTip": "Seite wählen",
-        "MoreOptions": "mehr...",
+        "MoreOptions": "Mehr...",
         "MenuAdam": "Datei mit ADAM uploaden",
         "MenuPage": "Seitenauswahl",
         "MenuImage": "Bildverwaltung",
         "MenuDocs": "Dateiverwaltung"
       },
       "AdamFileManager": {
-        "UploadLabel": "upload nach",
-        "UploadTip": "schnell-upload mit ADAM",
+        "UploadLabel": "Upload nach",
+        "UploadTip": "Schnell upload mit ADAM",
         "UploadPasteLabel": "Bild aus Zwischenablage",
-        "UploadPasteFocusedLabel": "Ctrl+V drücken",
-        "UploadPasteTip": "Klick hier und drück [Ctrl]+[V] um aus der Zwischenablage einzufügen",
+        "UploadPasteFocusedLabel": "CTRL + V drücken",
+        "UploadPasteTip": "Klick hier und drück CTRL + V um aus der Zwischenablage einzufügen",
         "NewFolder": "Neuer Ordner",
         "NewFolderTip": "Neuen Ordner erstellen",
         "BackFolder": "Zurück",
-        "BackFolderTip": "zum vorherigen Ordner",
+        "BackFolderTip": "Zum vorherigen Ordner",
         "Show": "In neuem Fenster öffnen",
+        "ImageSettings": "Bildeinstellungen",
+        "NoImageSettings": "Bildeinstellungen nicht verfügbar. Diese Datei ist kein Bild oder sie gehört nicht zu diesem Element",
         "Edit": "Umbenennen",
         "RenameQuestion": "Umbenennen:",
         "Delete": "Löschen",
@@ -165,19 +184,23 @@
       "Open": "Kalendar öffnen"
     },
     "String": {
-      "Dropdown": "Auswahl",
-      "Freetext": "Freie Texteingabe"
+      "Dropdown": "Bestehendens auswählen",
+      "Freetext": "Manuell eintragen"
+    },
+    "TemplatePicker": {
+      "NotSelected": "(no file selected)",
+      "NewTemplate": "Create a new file"
     }
   },
   "Extension.TinyMce": {
-    "Link.AdamFile": "ADAM-Datei verlinken (empfohlen)",
-    "Link.AdamFile.Tooltip": "ADAM-Dateien verlinken - Dateien einfach hierhin ziehen - verwendet den Automatic Digital Assets Manager",
-    "Image.AdamImage": "ADAM-Bild (empfohlen)",
-    "Image.AdamImage.Tooltip": "ADAM-Bild einfügen - Dateien einfach hierhin ziehen - verwendet den Automatic Digital Assets Manager",
-    "Link.DnnFile": "DNN-Datei verlinken",
-    "Link.DnnFile.Tooltip": "DNN-Datei verlinken (alle Dateien, langsam)",
-    "Image.DnnImage": "DNN-Bild",
-    "Image.DnnImage.Tooltip": "DNN-Bild einfügen (alle Dateien, langsam)",
+    "Link.AdamFile": "ADAM Datei verlinken (empfohlen)",
+    "Link.AdamFile.Tooltip": "ADAM Dateien verlinken - Dateien einfach hierhin ziehen - verwendet den Automatic Digital Assets Manager",
+    "Image.AdamImage": "ADAM Bild (empfohlen)",
+    "Image.AdamImage.Tooltip": "ADAM Bild einfügen - Dateien einfach hierhin ziehen - verwendet den Automatic Digital Assets Manager",
+    "Link.DnnFile": "DNN Datei verlinken",
+    "Link.DnnFile.Tooltip": "DNN Datei verlinken (alle Dateien, langsam)",
+    "Image.DnnImage": "DNN Bild",
+    "Image.DnnImage.Tooltip": "DNN Bild einfügen (alle Dateien, langsam)",
     "Link.Page": "Seite verlinken",
     "Link.Page.Tooltip": "Eine Seite aus dieser Website verlinken",
     "Link.Anchor.Tooltip": "Texmarke (Anchor) für Verlinkung mit .../page#anchorname",

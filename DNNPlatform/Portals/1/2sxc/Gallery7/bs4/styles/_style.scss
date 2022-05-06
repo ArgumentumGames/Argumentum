@@ -1,0 +1,129 @@
+﻿//
+// This SCSS generates the css for the general styles
+//
+// It is used by all CSS generators (Bootstrap3/4, etc.)
+// To keep things simple, it uses the standard variables of
+// bootstrap 4 conventions.
+.app-ga7-main {
+  a.app-ga7 { 
+    position: relative;
+    display: block;
+    text-decoration: none;
+
+    figure {
+      // This is necessary because bootstrap otherwise has other margins and we can't use m-0
+      margin: 0;
+
+      /* Effects for Mouse-Over */
+      &.effect-darken {
+        &:hover .overlay {
+          background: rgba($dark, 0.4);
+        }
+      }
+  
+      // https://w3bits.com/css-image-hover-zoom/
+      // https://w3bits.com/labs/css-image-hover-zoom/
+      &.effect-zoom {
+        overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+        img {
+          transition: transform .5s ease;
+        }
+        &:hover img {
+          transform: scale(1.2);
+        }
+      }
+
+      // Make sure that in responsive case where the container is larger than the image, it expands properly
+      // If you use max-width, then there will be cases where the container is larger than the image
+      img {
+        width: 100%;
+        // workaround for lazy-loading issues
+        min-width: 1px;
+        min-height: 1px;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transition: background-color 0.3s ease-in-out;
+      backface-visibility: hidden;
+      background: rgba($dark, 0);
+      padding: 0;
+
+      // The caption box ensures a black-gradient behind the text at the bottom of the image
+      div.caption {
+        color: white;
+        width: 100%;
+        padding: 15px 20px;
+        font-size: smaller;
+        line-height: 1.1em;
+        background-image: linear-gradient( 180deg, transparent 5%, rgba(0,0,0,.7) 70%);
+        background-color: transparent;
+
+        // If the caption has a badge, the behaviour is a bit different
+        &.with-badge {
+          font-size: 0.9em;
+          line-height: 1.3em;
+          position: relative;
+          padding-right: 40px;
+        }
+
+        // The badge pill is right-aligned a bit lighter
+        .badge {
+          vertical-align: text-top;
+          display: inline-block;
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 12px;
+          font-weight: normal;
+          border: 2px solid #fff;
+        }
+      }      
+    }
+  }
+
+
+  // Masonry Style
+  .app-ga7-masonry {
+    // Small screens should always show 2 columns with narrow gap
+    column-count: 2;
+    column-gap: $grid-gutter-width/2;
+
+    // Larger screens show 3 columns with larger gap
+    @include media-breakpoint-up(lg) {
+      column-count: 3;
+      column-gap: $grid-gutter-width;
+    }
+
+    // Set vertical gap of each figure-box
+    figure.app-ga7-image {
+      margin-bottom: $grid-gutter-width/2;
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: $grid-gutter-width;
+      }
+    }
+  }
+
+
+}
+
+
+/* Style the captions on Gallery7 Fancybox */
+
+.app-ga7-fancybox {
+  .fancybox__caption {
+    text-align: center;
+    p,
+    h6 {
+      color: white;
+    }
+  }
+}

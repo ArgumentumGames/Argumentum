@@ -1,0 +1,36 @@
+// Import fonts from google
+// 2016-12-05 2rm changed include to default.ascx (caused issues with ClientDependency)
+// @import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700);
+
+@media all {
+	h1, h2 ,h3, h4, h5, h6 {
+		font-family:$font-family-base;
+	}
+	body, p, .Normal, li p {
+		font-size: $font-size-base;
+		line-height: 1.6em;
+	}
+	p { margin-bottom: $font-size-base * 0.6875; }
+
+	ul, ol {
+		padding-left:$grid-gutter-width;
+		margin: 0;
+		margin-bottom: $grid-gutter-width;
+		line-height: 1.2;
+		p {
+			margin-bottom: 0;
+		}
+		li {
+			margin-bottom: 5px;
+		}
+		ul, ol {
+			margin: 0;
+			padding-left:$grid-gutter-width;
+			margin-bottom: 2px;
+		}
+	}
+	a, a:visited {
+		text-decoration: $tosic-link-decoration; color: $link-color;
+	}
+	a:hover, a:focus { color:$link-hover-color; text-decoration: $link-hover-decoration; }
+}

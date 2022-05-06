@@ -1,0 +1,7 @@
+.app-popup3 {
+	// remove focus outline from a, buttons
+	a, button {
+		outline: none !important;
+		box-shadow: none !important;
+	}
+}

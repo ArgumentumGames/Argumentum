@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+<div class="app-peopledirectory4-wrapper">
+  <div class="row row-cols-1 row-cols-lg-2">
+    @foreach(var employee in AsList(Data)) {
+      <div class="col mb-4" @Edit.TagToolbar(employee, toolbar: "%new&show=true?contentType=Person&entityId=0")>
+        <a class="card bg-light h-100 text-decoration-none" href='@Link.Image(Link.To(parameters: "id=" + employee.UrlKey))'>
+          <div class="row h-100 no-gutters align-items-center">
+            <div class="col-3">
+              @if(Text.Has(employee.Image)) {
+                <img loading="lazy" class="img-fluid ml-2 ml-sm-0" src='@Link.Image(url: employee.Image, width: 200, height: 200, resizeMode: "crop", quality: 90)'/>
+              } else {
+                <div class="bg-primary img-placeholder"></div>
+              }
+            </div>
+            <div class="col">
+              <div class="card-body">
+                <h3 class="card-title mb-1">@employee.FullName</h3>
+                <p class="card-text text-dark">@employee.Function</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    }
+  </div>
+</div>
+
+@Html.Partial("./_Assets.cshtml")

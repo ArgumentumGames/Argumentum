@@ -1,0 +1,41 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  // 1. Get Services for Css and Page
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to activate features or set titles etc.
+
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (pageCss.IsUnknown) {
+    page.Activate("Bootstrap4");
+  }
+
+  // 3. Show warning for admin if koi.json is missing 
+  if (pageCss.IsUnknown && CmsContext.User.IsSiteAdmin) {
+    <div class='dnnFormMessage dnnFormWarning'>
+      @Html.Raw(Connect.Koi.Messages.CssInformationMissing) <br>
+      @Html.Raw(Connect.Koi.Messages.OnlyAdminsSeeThis)
+    </div>
+  }
+
+  // 4. Include styles of the App
+  <link rel="stylesheet" href="@App.Path/bs4/dist/styles.min.css" data-enableoptimizations="true" />
+
+  // 5. If we need scripts (only on the single-album-view) activate these. Note that DynamicModel contains the parameters
+  if(DynamicModel.scripts == true) {
+    // Activate turnOn and Fancybox4 - see https://r.2sxc.org/turnon - fancybox4 is a standard WebResources in 2sxc
+    page.Activate("turnOn", "fancybox4");
+
+    // Init options for fancybox binding
+    // This is only partial - if you want to see more, see https://fancyapps.com/docs/ui/fancybox/options
+    var fancyboxOptions = new {
+      groupAll = true,
+      mainClass = "app-ga7-fancybox", 
+      Thumbs = new {
+        autoStart = false
+      }
+    };
+    
+    <script type="text/javascript" src="@App.Path/bs4/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
+    <turnOn turn-on='{"await": ["window.Fancybox"], "run": "window.appGalleryV7.init()", "data": { "attribute": "@DynamicModel.FancyboxAttribute", "options": @Html.Raw(Convert.Json.ToJson(fancyboxOptions)) }}'></turnOn>
+  }
+}

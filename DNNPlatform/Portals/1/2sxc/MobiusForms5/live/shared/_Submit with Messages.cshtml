@@ -1,0 +1,56 @@
+@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor12
+@{
+  var pageCss = GetService<Connect.Koi.ICss>();
+}
+
+<div class="mb-3 row">
+  <!-- form error messages, invisible at first -->
+  <div class='@(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")'>
+    @AddHiddenMessage(Resources.MessageFormIncomplete, "danger", "msgIncomplete")
+    @AddHiddenMessage(Resources.MessageRecaptchaMissing, "danger", "msgRecap")
+    @AddHiddenMessage(Resources.MessageSendError, "danger", "msgError")
+    @AddHiddenMessage(Resources.MessageSending, "warning", "msgSending")
+    @AddHiddenMessage(Resources.MessageNewsletterSuccess, "success", "msgNewsletterSuccess")
+    @AddHiddenMessage(Resources.MessageNewsletterUnexpectedError, "danger", "msgNewsletterFailed")
+
+    <div id="msgOk" class="alert alert-success app-mobius5-message" role="alert">
+      @Html.Raw(Resources.MessageSendOk)
+      @Html.Raw(Content.CustomerSend != null && Content.CustomerSend ? Resources.MessageCustomerMailSend : "")
+    </div>
+
+    @if(!Content.Mailchimp && DynamicModel.IsMailChimpForm == true) {
+      @AddHiddenMessage(Resources.MessageEnableMailchimp, "warning", "", "app-mobius5-config-warning")
+    }
+
+    @if ((Content.Mailchimp ?? false) && (Settings.MailChimpShowWarning == null || Settings.MailChimpShowWarning))
+    {
+      @AddHiddenMessage(Resources.MessageDefaultMailChimpKey, "warning", "", "app-mobius5-config-warning")
+    }
+
+    @if ((Content.CustomerSend || Content.OwnerSend) && Content.MailFrom == "" && Settings.DefaultMailFrom == "")
+    {
+      @AddHiddenMessage(Resources.MessageMailFromError, "warning", "", "app-mobius5-config-warning")
+    }
+
+    @if (Content.OwnerSend && Content.OwnerMail == "" && Settings.DefaultOwnerMail == "")
+    {
+      @AddHiddenMessage(Resources.MessageMailOwnerError, "warning", "", "app-mobius5-config-warning")
+    }
+  </div>
+
+  <!-- send button -->
+  <div class='@(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")'>
+    <button app-mobius5-send type="button" class="btn btn-primary">@Resources.ButtonSend</button>
+  </div>
+</div>
+
+@functions {
+  dynamic AddHiddenMessage(string message, string type = "warning", string id = "", string attribute = "") {
+    var classes = "alert alert-" + type + " app-mobius5-message";
+    var rawMessage = message.Replace("<p>", "").Replace("</p>", "");
+    var messageDiv = Tag.Div(rawMessage).Class(classes).Id(id).Attr("role", "alert");
+    if (attribute != "") { messageDiv.Attr(attribute, ""); }
+    return messageDiv;
+  }
+}

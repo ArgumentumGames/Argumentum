@@ -1,0 +1,32 @@
+{
+  "name": "app-cta",
+  "main": "",
+  "scripts": {
+    "build-bs4": "webpack --env style=bs4",
+    "build-bs5": "webpack --env style=bs5"
+  },
+  "author": "2sic internet solutions",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.3.6",
+    "css-loader": "^6.3.0",
+    "file-loader": "^6.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^2.3.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.42.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.3.0",
+    "terser-webpack-plugin": "^5.2.4",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.3",
+    "webpack": "^5.55.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-fix-style-only-entries": "^0.6.1",
+    "webpackbar": "^4.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
+}

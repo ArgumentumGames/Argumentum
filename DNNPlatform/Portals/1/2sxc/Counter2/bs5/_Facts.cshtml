@@ -1,0 +1,35 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var backgroundImage = Text.Has(Header.Background)
+    ? "background-image: url(" + Link.Image(Header.Background, Settings.Images.Section) + ");"
+    : "";
+  var facts = AsList(Data);
+  var domId = "app-counter2-js-" + CmsContext.Module.Id;
+}
+
+<div class='app-counter2 mb-4 @(Text.Has(Header.Background) ? "app-counter2-background " : "" )' style="@backgroundImage"
+  @Edit.TagToolbar(Header, toolbar: "settings&hover=left&autoAddMore=start")>
+  <div class="app-counter2-wrapper">
+    <div class="row justify-content-center">
+      @* Show Facts*@
+      @foreach (var fact in facts) {
+        <div class="app-counter2-col col-12 col-sm-6 col-lg-3" @Edit.TagToolbar(fact, toolbar: "-layout")>
+          <div class="app-counter2-item">
+            <i class="co-icon fas @fact.Icon fa-3x" aria-hidden="true"></i>
+            <div class="lead">
+              <span class="@domId" data-count="@fact.Number"></span>@(Text.Has(fact.Unit) ? " " + fact.Unit : "")
+            </div>
+            <span>@fact.Title</span>
+          </div>
+        </div>
+      }
+      @* Show Placeholder for admins in case no facts exist *@
+      @if (!facts.Any() && Edit.Enabled) {
+        <div>hello</div>
+      }
+    </div>
+  </div>
+</div>
+
+@Html.Partial("_Facts.PartAssets.cshtml", new { DomId = domId })

@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+    var episode = DynamicModel.Episode;
+    var toolbar =  Content.IsDemoItem ? "" : Edit.TagToolbar(episode, toolbar: new [] { "-layout", "%delete&show=true"});
+}
+@* Episode information *@
+<li class="app-podcast2 list-group-item border-end-0 border-start-0 p-0 pb-3 pt-3" @toolbar>
+    <p class="text-muted pc-episode-date fw-bold">@episode.Date.ToString("dd MMM yyyy")</p>
+    <h5 class="m-0">@episode.Title</h5>
+    <div class="text-muted">@Html.Raw(episode.Description)</div>
+    <audio
+        preload="metadata"
+        controls
+        src="@episode.Audio">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</li>

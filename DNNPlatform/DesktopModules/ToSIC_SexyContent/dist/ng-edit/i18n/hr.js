@@ -1,21 +1,26 @@
 {
   "Form": {
     "Buttons": {
-      "Save": "SAVE (CTRL + S)",
-      "Save.Tip": "save and close (CTRL + S saves and doesn't close)",
-      "Exit.Tip": "exit - if something changed, you will be asked to save",
-      "Return.Tip": "return to previous dialog",
-      "History.Tip": "history / previous versions"
+      "Save": "Save (CTRL + S)",
+      "SaveAndClose": "Save and close",
+      "Exit.Tip": "Exit - if something changed, you will be asked to save",
+      "Return.Tip": "Return to previous dialog",
+      "History.Tip": "History / previous versions",
+      "Metadata.Tip": "This item is metadata for:",
+      "Note": {
+        "Add": "Add note",
+        "ItemNotSaved": "To add a note, please save item first"
+      }
     }
   },
-  "SaveMode": {
+  "PublishStatus": {
     "Label": "Status:",
     "show": "show",
-    "show.Tip": "changes are public",
+    "show.Tip": "Changes are public",
     "hide": "hide",
-    "hide.Tip": "this item is not publicly visible",
+    "hide.Tip": "This item is not publicly visible",
     "branch": "draft",
-    "branch.Tip": "changes are only visible to editors",
+    "branch.Tip": "Changes are only visible to editors",
     "Dialog": {
       "Title": "Save Mode",
       "Intro": "This determines how you will save. The default is show/publish.",
@@ -34,10 +39,11 @@
     }
   },
   "Message": {
-    "Saved": "saved",
-    "Saving": "saving...",
-    "DebugEnabled": "debug mode enabled",
-    "DebugDisabled": "debug mode disabled",
+    "Saved": "Saved",
+    "Saving": "Saving...",
+    "Deleted": "Deleted",
+    "Deleting": "Deleting...",
+    "DeleteError": "Delete failed. Please check console for more information",
     "SwitchedLanguageToDefault": "We have switched language to default {{language}} because it's missing some or all values",
     "CantSwitchLanguage": "Can't switch languages until current language has all required values"
   },
@@ -57,25 +63,25 @@
       "Intro": "You can do many things when translating, like linking languages together.",
       "NoTranslate": {
         "Title": "Don't Translate",
-        "Body": "use value in primary language {{primary}}"
+        "Body": "Use value in primary language {{primary}}"
       },
       "FromPrimary": {
         "Title": "Translate from: {{primary}}",
-        "Body": "begin translation with with the value in the primary language"
+        "Body": "Begin translation with with the value in the primary language"
       },
       "FromOther": {
         "Title": "Translate from: ...",
-        "Body": "begin translation with the value from another language",
+        "Body": "Begin translation with the value from another language",
         "Subtitle": "Language to translate from"
       },
       "LinkReadOnly": {
         "Title": "Inherit from other language (read-only)",
-        "Body": "inherit value from another language",
+        "Body": "Inherit value from another language",
         "Subtitle": "Language to inherit from"
       },
       "LinkShared": {
         "Title": "Share with another language (read/write)",
-        "Body": "link languages together to use the same editable value",
+        "Body": "Link languages together to use the same editable value",
         "Subtitle": "Language to share with"
       },
       "PickLanguageIntro": "Only languages with content can be selected."
@@ -83,72 +89,85 @@
   },
   "Errors": {
     "UnsavedChanges": "You have unsaved changes.",
-    "SaveErrors": "To save the form, please fix the following errors:"
+    "SaveErrors": "To save the form, please fix the following errors:",
+    "FormulaConfiguration": "There is an error in form configuration. Please report this to admin",
+    "FormulaCalculation": "There was an error in form calculations. Please report this to admin"
   },
   "General": {
     "Buttons": {
-      "NotSave": "discard changes",
-      "Save": "save",
-      "Debug": "debug"
+      "NotSave": "Discard changes",
+      "Save": "Save"
+    },
+    "CopyHint": "This is a copy and will be saved as a new item",
+    "ReadOnlyHint": {
+      "Form": "Form is read only",
+      "Language": "Language is read only"
     }
   },
   "Data": {
-    "Delete.Question": "delete '{{title}}' ({{id}})?"
+    "Delete.Question": "Delete '{{title}}' ({{id}})?"
   },
   "ItemCard": {
     "DefaultTitle": "Edit item",
-    "SlotUsedTrue": "this item is open for editing. Click here to lock / remove it and revert to default.",
-    "SlotUsedFalse": "this item is locked and will stay empty/default. The values are shown for your convenience. Click here to unlock if needed.",
-    "CopyHint": "(copy)"
+    "SlotUsedTrue": "This item is open for editing. Click here to lock / remove it and revert to default.",
+    "SlotUsedFalse": "This item is locked and will stay empty/default. The values are shown for your convenience. Click here to unlock if needed."
   },
   "ValidationMessage": {
     "NotValid": "Not valid",
     "Required": "This is required",
     "RequiredShort": "required",
-    "Min": "This value should be more than {{param.Min}}",
-    "Max": "This value should be less or equal {{param.Max}}",
+    "Min": "This value should be {{param.Min}} or higher",
+    "Max": "This value should be {{param.Max}} or lower",
     "Pattern": "Please match the requested format",
-    "Decimals": "This number can have up to {{param.Decimals}} decimal places"
+    "Decimals": "This number can have up to {{param.Decimals}} decimal places",
+    "JsonError": "JSON is not valid",
+    "JsonWarning": "JSON is not valid"
   },
   "Fields": {
     "Entity": {
-      "Choose": "add existing item",
-      "New": "create new",
+      "Choose": "Add existing item",
+      "New": "Create new",
+      "Empty": "Empty",
+      "EmptySlot": "empty slot",
       "EntityNotFound": "(item not found)",
-      "DragMove": "drag to re-order the list",
-      "Edit": "edit this item",
-      "Remove": "remove from list",
-      "Delete": "delete"
+      "DragMove": "Drag to reorder the list",
+      "Edit": "Edit this item",
+      "Remove": "Remove from list",
+      "Delete": "Delete",
+      "Loading": "Loading...",
+      "Search": "Search"
     },
     "EntityQuery": {
       "QueryNoItems": "No items found",
       "QueryError": "Error: An error occurred while executing the query. See the console for more information.",
-      "QueryStreamNotFound": "Error: The query did not return a stream named "
+      "QueryStreamNotFound": "Error: The query did not return a stream named"
     },
     "Hyperlink": {
       "Default": {
-        "Tooltip": "Drop files here to auto-upload. For help see 2sxc.org/help?tag=adam. ADAM - sponsored with ♡ by 2sic.com",
+        "Tooltip": "Drop files here to auto upload. For help see 2sxc.org/help?tag=adam. ADAM - sponsored with ♡ by 2sic.com",
         "Sponsor": "ADAM - sponsored with ♡ by 2sic.com",
-        "Fullscreen": "open in fullscreen",
-        "AdamTip": "quick-upload using ADAM",
-        "PageTip": "pick a page",
-        "MoreOptions": "more...",
+        "Fullscreen": "Open in fullscreen",
+        "AdamTip": "Quick upload using ADAM",
+        "PageTip": "Pick a page",
+        "MoreOptions": "More...",
         "MenuAdam": "Upload file with Adam",
         "MenuPage": "Page Picker",
         "MenuImage": "Image Manager",
         "MenuDocs": "File Manager"
       },
       "AdamFileManager": {
-        "UploadLabel": "upload to",
-        "UploadTip": "quick-upload using ADAM",
-        "UploadPasteLabel": "paste image",
-        "UploadPasteFocusedLabel": "press ctrl+v",
-        "UploadPasteTip": "click here and press [Ctrl]+[V] to paste image from clipboard",
-        "NewFolder": "New folder",
-        "NewFolderTip": "create a new folder",
+        "UploadLabel": "Upload to",
+        "UploadTip": "Quick upload using ADAM",
+        "UploadPasteLabel": "Paste Image",
+        "UploadPasteFocusedLabel": "Press CTRL + V",
+        "UploadPasteTip": "Click here and press CTRL + V to paste image from clipboard",
+        "NewFolder": "New Folder",
+        "NewFolderTip": "Create a new folder",
         "BackFolder": "Back",
-        "BackFolderTip": "return to previous folder",
+        "BackFolderTip": "Return to previous folder",
         "Show": "Open in new tab",
+        "ImageSettings": "Image settings",
+        "NoImageSettings": "Image settings not available. The file is not an image or it doesn't belong to this item",
         "Edit": "Rename",
         "RenameQuestion": "Rename file / folder to:",
         "Delete": "Delete",
@@ -162,20 +181,24 @@
       }
     },
     "DateTime": {
-      "Open": "open calendar"
+      "Open": "Open calendar"
     },
     "String": {
-      "Dropdown": "switch to dropdown",
-      "Freetext": "switch to enter text"
+      "Dropdown": "Pick existing value",
+      "Freetext": "Manual entry"
+    },
+    "TemplatePicker": {
+      "NotSelected": "(no file selected)",
+      "NewTemplate": "Create a new file"
     }
   },
   "Extension.TinyMce": {
-    "Link.AdamFile": "Link ADAM-file (recommended)",
+    "Link.AdamFile": "Link ADAM file (recommended)",
     "Link.AdamFile.Tooltip": "Link using ADAM - just drop files using the Automatic Digital Assets Manager",
     "Image.AdamImage": "Insert ADAM image (recommended)",
     "Image.AdamImage.Tooltip": "Image from ADAM - just drop files using the Automatic Digital Assets Manager",
-    "Link.DnnFile": "Link DNN-file",
-    "Link.DnnFile.Tooltip": "Link a DNN-file (all files, slow)",
+    "Link.DnnFile": "Link DNN file",
+    "Link.DnnFile.Tooltip": "Link a DNN file (all files, slow)",
     "Image.DnnImage": "Insert DNN image",
     "Image.DnnImage.Tooltip": "Image from DNN file storage (all files, slow)",
     "Link.Page": "Link to another page",
@@ -191,6 +214,6 @@
     "H5": "H5",
     "H6": "H6",
     "Paragraph": "Paragraph",
-    "ContentBlock.Add": "add app or content-block"
+    "ContentBlock.Add": "Add app or content block"
   }
 }

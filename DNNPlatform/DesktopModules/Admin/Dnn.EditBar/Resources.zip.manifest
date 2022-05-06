@@ -17,6 +17,10 @@
       <name>EditBar.resx</name>
     </file>
     <file>
+      <path>App_LocalResources/</path>
+      <name>QuickAddModule.resx</name>
+    </file>
+    <file>
       <path>css/</path>
       <name>AddExistingModule.css</name>
     </file>
@@ -42,6 +46,10 @@
     </file>
     <file>
       <path>css/</path>
+      <name>QuickAddModule.css</name>
+    </file>
+    <file>
+      <path>css/</path>
       <name>RobotoSlab-Regular.ttf</name>
     </file>
     <file>
@@ -59,6 +67,10 @@
     <file>
       <path>css/</path>
       <name>SourceCodePro-Semibold.ttf.woff</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>theme.css</name>
     </file>
     <file>
       <path>images/</path>
@@ -111,6 +123,10 @@
     <file>
       <path />
       <name>index.html</name>
+    </file>
+    <file>
+      <path />
+      <name>QuickAddModule.html</name>
     </file>
     <file>
       <path>Resources/ContentEditorManager/App_LocalResources/</path>
@@ -315,6 +331,10 @@
     <file>
       <path>scripts/</path>
       <name>PageSettings.js</name>
+    </file>
+    <file>
+      <path>scripts/</path>
+      <name>QuickAddModule.js</name>
     </file>
     <file>
       <path>scripts/</path>

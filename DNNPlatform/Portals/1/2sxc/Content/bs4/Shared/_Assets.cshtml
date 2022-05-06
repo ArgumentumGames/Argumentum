@@ -1,0 +1,68 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  // Basics / Preparation
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
+
+  // show warning for admin if koi.json is missing
+  if (pageCss.IsUnknown && CmsContext.User.IsSiteAdmin) {
+    <div class='dnnFormMessage dnnFormWarning'>
+      @Html.Raw(Connect.Koi.Messages.CssInformationMissing) <br>
+      @Html.Raw(Connect.Koi.Messages.OnlyAdminsSeeThis)
+    </div>
+  }
+
+  // Include bootstrap 4 if the framework isn't known - then this file is still called, and we add Bootstrap to the page 
+  // Note that the link and script tags are in the System Settings to make it easier to update a live installation
+  if (pageCss.IsUnknown) {
+    page.Activate("Bootstrap4");
+  }
+
+  // This sub template just places all the very-often used
+  // style and link tags into the code.
+  // We put this in a sub-template because we use it so often, and want to make sure
+  // nobody accidentally uses the wrong url or forgets data-enableoptimizations
+  string partList = DynamicModel.parts;
+  var parts = partList.Split(',').Select(s => ((string)s).ToLower().Trim()).ToArray();
+  var fancybox = parts.Contains("fancybox");
+  var styles = parts.Contains("styles");
+  var scripts = parts.Contains("scripts");
+  var icons = parts.Contains("icons");
+  var videos = parts.Contains("videos");
+
+  // Include icon font - the exact HTML for this is in the SystemSettings
+  if (icons) {
+    page.Activate("FontAwesome5");
+  }
+}
+
+@if (styles) { <link rel="stylesheet" href="@App.Path/bs4/dist/styles.min.css" data-enableoptimizations="true" /> }
+
+@if (fancybox || scripts || videos) {
+  page.Activate("turnOn"); // see https://r.2sxc.org/turnon
+  <script type="text/javascript" src="@App.Path/bs4/dist/scripts.min.js" data-enableoptimizations="bottom"></script> 
+  @* Trigger protected mails to appear; activation uses turnOn https://r.2sxc.org/turnon *@
+  <turnOn turn-on='{ "run": "window.appContent.showEncryptedMails()" }'></turnOn>
+}
+
+@* Add Fancybox if required *@
+@if (fancybox) {
+  page.Activate("turnOn", "fancybox4"); // see https://r.2sxc.org/turnon
+
+  // Init options for fancybox binding
+  // This is only partial - if you want to see more, see https://fancyapps.com/docs/ui/fancybox/options
+  var fancyboxOptions = new {
+    groupAll = true,
+    mainClass = "app-content-fancybox", 
+    Thumbs = new {
+      autoStart = false
+    }
+  };
+  
+  <turnOn turn-on='{"await": ["window.Fancybox"], "run": "window.appContent.initFancybox()", "data": { "attribute": "@DynamicModel.FancyboxAttribute", "options": @Html.Raw(Convert.Json.ToJson(fancyboxOptions)) }}'></turnOn>
+}
+
+@* Turn On video features. Activation uses turnOn https://r.2sxc.org/turnon *@
+@if (videos) {
+  <turnOn turn-on='{ "run": "window.appContent.activateYouTubeInline()" }'></turnOn>
+}

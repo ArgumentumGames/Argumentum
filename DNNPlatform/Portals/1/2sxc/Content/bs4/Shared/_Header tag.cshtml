@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@*
+  this is a sub template which is re-used in many other templates.
+  it shows the header text inside an H-tag, but the number comes from the presentation settings
+*@
+@if (Content.Presentation.HeadingType != "hide") {
+  @Tag.Custom(Content.Presentation.HeadingType, Text.First(DynamicModel.Title, Content.Title))
+}

@@ -1,0 +1,87 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Get some helper commands for later on
+  var helpers = CreateInstance("Helpers.cs");
+
+  // Merge the settings on Content with the predefined Settings
+  var swiper = Content; // Give it a better name, to make the code more readable
+  var swiperSettings = AsDynamic(swiper, Settings);
+
+  // Figure out width and height
+  var sliderWidth = swiperSettings.Width;
+  var sliderHeightOrRatio = swiperSettings.Height; // contains height like "100vh" or a ratio like "x:y"
+
+  // Prepare style to set height or aspect ratio (determined by the ":" in the height)
+  var isRatio = sliderHeightOrRatio.IndexOf(":") > 0;
+  var aspectRatioStyle = isRatio ? "--aspect-ratio:calc(" + sliderHeightOrRatio.Replace(":", "/")  + ")": "";
+  var swiperContainerHeight = isRatio ? "" : "height: " + sliderHeightOrRatio + ";";
+}
+
+<div class="app-swiper2" @Edit.TagToolbar(swiper, toolbar: new [] { "settings&hover=left&autoAddMore=start" }) style="@aspectRatioStyle">
+    @* Slider main container and wrapper *@
+    <div class="swiper swiper-@swiper.EntityId" style="width: @sliderWidth; @swiperContainerHeight">
+      <div class="swiper-wrapper">
+
+        @* if we don't have slides, show a dummy slide and provide buttons to start adding *@
+        @if(swiper.Slides.Count == 0) {
+          @Html.Partial("./_Swiper.PartEmpty.cshtml")
+        }
+
+        @* Slides - Add each one (if there are any) *@
+        @foreach (var slide in swiper.Slides) {
+          // Merge settings of the current slide, the swiper defaults and the App settings/defaults
+          var sldSettings = AsDynamic(slide, swiper, Settings);
+          var overlayEffect = sldSettings.OverlayEffect;    // Positioning
+          var duration = sldSettings.ShowDuration;          // time the slide will show if auto-playing
+          var toolbar = Edit.TagToolbar(slide, toolbar: new[] { "%delete&show=true" }, condition: !swiper.IsDemoItem );
+
+          <div class="swiper-slide" data-swiper-autoplay="@duration" @toolbar>
+            <div class="image-wrapper @helpers.SlideWrapperClasses(sldSettings)">
+              @* Add the <picture> tag with all the sources *@
+              @helpers.PictureTag(slide.Image.ToLower(), slide.Title, sliderHeightOrRatio)
+
+              @if (Text.Has(slide.Title) || Text.Has(slide.Text) || Text.Has(slide.LinkText)) {
+                @* Show Overlay behind text *@
+                <div class="overlay overlay-@overlayEffect"></div>
+
+                <div class="d-flex position-relative h-100 @helpers.OverlayAlignClasses(sldSettings)">
+                  <div class="w-100 py-3 py-md-4 px-3 px-md-5 @helpers.OverlayTextAlignClasses(sldSettings)">
+                    @* Show Title in overlay *@  
+                    @if (Text.Has(slide.Title)) {
+                      <p class="lead" data-swiper-parallax="-250">@slide.Title</p>
+                    }
+                    @* Show Description / additional Text in overlay *@  
+                    @if (Text.Has(slide.Text)) {
+                      <div data-swiper-parallax="-500">@Html.Raw(slide.Text)</div>
+                    }
+                    @* Show Link in overlay *@  
+                    @if (Text.Has(slide.LinkText)) {
+                      <div data-swiper-parallax="-750">
+                        <a class="btn btn-primary" href="@Tags.SafeUrl(slide.Link)" target='@(slide.LinkBlankTarget == true ? "_blank" : "")'>@slide.LinkText</a>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+            </div>
+          </div>
+        }
+
+      </div>
+
+      @* Pagination *@
+      @if (swiperSettings.ShowPaginationDots) {
+        <div class="swiper-pagination"></div>
+      }
+
+      @* Navigation buttons (right left arrows) *@
+      @if (swiperSettings.ShowPaginationArrows) {
+        <div class="swiper-button-prev swiper-button-prev-@swiper.EntityId"></div>
+        <div class="swiper-button-next swiper-button-next-@swiper.EntityId"></div>
+      }
+    </div>
+</div>
+
+@Html.Partial("./_Swiper.PartAssets.cshtml", new { SwiperSettings = swiperSettings })

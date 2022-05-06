@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // 1. Get Services for Css and Page
+  var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
+  var viewEdition = CmsContext.View.Edition;
+
+  page.Activate("FontAwesome5"); // see https://r.2sxc.org/turnon
+}
+
+<link rel="stylesheet" href="@App.Path/@viewEdition/dist/@(viewEdition).min.css" data-enableoptimizations="true">

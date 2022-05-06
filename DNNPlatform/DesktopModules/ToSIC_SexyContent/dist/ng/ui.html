@@ -1,6 +1,4 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html><html><head><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <script>
       // Ensure that 2sxc.api.min is always reloaded to prevent caching of old code
       // If last digit is a 0, then we're missing a real build number, so use a random one to ensure cache breaking
@@ -19,6 +17,7 @@
       // Tell 2sxc all the parameters it needs to work properly
       $2sxc.env.load({
         page: $2sxc.urlParams.require('tid'),
+        rvtHeader: $2sxc.urlParams.require('rvth'),
         rvt: $2sxc.urlParams.require('rvt'),
         api: $2sxc.urlParams.require('api'),
       });
@@ -35,10 +34,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style type="text/css">@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNa.woff) format('woff');}.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;font-feature-settings:'liga';}@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');}.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;}</style>
-  <link rel="stylesheet" href="styles.f5dc737e6ba5faf776ac.css"></head>
+    <style type="text/css">@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialicons/v126/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');}.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;}</style>
+  <style>body{margin:0;font-family:Roboto,sans-serif}</style><link rel="stylesheet" href="styles.478acf6987fed972.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.478acf6987fed972.css"></noscript></head>
 
   <body>
     <app-root></app-root>
-  <script src="runtime.0e49e2b53282f40c8925.js" defer=""></script><script src="polyfills-es5.7ae85b3db7ca95b948de.js" nomodule="" defer=""></script><script src="polyfills.b88b206a318bcb1ee9fa.js" defer=""></script><script src="vendor.0368559431d974dda180.js" defer=""></script><script src="main.6ef10ce665e3269394f0.js" defer=""></script></body>
-</html>
+  <script src="runtime.bf038bdfcfe00698.js" type="module"></script><script src="polyfills.c8095fa35f6caa40.js" type="module"></script><script src="vendor.625b0f19c83fcc10.js" type="module"></script><script src="main.bb628b5463ca1ff2.js" type="module"></script>
+
+</body></html>

@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using System.Collections.Generic;
+@using System.Linq;
+@{
+  var termGroups = DynamicModel.TermGroups;
+}
+
+@foreach (var grp in termGroups) {
+    <div class="app-glossary-item-wrapper">
+        <h2 id="@AsDynamic(grp).Key">@AsDynamic(grp).Key</h2>
+        @foreach (var term in grp) {
+        // Appends " – " to abbreviation if exists
+        var titleAbbreviation = (Text.Has(term.Abbreviation) ? term.Abbreviation + " – " : "");
+        var fullTermTitle = titleAbbreviation + term.Title;
+
+        <div class="app-glossary-single-term" @Edit.TagToolbar(term, toolbar: "%delete&show=true")>
+            <strong>@fullTermTitle</strong>
+            <p>@term.Summary</p>
+            <small><a href='@Link.To(parameters: "term=" + term.UrlKey)'>@Resources.MoreText</a></small>
+        </div>
+        }
+    </div>
+}

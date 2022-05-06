@@ -1,0 +1,62 @@
+@media all {
+    .to-shine-mainnav-variation-left {
+        #nav-desktop > div {
+            align-self: flex-start;
+        }
+
+        .to-shine-page-language {
+            li {
+                &:last-child {
+                    padding-left: 0;
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+    .to-shine-page-language {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        li {
+            padding: 5px;
+            margin: 0;
+            list-style-type: none;
+            font-size:11px;
+            font-weight: 700;
+            &:last-child {
+                padding-right:0;
+            }
+            a, a:focus {
+                color: $body-color;
+                &:hover {
+                    color: $primary;
+                }
+            }
+            &.active a {
+                color:$primary;
+            }
+        }
+    }
+    .offcanvas-body {
+        .to-shine-page-language {
+            margin-left:13px;
+            li {
+                a, a:focus {
+                    color: $white;
+                    &:hover {
+                        color: rgba($white,0.5);
+                    }
+                }
+                &.active a {
+                    color: rgba($white,0.5);
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+

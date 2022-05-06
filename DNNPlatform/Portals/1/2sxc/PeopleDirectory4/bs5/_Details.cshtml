@@ -1,0 +1,59 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var googleMapDomId = "app-peopledirectory4-google-map-js-" + @CmsContext.Module.Id;
+}
+<div class="app-peopledirectory4-details" @Edit.TagToolbar(Content, toolbar: "-layout")>
+  <div class="row">
+    <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+      @if(Text.Has(Content.Image)) {
+        <img loading="lazy" class="img-fluid mb-3 mb-md-0 emp-image" src='@Link.Image(url: Content.Image, width: 400, height: 400, quality: 90)' />
+      } else {
+        <div class="bg-primary img-placeholder"></div>
+      }
+    </div>
+    <div class="col-12 col-md-9 col-lg-5 col-xl-5">
+      <h2>@Content.FullName</h2>
+      <p>@Content.Function</p>
+      <div class="row">
+        @* Address *@
+        <div class="col-12 col-md-6 col-lg-12">
+          <p>
+            @if(Text.Has(Content.Street)) {
+              @Content.Street<br/>
+            }
+            @if(Text.Has(Content.ZipCode) || Text.Has(Content.City)) {
+              @(Content.ZipCode + " " + Content.City)<br/>
+            }
+            @if(Text.Has(Content.Country)) {
+              @Content.Country
+            }
+          </p>
+        </div>
+        @* Contact Information *@
+        <div class="col-12 col-md-6 col-lg-12">
+          <p>
+            @if(Text.Has(Content.Phone)) {
+              @Content.Phone<br/>
+            }
+            @if(Text.Has(Content.EMail)) {
+              <a href="mailto:@Content.EMail">@Content.EMail</a><br/>
+            }
+            <a href='@Link.To(api: "api/VCard/Get", parameters: "id=" + Content.UrlKey)' target="_blank">vCard</a>
+          </p>
+        </div>
+        <div class="col-12">@Html.Raw(Content.AdditionalNotes)</div>
+      </div>
+    </div>
+    @* Google Map *@
+    <div class="col-md-12 col-lg-5 mt-3 mt-lg-0">
+      <div class="app-peopledirectory4-js-google-map-container embed-responsive embed-responsive-16by9">
+        <div class="embed-responsive-item ratio ratio-21x9" id="@googleMapDomId"></div>
+        @Html.Partial("_Details.PartGoogleMapsWarning.cshtml")
+      </div>
+    </div>
+  </div>
+</div>
+
+@Html.Partial("./_Details.PartGoogleMaps.cshtml", new { DomId = googleMapDomId })
+@Html.Partial("./_Assets.cshtml")

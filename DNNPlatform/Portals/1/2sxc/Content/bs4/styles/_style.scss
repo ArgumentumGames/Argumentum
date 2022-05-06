@@ -1,0 +1,241 @@
+// This SCSS generates the css for the general styles
+// To keep things simple, it uses the standard variables of
+// bootstrap 4 conventions.
+
+@media all {
+  /* Linkblock with Image and Images with Caption */
+  figure {
+    position: relative;
+    overflow: hidden;    
+    transition: background-color 0.3s ease-in-out;
+        
+    img {
+      transition: transform .5s ease, opacity 0.3s ease-in-out;
+    }
+    
+    figcaption {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 5%, rgba(0, 0, 0, 0.7) 100%);
+    }
+  }
+
+  a:hover {
+    figure {
+      &.effect-zoom {
+        img {
+          transform: scale(1.05);
+        }
+      }
+
+      &.effect-darken {
+        img {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .bg-primary.placeholder {
+    padding-bottom: 58%;
+    margin-bottom:1rem;
+  }
+
+  .alert p:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    /* video link */
+    &.co-video {
+      display: block;
+      position: relative;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 72px;
+        color: rgba(255, 255, 255, 1);
+        transition: color 0.3s ease-in-out;
+      }
+
+      &:hover {
+        svg {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .co-linkblock {
+    color: $body-color;   
+    
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      color: $body-color;
+    }
+    
+    span {
+      color: $link-color;
+      vertical-align: middle;
+      display: inline-block;
+      padding: 3px 0;
+      transition: color 0.3s ease-in-out;
+
+      svg {
+        transition: margin-left 0.3s ease-in-out;
+        margin-left: 0;
+        vertical-align: text-bottom;
+        margin-bottom: 3px;
+        height: 12px;
+      }
+    }
+
+    &:hover {
+      a {
+        text-decoration: none;
+        color: $body-color;
+
+        figure {
+          &.effect-zoom {
+            img {
+              transform: scale(1.05);
+            }
+          }
+
+          &.effect-darken {
+            background-color: $primary;
+
+            img {
+              opacity: 0.8;
+            }
+          }
+          
+        }
+      }
+
+      span {
+        color: $link-hover-color;
+        text-decoration: $link-hover-decoration;
+
+        svg {
+          transition: margin-left 0.3s ease-in-out;
+          margin-left: 8px;
+        }
+      }
+    }
+
+    &.co-linkblock-overlay {
+      color: $white;
+
+      figure {
+        .overlay {
+          position: absolute;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          background-color: rgba($dark, 0.4);
+          transition: background-color 0.3s ease-in-out;
+        }
+      }
+      
+      p,
+      h4 {
+        color: $white;
+      }
+
+      span {
+        color: $link-color;
+        background: $white;
+        vertical-align: middle;
+        display: inline-block;
+        padding: 5px 10px;
+        align-self: flex-start;
+        border-radius: 4px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+        svg {
+          transition: margin-left 0.3s ease-in-out;
+          margin-left: 0;
+          vertical-align: text-bottom;
+          margin-bottom: 3px;
+          height: 12px;
+        }
+      }
+
+      &:hover {
+        a {
+          text-decoration: none;
+
+          span {
+            color: $link-hover-color;
+            text-decoration: none;
+            background-color: $body-color;
+            color: $white;
+  
+            svg {
+              transition: margin-left 0.3s ease-in-out;
+              margin-left: 8px;
+            }
+          }
+
+          figure {
+            &.effect-darken {
+              .overlay {
+                background-color: rgba($dark, 0.2);
+              }
+
+              img {
+                opacity: 1;
+              }
+            }            
+          }
+        }
+        
+      }      
+    }
+  }
+
+  .co-video-embed {
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: auto;
+    }
+
+    .overlay {
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      background-color: rgba($dark, 0.4);
+      transition: background-color 0.3s ease-in-out;
+      cursor: pointer;
+
+      &.hide {
+        display: none !important;
+      }
+
+      svg {
+        font-size: 72px;
+        color: rgba(255, 255, 255, 1);
+        transition: color 0.3s ease-in-out;
+      }
+      &:hover {
+        svg {
+          color: red;
+        }
+      }
+    }
+  }
+}

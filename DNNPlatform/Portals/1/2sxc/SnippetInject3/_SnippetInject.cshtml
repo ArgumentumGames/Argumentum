@@ -1,0 +1,41 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Detect what kind of snippet this is (js, html, css)
+  var snippetType = CmsContext.View.Identifier;
+
+  // Disable quality-check which otherwise warns 2sxc-developers that inline scripts shouldn't be used
+  // 2sxclint:disable:no-inline-script
+}
+@* Add editing section above the content for admins, because the snippet (js/css) is invisible *@
+@if(Edit.Enabled) {
+  <div class='app-snippetinject3-edit' @Edit.TagToolbar(Content)>
+      @Resources.DoNotDeleteWarning
+  </div>
+  <style>
+    .app-snippetinject3-edit {
+      color: #856404;
+      background-color: #fff3cd;
+      padding: .75rem 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: .25rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+}
+
+@if (snippetType == "html") {
+  @Html.Raw(Content.Html)
+}
+@if (snippetType == "css") {
+  <style>
+    @Html.Raw(Content.Styles)
+  </style>
+}
+
+@if (snippetType == "js") {
+  <script>
+    @Html.Raw(Content.Script)
+  </script>
+}

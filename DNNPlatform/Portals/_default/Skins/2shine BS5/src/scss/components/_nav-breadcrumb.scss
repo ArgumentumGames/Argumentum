@@ -1,0 +1,53 @@
+/* ---------- Breadcrumbs ---------- */
+.tab-is-home .to-shine-page-breadcrumb {
+display: none;
+}
+.to-shine-page-breadcrumb {
+  position: sticky;
+  top: 97px;
+  z-index: 10;
+  background:$white;
+    .to-shine-page-breadcrumb-link {
+      color: $gray-600;
+      white-space: pre-wrap;
+      font-size: 14px;
+      padding: 0 5px;
+      &:hover {
+        color: $primary;
+      }
+      &.to-shine-page-breadcrumb-home {
+        display:inline;
+        @include media-breakpoint-up(md) {
+          display:inline;
+        }
+      }
+    }
+    .last {
+      .to-shine-page-breadcrumb-link {
+        color: $primary;
+        display: inline-block;
+      }
+    }
+    &.to-shine-page-breadcrumb-shortened {
+      .to-shine-page-breadcrumb-link {
+        &.to-shine-page-breadcrumb-home {
+          display:none;
+          @include media-breakpoint-up(md) {
+            display:inline;
+          }
+        }
+      }
+    }
+    .to-shine-page-breadcrumb-trigger {
+      cursor: pointer;
+      display:inline;
+      @include media-breakpoint-up(md) {
+        display:none;
+      }
+    }
+}
+
+
+
+
+

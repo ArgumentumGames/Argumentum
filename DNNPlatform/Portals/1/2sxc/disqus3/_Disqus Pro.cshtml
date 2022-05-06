@@ -1,0 +1,59 @@
+@inherits Custom.Hybrid.Razor12
+@{  
+  var configSuccess = Settings.DomainKey == "2sxc-org.disqus.com";
+
+  // Disable quality-check which otherwise warns 2sxc-developers that inline scripts shouldn't be used
+  // 2sxclint:disable:no-inline-script
+}
+
+<div class="app-disqus2-toolbar">
+  @Edit.Toolbar(Content)
+</div>
+
+<style>
+  .app-disqus2-toolbar {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+</style>
+
+<div id="disqus_thread" @Edit.TagToolbar(Content)>
+  @if(!configSuccess) {
+    <div class="app-disqus2-warning">@Html.Raw(Resources.ConfigurationWarning)</div>
+    <style>
+      .app-disqus2-warning {
+        color: #856404;
+        background-color: #fff3cd;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border-radius: .25rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    return;
+  }
+  <div id="disqus_thread_loader">@Html.Raw(Resources.DisqusLoadingMessage)</div>
+</div>
+
+<script>
+  let disqusObserver = new IntersectionObserver((entries) => {
+    // start loading Disqus now
+    if(entries[0].isIntersecting) {
+      // enter disqus config here
+
+      addDisqusScript()
+      // once executed, stop observing
+      disqusObserver.disconnect()
+    }
+  }, { threshold: [0] });
+
+  disqusObserver.observe(document.querySelector("#disqus_thread"))
+
+  function addDisqusScript() {
+    let disqusScript = document.createElement('script')
+    disqusScript.src = 'https://@(App.Settings.DomainKey)/embed.js'
+    disqusScript.setAttribute('data-timestamp', +new Date());
+    (document.head || document.body).appendChild(disqusScript)
+  }
+</script>

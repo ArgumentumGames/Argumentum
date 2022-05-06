@@ -1,0 +1,35 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var post = DynamicModel.Post;
+  var author = post.author;
+  var publicationDate = post.PublicationMoment.ToString("d");
+}
+
+@* Post title *@
+@Tag.Custom(DynamicModel.HeadingType).Class("mt-3").Wrap(Tags.Nl2Br(post.Title))
+
+<div class="post-meta d-flex align-items-center flex-row my-3">
+  @* Author Info & Link to Authors Posts *@
+  <div class="post-author mr-2">
+    <a href='@Link.To(parameters: "author=" + author.FullName)'>
+      @if(Text.Has(author.Image)) {
+        <img loading="lazy" src='@Link.Image(author.Image, Settings.Images.Author)' alt="@author.FullName" style="width: 40px" class="rounded-circle" />
+      } else {
+        @author.FullName
+      }
+    </a>
+  </div>
+
+  @* Post Date *@
+  <time pubdate datetime='@publicationDate'>@publicationDate</time>
+
+  @* List categories of post *@
+  @foreach(var category in post.Categories) {
+    <span>&nbsp;–
+    <a class="post-category" href='@Link.To(parameters: "category=" + category.Key)' title="@category.Name">
+      @category.Name
+    </a>
+    </span>
+  }
+</div>

@@ -1,0 +1,50 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  /* This Template is used in ca. 5 Views which show title, text and video */
+
+  var isTextFirst = Settings.TextFirst;
+
+  // Determine the widths of each part, based on 12 Bootstrap Cols
+  const int bootstrapCols = 12;
+  var colsText = isTextFirst ? Settings.ColsElement1 : bootstrapCols - Settings.ColsElement1;
+  var colsImg = bootstrapCols - colsText;
+
+  var allContent = AsList(Data);
+  var allContentLength = allContent.Count();
+  var hasMultipleItems = allContentLength > 1;
+}
+
+@if (hasMultipleItems && Edit.Enabled) { <div class='pt-4' @Edit.TagToolbar(Header)></div> }
+@for(var iteration = 0; iteration < allContentLength; iteration++) 
+{
+  var item = allContent.ElementAt(iteration);
+  <div class="co-container-outer mb-4 mb-md-5">
+    <div class="co-container-inner" @Edit.TagToolbar(item)>
+      <div class='row @(iteration == (allContentLength - 1) ? "" : "mb-4 mb-lg-5")'>
+        <div class='col-md-@colsText order-md-@(isTextFirst ? "first" : "last")'>
+          @* call sub-template to show the title with the correct H1-H6 tag *@
+          @Html.Partial("../shared/_Header tag.cshtml", new { Title = item.Title })
+
+          @* If the image doesn't have it's own column, its between title/text *@
+          @if (colsImg == 0) {
+            @Html.Partial("_Video.Part-Playback.cshtml", new { Columns = 12, Video = item })
+          }
+
+          @Html.Raw(item.Text)
+        </div>
+        @* If the image has it's own column, it's here *@
+        @if (colsImg != 0) {
+          <div class='col-md-@colsImg order-md-@(isTextFirst ? "last" : "first")'>
+            @Html.Partial("_Video.Part-Playback.cshtml", new { Columns = colsImg, Video = item })
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  if (!Header.AlternatePositions) { continue; }
+  isTextFirst = !isTextFirst;
+}
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,icons"})

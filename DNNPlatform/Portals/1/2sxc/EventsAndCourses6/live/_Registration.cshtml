@@ -1,0 +1,165 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using System;
+@using System.Text.RegularExpressions;
+@using ToSic.Sxc.Services;
+@{
+  var fieldBuilder = CreateInstance("shared/FieldBuilder.cs");
+  
+  var course = AsList(Data["Course"]).FirstOrDefault();
+  var eventDate = AsList(Data["EventDate"]).FirstOrDefault();
+  var title = course == null ? "" : course.Title;
+  var page = GetService<IPageService>(); // Service to set titles etc. on the page
+  page.SetTitle(Resources.CourseRegistrationTitle + " | " + title);
+
+  var domAttribute = "events-" + CmsContext.Module.Id;
+}
+
+@* Show warning if 404, event not found *@
+@if (course == null)
+{
+  <div class="alert alert-danger" role="alert">
+    <span class="sr-only">Error:</span>
+    @Resources.CourseNotFoundError
+  </div>
+  @Tag.A(Resources.LabelBackToList).Class("btn btn-outline-primary").Href(Link.To());
+
+  page.SetHttpStatus(404);
+  return;
+}
+
+@* additional text in title if set *@
+@{
+var titleAddition = (Text.Has(eventDate.TitleAddition)) 
+  ? " " + Resources.TitleAdditionPrefix + " " + eventDate.TitleAddition + " " + Resources.TitleAdditionSuffix 
+  : "";
+}
+
+<div class="app-events6 app-events6-form" 
+  @Edit.TagToolbar(eventDate) 
+  @domAttribute
+  data-string-required="@Resources.ValidationRequired" 
+  data-string-email="@Resources.ValidationEmail"
+>
+  @* Title *@
+  <h1 class="mb-4">@Resources.CourseRegistrationTitle - @course.Title @titleAddition</h1>
+
+  <div class="form app-events6-form">
+    @* Inputs *@
+    @{
+      var inputTitle = Text.First(eventDate.Title, course.Title) + titleAddition;
+      var courseNumber = (eventDate.Id != null) ? eventDate.Id : course.id;
+    }
+    @if (Text.Has(courseNumber)) {
+      @fieldBuilder.Text("CourseNumber", false, true, courseNumber)
+    }
+    @fieldBuilder.Text("CourseName", true, true, inputTitle)
+    @fieldBuilder.Text("CourseLocation", true, true, Text.First(eventDate.Location, course.Location))
+
+    @* Event Notes *@
+    @{
+      var compDate = eventDate.Start.ToString("d") + (!eventDate.EndDateIsStartDate ? " - " + eventDate.End.ToString("d") : "");
+    }
+    @fieldBuilder.Multiline(Resources.LabelCourseDate, true, true, (Text.Has(eventDate.TimeSpecifics) ? eventDate.TimeSpecifics : compDate))
+
+    @* Salutation *@
+    <h3>@Resources.CourseParticipantData</h3>
+    <div class="mb-3 row">
+      @fieldBuilder.Label(Resources.LabelParticipantSalutation, "Salutation", true)
+      <div class="col-sm-9 radio-group">
+        <div class="radio">
+          <label>
+            <input required data-pristine-required-message name="Salutation" type="radio" value="@Resources.LabelMrs">
+            @Resources.LabelMrs
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input required data-pristine-required-message name="Salutation" type="radio" value="@Resources.LabelMr">
+            @Resources.LabelMr
+          </label>
+        </div>
+      </div>
+    </div>
+
+    @* Inputs *@
+    @fieldBuilder.Text("FirstName", true)
+    @fieldBuilder.Text("LastName", true)
+    @fieldBuilder.Text("Street", true)
+    @fieldBuilder.Text("ZIPCity", true)
+
+
+    @* Country Select *@
+    @fieldBuilder.DropDown("Country", true, Resources.CountrySelection.Split('\n'))
+
+    @* Inputs *@
+    @fieldBuilder.Text("Phone", false)
+    @fieldBuilder.Text("MobilePhone", false)
+    @fieldBuilder.EMail("Mail", true)
+
+
+    @* Privacy/Terms Checkbox *@
+    <div class="mb-3 row form-required">
+      <label class="col-sm-3" for="AGB">@Resources.AppAgbLabel</label>
+      <div class="col-sm-9">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" id="AGB" name="AGB" required />
+            @Html.Raw(Resources.AcceptAgb.Replace("<p>", "").Replace("</p>", ""))
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 row form-required">
+      <label class="col-sm-3" for="Accept">@Resources.AppCostsLabel</label>
+      <div class="col-sm-9">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" id="Accept" name="Accept" required />
+            @Html.Raw(Resources.AcceptCosts.Replace("<p>", "").Replace("</p>", ""))
+          </label>
+        </div>
+      </div>
+    </div>
+
+    @* Submit Button *@
+    <div class="mb-3 row">
+      <div class="col-md-9 offset-sm-3">
+        <a href="@Link.To(parameters: "details=" + course.EntityId + "&dateid=" + eventDate.EntityId)" class="btn btn-outline-primary">@Html.Raw(Resources.LabelBack)</a>
+        <button type="button" app-events6-send class="btn btn-primary">@Html.Raw(Resources.ButtonRegister)</button>
+      </div>
+    </div>
+
+    <input type="hidden" id="EventDate" name="EventDate" value="@eventDate.EntityGuid">
+    <input type="hidden" id="Course" name="Course" value="@course.EntityGuid">
+
+    @* Response Messages *@
+    @AddHiddenMessage(Resources.MessageSending, "warning", "msgSending")
+    @AddHiddenMessage(Resources.ValidationRequired, "danger", "msgIncomplete")
+    @AddHiddenMessage(Resources.CourseRegistrationError, "danger", "msgError")
+    <div id="msgOk" class="alert alert-success app-events6-message" role="alert">
+      <strong>@Html.Raw(Resources.SuccessThanks)</strong>
+      @Html.Raw(Resources.SuccessMessage)
+    </div>
+
+    @* if is required, because all app-events6-config-warning are shown after submit *@
+    @if (!Text.Has(Settings.OwnerMail) || !Text.Has(Settings.MailFrom)) {
+      @AddHiddenMessage(Resources.MessageDefaultMailSettings, "warning", "", "app-events6-config-warning")
+    }
+
+    @if (Settings.Recaptcha ?? false)  { @Html.Partial("_Registration.PartRecaptcha.cshtml") }
+  </div>
+</div>
+
+@functions {
+  dynamic AddHiddenMessage(string message, string type = "warning", string id = "", string attribute = "") {
+    var classes = "alert alert-" + type + " app-events6-message";
+    var rawMessage = message.Replace("<p>", "").Replace("</p>", "");
+    var messageDiv = Tag.Div(rawMessage).Class(classes).Id(id).Attr("role", "alert");
+    if (attribute != "") { messageDiv.Attr(attribute, ""); }
+    return messageDiv;
+  }
+}
+
+@Html.Partial("shared/_Assets.cshtml")

@@ -1,0 +1,42 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Determine the widths of each part, based on 12 Bootstrap Cols
+  var columns = 12 / Settings.MaxPerRow;
+  var factor = 1 / Settings.MaxPerRow; // percentage of the content-width
+  
+  // define dom attribute for fancybox
+  var fancyboxAttribute = "app-content-fancybox-" + CmsContext.Module.Id; 
+}
+
+<div class="co-container-outer">
+  <div class="co-container-inner">
+    <div class="row">
+    @foreach (var img in AsList(Data)) {
+
+      <div class='@(columns > 10 ? "col-12" : "col-12 col-sm-6") col-lg-@columns mb-3' @Edit.TagToolbar(img)>
+
+        @if (img.Presentation.ImageLightbox != false) {
+          @:<a @fancyboxAttribute href="@Link.Image(img.Image, Settings.Images.Lightbox)" data-caption="@(img.Presentation.TitleLightbox != false ? img.Title : "")">
+        }
+        <figure class='@(img.Presentation.ImageLightbox != false ? "effect-zoom" : "")'>
+            @if (img.Presentation.TitleLegend != false) {
+              <figcaption class="pt-1 px-3 px-md-4 pb-3 pb-md-4 text-white">@img.Title</figcaption>
+            }
+
+            <img loading="lazy" class="w-100"
+              src='@(Link.Image(img.Image, Settings.Images.Content, factor: factor) + "&anchor=" + img.CropAnchor)'
+              alt="@img.Title" />
+        </figure>
+
+        @if (img.Presentation.ImageLightbox != false) {
+          @:</a>
+        }
+
+      </div>
+    }
+    </div>
+  </div>
+</div>
+
+@Html.Partial("../Shared/_Assets.cshtml", new { parts = "fancybox,styles,scripts", FancyboxAttribute = fancyboxAttribute })

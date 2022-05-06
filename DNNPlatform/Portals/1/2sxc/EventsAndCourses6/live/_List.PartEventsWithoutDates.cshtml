@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@if(Edit.Enabled) {
+  var i = 0;
+  <div class="mb-2 alert alert-warning admin-eventswithoutdate">
+    <strong class="d-block mb-1">@Resources.HeadlineEventsWithoutDate</strong>
+    <ul class="list-group">
+      @foreach(var ev in AsList(App.Data["Event"])) {
+        var eventCount = AsList(App.Data["EventDate"]).Where(d => d.Start.Date >= DateTime.Now.Date).Where(d => d.Event.EntityId == ev.EntityId).Count();
+        if(eventCount == 0) {
+          <li class="list-group-item list-group-item-light mb-0" @Edit.TagToolbar(ev, toolbar: new [] { "toolbar=empty", "+edit" })>
+            <a href="@Link.To(parameters: "details=" + @ev.EntityId + "&" + ev.UrlKey)">@ev.Title</a>
+          </li>
+          i++;
+        }
+      }
+    </ul>
+  </div>
+
+  if(i == 0) {
+    <style>
+      .admin-eventswithoutdate {
+        display: none;
+      }
+    </style>
+  }
+}

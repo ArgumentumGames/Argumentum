@@ -1,0 +1,26 @@
+@inherits Custom.Hybrid.Razor12
+@* This inherits statement gets you features like App, CmsContext, Data etc. - you can delete this comment *@
+
+<link rel="stylesheet" href="@App.Path/src/styles/argumentum.css" data-enableoptimizations="150" />
+@foreach (var ruleEntity in AsList(Data))
+{
+    var view1Parameters = "details=" + ruleEntity.UrlKey+ "&mid=" + CmsContext.Module.Id;
+
+    <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
+        <div class="col-md-12">
+            <h2>@ruleEntity.EntityTitle</h2>
+            <a class="link-overlay" href="@Link.To(parameters: view1Parameters)"></a>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="nbPlayers mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
+                        <h6>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h6>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-8">
+                        @Html.Raw(ruleEntity.Summary)
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+}

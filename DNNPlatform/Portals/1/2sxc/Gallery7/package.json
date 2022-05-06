@@ -1,0 +1,31 @@
+{
+  "name": "app-gallery",
+  "version": "07.00.00",
+  "description": "A simple, easy to customize Gallery-App for DNN (DotNetNuke) based on the awesome fancybox 3",
+  "main": "(none)",
+  "scripts": {
+    "build-bs4": "webpack --env style=bs4",
+    "build-bs5": "webpack --env style=bs5"
+  },
+  "author": "2sic internet solutions 2021",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fancybox": "^3.5.2",
+    "autoprefixer": "^10.2.5",
+    "bootstrap": "^5.1.0",
+    "css-loader": "^5.2.4",
+    "file-loader": "^6.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss-loader": "^5.2.0",
+    "sass": "^1.32.12",
+    "sass-loader": "^11.0.1",
+    "terser-webpack-plugin": "^5.1.1",
+    "ts-loader": "^9.1.2",
+    "typescript": "^4.2.4",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpackbar": "^4.0.0"
+  }
+}

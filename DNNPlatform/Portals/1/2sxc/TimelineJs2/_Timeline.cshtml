@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  var timelineJsAttribute = "app-timelinejs2-" + CmsContext.Module.Id;
+}
+
+<div class="app-timelinejs2" @timelineJsAttribute></div>
+@Html.Partial("_Timeline.PartAssets.cshtml", new { DomAttribute = timelineJsAttribute })

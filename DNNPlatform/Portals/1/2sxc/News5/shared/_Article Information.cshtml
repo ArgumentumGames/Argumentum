@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  var helpers = CreateInstance("Helpers.cs");
+  var article = DynamicModel.Article;
+  var displayCategories = App.Settings.ActivateCategories && AsList(article.Categories as object).Any();
+}
+
+<div class="app-text">
+  @* "Will publish" / "expired" info for admin *@
+  @helpers.AdminArticleInformation(article)
+
+  @((Tag.Custom(DynamicModel.HeadingType)).Class("app-news5-list").Wrap(article.Title))
+  <span class='app-news5-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
+  @if(displayCategories) {
+    <span class="app-news5-categories">
+      @foreach (var cat in article.Categories) {
+        <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
+      }
+    </span>
+  }
+  <p>@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+</div>
+<span class="app-news5-readmore">@Resources.LabelReadMore</span>

@@ -1,0 +1,70 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var pageCss = GetService<Connect.Koi.ICss>();
+
+  var categories = AsList(Data["Categories"]);
+  var jobs = AsList(Data["Jobs"]);
+  var domAttribute = "app-jobs2-" + CmsContext.Module.Id;
+
+  var isBs3 = pageCss.Is("bs3");
+}
+
+<div @domAttribute class="app-jobs2" @Edit.TagToolbar(Content, toolbar: new [] { "+new&title=New Job?contentType=Job" } )>
+  @if (Settings.UseCategories) {
+    <div class="app-jobs2-categories-list">
+      @if (categories.Count() != 1) {
+        <a app-jobs2-category-button class='@(isBs3 ? "btn btn-primary" : "btn btn-outline-primary")' app-jobs2-filter="nofilter" href='@Link.To()'>
+          @Resources.LabelNoFilter
+        </a>
+  
+        foreach (var category in categories)
+        {
+          <a app-jobs2-category-button class='@(isBs3 ? "btn btn-primary" : "btn btn-outline-primary")' 
+            app-jobs2-filter="@category.Key" href='@Link.To(parameters: "category=" + category.Key)'>
+            @category.Name
+          </a>
+        }
+      }
+    </div>
+  }
+
+  <div class='app-jobs2-list row'>
+    @foreach (var job in jobs)
+    {
+      var jobCategories = ((IEnumerable<dynamic>)job.Categories).Select(x => x.Key);
+      <div @Edit.TagToolbar(job) class='app-jobs2-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Convert.Json.ToJson(jobCategories)">
+        @if(Text.Has(job.Link))
+        {
+          @:<a target="_blank" class="app-jobs2-link-box" title="@job.Name" href="@job.Link">
+        }
+        <div class="row">                            
+          <div class='@(isBs3 ? "col-xs-9" : "col-9")'>
+            <h3>@job.Name</h3>
+            <div class="app-jobs2-categories-list">
+              <span>@job.Date.ToString("dd.MM.yyyy")</span>
+            </div>
+
+            @if(Text.Has(job.Description))
+            {
+              <p>@job.Description</p>
+            }
+
+            <span class="app-jobs2-link"> @Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
+          </div>
+          <div class='app-jobs2-categories-container @(isBs3 ? "col-xs-3" : "col-3")'>
+            @foreach (var category in job.Categories) {
+              <span>@category.Name</span>
+            }
+          </div>
+        </div>
+        @if(Text.Has(job.Link))
+        {
+          @:</a>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+@Html.Partial("_JobList.PartAssets.cshtml", new { DomAttribute = domAttribute })

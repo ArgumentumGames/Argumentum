@@ -1,0 +1,42 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+@{
+  // Determine the widths of each part, based on 12 Bootstrap columns
+  var imgResizeFactor = "4/12";  // Each Album uses 4 columns
+
+  // visual effect for mouse interaction
+  var effect = "effect-zoom"; // alternative: "effect-darken"; 
+}
+
+<div class="app-ga7-main">
+  <div class="row">
+    @* Loop through all the Albums *@
+    @foreach (var album in AsList(Data)) {
+      @* Get the main album image or if not available, the first in the images, or empty *@
+      var images = AsAdam(album, "Images").Files as Dynlist;
+      var albumThumbUrl = Text.Has(album.AlbumThumbnail)
+        ? album.AlbumThumbnail
+        : images.Any() ? images.First().Url : "";
+
+      var linkAlbum = Link.To(parameters: "album=" + album.Path);
+
+      @* Show one Album Thumbnail with Link etc. *@
+      <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" @Edit.TagToolbar(album)>
+        <a class="app-ga7" href='@linkAlbum'>
+          <figure class="app-ga7-image @effect">
+            <figcaption class="overlay d-flex align-items-end">
+              <div class="caption with-badge">
+                <span class="text-uppercase">@album.Title</span>
+                <span class="badge badge-pill">@images.Count()</span>
+              </div>
+            </figcaption>
+            <img loading="lazy" class="img-fluid" src='@Link.Image(albumThumbUrl, Settings.Images.Content, factor: imgResizeFactor)' alt="@album.Title" />
+          </figure>
+        </a>
+      </div>
+    }
+  </div>
+</div>
+
+@Html.Partial("shared/_Assets.cshtml")

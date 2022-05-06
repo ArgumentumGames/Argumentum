@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.Razor12
+@*
+  This is just a test view to show test-content in the Accordion
+  It's only meant for verifying functionality, not for use in real sites. 
+  That is why the view must also be hidden when we distribute the app. 
+*@
+<div @Edit.TagToolbar(Content)>
+  @Html.Raw(Content.Message)
+</div>

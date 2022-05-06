@@ -1,0 +1,71 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var channel = Content; // give it a nicer name so the code is easier to read
+  // Get all the Episode items which point to this channel
+  var episodes = AsList(Content.Parents("Episode") as object);
+}
+
+<div class="app-podcast2 container mb-4"  @Edit.TagToolbar(channel, toolbar: new [] { "settings&hover=left&autoAddMore=start" })>
+  <div class="row">
+    @* Left column with image, episode counter and channel description *@
+    <div class="col-12 col-md-4">
+      <div class="card border-0">
+        <img class="w-100 rounded-sm" loading="lazy" src='@Link.Image(url: channel.Image, width: 1000, height: 1000, resizeMode: "crop", quality: 75)' />
+        <div class="card-body p-0">
+          <p class="card-text">
+            <p class="text-muted">@episodes.Count() @Resources.Episodes</p>
+            <hr>
+            <div class="pc-channel-description-desktop d-none d-md-block">@Html.Raw(channel.Description)</div>
+          </p>
+        </div>
+      </div>
+    </div>
+    @* Right column with the rest of the channel information and the episode listing *@
+    <div class="col-12 col-md-8">
+      <div class="card border-0 mb-4">
+        @* Channel Information *@
+        <div class="card-body p-0">
+          @if(channel.IsDemoItem){
+            <div class="alert alert-warning">
+              @Html.Raw(Resources.WarningIsShowingDemo)
+            </div>
+          }
+          <h3 class="card-title pc-channel-title">@channel.Title</h3>
+          <h5 class="card-subtitle mb-3 pc-owner-name">@channel.Owner.FullName</h5>
+          <div class="pc-channel-description-mobile d-block d-md-none">@Html.Raw(channel.Description)</div>
+          <div class="pc-channel-category-rss d-flex">
+            <p class="card-text text-muted mb-0 align-self-end">
+              @(Text.Has(channel.Category.SubCategory) ? channel.Category.SubCategory : channel.Category.MainCategory)
+            </p>
+            <a class="badge badge-pill d-flex justify-content-center bg-secondary"
+              href='@Link.To(api: "api/PodCast/Rss", parameters: "pageid=" + CmsContext.Page.Id + "&moduleId=" + CmsContext.Module.Id + "&channelid=" + channel.EntityId)'
+              target="_blank">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" style="width: 10px;" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path>
+              </svg>
+              @* <i class="fas fa-rss align-self-center"></i> *@
+            </a>
+          </div>
+        </div>
+      </div>
+
+      @* Listing of episodes *@
+      @if(!channel.IsDemoItem) {
+        @Edit.Toolbar(toolbar: new [] {
+          "toolbar=empty",
+          "new?contentType=Episode&prefill:Date=" + @DateTime.Now.ToString("yyyy-MM-dd")
+            + "&prefill:Channels=" + channel.EntityGuid.ToString()
+            + "&prefill:Author=" + channel.Owner.EntityGuid.ToString()
+        })
+      }
+      <ul class="list-group">
+        @foreach(var episode in episodes.OrderByDescending(e => e.Date)) {
+          @Html.Partial("./_Channel.PartEpisode.cshtml", new { Episode = episode })
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+@Html.Partial("./_Channel.PartAssets.cshtml")

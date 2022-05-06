@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+<div class='app-iframe-holder' style='width:100%; max-width:100%; position:relative;' @Edit.TagToolbar(Content)>
+
+  @* Show a nice hint if the IFrame is showing demo material *@
+  @if (Content.IsDemoItem) {
+    <div style="width: 100%; height: 200px; text-align: center; position: absolute;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 25%, rgba(255,255,255,90) 50%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,0) 100%)">
+      <br><img src='@Link.Image(App.Path + "/app-icon.png", width: 100)' loading="lazy"><br>
+      @Html.Raw(Tags.Nl2Br(Resources.DemoMode))
+    </div>
+  }
+
+  @* The Iframe itself *@
+  <iframe
+    src="@Tags.SafeUrl(Content.EmbedURL)"
+    scrolling='@(Content.EnableScrollbar == true ? "yes" : "no")'
+    style='max-width: 100%;
+        box-sizing: border-box;
+        border-top: 0px;
+        border-bottom: 0px;
+        margin: 0;
+        padding: 0;
+        height: @(Content.Height)px;
+        width: @(Content.Width)%;
+        display: block;
+        overflow: @(Content.EnableScrollbar == true ? "auto" : "hidden");'>
+  </iframe>
+</div>

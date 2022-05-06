@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  var filteredCategory = DynamicModel.FilteredCategory;
+  var selectedId = filteredCategory == null ? -1 : filteredCategory.EntityId;
+}
+
+<div class="app-news5-catinfo">
+  <span>
+    <a class='btn btn-primary btn-sm @(selectedId == -1 ? "active" : "")' href="@Link.To()">
+      @Resources.LabelCategoryAll
+    </a>
+  </span>
+
+  @foreach (var cat in AsList(App.Data["Category"])) {
+    <span>
+      <a class='btn btn-primary btn-sm @(cat.EntityId == selectedId ? " active" : "")' href='@Link.To(parameters: "category=" + cat.UrlKey)'>
+        @cat.Name
+      </a>
+    </span>
+  }
+</div>

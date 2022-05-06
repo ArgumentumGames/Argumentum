@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using System;
+@{
+  var queryEvents = AsList(Data["Events"]).GroupBy(c => c.Start.ToString("MM.yyyy"));
+  var listSettings = Content;
+}
+
+<div class="app-events6 app-events6-list" @Edit.TagToolbar(listSettings, toolbar: new [] { "+new&title=" + Resources.LabelAddEvent + "?contentType=Event" })>
+  @* Events for Admin which don't have a date yet *@
+  @Html.Partial("_List.PartEventsWithoutDates.cshtml")
+
+  @foreach (var e in queryEvents) {
+    var eventDate = e.First().Start;
+    @* Grouped months *@
+    <h2>
+      @e.First().Start.ToString("MMMM")
+      @* show year if not current year *@
+      @if (DateTime.Now.Year != eventDate.Year) {
+        <span class="year">@eventDate.ToString("yyyy")</span>
+      }
+    </h2>
+    
+    @* Events in month *@
+    foreach (var d in e) {
+      if (Edit.Enabled || d.Event.ShowInLanguage != false) {
+        var item = d.Event;
+        var detailslink = Link.To(parameters: "details=" + @item.EntityId + "&dateid=" + d.EntityId + "&" + item.UrlKey);
+        var overlayStyle = Text.Has(item.Image) ? "" : "background-image: url('" + Link.Image( App.Path + "/src/images/trans.png", Settings.Images.Content) + "');";
+          
+        <div class="row position-relative app-events6-list-item mb-4" @Edit.TagToolbar(d.Event, toolbar: new [] {
+          "toolbar=empty", "+edit"
+        })>
+          <div class="col-12 col-md-6 col-lg-4 mb-2 mb-md-0">
+            <div class='app-events6-img effect-zoom @(Text.Has(item.Image) ? "" : "app-events6-noimg")'>
+                <div class="overlay" style="@overlayStyle"></div>
+                <img loading="lazy" class="img-fluid" src='@Link.Image(Text.First(item.Image, Resources.PlaceHolderImg), Settings.Images.Content, factor: "1/3")' alt="@item.Title" />
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-8 position-static">
+            <div class="app-events6-text">
+              <h2>
+                @item.Title @((Text.Has(d.TitleAddition)) ? "- " + d.TitleAddition : "" )
+                @if(d.Event.ShowInLanguage == false && Edit.Enabled) { <span style="color:red;">@Resources.LanguageHidden.Replace("<p>", "").Replace("</p>", "")</span> }
+              </h2>
+              <div class="event-meta mb-3">
+                <span class="app-events6-date">@d.Start.ToString("d") @(!d.EndDateIsStartDate ? "- " + d.End.ToString("d") : "")</span>
+                <span class="app-events6-categories"> | @item.Category.Title</span>
+              </div>
+
+              @if(Text.Has(item.ShortDescription)) {
+                <p>@item.ShortDescription.Replace("\n", "<br />")</p>
+              }
+
+              <a class="stretched-link" href="@detailslink">@Html.Raw(Resources.LabelReadMore)</a>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  }
+
+  @Html.Partial("_DetailsList.PartPaging.cshtml") 
+
+  @Html.Partial("_List.PartAdmin.cshtml")
+</div>
+
+@Html.Partial("shared/_Assets.cshtml") 

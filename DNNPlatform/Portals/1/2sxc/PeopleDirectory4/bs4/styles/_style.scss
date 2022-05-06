@@ -1,0 +1,46 @@
+﻿.app-peopledirectory4-wrapper {
+  a {
+    &.card {
+      &:hover {
+        cursor: pointer;
+      }
+
+      .img-placeholder {
+        padding-bottom: 100%;
+      }
+    }
+  }
+}
+
+.app-peopledirectory4-details {
+  .emp-image {
+    min-width: 140px;
+  }
+
+  .img-placeholder {
+    padding-bottom: 100%;
+
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 0;
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
+
+
+// fix for bs3 alert styling
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.alert-dark {
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+}

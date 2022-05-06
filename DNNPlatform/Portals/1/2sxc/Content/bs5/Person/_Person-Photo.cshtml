@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  /* This is used in two views */
+  var isRound = CmsContext.View.Identifier == "round";
+  var photoSettings = AsDynamic(new {
+    Width = 400,
+    AspectRatio = isRound ? "1" : "1:1.25",
+    ScaleMode = "both",
+    ResizeMode = "crop",
+    Quality = 80
+  });
+
+  var mbClass = isRound ? "mb-2" : "";
+  var imgClass = isRound ? "rounded-circle" : "";
+
+  var placeholderStyle = "padding-bottom: " + (isRound ? "100%;" : "125%");
+}
+<div class="row">
+  @foreach (var person in AsList(Data)) {
+    <div class="col-md-6 mb-4 mb-md-5 row" @Edit.TagToolbar(person)>
+      <div class="col-4 @mbClass">
+        @if (Text.Has(person.Photo)) {
+          <img loading="lazy" class="img-fluid @imgClass" src='@Link.Image(person.Photo, photoSettings)' alt="@person.FullName" />
+        } else {
+          <div class="bg-primary placeholder @imgClass" style="@placeholderStyle"></div>
+        }
+      </div>
+
+      <div class="col-8" itemscope itemtype="http://schema.org/Person">
+        @Html.Partial("_Part Properties.cshtml", new { data = person })
+      </div>
+    </div>
+  }
+</div>
+
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,scripts,icons"})

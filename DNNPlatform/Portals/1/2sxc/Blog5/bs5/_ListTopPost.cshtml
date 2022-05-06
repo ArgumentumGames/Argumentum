@@ -1,0 +1,48 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var helpers = CreateInstance("Links.cs");
+
+  // This config is for the toolbar used on an item.
+  var toolbarConfig = new [] {
+    "-layout",                                        // hide 'layout' button
+    "%new&show=true?contentType=BlogPost&entityId=0", // 'new' should show for the type BlogPost
+    "%delete&show=true"                               // show 'delete'
+  };
+}
+@* If no Details-page is configured, show warning to Admin *@
+@if(Edit.Enabled && !Text.Has(Settings.DetailsPage)) {
+  <div class="alert alert-danger" role="alert">@Html.Raw(@Resources.LabelAdminDetailPageWarning)</div>
+}
+
+<section class="app-blog5" @Edit.TagToolbar(Content)>
+  <h1 class="category-header mb-4">@Content.Title</h1>
+
+  @* List the posts in 3 columns *@
+  <div class="row card-deck">
+    @foreach (var post in AsList(Data["Posts"])) {
+      <article class="app-blog5-list-item effect-zoom col-12 col-md-6 col-lg-4 mb-5" @Edit.TagToolbar(post, toolbar: toolbarConfig)>
+        <div class="card h-100 m-0">
+          @* Image of the post *@
+          @Html.Partial("shared/_MainImage.cshtml", new { Post = post, Settings = Settings.Images.BlogCards })
+
+          <div class="card-body">
+            <h5 class="card-title">@post.Title</h5>
+            <p class="card-text">@Html.Raw(Tags.Strip(post.Teaser))</p>
+          </div>
+
+          <div class="card-footer text-right">
+            <a href="@helpers.LinkToDetailsPage(post)" class="btn btn-outline-primary stretched-link">@Resources.ReadMore</a>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+
+  @* Show pagination if configured *@
+  @if (Content.ShowPagination == true) {
+    @Html.Partial("shared/_ListPaging.cshtml")
+  }
+</section>
+
+@Html.Partial("shared/_Assets.cshtml")

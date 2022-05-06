@@ -1,0 +1,32 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var backgroundImage = Text.Has(Header.Background)
+    ? "background-image: url(" + Link.Image(Header.Background, Settings.Images.Section) + ");"
+    : "";
+  var facts = AsList(Data);
+  var domId = "app-counter2-js-" + CmsContext.Module.Id;
+}
+
+<div class='co-counter @(Text.Has(Header.Background) ? "co-counter-background " : "" )' style="@backgroundImage"
+  @Edit.TagToolbar(Header, toolbar: "settings&hover=left&autoAddMore=start")>
+  <div class="co-counter-wrapper">
+    <div class="row">
+      @* Show Facts*@
+      @foreach (var fact in facts) {
+        <div class="co-counter-col col-12 col-sm-6 col-md-3" @Edit.TagToolbar(fact, toolbar: "-layout")>
+          <div class="co-counter-item">
+            <i class="co-icon fas @fact.Icon fa-3x" aria-hidden="true"></i>
+            <div class="lead">
+              <span class="@domId" data-count="@fact.Number"></span>@(Text.Has(fact.Unit) ? " " + fact.Unit : "")
+            </div>
+            <span>@fact.Title</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@Html.Partial("_Facts.PartAssets.cshtml", new { DomId = domId })
+

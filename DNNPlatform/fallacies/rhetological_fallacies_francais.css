@@ -1,0 +1,250 @@
+﻿/* Styles pour l'utilisation en sprite des vignettes de fallacies */
+/* Containers */
+.simpleContainer
+{
+border: 1px solid #000000 ;
+margin: 5px;
+padding: 10px;
+}
+
+.fallacieContainer
+{
+background: 6px 8px no-repeat #EBEADD;
+border: 1px solid #DBDBDB;
+font-size: 0.95em;
+margin: 0.5em 1px 0px 25px;
+padding: 5px;
+}
+/* Petites icones (taille originale divisee par 3) */
+.argumentDAutoriteAnonyme, .argumentDAutorite, .appelALaPratiqueCourante, .preuvesAnecdotiques, .appelALIncredulite, .appelALArgent, .argumentDeLaNouveaute, 
+.raisonDeLaMajorite, .manipulationDesProbabilites, .appelALaTradition, .argumentParLaConsequence, .appelALaTerreur, .appelALaFlatterie, .appelALaNature, 
+.appelALaPitie, .appelAuRidicule, .argumentumAdOdium, .voeuPieux, .preuvesAnecdotiques2, .composition, .division, .argumentDuDesign, .erreurDuParieur, 
+.affirmationDuConsequent, .argumentCirculaire, .cumHocPropterHoc, .deniDesAntecedents, .ignorerLaCauseCommune, .generalisationHative, .postHocErgoPropterHoc, 
+.conclusionHative, .guerirLeMalParLeMal, .justeMilieu, .solutionParfaite, .relativiteFallacieuse, .coupDeProjecteur, .generalisationGlobale, .equivocation, 
+.sauvetageAdHoc, .petitionDePrincipe, .generalisationBiaisee, .biaisDeConfirmation, .fauxDilemme, .mensonge, .detailTrompeur, .faussePiste, .penteSavoneuse, 
+.supressionDeDonneesPertinentes, .postulatIndemontrable, .attaquePersonnelle, .chargeDeLaPreuve, .attaquePersonnelleDeCirconstance, .sophismeGenetique, 
+.culpabiliteParAssociation, .hommeDePaille 
+{width:40px;height:40px; background-image:url(./rhetological_fallacies_francaisFULL.png); background-repeat:no-repeat;display:inline-block;*display:inline;zoom:1;  margin: 5px;}
+
+/* Grandes vignettes (hover, taille originale) */
+.argumentDAutoriteAnonyme:hover, .argumentDAutorite:hover, .appelALaPratiqueCourante:hover, .preuvesAnecdotiques:hover, .appelALIncredulite:hover, .appelALArgent:hover, .argumentDeLaNouveaute:hover, 
+.raisonDeLaMajorite:hover, .manipulationDesProbabilites:hover, .appelALaTradition:hover, .argumentParLaConsequence:hover, .appelALaTerreur:hover, .appelALaFlatterie:hover, .appelALaNature:hover, 
+.appelALaPitie:hover, .appelAuRidicule:hover, .argumentumAdOdium:hover, .voeuPieux:hover, .preuvesAnecdotiques2:hover, .composition:hover, .division:hover, .argumentDuDesign:hover, .erreurDuParieur:hover, 
+.affirmationDuConsequent:hover, .argumentCirculaire:hover, .cumHocPropterHoc:hover, .deniDesAntecedents:hover, .ignorerLaCauseCommune:hover, .generalisationHative:hover, .postHocErgoPropterHoc:hover, 
+.conclusionHative:hover, .guerirLeMalParLeMal:hover, .justeMilieu:hover, .solutionParfaite:hover, .relativiteFallacieuse:hover, .coupDeProjecteur:hover, .generalisationGlobale:hover, .equivocation:hover, 
+.sauvetageAdHoc:hover, .petitionDePrincipe:hover, .generalisationBiaisee:hover, .biaisDeConfirmation:hover, .fauxDilemme:hover, .mensonge:hover, .detailTrompeur:hover, .faussePiste:hover, .penteSavoneuse:hover, 
+.supressionDeDonneesPertinentes:hover, .postulatIndemontrable:hover, .attaquePersonnelle:hover, .chargeDeLaPreuve:hover, .attaquePersonnelleDeCirconstance:hover, .sophismeGenetique:hover, 
+.culpabiliteParAssociation:hover, .hommeDePaille:hover 
+{width:470px;height:133px; background-image:url(./rhetological_fallacies_francaisFULL.png); background-repeat:no-repeat; display:inline-block;*display:inline; zoom:1;margin: 5px;}
+
+/* Grandes vignettes (taille originale) */
+.argumentDAutoriteAnonymeFull, .argumentDAutoriteFull, .appelALaPratiqueCouranteFull, .preuvesAnecdotiquesFull, .appelALIncreduliteFull, .appelALArgentFull, .argumentDeLaNouveauteFull, 
+.raisonDeLaMajoriteFull, .manipulationDesProbabilitesFull, .appelALaTraditionFull, .argumentParLaConsequenceFull, .appelALaTerreurFull, .appelALaFlatterieFull, .appelALaNatureFull, 
+.appelALaPitieFull, .appelAuRidiculeFull, .argumentumAdOdiumFull, .voeuPieuxFull, .preuvesAnecdotiques2Full, .compositionFull, .divisionFull, .argumentDuDesignFull, .erreurDuParieurFull, 
+.affirmationDuConsequentFull, .argumentCirculaireFull, .cumHocPropterHocFull, .deniDesAntecedentsFull, .ignorerLaCauseCommuneFull, .generalisationHativeFull, .postHocErgoPropterHocFull, 
+.conclusionHativeFull, .guerirLeMalParLeMalFull, .justeMilieuFull, .solutionParfaiteFull, .relativiteFallacieuseFull, .coupDeProjecteurFull, .generalisationGlobaleFull, .equivocationFull, 
+.sauvetageAdHocFull, .petitionDePrincipeFull, .generalisationBiaiseeFull, .biaisDeConfirmationFull, .fauxDilemmeFull, .mensongeFull, .detailTrompeurFull, .faussePisteFull, .penteSavoneuseFull, 
+.supressionDeDonneesPertinentesFull, .postulatIndemontrableFull, .attaquePersonnelleFull, .chargeDeLaPreuveFull, .attaquePersonnelleDeCirconstanceFull, .sophismeGenetiqueFull, 
+.culpabiliteParAssociationFull, .hommeDePailleFull 
+{width:470px;height:133px; background-image:url(./rhetological_fallacies_francaisFULL.png); background-repeat:no-repeat; display:inline-block;*display:inline; zoom:1;margin: 5px;}
+
+
+
+/* Positionnement Petites icones */
+
+.argumentDAutoriteAnonyme {background-position:-0px -5270px; }
+.argumentDAutorite {background-position:-0px -5315px;}
+.appelALaPratiqueCourante {background-position:-0px -5359px;}
+.preuvesAnecdotiques {background-position:-0px -5403px;}
+.appelALIncredulite {background-position:-0px -5447px;}
+.appelALArgent {background-position:-0px -5491px;}
+.argumentDeLaNouveaute {background-position:-0px -5535px;}
+.raisonDeLaMajorite {background-position:-0px -5578px;}
+.manipulationDesProbabilites {background-position:-0px -5622px;}
+.appelALaTradition {background-position:-0px -5667px;}
+
+.argumentParLaConsequence {background-position:-155px -5270px;}
+.appelALaTerreur {background-position:-155px -5315px;}
+.appelALaFlatterie {background-position:-155px -5359px;}
+.appelALaNature {background-position:-155px -5403px;}
+.appelALaPitie {background-position:-155px -5447px;}
+.appelAuRidicule {background-position:-155px -5490px;}
+.argumentumAdOdium {background-position:-155px -5535px;}
+.voeuPieux {background-position:-155px -5578px;}
+
+.preuvesAnecdotiques2 {background-position:-0px -5755px;}
+.composition {background-position:-0px -5799px;}
+.division {background-position:-0px -5843px;}
+.argumentDuDesign {background-position:-0px -5887px;}
+.erreurDuParieur {background-position:-0px -5931px;}
+.generalisationHative {background-position:-0px -5975px;}
+.conclusionHative {background-position:-0px -6018px;}
+.justeMilieu {background-position:-0px -6063px;}
+.solutionParfaite {background-position:-0px -6107px;}
+.relativiteFallacieuse {background-position:-0px -6151px;}
+.coupDeProjecteur {background-position:-0px -6195px;}
+.generalisationGlobale {background-position:-0px -6239px;}
+.equivocation {background-position:-0px -6283px;}
+
+.affirmationDuConsequent {background-position:-155px -5755px;}
+.argumentCirculaire {background-position:-155px -5799px;}
+.cumHocPropterHoc {background-position:-155px -5843px;}
+.deniDesAntecedents {background-position:-155px -5887px;}
+.ignorerLaCauseCommune {background-position:-155px -5931px;}
+.postHocErgoPropterHoc {background-position:-155px -5975px;}
+.guerirLeMalParLeMal {background-position:-155px -6018px;}
+
+.sauvetageAdHoc {background-position:-0px -6362px;}
+.petitionDePrincipe {background-position:-0px -6406px;}
+.generalisationBiaisee {background-position:-0px -6450px;}
+.biaisDeConfirmation {background-position:-0px -6494px;}
+.fauxDilemme {background-position:-0px -6538px;}
+.mensonge {background-position:-0px -6583px;}
+.detailTrompeur {background-position:-0px -6626px;}
+.faussePiste {background-position:-0px -6670px;}
+.penteSavoneuse {background-position:-0px -6714px;}
+.supressionDeDonneesPertinentes {background-position:-0px -6758px;}
+.postulatIndemontrable {background-position:-0px -6802px;}
+
+.attaquePersonnelle {background-position:-155px -6363px;}
+.chargeDeLaPreuve {background-position:-155px -6407px;}
+.attaquePersonnelleDeCirconstance {background-position:-155px -6451px;}
+.sophismeGenetique {background-position:-155px -6494px;}
+.culpabiliteParAssociation {background-position:-155px -6539px;}
+.hommeDePaille {background-position:-155px -6583px;}
+
+
+
+/* Positionnement Vignettes (hover) */
+
+
+.argumentDAutoriteAnonyme:hover {background-position:-0px -162px;}
+.argumentDAutorite:hover {background-position:-0px -295px;}
+.appelALaPratiqueCourante:hover {background-position:-0px -428px;}
+.preuvesAnecdotiques:hover {background-position:-0px -561px;}
+.appelALIncredulite:hover {background-position:-0px -695px;}
+.appelALArgent:hover {background-position:-0px -829px;}
+.argumentDeLaNouveaute:hover {background-position:-0px -962px;}
+.raisonDeLaMajorite:hover {background-position:-0px -1095px;}
+.manipulationDesProbabilites:hover {background-position:-0px -1228px;}
+.appelALaTradition:hover {background-position:-0px -1361px;}
+
+.argumentParLaConsequence:hover {background-position:-470px -162px;}
+.appelALaTerreur:hover {background-position:-470px -295px;}
+.appelALaFlatterie:hover {background-position:-470px -429px;}
+.appelALaNature:hover {background-position:-470px -562px;}
+.appelALaPitie:hover {background-position:-470px -694px;}
+.appelAuRidicule:hover {background-position:-470px -828px;}
+.argumentumAdOdium:hover {background-position:-469px -962px;}
+.voeuPieux:hover {background-position:-470px -1095px;}
+
+.preuvesAnecdotiques2:hover {background-position:-0px -1630px;}
+.composition:hover {background-position:-0px -1763px;}
+.division:hover {background-position:-0px -1896px;}
+.argumentDuDesign:hover {background-position:-0px -2029px;}
+.erreurDuParieur:hover {background-position:-0px -2162px;}
+.generalisationHative:hover {background-position:-0px -2295px;}
+.conclusionHative:hover {background-position:-0px -2428px;}
+.justeMilieu:hover {background-position:-0px -2562px;}
+.solutionParfaite:hover {background-position:-0px -2695px;}
+.relativiteFallacieuse:hover {background-position:-0px -2828px;}
+.coupDeProjecteur:hover {background-position:-0px -2961px;}
+.generalisationGlobale:hover {background-position:-0px -3094px;}
+.equivocation:hover {background-position:-0px -3227px;}
+
+
+.affirmationDuConsequent:hover {background-position:-470px -1629px;}
+.argumentCirculaire:hover {background-position:-470px -1762px;}
+.cumHocPropterHoc:hover {background-position:-470px -1895px;}
+.deniDesAntecedents:hover {background-position:-470px -2028px;}
+.ignorerLaCauseCommune:hover {background-position:-470px -2161px;}
+.postHocErgoPropterHoc:hover {background-position:-470px -2295px;}
+.guerirLeMalParLeMal:hover {background-position:-470px -2428px;}
+
+.sauvetageAdHoc:hover {background-position:-0px -3470px;}
+.petitionDePrincipe:hover {background-position:-0px -3603px;}
+.generalisationBiaisee:hover {background-position:-0px -3736px;}
+.biaisDeConfirmation:hover {background-position:-0px -3869px;}
+.fauxDilemme:hover {background-position:-0px -4002px;}
+.mensonge:hover {background-position:-0px -4136px;}
+.detailTrompeur:hover {background-position:-0px -4269px;}
+.faussePiste:hover {background-position:-0px -4402px;}
+.penteSavoneuse:hover {background-position:-0px -4535px;}
+.supressionDeDonneesPertinentes:hover {background-position:-0px -4668px;}
+.postulatIndemontrable:hover {background-position:-0px -4801px;}
+
+.attaquePersonnelle:hover {background-position:-470px -3472px;}
+.chargeDeLaPreuve:hover {background-position:-470px -3605px;}
+.attaquePersonnelleDeCirconstance:hover {background-position:-470px -3738px;}
+.sophismeGenetique:hover {background-position:-470px -3872px;}
+.culpabiliteParAssociation:hover {background-position:-470px -4005px;}
+.hommeDePaille:hover {background-position:-470px -4138px;}
+
+
+/* Positionnement Vignettes */
+
+
+.argumentDAutoriteAnonymeFull {background-position:-0px -162px;}
+.argumentDAutoriteFull {background-position:-0px -295px;}
+.appelALaPratiqueCouranteFull {background-position:-0px -428px;}
+.preuvesAnecdotiquesFull {background-position:-0px -561px;}
+.appelALIncreduliteFull {background-position:-0px -695px;}
+.appelALArgentFull {background-position:-0px -829px;}
+.argumentDeLaNouveauteFull {background-position:-0px -962px;}
+.raisonDeLaMajoriteFull {background-position:-0px -1095px;}
+.manipulationDesProbabilitesFull {background-position:-0px -1228px;}
+.appelALaTraditionFull {background-position:-0px -1361px;}
+
+.argumentParLaConsequenceFull {background-position:-470px -162px;}
+.appelALaTerreurFull {background-position:-470px -295px;}
+.appelALaFlatterieFull {background-position:-470px -429px;}
+.appelALaNatureFull {background-position:-470px -562px;}
+.appelALaPitieFull {background-position:-470px -694px;}
+.appelAuRidiculeFull {background-position:-470px -828px;}
+.argumentumAdOdiumFull {background-position:-469px -962px;}
+.voeuPieuxFull {background-position:-470px -1095px;}
+
+.preuvesAnecdotiques2Full {background-position:-0px -1630px;}
+.compositionFull {background-position:-0px -1763px;}
+.divisionFull {background-position:-0px -1896px;}
+.argumentDuDesignFull {background-position:-0px -2029px;}
+.erreurDuParieurFull {background-position:-0px -2162px;}
+.generalisationHativeFull {background-position:-0px -2295px;}
+.conclusionHativeFull {background-position:-0px -2428px;}
+.justeMilieuFull {background-position:-0px -2562px;}
+.solutionParfaiteFull {background-position:-0px -2695px;}
+.relativiteFallacieuseFull {background-position:-0px -2828px;}
+.coupDeProjecteurFull {background-position:-0px -2961px;}
+.generalisationGlobaleFull {background-position:-0px -3094px;}
+.equivocationFull {background-position:-0px -3227px;}
+
+
+.affirmationDuConsequentFull {background-position:-470px -1629px;}
+.argumentCirculaireFull {background-position:-470px -1762px;}
+.cumHocPropterHocFull {background-position:-470px -1895px;}
+.deniDesAntecedentsFull {background-position:-470px -2028px;}
+.ignorerLaCauseCommuneFull {background-position:-470px -2161px;}
+.postHocErgoPropterHocFull {background-position:-470px -2295px;}
+.guerirLeMalParLeMalFull {background-position:-470px -2428px;}
+
+.sauvetageAdHocFull {background-position:-0px -3470px;}
+.petitionDePrincipeFull {background-position:-0px -3603px;}
+.generalisationBiaiseeFull {background-position:-0px -3736px;}
+.biaisDeConfirmationFull {background-position:-0px -3869px;}
+.fauxDilemmeFull {background-position:-0px -4002px;}
+.mensongeFull {background-position:-0px -4136px;}
+.detailTrompeurFull {background-position:-0px -4269px;}
+.faussePisteFull {background-position:-0px -4402px;}
+.penteSavoneuseFull {background-position:-0px -4535px;}
+.supressionDeDonneesPertinentesFull {background-position:-0px -4668px;}
+.postulatIndemontrableFull {background-position:-0px -4801px;}
+
+.attaquePersonnelleFull {background-position:-470px -3472px;}
+.chargeDeLaPreuveFull {background-position:-470px -3605px;}
+.attaquePersonnelleDeCirconstanceFull {background-position:-470px -3738px;}
+.sophismeGenetiqueFull {background-position:-470px -3872px;}
+.culpabiliteParAssociationFull {background-position:-470px -4005px;}
+.hommeDePailleFull {background-position:-470px -4138px;}
+
+
+
