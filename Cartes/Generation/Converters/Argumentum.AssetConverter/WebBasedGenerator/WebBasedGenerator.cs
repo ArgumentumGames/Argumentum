@@ -321,8 +321,17 @@ namespace Argumentum.AssetConverter
         private const float InchToPoints = 72;
         private float MmToPointsFactor = 0.1f / InchToCentimetre * InchToPoints;
 
+        /// <summary>
+        /// Generates a pdf file from config arguments and a list of generated images to compose the set.
+        /// </summary>
+        /// <param name="fileName">The result pdf file name</param>
+        /// <param name="docConfig">The configuration to process</param>
+        /// <param name="images">The images requested by the configuration to build the pdf document</param>
         private void GeneratePrintAndPlay(string fileName, DocumentConfig docConfig, List<CardImages> images)
         {
+
+
+
 
             var pageSizeType = typeof(PageSizes);
             var dynProp = pageSizeType.GetProperty(docConfig.PageSize, BindingFlags.Static | BindingFlags.Public);
@@ -354,7 +363,7 @@ namespace Argumentum.AssetConverter
                 Creator = "Argumentum",
                 Producer = "Argumentum",
                 Subject = "Jeu de carte sur l'argumentation",
-                Keywords = "Argumentation, rhétorique, arguments fallacieux, sophismes, éloquence",
+                Keywords = "Argumentation, rhÃ©torique, arguments fallacieux, sophismes, Ã©loquence",
                 Title = "Argumentum Print & Play"
             };
 
@@ -442,19 +451,8 @@ namespace Argumentum.AssetConverter
                                     {
                                         MagickImage toPrint = frontOrBack(pageCard);
 
-
-                                        if (!string.IsNullOrEmpty(toPrint.FileName))
-                                        {
-                                            gridCell.Image(toPrint.FileName);
-                                        }
-                                        else
-                                        {
-                                            using (var memStream = new MemoryStream())
-                                            {
-                                                toPrint.Write(memStream);
-                                                gridCell.Image(memStream.ToArray());
-                                            }
-                                        }
+                                        PrintMagickImageIntoGridCell(toPrint,gridCell);
+                                       
                                     }
                                 }
                             });
@@ -470,6 +468,30 @@ namespace Argumentum.AssetConverter
                 //    });
             });
         }
+
+        /// <summary>
+        /// uses one of the IContainer.Image extension method overloads to add MagickImage object to the corresponding grid cell
+        /// </summary>
+        /// <param name="toPrint">the MagickImage object to render</param>
+        /// <param name="gridCell">the IContainer grid cell in which to add the target image</param>
+        private static void PrintMagickImageIntoGridCell(MagickImage toPrint, IContainer gridCell)
+        {
+            if (!string.IsNullOrEmpty(toPrint.FileName))
+            {
+                gridCell.Image(toPrint.FileName);
+            }
+            else
+            {
+                using (var memStream = new MemoryStream())
+                {
+                    toPrint.Write(memStream);
+                    gridCell.Image(memStream.ToArray());
+                }
+            }
+        }
+   
+
+        
 
 
         private void GeneratePdfsFromImages(List<(string fileName, MagickImageCollection documentImages)> targetFiles)
@@ -540,7 +562,7 @@ namespace Argumentum.AssetConverter
            
             if (cardSet.PauseForEdits)
             {
-                Console.WriteLine($"Chrome est en pause le temps de faire vos éditions.\n Appuyez sur une touche pour démarrer la génération");
+                Console.WriteLine($"Chrome est en pause le temps de faire vos Ã©ditions.\n Appuyez sur une touche pour dÃ©marrer la gÃ©nÃ©ration");
                 Console.Read();
             }
             //var objIFrame = driver.FindElement(By.Id("cpOutput"));
