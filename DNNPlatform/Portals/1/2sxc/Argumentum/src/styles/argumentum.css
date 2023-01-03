@@ -104,8 +104,8 @@
     }
 
     .rule div:nth-of-type(1) > h2,
-    .rule div:nth-of-type(3) > h2
-     {
+    .rule div:nth-of-type(3) > h2,
+    .rule div:nth-of-type(4) > h2 {
         --color-background: #f8efd0;
         --color-box: #daaf01;
     }
@@ -134,6 +134,13 @@
     .rule:nth-of-type(5) div > h2:nth-of-type(1) {
         --color-background: #eed0d0;
         --color-box: #ab1516;
+    }
+
+    .rule h2:nth-of-type(6),
+    .rule div:nth-of-type(3) > h2:nth-of-type(3),
+    .rule:nth-of-type(6) div > h2:nth-of-type(1) {
+        --color-background: #e8cdee;
+        --color-box: #8603b1;
     }
 
     .rule h3:nth-of-type(1) {
@@ -195,7 +202,7 @@
         text-transform: uppercase;
         margin-left: 7%;
         padding-left: 15%;
-        margin-top: 2em;
+        margin-top: 1.5em;
         margin-bottom: 1.2em;
     }
 
@@ -245,13 +252,14 @@
     }
 
 
-    .rule p, .rule ul {
+    .rule div > p, .rule div > ul {
         padding-left: 20%;
         font-size: 0.8em;
         line-height: 1.1;
         -webkit-font-variant-ligatures: no-common-ligatures;
         font-variant-ligatures: no-common-ligatures;
     }
+
 
     .rule em {
         font-size: 1.3em;
@@ -273,4 +281,201 @@
 
 .nbPlayers {
     margin-top: 2em;
+}
+
+
+
+/* Cartes */
+
+
+.cardName {
+    display: none;
+}
+
+.cardContainer {
+    background-color: #cecece;
+    /*display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;*/
+    margin: 1em;
+}
+
+page {
+    margin: 0.5in;
+    border: 0;
+    page-break-after: always;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+card {
+    display: block;
+    padding: 0;
+    background-color: white;
+    border-radius: 0.125in;
+    background-clip: padding-box;
+    height: 4.99in;
+    width: 2.99in;
+    position: relative;
+}
+
+bleed {
+    display: block;
+    margin: 0;
+    border-radius: 0.125in;
+    padding: 0.12in;
+    height: 4.99in;
+    width: 2.99in;
+}
+
+cut {
+    display: block;
+    padding: 0.12in;
+    border-radius: 0.125in;
+    height: 4.75in;
+    width: 2.75in;
+}
+
+safe {
+    display: block;
+    border-radius: 0.125in;
+    height: 4.51in;
+    width: 2.51in;
+}
+
+
+.card2 h2:nth-of-type(1) {
+    --color-background: #e7ceec;
+    --color-box: #8605aa;
+}
+
+.card2 h2:nth-of-type(2) {
+    --color-background: #f8efd0;
+    --color-box: #daaf01;
+}
+
+
+
+
+.card2 h2:nth-of-type(1), .card2 h2:nth-of-type(2){
+    font-size: 0.7em;
+    background-color: var(--color-background);
+    padding: 0.3em;
+    font-weight: bold;
+    border-bottom: 0.2em solid var(--color-box);
+    text-transform: uppercase;
+    padding-left: 15%;
+    padding-top: 0.4em;
+}
+
+.card2 h2:before, .card2 h3:before {
+    content: '';
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: #fff;
+    left: 1.7em;
+    margin-top: 0.2em;
+    background-color: var(--color-box);
+    width: 2.5em;
+    height: 2.5em;
+}
+
+
+.card2 em {
+    font-size: 1.3em;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1;
+}
+
+safe {
+    padding: 0em 0.4em;
+}
+
+
+.card2 p, .card2 ul {
+    padding-left: 5em;
+    font-size: 0.8em;
+    list-style: none;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.card2 li:before {
+    content: "\261E";
+}
+
+.card2 li {
+    margin: 5px;
+}
+
+    .card2 p p, .card2 ul ul {
+        padding-left: 0.5em;
+        font-size: 0.9em;
+        -webkit-font-variant-ligatures: no-common-ligatures;
+        font-variant-ligatures: no-common-ligatures;
+    }
+
+    .card2 p:first-child {
+        padding: 0 !important;
+        font-size: 0.9em;
+    }
+
+
+.totalPlayer {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+.rulesItem {
+    margin-bottom: 1em;
+}
+
+.rulesBox {
+    padding: 0 !important;
+    width: 3em;
+    height: 3em;
+    margin-top: 3%;
+    margin-left: -2%;
+    background-color: var(--color-box);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+    .rulesBox > div {
+        font-size: 1.5em;
+    }
+
+.colorPalette {
+    display: flex;
+    position: absolute;
+    right: 1.5em;
+    bottom: 1.5em;
+}
+
+.card1 .colorPalette {
+    display: none;
+}
+
+.colorPalette > div {
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0.1em;
+}
+
+.colorPalette > div {
+    background-color: var(--color-background);
 }
