@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://argumentum.dnndev.me", "http://argumentum.dnndev.me", "{C026B331-D997-48F5-95C7-53A3143E5B0C}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/argumentum.dnndev.me"
+		Debug.AspNetCompiler.PhysicalPath = "..\DNNPlatform\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\argumentum.dnndev.me\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/argumentum.dnndev.me"
+		Release.AspNetCompiler.PhysicalPath = "..\DNNPlatform\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\argumentum.dnndev.me\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\DNNPlatform\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://cardpen.dnndev.me", "http://cardpen.dnndev.me", "{078D2FCD-9347-4E12-8485-190199E19973}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
+		Debug.AspNetCompiler.VirtualPath = "/cardpen.dnndev.me"
+		Debug.AspNetCompiler.PhysicalPath = "..\Cartes\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\cardpen.dnndev.me\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/cardpen.dnndev.me"
+		Release.AspNetCompiler.PhysicalPath = "..\Cartes\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\cardpen.dnndev.me\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\Cartes\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C026B331-D997-48F5-95C7-53A3143E5B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C026B331-D997-48F5-95C7-53A3143E5B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078D2FCD-9347-4E12-8485-190199E19973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078D2FCD-9347-4E12-8485-190199E19973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4AA4E602-967F-4D3B-AF6A-D2ECAF0C8389}
+	EndGlobalSection
+EndGlobal
