@@ -1,8 +1,72 @@
 ﻿<dotnetnuke type="ResourceFile" version="5.0">
   <files>
     <file>
+      <path>dist/turnOn/</path>
+      <name>turn-on.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/i18n/</path>
+      <name>de.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/i18n/</path>
+      <name>en.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/i18n/</path>
+      <name>es.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/i18n/</path>
+      <name>fr.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/i18n/</path>
+      <name>it.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/i18n/</path>
+      <name>uk.js</name>
+    </file>
+    <file>
       <path>system/field-string-wysiwyg/skins/ui/2sxc-tinymce-skin/fonts/</path>
       <name>tinymce-mobile.woff</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>3rdpartylicenses.txt</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>Default.aspx</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>favicon.ico</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>index-raw.html</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>main.6292d896b858a7d9.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>polyfills.1744cc3fb0ea89e0.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>runtime.363430d6506c12e7.js</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>styles.9adadd9ae97b8736.css</name>
+    </file>
+    <file>
+      <path>dist/quickDialog/</path>
+      <name>vendor.8c8ebf5d1ff263b5.js</name>
     </file>
     <file>
       <path>system/field-string-wysiwyg/skins/ui/2sxc-tinymce-skin/</path>
@@ -45,10 +109,6 @@
       <name>skin.mobile.min.css</name>
     </file>
     <file>
-      <path>dist/turnOn/</path>
-      <name>turn-on.js</name>
-    </file>
-    <file>
       <path>dist/ng-edit/i18n/</path>
       <name>code-editor.en.js</name>
     </file>
@@ -89,6 +149,14 @@
       <name>uk.js</name>
     </file>
     <file>
+      <path>dist/ng-edit/assets/</path>
+      <name>material-icons-outlined.woff2</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/assets/</path>
+      <name>material-icons.woff2</name>
+    </file>
+    <file>
       <path>system/field-string-wysiwyg/skins/content/2sxc-tinymce-skin/</path>
       <name>content.css</name>
     </file>
@@ -102,319 +170,343 @@
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>common.e5af39e6d33b5ea6.js</name>
+      <name>common.7c6c8bce2192bf42.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_cdk_fesm2015_drag-drop_mjs.275dd49a25cfe7b6.js</name>
+      <name>default-node_modules_angular_material_fesm2015_autocomplete_mjs.827c00fc8a34d4d5.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_material_fesm2015_autocomplete_mjs.127a11d523b32d08.js</name>
+      <name>default-node_modules_angular_material_fesm2015_expansion_mjs.e043e77c6c990c3d.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_material_fesm2015_expansion_mjs.1123e09648188ddf.js</name>
+      <name>default-node_modules_angular_material_fesm2015_list_mjs.c084904f64fd4f18.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_material_fesm2015_list_mjs.f213eeb7396fe699.js</name>
+      <name>default-node_modules_angular_material_fesm2015_menu_mjs.c97341b7c4dde826.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_material_fesm2015_menu_mjs.e680907ab3b34cf8.js</name>
+      <name>default-node_modules_angular_material_fesm2015_select_mjs.6cfed2040253a27e.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_material_fesm2015_select_mjs.91b5a0827e71fc1b.js</name>
+      <name>default-node_modules_angular_material_fesm2015_slide-toggle_mjs.3b1f39ee2c18509b.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-node_modules_angular_material_fesm2015_slide-toggle_mjs.90acf4b21a904293.js</name>
+      <name>default-projects_eav-ui_src_app_app-administration_app-administration_module_ts.65cb9db7e17d4bf1.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_edit_edit_module_ts.c65774b32ea752d0.js</name>
+      <name>default-projects_eav-ui_src_app_app-administration_services_content-types_service_ts-projects-9c4dae.02ca16799fe21ea5.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_app-administration_app-administration_module_ts.b49e44ae496831ab.js</name>
+      <name>default-projects_eav-ui_src_app_app-administration_services_index_ts.bb844cc8ff37a77a.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_app-administration_services_content-types_service_ts-proj-7cf03a.a1dd19c9c163cc77.js</name>
+      <name>default-projects_eav-ui_src_app_apps-management_services_zone_service_ts-projects_eav-ui_src_-47b89c.8b3cd1b382644402.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_app-administration_services_index_ts.e65151210a98850c.js</name>
+      <name>default-projects_eav-ui_src_app_content-export_services_content-export_service_ts-projects_ea-a04fea.0384a0c8f24c4907.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_apps-management_services_zone_service_ts-projects_ng-dial-e31f74.d235196516feb32e.js</name>
+      <name>default-projects_eav-ui_src_app_create-file-dialog_index_ts.46c57deaf94de9bc.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_content-export_services_content-export_service_ts-project-4848c5.f2b984bec4e87f2a.js</name>
+      <name>default-projects_eav-ui_src_app_dev-rest_index_ts-projects_eav-ui_src_app_shared_components_f-c34542.1c9d1c4448ea4a7d.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_create-file-dialog_index_ts.41fa9d9f7e8f1390.js</name>
+      <name>default-projects_eav-ui_src_app_edit_edit_module_ts.b31f43f811d4d8c3.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_dev-rest_index_ts-projects_ng-dialogs_src_app_shared_comp-544902.1a79127b4df5483d.js</name>
+      <name>default-projects_eav-ui_src_app_item-history_item-history_module_ts.f4128e0e80eefa6e.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_item-history_item-history_module_ts.5c48485c440bd333.js</name>
+      <name>default-projects_eav-ui_src_app_monaco-editor_index_ts-projects_eav-ui_src_app_shared_directi-e88d8b.cc5aef6931bedfff.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_permissions_index_ts.8aed424965b62d3c.js</name>
+      <name>default-projects_eav-ui_src_app_permissions_index_ts.66e1d1107ed68530.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_shared_directives_click-stop-propagation_directive_ts-nod-681180.2a1b0c044072d210.js</name>
+      <name>default-projects_eav-ui_src_app_shared_directives_click-stop-propagation_directive_ts-node_mo-18fe20.cb8bf2ae5015fbac.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_shared_directives_tippy_directive_ts.d7ab3cd689eea8a4.js</name>
+      <name>default-projects_eav-ui_src_app_shared_directives_tippy_directive_ts.758ddd5902b5897a.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_shared_helpers_file-to-base64_helper_ts-node_modules_angu-d23459.6a46a090d31b1e05.js</name>
+      <name>default-projects_eav-ui_src_app_shared_helpers_file-to-base64_helper_ts-node_modules_angular_-4d371e.72fd15927ecf6ea8.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>default-projects_ng-dialogs_src_app_shared_shared-components_module_ts.db1e9913c8071c3c.js</name>
+      <name>default-projects_eav-ui_src_app_shared_shared-components_module_ts.c619d93b91e951bd.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>index.html</name>
+      <name>default-projects_eav-ui_src_app_shared_translation_translate-configuration_ts-projects_eav-ui-de1a04.ed84b7e9cd62d77a.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>main.e0948d80b58ad97b.js</name>
+      <name>Default.aspx</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>node_modules_angular_material_fesm2015_card_mjs.02a4a7ced9a84b07.js</name>
+      <name>index-raw.html</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>polyfills.a63f279fb99f33f4.js</name>
+      <name>main.9cf77759aade7498.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_edit_refresh-edit_module_ts.c756ba1d8f805c85.js</name>
+      <name>material-icons-outlined.woff2</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_app-administration-nav_app-administration-nav_-8dd6e3.4ce02723ac19b6fc.js</name>
+      <name>material-icons.woff2</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_services_app-dialog-config_service_ts-_ad200.347c8f28de73e1d8.js</name>
+      <name>node_modules_angular_material_fesm2015_card_mjs.1ba03a17ab44e617.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_services_app-dialog-config_service_ts-_ad201.a419ca59b34d3554.js</name>
+      <name>polyfills.119d39762d2b8153.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_analyze-settings_analyze-settings_-10b80d.a480ef8e7476581c.js</name>
+      <name>projects_eav-ui_src_app_app-administration_app-administration-nav_app-administration-nav_comp-1b3e30.9483622399b2ba2e.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_analyze-settings_settings-item-det-4b5af3.2381f38e23916e60.js</name>
+      <name>projects_eav-ui_src_app_app-administration_services_app-dialog-config_service_ts-_ce590.a6406f5e386c35a2.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_edit-content-type_edit-content-typ-fcc481.5a32f849ffde1bc6.js</name>
+      <name>projects_eav-ui_src_app_app-administration_services_app-dialog-config_service_ts-_ce591.57c54422c1e2d63f.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_export-app-parts_export-app-parts_-2e25cb.c5869175fe02a940.js</name>
+      <name>projects_eav-ui_src_app_app-administration_services_content-types_service_ts-projects_eav-ui_-d97254.10d8d8f8c984b5cb.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_export-app_export-app_component_ts.b8079d6f3cd03c94.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_analyze-settings_analyze-settings_comp-6cd38e.0ee7eb4270b760dd.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_import-app-parts_import-app-parts_-0d3a5d.3005a93844efb596.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_analyze-settings_settings-item-details-4ac85a.2e54dfb00eed2582.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_import-content-type_import-content-03de5f.92f5879f159515b5.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_edit-content-type_edit-content-type_co-2abec4.4414840e962b9b59.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_import-query_import-query_component_ts.dcff762f7414b1da.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_export-app-parts_export-app-parts_comp-b04a2d.6726817876780338.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_import-view_import-view_component_ts.8f081008e1352d51.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_export-app_export-app_component_ts.f92cccda8e7e9201.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_language-permissions_language-perm-d95adc.d7d590bf49c6ae6b.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_import-app-parts_import-app-parts_comp-cf6fb0.bea2ba487b818648.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_app-administration_sub-dialogs_views-usage_views-usage_component_ts.d605f5beb90a9848.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_import-content-type_import-content-typ-e2ad96.07b36860465f33b4.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_apps-management_apps-management-nav_apps-management-nav_component_ts.2fbee9605274fcc7.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_import-query_import-query_component_ts.f9af274a3f515d70.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_apps-management_apps-management_module_ts.ff6736e21893df76.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_import-view_import-view_component_ts.c148f14f59524787.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_apps-management_create-app_create-app_component_ts.a3e78383cafcdfef.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_language-permissions_language-permissi-a91b40.fc691b59e2fe3ee4.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_apps-management_create-inherited-app_create-inherited-app_component_ts.fc3ed82adc5e36e8.js</name>
+      <name>projects_eav-ui_src_app_app-administration_sub-dialogs_views-usage_views-usage_component_ts.df56135371c22a29.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_code-editor_code-editor_module_ts-projects_ng-dialogs_src_app_sha-ff0107.750c153c55c6f2ef.js</name>
+      <name>projects_eav-ui_src_app_apps-management_add-app-from-folder_add-app-from-folder_component_ts.1c4b677d126de85e.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-export_content-export_component_ts.944645b348ce852b.js</name>
+      <name>projects_eav-ui_src_app_apps-management_apps-management-nav_apps-management-nav_component_ts.a4d9338e160855b8.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-import_content-import_component_ts.ade9a308db99e819.js</name>
+      <name>projects_eav-ui_src_app_apps-management_apps-management_module_ts.22fe6b3b6202d56c.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_content-item-import_content-item-import_component_ts.6341db00ac54f23e.js</name>
+      <name>projects_eav-ui_src_app_apps-management_create-app_create-app_component_ts.3875ab68be8961e7.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_content-items_component_ts.50f7ebf210b0c76b.js</name>
+      <name>projects_eav-ui_src_app_apps-management_create-inherited-app_create-inherited-app_component_ts.5c0ad5111eb384af.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_services_entities_service_ts-projects_ng-dialogs_sr-1933750.48bbe94a240b7be1.js</name>
+      <name>projects_eav-ui_src_app_apps-management_sub-dialogs_registration_registration_component_ts.2b88095eb08eebfe.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_services_entities_service_ts-projects_ng-dialogs_sr-1933751.df77efaf11032c31.js</name>
+      <name>projects_eav-ui_src_app_code-editor_code-editor_module_ts-projects_eav-ui_src_app_shared_comp-2b2737.ee7ed9dd6ff5b372.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_services_entities_service_ts-projects_ng-dialogs_sr-1933752.0276b6133d9e733f.js</name>
+      <name>projects_eav-ui_src_app_content-export_content-export_component_ts.fa641b26e21d7028.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_services_entities_service_ts-projects_ng-dialogs_sr-610082.7a7f7c7fb522f252.js</name>
+      <name>projects_eav-ui_src_app_content-import_content-import_component_ts.98c10bcdf17a3004.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_services_entities_service_ts-projects_ng-dialogs_sr-731c96.a061c40176aed98c.js</name>
+      <name>projects_eav-ui_src_app_content-items_content-item-import_content-item-import_component_ts.357f225f33e38f68.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-items_services_entities_service_ts-projects_ng-dialogs_sr-d53ee6.7f8f81810bc01d95.js</name>
+      <name>projects_eav-ui_src_app_content-items_content-items_component_ts.1b8e9acee737ca78.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-type-fields_content-type-fields_component_ts.55b8419a8d01d933.js</name>
+      <name>projects_eav-ui_src_app_content-items_services_entities_service_ts-projects_eav-ui_src_app_sh-299bd1.e284f59d04fbe82a.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-type-fields_edit-content-type-fields_edit-content-type-fi-0ac826.57b7df96eb9fa7be.js</name>
+      <name>projects_eav-ui_src_app_content-items_services_entities_service_ts-projects_eav-ui_src_app_sh-7da752.ae5d7e1a912e0334.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_content-type-fields_services_content-types-fields_service_ts-proj-cfd4dd.be04ec4544bdb526.js</name>
+      <name>projects_eav-ui_src_app_content-items_services_entities_service_ts-projects_eav-ui_src_app_sh-af0f78.8c44edbbad513e3a.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_dev-rest_dev-rest_module_ts.ed3c8052fd5932fd.js</name>
+      <name>projects_eav-ui_src_app_content-items_services_entities_service_ts-projects_eav-ui_src_app_sh-bef1da.76780a7a1ed6ff34.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_dev-rest_entry_entry_component_ts.21fd48c097297b16.js</name>
+      <name>projects_eav-ui_src_app_content-items_services_entities_service_ts-projects_eav-ui_src_app_sh-ef2b2a0.49dbe9c59410e594.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_import-app_import-app_component_ts.f146aad3bd37ac2b.js</name>
+      <name>projects_eav-ui_src_app_content-items_services_entities_service_ts-projects_eav-ui_src_app_sh-ef2b2a1.e96a675a4a69c75c.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_import-app_services_import-app_service_ts-projects_ng-dialogs_src-d70d5e.e81ba34eb4af731c.js</name>
+      <name>projects_eav-ui_src_app_content-type-fields_content-type-fields_component_ts.f66d8065afd61ec7.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_item-history_item-history_component_ts.acd797baa953a9f7.js</name>
+      <name>projects_eav-ui_src_app_content-type-fields_edit-content-type-fields_edit-content-type-fields-f4d799.7cffeff5ddc6789b.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_manage-content-list_manage-content-list_component_ts.febf10dfc44cd4bf.js</name>
+      <name>projects_eav-ui_src_app_content-type-fields_services_content-types-fields_service_ts-projects-15ce19.85a1d605efd71773.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_manage-content-list_manage-content-list_module_ts.18e60b3171de1570.js</name>
+      <name>projects_eav-ui_src_app_dev-rest_dev-rest_module_ts.845f1aabf8bbcef3.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_metadata_metadata_component_ts.73a646e4912bba3a.js</name>
+      <name>projects_eav-ui_src_app_dev-rest_entry_entry_component_ts.ce534d47e905589b.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_metadata_metadata_module_ts.d124e9632f2d452a.js</name>
+      <name>projects_eav-ui_src_app_edit_refresh-edit_module_ts.a0bb33c3f02737e7.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_permissions_permissions_component_ts.e4919f99a72e528d.js</name>
+      <name>projects_eav-ui_src_app_import-app_import-app_component_ts.3fc2f39d62a66f58.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_permissions_permissions_module_ts.14731a1fd30d7af8.js</name>
+      <name>projects_eav-ui_src_app_import-app_services_import-app_service_ts-projects_eav-ui_src_app_sha-1ab7ba.aa90139e36fcf200.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_replace-content_replace-content_component_ts.0a29d3988fce2911.js</name>
+      <name>projects_eav-ui_src_app_item-history_item-history_component_ts.53d6dfe06287c3d9.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_replace-content_replace-content_module_ts.146ca1e96c015c2b.js</name>
+      <name>projects_eav-ui_src_app_manage-content-list_manage-content-list_component_ts.b7b4625ea4f3ed3d.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_shared_components_dialog-entry_dialog-entry_component_ts-node_mod-d25d70.1823ba961b8950bf.js</name>
+      <name>projects_eav-ui_src_app_metadata_metadata_component_ts.64755a642febe7ab.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_shared_components_field-hint_field-hint_component_ts-projects_ng--432d160.467f5f7eea3daf31.js</name>
+      <name>projects_eav-ui_src_app_metadata_metadata_module_ts.dddbc9a1bd8bf0b0.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_shared_components_field-hint_field-hint_component_ts-projects_ng--432d161.5061b0a7e0f66431.js</name>
+      <name>projects_eav-ui_src_app_permissions_permissions_component_ts.d851c5ce4ce10f9b.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_shared_components_field-hint_field-hint_component_ts-projects_ng--7dfb0a.243e0a7985bcec74.js</name>
+      <name>projects_eav-ui_src_app_permissions_permissions_module_ts.4931fdf9f7e2cf8d.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_shared_directives_click-stop-propagation_directive_ts.76ed6ce13d9424c7.js</name>
+      <name>projects_eav-ui_src_app_replace-content_replace-content_component_ts.4ae1abd79b536011.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>projects_ng-dialogs_src_app_visual-query_visual-query_module_ts.92c0ec806ec21f90.js</name>
+      <name>projects_eav-ui_src_app_replace-content_replace-content_module_ts.1fa6fc0971663410.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>runtime.180a0ef5351604e1.js</name>
+      <name>projects_eav-ui_src_app_shared_components_dialog-entry_dialog-entry_component_ts-node_modules-8e60e4.10339b1d91f90f2f.js</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/</path>
+      <name>projects_eav-ui_src_app_shared_components_field-hint_field-hint_component_ts-projects_eav-ui_-8ed4d80.6d7ef36d46ea4fa3.js</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/</path>
+      <name>projects_eav-ui_src_app_shared_components_field-hint_field-hint_component_ts-projects_eav-ui_-8ed4d81.e112a5c9dd9f87bb.js</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/</path>
+      <name>projects_eav-ui_src_app_shared_components_field-hint_field-hint_component_ts-projects_eav-ui_-d739b1.b661166a20b607cd.js</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/</path>
+      <name>projects_eav-ui_src_app_shared_directives_click-stop-propagation_directive_ts.994dc693d1f130ed.js</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/</path>
+      <name>projects_eav-ui_src_app_visual-query_visual-query_module_ts.45279ce428907b0e.js</name>
+    </file>
+    <file>
+      <path>dist/ng-edit/</path>
+      <name>runtime.cd3c3514dfe2321e.js</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
@@ -422,11 +514,11 @@
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>styles.ed0f2e454b381371.css</name>
+      <name>styles.98523f78c408711d.css</name>
     </file>
     <file>
       <path>dist/ng-edit/</path>
-      <name>vendor.4c5f124892e14586.js</name>
+      <name>vendor.5273a56468ae9270.js</name>
     </file>
     <file>
       <path>dist/ng-assets/</path>
@@ -485,6 +577,158 @@
       <name>uk.js</name>
     </file>
     <file>
+      <path>system/field-string-wysiwyg/</path>
+      <name>index.js</name>
+    </file>
+    <file>
+      <path>system/field-string-wysiwyg/</path>
+      <name>index.js.LICENSE.txt</name>
+    </file>
+    <file>
+      <path>system/field-string-wysiwyg/</path>
+      <name>skintool.json</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>3rdpartylicenses.txt</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>favicon.ico</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>index-raw.html</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>main.0eaadbd400a710e9.js</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>polyfills.7031c5c9022d4af3.js</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>runtime.10d60dbcfbf9807e.js</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>styles.b1e09c5b0fdaf18a.css</name>
+    </file>
+    <file>
+      <path>dist/ng/</path>
+      <name>vendor.09c83fa61d9b364d.js</name>
+    </file>
+    <file>
+      <path>Extensions/ToSic_vCard/</path>
+      <name>vCard.ashx</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>de.js</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>en.js</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>es.js</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>fr.js</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>it.js</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>nl.js</name>
+    </file>
+    <file>
+      <path>dist/inpage/i18n/</path>
+      <name>uk.js</name>
+    </file>
+    <file>
+      <path>system/field-custom-gps/</path>
+      <name>index.js</name>
+    </file>
+    <file>
+      <path>Extensions/ImageResizer/</path>
+      <name>icon.png</name>
+    </file>
+    <file>
+      <path>Extensions/ImageResizer/</path>
+      <name>ImageResizer.txt</name>
+    </file>
+    <file>
+      <path>Extensions/ImageResizer/</path>
+      <name>License.txt</name>
+    </file>
+    <file>
+      <path>Extensions/ImageResizer/</path>
+      <name>ReleaseNotes.txt</name>
+    </file>
+    <file>
+      <path>ImportExport/Instructions/</path>
+      <name>2sxc_App_ByUnknown_NameUnknown.dnn</name>
+    </file>
+    <file>
+      <path>ImportExport/Instructions/</path>
+      <name>App installation instructions.txt</name>
+    </file>
+    <file>
+      <path>ImportExport/Instructions/</path>
+      <name>License.txt</name>
+    </file>
+    <file>
+      <path>ImportExport/Instructions/</path>
+      <name>Online help to install this app.url</name>
+    </file>
+    <file>
+      <path>ImportExport/Instructions/</path>
+      <name>ReleaseNotes.txt</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>2sxc4ng.js</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>2sxc4ng.min.js</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>angular-animate.min.js</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>angular-resource.min.js</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>angular-ui-tree.min.css</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>angular-ui-tree.min.js</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>angular.min.js</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>toaster.css</name>
+    </file>
+    <file>
+      <path>js/angularjs/</path>
+      <name>toaster.js</name>
+    </file>
+    <file>
       <path>.data/queries/</path>
       <name>Query.Eav.Queries.Global.Apps.json</name>
     </file>
@@ -510,55 +754,43 @@
     </file>
     <file>
       <path>.data/queries/</path>
+      <name>Query.Eav.Queries.Global.Roles.json</name>
+    </file>
+    <file>
+      <path>.data/queries/</path>
+      <name>Query.Eav.Queries.Global.Users.json</name>
+    </file>
+    <file>
+      <path>.data/queries/</path>
       <name>Query.Eav.Queries.Global.Zones.json</name>
     </file>
     <file>
-      <path>Extensions/ToSic_vCard/</path>
-      <name>vCard.ashx</name>
+      <path>dist/inpage/</path>
+      <name>inpage.min.css</name>
     </file>
     <file>
-      <path>dist/ng/</path>
-      <name>3rdpartylicenses.txt</name>
+      <path>dist/inpage/</path>
+      <name>inpage.min.js</name>
     </file>
     <file>
-      <path>dist/ng/</path>
-      <name>favicon.ico</name>
+      <path>DnnWebForms/Skins/</path>
+      <name>QuickEdit.ascx</name>
     </file>
     <file>
-      <path>dist/ng/</path>
-      <name>main.bb628b5463ca1ff2.js</name>
+      <path>Extensions/Imageflow/</path>
+      <name>icon.png</name>
     </file>
     <file>
-      <path>dist/ng/</path>
-      <name>polyfills.c8095fa35f6caa40.js</name>
+      <path>Extensions/Imageflow/</path>
+      <name>License.txt</name>
     </file>
     <file>
-      <path>dist/ng/</path>
-      <name>runtime.bf038bdfcfe00698.js</name>
+      <path>Extensions/Imageflow/</path>
+      <name>ReleaseNotes.txt</name>
     </file>
     <file>
-      <path>dist/ng/</path>
-      <name>styles.478acf6987fed972.css</name>
-    </file>
-    <file>
-      <path>dist/ng/</path>
-      <name>ui.html</name>
-    </file>
-    <file>
-      <path>dist/ng/</path>
-      <name>vendor.625b0f19c83fcc10.js</name>
-    </file>
-    <file>
-      <path>system/field-string-wysiwyg/</path>
-      <name>index.js</name>
-    </file>
-    <file>
-      <path>system/field-string-wysiwyg/</path>
-      <name>index.js.LICENSE.txt</name>
-    </file>
-    <file>
-      <path>system/field-string-wysiwyg/</path>
-      <name>skintool.json</name>
+      <path>js/</path>
+      <name>2sxc.api.min.js</name>
     </file>
     <file>
       <path>.data/entities/</path>
@@ -602,6 +834,10 @@
     </file>
     <file>
       <path>.data/entities/</path>
+      <name>5f431769-ff03-472e-aab5-33891af10acc.ContentSecurityPolicies.json</name>
+    </file>
+    <file>
+      <path>.data/entities/</path>
       <name>66f19c62-371e-4ad1-a98b-de0745507be4.Bootstrap4.json</name>
     </file>
     <file>
@@ -622,6 +858,10 @@
     </file>
     <file>
       <path>.data/entities/</path>
+      <name>66f19c62-371e-4ad1-a98b-de0745507be4.FontAwesome6.json</name>
+    </file>
+    <file>
+      <path>.data/entities/</path>
       <name>7edd0b8d-1405-44ed-ac33-d0d63a274bd6.Images.json</name>
     </file>
     <file>
@@ -638,6 +878,14 @@
     </file>
     <file>
       <path>.data/entities/</path>
+      <name>92f2eb3c-c3b7-4378-82df-b2393da6687e.Default.json</name>
+    </file>
+    <file>
+      <path>.data/entities/</path>
+      <name>92f2eb3c-c3b7-4378-82df-b2393da6687e.Dev.json</name>
+    </file>
+    <file>
+      <path>.data/entities/</path>
       <name>9ff20ccf-3ff7-4a76-b749-dd22771df730.WebResources.json</name>
     </file>
     <file>
@@ -645,132 +893,8 @@
       <name>f5764f60-2621-4a5d-9391-100fbe664640.GoogleMaps.json</name>
     </file>
     <file>
-      <path>dist/inpage/i18n/</path>
-      <name>de.js</name>
-    </file>
-    <file>
-      <path>dist/inpage/i18n/</path>
-      <name>en.js</name>
-    </file>
-    <file>
-      <path>dist/inpage/i18n/</path>
-      <name>es.js</name>
-    </file>
-    <file>
-      <path>dist/inpage/i18n/</path>
-      <name>fr.js</name>
-    </file>
-    <file>
-      <path>dist/inpage/i18n/</path>
-      <name>it.js</name>
-    </file>
-    <file>
-      <path>dist/inpage/i18n/</path>
-      <name>nl.js</name>
-    </file>
-    <file>
-      <path>dist/inpage/i18n/</path>
-      <name>uk.js</name>
-    </file>
-    <file>
-      <path>Extensions/ImageResizer/</path>
-      <name>icon.png</name>
-    </file>
-    <file>
-      <path>Extensions/ImageResizer/</path>
-      <name>ImageResizer.txt</name>
-    </file>
-    <file>
-      <path>Extensions/ImageResizer/</path>
-      <name>License.txt</name>
-    </file>
-    <file>
-      <path>Extensions/ImageResizer/</path>
-      <name>ReleaseNotes.txt</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>2sxc4ng.js</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>2sxc4ng.min.js</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>angular-animate.min.js</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>angular-resource.min.js</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>angular-ui-tree.min.css</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>angular-ui-tree.min.js</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>angular.min.js</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>toaster.css</name>
-    </file>
-    <file>
-      <path>js/angularjs/</path>
-      <name>toaster.js</name>
-    </file>
-    <file>
-      <path>system/field-custom-gps/</path>
-      <name>index.js</name>
-    </file>
-    <file>
-      <path>ImportExport/Instructions/</path>
-      <name>2sxc_App_ByUnknown_NameUnknown.dnn</name>
-    </file>
-    <file>
-      <path>ImportExport/Instructions/</path>
-      <name>App installation instructions.txt</name>
-    </file>
-    <file>
-      <path>ImportExport/Instructions/</path>
-      <name>License.txt</name>
-    </file>
-    <file>
-      <path>ImportExport/Instructions/</path>
-      <name>Online help to install this app.url</name>
-    </file>
-    <file>
-      <path>ImportExport/Instructions/</path>
-      <name>ReleaseNotes.txt</name>
-    </file>
-    <file>
-      <path>dist/inpage/</path>
-      <name>inpage.min.css</name>
-    </file>
-    <file>
-      <path>dist/inpage/</path>
-      <name>inpage.min.js</name>
-    </file>
-    <file>
-      <path>DnnWebForms/Skins/</path>
-      <name>QuickEdit.ascx</name>
-    </file>
-    <file>
-      <path>Extensions/Imageflow/</path>
-      <name>icon.png</name>
-    </file>
-    <file>
-      <path>Extensions/Imageflow/</path>
-      <name>License.txt</name>
-    </file>
-    <file>
-      <path>Extensions/Imageflow/</path>
-      <name>ReleaseNotes.txt</name>
+      <path>ImportExport/</path>
+      <name>readme.md</name>
     </file>
     <file>
       <path>.data/contenttypes/</path>
@@ -798,6 +922,10 @@
     </file>
     <file>
       <path>.data/contenttypes/</path>
+      <name>System.Cms.1f1c8118-8ea5-4db5-8e3d-f5ef2131050b.json</name>
+    </file>
+    <file>
+      <path>.data/contenttypes/</path>
       <name>System.Cms.2SexyContent-Template.json</name>
     </file>
     <file>
@@ -815,6 +943,10 @@
     <file>
       <path>.data/contenttypes/</path>
       <name>System.Configuration.5ad95efe-1dc9-4681-adb8-42d9e7f0183b.json</name>
+    </file>
+    <file>
+      <path>.data/contenttypes/</path>
+      <name>System.Configuration.5f431769-ff03-472e-aab5-33891af10acc.json</name>
     </file>
     <file>
       <path>.data/contenttypes/</path>
@@ -838,6 +970,10 @@
     </file>
     <file>
       <path>.data/contenttypes/</path>
+      <name>System.Configuration.92f2eb3c-c3b7-4378-82df-b2393da6687e.json</name>
+    </file>
+    <file>
+      <path>.data/contenttypes/</path>
       <name>System.Configuration.9ff20ccf-3ff7-4a76-b749-dd22771df730.json</name>
     </file>
     <file>
@@ -847,6 +983,10 @@
     <file>
       <path>.data/contenttypes/</path>
       <name>System.ContentType.json</name>
+    </file>
+    <file>
+      <path>.data/contenttypes/</path>
+      <name>System.DataSources.1b9fd9d1-dde0-40ad-bb66-5cd7f30de18d.json</name>
     </file>
     <file>
       <path>.data/contenttypes/</path>
@@ -895,6 +1035,10 @@
     <file>
       <path>.data/contenttypes/</path>
       <name>System.DataSources.a72cb2f4-52bb-41e6-9281-10e69aeb0310.json</name>
+    </file>
+    <file>
+      <path>.data/contenttypes/</path>
+      <name>System.DataSources.ac11fae7-1916-4d2d-8583-09872e1e6966.json</name>
     </file>
     <file>
       <path>.data/contenttypes/</path>
@@ -1023,6 +1167,10 @@
     <file>
       <path>.data/contenttypes/</path>
       <name>System.Decorators.8c78dabf-e0ad-4c26-b750-48138ecb8a39.json</name>
+    </file>
+    <file>
+      <path>.data/contenttypes/</path>
+      <name>System.Decorators.acc185a7-f300-4468-bce8-d6a64038989d.json</name>
     </file>
     <file>
       <path>.data/contenttypes/</path>
@@ -1177,26 +1325,6 @@
       <name>System.PermissionConfiguration.json</name>
     </file>
     <file>
-      <path>ImportExport/</path>
-      <name>readme.md</name>
-    </file>
-    <file>
-      <path>js/</path>
-      <name>2sxc.api.min.js</name>
-    </file>
-    <file>
-      <path>DnnWebForms/</path>
-      <name>PagePicker.ascx</name>
-    </file>
-    <file>
-      <path>DnnWebForms/</path>
-      <name>WebFormsBridge.ascx</name>
-    </file>
-    <file>
-      <path>DnnWebForms/</path>
-      <name>Wysiwyg.ascx</name>
-    </file>
-    <file>
       <path>Extensions/</path>
       <name>404.png</name>
     </file>
@@ -1213,6 +1341,14 @@
       <name>readme.md</name>
     </file>
     <file>
+      <path>assets/</path>
+      <name>app-primary.png</name>
+    </file>
+    <file>
+      <path>assets/</path>
+      <name>logo.png</name>
+    </file>
+    <file>
       <path>App_LocalResources/</path>
       <name>View.ascx.de-DE.resx</name>
     </file>
@@ -1225,12 +1361,8 @@
       <name>View.ascx.resx</name>
     </file>
     <file>
-      <path>assets/</path>
-      <name>app-primary.png</name>
-    </file>
-    <file>
-      <path>assets/</path>
-      <name>logo.png</name>
+      <path>App_Data/</path>
+      <name>app.json</name>
     </file>
     <file>
       <path />

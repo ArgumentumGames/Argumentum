@@ -16,6 +16,7 @@
     "Develop": "Vorlage bearbeiten",
     "Edit": "bearbeiten",
     "ItemHistory": "Versionen",
+    "Image": "Bildeinstellungen",
     "Metadata": "Metadaten / Beschreibung",
     "MoreActions": "weitere Aktionen",
     "MoveDown": "nach unten verschieben",

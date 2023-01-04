@@ -17,6 +17,7 @@
     "Edit": "edit",
     "Insights": "insights and logs",
     "ItemHistory": "history",
+    "Image": "image settings",
     "Metadata": "metadata / descriptions",
     "MoreActions": "more actions",
     "MoveDown": "move down",
