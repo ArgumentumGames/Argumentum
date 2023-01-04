@@ -1,0 +1,2 @@
+function e(e,n){let t=0;let i=0;if(e instanceof MouseEvent){t=e.movementX;i=e.movementY}if(typeof TouchEvent!=="undefined"){if(e instanceof TouchEvent){let f=e.touches[0];if(n!=undefined){t=f.pageX-this.previousTouch.pageX;i=f.pageY-this.previousTouch.pageY}n=f}}return{movementX:t,movementY:i}}export{e as g};
+//# sourceMappingURL=p-c15b7d5a.js.map

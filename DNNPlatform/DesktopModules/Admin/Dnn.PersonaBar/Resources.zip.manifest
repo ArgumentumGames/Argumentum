@@ -38,10 +38,6 @@
     </file>
     <file>
       <path>css/</path>
-      <name>pikaday.css</name>
-    </file>
-    <file>
-      <path>css/</path>
       <name>Roboto-Regular.ttf</name>
     </file>
     <file>
@@ -158,6 +154,10 @@
     </file>
     <file>
       <path>scripts/contrib/</path>
+      <name>dayjs.js</name>
+    </file>
+    <file>
+      <path>scripts/contrib/</path>
       <name>domReady.js</name>
     </file>
     <file>
@@ -226,10 +226,6 @@
     </file>
     <file>
       <path>scripts/contrib/</path>
-      <name>pikaday.js</name>
-    </file>
-    <file>
-      <path>scripts/contrib/</path>
       <name>require.js</name>
     </file>
     <file>
@@ -251,10 +247,6 @@
     <file>
       <path>scripts/</path>
       <name>gateway.js</name>
-    </file>
-    <file>
-      <path>scripts/koBindingHandlers/</path>
-      <name>datePicker.js</name>
     </file>
     <file>
       <path>scripts/koBindingHandlers/</path>
@@ -291,14 +283,6 @@
     <file>
       <path>scripts/koBindingHandlers/</path>
       <name>toggle.js</name>
-    </file>
-    <file>
-      <path>scripts/koComponents/</path>
-      <name>dateTimePicker.html</name>
-    </file>
-    <file>
-      <path>scripts/koComponents/</path>
-      <name>dateTimePicker.js</name>
     </file>
     <file>
       <path>scripts/</path>
