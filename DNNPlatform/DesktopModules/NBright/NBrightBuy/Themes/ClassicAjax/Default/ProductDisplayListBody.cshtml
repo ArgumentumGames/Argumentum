@@ -37,18 +37,15 @@
             <a id="shoppinglistremove-@itemId" href="javascript:void(0)" class="shoppinglistremove actionbutton absec" itemid="@itemId" style="display:none;"><i class="fa fa-star"></i></a>
 
             <div class="product-overlay">
-                @if (!cataloguemode)
+                @if (!cataloguemode && !product.Disabled && product.IsInStock)
                 {
-                    if (product.Models.Count > 1)
+                    if (product.Models.Count > 1 || product.Models.Exists(x => x.GetXmlPropertyDouble("genxml/textbox/txtqtyminpurchase") > 0))
                     {
                         <a href="@entryUrl" class="actionbutton"><i class="fa fa-search"></i>@productdetail</a>
                     }
                     else
                     {
-                        if (!product.Disabled)
-                        {
-                            <a href="javascript:void(0);" class="actionbutton addtobasket" itemid="@itemId"><i class="fa fa-shopping-cart"></i>@addtobasket</a>
-                        }
+                        <a href="javascript:void(0);" class="actionbutton addtobasket" itemid="@itemId"><i class="fa fa-shopping-cart"></i>@addtobasket</a>
                     }
                 }
             </div>
@@ -57,7 +54,7 @@
                 @if (product.Imgs.Count > 0)
                 {
                     <div class="image">
-                        <img title="@(info.GetXmlProperty("genxml/lang/genxml/textbox/txtsummary"))" src="@ProductImageUrl(info, 160, 0)">
+                        <img alt="@(info.GetXmlProperty("genxml/lang/genxml/textbox/txtsummary"))" src="@ProductImageUrl(info, 160, 0)">
                     </div>
                 }
                 else

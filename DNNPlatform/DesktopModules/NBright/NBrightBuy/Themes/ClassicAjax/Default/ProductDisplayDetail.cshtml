@@ -129,7 +129,7 @@
                 <div class="quantityoptions">
                     <a class="qtyminus" href="javascript:void(0)"><i class="fa fa-minus"></i></a>
                     <!-- "selectedaddqty"" expected by server as name of qty field -->
-                    @TextBox(info, "genxml/textbox/selectedaddqty", "class='quantity selectedaddqty'", "1")
+                    @TextBox(info, "genxml/textbox/selectedaddqty", "min=" + @info.GetXmlPropertyDouble("genxml/textbox/txtqtyminpurchase") + " class='quantity selectedaddqty'", "1")
                     <a class="qtyplus" href="javascript:void(0)"><i class="fa fa-plus"></i></a>
                 </div>
 
@@ -209,7 +209,7 @@ else
                                 if (!doc.GetXmlPropertyBool("genxml/checkbox/chkpurchase") || (uData.HasPurchasedDocByFileName(doc.GetXmlProperty("genxml/hidden/filename"))))
                                 {
 
-                                    <tr><td><i class='fa fa-file-pdf-o fa-lg'></i><a href='/DesktopModules/NBright/NBrightBuy/XmlConnector.ashx?cmd=docdownload&downloadname=@doc.GetXmlProperty("genxml/textbox/txtfilename")&filename=@doc.GetXmlProperty("genxml/hidden/filerelpath")' title='@doc.GetXmlProperty("genxml/textbox/txtdocdesc")'>@doc.GetXmlProperty("genxml/textbox/txttitle")</a></td></tr>
+                                    <tr><td><i class='fa fa-file-pdf-o fa-lg'></i><a rel='nofollow'  href='/DesktopModules/NBright/NBrightBuy/XmlConnector.ashx?cmd=docdownload&downloadname=@doc.GetXmlProperty("genxml/textbox/txtfilename")&filename=@doc.GetXmlProperty("genxml/hidden/filerelpath")' title='@doc.GetXmlProperty("genxml/textbox/txtdocdesc")'>@doc.GetXmlProperty("genxml/textbox/txttitle")</a></td></tr>
                                 }
                             }
                         </tbody>
@@ -269,12 +269,15 @@ else
         </div>
         <!-- End Details -->
         <!-- Related Items -->
-        @if (@product.GetRelatedProducts().Count >= 1)
+        @{
+            var relatedProducts = product.GetRelatedProducts();
+        }
+        @if (relatedProducts.Count >= 1)
         {
             <div class="h2-headline">@ResourceKey("ProductView.recommend")</div>
             <div id="relatedwrapper" class="productlist">
                 <!-- Related products -->
-                @foreach (var rp in product.GetRelatedProducts())
+                @foreach (var rp in relatedProducts)
                 {
                     var rproduct = new ProductData(rp.ItemID, rp.Lang);
                     <div class="product">
@@ -284,7 +287,7 @@ else
                             @if (rp.GetXmlProperty("genxml/imgs/genxml[1]/hidden/imageurl") != "")
                             {
                                 <div class="image">
-                                    <img title="@(info.GetXmlProperty("genxml/lang/genxml/textbox/txtsummary"))" src="@ProductImageUrl(rp, 160, 0)">
+                                    <img title="@(rp.GetXmlProperty("genxml/lang/genxml/textbox/txtsummary"))" src="@ProductImageUrl(rp, 160, 0)">
                                 </div>
                             }
                             else
@@ -300,12 +303,12 @@ else
 
                                 <div class="price">
 
-                                    @if (product.Models.Count > 1)
+                                    @if (rproduct.Models.Count > 1)
                                     {
                                         <span class="from">@ResourceKey("ProductView.from")</span>
                                     }
 
-                                    @if (product.IsOnSale)
+                                    @if (rproduct.IsOnSale)
                                     {
                                         <span class="old">@(NBrightBuyUtils.FormatToStoreCurrency(rproduct.FromPrice()))</span>
                                         <span class="sale">@(NBrightBuyUtils.FormatToStoreCurrency(rproduct.BestPrice()))</span>
@@ -317,11 +320,11 @@ else
                                 </div>
 
                                 <div class="flags">
-                                @if (product.IsOnSale)
+                                @if (rproduct.IsOnSale)
                                 {
                                     <span class="onsaleflag">@ResourceKey("ProductView.onsaleflag")</span>
                                 }
-                                @if (!product.IsInStock)
+                                @if (!rproduct.IsInStock)
                                 {
                                     <span class="outofstockflag">@ResourceKey("ProductView.outofstockflag")</span>
                                 }

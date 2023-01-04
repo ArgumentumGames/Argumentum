@@ -20,8 +20,6 @@
     var prdData = new ProductData(info.ItemID, info.PortalId, info.Lang);
 }
 
-<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
-
 <span id="productdatasection">
 
     <input id="itemid" type="hidden" value="@info.ItemID" />
@@ -35,7 +33,12 @@
     <input id="xmlupdateproductdocs" type="hidden" datatype="coded" value="" />
     <input id="uilang1" type="hidden" value="@Utils.GetCurrentCulture()" />
 
-    
+    <input id="validationmessagetitle" type="hidden" value="@ResourceKey("General.ProductValidationMessageTitle")" />
+    <input id="validationfailuremessage" type="hidden" value="@ResourceKey("General.ProductValidationFailureMessage")" />
+    <input id="validationsuccessmessage" type="hidden" value="@ResourceKey("General.ProductValidationSuccessMessage")" />
+    <input id="validationerrorcounttext" type="hidden" value="@ResourceKey("General.ProductValidationErrorCount")" />
+    <input id="validationerrorcount" type="hidden" value="" />
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 productdatadisplay">
             <div class="box" id="accordion">
@@ -144,12 +147,12 @@
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.SalePrice")</label>
                                                         @TextBox(nbiModel, "genxml/textbox/txtsaleprice_" + lp1, "class='form-control input-sm saleprice' maxlength='250'  datatype='double'", "0.00")
-                                                        @CheckBox(nbiModel, "genxml/checkbox/chkdisablesale_" + lp1, "ResourceKey:General.Disable", " class='chkdisabledealer' ")
+                                                        @CheckBox(nbiModel, "genxml/checkbox/chkdisablesale_" + lp1, "ResourceKey:General.disablesale", " class='chkdisabledealer' ")
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.Dealer")</label>
                                                         @TextBox(nbiModel, "genxml/textbox/txtdealercost_" + lp1, "class='form-control input-sm saleprice' maxlength='250'  datatype='double'", "0.00")
-                                                        @CheckBox(nbiModel, "genxml/checkbox/chkdisabledealer_" + lp1, "ResourceKey:General.Disable", " class='chkdisabledealer' ")
+                                                        @CheckBox(nbiModel, "genxml/checkbox/chkdisabledealer_" + lp1, "ResourceKey:General.disabledealer", " class='chkdisabledealer' ")
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.DealerSale")</label>
@@ -223,15 +226,19 @@
                                                 <div style="margin-top: 10px;" class="row stockoptions">
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.Stock")</label>
-                                                        @TextBox(nbiModel, "genxml/textbox/txtqtyremaining_" + lp1, "class='form-control input-sm' maxlength='250'  datatype='double'", "0")
+                                                        @TextBox(nbiModel, "genxml/textbox/txtqtyremaining_" + lp1, "class='form-control input-sm' maxlength='250' datatype='double'", "0")
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.Min")</label>
-                                                        @TextBox(nbiModel, "genxml/textbox/txtqtyminstock_" + lp1, "class='form-control input-sm' maxlength='250'  datatype='double'", "0")
+                                                        @TextBox(nbiModel, "genxml/textbox/txtqtyminstock_" + lp1, "class='form-control input-sm' maxlength='250' datatype='double'", "0")
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.Max")</label>
-                                                        @TextBox(nbiModel, "genxml/textbox/txtqtystockset_" + lp1, "class='form-control input-sm' maxlength='250'  datatype='double'", "0")
+                                                        @TextBox(nbiModel, "genxml/textbox/txtqtystockset_" + lp1, "class='form-control input-sm' maxlength='250' datatype='double'", "0")
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">@ResourceKey("General.QtyMinPurchase")</label>
+                                                        @TextBox(nbiModel, "genxml/textbox/txtqtyminpurchase_" + lp1, "class='form-control input-sm' maxlength='10' datatype='double'", "0")
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <label class="control-label">@ResourceKey("General.unit")</label>
@@ -532,7 +539,7 @@
 
 
             </div>
-    </div>
+        </div>
     </div>
 </span>
 
