@@ -50,8 +50,16 @@
         product_admin_save('product_admin_saveas');
     });
 
+    $('#product_admin_cmdValidate').unbind("click");
+    $('#product_admin_cmdValidate').click(function () {
+        $('.processing').show();
+        nbxget('product_admin_validate', '#selectparams_Product_Admin', '#datadisplay');
+    });
+
     $('#product_admin_cmdReturn').unbind('click');
     $('#product_admin_cmdReturn').click(function () {
+        checkForReturnTab();
+
         $('#p1_selecteditemid').val('');       
         $('#p1_razortemplate').val('Admin_ProductList.cshtml');
         nbxget('product_admin_getlist', '#selectparams_Product_Admin', '#datadisplay');
@@ -108,6 +116,8 @@ function Admin_product_nbxgetCompleted(e) {
     }
 
     if (e.cmd == 'product_admin_saveexit') {
+        checkForReturnTab();
+
         $('#p1_selecteditemid').val(''); 
         $('#p1_razortemplate').val('Admin_ProductList.cshtml');
         nbxget('product_admin_getlist', '#selectparams_Product_Admin', '#datadisplay');
@@ -116,6 +126,13 @@ function Admin_product_nbxgetCompleted(e) {
         $('#p1_selecteditemid').val('');
         $('#p1_razortemplate').val('Admin_ProductList.cshtml');
         nbxget('product_admin_getlist', '#selectparams_Product_Admin', '#datadisplay');
+    }
+
+    if (e.cmd == 'product_admin_validate') {
+        $('.processing').show();
+        $('#p1_validationerrorcount').val($('#datadisplay').text());
+        $('#p1_razortemplate').val('Admin_ProductDetail.cshtml');
+        nbxget('product_admin_getdetail', '#selectparams_Product_Admin', '#datadisplay');
     }
 
     if (e.cmd == 'product_admin_updateboolean') {
@@ -163,7 +180,9 @@ function Admin_product_nbxgetCompleted(e) {
         $('.cmdPg').click(function () {
             $('.processing').show();
             $('#p1_pagenumber').val($(this).attr('pagenumber'));
-            product_admin_search();
+            var moveproductid = $("#p1_moveproductid").val(); // product_admin_search() clears  #p1_moveproductid
+            product_admin_search(); 
+            $("#p1_moveproductid").val(moveproductid); 
         });
 
         // Move products
@@ -288,6 +307,13 @@ function Admin_product_nbxgetCompleted(e) {
     }
 
     if (e.cmd == 'product_admin_getdetail' || e.cmd == 'product_admin_addproductmodels') {
+        
+        //validation message check
+        if ($('#p1_validationerrorcount').val()) {
+            showValidationMessage();
+            $('#p1_validationerrorcount').val("");
+        }
+
         productdetail();
     }
 
@@ -367,6 +393,7 @@ function product_admin_DetailButtons() {
     $('#product_admin_cmdSave').show();
     $('#product_admin_cmdSaveExit').show();
     $('#product_admin_cmdSaveAs').show();
+    $('#product_admin_cmdValidate').show();
     $('#product_admin_cmdDelete').show();
     $('#product_admin_cmdReturn').show();
     $('#product_admin_cmdAddNew').hide();
@@ -374,24 +401,26 @@ function product_admin_DetailButtons() {
 }
 
 function product_admin_ListButtons() {
-        $('.editlanguage').show();
+    $('.editlanguage').show();
     $('#product_admin_cmdSave').hide();
     $('#product_admin_cmdSaveExit').hide();
     $('#product_admin_cmdSaveAs').hide();
+    $('#product_admin_cmdValidate').hide();
     $('#product_admin_cmdDelete').hide();
     $('#product_admin_cmdReturn').hide();
     $('#product_admin_cmdAddNew').show();
 }
 
 function product_admin_NoButtons() {
-        $('.editlanguage').hide();
+    $('.editlanguage').hide();
     $('#product_admin_cmdSave').hide();
     $('#product_admin_cmdSaveExit').hide();
     $('#product_admin_cmdSaveAs').hide();
+    $('#product_admin_cmdValidate').hide();
     $('#product_admin_cmdDelete').hide();
     $('#product_admin_cmdReturn').hide();
     $('#product_admin_cmdAddNew').hide();
-    }
+}
 
 
 function moveUp(item) {
@@ -1034,10 +1063,78 @@ function productdetail()
     initModelDisplay();
 
     $('.processing').hide();
+}
 
+function showValidationMessage() {
+
+    var errorCount = $('#p1_validationerrorcount').val();
+    var msg = $('#validationfailuremessage').val() || $("#datadisplay").text();
+    var msgtitle = $('#validationmessagetitle').val() || "";
+    
+    if (!isNaN(errorCount)) {
+        msg = $('#validationsuccessmessage').val();
+
+        if (errorCount > 0) {
+            msg = $('#validationfailuremessage').val();
+            msg += "<br/> " + $('#validationerrorcounttext').val() + ": " + errorCount;
+        }
+    }
+
+    OpenModalBox(msgtitle, msg, null)
+    
+    setTimeout(function () {
+        CloseModalBox();
+    }, 2500);
 
 }
 
-    // ---------------------------------------------------------------------------
+function checkForReturnTab() {
+    //check for rtntab in path (EditUrl token support)
+    let path = window.location.pathname;
+    if (path.indexOf("/rtntab/") > 0) {
+        let re = /(\/rtntab\/)\d+/g;
+        let rtntab = path.match(re) != null ? path.match(re).toString().replace("/rtntab/", "") : null;
+        if (rtntab && !isNaN(rtntab)) {
 
+            //get path eid and save to localStorage to help return users to list positions
+            re = /(\/eid\/)\d+/g;
+            let eid = path.match(re) != null ? path.match(re).toString().replace("/eid/", "") : null;
+            if (eid != null && !isNaN(eid)) {
+                localStorage.setItem('returnedfromitemid', eid);
+            }
 
+            //redirect using referrer to allow list and/or details EditUrl tokens
+            location.href = document.referrer;
+            return false;
+        }
+    }
+}
+// ---------------------------------------------------------------------------
+jQuery.fn.toggleOption = function (show) {
+    $(this).each(function () {
+        if (show) {
+            if ($(this).parent("span.toggleOption").length)
+                $(this).unwrap();
+        } else {
+            if ($(this).parent("span.toggleOption").length === 0)
+                $(this).wrap('<span class="toggleOption" style="display: none;" />');
+        }
+    });
+};
+
+var filterSelectTimeout = null;
+function filterSelect(searchbox, selectid) {
+    if (filterSelectTimeout) {
+        clearTimeout(filterSelectTimeout);
+    }
+    filterSelectTimeout = setTimeout(function() {
+        var s = $(searchbox).val().toLowerCase();
+        $(`#${selectid} option`).each(function(index) {
+            if ($(this).attr("data-lowervalue").indexOf(s) >= 0) {
+                $(this).toggleOption(true);
+            } else {
+                $(this).toggleOption(false);
+            }
+        });
+    }, 500);
+}

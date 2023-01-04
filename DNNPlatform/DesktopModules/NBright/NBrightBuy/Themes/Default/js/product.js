@@ -3,6 +3,16 @@ $(document).ready(function () {
 
     $(document).on("nbxproductgetcompleted", AjaxView_GetList_nbxproductgetCompleted); // assign a completed event for the ajax calls
 
+    if (localStorage) {
+        let returnedfromitemid = $(".productdetail input[id$='_productid']").val();
+        if (returnedfromitemid && !isNaN(returnedfromitemid)) {
+            $(".return .actionbutton").off("click");
+            $(".return .actionbutton").on("click", function () {
+                localStorage.setItem('returnedfromitemid', returnedfromitemid);
+            });
+        }
+    }
+
     $('.nav-tabs > li > a').click(function (event) {
         event.preventDefault();//stop browser to take action for clicked anchor
 
@@ -194,7 +204,7 @@ function AjaxView_GetList_nbxproductgetCompleted(e) {
     $('.shoppinglistadd').click(function () {
         $('#shopitemid').val($(this).attr('itemid'));
         $(".shoppinglistadd").colorbox({
-            inline: true, maxWidth: "230px", maxHeight: "250px", fixed: true,
+            inline: true, maxWidth: "640px", fixed: true,
             onClosed: function () {
                 $('#shopitemid').val('');
             }
@@ -216,9 +226,11 @@ function AjaxView_GetList_nbxproductgetCompleted(e) {
         nbxproductget('itemlist_remove', '#productajaxview'); //apply serverside
     });
 
-    $('.wishlistremoveall').unbind("click");
-    $('.wishlistremoveall').click(function () {
+    $('.wishlistremoveall').click(function (e) {
+        var listkey = $(e.target).attr("listkey");
+        $('#shoplistname').val(listkey);
         nbxproductget('itemlist_delete', '#productajaxview'); //apply serverside
+        $("#list-" + listkey).remove();
     });
 
     $('.shoplistselect').unbind("change");
@@ -264,9 +276,21 @@ function AjaxView_GetList_nbxproductgetCompleted(e) {
         $('#shoppinglistpopup').colorbox.close();
     });
 
+    if (localStorage && $(".product").length > 0) {
+        let returnedfromitemid = localStorage.getItem('returnedfromitemid');
+        if (returnedfromitemid && !isNaN(returnedfromitemid)) {
+            $("#ajaxproducts" + $("#moduleid").val() + " input[id$='_productid']").each(function () {
+                let $elem = $(this).closest(".product");
+                if ($(this).val() == returnedfromitemid && $elem.length > 0) {
+                    localStorage.removeItem('returnedfromitemid');
+                    $([document.documentElement, document.body]).animate({ scrollTop: $elem.offset().top }, 200);
+                    return false;
+                }
+            });
+        }
+    }
+
 }
-
-
 
 // *****************************************************************************
 // *******  Browser Functions
@@ -349,6 +373,17 @@ function loadFilters() {
     $("#propertyfiltertypeoutside").val($("#filter_propertyfiltertypeoutside").val());
     $("#moduleid").val($("#filter_moduleid").val());
     nbxproductget('product_ajaxview_getfilters', '#productajaxview', '#ajaxfilter');
+}
+
+function filterFilterOptions(searchbox, groupref) {
+    var s = $(searchbox).val().toLowerCase();
+    $(`.nbsfilteroption[data-groupref='${groupref}']`).each(function(index) {
+        if ($(this).children("input[type='checkbox']").is(":checked") || $(this).attr('data-itemvalue').indexOf(s) >= 0) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
 }
 
 function IsInFavorites(productid) {
