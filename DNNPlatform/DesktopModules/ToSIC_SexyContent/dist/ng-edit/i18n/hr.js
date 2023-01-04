@@ -96,7 +96,8 @@
   "General": {
     "Buttons": {
       "NotSave": "Discard changes",
-      "Save": "Save"
+      "Save": "Save",
+      "Cancel": "Otkaži"
     },
     "CopyHint": "This is a copy and will be saved as a new item",
     "ReadOnlyHint": {
@@ -156,6 +157,7 @@
         "MenuDocs": "File Manager"
       },
       "AdamFileManager": {
+        "Name": "ADAM",
         "UploadLabel": "Upload to",
         "UploadTip": "Quick upload using ADAM",
         "UploadPasteLabel": "Paste Image",
@@ -167,13 +169,14 @@
         "BackFolderTip": "Return to previous folder",
         "Show": "Open in new tab",
         "ImageSettings": "Image settings",
-        "NoImageSettings": "Image settings not available. The file is not an image or it doesn't belong to this item",
+        "ImageSettingsUnavailable": "Image settings not available. The file is not an image or it doesn't belong to this item",
+        "ImageSettingsDisabled": "Image settings are disabled for this field",
         "Edit": "Rename",
         "RenameQuestion": "Rename file / folder to:",
         "Delete": "Delete",
         "DeleteQuestion": "Are you sure you want to delete this file?",
         "Hint": "drop files here",
-        "SponsorTooltip": "ADAM is the Automatic Digital Assets Manager - click to discover more",
+        "HelpTooltip": "ADAM is the Automatic Digital Assets Manager - click to discover more",
         "SponsorLine": "is sponsored with ♡ by"
       },
       "PagePicker": {
@@ -191,6 +194,13 @@
       "NotSelected": "(no file selected)",
       "NewTemplate": "Create a new file"
     }
+  },
+  "ManageContentList": {
+    "Title": "Upravljaj sadržaj-stavka listama",
+    "Description": "Ovdje možete upravljati zaglavljem liste (ako je definirano):",
+    "NoHeader": "(ova lista nema zaglavlje)",
+    "SortItems": "Razvrstajte stavke povlačenjem prema potrebi, a zatim spremite:",
+    "SortLotsOfItems": "Razvrstajte stavke povlačenjem i pomicanjem kotačićem miša prema potrebi, a zatim spremite:"
   },
   "Extension.TinyMce": {
     "Link.AdamFile": "Link ADAM file (recommended)",

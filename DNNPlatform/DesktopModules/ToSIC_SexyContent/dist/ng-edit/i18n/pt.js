@@ -96,7 +96,8 @@
   "General": {
     "Buttons": {
       "NotSave": "Descartar alterações",
-      "Save": "Gravar"
+      "Save": "Gravar",
+      "Cancel": "Cancel"
     },
     "CopyHint": "This is a copy and will be saved as a new item",
     "ReadOnlyHint": {
@@ -156,6 +157,7 @@
         "MenuDocs": "Gestor de Ficheiros"
       },
       "AdamFileManager": {
+        "Name": "ADAM",
         "UploadLabel": "Carregar para",
         "UploadTip": "Carregar rapidamente através do ADAM",
         "UploadPasteLabel": "Colar Imagem",
@@ -167,13 +169,14 @@
         "BackFolderTip": "Voltar à pasta anterior",
         "Show": "Abrir num novo separador",
         "ImageSettings": "Image settings",
-        "NoImageSettings": "Image settings not available. The file is not an image or it doesn't belong to this item",
+        "ImageSettingsUnavailable": "Image settings not available. The file is not an image or it doesn't belong to this item",
+        "ImageSettingsDisabled": "Image settings are disabled for this field",
         "Edit": "Renomear",
         "RenameQuestion": "Renomear ficheiro/ pasta para:",
         "Delete": "Apagar",
         "DeleteQuestion": "Tem a certeza que quer apagar este ficheiro?",
         "Hint": "largar os ficheiros aqui",
-        "SponsorTooltip": "ADAM é o Automatic Digital Assets Manager - clique para saber mais",
+        "HelpTooltip": "ADAM é o Automatic Digital Assets Manager - clique para saber mais",
         "SponsorLine": "é patrocinado com ♡ por"
       },
       "PagePicker": {
@@ -191,6 +194,13 @@
       "NotSelected": "(no file selected)",
       "NewTemplate": "Create a new file"
     }
+  },
+  "ManageContentList": {
+    "Title": "Manage content-item lists",
+    "Description": "You can manage the list header here (if it is defined):",
+    "NoHeader": "(this list has no header)",
+    "SortItems": "Sort the items by dragging as you need, then save:",
+    "SortLotsOfItems": "Sort the items by dragging and scrolling with mouse wheel as you need, then save:"
   },
   "Extension.TinyMce": {
     "Link.AdamFile": "Ligar ficheiro ADAM (recommendado)",

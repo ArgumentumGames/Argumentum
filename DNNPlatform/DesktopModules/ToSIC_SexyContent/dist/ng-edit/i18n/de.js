@@ -96,7 +96,8 @@
   "General": {
     "Buttons": {
       "NotSave": "Änderungen verwerfen",
-      "Save": "Speichern"
+      "Save": "Speichern",
+      "Cancel": "Abbrechen"
     },
     "CopyHint": "Dies ist eine Kopie und wird als neues Element gespeichert",
     "ReadOnlyHint": {
@@ -156,6 +157,7 @@
         "MenuDocs": "Dateiverwaltung"
       },
       "AdamFileManager": {
+        "Name": "ADAM",
         "UploadLabel": "Upload nach",
         "UploadTip": "Schnell upload mit ADAM",
         "UploadPasteLabel": "Bild aus Zwischenablage",
@@ -167,13 +169,14 @@
         "BackFolderTip": "Zum vorherigen Ordner",
         "Show": "In neuem Fenster öffnen",
         "ImageSettings": "Bildeinstellungen",
-        "NoImageSettings": "Bildeinstellungen nicht verfügbar. Diese Datei ist kein Bild oder sie gehört nicht zu diesem Element",
+        "ImageSettingsUnavailable": "Bildeinstellungen nicht verfügbar. Diese Datei ist kein Bild oder sie gehört nicht zu diesem Element",
+        "ImageSettingsDisabled": "Bei diesem Feld sind Bildeinstellungen deaktiviert",
         "Edit": "Umbenennen",
         "RenameQuestion": "Umbenennen:",
         "Delete": "Löschen",
         "DeleteQuestion": "Bist du sicher, dass die die Datei löschen möchtest?",
         "Hint": "Dateien hierher ziehen ",
-        "SponsorTooltip": "ADAM ist der Automatic Digital Assets Manager - mehr erfahren",
+        "HelpTooltip": "ADAM ist der Automatic Digital Assets Manager - mehr erfahren",
         "SponsorLine": "mit ♡ gesponsort von"
       },
       "PagePicker": {
@@ -191,6 +194,13 @@
       "NotSelected": "(no file selected)",
       "NewTemplate": "Create a new file"
     }
+  },
+  "ManageContentList": {
+    "Title": "Elementen-Liste verwalten",
+    "Description": "Hier kannst du das Titel-Element verwalten (sofern definiert):",
+    "NoHeader": "(diese Liste hat kein Titel-Element)",
+    "SortItems": "Sortier die Einträge indem du sie mit der Maus rumziehst. ",
+    "SortLotsOfItems": "Sortier die vielen Einträge indem du sie mit der Maus ziehst und dann mit dem Mausrad scrollst. "
   },
   "Extension.TinyMce": {
     "Link.AdamFile": "ADAM Datei verlinken (empfohlen)",
