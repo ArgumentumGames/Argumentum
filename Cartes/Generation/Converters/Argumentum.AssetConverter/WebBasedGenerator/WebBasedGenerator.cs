@@ -14,7 +14,7 @@ using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using Svg.Skia;
+//using Svg.Skia;
 using Utf8Json;
 
 
