@@ -49,7 +49,7 @@ namespace Argumentum.AssetConverter
         public int? LTfr { get; set; }
         public string SimpleNameEn { get; set; }
         public string TextEn { get; set; }
-        public int LTen { get; set; }
+        public int? LTen { get; set; }
         public string Family { get; set; }
         public string Subfamily { get; set; }
         public string Subsubfamily { get; set; }

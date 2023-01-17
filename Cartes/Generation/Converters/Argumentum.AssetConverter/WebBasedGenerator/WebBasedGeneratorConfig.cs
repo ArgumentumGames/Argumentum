@@ -353,8 +353,8 @@ namespace Argumentum.AssetConverter
                             FrontCards = new DocumentCard()
                             {
                                 BorderMM = 0,
-                                HeigthMM = 20,
-                                WidthMM = 20,
+                                HeigthMM = 50,
+                                WidthMM = 50,
                             },
                             BackCards =  new DocumentCard()
                             {
@@ -383,14 +383,14 @@ namespace Argumentum.AssetConverter
                             FrontCards = new DocumentCard()
                             {
                                 BorderMM = 0,
-                                HeigthMM = 72,
-                                WidthMM = 72,
+                                HeigthMM = 70,
+                                WidthMM = 70,
                             },
                             BackCards =  new DocumentCard()
                             {
                                 BorderMM = 0,
-                                HeigthMM = 72,
-                                WidthMM = 72,
+                                HeigthMM = 70,
+                                WidthMM = 70,
                             }
                         }
                     }),

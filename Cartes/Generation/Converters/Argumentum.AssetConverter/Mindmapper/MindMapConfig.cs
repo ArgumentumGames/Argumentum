@@ -120,6 +120,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 
         public List<int> EdgeSizes { get; set; } = new List<int>(new[] { 8, 4, 2, 1});
 
+
+        public bool InsertCards { get; set; }
+
+
     }
 
     
