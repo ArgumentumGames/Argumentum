@@ -1,16 +1,64 @@
 ﻿<dotnetnuke type="ResourceFile" version="5.0">
   <files>
     <file>
+      <path />
+      <name>ApiConnector.ashx</name>
+    </file>
+    <file>
+      <path />
+      <name>NBrightDNN.dnn</name>
+    </file>
+    <file>
+      <path />
+      <name>NBrightThumb.ashx</name>
+    </file>
+    <file>
+      <path />
+      <name>README.md</name>
+    </file>
+    <file>
+      <path>ckeditor/</path>
+      <name>nbrightconfig.js</name>
+    </file>
+    <file>
+      <path>ckeditor/</path>
+      <name>startup.js</name>
+    </file>
+    <file>
+      <path>ckeditor/</path>
+      <name>startupfull.js</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>icons.gif</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>loading.gif</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>ui.fancytree.min.css</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.fancytree.min.js</name>
+    </file>
+    <file>
+      <path>js/</path>
+      <name>jquery.genxmlajax.js</name>
+    </file>
+    <file>
+      <path>NBrightCore/</path>
+      <name>README.md</name>
+    </file>
+    <file>
       <path>NBrightCore/js/</path>
       <name>jquery-genxmlajax.js</name>
     </file>
     <file>
-      <path>NBrightCore/images/</path>
-      <name>ImgUtils.cs</name>
-    </file>
-    <file>
-      <path>NBrightCore/images/</path>
-      <name>ImgWaterMark.cs</name>
+      <path>packages/RazorEngine.3.10.0/</path>
+      <name>LICENSE.md</name>
     </file>
     <file>
       <path>Skins/NBrightModAdmin/</path>
@@ -33,16 +81,24 @@
       <name>skin.doctype.xml</name>
     </file>
     <file>
-      <path>css/</path>
-      <name>icons.gif</name>
+      <path>ckeditor/plugins/dnnpagelinks/</path>
+      <name>LICENSE.md</name>
     </file>
     <file>
-      <path>css/</path>
-      <name>loading.gif</name>
+      <path>ckeditor/plugins/dnnpagelinks/</path>
+      <name>plugin.js</name>
     </file>
     <file>
-      <path>css/</path>
-      <name>ui.fancytree.min.css</name>
+      <path>packages/MSBuildTasks.1.5.0.235/tools/</path>
+      <name>MSBuild.Community.Tasks.xml</name>
+    </file>
+    <file>
+      <path>ckeditor/plugins/dnnpagelinks/dialogs/</path>
+      <name>dnnpagelinks.js</name>
+    </file>
+    <file>
+      <path>ckeditor/plugins/dnnpagelinks/icons/</path>
+      <name>dnnpagelinks.png</name>
     </file>
     <file>
       <path>ckeditor/plugins/dnnpagelinks/samples/</path>
@@ -53,44 +109,16 @@
       <name>simplebox.html</name>
     </file>
     <file>
-      <path>ckeditor/plugins/dnnpagelinks/icons/</path>
-      <name>dnnpagelinks.png</name>
+      <path>packages/Microsoft.AspNet.Razor.3.2.7/lib/net45/</path>
+      <name>System.Web.Razor.xml</name>
     </file>
     <file>
-      <path>ckeditor/plugins/dnnpagelinks/dialogs/</path>
-      <name>dnnpagelinks.js</name>
+      <path>packages/RazorEngine.3.10.0/lib/net40/</path>
+      <name>RazorEngine.xml</name>
     </file>
     <file>
-      <path>js/</path>
-      <name>jquery.fancytree.min.js</name>
-    </file>
-    <file>
-      <path>js/</path>
-      <name>jquery.genxmlajax.js</name>
-    </file>
-    <file>
-      <path>ckeditor/plugins/dnnpagelinks/</path>
-      <name>plugin.js</name>
-    </file>
-    <file>
-      <path>ckeditor/</path>
-      <name>nbrightconfig.js</name>
-    </file>
-    <file>
-      <path>ckeditor/</path>
-      <name>startup.js</name>
-    </file>
-    <file>
-      <path>ckeditor/</path>
-      <name>startupfull.js</name>
-    </file>
-    <file>
-      <path />
-      <name>ApiConnector.ashx</name>
-    </file>
-    <file>
-      <path />
-      <name>NBrightThumb.ashx</name>
+      <path>packages/RazorEngine.3.10.0/lib/net45/</path>
+      <name>RazorEngine.xml</name>
     </file>
   </files>
 </dotnetnuke>

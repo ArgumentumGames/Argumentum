@@ -1,0 +1,192 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightCore.common
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_PayPal/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+var info = (NBrightInfo)Model.List.First();
+}
+
+<div class="form-horizontal dnnForm">
+
+        <input id="itemid" type="hidden" value="@info.ItemID"/>
+        <input id="uilang" type="hidden" value="@Model.Lang"/>
+        <input id="nextlang" type="hidden" value="@Model.Lang" />
+
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>@ResourceKey("Payment.checkoutdisplay")</h3>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.Title")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/lang/genxml/textbox/title", "maxlength='150'", ResourceKey("Payment.Titlevalue", info.Lang).ToString())
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.Message")</label>
+            <div class="col-sm-5">
+                @NBrightTextArea(info, "genxml/lang/genxml/textbox/message", "height='100' maxlength='200' textmode='MultiLine' ", ResourceKey("Payment.Messagevalue", info.Lang).ToString())
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.buttontext")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/lang/genxml/textbox/buttontext", "maxlength='150'", ResourceKey("Payment.buttonvalue", info.Lang).ToString())
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.checkouttemplate")</label>
+            <div class="col-sm-2">
+                @TextBox(info, "genxml/textbox/checkouttemplate", "class='form-control'", "methodselection.cshtml")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Image Logo</label>
+            <div class="col-sm-2">
+                @DropDownList(info, "genxml/dropdownlist/imagelogo", "logo.png", "logo.png", "class='form-control'")
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>@ResourceKey("Payment.returndisplay")</h3>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.Title")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/lang/genxml/textbox/rtntitle", "maxlength='150'", ResourceKey("CartView.PaymentComplete", info.Lang).ToString())
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.Message")</label>
+            <div class="col-sm-5">
+                @NBrightTextArea(info, "genxml/lang/genxml/textbox/rtnmessage", "height='300' textmode='MultiLine' ", ResourceKey("Notification.checkoutsuccessmessage", info.Lang).ToString())
+            </div>
+        </div>
+
+        </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>@ResourceKey("Payment.failreturndisplay")</h3>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.Title")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/lang/genxml/textbox/failrtntitle", "maxlength='150'", ResourceKey("CartView.PaymentFailed", info.Lang).ToString())
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.Message")</label>
+            <div class="col-sm-5">
+                @NBrightTextArea(info, "genxml/lang/genxml/textbox/failrtnmessage", "height='300' textmode='MultiLine' ", ResourceKey("Notification.checkoutfailmessage", info.Lang).ToString())
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>@ResourceKey("Payment.OSPayPalsettings")</h3>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.paypalid")</label>
+            <div class="col-sm-5">
+                @TextBox(info, "genxml/textbox/paypalid", "class='form-control'")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.paymentURL")</label> (https://www.paypal.com/cgi-bin/webscr)
+            <div class="col-sm-5">
+                @TextBox(info, "genxml/textbox/paymenturl", "class='form-control'", "https://www.sandbox.paypal.com/cgi-bin/webscr")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.verifyURL")</label> ({yourdomain}/DesktopModules/NBright/NBrightPayPal/notify.ashx)
+            <div class="col-sm-5">
+                @TextBox(info, "genxml/textbox/verifyurl", "class='form-control'", "")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.currencycode")</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/currencycode", "class='form-control'", "EUR")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.charset")</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/charset", "class='form-control'", "utf-8")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Payment.extrafields")</label>
+            <div class="col-sm-6">
+                @TextArea(info, "genxml/textbox/extrafields", "class='form-control' rows='4'", "first_name=genxml/billaddress/genxml/textbox/firstname,last_name=genxml/billaddress/genxml/textbox/lastname,address1=genxml/billaddress/genxml/textbox/unit,address2=genxml/billaddress/genxml/textbox/street,city=genxml/billaddress/genxml/textbox/city,country=genxml/billaddress/genxml/dropdownlist/country/@@selectedtext,zip=genxml/billaddress/genxml/textbox/postalcode,email=genxml/billaddress/genxml/textbox/email")
+            </div>
+        </div>
+
+
+    </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                    <h3>@ResourceKey("Payment.processoptions")</h3>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@ResourceKey("General.DebugMode")</label>
+                <div class="col-sm-5">
+                    <div class="dnnFormItem">
+                        @CheckBox(info, "genxml/checkbox/debugmode", ResourceKey("Settings.debugmode", info.Lang).ToString())
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-3">
+                    @info.GetXmlProperty("genxml/debugmsg")
+                </div>
+            </div>
+        </div>
+    </div>

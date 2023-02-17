@@ -1,0 +1,17 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightRazor>
+@using System.Globalization
+@using NBrightDNN
+@using NBrightCore.common
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_Reports/App_LocalResources/")
+
+
+@RenderTemplate("/DesktopModules/NBright/NBrightBuy/Themes/config/default/datepicker.cshtml", Model)
+
+<!-- Load these scripts to use nbrightajax functions -->
+<script type="text/javascript" src="/DesktopModules/NBright/NBrightBuy/Themes/config/js/jquery.genxmlajax.js"></script>
+<script type="text/javascript" src="/DesktopModules/NBright/OS_Reports/Themes/config/js/OS_Reports.js"></script>
+
+<!-- The basic File Upload plugin -->
+<script src="/DesktopModules/NBright/NBrightBuy/Themes/config/js/jquery.fileupload.js"></script>

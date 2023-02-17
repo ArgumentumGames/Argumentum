@@ -1,0 +1,61 @@
+﻿<genxml>
+  <hidden>
+    <index datatype="double">99</index>
+  </hidden>
+  <textbox>
+    <ctrl update="save">ospaypal</ctrl>
+    <name update="save">OS_PayPal Payment</name>
+    <icon update="save" />
+    <group update="save">Admin</group>
+    <path update="save">/DesktopModules/NBright/OS_PayPal/Payment.ascx</path>
+    <help update="save" />
+    <description update="save" />
+  </textbox>
+  <checkbox>
+    <hidden update="save">False</hidden>
+  </checkbox>
+  <dropdownlist />
+  <checkboxlist>
+    <securityroles update="save">
+      <chk value="True" data="Administrators">Administrators</chk>
+      <chk value="False" data="Manager">Manager</chk>
+      <chk value="False" data="Editor">Editor</chk>
+      <chk value="False" data="ClientEditor">ClientEditor</chk>
+    </securityroles>
+  </checkboxlist>
+  <radiobuttonlist />
+  <interfaces>
+    <genxml>
+      <files />
+      <hidden />
+      <textbox>
+        <assembly>OS_PayPal</assembly>
+        <namespaceclass>OS_PayPal.OSPayPalPaymentProvider</namespaceclass>
+      </textbox>
+      <checkbox>
+        <active>True</active>
+      </checkbox>
+      <dropdownlist>
+        <providertype>07</providertype>
+      </dropdownlist>
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+    <genxml>
+      <files />
+      <hidden />
+      <textbox>
+        <assembly>OS_PayPal</assembly>
+        <namespaceclass>OS_PayPal.AjaxProvider</namespaceclass>
+      </textbox>
+      <checkbox>
+        <active>True</active>
+      </checkbox>
+      <dropdownlist>
+        <providertype>12</providertype>
+      </dropdownlist>
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+  </interfaces>
+</genxml>

@@ -1,0 +1,94 @@
+﻿<dotnetnuke type="Package" version="5.0">
+	<packages>
+		<package name="NBrightTemplateSys" type="Module" version="8.7.2">
+			<friendlyName>NBrightTemplateSys</friendlyName>
+			<description>NBrightTemplateSys is the core support module for projects using the NBright Template System.  It only installs core dlls required by other projects. DNN8+ ONLY</description>
+			<iconFile />
+			<owner>
+				<name>David Lee</name>
+				<organization>Nevoweb</organization>
+				<url>www.nevoweb.com</url>
+				<email>info@nevoweb.com</email>
+			</owner>
+			<license>
+New BSD License (BSD)
+
+Copyright (c) 2015, David Lee
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of Nevoweb nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			</license>
+			<releaseNotes>
+
+        Assemblies:
+
+        NBrightCore
+        NBrightDNN
+        RazorEngine
+
+        NOTES:
+
+        GIT Branch:  https://nbrightdnn.codeplex.com/SourceControl/latest
+
+      </releaseNotes>
+			<components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\NBright\NBrightData</basePath>
+            <script type="Install">
+              <name>03.02.00.SqlDataProvider</name>
+              <version>03.02.00</version>
+            </script>
+            <script type="Install">
+              <name>03.04.00.SqlDataProvider</name>
+              <version>03.04.00</version>
+            </script>
+			  <script type="Install">
+				  <name>08.07.02.SqlDataProvider</name>
+				  <version>08.07.02</version>
+			  </script>
+			  <script type="UnInstall">
+              <name>Uninstall.SqlDataProvider</name>
+              <version>03.02.00</version>
+            </script>
+          </scripts>
+        </component>
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules\NBright\NBrightData</basePath>
+						<resourceFile>
+							<name>Resource.zip</name>
+						</resourceFile>
+					</resourceFiles>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<assembly>
+							<path>bin</path>
+							<name>NBrightCore.dll</name>
+							<sourceFileName>NBrightCore.dll</sourceFileName>
+						</assembly>
+						<assembly>
+							<path>bin</path>
+							<name>NBrightDNN.dll</name>
+							<sourceFileName>NBrightDNN.dll</sourceFileName>
+						</assembly>
+						<assembly>
+							<path>bin</path>
+							<name>RazorEngine.dll</name>
+							<sourceFileName>RazorEngine.dll</sourceFileName>
+						</assembly>
+					</assemblies>
+				</component>
+			</components>
+		</package>	
+	</packages>
+</dotnetnuke>

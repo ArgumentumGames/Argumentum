@@ -1,0 +1,209 @@
+<genxml>
+  <files />
+  <hidden>
+    <imageref />
+    <imageurl>/Portals/1/NBStore/images/eGHcXWx7.png</imageurl>
+    <imagepath>E:\Dev\AI\Libs\Argumentum\DNNPlatform\Portals\1\NBStore\images\eGHcXWx7.png</imagepath>
+  </hidden>
+  <textbox>
+    <txtproductref />
+    <manufacturer>Argumentum</manufacturer>
+    <txtaddmodelqty>1</txtaddmodelqty>
+    <txtmodelref />
+    <txtunitcost datatype="double">34</txtunitcost>
+    <txtsaleprice datatype="double">0</txtsaleprice>
+    <txtdealercost datatype="double">0</txtdealercost>
+    <txtdealersale datatype="double">0</txtdealersale>
+    <txtpurchasecost datatype="double">0</txtpurchasecost>
+    <txtbarcode />
+    <weight datatype="double">0</weight>
+    <depth datatype="double">0</depth>
+    <width datatype="double">0</width>
+    <height datatype="double">0</height>
+    <unitqty datatype="double">1</unitqty>
+    <txtqtyremaining datatype="double">0</txtqtyremaining>
+    <txtqtyminstock datatype="double">0</txtqtyminstock>
+    <txtqtystockset datatype="double">0</txtqtystockset>
+    <txtqtyminpurchase datatype="double">0</txtqtyminpurchase>
+    <unit />
+    <availabledate datatype="date" />
+    <delay />
+    <txtaddoptqty>1</txtaddoptqty>
+    <txtaddoptvalueqty>1</txtaddoptvalueqty>
+  </textbox>
+  <checkbox>
+    <chkishidden>False</chkishidden>
+    <chkdisable>False</chkdisable>
+    <chkdisablesale>True</chkdisablesale>
+    <chkdisabledealer>True</chkdisabledealer>
+    <chkstockon>False</chkstockon>
+    <chkdeleted>False</chkdeleted>
+    <chkdealeronly>False</chkdealeronly>
+    <chkhidden>False</chkhidden>
+  </checkbox>
+  <dropdownlist>
+    <selectcategory>140</selectcategory>
+    <selectgrouptype>promo</selectgrouptype>
+  </dropdownlist>
+  <checkboxlist />
+  <radiobuttonlist />
+  <models>
+    <genxml>
+      <files />
+      <hidden>
+        <modelid>KMZM3NUr</modelid>
+      </hidden>
+      <textbox>
+        <txtmodelref />
+        <txtunitcost datatype="double">34</txtunitcost>
+        <txtsaleprice datatype="double">0</txtsaleprice>
+        <txtdealercost datatype="double">0</txtdealercost>
+        <txtdealersale datatype="double">0</txtdealersale>
+        <txtpurchasecost datatype="double">0</txtpurchasecost>
+        <txtbarcode />
+        <weight datatype="double">0</weight>
+        <depth datatype="double">0</depth>
+        <width datatype="double">0</width>
+        <height datatype="double">0</height>
+        <unitqty datatype="double">1</unitqty>
+        <txtqtyremaining datatype="double">0</txtqtyremaining>
+        <txtqtyminstock datatype="double">0</txtqtyminstock>
+        <txtqtystockset datatype="double">0</txtqtystockset>
+        <txtqtyminpurchase datatype="double">0</txtqtyminpurchase>
+        <unit />
+        <availabledate datatype="date" />
+        <delay />
+      </textbox>
+      <checkbox>
+        <chkdisablesale>True</chkdisablesale>
+        <chkdisabledealer>True</chkdisabledealer>
+        <chkstockon>False</chkstockon>
+        <chkishidden>False</chkishidden>
+        <chkdeleted>False</chkdeleted>
+        <chkdealeronly>False</chkdealeronly>
+      </checkbox>
+      <dropdownlist>
+        <taxrate>0</taxrate>
+        <modelstatus>010</modelstatus>
+      </dropdownlist>
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+  </models>
+  <options />
+  <imgs>
+    <genxml>
+      <files />
+      <hidden>
+        <imageref>fB9FNfsG</imageref>
+        <imageurl>/Portals/1/NBStore/images/eGHcXWx7.png</imageurl>
+        <imagepath>E:\Dev\AI\Libs\Argumentum\DNNPlatform\Portals\1\NBStore\images\eGHcXWx7.png</imagepath>
+      </hidden>
+      <textbox />
+      <checkbox>
+        <chkhidden>False</chkhidden>
+      </checkbox>
+      <dropdownlist />
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+  </imgs>
+  <docs />
+  <importref>nsg2gvqu3x</importref>
+  <calcfromprice datatype="double">34</calcfromprice>
+  <calcsaleprice datatype="double">0</calcsaleprice>
+  <calcfrombulkprice datatype="double">0</calcfrombulkprice>
+  <calcsalebulkprice datatype="double">0</calcsalebulkprice>
+  <calcdealerfromprice datatype="double">0</calcdealerfromprice>
+  <calcdealersaleprice datatype="double">0</calcdealersaleprice>
+  <calcfrompriceunit datatype="double">34</calcfrompriceunit>
+  <calcsalepriceunit datatype="double">-1</calcsalepriceunit>
+  <calcfrombulkpriceunit datatype="double">0</calcfrombulkpriceunit>
+  <calcsalebulkpriceunit datatype="double">0</calcsalebulkpriceunit>
+  <calcdealerfrompriceunit datatype="double">-1</calcdealerfrompriceunit>
+  <calcdealersalepriceunit datatype="double">-1</calcdealersalepriceunit>
+  <calchighunitprice datatype="double">34</calchighunitprice>
+  <calchighdealerunitprice datatype="double">0</calchighdealerunitprice>
+  <calcbestprice datatype="double">34</calcbestprice>
+  <calcbestpriceunit datatype="double">34</calcbestpriceunit>
+  <calcdealerbestprice datatype="double">0</calcdealerbestprice>
+  <calcdealerbestpriceunit datatype="double">-1</calcdealerbestpriceunit>
+  <calcbestpriceall datatype="double">34</calcbestpriceall>
+  <calcbestpriceallunit datatype="double">34</calcbestpriceallunit>
+  <lang>
+    <genxml>
+      <files />
+      <hidden>
+        <fimageurl update="lang" />
+        <fimagepath update="lang" />
+        <fimageref update="lang" />
+      </hidden>
+      <textbox>
+        <description>&lt;p&gt;Argumentum est un jeu de cartes dans lequel les joueurs vont à tour de rôle essayer de faire deviner une carte d’argument fallacieux aux autres joueurs, au cours d’une saynète d’improvisation à partir d’un scénario tiré au hasard.&lt;/p&gt;
+
+&lt;p&gt;Un moment transgressif et jubilatoire, de la rhétorique et du FUN.&lt;/p&gt;
+
+&lt;p&gt;Argumentum est composé d’un paquet de 70 cartes « argument », d’un paquet de 78 cartes « scénario », de 5 cartes « mémo » et des règles du jeu.&lt;/p&gt;
+</description>
+        <txtproductname update="lang">Le jeu de cartes Argumentum</txtproductname>
+        <extrafield update="lang" />
+        <txtsummary update="lang">Argumentum est un jeu de cartes dans lequel les joueurs vont à tour de rôle essayer de faire deviner une carte d’argument fallacieux aux autres joueurs, au cours d’une saynète d’improvisation.</txtsummary>
+        <txtmodelname update="lang">Argumentum V1</txtmodelname>
+        <txtextra update="lang" />
+        <txtseoname update="lang" />
+        <txtseopagetitle update="lang" />
+        <seodescription update="lang" />
+        <txtimagedesc update="lang">Les cartes du jeu Argumentum</txtimagedesc>
+      </textbox>
+      <checkbox>
+        <chkishiddenlang update="lang">False</chkishiddenlang>
+      </checkbox>
+      <dropdownlist />
+      <checkboxlist />
+      <radiobuttonlist />
+      <options />
+      <imgs>
+        <genxml>
+          <files />
+          <hidden>
+            <fimageurl />
+            <fimagepath />
+            <fimageref />
+          </hidden>
+          <textbox>
+            <txtimagedesc>Les cartes du jeu Argumentum</txtimagedesc>
+          </textbox>
+          <checkbox />
+          <dropdownlist />
+          <checkboxlist />
+          <radiobuttonlist />
+        </genxml>
+      </imgs>
+      <docs />
+      <models>
+        <genxml>
+          <files />
+          <hidden />
+          <textbox>
+            <txtmodelname>Argumentum V1</txtmodelname>
+            <txtextra />
+          </textbox>
+          <checkbox>
+            <chkishiddenlang>False</chkishiddenlang>
+          </checkbox>
+          <dropdownlist />
+          <checkboxlist />
+          <radiobuttonlist />
+        </genxml>
+      </models>
+      <edt>
+        <description>&lt;p&gt;Argumentum est un jeu de cartes dans lequel les joueurs vont à tour de rôle essayer de faire deviner une carte d’argument fallacieux aux autres joueurs, au cours d’une saynète d’improvisation à partir d’un scénario tiré au hasard.&lt;/p&gt;
+
+&lt;p&gt;Un moment transgressif et jubilatoire, de la rhétorique et du FUN.&lt;/p&gt;
+
+&lt;p&gt;Argumentum est composé d’un paquet de 70 cartes « argument », d’un paquet de 78 cartes « scénario », de 5 cartes « mémo » et des règles du jeu.&lt;/p&gt;
+</description>
+      </edt>
+    </genxml>
+  </lang>
+</genxml>

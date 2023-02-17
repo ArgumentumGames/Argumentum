@@ -1,0 +1,46 @@
+﻿@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Globalization
+@using System.Linq
+@using System.Web.UI.WebControls
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+@using Nevoweb.DNN
+@using DotNetNuke.Entities.Users;
+
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_Reports/App_LocalResources/")
+
+
+@{
+    // assign Model, so we can resolve var in VS
+    var info = (NBrightInfo)Model.List.First();
+}
+
+<input id="itemid" type="hidden" value="@info.ItemID" />
+<input id="editlang" type="hidden" value="@info.Lang" />
+<input id="currentlang" type="hidden" value="@CultureInfo.CurrentCulture" /> <!-- get the current culture and pass to the ajax server side, so it knows what language is -->
+<input id="typecode" type="hidden" value="NBSREPORT" /><!-- used as selected edit itemid -->
+<input id="selectlang" type="hidden" value="" /><!--used switch langauges -->
+<!--Report name  -->
+
+<br/>
+<div class="col-sm-5">
+    <h2><b>@ResourceKey("Admin.name"):</b> @info.GetXmlProperty("genxml/lang/genxml/textbox/name")</h2>
+    <br/>
+    <h3><b>@ResourceKey("Admin.ref"):</b> @info.GetXmlProperty("genxml/textbox/ref")</h3>
+</div>
+
+<div class="col-xs-12 col-sm-12 ">
+    <div class="form-group">
+        <div class="col-sm-12 text-center">
+
+            <div class="col-sm-12">
+            </div>
+            <div class="actionbuttonwrapper">
+                <button id="runreport" type="button" class="btn btn-primary">@ResourceKey("Admin.runreport")</button>
+            </div>
+
+        </div>
+    </div>
+</div>

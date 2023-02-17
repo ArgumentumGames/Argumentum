@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cxf="http://cxf.rechercheBt.soap.chronopost.fr/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <cxf:rechercheBtParCodeproduitEtCodepostalEtDate>
+      <!--Optional:-->
+      <codeProduit>{codeProduit}</codeProduit>
+      <!--Optional:-->
+      <codePostal>{codePostal}</codePostal>
+      <!--Optional:-->
+      <date>{date}</date>
+    </cxf:rechercheBtParCodeproduitEtCodepostalEtDate>
+  </soapenv:Body>
+</soapenv:Envelope>

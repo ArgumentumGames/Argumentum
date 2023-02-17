@@ -1,0 +1,71 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_PayBox/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+    var info = (NBrightInfo)Model.List.First();
+}
+
+
+<style>
+    /* Default buttons */
+    .paybutton {
+        background: #1AA8E3;
+        color: #FFFFFF;
+    }
+
+        .paybutton:hover {
+            background: #23BAF5;
+            color: #FFFFFF;
+        }
+
+    .paybutton {
+        display: inline-block;
+        font-weight: bold;
+        line-height: 35px;
+        padding: 0 10px;
+        margin: 10px 10px 10px 0;
+        text-align: center;
+        width: 45%;
+        border: medium none;
+        text-decoration: none;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+        .paybutton:hover {
+            text-decoration: none;
+        }
+</style>
+
+<div id="OS_PayBoxparam">
+
+    <!-- we require "paymentproviderkey" so it can be assigned to the order when the payment is selected  -->
+    <input id="paymentproviderkey" type="hidden" value="@info.GetXmlProperty("genxml/hidden/ctrl")" />
+
+    <h3>@info.GetXmlProperty("genxml/lang/genxml/textbox/title")</h3>
+
+    <div>
+        <img src='/DesktopModules/NBright/OS_PayBox/Themes/config/img/@(info.GetXmlProperty("genxml/dropdownlist/imagelogo"))' />
+    </div>
+
+    <div class="defaultmessage">@info.GetXmlProperty("genxml/lang/genxml/textbox/message")</div>
+
+    <div class="clearfix"></div>
+
+    <div id="cartactions" style="">
+        <div style="clear: both;">
+            <a href="?provider=@info.GetXmlProperty("genxml/hidden/ctrl")" id="cmdOS_PayBox" class="primarybutton">@info.GetXmlProperty("genxml/lang/genxml/textbox/buttontext")</a>
+        </div>
+    </div>
+
+</div>
+
+        <hr />

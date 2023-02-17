@@ -1,0 +1,68 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>notify.ashx</name>
+    </file>
+    <file>
+      <path />
+      <name>OS_PayBox.dnn</name>
+    </file>
+    <file>
+      <path />
+      <name>Payment.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>ReadMe.txt</name>
+    </file>
+    <file>
+      <path />
+      <name>Return.aspx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Payment.ascx.fr-FR.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Payment.ascx.resx</name>
+    </file>
+    <file>
+      <path>Installation/</path>
+      <name>pluginOS_PayBox.xml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>methodselection.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>payment_fail.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>payment_ok.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>settings.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>settingsfields.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/img/</path>
+      <name>CA.jpg</name>
+    </file>
+    <file>
+      <path>Themes/config/img/</path>
+      <name>logo_paybox.jpg</name>
+    </file>
+    <file>
+      <path>Themes/config/js/</path>
+      <name>OS_PayBox.js</name>
+    </file>
+  </files>
+</dotnetnuke>

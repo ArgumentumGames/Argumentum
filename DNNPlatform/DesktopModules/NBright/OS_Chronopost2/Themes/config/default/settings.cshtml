@@ -1,0 +1,82 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_Chronopost2/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+    var info = (NBrightInfo)Model.List.First();
+}
+
+<br />
+
+<div id="pageactionssource">
+    <!-- Page actions are moved into header bar - also exist at page bottom-->
+    <div class="col-xs-9 col-sm-9">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="actionbuttonwrapper">
+            <a id="chronopost2_save" class="btn btn-primary" href="javascript:void(0);">@ResourceKey("General.cmdSaveButton")</a>
+        </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 top-panel-right">
+        @EditLanguageButton();
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="chronopostreturnmsg"></div>
+
+    <div class="col-xs-12 col-sm-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-search"></i><span>Chronopost</span>
+                </div>
+            </div>
+            <div class="box-content chronopostdata">
+
+                @RenderTemplate("/DesktopModules/NBright/OS_Chronopost2/Themes/config/Default/settingsfields.cshtml", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<script>
+
+
+    $(document).ready(function () {
+        // start load all ajax data, continued by js in product.js file
+
+        $('#chronopost2_save').unbind("click");
+        $('#chronopost2_save').click(function () {
+            $('.processing').show();
+            $('.actionbuttonwrapper').hide();
+            nbxget('chronopost2_save', '.chronopostdata', '.chronopostreturnmsg');
+        });
+
+        $(document).on("nbxgetcompleted", ManualPayment_nbxgetCompleted); // assign a completed event for the ajax calls
+
+        // function to do actions after an ajax call has been made.
+        function ManualPayment_nbxgetCompleted(e) {
+
+            $('.processing').hide();
+            $('.actionbuttonwrapper').show();
+            $('.editlanguage').show();
+
+        };
+
+    });
+
+
+</script>

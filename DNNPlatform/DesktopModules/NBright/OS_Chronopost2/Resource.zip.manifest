@@ -1,0 +1,64 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>Chronopost.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>OS_Chronopost2.dnn</name>
+    </file>
+    <file>
+      <path />
+      <name>README.md</name>
+    </file>
+    <file>
+      <path />
+      <name>soaplabel.xml</name>
+    </file>
+    <file>
+      <path />
+      <name>soappointlist.xml</name>
+    </file>
+    <file>
+      <path />
+      <name>soapquickcost.xml</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Chronopost.ascx.fr-FR.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Chronopost.ascx.resx</name>
+    </file>
+    <file>
+      <path>Installation/</path>
+      <name>pluginChronopost2.xml</name>
+    </file>
+    <file>
+      <path>Themes/config/css/</path>
+      <name>module.css</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>carttemplate.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>settings.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>settingsfields.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/img/</path>
+      <name>chrono24.png</name>
+    </file>
+    <file>
+      <path>Themes/config/img/</path>
+      <name>chronorelais.png</name>
+    </file>
+  </files>
+</dotnetnuke>

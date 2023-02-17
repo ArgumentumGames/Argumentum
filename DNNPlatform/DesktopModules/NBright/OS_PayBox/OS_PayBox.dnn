@@ -1,0 +1,53 @@
+﻿<dotnetnuke type="Package" version="5.0">
+	<packages>
+		<package name="OS_PayBox" type="Module" version="1.0.0">
+			<friendlyName>OS_PayBox</friendlyName>
+			<description>OS_PayBox: Payment provider for open-Store</description>
+			<iconFile />
+			<owner>
+				<name>David Lee</name>
+				<organization>Nevoweb</organization>
+				<url>www.nevoweb.com</url>
+				<email>info@nevoweb.com</email>
+			</owner>
+			<license>
+  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+  YOU MAY NOT REDISTRIBUTE, NOT VIEW THE SOURCE CODE, NOT COPY THIS SOFTWARE.  
+			</license>
+			<releaseNotes>v1.1.0</releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">08.00.04</dependency>
+        <dependency type="managedPackage" version="4.0.0">OS_ProductView</dependency>
+      </dependencies>
+      <components>
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules\NBright\OS_PayBox</basePath>
+						<resourceFile>
+							<name>Resource.zip</name>
+						</resourceFile>
+					</resourceFiles>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<assembly>
+							<path>bin</path>
+							<name>OS_PayBox.dll</name>
+							<sourceFileName>OS_PayBox.dll</sourceFileName>
+						</assembly>
+					</assemblies>
+				</component>
+				<component type="File">
+					<files>
+						<basePath>DesktopModules\NBright\NBrightBuy\Plugins</basePath>
+						<file>
+							<path></path>
+							<name>pluginOS_PayBox.xml</name>
+							<sourceFileName>pluginOS_PayBox.xml</sourceFileName>
+						</file>
+					</files>
+				</component>
+      </components>
+		</package>
+	</packages>
+</dotnetnuke>

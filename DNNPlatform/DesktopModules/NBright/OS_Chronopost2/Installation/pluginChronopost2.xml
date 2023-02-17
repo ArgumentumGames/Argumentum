@@ -1,0 +1,64 @@
+<genxml>
+  <hidden>
+    <index datatype="double">23</index>
+  </hidden>
+  <textbox>
+    <ctrl update="save">chronopost2</ctrl>
+    <name update="save">Chronopost2</name>
+    <icon update="save" />
+    <group update="save">Shipping</group>
+    <path update="save">/DesktopModules/NBright/OS_Chronopost2/Chronopost.ascx</path>
+    <help update="save" />
+    <description update="save" />
+  </textbox>
+  <checkbox>
+    <hidden update="save">False</hidden>
+  </checkbox>
+  <dropdownlist />
+  <checkboxlist>
+    <securityroles update="save">
+      <chk value="True" data="Administrators">Administrators</chk>
+      <chk value="True" data="Manager">Manager</chk>
+      <chk value="False" data="Editor">Editor</chk>
+      <chk value="False" data="ClientEditor">ClientEditor</chk>
+      <chk value="False" data="Sales">Sales</chk>
+    </securityroles>
+  </checkboxlist>
+  <radiobuttonlist />
+  <interfaces>
+    <genxml>
+      <files />
+      <hidden />
+      <textbox>
+        <assembly>OS_Chronopost2</assembly>
+        <namespaceclass>Nevoweb.OS_Chronopost2.Provider</namespaceclass>
+      </textbox>
+      <checkbox>
+        <active>True</active>
+        <default>True</default>
+      </checkbox>
+      <dropdownlist>
+        <providertype>02</providertype>
+      </dropdownlist>
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+    <genxml>
+      <files />
+      <hidden />
+      <textbox>
+        <assembly>OS_Chronopost2</assembly>
+        <namespaceclass>Nevoweb.OS_Chronopost2.AjaxProvider</namespaceclass>
+      </textbox>
+      <checkbox>
+        <active>True</active>
+        <default>False</default>
+      </checkbox>
+      <dropdownlist>
+        <providertype>12</providertype>
+      </dropdownlist>
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+  </interfaces>
+</genxml>

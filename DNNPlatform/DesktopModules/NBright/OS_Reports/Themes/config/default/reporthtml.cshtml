@@ -1,0 +1,55 @@
+﻿@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System
+@using System.Globalization
+@using System.Linq
+@using System.Xml
+@using NBrightDNN
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuyReport/App_LocalResources/")
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <table class="">
+        <thead>
+            <tr style="width: 100%">
+                @{
+                    NBrightInfo x1 = (NBrightInfo)Model.List.First();
+                    var xmlNodeList1 = x1.XMLDoc.SelectNodes("item/*");
+                    if (xmlNodeList1 != null)
+                    {
+                        foreach (XmlNode xNod1 in xmlNodeList1)
+                        {
+                            <th>@xNod1.Name</th>
+                        }
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (NBrightInfo x in Model.List)
+            {
+                <tr>
+                    @{
+                        var xmlNodeList = x.XMLDoc.SelectNodes("item/*");
+                        if (xmlNodeList != null)
+                        {
+                            foreach (XmlNode xNod in xmlNodeList)
+                            {
+                                <td>@xNod.InnerText</td>
+                            }
+                        }
+                    }
+                </tr>
+                        }
+        </tbody>
+    </table>
+</body>
+</html>
