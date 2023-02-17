@@ -3,7 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://argumentum.dnndev.me", "http://argumentum.dnndev.me", "{C026B331-D997-48F5-95C7-53A3143E5B0C}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://argumentum2.dnndev.me", "http://argumentum2.dnndev.me", "{C026B331-D997-48F5-95C7-53A3143E5B0C}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/argumentum2.dnndev.me"
+		Debug.AspNetCompiler.PhysicalPath = "DNNPlatform\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\argumentum2.dnndev.me\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/argumentum2.dnndev.me"
+		Release.AspNetCompiler.PhysicalPath = "DNNPlatform\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\argumentum2.dnndev.me\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "DNNPlatform\"
+	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "false"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
@@ -29,20 +48,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://cardpen.dnndev.me", 
 		UseIISExpress = "false"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
 		Debug.AspNetCompiler.VirtualPath = "/cardpen.dnndev.me"
-		Debug.AspNetCompiler.PhysicalPath = "..\Cartes\"
+		Debug.AspNetCompiler.PhysicalPath = "Cartes\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\cardpen.dnndev.me\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/cardpen.dnndev.me"
-		Release.AspNetCompiler.PhysicalPath = "..\Cartes\"
+		Release.AspNetCompiler.PhysicalPath = "Cartes\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\cardpen.dnndev.me\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\Cartes\"
+		SlnRelativePath = "Cartes\"
 	EndProjectSection
 EndProject
 Global

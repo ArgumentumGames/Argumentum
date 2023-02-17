@@ -1,0 +1,61 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Entities.Users
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+@using System.Web
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_Stripe/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+    var info = (NBrightInfo)Model.List.First();
+    var eid = HttpContext.Current.Request.QueryString["orderid"];
+    var orderData = new OrderData(0, Convert.ToInt32(eid));
+    var orderNumber = orderData.OrderNumber;
+}
+
+@if (Model.GetSettingBool("carttitle"))
+{
+    <h1>@ResourceKey("CartView.YourBasket")</h1>
+}
+@if (Model.GetSettingBool("cartsteps"))
+{
+    <div class="checkoutsteps">
+        <div class="checkoutstepsheader">@ResourceKey("CartView.CartstepsProcess")</div>
+        <ol>
+            <li class="step1">@ResourceKey("CartView.CartstepsRecap")</li>
+            <li class="step2">@ResourceKey("CartView.CartstepsAddresses")</li>
+            <li class="step3">@ResourceKey("CartView.CartstepsShipping")</li>
+            <li class="step4">@ResourceKey("CartView.CartstepsPayment")</li>
+            <li class="step5 activestep">@ResourceKey("CartView.CartstepsConfirm")</li>
+        </ol>
+    </div>
+}
+
+<div class="nbs paymentcomplete">
+
+    <div class="formrow">
+        <h3>@info.GetXmlProperty("genxml/lang/genxml/textbox/rtntitle")</h3>
+        <p>@BreakOf(@info.GetXmlProperty("genxml/lang/genxml/textbox/rtnmessage"))</p>
+    </div>
+
+    <div class="formrow">
+        <b>@ResourceKey("OrderAdmin.ordernumber"):</b> @orderNumber
+    </div>
+
+    @if (UserController.Instance.GetCurrentUserInfo().UserID > 0)
+    {
+        <div class="formrow">
+            <a class="primarybutton" href="/tabid/@(Model.GetSetting("ordermanagertab"))/eid/@(eid)">@ResourceKey("CartView.ViewOrder")</a>
+        </div>
+    }
+    else
+    {
+        <div class="formrow">
+            <a class="primarybutton" href="/tabid/@(Model.GetSetting("productlisttab"))">@ResourceKey("CartView.returntostore")</a>
+        </div>
+    }
+
+</div>
+

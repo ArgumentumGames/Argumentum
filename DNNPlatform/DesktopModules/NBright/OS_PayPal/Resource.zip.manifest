@@ -1,0 +1,56 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path>Themes/config/js/</path>
+      <name>OSPayPal.js</name>
+    </file>
+    <file>
+      <path>Themes/config/img/</path>
+      <name>logo.png</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>methodselection.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>payment_fail.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>payment_ok.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>settings.cshtml</name>
+    </file>
+    <file>
+      <path>Themes/config/default/</path>
+      <name>settingsfields.cshtml</name>
+    </file>
+    <file>
+      <path>Plugins/</path>
+      <name>pluginOSPayPal.xml</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Payment.ascx.fr-FR.resx</name>
+    </file>
+    <file>
+      <path>App_LocalResources/</path>
+      <name>Payment.ascx.resx</name>
+    </file>
+    <file>
+      <path />
+      <name>notify.ashx</name>
+    </file>
+    <file>
+      <path />
+      <name>Payment.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>ReadMe.txt</name>
+    </file>
+  </files>
+</dotnetnuke>

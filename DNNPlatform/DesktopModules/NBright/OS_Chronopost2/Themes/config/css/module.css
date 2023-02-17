@@ -1,0 +1,13 @@
+/* CSS Document */
+
+/* Chronopost Shipping provider */
+#chronoposttemplate .radiobuttonlist{margin:10px 0 15px;display:block;}
+#chronopostrelaistemplate #relais{float:left;margin:0 5% 0 0;min-width:240px;width:45%;list-style:none outside none;}
+#chronopostrelaistemplate #relais a{border-radius:4px;color:inherit;display:block;margin-bottom:5px;padding:5px;text-transform:capitalize;font-size:12px;text-decoration:none;}
+#chronopostrelaistemplate #relais a:hover{background:#efefef;color:inherit;}
+#chronopostrelaistemplate #relais a:active, .relaisselected a:hover, .relaisselected a{background:#1aa8e3 !important;;color:#ffffff !important;}
+#chronopostrelaistemplate #map-canvas{position:relative;width:49%;height:400px;margin-right:0;float:left;min-width:240px;border:1px solid #bbbbbb;}
+#chronopostrelaistemplate #map-canvas .gmapinfowindow {line-height:1.35;overflow:hidden;white-space:nowrap;text-transform:capitalize;padding:6px 0;}
+.chronopostitem {font-size:12px;margin-bottom:12px;}
+.chronopostitem:after {content:"";display:table;clear:both;}
+.chronopostitem img {float:left;margin-right:12px;}

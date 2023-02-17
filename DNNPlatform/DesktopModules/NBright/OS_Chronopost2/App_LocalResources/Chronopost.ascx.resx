@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="chronopostsettings.Text" xml:space="preserve">
+    <value>Chronopost settings</value>
+  </data>
+  <data name="accountnumber.Text" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="password.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="type.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="chronopost00.Text" xml:space="preserve">
+    <value>Enlèvement en entrepot</value>
+  </data>
+  <data name="chronopost1.Text" xml:space="preserve">
+    <value>Chronopost 13</value>
+  </data>
+  <data name="chronopost16.Text" xml:space="preserve">
+    <value>Chronopost 18</value>
+  </data>
+  <data name="chronopost17.Text" xml:space="preserve">
+    <value>Chronopost Express International</value>
+  </data>
+  <data name="chronopost2.Text" xml:space="preserve">
+    <value>Chronopost</value>
+  </data>
+  <data name="chronopost37.Text" xml:space="preserve">
+    <value>Chronopost Premium International</value>
+  </data>
+  <data name="chronopost44.Text" xml:space="preserve">
+    <value>Chronopost Classic International</value>
+  </data>
+  <data name="chronopost86.Text" xml:space="preserve">
+    <value>Chronopost Relais</value>
+  </data>
+  <data name="productcodelist.data" xml:space="preserve">
+    <value>Chronopost 13,Chronopost 24h,Chronopost Relais,Chronopost Express International,Chronopost Classic International,Chronofresh</value>
+  </data>
+  <data name="productcodelist.datavalue" xml:space="preserve">
+    <value>1S,2,86,17,44,2R</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>
+    &lt;div class="chronopostitem"&gt;&lt;strong&gt;&lt;img src="/DesktopModules/NBright/OS_Chronopost2/Themes/config/img/chrono24.png" /&gt;Chronopost - Livraison express à domicile&lt;/strong&gt;&lt;br /&gt;Colis livré le lendemain matin avant 13h à votre domicile. La veille de la livraison, vous êtes averti par e-mail et SMS.&lt;/div&gt;
+    &lt;div class="chronopostitem"&gt;&lt;strong&gt;&lt;img src="/DesktopModules/NBright/OS_Chronopost2/Themes/config/img/chronorelais.png" /&gt;Chronopost - Livraison express en point relais&lt;/strong&gt;&lt;br /&gt;Colis livré le lendemain avant 13 h dans le relais Pickup de votre choix. Vous serez averti par e-mail et SMS.&lt;/div&gt;
+    </value>
+  </data>
+  <data name="products.Text" xml:space="preserve">
+    <value>Activate Products</value>
+  </data>
+  <data name="distributioncountrycode.Text" xml:space="preserve">
+    <value>Distribution Country Code</value>
+  </data>
+  <data name="distributionpostcode.Text" xml:space="preserve">
+    <value>Distribution Postal Code</value>
+  </data>
+  <data name="leaddays.Text" xml:space="preserve">
+    <value>Lead days to Estimated Delivery</value>
+  </data>
+  <data name="relaisfail.Text" xml:space="preserve">
+    <value>No pickup points Available for your selected area, try another postal code</value>
+  </data>
+  <data name="distributioncountryname.Text" xml:space="preserve">
+    <value>Distribution Country  Name</value>
+  </data>
+  <data name="freeshippinglimit.Text" xml:space="preserve">
+    <value>Free shipping Limit</value>
+  </data>
+  <data name="printmode.Text" xml:space="preserve">
+    <value>Print Mode</value>
+  </data>
+  <data name="offerpickupfree.Text" xml:space="preserve">
+    <value>Free Pickup</value>
+  </data>
+  <data name="notvalidcountrycodes.Text" xml:space="preserve">
+    <value>INVALID Country Codes  (CSV)</value>
+  </data>
+  <data name="validcountrycodes.Text" xml:space="preserve">
+    <value>VALID Country Codes (CSV)</value>
+  </data>
+  <data name="errorinaddress.Text" xml:space="preserve">
+    <value>&lt;div style="color:red;"&gt;Unable to verify address, please check you have entered your shipping address correctly.&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+$(document).ready(function () {
+$('input[id*="_cmdOrder_"]').hide();
+});
+&lt;/script&gt;</value>
+  </data>
+  <data name="chronopostaudit.Text" xml:space="preserve">
+    <value>Audit</value>
+  </data>
+  <data name="selectrelais.Text" xml:space="preserve">
+    <value>Please select your pickup point</value>
+  </data>
+  <data name="chronofreshonly.Text" xml:space="preserve">
+    <value>You have fresh goods in your basket, we ensure perfect delivery by using Chronofresh</value>
+  </data>
+  <data name="chronopost.Text" xml:space="preserve">
+    <value>Chronopost</value>
+  </data>
+  <data name="chronopostfresh.Text" xml:space="preserve">
+    <value>Chronofresh</value>
+  </data>
+</root>

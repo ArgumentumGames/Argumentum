@@ -1,0 +1,19 @@
+﻿@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System
+@using System.Globalization
+@using System.Linq
+@using System.Xml
+@using NBrightDNN
+@foreach (NBrightInfo x in Model.List)
+{
+    var strOut = "";
+    var xmlNodeList = x.XMLDoc.SelectNodes("item/*");
+    if (xmlNodeList != null)
+    {
+        foreach (XmlNode xNod in xmlNodeList)
+        {
+            strOut += "\"" + xNod.InnerText + "\",";
+        }
+        @HtmlOf(strOut.TrimEnd(',') + Environment.NewLine);//TrimEnd Method each data seperate by ';' in a column + display lines separate by newlines
+    }
+}

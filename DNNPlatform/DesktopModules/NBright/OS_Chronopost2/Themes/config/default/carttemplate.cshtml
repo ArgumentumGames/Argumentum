@@ -1,0 +1,135 @@
+    @inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+    @using System.Linq
+    @using DotNetNuke.Common
+    @using DotNetNuke.Entities.Portals
+    @using DotNetNuke.Entities.Users
+    @using NBrightDNN
+    @using Nevoweb.DNN.NBrightBuy.Components
+    @using Nevoweb.OS_Chronopost2;
+    @using Nevoweb.OS_Chronopost2.Components;
+
+    @AddMetaData("resourcepath", "/DesktopModules/NBright/OS_Chronopost2/App_LocalResources")
+    @AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+    @{
+        var chronopostData = (ChronopostLimpet)Model.List.First();
+    }
+
+    <link href="/DesktopModules/NBright/OS_Chronopost2/Themes/config/css/module.css" rel="stylesheet">
+    <link href="/DesktopModules/NBright/NBrightBuy/Themes/config/css/w3.css" rel="stylesheet">
+
+    <div id="chronoposttemplate">
+        <div class="formrow dnnForm chronopostdata">
+
+            @if (!chronopostData.ChronofreshOnly)
+            {
+                <div id="chronopostproductselect">
+                    @{
+                        var productCodes = chronopostData.ProductCodeList();
+                        foreach (var pc in productCodes)
+                        {
+                            var buttonclass = "secondarybutton";
+                            var selectedKey = "";
+                            if (chronopostData.SelectedProductCode == pc.Key)
+                            {
+                                buttonclass = "primarybutton";
+                                selectedKey = pc.Key;
+                            }
+
+                            <a href="javascript:void(0)" value="@(pc.Key)" id="@(pc.Key)" class="@buttonclass chronopostclick">@(pc.Value)</a>
+                        }
+                    }
+                    <input type="hidden" id="productcode" update="save" value="">
+                </div>
+            }
+
+            @if (chronopostData.SelectedProductCode != "2R" && chronopostData.SelectedProductCode != "86")
+            {
+                <h2>@ResourceKey("Chronopost.chronopost")</h2>
+            }
+            @if (chronopostData.SelectedProductCode == "2R")
+            {
+                <h2>@ResourceKey("Chronopost.chronopostfresh")</h2>
+
+                if (chronopostData.ChronofreshOnly)
+                {
+                    <p>@ResourceKey("Chronopost.chronofreshonly")</p>
+                }
+            }
+            @if (chronopostData.SelectedProductCode == "86")
+            {
+                <h2>@ResourceKey("Chronopost.chronopost86")</h2>
+                <p>
+                    @ResourceKey("Chronopost.selectrelais")
+                </p>
+                var l = chronopostData.GetRelais();
+                if (l.Count > 0)
+                {
+                    foreach (var r in l)
+                    {
+
+                        var selectedrelaisclass = "";
+                        if (r.GetXmlProperty("return/identifiantchronopostpointa2pas") == chronopostData.CartInfo.GetXmlProperty("genxml/return/identifiantchronopostpointa2pas"))
+                        {
+                            selectedrelaisclass = "w3-blue";
+                        }
+                        <div class="action_relais w3-row w3-border w3-padding @(selectedrelaisclass) " value="@NBrightBuyUtils.EnCode(r.XMLData)">
+                            <a href="@r.GetXmlProperty("return/urlgooglemaps")" target="_blank" class=""><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;</a>
+                            <span id="identifiantchronopostpointa2pas" style="cursor:pointer;">
+                                <b>@r.GetXmlProperty("return/nomenseigne")</b>
+                                @r.GetXmlProperty("return/adresse1")&nbsp;@r.GetXmlProperty("return/localite")
+                            </span>
+                        </div>
+                    }
+                    <input type="hidden" id="relaisdata" update="save">
+                }
+                else
+                {
+                    <div>@ResourceKey("Chronopost.relaisfail")</div>
+                }
+            }
+
+        </div>
+        <div class="formrow">
+        </div>
+        <div class="formrow">
+        </div>
+    </div>
+
+    <div id="chronopostreturnmsg" style="display:none;"></div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("nbxgetcompleted", ManualPayment_nbxgetCompleted); // assign a completed event for the ajax calls
+
+            // function to do actions after an ajax call has been made.
+            function ManualPayment_nbxgetCompleted(e) {
+                $('.actionbuttonwrapper').show();
+                $('.editlanguage').show();
+            };
+
+            $('.chronopostclick').unbind();
+            $('.chronopostclick').click(function () {
+                $('.processingcheckout').show();
+                $('#productcode').val($(this).attr('value'));
+                nbxget('chronopost2_select', '#chronopostproductselect', '#chronopostreturnmsg');
+                $('#checkoutsummary').hide();
+            });
+            $('.action_relais').unbind();
+            $('.action_relais').click(function () {
+                $('.processingcheckout').show();
+                $('#relaisdata').val($(this).attr('value'));
+                nbxget('chronopost2_selectrelais', '.chronopostdata', '#chronopostreturnmsg');
+                $('#checkoutsummary').hide();
+            });
+            $('#chronopostreturnmsg').unbind();
+            $('#chronopostreturnmsg').change(function () {
+                $('.processingcheckout').show();
+                $('#cmdRecalcSummary').trigger('click');
+            });
+
+        });
+
+    </script>

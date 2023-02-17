@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cxf="http://cxf.quickcost.soap.chronopost.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cxf:quickCost>
+         <accountNumber>{accountnumber}</accountNumber>
+         <password>{password}</password>
+         <depCode>{depcode}</depCode>
+         <arrCode>{arrcode}</arrCode>
+         <weight>{weight}</weight>
+         <productCode>{productcode}</productCode>
+         <type>{type}</type>
+      </cxf:quickCost>
+   </soapenv:Body>
+</soapenv:Envelope>
