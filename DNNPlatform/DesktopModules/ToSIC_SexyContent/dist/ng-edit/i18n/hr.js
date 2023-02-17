@@ -48,10 +48,12 @@
     "CantSwitchLanguage": "Can't switch languages until current language has all required values"
   },
   "LangMenu": {
-    "Translate": "Translate",
-    "TranslateAll": "Translate all",
-    "NoTranslate": "Don't translate",
-    "NoTranslateAll": "Don't translate any",
+    "Translate": "Prevedi",
+    "TranslateAll": "Prevedi sve",
+    "AutoTranslateAll": "Prevedi sve automatski",
+    "AutoTranslate": "Automatski prevedi",
+    "NoTranslate": "Ne prevodi",
+    "NoTranslateAll": "Ne prevodi sve",
     "Link": "Link to other language",
     "UseDefault": "auto (default)",
     "InAllLanguages": "in all languages",
@@ -84,7 +86,16 @@
         "Body": "Link languages together to use the same editable value",
         "Subtitle": "Language to share with"
       },
-      "PickLanguageIntro": "Only languages with content can be selected."
+      "PickLanguageIntro": "Only languages with content can be selected.",
+      "AutoTranslateAll": {
+        "Title": "Automatski prijevod svih polja koristeći Google Translate",
+        "Body": "Samo polja koja nisu već prevedena će biti automatski prevedena. Neće sva polja biti prevedena, pogledajte <a href='https://2sxc.org/translate' target='_blank'>dokument</a>.",
+        "NoContent": "nema sadržaja",
+        "AllTranslatableFields": "sva prevodiva polja",
+        "Of": "od",
+        "TranslatableFields": "prevodivih polja",
+        "Empty": "prazno"
+      }
     }
   },
   "Errors": {
@@ -175,7 +186,6 @@
         "RenameQuestion": "Rename file / folder to:",
         "Delete": "Delete",
         "DeleteQuestion": "Are you sure you want to delete this file?",
-        "Hint": "drop files here",
         "HelpTooltip": "ADAM is the Automatic Digital Assets Manager - click to discover more",
         "SponsorLine": "is sponsored with ♡ by"
       },
@@ -214,8 +224,9 @@
     "Link.Page": "Link to another page",
     "Link.Page.Tooltip": "Link a page from the current site",
     "Link.Anchor.Tooltip": "Anchor to link to using .../page#anchorname",
-    "SwitchMode.Pro": "Switch to advanced mode",
-    "SwitchMode.Standard": "Switch to standard mode",
+    "SwitchMode.Tooltip": "Prebaci mod rada",
+    "SwitchMode.Pro": "Prebaci na napredni mod",
+    "SwitchMode.Standard": "Prebaci na standardni mod",
     "SwitchMode.Expand": "Fullscreen",
     "H1": "H1",
     "H2": "H2",
@@ -224,6 +235,14 @@
     "H5": "H5",
     "H6": "H6",
     "Paragraph": "Paragraph",
-    "ContentBlock.Add": "Add app or content block"
+    "ContentBlock.Add": "Add app or content block",
+    "ContentDivision.Add": "Dodaj razdjeljenje u sadržaju"
+  },
+  "Features": {
+    "NotActivated": "Ova značajka nije aktivirana - doznaj više",
+    "NotActive": "Nije aktivirano",
+    "Active": "Aktivirano",
+    "Status": "Status",
+    "SecurityRating": "Sigurnosna ocjena"
   }
 }

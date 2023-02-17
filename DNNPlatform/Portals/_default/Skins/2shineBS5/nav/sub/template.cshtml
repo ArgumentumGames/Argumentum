@@ -1,0 +1,46 @@
+@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic; 
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic> 
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes, bool active = false) {
+	if (nodes.Count > 0) {
+		<ul class='@(nodes[0].Depth == 0 ? "navbar-nav" : "ul-collapse collapse collapse-" + nodes[0].Parent.TabId) @(active ? "show" : "")'>
+			@foreach (var node in nodes) {
+				var cssClasses = new List<string>();
+				cssClasses.Add("nav-item");
+				cssClasses.Add("position-relative");
+				cssClasses.Add("nav-" + node.TabId);
+
+				if (node.First) { cssClasses.Add("first"); }
+				if (node.Last) { cssClasses.Add("last"); }
+				if (node.HasChildren()) { cssClasses.Add("has-child"); }
+				if (!node.Enabled) { cssClasses.Add("disabled"); }
+				if (node.Breadcrumb) {
+					cssClasses.Add("active");
+				} else {
+					cssClasses.Add("inactive");
+				}
+
+				var classString = new HtmlString((cssClasses.Count == 0) ? "" : (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
+
+				var linkCssClasses = new List<string>();
+				linkCssClasses.Add("nav-link");
+
+				if (node.Breadcrumb) { linkCssClasses.Add("active"); }
+
+				var linkClassString = new HtmlString((linkCssClasses.Count == 0) ? "" : (" class=\"" + String.Join(" ", linkCssClasses.ToArray()) + "\""));
+
+				<li @classString>
+					<a @linkClassString target='@(node.Target == "_blank" ? "_blank" : "_self")' href='@(node.Enabled ? node.Url : "javascript:void(0)")'>@node.Text</a>
+					@if (node.HasChildren()) { 
+						<span class='nav-item-sub-opener @(node.Breadcrumb ? "" : "collapsed")' @(node.HasChildren() ? "data-bs-toggle=collapse data-bs-target=.collapse-" + node.TabId : "") ></span>
+					}
+					
+					@RenderNodes(node.Children, node.Breadcrumb)
+				</li>
+			}
+		</ul>
+	}
+}
+@RenderNodes(root.Children)

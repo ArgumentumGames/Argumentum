@@ -45,11 +45,15 @@
     "Deleting": "Deleting...",
     "DeleteError": "Delete failed. Please check console for more information",
     "SwitchedLanguageToDefault": "We have switched language to default {{language}} because it's missing some or all values",
-    "CantSwitchLanguage": "Can't switch languages until current language has all required values"
+    "CantSwitchLanguage": "Can't switch languages until current language has all required values",
+    "PastingFilesIsNotEnabled": "Pasting files is not enabled.",
+    "FindOutMore": "Find out more"
   },
   "LangMenu": {
     "Translate": "Translate",
     "TranslateAll": "Translate all",
+    "AutoTranslateAll": "Auto-Translate all",
+    "AutoTranslate": "Auto-Translate",
     "NoTranslate": "Don't translate",
     "NoTranslateAll": "Don't translate any",
     "Link": "Link to other language",
@@ -58,6 +62,10 @@
     "MissingDefaultLangValue": "please create value in the default language {{languages}} before translating",
     "In": "in {{languages}}",
     "From": "from {{languages}}",
+    "SnackBar": {
+      "Title": "⚠️ Warning: You are using a test account",
+      "Body": "You are using a demo Google Account to translate. This can stop working at any time. <br>You <strong>must</strong> register your own API key. It's free for 500'000 words per month. See <a href='https://r.2sxc.org/translate-api-key' target='_blank'>docs</a>."
+    },
     "Dialog": {
       "Title": "Translate {{name}}",
       "Intro": "You can do many things when translating, like linking languages together.",
@@ -84,7 +92,19 @@
         "Body": "Link languages together to use the same editable value",
         "Subtitle": "Language to share with"
       },
-      "PickLanguageIntro": "Only languages with content can be selected."
+      "PickLanguageIntro": "Only languages with content can be selected.",
+      "AutoTranslateAll": {
+        "Title": "Auto-Translate all Fields using Google Translate",
+        "Body": "Only fields that are not yet translated will be auto-translated. Note that not all fields will be translated - see <a href='https://2sxc.org/translate' target='_blank'>docs</a>.",
+        "NoContent": "no content",
+        "AllTranslatableFields": "all translatable fields",
+        "Of": "of",
+        "TranslatableFields": "translatable fields",
+        "Empty": "empty"
+      },
+      "CantAutoTranslate": "Can't auto-translate",
+      "NoAutoTranslatableFields": "There are no auto-translatable fields in this form",
+      "ThisFieldIsNotAutoTranslatable": "This field is not auto-translatable"
     }
   },
   "Errors": {
@@ -175,7 +195,7 @@
         "RenameQuestion": "Rename file / folder to:",
         "Delete": "Delete",
         "DeleteQuestion": "Are you sure you want to delete this file?",
-        "Hint": "drop files here",
+        "Hint": "drop or paste files",
         "HelpTooltip": "ADAM is the Automatic Digital Assets Manager - click to discover more",
         "SponsorLine": "is sponsored with ♡ by"
       },
@@ -207,6 +227,9 @@
     "Link.AdamFile.Tooltip": "Link using ADAM - just drop files using the Automatic Digital Assets Manager",
     "Image.AdamImage": "Insert ADAM image (recommended)",
     "Image.AdamImage.Tooltip": "Image from ADAM - just drop files using the Automatic Digital Assets Manager",
+    "Image.PasteImage": "Paste image",
+    "Image.PasteImage.Tooltip": "Paste image from clipboard (Ctl+V)",
+    "Image.PasteImage.Message": "Use Ctrl+V (Mac: Cmd+V) to paste an image from clipboard",
     "Link.DnnFile": "Link DNN file",
     "Link.DnnFile.Tooltip": "Link a DNN file (all files, slow)",
     "Image.DnnImage": "Insert DNN image",
@@ -214,9 +237,10 @@
     "Link.Page": "Link to another page",
     "Link.Page.Tooltip": "Link a page from the current site",
     "Link.Anchor.Tooltip": "Anchor to link to using .../page#anchorname",
+    "SwitchMode.Tooltip": "Switch work mode",
     "SwitchMode.Pro": "Switch to advanced mode",
     "SwitchMode.Standard": "Switch to standard mode",
-    "SwitchMode.Expand": "Fullscreen",
+    "SwitchMode.Expand": "Switch to full screen",
     "H1": "H1",
     "H2": "H2",
     "H3": "H3",
@@ -224,6 +248,23 @@
     "H5": "H5",
     "H6": "H6",
     "Paragraph": "Paragraph",
-    "ContentBlock.Add": "Add app or content block"
+    "ContentBlock.Add": "Add app or content block",
+    "ContentDivision.Add": "Add content division",
+    "RichImages.Ratio100.Label": "Make width cover entire area",
+    "RichImages.Ratio100.Tooltip": "Make width cover entire area of screen (desktop and mobile)",
+    "RichImages.RatioXofY.Label": "Make width {0}/{1} of screen",
+    "RichImages.RatioXofY.Tooltip": "Make width {0}/{1} of the desktop width; mobile will auto-adjust"
+  },
+  "Features": {
+    "NotActivated": "This feature is not activated - find out more",
+    "NotActive": "Not active",
+    "Active": "Active",
+    "Status": "Status",
+    "SecurityRating": "Security rating",
+    "FeatureNotActivated": "This cool feature is not enabled",
+    "ClickToFindOutMore": "Click to find out more...",
+    "FindOutMore": "Find out more",
+    "Tooltip": "Feature: {{Name}} ({{NameId}})",
+    "Close": "Close"
   }
 }

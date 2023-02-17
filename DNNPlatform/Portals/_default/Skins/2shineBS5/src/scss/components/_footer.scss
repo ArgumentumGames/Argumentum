@@ -1,0 +1,38 @@
+@media all {
+  footer#to-shine-page-footer {
+
+    ul {
+      margin: 0;
+      padding: 0;
+      @include media-breakpoint-up(lg) {
+        display: flex;
+      }
+
+      li {
+        list-style-type: none;
+        margin-right: 6px;
+      }
+    }
+    a,
+    a:focus {
+      color: $tosic-footer-color;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      &:hover,
+      &:active {
+        color: rgba($tosic-footer-color, 0.5);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      &.to-shine-page-login {
+        font-size: 12px;
+        color: transparent;
+
+        &:hover {
+          color:$white;
+        }
+      }
+    }
+    
+  }
+}

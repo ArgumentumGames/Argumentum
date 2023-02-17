@@ -34,6 +34,10 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Lib.Core.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Dnn.Core.pdb</name>
     </file>
     <file>
