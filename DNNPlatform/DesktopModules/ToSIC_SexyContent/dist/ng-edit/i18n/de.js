@@ -45,7 +45,9 @@
     "Deleting": "Löschen...",
     "DeleteError": "Löschen hat versagt. Bitte genauen Grund aus der Konsole entnehmen. ",
     "SwitchedLanguageToDefault": "Es fehlen Werte in der Primärsprache, deshalb wurde auf die Standardsprache {{language}} umgestellt.",
-    "CantSwitchLanguage": "Sprachwechsel erst möglich wenn alle Pflichtfelder in der aktuellen Sprache befüllt sind"
+    "CantSwitchLanguage": "Sprachwechsel erst möglich wenn alle Pflichtfelder in der aktuellen Sprache befüllt sind",
+    "PastingFilesIsNotEnabled": "Dateien einfügen ist nicht verfügbar.",
+    "FindOutMore": "mehr"
   },
   "LangMenu": {
     "Translate": "Übersetzen",
@@ -158,9 +160,9 @@
       },
       "AdamFileManager": {
         "Name": "ADAM",
-        "UploadLabel": "Upload nach",
+        "UploadLabel": "Hochladen",
         "UploadTip": "Schnell upload mit ADAM",
-        "UploadPasteLabel": "Bild aus Zwischenablage",
+        "UploadPasteLabel": "Einfügen",
         "UploadPasteFocusedLabel": "CTRL + V drücken",
         "UploadPasteTip": "Klick hier und drück CTRL + V um aus der Zwischenablage einzufügen",
         "NewFolder": "Neuer Ordner",
@@ -175,7 +177,7 @@
         "RenameQuestion": "Umbenennen:",
         "Delete": "Löschen",
         "DeleteQuestion": "Bist du sicher, dass die die Datei löschen möchtest?",
-        "Hint": "Dateien hierher ziehen ",
+        "Hint": "Dateien hierher ziehen / einfügen",
         "HelpTooltip": "ADAM ist der Automatic Digital Assets Manager - mehr erfahren",
         "SponsorLine": "mit ♡ gesponsort von"
       },
@@ -207,6 +209,9 @@
     "Link.AdamFile.Tooltip": "ADAM Dateien verlinken - Dateien einfach hierhin ziehen - verwendet den Automatic Digital Assets Manager",
     "Image.AdamImage": "ADAM Bild (empfohlen)",
     "Image.AdamImage.Tooltip": "ADAM Bild einfügen - Dateien einfach hierhin ziehen - verwendet den Automatic Digital Assets Manager",
+    "Image.PasteImage": "Bild aus Zwischenablage",
+    "Image.PasteImage.Tooltip": "Bild aus Zwischenablage einfügen (Ctl+V)",
+    "Image.PasteImage.Message": "Verwende use Ctrl+V (Mac: Cmd+V) um ein Bild aus der Zwischenablage einzufügen",
     "Link.DnnFile": "DNN Datei verlinken",
     "Link.DnnFile.Tooltip": "DNN Datei verlinken (alle Dateien, langsam)",
     "Image.DnnImage": "DNN Bild",
@@ -224,6 +229,13 @@
     "H5": "Ü5",
     "H6": "Ü6",
     "Paragraph": "Absatz",
-    "ContentBlock.Add": "App oder Inhaltsbaustein einfügen"
+    "ContentBlock.Add": "App oder Inhaltsbaustein einfügen",
+    "RichImages.Ratio100.Label": "Bild auf ganze Breite anpassen",
+    "RichImages.Ratio100.Tooltip": "Bild auf ganze Breite (desktop/mobile) anpassen",
+    "RichImages.RatioXofY.Label": "Bildbreite {0}/{1} der Fläche",
+    "RichImages.RatioXofY.Tooltip": "Bildbreite {0}/{1} der verfügbaren Fläche auf Desktop; Mobil wird automatisch angepasst"
+  },
+  "Features": {
+    "NotActivated": "Diese Funktion ist nicht aktiviert - mehr erfahren"
   }
 }

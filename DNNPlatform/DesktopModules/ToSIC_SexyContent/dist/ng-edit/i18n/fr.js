@@ -175,7 +175,6 @@
         "RenameQuestion": "Rename file / folder to:",
         "Delete": "Delete",
         "DeleteQuestion": "Are you sure you want to delete this file?",
-        "Hint": "drop files here",
         "HelpTooltip": "ADAM is the Automatic Digital Assets Manager - click to discover more",
         "SponsorLine": "is sponsored with ♡ by"
       },
