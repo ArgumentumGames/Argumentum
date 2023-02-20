@@ -7,7 +7,7 @@
     var view1Parameters = "details=" + ruleEntity.UrlKey+ "&mid=" + CmsContext.Module.Id;
 
     <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
-        <div class="col-md-12">
+        <div class="col-md-12 position-relative">
             <h2>@ruleEntity.EntityTitle</h2>
             <a class="link-overlay" href="@Link.To(parameters: view1Parameters)"></a>
             <div class="col-md-12">
