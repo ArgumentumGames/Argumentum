@@ -38,13 +38,13 @@
         <h2>@Resources.RuleSummary</h2>
         @Html.Raw(ruleEntity.Summary)
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8  position-relative">
         <h2>@Resources.RuleMaterial</h2>
         @Html.Raw(ruleEntity.Material)
         <h2>@Resources.RuleInstallation</h2>
         @Html.Raw(ruleEntity.Installation)
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12  position-relative">
         @Html.Raw(ruleEntity.Content)
         @if (ruleEntity.Variants != "")
         {
