@@ -134,19 +134,19 @@
   <div class="container py-4 d-flex justify-content-md-between flex-column flex-md-row text-white">
     <ul class="to-shine-footer-address" itemscope itemtype="http://schema.org/LocalBusiness">
       <li>
-        <strong itemprop="name">Argumentum</strong>
+        <strong itemprop="name">2shine DNN BS5 2sxc </strong>
       </li>
       <li>
         <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-          <span itemprop="streetAddress">5B rue Martel</span>,
-          <span itemprop="postalCode">75010</span>
-          <span itemprop="addressLocality">Paris</span>,
-          <span itemprop="addressCountry">France</span>
+          <span itemprop="streetAddress">Shine Road 77</span>,
+          <span itemprop="postalCode">50355</span>
+          <span itemprop="addressLocality">Shine City</span>,
+          <span itemprop="addressCountry">Shine Country</span>
         </span>
       </li>
-        <li><a href="tel:+33689156807">+33 6 89 15 68 07</a></li>
+        <li><a href="tel:+41817506777">+41 81 750 67 77</a></li>
       <li>
-        <span data-madr1="contact" data-madr2="argumentum" data-madr3="games" data-linktext=""></span>
+        <span data-madr1="shine" data-madr2="example" data-madr3="com" data-linktext=""></span>
       </li>
     </ul>
     <div class="to-shine-footer-imprint">
@@ -154,8 +154,8 @@
         <%-- 
           Terms and Privacy Links are set in "Site Settings" > "Site Behavior"
         --%>
-        <a href="/terms" title="<%= LocalizeString("Imprint.Text") %>"><%= LocalizeString("Imprint.Text") %></a> | 
-        <a href="/privacy" title="<%= LocalizeString("Privacy.Text") %>"><%= LocalizeString("Privacy.Text") %></a>
+        <a href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().PrivacyTabId) %>" title="<%= LocalizeString("Imprint.Text") %>"><%= LocalizeString("Imprint.Text") %></a> | 
+        <a href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().TermsTabId) %>" title="<%= LocalizeString("Privacy.Text") %>"><%= LocalizeString("Privacy.Text") %></a>
     </div>
   </div>
 </footer>
