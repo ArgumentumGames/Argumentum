@@ -1,13 +1,15 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 
 @{
   var termGroups = AsList(App.Data["Term"])
     .GroupBy(l => l.Title.Substring(0, 1).ToUpper())    // group by first letter
     .OrderBy(s => s.Key);                               // sort asc
+    
+  var termToolbar = Kit.Toolbar.Default().Data("Term");
 }
 
-<div class="app-glossary3" @Edit.TagToolbar(toolbar: "contentitems?contentType=Term")>
+<div class="app-glossary3" @termToolbar>
   <nav class="navbar navbar-default">
     <div class="navbar-header" data-toggle="collapse" data-target="#glossary-nav-@Content.EntityId" aria-expanded="false">
       <span>@Resources.GlossaryMenu</span>

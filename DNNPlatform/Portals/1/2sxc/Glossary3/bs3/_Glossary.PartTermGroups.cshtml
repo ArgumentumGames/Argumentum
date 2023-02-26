@@ -1,9 +1,11 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using System.Collections.Generic;
 @using System.Linq;
 @{
   var termGroups = DynamicModel.TermGroups;
+
+  var termToolbar = Kit.Toolbar.Default().Delete();
 }
 
 @foreach (var grp in termGroups) {
@@ -14,7 +16,7 @@
         var titleAbbreviation = (Text.Has(term.Abbreviation) ? term.Abbreviation + " – " : "");
         var fullTermTitle = titleAbbreviation + term.Title;
 
-        <div class="app-glossary-single-term" @Edit.TagToolbar(term, toolbar: "%delete&show=true")>
+        <div class="app-glossary-single-term" @termToolbar.For(term)>
             <strong>@fullTermTitle</strong>
             <p>@term.Summary</p>
             <small><a href='@Link.To(parameters: "term=" + term.UrlKey)'>@Resources.MoreText</a></small>
