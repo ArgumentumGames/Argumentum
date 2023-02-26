@@ -2,8 +2,8 @@
   <files />
   <hidden>
     <imageref />
-    <imageurl>/Portals/1/NBStore/images/eGHcXWx7.png</imageurl>
-    <imagepath>E:\Dev\AI\Libs\Argumentum\DNNPlatform\Portals\1\NBStore\images\eGHcXWx7.png</imagepath>
+    <imageurl>/Portals/1/NBStore/images/kLx6EkW2.png</imageurl>
+    <imagepath>E:\Dev\AI\Libs\Argumentum\DNNPlatform\Portals\1\NBStore\images\kLx6EkW2.png</imagepath>
   </hidden>
   <textbox>
     <txtproductref />
@@ -95,6 +95,21 @@
     <genxml>
       <files />
       <hidden>
+        <imageref>zBFdDQnH</imageref>
+        <imageurl>/Portals/1/NBStore/images/kLx6EkW2.png</imageurl>
+        <imagepath>E:\Dev\AI\Libs\Argumentum\DNNPlatform\Portals\1\NBStore\images\kLx6EkW2.png</imagepath>
+      </hidden>
+      <textbox />
+      <checkbox>
+        <chkhidden>False</chkhidden>
+      </checkbox>
+      <dropdownlist />
+      <checkboxlist />
+      <radiobuttonlist />
+    </genxml>
+    <genxml>
+      <files />
+      <hidden>
         <imageref>fB9FNfsG</imageref>
         <imageurl>/Portals/1/NBStore/images/eGHcXWx7.png</imageurl>
         <imagepath>E:\Dev\AI\Libs\Argumentum\DNNPlatform\Portals\1\NBStore\images\eGHcXWx7.png</imagepath>
@@ -153,7 +168,7 @@
         <txtseoname update="lang" />
         <txtseopagetitle update="lang" />
         <seodescription update="lang" />
-        <txtimagedesc update="lang">Les cartes du jeu Argumentum</txtimagedesc>
+        <txtimagedesc update="lang">La boite du jeu Argumentum</txtimagedesc>
       </textbox>
       <checkbox>
         <chkishiddenlang update="lang">False</chkishiddenlang>
@@ -163,6 +178,21 @@
       <radiobuttonlist />
       <options />
       <imgs>
+        <genxml>
+          <files />
+          <hidden>
+            <fimageurl />
+            <fimagepath />
+            <fimageref />
+          </hidden>
+          <textbox>
+            <txtimagedesc>La boite du jeu Argumentum</txtimagedesc>
+          </textbox>
+          <checkbox />
+          <dropdownlist />
+          <checkboxlist />
+          <radiobuttonlist />
+        </genxml>
         <genxml>
           <files />
           <hidden>
@@ -206,4 +236,5 @@
       </edt>
     </genxml>
   </lang>
+  <entitytypecode><![CDATA[PRD]]></entitytypecode>
 </genxml>

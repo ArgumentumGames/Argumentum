@@ -22,11 +22,11 @@
     </file>
     <file>
       <path>Bootstrap/css/</path>
-      <name>bootstrap.css.map</name>
+      <name>bootstrap.min.css</name>
     </file>
     <file>
       <path>Bootstrap/css/</path>
-      <name>bootstrap.min.css</name>
+      <name>bootstrap.min.css.map</name>
     </file>
     <file>
       <path>Bootstrap/fonts/</path>

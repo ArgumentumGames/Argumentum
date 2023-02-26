@@ -241,6 +241,10 @@
       <name>export-bundle.js</name>
     </file>
     <file>
+      <path>scripts/exports/</path>
+      <name>export-bundle.js.map</name>
+    </file>
+    <file>
       <path>scripts/</path>
       <name>extension.js</name>
     </file>
