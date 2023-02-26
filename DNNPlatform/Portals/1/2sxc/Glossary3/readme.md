@@ -8,7 +8,7 @@ A term glossary app to use with 2sxc
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v12.05
+| 2sxc                | ✅    | requires 2sxc v13.10
 | Dnn                 | ✅    | For v7, v8 and v9
 | Oqtane 2            | ✅    | Requires v2.02
 | No jQuery           | ✅    | 
@@ -17,7 +17,7 @@ A term glossary app to use with 2sxc
 | Source & License    | ✅    | included, ISC/MIT
 | App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/glossary3-hybrid-for-dnn-and-oqtane)
 | Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/glossary3-hybrid-for-dnn-and-oqtane)
-| Best Practices      | ✅    | Uses v12.05 conventions
+| Best Practices      | ✅    | Uses v13.10 conventions
 | Bootstrap 3         | ✔️    | 
 | Bootstrap 4         | ✅    |
 | Bootstrap 5         | ✅    | 
@@ -43,3 +43,11 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
     * Updated License
 * v03.01.02 02022-03
     * Enabled data-optimizations
+* v03.02.00 2022-04
+    * Replaced data-enableoptimizations with IPageService.AssetAttribute()
+* v03.03.00 2022-06 
+    * Changed all base classes to their 2sxc 14 equivalents
+    * Replaced all GetService<> with the new ServiceKit14
+    * Updated Webpack
+* v03.03.01 2022-08
+    * Updated the lighspeed config
