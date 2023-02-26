@@ -186,6 +186,14 @@
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
+      <name>p-11b5e0e8.system.entry.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-11b5e0e8.system.entry.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
       <name>p-23097f6d.system.js</name>
     </file>
     <file>
@@ -258,14 +266,6 @@
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-8615670f.system.entry.js</name>
-    </file>
-    <file>
-      <path>Scripts/dnn-resource-manager/</path>
-      <name>p-8615670f.system.entry.js.map</name>
-    </file>
-    <file>
-      <path>Scripts/dnn-resource-manager/</path>
       <name>p-933b4c43.system.js</name>
     </file>
     <file>
@@ -322,11 +322,11 @@
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-cd690c99.entry.js</name>
+      <name>p-cfc0cac2.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-cd690c99.entry.js.map</name>
+      <name>p-cfc0cac2.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>

@@ -142,7 +142,7 @@
     </file>
     <file>
       <path>Dnn.Licensing/scripts/bundles/</path>
-      <name>licensing-bundle.js.map</name>
+      <name>licensing.bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.Licensing/scripts/</path>
@@ -166,7 +166,7 @@
     </file>
     <file>
       <path>Dnn.Pages/scripts/bundles/</path>
-      <name>pages-bundle.js.map</name>
+      <name>pages.bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.Pages/scripts/</path>
@@ -366,7 +366,7 @@
     </file>
     <file>
       <path>Dnn.SiteGroups/scripts/bundles/</path>
-      <name>site-groups-bundle.js.map</name>
+      <name>site-groups.bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.SiteGroups/scripts/</path>
