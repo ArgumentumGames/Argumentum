@@ -130,6 +130,6 @@
     <value>Merci pour votre commande. Vous recevrez en suivant un email de confirmation contenant tous les détails de la commande. Merci de vérifier votre dossier de courrier indésirable si vous ne le recevez pas d'ici 30 minutes. Prenez note du numéro de commande ci-dessous si vous souhaitez nous contacter à son sujet.</value>
   </data>
   <data name="bankinginstructions.Text" xml:space="preserve">
-    <value>Merci d'effectuer votre paiement en banque, sur le compte spécifié ci-dessus, le plus rapidement possible suite à la commande. Veuillez insérer le numéro de commande dans le champ référence et inclure votre nom si celui-ci est différent de votre nom de compte.</value>
+    <value>Merci d'effectuer votre paiement, soit par Chèque à l'ordre d'Argumentum, à envoyer à l'adresse Argumentum, 5B rue Martel, 75010 Paris, France, ou par virement bancaire, sur le compte spécifié ci-dessous, le plus rapidement possible suite à la commande. Veuillez insérer le numéro de commande dans le champ référence du virement, et inclure également votre nom si celui-ci est différent de votre nom du compte bancaire expéditeur. Votre commande sera validée à réception de votre paiement.</value>
   </data>
 </root>
