@@ -355,3 +355,7 @@ MigrationBackup/
 /DNNPlatform/App_Data/Search
 /Cartes/Generation/Converters/Argumentum.AssetConverter/Data
 /Cartes/Generation/Converters/Mindmapper/Data
+
+#Bin DNN
+
+!/DNNPlatform/bin/
