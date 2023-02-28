@@ -244,7 +244,7 @@
     <value>Veuillez vérifier que votre adresse est correctement remplie, sinon la commande peut être retardée.</value>
   </data>
   <data name="PlaceOrder.Text" xml:space="preserve">
-    <value>Commander</value>
+    <value>Commander ou modifier votre panier</value>
   </data>
   <data name="YourBasket.Text" xml:space="preserve">
     <value>Votre panier</value>
