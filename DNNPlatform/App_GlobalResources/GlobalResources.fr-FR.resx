@@ -632,7 +632,7 @@ Code de vérification* : [User:VerificationCode]
 
 * demandé lors de votre première identification.
 
-Vous devez vous rendre sur l'URL http://[Portal:URL]/default.aspx?ctl=Login&amp;username=[Custom:0]&amp;verificationcode=[User:VerificationCode] afin de valider votre enregistrement
+Vous devez vous rendre sur l'URL &lt;a href=&quot;http://[Portal:URL]/default.aspx?ctl=Login&amp;amp;username=[Custom:0]&amp;amp;verificationcode=[User:VerificationCode]&quot;&gt;http://[Portal:URL]/default.aspx?ctl=Login&amp;amp;username=[Custom:0]&amp;amp;verificationcode=[User:VerificationCode]&lt;/a&gt; afin de valider votre enregistrement
 
 Merci de votre confiance et à bientôt sur notre site.
 
