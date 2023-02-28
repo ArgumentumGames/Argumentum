@@ -117,13 +117,13 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="RegisterLive.Text" xml:space="preserve">
-        <value>Register with Microsoft</value>
+    <data name="LoginGoogle.Text" xml:space="preserve">
+        <value>Connexion avec Google</value>
     </data>
-    <data name="SignInLive.Text" xml:space="preserve">
-        <value>Sign In with Microsoft</value>
+    <data name="RegisterGoogle.Text" xml:space="preserve">
+        <value>Inscription avec Google</value>
     </data>
     <data name="Title.Text" xml:space="preserve">
-        <value>Live</value>
+        <value>Google</value>
     </data>
 </root>
