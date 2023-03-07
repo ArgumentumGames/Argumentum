@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -415,11 +416,12 @@ namespace Argumentum.AssetConverter
 
                 if (!string.IsNullOrEmpty(docConfig.Header))
                 {
-                    page.Header()
-                        .AlignCenter()
-                        .Height(pageSize.Height / 20)
-                        .Padding(pageSize.Width / 70)
-                        .Image(docConfig.Header, ImageScaling.FitHeight);
+	                var imagePath = Path.Combine(Environment.CurrentDirectory, docConfig.Header);
+                   var currentContainer = page.Header();
+					currentContainer = currentContainer.AlignCenter();
+					currentContainer = currentContainer.Height(pageSize.Height / 40);
+					currentContainer = currentContainer.Padding(pageSize.Width / 150);
+					currentContainer.Image(imagePath, ImageScaling.FitHeight);
                        
                 }
 
@@ -544,12 +546,41 @@ namespace Argumentum.AssetConverter
                     }
                     
                     var customFilePath = cardSet.CustomJsonFileName;
-                    if (!Path.IsPathFullyQualified(cardSet.CustomJsonFileName))
+					Console.WriteLine($"Generating CardSet {customFilePath}: {sw.Elapsed}");
+					if (customFilePath.PathIsUrl())
+					{
+						var urlFile = new Uri(customFilePath);
+						//string filename = System.IO.Path.GetFileName(urlFile.LocalPath);
+
+						// Télécharger le fichier à partir de l'URL spécifiée
+						using var client = new HttpClient();
+						var response = await client.GetAsync(urlFile);
+						response.EnsureSuccessStatusCode();
+						var fileName = response.Content.Headers.ContentDisposition?.FileName ??
+						               System.IO.Path.GetFileName(urlFile.LocalPath); //"file.json";
+						var mimeType = response.Content.Headers.ContentType?.MediaType ?? "application/json";
+						var content = await response.Content.ReadAsByteArrayAsync();
+
+						Console.WriteLine($"Downloaded CardSet {customFilePath}: {sw.Elapsed}");
+						var filePayLoad = new FilePayload()
+						{
+							Name = fileName,
+							MimeType = mimeType,
+							Buffer = content
+						};
+						await driver.SetInputFilesAsync("#import", filePayLoad);
+					}
+                    else
                     {
-                        customFilePath = Path.Combine(Environment.CurrentDirectory, customFilePath);
-                    }
-                    Console.WriteLine($"Generating CardSet {customFilePath}: {sw.Elapsed}");
-                    await driver.SetInputFilesAsync("#import", customFilePath);
+						if (!Path.IsPathFullyQualified(cardSet.CustomJsonFileName))
+						{
+							customFilePath = Path.Combine(Environment.CurrentDirectory, customFilePath);
+						}
+						
+						await driver.SetInputFilesAsync("#import", customFilePath);
+					}
+
+					
                     Thread.Sleep(TimeSpan.FromSeconds(5));
 
 
