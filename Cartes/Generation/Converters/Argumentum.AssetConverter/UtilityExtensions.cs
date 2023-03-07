@@ -87,5 +87,22 @@ namespace Argumentum.AssetConverter
             return source.SelectMany(x => x).ToArray();
         }
 
-    }
+
+        public static bool PathIsUrl(this string path)
+        {
+	        if (File.Exists(path))
+		        return false;
+	        try
+	        {
+		        Uri uri = new Uri(path);
+		        return true;
+	        }
+	        catch (Exception)
+	        {
+		        return false;
+	        }
+        }
+
+
+	}
 }

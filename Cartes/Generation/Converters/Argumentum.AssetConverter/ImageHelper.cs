@@ -56,13 +56,13 @@ namespace Argumentum.AssetConverter
             MagickImage toReturn;
             var imagesFolderName = config.GetImagesDirectory();
 
-            var densityFolderName = Path.Combine(imagesFolderName, $@".\density-{docConfig.TargetDensity}\");
+            var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
             if (!Directory.Exists(densityFolderName))
             {
                 Directory.CreateDirectory(densityFolderName);
             }
 
-            var cardSetFolderName = Path.Combine(densityFolderName, $@".\{documentCardSet.CardSetName}\");
+            var cardSetFolderName = Path.Combine(densityFolderName, $@"{documentCardSet.CardSetName}\");
             if (!Directory.Exists(cardSetFolderName))
             {
                 Directory.CreateDirectory(cardSetFolderName);
@@ -80,12 +80,12 @@ namespace Argumentum.AssetConverter
                 toReturn.Density = new Density(sourceDpi);
                 if (documentCardSet.SaveOriginalImage)
                 {
-                    var originalFolderName = Path.Combine(imagesFolderName, $@".\original\");
+                    var originalFolderName = Path.Combine(imagesFolderName, $@"original\");
                     if (!Directory.Exists(originalFolderName))
                     {
                         Directory.CreateDirectory(originalFolderName);
                     }
-                    var cardSetOriginalFolderName = Path.Combine(originalFolderName, $@".\{documentCardSet.CardSetName}\");
+                    var cardSetOriginalFolderName = Path.Combine(originalFolderName, $@"{documentCardSet.CardSetName}\");
                     if (!Directory.Exists(cardSetOriginalFolderName))
                     {
                         Directory.CreateDirectory(cardSetOriginalFolderName);
