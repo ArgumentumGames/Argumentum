@@ -7,10 +7,10 @@ namespace Argumentum.AssetConverter
     public class WebBasedGeneratorConfig
     {
 
-        public string ChromeBinaryPath { get; set; } = @"E:\LiberKey\MyApps\GoogleChromePortable\App\Chrome-bin\chrome.exe";
+        //public string ChromeBinaryPath { get; set; } = @"E:\LiberKey\MyApps\GoogleChromePortable\App\Chrome-bin\chrome.exe";
 
-        public string CardpenUrl { get; set; }= @"https://argumentumgames.github.io/Argumentum/Cartes/Generation/CardPen/index.html";
-        //http://cardpen.dnndev.me/Generation/CardPen/index.html
+        public string CardpenUrl { get; set; }= @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
+        //For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
 
         //public int TestCards { get; set; } = 2;
 
