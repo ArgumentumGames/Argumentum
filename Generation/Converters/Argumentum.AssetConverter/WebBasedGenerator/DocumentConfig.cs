@@ -9,7 +9,12 @@ namespace Argumentum.AssetConverter
 
         public string DocumentName { get; set; }
 
-        public List<DocumentCardSet> CardSets { get; set; }
+      
+
+		public List<(string sourceLanguage, string targetLanguage)> Translations { get; set; } =
+			new List<(string sourceLanguage, string targetLanguage)>();
+
+		public List<DocumentCardSet> CardSets { get; set; }
 
         public int TargetDensity { get; set; } = 0;
 
