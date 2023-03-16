@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net.Http.Headers;
@@ -11,44 +12,17 @@ namespace Argumentum.AssetConverter
 
         public string Name { get; set; }
 
-        [JsonIgnore()]
-        public string FaceExampleName
-        {
-            get => null;
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    FaceCardSetInfo.CardSetType = CardSetType.ExampleByName;
-                    FaceCardSetInfo.ExampleName = value;
-                }
-            }
-        }
 
-        public CardSetInfo FaceCardSetInfo { get; set; } = new CardSetInfo();
-
-        [JsonIgnore()]
-        public string BackExampleName
-        {
-            get => null;
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    BackCardSetInfo.CardSetType = CardSetType.ExampleByName;
-                    BackCardSetInfo.ExampleName = value;
-                }
-            }
-        }
+		public CardSetInfo FaceCardSetInfo { get; set; } = new CardSetInfo();
 
         public CardSetInfo BackCardSetInfo { get; set; } = new CardSetInfo();
 
 
 
 
-        public string GetHarvestSerializationName(WebBasedGeneratorConfig config)
+        public string GetHarvestSerializationName(WebBasedGeneratorConfig config, string language)
         {
-            return Path.Combine(config.GetHarvestDirectory(), $"{Name}-harvest.json");
+            return Path.Combine(config.GetHarvestDirectory(language), $"{Name}_harvest_{language}.json");
         }
 
     }

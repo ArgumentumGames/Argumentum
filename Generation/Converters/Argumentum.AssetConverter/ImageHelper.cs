@@ -50,11 +50,11 @@ namespace Argumentum.AssetConverter
 
 
 
-        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, bool isBack, WebBasedGeneratorConfig config, DocumentConfig docConfig,
+        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, DocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
             MagickImage toReturn;
-            var imagesFolderName = config.GetImagesDirectory();
+            var imagesFolderName = config.GetImagesDirectory(language);
 
             var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
             if (!Directory.Exists(densityFolderName))

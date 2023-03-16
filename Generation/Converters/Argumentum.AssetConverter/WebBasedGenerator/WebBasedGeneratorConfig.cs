@@ -4,28 +4,269 @@ using System.IO;
 
 namespace Argumentum.AssetConverter
 {
-    public class WebBasedGeneratorConfig
+
+	public static class KnownCardSets
+	{
+		public static string Fallacies = "Fallacies";
+		public static string Scenarii = "Scenarii";
+		public static string Rules = "Rules";
+		public static string Memo = "Memo";
+		public static string Fallacies2 = "Fallacies-2";
+		public static string Fallacies3 = "Fallacies-3";
+		public static string FallaciesPrintAndPlay = "Fallacies-Print&Play";
+		public static string ScenariiPrintAndPlay = "Scenarii-Print&Play";
+		public static string RulesPrintAndPlay = "Rules-Print&Play";
+		public static string MemoPrintAndPlay = "Memo-Print&Play";
+		public static string FallaciesWeb = "Fallacies-Web";
+		public static string FallaciesWebLight = "Fallacies-Web-Light";
+		public static string FallaciesWebThumbnails = "Fallacies-Web-Thumbnails";
+
+
+	}
+	
+
+
+	public class WebBasedGeneratorConfig
     {
 
-        //public string ChromeBinaryPath { get; set; } = @"E:\LiberKey\MyApps\GoogleChromePortable\App\Chrome-bin\chrome.exe";
 
         public string CardpenUrl { get; set; }= @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
         //For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
+		
+        
+		public LocalizationConfig LocalizationConfig = new LocalizationConfig()
+		{
+            Enabled = true,
+            CardSetLocalizations = new List<CardSetLocalization>(new[]{
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Fallacies, 
+						KnownCardSets.Fallacies2, 
+						KnownCardSets.Fallacies3,
+						KnownCardSets.FallaciesPrintAndPlay,
+						KnownCardSets.FallaciesWeb,
+						KnownCardSets.FallaciesWebLight,
+						KnownCardSets.FallaciesWebThumbnails,
 
-        //public int TestCards { get; set; } = 2;
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
+						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
+						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
+					})
+				},
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Scenarii,
+						KnownCardSets.ScenariiPrintAndPlay,
 
-        public List<DocumentConfig> Documents { get; set; } = new List<DocumentConfig>(
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
+						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru") }) ),
+						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru") }) ),
+						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru") }) ),
+						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru") }) ),
+						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru") }) ),
+						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_en_ru") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
+					})
+				},
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Rules,
+						KnownCardSets.RulesPrintAndPlay,
+
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru") }) ),
+					})
+				},
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Memo,
+						KnownCardSets.MemoPrintAndPlay,
+
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
+					})
+				},
+			})
+		};
+
+		public List<CardSetConfig> CardSets { get; set; } = new List<CardSetConfig>(
+			new[]
+			{
+				new CardSetConfig(){
+					Name = KnownCardSets.Rules,
+					FaceCardSetInfo = new CardSetInfo()
+						{
+							JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Rules/Argumentum_Rules_Francais_edition_fevrier_2022.json",
+						}
+					  },
+				new CardSetConfig(){
+					Name =KnownCardSets.Memo,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Memo/Argumentum_Memo_Face_Francais.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Memo/Argumentum_Memo_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.Fallacies,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais.json"
+
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.Scenarii,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Face_Francais_edition_fevrier_2022.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.Fallacies2,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.Fallacies3,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_v2_Francais.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.FallaciesPrintAndPlay,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Print_and_Play.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.ScenariiPrintAndPlay,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Face_Francais_edition_fevrier_2022_Print_and_Play.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Back_Francais.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.RulesPrintAndPlay,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Rules/Argumentum_Rules_Francais_edition_fevrier_2022_Print_and_Play.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.MemoPrintAndPlay,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Memo/Argumentum_Memo_Face_Francais_Print_and_Play.json"
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Memo/Argumentum_Memo_Back_Francais_Print_and_Play.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.FallaciesWeb,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.FallaciesWebLight,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_light.json"
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.FallaciesWebThumbnails,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_thumbnails.json"
+					}
+				}
+			});
+
+
+
+
+		public List<DocumentConfig> Documents { get; set; } = new List<DocumentConfig>(
             new[]
             {
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-TarotCards.pdf",
+                    DocumentName = "Argumentum_FallacyCards_fr.pdf",
                     Enabled = false,
-                    CardSets = new List<DocumentCardSet>(new[]
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"),
+	                    ("fr", "ru")
+                    }),
+					CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Rules",
+                            CardSetName = KnownCardSets.Rules,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -44,7 +285,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Memo",
+                            CardSetName = KnownCardSets.Memo,
                             NbCopies = 7,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -63,7 +304,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies",
+                            CardSetName = KnownCardSets.Fallacies,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -84,13 +325,17 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-PokerCards.pdf",
+                    DocumentName = "Argumentum_PokerCards_fr.pdf",
                     Enabled = false,
-                    CardSets = new List<DocumentCardSet>(new[]
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en")
+                    }),
+					CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Scenarii",
+                            CardSetName = KnownCardSets.Scenarii,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -111,13 +356,18 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-TarotCards-2.pdf",
+                    DocumentName = "Argumentum_FallacyCards_2_fr.pdf",
                     Enabled = false,
-                    CardSets = new List<DocumentCardSet>(new[]
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"), 
+	                    ("fr", "ru")
+                    }),
+					CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Rules",
+                            CardSetName = KnownCardSets.Rules,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -136,7 +386,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Memo",
+                            CardSetName = KnownCardSets.Memo,
                             NbCopies = 7,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -155,7 +405,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies-2",
+                            CardSetName = KnownCardSets.Fallacies2,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -176,13 +426,18 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-TarotCards-3.pdf",
+                    DocumentName = "Argumentum_FallacyCards_3_fr.pdf",
                     Enabled = false,
-                    CardSets = new List<DocumentCardSet>(new[]
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"), 
+	                    ("fr", "ru")
+                    }),
+					CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Rules",
+                            CardSetName = KnownCardSets.Rules,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -201,7 +456,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Memo",
+                            CardSetName = KnownCardSets.Memo,
                             NbCopies = 7,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -220,7 +475,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies-3",
+                            CardSetName = KnownCardSets.Fallacies3,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -241,15 +496,20 @@ namespace Argumentum.AssetConverter
                 },
                  new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-TarotCards-Print&Play-A4.pdf",
+                    DocumentName = "Argumentum_FallacyCards_Print&Play_A4_fr.pdf",
                     Enabled = false,
-                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"), 
+	                    ("fr", "ru")
+                    }),
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
                     PageSize = "A4",
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Rules-Print&Play",
+                            CardSetName = KnownCardSets.RulesPrintAndPlay,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -268,7 +528,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Memo-Print&Play",
+                            CardSetName = KnownCardSets.MemoPrintAndPlay,
                             NbCopies = 5,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -287,7 +547,7 @@ namespace Argumentum.AssetConverter
                         },
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies-Print&Play",
+                            CardSetName = KnownCardSets.FallaciesPrintAndPlay,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -308,15 +568,19 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-PokerCards-Print&Play-A4.pdf",
+                    DocumentName = "Argumentum_FallacyCards_Print&Play_A4_fr.pdf",
                     Enabled = false,
-                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en")
+                    }),
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
                     PageSize = "A4",
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Scenarii-Print&Play",
+                            CardSetName = KnownCardSets.ScenariiPrintAndPlay,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -337,16 +601,21 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-Fallacies-Web-Thumbnails.pdf",
+                    DocumentName = "Argumentum_Fallacies_Web_Thumbnails_fr.pdf",
                     Enabled = true,
-                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"), 
+	                    ("fr", "ru")
+                    }),
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
                     PageSize = "A4",
                     NoBack = true,
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies-Web-Thumbnails",
+                            CardSetName = KnownCardSets.FallaciesWebThumbnails,
                             NbCopies = 1,
                             ConvertToCmyk = false,
                             SaveOriginalImage = true,
@@ -367,16 +636,21 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-Fallacies-Web-A4.pdf",
+                    DocumentName = "Argumentum_Fallacies_Web_A4_fr.pdf",
                     Enabled = false,
-                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"), 
+	                    ("fr", "ru")
+                    }),
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
                     PageSize = "A4",
                     NoBack = true,
                     CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies-Web-Light",
+                            CardSetName = KnownCardSets.FallaciesWebLight,
                             NbCopies = 1,
                             ConvertToCmyk = false,
                             SaveOriginalImage = true,
@@ -397,9 +671,14 @@ namespace Argumentum.AssetConverter
                 },
                 new DocumentConfig()
                 {
-                    DocumentName = "Argumentum-Fallacies-Web-A0.pdf",
+                    DocumentName = "Argumentum_Fallacies_Web_A0_fr.pdf",
                     Enabled = false,
-                    DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                    Translations = new List<(string sourceLang, string destLang)>(new []
+                    {
+	                    ("fr","en"),
+	                    ("fr", "ru")
+                    }),
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
                     PageSize = "A0",
                     NoBack = true,
                     Header = "Logo_Argumentum.png",
@@ -407,7 +686,7 @@ namespace Argumentum.AssetConverter
                     {
                         new DocumentCardSet()
                         {
-                            CardSetName = "Fallacies-Web",
+                            CardSetName = KnownCardSets.FallaciesWeb,
                             NbCopies = 1,
                             ConvertToCmyk = true,
                             SaveOriginalImage = true,
@@ -438,20 +717,25 @@ namespace Argumentum.AssetConverter
 
         public string PdfsDirectoryName { get; set; } = @"Pdfs\";
 
-        public string GetBaseTargetDirectory()
+        public string GetBaseTargetDirectory(string language)
         {
             var toReturn =  Path.Combine(System.Environment.CurrentDirectory, BaseTargetDirectoryName);
             if (!Directory.Exists(toReturn))
             {
                 Directory.CreateDirectory(toReturn);
             }
+            toReturn = Path.Combine(toReturn, $"{language}\\");
+            if (!Directory.Exists(toReturn))
+            {
+	            Directory.CreateDirectory(toReturn);
+            }
 
-            return toReturn;
+			return toReturn;
         }
 
-        public string GetHarvestDirectory()
+        public string GetHarvestDirectory(string language)
         {
-            var toReturn = Path.Combine(GetBaseTargetDirectory(), HarvestDirectoryName);
+            var toReturn = Path.Combine(GetBaseTargetDirectory(language), HarvestDirectoryName);
             if (!Directory.Exists(toReturn))
             {
                 Directory.CreateDirectory(toReturn);
@@ -460,9 +744,9 @@ namespace Argumentum.AssetConverter
             return toReturn;
         }
 
-        public string GetImagesDirectory()
+        public string GetImagesDirectory(string language)
         {
-            var toReturn = Path.Combine(GetBaseTargetDirectory(), ImagesDirectoryName);
+            var toReturn = Path.Combine(GetBaseTargetDirectory(language), ImagesDirectoryName);
             if (!Directory.Exists(toReturn))
             {
                 Directory.CreateDirectory(toReturn);
@@ -471,9 +755,9 @@ namespace Argumentum.AssetConverter
             return toReturn;
         }
 
-        public string GetPdfsDirectory()
+        public string GetPdfsDirectory(string language)
         {
-            var toReturn = Path.Combine(GetBaseTargetDirectory(), PdfsDirectoryName);
+            var toReturn = Path.Combine(GetBaseTargetDirectory(language), PdfsDirectoryName);
             if (!Directory.Exists(toReturn))
             {
                 Directory.CreateDirectory(toReturn);
@@ -485,176 +769,7 @@ namespace Argumentum.AssetConverter
 
 
 
-        public List<CardSetConfig> CardSets { get; set; } = new List<CardSetConfig>(
-            new []
-            {
-                new CardSetConfig(){
-                    Name ="Rules",
-                    FaceCardSetInfo = new CardSetInfo()
-                        {
-                            CardSetType = CardSetType.CustomJson,
-                            ExampleName = "Argumentum - Rules - Francais",
-                            CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Rules/Argumentum_Rules_Francais_edition_fevrier_2022.json"
-						}
-                      },                  
-                new CardSetConfig(){
-                    Name ="Memo",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Memo - Face - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Memo/Argumentum_Memo_Face_Francais.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Memo - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Memo/Argumentum_Memo_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.ExampleByName,
-                        ExampleName = "Argumentum - Fallacies - Face - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais.json"
-
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.ExampleByName,
-                        ExampleName = "Argumentum - Fallacies - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Scenarii",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Scenarii - Face - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Face_Francais_edition_fevrier_2022.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Scenarii - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies-2",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies-3",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.ExampleByName,
-                        ExampleName = "Argumentum - Fallacies - Face - v2 - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_v2_Francais.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.ExampleByName,
-                        ExampleName = "Argumentum - Fallacies - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies-Print&Play",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Print_and_Play.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Scenarii-Print&Play",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Scenarii - Face - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Face_Francais_edition_fevrier_2022_Print_and_Play.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Scenarii - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Scenarii/Argumentum_Scenarii_Back_Francais.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Rules-Print&Play",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Rules - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Rules/Argumentum_Rules_Francais_edition_fevrier_2022_Print_and_Play.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Memo-Print&Play",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Memo - Face - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Memo/Argumentum_Memo_Face_Francais_Print_and_Play.json"
-					},
-                    BackCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Memo - Back - Francais",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Memo/Argumentum_Memo_Back_Francais_Print_and_Play.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies-Web",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies-Web-Light",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_light.json"
-					}
-                },
-                new CardSetConfig(){
-                    Name ="Fallacies-Web-Thumbnails",
-                    FaceCardSetInfo = new CardSetInfo()
-                    {
-                        CardSetType = CardSetType.CustomJson,
-                        ExampleName = "Argumentum - Fallacies - Face - Francais - Bis",
-                        CustomJsonFileName = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_thumbnails.json"
-					}
-                }
-            });
+        
 
         public void Apply(Stopwatch objSw)
         {

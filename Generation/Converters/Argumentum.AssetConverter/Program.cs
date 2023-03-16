@@ -17,7 +17,7 @@ namespace Argumentum.AssetConverter
                 if (newConfig)
                 {
                     Console.WriteLine($"New Config file created : {sw.Elapsed} \n {configFileName} ");
-                    Console.WriteLine($"Please edit configuration File and relaunch application");
+                    Console.WriteLine($"Please edit configuration File to define the documents to generate and relaunch application");
                 }
                 else
                 {
