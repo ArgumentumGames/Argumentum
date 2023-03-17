@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -19,6 +18,9 @@ namespace Argumentum.AssetConverter
 
 		//public string ExampleName { get; set; }
 
+		public string DataSet { get; set; }
+
+		public bool SkipDataUpdate { get; set; }
 
 		public string JsonFilePath { get; set; }
 
@@ -30,44 +32,12 @@ namespace Argumentum.AssetConverter
 
 		public async Task<CardSetPayload> GetCardSetDocument()
 		{
-			byte[] content;
-			string fileName;
-			if (JsonFilePath.PathIsUrl())
-			{
-				var urlFile = new Uri(JsonFilePath);
-				//string filename = System.IO.Path.GetFileName(urlFile.LocalPath);
-
-				// Télécharger le fichier à partir de l'URL spécifiée
-				using var client = new HttpClient();
-				var response = await client.GetAsync(urlFile);
-				response.EnsureSuccessStatusCode();
-				fileName = response.Content.Headers.ContentDisposition?.FileName ??
-				               System.IO.Path.GetFileName(urlFile.LocalPath); //"file.json";
-				var mimeType = response.Content.Headers.ContentType?.MediaType ?? "application/json";
-				content = await response.Content.ReadAsByteArrayAsync();
-
-				Console.WriteLine($"Downloaded CardSet {JsonFilePath}");
-			}
-			else
-			{
-				var fullPath = JsonFilePath;
-				if (!Path.IsPathFullyQualified(JsonFilePath))
-				{
-					fullPath = Path.Combine(Environment.CurrentDirectory, JsonFilePath);
-				}
-
-				fileName = Path.GetFileName(fullPath);
-
-				content = await File.ReadAllBytesAsync(fullPath);
-
-			}
-
-			var toReturn = JsonSerializer.Deserialize<CardSetDocument>(content);
-			return new CardSetPayload(){CardSetDocument = toReturn, FileName = fileName} ;
+			var docPayload = await JsonFilePath.GetDocumentPayload();
+			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);
+			return new CardSetPayload(){CardSetDocument = cardSetDoc, FileName = docPayload.FileName} ;
 
 		}
 
-		
 	}
 
 
@@ -81,5 +51,26 @@ namespace Argumentum.AssetConverter
 			return "application/json";
 		}
 	}
+
+
+	public static class KnownCardSets
+	{
+		public static string Fallacies = "Fallacies";
+		public static string Scenarii = "Scenarii";
+		public static string Rules = "Rules";
+		public static string Memo = "Memo";
+		public static string Fallacies2 = "Fallacies-2";
+		public static string Fallacies3 = "Fallacies-3";
+		public static string FallaciesPrintAndPlay = "Fallacies-Print&Play";
+		public static string ScenariiPrintAndPlay = "Scenarii-Print&Play";
+		public static string RulesPrintAndPlay = "Rules-Print&Play";
+		public static string MemoPrintAndPlay = "Memo-Print&Play";
+		public static string FallaciesWeb = "Fallacies-Web";
+		public static string FallaciesWebLight = "Fallacies-Web-Light";
+		public static string FallaciesWebThumbnails = "Fallacies-Web-Thumbnails";
+
+
+	}
+
 
 }
