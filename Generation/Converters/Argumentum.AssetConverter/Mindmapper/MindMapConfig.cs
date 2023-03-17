@@ -37,7 +37,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 ";
 
         //
-        // https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cartes/Fallacies/Assets/Fallacy-front/{fallacy.Path}.png
+        // https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Assets/Fallacy-front/{fallacy.Path}.png
 
         public string ExampleExpression { get; set; } = 
 @"
