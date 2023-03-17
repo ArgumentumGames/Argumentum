@@ -139,6 +139,8 @@ namespace Argumentum.AssetConverter
 
 								(CardSetPayload front, CardSetPayload back) cardSetDocuments;
 
+								//Optionally localize templates
+
 								if (currentLanguage == Config.LocalizationConfig.DefaultLanguage)
 								{
 									var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument();
@@ -149,6 +151,23 @@ namespace Argumentum.AssetConverter
 								{
 									cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(configCardSet.Config,
 										(Config.LocalizationConfig.DefaultLanguage, currentLanguage));
+								}
+
+								//Optionally update data
+
+
+								if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate)
+								{
+									var dataSet = Config.DataSets.First(ds =>
+										ds.Name == configCardSet.Config.FaceCardSetInfo.DataSet);
+									cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent();
+								}
+
+								if (!configCardSet.Config.BackCardSetInfo.SkipDataUpdate)
+								{
+									var dataSet = Config.DataSets.First(ds =>
+										ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
+									cardSetDocuments.back.CardSetDocument.csv = await dataSet.GetContent();
 								}
 
 

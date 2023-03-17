@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Argumentum.AssetConverter
 {
@@ -101,6 +103,45 @@ namespace Argumentum.AssetConverter
 	        {
 		        return false;
 	        }
+        }
+
+
+        public static async Task<DocumentPayload> GetDocumentPayload(this string docPath)
+        {
+	        byte[] content;
+	        string fileName;
+	        string mimeType = "";
+	        if (docPath.PathIsUrl())
+	        {
+		        var urlFile = new Uri(docPath);
+
+		        // Télécharger le fichier à partir de l'URL spécifiée
+		        using var client = new HttpClient();
+		        var response = await client.GetAsync(urlFile);
+		        response.EnsureSuccessStatusCode();
+		        fileName = response.Content.Headers.ContentDisposition?.FileName ??
+		                   System.IO.Path.GetFileName(urlFile.LocalPath); //"file.json";
+		        mimeType = response.Content.Headers.ContentType?.MediaType;
+		        content = await response.Content.ReadAsByteArrayAsync();
+
+		        Console.WriteLine($"Downloaded Document {docPath}");
+	        }
+	        else
+	        {
+		        var fullPath = docPath;
+		        if (!Path.IsPathFullyQualified(docPath))
+		        {
+			        fullPath = Path.Combine(Environment.CurrentDirectory, docPath);
+		        }
+
+		        fileName = Path.GetFileName(fullPath);
+
+		        content = await File.ReadAllBytesAsync(fullPath);
+
+	        }
+
+	        return new DocumentPayload() { FileName = fileName, Content = content, MimeType = mimeType };
+
         }
 
 

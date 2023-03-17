@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -19,17 +20,34 @@ namespace Argumentum.AssetConverter
         {
             IEnumerable<Fallacy> fallacies;
             Console.WriteLine($"Loading csv fallacies from file {filePath}");
-            using (var reader = new StreamReader(filePath))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                csv.Context.RegisterClassMap<FallacyClassMap>();
-                fallacies = csv.GetRecords<Fallacy>().SkipLast(1).ToList();
-            }
-            Console.WriteLine($"Loaded {fallacies.Count()} fallacies");
-            return fallacies.ToList();
+            var fileContent = File.ReadAllText( filePath );
+			return LoadFallaciesFromContent(fileContent);
+		}
+
+        private static IList<Fallacy> LoadFallaciesFromContent(string fileContent)
+        {
+	        IEnumerable<Fallacy> fallacies;
+	        using (var reader = new StringReader(fileContent))
+	        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+	        {
+		        csv.Context.RegisterClassMap<FallacyClassMap>();
+		        fallacies = csv.GetRecords<Fallacy>().SkipLast(1).ToList();
+	        }
+	        Console.WriteLine($"Loaded {fallacies.Count()} fallacies");
+	        return fallacies.ToList();
         }
 
-        public string LinkFrFallbackEn => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
+		public static async Task< IList<Fallacy>> LoadFallacies(DataSetInfo dataSet)
+        {
+	        IEnumerable<Fallacy> fallacies;
+	        Console.WriteLine($"Loading csv fallacies from dataSet {dataSet.Name}");
+	        var payLoad = await dataSet.GetContent();
+	        return LoadFallaciesFromContent(payLoad);
+        }
+
+
+
+		public string LinkFrFallbackEn => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
 
         public string LinkEnFallbackEn => LinkEn;
         public string FileName => $"{Path}_{TextFr.ToLower().Replace(" ","_")}";
