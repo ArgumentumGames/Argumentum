@@ -63,30 +63,54 @@ namespace Argumentum.AssetConverter
         public int? Carte { get; set; }
         public int? Niveau { get; set; }
         public string NomVulgarisé { get; set; }
-        public string TextFr { get; set; }
+
+
+		public string TextFr { get; set; }
         public int? LTfr { get; set; }
-        public string SimpleNameEn { get; set; }
-        public string TextEn { get; set; }
-        public int? LTen { get; set; }
-        public string Family { get; set; }
-        public string Subfamily { get; set; }
-        public string Subsubfamily { get; set; }
-        public string LinkFr { get; set; }
-        public string LinkEn { get; set; }
+
         public string DescFr { get; set; }
         public int? Lfr115 { get; set; }
         public string ExampleFr { get; set; }
         public int? Lxfr145 { get; set; }
+
+        public string LinkFr { get; set; }
+
+		public string Family { get; set; }
+        public string Subfamily { get; set; }
+        public string Subsubfamily { get; set; }
+
+		
+        public string TextEn { get; set; }
+        public int? LTen { get; set; }
+
+        public string SimpleNameEn { get; set; }
+
+      
         public string DescEn { get; set; }
         public int? Len115 { get; set; }
         public string ExampleEn { get; set; }
-        public int? Lxen145 { get; set; }
+
+        public string ExampleEnBis { get; set; }
+
+		public string LinkEn { get; set; }
+		public int? Lxen145 { get; set; }
         public string Remarques { get; set; }
-        public string Latin { get; set; }
-        public string Exemplepolitique { get; set; }
+
+		public string Latin { get; set; }
+
+		public string Exemplepolitique { get; set; }
         public string PoliticalExampleEn { get; set; }
         public string Proverbe { get; set; }
-        public string Lienstransverses { get; set; }
+
+        public string TextRu { get; set; }
+
+        public string DescRu { get; set; }
+
+        public string ExampleRu { get; set; }
+
+        public string LinkRu { get; set; }
+
+		public string Lienstransverses { get; set; }
         public string Typelientransverse { get; set; }
         public string Shape { get; set; }
         public string Image { get; set; }

@@ -13,31 +13,31 @@ using Utf8Json.Resolvers;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
-    public class MindmapCreatorConfig
+    public class MindMapCreatorConfig
     {
 
 
-        public MindmapCreatorConfig()
+        public MindMapCreatorConfig()
         {
-            var newConfig = new List<MindMapConfig>();
-            newConfig.Add(new MindMapConfig());
+            var newConfig = new List<MindMapDocumentConfig>();
+            newConfig.Add(new MindMapDocumentConfig());
             
-            var frConfigCards = new MindMapConfig();
+            var frConfigCards = new MindMapDocumentConfig();
             frConfigCards.InsertCards = true;
-            frConfigCards.DestPath = frConfigCards.DestPath.Replace(".mm", "_cards.mm");
+            frConfigCards.DocumentName = frConfigCards.DocumentName.Replace(".mm", "_cards.mm");
             newConfig.Add(frConfigCards);
             
-            var enConfig = new MindMapConfig();
-            enConfig.DestPath = enConfig.DestPath.Replace("Fr", "En");
+            var enConfig = new MindMapDocumentConfig();
+            enConfig.DocumentName = enConfig.DocumentName.Replace("Fr", "En");
             enConfig.DescriptionExpression = enConfig.DescriptionExpression.Replace("Fr", "En");
             enConfig.TitleExpression = enConfig.TitleExpression.Replace("Fr", "En");
             enConfig.ExampleExpression = enConfig.ExampleExpression.Replace("Fr", "En");
             enConfig.LinkExpression = enConfig.LinkExpression.Replace("Fr", "En");
             newConfig.Add(enConfig);
             
-            var enConfigCards = new MindMapConfig();
+            var enConfigCards = new MindMapDocumentConfig();
             enConfigCards.InsertCards = true;
-            enConfigCards.DestPath = enConfig.DestPath.Replace(".mm", "_cards.mm");
+            enConfigCards.DocumentName = enConfig.DocumentName.Replace(".mm", "_cards.mm");
             enConfigCards.DescriptionExpression = enConfig.DescriptionExpression;
             enConfigCards.TitleExpression = enConfig.TitleExpression;
             enConfigCards.ExampleExpression = enConfig.ExampleExpression;
@@ -55,9 +55,9 @@ namespace Argumentum.AssetConverter.Mindmapper
             foreach (var config in this.MindMaps)
             {
 
-                var fallacies = Fallacy.LoadFallacies(config.SourcePath);
+                var fallacies = Fallacy.LoadFallacies(config.DataSet);
 
-                Console.WriteLine($"Creating Freemind mind map {config.DestPath}");
+                Console.WriteLine($"Creating Freemind mind map {config.DocumentName}");
 
                 var toReturn = new FreemindMap();
                 var nodesByPath = new Dictionary<string, Node>(fallacies.Count());
@@ -178,7 +178,7 @@ namespace Argumentum.AssetConverter.Mindmapper
                 var serializer = new XmlSerializer(typeof(FreemindMap));
 
 
-                using (var fs = File.Create(config.DestPath))
+                using (var fs = File.Create(config.DocumentName))
                 {
                     XmlWriterSettings writerSettings = new XmlWriterSettings { Indent = true, OmitXmlDeclaration = true };
                     using (var writer = XmlTextWriter.Create(fs, writerSettings))
@@ -189,7 +189,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-                Console.WriteLine($"Mind map {config.DestPath} succesfully generated!");
+                Console.WriteLine($"Mind map {config.DocumentName} succesfully generated!");
                 
             }
             Console.WriteLine($"Generation finished, press any key to close");
@@ -197,6 +197,6 @@ namespace Argumentum.AssetConverter.Mindmapper
 
         }
 
-        public List<MindMapConfig> MindMaps { get; set; }
+        public List<MindMapDocumentConfig> MindMaps { get; set; }
     }
 }
