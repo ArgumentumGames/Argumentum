@@ -21,7 +21,7 @@ namespace Argumentum.AssetConverter
 
         public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
 
-        public MindmapCreatorConfig MindmapCreatorConfig { get; set; } = new MindmapCreatorConfig();
+        public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
 
         public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
 
@@ -58,7 +58,7 @@ namespace Argumentum.AssetConverter
                     WebBasedGeneratorConfig.Apply(objSw);
                     break;
                 case ConverterMode.Mindmapper:
-                    MindmapCreatorConfig.Run(null);
+                    MindMapCreatorConfig.Run(null);
                     break;
                 case ConverterMode.Dnn2sxc:
                     Dnn2sxcConfig.Apply(objSw);
