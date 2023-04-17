@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter
 
 
 
-        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, DocumentConfig docConfig,
+        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetGenerationDocument docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
             MagickImage toReturn;
