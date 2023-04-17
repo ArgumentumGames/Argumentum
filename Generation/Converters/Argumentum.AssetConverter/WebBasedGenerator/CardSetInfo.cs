@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
 using Utf8Json;
@@ -32,7 +34,13 @@ namespace Argumentum.AssetConverter
 
 		public async Task<CardSetPayload> GetCardSetDocument()
 		{
+			if (string.IsNullOrEmpty(JsonFilePath))
+			{
+				return null;
+			}
 			var docPayload = await JsonFilePath.GetDocumentPayload();
+			//var strContent = Encoding.UTF8.GetString(docPayload.Content);
+			
 			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);
 			return new CardSetPayload(){CardSetDocument = cardSetDoc, FileName = docPayload.FileName} ;
 

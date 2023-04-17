@@ -305,7 +305,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_FallacyCards_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"),
@@ -375,7 +375,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_PokerCards_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en")
@@ -406,7 +406,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_FallacyCards_2_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"), 
@@ -476,7 +476,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_FallacyCards_3_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"), 
@@ -546,7 +546,7 @@ namespace Argumentum.AssetConverter
                  new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_FallacyCards_Print&Play_A4_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"), 
@@ -618,7 +618,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_FallacyCards_Print&Play_A4_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en")
@@ -686,7 +686,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_Fallacies_Web_A4_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"), 
@@ -721,7 +721,7 @@ namespace Argumentum.AssetConverter
                 new CardSetGenerationDocument()
                 {
                     DocumentName = "Argumentum_Fallacies_Web_A0_fr.pdf",
-                    Enabled = false,
+                    Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"),
