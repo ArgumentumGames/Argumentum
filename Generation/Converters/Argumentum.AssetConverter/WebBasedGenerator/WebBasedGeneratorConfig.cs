@@ -27,17 +27,32 @@ namespace Argumentum.AssetConverter
 				},
                 new DataSetInfo()
                 {
-	                Name = KnownDataSets.Rules,
-	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20The%20Smooth%20Talker.csv"
+	                Name = KnownDataSets.FallaciesPrintAndPlay,
+	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards%20Print%20and%20Play.csv"
 				},
-                new DataSetInfo()
+				new DataSetInfo()
+                {
+	                Name = KnownDataSets.Rules,
+	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv"
+				},
+				new DataSetInfo()
+				{
+					Name = KnownDataSets.RulesPrintAndPlay,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv"
+				},
+				new DataSetInfo()
                 {
 	                Name = KnownDataSets.Scenarii,
 	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv"
                 },
+                new DataSetInfo()
+                {
+	                Name = KnownDataSets.ScenariiPrintAndPlay,
+	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv"
+				},
 
 
-                
+
 			});
 
 
@@ -52,7 +67,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 						{
                             DataSet = KnownDataSets.Rules,
-							JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_Francais_edition_fevrier_2022.json",
+							JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
 						}
 					  },
 				new CardSetConfig(){
@@ -60,12 +75,12 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_Francais.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_Francais.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -73,13 +88,13 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Francais.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json"
 
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -87,12 +102,12 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_Francais_edition_fevrier_2022.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_Francais.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -100,12 +115,12 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_2_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+						DataSet = KnownDataSets.None,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -113,46 +128,46 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_v2_Francais.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+						DataSet = KnownDataSets.None,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
 					Name =KnownCardSets.FallaciesPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Print_and_Play.json"
+						DataSet = KnownDataSets.FallaciesPrintAndPlay,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_Francais.json"
+						DataSet = KnownDataSets.None,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
 					Name =KnownCardSets.ScenariiPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Scenarii,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_Francais_edition_fevrier_2022_Print_and_Play.json"
+						DataSet = KnownDataSets.ScenariiPrintAndPlay,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Scenarii,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_Francais.json"
+						DataSet = KnownDataSets.ScenariiPrintAndPlay,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
 					Name =KnownCardSets.RulesPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Rules,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_Francais_edition_fevrier_2022_Print_and_Play.json"
+						DataSet = KnownDataSets.RulesPrintAndPlay,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -160,12 +175,12 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Memo/Argumentum_Memo_Face_Francais_Print_and_Play.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Memo/Argumentum_Memo_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_Francais_Print_and_Play.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -173,7 +188,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -181,7 +196,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_light.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_Light_fr.json"
 					}
 				},
 				new CardSetConfig(){
@@ -189,7 +204,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Francais_Bis_edition_fevrier_2022_Web_thumbnails.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_Thumbnails_fr.json"
 					}
 				}
 			});
