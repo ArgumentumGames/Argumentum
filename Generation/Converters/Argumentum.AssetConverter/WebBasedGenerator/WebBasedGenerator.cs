@@ -117,9 +117,10 @@ namespace Argumentum.AssetConverter
 					
 					var page = await browser.NewPageAsync();
 					await page.GotoAsync(Config.CardpenUrl);
+					await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+					//await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-
-					Thread.Sleep(TimeSpan.FromSeconds(5));
+					Thread.Sleep(TimeSpan.FromSeconds(2));
 
 					foreach (var configCardSet in targetCardSets)
 					{
@@ -163,7 +164,7 @@ namespace Argumentum.AssetConverter
 									cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent();
 								}
 
-								if (!configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
+								if (cardSetDocuments.back!=null && !configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
 								{
 									var dataSet = Config.DataSets.First(ds =>
 										ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
@@ -173,7 +174,7 @@ namespace Argumentum.AssetConverter
 
 								var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo.PauseForEdits);
 								currentHarvest.Faces = faces;
-								if (!string.IsNullOrEmpty(configCardSet.Config.BackCardSetInfo.JsonFilePath))
+								if (cardSetDocuments.back != null)
 								{
 									var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo.PauseForEdits);
 									currentHarvest.Backs = backs;
@@ -579,6 +580,7 @@ namespace Argumentum.AssetConverter
 			{
 				var exampleButton = driver.Locator("#load");
 				await exampleButton.ClickAsync();
+
 				Thread.Sleep(TimeSpan.FromSeconds(2));
 			}
 

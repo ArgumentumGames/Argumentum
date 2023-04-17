@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Argumentum.AssetConverter
 {
     public class DocumentConfig
     {
-        public bool Enabled { get; set; } = true;
+	    [DataMember(Order = 0)]
+	    public virtual bool Enabled { get; set; } = true;
 
-        public string DocumentName { get; set; }
+		[DataMember(Order = 1)]
+		public virtual string DocumentName { get; set; }
 
       
 

@@ -18,11 +18,11 @@ public class CardSetDocument:ICloneable
 	public bool ccircle { get; set; }
 	public int gsize { get; set; }
 	public string gunit { get; set; }
-	public int msize { get; set; }
+	public float msize { get; set; }
 	public string munit { get; set; }
-	public int blsize { get; set; }
+	public float blsize { get; set; }
 	public string blunit { get; set; }
-	public int ssize { get; set; }
+	public float ssize { get; set; }
 	public string sunit { get; set; }
 	public bool cutline { get; set; }
 	public float bradius { get; set; }
@@ -36,7 +36,7 @@ public class CardSetDocument:ICloneable
 	public string mustache { get; set; }
 	public bool useMustache { get; set; }
 	public string cardClass { get; set; }
-	public int rscount { get; set; }
+	public string rscount { get; set; }
 	public string rsstyle { get; set; }
 	public string cindices { get; set; }
 

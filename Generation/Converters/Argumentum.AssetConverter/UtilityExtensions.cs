@@ -5,7 +5,9 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 
 namespace Argumentum.AssetConverter
@@ -117,6 +119,7 @@ namespace Argumentum.AssetConverter
 
 		        // Télécharger le fichier à partir de l'URL spécifiée
 		        using var client = new HttpClient();
+                
 		        var response = await client.GetAsync(urlFile);
 		        response.EnsureSuccessStatusCode();
 		        fileName = response.Content.Headers.ContentDisposition?.FileName ??
@@ -125,7 +128,9 @@ namespace Argumentum.AssetConverter
 		        content = await response.Content.ReadAsByteArrayAsync();
 
 		        Console.WriteLine($"Downloaded Document {docPath}");
-	        }
+		        Console.WriteLine($"Content :\n\n {Encoding.UTF8.GetString(content)}");
+
+			}
 	        else
 	        {
 		        var fullPath = docPath;

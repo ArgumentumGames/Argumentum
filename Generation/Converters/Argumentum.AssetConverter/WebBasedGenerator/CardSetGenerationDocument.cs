@@ -1,11 +1,16 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using ImageMagick;
 
 namespace Argumentum.AssetConverter;
 
 public class CardSetGenerationDocument: DocumentConfig
 {
+	[DataMember(Order = 0)]
+	public override bool Enabled { get; set; }
 
+	[DataMember(Order = 1)]
+	public override string DocumentName { get; set; }
 
 	public List<DocumentCardSet> CardSets { get; set; }
 
