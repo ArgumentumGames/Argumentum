@@ -44,7 +44,7 @@ namespace Argumentum.AssetConverter
 			var harvestDictionary = Task.Run(async () => await HarvestImages()).Result;
 			var docImages = GenerateDocumentImages(harvestDictionary);
 
-			GenerateDocuments(docImages);
+			GenerateCardSetDocuments(docImages);
 			//Console.WriteLine($"Generation finished. Total duration: {sw.Elapsed}");
 
 		}
@@ -210,9 +210,9 @@ namespace Argumentum.AssetConverter
 
 
 
-		Dictionary<(DocumentConfig document, string language), List<CardImages>> GenerateDocumentImages(Dictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
+		Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(Dictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
 		{
-			var toReturn = new Dictionary<(DocumentConfig document, string language), List<CardImages>>();
+			var toReturn = new Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
 
 			foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
 			{
@@ -325,7 +325,7 @@ namespace Argumentum.AssetConverter
 		}
 
 
-		private void GenerateDocuments(Dictionary<(DocumentConfig document, string language), List<CardImages>> docImages)
+		private void GenerateCardSetDocuments(Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> docImages)
 		{
 			Console.WriteLine($"Generation pdf documents: {sw.Elapsed}");
 			
@@ -389,7 +389,7 @@ namespace Argumentum.AssetConverter
 		/// <param name="fileName">The result pdf file name</param>
 		/// <param name="docConfig">The configuration to process</param>
 		/// <param name="images">The images requested by the configuration to build the pdf document</param>
-		private void GeneratePrintAndPlay(string fileName, DocumentConfig docConfig, List<CardImages> images)
+		private void GeneratePrintAndPlay(string fileName, CardSetGenerationDocument docConfig, List<CardImages> images)
 		{
 
 
@@ -464,7 +464,7 @@ namespace Argumentum.AssetConverter
 
 		}
 
-		private static void GenerateCardsPage(IDocumentContainer container, DocumentConfig docConfig, PageSize pageSize, float pageMarginMm,
+		private static void GenerateCardsPage(IDocumentContainer container, CardSetGenerationDocument docConfig, PageSize pageSize, float pageMarginMm,
 			int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, Func<CardImages, MagickImage> frontOrBack)
 		{
 
