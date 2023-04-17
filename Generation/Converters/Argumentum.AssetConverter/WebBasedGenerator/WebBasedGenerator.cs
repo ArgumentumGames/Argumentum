@@ -156,14 +156,14 @@ namespace Argumentum.AssetConverter
 								//Optionally update data
 
 
-								if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate)
+								if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
 								{
 									var dataSet = Config.DataSets.First(ds =>
 										ds.Name == configCardSet.Config.FaceCardSetInfo.DataSet);
 									cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent();
 								}
 
-								if (!configCardSet.Config.BackCardSetInfo.SkipDataUpdate)
+								if (!configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
 								{
 									var dataSet = Config.DataSets.First(ds =>
 										ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
