@@ -22,11 +22,11 @@ public class LocalizationConfig
 		
 		var localization = CardSetLocalizations.First(setLocalization => setLocalization.CardSetNames.Contains(source.Name));
 		var frontTranslated =
-			await TranslateCardSetInfo(source.FaceCardSetInfo, localization.FrontFieldConversions, languages);
+			await TranslateCardSetInfo(source.FaceCardSetInfo, localization.FrontFieldConversions, localization.StaticConversions,  languages);
 		CardSetPayload backTranslated = null;
 		if (!string.IsNullOrEmpty(source.BackCardSetInfo.JsonFilePath))
 		{
-			backTranslated = await TranslateCardSetInfo(source.BackCardSetInfo, localization.BackFieldConversions, languages);
+			backTranslated = await TranslateCardSetInfo(source.BackCardSetInfo, localization.BackFieldConversions, localization.StaticConversions, languages);
 		}
 		 
 
@@ -34,18 +34,28 @@ public class LocalizationConfig
 
 	}
 
-	public async Task<CardSetPayload> TranslateCardSetInfo(CardSetInfo source, List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> conversions, (string sourceLang, string destLang) languages)
+	public async Task<CardSetPayload> TranslateCardSetInfo(CardSetInfo source, 
+		List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> fieldConversions,
+		List<(string sourceText, List<(string Language, string destText)> textConversions)> staticConversions, 
+		(string sourceLang, string destLang) languages)
 	{
 
 		var sourceCardSetPayload = await source.GetCardSetDocument();
 		var template = sourceCardSetPayload.CardSetDocument.mustache;
-		foreach (var fieldConversion in conversions)
+		foreach (var fieldConversion in fieldConversions)
 		{
 			var sourceFieldPattern = FormatField(fieldConversion.sourceFieldName);
 			var convertedField =
 				fieldConversion.fieldConversions.First(convertedField => convertedField.Language == languages.destLang).destFieldName;
 			var destFieldPattern = FormatField(convertedField);
 			template = template.Replace(sourceFieldPattern, destFieldPattern);
+		}
+
+		foreach (var staticConversion in staticConversions)
+		{
+			var convertedText =
+				staticConversion.textConversions.First(convertedText => convertedText.Language == languages.destLang).destText;
+			template = template.Replace(staticConversion.sourceText, convertedText);
 		}
 
 		var returnDoc = sourceCardSetPayload.CardSetDocument.Clone();
@@ -94,6 +104,9 @@ public class CardSetLocalization
 {
 
 	public List<string> CardSetNames { get; set; } = new List<string>();
+
+	public List<(string sourceText, List<(string Language, string destText)> textConversions)> StaticConversions { get; set; }
+		= new List<(string sourceText, List<(string Language, string destText)> textConversions)>();
 
 	public List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> FrontFieldConversions { get; set; }
 		= new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>();

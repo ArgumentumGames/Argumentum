@@ -716,7 +716,8 @@ namespace Argumentum.AssetConverter
 
 			if (await generatedImages.CountAsync() != cardNames.Count)
 			{
-				throw new ApplicationException("not same number of generated cards and card names");
+				var message = $"not same number of generated cards ({await generatedImages.CountAsync()}) and card names ({cardNames.Count})";
+				throw new ApplicationException(message);
 			}
 
 			for (int i = 0; i < await generatedImages.CountAsync(); i++)
