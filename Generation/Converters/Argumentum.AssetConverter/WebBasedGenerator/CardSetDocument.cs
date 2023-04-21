@@ -36,7 +36,7 @@ public class CardSetDocument:ICloneable
 	public string mustache { get; set; }
 	public bool useMustache { get; set; }
 	public string cardClass { get; set; }
-	public string rscount { get; set; }
+	public int rscount { get; set; }
 	public string rsstyle { get; set; }
 	public string cindices { get; set; }
 
