@@ -128,7 +128,7 @@ namespace Argumentum.AssetConverter
 		        content = await response.Content.ReadAsByteArrayAsync();
 
 		        Console.WriteLine($"Downloaded Document {docPath}");
-		        Console.WriteLine($"Content :\n\n {Encoding.UTF8.GetString(content)}");
+		        //Console.WriteLine($"Content :\n\n {Encoding.UTF8.GetString(content)}");
 
 			}
 	        else
