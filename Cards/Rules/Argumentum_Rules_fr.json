@@ -31,7 +31,7 @@
   "mustache": "<div>\n  {{markdown Text}}<!--Text--><!--Text_en-->\n</div>\n\n<div class='colorPalette'>\n\t<div class=\"insuffisance\"></div>\n    <div class=\"influence\"></div>\n    <div class=\"erreurMathématique\"></div>\n    <div class=\"paralogisme\"></div>\n    <div class=\"détournementDeLaLangue\"></div>\n    <div class=\"tricherie\"></div>\n    <div class=\"obstruction\"></div>    \n</div>",
   "useMustache": false,
   "cardClass": "",
-  "rscount": "1",
+  "rscount": 1,
   "rsstyle": "bunch",
   "cindices": ""
 }

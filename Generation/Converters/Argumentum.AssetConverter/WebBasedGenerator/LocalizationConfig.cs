@@ -23,8 +23,12 @@ public class LocalizationConfig
 		var localization = CardSetLocalizations.First(setLocalization => setLocalization.CardSetNames.Contains(source.Name));
 		var frontTranslated =
 			await TranslateCardSetInfo(source.FaceCardSetInfo, localization.FrontFieldConversions, languages);
-		var backTranslated =
-			await TranslateCardSetInfo(source.BackCardSetInfo, localization.BackFieldConversions, languages);
+		CardSetPayload backTranslated = null;
+		if (!string.IsNullOrEmpty(source.BackCardSetInfo.JsonFilePath))
+		{
+			backTranslated = await TranslateCardSetInfo(source.BackCardSetInfo, localization.BackFieldConversions, languages);
+		}
+		 
 
 		return (frontTranslated, backTranslated);
 
@@ -55,7 +59,7 @@ public class LocalizationConfig
 
 	public string FormatField(string fieldName)
 	{
-		return $"{{{fieldName}";
+		return $"{fieldName}}}";
 	}
 
 
