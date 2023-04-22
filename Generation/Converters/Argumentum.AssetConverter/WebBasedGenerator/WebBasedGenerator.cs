@@ -164,7 +164,7 @@ namespace Argumentum.AssetConverter
 									cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent();
 								}
 
-								if (cardSetDocuments.back!=null && !configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
+								if (cardSetDocuments.back!=null && !configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.BackCardSetInfo.DataSet))
 								{
 									var dataSet = Config.DataSets.First(ds =>
 										ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
