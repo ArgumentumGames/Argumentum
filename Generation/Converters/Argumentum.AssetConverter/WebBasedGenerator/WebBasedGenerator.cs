@@ -660,27 +660,19 @@ namespace Argumentum.AssetConverter
 
 			toReturn.Dpi = Convert.ToInt32(dpi);
 
-			//Func<IWebDriver, IWebElement> generateButtonLambda = (IWebDriver drv) => drv.FindElement(By.Id("generateButton"));
-			//var generateButton = new WebDriverWait(driver, TimeSpan.FromSeconds(5)).Until(drv => generateButtonLambda(drv));
 			var objGenerateButton = objIFrame.Locator("#generateButton");
-			await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached });
+			Thread.Sleep(TimeSpan.FromSeconds(5));
+			await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached, Timeout = 0 });
+			await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 0 });
 
 
-
-			//var zipButtoLambda = new Func<IWebDriver, IWebElement>((IWebDriver drv) => drv.FindElement(By.Id("zipButton")));
-
-			Thread.Sleep(TimeSpan.FromSeconds(1));
-
-			//var zipButton = zipButtoLambda(driver);
-			var zipButton = objIFrame.Locator("#zipButton"); ;
+			await objGenerateButton.ClickAsync();
 
 			Thread.Sleep(TimeSpan.FromSeconds(5));
-			//generateButton.Click();
-			await objGenerateButton.ClickAsync();
-			//Console.WriteLine($"Waiting for Generated images  {sw.Elapsed}");
+			
 			//new WebDriverWait(driver, TimeSpan.FromSeconds(600)).Until(drv => zipButtoLambda(drv).Displayed && zipButtoLambda(drv).Enabled);
-
-			await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached });
+			var zipButton = objIFrame.Locator("#zipButton"); ;
+			await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached, Timeout = 0 });
 			await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 0 });
 			var zipHandler = await zipButton.ElementHandleAsync();
 			await zipHandler.WaitForElementStateAsync(ElementState.Enabled);
