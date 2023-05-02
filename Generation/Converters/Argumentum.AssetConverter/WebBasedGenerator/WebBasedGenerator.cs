@@ -58,7 +58,7 @@ namespace Argumentum.AssetConverter
 		{
 
 			ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary;
-			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelism };
+			var parallelOptionsLoading = new ParallelOptions { MaxDegreeOfParallelism = 4 };
 
 			harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest>();
 			var targetCardSets = Config.Documents
@@ -72,7 +72,7 @@ namespace Argumentum.AssetConverter
 			}
 
 
-			Parallel.ForEach(targetCardSets, parallelOptions, configCardSet =>
+			Parallel.ForEach(targetCardSets, parallelOptionsLoading, configCardSet =>
 			{
 				var targetlanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
 				if (Config.LocalizationConfig.Enabled)
@@ -120,8 +120,8 @@ namespace Argumentum.AssetConverter
 
 
 
-
-				await Parallel.ForEachAsync(targetCardSets, parallelOptions, async (configCardSet, token) =>
+				var parallelOptionsCardset = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpen };
+				await Parallel.ForEachAsync(targetCardSets, parallelOptionsCardset, async (configCardSet, token) =>
 				{
 
 
@@ -130,10 +130,10 @@ namespace Argumentum.AssetConverter
 					{
 						targetLanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
 					}
-
-				//await Parallel.ForEachAsync(targetLanguages, parallelOptions, async (currentLanguage, newToken) =>
-				foreach (var currentLanguage in targetLanguages)
-				{
+					var parallelOptionsCardsetLanguage = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpenTranslations };
+					await Parallel.ForEachAsync(targetLanguages, parallelOptionsCardsetLanguage, async (currentLanguage, newToken) =>
+					//foreach (var currentLanguage in targetLanguages)
+					{
 
 						if (!harvestDictionary.ContainsKey((configCardSet.Name, currentLanguage)))
 						{
@@ -219,7 +219,7 @@ namespace Argumentum.AssetConverter
 						}
 
 
-					}//);
+					});
 
 
 				});
@@ -234,12 +234,12 @@ namespace Argumentum.AssetConverter
 
 
 
-		Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
+		ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
 		{
 			var toReturn = new ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
-			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelism };
+			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentImages };
 
-			Parallel.ForEach(Config.Documents.Where(d => d.Enabled), parallelOptions, configDocument =>
+			Parallel.ForEach(Config.Documents.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
 				//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
 			{
 
@@ -248,8 +248,9 @@ namespace Argumentum.AssetConverter
 				{
 					targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
 				}
-
-				foreach (var currentLanguage in targetLanguages)
+				var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentTranslations };
+				Parallel.ForEach(targetLanguages, parallelOptionsDocumentsTranslations, currentLanguage =>
+					//foreach (var currentLanguage in targetLanguages)
 				{
 
 					try
@@ -347,11 +348,12 @@ namespace Argumentum.AssetConverter
 											}
 											catch (Exception e)
 											{
-												Console.WriteLine($"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} / faceName: {faceName}");
+												Console.WriteLine(
+													$"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} / faceName: {faceName}");
 												Console.WriteLine(e);
 												throw;
 											}
-											
+
 										}
 
 										currentCard = null;
@@ -370,7 +372,7 @@ namespace Argumentum.AssetConverter
 
 
 
-				}
+				});
 
 
 
@@ -382,7 +384,7 @@ namespace Argumentum.AssetConverter
 		}
 
 
-		private void GenerateCardSetDocuments(Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> docImages)
+		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> docImages)
 		{
 			Console.WriteLine($"{sw.Elapsed}: Generation pdf documents");
 
