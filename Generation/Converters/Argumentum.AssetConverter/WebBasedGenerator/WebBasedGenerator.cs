@@ -52,14 +52,13 @@ namespace Argumentum.AssetConverter
 		}
 
 
-
-		async Task<ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest>> HarvestImages()
+		async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> HarvestImages()
 		{
 
-			ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary;
+			ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary;
 			var parallelOptionsLoading = new ParallelOptions { MaxDegreeOfParallelism = 4 };
 
-			harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest>();
+			harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>();
 			var targetCardSets = Config.Documents
 				.Where(d => d.Enabled)
 				.SelectMany(d => d.CardSets.Select(dc => new CardSetJob { Name = dc.CardSetName, Translations = d.Translations }))
@@ -85,10 +84,10 @@ namespace Argumentum.AssetConverter
 					var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(Config, currentLanguage);
 					if (File.Exists(jsonHarvestName))
 					{
-						using var configStream = File.OpenRead(jsonHarvestName);
-						var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
-						Console.WriteLine($"{StopWatch.Elapsed}: Loaded Harvest {jsonHarvestName}");
-						harvestDictionary[(configCardSet.Name, currentLanguage)] = currentHarvest;
+						Console.WriteLine($"{StopWatch.Elapsed}: Found existing Harvest {jsonHarvestName}");
+						var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
+						
+						harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
 					}
 				}
 			});
@@ -97,8 +96,7 @@ namespace Argumentum.AssetConverter
 
 			var expectedHarvestNb = targetCardSets.Sum(tcs => tcs.Translations.Count + 1);
 
-			if (harvestDictionary.Count < expectedHarvestNb)
-			{
+			
 
 
 				Console.WriteLine($"Starting Browser: {StopWatch.Elapsed}");
@@ -204,9 +202,9 @@ namespace Argumentum.AssetConverter
 									JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
 								await File.WriteAllTextAsync(jsonHarvestName, strNewConfig);
 								Console.WriteLine($"{StopWatch.Elapsed}: Serialized Harvest {jsonHarvestName}");
+								var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
 
-
-								harvestDictionary[(configCardSet.Name, currentLanguage)] = currentHarvest;
+								harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
 							}
 							catch (Exception e)
 							{
@@ -226,14 +224,21 @@ namespace Argumentum.AssetConverter
 
 
 
-			}
+			
 
 			return harvestDictionary;
 		}
 
+		private static CardSetHarvest LoadCardSetHarvest(string jsonHarvestName)
+		{
+			using var configStream = File.OpenRead(jsonHarvestName);
+			var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
+			Console.WriteLine($"{StopWatch.Elapsed}: Loaded Harvest {jsonHarvestName}");
+			return currentHarvest;
+		}
 
 
-		ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
+		ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 		{
 			var toReturn = new ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentImages };
@@ -275,7 +280,7 @@ namespace Argumentum.AssetConverter
 
 
 
-							var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)];
+							var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)]();
 							var backImages = new ConcurrentDictionary<string, string>();
 							if (currentHarvest.Backs != null)
 							{

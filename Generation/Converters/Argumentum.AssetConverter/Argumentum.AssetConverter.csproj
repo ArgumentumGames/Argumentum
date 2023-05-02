@@ -26,7 +26,7 @@
 	
   <ItemGroup>
     <Folder Include="Data\Target\" />
-    <Folder Include="Published\" />
+    <Folder Include="Published\v1.3\" />
   </ItemGroup>
 	
   <ItemGroup>

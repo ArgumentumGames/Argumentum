@@ -16,13 +16,13 @@ namespace Argumentum.AssetConverter
         public string CardpenUrl { get; set; }= @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
 		//For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
 
-        public int MaxDegreeOfParallelismCardpen { get; set; } = 2;
+        public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
 
-        public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 3;
+        public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 2;
 
-        public int MaxDegreeOfParallelismDocumentImages { get; set; } = 2;
+        public int MaxDegreeOfParallelismDocumentImages { get; set; } = 3;
 
-        public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 3;
+        public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 2;
 
 
 
@@ -440,7 +440,7 @@ namespace Argumentum.AssetConverter
                             CardSetName = KnownCardSets.RulesPrintAndPlay,
                             NbCopies = 1,
                             ConvertToCmyk = true,
-                            SaveOriginalImage = true,
+                            SaveOriginalImage = false,
                             FrontCards = new DocumentCard()
                                 {
                                     BorderMM = 0,
@@ -459,7 +459,7 @@ namespace Argumentum.AssetConverter
                             CardSetName = KnownCardSets.MemoPrintAndPlay,
                             NbCopies = 5,
                             ConvertToCmyk = true,
-                            SaveOriginalImage = true,
+                            SaveOriginalImage = false,
                             FrontCards = new DocumentCard()
                             {
                                 BorderMM = 0,
@@ -478,7 +478,7 @@ namespace Argumentum.AssetConverter
                             CardSetName = KnownCardSets.FallaciesPrintAndPlay,
                             NbCopies = 1,
                             ConvertToCmyk = true,
-                            SaveOriginalImage = true,
+                            SaveOriginalImage = false,
                             FrontCards = new DocumentCard()
                             {
                                 BorderMM = 0,
@@ -511,7 +511,7 @@ namespace Argumentum.AssetConverter
                             CardSetName = KnownCardSets.ScenariiPrintAndPlay,
                             NbCopies = 1,
                             ConvertToCmyk = true,
-                            SaveOriginalImage = true,
+                            SaveOriginalImage = false,
                             FrontCards = new DocumentCard()
                             {
                                 BorderMM = 0,
@@ -582,7 +582,7 @@ namespace Argumentum.AssetConverter
                             CardSetName = KnownCardSets.FallaciesWeb,
                             NbCopies = 1,
                             ConvertToCmyk = true,
-                            SaveOriginalImage = true,
+                            SaveOriginalImage = false,
                             FrontCards = new DocumentCard()
                             {
                                 BorderMM = 0,
@@ -617,7 +617,7 @@ namespace Argumentum.AssetConverter
 			                CardSetName = KnownCardSets.FallaciesWebThumbnails,
 			                NbCopies = 1,
 			                ConvertToCmyk = false,
-			                SaveOriginalImage = true,
+			                SaveOriginalImage = false,
 			                FrontCards = new DocumentCard()
 			                {
 				                BorderMM = 0,
@@ -649,7 +649,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -668,7 +668,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Memo,
 							NbCopies = 7,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -687,7 +687,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Fallacies2,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -719,7 +719,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -738,7 +738,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Memo,
 							NbCopies = 7,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -757,7 +757,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Fallacies3,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
