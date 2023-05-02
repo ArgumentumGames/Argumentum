@@ -4,9 +4,9 @@ namespace Argumentum.AssetConverter
 {
     public class CardImages
     {
-        public MagickImage Front { get; set; }
+        public string Front { get; set; }
 
-        public MagickImage Back { get; set; }
+        public string Back { get; set; }
 
     }
 }
