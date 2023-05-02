@@ -50,10 +50,11 @@ namespace Argumentum.AssetConverter
 
 
 
-        public static MagickImage LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetGenerationDocument docConfig,
+        public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetGenerationDocument docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
-            MagickImage toReturn;
+	        string toReturn;
+            MagickImage imageFromEmbeddedUrl;
             var imagesFolderName = config.GetImagesDirectory(language);
 
             var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
@@ -72,13 +73,14 @@ namespace Argumentum.AssetConverter
             imageFileName = Path.Combine(cardSetFolderName, imageFileName);
             if (File.Exists(imageFileName))
             {
-                toReturn = new MagickImage(imageFileName);
-                
+				//imageFromEmbeddedUrl = new MagickImage(imageFileName);
+				Console.WriteLine($"{WebBasedGenerator.StopWatch.Elapsed}: Skipping Existing image: {imageFileName}");
+				toReturn = imageFileName;
 			}
             else
             {
-                toReturn = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
-                toReturn.Density = new Density(sourceDpi);
+                imageFromEmbeddedUrl = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
+                imageFromEmbeddedUrl.Density = new Density(sourceDpi);
                 if (documentCardSet.SaveOriginalImage)
                 {
                     var originalFolderName = Path.Combine(imagesFolderName, $@"original\");
@@ -95,14 +97,14 @@ namespace Argumentum.AssetConverter
                     imageOriginalFileName = Path.Combine(cardSetOriginalFolderName, imageOriginalFileName);
                     if (!File.Exists(imageOriginalFileName))
                     {
-                        toReturn.Write(imageOriginalFileName);
-                        Console.WriteLine($"Saved image: {imageOriginalFileName}");
+                        imageFromEmbeddedUrl.Write(imageOriginalFileName);
+                        Console.WriteLine($"{WebBasedGenerator.StopWatch.Elapsed}: Saved image: {imageOriginalFileName}");
 					}
                 }
 
                 if (documentCardSet.ConvertToCmyk)
                 {
-                    toReturn.ConvertToCmyk();
+                    imageFromEmbeddedUrl.ConvertToCmyk();
                 }
 
                 var documentCard = documentCardSet.FrontCards;
@@ -113,15 +115,16 @@ namespace Argumentum.AssetConverter
 
                 if (documentCard.WidthMM > 0 && documentCard.HeigthMM > 0)
                 {
-                    toReturn.ResizeInMM(documentCard.WidthMM, documentCard.HeigthMM, documentCard.BorderMM);
+                    imageFromEmbeddedUrl.ResizeInMM(documentCard.WidthMM, documentCard.HeigthMM, documentCard.BorderMM);
                 }
 
                 if (docConfig.TargetDensity > 0)
                 {
-                    toReturn.Resample(docConfig.TargetDensity, docConfig.TargetDensity);
+                    imageFromEmbeddedUrl.Resample(docConfig.TargetDensity, docConfig.TargetDensity);
                 }
-                toReturn.Write(imageFileName, docConfig.ImageFormat);
-                Console.WriteLine($"Saved image: {imageFileName}");
+                imageFromEmbeddedUrl.Write(imageFileName, docConfig.ImageFormat);
+                Console.WriteLine($"{WebBasedGenerator.StopWatch.Elapsed}: Saved image: {imageFileName}");
+                toReturn = imageFileName;
 			}
 
             return toReturn;

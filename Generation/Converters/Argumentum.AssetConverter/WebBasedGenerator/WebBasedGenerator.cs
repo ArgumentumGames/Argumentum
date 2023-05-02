@@ -29,20 +29,19 @@ namespace Argumentum.AssetConverter
 	public class WebBasedGenerator
 	{
 
-		private Stopwatch sw;
+		public static Stopwatch StopWatch = Stopwatch.StartNew();
 		public WebBasedGeneratorConfig Config { get; set; }
 
 		public WebBasedGenerator(WebBasedGeneratorConfig config, Stopwatch objSw)
 		{
 			Config = config;
-			sw = objSw;
+			StopWatch = objSw;
 
 		}
 
 
 		public void Run()
 		{
-			sw = Stopwatch.StartNew();
 			//var harvestDictionary = HarvestImages();
 			var harvestDictionary = Task.Run(async () => await HarvestImages()).Result;
 			var docImages = GenerateDocumentImages(harvestDictionary);
@@ -88,7 +87,7 @@ namespace Argumentum.AssetConverter
 					{
 						using var configStream = File.OpenRead(jsonHarvestName);
 						var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
-						Console.WriteLine($"{sw.Elapsed}: Loaded Harvest {jsonHarvestName}");
+						Console.WriteLine($"{StopWatch.Elapsed}: Loaded Harvest {jsonHarvestName}");
 						harvestDictionary[(configCardSet.Name, currentLanguage)] = currentHarvest;
 					}
 				}
@@ -102,7 +101,7 @@ namespace Argumentum.AssetConverter
 			{
 
 
-				Console.WriteLine($"Starting Browser: {sw.Elapsed}");
+				Console.WriteLine($"Starting Browser: {StopWatch.Elapsed}");
 				var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
 				if (exitCode != 0)
 				{
@@ -204,7 +203,7 @@ namespace Argumentum.AssetConverter
 								var strNewConfig =
 									JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
 								await File.WriteAllTextAsync(jsonHarvestName, strNewConfig);
-								Console.WriteLine($"{sw.Elapsed}: Serialized Harvest {jsonHarvestName}");
+								Console.WriteLine($"{StopWatch.Elapsed}: Serialized Harvest {jsonHarvestName}");
 
 
 								harvestDictionary[(configCardSet.Name, currentLanguage)] = currentHarvest;
@@ -272,12 +271,12 @@ namespace Argumentum.AssetConverter
 								configDocument.DocumentName,
 								Config.LocalizationConfig.DefaultLanguage, currentLanguage);
 							Console.WriteLine(
-								$"{sw.Elapsed}: Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
+								$"{StopWatch.Elapsed}: Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
 
 
 
 							var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)];
-							var backImages = new ConcurrentDictionary<string, MagickImage>();
+							var backImages = new ConcurrentDictionary<string, string>();
 							if (currentHarvest.Backs != null)
 							{
 								foreach (var currentHarvestBack in currentHarvest.Backs.Images)
@@ -386,7 +385,7 @@ namespace Argumentum.AssetConverter
 
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> docImages)
 		{
-			Console.WriteLine($"{sw.Elapsed}: Generation pdf documents");
+			Console.WriteLine($"{StopWatch.Elapsed}: Generation pdf documents");
 
 
 			foreach (var docImageList in docImages)
@@ -408,7 +407,7 @@ namespace Argumentum.AssetConverter
 					case CardDocumentFormat.AlternateFaceAndBack:
 						collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
 						{
-							return new[] { s.Front, s.Back };
+							return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
 						}));
 
 						targetFiles.Add((baseName, collec));
@@ -421,7 +420,7 @@ namespace Argumentum.AssetConverter
 						for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
 						{
 							var frontsAndBack = cardsPerBack[backIndex];
-							var backThenFronts = new[] { frontsAndBack.Key }.Concat(frontsAndBack.Select(card => card.Front));
+							var backThenFronts = new[] { new MagickImage(frontsAndBack.Key) }.Concat(frontsAndBack.Select(card => new MagickImage(card.Front)));
 							collec = new MagickImageCollection(backThenFronts);
 							var newName = $"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
 							targetFiles.Add((newName, collec));
@@ -507,19 +506,19 @@ namespace Argumentum.AssetConverter
 						//var cardArray = pageCards.ToList().ToJaggedArray(nbColumns);
 						if (!docConfig.NoBack)
 						{
-							GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => cardImages.Back);
+							GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Back));
 							pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
 								.ToArray().Flatten();
 						}
 
-						GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => cardImages.Front);
+						GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Front));
 					}
 
 
 				})
 				.WithMetadata(docMetadata)
 				.GeneratePdf(fileName);
-			Console.WriteLine($"{sw.Elapsed}: Generated pdf document {fileName}");
+			Console.WriteLine($"{StopWatch.Elapsed}: Generated pdf document {fileName}");
 
 		}
 
@@ -621,7 +620,7 @@ namespace Argumentum.AssetConverter
 			foreach (var targetFile in targetFiles)
 			{
 				targetFile.documentImages.Write(targetFile.fileName);
-				Console.WriteLine($"{sw.Elapsed}: Generated pdf document {targetFile.fileName}");
+				Console.WriteLine($"{StopWatch.Elapsed}: Generated pdf document {targetFile.fileName}");
 			}
 		}
 
@@ -643,7 +642,7 @@ namespace Argumentum.AssetConverter
 			}
 
 
-			Console.WriteLine($"{sw.Elapsed}: Generating CardSet {cardSetDocument.FileName}");
+			Console.WriteLine($"{StopWatch.Elapsed}: Generating CardSet {cardSetDocument.FileName}");
 
 			//{
 			//	if (!Path.IsPathFullyQualified(cardSet.JsonFilePath))
@@ -701,7 +700,7 @@ namespace Argumentum.AssetConverter
 
 			//objIFrame = new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.Id("cpOutput")));
 			//driver.SwitchTo().Frame(objIFrame);
-			Console.WriteLine($"{sw.Elapsed}: Waiting for image display");
+			Console.WriteLine($"{StopWatch.Elapsed}: Waiting for image display");
 			//new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
 			//await objCardTag.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached });
 			while (await objCardTag.CountAsync() == 0)
@@ -785,7 +784,7 @@ namespace Argumentum.AssetConverter
 				var currentGeneratedImage = generatedImages.Nth(i);
 				var currentCardName = cardNames[i];
 				toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
-				Console.WriteLine($"{sw.Elapsed}: Downloaded Card Image - {cardSetDocument.FileName} - {currentCardName}");
+				Console.WriteLine($"{StopWatch.Elapsed}: Downloaded Card Image - {cardSetDocument.FileName} - {currentCardName}");
 			}
 
 			//driver.SwitchTo().ParentFrame();
