@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using Utf8Json;
 
 namespace Argumentum.AssetConverter
 {
@@ -18,14 +19,14 @@ namespace Argumentum.AssetConverter
                 var config = AssetConverterConfig.GetConfig(configFileName, out newConfig);
                 if (newConfig)
                 {
-                    Console.WriteLine($"New Default Config file created : {sw.Elapsed} \n {configFileName} ");
-                    Console.WriteLine($"If you wish to edit that configuration file to define the documents to generate then close this window and relaunch application after edits.");
-                    Console.WriteLine($"If you wish to run the default configuration, press a key");
+                    Console.WriteLine($"The default config include all assets in all languages. If you wish to edit that configuration file to choose the generated documents, then close this window and relaunch application after applying  edits to the configuration file.\n");
+                    Console.WriteLine($"If you wish to run the default configuration, press any key");
+                    
                     Console.ReadKey();
 				}
                 else
                 {
-                    Console.WriteLine($"Config loaded: {sw.Elapsed} \n {configFileName}");
+                    Console.WriteLine($"{sw.Elapsed}: Config loaded: \n {configFileName}");
 
 				}
                 config.Apply(sw);

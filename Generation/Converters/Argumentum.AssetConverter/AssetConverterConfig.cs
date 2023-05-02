@@ -36,6 +36,7 @@ namespace Argumentum.AssetConverter
             {
                 toReturn = new AssetConverterConfig();
                 var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(toReturn));
+                Console.WriteLine($"Saving Config {path},\n File Content:\n {strNewConfig}");
                 File.WriteAllText(path, strNewConfig);
                 newConfig = true;
             }

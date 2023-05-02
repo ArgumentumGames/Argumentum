@@ -142,8 +142,8 @@ namespace Argumentum.AssetConverter
 		        fileName = Path.GetFileName(fullPath);
 
 		        content = await File.ReadAllBytesAsync(fullPath);
-
-	        }
+		        Console.WriteLine($"File Loaded: {fullPath}");
+			}
 
 	        return new DocumentPayload() { FileName = fileName, Content = content, MimeType = mimeType };
 

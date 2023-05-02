@@ -22,11 +22,11 @@ public class LocalizationConfig
 		
 		var localization = CardSetLocalizations.First(setLocalization => setLocalization.CardSetNames.Contains(source.Name));
 		var frontTranslated =
-			await TranslateCardSetInfo(source.FaceCardSetInfo, localization.FrontFieldConversions, localization.StaticConversions,  languages);
+			await TranslateCardSetInfo(source.FaceCardSetInfo, localization.FrontFieldConversions, localization.StaticConversions, localization.ExceptionPatterns, languages);
 		CardSetPayload backTranslated = null;
 		if (!string.IsNullOrEmpty(source.BackCardSetInfo.JsonFilePath))
 		{
-			backTranslated = await TranslateCardSetInfo(source.BackCardSetInfo, localization.BackFieldConversions, localization.StaticConversions, languages);
+			backTranslated = await TranslateCardSetInfo(source.BackCardSetInfo, localization.BackFieldConversions, localization.StaticConversions, localization.ExceptionPatterns, languages);
 		}
 		 
 
@@ -36,12 +36,14 @@ public class LocalizationConfig
 
 	public async Task<CardSetPayload> TranslateCardSetInfo(CardSetInfo source, 
 		List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> fieldConversions,
-		List<(string sourceText, List<(string Language, string destText)> textConversions)> staticConversions, 
-		(string sourceLang, string destLang) languages)
+		List<(string sourceText, List<(string Language, string destText)> textConversions)> staticConversions, List<string> exceptionList,
+
+	(string sourceLang, string destLang) languages)
 	{
 
 		var sourceCardSetPayload = await source.GetCardSetDocument();
 		var template = sourceCardSetPayload.CardSetDocument.mustache;
+		var exceptionsBacktrack = new List<(string sourcePattern, string destPattern)>();
 		foreach (var fieldConversion in fieldConversions)
 		{
 			var sourceFieldPattern = FormatField(fieldConversion.sourceFieldName);
@@ -49,6 +51,20 @@ public class LocalizationConfig
 				fieldConversion.fieldConversions.First(convertedField => convertedField.Language == languages.destLang).destFieldName;
 			var destFieldPattern = FormatField(convertedField);
 			template = template.Replace(sourceFieldPattern, destFieldPattern);
+			foreach (var exception in exceptionList)
+			{
+				var exceptionPattern = exception.Replace(sourceFieldPattern, destFieldPattern);
+				if (exceptionPattern!= exception)
+				{
+					exceptionsBacktrack.Add((exceptionPattern, exception));
+				}
+			}
+		}
+
+		foreach (var exceptionBacktrackTransform in exceptionsBacktrack)
+		{
+			template = template.Replace(exceptionBacktrackTransform.sourcePattern,
+				exceptionBacktrackTransform.destPattern);
 		}
 
 		foreach (var staticConversion in staticConversions)
@@ -57,6 +73,9 @@ public class LocalizationConfig
 				staticConversion.textConversions.First(convertedText => convertedText.Language == languages.destLang).destText;
 			template = template.Replace(staticConversion.sourceText, convertedText);
 		}
+
+		
+		
 
 		var returnDoc = sourceCardSetPayload.CardSetDocument.Clone();
 		returnDoc.mustache = template;
@@ -113,6 +132,8 @@ public class CardSetLocalization
 
 	public List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> BackFieldConversions { get; set; }
 		= new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>();
+
+	public List<string> ExceptionPatterns { get; set; } = new List<string>();
 
 
 }

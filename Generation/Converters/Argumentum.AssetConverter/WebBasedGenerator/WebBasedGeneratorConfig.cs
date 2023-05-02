@@ -16,6 +16,7 @@ namespace Argumentum.AssetConverter
         public string CardpenUrl { get; set; }= @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
 		//For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
 
+        public int MaxDegreeOfParallelism { get; set; } = 4;
 
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
 			new[]
@@ -177,7 +178,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Fallacies,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Memo/Argumentum_Memo_Face_fr.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
@@ -261,6 +262,11 @@ namespace Argumentum.AssetConverter
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
+					}),
+                    ExceptionPatterns = new List<string>(new []
+                    {
+						"{{rowset.[0].catégorie}}.jpg",
+						"{{rowset.[0].catégorie}}.png"
 					})
 				},
 				new CardSetLocalization()
