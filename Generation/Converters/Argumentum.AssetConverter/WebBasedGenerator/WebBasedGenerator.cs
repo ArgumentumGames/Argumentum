@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Linq.Dynamic.Core.Tokenizer;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -17,6 +19,7 @@ using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using Sprache;
 //using Svg.Skia;
 using Utf8Json;
 
@@ -49,18 +52,18 @@ namespace Argumentum.AssetConverter
 
 		}
 
-		
 
-		async Task<Dictionary<(string cardsetName, string language), CardSetHarvest>> HarvestImages()
+
+		async Task<ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest>> HarvestImages()
 		{
 
-			Dictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary;
+			ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary;
+			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelism };
 
-
-			harvestDictionary = new Dictionary<(string cardsetName, string language), CardSetHarvest>();
+			harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest>();
 			var targetCardSets = Config.Documents
 				.Where(d => d.Enabled)
-				.SelectMany(d => d.CardSets.Select(dc => new CardSetJob { Name = dc.CardSetName, Translations = d.Translations} ))
+				.SelectMany(d => d.CardSets.Select(dc => new CardSetJob { Name = dc.CardSetName, Translations = d.Translations }))
 				.Distinct(CardSetJob.Comparer)
 				.ToArray();
 			foreach (var usedCardSet in targetCardSets)
@@ -68,14 +71,13 @@ namespace Argumentum.AssetConverter
 				usedCardSet.Config = Config.CardSets.First(c => c.Name == usedCardSet.Name);
 			}
 
-			
 
-			foreach (var configCardSet in targetCardSets)
+			Parallel.ForEach(targetCardSets, parallelOptions, configCardSet =>
 			{
 				var targetlanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
 				if (Config.LocalizationConfig.Enabled)
 				{
-					targetlanguages.AddRange(configCardSet.Translations.Select(t=>t.targetLanguage));
+					targetlanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
 				}
 
 				foreach (var currentLanguage in targetlanguages)
@@ -86,18 +88,21 @@ namespace Argumentum.AssetConverter
 					{
 						using var configStream = File.OpenRead(jsonHarvestName);
 						var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
-						Console.WriteLine($"Loaded Harvest {jsonHarvestName}: {sw.Elapsed}");
+						Console.WriteLine($"{sw.Elapsed}: Loaded Harvest {jsonHarvestName}");
 						harvestDictionary[(configCardSet.Name, currentLanguage)] = currentHarvest;
 					}
 				}
+			});
 
-			}
 
-			if (harvestDictionary.Count < targetCardSets.Count())
+
+			var expectedHarvestNb = targetCardSets.Sum(tcs => tcs.Translations.Count + 1);
+
+			if (harvestDictionary.Count < expectedHarvestNb)
 			{
 
 
-
+				Console.WriteLine($"Starting Browser: {sw.Elapsed}");
 				var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
 				if (exitCode != 0)
 				{
@@ -108,33 +113,32 @@ namespace Argumentum.AssetConverter
 				await using IBrowser browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 				{
 					Headless = false,
+
 					//SlowMo = 50,
 				});
 
 
-				try
+
+
+
+				await Parallel.ForEachAsync(targetCardSets, parallelOptions, async (configCardSet, token) =>
 				{
-					
-					var page = await browser.NewPageAsync();
-					await page.GotoAsync(Config.CardpenUrl);
-					await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
-					//await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-					Thread.Sleep(TimeSpan.FromSeconds(2));
 
-					foreach (var configCardSet in targetCardSets)
+					var targetLanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
+					if (Config.LocalizationConfig.Enabled)
+					{
+						targetLanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
+					}
+
+					await Parallel.ForEachAsync(targetLanguages, parallelOptions, async (currentLanguage, newToken) =>
+						//foreach (var currentLanguage in targetLanguages)
 					{
 
-						var targetLanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
-						if (Config.LocalizationConfig.Enabled)
-						{
-							targetLanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
-						}
-
-						foreach (var currentLanguage in targetLanguages)
+						if (!harvestDictionary.ContainsKey((configCardSet.Name, currentLanguage)))
 						{
 
-							if (!harvestDictionary.ContainsKey((configCardSet.Name, currentLanguage)))
+							try
 							{
 								var currentHarvest = new CardSetHarvest();
 
@@ -144,66 +148,85 @@ namespace Argumentum.AssetConverter
 
 								if (currentLanguage == Config.LocalizationConfig.DefaultLanguage)
 								{
-									var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument();
-									var backCardSetDocument = await configCardSet.Config.BackCardSetInfo.GetCardSetDocument();
+									var frontCardSetDocument =
+										await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument();
+									var backCardSetDocument =
+										await configCardSet.Config.BackCardSetInfo.GetCardSetDocument();
 									cardSetDocuments = (frontCardSetDocument, backCardSetDocument);
 								}
 								else
 								{
-									cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(configCardSet.Config,
+									cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(
+										configCardSet.Config,
 										(Config.LocalizationConfig.DefaultLanguage, currentLanguage));
 								}
 
 								//Optionally update data
 
 
-								if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
+								if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate &&
+								    !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
 								{
 									var dataSet = Config.DataSets.First(ds =>
 										ds.Name == configCardSet.Config.FaceCardSetInfo.DataSet);
 									cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent();
 								}
 
-								if (cardSetDocuments.back!=null && !configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.BackCardSetInfo.DataSet))
+								if (cardSetDocuments.back != null &&
+								    !configCardSet.Config.BackCardSetInfo.SkipDataUpdate &&
+								    !string.IsNullOrEmpty(configCardSet.Config.BackCardSetInfo.DataSet))
 								{
 									var dataSet = Config.DataSets.First(ds =>
 										ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
 									cardSetDocuments.back.CardSetDocument.csv = await dataSet.GetContent();
 								}
 
+								var page = await browser.NewPageAsync();
+								await page.GotoAsync(Config.CardpenUrl);
+								await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+								await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+								Thread.Sleep(TimeSpan.FromSeconds(2));
 
-								var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo.PauseForEdits);
+								var faces = await GenerateImages(page, cardSetDocuments.front,
+									configCardSet.Config.FaceCardSetInfo.PauseForEdits);
 								currentHarvest.Faces = faces;
 								if (cardSetDocuments.back != null)
 								{
-									var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo.PauseForEdits);
+									var backs = await GenerateImages(page, cardSetDocuments.back,
+										configCardSet.Config.BackCardSetInfo.PauseForEdits);
 									currentHarvest.Backs = backs;
 								}
 
-								var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(Config, currentLanguage);
-								var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
+								await page.CloseAsync();
+
+								var jsonHarvestName =
+									configCardSet.Config.GetHarvestSerializationName(Config, currentLanguage);
+								var strNewConfig =
+									JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
 								await File.WriteAllTextAsync(jsonHarvestName, strNewConfig);
-								Console.WriteLine($"Serialized Harvest {jsonHarvestName}: {sw.Elapsed}");
+								Console.WriteLine($"{sw.Elapsed}: Serialized Harvest {jsonHarvestName}");
 
 
 								harvestDictionary[(configCardSet.Name, currentLanguage)] = currentHarvest;
+							}
+							catch (Exception e)
+							{
+								Console.WriteLine(e);
+
 							}
 
 
 						}
 
 
-						
+					});
 
 
-					}
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-					throw;
-				}
-				
+				});
+
+
+
+
 			}
 
 			return harvestDictionary;
@@ -211,11 +234,13 @@ namespace Argumentum.AssetConverter
 
 
 
-		Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(Dictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
+		Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
 		{
 			var toReturn = new Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
+			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelism };
 
-			foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
+			Parallel.ForEach(Config.Documents.Where(d => d.Enabled), parallelOptions, configDocument =>
+				//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
 			{
 
 				var targetLanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
@@ -226,91 +251,112 @@ namespace Argumentum.AssetConverter
 
 				foreach (var currentLanguage in targetLanguages)
 				{
-					List<CardImages> targetList;
 
-					if (!toReturn.TryGetValue((configDocument, currentLanguage), out targetList))
+					try
 					{
-						targetList = new List<CardImages>();
-						toReturn[(configDocument, currentLanguage)] = targetList;
-					}
+						List<CardImages> targetList;
 
-					foreach (var configCardSet in configDocument.CardSets)
-					{
-						var documentLocalizedName = LocalizationConfig.GetLocalizedFileName(configDocument.DocumentName,
-							Config.LocalizationConfig.DefaultLanguage, currentLanguage);
-						Console.WriteLine($"Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}: {sw.Elapsed}");
-
-
-
-						var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)];
-						var backImages = new Dictionary<string, MagickImage>();
-						if (currentHarvest.Backs != null)
+						if (!toReturn.TryGetValue((configDocument, currentLanguage), out targetList))
 						{
-							foreach (var currentHarvestBack in currentHarvest.Backs.Images)
-							{
-								var backName = $"{currentHarvestBack.Key.ToLowerInvariant()}";
-								var backImageUrl = currentHarvestBack.Value;
-								var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage,true, Config, configDocument, backName, backImageUrl, currentHarvest.Backs.Dpi);
-								if (backName.Contains('-'))
-								{
-									backName = backName.Substring(backName.LastIndexOf('-'));
-								}
-
-								backImages[backName] = backImage;
-							}
+							targetList = new List<CardImages>();
+							toReturn[(configDocument, currentLanguage)] = targetList;
 						}
 
+						//foreach (var configCardSet in configDocument.CardSets)
 
-						for (int i = 0; i < configCardSet.NbCopies; i++)
+
+						foreach (var configCardSet in configDocument.CardSets)
 						{
-							CardImages currentCard = null;
-							foreach (var currentHarvestFace in currentHarvest.Faces.Images)
+							var documentLocalizedName = LocalizationConfig.GetLocalizedFileName(
+								configDocument.DocumentName,
+								Config.LocalizationConfig.DefaultLanguage, currentLanguage);
+							Console.WriteLine(
+								$"{sw.Elapsed}: Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
+
+
+
+							var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)];
+							var backImages = new Dictionary<string, MagickImage>();
+							if (currentHarvest.Backs != null)
 							{
-
-								var faceName = $"{currentHarvestFace.Key.ToLowerInvariant()}";
-								if (!configDocument.NoBack)
+								foreach (var currentHarvestBack in currentHarvest.Backs.Images)
 								{
-									faceName = $"face_{faceName}";
-								}
-								var faceImageUrl = currentHarvestFace.Value;
-								var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage,false, Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
-								if (currentCard == null)
-								{
-									currentCard = new CardImages();
-									targetList.Add(currentCard);
-									//currentCard.Front = new MagickImage(faceImage);
-									currentCard.Front = faceImage;
-									if (configDocument.NoBack)
+									var backName = $"{currentHarvestBack.Key.ToLowerInvariant()}";
+									var backImageUrl = currentHarvestBack.Value;
+									var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, true, Config,
+										configDocument, backName, backImageUrl, currentHarvest.Backs.Dpi);
+									if (backName.Contains('-'))
 									{
-										currentCard = null;
+										backName = backName.Substring(backName.LastIndexOf('-'));
 									}
-								}
-								else
-								{
-									//currentCard.Back = new MagickImage(faceImage);
-									currentCard.Back = faceImage;
-									currentCard = null;
-								}
 
-								if (backImages.Count > 0)
+									backImages[backName] = backImage;
+								}
+							}
+
+
+							for (int i = 0; i < configCardSet.NbCopies; i++)
+							{
+								CardImages currentCard = null;
+								//Parallel.ForEach(currentHarvest.Faces.Images, parallelOptions, currentHarvestFace =>
+								foreach (var currentHarvestFace in currentHarvest.Faces.Images)
 								{
-									if (backImages.Count == 1)
+
+									var faceName = $"{currentHarvestFace.Key.ToLowerInvariant()}";
+									if (!configDocument.NoBack)
 									{
-										//currentCard.Back = new MagickImage(backImages.Values.First());
-										currentCard.Back = backImages.Values.First();
+										faceName = $"face_{faceName}";
+									}
+
+									var faceImageUrl = currentHarvestFace.Value;
+									var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, false, Config,
+										configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
+									if (currentCard == null)
+									{
+										currentCard = new CardImages();
+										targetList.Add(currentCard);
+										//currentCard.Front = new MagickImage(faceImage);
+										currentCard.Front = faceImage;
+										if (configDocument.NoBack)
+										{
+											currentCard = null;
+										}
 									}
 									else
 									{
-
-										var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
-										//currentCard.Back = new MagickImage(backImages[targetBackName]);
-										currentCard.Back = backImages[targetBackName];
+										//currentCard.Back = new MagickImage(faceImage);
+										currentCard.Back = faceImage;
+										currentCard = null;
 									}
-									currentCard = null;
+
+									if (backImages.Count > 0)
+									{
+										if (backImages.Count == 1)
+										{
+											//currentCard.Back = new MagickImage(backImages.Values.First());
+											currentCard.Back = backImages.Values.First();
+										}
+										else
+										{
+
+											var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
+											//currentCard.Back = new MagickImage(backImages[targetBackName]);
+											currentCard.Back = backImages[targetBackName];
+										}
+
+										currentCard = null;
+									}
 								}
 							}
 						}
 					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+
+
+
 
 
 
@@ -318,7 +364,7 @@ namespace Argumentum.AssetConverter
 
 
 
-			}
+			});
 
 
 
@@ -328,8 +374,8 @@ namespace Argumentum.AssetConverter
 
 		private void GenerateCardSetDocuments(Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> docImages)
 		{
-			Console.WriteLine($"Generation pdf documents: {sw.Elapsed}");
-			
+			Console.WriteLine($"{sw.Elapsed}: Generation pdf documents");
+
 
 			foreach (var docImageList in docImages)
 			{
@@ -461,7 +507,7 @@ namespace Argumentum.AssetConverter
 				})
 				.WithMetadata(docMetadata)
 				.GeneratePdf(fileName);
-			Console.WriteLine($"Generated pdf document {fileName}: {sw.Elapsed}");
+			Console.WriteLine($"{sw.Elapsed}: Generated pdf document {fileName}");
 
 		}
 
@@ -563,7 +609,7 @@ namespace Argumentum.AssetConverter
 			foreach (var targetFile in targetFiles)
 			{
 				targetFile.documentImages.Write(targetFile.fileName);
-				Console.WriteLine($"Generated pdf document {targetFile.fileName}: {sw.Elapsed}");
+				Console.WriteLine($"{sw.Elapsed}: Generated pdf document {targetFile.fileName}");
 			}
 		}
 
@@ -584,9 +630,9 @@ namespace Argumentum.AssetConverter
 				Thread.Sleep(TimeSpan.FromSeconds(2));
 			}
 
-			
-			Console.WriteLine($"Generating CardSet {cardSetDocument.FileName}: {sw.Elapsed}");
-	
+
+			Console.WriteLine($"{sw.Elapsed}: Generating CardSet {cardSetDocument.FileName}");
+
 			//{
 			//	if (!Path.IsPathFullyQualified(cardSet.JsonFilePath))
 			//	{
@@ -643,7 +689,7 @@ namespace Argumentum.AssetConverter
 
 			//objIFrame = new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.Id("cpOutput")));
 			//driver.SwitchTo().Frame(objIFrame);
-			Console.WriteLine($"Waiting for image display {sw.Elapsed}");
+			Console.WriteLine($"{sw.Elapsed}: Waiting for image display");
 			//new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(drv => drv.FindElement(By.TagName("card")));
 			//await objCardTag.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached });
 			while (await objCardTag.CountAsync() == 0)
@@ -669,7 +715,7 @@ namespace Argumentum.AssetConverter
 			await objGenerateButton.ClickAsync();
 
 			Thread.Sleep(TimeSpan.FromSeconds(5));
-			
+
 			//new WebDriverWait(driver, TimeSpan.FromSeconds(600)).Until(drv => zipButtoLambda(drv).Displayed && zipButtoLambda(drv).Enabled);
 			var zipButton = objIFrame.Locator("#zipButton"); ;
 			await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached, Timeout = 0 });
@@ -712,12 +758,22 @@ namespace Argumentum.AssetConverter
 				throw new ApplicationException(message);
 			}
 
+			//Parallel.For(0, await generatedImages.CountAsync(), async i =>
+			//{
+			//	var currentGeneratedImage = generatedImages.Nth(i);
+			//	var currentCardName = cardNames[i];
+			//	toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
+			//	Console.WriteLine($"Added Card {currentCardName}: {sw.Elapsed}");
+			//});
+
+
 			for (int i = 0; i < await generatedImages.CountAsync(); i++)
 			{
 				//toReturn.Images[cardNames[i]] = generatedImages[i].GetAttribute("src");
 				var currentGeneratedImage = generatedImages.Nth(i);
 				var currentCardName = cardNames[i];
 				toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
+				Console.WriteLine($"{sw.Elapsed}: Downloaded Card Image - {cardSetDocument.FileName} - {currentCardName}");
 			}
 
 			//driver.SwitchTo().ParentFrame();

@@ -73,7 +73,8 @@ namespace Argumentum.AssetConverter
             if (File.Exists(imageFileName))
             {
                 toReturn = new MagickImage(imageFileName);
-            }
+                
+			}
             else
             {
                 toReturn = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
@@ -95,7 +96,8 @@ namespace Argumentum.AssetConverter
                     if (!File.Exists(imageOriginalFileName))
                     {
                         toReturn.Write(imageOriginalFileName);
-                    }
+                        Console.WriteLine($"Saved image: {imageOriginalFileName}");
+					}
                 }
 
                 if (documentCardSet.ConvertToCmyk)
@@ -118,9 +120,9 @@ namespace Argumentum.AssetConverter
                 {
                     toReturn.Resample(docConfig.TargetDensity, docConfig.TargetDensity);
                 }
-
                 toReturn.Write(imageFileName, docConfig.ImageFormat);
-            }
+                Console.WriteLine($"Saved image: {imageFileName}");
+			}
 
             return toReturn;
         }
