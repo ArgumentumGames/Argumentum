@@ -131,9 +131,9 @@ namespace Argumentum.AssetConverter
 						targetLanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
 					}
 
-					await Parallel.ForEachAsync(targetLanguages, parallelOptions, async (currentLanguage, newToken) =>
-						//foreach (var currentLanguage in targetLanguages)
-					{
+				//await Parallel.ForEachAsync(targetLanguages, parallelOptions, async (currentLanguage, newToken) =>
+				foreach (var currentLanguage in targetLanguages)
+				{
 
 						if (!harvestDictionary.ContainsKey((configCardSet.Name, currentLanguage)))
 						{
@@ -219,7 +219,7 @@ namespace Argumentum.AssetConverter
 						}
 
 
-					});
+					}//);
 
 
 				});
@@ -236,7 +236,7 @@ namespace Argumentum.AssetConverter
 
 		Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), CardSetHarvest> harvestDictionary)
 		{
-			var toReturn = new Dictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
+			var toReturn = new ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
 			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelism };
 
 			Parallel.ForEach(Config.Documents.Where(d => d.Enabled), parallelOptions, configDocument =>
@@ -276,7 +276,7 @@ namespace Argumentum.AssetConverter
 
 
 							var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)];
-							var backImages = new Dictionary<string, MagickImage>();
+							var backImages = new ConcurrentDictionary<string, MagickImage>();
 							if (currentHarvest.Backs != null)
 							{
 								foreach (var currentHarvestBack in currentHarvest.Backs.Images)
@@ -339,9 +339,19 @@ namespace Argumentum.AssetConverter
 										else
 										{
 
-											var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
-											//currentCard.Back = new MagickImage(backImages[targetBackName]);
-											currentCard.Back = backImages[targetBackName];
+											try
+											{
+												var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
+												//currentCard.Back = new MagickImage(backImages[targetBackName]);
+												currentCard.Back = backImages[targetBackName];
+											}
+											catch (Exception e)
+											{
+												Console.WriteLine($"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} / faceName: {faceName}");
+												Console.WriteLine(e);
+												throw;
+											}
+											
 										}
 
 										currentCard = null;
