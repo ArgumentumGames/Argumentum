@@ -315,7 +315,7 @@ namespace Argumentum.AssetConverter
             {
                 new CardSetGenerationDocument()
                 {
-                    DocumentName = "Argumentum_FallacyCards_fr.pdf",
+                    DocumentName = "Argumentum_TarotCards_fr.pdf",
                     Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
@@ -416,13 +416,13 @@ namespace Argumentum.AssetConverter
                 },
                 new CardSetGenerationDocument()
                 {
-                    DocumentName = "Argumentum_FallacyCards_2_fr.pdf",
+                    DocumentName = "Argumentum_TarotCards_2_fr.pdf",
                     Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en"), 
-	                    ("fr", "ru")
-                    }),
+                    //Translations = new List<(string sourceLang, string destLang)>(new []
+                    //{
+	                   // ("fr","en"), 
+	                   // ("fr", "ru")
+                    //}),
 					CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -486,13 +486,13 @@ namespace Argumentum.AssetConverter
                 },
                 new CardSetGenerationDocument()
                 {
-                    DocumentName = "Argumentum_FallacyCards_3_fr.pdf",
+                    DocumentName = "Argumentum_TarotCards_3_fr.pdf",
                     Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en"), 
-	                    ("fr", "ru")
-                    }),
+                    //Translations = new List<(string sourceLang, string destLang)>(new []
+                    //{
+	                   // ("fr","en"), 
+	                   // ("fr", "ru")
+                    //}),
 					CardSets = new List<DocumentCardSet>(new[]
                     {
                         new DocumentCardSet()
@@ -556,12 +556,12 @@ namespace Argumentum.AssetConverter
                 },
                  new CardSetGenerationDocument()
                 {
-                    DocumentName = "Argumentum_FallacyCards_Print&Play_A4_fr.pdf",
+                    DocumentName = "Argumentum_TarotCards_Print&Play_A4_fr.pdf",
                     Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
 	                    ("fr","en"), 
-	                    ("fr", "ru")
+	                    //("fr", "ru")
                     }),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
                     PageSize = "A4",
@@ -628,7 +628,7 @@ namespace Argumentum.AssetConverter
                 },
                 new CardSetGenerationDocument()
                 {
-                    DocumentName = "Argumentum_FallacyCards_Print&Play_A4_fr.pdf",
+                    DocumentName = "Argumentum_PokerCards_Print&Play_A4_fr.pdf",
                     Enabled = true,
                     Translations = new List<(string sourceLang, string destLang)>(new []
                     {
