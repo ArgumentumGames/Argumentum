@@ -308,10 +308,10 @@ namespace Argumentum.AssetConverter
 
 
 
-		public List<CardSetGenerationDocument> Documents { get; set; } = new List<CardSetGenerationDocument>(
+		public List<CardSetDocumentConfig> Documents { get; set; } = new List<CardSetDocumentConfig>(
             new[]
             {
-                new CardSetGenerationDocument()
+                new CardSetDocumentConfig()
                 {
                     DocumentName = "Argumentum_TarotCards_fr.pdf",
                     Enabled = true,
@@ -381,7 +381,7 @@ namespace Argumentum.AssetConverter
                         },
                     }),
                 },
-                new CardSetGenerationDocument()
+                new CardSetDocumentConfig()
                 {
                     DocumentName = "Argumentum_PokerCards_fr.pdf",
                     Enabled = true,
@@ -412,7 +412,7 @@ namespace Argumentum.AssetConverter
                         }
                     }),
                 },
-                 new CardSetGenerationDocument()
+                 new CardSetDocumentConfig()
                 {
                     DocumentName = "Argumentum_TarotCards_Print&Play_A4_fr.pdf",
                     Enabled = true,
@@ -484,7 +484,7 @@ namespace Argumentum.AssetConverter
                         },
                     }),
                 },
-                new CardSetGenerationDocument()
+                new CardSetDocumentConfig()
                 {
                     DocumentName = "Argumentum_PokerCards_Print&Play_A4_fr.pdf",
                     Enabled = true,
@@ -517,7 +517,7 @@ namespace Argumentum.AssetConverter
                         }
                     }),
                 },
-                new CardSetGenerationDocument()
+                new CardSetDocumentConfig()
                 {
                     DocumentName = "Argumentum_Fallacies_Web_A4_fr.pdf",
                     Enabled = true,
@@ -552,7 +552,7 @@ namespace Argumentum.AssetConverter
                         }
                     }),
                 },
-                new CardSetGenerationDocument()
+                new CardSetDocumentConfig()
                 {
                     DocumentName = "Argumentum_Fallacies_Web_A0_fr.pdf",
                     Enabled = true,
@@ -588,7 +588,7 @@ namespace Argumentum.AssetConverter
                         }
                     }),
                 },
-                new CardSetGenerationDocument()
+                new CardSetDocumentConfig()
                 {
 	                DocumentName = "Argumentum_Fallacies_Web_Thumbnails_fr.pdf",
 	                Enabled = true,
@@ -623,7 +623,7 @@ namespace Argumentum.AssetConverter
 		                }
 	                }),
                 },
-				new CardSetGenerationDocument()
+				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_2_fr.pdf",
 					Enabled = true,
@@ -693,7 +693,7 @@ namespace Argumentum.AssetConverter
 						},
 					}),
 				},
-				new CardSetGenerationDocument()
+				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_3_fr.pdf",
 					Enabled = true,

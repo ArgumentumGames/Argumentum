@@ -27,7 +27,7 @@ public class PdfManager
 	/// <param name="fileName">The result pdf file name</param>
 	/// <param name="docConfig">The configuration to process</param>
 	/// <param name="images">The images requested by the configuration to build the pdf document</param>
-	public void GeneratePrintAndPlay(string fileName, CardSetGenerationDocument docConfig, List<CardImages> images)
+	public void GeneratePrintAndPlay(string fileName, CardSetDocumentConfig docConfig, List<CardImages> images)
 	{
 
 
@@ -102,7 +102,7 @@ public class PdfManager
 
 	}
 
-	private static void GenerateCardsPage(IDocumentContainer container, CardSetGenerationDocument docConfig, PageSize pageSize, float pageMarginMm,
+	private static void GenerateCardsPage(IDocumentContainer container, CardSetDocumentConfig docConfig, PageSize pageSize, float pageMarginMm,
 		int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, Func<CardImages, MagickImage> frontOrBack)
 	{
 

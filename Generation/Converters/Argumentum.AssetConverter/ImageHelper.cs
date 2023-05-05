@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter
 
 
 
-        public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetGenerationDocument docConfig,
+        public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
 	        string toReturn;

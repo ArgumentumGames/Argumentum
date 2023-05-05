@@ -51,7 +51,7 @@ namespace Argumentum.AssetConverter
 		/// <summary>
 		/// Generates PDF documents from a ConcurrentDictionary of CardSetGenerationDocument and language, and a list of CardImages.
 		/// </summary>
-		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> docImages)
+		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
 			Console.WriteLine($"{StopWatch.Elapsed}: Generation pdf documents");
 
@@ -111,5 +111,3 @@ namespace Argumentum.AssetConverter
 
 	}
 }
-
-
