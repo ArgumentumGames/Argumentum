@@ -30,7 +30,7 @@ public class ImageFileGenerator
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
 		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentImages };
 
-		Parallel.ForEach(Config.Documents.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
+		Parallel.ForEach(Config.CardSetDocuments.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
 			//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
 		{
 

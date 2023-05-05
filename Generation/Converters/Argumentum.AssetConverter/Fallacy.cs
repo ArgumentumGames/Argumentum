@@ -37,7 +37,7 @@ namespace Argumentum.AssetConverter
 	        return fallacies.ToList();
         }
 
-		public static async Task< IList<Fallacy>> LoadFallacies(DataSetInfo dataSet)
+		public static async Task< IList<Fallacy>> LoadFallaciesAsync(DataSetInfo dataSet)
         {
 	        IEnumerable<Fallacy> fallacies;
 	        Console.WriteLine($"Loading csv fallacies from dataSet {dataSet.Name}");

@@ -54,7 +54,7 @@ public class HarvestManager
 	/// <returns>An array of CardSetJob objects.</returns>
 	private CardSetJob[] GetTargetCardSets()
 	{
-		var targetCardSets = Config.Documents
+		var targetCardSets = Config.CardSetDocuments
 			.Where(d => d.Enabled)
 			.SelectMany(d => d.CardSets.Select(dc => new CardSetJob { Name = dc.CardSetName, Translations = d.Translations }))
 			.Distinct(CardSetJob.Comparer)
