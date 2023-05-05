@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Argumentum.AssetConverter.Mindmapper;
 
 namespace Argumentum.AssetConverter
 {
@@ -214,7 +216,7 @@ namespace Argumentum.AssetConverter
 				}
 			});
 
-		public LocalizationConfig LocalizationConfig = new LocalizationConfig()
+		public LocalizationConfig LocalizationConfig { get; set; } = new LocalizationConfig()
 		{
 			Enabled = true,
 			CardSetLocalizations = new List<CardSetLocalization>(new[]{
@@ -307,8 +309,7 @@ namespace Argumentum.AssetConverter
 		};
 
 
-
-		public List<CardSetDocumentConfig> Documents { get; set; } = new List<CardSetDocumentConfig>(
+		public List<CardSetDocumentConfig> CardSetDocuments { get; set; } = new List<CardSetDocumentConfig>(
             new[]
             {
                 new CardSetDocumentConfig()
@@ -766,7 +767,9 @@ namespace Argumentum.AssetConverter
 			});
 
 
-        public string BaseTargetDirectoryName { get; set; } = @"Target\";
+		public List<MindMapDocumentConfig> MindMapDocuments { get; set; }
+
+		public string BaseTargetDirectoryName { get; set; } = @"Target\";
 
         public string HarvestDirectoryName { get; set; } = @"Harvest\";
 
@@ -774,6 +777,7 @@ namespace Argumentum.AssetConverter
         public string ImagesDirectoryName { get; set; } = @"Images\";
 
         public string PdfsDirectoryName { get; set; } = @"Pdfs\";
+        
 
         public string GetBaseTargetDirectory(string language)
         {

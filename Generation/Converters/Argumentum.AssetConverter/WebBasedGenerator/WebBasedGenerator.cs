@@ -31,23 +31,41 @@ namespace Argumentum.AssetConverter
 		}
 
 
-		/// <summary>
-		/// Runs the program to generate card set documents from harvested images.
-		/// </summary>
+
+		
 		public void Run()
 		{
 			var harvestManager = new HarvestManager() { Stopwatch = StopWatch, Config = Config };
-			//var harvestDictionary = HarvestImages();
 			var harvestDictionary = Task.Run(async () => await harvestManager.HarvestImages()).Result;
 
-			var imageManager = new ImageFileGenerator(Config ,StopWatch);
-
+			var imageManager = new ImageFileGenerator(Config, StopWatch);
 			var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
-
 			GenerateCardSetDocuments(docImages);
-
+			GenerateMindMapDocuments();
 		}
-		
+
+		/// <summary>
+		/// Generates MindMap documents from the given configuration.
+		/// </summary>
+		private void GenerateMindMapDocuments()
+		{
+			foreach (var mindMap in Config.MindMapDocuments)
+			{
+				IList<Fallacy> fallacies;
+				var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
+				if (dataSet == null)
+				{
+					fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
+				}
+				else
+				{
+					fallacies = Fallacy.LoadFallaciesAsync(dataSet).GetAwaiter().GetResult();
+				}
+				mindMap.GenerateMindMapFile(fallacies);
+			}
+		}
+
+
 		/// <summary>
 		/// Generates PDF documents from a ConcurrentDictionary of CardSetGenerationDocument and language, and a list of CardImages.
 		/// </summary>
