@@ -25,9 +25,9 @@ public class ImageFileGenerator
 	/// </summary>
 	/// <param name="harvestDictionary">A ConcurrentDictionary of card set names and languages, and their associated harvest functions.</param>
 	/// <returns>A ConcurrentDictionary of the generated images.</returns>
-	public ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
+	public ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 	{
-		var toReturn = new ConcurrentDictionary<(CardSetGenerationDocument document, string language), List<CardImages>>();
+		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
 		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentImages };
 
 		Parallel.ForEach(Config.Documents.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
@@ -88,7 +88,7 @@ public class ImageFileGenerator
 		return toReturn;
 	}
 
-	private void GenerateBacks(DocumentCardSet configCardSet, CardSetGenerationDocument configDocument, string currentLanguage, CardSetHarvest currentHarvest,
+	private void GenerateBacks(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest,
 		ConcurrentDictionary<string, string> backImages)
 	{
 		if (currentHarvest.Backs != null)
@@ -111,7 +111,7 @@ public class ImageFileGenerator
 
 
 
-	private CardImages GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetGenerationDocument configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList)
+	private CardImages GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList)
 	{
 		CardImages currentCard = null;
 
@@ -134,7 +134,7 @@ public class ImageFileGenerator
 	}
 
 
-	private static CardImages AssembleCurrentCardImages(KeyValuePair<string, string> currentHarvestFace, CardSetGenerationDocument configDocument, DocumentCardSet configCardSet, string currentLanguage, string faceName, string faceImage, CardImages currentCard, List<CardImages> targetList, ConcurrentDictionary<string, string> backImages)
+	private static CardImages AssembleCurrentCardImages(KeyValuePair<string, string> currentHarvestFace, CardSetDocumentConfig configDocument, DocumentCardSet configCardSet, string currentLanguage, string faceName, string faceImage, CardImages currentCard, List<CardImages> targetList, ConcurrentDictionary<string, string> backImages)
 	{
 		if (currentCard == null)
 		{

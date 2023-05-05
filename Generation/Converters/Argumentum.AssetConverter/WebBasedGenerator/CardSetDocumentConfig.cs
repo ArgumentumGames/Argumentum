@@ -4,7 +4,7 @@ using ImageMagick;
 
 namespace Argumentum.AssetConverter;
 
-public class CardSetGenerationDocument: DocumentConfig
+public class CardSetDocumentConfig: DocumentConfig
 {
 	[DataMember(Order = 0)]
 	public override bool Enabled { get; set; }
