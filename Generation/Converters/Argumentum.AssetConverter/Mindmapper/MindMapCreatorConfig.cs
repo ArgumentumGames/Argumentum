@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using CsvHelper;
 using Utf8Json;
@@ -20,11 +21,11 @@ namespace Argumentum.AssetConverter.Mindmapper
         public MindMapCreatorConfig()
         {
             var newConfig = new List<MindMapDocumentConfig>();
-            newConfig.Add(new MindMapDocumentConfig());
+            newConfig.Add(new MindMapDocumentConfig(){DocumentName = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm" });
             
-            var frConfigCards = new MindMapDocumentConfig();
+            var frConfigCards = new MindMapDocumentConfig() { DocumentName = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2_cards.mm" };
             frConfigCards.InsertCards = true;
-            frConfigCards.DocumentName = frConfigCards.DocumentName.Replace(".mm", "_cards.mm");
+           
             newConfig.Add(frConfigCards);
             
             var enConfig = new MindMapDocumentConfig();
@@ -181,17 +182,95 @@ namespace Argumentum.AssetConverter.Mindmapper
                 using (var fs = File.Create(config.DocumentName))
                 {
                     XmlWriterSettings writerSettings = new XmlWriterSettings { Indent = true, OmitXmlDeclaration = true };
-                    using (var writer = XmlTextWriter.Create(fs, writerSettings))
+                    using (var writer = XmlWriter.Create(fs, writerSettings))
                     {
                         serializer.Serialize(writer, toReturn);
                     }
                 }
 
-
-
-                Console.WriteLine($"Mind map {config.DocumentName} succesfully generated!");
                 
-            }
+				Console.WriteLine($"Mind map {config.DocumentName} successfully generated!");
+
+				// Check if EnableSVGUpdate is true
+				if (config.EnableSVGUpdate)
+				{
+					Console.WriteLine("Press any key to continue and update the SVG file...");
+					Console.ReadKey();
+
+					// Read the SVG file
+					string svgFilePath = Path.ChangeExtension(config.DocumentName, "svg");
+					if (File.Exists(svgFilePath))
+					{
+						XDocument svgDoc = XDocument.Load(svgFilePath);
+
+						// Define XNamespace for SVG
+						XNamespace svgNamespace = "http://www.w3.org/2000/svg";
+						XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+						// Iterate through fallacies
+						foreach (var fallacy in fallacies)
+						{
+							string title = config.TitleFunc(fallacy);
+
+							// Find the text elements in the SVG
+							var textElements = svgDoc.Descendants(svgNamespace + "text").Where(t => t.Value.Contains(title)).ToList();
+
+							// Filter multiple matches
+							XElement shortestMatch = textElements.MinBy(t => Math.Abs(t.Value.Length - title.Length));
+
+							if (shortestMatch != null)
+							{
+								// Add the missing fallacy fields
+								string desc = config.DescFunc(fallacy);
+								string example = config.ExampleFunc(fallacy);
+                                string link = config.LinkFunc(fallacy);
+								
+                                
+								shortestMatch.SetAttributeValue("description", desc);
+								shortestMatch.SetAttributeValue("example", example);
+								shortestMatch.SetAttributeValue("link", example);
+								shortestMatch.SetAttributeValue("class", "node");
+
+								// Make sure the link is clickable
+								XElement linkElem = new XElement(XName.Get("a", svgNamespace.NamespaceName));
+								linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
+								linkElem.SetAttributeValue("target", "_blank");
+								shortestMatch.ReplaceWith(linkElem);
+								linkElem.Add(shortestMatch);
+
+
+
+								//XElement parentGroup = shortestMatch.Parent;
+								//XElement newDesc = new XElement(svgNs + "text", desc);
+								//XElement newExample = new XElement(svgNs + "text", example);
+
+								//// Set the position of the new elements
+								//newDesc.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
+								//newDesc.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 20).ToString());
+								//newExample.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
+								//newExample.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 40).ToString());
+
+								//parentGroup.Add(newDesc);
+								//parentGroup.Add(newExample);
+
+							}
+						}
+
+						// Save the modified SVG file
+						using (var writer = XmlWriter.Create(svgFilePath, new XmlWriterSettings { Indent = true }))
+						{
+							svgDoc.Save(writer);
+						}
+						Console.WriteLine($"SVG file {svgFilePath} successfully updated!");
+					}
+					else
+					{
+						Console.WriteLine($"SVG file {svgFilePath} not found. Please make sure it exists.");
+					}
+				}
+
+
+			}
             Console.WriteLine($"Generation finished, press any key to close");
             Console.ReadKey();
 

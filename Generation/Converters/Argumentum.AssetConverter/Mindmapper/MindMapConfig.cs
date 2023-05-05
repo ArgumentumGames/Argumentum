@@ -14,10 +14,10 @@ using System.Web;
 namespace Argumentum.AssetConverter.Mindmapper
 {
 
-	public class MindMapDocumentConfig
+	public class MindMapDocumentConfig:DocumentConfig
 	{
 
-		//public string DataSet { get; set; }
+		public bool EnableSVGUpdate { get; set; } = false;
 
 		public string DataSet { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
 		public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
