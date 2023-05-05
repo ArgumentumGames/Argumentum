@@ -24,8 +24,6 @@ namespace Argumentum.AssetConverter
 
         public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 2;
 
-
-
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
 			new[]
 			{
@@ -63,10 +61,6 @@ namespace Argumentum.AssetConverter
 
 
 			});
-
-
-
-
 
 		public List<CardSetConfig> CardSets { get; set; } = new List<CardSetConfig>(
 			new[]
@@ -220,8 +214,6 @@ namespace Argumentum.AssetConverter
 				}
 			});
 
-
-
 		public LocalizationConfig LocalizationConfig = new LocalizationConfig()
 		{
 			Enabled = true,
@@ -313,8 +305,6 @@ namespace Argumentum.AssetConverter
 				},
 			})
 		};
-
-
 
 
 
@@ -833,9 +823,6 @@ namespace Argumentum.AssetConverter
 
             return toReturn;
         }
-
-
-
 
         
 
