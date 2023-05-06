@@ -3,46 +3,47 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Argumentum.AssetConverter.Mindmapper;
+using ImageMagick;
 
 namespace Argumentum.AssetConverter
 {
 
-	
-	
+
+
 
 
 	public class WebBasedGeneratorConfig
-    {
+	{
 
 
-        public string CardpenUrl { get; set; }= @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
+		public string CardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
 		//For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
 
-        public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
+		public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
 
-        public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 2;
+		public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 2;
 
-        public int MaxDegreeOfParallelismDocumentImages { get; set; } = 3;
+		public int MaxDegreeOfParallelismDocumentImages { get; set; } = 3;
 
-        public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 2;
+		public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 2;
 
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
 			new[]
 			{
-                new DataSetInfo()
-                {
-                    Name = KnownDataSets.Fallacies,
-                    FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards.csv"
-				},
-                new DataSetInfo()
-                {
-	                Name = KnownDataSets.FallaciesPrintAndPlay,
-	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards%20Print%20and%20Play.csv"
+				new DataSetInfo()
+				{
+					Name = KnownDataSets.Fallacies,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards.csv"
 				},
 				new DataSetInfo()
-                {
-	                Name = KnownDataSets.Rules,
-	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv"
+				{
+					Name = KnownDataSets.FallaciesPrintAndPlay,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards%20Print%20and%20Play.csv"
+				},
+				new DataSetInfo()
+				{
+					Name = KnownDataSets.Rules,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv"
 				},
 				new DataSetInfo()
 				{
@@ -50,20 +51,20 @@ namespace Argumentum.AssetConverter
 					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv"
 				},
 				new DataSetInfo()
-                {
-	                Name = KnownDataSets.Scenarii,
-	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv"
-                },
-                new DataSetInfo()
-                {
-	                Name = KnownDataSets.ScenariiPrintAndPlay,
-	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv"
+				{
+					Name = KnownDataSets.Scenarii,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv"
 				},
-                new DataSetInfo()
-                {
-	                Name = KnownDataSets.FallaciesTaxonomy,
-	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv"
-                },
+				new DataSetInfo()
+				{
+					Name = KnownDataSets.ScenariiPrintAndPlay,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv"
+				},
+				new DataSetInfo()
+				{
+					Name = KnownDataSets.FallaciesTaxonomy,
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv"
+				},
 
 
 
@@ -76,9 +77,9 @@ namespace Argumentum.AssetConverter
 					Name = KnownCardSets.Rules,
 					FaceCardSetInfo = new CardSetInfo()
 						{
-                            DataSet = KnownDataSets.Rules,
+							DataSet = KnownDataSets.Rules,
 							JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
-                            SkipDataUpdate = true
+							SkipDataUpdate = true
 						}
 					  },
 				new CardSetConfig(){
@@ -179,7 +180,7 @@ namespace Argumentum.AssetConverter
 					{
 						DataSet = KnownDataSets.RulesPrintAndPlay,
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
-                        SkipDataUpdate = true,
+						SkipDataUpdate = true,
 					}
 				},
 				new CardSetConfig(){
@@ -320,7 +321,7 @@ namespace Argumentum.AssetConverter
 						}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru") }) ),
-						
+
 					}),
 				},
 				new DocumentLocalization(){
@@ -352,7 +353,7 @@ namespace Argumentum.AssetConverter
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu") }) ),
 					}),
-					
+
 				},
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
@@ -369,320 +370,324 @@ namespace Argumentum.AssetConverter
 
 
 		public List<CardSetDocumentConfig> CardSetDocuments { get; set; } = new List<CardSetDocumentConfig>(
-            new[]
-            {
-                new CardSetDocumentConfig()
-                {
-                    DocumentName = "Argumentum_TarotCards_fr.pdf",
-                    Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en"),
-	                    ("fr", "ru")
-                    }),
+			new[]
+			{
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_TarotCards_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru")
+					}),
 					CardSets = new List<DocumentCardSet>(new[]
-                    {
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.Rules,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = true,
-                            FrontCards = new DocumentCard()
-                                {
-                                    BorderMM = 0,
-                                    HeigthMM = 113,
-                                    WidthMM = 60,
-                                },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            }
-                        },
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.Memo,
-                            NbCopies = 7,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = true,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            }
-                        },
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.Fallacies,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = true,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            }
-                        },
-                    }),
-                },
-                new CardSetDocumentConfig()
-                {
-                    DocumentName = "Argumentum_PokerCards_fr.pdf",
-                    Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en")
-                    }),
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Rules,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = true,
+							FrontCards = new DocumentCard()
+								{
+									BorderMM = 0,
+									HeigthMM = 113,
+									WidthMM = 60,
+								},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Memo,
+							NbCopies = 7,
+							ConvertToCmyk = true,
+							SaveOriginalImage = true,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Fallacies,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = true,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_PokerCards_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en")
+					}),
 					CardSets = new List<DocumentCardSet>(new[]
-                    {
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.Scenarii,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = true,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 89,
-                                WidthMM = 58,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 89,
-                                WidthMM = 58,
-                            }
-                        }
-                    }),
-                },
-                 new CardSetDocumentConfig()
-                {
-                    DocumentName = "Argumentum_TarotCards_Print&Play_A4_fr.pdf",
-                    Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en"), 
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Scenarii,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = true,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 89,
+								WidthMM = 58,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 89,
+								WidthMM = 58,
+							}
+						}
+					}),
+				},
+				 new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_TarotCards_Print&Play_A4_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"), 
 	                    //("fr", "ru")
                     }),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
-                    PageSize = "A4",
-                    CardSets = new List<DocumentCardSet>(new[]
-                    {
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.RulesPrintAndPlay,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = false,
-                            FrontCards = new DocumentCard()
-                                {
-                                    BorderMM = 0,
-                                    HeigthMM = 113,
-                                    WidthMM = 60,
-                                },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            }
-                        },
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.MemoPrintAndPlay,
-                            NbCopies = 5,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = false,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            }
-                        },
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.FallaciesPrintAndPlay,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = false,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 113,
-                                WidthMM = 60,
-                            }
-                        },
-                    }),
-                },
-                new CardSetDocumentConfig()
-                {
-                    DocumentName = "Argumentum_PokerCards_Print&Play_A4_fr.pdf",
-                    Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en")
-                    }),
+					PageSize = "A4",
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.RulesPrintAndPlay,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+								{
+									BorderMM = 0,
+									HeigthMM = 113,
+									WidthMM = 60,
+								},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.MemoPrintAndPlay,
+							NbCopies = 5,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.FallaciesPrintAndPlay,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_PokerCards_Print&Play_A4_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en")
+					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
-                    PageSize = "A4",
-                    CardSets = new List<DocumentCardSet>(new[]
-                    {
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.ScenariiPrintAndPlay,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = false,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 89,
-                                WidthMM = 58,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 89,
-                                WidthMM = 58,
-                            }
-                        }
-                    }),
-                },
-                new CardSetDocumentConfig()
-                {
-                    DocumentName = "Argumentum_Fallacies_Web_A4_fr.pdf",
-                    Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en"), 
-	                    ("fr", "ru")
-                    }),
+					PageSize = "A4",
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.ScenariiPrintAndPlay,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 89,
+								WidthMM = 58,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 89,
+								WidthMM = 58,
+							}
+						}
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_Fallacies_Web_A4_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru")
+					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
-                    PageSize = "A4",
-                    NoBack = true,
-                    CardSets = new List<DocumentCardSet>(new[]
-                    {
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.FallaciesWebLight,
-                            NbCopies = 1,
-                            ConvertToCmyk = false,
-                            SaveOriginalImage = true,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 70,
-                                WidthMM = 70,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 70,
-                                WidthMM = 70,
-                            }
-                        }
-                    }),
-                },
-                new CardSetDocumentConfig()
-                {
-                    DocumentName = "Argumentum_Fallacies_Web_A0_fr.pdf",
-                    Enabled = true,
-                    Translations = new List<(string sourceLang, string destLang)>(new []
-                    {
-	                    ("fr","en"),
-	                    ("fr", "ru")
-                    }),
+					PageSize = "A4",
+					ImageFormat = MagickFormat.Jpeg,
+					TargetDensity = 200,
+					NoBack = true,
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.FallaciesWebLight,
+							NbCopies = 1,
+							ConvertToCmyk = false,
+							SaveOriginalImage = true,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 70,
+								WidthMM = 70,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 70,
+								WidthMM = 70,
+							}
+						}
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_Fallacies_Web_A0_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru")
+					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
-                    PageSize = "A0",
-                    NoBack = true,
-                    Header = "Logo_Argumentum.png",
-                    CardSets = new List<DocumentCardSet>(new[]
-                    {
-                        new DocumentCardSet()
-                        {
-                            CardSetName = KnownCardSets.FallaciesWeb,
-                            NbCopies = 1,
-                            ConvertToCmyk = true,
-                            SaveOriginalImage = false,
-                            FrontCards = new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 72,
-                                WidthMM = 72,
-                            },
-                            BackCards =  new DocumentCard()
-                            {
-                                BorderMM = 0,
-                                HeigthMM = 72,
-                                WidthMM = 72,
-                            }
-                        }
-                    }),
-                },
-                new CardSetDocumentConfig()
-                {
-	                DocumentName = "Argumentum_Fallacies_Web_Thumbnails_fr.pdf",
-	                Enabled = true,
-	                Translations = new List<(string sourceLang, string destLang)>(new []
-	                {
-		                ("fr","en"),
-		                ("fr", "ru")
-	                }),
-	                DocumentFormat = CardDocumentFormat.PrintAndPlay,
-	                PageSize = "A4",
-	                NoBack = true,
-	                CardSets = new List<DocumentCardSet>(new[]
-	                {
-		                new DocumentCardSet()
-		                {
-			                CardSetName = KnownCardSets.FallaciesWebThumbnails,
-			                NbCopies = 1,
-			                ConvertToCmyk = false,
-			                SaveOriginalImage = false,
-			                FrontCards = new DocumentCard()
-			                {
-				                BorderMM = 0,
-				                HeigthMM = 50,
-				                WidthMM = 50,
-			                },
-			                BackCards =  new DocumentCard()
-			                {
-				                BorderMM = 0,
-				                HeigthMM = 72,
-				                WidthMM = 72,
-			                }
-		                }
-	                }),
-                },
+					PageSize = "A0",
+					NoBack = true,
+					Header = "Logo_Argumentum.png",
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.FallaciesWeb,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 72,
+								WidthMM = 72,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 72,
+								WidthMM = 72,
+							}
+						}
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_Fallacies_Web_Thumbnails_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru")
+					}),
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+					PageSize = "A4",
+					ImageFormat = MagickFormat.Jpeg,
+					TargetDensity = 0,
+					NoBack = true,
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.FallaciesWebThumbnails,
+							NbCopies = 1,
+							ConvertToCmyk = false,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 50,
+								WidthMM = 50,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 72,
+								WidthMM = 72,
+							}
+						}
+					}),
+				},
 				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_2_fr.pdf",
@@ -826,10 +831,11 @@ namespace Argumentum.AssetConverter
 			});
 
 
-		public List<MindMapDocumentConfig> MindMapDocuments { get; set; } = new List<MindMapDocumentConfig>(new []
+		public List<MindMapDocumentConfig> MindMapDocuments { get; set; } = new List<MindMapDocumentConfig>(new[]
 			{
 				new MindMapDocumentConfig()
 				{
+					Enabled = true,
 					DocumentName = "Argumentum_Fallacies_MindMap_fr.mm",
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					Translations = new List<(string sourceLang, string destLang)>(new []
@@ -837,89 +843,95 @@ namespace Argumentum.AssetConverter
 						("fr","en"),
 						("fr", "ru")
 					}),
+					ImageFormat = MagickFormat.Jpeg,
+					TargetDensity = 0
 				},
 				new MindMapDocumentConfig()
 				{
+					Enabled = true,
 					DocumentName = "Argumentum_Fallacies_MindMap_cards_fr.mm",
 					DataSet = KnownDataSets.FallaciesTaxonomy,
-					InsertCards = true,
+					InsertCardsThumbnails = true,
+					ThumbnailsCardSetName = KnownCardSets.FallaciesWebThumbnails,
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
 						("fr", "ru")
 					}),
+					ImageFormat = MagickFormat.Jpeg,
+					TargetDensity = 0
 				}
 			}
 			);
 
 		public string BaseTargetDirectoryName { get; set; } = @"Target\";
 
-        public string HarvestDirectoryName { get; set; } = @"Harvest\";
+		public string HarvestDirectoryName { get; set; } = @"Harvest\";
 
 
-        public string ImagesDirectoryName { get; set; } = @"Images\";
+		public string ImagesDirectoryName { get; set; } = @"Images\";
 
 		public string PdfsDirectoryName { get; set; } = @"Pdfs\";
-        
 
-        public string GetBaseTargetDirectory(string language)
-        {
-            var toReturn =  Path.Combine(System.Environment.CurrentDirectory, BaseTargetDirectoryName);
-            if (!Directory.Exists(toReturn))
-            {
-                Directory.CreateDirectory(toReturn);
-            }
-            toReturn = Path.Combine(toReturn, $"{language}\\");
-            if (!Directory.Exists(toReturn))
-            {
-	            Directory.CreateDirectory(toReturn);
-            }
+
+		public string GetBaseTargetDirectory(string language)
+		{
+			var toReturn = Path.Combine(System.Environment.CurrentDirectory, BaseTargetDirectoryName);
+			if (!Directory.Exists(toReturn))
+			{
+				Directory.CreateDirectory(toReturn);
+			}
+			toReturn = Path.Combine(toReturn, $"{language}\\");
+			if (!Directory.Exists(toReturn))
+			{
+				Directory.CreateDirectory(toReturn);
+			}
 
 			return toReturn;
-        }
+		}
 
-        public string GetHarvestDirectory(string language)
-        {
-            var toReturn = Path.Combine(GetBaseTargetDirectory(language), HarvestDirectoryName);
-            if (!Directory.Exists(toReturn))
-            {
-                Directory.CreateDirectory(toReturn);
-            }
+		public string GetHarvestDirectory(string language)
+		{
+			var toReturn = Path.Combine(GetBaseTargetDirectory(language), HarvestDirectoryName);
+			if (!Directory.Exists(toReturn))
+			{
+				Directory.CreateDirectory(toReturn);
+			}
 
-            return toReturn;
-        }
+			return toReturn;
+		}
 
-        public string GetImagesDirectory(string language)
-        {
-            var toReturn = Path.Combine(GetBaseTargetDirectory(language), ImagesDirectoryName);
-            if (!Directory.Exists(toReturn))
-            {
-                Directory.CreateDirectory(toReturn);
-            }
+		public string GetImagesDirectory(string language)
+		{
+			var toReturn = Path.Combine(GetBaseTargetDirectory(language), ImagesDirectoryName);
+			if (!Directory.Exists(toReturn))
+			{
+				Directory.CreateDirectory(toReturn);
+			}
 
-            return toReturn;
-        }
+			return toReturn;
+		}
 
-        public string GetPdfsDirectory(string language)
-        {
-            var toReturn = Path.Combine(GetBaseTargetDirectory(language), PdfsDirectoryName);
-            if (!Directory.Exists(toReturn))
-            {
-                Directory.CreateDirectory(toReturn);
-            }
+		public string GetPdfsDirectory(string language)
+		{
+			var toReturn = Path.Combine(GetBaseTargetDirectory(language), PdfsDirectoryName);
+			if (!Directory.Exists(toReturn))
+			{
+				Directory.CreateDirectory(toReturn);
+			}
 
-            return toReturn;
-        }
-
-        
-
-        public void Apply(Stopwatch objSw)
-        {
-            var generator = new WebBasedGenerator(this, objSw);
-            generator.Run();
-
-        }
+			return toReturn;
+		}
 
 
-    }
+
+		public void Apply(Stopwatch objSw)
+		{
+			var generator = new WebBasedGenerator(this, objSw);
+			generator.Run();
+
+		}
+
+
+	}
 }
