@@ -416,7 +416,8 @@ namespace Argumentum.AssetConverter
 					Enabled = true,
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
-						("fr","en")
+						("fr","en"),
+						("fr", "ru")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",

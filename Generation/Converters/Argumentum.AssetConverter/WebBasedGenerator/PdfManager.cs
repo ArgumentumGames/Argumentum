@@ -83,15 +83,24 @@ public class PdfManager
 
 					var pageCardsArray = pageCards.ToArray();
 
-					//var cardArray = pageCards.ToList().ToJaggedArray(nbColumns);
-					if (!docConfig.NoBack)
+					try
 					{
-						GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Back));
-						pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
-							.ToArray().Flatten();
-					}
+						//var cardArray = pageCards.ToList().ToJaggedArray(nbColumns);
+						if (!docConfig.NoBack)
+						{
+							GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Back));
+							pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
+								.ToArray().Flatten();
+						}
 
-					GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Front));
+						GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Front));
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+						
+					}
+					
 				}
 
 
