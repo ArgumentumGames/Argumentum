@@ -55,52 +55,61 @@ namespace Argumentum.AssetConverter
 
 			foreach (var docImageList in docImages)
 			{
-				var pdfDirectory = Config.GetPdfsDirectory(docImageList.Key.language);
-				var densityDirectory = Path.Combine(pdfDirectory, $@".\density-{docImageList.Key.document.TargetDensity}\");
-				if (!Directory.Exists(densityDirectory))
+				try
 				{
-					Directory.CreateDirectory(densityDirectory);
+					var pdfDirectory = Config.GetPdfsDirectory(docImageList.Key.language);
+					var densityDirectory = Path.Combine(pdfDirectory, $@".\density-{docImageList.Key.document.TargetDensity}\");
+					if (!Directory.Exists(densityDirectory))
+					{
+						Directory.CreateDirectory(densityDirectory);
+					}
+
+					var targetFiles = new List<(string fileName, MagickImageCollection documentImages)>();
+					MagickImageCollection collec;
+					var documentName = CardSetLocalization.GetLocalizedFileName(docImageList.Key.document.DocumentName,
+						Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
+					var baseName = Path.Combine(densityDirectory, documentName);
+
+					var objPdfManager = new PdfManager() { Stopwatch = StopWatch };
+					switch (docImageList.Key.document.DocumentFormat)
+					{
+						case CardDocumentFormat.AlternateFaceAndBack:
+							collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
+							{
+								return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
+							}));
+
+							targetFiles.Add((baseName, collec));
+							objPdfManager.GeneratePdfsFromImages(targetFiles);
+							break;
+						case CardDocumentFormat.BackFirstOneDocPerBack:
+
+							var indexInsert = baseName.LastIndexOf('.');
+							var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
+							for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
+							{
+								var frontsAndBack = cardsPerBack[backIndex];
+								var backThenFronts = new[] { new MagickImage(frontsAndBack.Key) }.Concat(frontsAndBack.Select(card => new MagickImage(card.Front)));
+								collec = new MagickImageCollection(backThenFronts);
+								var newName = $"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
+								targetFiles.Add((newName, collec));
+							}
+							objPdfManager.GeneratePdfsFromImages(targetFiles);
+							break;
+						case CardDocumentFormat.PrintAndPlay:
+							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value);
+							break;
+						default:
+							throw new ArgumentOutOfRangeException();
+					}
+
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
 				}
 
-				var targetFiles = new List<(string fileName, MagickImageCollection documentImages)>();
-				MagickImageCollection collec;
-				var documentName = CardSetLocalization.GetLocalizedFileName(docImageList.Key.document.DocumentName,
-					Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
-				var baseName = Path.Combine(densityDirectory, documentName);
-
-				var objPdfManager = new PdfManager() { Stopwatch = StopWatch };
-				switch (docImageList.Key.document.DocumentFormat)
-				{
-					case CardDocumentFormat.AlternateFaceAndBack:
-						collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
-						{
-							return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
-						}));
-
-						targetFiles.Add((baseName, collec));
-						objPdfManager.GeneratePdfsFromImages(targetFiles);
-						break;
-					case CardDocumentFormat.BackFirstOneDocPerBack:
-
-						var indexInsert = baseName.LastIndexOf('.');
-						var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
-						for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
-						{
-							var frontsAndBack = cardsPerBack[backIndex];
-							var backThenFronts = new[] { new MagickImage(frontsAndBack.Key) }.Concat(frontsAndBack.Select(card => new MagickImage(card.Front)));
-							collec = new MagickImageCollection(backThenFronts);
-							var newName = $"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
-							targetFiles.Add((newName, collec));
-						}
-						objPdfManager.GeneratePdfsFromImages(targetFiles);
-						break;
-					case CardDocumentFormat.PrintAndPlay:
-						objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value);
-						break;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
-
+				
 			}
 		}
 
@@ -111,27 +120,35 @@ namespace Argumentum.AssetConverter
 		{
 			foreach (var mindMap in Config.MindMapDocuments)
 			{
-				IList<Fallacy> fallacies;
-				var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
-				if (dataSet == null)
+				try
 				{
-					fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
-				}
-				else
-				{
-					fallacies = Fallacy.LoadFallaciesAsync(dataSet).GetAwaiter().GetResult();
-				}
-
-				var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
-				foreach (var targetLanguage in targetLanguages)
-				{
-					var currentTranslatedMap = mindMap.CloneMindMap();
-					foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
+					IList<Fallacy> fallacies;
+					var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
+					if (dataSet == null)
 					{
-						documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+						fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
 					}
-					currentTranslatedMap.GenerateMindMapFile(fallacies, Config);
+					else
+					{
+						fallacies = Fallacy.LoadFallaciesAsync(dataSet).GetAwaiter().GetResult();
+					}
+
+					var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
+					foreach (var targetLanguage in targetLanguages)
+					{
+						var currentTranslatedMap = mindMap.CloneMindMap();
+						foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
+						{
+							documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+						}
+						currentTranslatedMap.GenerateMindMapFile(fallacies, Config);
+					}
 				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+				
 
 			}
 		}

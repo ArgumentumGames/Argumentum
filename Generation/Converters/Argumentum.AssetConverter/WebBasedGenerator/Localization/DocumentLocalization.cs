@@ -16,9 +16,14 @@ public class DocumentLocalization
 	{
 		foreach (var staticConversion in StaticConversions)
 		{
-			var convertedText =
-				staticConversion.textConversions.First(convertedText => convertedText.Language == destLang).destText;
-			template = template.Replace(staticConversion.sourceText, convertedText);
+			var translations =
+				staticConversion.textConversions.Where(convertedText => convertedText.Language == destLang).ToArray();
+			if (translations.Length>0)
+			{
+				var convertedText = translations[0].destText;
+				template = template.Replace(staticConversion.sourceText, convertedText);
+			}
+			
 		}
 		return template;
 	}
