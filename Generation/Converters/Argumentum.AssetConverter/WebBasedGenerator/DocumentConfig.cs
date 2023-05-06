@@ -1,4 +1,5 @@
 using Argumentum.AssetConverter.Mindmapper;
+using ImageMagick;
 using Sprache;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,10 @@ namespace Argumentum.AssetConverter
 		public List<(string sourceLanguage, string targetLanguage)> Translations { get; set; } =
 			new List<(string sourceLanguage, string targetLanguage)>();
 
+		public int TargetDensity { get; set; } = 0;
 
-		
+		public MagickFormat ImageFormat { get; set; } = MagickFormat.Png;
+
 	}
 
 

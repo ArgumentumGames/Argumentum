@@ -24,7 +24,7 @@ namespace Argumentum.AssetConverter.Mindmapper
             newConfig.Add(new MindMapDocumentConfig(){DocumentName = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm" });
             
             var frConfigCards = new MindMapDocumentConfig() { DocumentName = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2_cards.mm" };
-            frConfigCards.InsertCards = true;
+            frConfigCards.InsertCardsThumbnails = true;
            
             newConfig.Add(frConfigCards);
             
@@ -37,7 +37,7 @@ namespace Argumentum.AssetConverter.Mindmapper
             newConfig.Add(enConfig);
             
             var enConfigCards = new MindMapDocumentConfig();
-            enConfigCards.InsertCards = true;
+            enConfigCards.InsertCardsThumbnails = true;
             enConfigCards.DocumentName = enConfig.DocumentName.Replace(".mm", "_cards.mm");
             enConfigCards.DescriptionExpression = enConfig.DescriptionExpression;
             enConfigCards.TitleExpression = enConfig.TitleExpression;
@@ -57,7 +57,7 @@ namespace Argumentum.AssetConverter.Mindmapper
             {
 
                 var fallacies = Fallacy.LoadFallacies(config.DataSet);
-                config.GenerateMindMapFile(fallacies);
+                config.GenerateMindMapFile( fallacies, null);
 
             }
             Console.WriteLine($"Generation finished, press any key to close");

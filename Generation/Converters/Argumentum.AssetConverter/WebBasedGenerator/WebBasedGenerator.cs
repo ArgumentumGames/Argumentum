@@ -130,7 +130,7 @@ namespace Argumentum.AssetConverter
 					{
 						documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
 					}
-					currentTranslatedMap.GenerateMindMapFile(fallacies);
+					currentTranslatedMap.GenerateMindMapFile(fallacies, Config);
 				}
 
 			}

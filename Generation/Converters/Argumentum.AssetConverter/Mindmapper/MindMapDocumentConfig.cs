@@ -14,6 +14,7 @@ using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
+using ImageMagick;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
@@ -39,9 +40,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string CardExpression { get; set; } =
 			@"
 <p>
-    <img src=""../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/{fallacy.FileName}.png"" width=""60"" height=""60""/>{fallacy.TextFr}
+    <img src=""{mindMap.ThumbnailsPathFunc(fallacy)}"" width=""60"" height=""60""/>{fallacy.TextFr}
 </p>
 ";
+
 
 		//
 		// https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Assets/Fallacy-front/{fallacy.Path}.png
@@ -54,6 +56,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 ";
 
 		public string LinkExpression { get; set; } = @"{fallacy.LinkFrFallback}";
+
+
+		
+
 
 		[IgnoreDataMember]
 		[JsonIgnore]
@@ -81,7 +87,36 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			get
 			{
-				return fallacy => CardExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"<font size='4'>{HttpUtility.HtmlEncode(fallacy.DescFr)}</font>";
+				return fallacy => CardExpression.Interpolate(new Dictionary<string, object>() { { "mindMap", this}, { "fallacy", fallacy } }); // $"<font size='4'>{HttpUtility.HtmlEncode(fallacy.DescFr)}</font>";
+			}
+		}
+
+
+		//public string ImagePathExpression { get; set; } = @"../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/{fallacy.FileName}.png";
+		public string ThumbnailsPathExpression { get; set; } = @"../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace("" "",""_"")}.png";
+		
+
+
+
+
+		private Func<Fallacy, string> _Thumbnails;
+
+		[IgnoreDataMember]
+		[JsonIgnore]
+		public Func<Fallacy, string> ThumbnailsPathFunc
+		{
+			get
+			{
+				if (_Thumbnails == null)
+				{
+					_Thumbnails = fallacy => ThumbnailsPathExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"{fallacy.TextFr}";
+				}
+
+				return _Thumbnails;
+			}
+			set
+			{
+				_Thumbnails = value;
 			}
 		}
 
@@ -128,13 +163,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public List<int> EdgeSizes { get; set; } = new List<int>(new[] { 8, 4, 2, 1 });
 
 
-		public bool InsertCards { get; set; }
+		public bool InsertCardsThumbnails { get; set; }
+
+
+		public string ThumbnailsCardSetName { get; set; }
 
 
 
-
-
-		public void GenerateMindMapFile(IList<Fallacy> fallacies)
+		public void GenerateMindMapFile(IList<Fallacy> fallacies,
+			WebBasedGeneratorConfig webBasedGeneratorConfig)
 		{
 
 			Console.WriteLine($"Creating Freemind mind map {DocumentName}");
@@ -235,8 +272,22 @@ namespace Argumentum.AssetConverter.Mindmapper
 						//if (fallacy.Path.StartsWith("1.1"))
 						//{
 
-						if (InsertCards)
+						if (InsertCardsThumbnails)
 						{
+							if (webBasedGeneratorConfig != null)
+							{
+								var cardSetConfig =  webBasedGeneratorConfig.CardSets.First(c => c.Name == this.ThumbnailsCardSetName);
+								if (cardSetConfig != null)
+								{
+									this.ThumbnailsPathFunc = objFallacy =>
+										ImageHelper.GetImageFileName(webBasedGeneratorConfig, this,
+											webBasedGeneratorConfig.LocalizationConfig.DefaultLanguage, ThumbnailsCardSetName,
+											objFallacy.FileName);
+								}
+								
+							}
+
+
 							var cardDoc = new XmlDocument();
 							cardDoc.LoadXml($"{CardFunc(fallacy)}");
 							var cardRichContent = new Richcontent();
@@ -367,7 +418,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				Colors = new Dictionary<int, string>(this.Colors),
 				FontSizes = new List<int>(this.FontSizes),
 				EdgeSizes = new List<int>(this.EdgeSizes),
-				InsertCards = this.InsertCards
+				InsertCardsThumbnails = this.InsertCardsThumbnails
 			};
 
 			return clone;

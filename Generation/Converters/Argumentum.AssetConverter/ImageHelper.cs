@@ -48,29 +48,29 @@ namespace Argumentum.AssetConverter
             
         }
 
+        public static string GetImageFileName(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
+        {
+	        var imagesFolderName = config.GetImagesDirectory(language);
+	        var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
+	        var cardSetFolderName = Path.Combine(densityFolderName, $@"{cardSetName}\");
 
+	        Directory.CreateDirectory(cardSetFolderName);
 
-        public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
+	        var imageFileName = $"{imageName}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
+	        return Path.Combine(cardSetFolderName, imageFileName);
+        }
+
+		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
 	        string toReturn;
             MagickImage imageFromEmbeddedUrl;
-            var imagesFolderName = config.GetImagesDirectory(language);
 
-            var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
-            if (!Directory.Exists(densityFolderName))
-            {
-                Directory.CreateDirectory(densityFolderName);
-            }
+			var imagesFolderName = config.GetImagesDirectory(language);
 
-            var cardSetFolderName = Path.Combine(densityFolderName, $@"{documentCardSet.CardSetName}\");
-            if (!Directory.Exists(cardSetFolderName))
-            {
-                Directory.CreateDirectory(cardSetFolderName);
-            }
+			var imageFileName = GetImageFileName(config, docConfig, language, documentCardSet.CardSetName, imageName);
 
-            var imageFileName = $"{imageName}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
-            imageFileName = Path.Combine(cardSetFolderName, imageFileName);
+
             if (File.Exists(imageFileName))
             {
 				//imageFromEmbeddedUrl = new MagickImage(imageFileName);
