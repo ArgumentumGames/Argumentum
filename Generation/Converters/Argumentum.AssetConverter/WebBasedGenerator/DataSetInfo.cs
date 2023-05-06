@@ -44,6 +44,5 @@ public static class KnownDataSets
 	public static string ScenariiPrintAndPlay = "Scenarii - Print & Play";
 	public static string Rules = "Rules";
 	public static string RulesPrintAndPlay = "Rules - Print & Play";
-
-
+	public static string FallaciesTaxonomy = "Fallacies - Taxonomy"
 }

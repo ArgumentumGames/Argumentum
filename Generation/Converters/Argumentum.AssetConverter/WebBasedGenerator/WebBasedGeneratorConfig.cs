@@ -59,6 +59,11 @@ namespace Argumentum.AssetConverter
 	                Name = KnownDataSets.ScenariiPrintAndPlay,
 	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv"
 				},
+                new DataSetInfo()
+                {
+	                Name = KnownDataSets.FallaciesTaxonomy,
+	                FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv"
+                },
 
 
 
@@ -826,6 +831,7 @@ namespace Argumentum.AssetConverter
 				new MindMapDocumentConfig()
 				{
 					DocumentName = "Argumentum_Fallacies_MindMap_fr.mm",
+					DataSet = KnownDataSets.FallaciesTaxonomy,
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
@@ -835,6 +841,7 @@ namespace Argumentum.AssetConverter
 				new MindMapDocumentConfig()
 				{
 					DocumentName = "Argumentum_Fallacies_MindMap_cards_fr.mm",
+					DataSet = KnownDataSets.FallaciesTaxonomy,
 					InsertCards = true,
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
