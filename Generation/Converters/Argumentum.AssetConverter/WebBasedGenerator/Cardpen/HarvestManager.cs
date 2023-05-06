@@ -35,7 +35,7 @@ public class HarvestManager
 		var parallelOptionsCardset = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpen };
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsCardset, async (configCardSet, token) =>
 		{
-			var targetLanguages = BuildLanguageList(configCardSet);
+			var targetLanguages = Config.LocalizationConfig.BuildLanguageList(configCardSet.Translations);
 
 			var parallelOptionsCardsetLanguage = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpenTranslations };
 			await Parallel.ForEachAsync(targetLanguages, parallelOptionsCardsetLanguage, async (currentLanguage, newToken) =>
@@ -118,15 +118,7 @@ public class HarvestManager
 	}
 
 
-	public List<string> BuildLanguageList(CardSetJob configCardSet)
-	{
-		var targetLanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
-		if (Config.LocalizationConfig.Enabled)
-		{
-			targetLanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
-		}
-		return targetLanguages;
-	}
+	
 
 	public async Task ProcessLocalizedHarvest(CardSetJob configCardSet, string currentLanguage, ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary, IBrowser browser)
 	{

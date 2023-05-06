@@ -18,7 +18,7 @@ using System.Xml;
 namespace Argumentum.AssetConverter.Mindmapper
 {
 
-	public class MindMapDocumentConfig : DocumentConfig
+	public class MindMapDocumentConfig : DocumentConfig, ICloneable
 	{
 
 		public bool EnableSVGUpdate { get; set; } = false;
@@ -53,7 +53,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 </p>
 ";
 
-		public string LinkExpression { get; set; } = @"{fallacy.LinkFrFallbackEn}";
+		public string LinkExpression { get; set; } = @"{fallacy.LinkFrFallback}";
 
 		[IgnoreDataMember]
 		[JsonIgnore]
@@ -352,8 +352,32 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
+		public MindMapDocumentConfig CloneMindMap()
+		{
+			var clone = new MindMapDocumentConfig()
+			{
+				EnableSVGUpdate = this.EnableSVGUpdate,
+				DataSet = this.DataSet,
+				DocumentName = this.DocumentName,
+				TitleExpression = this.TitleExpression,
+				DescriptionExpression = this.DescriptionExpression,
+				CardExpression = this.CardExpression,
+				ExampleExpression = this.ExampleExpression,
+				LinkExpression = this.LinkExpression,
+				Colors = new Dictionary<int, string>(this.Colors),
+				FontSizes = new List<int>(this.FontSizes),
+				EdgeSizes = new List<int>(this.EdgeSizes),
+				InsertCards = this.InsertCards
+			};
+
+			return clone;
+		}
 
 
+		public object Clone()
+		{
+			return CloneMindMap();
+		}
 	}
 
 

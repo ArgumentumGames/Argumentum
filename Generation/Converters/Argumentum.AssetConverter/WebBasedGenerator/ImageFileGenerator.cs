@@ -59,7 +59,7 @@ public class ImageFileGenerator
 
 					foreach (var configCardSet in configDocument.CardSets)
 					{
-						var documentLocalizedName = LocalizationConfig.GetLocalizedFileName(
+						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
 							configDocument.DocumentName,
 							Config.LocalizationConfig.DefaultLanguage, currentLanguage);
 						Console.WriteLine(
