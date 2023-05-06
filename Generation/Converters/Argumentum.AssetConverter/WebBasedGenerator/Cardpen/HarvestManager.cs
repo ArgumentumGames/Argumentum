@@ -274,7 +274,7 @@ public class HarvestManager
 
 		if (pauseForEdits)
 		{
-			Console.WriteLine($"Le navigateur est en pause le temps de faire vos éditions.\n Appuyez sur une touche pour démarrer la génération");
+			Console.WriteLine($"Browser is paused for you to do tests and edits.\n Press any key to resume browser automation");
 			Console.Read();
 		}
 		else

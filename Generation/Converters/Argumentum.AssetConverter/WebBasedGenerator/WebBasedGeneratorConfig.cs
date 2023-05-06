@@ -27,6 +27,16 @@ namespace Argumentum.AssetConverter
 
 		public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 2;
 
+		public string BaseTargetDirectoryName { get; set; } = @"Target\";
+
+		public string HarvestDirectoryName { get; set; } = @"Harvest\";
+
+
+		public string ImagesDirectoryName { get; set; } = @"Images\";
+
+		public string PdfsDirectoryName { get; set; } = @"Pdfs\";
+
+
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
 			new[]
 			{
@@ -222,152 +232,7 @@ namespace Argumentum.AssetConverter
 				}
 			});
 
-		public LocalizationConfig LocalizationConfig { get; set; } = new LocalizationConfig()
-		{
-			Enabled = true,
-			CardSetLocalizations = new List<CardSetLocalization>(new[]{
-				new CardSetLocalization()
-				{
-					CardSetNames = new List<string>(new []
-					{
-						KnownCardSets.Fallacies,
-						KnownCardSets.Fallacies2,
-						KnownCardSets.Fallacies3,
-						KnownCardSets.FallaciesPrintAndPlay,
-						KnownCardSets.FallaciesWeb,
-						KnownCardSets.FallaciesWebLight,
-						KnownCardSets.FallaciesWebThumbnails,
-
-					}),
-					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
-						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
-						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru") }) ),
-						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
-						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru") }) ),
-					}),
-					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
-					})
-				},
-				new CardSetLocalization()
-				{
-					CardSetNames = new List<string>(new []
-					{
-						KnownCardSets.Scenarii,
-						KnownCardSets.ScenariiPrintAndPlay,
-
-					}),
-					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
-						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru") }) ),
-						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru") }) ),
-						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru") }) ),
-						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru") }) ),
-						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru") }) ),
-						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_en_ru") }) ),
-					}),
-					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
-					}),
-					ExceptionPatterns = new List<string>(new []
-					{
-						"{{rowset.[0].catégorie}}.jpg",
-						"{{rowset.[0].catégorie}}.png"
-					})
-				},
-				new CardSetLocalization()
-				{
-					CardSetNames = new List<string>(new []
-					{
-						KnownCardSets.Rules,
-						KnownCardSets.RulesPrintAndPlay,
-
-					}),
-					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru") }) ),
-					})
-				},
-				new CardSetLocalization()
-				{
-					CardSetNames = new List<string>(new []
-					{
-						KnownCardSets.Memo,
-						KnownCardSets.MemoPrintAndPlay,
-
-					}),
-					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new []{
-							("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться") }) ),
-						}),
-					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
-						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
-					}),
-					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
-						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
-						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
-					})
-				},
-			}),
-			MindMapLocalization = new List<DocumentLocalization>(new[]
-			{
-				new DocumentLocalization(){
-					TargetProperties = new List<string>(new []
-						{
-							nameof (MindMapDocumentConfig.DocumentName),
-						}),
-					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru") }) ),
-
-					}),
-				},
-				new DocumentLocalization(){
-					TargetProperties = new List<string>(new []
-					{
-						nameof(MindMapDocumentConfig.TitleExpression),
-						nameof (MindMapDocumentConfig.CardExpression)
-					}),
-					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("TextFr", new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu") }) ),
-
-					}),
-				},
-				new DocumentLocalization(){
-					TargetProperties = new List<string>(new []
-					{
-						nameof (MindMapDocumentConfig.DescriptionExpression),
-					}),
-					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("DescFr", new List<(string Language, string destFieldName)>(new []{("en", "DescEn"), ("ru", "DescRu") }) ),
-					}),
-
-				},
-				new DocumentLocalization(){
-					TargetProperties = new List<string>(new []
-					{
-						nameof (MindMapDocumentConfig.ExampleExpression),
-					}),
-					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu") }) ),
-					}),
-
-				},
-				new DocumentLocalization(){
-					TargetProperties = new List<string>(new []
-					{
-						nameof (MindMapDocumentConfig.LinkExpression),
-					}),
-					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("LinkFrFallback", new List<(string Language, string destFieldName)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback") }) ),
-
-					})
-				}
-			}),
-		};
-
+	
 
 		public List<CardSetDocumentConfig> CardSetDocuments { get; set; } = new List<CardSetDocumentConfig>(
 			new[]
@@ -589,8 +454,6 @@ namespace Argumentum.AssetConverter
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
-					ImageFormat = MagickFormat.Jpeg,
-					TargetDensity = 200,
 					NoBack = true,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
@@ -662,7 +525,7 @@ namespace Argumentum.AssetConverter
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
-					ImageFormat = MagickFormat.Jpeg,
+					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
 					NoBack = true,
 					CardSets = new List<DocumentCardSet>(new[]
@@ -843,7 +706,7 @@ namespace Argumentum.AssetConverter
 						("fr","en"),
 						("fr", "ru")
 					}),
-					ImageFormat = MagickFormat.Jpeg,
+					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0
 				},
 				new MindMapDocumentConfig()
@@ -858,20 +721,160 @@ namespace Argumentum.AssetConverter
 						("fr","en"),
 						("fr", "ru")
 					}),
-					ImageFormat = MagickFormat.Jpeg,
+					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0
 				}
 			}
 			);
 
-		public string BaseTargetDirectoryName { get; set; } = @"Target\";
+		public LocalizationConfig LocalizationConfig { get; set; } = new LocalizationConfig()
+		{
+			Enabled = true,
+			CardSetLocalizations = new List<CardSetLocalization>(new[]{
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Fallacies,
+						KnownCardSets.Fallacies2,
+						KnownCardSets.Fallacies3,
+						KnownCardSets.FallaciesPrintAndPlay,
+						KnownCardSets.FallaciesWeb,
+						KnownCardSets.FallaciesWebLight,
+						KnownCardSets.FallaciesWebThumbnails,
 
-		public string HarvestDirectoryName { get; set; } = @"Harvest\";
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
+						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
+						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
+					})
+				},
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Scenarii,
+						KnownCardSets.ScenariiPrintAndPlay,
+
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
+						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru") }) ),
+						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru") }) ),
+						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru") }) ),
+						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru") }) ),
+						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru") }) ),
+						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_en_ru") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
+					}),
+					ExceptionPatterns = new List<string>(new []
+					{
+						"{{rowset.[0].catégorie}}.jpg",
+						"{{rowset.[0].catégorie}}.png"
+					})
+				},
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Rules,
+						KnownCardSets.RulesPrintAndPlay,
+
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru") }) ),
+					})
+				},
+				new CardSetLocalization()
+				{
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Memo,
+						KnownCardSets.MemoPrintAndPlay,
+
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new []{
+							("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться") }) ),
+						}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
+					})
+				},
+			}),
+			MindMapLocalization = new List<DocumentLocalization>(new[]
+		{
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+						{
+							nameof (MindMapDocumentConfig.DocumentName),
+						}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru") }) ),
+
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(MindMapDocumentConfig.TitleExpression),
+						nameof (MindMapDocumentConfig.CardExpression)
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("TextFr", new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu") }) ),
+
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof (MindMapDocumentConfig.DescriptionExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("DescFr", new List<(string Language, string destFieldName)>(new []{("en", "DescEn"), ("ru", "DescRu") }) ),
+					}),
+
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof (MindMapDocumentConfig.ExampleExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu") }) ),
+					}),
+
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof (MindMapDocumentConfig.LinkExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("LinkFrFallback", new List<(string Language, string destFieldName)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback") }) ),
+
+					})
+				}
+			}),
+		};
 
 
-		public string ImagesDirectoryName { get; set; } = @"Images\";
-
-		public string PdfsDirectoryName { get; set; } = @"Pdfs\";
+		
 
 
 		public string GetBaseTargetDirectory(string language)
