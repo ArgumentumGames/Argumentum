@@ -30,8 +30,6 @@ namespace Argumentum.AssetConverter
 
 		}
 
-
-
 		
 		public void Run()
 		{
@@ -44,26 +42,7 @@ namespace Argumentum.AssetConverter
 			GenerateMindMapDocuments();
 		}
 
-		/// <summary>
-		/// Generates MindMap documents from the given configuration.
-		/// </summary>
-		private void GenerateMindMapDocuments()
-		{
-			foreach (var mindMap in Config.MindMapDocuments)
-			{
-				IList<Fallacy> fallacies;
-				var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
-				if (dataSet == null)
-				{
-					fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
-				}
-				else
-				{
-					fallacies = Fallacy.LoadFallaciesAsync(dataSet).GetAwaiter().GetResult();
-				}
-				mindMap.GenerateMindMapFile(fallacies);
-			}
-		}
+		
 
 
 		/// <summary>
@@ -85,7 +64,7 @@ namespace Argumentum.AssetConverter
 
 				var targetFiles = new List<(string fileName, MagickImageCollection documentImages)>();
 				MagickImageCollection collec;
-				var documentName = LocalizationConfig.GetLocalizedFileName(docImageList.Key.document.DocumentName,
+				var documentName = CardSetLocalization.GetLocalizedFileName(docImageList.Key.document.DocumentName,
 					Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
 				var baseName = Path.Combine(densityDirectory, documentName);
 
@@ -125,7 +104,37 @@ namespace Argumentum.AssetConverter
 			}
 		}
 
+		/// <summary>
+		/// Generates MindMap documents from the given configuration.
+		/// </summary>
+		private void GenerateMindMapDocuments()
+		{
+			foreach (var mindMap in Config.MindMapDocuments)
+			{
+				IList<Fallacy> fallacies;
+				var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
+				if (dataSet == null)
+				{
+					fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
+				}
+				else
+				{
+					fallacies = Fallacy.LoadFallaciesAsync(dataSet).GetAwaiter().GetResult();
+				}
 
+				var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
+				foreach (var targetLanguage in targetLanguages)
+				{
+					var currentTranslatedMap = mindMap.CloneMindMap();
+					foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
+					{
+						documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+					}
+					currentTranslatedMap.GenerateMindMapFile(fallacies);
+				}
+
+			}
+		}
 
 	}
 }

@@ -21,7 +21,7 @@ namespace Argumentum.AssetConverter
 		[DataMember(Order = 1)]
 		public virtual string DocumentName { get; set; }
 
-		private static readonly IJsonFormatterResolver s_defaultResolver = StandardResolver.AllowPrivateExcludeNull;
+		//private static readonly IJsonFormatterResolver s_defaultResolver = StandardResolver.AllowPrivateExcludeNull;
 
 
 		public List<(string sourceLanguage, string targetLanguage)> Translations { get; set; } =

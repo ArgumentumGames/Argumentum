@@ -265,8 +265,8 @@ namespace Argumentum.AssetConverter
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
 					}),
-                    ExceptionPatterns = new List<string>(new []
-                    {
+					ExceptionPatterns = new List<string>(new []
+					{
 						"{{rowset.[0].catégorie}}.jpg",
 						"{{rowset.[0].catégorie}}.png"
 					})
@@ -291,9 +291,9 @@ namespace Argumentum.AssetConverter
 						KnownCardSets.MemoPrintAndPlay,
 
 					}),
-                    StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new []{
-		                    ("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться") }) ),
-	                    }),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new []{
+							("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться") }) ),
+						}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
 						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
@@ -305,7 +305,61 @@ namespace Argumentum.AssetConverter
 						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
 					})
 				},
-			})
+			}),
+			MindMapLocalization = new List<DocumentLocalization>(new[]
+			{
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+						{
+							nameof (MindMapDocumentConfig.DocumentName),
+						}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru") }) ),
+						
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(MindMapDocumentConfig.TitleExpression),
+						nameof (MindMapDocumentConfig.CardExpression)
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("TextFr", new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu") }) ),
+
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof (MindMapDocumentConfig.DescriptionExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("DescFr", new List<(string Language, string destFieldName)>(new []{("en", "DescEn"), ("ru", "DescRu") }) ),
+					}),
+
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof (MindMapDocumentConfig.ExampleExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu") }) ),
+					}),
+					
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof (MindMapDocumentConfig.LinkExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("LinkFrFallback", new List<(string Language, string destFieldName)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback") }) ),
+
+					})
+				}
+			}),
 		};
 
 
@@ -767,7 +821,29 @@ namespace Argumentum.AssetConverter
 			});
 
 
-		public List<MindMapDocumentConfig> MindMapDocuments { get; set; }
+		public List<MindMapDocumentConfig> MindMapDocuments { get; set; } = new List<MindMapDocumentConfig>(new []
+			{
+				new MindMapDocumentConfig()
+				{
+					DocumentName = "Argumentum_Fallacies_MindMap_fr.mm",
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru")
+					}),
+				},
+				new MindMapDocumentConfig()
+				{
+					DocumentName = "Argumentum_Fallacies_MindMap_cards_fr.mm",
+					InsertCards = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru")
+					}),
+				}
+			}
+			);
 
 		public string BaseTargetDirectoryName { get; set; } = @"Target\";
 
@@ -776,7 +852,7 @@ namespace Argumentum.AssetConverter
 
         public string ImagesDirectoryName { get; set; } = @"Images\";
 
-        public string PdfsDirectoryName { get; set; } = @"Pdfs\";
+		public string PdfsDirectoryName { get; set; } = @"Pdfs\";
         
 
         public string GetBaseTargetDirectory(string language)
