@@ -353,6 +353,8 @@ public class HarvestManager
 
 		if (await generatedImages.CountAsync() != cardNames.Count)
 		{
+			
+			Console.WriteLine($"\nEXCEPTION HINT: Cards: {cardNames.Aggregate((s1,s2)=>$"{s1},{s2}")}\n");
 			var message = $"not same number of generated cards ({await generatedImages.CountAsync()}) and card names ({cardNames.Count})";
 			throw new ApplicationException(message);
 		}
