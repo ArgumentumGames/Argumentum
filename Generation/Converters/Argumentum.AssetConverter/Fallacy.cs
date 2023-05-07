@@ -104,13 +104,31 @@ namespace Argumentum.AssetConverter
         public string PoliticalExampleEn { get; set; }
         public string Proverbe { get; set; }
 
-        public string TextRu { get; set; }
+
+        public string FamilyRu { get; set; }
+        public string SubfamilyRu { get; set; }
+        public string SubsubfamilyRu { get; set; }
+
+
+		public string TextRu { get; set; }
 
         public string DescRu { get; set; }
 
         public string ExampleRu { get; set; }
 
         public string LinkRu { get; set; }
+
+        public string FamilyPt { get; set; }
+        public string SubfamilyPt { get; set; }
+        public string SubsubfamilyPt { get; set; }
+
+		public string TextPt { get; set; }
+
+        public string DescPt { get; set; }
+
+        public string ExamplePt { get; set; }
+
+        public string LinkPt { get; set; }
 
 		public string Lienstransverses { get; set; }
         public string Typelientransverse { get; set; }
@@ -137,19 +155,37 @@ namespace Argumentum.AssetConverter
             Map(m => m.Niveau).Name("niveau");
             Map(m => m.NomVulgarisé).Name("nom_vulgarisé");
             Map(m => m.TextFr).Name("text_fr");
-            Map(m => m.LTfr).Name("LTfr");
-            Map(m => m.SimpleNameEn).Name("Simple_name_en");
-            Map(m => m.TextEn).Name("text_en");
+            Map(m => m.DescFr).Name("desc_fr");
+            Map(m => m.Lfr115).Name("Lfr115");
+			Map(m => m.ExampleFr).Name("example_fr");
+			Map(m => m.LTfr).Name("LTfr");
+            Map(m => m.LinkFr).Name("link_fr");
+			Map(m => m.SimpleNameEn).Name("Simple_name_en");
+           
             Map(m => m.LTen).Name("LTen");
             Map(m => m.Family).Name("Family");
             Map(m => m.Subfamily).Name("Subfamily");
             Map(m => m.Subsubfamily).Name("Subsubfamily");
-            Map(m => m.LinkFr).Name("link_fr");
-            Map(m => m.LinkEn).Name("link_en");
-            Map(m => m.DescFr).Name("desc_fr");
-            Map(m => m.Lfr115).Name("Lfr115");
-            Map(m => m.ExampleFr).Name("example_fr");
-            Map(m => m.Lxfr145).Name("Lxfr145");
+			Map(m => m.TextEn).Name("text_en");
+			Map(m => m.ExampleEn).Name("example_en");
+			Map(m => m.LinkEn).Name("link_en");
+
+			Map(m => m.FamilyRu).Name("Family_ru");
+			Map(m => m.SubfamilyRu).Name("Subfamily_ru");
+			Map(m => m.SubsubfamilyRu).Name("Subsubfamily_ru");
+			Map(m => m.TextRu).Name("text_ru");
+			Map(m => m.ExampleRu).Name("example_ru");
+			Map(m => m.LinkRu).Name("link_ru");
+
+
+			Map(m => m.FamilyPt).Name("Family_pt");
+			Map(m => m.SubfamilyPt).Name("Subfamily_pt");
+			Map(m => m.SubsubfamilyPt).Name("Subsubfamily_pt");
+			Map(m => m.TextPt).Name("text_pt");
+			Map(m => m.ExamplePt).Name("example_pt");
+			Map(m => m.LinkPt).Name("link_pt");
+
+			Map(m => m.Lxfr145).Name("Lxfr145");
             Map(m => m.DescEn).Name("desc_en");
             Map(m => m.Len115).Name("Len115");
             Map(m => m.ExampleEn).Name("example_en");
