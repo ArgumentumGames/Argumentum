@@ -747,15 +747,15 @@ namespace Argumentum.AssetConverter
 
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
-						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
-						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru") }) ),
-						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
-						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru") }) ),
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru"), ("pt", "Subsubfamily_pt") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "Subfamily_pt") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt") }) ),
+						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru"), ("pt", "text_pt") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru"), ("pt", "desc_pt") }) ),
+						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru"), ("pt", "example_pt") }) ),
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt") }) ),
 					})
 				},
 				new CardSetLocalization()
@@ -767,16 +767,16 @@ namespace Argumentum.AssetConverter
 
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
-						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru") }) ),
-						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru") }) ),
-						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru") }) ),
-						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru") }) ),
-						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru") }) ),
-						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_en_ru") }) ),
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt") }) ),
+						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru"), ("pt", "title_pt") }) ),
+						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru"), ("pt", "context_pt") }) ),
+						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru"), ("pt", "issue_pt") }) ),
+						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru"), ("pt", "drawer_pt") }) ),
+						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru"), ("pt", "smoothTalker_pt") }) ),
+						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_ru"), ("pt", "suggestion_pt") }) ),
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru") }) ),
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt") }) ),
 					}),
 					ExceptionPatterns = new List<string>(new []
 					{
@@ -793,7 +793,7 @@ namespace Argumentum.AssetConverter
 
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru") }) ),
+						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt") }) ),
 					})
 				},
 				new CardSetLocalization()
@@ -805,17 +805,17 @@ namespace Argumentum.AssetConverter
 
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new []{
-							("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться") }) ),
+							("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться"), ("pt", "A arte de nunca errar") }) ),
 						}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
-						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru"), ("pt", "desc_pt") }) ),
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru") }) ),
-						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru") }) ),
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru") }) ),
-						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru") }) ),
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru"), ("pt", "Subsubfamily_pt") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "Subfamily_pt") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt") }) ),
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt") }) ),
 					})
 				},
 			}),
@@ -827,7 +827,7 @@ namespace Argumentum.AssetConverter
 							nameof (MindMapDocumentConfig.DocumentName),
 						}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru") }) ),
+						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru"), ("pt", "_pt") }) ),
 
 					}),
 				},
@@ -838,7 +838,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("TextFr", new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu") }) ),
+						("TextFr", new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu"), ("pt", "TextPt") }) ),
 
 					}),
 				},
@@ -848,7 +848,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.DescriptionExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("DescFr", new List<(string Language, string destFieldName)>(new []{("en", "DescEn"), ("ru", "DescRu") }) ),
+						("DescFr", new List<(string Language, string destFieldName)>(new []{("en", "DescEn"), ("ru", "DescRu"), ("pt", "DescPt") }) ),
 					}),
 
 				},
@@ -858,7 +858,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.ExampleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu") }) ),
+						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu"), ("pt", "ExamplePt") }) ),
 					}),
 
 				},
@@ -868,7 +868,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("LinkFrFallback", new List<(string Language, string destFieldName)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback") }) ),
+						("LinkFrFallback", new List<(string Language, string destFieldName)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback") }) ),
 
 					})
 				}
