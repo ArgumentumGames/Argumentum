@@ -1,8 +1,9 @@
-Text,Text_en,Text_ru
+Text,Text_en,Text_ru,Text_pt
 "# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Armeryum
-## школа лжецов"
+## школа лжецов","# Argumentum
+## Liars 'School"
 "*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
@@ -42,7 +43,20 @@ Argumentum is based on a classification of fallacious arguments, arranged in ord
 
 Игроки, в свою очередь, попытаются угадать ошибочную карту аргументов с большинством других игроков, во время импровизации Saynet из случайного сценария. Развлекаясь, игроки учатся распознавать, декодировать и, следовательно, деконструировать ошибочные аргументы.
 
-Argiryum основан на классификации этих ошибочных аргументов, расположенных в ордерах и семьях, которые указаны в верхней части карты. Например, Flatterie -это суб -категория вызова эмоций. Карты меморандумы суммируют эту классификацию."
+Argiryum основан на классификации этих ошибочных аргументов, расположенных в ордерах и семьях, которые указаны в верхней части карты. Например, Flatterie -это суб -категория вызова эмоций. Карты меморандумы суммируют эту классификацию.","*Regras de jogo: de 4 a 8 jogadores*
+
+## material
+
+* 1 pacote de cartões falaciosos organizados em 7 classes de cores, cada uma dividida em 3 ordens e depois em 3 famílias.
+* 1 pacotes de pacotes organizados em 7 temas identificáveis ​​nas costas
+* 5 cartões de memorando
+* Regras do jogo
+   
+## Resumo do jogo
+
+Os jogadores, por sua vez, tentarão adivinhar um cartão de argumento falacioso com a maioria dos outros jogadores, durante um SayNet de improvisação de um cenário aleatório. Enquanto se divertem, os jogadores aprendem a reconhecer, decodificar e, portanto, desconstruir os argumentos falaciosos.
+
+Argumentum é baseado na classificação desses argumentos falaciosos, organizados em ordens e famílias que são indicadas no topo do mapa. Por exemplo, a Flatterie é uma sub -categoria da chamada para emoções. Os cartões de memorando resumem essa classificação."
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’arguments fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7 x le nombre de joueurs.
@@ -67,7 +81,15 @@ The first drawer is drawn at random. Each player has a small unique object (coin
 
 Мы представляем 2 чертежа карт сценариев, размещенных в середине стола. Каждый игрок распространяется на 5 ошибочных аргументов, которые он сохраняет для него. Остальная часть карт составляет резерв.
 
-У каждого игрока есть уникальный маленький объект (монета, бобы и т. Д.) Для голосования. Первый пиклер - тот, кто впервые помнит обманчивый аргумент."
+У каждого игрока есть уникальный маленький объект (монета, бобы и т. Д.) Для голосования. Первый пиклер - тот, кто впервые помнит обманчивый аргумент.","## Instalação
+
+Dependendo do número de jogadores e do nível desejado de dificuldade, constituímos o empate dos argumentos falaciosos, adicionando os níveis indicados no canto inferior direito das cartas em ordem crescente. Leva pelo menos 7 x o número de jogadores.
+
+Escolhemos a duração do jogo. Isso inclui uma sucessão de rodadas de cerca de 7 minutos. No final do tempo alocado, terminamos a rodada atual e o jogador que tem mais pontos vence o jogo. Os argumentos falaciosos são misturados, bem como os cartões de cenário.
+
+Constituímos 2 desenhos de cartões de cartão de cenário colocados no meio da mesa. Cada jogador é distribuído a 5 argumentos falaciosos que ele mantém para ele. O restante dos cartões constitui a reserva.
+
+Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação. O primeiro picador é quem primeiro se lembra de um argumento enganoso."
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -110,7 +132,21 @@ The drawer starts the debate as he wishes. He can use the suggestion in italics 
 
 ### 3. Saynet
 
-Пирлер начинает дебаты, как он желает. Он может возобновить предложение первой копии в курсиве в нижней части карты сценарии. Затем у баратинера и пищика есть максимальная минута для импровизации дискуссии, в ходе которого баратинер попытается использовать тип аргумента, указанный выбранной он картой."
+Пирлер начинает дебаты, как он желает. Он может возобновить предложение первой копии в курсиве в нижней части карты сценарии. Затем у баратинера и пищика есть максимальная минута для импровизации дискуссии, в ходе которого баратинер попытается использовать тип аргумента, указанный выбранной он картой.","# Roll of the English Channel
+
+### 1. o pêssego
+
+A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
+
+### 2. O baratineur
+
+O Baratiner será responsável por conduzir o argumento do cenário, para ilustrar um de seus cartões de argumento falacioso. Seu objetivo será adivinhar esta carta para a maioria dos outros jogadores.
+
+O papel de Baratineur é designado para o primeiro jogador que posa, em frente a Hidden, o argumento falacioso que ele pretende jogar. Caso contrário, o jogador à esquerda do picador é designado baratineur e coloca seu cartão.
+
+### 3. SayNet
+
+O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu."
 "Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
@@ -149,7 +185,20 @@ Otherwise, the winner of the round is the one whose card has obtained the most v
 ### 5. Подсчет
 
 Победителем канала является тот, чья карта получила наибольшее количество голосов, баратинер или член присяжных (🥇👇👇… ➜).
-Затем он сохраняет свою карту, которая стоит 1 балл и укладку, видимое лицо перед ним."
+Затем он сохраняет свою карту, которая стоит 1 балл и укладку, видимое лицо перед ним.","O baratiner exibe seus argumentos e o picador lhe dá a réplica sem tentar dominar a cena. O Baratinener pode optar por reduzir o Saynet quando desejar.
+
+### 4. O júri
+
+Todos os jogadores com exceção do baratineur, mas incluídos, constituem o júri. No final do Saynet, cada jurado escolhe entre seus próprios cartões que estão mais próximos do argumento ouvido e a instalação está escondida com a do baratineur. Com 3 ou 4 jogadores, os jurados escolhem 2 cartas.
+
+O baratiner pega os cartões, os mistura e os revela no meio da mesa. Os jurados tomam nota dos cartões revelados, um jurado pode lê -lo em voz alta. Cada um dos jurados levanta o dedo para apontar quando estiver pronto para votar.
+
+Quando o júri estiver pronto, sem consulta, cada um de seus membros designa simultaneamente o cartão que ele acha que foi interpretado pelo baratineur, posando, é um pequeno objeto único (ou falhando que colocando o dedo).
+
+### 5. A contagem
+
+O vencedor do canal é aquele cujo cartão obteve o maior número de votos, baratineur ou membro do júri (🥇👇👇… ➜).
+Ele então mantém seu cartão, que vale 1 ponto e o rosto visível e deitado na frente dele."
 "En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le baratineur qui l’emporte (❌👇🎭➜🎭🏆).
 
 ### 6.       Les pioches
@@ -200,11 +249,32 @@ The winner's left-hand neighbour becomes the drawer for the next round.
 * Пихер имеет право напрямую назначать канал баратинер.
 * Если Пиклер выиграет, он также выигрывает карту баратинера.
 * Баратинер может установить несколько карт. Так много победителей голосования объявлены, баратинеер, который может выиграть все или часть его карт.
-* Победитель игры должен воплотить баратинеер финального сценария, в котором он должен внести в игру все карты, которые он выиграл во время игры."
+* Победитель игры должен воплотить баратинеер финального сценария, в котором он должен внести в игру все карты, которые он выиграл во время игры.","No caso de igualdade (🥈👇👇≟🥈👇👇), o baratineur prevalece (✅🎭➜🎭🏆 ✅🎭➜🎭🏆 ✅🎭➜🎭🏆), e falhando nisso (❌🎭), os jurados aclamados que encontraram o cartão Baratineur são todos declarados vitoriosos (✅👇 ✅👇 🎭 Marca). Se nenhum dos jurados em questão o encontrou, é o baratineur que ganha (marca).
+
+### 6. Escolhas
+
+Depois que o vencedor for designado, os jogadores desenham uma série de cartas na reserva:
+
+* O vencedor do canal não desenha uma nova carta. (✅🏆Eceds0🎴)
+* Todos os outros jogadores desenham uma carta (❌🏆 Brandies ❌🏆1🎴) ou 2 cartas em 3 ou 4 jogadores
+* Os membros do júri que obtiveram votos desenham mais uma carta (✅🧲👇➜✅+1🎴)
+* Os jurados que encontraram o cartão Baratineur desenham mais uma carta (✅👇🎭➜✅+1🎴)
+* As cartas jogadas são devolvidas à reserva.
+* O vizinho esquerdo do vizinho se torna o próximo cabo da próxima rodada.
+
+## variantes:
+
+*Se o cartão Baratineur for designado por todo o júri, ele não ganha a rodada, cada um desenhe uma carta na reserva, exceto o baratineur.
+* Durante o Saynet, qualquer membro do júri pode usar uma carta de seu jogo para intervir no papel de pickaxe. Se sua intervenção ilustrar bem o cartão, ele reipoca um e será nomeado a próxima picareta, se não, ele perde o cartão e o jogo assume sua quadra.
+* Picher tem o direito de designar diretamente o baratineur do canal.
+* Se o picador vencer, ele também vence o cartão Baratineur.
+* O baratineur pode definir vários cartões. Muitos vencedores de votação são declarados, o Baratinener que pode ganhar todas ou parte de suas cartas.
+* O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo."
 "# Argumentum
 ## Le Bingo mixologie argumentative","# Argumentum
 ## The school of liars","# Armeryum
-## Аргументативная миксология бинго"
+## Аргументативная миксология бинго","# Argumentum
+## a mixologia de bingo argumentativa"
 "*Règles du jeu :  de 1 à 20 joueurs*
 
 ## Matériel
@@ -256,7 +326,24 @@ Each player takes note of his cards, has them by ensuring that they keep them in
 ## Средство
 
 Мы случайным образом разделяем все ошибочные аргументы, доступные между всеми игроками, до 10 карт на человека.
-Каждый игрок принимает к сведению свои карты, имеет их, гарантируя, что они им помнят, и уходит в дебаты."
+Каждый игрок принимает к сведению свои карты, имеет их, гарантируя, что они им помнят, и уходит в дебаты.","*Regras de jogo: de 1 a 20 jogadores*
+
+## material
+
+* 1 debate ou 1 discurso para o qual os jogadores comparecerão juntos e que podem ser revisados.
+* O suficiente para fazer anotações e uma maneira de observar o tempo decorrido desde o início do debate.
+* 1 ou mais pacotes de cartões de argumento falaciosos
+
+   
+## Resumo do jogo
+
+Equipados com uma grade de bingo composta pelos argumentos falaciosos desenhados, os jogadores tentarão identificar os de suas cartas ilustradas durante o debate.
+Sob os termos do debate, o jogador que viu o maior número de argumentos falaciosos, após a validação da maioria dos outros jogadores, vence o jogo.
+
+## Instalação
+
+Dividimos aleatoriamente todos os argumentos falaciosos disponíveis entre todos os jogadores, até 10 cartas por pessoa.
+Cada jogador obtém nota de suas cartas, garantindo -as que eles tenham em mente e se estabelecem para participar do debate."
 "## Pendant le débat
 
 Chaque joueur écoute les arguments formulés. S'il repère un argument qui relève de l'une des cartes de sa grille de bingo, il note le temps écoulé, un début de citation qui permettra de retrouver le bon passage, et le nom de sa carte accompagné au besoin d'un peu de contexte pour pouvoir restituer plus tard à l'oral son analyse.
@@ -308,11 +395,29 @@ Players who have obtained the best score are declared victors","## во врем
 Окончательный счет игроков - это количество их карт, подтвержденных собранием
 Если в конце первого заявления, другие нереализованные игроки теперь найдены с большим количеством карт, чем наилучший подтвержденный балл, они подтверждены, и так далее, пока наилучший подтвержденный балл не станет более сомнительным.
 
-Игроки, получившие лучший результат, объявлены победителями"
+Игроки, получившие лучший результат, объявлены победителями","## durante o debate
+
+Cada jogador ouve os argumentos formulados. Se ele vê um argumento que é um dos cartões de sua grade de bingo, ele observa o tempo passado, um começo de citação que nos permitirá encontrar a passagem certa e o nome de seu cartão acompanhado, se necessário, um pouco de contexto para ser capaz de restaurar sua análise mais tarde oralmente.
+
+## Valitações pós-de-debate
+
+Os jogadores que afirmam que o maior número de cartões utilizados são selecionados para validação.
+
+De suas anotações e registrando a sequência de momentos em que cada um de seus cartões foi estabelecido.
+Para cada uma das cartas, voltamos ao momento acusado e ao jogador explícito por que o argumento é seu cartão.
+A Assembléia vota manualmente para validar ou não sua análise.
+
+## Condições de vitória
+
+A pontuação final dos jogadores é o número de suas cartas validadas pela Assembléia
+Se no final de uma primeira declaração, outros jogadores não realizados agora são encontrados com mais cartas do que a melhor pontuação validada, eles serão validados e assim por diante até que a melhor pontuação validada não seja mais questionável.
+
+Jogadores que obtiveram a melhor pontuação são declarados vencedores"
 "# Argumentum
 ## Le dernier beau parleur","# Argumentum
 ## The last beautiful speaker","# Armeryum
-## последний красивый динамик"
+## последний красивый динамик","# Argumentum
+## o último lindas orador"
 "*Règles du jeu : de 1 à 8 joueurs*
 
 ## Matériel
@@ -346,7 +451,18 @@ The players will in turn offer arguments around scenarios drawn at each round an
    
 ## Резюме игры
 
-Игроки, в свою очередь, будут предлагать аргументы вокруг сценариев, приведенных в каждом раунде, и попытаются избавиться от своих карт, определив ошибочные аргументы, используемые другими игроками. В дополнение к признанию ошибочных аргументов, игроки тренируются, чтобы избежать их совершения."
+Игроки, в свою очередь, будут предлагать аргументы вокруг сценариев, приведенных в каждом раунде, и попытаются избавиться от своих карт, определив ошибочные аргументы, используемые другими игроками. В дополнение к признанию ошибочных аргументов, игроки тренируются, чтобы избежать их совершения.","*Regras de jogo: de 1 a 8 jogadores*
+
+## material
+
+* 1 pacote de cartões falaciosos organizados em 7 classes de cores, cada uma dividida em 3 ordens e depois em 3 famílias.
+* 1 pacote de cartões de cenário organizados em 7 temas identificáveis ​​nas costas
+* 5 cartões de memorando
+* Regras do jogo
+   
+## Resumo do jogo
+
+Os jogadores, por sua vez, oferecerão argumentos em torno de cenários desenhados a cada rodada e tentarão se livrar de suas cartas, identificando os argumentos falaciosos usados ​​por outros jogadores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para evitar cometê -los."
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de quelques minutes qui seront jouées.
@@ -365,7 +481,13 @@ The first pickler is the one who was influenced last by a call to emotion.","## 
 
 Ошибочные аргументированные карты смешаны, а также сценарические карты. Мы составляем 2 выбора карт сценариев, размещенных в середине стола. Каждый игрок распространяется по 5 ошибочным аргументированным картам, которые он хранит для него. Остальные карты - выбор.
 
-Первый Пиклер - это тот, на кого в последний раз влияли призыв к эмоциям."
+Первый Пиклер - это тот, на кого в последний раз влияли призыв к эмоциям.","## Instalação
+
+Dependendo do número de jogadores e do nível de dificuldade desejado, constituímos o sorteio dos cartões de argumento falaciosos, adicionando os níveis indicados no canto inferior direito das cartas em ordem crescente. Escolhemos o número máximo de mangas de alguns minutos que serão reproduzidas.
+
+Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões é a escolha.
+
+O primeiro picador é aquele que foi influenciado por um chamado à emoção."
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -411,7 +533,22 @@ The sleeve stops when there is only one person left is at stake. The neighbor on
 
 ### 3. конец раунда
 
-На карту поставлен рукав, когда остается только одного человека. Сосед слева от Пиклера становится новым пикалером и тянет сценарий следующего раунда."
+На карту поставлен рукав, когда остается только одного человека. Сосед слева от Пиклера становится новым пикалером и тянет сценарий следующего раунда.","# Roll of the English Channel
+
+### 1. o pêssego
+
+A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
+
+
+### 2. A rodada de argumentos
+
+Ao chegar à esquerda do vizinho do pêssego, cada jogador deve oferecer um argumento que responda à liminar do cenário. Se um jogador vê uma de suas cartas nos argumentos apresentados, ele dá seu cartão àquele que o usou e o espalha para fora do canal.
+Se um jogador não encontrar mais um novo argumento após 10 segundos, ele desenha um novo cartão e é excluído do canal.
+
+
+### 3. Fim da rodada
+
+A manga para quando há apenas uma pessoa está em jogo. O vizinho à esquerda do picador se torna o novo picador e puxa o cenário da próxima rodada."
 "##       Fin de partie et décompte
 
 
@@ -424,11 +561,16 @@ Otherwise the game stops at the end of the number of sleeves initially planned. 
 
 
 Если игроку удается избавиться от всех своих карт, он выигрывает игру.
-В противном случае игра останавливается в конце количества запланированных рукавов. Победитель - тот, у кого есть наименьшие карты."
+В противном случае игра останавливается в конце количества запланированных рукавов. Победитель - тот, у кого есть наименьшие карты.","## final do jogo e contagem
+
+
+Se um jogador consegue se livrar de todas as suas cartas, ele vence o jogo.
+Caso contrário, o jogo para no final do número de mangas inicialmente planejado. O vencedor é quem tem menos cartas."
 "# Argumentum
 ## Le moulin à baratin","# Argumentum
 ## Le Moulin in Baratin","# Armeryum
-## Le Moulin в баратине"
+## Le Moulin в баратине","# Argumentum
+## Le Moulin em Baratin"
 "*Règles du jeu : de 2 à 8 joueurs*
 
 ## Matériel
@@ -462,7 +604,18 @@ With each round, on a scenario drawn, one of the players finds in a limited time
    
 ## Резюме игры
 
-С каждым раундом в сценарии один из игроков находит в ограниченное время наибольшее количество ошибочных аргументов, иллюстрирующих карты, нарисованные последовательно."
+С каждым раундом в сценарии один из игроков находит в ограниченное время наибольшее количество ошибочных аргументов, иллюстрирующих карты, нарисованные последовательно.","*Regras de jogo: de 2 a 8 jogadores*
+
+## material
+
+* 1 pacote de cartões falaciosos organizados em 7 classes de cores, cada uma dividida em 3 ordens e depois em 3 famílias.
+* 1 pacote de cartões de cenário organizados em 7 temas identificáveis ​​nas costas
+* 5 cartões de memorando
+* Regras do jogo
+   
+## Resumo do jogo
+
+A cada rodada, em um cenário desenhado, um dos jogadores encontra em um tempo limitado o maior número de argumentos falaciosos que ilustram as cartas desenhadas em sequência."
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de 3 minutes par joueur qui seront jouées.
@@ -481,7 +634,13 @@ The first pickaxe is the one who has last awarded an argument for wear.","## С�
 
 Ошибочные аргументированные карты смешаны, а также сценарические карты. Мы составляем 2 выбора карт сценариев и 1 ошибочный выбор аргументов, размещенные в середине стола.
 
-Первый Pickaxe - это тот, кто в последний раз присудил аргумент в пользу износа."
+Первый Pickaxe - это тот, кто в последний раз присудил аргумент в пользу износа.","## Instalação
+
+Dependendo do número de jogadores e do nível de dificuldade desejado, constituímos o sorteio dos cartões de argumento falaciosos, adicionando os níveis indicados no canto inferior direito das cartas em ordem crescente. Escolhemos o número máximo de rodadas de 3 minutos por jogador que será jogado.
+
+Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário e 1 picada de argumento falaciosa, colocada no meio da mesa.
+
+A primeira picareta é quem premiou uma discussão pela última vez."
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -533,7 +692,24 @@ The sleeve stops at the end of the time allocated, the baratineur obtains in poi
 
 ### 3. конец раунда
 
-Рукав останавливается в конце распределенного времени, баратинер получает в точках количество карт, сметавшихся на рукаве. Он становится разборчивым в следующем раунде."
+Рукав останавливается в конце распределенного времени, баратинер получает в точках количество карт, сметавшихся на рукаве. Он становится разборчивым в следующем раунде.","# Roll of the English Channel
+
+### 1. o pêssego
+
+A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
+
+
+### 2. Velocidade em execução
+
+A esquerda do vizinho do picador é o baratineur.
+Estamos preparando um cronômetro de 3 minuto.
+
+Ele começa a desenhar argumentos falaciosos. Para cada cartão, ele deve oferecer um argumento que ilustra o cartão para agir o cenário. Se for bem -sucedido, ele vence o cartão, caso contrário, ele também poderá passar, à taxa de 3 brincadeiras por manípulo, e desenhar o próximo.
+
+
+### 3. Fim da rodada
+
+A manga para no final do tempo alocada, o baratineur obtém em pontos o número de cartas varridas na manga. Ele se torna exigente com a próxima rodada."
 "##       Fin de partie
 
 
@@ -558,11 +734,20 @@ The first player arriving at 20 points takes the game
 ## Варианты
 
 * На каждой карте рисования, после спора о баратинере, другие игроки могут предложить еще одну иллюстрацию карты. За каждое новое предложение Ассамблея голосует, если оно считается лучше, чем предыдущие, и автор лучшего предложения, сохранившегося, выигрывает карту.
+","##       Game Over
+
+
+O primeiro jogador que chega a 20 pontos leva o jogo
+
+## variantes
+
+* Em cada carta de desenho, após o argumento do Baratiner, os outros jogadores podem oferecer outra ilustração do cartão. Para cada nova proposta, a Assembléia vota se for considerada melhor que os anteriores, e o autor da melhor proposta manteve o cartão.
 "
 "# Argumentum
 ## La parlote coinchée","# Argumentum
 ## La Parlote Coinchée","# Armeryum
-## la parlote coinchée"
+## la parlote coinchée","# Argumentum
+## LA Parlote Coinchée"
 "*Règles du jeu : 4 joueurs*
 
 ## Matériel
@@ -596,7 +781,18 @@ In a succession of sleeves between 2 teams of 2 players facing each other, they 
    
 ## Резюме игры
 
-В последовательности рукавов между двумя командами из 2 игроков, стоящих друг с другом, они будут распространяться красивые ошибочные аргументы, которые можно использовать в череде башен в сценарии. Уровень специфичности карт представляет собой их силу, и 2, так что в любое время можно воспроизвести, и преобладать по сравнению с другими цветами. В дополнение к признанию ошибочных аргументов, игроки обучаются, чтобы оценить уровень специфичности карт и сотрудничать."
+В последовательности рукавов между двумя командами из 2 игроков, стоящих друг с другом, они будут распространяться красивые ошибочные аргументы, которые можно использовать в череде башен в сценарии. Уровень специфичности карт представляет собой их силу, и 2, так что в любое время можно воспроизвести, и преобладать по сравнению с другими цветами. В дополнение к признанию ошибочных аргументов, игроки обучаются, чтобы оценить уровень специфичности карт и сотрудничать.","*Regras do jogo: 4 jogadores*
+
+## material
+
+* 1 pacote de cartões falaciosos organizados em 7 classes de cores, cada uma dividida em 3 ordens e depois em 3 famílias. Uma seleção de 32 cartões
+* 1 pacote de cartões de cenário organizados em 7 temas identificáveis ​​nas costas
+* 5 cartões de memorando
+* Regras do jogo
+   
+## Resumo do jogo
+
+Em uma sucessão de mangas entre 2 equipes de 2 jogadores que se enfrentam, eles serão distribuídos por belos argumentos falaciosos para usar em uma sucessão de torres em um cenário desenhado. O nível de especificidade das cartas constitui sua força e 2 cores de ativos chamadas podem ser reproduzidas a qualquer momento e prevalecem sobre outras cores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para avaliar o nível de especificidade dos cartões e cooperar."
 "## Installation
 
 On sélectionne 28 cartes d'arguments fallacieux pour la partie, soit 4 par couleur.
@@ -615,7 +811,13 @@ The first pickaxe is the one who lied last.","## Средство
 
 Ошибочные аргументированные карты смешаны, а также сценарические карты. Мы составляем 2 выбора карт сценариев, размещенных в середине стола.
 
-Первый пик - тот, кто солгал последним."
+Первый пик - тот, кто солгал последним.","## Instalação
+
+Selecionamos 28 cartões de argumentos falaciosos para o jogo, 4 por cor.
+
+Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa.
+
+A primeira picareta é a que mais se esforçou."
 "## Début de la manche
 
 ### 1.       Le piocheur
@@ -709,6 +911,37 @@ If no player offers an argument, the best card wins.
 
 
 
+  ","## início da rodada
+
+### 1. o pêssego
+
+A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
+Em seguida, ele mistura e distribui os 28 cartões de argumentos falaciosos para os 4 jogadores.
+
+### 2. Leilão ATOUT
+
+Começando com o vizinho do vizinho, os jogadores escolhem ou não superarem para designar as 2 cores de ativo do canal. Os cartões de ativo permitem que você prevaleça outros tipos de cartões e também vale mais pontos para a rodada do canal.
+O leilão dos ativos é de 80 e os leilões sobem de 10 para 10.
+
+A qualquer momento, um dos dois membros de uma equipe pode dizer ""eu esquina"" e acabar com o leilão enquanto dobra a participação do canal.
+Quando ninguém está exagerado, as duas cores de ativo são designadas para o canal e a fase do jogo pode começar.
+
+
+### 2. As voltas de jogo
+
+Em uma sucessão de 7 voltas, os jogadores enfrentarão um cartão de argumento falacioso no cenário.
+Ao chegar ao vizinho do vizinho do seqüente, cada jogador deve oferecer uma carta e reproduzir um argumento ilustrativo que responde à liminar do cenário.
+
+Se nenhuma carta de ativo for reproduzida, a carta no maior nível de profundidade levará a dobra.
+Se as vantagens forem reproduzidas, a carta de ativo do nível mais baixo de profundidade leva a dobra.
+Os jogadores da mesma equipe compartilham as dobras que vencem.
+
+Para fazer uma dobra, um jogador deve explicar um argumento correspondente ao cartão.
+Se nenhum jogador oferece uma discussão, a melhor carta vence.
+
+
+
+
   "
 "### 3.       Décompte de la manche
 
@@ -755,4 +988,19 @@ The team that prevails is the first to exceed 1000 points","### 3.
 
 ## конец игры и счет
 
-Команда, которая преобладает, является первой, превышающей 1000 баллов"
+Команда, которая преобладает, является первой, превышающей 1000 баллов","### 3.
+
+A manga para quando todas as dobras foram tocadas.
+
+Em seguida, contamos os pontos das duas equipes.
+Para cartões além das cores dos ativos, cada cartão vale o seu nível de profundidade duas vezes.
+Para cartões coloridos de ativos, cada cartão vale 12 - (2 vezes o seu nível de profundidade)
+
+Se a equipe que ganhou os leilões de ativos respeita seu contrato com uma pontuação mais alta, ele ganha o valor de seus leilões mais os pontos realmente ganharam.
+Se é a outra equipe que vence, é isso que leva 160 pontos a mais a quantidade de leilões que não foi homenageada.
+
+Se os leilões fossem cantos, as pontuações são dobradas.
+
+## final do jogo e contagem
+
+A equipe que prevalece é a primeira a exceder 1000 pontos"

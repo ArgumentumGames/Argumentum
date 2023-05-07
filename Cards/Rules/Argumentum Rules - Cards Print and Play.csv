@@ -1,8 +1,9 @@
-Text,Text_en,Text_ru
+Text,Text_en,Text_ru,Text_pt
 "# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Armeryum
-## школа лжецов"
+## школа лжецов","# Argumentum
+## Liars 'School"
 "*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
@@ -42,7 +43,20 @@ Argumentum is based on a classification of fallacious arguments, arranged in ord
 
 Игроки, в свою очередь, попытаются угадать ошибочную карту аргументов с большинством других игроков, во время импровизации Saynet из случайного сценария. Развлекаясь, игроки учатся распознавать, декодировать и, следовательно, деконструировать ошибочные аргументы.
 
-Argiryum основан на классификации этих ошибочных аргументов, расположенных в ордерах и семьях, которые указаны в верхней части карты. Например, Flatterie -это суб -категория вызова эмоций. Карты меморандумы суммируют эту классификацию."
+Argiryum основан на классификации этих ошибочных аргументов, расположенных в ордерах и семьях, которые указаны в верхней части карты. Например, Flatterie -это суб -категория вызова эмоций. Карты меморандумы суммируют эту классификацию.","*Regras de jogo: de 4 a 8 jogadores*
+
+## material
+
+* 1 pacote de cartões falaciosos organizados em 7 classes de cores, cada uma dividida em 3 ordens e depois em 3 famílias.
+* 1 pacotes de pacotes organizados em 7 temas identificáveis ​​nas costas
+* 5 cartões de memorando
+* Regras do jogo
+   
+## Resumo do jogo
+
+Os jogadores, por sua vez, tentarão adivinhar um cartão de argumento falacioso com a maioria dos outros jogadores, durante um SayNet de improvisação de um cenário aleatório. Enquanto se divertem, os jogadores aprendem a reconhecer, decodificar e, portanto, desconstruir os argumentos falaciosos.
+
+Argumentum é baseado na classificação desses argumentos falaciosos, organizados em ordens e famílias que são indicadas no topo do mapa. Por exemplo, a Flatterie é uma sub -categoria da chamada para emoções. Os cartões de memorando resumem essa classificação."
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7  x  le nombre de joueurs.
@@ -67,7 +81,15 @@ The first drawer is drawn at random. Each player has a small unique object (coin
 
 Ошибочные аргументы смешаны, а также карты сценариев. Мы представляем 2 чертежа карт сценариев, размещенных в середине стола. Каждый игрок распространяется по 5 ошибочным аргументированным картам, которые он хранит для него. Остальная часть карт составляет резерв.
 
-Первый пиклер нарисован. У каждого игрока есть уникальный маленький объект (монета, бобы и т. Д.) Для голосования."
+Первый пиклер нарисован. У каждого игрока есть уникальный маленький объект (монета, бобы и т. Д.) Для голосования.","## Instalação
+
+Dependendo do número de jogadores e do nível de dificuldade desejado, constituímos o sorteio dos cartões de argumento falaciosos, adicionando os níveis indicados no canto inferior direito das cartas em ordem crescente. Leva pelo menos 7 x o número de jogadores.
+
+Escolhemos a duração do jogo. Isso inclui uma sucessão de rodadas de 7 minutos. No final do tempo alocado, terminamos a rodada atual e o jogador que tem mais pontos vence o jogo.
+
+Os argumentos falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 desenhos de cartões de cartão de cenário colocados no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões constitui a reserva.
+
+O primeiro picador é desenhado. Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação."
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -110,7 +132,21 @@ The drawer starts the debate as he wishes. He can use the suggestion in italics 
 
 ### 3. Saynet
 
-Пирлер начинает дебаты, как он желает. Он может возобновить предложение первой копии в курсиве в нижней части карты сценарии. Затем у баратинера и пищика есть максимальная минута для импровизации дискуссии, в ходе которого баратинер попытается использовать тип аргумента, обозначенного выбранной картой, которую он выбрал."
+Пирлер начинает дебаты, как он желает. Он может возобновить предложение первой копии в курсиве в нижней части карты сценарии. Затем у баратинера и пищика есть максимальная минута для импровизации дискуссии, в ходе которого баратинер попытается использовать тип аргумента, обозначенного выбранной картой, которую он выбрал.","# Roll of the English Channel
+
+### 1. o pêssego
+
+A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
+
+### 2. O baratineur
+
+O Baratiner será responsável por conduzir o argumento do cenário, para ilustrar um de seus cartões de argumento falacioso. Seu objetivo será adivinhar esta carta para a maioria dos outros jogadores, sem, no entanto, todos os descobrirem.
+
+O papel de Baratineur é designado para o primeiro jogador que posa, em frente a Hidden, o argumento falacioso que ele pretende jogar. Caso contrário, o jogador à esquerda do picador é designado baratineur e coloca seu cartão.
+
+### 3. SayNet
+
+O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu."
 "Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
@@ -147,7 +183,19 @@ Otherwise, the winner of the round is the one whose card has obtained the most v
 
 Если карта Baratineur обозначена всем присяжным, каждый рисует карту в резерве, за исключением баратинера.
 
-В противном случае победителем канала является тот, чья карта получила наибольшее количество голосов, баратинер или член присяжных."
+В противном случае победителем канала является тот, чья карта получила наибольшее количество голосов, баратинер или член присяжных.","O baratiner exibe seus argumentos e o picador lhe dá a réplica sem tentar dominar a cena. O Baratinener pode optar por reduzir o Saynet quando desejar.
+
+### 4. O júri
+
+Todos os jogadores com exceção do baratineur, mas incluídos, constituem o júri. No final do Saynet, cada membro do júri escolhe entre suas próprias cartas que estão mais próximas do argumento ouvido e a face de instalação escondida com a do baratineur. Ele pega os cartões, os mistura e os revela no meio da mesa.
+
+Os membros do júri tomam nota das cartas reveladas, um jogador pode lê -lo em voz alta. Quando o júri está pronto, sem consulta, cada um de seus membros designa simultaneamente o cartão que ele acha que foi interpretado pelo Baratineur, posando, é um pequeno objeto único.
+
+### 5. A contagem
+
+Se o cartão Baratineur for designado por todo o júri, cada um desenha uma carta na reserva, exceto o baratineur.
+
+Caso contrário, o vencedor do canal é aquele cujo cartão obteve o maior número de votos, baratineur ou membro do júri."
 "Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui. Il ne pioche pas de nouvelle carte.
 
 En cas d’égalité, les joueurs concernés qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs. Si aucun des joueurs concernés ne l'a trouvé, c'est le baratineur qui l’emporte.
@@ -182,4 +230,16 @@ The winner's left-hand neighbour becomes the drawer for the next round.
 
 * В суде Сайнета любой член присяжных может использовать карту своей игры для вмешательства в роль Пикоса. Если его вмешательство хорошо иллюстрирует его карту, он повлияет на одну и будет назначен следующей выбором, если нет, он теряет свою карту, и игра захватывает свой двор.
 * Pickaxe имеет право напрямую назначать баратинур английского канала.
-* Победитель игры должен воплотить баратинеер финального сценария, в котором он должен внести в игру все карты, которые он выиграл во время игры."
+* Победитель игры должен воплотить баратинеер финального сценария, в котором он должен внести в игру все карты, которые он выиграл во время игры.","Ele então mantém seu cartão, que vale 1 ponto e o rosto visível e deitado na frente dele. Ele não desenha um novo cartão.
+
+No caso de um empate, os jogadores envolvidos que encontraram o cartão Baratineur são todos declarados vitoriosos. Se nenhum dos jogadores em questão o encontrou, é o baratinener que vence.
+
+Com exceção do vencedor, os membros do júri que obtiveram votos ou que encontraram o cartão Baratineur desenham 2 cartas na reserva. Os outros jogadores, incluindo o Baratinener, se ele não venceram a rodada, desenham 1 cartas lá. As cartas jogadas são devolvidas à reserva.
+
+O vizinho esquerdo do vizinho se torna o próximo cabo da próxima rodada.
+
+## variantes:
+
+* No Tribunal do Saynet, qualquer membro do júri pode usar uma carta de seu jogo para intervir no papel de pickaxe. Se sua intervenção ilustrar bem o cartão, ele reipoca um e será nomeado a próxima picareta, se não, ele perde o cartão e o jogo assume sua quadra.
+* A picareta tem o direito de designar diretamente o baratineur do Canal da Mancha.
+* O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo."
