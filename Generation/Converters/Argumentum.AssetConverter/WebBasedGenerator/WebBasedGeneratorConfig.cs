@@ -244,7 +244,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					CardSets = new List<DocumentCardSet>(new[]
 					{
@@ -314,7 +315,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					CardSets = new List<DocumentCardSet>(new[]
 					{
@@ -346,8 +348,9 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"), 
-	                    ("fr", "ru")
-                    }),
+	                    ("fr", "ru"),
+	                    ("fr", "pt")
+					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
 					CardSets = new List<DocumentCardSet>(new[]
@@ -418,7 +421,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
@@ -452,7 +456,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
@@ -487,7 +492,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A0",
@@ -523,7 +529,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
@@ -706,7 +713,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0
@@ -721,7 +729,8 @@ namespace Argumentum.AssetConverter
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),
-						("fr", "ru")
+						("fr", "ru"),
+						("fr", "pt")
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0
@@ -828,6 +837,39 @@ namespace Argumentum.AssetConverter
 						}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru"), ("pt", "_pt") }) ),
+
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(MindMapDocumentConfig.TitleExpression),
+						nameof (MindMapDocumentConfig.CardExpression)
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "FamilyRu"), ("pt", "FamilyPt") }) ),
+
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(MindMapDocumentConfig.TitleExpression),
+						nameof (MindMapDocumentConfig.CardExpression)
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("SousFamille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "SubfamilyRu"), ("pt", "SubfamilyPt") }) ),
+
+					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(MindMapDocumentConfig.TitleExpression),
+						nameof (MindMapDocumentConfig.CardExpression)
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "SubsubfamilyRu"), ("pt", "SubsubfamilyPt") }) ),
 
 					}),
 				},
