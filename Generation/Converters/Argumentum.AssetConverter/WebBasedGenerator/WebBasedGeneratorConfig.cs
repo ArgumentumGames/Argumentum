@@ -89,7 +89,7 @@ namespace Argumentum.AssetConverter
 						{
 							DataSet = KnownDataSets.Rules,
 							JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
-							SkipDataUpdate = true
+							SkipDataUpdate = false
 						}
 					  },
 				new CardSetConfig(){
@@ -190,7 +190,7 @@ namespace Argumentum.AssetConverter
 					{
 						DataSet = KnownDataSets.RulesPrintAndPlay,
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
-						SkipDataUpdate = true,
+						SkipDataUpdate = false,
 					}
 				},
 				new CardSetConfig(){
