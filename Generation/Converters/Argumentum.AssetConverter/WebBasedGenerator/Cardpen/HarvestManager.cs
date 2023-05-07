@@ -190,23 +190,31 @@ public class HarvestManager
 	public async Task<CardSetHarvest> GenerateHarvestImages(IBrowser browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
 	{
 		var currentHarvest = new CardSetHarvest();
-
 		var page = await browser.NewPageAsync();
-		await page.GotoAsync(Config.CardpenUrl);
-		await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
-		await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-		Thread.Sleep(TimeSpan.FromSeconds(2));
-
-		var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo.PauseForEdits);
-		currentHarvest.Faces = faces;
-
-		if (cardSetDocuments.back != null)
+		try
 		{
-			var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo.PauseForEdits);
-			currentHarvest.Backs = backs;
-		}
 
-		await page.CloseAsync();
+			
+			await page.GotoAsync(Config.CardpenUrl);
+			await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+			await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+			Thread.Sleep(TimeSpan.FromSeconds(2));
+
+			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo.PauseForEdits);
+			currentHarvest.Faces = faces;
+
+			if (cardSetDocuments.back != null)
+			{
+				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo.PauseForEdits);
+				currentHarvest.Backs = backs;
+			}
+
+			
+		}
+		finally
+		{
+			await page.CloseAsync();
+		}
 
 		return currentHarvest;
 	}
