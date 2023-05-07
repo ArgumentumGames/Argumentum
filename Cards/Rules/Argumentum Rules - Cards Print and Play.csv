@@ -1,7 +1,8 @@
-Text,Text_en
+Text,Text_en,Text_ru
 "# Argumentum
 ## L'école des menteurs","# Argumentum
-## The school of liars"
+## The school of liars","# Armeryum
+## школа лжецов"
 "*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
@@ -28,7 +29,20 @@ Argumentum s’appuie sur une classification de ces arguments fallacieux, rangé
 
 Players will take turns trying to get a majority of other players to guess a spurious argument card during an improvisational skit based on a randomly drawn scenario. While having fun, players learn to recognize, decode and therefore deconstruct fallacious arguments.
 
-Argumentum is based on a classification of fallacious arguments, arranged in orders and families that are indicated at the top of the cards. For example, flattery is a subcategory of the appeal to emotions. Memo cards summarize this classification."
+Argumentum is based on a classification of fallacious arguments, arranged in orders and families that are indicated at the top of the cards. For example, flattery is a subcategory of the appeal to emotions. Memo cards summarize this classification.","*Правила игры: от 4 до 8 игроков*
+
+## материал
+
+* 1 упаковка ошибочных аргументированных карт, организованных в 7 классах цветов, каждый из которых разделен на 3 порядка, а затем на 3 семей.
+* 1 пакет упаковки, организованные в 7 идентифицируемых темах на спине
+* 5 карт Memo
+* Правила игры
+   
+## Резюме игры
+
+Игроки, в свою очередь, попытаются угадать ошибочную карту аргументов с большинством других игроков, во время импровизации Saynet из случайного сценария. Развлекаясь, игроки учатся распознавать, декодировать и, следовательно, деконструировать ошибочные аргументы.
+
+Argiryum основан на классификации этих ошибочных аргументов, расположенных в ордерах и семьях, которые указаны в верхней части карты. Например, Flatterie -это суб -категория вызова эмоций. Карты меморандумы суммируют эту классификацию."
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7  x  le nombre de joueurs.
@@ -45,7 +59,15 @@ Choose the duration of the game. This includes a succession of rounds of about 7
 
 Fallacy cards are shuffled, as well as scenario cards. Two piles of scenario cards are made up and placed in the middle of the table. Each player is dealt 5 fallacy cards which they keep for themselves. The rest of the cards make up the draw pile. 
 
-The first drawer is drawn at random. Each player has a small unique object (coin, bean...) for voting."
+The first drawer is drawn at random. Each player has a small unique object (coin, bean...) for voting.","## Средство
+
+В зависимости от количества игроков и желаемого уровня сложности, мы составляем ничьей ошибочных аргументных карт, добавив уровни, указанные в правом нижнем углу карт в растущем порядке. Это требует как минимум 7 x количество игроков.
+
+Мы выбираем продолжительность игры. Это включает в себя последовательность 7-минутных раундов. В конце того времени мы заканчиваем текущий раунд, и игрок, у которого больше всего очков выигрывает игру.
+
+Ошибочные аргументы смешаны, а также карты сценариев. Мы представляем 2 чертежа карт сценариев, размещенных в середине стола. Каждый игрок распространяется по 5 ошибочным аргументированным картам, которые он хранит для него. Остальная часть карт составляет резерв.
+
+Первый пиклер нарисован. У каждого игрока есть уникальный маленький объект (монета, бобы и т. Д.) Для голосования."
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -74,7 +96,21 @@ The role of the Smooth talker is assigned to the first player who lays, face dow
 
 ### 3.       The skit
 
-The drawer starts the debate as he wishes. He can use the suggestion in italics at the bottom of the scenario map. The smooth talker and the drawer then have a maximum of one minute to improvise a discussion during which the smooth talker will try to use the type of argument indicated by the card he has chosen."
+The drawer starts the debate as he wishes. He can use the suggestion in italics at the bottom of the scenario map. The smooth talker and the drawer then have a maximum of one minute to improvise a discussion during which the smooth talker will try to use the type of argument indicated by the card he has chosen.","# Roll of the English Channel
+
+### 1. Пичер
+
+Ящик привлекает карту сценария из двух доступных выборов и вслух кровати, за исключением последнего предложения в курсиве внизу карты.
+
+### 2. Баратинер
+
+Баратинер будет нести ответственность за проведение аргумента сценария, чтобы проиллюстрировать одну из его ошибочных аргументных карт. Его цель будет состоять в том, чтобы угадать эту карту большинству других игроков, без всех, кто обнаружит ее.
+
+Роль баратинера назначена первым игрокам, который позирует перед скрытым, ошибочным аргументом, который он намерен сыграть. В противном случае игрок слева от Пиклера обозначен баратинером и помещает свою карту.
+
+### 3. Saynet
+
+Пирлер начинает дебаты, как он желает. Он может возобновить предложение первой копии в курсиве в нижней части карты сценарии. Затем у баратинера и пищика есть максимальная минута для импровизации дискуссии, в ходе которого баратинер попытается использовать тип аргумента, обозначенного выбранной картой, которую он выбрал."
 "Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
@@ -99,7 +135,19 @@ The members of the jury take note of the revealed cards, one of them can read th
 
 If the smooth talker's card is designated by the whole jury, each draw a card except the smooth talker. His left neighbor becomes the next drawer.
 
-Otherwise, the winner of the round is the one whose card has obtained the most votes, either as a smooth talker or as a member of the jury. "
+Otherwise, the winner of the round is the one whose card has obtained the most votes, either as a smooth talker or as a member of the jury. ","Баратинер демонстрирует свои аргументы, и Пирлер дает ему копию, не пытаясь доминировать на сцене. Baratinener может выбрать сокращение Saynet, когда он пожелает.
+
+### 4. Жюри
+
+Все игроки, за исключением баратинера, но включены, составляют жюри. В конце Saynet каждый член присяжных выбирает среди своих собственных карт, которые ближе к услышанному аргументу, и инсталляция спрятана с атмосфером баратинера. Он поднимает карты, смешивает их и раскрывает их в середине стола.
+
+Члены присяжных отмечают раскрытые карты, игрок может прочитать ее вслух. Когда присяжные готовы, без консультаций, каждый из его членов одновременно обозначает карту, которую, по его мнению, он играл баратинур, позиционируя, является небольшим уникальным объектом.
+
+### 5. Подсчет
+
+Если карта Baratineur обозначена всем присяжным, каждый рисует карту в резерве, за исключением баратинера.
+
+В противном случае победителем канала является тот, чья карта получила наибольшее количество голосов, баратинер или член присяжных."
 "Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui. Il ne pioche pas de nouvelle carte.
 
 En cas d’égalité, les joueurs concernés qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs. Si aucun des joueurs concernés ne l'a trouvé, c'est le baratineur qui l’emporte.
@@ -122,4 +170,16 @@ The winner's left-hand neighbour becomes the drawer for the next round.
 
 *        During the sketch, any member of the jury can use a card from his game to intervene in the role of the picker. If his intervention illustrates his card well, he picks up one and will be designated the next picker, otherwise, he loses his card and the game resumes its court.
 *        The drawer has the right to directly designate the smooth talker for the round.        
-*        The winner of the game has to play the smooth talker for a final scenario where he has to play all the cards he won during the game."
+*        The winner of the game has to play the smooth talker for a final scenario where he has to play all the cards he won during the game.","Затем он сохраняет свою карту, которая стоит 1 балл и укладку, видимое лицо перед ним. Он не рисует новую карту.
+
+В случае связи, обеспокоенные игроки, которые нашли карту баратинера, все объявлены победителями. Если ни один из заинтересованных игроков не нашел его, то это баратинеер, который выигрывает.
+
+За исключением победителя, члены присяжных, которые получили голоса или которые нашли карту баратинера, рисуют 2 карты в резерве. Другие игроки, в том числе «Баратинеер», если он не выиграл раунд, нарисуйте там 1 карты. Игранные карты возвращаются в резерв.
+
+Левый сосед соседа становится следующей ручкой следующего раунда.
+
+## варианты:
+
+* В суде Сайнета любой член присяжных может использовать карту своей игры для вмешательства в роль Пикоса. Если его вмешательство хорошо иллюстрирует его карту, он повлияет на одну и будет назначен следующей выбором, если нет, он теряет свою карту, и игра захватывает свой двор.
+* Pickaxe имеет право напрямую назначать баратинур английского канала.
+* Победитель игры должен воплотить баратинеер финального сценария, в котором он должен внести в игру все карты, которые он выиграл во время игры."

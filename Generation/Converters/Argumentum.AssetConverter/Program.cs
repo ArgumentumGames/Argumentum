@@ -13,7 +13,10 @@ namespace Argumentum.AssetConverter
             try
             {
                 Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-                var sw = Stopwatch.StartNew();
+                Console.InputEncoding = System.Text.Encoding.UTF8;
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+				var sw = Stopwatch.StartNew();
                 bool newConfig;
                 var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
                 var config = AssetConverterConfig.GetConfig(configFileName, out newConfig);
