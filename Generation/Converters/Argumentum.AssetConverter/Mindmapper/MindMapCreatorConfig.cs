@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace Argumentum.AssetConverter.Mindmapper
     public class MindMapCreatorConfig
     {
 
+	     static MindMapCreatorConfig()
+	    {
+            //Attempt to fix missing Type/assembly.
+		    var tempConverter = new TypeConverter();
+	    }
 
         public MindMapCreatorConfig()
         {
