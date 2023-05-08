@@ -33,47 +33,50 @@ public class PdfManager
 	/// <param name="fileName">The result pdf file name</param>
 	/// <param name="docConfig">The configuration to process</param>
 	/// <param name="images">The images requested by the configuration to build the pdf document</param>
-	public void GeneratePrintAndPlay(string fileName, CardSetDocumentConfig docConfig, List<CardImages> images)
+	public void GeneratePrintAndPlay(string fileName, CardSetDocumentConfig docConfig, List<CardImages> images, bool configOverwriteExistingDocs)
 	{
 
-
-
-
-		var pageSizeType = typeof(PageSizes);
-		var dynProp = pageSizeType.GetProperty(docConfig.PageSize, BindingFlags.Static | BindingFlags.Public);
-
-		var pageSize = (PageSize)dynProp.GetValue(null);
-		//var pageMarginMm = 7f;
-		var pageMarginMm = 0f;
-		//var imagePaddingMm = 2f;
-
-
-		var cardWidthPoints = ((float)docConfig.CardSets[0].FrontCards.WidthMM) * MmToPointsFactor;
-		var cardHeightPoints = ((float)docConfig.CardSets[0].FrontCards.HeigthMM) * MmToPointsFactor;
-
-
-		var totalMarginPoints = 2 * pageMarginMm * MmToPointsFactor;
-		var contentWidthPoints = pageSize.Width - totalMarginPoints;
-		var contentHeightPoints = pageSize.Height - totalMarginPoints;
-
-		var nbColumns = (int)(contentWidthPoints / cardWidthPoints);
-		var nbRows = (int)(contentHeightPoints / cardHeightPoints);
-
-		var nbCardsPerPage = nbRows * nbColumns;
-		var nbPages = (int)Math.Ceiling((decimal)images.Count / (decimal)nbCardsPerPage);
-
-		var docMetadata = new DocumentMetadata()
+		if (File.Exists(fileName) && !configOverwriteExistingDocs)
 		{
-			ApplyCaching = true,
-			Author = "Argumentum",
-			Creator = "Argumentum",
-			Producer = "Argumentum",
-			Subject = "Jeu de carte sur l'argumentation",
-			Keywords = "Argumentation, rhétorique, arguments fallacieux, sophismes, éloquence",
-			Title = "Argumentum Print & Play"
-		};
+			Console.WriteLine($"{Stopwatch.Elapsed}: Skipping Existing pdf document {fileName}");
+		}
+		else
+		{
+			var pageSizeType = typeof(PageSizes);
+			var dynProp = pageSizeType.GetProperty(docConfig.PageSize, BindingFlags.Static | BindingFlags.Public);
 
-		Document.Create(container =>
+			var pageSize = (PageSize)dynProp.GetValue(null);
+			//var pageMarginMm = 7f;
+			var pageMarginMm = 0f;
+			//var imagePaddingMm = 2f;
+
+
+			var cardWidthPoints = ((float)docConfig.CardSets[0].FrontCards.WidthMM) * MmToPointsFactor;
+			var cardHeightPoints = ((float)docConfig.CardSets[0].FrontCards.HeigthMM) * MmToPointsFactor;
+
+
+			var totalMarginPoints = 2 * pageMarginMm * MmToPointsFactor;
+			var contentWidthPoints = pageSize.Width - totalMarginPoints;
+			var contentHeightPoints = pageSize.Height - totalMarginPoints;
+
+			var nbColumns = (int)(contentWidthPoints / cardWidthPoints);
+			var nbRows = (int)(contentHeightPoints / cardHeightPoints);
+
+			var nbCardsPerPage = nbRows * nbColumns;
+			var nbPages = (int)Math.Ceiling((decimal)images.Count / (decimal)nbCardsPerPage);
+
+			var docMetadata = new DocumentMetadata()
+			{
+				ApplyCaching = true,
+				Author = "Argumentum",
+				Creator = "Argumentum",
+				Producer = "Argumentum",
+				Subject = "Jeu de carte sur l'argumentation",
+				Keywords = "Argumentation, rhétorique, arguments fallacieux, sophismes, éloquence",
+				Title = "Argumentum Print & Play"
+			};
+
+			Document.Create(container =>
 			{
 				for (int pageIndex = 0; pageIndex < nbPages; pageIndex++)
 				{
@@ -104,16 +107,21 @@ public class PdfManager
 					catch (Exception e)
 					{
 						Console.WriteLine(e);
-						
+
 					}
-					
+
 				}
 
 
 			})
-			.WithMetadata(docMetadata)
-			.GeneratePdf(fileName);
-		Console.WriteLine($"{Stopwatch.Elapsed}: Generated pdf document {fileName}");
+				.WithMetadata(docMetadata)
+				.GeneratePdf(fileName);
+			Console.WriteLine($"{Stopwatch.Elapsed}: Generated pdf document {fileName}");
+
+		}
+
+
+		
 
 	}
 
@@ -207,12 +215,22 @@ public class PdfManager
 	}
 
 
-	public void GeneratePdfsFromImages(List<(string fileName, MagickImageCollection documentImages)> targetFiles)
+	public void GeneratePdfsFromImages(List<(string fileName, Func<MagickImageCollection> documentImages)> targetFiles,
+		bool configOverwriteExistingDocs)
 	{
 		foreach (var targetFile in targetFiles)
 		{
-			targetFile.documentImages.Write(targetFile.fileName);
-			Console.WriteLine($"{Stopwatch.Elapsed}: Generated pdf document {targetFile.fileName}");
+			if (File.Exists(targetFile.fileName) && !configOverwriteExistingDocs)
+			{
+				Console.WriteLine($"{Stopwatch.Elapsed}: Skipping Existing pdf document {targetFile.fileName}");
+			}
+			else
+			{
+				targetFile.documentImages().Write(targetFile.fileName);
+				Console.WriteLine($"{Stopwatch.Elapsed}: Generated pdf document {targetFile.fileName}");
+			}
+
+			
 		}
 	}
 

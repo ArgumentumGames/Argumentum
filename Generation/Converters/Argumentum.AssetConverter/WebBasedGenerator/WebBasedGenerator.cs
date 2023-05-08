@@ -30,7 +30,7 @@ namespace Argumentum.AssetConverter
 
 		}
 
-		
+
 		public void Run()
 		{
 			var harvestManager = new HarvestManager() { Stopwatch = Stopwatch, Config = Config };
@@ -42,7 +42,7 @@ namespace Argumentum.AssetConverter
 			GenerateMindMapDocuments();
 		}
 
-		
+
 
 
 		/// <summary>
@@ -66,57 +66,60 @@ namespace Argumentum.AssetConverter
 						Directory.CreateDirectory(densityDirectory);
 					}
 
-					var targetFiles = new List<(string fileName, MagickImageCollection documentImages)>();
-					MagickImageCollection collec;
+					var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
+					//MagickImageCollection collec;
 					var documentName = CardSetLocalization.GetLocalizedFileName(docImageList.Key.document.DocumentName,
 						Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
 					var baseName = Path.Combine(densityDirectory, documentName);
-					if (File.Exists(baseName) && !Config.OverwriteExistingDocs)
-					{
-						Console.WriteLine($"{Stopwatch.Elapsed}: Skipping Existing pdf document {baseName}");
-					}
-					else
-					{
-						Console.WriteLine($"{Stopwatch.Elapsed}: Start Generating pdf document {baseName}");
+					
+					Console.WriteLine($"{Stopwatch.Elapsed}: Start Generating pdf document {baseName}");
 
-						var objPdfManager = new PdfManager() { Stopwatch = Stopwatch };
-						switch (docImageList.Key.document.DocumentFormat)
-						{
-							case CardDocumentFormat.AlternateFaceAndBack:
-								collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
+					var objPdfManager = new PdfManager() { Stopwatch = Stopwatch };
+					switch (docImageList.Key.document.DocumentFormat)
+					{
+						case CardDocumentFormat.AlternateFaceAndBack:
+
+							var collecBuilderAFB = () => {
+								var collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
 								{
 									return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
 								}));
+								return collec;
+							};
+							
 
-								targetFiles.Add((baseName, collec));
-								objPdfManager.GeneratePdfsFromImages(targetFiles);
-								break;
-							case CardDocumentFormat.BackFirstOneDocPerBack:
+							targetFiles.Add((baseName, collecBuilderAFB));
+							objPdfManager.GeneratePdfsFromImages(targetFiles, Config.OverwriteExistingDocs);
+							break;
+						case CardDocumentFormat.BackFirstOneDocPerBack:
 
-								var indexInsert = baseName.LastIndexOf('.');
-								var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
-								for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
-								{
+							var indexInsert = baseName.LastIndexOf('.');
+							var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
+							for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
+							{
+								var collecBuilderBF = () => {
 									var frontsAndBack = cardsPerBack[backIndex];
 									var backThenFronts =
 										new[] { new MagickImage(frontsAndBack.Key) }.Concat(
 											frontsAndBack.Select(card => new MagickImage(card.Front)));
-									collec = new MagickImageCollection(backThenFronts);
-									var newName =
-										$"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
-									targetFiles.Add((newName, collec));
-								}
+									var collec = new MagickImageCollection(backThenFronts);
+									return collec;
+								};
+								
+								var newName =
+									$"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
+								targetFiles.Add((newName, collecBuilderBF));
+							}
 
-								objPdfManager.GeneratePdfsFromImages(targetFiles);
-								break;
-							case CardDocumentFormat.PrintAndPlay:
-								objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value);
-								break;
-							default:
-								throw new ArgumentOutOfRangeException();
-						}
+							objPdfManager.GeneratePdfsFromImages(targetFiles, Config.OverwriteExistingDocs);
+							break;
+						case CardDocumentFormat.PrintAndPlay:
+							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, Config.OverwriteExistingDocs);
+							break;
+						default:
+							throw new ArgumentOutOfRangeException();
 					}
-					
+
 
 				}
 				catch (Exception e)
@@ -163,7 +166,7 @@ namespace Argumentum.AssetConverter
 				{
 					Console.WriteLine(e);
 				}
-				
+
 
 			}
 		}
