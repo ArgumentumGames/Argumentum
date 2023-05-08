@@ -28,7 +28,7 @@ public class ImageFileGenerator
 	public ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 	{
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
-		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentImages };
+		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismImages };
 
 		Parallel.ForEach(Config.CardSetDocuments.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
 			//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
@@ -39,7 +39,7 @@ public class ImageFileGenerator
 			{
 				targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
 			}
-			var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocumentTranslations };
+			var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismImageTranslations };
 			Parallel.ForEach(targetLanguages, parallelOptionsDocumentsTranslations, currentLanguage =>
 				//foreach (var currentLanguage in targetLanguages)
 			{

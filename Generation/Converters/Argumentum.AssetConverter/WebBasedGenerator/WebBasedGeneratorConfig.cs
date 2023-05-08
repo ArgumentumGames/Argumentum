@@ -19,13 +19,17 @@ namespace Argumentum.AssetConverter
 		public string CardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
 		//For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
 
+		public bool OverwriteExistingDocs { get; set; }
+
 		public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
 
 		public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 2;
 
-		public int MaxDegreeOfParallelismDocumentImages { get; set; } = 3;
+		public int MaxDegreeOfParallelismImages { get; set; } = 3;
 
-		public int MaxDegreeOfParallelismDocumentTranslations { get; set; } = 2;
+		public int MaxDegreeOfParallelismImageTranslations { get; set; } = 2;
+
+		public int MaxDegreeOfParallelismDocuments { get; set; } = 3;
 
 		public string BaseTargetDirectoryName { get; set; } = @"Target\";
 
@@ -916,7 +920,6 @@ namespace Argumentum.AssetConverter
 				}
 			}),
 		};
-
 
 		
 

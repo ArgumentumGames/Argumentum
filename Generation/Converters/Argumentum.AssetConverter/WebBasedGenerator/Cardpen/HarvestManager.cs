@@ -24,7 +24,12 @@ public class HarvestManager
 
 		var expectedHarvestNb = targetCardSets.Sum(tcs => tcs.Translations.Count + 1);
 
-
+		Console.WriteLine($"{Stopwatch.Elapsed}: Starting Browser");
+		var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
+		if (exitCode != 0)
+		{
+			throw new Exception($"Playwright exited with code {exitCode}");
+		}
 		using var playwright = await Playwright.CreateAsync();
 		await using IBrowser browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 		{
