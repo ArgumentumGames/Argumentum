@@ -15,6 +15,12 @@ namespace Argumentum.AssetConverter;
 public class PdfManager
 {
 
+
+	public PdfManager()
+	{
+		QuestPDF.Settings.License = LicenseType.Community;
+	}
+
 	public Stopwatch Stopwatch { get; set; }
 
 	private const float InchToCentimetre = 2.54f;
