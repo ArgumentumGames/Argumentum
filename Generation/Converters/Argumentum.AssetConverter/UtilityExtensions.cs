@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using CsvHelper;
 
 namespace Argumentum.AssetConverter
 {
@@ -16,9 +18,29 @@ namespace Argumentum.AssetConverter
     {
 
 
+		public static void ExportDataTable(this CsvWriter writer, DataTable dt)
+		{
+			// Write the header
+			foreach (DataColumn column in dt.Columns)
+			{
+				writer.WriteField(column.ColumnName);
+			}
+			writer.NextRecord();
+
+			// Write the rows
+			foreach (DataRow row in dt.Rows)
+			{
+				foreach (DataColumn column in dt.Columns)
+				{
+					writer.WriteField(row[column]);
+				}
+				writer.NextRecord();
+			}
+		}
 
 
-        public static long ToUnixTime(this DateTime objDate)
+
+		public static long ToUnixTime(this DateTime objDate)
         {
             return ((DateTimeOffset)objDate).ToUnixTimeSeconds();
 

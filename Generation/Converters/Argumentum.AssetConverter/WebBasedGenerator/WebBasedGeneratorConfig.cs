@@ -67,18 +67,6 @@ namespace Argumentum.AssetConverter
 			{
 				new DataSetInfo()
 				{
-					Name = KnownDataSets.Fallacies,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards.csv",
-					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Cards.csv"
-				},
-				new DataSetInfo()
-				{
-					Name = KnownDataSets.FallaciesPrintAndPlay,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards%20Print%20and%20Play.csv",
-					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Cards Print and Play.csv"
-				},
-				new DataSetInfo()
-				{
 					Name = KnownDataSets.Rules,
 					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards.csv"
@@ -94,12 +82,6 @@ namespace Argumentum.AssetConverter
 					Name = KnownDataSets.Scenarii,
 					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv"
-				},
-				new DataSetInfo()
-				{
-					Name = KnownDataSets.ScenariiPrintAndPlay,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv",
-					DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Print and Play.csv"
 				},
 				new DataSetInfo()
 				{
@@ -128,12 +110,24 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.Memo,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json"
 					}
 				},
@@ -141,7 +135,13 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.Fallacies,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json"
 
 					},
@@ -169,7 +169,13 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.Fallacies2,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_2_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
@@ -182,8 +188,16 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.Fallacies3,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+							{
+								"1",
+								"2"
+							}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json"
+						
+						
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
@@ -195,8 +209,14 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.FallaciesPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.FallaciesPrintAndPlay,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json"
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+						CsvFilterField = "print_and_play",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+						})
+
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
@@ -208,13 +228,23 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.ScenariiPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.ScenariiPrintAndPlay,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json"
+						DataSet = KnownDataSets.Scenarii,
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+						CsvFilterField = "print_and_play",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+						})
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.ScenariiPrintAndPlay,
+						DataSet = KnownDataSets.Scenarii,
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						CsvFilterField = "print_and_play",
+						CsvFilterValues = new List<string>(new []
+							{
+								"1",
+							}),
 						RowsetNb = 4
 					}
 				},
@@ -231,12 +261,24 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.MemoPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json"
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json"
 					}
 				},
@@ -244,7 +286,13 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.FallaciesWeb,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json"
 					}
 				},
@@ -252,7 +300,13 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.FallaciesWebLight,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_Light_fr.json"
 					}
 				},
@@ -260,7 +314,13 @@ namespace Argumentum.AssetConverter
 					Name =KnownCardSets.FallaciesWebThumbnails,
 					FaceCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.Fallacies,
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
 						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_Thumbnails_fr.json"
 					}
 				}
