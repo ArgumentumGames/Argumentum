@@ -38,7 +38,9 @@ namespace Argumentum.AssetConverter
 
 		public string ImagesDirectoryName { get; set; } = @"Images\";
 
-		public string PdfsDirectoryName { get; set; } = @"Pdfs\";
+		public string DocumentsDirectoryName { get; set; } = @"Documents\";
+
+
 
 
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
@@ -258,7 +260,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 								{
 									BorderMM = 0,
@@ -277,7 +279,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Memo,
 							NbCopies = 7,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -296,7 +298,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Fallacies,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -329,7 +331,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.Scenarii,
 							NbCopies = 1,
 							ConvertToCmyk = true,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -473,7 +475,7 @@ namespace Argumentum.AssetConverter
 							CardSetName = KnownCardSets.FallaciesWebLight,
 							NbCopies = 1,
 							ConvertToCmyk = false,
-							SaveOriginalImage = true,
+							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
@@ -962,9 +964,9 @@ namespace Argumentum.AssetConverter
 			return toReturn;
 		}
 
-		public string GetPdfsDirectory(string language)
+		public string GetDocumentDirectory(string language)
 		{
-			var toReturn = Path.Combine(GetBaseTargetDirectory(language), PdfsDirectoryName);
+			var toReturn = Path.Combine(GetBaseTargetDirectory(language), DocumentsDirectoryName);
 			if (!Directory.Exists(toReturn))
 			{
 				Directory.CreateDirectory(toReturn);

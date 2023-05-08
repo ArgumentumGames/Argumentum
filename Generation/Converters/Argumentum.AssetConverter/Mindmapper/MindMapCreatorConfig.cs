@@ -57,7 +57,7 @@ namespace Argumentum.AssetConverter.Mindmapper
             {
 
                 var fallacies = Fallacy.LoadFallacies(config.DataSet);
-                config.GenerateMindMapFile( fallacies, null);
+                config.GenerateMindMapFile( fallacies, null, "");
 
             }
             Console.WriteLine($"Generation finished, press any key to close");
