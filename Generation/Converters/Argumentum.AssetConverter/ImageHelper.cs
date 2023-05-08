@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using ImageMagick;
@@ -56,9 +57,11 @@ namespace Argumentum.AssetConverter
 
 	        Directory.CreateDirectory(cardSetFolderName);
 
-	        var imageFileName = $"{imageName}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
+	        var imageFileName = $"{imageName.RemoveInvalidFileNameChars()}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
 	        return Path.Combine(cardSetFolderName, imageFileName);
         }
+
+       
 
 		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)

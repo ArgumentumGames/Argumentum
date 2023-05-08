@@ -148,7 +148,7 @@ namespace Argumentum.AssetConverter
 					}
 					else
 					{
-						fallacies = Fallacy.LoadFallaciesAsync(dataSet).GetAwaiter().GetResult();
+						fallacies = Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams).GetAwaiter().GetResult();
 					}
 
 					var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);

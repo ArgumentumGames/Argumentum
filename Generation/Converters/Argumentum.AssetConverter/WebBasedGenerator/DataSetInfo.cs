@@ -13,15 +13,18 @@ public class DataSetInfo
 	public string Name { get; set; }
 
 	public string FilePath { get; set; }
+	public string DebugFilePath { get; set; }
+
 
 
 	private string _StringContent;
 
-	public async Task<string>   GetContent()
+	public async Task<string>   GetContent(bool debugPath)
 	{
 		if (string.IsNullOrEmpty(_StringContent))
 		{
-			var payLoad = await FilePath.GetDocumentPayload();
+			var strPath = debugPath && !string.IsNullOrEmpty(DebugFilePath) ? DebugFilePath: FilePath;
+			var payLoad = await strPath.GetDocumentPayload();
 			_StringContent = Encoding.UTF8.GetString(payLoad.Content);
 		}
 

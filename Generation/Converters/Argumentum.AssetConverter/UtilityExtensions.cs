@@ -30,10 +30,15 @@ namespace Argumentum.AssetConverter
 
         }
 
+        static char[] invalidChars = Path.GetInvalidFileNameChars();
+
+       public static string RemoveInvalidFileNameChars(this string fileName)
+        {
+	        return new string(fileName.Where(ch => !invalidChars.Contains(ch)).ToArray());
+        }
 
 
-
-        private static Regex _InterpolateRegex = new Regex(@"{(.+?)}", RegexOptions.Compiled);
+		private static Regex _InterpolateRegex = new Regex(@"{(.+?)}", RegexOptions.Compiled);
 
         private static Dictionary<string, Delegate> _CachedIntepolationExpressions = new Dictionary<string, Delegate>();
 

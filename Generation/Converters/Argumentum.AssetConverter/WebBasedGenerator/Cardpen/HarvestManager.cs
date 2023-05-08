@@ -14,6 +14,44 @@ namespace Argumentum.AssetConverter;
 
 public class HarvestManager
 {
+
+	IBrowser browser;
+
+
+	public IBrowser Browser
+	{
+		get
+		{
+			if (browser == null)
+			{
+				lock (this.Config)
+				{
+					if (browser == null)
+					{
+						Console.WriteLine($"{Stopwatch.Elapsed}: Starting Browser");
+						var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
+						if (exitCode != 0)
+						{
+							throw new Exception($"Playwright exited with code {exitCode}");
+						}
+						var playwright = Task.Run(() => Playwright.CreateAsync()).Result;
+
+						browser = Task.Run(() =>
+						 {
+							 return playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+							 {
+								 Headless = false,
+								 //SlowMo = 50,
+							 });
+						 }).Result;
+
+					}
+				}
+			}
+			return browser;
+		}
+	}
+
 	public async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> HarvestImages()
 	{
 		ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary;
@@ -24,18 +62,8 @@ public class HarvestManager
 
 		var expectedHarvestNb = targetCardSets.Sum(tcs => tcs.Translations.Count + 1);
 
-		Console.WriteLine($"{Stopwatch.Elapsed}: Starting Browser");
-		var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
-		if (exitCode != 0)
-		{
-			throw new Exception($"Playwright exited with code {exitCode}");
-		}
-		using var playwright = await Playwright.CreateAsync();
-		await using IBrowser browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-		{
-			Headless = false,
-			//SlowMo = 50,
-		});
+
+		var funcBrowser =  () => Browser;
 
 		var parallelOptionsCardset = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpen };
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsCardset, async (configCardSet, token) =>
@@ -45,7 +73,7 @@ public class HarvestManager
 			var parallelOptionsCardsetLanguage = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpenTranslations };
 			await Parallel.ForEachAsync(targetLanguages, parallelOptionsCardsetLanguage, async (currentLanguage, newToken) =>
 			{
-				await ProcessLocalizedHarvest(configCardSet, currentLanguage, harvestDictionary, browser);
+				await ProcessLocalizedHarvest(configCardSet, currentLanguage, harvestDictionary, funcBrowser);
 			});
 		});
 
@@ -125,7 +153,7 @@ public class HarvestManager
 
 	
 
-	public async Task ProcessLocalizedHarvest(CardSetJob configCardSet, string currentLanguage, ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary, IBrowser browser)
+	public async Task ProcessLocalizedHarvest(CardSetJob configCardSet, string currentLanguage, ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary, Func<IBrowser> browser)
 	{
 		if (!harvestDictionary.ContainsKey((configCardSet.Name, currentLanguage)))
 		{
@@ -180,22 +208,23 @@ public class HarvestManager
 		if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
 		{
 			var dataSet = Config.DataSets.First(ds => ds.Name == configCardSet.Config.FaceCardSetInfo.DataSet);
-			cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent();
+			cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent(Config.UseDebugParams );
 		}
 
 		if (cardSetDocuments.back != null && !configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.BackCardSetInfo.DataSet))
 		{
 			var dataSet = Config.DataSets.First(ds => ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
-			cardSetDocuments.back.CardSetDocument.csv = await dataSet.GetContent();
+			cardSetDocuments.back.CardSetDocument.csv = await dataSet.GetContent(Config.UseDebugParams);
 		}
 
 		return cardSetDocuments;
 	}
 
-	public async Task<CardSetHarvest> GenerateHarvestImages(IBrowser browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
+	public async Task<CardSetHarvest> GenerateHarvestImages(Func<IBrowser> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
 	{
+
 		var currentHarvest = new CardSetHarvest();
-		var page = await browser.NewPageAsync();
+		var page = await browser().NewPageAsync();
 		try
 		{
 
@@ -391,4 +420,6 @@ public class HarvestManager
 
 	public Stopwatch Stopwatch { get; set; }
 	public WebBasedGeneratorConfig Config { get; set; }
+
+	
 }
