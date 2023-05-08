@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using Argumentum.AssetConverter.Mindmapper;
 using ImageMagick;
 
@@ -16,8 +18,10 @@ namespace Argumentum.AssetConverter
 	{
 
 
-		public string CardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
-		//For local hosting http://cardpen.dnndev.me/Generation/CardPen/index.html
+		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
+		public string DebugCardpenUrl { get; set; } = @"http://cardpen.dnndev.me/Generation/CardPen/index.html";
+
+		
 
 		public bool OverwriteExistingDocs { get; set; }
 
@@ -40,8 +44,23 @@ namespace Argumentum.AssetConverter
 
 		public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
+		public bool ForceDebugParams { get; set; }
 
 
+
+#if DEBUG
+		bool isInDebugMode = true;
+#else
+		bool isInDebugMode = false;
+#endif
+
+		[IgnoreDataMember]
+		[JsonIgnore]
+		public bool UseDebugParams => isInDebugMode || ForceDebugParams;
+
+		[IgnoreDataMember]
+		[JsonIgnore]
+		public string CardpenUrl => UseDebugParams ? DebugCardpenUrl : ReleaseCardpenUrl;
 
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
 			new[]
@@ -49,37 +68,44 @@ namespace Argumentum.AssetConverter
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.Fallacies,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Cards.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.FallaciesPrintAndPlay,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards%20Print%20and%20Play.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Cards%20Print%20and%20Play.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Cards Print and Play.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.Rules,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.RulesPrintAndPlay,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards Print and Play.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.Scenarii,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.ScenariiPrintAndPlay,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Print%20and%20Play.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Print and Play.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.FallaciesTaxonomy,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv"
+					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"
 				},
 
 
