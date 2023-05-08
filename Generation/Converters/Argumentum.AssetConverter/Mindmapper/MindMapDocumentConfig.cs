@@ -171,7 +171,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		public void GenerateMindMapFile(IList<Fallacy> fallacies,
-			WebBasedGeneratorConfig webBasedGeneratorConfig)
+			WebBasedGeneratorConfig webBasedGeneratorConfig, string targetDirectory)
 		{
 
 			Console.WriteLine($"Creating Freemind mind map {DocumentName}");
@@ -308,8 +308,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			var serializer = new XmlSerializer(typeof(FreemindMap));
 
+			var fileName = DocumentName;
+			if (!string.IsNullOrEmpty(targetDirectory ))
+			{
+				fileName = Path.Combine(targetDirectory, fileName);
 
-			using (var fs = File.Create(DocumentName))
+			}
+
+			using (var fs = File.Create(fileName))
 			{
 				XmlWriterSettings writerSettings = new XmlWriterSettings { Indent = true, OmitXmlDeclaration = true };
 				using (var writer = XmlWriter.Create(fs, writerSettings))
@@ -319,7 +325,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 
 
-			Console.WriteLine($"Mind map {DocumentName} successfully generated!");
+			Console.WriteLine($"Mind map {fileName} successfully generated!");
 
 			// Check if EnableSVGUpdate is true
 			if (EnableSVGUpdate)
@@ -328,7 +334,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				Console.ReadKey();
 
 				// Read the SVG file
-				string svgFilePath = Path.ChangeExtension(DocumentName, "svg");
+				string svgFilePath = Path.ChangeExtension(fileName, "svg");
 				if (File.Exists(svgFilePath))
 				{
 					XDocument svgDoc = XDocument.Load(svgFilePath);

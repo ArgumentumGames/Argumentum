@@ -58,7 +58,7 @@ namespace Argumentum.AssetConverter
 			{
 				try
 				{
-					var pdfDirectory = Config.GetPdfsDirectory(docImageList.Key.language);
+					var pdfDirectory = Config.GetDocumentDirectory(docImageList.Key.language);
 					var densityDirectory = Path.Combine(pdfDirectory,
 						$@".\density-{docImageList.Key.document.TargetDensity}\");
 					if (!Directory.Exists(densityDirectory))
@@ -159,7 +159,7 @@ namespace Argumentum.AssetConverter
 						{
 							documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
 						}
-						currentTranslatedMap.GenerateMindMapFile(fallacies, Config);
+						currentTranslatedMap.GenerateMindMapFile(fallacies, Config, Config.GetDocumentDirectory(targetLanguage));
 					}
 				}
 				catch (Exception e)
