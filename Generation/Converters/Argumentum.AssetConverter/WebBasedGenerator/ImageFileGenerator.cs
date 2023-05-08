@@ -167,7 +167,8 @@ public class ImageFileGenerator
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine($"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} / faceName: {faceName}");
+					Console.WriteLine($"Problem with Document Card Back: Front : {currentCard.Front}, Back : {currentCard.Back}");
+					Console.WriteLine($"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} \n faceName: {faceName}");
 					Console.WriteLine(e);
 					throw;
 				}
