@@ -97,8 +97,9 @@ namespace Argumentum.AssetConverter
 							var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
 							for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
 							{
+								var closureBackIndex = backIndex ;
 								var collecBuilderBF = () => {
-									var frontsAndBack = cardsPerBack[backIndex];
+									var frontsAndBack = cardsPerBack[closureBackIndex];
 									var backThenFronts =
 										new[] { new MagickImage(frontsAndBack.Key) }.Concat(
 											frontsAndBack.Select(card => new MagickImage(card.Front)));
