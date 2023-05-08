@@ -46,7 +46,7 @@ namespace Argumentum.AssetConverter
 
 		public bool ForceDebugParams { get; set; }
 
-
+		public bool ForceReleaseParams { get; set; }
 
 #if DEBUG
 		bool isInDebugMode = true;
@@ -56,7 +56,7 @@ namespace Argumentum.AssetConverter
 
 		[IgnoreDataMember]
 		[JsonIgnore]
-		public bool UseDebugParams => isInDebugMode || ForceDebugParams;
+		public bool UseDebugParams => (isInDebugMode || ForceDebugParams) && !ForceReleaseParams;
 
 		[IgnoreDataMember]
 		[JsonIgnore]
@@ -161,7 +161,8 @@ namespace Argumentum.AssetConverter
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						RowsetNb = 14
 					}
 				},
 				new CardSetConfig(){
@@ -213,7 +214,8 @@ namespace Argumentum.AssetConverter
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.ScenariiPrintAndPlay,
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						RowsetNb = 4
 					}
 				},
 				new CardSetConfig(){

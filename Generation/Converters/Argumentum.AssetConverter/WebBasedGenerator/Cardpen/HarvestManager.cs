@@ -205,20 +205,38 @@ public class HarvestManager
 			cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(configCardSet.Config, (Config.LocalizationConfig.DefaultLanguage, currentLanguage));
 		}
 
-		if (!configCardSet.Config.FaceCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.FaceCardSetInfo.DataSet))
+
+		await UpdateCardSetDocumentInfo(cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
+
+		if (cardSetDocuments.back != null)
 		{
-			var dataSet = Config.DataSets.First(ds => ds.Name == configCardSet.Config.FaceCardSetInfo.DataSet);
-			cardSetDocuments.front.CardSetDocument.csv = await dataSet.GetContent(Config.UseDebugParams );
+			await UpdateCardSetDocumentInfo(cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
 		}
 
-		if (cardSetDocuments.back != null && !configCardSet.Config.BackCardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(configCardSet.Config.BackCardSetInfo.DataSet))
-		{
-			var dataSet = Config.DataSets.First(ds => ds.Name == configCardSet.Config.BackCardSetInfo.DataSet);
-			cardSetDocuments.back.CardSetDocument.csv = await dataSet.GetContent(Config.UseDebugParams);
-		}
 
 		return cardSetDocuments;
 	}
+
+
+	private async Task UpdateCardSetDocumentInfo(CardSetPayload cardSetDocumentWrapper, CardSetInfo cardSetInfo)
+	{
+		if (!cardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(cardSetInfo.DataSet))
+		{
+			var dataSet = Config.DataSets.First(ds => ds.Name == cardSetInfo.DataSet);
+			cardSetDocumentWrapper.CardSetDocument.csv = await dataSet.GetContent(Config.UseDebugParams);
+		}
+
+		if (cardSetInfo.Dpi > 0)
+		{
+			cardSetDocumentWrapper.CardSetDocument.dpi = cardSetInfo.Dpi;
+		}
+
+		if (cardSetInfo.RowsetNb > 0)
+		{
+			cardSetDocumentWrapper.CardSetDocument.rscount = cardSetInfo.RowsetNb;
+		}
+	}
+
 
 	public async Task<CardSetHarvest> GenerateHarvestImages(Func<IBrowser> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
 	{
@@ -271,6 +289,7 @@ public class HarvestManager
 		//var dpi = (long)driver.ExecuteScript("return dpi;");
 		//var dpi = await driver.EvaluateAsync("return dpi;");
 		//var dpi = await driver.EvaluateAsync("dpi");
+
 
 		var dpi = await driver.Locator("#dpi").InputValueAsync();
 
