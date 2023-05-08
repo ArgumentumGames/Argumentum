@@ -13,12 +13,12 @@ More information (currently in French) is available on the project's website htt
 
 The repository contains the following folders:
 
-*  2 tools in [Cartes/Generation](/Generation) make up for most of the generation workflow:
+*  2 tools in [Generation](/Generation) make up for most of the generation workflow:
     * [CardPen](/Generation/CardPen/index.html) is a customized version of [M.C DeMarco](https://github.com/mcdemarco/)'s cardpen from before it got a new home in Github. Merging improvements would be mutually benificial at some point.
 	Cardpen can generate a set of templated cards by injecting csv data into a mustache + css html template system.
 	You need 2 cardpen json files (1 for face, 1 for back) to specify a physical playing card.
 	* [Converters](/Generation/Converters) holds a multi-purpose packaging and pipeline processing command line utility that reads a large XML configuration file to specify how to process and assemble Cardpen scenarii to build the send-to-print document. 
-* [Cartes](/Cartes): Then generally gathers cardpen configurations to build the decks that make Argumentum, with folders for each type, together with assets and archives.
+* [Cards](/Cards): Then generally gathers cardpen configurations to build the decks that make Argumentum, with folders for each type, together with assets and archives.
 	
 * [DNNPlatform](/DNNPlatform): contains the web application that is used for the www.argumentum.games website, and that is a DNN ASP.Net application with the use of 2 community extensions, 2Sxc, which holds most content, and Open-store, which holds the selling point.  
 
