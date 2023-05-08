@@ -31,6 +31,11 @@ namespace Argumentum.AssetConverter
 		public List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> FieldsLocalization { get; set; }
 			= new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>();
 
+		
+		public int Dpi { get; set; }
+
+		public int RowsetNb { get; set; }
+
 
 		public async Task<CardSetPayload> GetCardSetDocument()
 		{

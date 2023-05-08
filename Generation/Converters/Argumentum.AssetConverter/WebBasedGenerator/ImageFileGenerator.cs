@@ -162,7 +162,13 @@ public class ImageFileGenerator
 			{
 				try
 				{
-					var targetBackName = backImages.Keys.First(bn => faceName.Contains(bn));
+
+					var targetBackName = backImages.Keys.FirstOrDefault(bn => faceName.Contains(bn));
+					if (targetBackName == null || !faceName.Contains(targetBackName))
+					{
+						Debugger.Break();
+						targetBackName = backImages.Keys.First();
+					}
 					currentCard.Back = backImages[targetBackName];
 				}
 				catch (Exception e)
