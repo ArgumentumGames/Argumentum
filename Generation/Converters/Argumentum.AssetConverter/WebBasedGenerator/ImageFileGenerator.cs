@@ -166,7 +166,10 @@ public class ImageFileGenerator
 					var targetBackName = backImages.Keys.FirstOrDefault(bn => faceName.Contains(bn));
 					if (targetBackName == null || !faceName.Contains(targetBackName))
 					{
-						Debugger.Break();
+						if (Debugger.IsAttached)
+						{
+							Debugger.Break();
+						}
 						targetBackName = backImages.Keys.First();
 					}
 					currentCard.Back = backImages[targetBackName];

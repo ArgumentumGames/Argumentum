@@ -223,7 +223,16 @@ public class HarvestManager
 		if (!cardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(cardSetInfo.DataSet))
 		{
 			var dataSet = Config.DataSets.First(ds => ds.Name == cardSetInfo.DataSet);
-			cardSetDocumentWrapper.CardSetDocument.csv = await dataSet.GetContent(Config.UseDebugParams);
+			string csvContent;
+			if (!string.IsNullOrEmpty(cardSetInfo.CsvFilterField) && cardSetInfo.CsvFilterValues.Count>0)
+			{
+				csvContent = await dataSet.GetContent(Config.UseDebugParams, cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
+			}
+			else
+			{
+				csvContent = await dataSet.GetContent(Config.UseDebugParams);
+			}
+			cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
 		}
 
 		if (cardSetInfo.Dpi > 0)

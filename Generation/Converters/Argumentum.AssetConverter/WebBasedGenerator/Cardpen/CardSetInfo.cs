@@ -22,6 +22,9 @@ namespace Argumentum.AssetConverter
 
 		public string DataSet { get; set; }
 
+		public string CsvFilterField { get; set; }
+		public List<string> CsvFilterValues { get; set; } = new List<string>();
+
 		public bool SkipDataUpdate { get; set; }
 
 		public string JsonFilePath { get; set; }
