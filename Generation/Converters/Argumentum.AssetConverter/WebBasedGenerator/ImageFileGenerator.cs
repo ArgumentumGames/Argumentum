@@ -1,3 +1,4 @@
+using Spectre.Console;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -27,6 +28,11 @@ public class ImageFileGenerator
 	/// <returns>A ConcurrentDictionary of the generated images.</returns>
 	public ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 	{
+
+		var rule = new Rule("[red]Generating document images[/]");
+		AnsiConsole.Write(rule);
+		AnsiConsole.WriteLine();
+
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
 		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismImages };
 
@@ -78,7 +84,7 @@ public class ImageFileGenerator
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine(e);
+					AnsiConsole.WriteException(e);
 				}
 
 
@@ -178,7 +184,7 @@ public class ImageFileGenerator
 				{
 					Console.WriteLine($"Problem with Document Card Back: Front : {currentCard.Front}, Back : {currentCard.Back}");
 					Console.WriteLine($"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} \n faceName: {faceName}");
-					Console.WriteLine(e);
+					AnsiConsole.WriteException(e);
 					throw;
 				}
 			}

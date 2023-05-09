@@ -11,7 +11,9 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ExtendedXmlSerializer.Core.Sources;
 using ImageMagick;
+using Spectre.Console;
 using Sprache;
+using Rule = Spectre.Console.Rule;
 
 
 namespace Argumentum.AssetConverter
@@ -50,7 +52,9 @@ namespace Argumentum.AssetConverter
 		/// </summary>
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
-			Console.WriteLine($"{Stopwatch.Elapsed}: Generation pdf documents");
+			var rule = new Rule("[red]Generating pdf documents[/]");
+			AnsiConsole.Write(rule);
+			AnsiConsole.WriteLine();
 
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
 
@@ -125,7 +129,7 @@ namespace Argumentum.AssetConverter
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine(e);
+					AnsiConsole.WriteException(e);
 				}
 
 
@@ -165,7 +169,7 @@ namespace Argumentum.AssetConverter
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine(e);
+					AnsiConsole.WriteException(e);
 				}
 
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
+using Spectre.Console;
 using Utf8Json;
 
 namespace Argumentum.AssetConverter;
@@ -54,6 +55,12 @@ public class HarvestManager
 
 	public async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> HarvestImages()
 	{
+
+		var rule = new Rule("[red]Harvesting Cardpen Images[/]");
+		AnsiConsole.Write(rule);
+		AnsiConsole.WriteLine();
+
+
 		ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary;
 		var parallelOptionsLoading = new ParallelOptions { MaxDegreeOfParallelism = 4 };
 
@@ -185,7 +192,7 @@ public class HarvestManager
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
+				AnsiConsole.WriteException(e);
 			}
 		}
 	}

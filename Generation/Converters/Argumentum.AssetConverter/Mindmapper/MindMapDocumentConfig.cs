@@ -15,6 +15,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
 using ImageMagick;
+using Spectre.Console;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
@@ -330,11 +331,19 @@ namespace Argumentum.AssetConverter.Mindmapper
 			// Check if EnableSVGUpdate is true
 			if (EnableSVGUpdate)
 			{
-				Console.WriteLine("Press any key to continue and update the SVG file...");
-				Console.ReadKey();
+				string svgFilePath = Path.ChangeExtension(fileName, "svg");
+				if (!File.Exists(svgFilePath))
+				{
+					Console.WriteLine("SVG mindmap {svgFilePath} was not found.");
+					Console.WriteLine("Use open-source software freemind to generate a SVG export from the original .mm file.");
+					AnsiConsole.Markup("[link]https://sourceforge.net/projects/freemind/[/]");
+					Console.WriteLine("Svg export will be further edited to include fields and links");
+					Console.WriteLine(" Press any key to resume and update or skip the SVG file...");
+					Console.ReadKey();
+				}
 
 				// Read the SVG file
-				string svgFilePath = Path.ChangeExtension(fileName, "svg");
+				
 				if (File.Exists(svgFilePath))
 				{
 					XDocument svgDoc = XDocument.Load(svgFilePath);
@@ -356,38 +365,51 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 						if (shortestMatch != null)
 						{
-							// Add the missing fallacy fields
-							string desc = DescFunc(fallacy);
-							string example = ExampleFunc(fallacy);
-							string link = LinkFunc(fallacy);
+
+							if (shortestMatch.Attribute("class") == null ||
+							    !shortestMatch.Attribute("class").Value.Contains("node"))
+							{
+								// Add the missing fallacy fields
+								string desc = DescFunc(fallacy);
+								string example = ExampleFunc(fallacy);
+								string link = LinkFunc(fallacy);
 
 
-							shortestMatch.SetAttributeValue("description", desc);
-							shortestMatch.SetAttributeValue("example", example);
-							shortestMatch.SetAttributeValue("link", example);
-							shortestMatch.SetAttributeValue("class", "node");
+								shortestMatch.SetAttributeValue("description", desc);
+								shortestMatch.SetAttributeValue("example", example);
+								shortestMatch.SetAttributeValue("link", example);
+								shortestMatch.SetAttributeValue("class", "node");
 
-							// Make sure the link is clickable
-							XElement linkElem = new XElement(XName.Get("a", svgNamespace.NamespaceName));
-							linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
-							linkElem.SetAttributeValue("target", "_blank");
-							shortestMatch.ReplaceWith(linkElem);
-							linkElem.Add(shortestMatch);
+								// Make sure the link is clickable
+								XElement linkElem = new XElement(XName.Get("a", svgNamespace.NamespaceName));
+								linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
+								linkElem.SetAttributeValue("target", "_blank");
+								shortestMatch.ReplaceWith(linkElem);
+								linkElem.Add(shortestMatch);
 
 
 
-							//XElement parentGroup = shortestMatch.Parent;
-							//XElement newDesc = new XElement(svgNs + "text", desc);
-							//XElement newExample = new XElement(svgNs + "text", example);
+								//XElement parentGroup = shortestMatch.Parent;
+								//XElement newDesc = new XElement(svgNs + "text", desc);
+								//XElement newExample = new XElement(svgNs + "text", example);
 
-							//// Set the position of the new elements
-							//newDesc.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
-							//newDesc.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 20).ToString());
-							//newExample.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
-							//newExample.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 40).ToString());
+								//// Set the position of the new elements
+								//newDesc.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
+								//newDesc.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 20).ToString());
+								//newExample.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
+								//newExample.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 40).ToString());
 
-							//parentGroup.Add(newDesc);
-							//parentGroup.Add(newExample);
+								//parentGroup.Add(newDesc);
+								//parentGroup.Add(newExample);
+
+							}
+							else
+							{
+								AnsiConsole.WriteLine("[red]Found existing content in svg mindmap. Updates aborted. SVG must be regenerated before applying new changes.[/]");
+								return;
+							}
+
+
 
 						}
 					}

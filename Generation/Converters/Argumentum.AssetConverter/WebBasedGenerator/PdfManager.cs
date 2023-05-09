@@ -9,6 +9,7 @@ using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using Spectre.Console;
 
 namespace Argumentum.AssetConverter;
 
@@ -106,7 +107,7 @@ public class PdfManager
 					}
 					catch (Exception e)
 					{
-						Console.WriteLine(e);
+						AnsiConsole.WriteException(e);
 
 					}
 
