@@ -48,9 +48,11 @@ namespace Argumentum.AssetConverter
 
 
 
+
 		/// <summary>
-		/// Generates PDF documents from a ConcurrentDictionary of CardSetGenerationDocument and language, and a list of CardImages.
+		/// Generates PDF documents for a given card set document configuration and language.
 		/// </summary>
+		/// <param name="docImages">The card images to generate the documents from.</param>
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
 			AnsiConsole.WriteLine();
@@ -65,60 +67,25 @@ namespace Argumentum.AssetConverter
 				try
 				{
 					var pdfDirectory = Config.GetDocumentDirectory(docImageList.Key.language);
-					var densityDirectory = Path.Combine(pdfDirectory,
-						$@".\density-{docImageList.Key.document.TargetDensity}\");
-					if (!Directory.Exists(densityDirectory))
-					{
-						Directory.CreateDirectory(densityDirectory);
-					}
+					var densityDirectory = CreateDensityDirectory(pdfDirectory, docImageList.Key.document.TargetDensity);
 
 					var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
-					//MagickImageCollection collec;
+
 					var documentName = CardSetLocalization.GetLocalizedFileName(docImageList.Key.document.DocumentName,
 						Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
 					var baseName = Path.Combine(densityDirectory, documentName);
-					
+
 					Console.WriteLine($"{Stopwatch.Elapsed}: Start Generating pdf document {baseName}");
 
 					var objPdfManager = new PdfManager() { Stopwatch = Stopwatch };
+
 					switch (docImageList.Key.document.DocumentFormat)
 					{
 						case CardDocumentFormat.AlternateFaceAndBack:
-
-							var collecBuilderAFB = () => {
-								var collec = new MagickImageCollection(docImageList.Value.SelectMany(s =>
-								{
-									return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
-								}));
-								return collec;
-							};
-							
-
-							targetFiles.Add((baseName, collecBuilderAFB));
-							objPdfManager.GeneratePdfsFromImages(targetFiles, Config.OverwriteExistingDocs);
+							GenerateAlternateFaceAndBack(objPdfManager, baseName, docImageList.Value, Config.OverwriteExistingDocs);
 							break;
 						case CardDocumentFormat.BackFirstOneDocPerBack:
-
-							var indexInsert = baseName.LastIndexOf('.');
-							var cardsPerBack = docImageList.Value.GroupBy(card => card.Back).ToArray();
-							for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
-							{
-								var closureBackIndex = backIndex ;
-								var collecBuilderBF = () => {
-									var frontsAndBack = cardsPerBack[closureBackIndex];
-									var backThenFronts =
-										new[] { new MagickImage(frontsAndBack.Key) }.Concat(
-											frontsAndBack.Select(card => new MagickImage(card.Front)));
-									var collec = new MagickImageCollection(backThenFronts);
-									return collec;
-								};
-								
-								var newName =
-									$"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
-								targetFiles.Add((newName, collecBuilderBF));
-							}
-
-							objPdfManager.GeneratePdfsFromImages(targetFiles, Config.OverwriteExistingDocs);
+							GenerateBackFirstOneDocPerBack(objPdfManager, baseName, docImageList.Value, Config.OverwriteExistingDocs);
 							break;
 						case CardDocumentFormat.PrintAndPlay:
 							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, Config.OverwriteExistingDocs);
@@ -126,17 +93,68 @@ namespace Argumentum.AssetConverter
 						default:
 							throw new ArgumentOutOfRangeException();
 					}
-
-
 				}
 				catch (Exception e)
 				{
 					AnsiConsole.WriteException(e);
 				}
-
-
 			});
 		}
+
+		private string CreateDensityDirectory(string pdfDirectory, int targetDensity)
+		{
+			var densityDirectory = Path.Combine(pdfDirectory, $@".\density-{targetDensity}\");
+			if (!Directory.Exists(densityDirectory))
+			{
+				Directory.CreateDirectory(densityDirectory);
+			}
+			return densityDirectory;
+		}
+
+		private void GenerateAlternateFaceAndBack(PdfManager objPdfManager, string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
+		{
+			var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
+			var collecBuilderAFB = () =>
+			{
+				var collec = new MagickImageCollection(cardImages.SelectMany(s =>
+				{
+					return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
+				}));
+				return collec;
+			};
+
+			targetFiles.Add((baseName, collecBuilderAFB));
+			objPdfManager.GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+		}
+
+		private void GenerateBackFirstOneDocPerBack(PdfManager objPdfManager, string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
+		{
+			var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
+			var indexInsert = baseName.LastIndexOf('.');
+			var cardsPerBack = cardImages.GroupBy(card => card.Back).ToArray();
+			for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
+			{
+				var closureBackIndex = backIndex;
+				var collecBuilderBF = () =>
+				{
+					var frontsAndBack = cardsPerBack[closureBackIndex];
+					var backThenFronts = new[] { new MagickImage(frontsAndBack.Key) }.Concat(
+						frontsAndBack.Select(card => new MagickImage(card.Front)));
+					var collec = new MagickImageCollection(backThenFronts);
+					return collec;
+				};
+
+				var newName =
+					$"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
+				targetFiles.Add((newName, collecBuilderBF));
+			}
+
+			objPdfManager.GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+		}
+
+
+
+
 
 		/// <summary>
 		/// Generates MindMap documents from the given configuration.
@@ -148,7 +166,7 @@ namespace Argumentum.AssetConverter
 			AnsiConsole.Write(rule);
 			AnsiConsole.WriteLine();
 
-			foreach (var mindMap in Config.MindMapDocuments)
+			foreach (var mindMap in Config.MindMapDocuments.Where(config => config.Enabled))
 			{
 				try
 				{
