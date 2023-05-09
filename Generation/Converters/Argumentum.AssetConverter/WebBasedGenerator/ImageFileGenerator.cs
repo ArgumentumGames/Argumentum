@@ -28,7 +28,7 @@ public class ImageFileGenerator
 	/// <returns>A ConcurrentDictionary of the generated images.</returns>
 	public ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 	{
-
+		AnsiConsole.WriteLine();
 		var rule = new Rule("[red]Generating document images[/]");
 		AnsiConsole.Write(rule);
 		AnsiConsole.WriteLine();
@@ -68,8 +68,7 @@ public class ImageFileGenerator
 						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
 							configDocument.DocumentName,
 							Config.LocalizationConfig.DefaultLanguage, currentLanguage);
-						Console.WriteLine(
-							$"{Stopwatch.Elapsed}: Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
+						Console.WriteLine($"{Stopwatch.Elapsed}: Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
 
 
 
