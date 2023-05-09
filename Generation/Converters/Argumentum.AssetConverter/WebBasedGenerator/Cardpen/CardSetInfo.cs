@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading;
@@ -27,7 +28,10 @@ namespace Argumentum.AssetConverter
 
 		public bool SkipDataUpdate { get; set; }
 
-		public string JsonFilePath { get; set; }
+		
+		public string GetJsonFilePath(WebBasedGeneratorConfig config) => config.UseDebugParams ? JsonFilePathDebug : JsonFilePathRelease;
+		public string JsonFilePathRelease { get; set; }
+		public string JsonFilePathDebug { get; set; }
 
 		public bool PauseForEdits { get; set; }
 
@@ -40,13 +44,14 @@ namespace Argumentum.AssetConverter
 		public int RowsetNb { get; set; }
 
 
-		public async Task<CardSetPayload> GetCardSetDocument()
+		public async Task<CardSetPayload> GetCardSetDocument(WebBasedGeneratorConfig config)
 		{
-			if (string.IsNullOrEmpty(JsonFilePath))
+			var jsonFilePath = GetJsonFilePath(config);
+			if (string.IsNullOrEmpty(jsonFilePath))
 			{
 				return null;
 			}
-			var docPayload = await JsonFilePath.GetDocumentPayload();
+			var docPayload = await jsonFilePath.GetDocumentPayload();
 			//var strContent = Encoding.UTF8.GetString(docPayload.Content);
 			
 			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);

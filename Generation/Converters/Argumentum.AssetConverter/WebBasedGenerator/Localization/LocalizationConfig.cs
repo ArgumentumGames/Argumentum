@@ -17,16 +17,17 @@ public class LocalizationConfig
 
 	public  List<DocumentLocalization> MindMapLocalization { get; set; } = new List<DocumentLocalization>();
 
-	public async Task<(CardSetPayload front, CardSetPayload back)>  TranslateCardSet(CardSetConfig source, (string sourceLang, string destLang) languages)
+	public async Task<(CardSetPayload front, CardSetPayload back)> TranslateCardSet(CardSetConfig source,
+		(string sourceLang, string destLang) languages, WebBasedGeneratorConfig config)
 	{
 		
 		
 		var localization = CardSetLocalizations.First(setLocalization => setLocalization.CardSetNames.Contains(source.Name));
-		var frontTranslated = await localization.TranslateCardSetInfo(source.FaceCardSetInfo, true, languages);
+		var frontTranslated = await localization.TranslateCardSetInfo(source.FaceCardSetInfo, true, languages, config);
 		CardSetPayload backTranslated = null;
-		if (!string.IsNullOrEmpty(source.BackCardSetInfo.JsonFilePath))
+		if (!string.IsNullOrEmpty(source.BackCardSetInfo.GetJsonFilePath(config)))
 		{
-			backTranslated = await localization.TranslateCardSetInfo(source.BackCardSetInfo, false, languages);
+			backTranslated = await localization.TranslateCardSetInfo(source.BackCardSetInfo, false, languages, config);
 		}
 		 
 
