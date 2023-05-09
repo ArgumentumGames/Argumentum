@@ -416,7 +416,7 @@ public class HarvestManager
 			if (await cardCssName.CountAsync() > 0)
 			{
 				var currentCard = cardCssName.Nth(0);
-				strCardName = (await currentCard.TextContentAsync())?.Trim('-').Replace(" ", "_");
+				strCardName = (await currentCard.TextContentAsync())?.Trim('-');
 			}
 			cardNames.Add(strCardName);
 		}
