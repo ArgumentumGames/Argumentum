@@ -15,6 +15,9 @@ namespace Argumentum.AssetConverter;
 
 public class HarvestManager
 {
+	public Stopwatch Stopwatch { get; set; }
+	public WebBasedGeneratorConfig Config { get; set; }
+
 
 	IBrowser browser;
 
@@ -203,13 +206,13 @@ public class HarvestManager
 
 		if (currentLanguage == Config.LocalizationConfig.DefaultLanguage)
 		{
-			var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument();
-			var backCardSetDocument = await configCardSet.Config.BackCardSetInfo.GetCardSetDocument();
+			var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument(Config);
+			var backCardSetDocument = await configCardSet.Config.BackCardSetInfo.GetCardSetDocument(Config);
 			cardSetDocuments = (frontCardSetDocument, backCardSetDocument);
 		}
 		else
 		{
-			cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(configCardSet.Config, (Config.LocalizationConfig.DefaultLanguage, currentLanguage));
+			cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(configCardSet.Config, (Config.LocalizationConfig.DefaultLanguage, currentLanguage), Config);
 		}
 
 
@@ -453,8 +456,7 @@ public class HarvestManager
 		return currentHarvest;
 	}
 
-	public Stopwatch Stopwatch { get; set; }
-	public WebBasedGeneratorConfig Config { get; set; }
+
 
 	
 }

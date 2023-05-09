@@ -32,13 +32,12 @@ namespace Argumentum.AssetConverter
             newConfig = false;
             if (!File.Exists(path))
             {
-               
 
+				AnsiConsole.WriteLine();
+				var rule = new Rule("[red]Creating config file[/]");
+				AnsiConsole.Write(rule);
+				AnsiConsole.WriteLine();
 
-
-				AnsiConsole.MarkupLine($"[underline green]Saving Config[/]");
-                var textPath = new TextPath(path);
-                AnsiConsole.Write(textPath);
 
 
                 toReturn = new AssetConverterConfig();
@@ -51,15 +50,11 @@ namespace Argumentum.AssetConverter
 
 				var json = new JsonText(strNewConfig);
 
-                AnsiConsole.Write(
-	                new Panel(json)
-		                .Header($"File {Path.GetFileName(path)}")
-		                .Collapse()
-		                .RoundedBorder()
-		                .BorderColor(Color.Yellow));
+				AnsiConsole.Write(json);
+				AnsiConsole.WriteLine();
 
-               
-            }
+
+			}
 
             
             using var configStream = File.OpenRead(path);

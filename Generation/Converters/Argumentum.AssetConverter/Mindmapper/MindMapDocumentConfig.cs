@@ -173,7 +173,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public string ThumbnailsCardSetName { get; set; }
 
-		public string ThumbnailsFileNamePattern { get; set; } = "_{fallacy.Path}-";
+		public string ThumbnailsFileNamePattern { get; set; } = "_{fallacy.Path}..";
 
 
 		public string MatchThumbnailsName(string targetDirectory, Fallacy fallacy)

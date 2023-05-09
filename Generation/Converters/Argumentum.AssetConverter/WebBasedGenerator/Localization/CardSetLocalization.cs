@@ -43,14 +43,14 @@ public class CardSetLocalization:DocumentLocalization
 	}
 
 	public async Task<CardSetPayload> TranslateCardSetInfo(CardSetInfo source,
-		bool front, (string sourceLang, string destLang) languages)
+		bool front, (string sourceLang, string destLang) languages, WebBasedGeneratorConfig config)
 	{
 		var fieldConversions = this.FrontFieldConversions;
 		if (!front)
 		{
 			fieldConversions = this.BackFieldConversions;
 		}
-		var sourceCardSetPayload = await source.GetCardSetDocument();
+		var sourceCardSetPayload = await source.GetCardSetDocument(config);
 		var template = sourceCardSetPayload.CardSetDocument.mustache;
 		var exceptionsBacktrack = new List<(string sourcePattern, string destPattern)>();
 		foreach (var fieldConversion in fieldConversions)
