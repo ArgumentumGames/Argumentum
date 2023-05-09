@@ -55,7 +55,8 @@ namespace Argumentum.AssetConverter
 
         public string LinkPtFallback => string.IsNullOrEmpty(LinkPt) ? (string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn) : LinkPt;
 
-		public string FileName => $"argumentum_{Path}_{TextFr.ToLower().Replace(" ","_")}";
+		//public string FileName => $"argumentum_{Path}-{TextFr.ToLower().Replace(" ","_")}";
+
         public string PK { get; set; }
         public string Path { get; set; }
         public string DecimalPath { get; set; }

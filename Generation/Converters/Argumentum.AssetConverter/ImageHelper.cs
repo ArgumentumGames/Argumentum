@@ -51,17 +51,24 @@ namespace Argumentum.AssetConverter
 
         public static string GetImageFileName(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
         {
-	        var imagesFolderName = config.GetImagesDirectory(language);
-	        var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
-	        var cardSetFolderName = Path.Combine(densityFolderName, $@"{cardSetName}\");
+	      
+	        var cardSetFolderName = GetImageFolder(config, docConfig, language, cardSetName);
 
-	        Directory.CreateDirectory(cardSetFolderName);
-
-	        var imageFileName = $"{imageName.RemoveInvalidFileNameChars()}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
+	        var imageFileName = $"{imageName.RemoveInvalidFileNameChars().Replace(" ", "_")}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
 	        return Path.Combine(cardSetFolderName, imageFileName);
         }
 
-       
+		public static string GetImageFolder(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName)
+		{
+			var imagesFolderName = config.GetImagesDirectory(language);
+			var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
+			var cardSetFolderName = Path.Combine(densityFolderName, $@"{cardSetName}\");
+
+			Directory.CreateDirectory(cardSetFolderName);
+
+			return cardSetFolderName;
+			
+		}
 
 		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)

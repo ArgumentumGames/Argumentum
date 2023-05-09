@@ -15,19 +15,15 @@ namespace Argumentum.AssetConverter
 {
     public class AssetConverterConfig
     {
-
-
         public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration; //ConverterMode.Mindmapper;
+       
+        public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
 
         public BatchImageConverterConfig BatchImageConverterConfig { get; set; } = new BatchImageConverterConfig();
 
-        public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
-
-        public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
-
         public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
 
-
+		public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
 
         public static AssetConverterConfig GetConfig(string path, out bool newConfig)
         {

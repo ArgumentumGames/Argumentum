@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -62,7 +63,7 @@ namespace Argumentum.AssetConverter
 
 		private static Regex _InterpolateRegex = new Regex(@"{(.+?)}", RegexOptions.Compiled);
 
-        private static Dictionary<string, Delegate> _CachedIntepolationExpressions = new Dictionary<string, Delegate>();
+        private static ConcurrentDictionary<string, Delegate> _CachedIntepolationExpressions = new ConcurrentDictionary<string, Delegate>();
 
         public static string Interpolate(this string value, Dictionary<string, Object> context)
         {

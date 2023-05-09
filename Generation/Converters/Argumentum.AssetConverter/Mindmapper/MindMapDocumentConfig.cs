@@ -173,6 +173,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public string ThumbnailsCardSetName { get; set; }
 
+		public string ThumbnailsFileNamePattern { get; set; } = "_{fallacy.Path}-";
+
+
+		public string MatchThumbnailsName(string targetDirectory, Fallacy fallacy)
+		{
+			var fileNames = Directory.GetFiles(targetDirectory);
+			var thumbnailsFallacyPattern = ThumbnailsFileNamePattern.Interpolate(
+				new Dictionary<string, object>() { { "fallacy", fallacy } });
+			return fileNames.First(fileName => fileName.Contains(thumbnailsFallacyPattern));
+		}
+
+
 		public void GenerateMindMapFile(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string targetDirectory, string language )
 		{
 			if (string.IsNullOrEmpty(language)) 
@@ -296,9 +308,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 								{
 									this.ThumbnailsPathFunc = objFallacy =>
 									{
-										var imageFileName= ImageHelper.GetImageFileName(webBasedGeneratorConfig, this,
-											language, ThumbnailsCardSetName,
-											objFallacy.FileName);
+										var cardSetDirectory = ImageHelper.GetImageFolder(webBasedGeneratorConfig, this, language, ThumbnailsCardSetName);
+
+										//var imageFileName= ImageHelper.GetImageFileName(webBasedGeneratorConfig, this,
+										//	language, ThumbnailsCardSetName,
+										//	objFallacy.FileName);
+										var imageFileName = MatchThumbnailsName(cardSetDirectory, fallacy);
+
+										var targetDirectory = webBasedGeneratorConfig.GetDocumentDirectory(language);
+										imageFileName = GetRelativePath(targetDirectory, imageFileName);
+
 										return imageFileName;
 									};
 								}
@@ -325,6 +344,25 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		}
+
+		public static string GetRelativePath(string mainDocumentPath, string referencedImagePath)
+		{
+			if (string.IsNullOrEmpty(mainDocumentPath) || string.IsNullOrEmpty(referencedImagePath))
+			{
+				throw new ArgumentException("Both paths must be non-empty.");
+			}
+
+			var mainDocumentUri = new Uri(mainDocumentPath);
+			var referencedImageUri = new Uri(referencedImagePath);
+
+			var relativeUri = mainDocumentUri.MakeRelativeUri(referencedImageUri);
+
+			// Convert the URI path to a regular path with forward slashes
+			var relativePath = Uri.UnescapeDataString(relativeUri.ToString()).Replace(Path.DirectorySeparatorChar, '/');
+
+			return relativePath;
+		}
+
 
 		private void SerializeMindMap(FreemindMap toReturn, string targetDirectory)
 		{
