@@ -5,6 +5,8 @@ using System.Text;
 using System.Xml.Serialization;
 using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Mindmapper;
+using Spectre.Console;
+using Spectre.Console.Json;
 using Utf8Json;
 using Utf8Json.Formatters;
 using Utf8Json.Resolvers;
@@ -34,11 +36,33 @@ namespace Argumentum.AssetConverter
             newConfig = false;
             if (!File.Exists(path))
             {
+               
+
+
+
+				AnsiConsole.MarkupLine($"[underline green]Saving Config[/]");
+                var textPath = new TextPath(path);
+                AnsiConsole.Write(textPath);
+
+
                 toReturn = new AssetConverterConfig();
                 var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(toReturn));
-                Console.WriteLine($"Saving Config {path},\n File Content:\n {strNewConfig}");
+
+
                 File.WriteAllText(path, strNewConfig);
                 newConfig = true;
+
+
+				var json = new JsonText(strNewConfig);
+
+                AnsiConsole.Write(
+	                new Panel(json)
+		                .Header($"File {Path.GetFileName(path)}")
+		                .Collapse()
+		                .RoundedBorder()
+		                .BorderColor(Color.Yellow));
+
+               
             }
 
             

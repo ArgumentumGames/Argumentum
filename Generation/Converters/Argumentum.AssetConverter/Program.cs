@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -15,6 +16,11 @@ namespace Argumentum.AssetConverter
                 Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
                 Console.InputEncoding = System.Text.Encoding.UTF8;
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+                AnsiConsole.Write(
+	                new FigletText("Argumentum")
+		                .Centered()
+		                .Color(Color.Blue));
 
 				var sw = Stopwatch.StartNew();
                 bool newConfig;
@@ -37,9 +43,9 @@ namespace Argumentum.AssetConverter
 			}
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                
-            }
+				AnsiConsole.WriteException(e);
+
+			}
             Console.ReadKey();
         }
 
