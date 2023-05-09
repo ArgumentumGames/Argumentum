@@ -55,7 +55,7 @@ public class HarvestManager
 
 	public async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> HarvestImages()
 	{
-
+		AnsiConsole.WriteLine();
 		var rule = new Rule("[red]Harvesting Cardpen Images[/]");
 		AnsiConsole.Write(rule);
 		AnsiConsole.WriteLine();

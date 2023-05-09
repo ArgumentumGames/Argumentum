@@ -35,6 +35,7 @@ namespace Argumentum.AssetConverter
 
 		public void Run()
 		{
+
 			var harvestManager = new HarvestManager() { Stopwatch = Stopwatch, Config = Config };
 			var harvestDictionary = Task.Run(async () => await harvestManager.HarvestImages()).Result;
 
@@ -52,6 +53,7 @@ namespace Argumentum.AssetConverter
 		/// </summary>
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
+			AnsiConsole.WriteLine();
 			var rule = new Rule("[red]Generating pdf documents[/]");
 			AnsiConsole.Write(rule);
 			AnsiConsole.WriteLine();
@@ -141,6 +143,11 @@ namespace Argumentum.AssetConverter
 		/// </summary>
 		private void GenerateMindMapDocuments()
 		{
+			AnsiConsole.WriteLine();
+			var rule = new Rule("[red]Generating pdf documents[/]");
+			AnsiConsole.Write(rule);
+			AnsiConsole.WriteLine();
+
 			foreach (var mindMap in Config.MindMapDocuments)
 			{
 				try
@@ -164,7 +171,20 @@ namespace Argumentum.AssetConverter
 						{
 							documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
 						}
-						currentTranslatedMap.GenerateMindMapFile(fallacies, Config, Config.GetDocumentDirectory(targetLanguage));
+
+						if (File.Exists(currentTranslatedMap.DocumentName) && !Config.OverwriteExistingDocs)
+						{
+							//imageFromEmbeddedUrl = new MagickImage(imageFileName);
+
+							Console.WriteLine($"{Stopwatch.Elapsed}: Skip existing Mindmap: {currentTranslatedMap.DocumentName}");
+							
+						}
+						else
+						{
+							Console.WriteLine($"{Stopwatch.Elapsed}: Creating Freemind mind map {currentTranslatedMap.DocumentName}");
+							currentTranslatedMap.GenerateMindMapFile(fallacies, Config, Config.GetDocumentDirectory(targetLanguage), targetLanguage);
+						}
+						
 					}
 				}
 				catch (Exception e)
