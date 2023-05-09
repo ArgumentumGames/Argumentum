@@ -61,7 +61,9 @@ namespace Argumentum.AssetConverter
 		public static string GetImageFolder(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName)
 		{
 			var imagesFolderName = config.GetImagesDirectory(language);
-			var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
+
+			//var densityFolderName = Path.Combine(imagesFolderName, $@"density-{docConfig.TargetDensity}\");
+			var densityFolderName = docConfig.GetDensityDirectory(imagesFolderName);
 			var cardSetFolderName = Path.Combine(densityFolderName, $@"{cardSetName}\");
 
 			Directory.CreateDirectory(cardSetFolderName);

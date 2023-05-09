@@ -67,7 +67,7 @@ namespace Argumentum.AssetConverter
 				try
 				{
 					var pdfDirectory = Config.GetDocumentDirectory(docImageList.Key.language);
-					var densityDirectory = CreateDensityDirectory(pdfDirectory, docImageList.Key.document.TargetDensity);
+					var densityDirectory = docImageList.Key.document.GetDensityDirectory(pdfDirectory);
 
 					var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
 
@@ -82,10 +82,10 @@ namespace Argumentum.AssetConverter
 					switch (docImageList.Key.document.DocumentFormat)
 					{
 						case CardDocumentFormat.AlternateFaceAndBack:
-							GenerateAlternateFaceAndBack(objPdfManager, baseName, docImageList.Value, Config.OverwriteExistingDocs);
+							objPdfManager.GenerateAlternateFaceAndBack( baseName, docImageList.Value, Config.OverwriteExistingDocs);
 							break;
 						case CardDocumentFormat.BackFirstOneDocPerBack:
-							GenerateBackFirstOneDocPerBack(objPdfManager, baseName, docImageList.Value, Config.OverwriteExistingDocs);
+							objPdfManager.GenerateBackFirstOneDocPerBack( baseName, docImageList.Value, Config.OverwriteExistingDocs);
 							break;
 						case CardDocumentFormat.PrintAndPlay:
 							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, Config.OverwriteExistingDocs);
@@ -101,56 +101,7 @@ namespace Argumentum.AssetConverter
 			});
 		}
 
-		private string CreateDensityDirectory(string pdfDirectory, int targetDensity)
-		{
-			var densityDirectory = Path.Combine(pdfDirectory, $@".\density-{targetDensity}\");
-			if (!Directory.Exists(densityDirectory))
-			{
-				Directory.CreateDirectory(densityDirectory);
-			}
-			return densityDirectory;
-		}
-
-		private void GenerateAlternateFaceAndBack(PdfManager objPdfManager, string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
-		{
-			var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
-			var collecBuilderAFB = () =>
-			{
-				var collec = new MagickImageCollection(cardImages.SelectMany(s =>
-				{
-					return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
-				}));
-				return collec;
-			};
-
-			targetFiles.Add((baseName, collecBuilderAFB));
-			objPdfManager.GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
-		}
-
-		private void GenerateBackFirstOneDocPerBack(PdfManager objPdfManager, string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
-		{
-			var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
-			var indexInsert = baseName.LastIndexOf('.');
-			var cardsPerBack = cardImages.GroupBy(card => card.Back).ToArray();
-			for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
-			{
-				var closureBackIndex = backIndex;
-				var collecBuilderBF = () =>
-				{
-					var frontsAndBack = cardsPerBack[closureBackIndex];
-					var backThenFronts = new[] { new MagickImage(frontsAndBack.Key) }.Concat(
-						frontsAndBack.Select(card => new MagickImage(card.Front)));
-					var collec = new MagickImageCollection(backThenFronts);
-					return collec;
-				};
-
-				var newName =
-					$"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
-				targetFiles.Add((newName, collecBuilderBF));
-			}
-
-			objPdfManager.GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
-		}
+		
 
 
 

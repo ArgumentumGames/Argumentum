@@ -28,6 +28,56 @@ public class PdfManager
 	private const float InchToPoints = 72;
 	private float MmToPointsFactor = 0.1f / InchToCentimetre * InchToPoints;
 
+
+
+
+
+
+
+	public void GenerateAlternateFaceAndBack( string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
+	{
+		var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
+		var collecBuilderAFB = () =>
+		{
+			var collec = new MagickImageCollection(cardImages.SelectMany(s =>
+			{
+				return new[] { new MagickImage(s.Front), new MagickImage(s.Back) };
+			}));
+			return collec;
+		};
+
+		targetFiles.Add((baseName, collecBuilderAFB));
+		GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+	}
+
+
+	public void GenerateBackFirstOneDocPerBack( string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
+	{
+		var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
+		var indexInsert = baseName.LastIndexOf('.');
+		var cardsPerBack = cardImages.GroupBy(card => card.Back).ToArray();
+		for (int backIndex = 0; backIndex < cardsPerBack.Count(); backIndex++)
+		{
+			var closureBackIndex = backIndex;
+			var collecBuilderBF = () =>
+			{
+				var frontsAndBack = cardsPerBack[closureBackIndex];
+				var backThenFronts = new[] { new MagickImage(frontsAndBack.Key) }.Concat(
+					frontsAndBack.Select(card => new MagickImage(card.Front)));
+				var collec = new MagickImageCollection(backThenFronts);
+				return collec;
+			};
+
+			var newName =
+				$"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
+			targetFiles.Add((newName, collecBuilderBF));
+		}
+
+		GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+	}
+
+
+
 	/// <summary>
 	/// Generates a pdf file from config arguments and a list of generated images to compose the set.
 	/// </summary>
