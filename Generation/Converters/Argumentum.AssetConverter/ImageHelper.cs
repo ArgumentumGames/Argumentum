@@ -77,7 +77,8 @@ namespace Argumentum.AssetConverter
             if (File.Exists(imageFileName))
             {
 				//imageFromEmbeddedUrl = new MagickImage(imageFileName);
-				Console.WriteLine($"{WebBasedGenerator.Stopwatch.Elapsed}: Skipping Existing image: {imageFileName}");
+
+				Console.WriteLine($"{WebBasedGenerator.Stopwatch.Elapsed}: Skip existing image: {imageFileName}");
 				toReturn = imageFileName;
 			}
             else
@@ -101,6 +102,7 @@ namespace Argumentum.AssetConverter
                     if (!File.Exists(imageOriginalFileName))
                     {
                         imageFromEmbeddedUrl.Write(imageOriginalFileName);
+                        
                         Console.WriteLine($"{WebBasedGenerator.Stopwatch.Elapsed}: Saved image: {imageOriginalFileName}");
 					}
                 }

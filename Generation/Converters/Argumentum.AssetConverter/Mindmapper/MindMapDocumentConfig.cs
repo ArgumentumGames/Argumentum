@@ -41,7 +41,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string CardExpression { get; set; } =
 			@"
 <p>
-    <img src=""{mindMap.ThumbnailsPathFunc(fallacy)}"" width=""60"" height=""60""/>{fallacy.TextFr}
+    <img src=""{mindMap.GetThumbnailsPath(fallacy)}"" width=""60"" height=""60""/>{fallacy.TextFr}
 </p>
 ";
 
@@ -95,9 +95,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		//public string ImagePathExpression { get; set; } = @"../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/{fallacy.FileName}.png";
 		public string ThumbnailsPathExpression { get; set; } = @"../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace("" "",""_"")}.png";
-		
 
 
+		public string GetThumbnailsPath(Fallacy fallacy)
+		{
+			return ThumbnailsPathFunc(fallacy);
+		}
 
 
 		private Func<Fallacy, string> _Thumbnails;
@@ -277,7 +280,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 						{
 							if (webBasedGeneratorConfig != null)
 							{
-								var cardSetConfig =  webBasedGeneratorConfig.CardSets.First(c => c.Name == this.ThumbnailsCardSetName);
+								var cardSetConfig =  webBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
 								if (cardSetConfig != null)
 								{
 									this.ThumbnailsPathFunc = objFallacy =>
@@ -446,7 +449,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 				Colors = new Dictionary<int, string>(this.Colors),
 				FontSizes = new List<int>(this.FontSizes),
 				EdgeSizes = new List<int>(this.EdgeSizes),
-				InsertCardsThumbnails = this.InsertCardsThumbnails
+				InsertCardsThumbnails = this.InsertCardsThumbnails,
+				ThumbnailsCardSetName = this.ThumbnailsCardSetName,
 			};
 
 			return clone;
