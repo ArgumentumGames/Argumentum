@@ -3,6 +3,7 @@ using ImageMagick;
 using Sprache;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -31,6 +32,17 @@ namespace Argumentum.AssetConverter
 		public int TargetDensity { get; set; } = 0;
 
 		public MagickFormat ImageFormat { get; set; } = MagickFormat.Png;
+
+		public string GetDensityDirectory(string baseDirectory)
+		{
+			var densityDirectory = Path.Combine(baseDirectory, $@".\density-{TargetDensity}\");
+			if (!Directory.Exists(densityDirectory))
+			{
+				Directory.CreateDirectory(densityDirectory);
+			}
+			return densityDirectory;
+		}
+
 
 	}
 
