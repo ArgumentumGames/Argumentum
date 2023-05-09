@@ -293,7 +293,8 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+						Dpi = 400
 					}
 				},
 				new CardSetConfig(){
@@ -307,7 +308,9 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_Light_fr.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+						Dpi = 200
+
 					}
 				},
 				new CardSetConfig(){
@@ -321,7 +324,8 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_Thumbnails_fr.json"
+						JsonFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+						Dpi = 100
 					}
 				}
 			});
