@@ -80,13 +80,10 @@ Top level configuration has the following key sections:
     }
   },
   "BatchImageConverterConfig": {
-  (...)
   },
   "Dnn2sxcConfig": {
-  (...)
   },
-  "MindMapCreatorConfig": {
-  (...)
+  "MindMapCreatorConfig": {  
   }
 }
 ```
