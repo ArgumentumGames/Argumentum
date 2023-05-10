@@ -39,6 +39,8 @@ You can launch the program :
 
 The website is currently commited without the data and decryptionkey, implying a fresh install of DNN should preexist before attempting a merge, which is a significant inconvenience. Further effort should help anonymizing a snapshot of the DNN DB, whith all pages configured.
 
+For now, if you are interested into running a copy of Argumentum.games, just let us know.
+
 ## How to contribute
 
 The project is open to contributions. If you want to contribute, you can do so by forking the repository, making your changes, and then submitting a pull request.
