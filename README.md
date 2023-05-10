@@ -24,10 +24,16 @@ The repository contains the following folders:
 
 ## How to generate the cards and the images
 
-Build and Run Converters once to generate a default configuration if needed.
-Host the cardpen instance locally.
-Update the converters config to point to your local hosted website.
-Run Converters to generate the cards and the images.
+The generation tool is a .Net 7.0 console/terminal application that drives several browsers to draw the images from a hosted Cardpen website, uses Magick.Net library to process image files individually and then QuestPDF library to generate printable Pdfs.
+A prerelease of the executable tool is available in the [following directory](https://github.com/ArgumentumGames/Argumentum/tree/master/Generation/Converters/Argumentum.AssetConverter/Published/v1.3)
+To run it, you need to [install the runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
+
+You can launch the program :
+
+- either by running the executable. On Linux/Mac, you may need to grant authorizations: "chmod +x ./Argumentum.AssetConverter"
+- or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll"
+
+
 
 ## How to build the website
 
