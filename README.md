@@ -39,11 +39,11 @@ The application runs a pipeline entirely controlled by a large configuration fil
 
 Top level configuration has the following key sections:
 
-- DataSets: Those are the csv files that contain all text content for the several decks of cards, namely Fallacies, Scenarii, and Rules.
-- CardSets: Those are the json files that contain face and back templates for all kinds of cardsets. Datasets are injected at runtime into them, and some of them make use of the same base json file, while injecting variations at runtime. Translations are also performed from French templates by doing conversions.
-- CardSetDocuments:Those are configurations for pdf to generate from the images, namely for professional printing or home print&play, or large posters.
-- MindMapDocuments:Those are configurations for Freemind/Freeplane mindmaps documents to generate, and SVG customizing after exporting from one of those additional free tools.
-- LocalizationConfig: This is the part concerned with localizing fields and strings for cards and mindmaps.
+- **DataSets**: Those are the csv files that contain all text content for the several decks of cards, namely Fallacies, Scenarii, and Rules.
+- **CardSets**: Those are the json files that contain face and back templates for all kinds of cardsets. Datasets are injected at runtime into them, and some of them make use of the same base json file, while injecting variations at runtime. Translations are also performed from French templates by doing conversions.
+- **CardSetDocuments**:Those are configurations for pdf to generate from the images, namely for professional printing or home print&play, or large posters.
+- **MindMapDocuments**:Those are configurations for Freemind/Freeplane mindmaps documents to generate, and SVG customizing after exporting from one of those additional free tools.
+- **LocalizationConfig**: This is the part concerned with localizing fields and strings for cards and mindmaps.
 
 ```json
 {
