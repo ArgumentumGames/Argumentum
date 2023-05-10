@@ -45,42 +45,53 @@ Top level configuration has the following key sections:
 - MindMapDocuments:Those are configurations for Freemind/Freeplane mindmaps documents to generate, and SVG customizing after exporting from one of those additional free tools.
 - LocalizationConfig: This is the part concerned with localizing fields and strings for cards and mindmaps.
 
+```json
+{
+  "Mode": "WebBasedImageGeneration",
+  "WebBasedGeneratorConfig": {
+    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+    "OverwriteExistingDocs": false,
+    "MaxDegreeOfParallelismCardpen": 3,
+    "MaxDegreeOfParallelismCardpenTranslations": 2,
+    "MaxDegreeOfParallelismImages": 3,
+    "MaxDegreeOfParallelismImageTranslations": 2,
+    "MaxDegreeOfParallelismDocuments": 3,
+    "BaseTargetDirectoryName": "Target\\",
+    "HarvestDirectoryName": "Harvest\\",
+    "ImagesDirectoryName": "Images\\",
+    "DocumentsDirectoryName": "Documents\\",
+    "ForceDebugParams": false,
+    "ForceReleaseParams": false,
+    "DataSets": [
+	(...)
+    ],
+    "CardSets": [
+	(...)
+    ],
+    "CardSetDocuments": [
+	(...)
+    ],
+    "MindMapDocuments": [
+	(...)
+    ],
+    "LocalizationConfig": {
+	(...)
+    }
+  },
+  "BatchImageConverterConfig": {
+  (...)
+  },
+  "Dnn2sxcConfig": {
+  (...)
+  },
+  "MindMapCreatorConfig": {
+  (...)
+  }
+}
+```
 
-	{
-	"Mode": "WebBasedImageGeneration",
-	"WebBasedGeneratorConfig": {
-		"ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
-		"DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
-		"OverwriteExistingDocs": false,
-		"MaxDegreeOfParallelismCardpen": 3,
-		"MaxDegreeOfParallelismCardpenTranslations": 2,
-		"MaxDegreeOfParallelismImages": 3,
-		"MaxDegreeOfParallelismImageTranslations": 2,
-		"MaxDegreeOfParallelismDocuments": 3,
-		"BaseTargetDirectoryName": "Target\\",
-		"HarvestDirectoryName": "Harvest\\",
-		"ImagesDirectoryName": "Images\\",
-		"DocumentsDirectoryName": "Documents\\",
-		"ForceDebugParams": false,
-		"ForceReleaseParams": false,
-		"DataSets": [
-		],
-		"CardSets": [
-		],
-		"CardSetDocuments": [
-		],
-		"MindMapDocuments": [
-		],
-		"LocalizationConfig": {
-		}
-	},
-	"BatchImageConverterConfig": {
-	},
-	"Dnn2sxcConfig": {
-	},
-	"MindMapCreatorConfig": {
-	}
-	}
+
 
 
 ## How to build the website
