@@ -33,6 +33,54 @@ You can launch the program :
 - either by running the executable. On Linux/Mac, you may need to grant authorizations: "chmod +x ./Argumentum.AssetConverter"
 - or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll"
 
+### How it works
+
+The application runs a pipeline entirely controlled by a large configuration file, "AssetConverterConfig.json", that is created on first run.
+
+Top level configuration has the following key sections:
+
+- DataSets: Those are the csv files that contain all text content for the several decks of cards, namely Fallacies, Scenarii, and Rules.
+- CardSets: Those are the json files that contain face and back templates for all kinds of cardsets. Datasets are injected at runtime into them, and some of them make use of the same base json file, while injecting variations at runtime. Translations are also performed from French templates by doing conversions.
+- CardSetDocuments:Those are configurations for pdf to generate from the images, namely for professional printing or home print&play, or large posters.
+- MindMapDocuments:Those are configurations for Freemind/Freeplane mindmaps documents to generate, and SVG customizing after exporting from one of those additional free tools.
+- LocalizationConfig: This is the part concerned with localizing fields and strings for cards and mindmaps.
+
+
+	{
+	"Mode": "WebBasedImageGeneration",
+	"WebBasedGeneratorConfig": {
+		"ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+		"DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+		"OverwriteExistingDocs": false,
+		"MaxDegreeOfParallelismCardpen": 3,
+		"MaxDegreeOfParallelismCardpenTranslations": 2,
+		"MaxDegreeOfParallelismImages": 3,
+		"MaxDegreeOfParallelismImageTranslations": 2,
+		"MaxDegreeOfParallelismDocuments": 3,
+		"BaseTargetDirectoryName": "Target\\",
+		"HarvestDirectoryName": "Harvest\\",
+		"ImagesDirectoryName": "Images\\",
+		"DocumentsDirectoryName": "Documents\\",
+		"ForceDebugParams": false,
+		"ForceReleaseParams": false,
+		"DataSets": [
+		],
+		"CardSets": [
+		],
+		"CardSetDocuments": [
+		],
+		"MindMapDocuments": [
+		],
+		"LocalizationConfig": {
+		}
+	},
+	"BatchImageConverterConfig": {
+	},
+	"Dnn2sxcConfig": {
+	},
+	"MindMapCreatorConfig": {
+	}
+	}
 
 
 ## How to build the website
