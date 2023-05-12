@@ -24,14 +24,78 @@ The repository contains the following folders:
 
 ## How to generate the cards and the images
 
-Build and Run Converters once to generate a default configuration if needed.
-Host the cardpen instance locally.
-Update the converters config to point to your local hosted website.
-Run Converters to generate the cards and the images.
+The generation tool is a .Net 7.0 console/terminal application that drives several browsers to draw the images from a hosted Cardpen website, uses Magick.Net library to process image files individually and then QuestPDF library to generate printable Pdfs.
+A prerelease of the executable tool is available in the [following directory](https://github.com/ArgumentumGames/Argumentum/tree/master/Generation/Converters/Argumentum.AssetConverter/Published/v1.3)
+To run it, you need to [install the runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
+
+You can launch the program :
+
+- either by running the executable. On Linux/Mac, you may need to grant authorizations: "chmod +x ./Argumentum.AssetConverter"
+- or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll"
+
+### How it works
+
+The application runs a pipeline entirely controlled by a large configuration file, "AssetConverterConfig.json", that is created on first run.
+
+Top level configuration has the following key sections:
+
+- **DataSets**: Those are the csv files that contain all text content for the several decks of cards, namely Fallacies, Scenarii, and Rules.
+- **CardSets**: Those are the json files that contain face and back templates for all kinds of cardsets. Datasets are injected at runtime into them, and some of them make use of the same base json file, while injecting variations at runtime. Translations are also performed from French templates by doing conversions.
+- **CardSetDocuments**:Those are configurations for pdf to generate from the images, namely for professional printing or home print&play, or large posters.
+- **MindMapDocuments**:Those are configurations for Freemind/Freeplane mindmaps documents to generate, and SVG customizing after exporting from one of those additional free tools.
+- **LocalizationConfig**: This is the part concerned with localizing fields and strings for cards and mindmaps.
+
+```json
+{
+  "Mode": "WebBasedImageGeneration",
+  "WebBasedGeneratorConfig": {
+    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+    "OverwriteExistingDocs": false,
+    "MaxDegreeOfParallelismCardpen": 3,
+    "MaxDegreeOfParallelismCardpenTranslations": 2,
+    "MaxDegreeOfParallelismImages": 3,
+    "MaxDegreeOfParallelismImageTranslations": 2,
+    "MaxDegreeOfParallelismDocuments": 3,
+    "BaseTargetDirectoryName": "Target\\",
+    "HarvestDirectoryName": "Harvest\\",
+    "ImagesDirectoryName": "Images\\",
+    "DocumentsDirectoryName": "Documents\\",
+    "ForceDebugParams": false,
+    "ForceReleaseParams": false,
+    "DataSets": [
+	(...)
+    ],
+    "CardSets": [
+	(...)
+    ],
+    "CardSetDocuments": [
+	(...)
+    ],
+    "MindMapDocuments": [
+	(...)
+    ],
+    "LocalizationConfig": {
+	(...)
+    }
+  },
+  "BatchImageConverterConfig": {
+  },
+  "Dnn2sxcConfig": {
+  },
+  "MindMapCreatorConfig": {  
+  }
+}
+```
+
+
+
 
 ## How to build the website
 
 The website is currently commited without the data and decryptionkey, implying a fresh install of DNN should preexist before attempting a merge, which is a significant inconvenience. Further effort should help anonymizing a snapshot of the DNN DB, whith all pages configured.
+
+For now, if you are interested into running a copy of Argumentum.games, just let us know.
 
 ## How to contribute
 
