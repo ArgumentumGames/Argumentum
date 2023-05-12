@@ -32,7 +32,7 @@ public class HarvestManager
 				{
 					if (browser == null)
 					{
-						Console.WriteLine($"{Stopwatch.Elapsed}: Starting Browser");
+						Logger.Log("Starting Browser");
 						var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
 						if (exitCode != 0)
 						{
@@ -134,7 +134,7 @@ public class HarvestManager
 				if (File.Exists(jsonHarvestName))
 				{
 					//Print out the elapsed time and the existing harvest
-					Console.WriteLine($"{Stopwatch.Elapsed}: Found existing Harvest {jsonHarvestName}");
+					Logger.Log("Found existing Harvest {jsonHarvestName}");
 
 					//Create a function to load the card set harvest
 					var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
@@ -185,7 +185,7 @@ public class HarvestManager
 				File.WriteAllText(jsonHarvestName, strNewConfig);
 
 				// Log the time it took to serialize the harvest
-				Console.WriteLine($"{Stopwatch.Elapsed}: Serialized Harvest {jsonHarvestName}");
+				Logger.Log("Serialized Harvest {jsonHarvestName}");
 
 				// Create a function to load the card set harvest
 				Func<CardSetHarvest> funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
@@ -340,7 +340,7 @@ public class HarvestManager
 			Thread.Sleep(TimeSpan.FromSeconds(2));
 		}
 
-		Console.WriteLine($"{Stopwatch.Elapsed}: Generating CardSet {cardSetDocument.FileName}");
+		Logger.Log("Generating CardSet {cardSetDocument.FileName}");
 
 		var filePayLoad = new FilePayload()
 		{
@@ -444,7 +444,7 @@ public class HarvestManager
 			var currentGeneratedImage = generatedImages.Nth(i);
 			var currentCardName = cardNames[i];
 			toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
-			Console.WriteLine($"{Stopwatch.Elapsed}: Downloaded Card Image - {currentCardName}");
+			Logger.Log("Downloaded Card Image - {currentCardName}");
 		}
 	}
 
@@ -452,7 +452,7 @@ public class HarvestManager
 	{
 		using var configStream = File.OpenRead(jsonHarvestName);
 		var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
-		Console.WriteLine($"{Stopwatch.Elapsed}: Loaded Harvest {jsonHarvestName}");
+		Logger.Log("Loaded Harvest {jsonHarvestName}");
 		return currentHarvest;
 	}
 

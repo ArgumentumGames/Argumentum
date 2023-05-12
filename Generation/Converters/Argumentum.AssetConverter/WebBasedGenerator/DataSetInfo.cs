@@ -1,3 +1,4 @@
+using System;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -18,23 +19,31 @@ public class DataSetInfo
 {
 	public string Name { get; set; }
 
-	public string FilePath { get; set; }
+	public string ReleaseFilePath { get; set; }
 	public string DebugFilePath { get; set; }
+
+	public string FilePath(bool debug) =>
+		debug && !string.IsNullOrEmpty(DebugFilePath) ? DebugFilePath : ReleaseFilePath;
 
 	private string _StringContent;
 
 	public async Task<string> GetContent(bool debugPath)
 	{
+		var strPath = FilePath(debugPath);
 		if (string.IsNullOrEmpty(_StringContent))
 		{
-			var strPath = debugPath && !string.IsNullOrEmpty(DebugFilePath) ? DebugFilePath : FilePath;
+			
 			var payLoad = await strPath.GetDocumentPayload();
 			_StringContent = Encoding.UTF8.GetString(payLoad.Content);
+		}
+		else
+		{
+			Console.WriteLine($"Using cached Value for {strPath}");
 		}
 
 		return _StringContent;
 	}
-
+	
 	public async Task<string> GetContent(bool debugPath, string csvFilterField, IList<string> csvFilterValues)
 	{
 		var content = await GetContent(debugPath);

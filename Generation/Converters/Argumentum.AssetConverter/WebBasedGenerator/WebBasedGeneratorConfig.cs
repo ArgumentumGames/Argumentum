@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using Argumentum.AssetConverter.Mindmapper;
 using ImageMagick;
 
@@ -68,25 +69,25 @@ namespace Argumentum.AssetConverter
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.Rules,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
+					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.RulesPrintAndPlay,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv",
+					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards Print and Play.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.Scenarii,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
+					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.FallaciesTaxonomy,
-					FilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
+					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"
 				},
 
@@ -351,7 +352,6 @@ namespace Argumentum.AssetConverter
 				}
 			});
 
-	
 
 		public List<CardSetDocumentConfig> CardSetDocuments { get; set; } = new List<CardSetDocumentConfig>(
 			new[]
@@ -836,7 +836,16 @@ namespace Argumentum.AssetConverter
 						("fr", "pt")
 					}),
 					ImageFormat = MagickFormat.Png,
-					TargetDensity = 0
+					TargetDensity = 0,
+					HtmlSvgWrappers = new List<HtmlSVGWrapper>(new []
+					{
+						new HtmlSVGWrapper()
+						{
+							Enabled = true,
+							TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/LocalFull.html",
+							TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\LocalFull.html"
+						}
+					})
 				},
 				new MindMapDocumentConfig()
 				{
@@ -852,7 +861,16 @@ namespace Argumentum.AssetConverter
 						("fr", "pt")
 					}),
 					ImageFormat = MagickFormat.Png,
-					TargetDensity = 0
+					TargetDensity = 0,
+					HtmlSvgWrappers = new List<HtmlSVGWrapper>(new []
+					{
+						new HtmlSVGWrapper()
+						{
+							Enabled = true,
+							TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/HostedExternal.html",
+							TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\HostedExternal.html"
+						}
+					})
 				}
 			}
 			);
@@ -1036,8 +1054,6 @@ namespace Argumentum.AssetConverter
 			}),
 		};
 
-		
-
 
 		public string GetBaseTargetDirectory(string language)
 		{
@@ -1090,10 +1106,10 @@ namespace Argumentum.AssetConverter
 
 
 
-		public void Apply(Stopwatch objSw)
+		public async Task Apply(Stopwatch objSw)
 		{
 			var generator = new WebBasedGenerator(this, objSw);
-			generator.Run();
+			await generator.Run();
 
 		}
 

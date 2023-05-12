@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Mindmapper;
@@ -63,7 +64,7 @@ namespace Argumentum.AssetConverter
         }
 
 
-        public bool Apply(Stopwatch objSw)
+        public async Task<bool> Apply(Stopwatch objSw)
         {
             switch (Mode)
             {
@@ -71,7 +72,7 @@ namespace Argumentum.AssetConverter
                     BatchImageConverterConfig.Apply();
                     break;
                 case ConverterMode.WebBasedImageGeneration:
-                    WebBasedGeneratorConfig.Apply(objSw);
+					await  WebBasedGeneratorConfig.Apply(objSw);
                     break;
                 case ConverterMode.Mindmapper:
                     MindMapCreatorConfig.Run(null);
