@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxonomy Mind Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #mindmap {
+            position: relative;
+        }
+
+
+        /* -------------------------------------------------------------------------------- */
+        /* Polices */
+        /* -------------------------------------------------------------------------------- */
+
+        @font-face {
+            font-family: 'DINPro';
+            font-style: normal;
+            font-weight: 300;
+            src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Light tr.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'DINPro';
+            font-style: normal;
+            font-weight: 500;
+            src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Medium tr.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'DINPro';
+            font-style: normal;
+            font-weight: 700;
+            src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Bold tr.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'DINPro';
+            font-style: normal;
+            font-weight: 900;
+            src: local('DINPro'), url('https://fonts.cdnfonts.com/s/18774/DINPro-Black tr.woff') format('woff');
+        }
+
+
+
+        card {
+            position: absolute;
+            z-index: 100;
+            font-size: 80%;
+            font-family: 'Bebas Neue', sans-serif;
+            background-color: white;
+        }
+
+
+            /* -------------------------------------------------------------------------------- */
+            /* Couleurs */
+            /* -------------------------------------------------------------------------------- */
+
+            card.insuffisance {
+                --color-background: #811da3;
+                --color-text-1: #601362;
+                --color-text-2: #8f5991;
+                --color-text-3: #a173a2;
+            }
+
+            card.influence {
+                --color-background: #ff66eb;
+                --color-text-1: #b3009b;
+                --color-text-2: #cc00b1;
+                --color-text-3: #e566d4;
+            }
+
+            card.erreurMathématique {
+                --color-background: #08af93;
+                --color-text-1: #14555b;
+                --color-text-2: #5a888c;
+                --color-text-3: #749a9e;
+            }
+
+            card.erreurDeRaisonnement {
+                --color-background: #8dc801;
+                --color-text-1: #476205;
+                --color-text-2: #7e9150;
+                --color-text-3: #92a26b;
+            }
+
+            card.abusDeLangage {
+                --color-background: #0054a4;
+                --color-text-1: #0c2861;
+                --color-text-2: #546890;
+                --color-text-3: #6f80a1;
+            }
+
+            card.tricherie {
+                --color-background: #ffc307ff;
+                --color-text-1: #9e7800ff;
+                --color-text-2: #c49500ff;
+                --color-text-3: #d6b755ff;
+            }
+
+            card.obstruction {
+                --color-background: #dc0f0a;
+                --color-text-1: #960a07;
+                --color-text-2: #b55351;
+                --color-text-3: #c16e6c;
+            }
+
+
+
+            card .famille {
+                color: var(--color-text-1);
+            }
+
+            card .sous_famille {
+                color: var(--color-text-2);
+            }
+
+            card .Soussousfamille {
+                color: var(--color-text-3);
+            }
+
+        /* -------------------------------------------------------------------------------- */
+        /* Structure */
+        /* -------------------------------------------------------------------------------- */
+
+        bleed {
+        }
+
+        cut {
+        }
+
+        safe {
+            background-color: #fff;
+            position: relative;
+            /* Different Safe Padding */
+            /*padding: 1.2em 2.5em 1.5em 2.5em;*/
+        }
+
+        .cardName {
+            display: none;
+        }
+
+        /* -------------------------------------------------------------------------------- */
+        /* Entête */
+        /* -------------------------------------------------------------------------------- */
+
+        .header {
+            /* display: flex;*/
+            justify-content: center;
+            padding-top: 1%;
+        }
+
+        .famille {
+            text-transform: uppercase;
+            font-size: 2.8em;
+            text-align: center;
+            line-height: 0.9em;
+            letter-spacing: 0.07em;
+            color: var(--color-text-1);
+        }
+
+        .sous_famille {
+            font-size: 1.7em;
+            letter-spacing: 0.05em;
+        }
+
+        .Soussousfamille {
+            font-size: 0.9em !important;
+        }
+
+
+
+
+        /* -------------------------------------------------------------------------------- */
+        /* Corps */
+        /* -------------------------------------------------------------------------------- */
+
+        .body {
+            display: flex;
+            padding-top: 2%;
+            flex-flow: column nowrap;
+            height: 100%;
+            justify-content: space-between;
+            border: 1.4em solid;
+            border-color: var(--color-background);
+            border-radius: 1em;
+        }
+
+        .supersetWrapper .famille {
+            max-height: 61%;
+            width: 100%;
+            display: block;
+            padding: 0;
+            margin-bottom: 1.3%
+        }
+
+        .supersetWrapper .sous_famille {
+            width: 100%;
+            display: block;
+            padding: 0;
+            margin-bottom: 1%;
+            text-align: center;
+        }
+
+        .contentWrapper {
+            display: flex;
+            flex-direction: column;
+            height: 93%;
+        }
+
+
+        .title {
+            width: 100%;
+            text-align: center;
+            font-size: 3.5em;
+            line-height: 1em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-1);
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 2% 5% 1% 5%;
+            word-wrap: break-word !important;
+            display: flex;
+            justify-content: center;
+            min-height: 1.4em;
+            align-items: center;
+        }
+
+            .title > div {
+                flex-shrink: 1;
+                width: 100%;
+                overflow-wrap: normal
+            }
+
+        .imageSection {
+            min-height: 0;
+            flex-shrink: 1;
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image {
+            width: 100%;
+            flex-grow: 1;
+            /* display: flex; */
+            /* justify-content: flex-start; */
+            /* align-items: flex-start; */
+            text-align: center;
+            /*background-color: var(--color-background-img);*/
+            padding: 1% 2% 0 2%;
+            min-height: 0;
+        }
+
+            .image img {
+                max-width: 100%;
+                max-height: 100%;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+        .texte {
+            /*display: flex;
+    flex-flow: column wrap;*/
+            justify-content: space-between;
+            background-color: var(--color-background);
+            margin: 0% -1% -1% -1%;
+        }
+
+        .desc_fr {
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            font-family: 'DINpro',sans-serif;
+            font-weight: 900;
+            font-size: 1.5em;
+            line-height: 1.4em;
+            min-height: 3em;
+            /*margin:4% 5% 3% 5%;*/
+
+            padding: 2% 5% 2% 5%;
+            color: #fff;
+        }
+
+        .exemple_fr {
+            font-family: 'DINpro',sans-serif;
+            color: var(--color-text-2);
+            font-size: 1.45em;
+            font-weight: 600;
+            line-height: 1.2em;
+            padding: 2% 5% 2% 5%;
+            background-color: white;
+            -webkit-font-variant-ligatures: no-common-ligatures;
+            font-variant-ligatures: no-common-ligatures;
+        }
+
+        /* -------------------------------------------------------------------------------- */
+        /* Pied de page */
+        /* -------------------------------------------------------------------------------- */
+
+        .footer {
+            height: 2%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 2em;
+            height: 2em;
+            background-color: #fff;
+            border: 1px solid;
+            border-color: var(--color-background);
+            border-radius: 16px 16px 16px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .niveau {
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: right;
+            color: var(--color-background);
+        }
+
+
+
+      
+
+        #externalLink {
+            margin: auto;
+            background-color: #337ab7;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            #externalLink:hover {
+                background-color: #286090;
+            }
+    </style>
+</head>
+<body>
+    <div id="mindmap">
+       [SVGCONTENT]
+    </div>
+<card class="cardHTML insuffisance card3">
+    <bleed>
+        <cut>
+            <safe>
+                <div class="cardName">Argumentum_Fallacies_1.1.1..Justification triviale</div>
+
+                <div class="body">
+                    <div class="header">
+                        <div class="supersetWrapper">
+                            <div class="famille">Insuffisance</div>
+                            <div class="sous_famille">
+                                Argument bâclé | <span class="Soussousfamille"> Justification triviale</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imageSection">
+                        <button id="externalLink">Lien externe</button>
+                        <div class="title">
+                            <div>Justification triviale</div>
+                        </div>
+                    </div>
+                    <div class="texte">
+                        <div class="desc_fr">Vous attribuez à une habitude, une impression ou un exemple la valeur d'une preuve.</div>
+                        <div class="exemple_fr">J'ai entendu dire que cette personne était sexiste ; il m'est donc impossible d'être en accord avec elle sur quoi que ce soit.</div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="niveau"> 3 </div>
+                </div>
+            </safe>
+        </cut>
+    </bleed>
+</card>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const overlay = document.getElementsByClassName('cardHTML')[0];
+            const nodes = document.querySelectorAll('.node');
+            const title = document.getElementsByClassName('title')[0];
+            const description = document.getElementsByClassName('desc_fr')[0];
+            const example = document.getElementsByClassName('exemple_fr')[0];
+            const externalLink = document.getElementById('externalLink');
+            let isMouseOverNode = false;
+            overlay.addEventListener('mouseenter', () => {
+                isMouseOverNode = false;
+            });
+
+            overlay.addEventListener('mouseleave', () => {
+                if (!isMouseOverNode) {
+                    overlay.classList.add('hidden');
+                }
+            });
+
+            nodes.forEach(node => {
+                node.addEventListener('mouseenter', (e) => {
+                    title.textContent = e.target.textContent;
+                    description.innerHTML = e.target.getAttribute('description');
+                    example.innerHTML = e.target.getAttribute('example');
+                    externalLink.href = e.target.getAttribute('link');
+                    isMouseOverNode = true;
+
+                    const rect = e.target.getBoundingClientRect();
+                    overlay.style.left = rect.left + 'px';
+                    overlay.style.top = rect.top + 'px';
+                    overlay.classList.remove('hidden');
+                });
+
+                overlay.addEventListener('mouseleave', () => {
+                    if (!isMouseOverNode) {
+                        overlay.classList.add('hidden');
+                    }
+                });
+            });
+           
+        });
+    </script>
+</body>
+</html>
