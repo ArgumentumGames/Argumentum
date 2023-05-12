@@ -12,12 +12,10 @@ public class ImageFileGenerator
 {
 	public  WebBasedGeneratorConfig Config { get; set; }
 
-	public Stopwatch Stopwatch { get; set; }
 
-	public ImageFileGenerator(WebBasedGeneratorConfig config, Stopwatch stopwatch)
+	public ImageFileGenerator(WebBasedGeneratorConfig config)
 	{
 		Config = config;
-		Stopwatch = stopwatch;
 	}
 
 
@@ -28,10 +26,9 @@ public class ImageFileGenerator
 	/// <returns>A ConcurrentDictionary of the generated images.</returns>
 	public ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> GenerateDocumentImages(ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 	{
-		AnsiConsole.WriteLine();
-		var rule = new Rule("[red]Generating document images[/]");
-		AnsiConsole.Write(rule);
-		AnsiConsole.WriteLine();
+		Logger.LogTitle("Generating document images");
+
+		Logger.LogExplanations("In its second stage, Argumentum creates individual image files from the harvested collections. Images are processed with Magick.Net according to configuration parameters. This is the more taxing stage, the degree of parallelism of which can also be configured.");
 
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
 		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismImages };
@@ -68,7 +65,7 @@ public class ImageFileGenerator
 						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
 							configDocument.DocumentName,
 							Config.LocalizationConfig.DefaultLanguage, currentLanguage);
-						Logger.Log("Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
+						Logger.Log($"Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
 
 
 
@@ -83,7 +80,7 @@ public class ImageFileGenerator
 				}
 				catch (Exception e)
 				{
-					AnsiConsole.WriteException(e);
+					Logger.LogException(e);
 				}
 
 
@@ -181,9 +178,8 @@ public class ImageFileGenerator
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine($"Problem with Document Card Back: Front : {currentCard.Front}, Back : {currentCard.Back}");
-					Console.WriteLine($"Back not found:\n keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} \n faceName: {faceName}");
-					AnsiConsole.WriteException(e);
+					Logger.LogProblem($"Problem with Document Card Back: Front : {currentCard.Front}, Back : {currentCard.Back}\nBack not found: \n Face Name: {faceName}\n  keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} ");
+					Logger.LogException(e);
 					throw;
 				}
 			}

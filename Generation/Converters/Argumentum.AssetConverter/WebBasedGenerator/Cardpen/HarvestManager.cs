@@ -32,7 +32,7 @@ public class HarvestManager
 				{
 					if (browser == null)
 					{
-						Logger.Log("Starting Browser");
+						Logger.Log("Starting Playwright Browser");
 						var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
 						if (exitCode != 0)
 						{
@@ -58,11 +58,10 @@ public class HarvestManager
 
 	public async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> HarvestImages()
 	{
-		AnsiConsole.WriteLine();
-		var rule = new Rule("[red]Harvesting Cardpen Images[/]");
-		AnsiConsole.Write(rule);
-		AnsiConsole.WriteLine();
 
+		Logger.LogTitle("Harvesting Cardpen Images");
+
+		Logger.LogExplanations("In its first stage, Argumentum uses the web-based cardpen generator to produce and download images. You can change the hosting url in the configuration. Web generation is performed in a Browser controlled automatically through Playwright. Accordingly, Playwright will be downloaded in the working directory the first time the application is launched. Then several browser instances will be started in Parallel. You can control the number of parallel instances in the configuration file. Generating images in the browser takes some time, and then the images are harversted to local json files for later post-processing.");
 
 		ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary;
 		var parallelOptionsLoading = new ParallelOptions { MaxDegreeOfParallelism = 4 };
@@ -134,7 +133,7 @@ public class HarvestManager
 				if (File.Exists(jsonHarvestName))
 				{
 					//Print out the elapsed time and the existing harvest
-					Logger.Log("Found existing Harvest {jsonHarvestName}");
+					Logger.Log($"Found existing Harvest {jsonHarvestName}");
 
 					//Create a function to load the card set harvest
 					var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
@@ -185,7 +184,7 @@ public class HarvestManager
 				File.WriteAllText(jsonHarvestName, strNewConfig);
 
 				// Log the time it took to serialize the harvest
-				Logger.Log("Serialized Harvest {jsonHarvestName}");
+				Logger.Log($"Serialized Harvest {jsonHarvestName}");
 
 				// Create a function to load the card set harvest
 				Func<CardSetHarvest> funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
@@ -195,7 +194,7 @@ public class HarvestManager
 			}
 			catch (Exception e)
 			{
-				AnsiConsole.WriteException(e);
+				Logger.LogException(e);
 			}
 		}
 	}
@@ -340,7 +339,7 @@ public class HarvestManager
 			Thread.Sleep(TimeSpan.FromSeconds(2));
 		}
 
-		Logger.Log("Generating CardSet {cardSetDocument.FileName}");
+		Logger.Log($"Generating CardSet {cardSetDocument.FileName}");
 
 		var filePayLoad = new FilePayload()
 		{
@@ -354,7 +353,7 @@ public class HarvestManager
 
 		if (pauseForEdits)
 		{
-			Console.WriteLine($"Browser is paused for you to do tests and edits.\n Press any key to resume browser automation");
+			Logger.LogInstructions($"Browser is paused for you to do tests and edits.\n Press any key to resume browser automation");
 			Console.Read();
 		}
 		else
@@ -399,7 +398,7 @@ public class HarvestManager
 		var zipHandler = await zipButton.ElementHandleAsync();
 		await zipHandler.WaitForElementStateAsync(ElementState.Enabled);
 
-		//Console.WriteLine($"images generated {sw.Elapsed}");
+		//Logger.Log($"images generated {sw.Elapsed}");
 		//var generatedImagesDiv = driver.FindElement(By.Id("cpImages"));
 		var generatedImagesDiv = objIFrame.Locator("#cpImages");
 
@@ -434,8 +433,7 @@ public class HarvestManager
 		if (await generatedImages.CountAsync() != cardNames.Count)
 		{
 			
-			Console.WriteLine($"\nEXCEPTION HINT: Cards: {cardNames.Aggregate((s1,s2)=>$"{s1},{s2}")}\n");
-			var message = $"not same number of generated cards ({await generatedImages.CountAsync()}) and card names ({cardNames.Count})";
+			var message = $"Not same number of generated cards ({await generatedImages.CountAsync()}) and card names ({cardNames.Count})\nEXCEPTION HINT: Cards: {cardNames.Aggregate((s1, s2) => $"{s1},{s2}")}";
 			throw new ApplicationException(message);
 		}
 
@@ -444,7 +442,7 @@ public class HarvestManager
 			var currentGeneratedImage = generatedImages.Nth(i);
 			var currentCardName = cardNames[i];
 			toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
-			Logger.Log("Downloaded Card Image - {currentCardName}");
+			Logger.Log($"Downloaded Card Image - {currentCardName}");
 		}
 	}
 
@@ -452,7 +450,7 @@ public class HarvestManager
 	{
 		using var configStream = File.OpenRead(jsonHarvestName);
 		var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
-		Logger.Log("Loaded Harvest {jsonHarvestName}");
+		Logger.Log($"Loaded Harvest {jsonHarvestName}");
 		return currentHarvest;
 	}
 

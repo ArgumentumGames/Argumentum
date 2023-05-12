@@ -208,8 +208,8 @@ namespace Argumentum.AssetConverter
 				mimeType = response.Content.Headers.ContentType?.MediaType;
 				content = await response.Content.ReadAsByteArrayAsync();
 
-				Console.WriteLine($"Downloaded Document {docPath}");
-				//Console.WriteLine($"Content :\n\n {Encoding.UTF8.GetString(content)}");
+				Logger.Log($"Downloaded Document {docPath}");
+				//Logger.Log($"Content :\n\n {Encoding.UTF8.GetString(content)}");
 
 			}
 			else
@@ -223,7 +223,7 @@ namespace Argumentum.AssetConverter
 				fileName = Path.GetFileName(fullPath);
 
 				content = await File.ReadAllBytesAsync(fullPath);
-				Console.WriteLine($"File Loaded: {fullPath}");
+				Logger.Log($"File Loaded: {fullPath}");
 			}
 
 

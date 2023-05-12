@@ -10,7 +10,7 @@ namespace Argumentum.AssetConverter
 {
 	class Program
 	{
-		static async Task Main(string[] args)
+		static void Main(string[] args)
 		{
 			try
 			{
@@ -18,32 +18,31 @@ namespace Argumentum.AssetConverter
 				Console.InputEncoding = System.Text.Encoding.UTF8;
 				Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-				AnsiConsole.Write(
-					new FigletText("Argumentum")
-						.Centered()
-						.Color(Color.Blue));
+				AnsiConsole.Write(new FigletText("Argumentum").Centered().Color(Color.Blue));
 
-				var sw = Stopwatch.StartNew();
+				Logger.LogExplanations("Welcome to Argumentum Swiss army knife. This application does a lot of generation in the background that go \"Brrrrrr...\" on the foreground. You may have occasional instructions to follow, but this is about mainly relaxing and watching files and documents being created. Enjoy the ride !");
+
+				Logger.LogTitle("Loading Configuration");
+
+				Logger.LogExplanations("You can control most things that the application does through a large configuration file. Default configuration has pretty much everything enabled for generation, which should take a little north of 1h.");
+
+
 				var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
 				var config = AssetConverterConfig.GetConfig(configFileName, out var newConfig);
 				if (newConfig)
 				{
-					Console.WriteLine($"The default config include all assets in all languages. If you wish to edit that configuration file to choose the generated documents, then close this window and relaunch application after applying  edits to the configuration file.\n");
-					Console.WriteLine($"If you wish to run the default configuration, press any key");
-
+					Logger.LogInstructions($"If you wish to edit the configuration file, then close this window and relaunch application after applying  edits to the configuration file.\n If you wish to run the default configuration, press any key.");
+					
 					Console.ReadKey();
 				}
-				else
-				{
-					Console.WriteLine($"{sw.Elapsed}: Config loaded: \n {configFileName}");
-
-				}
-				await config.Apply(sw);
-				Console.WriteLine($"Generation finished in {sw.Elapsed.TotalSeconds} seconds, press any key to close");
+				
+				config.Apply();
+				Logger.Log($"Generation finished");
+				Logger.LogInstructions("Press any key to close");
 			}
 			catch (Exception e)
 			{
-				AnsiConsole.WriteException(e);
+				Logger.LogException(e);
 
 			}
 			Console.ReadKey();

@@ -25,24 +25,29 @@ namespace Argumentum.AssetConverter
 
 		public WebBasedGeneratorConfig Config { get; set; }
 
-		public WebBasedGenerator(WebBasedGeneratorConfig config, Stopwatch objSw)
+		public WebBasedGenerator(WebBasedGeneratorConfig config)
 		{
 			Config = config;
-			Stopwatch = objSw;
 
 		}
 
 
 		public async Task Run()
 		{
+			var tempLogSwitch = Logger.LogInfo;
+			if (!Config.ShowInfoLogs)
+			{
+				Logger.LogInfo = false;
+			}
 
-			var harvestManager = new HarvestManager() { Stopwatch = Stopwatch, Config = Config };
-			var harvestDictionary = Task.Run(async () => await harvestManager.HarvestImages()).Result;
+			var harvestManager = new HarvestManager() { Config = Config };
+			var harvestDictionary = await harvestManager.HarvestImages();
 
-			var imageManager = new ImageFileGenerator(Config, Stopwatch);
+			var imageManager = new ImageFileGenerator(Config);
 			var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
 			GenerateCardSetDocuments(docImages);
-			await GenerateMindMapDocuments();
+			 await GenerateMindMapDocuments();
+			Logger.LogInfo = tempLogSwitch;
 		}
 
 
@@ -55,10 +60,9 @@ namespace Argumentum.AssetConverter
 		/// <param name="docImages">The card images to generate the documents from.</param>
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
-			AnsiConsole.WriteLine();
-			var rule = new Rule("[red]Generating pdf documents[/]");
-			AnsiConsole.Write(rule);
-			AnsiConsole.WriteLine();
+			Logger.LogTitle("Generating pdf documents");
+
+			Logger.LogExplanations("In this third stage, Pdf documents are compiled from the individual image files. Those are essentially Print&Play documents for individual printers, professional services printing formats, and various posters");
 
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
 
@@ -75,9 +79,9 @@ namespace Argumentum.AssetConverter
 						Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
 					var baseName = Path.Combine(densityDirectory, documentName);
 
-					Logger.Log("Start Generating pdf document {baseName}");
+					Logger.Log($"Start Generating pdf document {baseName}");
 
-					var objPdfManager = new PdfManager() { Stopwatch = Stopwatch };
+					var objPdfManager = new PdfManager() ;
 
 					switch (docImageList.Key.document.DocumentFormat)
 					{
@@ -96,7 +100,7 @@ namespace Argumentum.AssetConverter
 				}
 				catch (Exception e)
 				{
-					AnsiConsole.WriteException(e);
+					Logger.LogException(e);
 				}
 			});
 		}
@@ -112,61 +116,60 @@ namespace Argumentum.AssetConverter
 		/// </summary>
 		private async Task GenerateMindMapDocuments()
 		{
-			
 
-			foreach (var mindMap in Config.MindMapDocuments.Where(config => config.Enabled))
-			{
-				try
+			Logger.LogTitle("Generating Freemind, SVG & Html Mindmaps");
+
+			Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. Optional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate a svg file, which is then further processed for Html generation");
+
+			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
+
+			await Parallel.ForEachAsync(Config.MindMapDocuments.Where(config => config.Enabled), parallelOptionsDocuments,
+				async (mindMap, token) =>
 				{
-
-					IList<Fallacy> fallacies;
-					var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
-					if (dataSet == null)
-					{
-						fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
-					}
-					else
-					{
-							fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams);
-					}
-
-					var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
-					foreach (var targetLanguage in targetLanguages)
+					try
 					{
 
-						var currentTranslatedMap = mindMap.CloneMindMap();
-						foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
+						IList<Fallacy> fallacies;
+						var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
+						if (dataSet == null)
 						{
-							documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
-						}
-
-						var documentDirectory = Config.GetDocumentDirectory(targetLanguage);
-
-						var documentPath = Path.Combine(documentDirectory, currentTranslatedMap.DocumentName);
-
-
-						if (File.Exists(documentPath) && !Config.OverwriteExistingDocs)
-						{
-							//imageFromEmbeddedUrl = new MagickImage(imageFileName);
-
-							Logger.Log("Skip existing Mindmap: {documentPath}");
-							
+							fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
 						}
 						else
 						{
-							Logger.Log("Creating Freemind mind map {currentTranslatedMap.DocumentName}");
-							await currentTranslatedMap.GenerateMindMapFile(fallacies, Config, documentDirectory, targetLanguage);
+							fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams);
 						}
-						
+
+						var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
+						foreach (var targetLanguage in targetLanguages)
+						{
+
+							var currentTranslatedMap = mindMap.CloneMindMap();
+							foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
+							{
+								documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+							}
+
+							var documentDirectory = Config.GetDocumentDirectory(targetLanguage);
+
+
+
+							//Task.Run(async () => await currentTranslatedMap.GenerateMindMapFile(fallacies, Config, documentDirectory,
+							//	targetLanguage)).GetAwaiter().GetResult();
+							//Logger.LogTitle("coucou currentTranslatedMap");
+							await currentTranslatedMap.GenerateMindMapFile(fallacies, Config, documentDirectory,
+								targetLanguage);
+
+						}
 					}
-				}
-				catch (Exception e)
-				{
-					AnsiConsole.WriteException(e);
-				}
+					catch (Exception e)
+					{
+						Logger.LogException(e);
+					}
 
 
-			}
+				});
+			//Logger.LogTitle("coucou Parallel");
 		}
 
 	}

@@ -18,11 +18,9 @@ namespace Argumentum.AssetConverter
 	public class WebBasedGeneratorConfig
 	{
 
+		public bool EnableSVGPrompt { get; set; } = true;
 
-		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
-		public string DebugCardpenUrl { get; set; } = @"http://cardpen.dnndev.me/Generation/CardPen/index.html";
-
-		
+		public bool ShowInfoLogs { get; set; } = true;
 
 		public bool OverwriteExistingDocs { get; set; }
 
@@ -34,7 +32,12 @@ namespace Argumentum.AssetConverter
 
 		public int MaxDegreeOfParallelismImageTranslations { get; set; } = 2;
 
-		public int MaxDegreeOfParallelismDocuments { get; set; } = 3;
+		public int MaxDegreeOfParallelismDocuments { get; set; } = 6;
+
+		public bool ForceDebugParams { get; set; }
+
+		public bool ForceReleaseParams { get; set; }
+
 
 		public string BaseTargetDirectoryName { get; set; } = @"Target\";
 
@@ -45,9 +48,10 @@ namespace Argumentum.AssetConverter
 
 		public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
-		public bool ForceDebugParams { get; set; }
+		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
+		public string DebugCardpenUrl { get; set; } = @"http://cardpen.dnndev.me/Generation/CardPen/index.html";
 
-		public bool ForceReleaseParams { get; set; }
+
 
 #if DEBUG
 		bool isInDebugMode = true;
@@ -1055,6 +1059,8 @@ namespace Argumentum.AssetConverter
 		};
 
 
+
+
 		public string GetBaseTargetDirectory(string language)
 		{
 			var toReturn = Path.Combine(System.Environment.CurrentDirectory, BaseTargetDirectoryName);
@@ -1106,10 +1112,10 @@ namespace Argumentum.AssetConverter
 
 
 
-		public async Task Apply(Stopwatch objSw)
+		public void Apply()
 		{
-			var generator = new WebBasedGenerator(this, objSw);
-			await generator.Run();
+			var generator = new WebBasedGenerator(this);
+			generator.Run().Wait();
 
 		}
 

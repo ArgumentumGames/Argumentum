@@ -19,7 +19,7 @@ namespace Argumentum.AssetConverter
         public static IList<Fallacy> LoadFallacies(string filePath)
         {
             IEnumerable<Fallacy> fallacies;
-            Console.WriteLine($"Loading csv fallacies from file {filePath}");
+            Logger.Log($"Loading csv fallacies from file {filePath}");
             var fileContent = File.ReadAllText( filePath );
 			return LoadFallaciesFromContent(fileContent);
 		}
@@ -33,14 +33,14 @@ namespace Argumentum.AssetConverter
 		        csv.Context.RegisterClassMap<FallacyClassMap>();
 		        fallacies = csv.GetRecords<Fallacy>().SkipLast(1).ToList();
 	        }
-	        Console.WriteLine($"Loaded {fallacies.Count()} fallacies");
+	        Logger.Log($"Loaded {fallacies.Count()} fallacies");
 	        return fallacies.ToList();
         }
 
 		public static async Task< IList<Fallacy>> LoadFallaciesAsync(DataSetInfo dataSet, bool debugPath)
         {
 	        IEnumerable<Fallacy> fallacies;
-	        Console.WriteLine($"Loading csv fallacies from dataSet {dataSet.Name}");
+	        Logger.Log($"Loading csv fallacies from dataSet {dataSet.Name}");
 	        var payLoad = await dataSet.GetContent(debugPath);
 	        return LoadFallaciesFromContent(payLoad);
         }

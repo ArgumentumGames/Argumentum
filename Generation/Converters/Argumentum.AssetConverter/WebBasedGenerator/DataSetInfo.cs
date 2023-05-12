@@ -38,7 +38,7 @@ public class DataSetInfo
 		}
 		else
 		{
-			Console.WriteLine($"Using cached Value for {strPath}");
+			Logger.Log($"Using cached Value for {strPath}");
 		}
 
 		return _StringContent;
