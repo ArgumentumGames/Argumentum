@@ -184,7 +184,7 @@ public class HarvestManager
 				File.WriteAllText(jsonHarvestName, strNewConfig);
 
 				// Log the time it took to serialize the harvest
-				Logger.Log($"Serialized Harvest {jsonHarvestName}");
+				Logger.LogSuccess($"Sucessfully saved Harvest file {jsonHarvestName}");
 
 				// Create a function to load the card set harvest
 				Func<CardSetHarvest> funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
