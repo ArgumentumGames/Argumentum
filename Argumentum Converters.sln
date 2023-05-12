@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argumentum.AssetConverter", "Generation\Converters\Argumentum.AssetConverter\Argumentum.AssetConverter.csproj", "{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cards", "Cards", "{00C0758B-A92C-4340-8A73-370D3046ACA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fallacies", "Fallacies", "{A3188815-F9CE-4FAD-8E43-3D216DA51E5D}"
+	ProjectSection(SolutionItems) = preProject
+		Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv = Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv
+		Cards\Fallacies\Argumentum_Fallacies_Back_fr.json = Cards\Fallacies\Argumentum_Fallacies_Back_fr.json
+		Cards\Fallacies\Argumentum_Fallacies_Face_2_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_2_fr.json
+		Cards\Fallacies\Argumentum_Fallacies_Face_3_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_3_fr.json
+		Cards\Fallacies\Argumentum_Fallacies_Face_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_fr.json
+		Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scenarii", "Scenarii", "{147D913F-8A11-4C70-A5FD-F5D2CE872A70}"
+	ProjectSection(SolutionItems) = preProject
+		Cards\Scenarii\Argumentum Scenarii - Cards.csv = Cards\Scenarii\Argumentum Scenarii - Cards.csv
+		Cards\Scenarii\Argumentum_Scenarii_Back_fr.json = Cards\Scenarii\Argumentum_Scenarii_Back_fr.json
+		Cards\Scenarii\Argumentum_Scenarii_Face_fr.json = Cards\Scenarii\Argumentum_Scenarii_Face_fr.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{D5B586C1-EF39-4C4A-AC03-1780A1DA24F5}"
+	ProjectSection(SolutionItems) = preProject
+		Cards\Rules\Argumentum Rules - Cards.csv = Cards\Rules\Argumentum Rules - Cards.csv
+		Cards\Rules\Argumentum_Rules_fr.json = Cards\Rules\Argumentum_Rules_fr.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memo", "Memo", "{D23B974C-B291-44A9-846D-26E58B4DBDA2}"
+	ProjectSection(SolutionItems) = preProject
+		Cards\Memo\Argumentum_Memo_Back_fr.json = Cards\Memo\Argumentum_Memo_Back_fr.json
+		Cards\Memo\Argumentum_Memo_Face_fr.json = Cards\Memo\Argumentum_Memo_Face_fr.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mindmaps", "Mindmaps", "{1A7077BC-7CA9-4D76-9D96-C674564283F9}"
+	ProjectSection(SolutionItems) = preProject
+		Cards\Fallacies\Mindmaps\HostedExternal.html = Cards\Fallacies\Mindmaps\HostedExternal.html
+		Cards\Fallacies\Mindmaps\LocalFull.html = Cards\Fallacies\Mindmaps\LocalFull.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3188815-F9CE-4FAD-8E43-3D216DA51E5D} = {00C0758B-A92C-4340-8A73-370D3046ACA3}
+		{147D913F-8A11-4C70-A5FD-F5D2CE872A70} = {00C0758B-A92C-4340-8A73-370D3046ACA3}
+		{D5B586C1-EF39-4C4A-AC03-1780A1DA24F5} = {00C0758B-A92C-4340-8A73-370D3046ACA3}
+		{D23B974C-B291-44A9-846D-26E58B4DBDA2} = {00C0758B-A92C-4340-8A73-370D3046ACA3}
+		{1A7077BC-7CA9-4D76-9D96-C674564283F9} = {A3188815-F9CE-4FAD-8E43-3D216DA51E5D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0667D66-974C-44D8-AAF8-3DB41AADBBF5}
+	EndGlobalSection
+EndGlobal

@@ -21,7 +21,7 @@ namespace Argumentum.AssetConverter
 	public class WebBasedGenerator
 	{
 
-		public static Stopwatch Stopwatch = Stopwatch.StartNew();
+		
 
 		public WebBasedGeneratorConfig Config { get; set; }
 
@@ -33,7 +33,7 @@ namespace Argumentum.AssetConverter
 		}
 
 
-		public void Run()
+		public async Task Run()
 		{
 
 			var harvestManager = new HarvestManager() { Stopwatch = Stopwatch, Config = Config };
@@ -42,7 +42,7 @@ namespace Argumentum.AssetConverter
 			var imageManager = new ImageFileGenerator(Config, Stopwatch);
 			var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
 			GenerateCardSetDocuments(docImages);
-			GenerateMindMapDocuments();
+			await GenerateMindMapDocuments();
 		}
 
 
@@ -75,7 +75,7 @@ namespace Argumentum.AssetConverter
 						Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
 					var baseName = Path.Combine(densityDirectory, documentName);
 
-					Console.WriteLine($"{Stopwatch.Elapsed}: Start Generating pdf document {baseName}");
+					Logger.Log("Start Generating pdf document {baseName}");
 
 					var objPdfManager = new PdfManager() { Stopwatch = Stopwatch };
 
@@ -110,17 +110,15 @@ namespace Argumentum.AssetConverter
 		/// <summary>
 		/// Generates MindMap documents from the given configuration.
 		/// </summary>
-		private void GenerateMindMapDocuments()
+		private async Task GenerateMindMapDocuments()
 		{
-			AnsiConsole.WriteLine();
-			var rule = new Rule("[red]Generating pdf documents[/]");
-			AnsiConsole.Write(rule);
-			AnsiConsole.WriteLine();
+			
 
 			foreach (var mindMap in Config.MindMapDocuments.Where(config => config.Enabled))
 			{
 				try
 				{
+
 					IList<Fallacy> fallacies;
 					var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
 					if (dataSet == null)
@@ -129,29 +127,35 @@ namespace Argumentum.AssetConverter
 					}
 					else
 					{
-						fallacies = Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams).GetAwaiter().GetResult();
+							fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams);
 					}
 
 					var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
 					foreach (var targetLanguage in targetLanguages)
 					{
+
 						var currentTranslatedMap = mindMap.CloneMindMap();
 						foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
 						{
 							documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
 						}
 
-						if (File.Exists(currentTranslatedMap.DocumentName) && !Config.OverwriteExistingDocs)
+						var documentDirectory = Config.GetDocumentDirectory(targetLanguage);
+
+						var documentPath = Path.Combine(documentDirectory, currentTranslatedMap.DocumentName);
+
+
+						if (File.Exists(documentPath) && !Config.OverwriteExistingDocs)
 						{
 							//imageFromEmbeddedUrl = new MagickImage(imageFileName);
 
-							Console.WriteLine($"{Stopwatch.Elapsed}: Skip existing Mindmap: {currentTranslatedMap.DocumentName}");
+							Logger.Log("Skip existing Mindmap: {documentPath}");
 							
 						}
 						else
 						{
-							Console.WriteLine($"{Stopwatch.Elapsed}: Creating Freemind mind map {currentTranslatedMap.DocumentName}");
-							currentTranslatedMap.GenerateMindMapFile(fallacies, Config, Config.GetDocumentDirectory(targetLanguage), targetLanguage);
+							Logger.Log("Creating Freemind mind map {currentTranslatedMap.DocumentName}");
+							await currentTranslatedMap.GenerateMindMapFile(fallacies, Config, documentDirectory, targetLanguage);
 						}
 						
 					}

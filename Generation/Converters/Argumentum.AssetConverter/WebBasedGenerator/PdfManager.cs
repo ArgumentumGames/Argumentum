@@ -89,7 +89,7 @@ public class PdfManager
 
 		if (File.Exists(fileName) && !configOverwriteExistingDocs)
 		{
-			Console.WriteLine($"{Stopwatch.Elapsed}: Skipping Existing pdf document {fileName}");
+			Logger.Log("Skipping Existing pdf document {fileName}");
 		}
 		else
 		{
@@ -167,7 +167,7 @@ public class PdfManager
 			})
 				.WithMetadata(docMetadata)
 				.GeneratePdf(fileName);
-			Console.WriteLine($"{Stopwatch.Elapsed}: Generated pdf document {fileName}");
+			Logger.Log("Generated pdf document {fileName}");
 
 		}
 
@@ -273,12 +273,12 @@ public class PdfManager
 		{
 			if (File.Exists(targetFile.fileName) && !configOverwriteExistingDocs)
 			{
-				Console.WriteLine($"{Stopwatch.Elapsed}: Skipping Existing pdf document {targetFile.fileName}");
+				Logger.Log("Skipping Existing pdf document {targetFile.fileName}");
 			}
 			else
 			{
 				targetFile.documentImages().Write(targetFile.fileName);
-				Console.WriteLine($"{Stopwatch.Elapsed}: Generated pdf document {targetFile.fileName}");
+				Logger.Log("Generated pdf document {targetFile.fileName}");
 			}
 
 			

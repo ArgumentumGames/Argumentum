@@ -17,20 +17,22 @@ using System.Xml;
 using HarfBuzzSharp;
 using ImageMagick;
 using Spectre.Console;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
-
 	public class MindMapDocumentConfig : DocumentConfig, ICloneable
 	{
 
-		public bool EnableSVGUpdate { get; set; } = false;
+		public bool SkipSVGUpdate { get; set; } 
 
 		public string DataSet { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
 		public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
 
-
-		public string TitleExpression { get; set; } = @"{fallacy.TextFr}";
+		 const string DefaultTitleExpression = @"{fallacy.TextFr}";
+		public string TitleExpression { get; set; } = DefaultTitleExpression;
 
 		public string DescriptionExpression { get; set; } =
 @"
@@ -42,7 +44,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string CardExpression { get; set; } =
 			@"
 <p>
-    <img src=""{mindMap.GetThumbnailsPath(fallacy)}"" width=""60"" height=""60""/>{fallacy.TextFr}
+    <img src=""{mindMap.GetThumbnailsPath(fallacy)}"" width=""60"" height=""60""/>" + DefaultTitleExpression + @"
 </p>
 ";
 
@@ -160,8 +162,6 @@ namespace Argumentum.AssetConverter.Mindmapper
 		};
 
 
-
-
 		public List<int> FontSizes { get; set; } = new List<int>(new[] { 30, 50, 40, 30, 30, 30, 25, 23, 23, 23, 23 });
 
 
@@ -176,6 +176,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string ThumbnailsFileNamePattern { get; set; } = "_{fallacy.Path}..";
 
 
+		public List<HtmlSVGWrapper> HtmlSvgWrappers { get; set; } = new List<HtmlSVGWrapper>();
+
+
+
 		public string MatchThumbnailsName(string targetDirectory, Fallacy fallacy)
 		{
 			var fileNames = Directory.GetFiles(targetDirectory);
@@ -185,7 +189,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		public void GenerateMindMapFile(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string targetDirectory, string language )
+		public async Task GenerateMindMapFile(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string targetDirectory, string language )
 		{
 			if (string.IsNullOrEmpty(language)) 
 				language=webBasedGeneratorConfig.LocalizationConfig.DefaultLanguage ;
@@ -193,180 +197,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			var toReturn = new FreemindMap();
 			var nodesByPath = new Dictionary<string, Node>(fallacies.Count());
-			CreateFallacyNodes(toReturn, fallacies, nodesByPath, webBasedGeneratorConfig, language);
-			SerializeMindMap(toReturn, targetDirectory);
-
-			if (EnableSVGUpdate)
-			{
-				UpdateSVGFile(fallacies, targetDirectory, DocumentName);
-			}
-		}
-
-		private void CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies,
-			Dictionary<string, Node> nodesByPath, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
-		{
-			foreach (var fallacy in fallacies)
-			{
-				if (!string.IsNullOrEmpty(fallacy.PK))
-				{
-					var localPath = fallacy.Path;
-					var fallacyNode = new Node();
-					fallacyNode.TEXT = TitleFunc(fallacy);
-					var link = LinkFunc(fallacy);
-					if (!string.IsNullOrEmpty(link))
-					{
-						fallacyNode.LINK = link;
-					}
-					var descDoc = new XmlDocument();
-					descDoc.LoadXml($"{DescFunc(fallacy)}");
-
-					var descRichContent = new Richcontent();
-					fallacyNode.Richcontents.Add(descRichContent);
-					descRichContent.TYPE = "NOTE";
-					descRichContent.Html.Body.Elements.Add(descDoc.DocumentElement);
-
-					descDoc.LoadXml($"{ExampleFunc(fallacy)}");
-					descRichContent.Html.Body.Elements.Add(descDoc.DocumentElement);
-
-					nodesByPath[localPath] = fallacyNode;
-
-					var lastDotIndex = localPath.LastIndexOf('.');
-					int familyNb;
-					if (lastDotIndex > -1)
-					{
-						familyNb = int.Parse(fallacy.Path[0].ToString(), CultureInfo.InvariantCulture);
-						var parentPath = localPath.Substring(0, lastDotIndex);
-						var parentNode = nodesByPath[parentPath];
-						parentNode.Nodes.Add(fallacyNode);
-					}
-					else
-					{
-						familyNb = int.Parse(localPath);
-						if (familyNb == 0)
-						{
-							fallacyNode.ID = "ID_706669011";
-							freemindMap.Node = fallacyNode;
-
-						}
-						else
-						{
-							if (familyNb > 2)
-							{
-								fallacyNode.POSITION = "left";
-							}
-							else
-							{
-								fallacyNode.POSITION = "right";
-							}
-							freemindMap.Node.Nodes.Add(fallacyNode);
-						}
-					}
-
-					if (fallacy.Depth < FontSizes.Count)
-					{
-						fallacyNode.Font = new Font() { Size = FontSizes[fallacy.Depth].ToString() };
-					}
-
-					if (fallacy.Depth < EdgeSizes.Count)
-					{
-						fallacyNode.Edge = new Edge() { WIDTH = EdgeSizes[fallacy.Depth].ToString(CultureInfo.InvariantCulture) };
-						if (familyNb > 0)
-						{
-							fallacyNode.Edge.COLOR = Colors[familyNb];
-							fallacyNode.BACKGROUND_COLOR = HLSColor.GetLighterColor(Colors[familyNb]);
-							//fallacyNode.COLOR = ColorTranslator.ToHtml(ColorTranslator.FromHtml(config.Colors[familyNb]).GetContrast(true));
-							//fallacyNode.Font.Color = ColorTranslator.ToHtml(Color.AliceBlue);
-						}
-						fallacyNode.STYLE = "bubble";
-					}
-					else
-					{
-						fallacyNode.STYLE = "fork";
-
-					}
-					if (fallacy.Depth <= EdgeSizes.Count)
-					{
-						fallacyNode.Font.BOLD = "true";
-					}
-					if (fallacy.Depth >= EdgeSizes.Count)
-					{
-						fallacyNode.COLOR = HLSColor.GetDarkerColor(Colors[familyNb]);
-					}
-
-					if (fallacy.Carte.HasValue)
-					{
-						fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
-						//if (fallacy.Path.StartsWith("1.1"))
-						//{
-
-						if (InsertCardsThumbnails)
-						{
-							if (webBasedGeneratorConfig != null)
-							{
-								var cardSetConfig = webBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
-								if (cardSetConfig != null)
-								{
-									this.ThumbnailsPathFunc = objFallacy =>
-									{
-										var cardSetDirectory = ImageHelper.GetImageFolder(webBasedGeneratorConfig, this, language, ThumbnailsCardSetName);
-
-										//var imageFileName= ImageHelper.GetImageFileName(webBasedGeneratorConfig, this,
-										//	language, ThumbnailsCardSetName,
-										//	objFallacy.FileName);
-										var imageFileName = MatchThumbnailsName(cardSetDirectory, fallacy);
-
-										var targetDirectory = webBasedGeneratorConfig.GetDocumentDirectory(language);
-										imageFileName = GetRelativePath(targetDirectory, imageFileName);
-
-										return imageFileName;
-									};
-								}
-
-							}
-
-
-							var cardDoc = new XmlDocument();
-							cardDoc.LoadXml($"{CardFunc(fallacy)}");
-							var cardRichContent = new Richcontent();
-							fallacyNode.Richcontents.Add(cardRichContent);
-							cardRichContent.TYPE = "NODE";
-							cardRichContent.Html.Body.Elements.Add(cardDoc.DocumentElement);
-						}
-
-						//}
-
-
-					}
-				}
-
-			}
-
-
-
-		}
-
-		public static string GetRelativePath(string mainDocumentPath, string referencedImagePath)
-		{
-			if (string.IsNullOrEmpty(mainDocumentPath) || string.IsNullOrEmpty(referencedImagePath))
-			{
-				throw new ArgumentException("Both paths must be non-empty.");
-			}
-
-			var mainDocumentUri = new Uri(mainDocumentPath);
-			var referencedImageUri = new Uri(referencedImagePath);
-
-			var relativeUri = mainDocumentUri.MakeRelativeUri(referencedImageUri);
-
-			// Convert the URI path to a regular path with forward slashes
-			var relativePath = Uri.UnescapeDataString(relativeUri.ToString()).Replace(Path.DirectorySeparatorChar, '/');
-
-			return relativePath;
-		}
-
-
-		private void SerializeMindMap(FreemindMap toReturn, string targetDirectory)
-		{
-			var serializer = new XmlSerializer(typeof(FreemindMap));
+			await CreateFallacyNodes(toReturn, fallacies, nodesByPath, webBasedGeneratorConfig, language);
 
 			var fileName = DocumentName;
 			if (!string.IsNullOrEmpty(targetDirectory))
@@ -374,6 +205,162 @@ namespace Argumentum.AssetConverter.Mindmapper
 				fileName = Path.Combine(targetDirectory, fileName);
 
 			}
+			await SerializeMindMap(toReturn, fileName);
+
+			if (!SkipSVGUpdate)
+			{
+				await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig);
+			}
+		}
+
+
+		private async Task CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath,
+			WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		{
+			foreach (var fallacy in fallacies)
+			{
+				if (string.IsNullOrEmpty(fallacy.PK)) continue;
+
+				var localPath = fallacy.Path;
+				var fallacyNode = await CreateNode(fallacy, webBasedGeneratorConfig, language);
+				nodesByPath[localPath] = fallacyNode;
+
+				var lastDotIndex = localPath.LastIndexOf('.');
+				int familyNb;
+				if (lastDotIndex > -1)
+				{
+					familyNb = int.Parse(fallacy.Path[0].ToString(), CultureInfo.InvariantCulture);
+					var parentPath = localPath.Substring(0, lastDotIndex);
+					var parentNode = nodesByPath[parentPath];
+					parentNode.Nodes.Add(fallacyNode);
+				}
+				else
+				{
+					familyNb = int.Parse(localPath);
+					AddNodeToFreemindMap(freemindMap, fallacyNode, familyNb);
+				}
+
+				SetNodeStyle(fallacyNode, fallacy, familyNb);
+			}
+		}
+
+		private async Task<Node> CreateNode(Fallacy fallacy, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		{
+			var fallacyNode = new Node { TEXT = TitleFunc(fallacy) };
+			var link = LinkFunc(fallacy);
+			if (!string.IsNullOrEmpty(link))
+			{
+				fallacyNode.LINK = link;
+			}
+
+			var descRichContent = await CreateRichContent(fallacy);
+			fallacyNode.Richcontents.Add(descRichContent);
+
+			if (fallacy.Carte.HasValue)
+			{
+				await AddCardIcon(fallacy, fallacyNode, webBasedGeneratorConfig, language);
+			}
+
+			return fallacyNode;
+		}
+
+		private async Task<Richcontent> CreateRichContent(Fallacy fallacy)
+		{
+			var descDoc = new XmlDocument();
+			descDoc.LoadXml($"{DescFunc(fallacy)}");
+
+			var descRichContent = new Richcontent { TYPE = "NOTE" };
+			descRichContent.Html.Body.Elements.Add(descDoc.DocumentElement);
+
+			descDoc.LoadXml($"{ExampleFunc(fallacy)}");
+			descRichContent.Html.Body.Elements.Add(descDoc.DocumentElement);
+
+			return descRichContent;
+		}
+
+		private void AddNodeToFreemindMap(FreemindMap freemindMap, Node fallacyNode, int familyNb)
+		{
+			if (familyNb == 0)
+			{
+				fallacyNode.ID = "ID_706669011";
+				freemindMap.Node = fallacyNode;
+			}
+			else
+			{
+				fallacyNode.POSITION = familyNb > 2 ? "left" : "right";
+				freemindMap.Node.Nodes.Add(fallacyNode);
+			}
+		}
+
+		private void SetNodeStyle(Node fallacyNode, Fallacy fallacy, int familyNb)
+		{
+			if (fallacy.Depth < FontSizes.Count)
+			{
+				fallacyNode.Font = new Font() { Size = FontSizes[fallacy.Depth].ToString() };
+			}
+
+			if (fallacy.Depth < EdgeSizes.Count)
+			{
+				fallacyNode.Edge = new Edge() { WIDTH = EdgeSizes[fallacy.Depth].ToString(CultureInfo.InvariantCulture) };
+
+				if (familyNb > 0)
+				{
+					fallacyNode.Edge.COLOR = Colors[familyNb];
+					fallacyNode.BACKGROUND_COLOR = HLSColor.GetLighterColor(Colors[familyNb]);
+				}
+
+				fallacyNode.STYLE = "bubble";
+			}
+			else
+			{
+				fallacyNode.STYLE = "fork";
+			}
+
+			if (fallacy.Depth <= EdgeSizes.Count)
+			{
+				fallacyNode.Font.BOLD = "true";
+			}
+
+			if (fallacy.Depth >= EdgeSizes.Count)
+			{
+				fallacyNode.COLOR = HLSColor.GetDarkerColor(Colors[familyNb]);
+			}
+		}
+
+		private async Task AddCardIcon(Fallacy fallacy, Node fallacyNode, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		{
+			fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
+
+			if (InsertCardsThumbnails && webBasedGeneratorConfig != null)
+			{
+				var cardSetConfig = webBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
+				if (cardSetConfig != null)
+				{
+					this.ThumbnailsPathFunc = objFallacy =>
+					{
+						var cardSetDirectory = ImageHelper.GetImageFolder(webBasedGeneratorConfig, this, language, ThumbnailsCardSetName);
+						var imageFileName = MatchThumbnailsName(cardSetDirectory, fallacy);
+						var targetDirectory = webBasedGeneratorConfig.GetDocumentDirectory(language);
+						imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
+
+						return imageFileName;
+					};
+				}
+
+				var cardDoc = new XmlDocument();
+				cardDoc.LoadXml($"{CardFunc(fallacy)}");
+				var cardRichContent = new Richcontent();
+				fallacyNode.Richcontents.Add(cardRichContent);
+				cardRichContent.TYPE = "NODE";
+				cardRichContent.Html.Body.Elements.Add(cardDoc.DocumentElement);
+			}
+		}
+
+
+		
+		private async Task SerializeMindMap(FreemindMap toReturn, string fileName)
+		{
+			var serializer = new XmlSerializer(typeof(FreemindMap));
 
 			using (var fs = File.Create(fileName))
 			{
@@ -387,112 +374,176 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			Console.WriteLine($"Mind map {fileName} successfully generated!");
 		}
-
-		private void UpdateSVGFile(IList<Fallacy> fallacies, string targetDirectory, string fileName)
+		private async Task ProcessSVGFiles(IList<Fallacy> fallacies, string fileName,
+			WebBasedGeneratorConfig webBasedGeneratorConfig)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
+			var svgSavedFilePath = svgFilePath.Replace(".svg", "_Full.svg");
 			if (!File.Exists(svgFilePath))
 			{
-				Console.WriteLine("SVG mindmap {svgFilePath} was not found.");
-				Console.WriteLine("Use open-source software freemind to generate a SVG export from the original .mm file.");
-				AnsiConsole.Markup("[link]https://sourceforge.net/projects/freemind/[/]");
-				Console.WriteLine("Svg export will be further edited to include fields and links");
-				Console.WriteLine(" Press any key to resume and update or skip the SVG file...");
-				Console.ReadKey();
-			}
-
-			// Read the SVG file
-
-			if (File.Exists(svgFilePath))
-			{
-				XDocument svgDoc = XDocument.Load(svgFilePath);
-
-				// Define XNamespace for SVG
-				XNamespace svgNamespace = "http://www.w3.org/2000/svg";
-				XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
-
-				// Iterate through fallacies
-				foreach (var fallacy in fallacies)
+				if (File.Exists(svgSavedFilePath))
 				{
-					string title = TitleFunc(fallacy);
-
-					// Find the text elements in the SVG
-					var textElements = svgDoc.Descendants(svgNamespace + "text").Where(t => t.Value.Contains(title)).ToList();
-
-					// Filter multiple matches
-					XElement shortestMatch = textElements.MinBy(t => Math.Abs(t.Value.Length - title.Length));
-
-					if (shortestMatch != null)
+					svgFilePath = svgSavedFilePath;
+				}
+				else
+				{
+					DisplaySVGFileNotFoundMessage(svgFilePath);
+					if (!File.Exists(svgFilePath))
 					{
-
-						if (shortestMatch.Attribute("class") == null ||
-							!shortestMatch.Attribute("class").Value.Contains("node"))
-						{
-							// Add the missing fallacy fields
-							string desc = DescFunc(fallacy);
-							string example = ExampleFunc(fallacy);
-							string link = LinkFunc(fallacy);
-
-
-							shortestMatch.SetAttributeValue("description", desc);
-							shortestMatch.SetAttributeValue("example", example);
-							shortestMatch.SetAttributeValue("link", example);
-							shortestMatch.SetAttributeValue("class", "node");
-
-							// Make sure the link is clickable
-							XElement linkElem = new XElement(XName.Get("a", svgNamespace.NamespaceName));
-							linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
-							linkElem.SetAttributeValue("target", "_blank");
-							shortestMatch.ReplaceWith(linkElem);
-							linkElem.Add(shortestMatch);
-
-
-
-							//XElement parentGroup = shortestMatch.Parent;
-							//XElement newDesc = new XElement(svgNs + "text", desc);
-							//XElement newExample = new XElement(svgNs + "text", example);
-
-							//// Set the position of the new elements
-							//newDesc.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
-							//newDesc.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 20).ToString());
-							//newExample.SetAttributeValue("x", shortestMatch.Attribute("x").Value);
-							//newExample.SetAttributeValue("y", (float.Parse(shortestMatch.Attribute("y").Value) + 40).ToString());
-
-							//parentGroup.Add(newDesc);
-							//parentGroup.Add(newExample);
-
-						}
-						else
-						{
-							AnsiConsole.WriteLine("[red]Found existing content in svg mindmap. Updates aborted. SVG must be regenerated before applying new changes.[/]");
-							return;
-						}
-
-
-
+						return;
 					}
 				}
-
-				// Save the modified SVG file
-				using (var writer = XmlWriter.Create(svgFilePath, new XmlWriterSettings { Indent = true }))
-				{
-					svgDoc.Save(writer);
-				}
-				Console.WriteLine($"SVG file {svgFilePath} successfully updated!");
 			}
-			else
+
+			XDocument svgDoc = XDocument.Load(svgFilePath);
+			XNamespace svgNamespace = "http://www.w3.org/2000/svg";
+			XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+			UpdateSVGWithFallacies(fallacies, svgDoc, svgNamespace, xlinkNamespace);
+
+
+			var svgContent = await GetSvgContent(svgDoc);
+
+			await File.WriteAllTextAsync(svgSavedFilePath, svgContent, Encoding.UTF8);
+			Console.WriteLine($"SVG file with detailed content {svgFilePath} successfully saved");
+
+
+			await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgContent);
+
+		}
+
+		
+
+		private void DisplaySVGFileNotFoundMessage(string svgFilePath)
+		{
+			Console.WriteLine($"SVG mindmap {svgFilePath} was not found.");
+			Console.WriteLine("Use open-source software freemind to generate a SVG export from the original .mm file.");
+			AnsiConsole.Markup("[link]https://sourceforge.net/projects/freemind/[/]");
+			Console.WriteLine();
+			Console.WriteLine("Svg export will be further edited to include fields and links");
+			Console.WriteLine(" Press any key to resume and update or skip the SVG file...");
+			Console.ReadKey();
+		}
+
+		private void UpdateSVGWithFallacies(IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		{
+			foreach (var fallacy in fallacies)
 			{
-				Console.WriteLine($"SVG file {svgFilePath} not found. Please make sure it exists.");
+				string title = TitleFunc(fallacy);
+				var textElements = svgDoc.Descendants(svgNamespace + "text").Where(t => t.Value.Contains(title)).ToList();
+
+				var groupedMatches = textElements.OrderBy(t => Math.Abs(t.Value.Length - title.Length))
+					.GroupBy(t => Math.Abs(t.Value.Length - title.Length)).ToList();
+
+				if (groupedMatches.Any())
+				{
+					var shortestMatches = groupedMatches.First();
+
+					foreach (var match in shortestMatches)
+					{
+						UpdateSVGMatch(match, fallacy, svgNamespace, xlinkNamespace);
+					}
+				}
 			}
 		}
 
-	
+		private void UpdateSVGMatch(XElement match, Fallacy fallacy, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		{
+			if (match.Parent.Name.LocalName == "a")
+			{
+				AnsiConsole.MarkupLine("[red] Found existing content in SVG mindmap. Updates will be applied.[/]");
+			}
+
+			string desc = DescFunc(fallacy);
+			string example = ExampleFunc(fallacy);
+			string link = LinkFunc(fallacy);
+
+			match.SetAttributeValue("description", desc);
+			match.SetAttributeValue("example", example);
+			match.SetAttributeValue("link", example);
+			match.SetAttributeValue("depth", fallacy.Depth);
+			match.SetAttributeValue("familyClass", fallacy.FamilleCamelCase);
+			match.SetAttributeValue("class", "node");
+			
+
+			XElement linkElem = match.Parent.Name.LocalName == "a"
+				? match.Parent
+				: new XElement(XName.Get("a", svgNamespace.NamespaceName));
+
+			linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
+			linkElem.SetAttributeValue("target", "_blank");
+
+			if (match.Parent.Name.LocalName != "a")
+			{
+				match.ReplaceWith(linkElem);
+				linkElem.Add(match);
+			}
+		}
+
+		private async Task<string> GetSvgContent(XDocument svgDoc)
+		{
+			StringBuilder sb = new StringBuilder();
+			XmlWriterSettings settings = new XmlWriterSettings
+			{
+				Indent = true,
+				IndentChars = "\t", // use tab for indentation
+				NewLineChars = Environment.NewLine,
+				NewLineHandling = NewLineHandling.Replace
+			};
+
+			using (XmlWriter writer = XmlWriter.Create(sb, settings))
+			{
+				svgDoc.Save(writer);
+			}
+			string svgContent = sb.ToString();
+			return svgContent;
+		}
+
+
+
+		private async Task GenerateHtmlSVGWrappers(WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
+			string svgContent)
+		{
+			foreach (var htmlSvgWrapper in HtmlSvgWrappers)
+			{
+				var templateFilePath = webBasedGeneratorConfig.UseDebugParams
+					? htmlSvgWrapper.TemplatePathDebug
+					: htmlSvgWrapper.TemplatePathRelease;
+
+				string htmlTemplate = (await templateFilePath.GetDocumentPayload()).AsString();
+
+				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{templateFilePath}");
+
+
+				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+				{
+					
+
+					Console.WriteLine($"Skip existing Html SVG Wrapper: {htmlFileName}");
+
+				}
+				else
+				{
+					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Directory.GetParent(htmlFileName)?.FullName);
+
+					htmlTemplate = htmlTemplate.Replace("[SVGPATH]", svgRelativePath);
+					htmlTemplate = htmlTemplate.Replace("[SVGCONTENT]", svgContent);
+
+					await File.WriteAllTextAsync(htmlFileName, htmlTemplate, Encoding.UTF8);
+					Console.WriteLine($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
+				}
+
+				
+			}
+		}
+
+
 
 		public MindMapDocumentConfig CloneMindMap()
 		{
 			var clone = new MindMapDocumentConfig()
 			{
-				EnableSVGUpdate = this.EnableSVGUpdate,
+				SkipSVGUpdate = this.SkipSVGUpdate,
 				DataSet = this.DataSet,
 				DocumentName = this.DocumentName,
 				TitleExpression = this.TitleExpression,
@@ -504,7 +555,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 				FontSizes = new List<int>(this.FontSizes),
 				EdgeSizes = new List<int>(this.EdgeSizes),
 				InsertCardsThumbnails = this.InsertCardsThumbnails,
+				ThumbnailsFileNamePattern = this.ThumbnailsFileNamePattern,
+				ThumbnailsPathExpression = this.ThumbnailsPathExpression,
+				ThumbnailsPathFunc = this.ThumbnailsPathFunc,
 				ThumbnailsCardSetName = this.ThumbnailsCardSetName,
+				Enabled = this.Enabled,
+				ImageFormat = this.ImageFormat,
+				TargetDensity = this.TargetDensity,
+				Translations = this.Translations,
+				HtmlSvgWrappers = this.HtmlSvgWrappers
+
 			};
 
 			return clone;

@@ -68,7 +68,7 @@ public class ImageFileGenerator
 						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
 							configDocument.DocumentName,
 							Config.LocalizationConfig.DefaultLanguage, currentLanguage);
-						Console.WriteLine($"{Stopwatch.Elapsed}: Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
+						Logger.Log("Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
 
 
 
