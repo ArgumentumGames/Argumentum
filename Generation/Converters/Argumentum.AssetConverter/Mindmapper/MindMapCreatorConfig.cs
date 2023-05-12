@@ -66,7 +66,7 @@ namespace Argumentum.AssetConverter.Mindmapper
                 config.GenerateMindMapFile( fallacies, null, "", "");
 
             }
-            Console.WriteLine($"Generation finished, press any key to close");
+            Logger.LogTitle($"Generation finished, press any key to close");
             Console.ReadKey();
 
         }

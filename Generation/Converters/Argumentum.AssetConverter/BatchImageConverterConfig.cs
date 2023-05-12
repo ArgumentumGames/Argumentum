@@ -56,7 +56,7 @@ namespace Argumentum.AssetConverter
                         var targetFile = new FileInfo(Path.Combine(targetDir.ToString(), sourceFile.Name));
                         image.Write(targetFile);
                         
-                        Console.WriteLine($"Image Converted: {targetFile.Directory?.Name}\\{targetFile.Name}");
+                        Logger.LogSuccess($"Image Converted: {targetFile.Directory?.Name}\\{targetFile.Name}");
 
                     }
 
@@ -85,14 +85,14 @@ namespace Argumentum.AssetConverter
                         // Save image as png
                         image.Write(targetFile);
                         //var info = new MagickImageInfo(targetFile);
-                        //Console.WriteLine($"Width {info.Width}");
-                        //Console.WriteLine($"Height {info.Height}");
-                        //Console.WriteLine($"ColorSpace {info.ColorSpace}");
-                        //Console.WriteLine($"Format {info.Format}");
-                        //Console.WriteLine($"Density.X {info.Density.X}");
-                        //Console.WriteLine($"Density.Y {info.Density.Y}");
-                        //Console.WriteLine($"Density.Units {info.Density.Units}");
-                        Console.WriteLine($"Image Converted: {targetFile.Directory?.Name}\\{targetFile.Name}");
+                        //Logger.Log($"Width {info.Width}");
+                        //Logger.Log($"Height {info.Height}");
+                        //Logger.Log($"ColorSpace {info.ColorSpace}");
+                        //Logger.Log($"Format {info.Format}");
+                        //Logger.Log($"Density.X {info.Density.X}");
+                        //Logger.Log($"Density.Y {info.Density.Y}");
+                        //Logger.Log($"Density.Units {info.Density.Units}");
+                        Logger.LogSuccess($"Image Converted: {targetFile.Directory?.Name}\\{targetFile.Name}");
 
                     }
 

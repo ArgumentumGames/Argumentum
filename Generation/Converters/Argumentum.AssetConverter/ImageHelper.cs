@@ -87,7 +87,7 @@ namespace Argumentum.AssetConverter
             {
 				//imageFromEmbeddedUrl = new MagickImage(imageFileName);
 
-				Console.WriteLine($"{WebBasedGenerator.Stopwatch.Elapsed}: Skip existing image: {imageFileName}");
+				Logger.Log($"Skip existing image: {imageFileName}");
 				toReturn = imageFileName;
 			}
             else
@@ -111,8 +111,8 @@ namespace Argumentum.AssetConverter
                     if (!File.Exists(imageOriginalFileName))
                     {
                         imageFromEmbeddedUrl.Write(imageOriginalFileName);
-                        
-                        Console.WriteLine($"{WebBasedGenerator.Stopwatch.Elapsed}: Saved image: {imageOriginalFileName}");
+
+                        Logger.Log($"Saved image: {imageOriginalFileName}");
 					}
                 }
 
@@ -137,7 +137,7 @@ namespace Argumentum.AssetConverter
                     imageFromEmbeddedUrl.Resample(docConfig.TargetDensity, docConfig.TargetDensity);
                 }
                 imageFromEmbeddedUrl.Write(imageFileName, docConfig.ImageFormat);
-                Console.WriteLine($"{WebBasedGenerator.Stopwatch.Elapsed}: Saved image: {imageFileName}");
+                Logger.LogSuccess($"Saved image: {imageFileName}");
                 toReturn = imageFileName;
 			}
 

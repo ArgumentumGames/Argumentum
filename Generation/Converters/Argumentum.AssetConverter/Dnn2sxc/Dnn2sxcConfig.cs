@@ -124,7 +124,7 @@ namespace Argumentum.AssetConverter.Dnn2sxc
 
 
 
-        public void Apply(Stopwatch objSw)
+        public void Apply()
         {
 
             //var sexyContentSeralizer = new ConfigurationContainer()

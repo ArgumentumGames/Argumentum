@@ -34,13 +34,6 @@ namespace Argumentum.AssetConverter
             if (!File.Exists(path))
             {
 
-				AnsiConsole.WriteLine();
-				var rule = new Rule("[red]Creating config file[/]");
-				AnsiConsole.Write(rule);
-				AnsiConsole.WriteLine();
-
-
-
                 toReturn = new AssetConverterConfig();
                 var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(toReturn));
 
@@ -49,22 +42,26 @@ namespace Argumentum.AssetConverter
                 newConfig = true;
 
 
-				var json = new JsonText(strNewConfig);
+				//Logger.LogJson(strNewConfig);
 
-				AnsiConsole.Write(json);
-				AnsiConsole.WriteLine();
-
-
+				Logger.LogSuccess($"Config file created: {path}");
 			}
 
             
             using var configStream = File.OpenRead(path);
-            toReturn = JsonSerializer.Deserialize<AssetConverterConfig>(configStream);
-            return toReturn;
+
+            
+
+			toReturn = JsonSerializer.Deserialize<AssetConverterConfig>(configStream);
+
+			Logger.Log($"Config loaded: {path}");
+			return toReturn;
         }
 
+        
 
-        public async Task<bool> Apply(Stopwatch objSw)
+
+        public  bool Apply()
         {
             switch (Mode)
             {
@@ -72,13 +69,13 @@ namespace Argumentum.AssetConverter
                     BatchImageConverterConfig.Apply();
                     break;
                 case ConverterMode.WebBasedImageGeneration:
-					await  WebBasedGeneratorConfig.Apply(objSw);
+					 WebBasedGeneratorConfig.Apply();
                     break;
                 case ConverterMode.Mindmapper:
                     MindMapCreatorConfig.Run(null);
                     break;
                 case ConverterMode.Dnn2sxc:
-                    Dnn2sxcConfig.Apply(objSw);
+                    Dnn2sxcConfig.Apply();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -22,7 +22,6 @@ public class PdfManager
 		QuestPDF.Settings.License = LicenseType.Community;
 	}
 
-	public Stopwatch Stopwatch { get; set; }
 
 	private const float InchToCentimetre = 2.54f;
 	private const float InchToPoints = 72;
@@ -89,7 +88,7 @@ public class PdfManager
 
 		if (File.Exists(fileName) && !configOverwriteExistingDocs)
 		{
-			Logger.Log("Skipping Existing pdf document {fileName}");
+			Logger.Log($"Skipping Existing pdf document {fileName}");
 		}
 		else
 		{
@@ -157,7 +156,7 @@ public class PdfManager
 					}
 					catch (Exception e)
 					{
-						AnsiConsole.WriteException(e);
+						Logger.LogException(e);
 
 					}
 
@@ -167,7 +166,7 @@ public class PdfManager
 			})
 				.WithMetadata(docMetadata)
 				.GeneratePdf(fileName);
-			Logger.Log("Generated pdf document {fileName}");
+			Logger.LogSuccess($"Generated pdf document {fileName}");
 
 		}
 
@@ -273,12 +272,12 @@ public class PdfManager
 		{
 			if (File.Exists(targetFile.fileName) && !configOverwriteExistingDocs)
 			{
-				Logger.Log("Skipping Existing pdf document {targetFile.fileName}");
+				Logger.Log($"Skipping Existing pdf document {targetFile.fileName}");
 			}
 			else
 			{
 				targetFile.documentImages().Write(targetFile.fileName);
-				Logger.Log("Generated pdf document {targetFile.fileName}");
+				Logger.LogSuccess($"Generated pdf document {targetFile.fileName}");
 			}
 
 			

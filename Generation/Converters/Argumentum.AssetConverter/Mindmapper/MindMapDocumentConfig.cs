@@ -26,7 +26,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 	public class MindMapDocumentConfig : DocumentConfig, ICloneable
 	{
 
-		public bool SkipSVGUpdate { get; set; } 
+
 
 		public string DataSet { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
 		public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
@@ -193,11 +193,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			if (string.IsNullOrEmpty(language)) 
 				language=webBasedGeneratorConfig.LocalizationConfig.DefaultLanguage ;
-			
 
-			var toReturn = new FreemindMap();
-			var nodesByPath = new Dictionary<string, Node>(fallacies.Count());
-			await CreateFallacyNodes(toReturn, fallacies, nodesByPath, webBasedGeneratorConfig, language);
 
 			var fileName = DocumentName;
 			if (!string.IsNullOrEmpty(targetDirectory))
@@ -205,11 +201,31 @@ namespace Argumentum.AssetConverter.Mindmapper
 				fileName = Path.Combine(targetDirectory, fileName);
 
 			}
-			await SerializeMindMap(toReturn, fileName);
+			var documentPath = Path.Combine(targetDirectory, DocumentName);
 
-			if (!SkipSVGUpdate)
+			await CreateFreemindmap(fallacies, webBasedGeneratorConfig, language, documentPath, fileName);
+
+			//Task.Run(async () => await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig, webBasedGeneratorConfig.EnableSVGPrompt)).GetAwaiter().GetResult() ;
+			await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig,
+				webBasedGeneratorConfig.EnableSVGPrompt);
+		}
+
+		private async Task CreateFreemindmap(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string language,
+			string documentPath, string fileName)
+		{
+			if (File.Exists(documentPath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
 			{
-				await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig);
+				Logger.Log($"Skip existing Mindmap: {documentPath}");
+			}
+			else
+			{
+				Logger.Log($"Creating Freemind mind map {DocumentName}");
+				var freemindMap = new FreemindMap();
+				var nodesByPath = new Dictionary<string, Node>(fallacies.Count());
+				await CreateFallacyNodes(freemindMap, fallacies, nodesByPath, webBasedGeneratorConfig, language);
+
+
+				await SerializeMindMap(freemindMap, fileName);
 			}
 		}
 
@@ -372,57 +388,81 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 
 
-			Console.WriteLine($"Mind map {fileName} successfully generated!");
+			Logger.LogSuccess($"Mind map {fileName} successfully generated!");
 		}
 		private async Task ProcessSVGFiles(IList<Fallacy> fallacies, string fileName,
-			WebBasedGeneratorConfig webBasedGeneratorConfig)
+			WebBasedGeneratorConfig webBasedGeneratorConfig, bool enableSvgUpdates)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
 			var svgSavedFilePath = svgFilePath.Replace(".svg", "_Full.svg");
-			if (!File.Exists(svgFilePath))
+			Func<Task<string>> svgLoader;
+			if (File.Exists(svgSavedFilePath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
 			{
-				if (File.Exists(svgSavedFilePath))
+				Logger.Log($"Skipping existing processed SVG: {svgSavedFilePath}");
+				svgLoader = async  () => await File.ReadAllTextAsync(svgSavedFilePath);
+			}
+			else
+			{
+				if (enableSvgUpdates)
 				{
-					svgFilePath = svgSavedFilePath;
+					DisplaySVGFileNotFoundMessage(svgFilePath);
 				}
 				else
 				{
-					DisplaySVGFileNotFoundMessage(svgFilePath);
-					if (!File.Exists(svgFilePath))
-					{
-						return;
-					}
+					Logger.LogWarning($"File {svgFilePath} not found and skipped. Switch \"EnableSVGPrompt\" on for Freemind-assisted SVG generation.");
 				}
+				
+				if (!File.Exists(svgFilePath))
+				{
+					return;
+				}
+				XDocument svgDoc = XDocument.Load(svgFilePath);
+				XNamespace svgNamespace = "http://www.w3.org/2000/svg";
+				XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+				UpdateSVGWithFallacies(fallacies, svgDoc, svgNamespace, xlinkNamespace);
+
+
+				svgLoader = async () => await GetSvgContent(svgDoc);
+
+
+				await File.WriteAllTextAsync(svgSavedFilePath,await svgLoader(), Encoding.UTF8);
+				Logger.LogSuccess($"SVG file with detailed content {svgFilePath} successfully saved");
+
 			}
 
-			XDocument svgDoc = XDocument.Load(svgFilePath);
-			XNamespace svgNamespace = "http://www.w3.org/2000/svg";
-			XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
-
-			UpdateSVGWithFallacies(fallacies, svgDoc, svgNamespace, xlinkNamespace);
 
 
-			var svgContent = await GetSvgContent(svgDoc);
+			await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
+			//Task.Run(async () => await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgLoader))
+			//	.GetAwaiter().GetResult();
 
-			await File.WriteAllTextAsync(svgSavedFilePath, svgContent, Encoding.UTF8);
-			Console.WriteLine($"SVG file with detailed content {svgFilePath} successfully saved");
 
 
-			await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgContent);
 
 		}
 
-		
+		private static object lockObj = new object();
+
+		private static bool locked;
 
 		private void DisplaySVGFileNotFoundMessage(string svgFilePath)
 		{
-			Console.WriteLine($"SVG mindmap {svgFilePath} was not found.");
-			Console.WriteLine("Use open-source software freemind to generate a SVG export from the original .mm file.");
-			AnsiConsole.Markup("[link]https://sourceforge.net/projects/freemind/[/]");
-			Console.WriteLine();
-			Console.WriteLine("Svg export will be further edited to include fields and links");
-			Console.WriteLine(" Press any key to resume and update or skip the SVG file...");
-			Console.ReadKey();
+			Logger.LogInstructions($"SVG mindmap {svgFilePath} was not found.\n Please download open-source software freemind to generate a SVG export from the original .mm file.\n" +
+			                       $"[link]https://sourceforge.net/projects/freemind/[/]\nSvg export will be further edited to include fields and links\nPress any key to resume and update or skip the SVG file...");
+			if (!locked)
+			{
+				lock (lockObj)
+				{
+					if (!locked)
+					{
+						locked = true;
+						Console.ReadKey();
+						locked = false;
+					}
+				}
+			}
+			
 		}
 
 		private void UpdateSVGWithFallacies(IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
@@ -451,7 +491,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			if (match.Parent.Name.LocalName == "a")
 			{
-				AnsiConsole.MarkupLine("[red] Found existing content in SVG mindmap. Updates will be applied.[/]");
+				Logger.LogWarning("Existing refined content found in SVG file. Updates will be applied, but some nodes might be missing. Please delete processed SVG file for a fresh processing");
 			}
 
 			string desc = DescFunc(fallacy);
@@ -502,7 +542,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		private async Task GenerateHtmlSVGWrappers(WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
-			string svgContent)
+			Func<Task<string>> svgContent)
 		{
 			foreach (var htmlSvgWrapper in HtmlSvgWrappers)
 			{
@@ -512,14 +552,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				string htmlTemplate = (await templateFilePath.GetDocumentPayload()).AsString();
 
-				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{templateFilePath}");
+				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
 
 
 				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingDocs)
 				{
 					
 
-					Console.WriteLine($"Skip existing Html SVG Wrapper: {htmlFileName}");
+					Logger.Log($"Skip existing Html SVG Wrapper: {htmlFileName}");
 
 				}
 				else
@@ -527,10 +567,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Directory.GetParent(htmlFileName)?.FullName);
 
 					htmlTemplate = htmlTemplate.Replace("[SVGPATH]", svgRelativePath);
-					htmlTemplate = htmlTemplate.Replace("[SVGCONTENT]", svgContent);
+					htmlTemplate = htmlTemplate.Replace("[SVGCONTENT]", await svgContent());
 
 					await File.WriteAllTextAsync(htmlFileName, htmlTemplate, Encoding.UTF8);
-					Console.WriteLine($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
+					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
 				}
 
 				
@@ -543,7 +583,6 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			var clone = new MindMapDocumentConfig()
 			{
-				SkipSVGUpdate = this.SkipSVGUpdate,
 				DataSet = this.DataSet,
 				DocumentName = this.DocumentName,
 				TitleExpression = this.TitleExpression,

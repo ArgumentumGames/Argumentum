@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -30,7 +31,7 @@ public class DocumentLocalization
 
 	public List<string> TargetProperties { get; set; } = new List<string>();
 
-	private Dictionary<Type, PropertyInfo[]> filteredProperties = new Dictionary<Type, PropertyInfo[]>();
+	private ConcurrentDictionary<Type, PropertyInfo[]> filteredProperties = new ConcurrentDictionary<Type, PropertyInfo[]>();
 
 	public void DoReflectionTranslate(object targetObject, string destLang)
 	{
