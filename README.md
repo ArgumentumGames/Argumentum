@@ -106,6 +106,66 @@ Those file, mainly located in the [Cards](/Cards) directory, consist of those ty
 
 If you wish to start making custom changes to those files, simply download them locally, make your changes and update the path to that of the file's path on your local hard drive.
 
+### How to setup a development environment 
+
+The most comfortable way to customise the App's behavior is to clone this repository locally, build the App and run the App in Debug mode. 
+Configuration has a debug switch such that when run in debug, all file paths for datasets and templates are configured to your version of those files in your local clone of this repository, with their path relative to the application run from the build directory.
+
+#### Requirements
+
+Application is a .Net 7.0 console app, so the build environment can be one of the following
+
+- Visual Studio Community (Windows)/ Visual Studio for Mac, installed with a .Net desktop workload.
+- Visual Studio Code, with the "c#" and "vscode-solution" extensions, to support c# .Net builds, and .sln environments.
+- Jetbrains Rider, which works very similar to VSCommunity.
+
+Simply load the "Argumentum Converters.sln" solution, build and run the included c# console csproj an your should be started.
+
+#### Code structure
+
+The entry point has other tools available in command line, but default configuration runs the WebBasedGenerator, which is the multi-stage generation tool.
+
+That class makes use of the following components:
+
+- HarvestManager takes in charge the automated browsing of cardpen, submitting customized json templates and download generated images
+- ImageFil eGenerator manages MagickNet image processing to create individual image files
+- PdfManager is responsible for creating pdf documents using QuestPdf
+- MindMapDocumentConfig hols the logic to manipulate Freemind, SVG and Html mindmaps
+
+
+## How to contribute
+
+We are open to contributions of many kinds. You don't have to clone this repository or be a developper to give a hand.
+
+### Text contributions 
+
+What matters most is the data that is at the heart of this project. Those 3 files contain pretty much all text from the projet:
+
+- Argumentum Fallacies - Taxonomy.csv
+- Argumentum Scenarii - Cards.csv
+- Argumentum Rules - Cards.csv
+
+In order to make bulk collaborative editing easier, their content is edited in Google spreadsheet and exported on a regular basis to commit edits to those csv files in this repository.
+
+Here are the corresponding spreadsheets:
+
+- [Argumentum Fallacies](https://docs.google.com/spreadsheets/d/1TrQUyzXMMM-9pHdNWz1fdJ3xQ5XcHgwVH52SOnM61ow/edit?usp=sharing)
+- [Argumentum Scenarii](https://docs.google.com/spreadsheets/d/1SQb9R7Dpi0jPz2JX-HXk1WFn9t68e3aq9MCGif7lM10/edit?usp=sharing)
+- [Argumentum Rules](https://docs.google.com/spreadsheets/d/1jnhlod6PLgvVI-Qgrz3sTYytMgnrMyZrHcc8htPn_DQ/edit?usp=sharing)
+
+Those documents are open to comments, so you can start proposing fixes, and if you are willing to commit more efforts, we'll shortly add you to the list of Edit users.
+
+#### Translations
+
+Our main goal is to distribute our material to the widest audience. Datasets have a set of columns of all current targeted languages. 
+For most new languages, automated translations were added for now, and we need natives to go through the content and propose fixes.
+Some users interested in using the end material for teaching argumentation are giving a hand, and we're definitely looking for more help.
+Also, if you want to add a new translation, just let us know, and we'll add the new columns in the csv files.    
+
+#### Improvements
+
+Experts in one of the fields addressed by our material are more than welcom to propose improvements to any part of it. Our original extended taxonomy of fallacies comes to mind as one of the main area for improvements. Feel free to address any branch it contains.
+
 
 ## How to build the website
 
@@ -113,9 +173,7 @@ The website is currently commited without the data and decryptionkey, implying a
 
 For now, if you are interested into running a copy of Argumentum.games, just let us know.
 
-## How to contribute
 
-The project is open to contributions. If you want to contribute, you can do so by forking the repository, making your changes, and then submitting a pull request.
 
 ## License
 
