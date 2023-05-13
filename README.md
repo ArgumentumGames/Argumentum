@@ -30,8 +30,16 @@ To run it, you need to [install the runtime](https://dotnet.microsoft.com/downlo
 
 You can launch the program :
 
-- either by running the executable. On Linux/Mac, you may need to grant authorizations: "chmod +x ./Argumentum.AssetConverter"
-- or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll"
+- either by running the executable. On Linux/Mac, 
+- or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll". 
+Note: In MacOS after unizipping the App directory, you can open a terminal set to the target directory with a right-click from Finder. 
+
+On MacOS/Linux, you might have to bypass additional security safeguards from the host OS. 
+
+- For running the executable directly, you may need to grant authorizations: "chmod +x ./Argumentum.AssetConverter"
+- In terminal, you might need elevated permissions to run an automated browser. In that case the command should be: "sudo dotnet ./Argumentum.AssetConverter.dll"
+- If you get an error stating some of the application libraries are rejected, go to  "System Preferences -> Privacy & Security" -> Continue to unblock the library that should appear here. Note that you may need to that several times before the app runs without any error.
+Also make sure that in the same settings section, download execution is granted for "AppStore & identified developpers"
 
 ### How it works
 
