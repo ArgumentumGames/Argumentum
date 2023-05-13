@@ -44,7 +44,7 @@ public class HarvestManager
 						 {
 							 return playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 							 {
-								 Headless = false,
+								 Headless = Config.HeadLessBrowser,
 								 //SlowMo = 50,
 							 });
 						 }).Result;

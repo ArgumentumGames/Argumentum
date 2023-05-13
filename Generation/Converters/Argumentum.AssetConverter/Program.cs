@@ -20,11 +20,11 @@ namespace Argumentum.AssetConverter
 
 				AnsiConsole.Write(new FigletText("Argumentum").Centered().Color(Color.Blue));
 
-				Logger.LogExplanations("Welcome to Argumentum Swiss army knife. This application does a lot of generation in the background that go \"Brrrrrr...\" on the foreground. You may have occasional instructions to follow, but this is about mainly relaxing and watching files and documents being created. Enjoy the ride !");
+				Logger.LogExplanations("Welcome to Argumentum Swiss army knife. This application does a lot of generation in the background that go \"Brrrrrr...\" on the foreground. \nYou may have occasional instructions to follow, but this is about mainly relaxing and watching files and documents being created. \nEnjoy the ride !");
 
 				Logger.LogTitle("Loading Configuration");
 
-				Logger.LogExplanations("You can control most things that the application does through a large configuration file. Default configuration has pretty much everything enabled for generation, which should take a little north of 1h.");
+				Logger.LogExplanations("You can control most things that the application does through a large configuration file. \nDefault configuration has pretty much everything enabled for generation, which should take a little north of 1h.");
 
 
 				var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
@@ -37,8 +37,8 @@ namespace Argumentum.AssetConverter
 				}
 				
 				config.Apply();
-				Logger.Log($"Generation finished");
-				Logger.LogInstructions("Press any key to close");
+				Logger.Log($"Generation finished.");
+				Logger.LogInstructions($"Thanks for the ride. \nLet's now check those files located in {Environment.CurrentDirectory}\nPress any key to close");
 			}
 			catch (Exception e)
 			{

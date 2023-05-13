@@ -22,6 +22,8 @@ namespace Argumentum.AssetConverter
 
 		public bool ShowInfoLogs { get; set; } = true;
 
+		public bool HeadLessBrowser { get; set; }
+
 		public bool OverwriteExistingDocs { get; set; }
 
 		public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
