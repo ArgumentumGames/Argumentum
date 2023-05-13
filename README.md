@@ -30,7 +30,7 @@ To run it, you need to [install the runtime](https://dotnet.microsoft.com/downlo
 
 You can launch the program :
 
-- either by running the executable. On Linux/Mac, 
+- either by running the executable "Argumentum.AssetConverter.exe" (Windows) / "Argumentum.AssetConverter" (Mac) 
 - or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll". 
 Note: In MacOS after unizipping the App directory, you can open a terminal set to the target directory with a right-click from Finder. 
 
