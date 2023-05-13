@@ -62,7 +62,7 @@ namespace Argumentum.AssetConverter
 		{
 			Logger.LogTitle("Generating pdf documents");
 
-			Logger.LogExplanations("In this third stage, Pdf documents are compiled from the individual image files. Those are essentially Print&Play documents for individual printers, professional services printing formats, and various posters");
+			Logger.LogExplanations("In this third stage, Pdf documents are compiled from the individual image files. \nThose are essentially Print&Play documents for individual printers, professional services printing formats, and various posters");
 
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
 
@@ -119,7 +119,7 @@ namespace Argumentum.AssetConverter
 
 			Logger.LogTitle("Generating Freemind, SVG & Html Mindmaps");
 
-			Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. Optional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate a svg file, which is then further processed for Html generation");
+			Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. \nOptional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate a svg file, which is then further processed for Html generation");
 
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
 
