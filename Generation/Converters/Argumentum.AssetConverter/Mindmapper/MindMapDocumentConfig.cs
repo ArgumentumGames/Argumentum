@@ -20,6 +20,7 @@ using Spectre.Console;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
@@ -176,7 +177,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string ThumbnailsFileNamePattern { get; set; } = "_{fallacy.Path}..";
 
 
-		public List<HtmlSVGWrapper> HtmlSvgWrappers { get; set; } = new List<HtmlSVGWrapper>();
+		public List<SVGFreemindMap> SVGMaps { get; set; } = new List<SVGFreemindMap>();
 
 
 
@@ -394,78 +395,72 @@ namespace Argumentum.AssetConverter.Mindmapper
 			WebBasedGeneratorConfig webBasedGeneratorConfig, bool enableSvgUpdates)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
-			var svgSavedFilePath = svgFilePath.Replace(".svg", "_Full.svg");
-			Func<Task<string>> svgLoader;
-			if (File.Exists(svgSavedFilePath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+
+
+			foreach (var svgFreemindMap in SVGMaps)
 			{
-				Logger.Log($"Skipping existing processed SVG: {svgSavedFilePath}");
-				svgLoader = async  () => await File.ReadAllTextAsync(svgSavedFilePath);
-			}
-			else
-			{
-				if (enableSvgUpdates)
+				var svgSavedFilePath = Path.ChangeExtension(svgFilePath, svgFreemindMap.DocumentName);
+				Func<Task<string>> svgLoader;
+				if (File.Exists(svgSavedFilePath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
 				{
-					DisplaySVGFileNotFoundMessage(svgFilePath);
+					Logger.Log($"Skipping existing processed SVG: {svgSavedFilePath}");
+					svgLoader = async () => await File.ReadAllTextAsync(svgSavedFilePath);
 				}
 				else
 				{
-					Logger.LogWarning($"File {svgFilePath} not found and skipped. Switch \"EnableSVGPrompt\" on for Freemind-assisted SVG generation.");
+					if (enableSvgUpdates)
+					{
+						await DisplaySVGFileNotFoundMessage(svgFilePath);
+					}
+					else
+					{
+						Logger.LogWarning($"File {svgFilePath} not found and skipped. Switch \"EnableSVGPrompt\" on for Freemind-assisted SVG generation.");
+					}
+
+					if (!File.Exists(svgFilePath))
+					{
+						return;
+					}
+					XDocument svgDoc = XDocument.Load(svgFilePath);
+					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
+					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+					UpdateSVGWithFallacies(svgFreemindMap, fallacies, svgDoc, svgNamespace, xlinkNamespace);
+
+
+					svgLoader = async () => await GetSvgContent(svgDoc);
+
+
+					await File.WriteAllTextAsync(svgSavedFilePath, await svgLoader(), Encoding.UTF8);
+					Logger.LogSuccess($"SVG file with detailed content {svgFilePath} successfully saved");
+
 				}
-				
-				if (!File.Exists(svgFilePath))
-				{
-					return;
-				}
-				XDocument svgDoc = XDocument.Load(svgFilePath);
-				XNamespace svgNamespace = "http://www.w3.org/2000/svg";
-				XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
-
-				UpdateSVGWithFallacies(fallacies, svgDoc, svgNamespace, xlinkNamespace);
 
 
-				svgLoader = async () => await GetSvgContent(svgDoc);
 
-
-				await File.WriteAllTextAsync(svgSavedFilePath,await svgLoader(), Encoding.UTF8);
-				Logger.LogSuccess($"SVG file with detailed content {svgFilePath} successfully saved");
+				await GenerateHtmlSVGWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
+				//Task.Run(async () => await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgLoader))
+				//	.GetAwaiter().GetResult();
 
 			}
 
-
-
-			await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
-			//Task.Run(async () => await GenerateHtmlSVGWrappers(webBasedGeneratorConfig, svgSavedFilePath, svgLoader))
-			//	.GetAwaiter().GetResult();
-
-
-
-
 		}
 
-		private static object lockObj = new object();
 
-		private static bool locked;
-
-		private void DisplaySVGFileNotFoundMessage(string svgFilePath)
+		private async Task DisplaySVGFileNotFoundMessage(string svgFilePath)
 		{
 			Logger.LogInstructions($"SVG mindmap {svgFilePath} was not found.\n Please download open-source software freemind to generate a SVG export from the original .mm file.\n" +
 			                       $"[link]https://sourceforge.net/projects/freemind/[/]\nSvg export will be further edited to include fields and links\nPress any key to resume and update or skip the SVG file...");
-			if (!locked)
-			{
-				lock (lockObj)
-				{
-					if (!locked)
-					{
-						locked = true;
-						Console.ReadKey();
-						locked = false;
-					}
-				}
-			}
-			
+
+			await UtilityExtensions.ConsoleKeyPressAsync();
+			//await UtilityExtensions.KeyPressSemaphore.WaitAsync();
 		}
 
-		private void UpdateSVGWithFallacies(IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+
+
+
+
+		private void UpdateSVGWithFallacies(SVGFreemindMap svgMap, IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
 		{
 			foreach (var fallacy in fallacies)
 			{
@@ -475,50 +470,64 @@ namespace Argumentum.AssetConverter.Mindmapper
 				var groupedMatches = textElements.OrderBy(t => Math.Abs(t.Value.Length - title.Length))
 					.GroupBy(t => Math.Abs(t.Value.Length - title.Length)).ToList();
 
+				var warned = false;
 				if (groupedMatches.Any())
 				{
 					var shortestMatches = groupedMatches.First();
 
 					foreach (var match in shortestMatches)
 					{
-						UpdateSVGMatch(match, fallacy, svgNamespace, xlinkNamespace);
+						UpdateSVGMatch(svgMap, match, fallacy, svgNamespace, xlinkNamespace, ref warned);
 					}
 				}
 			}
 		}
 
-		private void UpdateSVGMatch(XElement match, Fallacy fallacy, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		private void UpdateSVGMatch(SVGFreemindMap svgMap, XElement match, Fallacy fallacy, XNamespace svgNamespace,
+			XNamespace xlinkNamespace, ref bool warned)
 		{
-			if (match.Parent.Name.LocalName == "a")
+			if (match.Parent.Name.LocalName == "a" && !warned)
 			{
 				Logger.LogWarning("Existing refined content found in SVG file. Updates will be applied, but some nodes might be missing. Please delete processed SVG file for a fresh processing");
+				warned = true;
 			}
 
 			string desc = DescFunc(fallacy);
 			string example = ExampleFunc(fallacy);
 			string link = LinkFunc(fallacy);
 
-			match.SetAttributeValue("description", desc);
-			match.SetAttributeValue("example", example);
-			match.SetAttributeValue("link", example);
-			match.SetAttributeValue("depth", fallacy.Depth);
-			match.SetAttributeValue("familyClass", fallacy.FamilleCamelCase);
-			match.SetAttributeValue("class", "node");
+			if (svgMap.SetSVGNodeAttributes)
+			{
+				match.SetAttributeValue("description", desc);
+				match.SetAttributeValue("example", example);
+				match.SetAttributeValue("link", example);
+				match.SetAttributeValue("depth", fallacy.Depth);
+				match.SetAttributeValue("familyClass", fallacy.FamilleCamelCase);
+				match.SetAttributeValue("class", "node");
+			}
+
+			if (svgMap.WrapNodeByLink)
+			{
+				XElement linkElem = match.Parent.Name.LocalName == "a"
+					? match.Parent
+					: new XElement(XName.Get("a", svgNamespace.NamespaceName));
+
+				linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
+				linkElem.SetAttributeValue("target", "_blank");
+
+				if (match.Parent.Name.LocalName != "a")
+				{
+					match.ReplaceWith(linkElem);
+					linkElem.Add(match);
+				}
+			}
+			
 			
 
-			XElement linkElem = match.Parent.Name.LocalName == "a"
-				? match.Parent
-				: new XElement(XName.Get("a", svgNamespace.NamespaceName));
-
-			linkElem.SetAttributeValue(XName.Get("href", xlinkNamespace.NamespaceName), link);
-			linkElem.SetAttributeValue("target", "_blank");
-
-			if (match.Parent.Name.LocalName != "a")
-			{
-				match.ReplaceWith(linkElem);
-				linkElem.Add(match);
-			}
+			
 		}
+
+		
 
 		private async Task<string> GetSvgContent(XDocument svgDoc)
 		{
@@ -541,10 +550,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private async Task GenerateHtmlSVGWrappers(WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
+		private async Task GenerateHtmlSVGWrappers(SVGFreemindMap svgMap, WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
 			Func<Task<string>> svgContent)
 		{
-			foreach (var htmlSvgWrapper in HtmlSvgWrappers)
+			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
 			{
 				var templateFilePath = webBasedGeneratorConfig.UseDebugParams
 					? htmlSvgWrapper.TemplatePathDebug
@@ -602,7 +611,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				ImageFormat = this.ImageFormat,
 				TargetDensity = this.TargetDensity,
 				Translations = this.Translations,
-				HtmlSvgWrappers = this.HtmlSvgWrappers
+				SVGMaps =  new List<SVGFreemindMap>(this.SVGMaps.Select(map => (SVGFreemindMap) map.Clone() )) 
 
 			};
 

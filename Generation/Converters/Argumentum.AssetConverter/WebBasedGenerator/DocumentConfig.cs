@@ -15,7 +15,7 @@ using JsonSerializer = Utf8Json.JsonSerializer;
 
 namespace Argumentum.AssetConverter
 {
-    public class DocumentConfig 
+    public class DocumentConfig: ICloneable
 	{
 	    [DataMember(Order = 0)]
 	    public virtual bool Enabled { get; set; } = true;
@@ -33,6 +33,12 @@ namespace Argumentum.AssetConverter
 
 		public MagickFormat ImageFormat { get; set; } = MagickFormat.Png;
 
+
+		public string TemplatePathRelease { get; set; }
+
+
+		public string TemplatePathDebug { get; set; }
+
 		public string GetDensityDirectory(string baseDirectory)
 		{
 			var densityDirectory = Path.Combine(baseDirectory, $@".\density-{TargetDensity}\");
@@ -43,6 +49,24 @@ namespace Argumentum.AssetConverter
 			return densityDirectory;
 		}
 
+		protected virtual DocumentConfig GetClone()
+		{
+			return new DocumentConfig();
+		}
+
+		public object Clone()
+		{
+			var toReturn = GetClone();
+			toReturn.Enabled = Enabled;
+			toReturn.DocumentName = DocumentName;
+			toReturn.TargetDensity = TargetDensity;
+			toReturn.TemplatePathRelease = TemplatePathRelease;
+			toReturn.ImageFormat = ImageFormat;
+
+			toReturn.TemplatePathDebug = TemplatePathDebug;
+			toReturn.Translations = Translations;
+			return toReturn;
+		}
 
 	}
 
