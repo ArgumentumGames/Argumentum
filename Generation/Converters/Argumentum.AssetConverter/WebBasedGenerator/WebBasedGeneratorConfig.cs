@@ -34,7 +34,9 @@ namespace Argumentum.AssetConverter
 
 		public int MaxDegreeOfParallelismImageTranslations { get; set; } = 2;
 
-		public int MaxDegreeOfParallelismDocuments { get; set; } = 6;
+		public int MaxDegreeOfParallelismDocuments { get; set; } = 4;
+
+		public int MaxDegreeOfParallelismMindMaps { get; set; } = 6;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -843,14 +845,36 @@ namespace Argumentum.AssetConverter
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
-					HtmlSvgWrappers = new List<HtmlSVGWrapper>(new []
+					SVGMaps = new List<SVGFreemindMap>(new []
 					{
-						new HtmlSVGWrapper()
+						new SVGFreemindMap()
 						{
 							Enabled = true,
-							TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/LocalFull.html",
-							TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\LocalFull.html"
-						}
+							WrapNodeByLink = true,
+							SetSVGNodeAttributes = false,
+						},
+						new SVGFreemindMap()
+						{
+							Enabled = true,
+							WrapNodeByLink = false,
+							SetSVGNodeAttributes = true,
+							HtmlWrappers = new List<DocumentConfig>(new []
+							{
+								new DocumentConfig()
+								{
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/LocalFull.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\LocalFull.html"
+								},
+								new DocumentConfig()
+								{
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/HostedExternal.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\HostedExternal.html"
+								},
+
+							})
+
+
+						},
 					})
 				},
 				new MindMapDocumentConfig()
@@ -868,14 +892,38 @@ namespace Argumentum.AssetConverter
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
-					HtmlSvgWrappers = new List<HtmlSVGWrapper>(new []
+					SVGMaps = new List<SVGFreemindMap>(new []
 					{
-						new HtmlSVGWrapper()
+						new SVGFreemindMap()
 						{
 							Enabled = true,
-							TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/HostedExternal.html",
-							TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\HostedExternal.html"
-						}
+							DocumentName = "Light.svg",
+							WrapNodeByLink = true,
+							SetSVGNodeAttributes = false,
+						},
+						new SVGFreemindMap()
+						{
+							Enabled = true,
+							DocumentName = "Html.svg",
+							WrapNodeByLink = false,
+							SetSVGNodeAttributes = true,
+							HtmlWrappers = new List<DocumentConfig>(new []
+							{
+								new DocumentConfig()
+								{
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/LocalFull.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\LocalFull.html"
+								},
+								new DocumentConfig()
+								{
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/HostedExternal.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\HostedExternal.html"
+								},
+
+							})
+
+
+						},
 					})
 				}
 			}

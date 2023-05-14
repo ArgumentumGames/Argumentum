@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Text.Unicode;
+using System.Threading;
 using System.Threading.Tasks;
 using CsvHelper;
 
@@ -231,6 +232,51 @@ namespace Argumentum.AssetConverter
 
 		}
 
+
+		private static TaskCompletionSource<ConsoleKeyInfo> keyPressTcs;
+
+		public static Task<ConsoleKeyInfo> ConsoleKeyPressAsync()
+		{
+			if (keyPressTcs == null)
+			{
+				keyPressTcs = new TaskCompletionSource<ConsoleKeyInfo>();
+
+				Task.Run(() =>
+				{
+					var keyInfo = Console.ReadKey(intercept: true);
+					keyPressTcs.SetResult(keyInfo);
+				});
+			}
+			return keyPressTcs.Task;
+		}
+
+
+		//public static SemaphoreSlim KeyPressSemaphore = new SemaphoreSlim(0);
+
+
+		//private static void WaitForKeyPress()
+		//{
+		//	try
+		//	{
+		//		ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+		//		KeyPressTcs.TrySetResult(keyInfo);
+		//	}
+		//	catch (OperationCanceledException)
+		//	{
+		//		KeyPressTcs.TrySetCanceled();
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		KeyPressTcs.TrySetException(ex);
+		//	}
+		//}
+
+		//public static Task<ConsoleKeyInfo> ReadKeyAsync()
+		//{
+		//	Task<ConsoleKeyInfo> task = KeyPressTcs.Task;
+		//	ThreadPool.QueueUserWorkItem(_ => WaitForKeyPress());
+		//	return task;
+		//}
 
 	}
 }

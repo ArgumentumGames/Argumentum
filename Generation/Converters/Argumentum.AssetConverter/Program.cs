@@ -37,6 +37,8 @@ namespace Argumentum.AssetConverter
 				}
 				
 				config.Apply();
+
+				
 				Logger.Log($"Generation finished.");
 				Logger.LogInstructions($"Thanks for the ride. \nLet's now check those files located in {Environment.CurrentDirectory}\nPress any key to close");
 			}
