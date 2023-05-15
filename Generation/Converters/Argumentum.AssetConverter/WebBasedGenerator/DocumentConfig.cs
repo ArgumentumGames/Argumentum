@@ -51,22 +51,18 @@ namespace Argumentum.AssetConverter
 
 		protected virtual DocumentConfig GetClone()
 		{
-			return new DocumentConfig();
+			return (DocumentConfig)this.MemberwiseClone(); 
 		}
 
 		public object Clone()
 		{
 			var toReturn = GetClone();
-			toReturn.Enabled = Enabled;
-			toReturn.DocumentName = DocumentName;
-			toReturn.TargetDensity = TargetDensity;
-			toReturn.TemplatePathRelease = TemplatePathRelease;
-			toReturn.ImageFormat = ImageFormat;
-
-			toReturn.TemplatePathDebug = TemplatePathDebug;
-			toReturn.Translations = Translations;
+			toReturn.Translations = new List<(string sourceLanguage, string targetLanguage)>(this.Translations);
 			return toReturn;
 		}
+
+
+
 
 	}
 

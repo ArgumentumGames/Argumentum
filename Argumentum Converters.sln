@@ -38,8 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memo", "Memo", "{D23B974C-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mindmaps", "Mindmaps", "{1A7077BC-7CA9-4D76-9D96-C674564283F9}"
 	ProjectSection(SolutionItems) = preProject
-		Cards\Fallacies\Mindmaps\HostedExternal.html = Cards\Fallacies\Mindmaps\HostedExternal.html
-		Cards\Fallacies\Mindmaps\LocalFull.html = Cards\Fallacies\Mindmaps\LocalFull.html
+		Cards\Fallacies\Mindmaps\included.html = Cards\Fallacies\Mindmaps\included.html
+		Cards\Fallacies\Mindmaps\external.html = Cards\Fallacies\Mindmaps\external.html
 	EndProjectSection
 EndProject
 Global

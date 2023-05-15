@@ -169,23 +169,23 @@ namespace Argumentum.AssetConverter
 			}
 		}
 
-		public static string GetRelativePathFrom(this string referencedDocumentPath, string mainDocumentPath)
+		public static string GetRelativePathFrom(this string referencedPath, string mainPath)
 		{
-			if (string.IsNullOrEmpty(mainDocumentPath) || string.IsNullOrEmpty(referencedDocumentPath))
+			if (string.IsNullOrEmpty(mainPath) || string.IsNullOrEmpty(referencedPath))
 			{
 				throw new ArgumentException("Both paths must be non-empty.");
 			}
 
-			var mainDocumentUri = new Uri(mainDocumentPath);
-			var referencedImageUri = new Uri(referencedDocumentPath);
+			if (!Path.IsPathRooted(referencedPath) || !Path.IsPathRooted(mainPath))
+			{
+				throw new ArgumentException("Both paths must be absolute.");
+			}
 
-			var relativeUri = mainDocumentUri.MakeRelativeUri(referencedImageUri);
-
-			// Convert the URI path to a regular path with forward slashes
-			var relativePath = Uri.UnescapeDataString(relativeUri.ToString()).Replace(Path.DirectorySeparatorChar, '/');
-
-			return relativePath;
+			return Path.GetRelativePath(mainPath, referencedPath);
 		}
+
+
+
 
 
 

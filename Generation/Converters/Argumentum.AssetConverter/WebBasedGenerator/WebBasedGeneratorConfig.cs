@@ -845,30 +845,35 @@ namespace Argumentum.AssetConverter
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
+					KeepOriginalSVG = false,
 					SVGMaps = new List<SVGFreemindMap>(new []
 					{
 						new SVGFreemindMap()
 						{
 							Enabled = true,
+							DocumentName = "links.svg",
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
+							RemoveImages = true
 						},
 						new SVGFreemindMap()
 						{
 							Enabled = true,
+							DocumentName = "content.svg",
 							WrapNodeByLink = false,
 							SetSVGNodeAttributes = true,
+							RemoveImages = true,
 							HtmlWrappers = new List<DocumentConfig>(new []
 							{
 								new DocumentConfig()
 								{
-									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/LocalFull.html",
-									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\LocalFull.html"
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\included.html"
 								},
 								new DocumentConfig()
 								{
-									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/HostedExternal.html",
-									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\HostedExternal.html"
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\external.html"
 								},
 
 							})
@@ -897,32 +902,9 @@ namespace Argumentum.AssetConverter
 						new SVGFreemindMap()
 						{
 							Enabled = true,
-							DocumentName = "Light.svg",
+							DocumentName = "links.svg",
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
-						},
-						new SVGFreemindMap()
-						{
-							Enabled = true,
-							DocumentName = "Html.svg",
-							WrapNodeByLink = false,
-							SetSVGNodeAttributes = true,
-							HtmlWrappers = new List<DocumentConfig>(new []
-							{
-								new DocumentConfig()
-								{
-									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/LocalFull.html",
-									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\LocalFull.html"
-								},
-								new DocumentConfig()
-								{
-									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/HostedExternal.html",
-									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\HostedExternal.html"
-								},
-
-							})
-
-
 						},
 					})
 				}
@@ -1035,10 +1017,11 @@ namespace Argumentum.AssetConverter
 					TargetProperties = new List<string>(new []
 					{
 						nameof(MindMapDocumentConfig.TitleExpression),
-						nameof (MindMapDocumentConfig.CardExpression)
+						nameof (MindMapDocumentConfig.CardExpression),
+						nameof (MindMapDocumentConfig.FamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "FamilyRu"), ("pt", "FamilyPt") }) ),
+						(nameof(Fallacy.Famille), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.Family)), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)) }) ),
 
 					}),
 				},
@@ -1049,7 +1032,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("SousFamille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "SubfamilyRu"), ("pt", "SubfamilyPt") }) ),
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) ),
 
 					}),
 				},
@@ -1060,7 +1043,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "SubsubfamilyRu"), ("pt", "SubsubfamilyPt") }) ),
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) ),
 
 					}),
 				},
@@ -1071,7 +1054,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("TextFr", new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu"), ("pt", "TextPt") }) ),
+						(nameof(Fallacy.TextFr), new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu"), ("pt", "TextPt") }) ),
 
 					}),
 				},
@@ -1081,7 +1064,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.DescriptionExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("DescFr", new List<(string Language, string destFieldName)>(new []{("en", "DescEn"), ("ru", "DescRu"), ("pt", "DescPt") }) ),
+						(nameof(Fallacy.DescFr), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)) }) )
 					}),
 
 				},
@@ -1091,7 +1074,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.ExampleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("ExampleFr", new List<(string Language, string destFieldName)>(new []{("en", "ExampleEn"), ("ru", "ExampleRu"), ("pt", "ExamplePt") }) ),
+						(nameof(Fallacy.ExampleFr), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.ExampleRu)), ("pt", nameof(Fallacy.ExamplePt)) }) ),
 					}),
 
 				},
@@ -1101,7 +1084,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("LinkFrFallback", new List<(string Language, string destFieldName)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback") }) ),
+						(nameof(Fallacy.LinkFrFallback), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.LinkEnFallback)), ("ru", nameof(Fallacy.LinkRuFallback)), ("pt", nameof(Fallacy.LinkPtFallback)) }) ),
 
 					})
 				}

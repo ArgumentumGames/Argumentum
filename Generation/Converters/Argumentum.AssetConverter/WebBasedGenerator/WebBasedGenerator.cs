@@ -112,7 +112,7 @@ namespace Argumentum.AssetConverter
 		private async Task GenerateMindMapDocuments()
 		{
 			Logger.LogTitle("Generating Freemind, SVG & Html Mindmaps");
-			Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. \nOptional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate an SVG file, which is then further processed for HTML generation");
+			Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. \nOptional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate an SVG file, which is then further processed for HTML generation. \nNote that Html files with the svg file embedded externally will only display properly when hosted behind a URL, whereas html documents with svg embedded inside will also display properly when opened locally");
 
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismMindMaps };
 
@@ -152,62 +152,7 @@ namespace Argumentum.AssetConverter
 
 
 
-		///// <summary>
-		///// Generates MindMap documents from the given configuration.
-		///// </summary>
-		//private async Task GenerateMindMapDocuments()
-		//{
-
-		//	Logger.LogTitle("Generating Freemind, SVG & Html Mindmaps");
-
-		//	Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. \nOptional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate a svg file, which is then further processed for Html generation");
-
-		//	var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismMindMaps };
-		//	var enabledMaps = Config.MindMapDocuments.Where(config => config.Enabled);
-		//	await Parallel.ForEachAsync(enabledMaps, parallelOptionsDocuments, async (mindMap, token) =>
-		//	{
-		//			try
-		//			{
-
-		//				IList<Fallacy> fallacies;
-		//				var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet, null);
-		//				if (dataSet == null)
-		//				{
-		//					fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
-		//				}
-		//				else
-		//				{
-		//					fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams);
-		//				}
-
-		//				var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
-		//				foreach (var targetLanguage in targetLanguages)
-		//				{
-
-		//					var currentTranslatedMap = mindMap.CloneMindMap();
-		//					foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
-		//					{
-		//						documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
-		//					}
-
-		//					var documentDirectory = Config.GetDocumentDirectory(targetLanguage);
-
-
-
-
-		//					await currentTranslatedMap.GenerateMindMapFile(fallacies, Config, documentDirectory,
-		//						targetLanguage);
-
-		//				}
-		//			}
-		//			catch (Exception e)
-		//			{
-		//				Logger.LogException(e);
-		//			}
-
-
-		//	});
-		//}
+	
 
 	}
 }
