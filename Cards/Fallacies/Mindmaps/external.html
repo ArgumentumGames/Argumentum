@@ -395,15 +395,18 @@
 
 <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const svgObject = document.getElementById('svgObject');
             const overlay = document.getElementsByTagName('card')[0];
             const title = document.getElementsByClassName('title')[0];
+            const famille = document.getElementsByClassName('famille')[0];
+            const sous_famille = document.getElementsByClassName('sous_famille')[0];
+            const Soussousfamille = document.getElementsByClassName('Soussousfamille')[0];
             const description = document.getElementsByClassName('desc_fr')[0];
             const example = document.getElementsByClassName('exemple_fr')[0];
             const externalLink = document.getElementById('externalLink');
             const niveau = document.getElementsByClassName('niveau')[0];
             let isMouseOverNode = false;
 
+            const svgObject = document.getElementById('svgObject');
             svgObject.addEventListener('load', function () {
                 const svgDocument = svgObject.contentDocument || svgObject.getSVGDocument();
                 const nodes = svgDocument.querySelectorAll('.node');
@@ -421,18 +424,22 @@
                 nodes.forEach(node => {
                     node.addEventListener('mouseenter', (e) => {
                         title.textContent = e.target.textContent;
+                    	famille.textContent = e.target.getAttribute('family');
+                    	sous_famille.textContent = e.target.getAttribute('subfamily');
+                    	Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
                         description.innerHTML = e.target.getAttribute('description');
                         example.innerHTML = e.target.getAttribute('example');
                         externalLink.href = e.target.getAttribute('link');
                         niveau.textContent = e.target.getAttribute('depth');
-                        var familyClass = e.target.getAttribute('familyClass');
+
                         isMouseOverNode = true;
 
                         const rect = e.target.getBoundingClientRect();
                         overlay.style.left = rect.left + 'px';
                         overlay.style.top = rect.top + 'px';
                         //overlay.classList.remove('hidden');
-                        overlay.removeAttribute('class')
+                        overlay.removeAttribute('class');
+                        const familyClass = e.target.getAttribute('familyclass');
                         overlay.classList.add(familyClass);
                     });
 

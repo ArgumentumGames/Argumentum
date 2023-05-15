@@ -14,16 +14,14 @@ public class SVGFreemindMap : DocumentConfig, ICloneable
 
 
 	public List<DocumentConfig> HtmlWrappers { get; set; } = new List<DocumentConfig>();
+	public bool RemoveImages { get; set; }
 
 
 	protected override DocumentConfig GetClone()
 	{
-		return new SVGFreemindMap()
-		{
-			SetSVGNodeAttributes = SetSVGNodeAttributes,
-			WrapNodeByLink = WrapNodeByLink,
-			HtmlWrappers = new List<DocumentConfig>(this.HtmlWrappers.Select(htmlDoc => (DocumentConfig) htmlDoc.Clone()))
-		};
+		var toReturn = (SVGFreemindMap) this.MemberwiseClone();
+		toReturn.HtmlWrappers = new List<DocumentConfig>(this.HtmlWrappers.Select(htmlDoc => (DocumentConfig)htmlDoc.Clone()));
+		return toReturn;
 	}
 }
 
