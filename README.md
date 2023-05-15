@@ -1,76 +1,84 @@
-# Argumentum
+# Argumentum: The Art of Argumentation
 
-Argumentum is a card-game about Argumentation. The Argumentum project involved creating tools to generate and distribute the end-material, but also to ease updating the content that it is made of.
+Welcome to Argumentum, a captivating card game that celebrates the intricate art of argumentation. This project not only involves the creation and distribution of the end product but also aims to facilitate content updating with ease.
 
-## How to play
+## Getting Started
 
-The game is played with two decks of cards. Most rules involve rounds where a small card is drawn and playes will compete to play and catch fallacy large cards from their hands or common pot.
+Argumentum is a dual-deck card game, with gameplay revolving around drawing a small card, followed by players competing to play and identify fallacy large cards from their hand or a common pot.
 
-More information (currently in French) is available on the project's website https://www.argumentum.games
+Discover more about the game (currently in French) on the project's [website](https://www.argumentum.games).
 
 
-## Content of the repository
+## Repository Structure
 
-The repository contains the following folders:
+The repository is organized as follows:
 
-*  2 tools in [Generation](/Generation) make up for most of the generation workflow:
-    * [CardPen](/Generation/CardPen/index.html) is a customized version of [M.C DeMarco](https://github.com/mcdemarco/)'s cardpen from before it got a new home in Github. Merging improvements would be mutually benificial at some point.
-	Cardpen can generate a set of templated cards by injecting csv data into a mustache + css html template system.
-	You need 2 cardpen json files (1 for face, 1 for back) to specify a physical playing card.
-	* [Converters](/Generation/Converters) holds a multi-purpose packaging and pipeline processing command line utility that reads a large XML configuration file to specify how to process and assemble Cardpen scenarii to build the send-to-print document. 
-* [Cards](/Cards): Then generally gathers cardpen configurations to build the decks that make Argumentum, with folders for each type, together with assets and archives.
-	
-* [DNNPlatform](/DNNPlatform): contains the web application that is used for the www.argumentum.games website, and that is a DNN ASP.Net application with the use of 2 community extensions, 2Sxc, which holds most content, and Open-store, which holds the selling point.  
+- **[Generation](/Generation)**: Contains two tools that form the core of the generation workflow:
+    - **[CardPen](/Generation/CardPen/index.html)**: This is a tailored version of [M.C DeMarco](https://github.com/mcdemarco/)'s cardpen. It's designed to generate a set of templated cards by injecting CSV data into a mustache/handlebars + CSS HTML template system. For generating a physical playing card, you'll require two cardpen JSON files (one for face, one for back).
+    - **[Converters](/Generation/Converters)**: This is a pipeline processing command-line utility. It employs a large json configuration file to detail how to process and assemble Cardpen scenarios to create the send-to-print document.
 
-## How to generate the cards and the images
+- **[Cards](/Cards)**: This directory houses cardpen configurations to construct the decks that constitute Argumentum. It includes folders for each card type, along with assets and archives.
 
-The generation tool is a .Net 7.0 console/terminal application that drives several browsers to draw the images from a hosted Cardpen website, uses Magick.Net library to process image files individually and then QuestPDF library to generate printable Pdfs.
-A prerelease of the executable tool is available in the [following directory](https://github.com/ArgumentumGames/Argumentum/tree/master/Generation/Converters/Argumentum.AssetConverter/Published/v1.3)
-To run it, you need to [install the runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
+- **[DNNPlatform](/DNNPlatform)**: This is home to the web application for the Argumentum website. It's a DNN ASP.Net application employing two community extensions: 2Sxc (for most content) and Open-store (as the selling point).
+ 
 
-You can launch the program :
+ ## Generating Cards images and documents
 
-- either by running the executable "Argumentum.AssetConverter.exe" (Windows) / "Argumentum.AssetConverter" (Mac) 
-- or by running the following command from a terminal: "dotnet ./Argumentum.AssetConverter.dll". 
-Note: In MacOS after unizipping the App directory, you can open a terminal set to the target directory with a right-click from Finder. 
+The generation tool is a .Net 7.0 console/terminal application. It employs multiple browsers to draw images from a hosted Cardpen website, utilizes Magick.Net library for individual image file processing, and QuestPDF library for printable PDF creation.
 
-On MacOS/Linux, you might have to bypass additional security safeguards from the host OS. 
+ Here's how to get started:
 
-- For running the executable directly, you may need to grant authorizations: "chmod +x ./Argumentum.AssetConverter"
-- In terminal, you might need elevated permissions to run an automated browser. In that case the command should be: "sudo dotnet ./Argumentum.AssetConverter.dll"
-- If you get an error stating some of the application libraries are rejected, go to  "System Preferences -> Privacy & Security" -> Continue to unblock the library that should appear here. Note that you may need to that several times before the app runs without any error.
-Also make sure that in the same settings section, download execution is granted for "AppStore & identified developpers"
+1. Download the generation tool's prerelease executable from the [this directory](https://github.com/ArgumentumGames/Argumentum/tree/master/Generation/Converters/Argumentum.AssetConverter/Published/v1.3).
+2. [Install the .NET 7.0 runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
+3. Run the program either by executing the "Argumentum.AssetConverter.exe" file (Windows) or "Argumentum.AssetConverter" (Mac) or by running the following command from a terminal: `dotnet ./Argumentum.AssetConverter.dll`.
 
-### How it works
+> Note: In MacOS, after unzipping the App directory, you can set a terminal to the target directory with a right-click from Finder.
 
-The application runs a pipeline entirely controlled by a large configuration file, "AssetConverterConfig.json", that is created on first run.
+### MacOS / Linux
 
-Top level configuration has the following key sections:
+On MacOS or Linux systems, you may encounter certain security measures that necessitate additional steps for proper execution.
 
-- **DataSets**: Those are the csv files that contain all text content for the several decks of cards, namely Fallacies, Scenarii, and Rules.
-- **CardSets**: Those are the json files that contain face and back templates for all kinds of cardsets. Datasets are injected at runtime into them, and some of them make use of the same base json file, while injecting variations at runtime. Translations are also performed from French templates by doing conversions.
-- **CardSetDocuments**:Those are configurations for pdf to generate from the images, namely for professional printing or home print&play, or large posters.
-- **MindMapDocuments**:Those are configurations for Freemind/Freeplane mindmaps documents to generate, and SVG customizing after exporting from one of those additional free tools.
-- **LocalizationConfig**: This is the part concerned with localizing fields and strings for cards and mindmaps.
+- Should you wish to directly run the executable, it may be necessary to provide the appropriate permissions. This can be achieved with the following command: "chmod +x ./Argumentum.AssetConverter".
+- If you are executing the command through terminal, elevated permissions may be required for an automated browser to run. If this is the case, prepend your command with "sudo": "sudo dotnet ./Argumentum.AssetConverter.dll".
+- In the event that you receive an error message indicating rejection of certain application libraries, navigate to "System Preferences -> Privacy & Security" and choose to unblock the problematic library. Please note that this may need to be repeated until all the necessary libraries are unblocked.
+- For optimal functionality, ensure that in the same "Privacy & Security" settings section, download execution permissions are set to "AppStore & identified developers".
+
+
+
+### Application Workflow
+
+The application operates based on a pipeline that is entirely orchestrated by an extensive configuration file, "AssetConverterConfig.json". This file is produced during the application's initial run.
+
+The top-level configuration is composed of several key sections:
+
+- **DataSets**: These CSV files house the text content for the various decks of cards, including Fallacies, Scenarii, and Rules.
+- **CardSets**: These JSON files contain templates for the faces and backs of all cardsets. The datasets are injected into these templates at runtime, with some templates using the same base JSON file, but injecting variations at runtime. Translations are also performed from French templates via conversions.
+- **CardSetDocuments**: These are configurations to generate PDFs from the images, suitable for professional printing, home-based print-and-play, or large posters.
+- **MindMapDocuments**: These are configurations for generating Freemind/Freeplane mindmap documents, and for customizing SVG files after exporting from one of those free tools.
+- **LocalizationConfig**: This segment is responsible for localizing fields and strings for cards and mindmaps.
 
 ```json
 {
   "Mode": "WebBasedImageGeneration",
   "WebBasedGeneratorConfig": {
-    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
-    "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+    "EnableSVGPrompt": true,
+    "ShowInfoLogs": false,
+    "HeadLessBrowser": false,
     "OverwriteExistingDocs": false,
     "MaxDegreeOfParallelismCardpen": 3,
     "MaxDegreeOfParallelismCardpenTranslations": 2,
     "MaxDegreeOfParallelismImages": 3,
     "MaxDegreeOfParallelismImageTranslations": 2,
-    "MaxDegreeOfParallelismDocuments": 3,
+    "MaxDegreeOfParallelismDocuments": 4,
+    "MaxDegreeOfParallelismMindMaps": 6,
+    "ForceDebugParams": false,
+    "ForceReleaseParams": false,
     "BaseTargetDirectoryName": "Target\\",
     "HarvestDirectoryName": "Harvest\\",
     "ImagesDirectoryName": "Images\\",
     "DocumentsDirectoryName": "Documents\\",
-    "ForceDebugParams": false,
-    "ForceReleaseParams": false,
+    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
     "DataSets": [
 	(...)
     ],
@@ -87,47 +95,29 @@ Top level configuration has the following key sections:
 	(...)
     }
   },
-  "BatchImageConverterConfig": {
-  },
-  "Dnn2sxcConfig": {
-  },
-  "MindMapCreatorConfig": {  
-  }
+  "BatchImageConverterConfig": {  },
+  "Dnn2sxcConfig": {  },
+  "MindMapCreatorConfig": {    }
 }
 ```
 
-At each stage, the App aims at creating new files; if existing files are found, generation is skipped, such that the app will quickly reach where it last ended if stopped.
-It also means once everything is generated, it is relatively easy to make targeted changes by deleting the corresponding generated documents, and only the missing files will be regenerated.
+The application's objective at each phase is to generate new files. If it encounters existing files, it skips the generation process, which means the application can quickly resume from where it was interrupted. Consequently, once all files have been generated, making targeted modifications is simplified. This can be done by deleting the corresponding generated documents, and the application will only regenerate the missing files.
 
 ### How to start customizing the generated content
 
-The application works on datasets and templates, the path of which are all available in the configuration.
-By default, the paths configured are those of the files stored on this very repository. That allows to keep updated simply by startint over generation will ensure the latest versions are downloaded.
-Look for the "xxxRelease" folder paths in the configuration for their locations.
-
-Those file, mainly located in the [Cards](/Cards) directory, consist of those types:
-
-- Datasets, in the form of csv files. This is what's getting written on the documents.
-- Cardpen templates, in the form of json files containing css and handlebars html templates.
-- Html templates, to be used together with svg mindmaps, generated by Freemind, and further processed by our tool.
-
-
-If you wish to start making custom changes to those files, simply download them locally, make your changes and update the path to that of the file's path on your local hard drive.
+Customization of the card data and design is made possible through modification of datasets and templates. By default, the program uses files stored in this repository, but you can download them locally, make your changes, and update the path in the configuration to your local files. Files for customization are primarily located in the [Cards](/Cards) directory.
 
 ### How to setup a development environment 
 
-The most comfortable way to customise the App's behavior is to clone this repository locally, build the App and run the App in Debug mode. 
-Configuration has a debug switch such that when run in debug, all file paths for datasets and templates are configured to your version of those files in your local clone of this repository, with their path relative to the application run from the build directory.
+If you'd like to customize the app's behavior, clone this repository, build the app, and run it in Debug mode.  
 
 #### Requirements
 
-Application is a .Net 7.0 console app, so the build environment can be one of the following
+* Visual Studio Community (Windows)/ Visual Studio for Mac (with .NET desktop workload)
+* Visual Studio Code (with "C#" and "vscode-solution" extensions)
+* JetBrains Rider
 
-- Visual Studio Community (Windows)/ Visual Studio for Mac, installed with a .Net desktop workload.
-- Visual Studio Code, with the "c#" and "vscode-solution" extensions, to support c# .Net builds, and .sln environments.
-- Jetbrains Rider, which works very similar to VSCommunity.
-
-Simply load the "Argumentum Converters.sln" solution, build and run the included c# console csproj an your should be started.
+Just load the "Argumentum Converters.sln" solution, build and run the included C# console csproj, and you should be started.
 
 #### Code structure
 
@@ -147,40 +137,34 @@ We are open to contributions of many kinds. You don't have to clone this reposit
 
 ### Text contributions 
 
-What matters most is the data that is at the heart of this project. Those 3 files contain pretty much all text from the projet:
+If you're interested in helping with the data at the heart of this project, consider contributing to these Google spreadsheets:
 
-- Argumentum Fallacies - Taxonomy.csv
-- Argumentum Scenarii - Cards.csv
-- Argumentum Rules - Cards.csv
+* [Argumentum Fallacies](https://docs.google.com/spreadsheets/d/1TrQUyzXMMM-9pHdNWz1fdJ3xQ5XcHgwVH52SOnM61ow/edit?usp=sharing)
+* [Argumentum Scenarii](https://docs.google.com/spreadsheets/d/1SQb9R7Dpi0jPz2JX-HXk1WFn9t68e3aq9MCGif7lM10/edit?usp=sharing)
+* [Argumentum Rules](https://docs.google.com/spreadsheets/d/1jnhlod6PLgvVI-Qgrz3sTYytMgnrMyZrHcc8htPn_DQ/edit?usp=sharing)
 
-In order to make bulk collaborative editing easier, their content is edited in Google spreadsheet and exported on a regular basis to commit edits to those csv files in this repository.
+The content is regularly exported to CSV files in this repository to the following files:
 
-Here are the corresponding spreadsheets:
+- [Argumentum Fallacies - Taxonomy.csv](/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv)
+- [Argumentum Scenarii - Cards.csv](/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv)       
+- [Argumentum Rules - Cards.csv](/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv)
 
-- [Argumentum Fallacies](https://docs.google.com/spreadsheets/d/1TrQUyzXMMM-9pHdNWz1fdJ3xQ5XcHgwVH52SOnM61ow/edit?usp=sharing)
-- [Argumentum Scenarii](https://docs.google.com/spreadsheets/d/1SQb9R7Dpi0jPz2JX-HXk1WFn9t68e3aq9MCGif7lM10/edit?usp=sharing)
-- [Argumentum Rules](https://docs.google.com/spreadsheets/d/1jnhlod6PLgvVI-Qgrz3sTYytMgnrMyZrHcc8htPn_DQ/edit?usp=sharing)
-
-Those documents are open to comments, so you can start proposing fixes, and if you are willing to commit more efforts, we'll shortly add you to the list of Edit users.
+Direct Pull requests are welcom too.
 
 #### Translations
 
-Our main goal is to distribute our material to the widest audience. Datasets have a set of columns of all current targeted languages. 
-For most new languages, automated translations were added for now, and we need natives to go through the content and propose fixes.
-Some users interested in using the end material for teaching argumentation are giving a hand, and we're definitely looking for more help.
-Also, if you want to add a new translation, just let us know, and we'll add the new columns in the csv files.    
+We aim to distribute our material to the widest possible audience. If you are fluent in a language not available yet, please let us know. We'd love to add more translations.
+
+As for existing translations, some of them were made with automated tools, so we more than welcome corrections and improvements.
 
 #### Improvements
 
-Experts in one of the fields addressed by our material are more than welcom to propose improvements to any part of it. Our original extended taxonomy of fallacies comes to mind as one of the main area for improvements. Feel free to address any branch it contains.
+If you're an expert in a field addressed by our material, we welcome suggestions for improvements, particularly regarding our extended taxonomy of fallacies.
 
 
 ## How to build the website
 
-The website is currently commited without the data and decryptionkey, implying a fresh install of DNN should preexist before attempting a merge, which is a significant inconvenience. Further effort should help anonymizing a snapshot of the DNN DB, whith all pages configured.
-
-For now, if you are interested into running a copy of Argumentum.games, just let us know.
-
+The DNN website's data and decryption key are not included in the current commit. If you're interested in running a copy of Argumentum.games, please contact us.
 
 
 ## License
