@@ -76,21 +76,20 @@ namespace Argumentum.AssetConverter
 
 	public static class KnownCardSets
 	{
-		public static string Fallacies = "Fallacies";
-		public static string Scenarii = "Scenarii";
-		public static string Rules = "Rules";
-		public static string Memo = "Memo";
-		public static string Fallacies2 = "Fallacies-2";
-		public static string Fallacies3 = "Fallacies-3";
-		public static string FallaciesPrintAndPlay = "Fallacies-Print&Play";
-		public static string ScenariiPrintAndPlay = "Scenarii-Print&Play";
-		public static string RulesPrintAndPlay = "Rules-Print&Play";
-		public static string MemoPrintAndPlay = "Memo-Print&Play";
-		public static string FallaciesWeb = "Fallacies-Web";
-		public static string FallaciesWebLight = "Fallacies-Web-Light";
-		public static string FallaciesWebThumbnails = "Fallacies-Web-Thumbnails";
-
-
+		public static readonly string Fallacies = "Fallacies";
+		public static readonly string Scenarii = "Scenarii";
+		public static readonly string Rules = "Rules";
+		public static readonly string Memo = "Memo";
+		public static readonly string Fallacies2 = "Fallacies-2";
+		public static readonly string Fallacies3 = "Fallacies-3";
+		public static readonly string FallaciesPrintAndPlay = "Fallacies-Print&Play";
+		public static readonly string ScenariiPrintAndPlay = "Scenarii-Print&Play";
+		public static readonly string RulesPrintAndPlay = "Rules-Print&Play";
+		public static readonly string MemoPrintAndPlay = "Memo-Print&Play";
+		public static readonly string FallaciesWeb = "Fallacies-Web";
+		public static readonly string FallaciesWebLight = "Fallacies-Web-Light";
+		public static readonly string FallaciesWebThumbnails = "Fallacies-Web-Thumbnails";
+		public static readonly string Virtues = "Virtues";
 	}
 
 

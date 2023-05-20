@@ -10,11 +10,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fallacies", "Fallacies", "{A3188815-F9CE-4FAD-8E43-3D216DA51E5D}"
 	ProjectSection(SolutionItems) = preProject
 		Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv = Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv
+		Cards\Fallacies\Argumentum Virtues - Taxonomy.csv = Cards\Fallacies\Argumentum Virtues - Taxonomy.csv
 		Cards\Fallacies\Argumentum_Fallacies_Back_fr.json = Cards\Fallacies\Argumentum_Fallacies_Back_fr.json
 		Cards\Fallacies\Argumentum_Fallacies_Face_2_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_2_fr.json
 		Cards\Fallacies\Argumentum_Fallacies_Face_3_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_3_fr.json
 		Cards\Fallacies\Argumentum_Fallacies_Face_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_fr.json
 		Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json = Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json
+		Cards\Fallacies\Argumentum_Virtues_Face_fr.json = Cards\Fallacies\Argumentum_Virtues_Face_fr.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scenarii", "Scenarii", "{147D913F-8A11-4C70-A5FD-F5D2CE872A70}"
@@ -38,8 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memo", "Memo", "{D23B974C-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mindmaps", "Mindmaps", "{1A7077BC-7CA9-4D76-9D96-C674564283F9}"
 	ProjectSection(SolutionItems) = preProject
-		Cards\Fallacies\Mindmaps\included.html = Cards\Fallacies\Mindmaps\included.html
 		Cards\Fallacies\Mindmaps\external.html = Cards\Fallacies\Mindmaps\external.html
+		Cards\Fallacies\Mindmaps\included.html = Cards\Fallacies\Mindmaps\included.html
 	EndProjectSection
 EndProject
 Global

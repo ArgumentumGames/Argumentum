@@ -98,6 +98,12 @@ namespace Argumentum.AssetConverter
 					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"
 				},
+				new DataSetInfo()
+				{
+					Name = KnownDataSets.VirtuesTaxonomy,
+					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Virtues - Taxonomy.csv"
+				}
 
 
 
@@ -156,6 +162,27 @@ namespace Argumentum.AssetConverter
 						}),
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json"
+
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.None,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+					}
+				},
+				new CardSetConfig(){
+					Name =KnownCardSets.Virtues,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.VirtuesTaxonomy,
+						CsvFilterField = "card",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+						}),
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Virtues_Face_fr.json"
 
 					},
 					BackCardSetInfo = new CardSetInfo()
@@ -417,6 +444,34 @@ namespace Argumentum.AssetConverter
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.Fallacies,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						}
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_TarotCards_Virtues_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(),
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Virtues,
 							NbCopies = 1,
 							ConvertToCmyk = true,
 							SaveOriginalImage = false,
