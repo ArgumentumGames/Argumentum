@@ -132,7 +132,7 @@ namespace Argumentum.AssetConverter
 			}
 			else
 			{
-				fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams);
+				fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams());
 			}
 
 			var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);

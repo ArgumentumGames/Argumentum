@@ -793,7 +793,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
 			{
-				var templateFilePath = webBasedGeneratorConfig.UseDebugParams
+				var templateFilePath = webBasedGeneratorConfig.UseDebugParams()
 					? htmlSvgWrapper.TemplatePathDebug
 					: htmlSvgWrapper.TemplatePathRelease;
 

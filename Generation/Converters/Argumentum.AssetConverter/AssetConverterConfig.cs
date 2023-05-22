@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Argumentum.AssetConverter.Dnn2sxc;
@@ -16,17 +18,25 @@ namespace Argumentum.AssetConverter
 {
     public class AssetConverterConfig
     {
-        public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration; //ConverterMode.Mindmapper;
-       
-        public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
+
+		public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater;
+
+		public bool ForceDebugParams { get; set; }
+
+		public bool ForceReleaseParams { get; set; }
+
+		public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
 
         public BatchImageConverterConfig BatchImageConverterConfig { get; set; } = new BatchImageConverterConfig();
 
-        public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
+        public DatasetUpdaterConfig DatasetUpdaterConfig { get; set; } = new DatasetUpdaterConfig();
+
+		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
 
 		public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
 
-        public static AssetConverterConfig GetConfig(string path, out bool newConfig)
+
+		public static AssetConverterConfig GetConfig(string path, out bool newConfig)
         {
             AssetConverterConfig toReturn;
             CompositeResolver.RegisterAndSetAsDefault(new IJsonFormatter[] { new TimeSpanFormatter() }, new IJsonFormatterResolver[] { StandardResolver.Default });
@@ -58,10 +68,19 @@ namespace Argumentum.AssetConverter
 			return toReturn;
         }
 
-        
+
+        [IgnoreDataMember]
+        [JsonIgnore]
+        public bool UseDebugParams => (isInDebugMode || ForceDebugParams) && !ForceReleaseParams;
 
 
-        public  bool Apply()
+#if DEBUG
+		bool isInDebugMode = true;
+#else
+		bool isInDebugMode = false;
+#endif
+
+		public bool Apply()
         {
             switch (Mode)
             {
@@ -69,6 +88,7 @@ namespace Argumentum.AssetConverter
                     BatchImageConverterConfig.Apply();
                     break;
                 case ConverterMode.WebBasedImageGeneration:
+	                WebBasedGeneratorConfig.UseDebugParams = () => UseDebugParams;
 					 WebBasedGeneratorConfig.Apply();
                     break;
                 case ConverterMode.Mindmapper:
@@ -77,12 +97,14 @@ namespace Argumentum.AssetConverter
                 case ConverterMode.Dnn2sxc:
                     Dnn2sxcConfig.Apply();
                     break;
-                default:
+                case ConverterMode.DatasetUpdater:
+                    Task.Run(async () => await DatasetUpdaterConfig.Apply(UseDebugParams));
+	                break;
+				default:
                     throw new ArgumentOutOfRangeException();
             }
             return true;
         }
-
 
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -38,9 +39,7 @@ namespace Argumentum.AssetConverter
 
 		public int MaxDegreeOfParallelismMindMaps { get; set; } = 6;
 
-		public bool ForceDebugParams { get; set; }
-
-		public bool ForceReleaseParams { get; set; }
+		
 
 
 		public string BaseTargetDirectoryName { get; set; } = @"Target\";
@@ -57,19 +56,17 @@ namespace Argumentum.AssetConverter
 
 
 
-#if DEBUG
-		bool isInDebugMode = true;
-#else
-		bool isInDebugMode = false;
-#endif
+
+
+		
 
 		[IgnoreDataMember]
 		[JsonIgnore]
-		public bool UseDebugParams => (isInDebugMode || ForceDebugParams) && !ForceReleaseParams;
+		public string CardpenUrl => UseDebugParams() ? DebugCardpenUrl : ReleaseCardpenUrl;
 
 		[IgnoreDataMember]
 		[JsonIgnore]
-		public string CardpenUrl => UseDebugParams ? DebugCardpenUrl : ReleaseCardpenUrl;
+		public Func<bool> UseDebugParams { get; set; }
 
 		public List<DataSetInfo> DataSets { get; set; } = new List<DataSetInfo>(
 			new[]

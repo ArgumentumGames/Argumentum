@@ -1,0 +1,6 @@
+pk;path;depth;decimal_path_padded;family_fr;subfamily_fr;subsubfamily_fr;title_fr;description_fr;link_fr;family_fr_camelcase;depth_max4;card;remark_fr
+0;0;0;0.0000000;Arguments vertueux;;;Arguments vertueux;;;argumentsVertueux;0;1;
+1;1;1;1.0000000;Argument pertinent;;;Argument pertinent;;;argumentPertinent;1;1;
+2;1.1;2;1.1000000;Argument pertinent;Argument fondé;;Argument fondé;;;argumentPertinent;2;1;
+4;1.1.1.1;4;1.1110000;Argument pertinent;Argument fondé;Argument réel;Argument déductif;;;argumentPertinent;4;1;
+5;1.1.1.2;4;1.1120000;Argument pertinent;Argument fondé;Argument réel;Argument inductif;;;argumentPertinent;4;1;
