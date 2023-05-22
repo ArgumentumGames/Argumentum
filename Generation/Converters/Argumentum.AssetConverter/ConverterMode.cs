@@ -2,9 +2,10 @@
 {
     public enum ConverterMode
     {
-        BatchImageProcessor,
-        WebBasedImageGeneration,
+		WebBasedImageGeneration,
+		BatchImageProcessor,
         Mindmapper,
-        Dnn2sxc
+        Dnn2sxc,
+        DatasetUpdater
     }
 }

@@ -29,7 +29,7 @@ namespace Argumentum.AssetConverter
 		public bool SkipDataUpdate { get; set; }
 
 		
-		public string GetJsonFilePath(WebBasedGeneratorConfig config) => config.UseDebugParams ? JsonFilePathDebug : JsonFilePathRelease;
+		public string GetJsonFilePath(WebBasedGeneratorConfig config) => config.UseDebugParams() ? JsonFilePathDebug : JsonFilePathRelease;
 		public string JsonFilePathRelease { get; set; }
 		public string JsonFilePathDebug { get; set; }
 

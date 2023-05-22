@@ -235,11 +235,11 @@ public class HarvestManager
 			string csvContent;
 			if (!string.IsNullOrEmpty(cardSetInfo.CsvFilterField) && cardSetInfo.CsvFilterValues.Count>0)
 			{
-				csvContent = await dataSet.GetContent(Config.UseDebugParams, cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
+				csvContent = await dataSet.GetContent(Config.UseDebugParams(), ",","",  cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
 			}
 			else
 			{
-				csvContent = await dataSet.GetContent(Config.UseDebugParams);
+				csvContent = await dataSet.GetContent(Config.UseDebugParams());
 			}
 			cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
 		}

@@ -1,0 +1,32 @@
+[
+	{
+		"path": "4.3.3.1.2.1.1",
+		"family_fr": "Raisonnement valide",
+		"subfamily_fr": "Déductions correctes",
+		"subsubfamily_fr": "Raisonnement concluant",
+		"title_fr": "Syllogisme Barbara",
+		"description_fr": "Syllogisme de mode parfait où le terme moyen est un sujet dans la première prémisse et un prédicat dans la seconde prémisse",
+		"remark_fr": "Syllogisme du type Tout M est P, or tout S est M, donc tout S est P. Exemple: Tous les félidés sont sympathiques, Tous les chats sont des félidés, Donc tous les chats sont sympathiques.",
+		"link_fr": "https://fr.wikipedia.org/wiki/Barbara_(syllogisme)"
+	},
+	{
+		"path": "1",
+		"family_fr": "Argument pertinent",
+		"subfamily_fr": "Argument fondé",
+		"subsubfamily_fr": "",
+		"title_fr": "Argument fondé",
+		"description_fr": "Argument correctement formulé et recevable",
+		"link_fr": "https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_l%27argumentation",
+		"remark_fr": "Il existe des ingrédients essentiels qui donnent à un argument sa nature d'argument, comme un ensemble d'hypothèses ou prémisses acceptables, une méthode de raisonnement et une conclusion."
+	},
+	{
+		"path": "4.1.2",
+		"family_fr": "Raisonnement valide",
+		"subfamily_fr": "Identification précise des causalités",
+		"subsubfamily_fr": "Causalité correctement orientée",
+		"title_fr": "Causalité correctement orientée",
+		"description_fr": "Bien orienter la causalité évite les erreurs d'attribution ou le fait de confondre une cause avec un effet.",
+		"remark_fr": "Du fait de leur corrélation, il n'est pas rare de commettre l'erreur d'inverser les liens de causalité, comme dans l'exemple suivant: L'augmentation du SIDA a été causée par plus d'éducation sexuelle. En fait, l'augmentation de l'éducation sexuelle a été causée par la propagation du SIDA.",
+		"link_fr": "http://sophismes.free.fr/log42.htm"
+	}
+]
