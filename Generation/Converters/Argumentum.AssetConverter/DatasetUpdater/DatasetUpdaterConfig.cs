@@ -26,7 +26,11 @@ public class DatasetUpdaterConfig
 
 	public int ChunkSize { get; set; } = 3;
 
-	public int MaxDegreeOfParallelismWebService { get; set; } = 5;
+	public int SkipChunkNb { get; set; } = 0;
+
+	public int TakeChunkNb { get; set; } = 0;
+
+	public int MaxDegreeOfParallelismWebService { get; set; } = 8;
 
 	public List<string> FieldsToInclude { get; set; } = new List<string>(new[]
 	{
@@ -72,7 +76,15 @@ public class DatasetUpdaterConfig
 			var chunks = await SourceDataset.SplitContentIntoJsonChunks(ChunkSize, FieldsToInclude, useDebugPath);
 
 			//Doing short tests
-			//chunks = chunks.Skip(25).Take(5).ToList();
+			if (SkipChunkNb>0)
+			{
+				chunks=chunks.Skip(SkipChunkNb).ToList();
+			}
+
+			if (TakeChunkNb>0)
+			{
+				chunks = chunks.Take(TakeChunkNb).ToList();
+			}
 
 			var csvAnswers = new ConcurrentBag<string>();
 
