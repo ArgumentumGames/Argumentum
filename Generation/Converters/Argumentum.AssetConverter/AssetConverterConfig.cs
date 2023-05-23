@@ -19,7 +19,7 @@ namespace Argumentum.AssetConverter
     public class AssetConverterConfig
     {
 
-		public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater;
+		public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration;
 
 		public bool ForceDebugParams { get; set; }
 
