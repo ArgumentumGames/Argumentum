@@ -26,6 +26,8 @@ public class DatasetUpdaterConfig
 
 	public int ChunkSize { get; set; } = 3;
 
+	public int NbMessageCalls { get; set; } = 3;
+
 	public int SkipChunkNb { get; set; } = 0;
 
 	public int TakeChunkNb { get; set; } = 0;
@@ -105,19 +107,26 @@ public class DatasetUpdaterConfig
 					},
 					UserPrompt = chunk
 				};
-				Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
-				string result;
-				try
+
+				string result = "";
+
+				for (int i = 0; i < NbMessageCalls; i++)
 				{
-					result = await dataPrompt.Send();
-					//result = chunk;
-					Logger.Log($"ChatGPT answered \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
+					Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
+					
+					try
+					{
+						result = await dataPrompt.Send();
+						//result = chunk;
+						Logger.Log($"ChatGPT answered \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
+						dataPrompt.UserPrompt = result;
+					}
+					catch (Exception e)
+					{
+						Logger.LogException(e);
+					}
 				}
-				catch (Exception e)
-				{
-					Logger.LogException(e);
-					result = "";
-				}
+				
 
 
 				csvAnswers.Add(result);
@@ -160,4 +169,7 @@ public class DatasetUpdaterConfig
 		}
 
 	}
+
+	
+
 }
