@@ -85,6 +85,14 @@ public class HarvestManager
 				await ProcessLocalizedHarvest(configCardSet, currentLanguage, harvestDictionary, funcBrowser);
 			});
 		});
+		if (browser!=null)
+		{
+			while (Freepages.TryPop(out IPage result))
+			{
+				await result.CloseAsync();
+			}
+			await browser.CloseAsync();
+		}
 
 		return harvestDictionary;
 	}
@@ -255,12 +263,31 @@ public class HarvestManager
 		}
 	}
 
+	private ConcurrentStack<IPage> Freepages = new ConcurrentStack<IPage>();
+
+	private async Task<IPage> GetFreePage(Func<IBrowser> browser)
+	{
+		if (Freepages.TryPop(out var page))
+		{
+			return page;
+		}
+		else
+		{
+			var newPage = await browser().NewPageAsync();
+			return newPage;
+		}
+	}
+
+	private async Task ReleasePage(IPage page)
+	{
+		Freepages.Push(page);
+	}
 
 	public async Task<CardSetHarvest> GenerateHarvestImages(Func<IBrowser> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
 	{
 
 		var currentHarvest = new CardSetHarvest();
-		var page = await browser().NewPageAsync();
+		var page = await GetFreePage(browser);
 		try
 		{
 
@@ -283,7 +310,8 @@ public class HarvestManager
 		}
 		finally
 		{
-			await page.CloseAsync();
+			//await page.CloseAsync();
+			await ReleasePage(page);
 		}
 
 		return currentHarvest;
