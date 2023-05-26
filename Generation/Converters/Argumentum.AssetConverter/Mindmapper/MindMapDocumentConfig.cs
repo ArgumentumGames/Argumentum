@@ -21,13 +21,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
+using Color = System.Drawing.Color;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
 	public class MindMapDocumentConfig : DocumentConfig
 	{
-
-
+		// Trying to making sure the assemblies get published
+		private static System.Diagnostics.StackTrace temp1 = new StackTrace();
+		private static System.Drawing.Color temp2 = Color.AliceBlue;
 
 		public string DataSet { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
 		public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
