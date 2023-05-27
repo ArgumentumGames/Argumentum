@@ -190,6 +190,8 @@ namespace Argumentum.AssetConverter
 
 
 
+		private static readonly ConcurrentDictionary<string, SemaphoreSlim> _semaphores = new();
+
 		public static async Task<DocumentPayload> GetDocumentPayload(this string docPath)
 		{
 			byte[] content;
@@ -199,19 +201,27 @@ namespace Argumentum.AssetConverter
 			{
 				var urlFile = new Uri(docPath);
 
-				// Télécharger le fichier à partir de l'URL spécifiée
-				using var client = new HttpClient();
+				SemaphoreSlim semaphore = _semaphores.GetOrAdd(urlFile.Host, _ => new SemaphoreSlim(1, 1));
+				await semaphore.WaitAsync();
+				try
+				{
+					// Download the file from the specified URL
+					using var client = new HttpClient();
 
-				var response = await client.GetAsync(urlFile);
-				response.EnsureSuccessStatusCode();
-				fileName = response.Content.Headers.ContentDisposition?.FileName ??
-						   System.IO.Path.GetFileName(urlFile.LocalPath); //"file.json";
-				mimeType = response.Content.Headers.ContentType?.MediaType;
-				content = await response.Content.ReadAsByteArrayAsync();
+					var response = await client.GetAsync(urlFile);
+					response.EnsureSuccessStatusCode();
+					fileName = response.Content.Headers.ContentDisposition?.FileName ??
+					           System.IO.Path.GetFileName(urlFile.LocalPath);
+					mimeType = response.Content.Headers.ContentType?.MediaType;
+					content = await response.Content.ReadAsByteArrayAsync();
 
-				Logger.Log($"Downloaded Document {docPath}");
-				//Logger.Log($"Content :\n\n {Encoding.UTF8.GetString(content)}");
-
+					Logger.Log($"Downloaded Document {docPath}");
+				}
+				finally
+				{
+					await Task.Delay(100);
+					semaphore.Release();
+				}
 			}
 			else
 			{
@@ -227,10 +237,9 @@ namespace Argumentum.AssetConverter
 				Logger.Log($"File Loaded: {fullPath}");
 			}
 
-
 			return new DocumentPayload() { FileName = fileName, Content = content, MimeType = mimeType };
-
 		}
+
 
 
 		private static object lockObj = new object();
