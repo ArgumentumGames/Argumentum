@@ -5,14 +5,23 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.DatasetUpdater;
+using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Memory;
+using Microsoft.Extensions.Logging;
+using Microsoft.SemanticKernel.AI.TextCompletion;
+using Microsoft.SemanticKernel.CoreSkills;
 
 namespace Argumentum.AssetConverter;
 
 public class DatasetUpdaterConfig
 {
+
+	public SemanticMode SemanticMode { get; set; } = SemanticMode.IndexWithSemanticKernel;
+
 	public string SystemPrompt { get; set; } = Resource1.JsonPromptSystem;
 
 	public string UserPrompt { get; set; } = Resource1.JsonPromptSampleUser;
@@ -70,26 +79,76 @@ public class DatasetUpdaterConfig
 	{
 		var openAIKey = await File.ReadAllTextAsync(OpenAIKeyPath);
 
+		switch (SemanticMode)
+		{
+			case SemanticMode.UpdateWithChatpGptAPI:
+				await UpdateWithChatGPT(useDebugPath, openAIKey);
+				break;
+			case SemanticMode.IndexWithSemanticKernel:
+				await IndexTaxonomyWithSemanticKernel(useDebugPath, openAIKey);
+				break;
+			default:
+				throw new ArgumentOutOfRangeException();
+		}
+		
+	}
 
+	
+
+
+	private async Task IndexTaxonomyWithSemanticKernel(bool useDebugPath, string openAIKey)
+	{
+
+		var chunks = await SourceDataset.SplitContentIntoJsonChunks(ChunkSize, FieldsToInclude, useDebugPath);
+
+		var kernel = Kernel.Builder
+			.WithLogger(ConsoleLogger.Log)
+			//.WithOpenAITextCompletionService("text-davinci-003", openAIKey)
+			.WithOpenAITextCompletionService(Models.Model.TextDavinciV3.EnumToString(), openAIKey)
+			//.WithOpenAITextEmbeddingGenerationService("text-embedding-ada-002", openAIKey)
+			.WithOpenAITextEmbeddingGenerationService(Models.Model.TextEmbeddingAdaV2.EnumToString(), openAIKey)
+			.WithMemoryStorage(new VolatileMemoryStore())
+			
+			.Build();
+
+		AddSkills(kernel);
+
+	}
+
+	private void AddSkills(IKernel kernel)
+	{
+		kernel.ImportSkill(new MathSkill(), "math");
+		kernel.ImportSkill(new HttpSkill(), "http");
+		kernel.ImportSkill(new FileIOSkill(), "fileIO");
+		kernel.ImportSkill(new TextSkill(), "text");
+		kernel.ImportSkill(new TimeSkill(), "time");
+		kernel.ImportSkill(new WaitSkill(), "wait");
+		var parentDirectory = @"E:\Dev\AI\Libs\Argumentum\Generation\Converters\Argumentum.AssetConverter\DatasetUpdater\Resources\Skills\Core";
+		kernel.ImportSemanticSkillFromDirectory(parentDirectory);
+
+
+	}
+
+
+	private async Task UpdateWithChatGPT(bool useDebugPath, string openAIKey)
+	{
 		try
 		{
-
 			// load dataset in chunks, 
 			var chunks = await SourceDataset.SplitContentIntoJsonChunks(ChunkSize, FieldsToInclude, useDebugPath);
 
 			//Doing short tests
-			if (SkipChunkNb>0)
+			if (SkipChunkNb > 0)
 			{
-				chunks=chunks.Skip(SkipChunkNb).ToList();
+				chunks = chunks.Skip(SkipChunkNb).ToList();
 			}
 
-			if (TakeChunkNb>0)
+			if (TakeChunkNb > 0)
 			{
 				chunks = chunks.Take(TakeChunkNb).ToList();
 			}
 
 			var csvAnswers = new ConcurrentBag<string>();
-
 
 
 			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService };
@@ -113,7 +172,7 @@ public class DatasetUpdaterConfig
 				for (int i = 0; i < NbMessageCalls; i++)
 				{
 					Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
-					
+
 					try
 					{
 						result = await dataPrompt.Send();
@@ -126,20 +185,20 @@ public class DatasetUpdaterConfig
 						Logger.LogException(e);
 					}
 				}
-				
 
 
 				csvAnswers.Add(result);
 			});
 
 
-
 			// Merge answers into one csv
-			var mergedCsv = await SourceDataset.MergeJsonResponsesIntoCsv(csvAnswers.ToList(), PrimaryField, FieldsToUpdate, ",", false);
+			var mergedCsv =
+				await SourceDataset.MergeJsonResponsesIntoCsv(csvAnswers.ToList(), PrimaryField, FieldsToUpdate, ",",
+					false);
 
 
 			// Save mergedCsv to file
-			
+
 			if (File.Exists(TargetPath))
 			{
 				try
@@ -151,13 +210,13 @@ public class DatasetUpdaterConfig
 					Logger.LogException(e);
 					Console.ReadKey();
 				}
-
 			}
 
 			if (!Directory.Exists(Path.GetDirectoryName(TargetPath)))
 			{
 				Directory.CreateDirectory(Path.GetDirectoryName(TargetPath));
 			}
+
 			await SourceDataset.SaveContent(TargetPath, mergedCsv);
 
 
@@ -167,9 +226,47 @@ public class DatasetUpdaterConfig
 		{
 			Logger.LogException(ex);
 		}
-
 	}
+}
 
-	
+public enum SemanticMode
+{
+	UpdateWithChatpGptAPI,
+	IndexWithSemanticKernel
+}
 
+
+
+
+
+
+/// <summary>
+/// Basic logger printing to console
+/// </summary>
+internal static class ConsoleLogger
+{
+	internal static ILogger Log => LogFactory.CreateLogger<object>();
+
+	private static ILoggerFactory LogFactory => s_loggerFactory.Value;
+
+	private static readonly Lazy<ILoggerFactory> s_loggerFactory = new(LogBuilder);
+
+	private static ILoggerFactory LogBuilder()
+	{
+		return LoggerFactory.Create(builder =>
+		{
+			builder.SetMinimumLevel(LogLevel.Warning);
+
+			// builder.AddFilter("Microsoft", LogLevel.Trace);
+			// builder.AddFilter("Microsoft", LogLevel.Debug);
+			// builder.AddFilter("Microsoft", LogLevel.Information);
+			// builder.AddFilter("Microsoft", LogLevel.Warning);
+			// builder.AddFilter("Microsoft", LogLevel.Error);
+
+			builder.AddFilter("Microsoft", LogLevel.Warning);
+			builder.AddFilter("System", LogLevel.Warning);
+
+			builder.AddConsole();
+		});
+	}
 }

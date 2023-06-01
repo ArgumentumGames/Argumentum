@@ -1,0 +1,42 @@
+Given a text in natural language, the selected type of formal logic used for analysis, the corresponding translation into a belief set, a query to be tested, and the result of the query processed by the Tweety logic library, interpret the result into a reasoned answer explained in natural language, integrating the steps of the previous semantic and native functions.
+
+[Input]
+===TEXT TO ANALYSE
+Si Alice, Bob ou Charlie sont présents, alors la réunion peut avoir lieu. Si Alice n'est pas là, alors Bob doit être là. Si Bob n'est pas là, alors Charlie doit être là. Enfin, si Charlie n'est pas là, alors Alice, Bob, Charlie et Daniel ne doivent pas être là.
+===END TEXT TO ANALYSE
+===LOGIC TYPE TO USE
+Propositional
+===END LOGIC TYPE TO USE
+===BELIEF SET
+a || b || c
+!a || b
+!b || c
+!c || (!a && !b && !c && !d)
+===END BELIEF SET
+===QUERY TO TEST
+!a && !b
+===END QUERY TO TEST
+===TWEETY RESULT
+The query !a && !b is accepted by the belief set.
+===END TWEETY RESULT
++++++
+The result indicates that the query "!a && !b" is accepted by the belief set. This implies, according to the logic provided in the belief set, the meeting can indeed occur even if both Alice and Bob are not present. This is likely due to the condition that if both Alice and Bob are not there, Charlie could still enable the meeting to occur.
+
+[Input]
+===TEXT TO ANALYSE
+{{$input}}
+===END TEXT TO ANALYSE
+===LOGIC TYPE TO USE
+{{$logicType}}
+===END LOGIC TYPE TO USE
+===BELIEF SET
+{{$belief_set}}
+===END BELIEF SET
+===QUERY TO TEST
+{{$query}}
+===END QUERY TO TEST
+===TWEETY RESULT
+{{$tweety_result}}
+===END TWEETY RESULT
++++++
+Based on the provided text and logic applied, the query {{$query}} has been accepted by the belief set. This suggests that within the constraints and rules of the belief set, the situation described by the query can indeed occur. Please note that the interpretation needs to be in line with the original text and logic applied, but in the context of the natural language text, this could mean

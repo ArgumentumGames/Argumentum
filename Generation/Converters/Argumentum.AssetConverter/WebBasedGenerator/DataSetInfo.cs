@@ -156,29 +156,49 @@ public class DataSetInfo
 	}
 
 
-	public async Task<List<string>> SplitContentIntoJsonChunks(int chunkSize, List<string> fieldsToInclude,
-		bool useDebugPath)
+	public async Task<List<string>> SplitContentIntoJsonChunks(int chunkSize, List<string> fieldsToInclude, bool useDebugPath)
 	{
+		// Get the list of dictionaries using the second method.
+		var records = await GetContentDictionary(fieldsToInclude, useDebugPath);
+
+		var chunks = new List<string>();
+		for (var i = 0; i < records.Count; i += chunkSize)
+		{
+			// Chunk the list of dictionaries into smaller parts based on the chunk size.
+			var chunkRecords = records.Skip(i).Take(chunkSize);
+
+			// Serialize each chunk to JSON.
+			string jsonChunk = JsonConvert.SerializeObject(chunkRecords, Formatting.Indented);
+
+			chunks.Add(jsonChunk);
+		}
+
+		return chunks;
+	}
+
+
+
+	public async Task<List<Dictionary<string, object>>> GetContentDictionary(List<string> fieldsToInclude, bool useDebugPath)
+	{
+		var toReturn = new List<Dictionary<string, object>>();
 		var content = await GetContent(useDebugPath); // consider handling this async call properly
 		using var textReader = new StringReader(content);
 		var configIn = new CsvConfiguration(CultureInfo.InvariantCulture);
 		using var csvReader = new CsvReader(textReader, configIn);
 		var records = csvReader.GetRecords<dynamic>().ToList();
 
-		var chunks = new List<string>();
-		for (var i = 0; i < records.Count; i += chunkSize)
+		// For each record, we filter out the fields we are interested in, and add the resulting dictionary to toReturn.
+		for (var i = 0; i < records.Count; i += 1)
 		{
-			var chunkRecords = records.Skip(i).Take(chunkSize).Select(record =>
-			{
-				var recordDict = (IDictionary<string, object>)record;
-				return recordDict.Where(pair => fieldsToInclude.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value);
-			});
-			string jsonChunk = JsonConvert.SerializeObject(chunkRecords, Formatting.Indented);
-			chunks.Add(jsonChunk);
+			var recordDict = (IDictionary<string, object>)records[i];
+			var selectedFields = recordDict.Where(pair => fieldsToInclude.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value);
+			toReturn.Add(selectedFields);
 		}
 
-		return chunks;
+		return toReturn;
 	}
+
+
 
 	public async Task<string> MergeJsonResponsesIntoCsv(List<string> responses, string primaryKeyColumn,
 		List<string> fieldsToUpdate, string delimiterOut, bool addNewRows)

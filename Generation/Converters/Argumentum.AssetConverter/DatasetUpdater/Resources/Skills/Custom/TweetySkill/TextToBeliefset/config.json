@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "description": "Given a text in natural language text with statements or arguments, a type of formal logic to use for parser syntax and analysis (options 'Propositional', 'FirstOrder' or 'Modal'), converts the natural language text into a parsable belief set using the appropriate syntax, for further execution by the Tweety reasoner engine",
+  "type": "completion",
+  "completion": {
+    "max_tokens": 1024,
+    "temperature": 0.1,
+    "top_p": 0.5
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The natural language text to convert",
+        "defaultValue": ""
+      },
+      {
+        "name": "logicType",
+        "description": "The type of logic to use for conversion: available options are 'Propositional', 'FirstOrder' or 'Modal'",
+        "defaultValue": "Propositional"
+      }
+    ]
+  }
+}
