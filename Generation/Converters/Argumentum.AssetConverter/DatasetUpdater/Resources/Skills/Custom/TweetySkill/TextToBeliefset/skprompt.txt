@@ -1,7 +1,28 @@
-Convert the input text into a belief set using {{$logicType}} logic, as in the following example, which is in propositional logic. Beliefset will then be parsed by Tweety reasoner engine for analysis. Note that propositional logic does not have implication connector. Instead, it uses the following equivalence: a -> b is equivalent to !a || b
+Convert the input text into a belief set using {{$logicType}} logic, as in the following example, which is in propositional logic. Beliefset will then be parsed by Tweety reasoner engine for analysis. 
+
+The BNF for a propositional belief set is given by (starting symbol is FORMULASET)
+FORMULASET ::== FORMULA ( "\n" FORMULA )*
+FORMULA    ::== PROPOSITION | "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-" 
+PROPOSITION is a sequence of characters excluding |,&,!,(,) and whitespace characters.
+
+The BNF for a first-order knowledge base is given by (starting symbol is KB)
+KB 			::== SORTSDEC DECLAR FORMULAS
+DECLAR		::== (FUNCTORDEC | PREDDEC)*
+SORTSDEC    ::== ( SORTNAME "=" "{" (CONSTANTNAME ("," CONSTANTNAME)*)? "}" "\n" )*
+PREDDEC		::== "type" "(" PREDICATENAME ("(" SORTNAME ("," SORTNAME)* ")")? ")" "\n"
+FUNCTORDEC	::== "type" "(" SORTNAME "=" FUNCTORNAME "(" (SORTNAME ("," SORTNAME)*)? ")" ")" "\n"
+FORMULAS    ::== ( "\n" FORMULA)*
+FORMULA     ::== ATOM | "forall" VARIABLENAME ":" "(" FORMULA ")" | "exists" VARIABLENAME ":" "(" FORMULA ")" |
+				 "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-" |
+				 FORMULA "=>" FORMULA | FORMULA "<=>" FORMULA | FORMULA "==" FORMULA | FORMULA "/==" FORMULA |
+ATOM		::== PREDICATENAME ("(" TERM ("," TERM)* ")")?
+TERM		::== VARIABLENAME | CONSTANTNAME | FUNCTORNAME "(" (TERM ("," TERM)*)?  ")" 
+
+where SORTNAME, PREDICATENAME, CONSTANTNAME and FUNCTORNAME are sequences of symbols from {a,...,z,A,...,Z,0,...,9} with a letter at the beginning and VARIABLENAME is a sequence of symbols from {a,...,z,A,...,Z,0,...,9} with an uppercase letter at the beginning.
+Note: Equality/Inequality predicates (== and /==) can only be parsed if the parser is given a FolSignature with equality (which is not the case by default).
 
 [Input]
-Si Alice, Bob ou Charlie sont présents, alors la réunion peut avoir lieu. Si Alice n'est pas là, alors Bob doit être là. Si Bob n'est pas là, alors Charlie doit être là. Enfin, si Charlie n'est pas là, alors Alice, Bob, Charlie et Daniel ne doivent pas être là
+Si Alice, Bob ou Charlie sont prÃ©sents, alors la rÃ©union peut avoir lieu. Si Alice n'est pas lÃ , alors Bob doit Ãªtre lÃ . Si Bob n'est pas lÃ , alors Charlie doit Ãªtre lÃ . Enfin, si Charlie n'est pas lÃ , alors Alice, Bob, Charlie et Daniel ne doivent pas Ãªtre lÃ 
 +++++
 a || b || c
 !a || b

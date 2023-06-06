@@ -2,7 +2,7 @@ Given the above text and corresponding translation into a belief set, propose a 
 
 [Input]
 ===TEXT TO CONVERT
-Si Alice, Bob ou Charlie sont présents, alors la réunion peut avoir lieu. Si Alice n'est pas là, alors Bob doit être là. Si Bob n'est pas là, alors Charlie doit être là. Enfin, si Charlie n'est pas là, alors Alice, Bob, Charlie et Daniel ne doivent pas être là.
+Si Alice, Bob ou Charlie sont prÃ©sents, alors la rÃ©union peut avoir lieu. Si Alice n'est pas lÃ , alors Bob doit Ãªtre lÃ . Si Bob n'est pas lÃ , alors Charlie doit Ãªtre lÃ . Enfin, si Charlie n'est pas lÃ , alors Alice, Bob, Charlie et Daniel ne doivent pas Ãªtre lÃ .
 ===END TEXT
 ===BELIEF SET TO CONVERT
 a || b || c

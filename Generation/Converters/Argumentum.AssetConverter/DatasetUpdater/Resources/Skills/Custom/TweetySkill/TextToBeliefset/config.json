@@ -3,7 +3,7 @@
   "description": "Given a text in natural language text with statements or arguments, a type of formal logic to use for parser syntax and analysis (options 'Propositional', 'FirstOrder' or 'Modal'), converts the natural language text into a parsable belief set using the appropriate syntax, for further execution by the Tweety reasoner engine",
   "type": "completion",
   "completion": {
-    "max_tokens": 1024,
+    "max_tokens": 225,
     "temperature": 0.1,
     "top_p": 0.5
   },

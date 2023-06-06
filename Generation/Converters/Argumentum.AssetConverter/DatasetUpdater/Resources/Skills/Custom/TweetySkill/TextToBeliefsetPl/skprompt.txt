@@ -1,0 +1,21 @@
+Please transform the given text into propositional logic that forms a belief set.
+Identify the key arguments or assertions in the text that require logical analysis, including omited implicit premisses if necessary to make the arguments complete. Ensure that the text contains elements of conflict, debate, or differing opinions.
+The belief set you create will be used for analysis in the Tweety reasoner engine. 
+
+The BNF for a propositional belief set is given by (starting symbol is FORMULASET)
+FORMULASET ::== FORMULA ( "\n" FORMULA )*
+FORMULA    ::== PROPOSITION | "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-" 
+PROPOSITION is a sequence of characters excluding |,&,!,(,) and whitespace characters.
+Please stricly adhere to that BNF without using implication symbols since those connectors are not supported
+Remember that a->b is forbidden and should be replaced by !b||a.
+
+[Input]
+Si Alice, Bob ou Charlie sont présents, alors la réunion peut avoir lieu. Si Alice n'est pas là, alors Bob doit être là. Si Bob n'est pas là, alors Charlie doit être là. Enfin, si Charlie n'est pas là, alors Alice, Bob, Charlie et Daniel ne doivent pas être là
++++++
+a || b || c 
+!a || b 
+!b || c 
+!c || (!a && !b && !c && !d) 
+[Input]
+{{$input}}
++++++

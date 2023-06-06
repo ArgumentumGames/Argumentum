@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "description": "Given a text in natural language with statements or arguments, a type of formal logic to use ('Propositional', 'FirstOrder' or 'Modal'), a belief set to be parsed, a query to be tested, and the result of the query processed by the Tweety logic library, interprets the result into a reasoned answer in natural language",
+  "description": "Given a text in natural language with statements or arguments, a type of formal logic to use ('Propositional', 'FirstOrder' or 'Modal'), a belief set to be parsed, a list of queries to be tested, and the result of the queries processed by the Tweety logic library, interprets the result into a reasoned answer in natural language",
   "type": "completion",
   "completion": {
-    "max_tokens": 1024,
+    "max_tokens": 1000,
     "temperature": 0.5,
     "top_p": 0.2
   },
@@ -25,13 +25,13 @@
         "defaultValue": ""
       },
       {
-        "name": "query",
-        "description": "The query to test as a formula string to parse for selected logic type",
+        "name": "queries",
+        "description": "The queries to test as formula strings to parse for selected logic type and run within the corresponding Tweety reasoner",
         "defaultValue": ""
       },
       {
         "name": "tweety_result",
-        "description": "The result of the query run in Tweety",
+        "description": "The result of the queries run in Tweety",
         "defaultValue": ""
       }
     ]

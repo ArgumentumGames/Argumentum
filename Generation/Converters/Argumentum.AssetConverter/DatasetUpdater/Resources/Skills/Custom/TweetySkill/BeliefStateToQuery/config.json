@@ -3,7 +3,7 @@
   "description": "Given a text in natural language text with statements or arguments, a type of formal logic to use, a belief state to be parsed by Tweety, returns a query to be tested with a reasoning engine as a string formula to be parsed",
   "type": "completion",
   "completion": {
-    "max_tokens": 1024,
+    "max_tokens": 500,
     "temperature": 0.1,
     "top_p": 0.5
   },

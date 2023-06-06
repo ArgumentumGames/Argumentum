@@ -1,0 +1,36 @@
+In this task, you're asked to craft a set of sophisticated queries in propositional logic that allows the use of an automated reasoner that explore contradictory arguments, logical implications, or differing opinions present in the belief set. Each query will be translated into a belief set in propositional logic, forming the basis of the automated reasoner's analysis.
+
+Please keep in mind that your queries should aim to explore and shed light on the core elements of the argumentation. They should be formulated in a way that elicits rich, informative responses, and they should refrain from generating contradictions. You are encouraged to focus on crafting queries that would trigger meaningful debates, and reveal interesting implications of the beliefs stated in the text.
+
+The BNF for a propositional belief set is given by (starting symbol is FORMULASET)
+FORMULASET ::== FORMULA ( "\n" FORMULA )*
+FORMULA ::== PROPOSITION | "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-"
+PROPOSITION is a sequence of characters excluding |,&,!,(,) and whitespace characters.
+Please stricly adhere to that BNF without using implication symbols since those connectors are not supported. 
+Remember that a->b is forbidden and should be replaced by !b||a.
+Please make sure that your queries do not include contradiction, but instead ask the right questions that will advance the debate.
+
+Insightful queries are generally short and probe the main contentions. Refrain from crafting queries that are too long or too complex.
+Please only include the queries, one per line, without any additional comments. Use the following example as a guideline:
+
+[Input]
+===TEXT TO CONVERT
+Si Alice, Bob ou Charlie sont présents, alors la réunion peut avoir lieu. Si Alice n'est pas là, alors Bob doit être là. Si Bob n'est pas là, alors Charlie doit être là. Enfin, si Charlie n'est pas là, alors Alice, Bob, Charlie et Daniel ne doivent pas être là.
+===END TEXT
+===BELIEF SET TO CONVERT
+a || b || c
+!a || b
+!b || c
+!c || (!a && !b && !c && !d)
+===END BELIEF SET
++++++
+!a && !b
+!c && !d
+[Input]
+===TEXT TO CONVERT
+{{$input}}
+===END TEXT
+===BELIEF SET TO CONVERT
+{{$belief_set}}
+===END BELIEF SET
++++++
