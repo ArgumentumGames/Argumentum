@@ -7,6 +7,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Argumentum.AssetConverter.Entities;
 using CsvHelper;
 using Utf8Json;
 using Utf8Json.Formatters;

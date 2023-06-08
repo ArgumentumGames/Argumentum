@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
 using ImageMagick;
 
@@ -16,7 +17,7 @@ namespace Argumentum.AssetConverter
 
 
 
-	public class WebBasedGeneratorConfig
+    public class WebBasedGeneratorConfig
 	{
 
 		public bool EnableSVGPrompt { get; set; } = true;
@@ -957,6 +958,27 @@ namespace Argumentum.AssetConverter
 							DocumentName = "links.svg",
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
+						},
+					})
+				},
+				new MindMapDocumentConfig()
+				{
+					Enabled = true,
+					DocumentName = "Argumentum_Fallacies_MindMap_fr.mm",
+					DataSet = KnownDataSets.VirtuesTaxonomy,
+					Translations = new List<(string sourceLang, string destLang)>(),
+					ImageFormat = MagickFormat.Png,
+					TargetDensity = 0,
+					KeepOriginalSVG = false,
+					SVGMaps = new List<SVGFreemindMap>(new []
+					{
+						new SVGFreemindMap()
+						{
+							Enabled = true,
+							DocumentName = "links.svg",
+							WrapNodeByLink = true,
+							SetSVGNodeAttributes = false,
+							RemoveImages = true
 						},
 					})
 				}

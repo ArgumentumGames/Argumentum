@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
+using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
 using ExtendedXmlSerializer;
 using ExtendedXmlSerializer.Configuration;

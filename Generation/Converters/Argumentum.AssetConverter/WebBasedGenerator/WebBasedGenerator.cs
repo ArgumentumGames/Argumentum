@@ -9,6 +9,7 @@ using System.Linq.Dynamic.Core.Tokenizer;
 using System.Net.Http;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
 using ExtendedXmlSerializer.Core.Sources;
 using ImageMagick;
@@ -19,7 +20,7 @@ using Rule = Spectre.Console.Rule;
 
 namespace Argumentum.AssetConverter
 {
-	public class WebBasedGenerator
+    public class WebBasedGenerator
 	{
 
 		
@@ -96,7 +97,7 @@ namespace Argumentum.AssetConverter
 							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, Config.OverwriteExistingDocs);
 							break;
 						default:
-							throw new ArgumentOutOfRangeException();
+							throw new InvalidOperationException($"Document format {docImageList.Key.document.DocumentFormat} unsupported");
 					}
 				}
 				catch (Exception e)
