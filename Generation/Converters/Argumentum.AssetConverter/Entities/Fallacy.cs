@@ -1,49 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using CsvHelper;
 using CsvHelper.Configuration;
 
 namespace Argumentum.AssetConverter.Entities
 {
-
-
-    public class Fallacy
-    {
-
-
-        public static IList<Fallacy> LoadFallacies(string filePath)
-        {
-            Logger.Log($"Loading csv fallacies from file {filePath}");
-            var fileContent = File.ReadAllText(filePath);
-            return LoadFallaciesFromContent(fileContent);
-        }
-
-        private static IList<Fallacy> LoadFallaciesFromContent(string fileContent)
-        {
-            IEnumerable<Fallacy> fallacies;
-            using (var reader = new StringReader(fileContent))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                csv.Context.RegisterClassMap<FallacyClassMap>();
-                fallacies = csv.GetRecords<Fallacy>().SkipLast(1).ToList();
-            }
-            Logger.Log($"Loaded {fallacies.Count()} fallacies");
-            return fallacies.ToList();
-        }
-
-        public static async Task<IList<Fallacy>> LoadFallaciesAsync(DataSetInfo dataSet, bool debugPath)
-        {
-            Logger.Log($"Loading csv fallacies from dataSet {dataSet.Name}");
-            var payLoad = await dataSet.GetContent(debugPath);
-            return LoadFallaciesFromContent(payLoad);
-        }
-
-
+	public class Fallacy : CsvBase<Fallacy, FallacyClassMap>
+	{
 
         public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
 
@@ -140,7 +102,7 @@ namespace Argumentum.AssetConverter.Entities
         public string SvgIllustration { get; set; }
     }
 
-    public class FallacyClassMap : ClassMap<Fallacy>
+    public sealed class FallacyClassMap : ClassMap<Fallacy>
     {
         public FallacyClassMap()
         {
@@ -207,5 +169,5 @@ namespace Argumentum.AssetConverter.Entities
     }
 
 
-
+   
 }
