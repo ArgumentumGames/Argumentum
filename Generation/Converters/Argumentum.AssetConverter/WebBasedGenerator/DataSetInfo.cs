@@ -68,7 +68,7 @@ public class DataSetInfo
 
 		if (!string.IsNullOrEmpty(csvFilterField) && csvFilterValues != null && csvFilterValues.Any())
 		{
-			var dataTable = await LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
+			var dataTable = LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
 
 			var filteredRows = dataTable.AsEnumerable()
 				.Where(row => csvFilterValues.Contains(row[csvFilterField]?.ToString()));
@@ -93,7 +93,7 @@ public class DataSetInfo
 	public async Task<List<string>> SplitContentIntoChunks(int chunkSize, string delimiterIn, string delimiterOut, string primaryKeyColumn)
 	{
 		var content = await GetContent(false); // consider handling this async call properly
-		var records = await LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
+		var records = LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
 
 		var chunks = new List<string>();
 		var rows = records.Rows.Cast<DataRow>().ToList();
@@ -117,13 +117,13 @@ public class DataSetInfo
 
 
 
-	public async Task<string> MergeResponsesIntoCsv(List<string> responses, string delimiterIn, string delimiterOut, string primaryKeyColumn)
+	public string MergeResponsesIntoCsv(List<string> responses, string delimiterIn, string delimiterOut, string primaryKeyColumn)
 	{
 		var resultTable = new DataTable();
 
 		foreach (var response in responses)
 		{
-			var dataTable = await LoadCsvIntoDataTable(response, delimiterIn, primaryKeyColumn);
+			var dataTable = LoadCsvIntoDataTable(response, delimiterIn, primaryKeyColumn);
 
 
 			if (resultTable.Columns.Count == 0)
@@ -184,7 +184,7 @@ public class DataSetInfo
 		List<string> fieldsToUpdate, string delimiterOut, bool addNewRows)
 	{
 		var existingContent = await GetContent(false);  // Assuming we load the existing data
-		var resultTable = await LoadCsvIntoDataTable(existingContent, delimiterOut, primaryKeyColumn);
+		var resultTable = LoadCsvIntoDataTable(existingContent, delimiterOut, primaryKeyColumn);
 
 		foreach (var response in responses)
 		{
@@ -245,7 +245,7 @@ public class DataSetInfo
 
 
 
-	private async Task<DataTable> LoadCsvIntoDataTable(string content, string delimiter, string primaryKeyColumn)
+	private DataTable LoadCsvIntoDataTable(string content, string delimiter, string primaryKeyColumn)
 	{
 		using var textReader = new StringReader(content);
 		var config = new CsvConfiguration(CultureInfo.InvariantCulture)

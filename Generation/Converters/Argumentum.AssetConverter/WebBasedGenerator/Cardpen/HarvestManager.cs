@@ -126,7 +126,7 @@ public class HarvestManager
 		var harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>();
 
 		//Loop through each card set job in the target card sets
-		await Parallel.ForEachAsync(targetCardSets, parallelOptionsLoading, async (configCardSet, token) =>
+		await Parallel.ForEachAsync(targetCardSets, parallelOptionsLoading, (configCardSet, token) =>
 		{
 			//Get the target languages for the current card set job
 			var targetlanguages = GetTargetLanguages(configCardSet);
@@ -150,6 +150,8 @@ public class HarvestManager
 					harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
 				}
 			}
+
+			return ValueTask.CompletedTask;
 		});
 
 		//Return the dictionary
@@ -278,7 +280,7 @@ public class HarvestManager
 		}
 	}
 
-	private async Task ReleasePage(IPage page)
+	private void ReleasePage(IPage page)
 	{
 		Freepages.Push(page);
 	}
@@ -311,7 +313,7 @@ public class HarvestManager
 		finally
 		{
 			//await page.CloseAsync();
-			await ReleasePage(page);
+			ReleasePage(page);
 		}
 
 		return currentHarvest;

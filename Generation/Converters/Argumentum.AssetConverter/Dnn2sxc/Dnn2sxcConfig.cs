@@ -144,7 +144,7 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 sexyContentData = (SexyContentData) sexyContentSeralizer.Deserialize(tr);
             }
 
-            var fallacies = Fallacy.LoadFallacies(CsvPathFallacies);
+            var fallacies = Fallacy.Load(CsvPathFallacies);
 
             var fallaciesbyGuid = new Dictionary<string, (Entity entity, string path)>(fallacies.Count());
             var fallaciesByPath = new Dictionary<string, (Entity main, IList<Entity> children)>(fallacies.Count());

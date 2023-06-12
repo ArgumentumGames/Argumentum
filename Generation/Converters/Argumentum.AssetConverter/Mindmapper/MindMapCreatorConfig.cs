@@ -63,8 +63,8 @@ namespace Argumentum.AssetConverter.Mindmapper
             foreach (var config in this.MindMaps)
             {
 
-                var fallacies = Fallacy.LoadFallacies(config.DataSet);
-                config.GenerateMindMapFile( fallacies, null, "", "");
+                var fallacies = Fallacy.Load(config.DataSet);
+               config.GenerateMindMapFile( fallacies, null, "", "").GetAwaiter().GetResult();
 
             }
             Logger.LogTitle($"Generation finished, press any key to close");
