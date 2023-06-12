@@ -117,7 +117,6 @@ public class PdfManager
 
 			var docMetadata = new DocumentMetadata()
 			{
-				ApplyCaching = true,
 				Author = "Argumentum",
 				Creator = "Argumentum",
 				Producer = "Argumentum",
@@ -193,7 +192,7 @@ public class PdfManager
 				currentContainer = currentContainer.AlignCenter();
 				currentContainer = currentContainer.Height(pageSize.Height / 40);
 				currentContainer = currentContainer.Padding(pageSize.Width / 150);
-				currentContainer.Image(imagePath, ImageScaling.FitHeight);
+				currentContainer.Image(imagePath).FitHeight();
 
 			}
 

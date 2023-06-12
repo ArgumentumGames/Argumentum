@@ -335,8 +335,6 @@ namespace Argumentum.AssetConverter.Mindmapper
                 num1 = (byte)(num4 = (int)(byte)(luminosity * (int)byte.MaxValue / 240));
                 num2 = (byte)num4;
                 num3 = (byte)num4;
-                if (hue == 160)
-                    ;
             }
             else
             {

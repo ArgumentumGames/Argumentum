@@ -129,11 +129,11 @@ namespace Argumentum.AssetConverter
 			var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet);
 			if (dataSet == null)
 			{
-				fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
+				fallacies = Fallacy.Load(mindMap.DataSet);
 			}
 			else
 			{
-				fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams());
+				fallacies = await Fallacy.LoadAsync(dataSet, Config.UseDebugParams());
 			}
 
 			var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
