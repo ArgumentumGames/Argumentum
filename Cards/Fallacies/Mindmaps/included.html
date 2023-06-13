@@ -508,13 +508,6 @@
 
             e.target.classList.add('active');
             recalculateOverlayPosition(e.target);
-
-            // Delay hiding the overlay on touch events
-            if (e.type === 'touchstart') {
-                e.preventDefault(); // Prevent default touch behavior
-                clearTimeout(hideOverlayTimeout); // Clear any previous timeout
-                hideOverlayTimeout = setTimeout(hideOverlay, 300); // Delay hiding by 300ms
-            }
         };
 
         nodes.forEach((node) => {
@@ -535,11 +528,8 @@
         });
 
         document.addEventListener('touchstart', (e) => {
-            if (isNodeActive && e.target.closest('.node') === null) {
-                e.stopPropagation();
-                return;
-            }
-            if (e.target.closest('.node') === null) {
+            const isClickedOutside = !overlay.contains(e.target) && !nodes.some(node => node.contains(e.target));
+            if (isClickedOutside) {
                 hideOverlay();
             }
         });
