@@ -409,75 +409,82 @@
     </card>
 
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const overlay = document.getElementsByTagName('card')[0];
-            const title = document.getElementsByClassName('title')[0];
-            const famille = document.getElementsByClassName('famille')[0];
-            const sous_famille = document.getElementsByClassName('sous_famille')[0];
-            const Soussousfamille = document.getElementsByClassName('Soussousfamille')[0];
-            const description = document.getElementsByClassName('desc_fr')[0];
-            const example = document.getElementsByClassName('exemple_fr')[0];
-            const externalLink = document.getElementById('externalLink');
-            const niveau = document.getElementsByClassName('niveau')[0];
-            let isNodeActive = false;
+    document.addEventListener('DOMContentLoaded', function () {
+        const overlay = document.getElementsByTagName('card')[0];
+        const title = document.getElementsByClassName('title')[0];
+        const famille = document.getElementsByClassName('famille')[0];
+        const sous_famille = document.getElementsByClassName('sous_famille')[0];
+        const Soussousfamille = document.getElementsByClassName('Soussousfamille')[0];
+        const description = document.getElementsByClassName('desc_fr')[0];
+        const example = document.getElementsByClassName('exemple_fr')[0];
+        const externalLink = document.getElementById('externalLink');
+        const niveau = document.getElementsByClassName('niveau')[0];
+        let isNodeActive = false;
 
-            const nodes = document.querySelectorAll('.node');
+        const nodes = document.querySelectorAll('.node');
 
-            const hideOverlay = () => {
-                overlay.classList.add('hidden');
-                isNodeActive = false;
-            };
+        const hideOverlay = () => {
+            overlay.classList.add('hidden');
+            isNodeActive = false;
+        };
 
-            const showOverlay = (e) => {
-                isNodeActive = true;
+        const showOverlay = (e) => {
+            isNodeActive = true;
 
-                title.textContent = e.target.textContent;
-                famille.textContent = e.target.getAttribute('family');
-                sous_famille.textContent = e.target.getAttribute('subfamily');
-                Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
-                description.innerHTML = e.target.getAttribute('description');
-                example.innerHTML = e.target.getAttribute('example');
-                externalLink.href = e.target.getAttribute('link');
-                niveau.textContent = e.target.getAttribute('depth');
+            title.textContent = e.target.textContent;
+            famille.textContent = e.target.getAttribute('family');
+            sous_famille.textContent = e.target.getAttribute('subfamily');
+            Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
+            description.innerHTML = e.target.getAttribute('description');
+            example.innerHTML = e.target.getAttribute('example');
+            externalLink.href = e.target.getAttribute('link');
+            niveau.textContent = e.target.getAttribute('depth');
 
-                const rect = e.target.getBoundingClientRect();
-                const cardWidth = overlay.offsetWidth;
-                const cardHeight = overlay.offsetHeight;
+            const rect = e.target.getBoundingClientRect();
+            const cardWidth = overlay.offsetWidth;
+            const cardHeight = overlay.offsetHeight;
 
-                const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
-                const cardTop = rect.top + rect.height;
+            const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
+            const cardTop = rect.top + rect.height;
 
-                // Calculate the maximum left position to ensure the card stays within the viewport
-                const maxLeft = document.documentElement.clientWidth - cardWidth;
-                const cardLeftPosition = Math.min(maxLeft, Math.max(0, cardLeft));
+            // Calculate the maximum left position to ensure the card stays within the horizontal viewport
+            const maxLeft = document.documentElement.clientWidth - cardWidth;
+            const cardLeftPosition = Math.min(maxLeft, Math.max(0, cardLeft));
 
-                overlay.style.left = cardLeftPosition + 'px';
-                overlay.style.top = cardTop + 'px';
+            // Calculate the maximum top position to ensure the card stays within the vertical viewport
+            const maxTop = document.documentElement.clientHeight - cardHeight;
+            const cardTopPosition = Math.min(maxTop, Math.max(0, cardTop));
 
-                overlay.removeAttribute('class');
-                const familyClass = e.target.getAttribute('familyclass');
-                overlay.classList.add(familyClass);
-            };
+            overlay.style.left = cardLeftPosition + 'px';
+            overlay.style.top = cardTopPosition + 'px';
 
-            nodes.forEach(node => {
-                node.addEventListener('click', showOverlay);
-                node.addEventListener('touchstart', showOverlay);
-            });
+            overlay.removeAttribute('class');
+            const familyClass = e.target.getAttribute('familyclass');
+            overlay.classList.add(familyClass);
+        };
 
-            overlay.addEventListener('mouseleave', hideOverlay);
 
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('.node') === null) {
-                    hideOverlay();
-                }
-            });
-
-            document.addEventListener('touchstart', (e) => {
-                if (e.target.closest('.node') === null) {
-                    hideOverlay();
-                }
-            });
+        nodes.forEach(node => {
+            node.addEventListener('click', showOverlay);
+            node.addEventListener('touchstart', showOverlay);
         });
+
+        overlay.addEventListener('mouseleave', hideOverlay);
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.node') === null) {
+                hideOverlay();
+            }
+        });
+
+        document.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.node') === null) {
+                hideOverlay();
+            }
+        });
+    });
+
+
     </script>
 </body>
 </html>
