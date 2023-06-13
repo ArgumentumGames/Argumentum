@@ -425,6 +425,7 @@
         const externalLink = document.getElementById('externalLink');
         const niveau = document.getElementsByClassName('niveau')[0];
         let isNodeActive = false;
+        let hideOverlayTimeout = null;
         let activeNode = null;
 
         const nodes = document.querySelectorAll('.node');
@@ -460,16 +461,18 @@
             }
         };
 
-
-
-
-
         const resizeOverlay = () => {
+
+            overlay.style.maxWidth = '100vw';
+            overlay.style.maxHeight = '100vh';
+
+            // Recalculate the overlay position when resizing
             if (isNodeActive) {
                 const activeNode = document.querySelector('.node.active');
                 recalculateOverlayPosition(activeNode);
             }
         };
+
 
         const showOverlay = (e) => {
             isNodeActive = true;
@@ -494,7 +497,9 @@
 
             overlay.removeAttribute('class');
             const familyClass = e.target.getAttribute('familyclass');
-            overlay.classList.add(familyClass);
+            if (familyClass) {
+                overlay.classList.add(familyClass);
+            }
 
             // Remove the 'hidden' class if it exists to ensure the card is visible
             if (overlay.classList.contains('hidden')) {
@@ -503,6 +508,13 @@
 
             e.target.classList.add('active');
             recalculateOverlayPosition(e.target);
+
+            // Delay hiding the overlay on touch events
+            if (e.type === 'touchstart') {
+                e.preventDefault(); // Prevent default touch behavior
+                clearTimeout(hideOverlayTimeout); // Clear any previous timeout
+                hideOverlayTimeout = setTimeout(hideOverlay, 300); // Delay hiding by 300ms
+            }
         };
 
         nodes.forEach((node) => {
@@ -513,23 +525,32 @@
         overlay.addEventListener('mouseleave', hideOverlay);
 
         document.addEventListener('click', (e) => {
+            if (isNodeActive && e.target.closest('.node') === null) {
+                e.stopPropagation();
+                return;
+            }
             if (e.target.closest('.node') === null) {
                 hideOverlay();
             }
         });
 
         document.addEventListener('touchstart', (e) => {
+            if (isNodeActive && e.target.closest('.node') === null) {
+                e.stopPropagation();
+                return;
+            }
             if (e.target.closest('.node') === null) {
                 hideOverlay();
             }
         });
 
-        window.addEventListener('resize', resizeOverlay);
-        window.addEventListener('scroll', resizeOverlay, { passive: true });
-
-        // Trigger the initial resize and positioning
+        // Trigger the initial resize
         resizeOverlay();
+
+        window.addEventListener('resize', resizeOverlay);
+        window.addEventListener('orientationchange', resizeOverlay);
     });
+
 
 
 
