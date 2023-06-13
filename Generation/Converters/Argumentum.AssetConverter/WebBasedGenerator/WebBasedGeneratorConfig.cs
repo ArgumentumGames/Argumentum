@@ -93,12 +93,14 @@ namespace Argumentum.AssetConverter
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.FallaciesTaxonomy,
+					CsvType = typeof(Fallacy),
 					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"
 				},
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.VirtuesTaxonomy,
+					CsvType = typeof(ArgumentVirtue),
 					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Virtues - Taxonomy.csv"
 				}
@@ -106,6 +108,12 @@ namespace Argumentum.AssetConverter
 
 
 			});
+
+		//private string GetSimpleTypeName(Type objType)
+		//{
+		//	return $"{objType.FullName}, {objType.Assembly.GetName().Name}";
+		//}
+
 
 		public List<CardSetConfig> CardSets { get; set; } = new List<CardSetConfig>(
 			new[]
@@ -964,12 +972,13 @@ namespace Argumentum.AssetConverter
 				new MindMapDocumentConfig()
 				{
 					Enabled = true,
-					DocumentName = "Argumentum_Fallacies_MindMap_fr.mm",
+					DocumentName = "Argumentum_Virtues_MindMap_fr.mm",
 					DataSet = KnownDataSets.VirtuesTaxonomy,
 					Translations = new List<(string sourceLang, string destLang)>(),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
 					KeepOriginalSVG = false,
+					NbBranchesRight = 4,
 					SVGMaps = new List<SVGFreemindMap>(new []
 					{
 						new SVGFreemindMap()
@@ -979,6 +988,28 @@ namespace Argumentum.AssetConverter
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
 							RemoveImages = true
+						},
+						new SVGFreemindMap()
+						{
+							Enabled = true,
+							DocumentName = "content.svg",
+							WrapNodeByLink = false,
+							SetSVGNodeAttributes = true,
+							RemoveImages = true,
+							HtmlWrappers = new List<DocumentConfig>(new []
+							{
+								new DocumentConfig()
+								{
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\included.html"
+								},
+								new DocumentConfig()
+								{
+									TemplatePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
+									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\external.html"
+								},
+
+							})
 						},
 					})
 				}

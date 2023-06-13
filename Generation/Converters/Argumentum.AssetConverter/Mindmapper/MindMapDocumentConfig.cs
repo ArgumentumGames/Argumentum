@@ -179,6 +179,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		private Func<Fallacy, string> _Thumbnails;
+		
 
 		[IgnoreDataMember]
 		[JsonIgnore]
@@ -196,7 +197,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		
+		public int NbBranchesRight { get; set; } = 2;
+
 		public Dictionary<int, string> Colors { get; set; } = new Dictionary<int, string>()
 		{
 			{1, "#8605ab"},
@@ -254,7 +256,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			CreateFreemindmap(fallacies, webBasedGeneratorConfig, language, documentPath, fileName);
 
 			//Task.Run(async () => await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig, webBasedGeneratorConfig.EnableSVGPrompt)).GetAwaiter().GetResult() ;
-			await ProcessSVGFilesAsync(fallacies, fileName, webBasedGeneratorConfig,
+			await ProcessSvgFilesAsync(fallacies, fileName, webBasedGeneratorConfig,
 				webBasedGeneratorConfig.EnableSVGPrompt);
 		}
 
@@ -342,7 +344,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			return descRichContent;
 		}
 
-		private static void AddNodeToFreemindMap(FreemindMap freemindMap, Node fallacyNode, int familyNb)
+		private void AddNodeToFreemindMap(FreemindMap freemindMap, Node fallacyNode, int familyNb)
 		{
 			if (familyNb == 0)
 			{
@@ -351,7 +353,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 			else
 			{
-				fallacyNode.POSITION = familyNb > 2 ? "left" : "right";
+				fallacyNode.POSITION = familyNb > NbBranchesRight ? "left" : "right";
 				freemindMap.Node.Nodes.Add(fallacyNode);
 			}
 		}
@@ -436,7 +438,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			Logger.LogSuccess($"Mind map {fileName} successfully generated!");
 		}
-		private async Task ProcessSVGFilesAsync(IList<Fallacy> fallacies, string fileName,
+		private async Task ProcessSvgFilesAsync(IList<Fallacy> fallacies, string fileName,
 			WebBasedGeneratorConfig webBasedGeneratorConfig, bool enableSvgUpdates)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
@@ -474,7 +476,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
-					UpdateSVGWithFallacies(svgFreemindMap, fallacies, svgDoc, svgNamespace, xlinkNamespace);
+					UpdateSvgWithFallacies(svgFreemindMap, fallacies, svgDoc, svgNamespace, xlinkNamespace);
 
 
 					svgLoader = () => Task.FromResult(GetSvgContent(svgDoc));
@@ -512,7 +514,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private void UpdateSVGWithFallacies(SVGFreemindMap svgMap, IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		private void UpdateSvgWithFallacies(SVGFreemindMap svgMap, IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
 		{
 
 
@@ -521,7 +523,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			var warned = false;
 			foreach (var pair in disambiguatedFallacyToSVGNode)
 			{
-				UpdateSVGMatch(svgMap, pair.Value, pair.Key, svgNamespace, xlinkNamespace, ref warned);
+				UpdateSvgMatch(svgMap, pair.Value, pair.Key, svgNamespace, xlinkNamespace, ref warned);
 			}
 
 			// Optionally remove all SVG images
@@ -535,7 +537,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		
 
-		private void UpdateSVGMatch(SVGFreemindMap svgMap, XElement match, Fallacy fallacy, XNamespace svgNamespace,
+		private void UpdateSvgMatch(SVGFreemindMap svgMap, XElement match, Fallacy fallacy, XNamespace svgNamespace,
 			XNamespace xlinkNamespace, ref bool warned)
 		{
 			if (match.Parent.Name.LocalName == "a" && !warned)
