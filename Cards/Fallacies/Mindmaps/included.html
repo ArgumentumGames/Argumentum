@@ -428,6 +428,28 @@
             isNodeActive = false;
         };
 
+        const recalculateOverlayPosition = (targetNode) => {
+            if (targetNode) {
+                const rect = targetNode.getBoundingClientRect();
+                const cardWidth = overlay.offsetWidth;
+                const cardHeight = overlay.offsetHeight;
+
+                const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
+                const cardTop = rect.top + rect.height;
+
+                // Calculate the maximum left position to ensure the card stays within the horizontal viewport
+                const maxLeft = document.documentElement.clientWidth - cardWidth;
+                const cardLeftPosition = Math.min(maxLeft, Math.max(0, cardLeft));
+
+                // Calculate the maximum top position to ensure the card stays within the vertical viewport
+                const maxTop = document.documentElement.clientHeight - cardHeight;
+                const cardTopPosition = Math.min(maxTop, Math.max(0, cardTop));
+
+                overlay.style.left = cardLeftPosition + 'px';
+                overlay.style.top = cardTopPosition + 'px';
+            }
+        };
+
         const showOverlay = (e) => {
             isNodeActive = true;
 
@@ -440,29 +462,17 @@
             externalLink.href = e.target.getAttribute('link');
             niveau.textContent = e.target.getAttribute('depth');
 
-            const rect = e.target.getBoundingClientRect();
-            const cardWidth = overlay.offsetWidth;
-            const cardHeight = overlay.offsetHeight;
-
-            const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
-            const cardTop = rect.top + rect.height;
-
-            // Calculate the maximum left position to ensure the card stays within the horizontal viewport
-            const maxLeft = document.documentElement.clientWidth - cardWidth;
-            const cardLeftPosition = Math.min(maxLeft, Math.max(0, cardLeft));
-
-            // Calculate the maximum top position to ensure the card stays within the vertical viewport
-            const maxTop = document.documentElement.clientHeight - cardHeight;
-            const cardTopPosition = Math.min(maxTop, Math.max(0, cardTop));
-
-            overlay.style.left = cardLeftPosition + 'px';
-            overlay.style.top = cardTopPosition + 'px';
-
             overlay.removeAttribute('class');
             const familyClass = e.target.getAttribute('familyclass');
             overlay.classList.add(familyClass);
-        };
 
+            // Remove the 'hidden' class if it exists to ensure the card is visible
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+            }
+
+            recalculateOverlayPosition(e.target);
+        };
 
         nodes.forEach(node => {
             node.addEventListener('click', showOverlay);
@@ -482,8 +492,14 @@
                 hideOverlay();
             }
         });
-    });
 
+        window.addEventListener('resize', () => {
+            if (isNodeActive) {
+                const activeNode = document.querySelector('.node.active');
+                recalculateOverlayPosition(activeNode);
+            }
+        });
+    });
 
     </script>
 </body>
