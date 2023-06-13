@@ -17,6 +17,11 @@
             position: relative;
         }
 
+        .node:hover {
+            cursor: pointer;
+        }
+
+
 
         /* -------------------------------------------------------------------------------- */
         /* Polices */
@@ -58,6 +63,7 @@
             font-size: 80%;
             font-family: 'Bebas Neue', sans-serif;
             background-color: white;
+            width: 60em;
         }
 
 
@@ -276,7 +282,7 @@
 
         .texte {
             /*display: flex;
-    flex-flow: column wrap;*/
+        flex-flow: column wrap;*/
             justify-content: space-between;
             background-color: var(--color-background);
             margin: 0% -1% -1% -1%;
@@ -309,6 +315,9 @@
             font-variant-ligatures: no-common-ligatures;
         }
 
+
+
+
         /* -------------------------------------------------------------------------------- */
         /* Pied de page */
         /* -------------------------------------------------------------------------------- */
@@ -336,22 +345,27 @@
             color: var(--color-background);
         }
 
-
-
-      
-
         #externalLink {
-            margin: auto;
-            background-color: #337ab7;
-            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: var(--color-text-1);
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
             cursor: pointer;
+            transition-duration: 0.4s;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            width: fit-content;
         }
 
             #externalLink:hover {
-                background-color: #286090;
+                background-color: var(--color-background);
             }
     </style>
 </head>
@@ -359,41 +373,41 @@
     <div id="mindmap">
         <object id="svgObject" type="image/svg+xml" data="[SVGPATH]"></object>
     </div>
-<card>
-    <bleed>
-        <cut>
-            <safe>
-                <div class="cardName">Argumentum_Fallacies_1.1.1..Justification triviale</div>
+    <card>
+        <bleed>
+            <cut>
+                <safe>
+                    <div class="cardName">Argumentum_Fallacies_1.1.1..Justification triviale</div>
 
-                <div class="body">
-                    <div class="header">
-                        <div class="supersetWrapper">
-                            <div class="famille">Insuffisance</div>
-                            <div class="sous_famille">
-                                Argument bâclé | <span class="Soussousfamille"> Justification triviale</span>
+                    <div class="body">
+                        <div class="header">
+                            <div class="supersetWrapper">
+                                <div class="famille">Insuffisance</div>
+                                <div class="sous_famille">
+                                    Argument bâclé | <span class="Soussousfamille"> Justification triviale</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="imageSection">
-                        <button id="externalLink">Lien externe</button>
-                        <div class="title">
-                            <div>Justification triviale</div>
+                        <div class="imageSection">
+                            <a id="externalLink" href="#" target="_blank">Lien externe</a>
+                            <div class="title">
+                                <div>Justification triviale</div>
+                            </div>
+                        </div>
+                        <div class="texte">
+                            <div class="desc_fr">Vous attribuez à une habitude, une impression ou un exemple la valeur d'une preuve.</div>
+                            <div class="exemple_fr">J'ai entendu dire que cette personne était sexiste ; il m'est donc impossible d'être en accord avec elle sur quoi que ce soit.</div>
                         </div>
                     </div>
-                    <div class="texte">
-                        <div class="desc_fr">Vous attribuez à une habitude, une impression ou un exemple la valeur d'une preuve.</div>
-                        <div class="exemple_fr">J'ai entendu dire que cette personne était sexiste ; il m'est donc impossible d'être en accord avec elle sur quoi que ce soit.</div>
+                    <div class="footer">
+                        <div class="niveau"> 3 </div>
                     </div>
-                </div>
-                <div class="footer">
-                    <div class="niveau"> 3 </div>
-                </div>
-            </safe>
-        </cut>
-    </bleed>
-</card>
+                </safe>
+            </cut>
+        </bleed>
+    </card>
 
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const overlay = document.getElementsByTagName('card')[0];
             const title = document.getElementsByClassName('title')[0];
@@ -404,50 +418,55 @@
             const example = document.getElementsByClassName('exemple_fr')[0];
             const externalLink = document.getElementById('externalLink');
             const niveau = document.getElementsByClassName('niveau')[0];
-            let isMouseOverNode = false;
+            let isNodeActive = false;
 
             const svgObject = document.getElementById('svgObject');
             svgObject.addEventListener('load', function () {
                 const svgDocument = svgObject.contentDocument || svgObject.getSVGDocument();
                 const nodes = svgDocument.querySelectorAll('.node');
 
-                overlay.addEventListener('mouseenter', () => {
-                    isMouseOverNode = false;
+                const hideOverlay = () => {
+                    overlay.classList.add('hidden');
+                    isNodeActive = false;
+                };
+
+                const showOverlay = (e) => {
+                    isNodeActive = true;
+
+                    title.textContent = e.target.textContent;
+                    famille.textContent = e.target.getAttribute('family');
+                    sous_famille.textContent = e.target.getAttribute('subfamily');
+                    Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
+                    description.innerHTML = e.target.getAttribute('description');
+                    example.innerHTML = e.target.getAttribute('example');
+                    externalLink.href = e.target.getAttribute('link');
+                    niveau.textContent = e.target.getAttribute('depth');
+
+                    const rect = e.target.getBoundingClientRect();
+                    overlay.style.left = rect.left + window.scrollX + 'px';
+                    overlay.style.top = rect.top + window.scrollY + 'px';
+                    overlay.removeAttribute('class');
+                    const familyClass = e.target.getAttribute('familyclass');
+                    overlay.classList.add(familyClass);
+                };
+
+                nodes.forEach(node => {
+                    node.addEventListener('click', showOverlay);
+                    node.addEventListener('touchstart', showOverlay);
                 });
 
-                overlay.addEventListener('mouseleave', () => {
-                    if (!isMouseOverNode) {
-                        overlay.classList.add('hidden');
+                overlay.addEventListener('mouseleave', hideOverlay);
+
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.node') === null) {
+                        hideOverlay();
                     }
                 });
 
-                nodes.forEach(node => {
-                    node.addEventListener('mouseenter', (e) => {
-                        title.textContent = e.target.textContent;
-                    	famille.textContent = e.target.getAttribute('family');
-                    	sous_famille.textContent = e.target.getAttribute('subfamily');
-                    	Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
-                        description.innerHTML = e.target.getAttribute('description');
-                        example.innerHTML = e.target.getAttribute('example');
-                        externalLink.href = e.target.getAttribute('link');
-                        niveau.textContent = e.target.getAttribute('depth');
-
-                        isMouseOverNode = true;
-
-                        const rect = e.target.getBoundingClientRect();
-                        overlay.style.left = rect.left + 'px';
-                        overlay.style.top = rect.top + 'px';
-                        //overlay.classList.remove('hidden');
-                        overlay.removeAttribute('class');
-                        const familyClass = e.target.getAttribute('familyclass');
-                        overlay.classList.add(familyClass);
-                    });
-
-                    overlay.addEventListener('mouseleave', () => {
-                        if (!isMouseOverNode) {
-                            overlay.classList.add('hidden');
-                        }
-                    });
+                document.addEventListener('touchstart', (e) => {
+                    if (e.target.closest('.node') === null) {
+                        hideOverlay();
+                    }
                 });
             });
         });
