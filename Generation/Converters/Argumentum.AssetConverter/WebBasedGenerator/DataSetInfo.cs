@@ -22,6 +22,7 @@ public class DataSetInfo
 
 	public string ReleaseFilePath { get; set; }
 	public string DebugFilePath { get; set; }
+	public Type CsvType { get; set; }
 
 	public string FilePath(bool debug) =>
 		debug && !string.IsNullOrEmpty(DebugFilePath) ? DebugFilePath : ReleaseFilePath;
