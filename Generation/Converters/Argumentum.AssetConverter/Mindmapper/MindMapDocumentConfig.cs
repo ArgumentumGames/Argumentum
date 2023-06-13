@@ -801,7 +801,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
 
 
-				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingHtmlMaps)
 				{
 					
 
