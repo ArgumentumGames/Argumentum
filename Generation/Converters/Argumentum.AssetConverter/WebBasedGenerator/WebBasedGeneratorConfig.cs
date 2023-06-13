@@ -28,6 +28,8 @@ namespace Argumentum.AssetConverter
 
 		public bool OverwriteExistingDocs { get; set; }
 
+		public bool OverwriteExistingHtmlMaps { get; set; }
+
 		public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
 
 		public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 2;
