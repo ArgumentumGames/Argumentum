@@ -21,6 +21,11 @@
             cursor: pointer;
         }
 
+        .node.active {
+            fill: red;
+        }
+
+
         /* -------------------------------------------------------------------------------- */
         /* Fonts */
         /* -------------------------------------------------------------------------------- */
@@ -420,12 +425,17 @@
         const externalLink = document.getElementById('externalLink');
         const niveau = document.getElementsByClassName('niveau')[0];
         let isNodeActive = false;
+        let activeNode = null;
 
         const nodes = document.querySelectorAll('.node');
 
         const hideOverlay = () => {
             overlay.classList.add('hidden');
             isNodeActive = false;
+            if (activeNode) {
+                activeNode.classList.remove('active');
+                activeNode = null;
+            }
         };
 
         const recalculateOverlayPosition = (targetNode) => {
@@ -453,6 +463,15 @@
         const showOverlay = (e) => {
             isNodeActive = true;
 
+            // Remove the 'active' class from any previously active node
+            const activeNode = document.querySelector('.node.active');
+            if (activeNode) {
+                activeNode.classList.remove('active');
+            }
+
+            // Add the 'active' class to the clicked node
+            e.target.classList.add('active');
+
             title.textContent = e.target.textContent;
             famille.textContent = e.target.getAttribute('family');
             sous_famille.textContent = e.target.getAttribute('subfamily');
@@ -471,6 +490,7 @@
                 overlay.classList.remove('hidden');
             }
 
+            e.target.classList.add('active');
             recalculateOverlayPosition(e.target);
         };
 
@@ -494,8 +514,7 @@
         });
 
         window.addEventListener('resize', () => {
-            if (isNodeActive) {
-                const activeNode = document.querySelector('.node.active');
+            if (isNodeActive && activeNode) {
                 recalculateOverlayPosition(activeNode);
             }
         });
