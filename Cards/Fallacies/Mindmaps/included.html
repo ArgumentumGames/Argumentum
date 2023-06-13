@@ -528,7 +528,7 @@
         });
 
         document.addEventListener('touchstart', (e) => {
-            const isClickedOutside = !overlay.contains(e.target) && !nodes.some(node => node.contains(e.target));
+            const isClickedOutside = !overlay.contains(e.target);
             if (isClickedOutside) {
                 hideOverlay();
             }
