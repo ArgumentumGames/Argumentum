@@ -453,13 +453,14 @@
                 const cardLeftPosition = Math.max(0, Math.min(maxLeft, cardLeft));
 
                 // Calculate the maximum top position to ensure the card stays within the vertical viewport
-                const maxTop = document.documentElement.clientHeight - cardHeight;
+                const maxTop = window.innerHeight - cardHeight;
                 const cardTopPosition = Math.max(0, Math.min(maxTop, cardTop));
 
                 overlay.style.left = cardLeftPosition + 'px';
                 overlay.style.top = cardTopPosition + 'px';
             }
         };
+
 
 
 
