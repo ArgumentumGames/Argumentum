@@ -441,22 +441,46 @@
         const recalculateOverlayPosition = (targetNode) => {
             if (targetNode) {
                 const rect = targetNode.getBoundingClientRect();
-                const cardWidth = overlay.offsetWidth;
                 const cardHeight = overlay.offsetHeight;
+                const cardWidth = overlay.offsetWidth;
 
                 const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
                 const cardTop = rect.top + rect.height;
 
                 // Calculate the maximum left position to ensure the card stays within the horizontal viewport
-                const maxLeft = document.documentElement.clientWidth - cardWidth;
-                const cardLeftPosition = Math.min(maxLeft, Math.max(0, cardLeft));
+                const maxLeft = window.innerWidth - cardWidth;
+                const cardLeftPosition = Math.max(0, Math.min(maxLeft, cardLeft));
 
                 // Calculate the maximum top position to ensure the card stays within the vertical viewport
-                const maxTop = document.documentElement.clientHeight - cardHeight;
-                const cardTopPosition = Math.min(maxTop, Math.max(0, cardTop));
+                const maxTop = window.innerHeight - cardHeight;
+                const cardTopPosition = Math.max(0, Math.min(maxTop, cardTop));
 
-                overlay.style.left = cardLeftPosition + 'px';
-                overlay.style.top = cardTopPosition + 'px';
+                // Subtract the height of the footer if it exists
+                const footer = document.getElementsByClassName('footer')[0];
+                const footerHeight = footer ? footer.offsetHeight : 0;
+                const maxTopWithFooter = window.innerHeight - cardHeight - footerHeight;
+                const cardTopPositionWithFooter = Math.max(0, Math.min(maxTopWithFooter, cardTopPosition));
+
+                // Calculate the maximum right position to ensure the card stays within the right edge of the viewport
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                const maxRight = window.innerWidth - cardWidth - scrollbarWidth;
+                const cardRightPosition = Math.max(0, Math.min(maxRight, cardLeftPosition));
+
+                // Calculate the maximum bottom position to ensure the card stays within the bottom edge of the viewport
+                const scrollbarHeight = window.innerHeight - document.documentElement.clientHeight;
+                const maxBottom = window.innerHeight - cardHeight - scrollbarHeight;
+                const cardBottomPosition = Math.max(0, Math.min(maxBottom, cardTopPositionWithFooter));
+
+                overlay.style.left = cardRightPosition + 'px';
+                overlay.style.top = cardBottomPosition + 'px';
+            }
+        };
+
+
+        const resizeOverlay = () => {
+            if (isNodeActive) {
+                const activeNode = document.querySelector('.node.active');
+                recalculateOverlayPosition(activeNode);
             }
         };
 
@@ -494,7 +518,7 @@
             recalculateOverlayPosition(e.target);
         };
 
-        nodes.forEach(node => {
+        nodes.forEach((node) => {
             node.addEventListener('click', showOverlay);
             node.addEventListener('touchstart', showOverlay);
         });
@@ -513,12 +537,12 @@
             }
         });
 
-        window.addEventListener('resize', () => {
-            if (isNodeActive && activeNode) {
-                recalculateOverlayPosition(activeNode);
-            }
-        });
+        window.addEventListener('resize', resizeOverlay);
+
+        // Trigger the initial resize and positioning
+        resizeOverlay();
     });
+
 
     </script>
 </body>
