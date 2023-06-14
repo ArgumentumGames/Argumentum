@@ -527,7 +527,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 			var fallacyToSVGNodes = CollectPossibleSvgNodes(fallacies, svgDoc, svgNamespace);
-			var disambiguatedFallacyToSVGNode = DisambiguateSvgNodes(fallacyToSVGNodes, fallacies);
+			var disambiguatedFallacyToSVGNode = DisambiguateSvgNodes(fallacyToSVGNodes, fallacies, svgNamespace);
 			var warned = false;
 			foreach (var pair in disambiguatedFallacyToSVGNode)
 			{
@@ -543,52 +543,60 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		
-
-		
-
 
 		private Dictionary<Fallacy, List<XElement>> CollectPossibleSvgNodes(IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace)
 		{
 			Dictionary<Fallacy, List<XElement>> fallacyToSvgNodes = new();
-			var textNodes = svgDoc.Descendants(svgNamespace + "text").ToList();
+			var textGroups = svgDoc.Descendants(svgNamespace + "g").Where(g => g.Elements(svgNamespace + "text").Any()).ToList();
 
 			foreach (var fallacy in fallacies)
 			{
 				string title = TitleFunc(fallacy);
-				var textElements = textNodes.Where(t => t.Value.Contains(title)).ToList();
-				if (textElements.Any())
+				var matchingGroups = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title)).ToList();
+
+				if (matchingGroups.Any())
 				{
-					// Group the text elements by length
-					var groupedTextElements = textElements.GroupBy(t => t.Value.Length);
+					// Group the g elements by the length of their text content
+					var groupedGroups = matchingGroups.GroupBy(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Length);
 
 					// Get the minimum length among the groups
-					var elements = groupedTextElements as IGrouping<int, XElement>[] ?? groupedTextElements.ToArray();
-					var minLength = elements.Min(g => g.Key);
+					var groups = groupedGroups as IGrouping<int, XElement>[] ?? groupedGroups.ToArray();
+					var minLength = groups.Min(g => g.Key);
 
-					// Retain only the text elements with the minimum length
-					var minLengthTextElements = elements.First(g => g.Key == minLength).ToList();
+					// Retain only the g elements with the minimum length
+					var minLengthGroups = groups.First(g => g.Key == minLength).ToList();
 
-					fallacyToSvgNodes[fallacy] = minLengthTextElements;
+					fallacyToSvgNodes[fallacy] = minLengthGroups;
 				}
 				else
 				{
-					var closeMatches = textNodes.Where(t => t.Value.Contains(title.Substring(0, 3))).ToList();
-					var closeMatchesMessages = closeMatches.Select(t => t.Value).ToList().Aggregate("",(s1, s2) =>$"{s1}\n{s2}");
+					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title.Substring(0, 3))).ToList();
+					var closeMatchesMessages = closeMatches.Select(g => string.Join(" ", g.Elements(svgNamespace + "text").Select(t => t.Value))).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
 					Logger.LogProblem($"Could not find Svg node for fallacy {TitleFunc(fallacy)}\nClose matches:\n{closeMatchesMessages}");
 				}
-
 			}
 
 			return fallacyToSvgNodes;
 		}
 
 
-		private Dictionary<Fallacy, XElement> DisambiguateSvgNodes(Dictionary<Fallacy, List<XElement>> fallacyToSvgNodes, IList<Fallacy> fallacies)
+		private Dictionary<Fallacy, XElement> DisambiguateSvgNodes(
+			Dictionary<Fallacy, List<XElement>> fallacyToSvgNodes, IList<Fallacy> fallacies, XNamespace svgNamespace)
 		{
 			var tempNode = fallacyToSvgNodes.First().Value.First();
-			var allNodesList = tempNode.Document.Descendants(tempNode.Name.LocalName).ToList();
+			var allNodesList = tempNode.Document.Descendants(svgNamespace + tempNode.Name.LocalName).ToList();
 			var nodeIndices = allNodesList.Select((n, i) => new { Node = n, Index = i }).ToDictionary(n => n.Node, n => n.Index);
+			//checking that all nodes have an index
+			foreach (var fallacyToSvgNode in fallacyToSvgNodes)
+			{
+				foreach (var svgNode in fallacyToSvgNode.Value)
+				{
+					if (!nodeIndices.TryGetValue(svgNode, out int tempIndex))
+					{
+						Debugger.Break();
+					}
+				}
+			}
 			Dictionary<Fallacy, XElement> disambiguatedFallacyToSvgNode = new();
 			Dictionary<XElement, Fallacy> svgNodeToFallacy = new();
 
