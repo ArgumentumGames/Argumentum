@@ -245,27 +245,27 @@ namespace Argumentum.AssetConverter
 		private static object lockObj = new object();
 
 
-		private static TaskCompletionSource<ConsoleKeyInfo> keyPressTcs;
+		internal static TaskCompletionSource<ConsoleKeyInfo> KeyPressTcs;
 
 		public static Task<ConsoleKeyInfo> ConsoleKeyPressAsync()
 		{
-			if (keyPressTcs == null || keyPressTcs.Task.IsCompleted)
+			if (KeyPressTcs == null || KeyPressTcs.Task.IsCompleted)
 			{
 				lock (lockObj)
 				{
-					if (keyPressTcs == null || keyPressTcs.Task.IsCompleted)
+					if (KeyPressTcs == null || KeyPressTcs.Task.IsCompleted)
 					{
-						keyPressTcs = new TaskCompletionSource<ConsoleKeyInfo>();
+						KeyPressTcs = new TaskCompletionSource<ConsoleKeyInfo>();
 
 						Task.Run(() =>
 						{
 							var keyInfo = Console.ReadKey(intercept: true);
-							keyPressTcs.SetResult(keyInfo);
+							KeyPressTcs.SetResult(keyInfo);
 						});
 					}
 				}
 			}
-			return keyPressTcs.Task;
+			return KeyPressTcs.Task;
 		}
 
 
