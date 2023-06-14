@@ -368,10 +368,30 @@
             text-align: right;
             color: var(--color-background);
         }
+
+        /* -------------------------------------------------------------------------------- */
+        /* Zoom */
+        /* -------------------------------------------------------------------------------- */
+
+
+        .zoomable {
+            transform-origin: top left;
+            transition: transform 0.3s ease;
+        }
+
+        .zoom-in {
+            transform: scale(1.2);
+        }
+
+        .zoom-out {
+            transform: scale(0.8);
+        }
+
+
     </style>
 </head>
 <body>
-    <div id="mindmap">
+    <div id="mindmap" class="zoomable">
         [SVGCONTENT]
     </div>
     <card>
@@ -456,11 +476,7 @@
             }
         };
 
-
-
-
-
-
+        
         const resizeOverlay = () => {
 
             overlay.style.maxWidth = '100vw';
@@ -539,6 +555,31 @@
 
         window.addEventListener('resize', resizeOverlay);
         window.addEventListener('orientationchange', resizeOverlay);
+
+        //Zoom
+
+        const mindmapContainer = document.getElementById('mindmap');
+        let zoomLevel = 1;
+
+        function zoomIn() {
+            zoomLevel += 0.1;
+            mindmapContainer.style.transform = `scale(${zoomLevel})`;
+        }
+
+        function zoomOut() {
+            zoomLevel -= 0.1;
+            mindmapContainer.style.transform = `scale(${zoomLevel})`;
+        }
+
+        // Example usage
+        document.addEventListener('keydown', (event) => {
+            if (event.key === '+') {
+                zoomIn();
+            } else if (event.key === '-') {
+                zoomOut();
+            }
+        });
+
     });
 
 
