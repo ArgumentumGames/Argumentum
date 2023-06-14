@@ -95,7 +95,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string DescriptionExpression { get; set; } =
 @"
 <p>
-    <font size='4'>{HttpUtility.HtmlEncode(fallacy.DescFr)}</font>
+    {HttpUtility.HtmlEncode(fallacy.DescFr)}
 </p>
 ";
 
@@ -489,11 +489,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
 
-				if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
-				{
-					File.Delete(svgFilePath);
-				}
+				
 
+			}
+
+			if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
+			{
+				File.Delete(svgFilePath);
 			}
 
 		}
