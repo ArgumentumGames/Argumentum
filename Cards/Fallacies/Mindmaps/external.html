@@ -138,7 +138,8 @@
             font-size: 80%;
             font-family: 'Bebas Neue', sans-serif;
             background-color: white;
-            width: 60vh;
+            width: 50vw;
+            height: 50vh;
             display: flex;
             flex-direction: column;
         }
@@ -172,20 +173,18 @@
 
         .famille {
             text-transform: uppercase;
-            font-size: 2.8vh;
+            font-size: 5.6vh;
             text-align: center;
-            line-height: 0.9vh;
-            letter-spacing: 0.07vh;
             color: var(--color-text-1);
         }
 
         .sous_famille {
-            font-size: 1.7vh;
+            font-size: 3.4vh;
             letter-spacing: 0.05vh;
         }
 
         .Soussousfamille {
-            font-size: 0.9vh !important;
+            font-size: 1.8vh;
         }
 
 
@@ -201,9 +200,9 @@
             flex-flow: column nowrap;
             height: 100%;
             justify-content: space-between;
-            border: 1.4vh solid;
+            border: 2.8vh solid;
             border-color: var(--color-background);
-            border-radius: 1vh;
+            border-radius: 2vh;
         }
 
         .supersetWrapper .famille {
@@ -232,10 +231,9 @@
         .title {
             width: 100%;
             text-align: center;
-            font-size: 3vh;
+            font-size: 5vh;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.05vh;
             color: var(--color-text-1);
             box-sizing: border-box;
             flex-shrink: 0;
@@ -297,7 +295,7 @@
             text-transform: uppercase;
             font-family: 'DINpro',sans-serif;
             font-weight: 900;
-            font-size: 1.6vh;
+            font-size: 3.2vh;
             /*margin:4% 5% 3% 5%;*/
 
             padding: 2% 5% 2% 5%;
@@ -307,7 +305,7 @@
         .exemple_fr {
             font-family: 'DINpro',sans-serif;
             color: var(--color-text-2);
-            font-size: 1.45vh;
+            font-size: 2.9vh;
             font-weight: 600;
             padding: 2% 5% 2% 5%;
             background-color: white;
@@ -353,8 +351,8 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 2vh;
-            height: 2vh;
+            width: 4vh;
+            height: 4vh;
             background-color: #fff;
             border: 1px solid;
             border-color: var(--color-background);
@@ -365,7 +363,7 @@
         }
 
         .niveau {
-            font-size: 1.4vh;
+            font-size: 2.8vh;
             font-weight: bold;
             text-align: right;
             color: var(--color-background);
@@ -501,20 +499,25 @@
                         activeNode.classList.remove('active');
                     }
 
-                    // Add the 'active' class to the clicked node
-                    e.target.classList.add('active');
+                    let targetNode = e.target;
+                    if (!targetNode.classList.contains('node') && targetNode.parentElement.classList.contains('node')) {
+                        targetNode = targetNode.parentElement;
+                    }
 
-                    title.textContent = e.target.textContent;
-                    famille.textContent = e.target.getAttribute('family');
-                    sous_famille.textContent = e.target.getAttribute('subfamily');
-                    Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
-                    description.innerHTML = e.target.getAttribute('description');
-                    example.innerHTML = e.target.getAttribute('example');
-                    externalLink.href = e.target.getAttribute('link');
-                    niveau.textContent = e.target.getAttribute('depth');
+                    // Add the 'active' class to the clicked node
+                    targetNode.classList.add('active');
+
+                    title.textContent = targetNode.textContent;
+                    famille.textContent = targetNode.getAttribute('family');
+                    sous_famille.textContent = targetNode.getAttribute('subfamily');
+                    Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
+                    description.innerHTML = targetNode.getAttribute('description');
+                    example.innerHTML = targetNode.getAttribute('example');
+                    externalLink.href = targetNode.getAttribute('link');
+                    niveau.textContent = targetNode.getAttribute('depth');
 
                     overlay.removeAttribute('class');
-                    const familyClass = e.target.getAttribute('familyclass');
+                    const familyClass = targetNode.getAttribute('familyclass');
                     if (familyClass) {
                         overlay.classList.add(familyClass);
                     }
@@ -524,9 +527,10 @@
                         overlay.classList.remove('hidden');
                     }
 
-                    e.target.classList.add('active');
-                    recalculateOverlayPosition(e.target);
+                    targetNode.classList.add('active');
+                    recalculateOverlayPosition(targetNode);
                 };
+
 
                 nodes.forEach((node) => {
                     node.addEventListener('click', showOverlay);

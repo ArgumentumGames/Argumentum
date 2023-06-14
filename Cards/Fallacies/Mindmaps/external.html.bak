@@ -136,10 +136,9 @@
             position: fixed;
             z-index: 100;
             font-size: 80%;
-            width: 50vw;
-            height: 50vh;
             font-family: 'Bebas Neue', sans-serif;
             background-color: white;
+            width: 60vh;
             display: flex;
             flex-direction: column;
         }
@@ -175,6 +174,8 @@
             text-transform: uppercase;
             font-size: 5.6vh;
             text-align: center;
+            line-height: 1.8vh;
+            letter-spacing: 0.14vh;
             color: var(--color-text-1);
         }
 
@@ -186,6 +187,8 @@
         .Soussousfamille {
             font-size: 1.8vh;
         }
+
+
 
 
         /* -------------------------------------------------------------------------------- */
@@ -232,6 +235,7 @@
             font-size: 5vh;
             font-weight: 500;
             text-transform: uppercase;
+            letter-spacing: 0.1vh;
             color: var(--color-text-1);
             box-sizing: border-box;
             flex-shrink: 0;
@@ -384,13 +388,11 @@
         .zoom-out {
             transform: scale(0.8);
         }
-
-
     </style>
 </head>
 <body>
     <div id="mindmap" class="zoomable">
-        [SVGCONTENT]
+        <object id="svgObject" type="image/svg+xml" data="[SVGPATH]"></object>
     </div>
     <card>
         <bleed>
@@ -426,169 +428,167 @@
         </bleed>
     </card>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const overlay = document.getElementsByTagName('card')[0];
-        const title = document.getElementsByClassName('title')[0];
-        const famille = document.getElementsByClassName('famille')[0];
-        const sous_famille = document.getElementsByClassName('sous_famille')[0];
-        const Soussousfamille = document.getElementsByClassName('Soussousfamille')[0];
-        const description = document.getElementsByClassName('desc_fr')[0];
-        const example = document.getElementsByClassName('exemple_fr')[0];
-        const externalLink = document.getElementById('externalLink');
-        const niveau = document.getElementsByClassName('niveau')[0];
-        let isNodeActive = false;
-        let hideOverlayTimeout = null;
-        let activeNode = null;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const overlay = document.getElementsByTagName('card')[0];
+            const title = document.getElementsByClassName('title')[0];
+            const famille = document.getElementsByClassName('famille')[0];
+            const sous_famille = document.getElementsByClassName('sous_famille')[0];
+            const Soussousfamille = document.getElementsByClassName('Soussousfamille')[0];
+            const description = document.getElementsByClassName('desc_fr')[0];
+            const example = document.getElementsByClassName('exemple_fr')[0];
+            const externalLink = document.getElementById('externalLink');
+            const niveau = document.getElementsByClassName('niveau')[0];
+            let isNodeActive = false;
+            let hideOverlayTimeout = null;
+            let activeNode = null;
 
-        const nodes = document.querySelectorAll('.node');
+            const svgObject = document.getElementById('svgObject');
+            svgObject.addEventListener('load', function () {
+                const svgDocument = svgObject.contentDocument || svgObject.getSVGDocument();
+                const nodes = svgDocument.querySelectorAll('.node');
 
-        const hideOverlay = () => {
-            overlay.classList.add('hidden');
-            isNodeActive = false;
-            if (activeNode) {
-                activeNode.classList.remove('active');
-                activeNode = null;
-            }
-        };
+                const hideOverlay = () => {
+                    overlay.classList.add('hidden');
+                    isNodeActive = false;
+                    if (activeNode) {
+                        activeNode.classList.remove('active');
+                        activeNode = null;
+                    }
+                };
 
-        const recalculateOverlayPosition = (targetNode) => {
-            if (targetNode) {
-                const rect = targetNode.getBoundingClientRect();
-                const cardHeight = overlay.offsetHeight;
-                const cardWidth = overlay.offsetWidth;
+                const recalculateOverlayPosition = (targetNode) => {
+                    if (targetNode) {
+                        const rect = targetNode.getBoundingClientRect();
+                        const cardHeight = overlay.offsetHeight;
+                        const cardWidth = overlay.offsetWidth;
 
-                const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
-                const cardTop = rect.top + rect.height;
+                        const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
+                        const cardTop = rect.top + rect.height;
 
-                // Calculate the maximum left position to ensure the card stays within the horizontal viewport
-                const maxLeft = window.innerWidth - cardWidth;
-                const cardLeftPosition = Math.max(0, Math.min(maxLeft, cardLeft));
+                        // Calculate the maximum left position to ensure the card stays within the horizontal viewport
+                        const maxLeft = window.innerWidth - cardWidth;
+                        const cardLeftPosition = Math.max(0, Math.min(maxLeft, cardLeft));
 
-                // Calculate the maximum top position to ensure the card stays within the vertical viewport
-                const maxTop = window.innerHeight - cardHeight;
-                const cardTopPosition = Math.max(0, Math.min(maxTop, cardTop));
+                        // Calculate the maximum top position to ensure the card stays within the vertical viewport
+                        const maxTop = window.innerHeight - cardHeight;
+                        const cardTopPosition = Math.max(0, Math.min(maxTop, cardTop));
 
-                overlay.style.left = cardLeftPosition + 'px';
-                overlay.style.top = cardTopPosition + 'px';
-            }
-        };
-
-        
-        const resizeOverlay = () => {
-
-            overlay.style.maxWidth = '100vw';
-            overlay.style.maxHeight = '100vh';
-
-            // Recalculate the overlay position when resizing
-            if (isNodeActive) {
-                const activeNode = document.querySelector('.node.active');
-                recalculateOverlayPosition(activeNode);
-            }
-        };
+                        overlay.style.left = cardLeftPosition + 'px';
+                        overlay.style.top = cardTopPosition + 'px';
+                    }
+                };
 
 
-        const showOverlay = (e) => {
-            isNodeActive = true;
+                const resizeOverlay = () => {
 
-            // Remove the 'active' class from any previously active node
-            const activeNode = document.querySelector('.node.active');
-            if (activeNode) {
-                activeNode.classList.remove('active');
-            }
+                    overlay.style.maxWidth = '100vw';
+                    overlay.style.maxHeight = '100vh';
 
-            let targetNode = e.target;
-            if (!targetNode.classList.contains('node') && targetNode.parentElement.classList.contains('node')) {
-                targetNode = targetNode.parentElement;
-            }
+                    // Recalculate the overlay position when resizing
+                    if (isNodeActive) {
+                        const activeNode = document.querySelector('.node.active');
+                        recalculateOverlayPosition(activeNode);
+                    }
+                };
 
-            // Add the 'active' class to the clicked node
-            targetNode.classList.add('active');
+                const showOverlay = (e) => {
+                    isNodeActive = true;
 
-            title.textContent = targetNode.textContent;
-            famille.textContent = targetNode.getAttribute('family');
-            sous_famille.textContent = targetNode.getAttribute('subfamily');
-            Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
-            description.innerHTML = targetNode.getAttribute('description');
-            example.innerHTML = targetNode.getAttribute('example');
-            externalLink.href = targetNode.getAttribute('link');
-            niveau.textContent = targetNode.getAttribute('depth');
+                    // Remove the 'active' class from any previously active node
+                    const activeNode = document.querySelector('.node.active');
+                    if (activeNode) {
+                        activeNode.classList.remove('active');
+                    }
 
-            overlay.removeAttribute('class');
-            const familyClass = targetNode.getAttribute('familyclass');
-            if (familyClass) {
-                overlay.classList.add(familyClass);
-            }
+                    let targetNode = e.target;
+                    if (!targetNode.classList.contains('node') && targetNode.parentElement.classList.contains('node')) {
+                        targetNode = targetNode.parentElement;
+                    }
 
-            // Remove the 'hidden' class if it exists to ensure the card is visible
-            if (overlay.classList.contains('hidden')) {
-                overlay.classList.remove('hidden');
-            }
+                    // Add the 'active' class to the clicked node
+                    targetNode.classList.add('active');
 
-            targetNode.classList.add('active');
-            recalculateOverlayPosition(targetNode);
-        };
+                    title.textContent = targetNode.textContent;
+                    famille.textContent = targetNode.getAttribute('family');
+                    sous_famille.textContent = targetNode.getAttribute('subfamily');
+                    Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
+                    description.innerHTML = targetNode.getAttribute('description');
+                    example.innerHTML = targetNode.getAttribute('example');
+                    externalLink.href = targetNode.getAttribute('link');
+                    niveau.textContent = targetNode.getAttribute('depth');
+
+                    overlay.removeAttribute('class');
+                    const familyClass = targetNode.getAttribute('familyclass');
+                    if (familyClass) {
+                        overlay.classList.add(familyClass);
+                    }
+
+                    // Remove the 'hidden' class if it exists to ensure the card is visible
+                    if (overlay.classList.contains('hidden')) {
+                        overlay.classList.remove('hidden');
+                    }
+
+                    targetNode.classList.add('active');
+                    recalculateOverlayPosition(targetNode);
+                };
 
 
-        nodes.forEach((node) => {
-            node.addEventListener('click', showOverlay);
-            node.addEventListener('touchstart', showOverlay);
+                nodes.forEach((node) => {
+                    node.addEventListener('click', showOverlay);
+                    node.addEventListener('touchstart', showOverlay);
+                });
+
+                overlay.addEventListener('mouseleave', hideOverlay);
+
+                document.addEventListener('click', (e) => {
+                    if (isNodeActive && e.target.closest('.node') === null) {
+                        e.stopPropagation();
+                        return;
+                    }
+                    if (e.target.closest('.node') === null) {
+                        hideOverlay();
+                    }
+                });
+
+                document.addEventListener('touchstart', (e) => {
+                    const isClickedOutside = !overlay.contains(e.target);
+                    if (isClickedOutside) {
+                        hideOverlay();
+                    }
+                });
+
+                // Trigger the initial resize
+                resizeOverlay();
+
+                window.addEventListener('resize', resizeOverlay);
+                window.addEventListener('orientationchange', resizeOverlay);
+
+                //Zoom
+
+                const mindmapContainer = document.getElementById('mindmap');
+                let zoomLevel = 1;
+
+                function zoomIn() {
+                    zoomLevel += 0.1;
+                    mindmapContainer.style.transform = `scale(${zoomLevel})`;
+                }
+
+                function zoomOut() {
+                    zoomLevel -= 0.1;
+                    mindmapContainer.style.transform = `scale(${zoomLevel})`;
+                }
+
+                // Example usage
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === '+') {
+                        zoomIn();
+                    } else if (event.key === '-') {
+                        zoomOut();
+                    }
+                });
+            });
         });
-
-        overlay.addEventListener('mouseleave', hideOverlay);
-
-        document.addEventListener('click', (e) => {
-            if (isNodeActive && e.target.closest('.node') === null) {
-                e.stopPropagation();
-                return;
-            }
-            if (e.target.closest('.node') === null) {
-                hideOverlay();
-            }
-        });
-
-        document.addEventListener('touchstart', (e) => {
-            const isClickedOutside = !overlay.contains(e.target);
-            if (isClickedOutside) {
-                hideOverlay();
-            }
-        });
-
-        // Trigger the initial resize
-        resizeOverlay();
-
-        window.addEventListener('resize', resizeOverlay);
-        window.addEventListener('orientationchange', resizeOverlay);
-
-        //Zoom
-
-        const mindmapContainer = document.getElementById('mindmap');
-        let zoomLevel = 1;
-
-        function zoomIn() {
-            zoomLevel += 0.1;
-            mindmapContainer.style.transform = `scale(${zoomLevel})`;
-        }
-
-        function zoomOut() {
-            zoomLevel -= 0.1;
-            mindmapContainer.style.transform = `scale(${zoomLevel})`;
-        }
-
-        // Example usage
-        document.addEventListener('keydown', (event) => {
-            if (event.key === '+') {
-                zoomIn();
-            } else if (event.key === '-') {
-                zoomOut();
-            }
-        });
-
-    });
-
-
-
-
     </script>
 </body>
 </html>

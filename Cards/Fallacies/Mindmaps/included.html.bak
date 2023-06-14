@@ -136,10 +136,9 @@
             position: fixed;
             z-index: 100;
             font-size: 80%;
-            width: 50vw;
-            height: 50vh;
             font-family: 'Bebas Neue', sans-serif;
             background-color: white;
+            width: 60vh;
             display: flex;
             flex-direction: column;
         }
@@ -175,6 +174,8 @@
             text-transform: uppercase;
             font-size: 5.6vh;
             text-align: center;
+            line-height: 1.8vh;
+            letter-spacing: 0.14vh;
             color: var(--color-text-1);
         }
 
@@ -184,7 +185,7 @@
         }
 
         .Soussousfamille {
-            font-size: 1.8vh;
+            font-size: 1.8vh !important;
         }
 
 
@@ -198,9 +199,9 @@
             flex-flow: column nowrap;
             height: 100%;
             justify-content: space-between;
-            border: 2.8vh solid;
+            border: 1.4vh solid;
             border-color: var(--color-background);
-            border-radius: 2vh;
+            border-radius: 1vh;
         }
 
         .supersetWrapper .famille {
@@ -229,9 +230,10 @@
         .title {
             width: 100%;
             text-align: center;
-            font-size: 5vh;
+            font-size: 3vh;
             font-weight: 500;
             text-transform: uppercase;
+            letter-spacing: 0.05vh;
             color: var(--color-text-1);
             box-sizing: border-box;
             flex-shrink: 0;
@@ -293,7 +295,7 @@
             text-transform: uppercase;
             font-family: 'DINpro',sans-serif;
             font-weight: 900;
-            font-size: 3.2vh;
+            font-size: 1.6vh;
             /*margin:4% 5% 3% 5%;*/
 
             padding: 2% 5% 2% 5%;
@@ -303,7 +305,7 @@
         .exemple_fr {
             font-family: 'DINpro',sans-serif;
             color: var(--color-text-2);
-            font-size: 2.9vh;
+            font-size: 1.45vh;
             font-weight: 600;
             padding: 2% 5% 2% 5%;
             background-color: white;
@@ -349,8 +351,8 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 4vh;
-            height: 4vh;
+            width: 2vh;
+            height: 2vh;
             background-color: #fff;
             border: 1px solid;
             border-color: var(--color-background);
@@ -361,7 +363,7 @@
         }
 
         .niveau {
-            font-size: 2.8vh;
+            font-size: 1.4vh;
             font-weight: bold;
             text-align: right;
             color: var(--color-background);
