@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 5. pgen</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 5. pgen">
+<meta name="keywords" content="frequently asked questions about SPASS: 5. pgen">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_4.html#SEC25" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_6.html#SEC40" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="pgen"></a>
+<a name="SEC32"></a>
+<h1 class="chapter"> 5. pgen </h1>
+
+<hr size="6">
+<a name="SEC33"></a>
+<h2 class="section"> 5.1 NAME </h2>
+<p>pgen - generates single step proof obligations out of a DFG (SPASS) proof
+</p>
+<hr size="6">
+<a name="SEC34"></a>
+<h2 class="section"> 5.2 SYNOPSIS </h2>
+<p><strong>pgen</strong>  [ -dstqjnr] [-vinci -xvcg] filename
+</p>
+<hr size="6">
+<a name="SEC35"></a>
+<h2 class="section"> 5.3 DESCRIPTION </h2>
+<p>¢ man begin DESCRIPTION
+<strong>pgen</strong> is a C-program that checks the tableau structure of SPASS tableau proofs and generates
+proof tasks corresponding to proof steps. Before the proof tasks are generated,
+the tableau is reduced in two steps:
+</p><ol>
+<li> 
+If an empty clause exists in a subtableau, all 
+successors of the subtableau are deleted.
+</li><li> 
+If a subtableau has a single successor subtableau, the successor
+is deleted.   
+</li></ol>
+<p>After the reduction, <strong>pgen</strong> checks that
+</p><ul>
+<li> 
+Each clause in a subtableau uses only parents clauses that are 
+visible at this point in the tableau.
+</li><li>
+Each clause, except for split clauses, has the maximum
+split level of its parents.
+</li><li>
+If the first half of a split was ground, then negations
+of its literals can be used in the tableau branch corresponding
+to the second half of the split.
+</li><li> 
+The tableau is complete and closed.
+</li></ul>
+
+<p>Generated filenames have the form <i>&lt;prefix&gt;&lt;filename&gt;&lt;suffix&gt;</i>,
+where <i>suffix</i> and <i>prefix</i> are specified by the <strong>-d</strong> and
+<strong>-s</strong> option.
+</p>
+<p><strong>pgen</strong> can generate graph representations of the tableau before and after
+the reduction using the <strong>-n</strong> and <strong>-r</strong> options. These
+representations can be written to a text file in either <strong>daVinci</strong>
+or <strong>xvcg</strong> format. See section See section <a href="#SEC37">DAVINCI AND VCG</a>, for these graph
+visualization programs.
+</p>
+<hr size="6">
+<a name="SEC36"></a>
+<h2 class="section"> 5.4 OPTIONS </h2>
+<p>The following options are supported by <strong>pgen</strong>:
+</p><dl compact="compact">
+<dt> <kbd>-j</kbd></dt>
+<dd><p>Do not generate proof files. 
+</p></dd>
+<dt> <kbd>-q</kbd></dt>
+<dd><p>Quiet mode.
+</p></dd>
+<dt> <kbd>-d <i>prefix</i></kbd></dt>
+<dd><p>Prefix of generated files. The option name was chosen because
+the prefix is probably a directory.
+</p></dd>
+<dt> <kbd>-t <i>limit</i></kbd></dt>
+<dd><p>Number of seconds for each proof attempt
+for each proof step. Default is 3 seconds.              
+</p></dd>
+<dt> <kbd>-s <i>suffix</i></kbd></dt>
+<dd><p>Suffix of files generated by <strong>pgen</strong>. Default is '.dfg'.
+</p></dd>
+<dt> <kbd>-r <i>filename</i></kbd></dt>
+<dd><p>Write representation of the reduced tableau to <i>&lt;filename&gt;</i>.
+</p></dd>
+<dt> <kbd>-n <i>filename</i></kbd></dt>
+<dd><p>Write representation of the non-reduced tableau to <i>&lt;filename&gt;</i>.
+</p></dd>
+<dt> <kbd>-vinci</kbd></dt>
+<dd><p>Write tableau representation in daVinci format.
+</p></dd>
+<dt> <kbd>-xvcg</kbd></dt>
+<dd><p>Write tableau representation in xvcg format.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="daVinci-and-VCG"></a>
+<a name="SEC37"></a>
+<h2 class="section"> 5.5 DAVINCI AND VCG </h2>
+<p><strong>VCG</strong> is a public domain tool intended for visualizing compiler graphs. It is developed by Georg Sander at the
+University of Saarbruecken. It is available via anonymous ftp at 
+</p><table><tr><td>&nbsp;</td><td><pre class="example">ftp.cs.uni-sb.de
+</pre></td></tr></table>
+
+<p>in the directory pub/graphics/vcg. Or visit 
+</p><table><tr><td>&nbsp;</td><td><pre class="example">http://rw4.cs.uni-sb.de/~sander/html/gsvcg1.html.
+</pre></td></tr></table>
+<p><strong>daVinci</strong> is another public domain graph visualizing tool. Get it at 
+</p><table><tr><td>&nbsp;</td><td><pre class="example">ftp.tzi.de
+</pre></td></tr></table>
+<p>in the directory /tzi/biss/daVinci. The WWW address is 
+</p><table><tr><td>&nbsp;</td><td><pre class="example">http://www.informatik.uni-bremen.de/daVinci/.
+</pre></td></tr></table>
+ 
+<hr size="6">
+<a name="SEC38"></a>
+<h2 class="section"> 5.6 AUTHORS </h2>
+<p>Thorsten Engel and Christian Theobalt.
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC39"></a>
+<h2 class="section"> 5.7 SEE ALSO </h2>
+<p>checkstat(1), filestat(1), pcs(1), rescmp(1), tpform(1), tpget(1), deprose(1), dfg2otter(1), dfg2otterpl(1), SPASS(1)
+</p>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC32" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_6.html#SEC40" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

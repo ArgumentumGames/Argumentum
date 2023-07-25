@@ -19,7 +19,7 @@ namespace Argumentum.AssetConverter
     public class AssetConverterConfig
     {
 
-		public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration;
+		public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -98,8 +98,9 @@ namespace Argumentum.AssetConverter
                     Dnn2sxcConfig.Apply();
                     break;
                 case ConverterMode.DatasetUpdater:
-                    Task.Run(async () => await DatasetUpdaterConfig.Apply(UseDebugParams));
-	                break;
+					//Task.Run(async () => await DatasetUpdaterConfig.Apply(UseDebugParams));
+					DatasetUpdaterConfig.Apply(UseDebugParams);
+					break;
 				default:
                     throw new ArgumentOutOfRangeException();
             }

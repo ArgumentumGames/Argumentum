@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "description": "Given a text in natural language text with statements or arguments, converts the text into a modal logic belief set using the appropriate syntax, to be parsed and processed for argumentation analysis by the Tweety reasoner engine",
+  "type": "completion",
+  "completion": {
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "top_p": 0.5
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The natural language text to convert",
+        "defaultValue": ""
+      }
+    ]
+  }
+}

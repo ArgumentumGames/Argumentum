@@ -1,0 +1,804 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 1. SPASS</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 1. SPASS">
+<meta name="keywords" content="frequently asked questions about SPASS: 1. SPASS">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[ &lt;&lt; ]</td>
+<td valign="middle" align="left">[<a href="script_2.html#SEC10" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="SPASS"></a>
+<a name="SEC1"></a>
+<h1 class="chapter"> 1. SPASS </h1>
+
+<hr size="6">
+<a name="SEC2"></a>
+<h2 class="section"> 1.1 NAME </h2>
+<p>SPASS - an automated theorem prover for full first-order logic with equality
+</p>
+<hr size="6">
+<a name="SEC3"></a>
+<h2 class="section"> 1.2 SYNOPSIS </h2>
+<p>SPASS [&lsquo;<samp>options</samp>&rsquo;] [<var>inputfile</var>]
+</p>
+<hr size="6">
+<a name="SEC4"></a>
+<h2 class="section"> 1.3 DESCRIPTION </h2>
+<p>SPASS is an automated theorem prover for full sorted first-order logic with equality
+that extends superposition by sorts and a splitting rule for case analysis.
+SPASS can also be used as a modal logic and description logic theorem prover.
+</p>
+<hr size="6">
+<a name="SEC5"></a>
+<h2 class="section"> 1.4 OPTIONS </h2>
+<p>Command line options in SPASS are implemented via modifications to the GNU command
+line option package for C. Just giving the option sets its value to 1 and means enabling
+the option. In order to disable
+an option the value has to be set to 0 by declaring -<i>Option</i>=0.
+The following options are currently supported by SPASS:
+</p>
+<dl compact="compact">
+<dt> <kbd>-Auto</kbd></dt>
+<dd><br><p>Enables/disables the auto mode where SPASS configures itself automatically.
+The inference/reduction rules, the sort technology, the ordering and precedence
+as well as the splitting and selection strategy are set.
+In auto mode SPASS is complete. Mixing the auto mode with user defined options
+may destroy completeness.
+Default is 1.
+</p></dd>
+<dt> <kbd>-Stdin</kbd></dt>
+<dd><p>Enables/disables input in SPASS via stdin. The file argument is ignored. Default is 0.
+</p></dd>
+<dt> <kbd>-Interactive</kbd></dt>
+<dd><p>Enables/disables the interactive mode. First, SPASS is given a set of axioms and then
+the prover accepts subsequent proof tasks. Default is 0.
+</p></dd>
+<dt> <kbd>-Flotter</kbd></dt>
+<dd><p>Enables/disables the CNF translation mode of SPASS. If the option is set, SPASS only
+performs a clause normal form translation. If no output file argument is given
+SPASS prints the CNF to stdout. Default is 0.
+</p></dd>
+<dt> <kbd>-SOS</kbd></dt>
+<dd><p>Enables/disables the set of support strategy. Default is 0.
+</p></dd>
+<dt> <kbd>-Splits=<i>n</i></kbd></dt>
+<dd><p>Sets the number of possible splitting applications to <i>n</i>. If <i>n</i>=-1 then
+the number of splits is not limited. Default is 0.
+</p></dd>
+<dt> <kbd>-Memory=<i>n</i></kbd></dt>
+<dd><p>Sets the amount of memory available to SPASS for the proof search to <i>n</i> bytes. 
+The memory needed to startup SPASS cannot be restricted.
+Default is -1 meaning that memory allocations is only restricted by available memory.
+</p></dd>
+<dt> <kbd>-TimeLimit=<i>n</i></kbd></dt>
+<dd><p>Sets a time limit for the proof search to <i>n</i> seconds. Default is -1 meaning that
+SPASS may run forever. The time limit is polled when SPASS selects a new clause for
+inferences. If a single inference step causes an explosion to the number of generated
+clauses it may therefore happen that a given time limit is significantly exceeded.
+</p></dd>
+<dt> <kbd>-DocSST</kbd></dt>
+<dd><p>Enables/disables documentation output for static soft typing. 
+The used sort theory as well as the (failed) proof attempt for
+the sort constraint is printed.
+Default is 0.
+</p></dd>
+<dt> <kbd>-DocProof</kbd></dt>
+<dd><p>Enables/disables proof documentation. If SPASS finds a proof it is eventually
+printed. If SPASS finds a saturation, the saturated set of clauses is eventually printed.
+Enabling proof documentation may significantly decrease SPASS's performance, because
+the prover must store clauses that can be thrown away otherwise. Default is 0.
+</p></dd>
+<dt> <kbd>-DocSplit</kbd></dt>
+<dd><p>Sets the documentation of split backtracking steps. If set to 1, the
+current backtracking level is printed. If set to 2, it also prints in case
+of a split backtrack the backtracked clauese.
+Default is 0.
+</p></dd>
+<dt> <kbd>-Loops</kbd></dt>
+<dd><p>Sets the maximal number of mainloop iterations for SPASS.
+Default is -1.
+</p></dd>
+<dt> <kbd>-PSub</kbd></dt>
+<dd><p>Enables/disables printing of subsumed clauses.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PRew</kbd></dt>
+<dd><p>Enables/disables printing of simple rewrite applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PCon</kbd></dt>
+<dd><p>Enables/disables printing of condensation applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PTaut</kbd></dt>
+<dd><p>Enables/disables printing of tautology deletion applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PObv</kbd></dt>
+<dd><p>Enables/disables printing of obvious reduction applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PSSi</kbd></dt>
+<dd><p>Enables/disables printing of sort simplification applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PSST</kbd></dt>
+<dd><p>Enables/disables printing of static soft typing applications.
+All deleted clauses are printed.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PMRR</kbd></dt>
+<dd><p>Enables/disables printing of matching replacement resolution applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PUnC</kbd></dt>
+<dd><p>Enables/disables printing of unit conflict applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PAED</kbd></dt>
+<dd><p>Enables/disables printing of clauses where redundant
+equations have been removed (assignment equation deletion).
+</p></dd>
+<dt> <kbd>-PDer</kbd></dt>
+<dd><p>Enables/disables printing of clauses derived by inferences.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PGiven</kbd> </dt>
+<dd><p>Enables/disables printing of the given clause, selected
+to perform inferences.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PLabels</kbd></dt>
+<dd><p>Enables/disables printing of labels. If the -DocProof is
+set and no labels for formulae are provided by the input,
+SPASS generates generic labels that are then printed by enabling this option.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PKept</kbd></dt>
+<dd><p>Enables/disables printing of kept clauses. These are clauses
+generated by inferences (backtracking) that are not redundant.
+Clauses derived during input reduction/saturation are not printed.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PProblem</kbd></dt>
+<dd><p>Enables/disables printing of the input clause set.
+Default is 1.
+</p></dd>
+<dt> <kbd>-PEmptyClause</kbd></dt>
+<dd><p>Enables/disables printing of derived empty clauses.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PStatistic</kbd></dt>
+<dd><p>Enables/disables printing of a final statistics on derived/backtracked/kept clauses, performed splits,
+used time and used space.
+Default is 1.
+</p></dd>
+<dt> <kbd>-FPModel</kbd></dt>
+<dd><p>Enables/disables the output of an eventually found model to a file. If set
+to 1, all clauses in the final set are printed. If set to 2, only
+potentially productive clauses are printed, that are clauses with no selected
+negative literal and a maximal positive one. If &lt;problemfile&gt; is the name
+of the input problem and the eventually generated set is saturated, the
+saturation is printed to the file &lt;problemfile&gt;.model, for otherwise
+to &lt;problemfile&gt;.clauses. The latter case may, e.g., be caused by a time limit.
+Default is 0.
+</p></dd>
+<dt> <kbd>-FPDFGProof</kbd></dt>
+<dd><p>Enables/disables the output of an eventually found proof to a file. Using this
+option requires to set the option -DocProof. If &lt;problemfile&gt; is the name
+of the input problem the proof is printed to &lt;problemfile&gt;.prf.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PFlags</kbd></dt>
+<dd><p>Enables/disables the output of all flag values. The flag settings are
+printed at the end of a SPASS run in form of a DFG-Syntax input section.
+Default is 0.
+</p></dd>
+<dt> <kbd>-POptSkolem</kbd></dt>
+<dd><p>Enables/disables the output of optimized Skolemization applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PStrSkolem</kbd></dt>
+<dd><p>Enables/disables the output of strong Skolemization applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-PBDC</kbd></dt>
+<dd><p>Enables/disables the output of clauses deleted because of
+bound restrictions. 
+Default is 0.
+</p></dd>
+<dt> <kbd>-PBInc</kbd></dt>
+<dd><p>Enables/disables the output of bound restriction changes. 
+Default is 0.
+</p></dd>
+<dt> <kbd>-PApplyDefs</kbd> </dt>
+<dd><p>Enables/disables printing of expansions of atom definitions.
+Default is 0.
+</p></dd>
+<dt> <kbd>-Select</kbd></dt>
+<dd><p>Sets the selection strategy for SPASS. If set to 0 no selection
+of negative literals is done. If set to any other value, at most
+one negative literal in a clause is selected. If set to 1 negative 
+literals in clauses with more than one maximal literal are selected.
+Either a negative literal with a predicate from the selection list (see below) is chosen
+or if no such negative literal is available, a negative literal with maximal weight is chosen.
+If set to 2 negative literals are always selected. Again,
+either a negative literal with a predicate from the selection list (see below) is chosen
+or if no such negative literal is available, a negative literal with maximal weight is chosen.
+The latter case results
+in an ordered hyperresolution like behavior of ordered resolution.
+If set to 3 any negative literal with a predicate specified by the selection list (see below)
+is selected.
+Default is 1.
+</p></dd>
+<dt> <kbd>-RInput</kbd></dt>
+<dd><p>Enables/disables the reduction of the initial clause set.
+Default is 1.
+</p></dd>
+<dt> <kbd>-Sorts</kbd></dt>
+<dd><p>Determines the monadic literals that built the sort constraint
+for the initial clause set.
+If set to 0, no sort constraint is built. If set to 1, all negative
+monadic literals with a variable as argument form the sort constraint.
+If set to 2, all negative monadic literals form the sort constraint.
+Setting -Sorts to 2 may harm completeness, since sort constraints are
+subject to the basic strategy and to static soft typing.
+Default is 1.
+</p></dd>
+<dt> <kbd>-SatInput</kbd></dt>
+<dd><p>Enables/disables input saturation. The saturation is incomplete
+but is guaranteed to terminate.
+Default is 0.
+</p></dd>
+<dt> <kbd>-WDRatio</kbd></dt>
+<dd><p>Sets the ratio between given clauses selected by
+weight or the depth in the search space. The weight is the
+sum of all symbol weights determined by the -FuncWeight and
+-VarWeight options. The depth of all initial clauses is 0 and
+clauses generated by inferences get the maximal depth of a parent
+clause plus 1.
+Default is 5, meaning
+that 4 clauses are selected by weight and the fifth clause is
+selected by depth.
+</p></dd>
+<dt> <kbd>-PrefCon</kbd></dt>
+<dd><p>Sets the ratio to compute the weight for conjecture clauses
+and therefore allows to prefer those. Default is 0 meaning that
+the weight computation for conjecture clauses is not changed.
+</p></dd>
+<dt> <kbd>-FullRed</kbd></dt>
+<dd><p>Enables/disables full reduction. If set to 0, only the set of worked
+off clauses is completely inter-reduced. If set to 1, all currently
+hold clauses (worked off and usable) are completely inter-reduced.
+Default is 1.
+</p></dd>
+<dt> <kbd>-FuncWeight</kbd> </dt>
+<dd><p>Sets the weight of function/predicate symbols. The weight of
+clauses is the sum of all symbol weights. This weight is considered
+for the selection of the given clause. Default is 1.
+</p></dd>
+<dt> <kbd>-VarWeight</kbd> </dt>
+<dd><p>Sets the weight of variable symbols (see -FuncWeight).
+Default is 1.
+</p></dd>
+<dt> <kbd>-PrefVar</kbd> </dt>
+<dd><p>Enables/disables the preference for clauses with many variables.
+While clauses are selected by weight, if this option is set and
+two clauses have the same weight, the clause with more variable
+occurrences is preferred.
+Default is 0.
+</p></dd>
+<dt> <kbd>-BoundMode</kbd></dt>
+<dd><p>Selects the mode for bound restrictions. Mode 0 means no
+restriction, if set to 1 all newly generated clauses are restricted by weight
+(see -BoundStart) and if set to 2 clauses are restricted
+by depth. Default is 0.
+</p></dd>
+<dt> <kbd>-BoundStart</kbd></dt>
+<dd><p>The start restriction of the selected bound mode. For example,
+if bound mode is 1 and bound start set to 5, all clauses with
+a weight larger than 5 are deleted until the set is saturated.
+This causes an increase of the used bound value that is
+determined by the minimal increase saving a before deleted
+clause. Default is -1 meaning no bound restriction.
+</p></dd>
+<dt> <kbd>-BoundLoops</kbd> </dt>
+<dd><p>The number of loops applying the actions restrictions/increasing bound.
+If the number of loops is exceeded all bound restrictions are
+cancelled. Default is 1.
+</p></dd>
+<dt> <kbd>-ApplyDefs</kbd></dt>
+<dd><p>Sets the maximal number of applications of atom definitions to input formulae.
+Default is 0, meaning no applications at all.
+</p></dd>
+<dt> <kbd>-Ordering</kbd> </dt>
+<dd><p>Sets the term ordering. If 0 then KBO is selected,
+if 1 the RPOS is selected. Default is 0.          
+</p></dd>
+<dt> <kbd>-CNFQuantExch</kbd></dt>
+<dd><p>If set, non-constant Skolem terms in the clausal form of the
+conjecture are replaced by constants.
+Will automatically be set for the optimized functional translation of
+modal or description logic formulae.
+Default is 0.
+</p></dd>
+<dt> <kbd>-CNFOptSkolem</kbd>  </dt>
+<dd><p>Enables/disables optimized Skolemization.
+Default is 1.
+</p></dd>
+<dt> <kbd>-CNFStrSkolem</kbd> </dt>
+<dd><p>Enables/disables Strong Skolemization.
+Default is 1.
+</p></dd>
+<dt> <kbd>-CNFProofSteps</kbd></dt>
+<dd><p>Sets the maximal number of proof steps
+in an optimized Skolemization proof attempt.
+Default is 100. 
+</p></dd>
+<dt> <kbd>-CNFSub</kbd></dt>
+<dd><p>Enables/disables subsumption on the clauses generated by the CNF procedure.
+Default is 1.    
+</p></dd>
+<dt> <kbd>-CNFCon</kbd></dt>
+<dd><p>Enables/disables condensing on the clauses generated by the CNF procedure.
+Default is 1.
+</p></dd>
+<dt> <kbd>-CNFRedTime</kbd></dt>
+<dd><p>Sets the overall amount of time in seconds to be spend on reduction during
+CNF transformation. Affected reductions are optimized Skolemization, condensing,
+and subsumption. Default is -1 meaning that the reduction time is not limited
+at all.
+</p></dd>
+<dt> <kbd>-CNFRenaming</kbd>  </dt>
+<dd><p>Enables/disables formula renaming.
+If set to 1 optimized renaming is enabled that minimizes
+the number of eventually generated clauses.
+If set to 2 complex renaming is enabled that introduces a
+new Skolem predicate for every complex  formula, i.e., any
+formula that is not a literal.
+If set to 3 quantification renaming is enabled that introduces
+a new Skolem predicate for every subformula starting with
+a quantifier.
+Default is 1.
+</p></dd>
+<dt> <kbd>-CNFRenMatch</kbd></dt>
+<dd><p>If set, renaming variant subformulae are replaced by the same
+Skolem literal.
+Default is 1.
+</p></dd>
+<dt> <kbd>-CNFPRenaming</kbd>    </dt>
+<dd><p>Enables/disables the printing of formula renaming applications.
+Default is 0.
+</p></dd>
+<dt> <kbd>-CNFFEqR</kbd></dt>
+<dd><p>Enables/disables certain equality reduction techniques
+on the formula level. Default is 1.
+</p></dd>
+<dt> <kbd>-IEmS</kbd>  </dt>
+<dd><p>Enables/disables the inference rule Empty Sort.
+Default is 0.
+</p></dd>
+<dt> <kbd>-ISoR</kbd>  </dt>
+<dd><p>Enables/disables the inference rule Sort Resolution.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-IEqR</kbd></dt>
+<dd><p>Enables/disables the inference rule Equality Resolution.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-IERR</kbd></dt>
+<dd><p>Enables/disables the inference rule Reflexivity Resolution.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-IEqF</kbd>   </dt>
+<dd><p>Enables/disables the inference rule Equality Factoring.
+Default is 0.       
+</p></dd>
+<dt> <kbd>-IMPm</kbd>  </dt>
+<dd><p>Enables/disables the inference rule Merging Paramodulation.
+Default is 0.             
+</p></dd>
+<dt> <kbd>-ISpR</kbd>   </dt>
+<dd><p>Enables/disables the inference rule Superposition Right.
+Default is 0.    
+</p></dd>
+<dt> <kbd>-IOPm</kbd></dt>
+<dd><p>Enables/disables the inference rule Ordered Paramodulation.
+Default is 0.      
+</p></dd>
+<dt> <kbd>-ISPm</kbd>   </dt>
+<dd><p>Enables/disables the inference rule Standard Paramodulation.
+Default is 0.    
+</p></dd>
+<dt> <kbd>-ISpL</kbd>               </dt>
+<dd><p>Enables/disables the inference rule Superposition Left.
+Default is 0.
+</p></dd>
+<dt> <kbd>-IORe</kbd></dt>
+<dd><p>Enables/disables the inference rule Ordered Resolution.
+If set to 1, Ordered Resolution is enabled but no resolution
+inferences with equations are generated. If set to 2, equations
+are considered for Ordered Resolution steps as well.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-ISRe</kbd></dt>
+<dd><p>Enables/disables the inference rule Standard Resolution.
+If set to 1, Standard Resolution is enabled but no resolution
+inferences with equations are generated. If set to 2, equations
+are considered for Standard Resolution steps as well.
+Default is 0.   
+</p></dd>
+<dt> <kbd>-ISHy</kbd> </dt>
+<dd><p>Enables/disables the inference rule Standard Hyper-Resolution.
+Default is 0.     
+</p></dd>
+<dt> <kbd>-IOHy</kbd></dt>
+<dd><p>Enables/disables the inference rule Ordered Hyper-Resolution.
+Default is 0.  
+</p></dd>
+<dt> <kbd>-IURR</kbd></dt>
+<dd><p>Enables/disables the inference rule Unit Resulting Resolution.
+Default is 0.
+</p></dd>
+<dt> <kbd>-IOFc</kbd></dt>
+<dd><p>Enables/disables the inference rule Ordered Factoring.
+If set to 1, Ordered Factoring is enabled but only factoring
+inferences with positive literals are generated. If set to 2,
+negative literals are considered for inferences as well.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-ISFc</kbd></dt>
+<dd><p>Enables/disables the inference rule Standard Factoring.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-IUnR</kbd></dt>
+<dd><p>Enables/disables the inference rule Unit Resolution.
+Default is 0.        
+</p></dd>
+<dt> <kbd>-IBUR</kbd></dt>
+<dd><p>Enables/disables the inference rule Bounded Depth Unit Resolution.
+Default is 0.      
+</p></dd>
+<dt> <kbd>-IDEF</kbd></dt>
+<dd><p>Enables/disables the inference rule Apply Definitions.
+Currently not supported.
+Default is 0.               
+</p></dd>
+<dt> <kbd>-RFRew</kbd></dt>
+<dd><p>Enables/disables the reduction rule Forward Rewriting.
+If set to 1 unit rewriting and non-unit rewriting based on
+a subsumption test is activated.
+If set to 2 in addition to unit and non-unit rewriting
+local contextual rewriting is activated.
+If set to 3 in  addition to unit and non-unit rewriting
+subterm contextual rewriting is activiated. Subterm contextual
+rewriting subsumes local contextual rewriting.
+If set to 4 in addition of the rewriting rules of 3, subterm
+contextual rewriting also tests for negative literal elimination.
+Default is 0.   
+</p></dd>
+<dt> <kbd>-RBRew</kbd></dt>
+<dd><p>Enables/disables the reduction rule Backward Rewriting.
+Same values and meaning as for flag -RFRew but used in backward direction.
+Default is 0.    
+</p></dd>
+<dt> <kbd>-RFMRR</kbd></dt>
+<dd><p>Enables/disables the reduction rule Forward Matching Replacement Resolution.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-RBMRR</kbd></dt>
+<dd><p>Enables/disables the reduction rule Backward Matching Replacement Resolution.
+Default is 0.   
+</p></dd>
+<dt> <kbd>-RObv</kbd></dt>
+<dd><p>Enables/disables the reduction rule Obvious Reduction.
+Default is 0.                
+</p></dd>
+<dt> <kbd>-RUnC</kbd></dt>
+<dd><p>Enables/disables the reduction rule Unit Conflict.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-RTer</kbd> </dt>
+<dd><p>Enables/disables the terminator by setting the maximal number
+of non-unit clauses to be used during the search.   
+Default is 0.
+</p></dd>
+<dt> <kbd>-RTaut</kbd></dt>
+<dd><p>Enables/disables the reduction rule Tautology Deletion. If
+set to 1, only syntactic tautologies are detected and
+deleted. If
+set to 2, additionally semantic tautologies are removed.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-RSST</kbd></dt>
+<dd><p>Enables/disables the reduction rule Static Soft Typing.
+Default is 0.            
+</p></dd>
+<dt> <kbd>-RSSi</kbd></dt>
+<dd><p>Enables/disables the reduction rule Sort Simplification.
+Default is 0.               
+</p></dd>
+<dt> <kbd>-RFSub</kbd></dt>
+<dd><p>Enables/disables the reduction rule Forward Subsumption Deletion.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-RBSub</kbd></dt>
+<dd><p>Enables/disables the reduction rule Backward Subsumption Deletion.
+Default is 0.  
+</p></dd>
+<dt> <kbd>-RAED</kbd></dt>
+<dd><p>Enables/disables the reduction rule Assignment Equation Deletion.
+This rule removes particular occurrences of equations from clauses.
+If set to 1, the reduction is guaranteed to be sound.
+If set to 2, the reduction is only sound if any potential model
+of the considered problem has a non-trivial domain.
+Default is 0.
+</p></dd>
+<dt> <kbd>-RCon</kbd></dt>
+<dd><p>Enables/disables the reduction rule Condensation.
+Default is 0.               
+</p></dd>
+<dt> <kbd>-TDfg2OtterOptions</kbd></dt>
+<dd><p>Enables/disables the inclusion of an Otter options
+header. This option only applies to dfg2otter. If
+set to 1 it includes a setting that makes Otter nearly
+complete. If set to 2 it activates auto modus and if
+set to 3 it activates the auto2 modus.
+Default is 0.
+</p></dd>
+<dt> <kbd>-EML</kbd></dt>
+<dd><p>A special EML flag for modal logic or description logic formulae.
+Never needs to be set explicitly.  Is set during parsing.
+</p></dd>
+<dt> <kbd>-EMLAuto</kbd></dt>
+<dd><p>Intended for EML Autonomous mode, as yet not functional.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-EMLTranslation</kbd></dt>
+<dd><p>Determines the translation method used
+for modal logic or description logic formulae.
+If set to 0, the standard relational translation method (which
+is determined by the usual Kripke semantics) is used.
+If set to 1, the functional translation method is used.
+If set to 2, the optimised functional translation method is used.
+If set to 3, the semi-functional translation method is used.
+A variation of the optimised functional translation method is used, when
+the following settings are specified: -EMLTranslation=2 -EMLFuncNary=1.
+The translation will be in terms of n-ary predicates instead of unary
+predicates and paths.
+In the current implementation the standard relational translation method
+is most general. Some
+restrictions apply to the other methods. The functional translation
+method and semi-functional translation methods are available only for
+the basic multi-modal logic K(m) possibly with serial (total) modalities
+(-EMLTheory=1), plus nominals (ABox statements), terminological axioms
+and general inclusion and equivalence axioms. The optimised functional
+translation methods are implemented only for K(m), possibly with serial
+modalities.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-EML2Rel</kbd></dt>
+<dd><p>If set, propositional/Boolean-type formulae are converted to relational formulae
+before they are translated to first-order logic.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-EMLTheory</kbd></dt>
+<dd><p>Determines which background theory is assumed.
+If set to 0, the background theory is empty.
+If set to 1, then seriality (the background theory for KD) is added for
+all modalities. 
+If set to 2, then reflexivity (the background theory for KT) is added for
+all modalities. 
+If set to 3, then symmetry (the background theory for KB) is added for
+all modalities. 
+If set to 4, then transitivity (the background theory for K4) is added for
+all modalities. 
+If set to 5, then Euclideanness (the background theory for K5) is added for
+all modalities. 
+If set to 6, then transitivity and Euclideanness (the background theory
+for S4) is added for all modalities. 
+If set to 7, then reflexivity, transitivity and Euclideanness (the
+background theory for S5) is added for all modalities. 
+Default is 0.              
+</p></dd>
+<dt> <kbd>-EMLFuncNdeQ</kbd></dt>
+<dd><p>If set, diamond formulae are translated according to
+tr(dia(phi),s) = nde(s) /\ exists x tr(phi,[s x])
+(a nde / quantifier formula),
+otherwise the translation is in accordance with
+tr(dia(phi),s) = exists x nde(s) /\ tr(phi,[s x])
+(a quantifier / nde formula).  
+The transltion for box formulae is defined dually.
+Setting this flag is only meaningful when the flag for the functional or
+semi functional translation method is set.
+Default is 1.              
+</p></dd>
+<dt> <kbd>-EMLFuncNary</kbd></dt>
+<dd><p>If set, the functional translation into fluted logic is used.
+This means n-ary predicate symbols are used instead of unary predicate
+symbols and paths.
+Setting this flag is only meaningful for testing local
+satisfiability/validity in multi-modal K.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-EMLFFSorts</kbd></dt>
+<dd><p>If set, sorts for terms are used.
+Default is 0.              
+</p></dd>
+<dt> <kbd>-EMLElimComp</kbd></dt>
+<dd><p>If set, try to eliminate relational composition in modal parameters.
+Default is 0.   
+</p></dd>
+<dt> <kbd>-EMLPTrans</kbd></dt>
+<dd><p>If set, the EML to first-order logic translation is documented.
+Default is 0.    
+</p></dd>
+<dt> <kbd>-TPTP</kbd></dt>
+<dd><p>If set, SPASS expects an input file in TPTP syntax.
+Default is 0. 
+</p></dd>
+<dt> <kbd>-rf</kbd></dt>
+<dd><p>If set, SPASS deletes the input file before termination.
+Default is 0.            
+</p></dd>
+</dl>
+ 
+<hr size="6">
+<a name="SEC6"></a>
+<h2 class="section"> 1.5 SETTINGS </h2>
+<p>You can also specify options for SPASS in the input problem.
+In the DFG syntax, you would use
+</p><table><tr><td>&nbsp;</td><td><pre class="example">list_of_settings(SPASS).
+{*
+  set_flag(DocProof,1).
+*}
+end_of_list.
+</pre></td></tr></table>
+<p>to set the DocProof flag.
+</p>
+<p>There are three types of options you can set in the input:
+</p>
+<dl compact="compact">
+<dt> <code>set_flag(&lt;flag&gt;,&lt;value&gt;).</code></dt>
+<dd><p>Sets a flag to a value. Valid flags and values are described
+in the OPTIONS section.
+</p></dd>
+<dt> <code>set_precedence(&lt;comma-separated list of function and/or predicate symbols&gt;).</code></dt>
+<dd><p>Sets the precedence for the listed symbols. The precedence is
+decreasing from left to right, i.e. the leftmost symbol has
+the highest precedence.
+</p>
+<p>Every entry in the list has the form
+</p><table><tr><td>&nbsp;</td><td><pre class="example">SYMBOL | (SYMBOL, WEIGHT [, {l, r, m}])
+</pre></td></tr></table>
+<p>You can use the second form to assign weights to symbols (for KBO) or a
+status (for RPOS). Status is either <tt>l</tt> for left-to-right, <tt>m</tt> for
+multiset, or <tt>r</tt> for right-to-left. Weight is given as an integer.
+</p>
+</dd>
+<dt> <code>set_DomPred(&lt;comma-separated list of predicate symbols&gt;).</code></dt>
+<dd><p>Listed predicate (<em>DomPred</em> for dominant predicate) symbols are
+first ordered according to their precedence, not according to
+their argument lists. Only in case of equal predicates, the
+arguments are examined. For example, if we add the option
+</p><table><tr><td>&nbsp;</td><td><pre class="example">set_DomPred(P).
+</pre></td></tr></table>
+<p>then in the clause
+</p><table><tr><td>&nbsp;</td><td><pre class="example"> -&gt; R(f(x,y),a), P(x,a).
+</pre></td></tr></table>
+<p>the atom <i>P(x,a)</i> is strictly maximal.
+Predicates listed by the <i>set_DomPred</i> option are
+compared according to the precedence.
+</p>
+</dd>
+<dt> <code>set_selection(&lt;comma-separated list of predicate symbols&gt;).</code></dt>
+<dd><p>Sets the selection list that can be employed by the Select flag (see above).
+</p>
+</dd>
+<dt> <code>set_ClauseFormulaRelation(&lt;comma separated list auf tuples (&lt;clause number&gt;, sequence of axiom name strings)).</code></dt>
+<dd><p>This list is in particular set by FLOTTER and enables SPASS for an eventually found proof to show
+the relation between the clauses used in the proof and the input formulas.
+If combined with option DocProof, then there needs to be an entry for every clause number.
+Otherwise an error is reported.
+</p><table><tr><td>&nbsp;</td><td><pre class="example">set_ClauseFormulaRelation((1,ax2),(2,ax1),(3,ax3,ax1)).
+</pre></td></tr></table>
+
+</dd>
+</dl>
+
+<hr size="6">
+<a name="SEC7"></a>
+<h2 class="section"> 1.6 EXAMPLES </h2>
+<p>To run SPASS on a single file without options:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">SPASS  <i>filename</i>
+</pre></td></tr></table>
+<p>To disable all SPASS output except for the final result:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">SPASS  -PGiven=0 -PProblem=0 <i>filename</i>
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="SEC8"></a>
+<h2 class="section"> 1.7 AUTHORS </h2>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC9"></a>
+<h2 class="section"> 1.8 SEE ALSO </h2>
+<p>checkstat(1), filestat(1), pcs(1), pgen(1), rescmp(1), tpform(1), tpget(1), deprose(1), dfg2otter(1), dfg2otterpl(1), dfg2dfg(1)
+</p>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC1" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_2.html#SEC10" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

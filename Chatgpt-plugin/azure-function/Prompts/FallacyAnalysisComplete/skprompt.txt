@@ -1,0 +1,21 @@
+This is the last of a multi-step workflow to do informal analysis of text through the idenfication of fallacies.
+Following is an argumentative text, and the compounged results of distinct argumentation analysis focused on identified a distinct set of fallacy types each.
+
+{{$input}}
+
++++++
+
+{{$BranchAnalysis1}}
+
+{{$BranchAnalysis2}}
+
+{{$BranchAnalysis3}}
+
+{{$BranchAnalysis4}}
+
++++++
+
+Please write a summary of the fallacy analysis, accounting for the whole spectrum.
+Feel free to draw additional insights: for instance Influence based fallacies might be used to hide logical ones, and other transversal links may exist.
+
++++++

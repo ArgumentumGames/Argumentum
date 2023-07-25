@@ -1,0 +1,263 @@
+Version: 3.7
+
+	 - All source files moved to FreeBSD licence.
+	 
+	 - Proof search is no longer entered if time limit or loops are 0.
+ 	
+	 - If the Sorts flag is set, Flotter prints clauses with set sort constraints.
+	
+	 - Default for Sorts is now correctly set to 1, reflecting documentation.
+
+
+Version: 3.5
+
+	 - Moved distribution to the FreeBSD licence.
+	 
+	 - Joined the flags -PCRW und -PREW into the latter, renamed -QuantExch into -CNFQuantExch.
+
+	 - For Linux binaries SPASS now always respects a given time limit.
+
+
+	 - Moved to a fair and eager splitting heuristic. The new flag -SplitMinInst, sets the minimal
+	   average number of instances of all split atoms of a split in order to perfrom the split and is
+	   increased after each subsequent split and reset after performance of a different inference.
+    	   Propositional non-Horn clauses are always split.
+	   Removed the flag -SplitHeuristic.
+
+	 - Reimplemented the conjunctive normal form algorithm of FLOTTER.
+
+	 - Added printing of the number of performed splits to the output.
+
+	 - Added improved split backtracking where also the split information of a left branch refutation
+	   is stored and then compared to the split information of the corresponding right branch, potentially
+	   leading to a more aggressive branch condensing. See the papers on Splitting by Fietzke and Weidenbach.
+
+	 - Added subterm contextual rewriting with fault caching. See the man page and the corresponding
+	   papers by Weidenbach & Wischnewski.
+
+	 - Added support for XOR, NAND, NOR and special symbol for NOT EQUAL to DFG syntax.
+
+	 - Added new translator tptp2dfg from TPTP syntax to DFG syntax. See the man page.
+
+	 - Added include directives to the SPASS DFG input syntax. For more information see the syntax description.
+
+	 - Removed a bunch of compile time constants hindering handling of large files.
+
+	 - Added native TPTP syntax support, controlled by the -TPTP flag.
+
+	 - Moved from a sort theory module considering residues to a purely declaration based sort theory.
+
+	 - New self written command line parser.
+
+	 - Added the flags -CNFSub, -CNFCon, -CNFRedTimeLimit to FLOTTER that control
+	   the use of subsumption, condensing and the overall time for reduction during
+	   cnf transformation. See the man pages for further details.
+
+	 - Added rewriting with unoriented equations to forward and
+	   backward rewriting. Until Version 3.0 only for unit equations 
+	   both directions were implemented.
+
+	 - Fixed all known bugs.
+
+
+
+Version: 3.0
+
+	-  Build the extended modal logic translation technology coming from
+	   MSPASS into SPASS. This also results in a number of new flags. The
+	   modal formulae are handled by translation to FOL, build into FLOTTER.
+	   See the handbook and man page.
+	
+	-  Added two more formula renaming strategies for complex as
+	   well as quantified formulae.
+	
+	-  Added additional selection strategies via the Select flag and
+	   the input file option "set_Selection". See the man page.
+
+ 	-  Added extended SPASS model format for saturated clause sets. The new clause
+	   format is close to the format at run time and enables marking of selected
+	   literals.
+
+	-  Implemented the  new settings command set_ClauseFormulaRelation that
+	   allows to give the clause formula relation in the input file.
+	   If FLOTTER is called or the flag DOCPROOF for SPASS is set,
+	   this relation is computed.
+
+	-  In full reduction mode, the reduction potential of unit clauses for splitting
+	   is now considered with respect to the usable and worked-off clauses. In lazy
+	   reduction mode, only worked off clauses are considered, as it was before for
+   	   both modes. This has an effect on the selection of clauses for splitting.
+
+	-  During clause generation at parse time, the literal true, not(false) is no
+	   longer deleted (the clause was not generated before) but handled
+	   later on during input reduction.
+	   This prevents strange error messages like "No Clauses found" 
+	   in case the clause set contains a single clause " -> true".
+
+	-  Added the alarm module (alarm.[ch]) that stops SPASS after
+	   reaching the set time limit via a signal mechanism in order
+	   to prevent the mainloop time polling for taking too long to stop.
+	   The alarm is set wirh respect to the value of the TimeLimit flag.
+
+	-  Changed the static constant in the subsumption module that determined the max.
+	   length of a clause to a flexible run time parameter. Prevents some ugly crashes.
+	   Now the clause literal marking vectors are dynamically allocated and adjusted.
+	   We will apply this transformation to all static constants in the next releases.
+
+	-  Changed error reporting in dfgparser.y to verbose.
+	   
+
+	-  Fixed the following bugs:
+		the flag flag_CNFFEQREDUCTIONS was forgotten to transfer to FLOTTER
+		if DocProof is set now the clause axiom relation is still printed
+		supressed printing of predefined symbols in case of model output
+		fixed missing label enumeration of sort declarations
+		fixed compiler warnings of gcc 3.3 and gcc 4.1.
+		fixed the symbol order to the input order when FLOTTER prints the CNF
+
+
+
+Version: 2.2
+
+	- Fixed a bug in the sort module where an inference was missing.
+
+	- Some small changes to extend output in CHECK mode.
+
+	- Fixed a bug in fol_ReplaceVariable where an "else" branch was missing.
+
+	- Added another splitting heuristic where input conjecture ground clauses are always split.
+	  The splitting heuristics can be controlled by the new flag "SplitHeuristic".
+
+	- Extended the documentation of DOCSPLIT, if set to 2, it now also prints the backtracked clauses.
+
+	- Changed makefile option names (now prefixed SPASS).
+
+	- The timing module is now based on gettimeofday to be compatible with the MAC infrastructure.
+
+	- Some minor code changes due to get rid of new gcc compiler warnings.
+
+	- Moved some misc.h, string.h inline functions to misc.c, string.c respectively to
+	  get rid of compiler warnings
+
+	- added new flag SPLITHEURISTIC, enabling additional selection of any ground input 
+	  conjecture clauses for splitting.
+
+	- added Signal support, with makefile optioon SPASSIGNALS, the standard signals are catched
+
+	- fixed a bug in ana_CalculateFunctionPrecedence that could cause a segmentation fault
+
+
+Version: 2.1
+
+	- Fixed a bug in the definition module. Formulae were not normalized before
+	  application of the procedure, leading to wrong matchings of variables.
+
+	- Fixed a bug in the flag module. The subproof flagstore settings were not
+	  complete: ordering flag and the weight flags were missing.
+
+	- Fixed a bug in dfgparser.y, where a missing semicolon with
+	  bison version 1.75 now caused an error.
+
+	- Fixed a bug in cnf.c where the formula "equiv(false,false)" was
+	  not properly treated in function cnf_RemoveTrivialAtoms.
+
+	- Fixed a bug in symbol_LowerSignature where capital 'A's and 'Z's were not
+	  prefixed by a lowercase 'ss' due to their exclusion in the condition. This
+	  caused problems in the result of dfg2tptp applied to dfg input files with
+	  uppercase symbols starting with an 'A' or 'Z'.
+
+	- Now dfg2otter negates conjecture formulae of the SPASS input file
+	  before printing the Otter usable list.
+
+	- Added man pages for dfg2ascii, dfg2otter and dfg2tptp.
+
+
+Version: 2.0.0
+
+	- Corrections to spellings, documentation.
+
+	- Added handbooks for SPASS and dfg2dfg.
+
+	- Added contextual rewriting.
+
+	- Added semantic tautology check.
+
+	- Fixed bugs in CNF translation: Renaming, Equation elimination rules.
+
+	- Improved splitting clause selection on the basis of reduction potential.
+
+	- Improved robustness of initial clause list ordering.
+
+	- Added the terminator module.
+
+	- Extended formula definition detection/expansion to so called guarded definitions.
+
+	- Improved determination of initial precedence such that as many as possible
+	  equations in the input clause list can be oriented.
+
+	- Added mainloop without complete interreduction.
+
+	- Developed PROOFSEARCH data type enabling a modularization of the SPASS
+	  source code on search engine level, such that several proof attempts can
+	  now be run completely independantly at the same time within SPASS.
+
+	- Moved GUI to Qt 3.0. The GUI now also includes dfg2dfg and new even more
+	  user friendly layout. The GUI runs on any platform where SPASS and Qt are
+	  available.
+
+
+
+Version: 1.0.5
+
+	- Improved SPASS man pages: In particular, we added further detailed 
+	  explanations of inference rule flags and soft typing flags.
+
+	- Significantly improved modularity of the code by making the flagstore
+	  object part of the proof search object; so there is no global flagstore
+	  around anymore. These changes touched nearly all modules.
+
+	- Changed certain clause generation procedures such that now applying SPASS
+	  directly to a formula or subsequent application of FLOTTER and SPASS produce
+	  exactly the same ordering of a clause set (literlas). Since the behaviour of
+	  SPASS is not independant from initial clause/literal orderings the changes
+	  make SPASS results a little more robust/more predictable.
+	  As all code was touched, we also included a code style review (comments,
+	  prototypes, ...).
+
+	- Flag values given to SPASS are now checked and rejected if out of range.
+
+
+Version: 1.0.4
+
+	- Changed some clause generation functions such that sequentially
+	  applying FLOTTER, SPASS and just applying SPASS result in the
+	  very same clause sets.
+
+	- Added the new tool dfg2dfg that supports transformations into
+	  monadic clause classes and their further approximations.
+
+
+Version: 1.0.3
+
+	- Sharpend renaming; it now potentially produces fewer clauses.
+
+
+Version: 1.0.2
+
+	- Fixed inconsistencies between the DFG proof format description in 
+	  dfgsyntax.ps and the actual implementation. Proof checking is more 
+	  more liberal, because the empty clause needs not to have the highest
+	  clause number.
+
+
+Version: 1.0.1
+
+	- Fixed a bug in the atom definition support where it could happen
+          that variable dependencies between the atom definition and formulae
+          outside the definition are discarded.
+
+	- Fixed a bug in the renaming module, where in some cases a renaming
+	  with non-zero benefit was not performed.
+
+
+

@@ -1,0 +1,22 @@
+About SPASS
+SPASS GUI Version 3.7
+
+Active Authors: 
+Christoph Weidenbach, Renate Schmidt, Patrick Wischnewski, Arnaud Fietzke,
+Evgeny Kruglov, Jennifer Mueller, Martin Suda, Matthias Horbach,
+Anand Ramkumar, Sri Charanya Dhinakaran, Binod Bhattarai, April 2010
+
+Former Authors: 
+Monika Keil, Peter Graf, Bernd Gaede, Georg Rock, Christoph Meyer, Christian Cohrs,
+Enno Keen , Thorsten Engel, Dalibor Topic, Christian Theobalt, Uwe Brahm,
+Georg Jung, Bijan Afshordel, Christof Brinker, Rohit Kumar, Dilyana Dimova
+
+
+Copyright(C) 1999-2010
+Max Planck Institute for Informatics
+
+For recent developments see http://www.spass-prover.org
+SPASSGUI comes with ABSOLUTELY NO WARRANTY;
+for details type 'Ctrl+W'.This is free software and you are 
+welcome to redistribute it under certain
+conditions; type 'Ctrl+L' for details."

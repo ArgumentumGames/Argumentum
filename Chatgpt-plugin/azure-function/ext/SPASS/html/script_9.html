@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 9. deprose</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 9. deprose">
+<meta name="keywords" content="frequently asked questions about SPASS: 9. deprose">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_8.html#SEC55" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_10.html#SEC69" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="deprose"></a>
+<a name="SEC63"></a>
+<h1 class="chapter"> 9. deprose </h1>
+
+<hr size="6">
+<a name="SEC64"></a>
+<h2 class="section"> 9.1 NAME </h2>
+<p>deprose - condenses checkstat error output
+</p>
+<hr size="6">
+<a name="SEC65"></a>
+<h2 class="section"> 9.2 SYNOPSIS </h2>
+<p><strong>deprose</strong> [infile] [outfile]
+</p>
+<hr size="6">
+<a name="SEC66"></a>
+<h2 class="section"> 9.3 DESCRIPTION </h2>
+<p><strong>deprose</strong> is a <strong>Perl</strong> script for condensing <strong>checkstat</strong> error output.
+As input, it gets an arbitrary text containing messages of the
+following form:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">*  Problem 'xy':  
+*  SPASS computes problem state 'satisfiable'
+*  which is declared 'unsatisfiable'
+</pre></td></tr></table>
+
+<p><strong>deprose</strong> outputs an annotated list of the files in which
+errors occurred. Each file in this list is annotated with 
+'+', if <strong>SPASS</strong> found a proof on this file, or '&ndash;', if <strong>SPASS</strong>
+found a model. 
+</p>
+
+<p>If no file arguments are given, <strong>deprose</strong> reads from stdin and writes to
+stdout. If one file argument is given, <strong>deprose</strong> reads from that file, and if
+a second argument is given, <strong>deprose</strong> writes to that file.  
+</p>
+<hr size="6">
+<a name="SEC67"></a>
+<h2 class="section"> 9.4 AUTHORS </h2>
+<p>Thorsten Engel and Christian Theobalt
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC68"></a>
+<h2 class="section"> 9.5 SEE ALSO </h2>
+<p>checkstat(1), filestat(1), pcs(1), pgen(1), rescmp(1), tpform(1), tpget(1), dfg2otter(1), dfg2otterpl(1), SPASS(1)
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC63" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_10.html#SEC69" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

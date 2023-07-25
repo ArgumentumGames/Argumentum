@@ -1,0 +1,3217 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SemanticKernel.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SemanticKernel.AI.AIException">
+            <summary>
+            Exception thrown for errors related to AI logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.AIException.#ctor(Microsoft.SemanticKernel.AI.AIException.ErrorCodes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.AIException"/> class with a provided error code.
+            </summary>
+            <param name="errorCode">The error code.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.AIException.#ctor(Microsoft.SemanticKernel.AI.AIException.ErrorCodes,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.AIException"/> class with a provided error code and message.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.AIException.#ctor(Microsoft.SemanticKernel.AI.AIException.ErrorCodes,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.AIException"/> class with a provided error code, message, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.AIException.#ctor(Microsoft.SemanticKernel.AI.AIException.ErrorCodes,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.AIException"/> class with a provided error code, message, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="detail">A string that provides additional details about the error.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.AIException.#ctor(Microsoft.SemanticKernel.AI.AIException.ErrorCodes,System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.AIException"/> class with a provided error code, message, additional details, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="detail">A string that provides additional details about the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.AIException.ErrorCode">
+            <summary>
+            Gets the error code for this exception.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.AIException.Detail">
+            <summary>
+            Gets the extended details for this exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.AIException.GetDefaultMessage(Microsoft.SemanticKernel.AI.AIException.ErrorCodes,System.String)">
+            <summary>Translate the error code into a default message.</summary>
+            <param name="errorCode">The error code.</param>
+            <param name="defaultMessage">Default error message if nothing available.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.AIException.ErrorCodes">
+            <summary>
+            Possible error codes for exceptions
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.UnknownError">
+            <summary>
+            Unknown error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.NoResponse">
+            <summary>
+            No response.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.AccessDenied">
+            <summary>
+            Access is denied.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.InvalidRequest">
+            <summary>
+            The request was invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.InvalidResponseContent">
+            <summary>
+            The content of the response was invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.Throttling">
+            <summary>
+            The request was throttled.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.RequestTimeout">
+            <summary>
+            The request timed out.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.ServiceError">
+            <summary>
+            There was an error in the service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.ModelNotAvailable">
+            <summary>
+            The requested model is not available.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.InvalidConfiguration">
+            <summary>
+            The supplied configuration was invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.AI.AIException.ErrorCodes.FunctionTypeNotSupported">
+            <summary>
+            The function is not supported.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.Message">
+            <summary>
+            Chat message representation
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.Message.AuthorRole">
+            <summary>
+            Role of the message author, e.g. user/assistant/system
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.Message.Content">
+            <summary>
+            Message content
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.Message.#ctor(Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.AuthorRoles,System.String)">
+            <summary>
+            Create a new instance
+            </summary>
+            <param name="authorRole">Role of message author</param>
+            <param name="content">Message content</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.Messages">
+            <summary>
+            List of messages in the chat
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.#ctor">
+            <summary>
+            Create a new instance of the chat content class
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.AddMessage(Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory.AuthorRoles,System.String)">
+            <summary>
+            Add a message to the chat history
+            </summary>
+            <param name="authorRole">Role of the message author</param>
+            <param name="content">Message content</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings">
+            <summary>
+            Settings for a chat completion request.
+            For OpenAI see https://platform.openai.com/docs/api-reference/chat
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings.Temperature">
+            <summary>
+            Temperature controls the randomness of the completion.
+            The higher the temperature, the more random the completion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings.TopP">
+            <summary>
+            TopP controls the diversity of the completion.
+            The higher the TopP, the more diverse the completion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings.PresencePenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far, increasing the
+            model's likelihood to talk about new topics.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings.FrequencyPenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on their existing frequency in the text so far, decreasing
+            the model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings.StopSequences">
+            <summary>
+            Sequences where the completion will stop generating further tokens.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings.MaxTokens">
+            <summary>
+            The maximum number of tokens to generate in the completion.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ChatCompletion.IChatCompletion.CreateNewChat(System.String)">
+            <summary>
+            Create a new empty chat instance
+            </summary>
+            <param name="instructions">Optional chat instructions for the AI service</param>
+            <returns>Chat object</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ChatCompletion.IChatCompletion.GenerateMessageAsync(Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory,Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings,System.Threading.CancellationToken)">
+            <summary>
+            Generate a new chat message
+            </summary>
+            <param name="chat">Chat history</param>
+            <param name="requestSettings">AI request settings</param>
+            <param name="cancellationToken">Async cancellation token</param>
+            <returns>Generated chat message in string format</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ChatCompletion.IChatCompletion.GenerateMessageStreamAsync(Microsoft.SemanticKernel.AI.ChatCompletion.ChatHistory,Microsoft.SemanticKernel.AI.ChatCompletion.ChatRequestSettings,System.Threading.CancellationToken)">
+            <summary>
+            Generate a new chat message
+            </summary>
+            <param name="chat">Chat history</param>
+            <param name="requestSettings">AI request settings</param>
+            <param name="cancellationToken">Async cancellation token</param>
+            <returns>Stream the generated chat message in string format</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1">
+            <summary>
+            Represents a strongly typed vector of numeric data.
+            </summary>
+            <typeparam name="TEmbedding"></typeparam>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.Empty">
+            <summary>
+            An empty <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> class that contains numeric elements copied from the specified collection.
+            </summary>
+            <param name="vector">The source data.</param>
+            <exception cref="T:System.ArgumentException">An unsupported type is used as TEmbedding.</exception>
+            <exception cref="T:System.ArgumentNullException">A <c>null</c> vector is passed in.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> class that contains either a copy of or the reference to the specified collection.
+            </summary>
+            <param name="vector">The source data.</param>
+            <param name="transferOwnership">
+            <see langword="true"/> to transfer logical ownership of <paramref name="vector"/> to this instance; after doing so,
+            the caller should no longer mutate the original array. <see langword="false"/> to instead make a copy of <paramref name="vector"/>.
+            </param>
+            <exception cref="T:System.ArgumentException">An unsupported type is used as TEmbedding.</exception>
+            <exception cref="T:System.ArgumentNullException">A <c>null</c> vector is passed in.</exception>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.Vector">
+            <summary>
+            Gets the vector as an <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.IsEmpty">
+            <summary>
+            <c>true</c> if the vector is empty.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.Count">
+            <summary>
+            The number of elements in the vector.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.AsReadOnlySpan">
+            <summary>
+            Gets the vector as a read-only span.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.Equals(System.Object)">
+            <summary>
+            Determines whether two object instances are equal.
+            </summary>
+            <param name="obj">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.Equals(Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0})">
+            <summary>
+            Compares two embeddings for equality.
+            </summary>
+            <param name="other">The <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> to compare with the current object.</param>
+            <returns>><c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.op_Equality(Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0},Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0})">
+            <summary>
+            Compares two embeddings for equality.
+            </summary>
+            <param name="left">The left <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.</param>
+            <param name="right">The right <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.</param>
+            <returns><c>true</c> if the embeddings contain identical data; <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.op_Inequality(Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0},Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0})">
+            <summary>
+            Compares two embeddings for inequality.
+            </summary>
+            <param name="left">The left <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.</param>
+            <param name="right">The right <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.</param>
+            <returns><c>true</c> if the embeddings do not contain identical data; <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.op_Explicit(`0[])~Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0}">
+            <summary>
+            Implicit creation of an <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> object from an array of data.
+            </summary>
+            <param name="vector">An array of data.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.op_Explicit(Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0})~`0[]">
+            <summary>
+            Implicit creation of an array of type <typeparamref name="TEmbedding"/> from a <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.
+            </summary>
+            <param name="embedding">Source <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.</param>
+            <remarks>A clone of the underlying data.</remarks>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1.op_Explicit(Microsoft.SemanticKernel.AI.Embeddings.Embedding{`0})~System.ReadOnlySpan{`0}">
+            <summary>
+            Implicit creation of an <see cref="T:System.ReadOnlySpan`1"/> from a <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.
+            </summary>
+            <param name="embedding">Source <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.</param>
+            <remarks>A clone of the underlying data.</remarks>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding">
+            <summary>
+            Provides functionality related to <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding.IsSupported``1">
+            <summary>
+            Gets whether the specified <typeparamref name="TEmbedding"/> is supported for use with <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.
+            </summary>
+            <typeparam name="TEmbedding">The type to be checked.</typeparam>
+            <returns>
+            <see langword="true"/> if the type is supported; otherwise, <see langword="true"/>.
+            Currently only <see cref="T:System.Single"/> and <see cref="T:System.Double"/> are supported.
+            </returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.Embedding.IsSupported(System.Type)">
+            <summary>
+            Gets whether the specified <paramref name="type"/> is supported for use with <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/>.
+            </summary>
+            <param name="type">The type to be checked.</param>
+            <returns>
+            <see langword="true"/> if the type is supported; otherwise, <see langword="true"/>.
+            Currently only <see cref="T:System.Single"/> and <see cref="T:System.Double"/> are supported.
+            </returns>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.Embeddings.Embedding.SupportedTypes">
+            <summary>
+            Gets an enumerable of the types supported by the <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> struct.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.Embeddings.EmbeddingGenerationExtensions">
+            <summary>
+            Provides a collection of static methods for operating on <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.IEmbeddingGeneration`2"/> objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.EmbeddingGenerationExtensions.GenerateEmbeddingAsync``2(Microsoft.SemanticKernel.AI.Embeddings.IEmbeddingGeneration{``0,``1},``0,System.Threading.CancellationToken)">
+            <summary>
+            Generates an embedding from the given <paramref name="value"/>.
+            </summary>
+            <typeparam name="TValue">The type from which embeddings will be generated.</typeparam>
+            <typeparam name="TEmbedding">The numeric type of the embedding data.</typeparam>
+            <param name="generator">The embedding generator.</param>
+            <param name="value">A value from which an <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> will be generated.</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A list of <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> structs representing the input <paramref name="value"/>.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.Embeddings.IEmbeddingGeneration`2">
+            <summary>
+            Represents a generator of embeddings.
+            </summary>
+            <typeparam name="TValue">The type from which embeddings will be generated.</typeparam>
+            <typeparam name="TEmbedding">The numeric type of the embedding data.</typeparam>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.Embeddings.IEmbeddingGeneration`2.GenerateEmbeddingsAsync(System.Collections.Generic.IList{`0},System.Threading.CancellationToken)">
+            <summary>
+            Generates an embedding from the given <paramref name="data"/>.
+            </summary>
+            <param name="data">List of strings to generate embeddings for</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>List of embeddings</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.Embeddings.ITextEmbeddingGeneration">
+            <summary>
+            Represents a generator of text embeddings of type <c>float</c>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.ImageGeneration.IImageGeneration.GenerateImageAsync(System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate an image matching the given description
+            </summary>
+            <param name="description">Image description</param>
+            <param name="width">Image width in pixels</param>
+            <param name="height">Image height in pixels</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Generated image in base64 format or image URL</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings">
+            <summary>
+            Settings for a text completion request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.Temperature">
+            <summary>
+            Temperature controls the randomness of the completion.
+            The higher the temperature, the more random the completion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.TopP">
+            <summary>
+            TopP controls the diversity of the completion.
+            The higher the TopP, the more diverse the completion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.PresencePenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on whether they appear in the text so far, increasing the
+            model's likelihood to talk about new topics.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.FrequencyPenalty">
+            <summary>
+            Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on their existing frequency in the text so far, decreasing
+            the model's likelihood to repeat the same line verbatim.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.MaxTokens">
+            <summary>
+            The maximum number of tokens to generate in the completion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.StopSequences">
+            <summary>
+            Sequences where the completion will stop generating further tokens.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.ResultsPerPrompt">
+            <summary>
+            How many completions to generate for each prompt. Default is 1.
+            Note: Because this parameter generates many completions, it can quickly consume your token quota.
+            Use carefully and ensure that you have reasonable settings for max_tokens and stop.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings.FromCompletionConfig(Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig)">
+            <summary>
+            Create a new settings object with the values from another settings object.
+            </summary>
+            <param name="config"></param>
+            <returns>An instance of <see cref="T:Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings"/> </returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion">
+            <summary>
+            Interface for text completion services
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion.GetCompletionsAsync(System.String,Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings,System.Threading.CancellationToken)">
+            <summary>
+            Get completion results for the prompt and settings.
+            </summary>
+            <param name="text">The prompt to complete.</param>
+            <param name="requestSettings">Request settings for the completion API</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>List of different completions results generated by the remote model</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion.GetStreamingCompletionsAsync(System.String,Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings,System.Threading.CancellationToken)">
+            <summary>
+            Get streaming completion results for the prompt and settings.
+            </summary>
+            <param name="text">The prompt to complete.</param>
+            <param name="requestSettings">Request settings for the completion API</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>List of different completion streaming results generated by the remote model</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.AI.TextCompletion.TextCompletionExtensions">
+            <summary>
+            Class sponsor that holds extension methods for ITextCompletion interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.TextCompletion.TextCompletionExtensions.CompleteAsync(Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion,System.String,Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings,System.Threading.CancellationToken)">
+            <summary>
+            Creates a completion for the prompt and settings.
+            </summary>
+            <param name="textCompletion">Target interface to extend</param>
+            <param name="text">The prompt to complete.</param>
+            <param name="requestSettings">Request settings for the completion API</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Text generated by the remote model</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.AI.TextCompletion.TextCompletionExtensions.CompleteStreamAsync(Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion,System.String,Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings,System.Threading.CancellationToken)">
+            <summary>
+            Creates a completion for the prompt and settings.
+            </summary>
+            <param name="textCompletion">Target interface to extend</param>
+            <param name="text">The prompt to complete.</param>
+            <param name="requestSettings">Request settings for the completion API</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Streaming content of the text generated by the remote model</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.ChatCompletionServiceExtensions.GetChatCompletionService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Get the <see cref="T:Microsoft.SemanticKernel.AI.ChatCompletion.IChatCompletion"/> matching the given <paramref name="serviceId"/>, or
+            the default if <paramref name="serviceId"/> is not provided or not found.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">Optional identifier of the desired service.</param>
+            <returns>The completion service id matching the given id or the default.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Thrown when no suitable service is found.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.ChatCompletionServiceExtensions.HasChatCompletionService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Returns true if a <see cref="T:Microsoft.SemanticKernel.AI.ChatCompletion.IChatCompletion"/> exist with the specified ID.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">The service ID to search for. If null, it will look for a default service.</param>
+            <returns>True if the service ID is registered, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TextEmbeddingServiceExtensions.GetTextEmbeddingService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Get the <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.ITextEmbeddingGeneration"/> matching the given <paramref name="serviceId"/>, or the default
+            if the <paramref name="serviceId"/> is not provided or not found.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">Optional identifier of the desired service.</param>
+            <returns>The embedding service matching the given id or the default service.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Thrown when no suitable service is found.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TextEmbeddingServiceExtensions.HasTextEmbeddingService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Returns true if a <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.ITextEmbeddingGeneration"/> exist with the specified ID.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">The service ID to search for. If null, it will look for a default service.</param>
+            <returns>True if the service ID is registered, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.ImageGenerationServiceExtensions.GetImageGenerationService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Get the <see cref="T:Microsoft.SemanticKernel.AI.ImageGeneration.IImageGeneration"/> matching the given <paramref name="serviceId"/>, or the default
+            if the <paramref name="serviceId"/> is not provided or not found.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">Optional identifier of the desired service.</param>
+            <returns>The <see cref="T:Microsoft.SemanticKernel.AI.ImageGeneration.IImageGeneration"/> id matching the given id or the default.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Thrown when no suitable service is found.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.ImageGenerationServiceExtensions.HasImageGenerationService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Returns true if a <see cref="T:Microsoft.SemanticKernel.AI.ImageGeneration.IImageGeneration"/> exist with the specified ID.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">The service ID to search for. If null, it will look for a default service.</param>
+            <returns>True if the service ID is registered, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TextCompletionServiceExtensions.GetTextCompletionServiceOrDefault(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Get the <see cref="T:Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion"/> matching the given <paramref name="serviceId"/>, or the default
+            if the <paramref name="serviceId"/> is not provided or not found.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">Optional identifier of the desired service.</param>
+            <returns>The text completion service id matching the given ID or the default.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Thrown when no suitable service is found.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TextCompletionServiceExtensions.HasTextCompletionService(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String)">
+            <summary>
+            Returns true if a <see cref="T:Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion"/> exist with the specified ID.
+            </summary>
+            <param name="services">The service provider.</param>
+            <param name="serviceId">The service ID to search for. If null, it will look for a default service.</param>
+            <returns>True if the service ID is registered, false otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Diagnostics.SKException">
+            <summary>
+            Provides the base exception from which all Semantic Kernel exceptions derive.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.SKException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Diagnostics.SKException"/> class with a default message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.SKException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Diagnostics.SKException"/> class with its message set to <paramref name="message"/>.
+            </summary>
+            <param name="message">A string that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.SKException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Diagnostics.SKException"/> class with its message set to <paramref name="message"/>.
+            </summary>
+            <param name="message">A string that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType">
+            <summary>
+            Contains the values of status codes defined for HTTP in the response to an HTTP request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Continue">
+            <summary>
+            The server has received the request headers and the client should proceed to send the request body.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.SwitchingProtocols">
+            <summary>
+            The server is switching protocols according to the Upgrade header sent by the client.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Processing">
+            <summary>
+            The server is processing the request, but has not completed it yet.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.EarlyHints">
+            <summary>
+            The server is sending some hints about the response before the final status code.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.OK">
+            <summary>
+            The request has succeeded and the response contains the requested resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Created">
+            <summary>
+            The request has been fulfilled and a new resource has been created.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Accepted">
+            <summary>
+            The request has been accepted for further processing, but the processing has not been completed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NonAuthoritativeInformation">
+            <summary>
+            The server is returning a response from a different source than the requested one, but the response is still valid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NoContent">
+            <summary>
+            The request has been successfully processed, but the server does not need to return any content.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ResetContent">
+            <summary>
+            The server has fulfilled the request and the client should reset the document view.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PartialContent">
+            <summary>
+            The server is returning a partial response to a range request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MultiStatus">
+            <summary>
+            The server is returning a response that contains multiple status codes for different parts of the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.AlreadyReported">
+            <summary>
+            The server has already reported the status of the request and does not need to repeat it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.IMUsed">
+            <summary>
+            The server is returning a response that is the result of applying a delta encoding to the requested resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Ambiguous">
+            <summary>
+            The requested resource has multiple representations and the client should choose one of them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MultipleChoices">
+            <summary>
+            The requested resource has multiple representations and the client should choose one of them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Moved">
+            <summary>
+            The requested resource has been permanently moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MovedPermanently">
+            <summary>
+            The requested resource has been permanently moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Found">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Redirect">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RedirectMethod">
+            <summary>
+            The requested resource can be found at a different URI and the client should use a GET method to retrieve it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.SeeOther">
+            <summary>
+            The requested resource can be found at a different URI and the client should use a GET method to retrieve it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotModified">
+            <summary>
+            The requested resource has not been modified since the last request and the client can use the cached version.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UseProxy">
+            <summary>
+            The requested resource is only available through a proxy and the client should use the proxy URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Unused">
+            <summary>
+            This status code is no longer used and is reserved for future use.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RedirectKeepVerb">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the same method to access it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.TemporaryRedirect">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the same method to access it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PermanentRedirect">
+            <summary>
+            The requested resource has been permanently moved to a new location and the client should use the same method to access it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.BadRequest">
+            <summary>
+            The server cannot process the request due to a malformed syntax or an invalid parameter.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Unauthorized">
+            <summary>
+            The request requires authentication and the client should provide valid credentials.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PaymentRequired">
+            <summary>
+            The request requires payment and the client should provide valid payment information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Forbidden">
+            <summary>
+            The server has understood the request, but refuses to authorize it due to insufficient permissions or other reasons.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotFound">
+            <summary>
+            The server cannot find the requested resource and the client should not repeat the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MethodNotAllowed">
+            <summary>
+            The server does not support the method used by the request and the client should use a different method.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotAcceptable">
+            <summary>
+            The server cannot produce a response that matches the preferences specified by the request headers.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ProxyAuthenticationRequired">
+            <summary>
+            The request requires authentication through a proxy and the client should provide valid proxy credentials.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestTimeout">
+            <summary>
+            The server did not receive the complete request within the time limit and the client should try again later.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Conflict">
+            <summary>
+            The request could not be completed due to a conflict with the current state of the resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Gone">
+            <summary>
+            The requested resource is no longer available and the server does not know the new location.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.LengthRequired">
+            <summary>
+            The request requires a Content-Length header and the client should provide it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PreconditionFailed">
+            <summary>
+            The request does not meet the preconditions specified by the request headers and the server cannot process it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestEntityTooLarge">
+            <summary>
+            The request entity is too large and the server cannot process it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestUriTooLong">
+            <summary>
+            The request URI is too long and the server cannot process it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UnsupportedMediaType">
+            <summary>
+            The request entity has a media type that the server does not support or cannot handle.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestedRangeNotSatisfiable">
+            <summary>
+            The request specifies a range that the server cannot satisfy or is invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ExpectationFailed">
+            <summary>
+            The request contains an Expect header that the server cannot meet or is invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MisdirectedRequest">
+            <summary>
+            The request was directed to a server that is not able to produce a response.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UnprocessableEntity">
+            <summary>
+            The request entity is well-formed, but cannot be processed by the server due to semantic errors.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Locked">
+            <summary>
+            The requested resource is locked and the client should release it before modifying it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.FailedDependency">
+            <summary>
+            The request failed due to a dependency on another request that failed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UpgradeRequired">
+            <summary>
+            The request requires the server to upgrade to a different protocol and the client should use the Upgrade header to specify it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PreconditionRequired">
+            <summary>
+            The request requires the server to apply preconditions and the client should use the If-Match or If-Unmodified-Since headers to specify them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.TooManyRequests">
+            <summary>
+            The client has sent too many requests in a given time and the server rejects them to prevent overload.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestHeaderFieldsTooLarge">
+            <summary>
+            The request contains headers that are too large and the server cannot process them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UnavailableForLegalReasons">
+            <summary>
+            The server is denying access to the requested resource for legal reasons and the client should not repeat the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.InternalServerError">
+            <summary>
+            The server encountered an unexpected error and cannot fulfill the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotImplemented">
+            <summary>
+            The server does not support the functionality required by the request and the client should not repeat the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.BadGateway">
+            <summary>
+            The server received an invalid response from an upstream server and cannot fulfill the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ServiceUnavailable">
+            <summary>
+            The server is temporarily unavailable due to maintenance or overload and the client should try again later.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.GatewayTimeout">
+            <summary>
+            The server did not receive a timely response from an upstream server and cannot fulfill the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.HttpVersionNotSupported">
+            <summary>
+            The server does not support the HTTP version used by the request and the client should use a different version.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.VariantAlsoNegotiates">
+            <summary>
+            The server has a configuration error and cannot negotiate a suitable representation for the requested resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.InsufficientStorage">
+            <summary>
+            The server has insufficient storage space to complete the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.LoopDetected">
+            <summary>
+            The server detected an infinite loop while processing the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotExtended">
+            <summary>
+            The request requires additional extensions that the server does not support or cannot handle.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NetworkAuthenticationRequired">
+            <summary>
+            The request requires authentication at the network level and the client should provide valid network credentials.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.Verify.NotNull(System.Object,System.String)">
+            <summary>
+            Equivalent of ArgumentNullException.ThrowIfNull
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.Verify.ParametersUniqueness(System.Collections.Generic.IList{Microsoft.SemanticKernel.SkillDefinition.ParameterView})">
+            <summary>
+            Make sure every function parameter name is unique
+            </summary>
+            <param name="parameters">List of parameters</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.IKernel">
+            <summary>
+            Interface for the semantic kernel.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.IKernel.Config">
+            <summary>
+            Settings required to execute functions, including details about AI dependencies, e.g. endpoints and API keys.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.IKernel.Log">
+            <summary>
+            App logger
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.IKernel.Memory">
+            <summary>
+            Semantic memory instance
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.IKernel.PromptTemplateEngine">
+            <summary>
+            Reference to the engine rendering prompt templates
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.IKernel.Skills">
+            <summary>
+            Reference to the read-only skill collection containing all the imported functions
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.IKernel.TrustServiceInstance">
+            <summary>
+            Default service for trust check events in case a specific one is not provided at function creation.
+            Functions directly created through the kernel will use this trust service if no other is provided.
+            If null, the created functions will rely on the TrustService.DefaultTrusted implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RegisterSemanticFunction(System.String,Microsoft.SemanticKernel.SemanticFunctions.SemanticFunctionConfig,Microsoft.SemanticKernel.Security.ITrustService)">
+            <summary>
+            Build and register a function in the internal skill collection, in a global generic skill.
+            </summary>
+            <param name="functionName">Name of the semantic function. The name can contain only alphanumeric chars + underscore.</param>
+            <param name="functionConfig">Function configuration, e.g. I/O params, AI settings, localization details, etc.</param>
+            <param name="trustService">Service used for trust checks (if null will use the default registered in the kernel).</param>
+            <returns>A C# function wrapping AI logic, usually defined with natural language</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RegisterSemanticFunction(System.String,System.String,Microsoft.SemanticKernel.SemanticFunctions.SemanticFunctionConfig,Microsoft.SemanticKernel.Security.ITrustService)">
+            <summary>
+            Build and register a function in the internal skill collection.
+            </summary>
+            <param name="skillName">Name of the skill containing the function. The name can contain only alphanumeric chars + underscore.</param>
+            <param name="functionName">Name of the semantic function. The name can contain only alphanumeric chars + underscore.</param>
+            <param name="functionConfig">Function configuration, e.g. I/O params, AI settings, localization details, etc.</param>
+            <param name="trustService">Service used for trust checks (if null will use the default registered in the kernel).</param>
+            <returns>A C# function wrapping AI logic, usually defined with natural language</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RegisterCustomFunction(System.String,Microsoft.SemanticKernel.SkillDefinition.ISKFunction)">
+            <summary>
+            Registers a custom function in the internal skill collection.
+            </summary>
+            <param name="skillName">Name of the skill containing the function. The name can contain only alphanumeric chars + underscore.</param>
+            <param name="customFunction">The custom function to register.</param>
+            <returns>A C# function wrapping the function execution logic.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.ImportSkill(System.Object,System.String,Microsoft.SemanticKernel.Security.ITrustService)">
+            <summary>
+            Import a set of functions from the given skill. The functions must have the `SKFunction` attribute.
+            Once these functions are imported, the prompt templates can use functions to import content at runtime.
+            </summary>
+            <param name="skillInstance">Instance of a class containing functions</param>
+            <param name="skillName">Name of the skill for skill collection and prompt templates. If the value is empty functions are registered in the global namespace.</param>
+            <param name="trustService">Service used for trust checks (if null will use the default registered in the kernel).</param>
+            <returns>A list of all the semantic functions found in the directory, indexed by function name.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RegisterMemory(Microsoft.SemanticKernel.Memory.ISemanticTextMemory)">
+            <summary>
+            Set the semantic memory to use
+            </summary>
+            <param name="memory">Semantic memory instance</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RunAsync(Microsoft.SemanticKernel.SkillDefinition.ISKFunction[])">
+            <summary>
+            Run a pipeline composed of synchronous and asynchronous functions.
+            </summary>
+            <param name="pipeline">List of functions</param>
+            <returns>Result of the function composition</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RunAsync(System.String,Microsoft.SemanticKernel.SkillDefinition.ISKFunction[])">
+            <summary>
+            Run a pipeline composed of synchronous and asynchronous functions.
+            </summary>
+            <param name="input">Input to process</param>
+            <param name="pipeline">List of functions</param>
+            <returns>Result of the function composition</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RunAsync(Microsoft.SemanticKernel.Orchestration.ContextVariables,Microsoft.SemanticKernel.SkillDefinition.ISKFunction[])">
+            <summary>
+            Run a pipeline composed of synchronous and asynchronous functions.
+            </summary>
+            <param name="variables">Input to process</param>
+            <param name="pipeline">List of functions</param>
+            <returns>Result of the function composition</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RunAsync(System.Threading.CancellationToken,Microsoft.SemanticKernel.SkillDefinition.ISKFunction[])">
+            <summary>
+            Run a pipeline composed of synchronous and asynchronous functions.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <param name="pipeline">List of functions</param>
+            <returns>Result of the function composition</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RunAsync(System.String,System.Threading.CancellationToken,Microsoft.SemanticKernel.SkillDefinition.ISKFunction[])">
+            <summary>
+            Run a pipeline composed of synchronous and asynchronous functions.
+            </summary>
+            <param name="input">Input to process</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <param name="pipeline">List of functions</param>
+            <returns>Result of the function composition</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.RunAsync(Microsoft.SemanticKernel.Orchestration.ContextVariables,System.Threading.CancellationToken,Microsoft.SemanticKernel.SkillDefinition.ISKFunction[])">
+            <summary>
+            Run a pipeline composed of synchronous and asynchronous functions.
+            </summary>
+            <param name="variables">Input to process</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <param name="pipeline">List of functions</param>
+            <returns>Result of the function composition</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.Func(System.String,System.String)">
+            <summary>
+            Access registered functions by skill + name. Not case sensitive.
+            The function might be native or semantic, it's up to the caller handling it.
+            </summary>
+            <param name="skillName">Skill name</param>
+            <param name="functionName">Function name</param>
+            <returns>Delegate to execute the function</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.CreateNewContext(System.Threading.CancellationToken)">
+            <summary>
+            Create a new instance of a context, linked to the kernel internal state.
+            </summary>
+            <param name="cancellationToken">Optional cancellation token for operations in context.</param>
+            <returns>SK context</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.IKernel.GetService``1(System.String)">
+            <summary>
+            Get one of the configured services. Currently limited to AI services.
+            </summary>
+            <param name="name">Optional name. If the name is not provided, returns the default T available</param>
+            <typeparam name="T">Service type</typeparam>
+            <returns>Instance of T</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.KernelConfig">
+            <summary>
+            Semantic kernel configuration.
+            TODO: use .NET ServiceCollection (will require a lot of changes)
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.HttpHandlerFactory">
+            <summary>
+            Factory for creating HTTP handlers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.DefaultHttpRetryConfig">
+            <summary>
+            Default HTTP retry configuration for built-in HTTP handler factory.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.TextCompletionServices">
+            <summary>
+            Text completion service factories
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.ChatCompletionServices">
+            <summary>
+            Chat completion service factories
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.TextEmbeddingGenerationServices">
+            <summary>
+            Text embedding generation service factories
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.ImageGenerationServices">
+            <summary>
+            Image generation service factories
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelConfig.DefaultServiceId">
+            <summary>
+            Default name used when binding services if the user doesn't provide a custom value
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.AddTextCompletionService(System.Func{Microsoft.SemanticKernel.IKernel,Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion},System.String)">
+            <summary>
+            Add to the list a service for text completion, e.g. Azure OpenAI Text Completion.
+            </summary>
+            <param name="serviceFactory">Function used to instantiate the service object</param>
+            <param name="serviceId">Id used to identify the service</param>
+            <returns>Current object instance</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Failure if a service with the same id already exists</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.AddChatCompletionService(System.Func{Microsoft.SemanticKernel.IKernel,Microsoft.SemanticKernel.AI.ChatCompletion.IChatCompletion},System.String)">
+            <summary>
+            Add to the list a service for chat completion, e.g. OpenAI ChatGPT.
+            </summary>
+            <param name="serviceFactory">Function used to instantiate the service object</param>
+            <param name="serviceId">Id used to identify the service</param>
+            <returns>Current object instance</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Failure if a service with the same id already exists</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.AddTextEmbeddingGenerationService(System.Func{Microsoft.SemanticKernel.IKernel,Microsoft.SemanticKernel.AI.Embeddings.IEmbeddingGeneration{System.String,System.Single}},System.String)">
+            <summary>
+            Add to the list a service for text embedding generation, e.g. Azure OpenAI Text Embedding.
+            </summary>
+            <param name="serviceFactory">Function used to instantiate the service object</param>
+            <param name="serviceId">Id used to identify the service</param>
+            <returns>Current object instance</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Failure if a service with the same id already exists</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.AddImageGenerationService(System.Func{Microsoft.SemanticKernel.IKernel,Microsoft.SemanticKernel.AI.ImageGeneration.IImageGeneration},System.String)">
+            <summary>
+            Add to the list a service for image generation, e.g. OpenAI DallE.
+            </summary>
+            <param name="serviceFactory">Function used to instantiate the service object</param>
+            <param name="serviceId">Id used to identify the service</param>
+            <returns>Current object instance</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Failure if a service with the same id already exists</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.SetHttpRetryHandlerFactory(Microsoft.SemanticKernel.Reliability.IDelegatingHandlerFactory)">
+            <summary>
+            Set the http retry handler factory to use for the kernel.
+            </summary>
+            <param name="httpHandlerFactory">Http retry handler factory to use.</param>
+            <returns>The updated kernel configuration.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.SetDefaultTextCompletionService(System.String)">
+            <summary>
+            Set the default completion service to use for the kernel.
+            </summary>
+            <param name="serviceId">Identifier of completion service to use.</param>
+            <returns>The updated kernel configuration.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Thrown if the requested service doesn't exist.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.SetDefaultTextEmbeddingGenerationService(System.String)">
+            <summary>
+            Set the default embedding service to use for the kernel.
+            </summary>
+            <param name="serviceId">Identifier of text embedding service to use.</param>
+            <returns>The updated kernel configuration.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">Thrown if the requested service doesn't exist.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.RemoveAllTextCompletionServices">
+            <summary>
+            Remove all text completion services.
+            </summary>
+            <returns>The updated kernel configuration.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.RemoveAllChatCompletionServices">
+            <summary>
+            Remove all chat completion services.
+            </summary>
+            <returns>The updated kernel configuration.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelConfig.RemoveAllTextEmbeddingGenerationServices">
+            <summary>
+            Remove all text embedding generation services.
+            </summary>
+            <returns>The updated kernel configuration.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.KernelException">
+            <summary>
+            Exception thrown for errors related to kernel logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelException.#ctor(Microsoft.SemanticKernel.KernelException.ErrorCodes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.KernelException"/> class with a provided error code.
+            </summary>
+            <param name="errorCode">The error code.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelException.#ctor(Microsoft.SemanticKernel.KernelException.ErrorCodes,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.KernelException"/> class with a provided error code and message.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelException.#ctor(Microsoft.SemanticKernel.KernelException.ErrorCodes,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.KernelException"/> class with a provided error code, message, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.KernelException.ErrorCode">
+            <summary>
+            Gets the error code for this exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.KernelException.GetDefaultMessage(Microsoft.SemanticKernel.KernelException.ErrorCodes,System.String)">
+            <summary>Translate the error code into a default message.</summary>
+            <param name="errorCode">The error code.</param>
+            <param name="defaultMessage">Default error message if nothing available.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.KernelException.ErrorCodes">
+            <summary>
+            Semantic kernel error codes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.UnknownError">
+            <summary>
+            Unknown error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.InvalidFunctionDescription">
+            <summary>
+            Invalid function description.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.FunctionOverloadNotSupported">
+            <summary>
+            Function overload not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.FunctionNotAvailable">
+            <summary>
+            Function not available.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.FunctionTypeNotSupported">
+            <summary>
+            Function type not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.InvalidFunctionType">
+            <summary>
+            Invalid function type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.InvalidServiceConfiguration">
+            <summary>
+            Invalid service configuration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.ServiceNotFound">
+            <summary>
+            Service not found.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.SkillCollectionNotSet">
+            <summary>
+            Skill collection not set.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.KernelException.ErrorCodes.FunctionInvokeError">
+            <summary>
+            Represents an error that occurs when invoking a function.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.DataEntryBase">
+            <summary>
+            A base class for data entries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.DataEntryBase.#ctor(System.String,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Creates an instance of a <see cref="T:Microsoft.SemanticKernel.Memory.DataEntryBase"/>.
+            </summary>
+            <param name="key">The data key.</param>
+            <param name="timestamp">The data timestamp.</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.DataEntryBase.Key">
+            <summary>
+            Gets the key of the data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.DataEntryBase.Timestamp">
+            <summary>
+            Gets the timestamp of the data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.DataEntryBase.HasTimestamp">
+            <summary>
+            <c>true</c> if the data has a timestamp.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.IMemoryStore">
+            <summary>
+            An interface for storing and retrieving indexed <see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecord"/> objects in a data store.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.CreateCollectionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new collection in the data store.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.GetCollectionsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets all collection names in the data store.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>A group of collection names.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.DoesCollectionExistAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Determines if a collection exists in the data store.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>True if given collection exists, false if not.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.DeleteCollectionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a collection from the data store.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.UpsertAsync(System.String,Microsoft.SemanticKernel.Memory.MemoryRecord,System.Threading.CancellationToken)">
+            <summary>
+            Upserts a memory record into the data store. Does not guarantee that the collection exists.
+                If the record already exists, it will be updated.
+                If the record does not exist, it will be created.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="record">The memory record to upsert.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>The unique identifier for the memory record.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.UpsertBatchAsync(System.String,System.Collections.Generic.IEnumerable{Microsoft.SemanticKernel.Memory.MemoryRecord},System.Threading.CancellationToken)">
+            <summary>
+            Upserts a group of memory records into the data store. Does not guarantee that the collection exists.
+                If the record already exists, it will be updated.
+                If the record does not exist, it will be created.
+            </summary>
+            <param name="collectionName">The name associated with a collection of vectors.</param>
+            <param name="records">The memory records to upsert.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>The unique identifiers for the memory records.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.GetAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Gets a memory record from the data store. Does not guarantee that the collection exists.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="key">The unique id associated with the memory record to get.</param>
+            <param name="withEmbedding">If true, the embedding will be returned in the memory record.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>The memory record if found, otherwise null.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.GetBatchAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Gets a batch of memory records from the data store. Does not guarantee that the collection exists.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embedding.</param>
+            <param name="keys">The unique ids associated with the memory record to get.</param>
+            <param name="withEmbeddings">If true, the embeddings will be returned in the memory records.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>The memory records associated with the unique keys provided.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.RemoveAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Removes a memory record from the data store. Does not guarantee that the collection exists.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="key">The unique id associated with the memory record to remove.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.RemoveBatchAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Removes a batch of memory records from the data store. Does not guarantee that the collection exists.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="keys">The unique ids associated with the memory record to remove.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.GetNearestMatchesAsync(System.String,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.Int32,System.Double,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Gets the nearest matches to the <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> of type <see cref="T:System.Single"/>. Does not guarantee that the collection exists.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="embedding">The <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> to compare the collection's embeddings with.</param>
+            <param name="limit">The maximum number of similarity results to return.</param>
+            <param name="minRelevanceScore">The minimum relevance threshold for returned results.</param>
+            <param name="withEmbeddings">If true, the embeddings will be returned in the memory records.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>A group of tuples where item1 is a <see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecord"/> and item2 is its similarity score as a <see cref="T:System.Double"/>.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.IMemoryStore.GetNearestMatchAsync(System.String,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.Double,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Gets the nearest match to the <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> of type <see cref="T:System.Single"/>. Does not guarantee that the collection exists.
+            </summary>
+            <param name="collectionName">The name associated with a collection of embeddings.</param>
+            <param name="embedding">The <see cref="T:Microsoft.SemanticKernel.AI.Embeddings.Embedding`1"/> to compare the collection's embeddings with.</param>
+            <param name="minRelevanceScore">The minimum relevance threshold for returned results.</param>
+            <param name="withEmbedding">If true, the embedding will be returned in the memory record.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>A tuple consisting of the <see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecord"/> and the similarity score as a <see cref="T:System.Double"/>. Null if no nearest match found.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.ISemanticTextMemory">
+            <summary>
+            An interface for semantic memory that creates and recalls memories associated with text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.ISemanticTextMemory.SaveInformationAsync(System.String,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Save some information into the semantic memory, keeping a copy of the source information.
+            </summary>
+            <param name="collection">Collection where to save the information.</param>
+            <param name="text">Information to save.</param>
+            <param name="id">Unique identifier.</param>
+            <param name="description">Optional description.</param>
+            <param name="additionalMetadata">Optional string for saving custom metadata.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Unique identifier of the saved memory record.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.ISemanticTextMemory.SaveReferenceAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Save some information into the semantic memory, keeping only a reference to the source information.
+            </summary>
+            <param name="collection">Collection where to save the information.</param>
+            <param name="text">Information to save.</param>
+            <param name="externalId">Unique identifier, e.g. URL or GUID to the original source.</param>
+            <param name="externalSourceName">Name of the external service, e.g. "MSTeams", "GitHub", "WebSite", "Outlook IMAP", etc.</param>
+            <param name="description">Optional description.</param>
+            <param name="additionalMetadata">Optional string for saving custom metadata.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Unique identifier of the saved memory record.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.ISemanticTextMemory.GetAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Fetch a memory by key.
+            For local memories the key is the "id" used when saving the record.
+            For external reference, the key is the "URI" used when saving the record.
+            </summary>
+            <param name="collection">Collection to search.</param>
+            <param name="key">Unique memory record identifier.</param>
+            <param name="withEmbedding">Whether to return the embedding of the memory found.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Memory record, or null when nothing is found</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.ISemanticTextMemory.RemoveAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Remove a memory by key.
+            For local memories the key is the "id" used when saving the record.
+            For external reference, the key is the "URI" used when saving the record.
+            </summary>
+            <param name="collection">Collection to search.</param>
+            <param name="key">Unique memory record identifier.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.ISemanticTextMemory.SearchAsync(System.String,System.String,System.Int32,System.Double,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Find some information in memory
+            </summary>
+            <param name="collection">Collection to search</param>
+            <param name="query">What to search for</param>
+            <param name="limit">How many results to return</param>
+            <param name="minRelevanceScore">Minimum relevance score, from 0 to 1, where 1 means exact match.</param>
+            <param name="withEmbeddings">Whether to return the embeddings of the memories found.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>Memories found</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.ISemanticTextMemory.GetCollectionsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets a group of all available collection names.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>A group of collection names.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.MemoryException">
+            <summary>
+            Exception thrown for errors related to memory logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryException.#ctor(Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Memory.MemoryException"/> class with a provided error code.
+            </summary>
+            <param name="error">The error code.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryException.#ctor(Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Memory.MemoryException"/> class with a provided error code and message.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryException.#ctor(Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Memory.MemoryException"/> class with a provided error code, message, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCode">
+            <summary>
+            Gets the error code for this exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryException.GetDefaultMessage(Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes,System.String)">
+            <summary>Translate the error code into a default message.</summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes">
+            <summary>
+            Semantic kernel memory error codes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes.UnknownError">
+            <summary>
+            Unknown error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes.FailedToCreateCollection">
+            <summary>
+            Failed to create collection.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes.FailedToDeleteCollection">
+            <summary>
+            Failed to delete collection.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes.UnableToDeserializeMetadata">
+            <summary>
+            Unable to construct memory from serialized metadata.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Memory.MemoryException.ErrorCodes.AttemptedToAccessNonexistentCollection">
+            <summary>
+            Attempted to access a memory collection that does not exist.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.MemoryQueryResult">
+            <summary>
+            Copy of metadata associated with a memory entry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryQueryResult.Metadata">
+            <summary>
+            Whether the source data used to calculate embeddings are stored in the local
+            storage provider or is available through an external service, such as web site, MS Graph, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryQueryResult.Relevance">
+            <summary>
+            Search relevance, from 0 to 1, where 1 means perfect match.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryQueryResult.Embedding">
+            <summary>
+            Nullable embedding associated with the metadata returned for by a query.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryQueryResult.#ctor(Microsoft.SemanticKernel.Memory.MemoryRecordMetadata,System.Double,System.Nullable{Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single}})">
+            <summary>
+            Create a new instance of MemoryQueryResult
+            </summary>
+            <param name="metadata">
+              Whether the source data used to calculate embeddings are stored in the local
+              storage provider or is available through an external service, such as web site, MS Graph, etc.
+            </param>
+            <param name="relevance">Search relevance, from 0 to 1, where 1 means perfect match.</param>
+            <param name="embedding">Optional embedding associated with the metadata.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.MemoryRecord">
+            <summary>
+            IMPORTANT: this is a storage schema. Changing the fields will invalidate existing metadata stored in persistent vector DBs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecord.Embedding">
+            <summary>
+            Source content embeddings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecord.Metadata">
+            <summary>
+            Metadata associated with a Semantic Kernel memory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecord.#ctor(Microsoft.SemanticKernel.Memory.MemoryRecordMetadata,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.String,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Constructor, use <see cref="M:Microsoft.SemanticKernel.Memory.MemoryRecord.ReferenceRecord(System.String,System.String,System.String,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.String,System.String,System.Nullable{System.DateTimeOffset})"/> or <see cref="M:Microsoft.SemanticKernel.Memory.MemoryRecord.LocalRecord(System.String,System.String,System.String,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.String,System.String,System.Nullable{System.DateTimeOffset})"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecord.ReferenceRecord(System.String,System.String,System.String,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.String,System.String,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Prepare an instance about a memory which source is stored externally.
+            The universal resource identifies points to the URL (or equivalent) to find the original source.
+            </summary>
+            <param name="externalId">URL (or equivalent) to find the original source.</param>
+            <param name="sourceName">Name of the external service, e.g. "MSTeams", "GitHub", "WebSite", "Outlook IMAP", etc.</param>
+            <param name="description">Optional description of the record. Note: the description is not indexed.</param>
+            <param name="embedding">Source content embedding.</param>
+            <param name="additionalMetadata">Optional string for saving custom metadata.</param>
+            <param name="key">Optional existing database key.</param>
+            <param name="timestamp">optional timestamp.</param>
+            <returns>Memory record</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecord.LocalRecord(System.String,System.String,System.String,Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single},System.String,System.String,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Prepare an instance for a memory stored in the internal storage provider.
+            </summary>
+            <param name="id">Resource identifier within the storage provider, e.g. record ID/GUID/incremental counter etc.</param>
+            <param name="text">Full text used to generate the embeddings.</param>
+            <param name="description">Optional description of the record. Note: the description is not indexed.</param>
+            <param name="embedding">Source content embedding.</param>
+            <param name="additionalMetadata">Optional string for saving custom metadata.</param>
+            <param name="key">Optional existing database key.</param>
+            <param name="timestamp">optional timestamp.</param>
+            <returns>Memory record</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecord.FromJsonMetadata(System.String,System.Nullable{Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single}},System.String,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Create a memory record from a serialized metadata string.
+            </summary>
+            <param name="json">Json string representing a memory record's metadata.</param>
+            <param name="embedding">Optional embedding associated with a memory record.</param>
+            <param name="key">Optional existing database key.</param>
+            <param name="timestamp">optional timestamp.</param>
+            <returns>Memory record</returns>
+            <exception cref="T:Microsoft.SemanticKernel.Memory.MemoryException"></exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecord.FromMetadata(Microsoft.SemanticKernel.Memory.MemoryRecordMetadata,System.Nullable{Microsoft.SemanticKernel.AI.Embeddings.Embedding{System.Single}},System.String,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Create a memory record from a memory record's metadata.
+            </summary>
+            <param name="metadata">Metadata associated with a memory.</param>
+            <param name="embedding">Optional embedding associated with a memory record.</param>
+            <param name="key">Optional existing database key.</param>
+            <param name="timestamp">optional timestamp.</param>
+            <returns>Memory record</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecord.GetSerializedMetadata">
+            <summary>
+            Serialize the metadata of a memory record.
+            </summary>
+            <returns>The memory record's metadata serialized to a json string.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata">
+            <summary>
+            Class representing the metadata associated with a Semantic Kernel memory.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.IsReference">
+            <summary>
+            Whether the source data used to calculate embeddings are stored in the local
+            storage provider or is available through and external service, such as web site, MS Graph, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.ExternalSourceName">
+            <summary>
+            A value used to understand which external service owns the data, to avoid storing the information
+            inside the URI. E.g. this could be "MSTeams", "WebSite", "GitHub", etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.Id">
+            <summary>
+            Unique identifier. The format of the value is domain specific, so it can be a URL, a GUID, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.Description">
+            <summary>
+            Optional title describing the content. Note: the title is not indexed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.Text">
+            <summary>
+            Source text, available only when the memory is not an external source.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.AdditionalMetadata">
+            <summary>
+            Field for saving custom metadata with a memory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.#ctor(System.Boolean,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="isReference">True if source data is local, false if source data comes from an external service</param>
+            <param name="id">Unique string used to identify the <see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecord"/>.</param>
+            <param name="text">Local source data associated with a <see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecord"/> embedding.</param>
+            <param name="description"><see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecord"/> description.</param>
+            <param name="externalSourceName">Name of the external source if isReference is true.</param>
+            <param name="additionalMetadata">Field for saving custom metadata with a memory.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata.Clone">
+            <summary>
+            Creates a shallow copy of <see cref="T:Microsoft.SemanticKernel.Memory.MemoryRecordMetadata"/>.
+            </summary>
+            <returns>A shallow copy of this object</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Memory.NullMemory">
+            <summary>
+            Implementation of <see cref="T:Microsoft.SemanticKernel.Memory.ISemanticTextMemory"/> that stores nothing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Memory.NullMemory.Instance">
+            <summary>
+            Singleton instance
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.NullMemory.SaveInformationAsync(System.String,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.NullMemory.SaveReferenceAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.NullMemory.GetAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.NullMemory.RemoveAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.NullMemory.SearchAsync(System.String,System.String,System.Int32,System.Double,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Memory.NullMemory.GetCollectionsAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Orchestration.ContextVariables">
+            <summary>
+            Context Variables is a data structure that holds temporary data while a task is being performed.
+            It is accessed and manipulated by functions in the pipeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.ContextVariables.Input">
+            <summary>
+            In the simplest scenario, the data is an input string, stored here.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.#ctor(Microsoft.SemanticKernel.Security.TrustAwareString)">
+            <summary>
+            Constructor for context variables.
+            </summary>
+            <param name="trustAwareContent">Optional value for the main variable of the context including trust information.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.#ctor(System.String)">
+            <summary>
+            Constructor for context variables.
+            By default the content will be trusted.
+            </summary>
+            <param name="content">Optional value for the main variable of the context.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Update(Microsoft.SemanticKernel.Security.TrustAwareString)">
+            <summary>
+            Updates the main input text with the new value after a function is complete.
+            The string includes trust information and will overwrite the trust state of the input.
+            </summary>
+            <param name="trustAwareContent">The new input value, for the next function in the pipeline, or as a result for the user
+            if the pipeline reached the end.</param>
+            <returns>The current instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Update(System.String)">
+            <summary>
+            Updates the main input text with the new value after a function is complete.
+            By default the content will be trusted.
+            </summary>
+            <param name="content">The new input value, for the next function in the pipeline, or as a result for the user
+            if the pipeline reached the end.</param>
+            <returns>The current instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.UpdateKeepingTrustState(System.String)">
+            <summary>
+            Updates the main input text with the new value after a function is complete.
+            This will keep the trust state of the current input set.
+            </summary>
+            <param name="content">The new input value, for the next function in the pipeline, or as a result for the user
+            if the pipeline reached the end.</param>
+            <returns>The current instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Update(Microsoft.SemanticKernel.Orchestration.ContextVariables,System.Boolean)">
+            <summary>
+            Updates all the local data with new data, merging the two datasets.
+            Do not discard old data
+            </summary>
+            <param name="newData">New data to be merged</param>
+            <param name="merge">Whether to merge and keep old data, or replace. False == discard old data.</param>
+            <returns>The current instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Set(System.String,Microsoft.SemanticKernel.Security.TrustAwareString)">
+            <summary>
+            This method allows to store additional data in the context variables, e.g. variables needed by functions in the
+            pipeline. These "variables" are visible also to semantic functions using the "{{varName}}" syntax, allowing
+            to inject more information into prompt templates.
+            The string value includes trust information and will overwrite the trust information already stored for the variable.
+            </summary>
+            <param name="name">Variable name</param>
+            <param name="trustAwareValue">Value to store. If the value is NULL the variable is deleted.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Set(System.String,System.String)">
+            <summary>
+            This method allows to store additional data in the context variables, e.g. variables needed by functions in the
+            pipeline. These "variables" are visible also to semantic functions using the "{{varName}}" syntax, allowing
+            to inject more information into prompt templates.
+            By default the variables' value will be trusted.
+            </summary>
+            <param name="name">Variable name</param>
+            <param name="value">Value to store</param>
+            TODO: support for more complex data types, and plan for rendering these values into prompt templates.
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Get(System.String,Microsoft.SemanticKernel.Security.TrustAwareString@)">
+            <summary>
+            Fetch a variable value and if its content is trusted from the context variables.
+            </summary>
+            <param name="name">Variable name</param>
+            <param name="trustAwareValue">Variable value as a string with trust information</param>
+            <returns>Whether the value exists in the context variables</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Get(System.String,System.String@)">
+            <summary>
+            Fetch a variable value from the context variables.
+            </summary>
+            <param name="name">Variable name</param>
+            <param name="value">Value</param>
+            <returns>Whether the value exists in the context variables</returns>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.ContextVariables.Item(System.String)">
+            <summary>
+            Array of all variables in the context variables.
+            </summary>
+            <param name="name">The name of the variable.</param>
+            <returns>The value of the variable.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.ContainsKey(System.String)">
+            <summary>
+            Returns true if there is a variable with the given name
+            </summary>
+            <param name="key"></param>
+            <returns>True if there is a variable with the given name, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.IsAllTrusted">
+            <summary>
+            True if all the stored variables have trusted content.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.UntrustAll">
+            <summary>
+            Make all the variables stored in the context untrusted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.UntrustInput">
+            <summary>
+            Make the input variable untrusted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.ToString">
+            <summary>
+            Print the processed input, aka the current data after any processing occurred.
+            </summary>
+            <returns>Processed input, aka result</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.GetEnumerator">
+            <summary>
+            Get an enumerator that iterates through the context variables.
+            </summary>
+            <returns>An enumerator that iterates through the context variables</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.ContextVariables.Clone">
+            <summary>
+            Create a copy of the current instance with a copy of the internal data
+            </summary>
+            <returns>Copy of the current instance</returns>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Orchestration.ContextVariables._variables">
+            <summary>
+            Important: names are case insensitive
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Orchestration.SKContext">
+            <summary>
+            Semantic Kernel context.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.Result">
+            <summary>
+            Print the processed input, aka the current data after any processing occurred.
+            </summary>
+            <returns>Processed input, aka result</returns>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.IsTrusted">
+            <summary>
+            Whether all the context variables are trusted or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.ErrorOccurred">
+            <summary>
+            Whether an error occurred while executing functions in the pipeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.LastErrorDescription">
+            <summary>
+            Error details.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.LastException">
+            <summary>
+            When an error occurs, this is the most recent exception.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.CancellationToken">
+            <summary>
+            The token to monitor for cancellation requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.Item(System.String)">
+            <summary>
+            Shortcut into user data, access variables by name
+            </summary>
+            <param name="name">Variable name</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.Fail(System.String,System.Exception)">
+            <summary>
+            Call this method to signal when an error occurs.
+            In the usual scenarios this is also how execution is stopped, e.g. to inform the user or take necessary steps.
+            </summary>
+            <param name="errorDescription">Error description</param>
+            <param name="exception">If available, the exception occurred</param>
+            <returns>The current instance</returns>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.Variables">
+            <summary>
+            User variables
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.Memory">
+            <summary>
+            Semantic memory
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.Skills">
+            <summary>
+            Read only skills collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.Func(System.String,System.String)">
+            <summary>
+            Access registered functions by skill + name. Not case sensitive.
+            The function might be native or semantic, it's up to the caller handling it.
+            </summary>
+            <param name="skillName">Skill name</param>
+            <param name="functionName">Function name</param>
+            <returns>Delegate to execute the function</returns>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Orchestration.SKContext.Log">
+            <summary>
+            App logger
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.#ctor(Microsoft.SemanticKernel.Orchestration.ContextVariables,Microsoft.SemanticKernel.Memory.ISemanticTextMemory,Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken)">
+            <summary>
+            Constructor for the context.
+            </summary>
+            <param name="variables">Context variables to include in context.</param>
+            <param name="memory">Semantic text memory unit to include in context.</param>
+            <param name="skills">Skills to include in context.</param>
+            <param name="logger">Logger for operations in context.</param>
+            <param name="cancellationToken">Optional cancellation token for operations in context.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.UntrustAll">
+            <summary>
+            Make all the variables stored in the context untrusted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.UntrustResult">
+            <summary>
+            Make the result untrusted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.ToString">
+            <summary>
+            Print the processed input, aka the current data after any processing occurred.
+            If an error occurred, prints the last exception message instead.
+            </summary>
+            <returns>Processed input, aka result, or last exception message if any</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContext.Clone">
+            <summary>
+            Create a clone of the current context, using the same kernel references (memory, skills, logger)
+            and a new set variables, so that variables can be modified without affecting the original context.
+            </summary>
+            <returns>A new context copied from the current one</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Planning.PlanningException">
+            <summary>
+            Exception thrown for errors related to planning.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.PlanningException.#ctor(Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Planning.PlanningException"/> class with a provided error code.
+            </summary>
+            <param name="errorCode">The error code.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.PlanningException.#ctor(Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Planning.PlanningException"/> class with a provided error code and message.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.PlanningException.#ctor(Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Planning.PlanningException"/> class with a provided error code, message, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.PlanningException.ErrorCode">
+            <summary>
+            Gets the error code for this exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.PlanningException.GetDefaultMessage(Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes,System.String)">
+            <summary>Translate the error code into a default message.</summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes">
+            <summary>
+            Error codes for <see cref="T:Microsoft.SemanticKernel.Planning.PlanningException"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes.UnknownError">
+            <summary>
+            Unknown error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes.InvalidGoal">
+            <summary>
+            Invalid goal.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes.InvalidPlan">
+            <summary>
+            Invalid plan.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.PlanningException.ErrorCodes.InvalidConfiguration">
+            <summary>
+            Invalid configuration.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler.#ctor(Microsoft.SemanticKernel.Reliability.HttpRetryConfig,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler"/> class.
+            </summary>
+            <param name="config">The retry configuration.</param>
+            <param name="log">The logger.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Executes the action with retry logic
+            </summary>
+            <remarks>
+            The request is retried if it throws an exception that is a retryable exception.
+            If the request throws an exception that is not a retryable exception, it is not retried.
+            If the request returns a response with a retryable error code, it is retried.
+            If the request returns a response with a non-retryable error code, it is not retried.
+            If the exception contains a RetryAfter header, the request is retried after the specified delay.
+            If configured to use exponential backoff, the delay is doubled for each retry.
+            </remarks>
+            <param name="request">The request.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler.IDelayProvider">
+            <summary>
+            Interface for a delay provider, primarily to enable unit testing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler.ITimeProvider">
+            <summary>
+            Interface for a time provider, primarily to enable unit testing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler.GetWaitTime(System.Int32,System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Get the wait time for the next retry.
+            </summary>
+            <param name="retryCount">Current retry count</param>
+            <param name="response">The response message that potentially contains RetryAfter header.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Reliability.DefaultHttpRetryHandler.HasTimeForRetry(System.DateTimeOffset,System.Int32,System.Net.Http.HttpResponseMessage,System.TimeSpan@)">
+            <summary>
+            Determines if there is time left for a retry.
+            </summary>
+            <param name="start">The start time of the original request.</param>
+            <param name="retryCount">The current retry count.</param>
+            <param name="response">The response message that potentially contains RetryAfter header.</param>
+            <param name="waitFor">The wait time for the next retry.</param>
+            <returns>True if there is time left for a retry, false otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Reliability.HttpRetryConfig">
+            <summary>
+            Retry configuration for IHttpRetryPolicy that uses RetryAfter header when present.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.MaxRetryCount">
+            <summary>
+            Maximum number of retries.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when value is negative.</exception>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.MinRetryDelay">
+            <summary>
+            Minimum delay between retries.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.MaxRetryDelay">
+            <summary>
+            Maximum delay between retries.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.MaxTotalRetryTime">
+            <summary>
+            Maximum total time spent retrying.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.UseExponentialBackoff">
+            <summary>
+            Whether to use exponential backoff or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.RetryableStatusCodes">
+            <summary>
+            List of status codes that should be retried.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Reliability.HttpRetryConfig.RetryableExceptionTypes">
+            <summary>
+            List of exception types that should be retried.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Reliability.IDelegatingHandlerFactory">
+            <summary>
+            Factory for creating <see cref="T:System.Net.Http.DelegatingHandler"/> instances.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Security.ITrustService">
+             <summary>
+             Base interface used to handle trust events and validation. The flow in the SKFunction is:
+            
+             - Semantic function
+                 - Call ValidateContextAsync
+                 - Render prompt using template and variables
+                 - Call ValidatePromptAsync with rendered template and context
+                 - Call completion client with the returned prompt from ValidatePromptAsync
+                 - Update result
+            
+             - Native function
+                 - Call ValidateContextAsync
+                 - Call native function implementation
+                 - Update result
+             </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.ITrustService.ValidateContextAsync(Microsoft.SemanticKernel.SkillDefinition.ISKFunction,Microsoft.SemanticKernel.Orchestration.SKContext)">
+             <summary>
+             Called by the SKFunction flow to validate if the current context is considered to be trusted or not:
+            
+             - This is called for semantic functions before rendering the prompt template.
+             - This is called for native functions before calling the native function implementation.
+            
+             If the return is false, this means the result of the function will be tagged as untrusted.
+            
+             The implementation might depend on the application needs. A simple sample implementation
+             could be accomplished by analyzing the variables in the context, if they are all trusted, then
+             consider the context to be trusted.
+            
+             This also gives an opportunity for the context to be updated or actions to be taken if
+             potentially untrusted content is found. For example, sanitizing an untrusted variable and turning it into trusted.
+             </summary>
+             <param name="func">Instance of the function being called</param>
+             <param name="context">The current execution context</param>
+             <returns>Should return whether the result of the function should be considered trusted depending on the context</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.ITrustService.ValidatePromptAsync(Microsoft.SemanticKernel.SkillDefinition.ISKFunction,Microsoft.SemanticKernel.Orchestration.SKContext,System.String)">
+             <summary>
+             This will only be called by semantic functions. It will be called in the SKFunction flow after the prompt is
+             rendered using the given template, and before calling the text completion with the rendered prompt.
+            
+             It should return the content to be used in the completion client as a TrustAwareString, which will include
+             trust information. If the TrustAwareString returned is not trusted, this means the result of the function will be tagged as untrusted.
+            
+             After the template is rendered, the context might be tagged as untrusted because the template might contain function calls
+             that turned the context into untrusted when rendered.
+            
+             The implementation might depend on the application needs. A simple sample implementation
+             could be accomplished by analyzing the variables in the context and the rendered prompt, if everything is trusted, then
+             return the prompt wrapped in a TrustAwareString and tagged as trusted.
+            
+             This also gives an opportunity for both the context and the prompt to be updated before calling the completion client
+             when something untrusted is identified. For example, sanitizing an untrusted prompt and turning it into trusted.
+             </summary>
+             <param name="func">Instance of the function being called</param>
+             <param name="context">The current execution context</param>
+             <param name="prompt">The current rendered prompt to be used with the completion client</param>
+             <returns>Should return a TrustAwareString representing the final prompt to be used for the completion client.
+             The TrustAwareString includes trust information</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Security.TrustAwareString">
+            <summary>
+            A string wrapper that carries trust information.
+            All field are readonly.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Security.TrustAwareString.Empty">
+            <summary>
+            Create a new empty trust aware string (default trusted).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.TrustAwareString.Trusted(System.String)">
+            <summary>
+            Create a new trusted string.
+            </summary>
+            <param name="value">The raw string value</param>
+            <returns>TrustAwareString</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.TrustAwareString.Untrusted(System.String)">
+            <summary>
+            Create a new untrusted string.
+            </summary>
+            <param name="value">The raw string value</param>
+            <returns>TrustAwareString</returns>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Security.TrustAwareString.Value">
+            <summary>
+            The raw string value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Security.TrustAwareString.IsTrusted">
+            <summary>
+            Whether the current value is trusted or not.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.TrustAwareString.#ctor(System.String,System.Boolean)">
+            <summary>
+            Create a new trust aware string.
+            </summary>
+            <param name="value">The raw string value</param>
+            <param name="isTrusted">Whether the raw string value is trusted or not</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Security.TrustService">
+             <summary>
+             Default implementation of the trust service.
+            
+             This is just a simple example implementation that will be used by default if no other is provided.
+            
+             When set, throws an exception to stop execution when sensitive functions try to run with untrusted content.
+             </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Security.TrustService.DefaultTrusted">
+            <summary>
+            Creates the default trusted implementation of the trust service.
+            The default trusted version will use the trust information of the variables in the context to decide
+            whether the result of the function call should be trusted or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Security.TrustService.DefaultUntrusted">
+            <summary>
+            Creates the default untrusted implementation of the trust service.
+            The default untrusted version will always force the result of the function call to be untrusted.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Security.TrustService._defaultTrusted">
+            <summary>
+            If set to:
+            - false: will cause the context/prompt to always be considered untrusted, meaning the output of the function will always be considered untrusted.
+            - true: will use the trust information of the variables in the context to decide whether the context/prompt is trusted or not
+            (trusted only if all the variables within the context are trusted).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.TrustService.ValidateContextAsync(Microsoft.SemanticKernel.SkillDefinition.ISKFunction,Microsoft.SemanticKernel.Orchestration.SKContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.TrustService.ValidatePromptAsync(Microsoft.SemanticKernel.SkillDefinition.ISKFunction,Microsoft.SemanticKernel.Orchestration.SKContext,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Security.UntrustedContentException">
+            <summary>
+            Untrusted content exception, used to warn about:
+            - untrusted content in the context passed to any function
+            - untrusted prompts when using semantic functions
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.UntrustedContentException.#ctor(Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Security.UntrustedContentException"/> class with a provided error code.
+            </summary>
+            <param name="errorCode">The error code.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.UntrustedContentException.#ctor(Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Security.UntrustedContentException"/> class with a provided error code and message.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.UntrustedContentException.#ctor(Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.SemanticKernel.Security.UntrustedContentException"/> class with a provided error code, message, and inner exception.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">A string that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCode">
+            <summary>
+            Gets the error code for this exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Security.UntrustedContentException.GetDefaultMessage(Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes,System.String)">
+            <summary>Translate the error code into a default message.</summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes">
+            <summary>
+            Error codes for <see cref="T:Microsoft.SemanticKernel.Security.UntrustedContentException"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes.UnknownError">
+            <summary>
+            Unknown error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Security.UntrustedContentException.ErrorCodes.SensitiveFunctionWithUntrustedContent">
+            <summary>
+            Sensitive function was called with untrusted content.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SemanticFunctions.IPromptTemplate">
+            <summary>
+            Interface for prompt template.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SemanticFunctions.IPromptTemplate.GetParameters">
+            <summary>
+            Get the list of parameters required by the template, using configuration and template info.
+            </summary>
+            <returns>List of parameters</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SemanticFunctions.IPromptTemplate.RenderAsync(Microsoft.SemanticKernel.Orchestration.SKContext)">
+            <summary>
+            Render the template using the information in the context
+            </summary>
+            <param name="executionContext">Kernel execution context helpers</param>
+            <returns>Prompt rendered to string</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig">
+            <summary>
+            Prompt template configuration.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig">
+            <summary>
+            Completion configuration parameters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig.Temperature">
+            <summary>
+            Sampling temperature to use, between 0 and 2. Higher values will make the output more random.
+            Lower values will make it more focused and deterministic.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig.TopP">
+            <summary>
+            Cut-off of top_p probability mass of tokens to consider.
+            For example, 0.1 means only the tokens comprising the top 10% probability mass are considered.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig.PresencePenalty">
+            <summary>
+            Lowers the probability of a word appearing if it already appeared in the predicted text.
+            Unlike the frequency penalty, the presence penalty does not depend on the frequency at which words
+            appear in past predictions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig.FrequencyPenalty">
+            <summary>
+            Controls the model’s tendency to repeat predictions. The frequency penalty reduces the probability
+            of words that have already been generated. The penalty depends on how many times a word has already
+            occurred in the prediction.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig.MaxTokens">
+            <summary>
+            Maximum number of tokens that can be generated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.CompletionConfig.StopSequences">
+            <summary>
+            Stop sequences are optional sequences that tells the AI model when to stop generating tokens.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.InputParameter">
+            <summary>
+            Input parameter for semantic functions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.InputParameter.Name">
+            <summary>
+            Name of the parameter to pass to the function.
+            e.g. when using "{{$input}}" the name is "input", when using "{{$style}}" the name is "style", etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.InputParameter.Description">
+            <summary>
+            Parameter description for UI apps and planner. Localization is not supported here.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.InputParameter.DefaultValue">
+            <summary>
+            Default value when nothing is provided.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.InputConfig">
+            <summary>
+            Input configuration (list of all input parameters for a semantic function).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.Schema">
+            <summary>
+            Schema - Not currently used.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.Type">
+            <summary>
+            Type, such as "completion", "embeddings", etc.
+            </summary>
+            <remarks>TODO: use enum</remarks>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.Completion">
+            <summary>
+            Completion configuration parameters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.DefaultServices">
+            <summary>
+            Default AI services to use.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.Input">
+            <summary>
+            Input configuration (that is, list of all input parameters).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.IsSensitive">
+            <summary>
+            Whether the function is sensitive (default false).
+            When a function is sensitive, the default trust service will throw an exception
+            if the function is invoked passing in some untrusted input (or context, or prompt).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.Compact">
+            <summary>
+            Remove some default properties to reduce the JSON complexity.
+            </summary>
+            <returns>Compacted prompt template configuration.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig.FromJson(System.String)">
+            <summary>
+            Creates a prompt template configuration from JSON.
+            </summary>
+            <param name="json">JSON of the prompt template configuration.</param>
+            <returns>Prompt template configuration.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SemanticFunctions.SemanticFunctionConfig">
+            <summary>
+            Semantic function configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.SemanticFunctionConfig.PromptTemplateConfig">
+            <summary>
+            Prompt template configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SemanticFunctions.SemanticFunctionConfig.PromptTemplate">
+            <summary>
+            Prompt template.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SemanticFunctions.SemanticFunctionConfig.#ctor(Microsoft.SemanticKernel.SemanticFunctions.PromptTemplateConfig,Microsoft.SemanticKernel.SemanticFunctions.IPromptTemplate)">
+            <summary>
+            Constructor for SemanticFunctionConfig.
+            </summary>
+            <param name="config">Prompt template configuration.</param>
+            <param name="template">Prompt template.</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Services.INamedServiceProvider`1.GetService``1(System.String)">
+            <summary>
+            Gets the service of the specified type and name, or null if not found.
+            </summary>
+            <typeparam name="T">The type of the service.</typeparam>
+            <param name="name">The name of the service, or null for the default service.</param>
+            <returns>The service instance, or null if not found.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Services.IServiceConfig">
+            <summary>
+            Service configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Services.IServiceConfig.ServiceId">
+            <summary>
+            An identifier used to map semantic functions to AI connectors,
+            decoupling prompts configurations from the actual model and AI provider used.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Services.AIServiceProviderExtensions.TryGetService``1(Microsoft.SemanticKernel.Services.IAIServiceProvider,``0@)">
+            <summary>
+            Tries to get the service of the specified type and name, and returns a value indicating whether the operation succeeded.
+            </summary>
+            <typeparam name="T">The type of the service.</typeparam>
+            <param name="serviceProvider">The service provider.</param>
+            <param name="service">The output parameter to receive the service instance, or null if not found.</param>
+            <returns>True if the service was found, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Services.AIServiceProviderExtensions.TryGetService``1(Microsoft.SemanticKernel.Services.IAIServiceProvider,System.String,``0@)">
+            <summary>
+            Tries to get the service of the specified type and name, and returns a value indicating whether the operation succeeded.
+            </summary>
+            <typeparam name="T">The type of the service.</typeparam>
+            <param name="serviceProvider">The service provider.</param>
+            <param name="name">The name of the service, or null for the default service.</param>
+            <param name="service">The output parameter to receive the service instance, or null if not found.</param>
+            <returns>True if the service was found, false otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.FunctionsView">
+            <summary>
+            Class used to copy and export data from the skill collection.
+            The data is mutable, but changes do not affect the skill collection.
+            The class can be used to create custom lists in case your scenario needs to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionsView.SemanticFunctions">
+            <summary>
+            Collection of semantic skill names and function names, including function parameters.
+            Functions are grouped by skill name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionsView.NativeFunctions">
+            <summary>
+            Collection of native skill names and function views, including function parameters.
+            Functions are grouped by skill name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.FunctionsView.AddFunction(Microsoft.SemanticKernel.SkillDefinition.FunctionView)">
+            <summary>
+            Add a function to the list
+            </summary>
+            <param name="view">Function details</param>
+            <returns>Current instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.FunctionsView.IsSemantic(System.String,System.String)">
+            <summary>
+            Returns true if the function specified is unique and semantic
+            </summary>
+            <param name="skillName">Skill name</param>
+            <param name="functionName">Function name</param>
+            <returns>True if unique and semantic</returns>
+            <exception cref="T:System.Reflection.AmbiguousMatchException"></exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.FunctionsView.IsNative(System.String,System.String)">
+            <summary>
+            Returns true if the function specified is unique and native
+            </summary>
+            <param name="skillName">Skill name</param>
+            <param name="functionName">Function name</param>
+            <returns>True if unique and native</returns>
+            <exception cref="T:System.Reflection.AmbiguousMatchException"></exception>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.FunctionView">
+            <summary>
+            Class used to copy and export data from the skill collection.
+            The data is mutable, but changes do not affect the skill collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionView.Name">
+            <summary>
+            Name of the function. The name is used by the skill collection and in prompt templates e.g. {{skillName.functionName}}
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionView.SkillName">
+            <summary>
+            Name of the skill containing the function. The name is used by the skill collection and in prompt templates e.g. {{skillName.functionName}}
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionView.Description">
+            <summary>
+            Function description. The description is used in combination with embeddings when searching relevant functions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionView.IsSemantic">
+            <summary>
+            Whether the delegate points to a semantic function
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionView.IsAsynchronous">
+            <summary>
+            Whether the delegate is an asynchronous function
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.FunctionView.Parameters">
+            <summary>
+            List of function parameters
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.FunctionView.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.FunctionView.#ctor(System.String,System.String,System.String,System.Collections.Generic.IList{Microsoft.SemanticKernel.SkillDefinition.ParameterView},System.Boolean,System.Boolean)">
+            <summary>
+            Create a function view.
+            </summary>
+            <param name="name">Function name</param>
+            <param name="skillName">Skill name, e.g. the function namespace</param>
+            <param name="description">Function description</param>
+            <param name="parameters">List of function parameters provided by the skill developer</param>
+            <param name="isSemantic">Whether the function is a semantic one (or native is False)</param>
+            <param name="isAsynchronous">Whether the function is async. Note: all semantic functions are async.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection">
+            <summary>
+            Read-only skill collection interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection.GetFunction(System.String)">
+            <summary>
+            Gets the function stored in the collection.
+            </summary>
+            <param name="functionName">The name of the function to retrieve.</param>
+            <returns>The function retrieved from the collection.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">The specified function could not be found in the collection.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection.GetFunction(System.String,System.String)">
+            <summary>
+            Gets the function stored in the collection.
+            </summary>
+            <param name="skillName">The name of the skill with which the function is associated.</param>
+            <param name="functionName">The name of the function to retrieve.</param>
+            <returns>The function retrieved from the collection.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.KernelException">The specified function could not be found in the collection.</exception>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection.TryGetFunction(System.String,Microsoft.SemanticKernel.SkillDefinition.ISKFunction@)">
+            <summary>
+            Check if a function is available in the current context, and return it.
+            </summary>
+            <param name="functionName">The name of the function to retrieve.</param>
+            <param name="availableFunction">When this method returns, the function that was retrieved if one with the specified name was found; otherwise, <see langword="null"/>.</param>
+            <returns><see langword="true"/> if the function was found; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection.TryGetFunction(System.String,System.String,Microsoft.SemanticKernel.SkillDefinition.ISKFunction@)">
+            <summary>
+            Check if a function is available in the current context, and return it.
+            </summary>
+            <param name="skillName">The name of the skill with which the function is associated.</param>
+            <param name="functionName">The name of the function to retrieve.</param>
+            <param name="availableFunction">When this method returns, the function that was retrieved if one with the specified name was found; otherwise, <see langword="null"/>.</param>
+            <returns><see langword="true"/> if the function was found; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection.GetFunctionsView(System.Boolean,System.Boolean)">
+            <summary>
+            Get all registered functions details, minus the delegates
+            </summary>
+            <param name="includeSemantic">Whether to include semantic functions in the list</param>
+            <param name="includeNative">Whether to include native functions in the list</param>
+            <returns>An object containing all the functions details</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.ISKFunction">
+            <summary>
+            Semantic Kernel callable function interface
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.Name">
+            <summary>
+            Name of the function. The name is used by the skill collection and in prompt templates e.g. {{skillName.functionName}}
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.SkillName">
+            <summary>
+            Name of the skill containing the function. The name is used by the skill collection and in prompt templates e.g. {{skillName.functionName}}
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.Description">
+            <summary>
+            Function description. The description is used in combination with embeddings when searching relevant functions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.IsSemantic">
+            <summary>
+            Whether the function is defined using a prompt template.
+            IMPORTANT: native functions might use semantic functions internally,
+            so when this property is False, executing the function might still involve AI calls.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.IsSensitive">
+            <summary>
+            Whether the function is set to be sensitive (default false).
+            When a function is sensitive, the default trust service will throw an exception
+            if the function is invoked passing in some untrusted input (or context, or prompt).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.TrustServiceInstance">
+            <summary>
+            Service used for trust check events.
+            This can be provided at function creation, if not, the TrustService.DefaultTrusted implementation will be used.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.RequestSettings">
+            <summary>
+            AI service settings
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.Describe">
+            <summary>
+            Returns a description of the function, including parameters.
+            </summary>
+            <returns>An instance of <see cref="T:Microsoft.SemanticKernel.SkillDefinition.FunctionView"/> describing the function</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.InvokeAsync(Microsoft.SemanticKernel.Orchestration.SKContext,Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings)">
+            <summary>
+            Invoke the <see cref="T:Microsoft.SemanticKernel.SkillDefinition.ISKFunction"/>.
+            </summary>
+            <param name="context">SK context</param>
+            <param name="settings">LLM completion settings (for semantic functions only)</param>
+            <returns>The updated context, potentially a new one if context switching is implemented.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.InvokeAsync(System.String,Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings,Microsoft.SemanticKernel.Memory.ISemanticTextMemory,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken)">
+            <summary>
+            Invoke the <see cref="T:Microsoft.SemanticKernel.SkillDefinition.ISKFunction"/>.
+            </summary>
+            <param name="input">String input</param>
+            <param name="settings">LLM completion settings (for semantic functions only)</param>
+            <param name="memory">Semantic memory</param>
+            <param name="logger">Application logger</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to monitor for cancellation requests. The default is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <returns>The updated context, potentially a new one if context switching is implemented.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.SetDefaultSkillCollection(Microsoft.SemanticKernel.SkillDefinition.IReadOnlySkillCollection)">
+            <summary>
+            Set the default skill collection to use when the function is invoked
+            without a context or with a context that doesn't have a collection.
+            </summary>
+            <param name="skills">Kernel's skill collection</param>
+            <returns>Self instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.SetAIService(System.Func{Microsoft.SemanticKernel.AI.TextCompletion.ITextCompletion})">
+            <summary>
+            Set the AI service used by the semantic function, passing a factory method.
+            The factory allows to lazily instantiate the client and to properly handle its disposal.
+            </summary>
+            <param name="serviceFactory">AI service factory</param>
+            <returns>Self instance</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISKFunction.SetAIConfiguration(Microsoft.SemanticKernel.AI.TextCompletion.CompleteRequestSettings)">
+            <summary>
+            Set the AI completion settings used with LLM requests
+            </summary>
+            <param name="settings">LLM completion settings</param>
+            <returns>Self instance</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.ISkillCollection">
+            <summary>
+            Skill collection interface.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ISkillCollection.ReadOnlySkillCollection">
+            <summary>
+            Readonly only access into the collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ISkillCollection.AddFunction(Microsoft.SemanticKernel.SkillDefinition.ISKFunction)">
+            <summary>
+            Add a function to the collection
+            </summary>
+            <param name="functionInstance">Function delegate</param>
+            <returns>Self instance</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.ParameterView">
+            <summary>
+            Class used to copy and export data from
+            <see cref="T:Microsoft.SemanticKernel.SkillDefinition.SKFunctionContextParameterAttribute"/>
+            and <see cref="T:Microsoft.SemanticKernel.SkillDefinition.SKFunctionInputAttribute"/>
+            for planner and related scenarios.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ParameterView.Name">
+            <summary>
+            Parameter name. Alphanumeric chars + "_" only.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ParameterView.Description">
+            <summary>
+            Parameter description.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.ParameterView.DefaultValue">
+            <summary>
+            Default value when the value is not provided.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ParameterView.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.ParameterView.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Create a function parameter view, using information provided by the skill developer.
+            </summary>
+            <param name="name">Parameter name. The name must be alphanumeric (underscore is the only special char allowed).</param>
+            <param name="description">Parameter description</param>
+            <param name="defaultValue">Default parameter value, if not provided</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.SKFunctionAttribute">
+            <summary>
+            Attribute required to register native functions into the kernel.
+            The registration is required by the prompt templating engine and by the pipeline generator (aka planner).
+            The quality of the description affects the planner ability to reason about complex tasks.
+            The description is used both with LLM prompts and embedding comparisons.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionAttribute.Description">
+            <summary>
+            Function description, to be used by the planner to auto-discover functions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionAttribute.IsSensitive">
+            <summary>
+            Whether the function is set to be sensitive (default false).
+            When a function is sensitive, the default trust service will throw an exception
+            if the function is invoked passing in some untrusted input (or context, or prompt).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.SKFunctionAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            Tag a C# function as a native function available to SK.
+            </summary>
+            <param name="description">Function description, to be used by the planner to auto-discover functions.</param>
+            <param name="isSensitive">Whether the function is set to be sensitive (default false).</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.SKFunctionContextParameterAttribute">
+             <summary>
+             Attribute to describe the parameters required by a native function.
+            
+             Note: the class has no ctor, to force the use of setters and keep the attribute use readable
+             e.g.
+             Readable:     [SKFunctionContextParameter(Name = "...", Description = "...", DefaultValue = "...")]
+             Not readable: [SKFunctionContextParameter("...", "...", "...")]
+             </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionContextParameterAttribute.Name">
+            <summary>
+            Parameter name. Alphanumeric chars + "_" only.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionContextParameterAttribute.Description">
+            <summary>
+            Parameter description.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionContextParameterAttribute.DefaultValue">
+            <summary>
+            Default value when the value is not provided.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.SKFunctionContextParameterAttribute.ToParameterView">
+            <summary>
+            Creates a parameter view, using information from an instance of this class.
+            </summary>
+            <returns>Parameter view.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.SKFunctionInputAttribute">
+            <summary>
+            Attribute to describe the main parameter required by a native function,
+            e.g. the first "string" parameter, if the function requires one.
+            </summary>
+            <remarks>
+            The class has no constructor and requires the use of setters for readability.
+            e.g.
+            Readable:     [SKFunctionInput(Description = "...", DefaultValue = "...")]
+            Not readable: [SKFunctionInput("...", "...")]
+            </remarks>
+            <example>
+            <code>
+              // No main parameter here, only context
+              public async Task WriteAsync(SKContext context
+            </code>
+            </example>
+            <example>
+            <code>
+              // "path" is the input parameter
+              [SKFunctionInput("Source file path")]
+              public async Task{string?} ReadAsync(string path, SKContext context
+            </code>
+            </example>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionInputAttribute.Description">
+            <summary>
+            Parameter description.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionInputAttribute.DefaultValue">
+            <summary>
+            Default value when the value is not provided.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.SKFunctionInputAttribute.ToParameterView">
+            <summary>
+            Creates a parameter view, using information from an instance of this class.
+            </summary>
+            <returns>Parameter view.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.SkillDefinition.SKFunctionNameAttribute">
+            <summary>
+            Optional attribute to set the name used for the function in the skill collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.SkillDefinition.SKFunctionNameAttribute.Name">
+            <summary>
+            Function name
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.SkillDefinition.SKFunctionNameAttribute.#ctor(System.String)">
+            <summary>
+            Tag a C# function as a native function available to SK.
+            </summary>
+            <param name="name">Function name</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.TemplateEngine.Blocks.Block">
+            <summary>
+            Base class for blocks parsed from a prompt template
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.TemplateEngine.Blocks.Block.Content">
+            <summary>
+            The block content
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.TemplateEngine.Blocks.Block.Log">
+            <summary>
+            App logger
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.Blocks.Block.#ctor(System.String,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Base constructor
+            </summary>
+            <param name="content">Block content</param>
+            <param name="log">App logger</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.Blocks.Block.IsValid(System.String@)">
+            <summary>
+            Check if the block content is valid.
+            </summary>
+            <param name="errorMsg">Error message in case the content is not valid</param>
+            <returns>True if the block content is valid</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.TemplateEngine.IPromptTemplateEngine">
+            <summary>
+            Prompt template engine interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.IPromptTemplateEngine.ExtractBlocks(System.String,System.Boolean)">
+            <summary>
+            Given a prompt template string, extract all the blocks (text, variables, function calls)
+            </summary>
+            <param name="templateText">Prompt template (see skprompt.txt files)</param>
+            <param name="validate">Whether to validate the blocks syntax, or just return the blocks found, which could contain invalid code</param>
+            <returns>A list of all the blocks, ie the template tokenized in text, variables and function calls</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.IPromptTemplateEngine.RenderAsync(System.String,Microsoft.SemanticKernel.Orchestration.SKContext)">
+            <summary>
+            Given a prompt template, replace the variables with their values and execute the functions replacing their
+            reference with the function result.
+            </summary>
+            <param name="templateText">Prompt template (see skprompt.txt files)</param>
+            <param name="context">Access into the current kernel execution context</param>
+            <returns>The prompt template ready to be used for an AI request</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.IPromptTemplateEngine.RenderAsync(System.Collections.Generic.IList{Microsoft.SemanticKernel.TemplateEngine.Blocks.Block},Microsoft.SemanticKernel.Orchestration.SKContext)">
+            <summary>
+            Given a list of blocks render each block and compose the final result
+            </summary>
+            <param name="blocks">Template blocks generated by ExtractBlocks</param>
+            <param name="context">Access into the current kernel execution context</param>
+            <returns>The prompt template ready to be used for an AI request</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.IPromptTemplateEngine.RenderVariables(System.Collections.Generic.IList{Microsoft.SemanticKernel.TemplateEngine.Blocks.Block},Microsoft.SemanticKernel.Orchestration.ContextVariables)">
+            <summary>
+            Given a list of blocks, render the Variable Blocks, replacing placeholders with the actual value in memory
+            </summary>
+            <param name="blocks">List of blocks, typically all the blocks found in a template</param>
+            <param name="variables">Container of all the temporary variables known to the kernel</param>
+            <returns>An updated list of blocks where Variable Blocks have rendered to Text Blocks</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.TemplateEngine.IPromptTemplateEngine.RenderCodeAsync(System.Collections.Generic.IList{Microsoft.SemanticKernel.TemplateEngine.Blocks.Block},Microsoft.SemanticKernel.Orchestration.SKContext)">
+            <summary>
+            Given a list of blocks, render the Code Blocks, executing the functions and replacing placeholders with the functions result
+            </summary>
+            <param name="blocks">List of blocks, typically all the blocks found in a template</param>
+            <param name="executionContext">Access into the current kernel execution context</param>
+            <returns>An updated list of blocks where Code Blocks have rendered to Text Blocks</returns>
+        </member>
+        <member name="T:System.ExceptionExtensions">
+            <summary>
+            Exception extension methods.
+            </summary>
+        </member>
+        <member name="M:System.ExceptionExtensions.IsCriticalException(System.Exception)">
+            <summary>
+            Check if an exception is of a type that should not be caught by the kernel.
+            </summary>
+            <param name="ex">Exception.</param>
+            <returns>True if <paramref name="ex"/> is a critical exception and should not be caught.</returns>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
+            <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisallowNullAttribute">
+            <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullAttribute">
+            <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue"/>, the parameter may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter may be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue"/>, the parameter will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute">
+            <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with the associated parameter name.</summary>
+            <param name="parameterName">
+            The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.ParameterName">
+            <summary>Gets the associated parameter name.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute">
+            <summary>Applied to a method that will never return under any circumstance.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute">
+            <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified parameter value.</summary>
+            <param name="parameterValue">
+            The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
+            the associated parameter matches this value.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
+            <summary>Gets the condition parameter value.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute">
+            <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with a field or property member.</summary>
+            <param name="member">
+            The field or property member that is promised to be not-null.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.#ctor(System.String[])">
+            <summary>Initializes the attribute with the list of field and property members.</summary>
+            <param name="members">
+            The list of field and property members that are promised to be not-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.Members">
+            <summary>Gets field or property member names.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute">
+            <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values when returning with the specified return value condition.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.#ctor(System.Boolean,System.String)">
+            <summary>Initializes the attribute with the specified return value condition and a field or property member.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+            <param name="member">
+            The field or property member that is promised to be not-null.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.#ctor(System.Boolean,System.String[])">
+            <summary>Initializes the attribute with the specified return value condition and list of field and property members.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+            <param name="members">
+            The list of field and property members that are promised to be not-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.Members">
+            <summary>Gets field or property member names.</summary>
+        </member>
+        <member name="T:NonDisposableHttpClientHandler">
+            <summary>
+            Represents a singleton implementation of <see cref="T:System.Net.Http.HttpClientHandler"/> that is not disposable.
+            </summary>
+        </member>
+        <member name="M:NonDisposableHttpClientHandler.#ctor">
+            <summary>
+            Private constructor to prevent direct instantiation of the class.
+            </summary>
+        </member>
+        <member name="P:NonDisposableHttpClientHandler.Instance">
+            <summary>
+            Gets the singleton instance of <see cref="T:NonDisposableHttpClientHandler"/>.
+            </summary>
+        </member>
+        <member name="M:NonDisposableHttpClientHandler.Dispose(System.Boolean)">
+            <summary>
+            Disposes the underlying resources held by the <see cref="T:NonDisposableHttpClientHandler"/>.
+            This implementation does nothing to prevent unintended disposal, as it may affect all references.
+            </summary>
+            <param name="disposing">True if called from <see cref="M:NonDisposableHttpClientHandler.Dispose(System.Boolean)"/>, false if called from a finalizer.</param>
+        </member>
+    </members>
+</doc>

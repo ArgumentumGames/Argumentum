@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "description": "Given a text in natural language text with statements or arguments and the corresponding belief state in modal logic syntax to be parsed by Tweety, returns a list of queries to be tested with a reasoning engine as string formulas to be parsed in modal logic",
+  "type": "completion",
+  "completion": {
+    "max_tokens": 500,
+    "temperature": 0.1,
+    "top_p": 0.5
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The natural language text to convert",
+        "defaultValue": ""
+      },
+      {
+        "name": "belief_set",
+        "description": "The belief set on which the query will be run",
+        "defaultValue": ""
+      }
+    ]
+  }
+}

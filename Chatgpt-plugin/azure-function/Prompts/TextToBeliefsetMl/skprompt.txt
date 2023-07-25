@@ -1,0 +1,38 @@
+Please transform the following text into modal logic statements to form a belief set, as per the provided example below. Identify the key arguments or assertions in the text that require logical analysis, including omitted implicit premisses if necessary to make the arguments complete. Ensure that the text contains elements of conflict, debate, or differing opinions. The belief set you create will be used for analysis in the Tweety reasoner engine.
+
+The BNF for a modal knowledge base is given by (starting symbol is KB)
+
+KB 			::== SORTSDEC DECLAR FORMULAS
+DECLAR		::== (FUNCTORDEC | PREDDEC)*
+SORTSDEC    ::== ( SORTNAME "=" "{" (CONSTANTNAME ("," CONSTANTNAME)*)? "}" "\n" )*
+PREDDEC		::== "type" "(" PREDICATENAME ("(" SORTNAME ("," SORTNAME)* ")")? ")" "\n"
+FUNCTORDEC	::== "type" "(" SORTNAME "=" FUNCTORNAME "(" (SORTNAME ("," SORTNAME)*)? ")" ")" "\n"
+FORMULAS    ::== ( "\n" FORMULA)*
+FORMULA     ::== ATOM | "forall" VARIABLENAME ":" "(" FORMULA ")" | "exists" VARIABLENAME ":" "(" FORMULA ")" |
+				 "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-" |
+				 FORMULA "=>" FORMULA | FORMULA "<=>" FORMULA | FORMULA "==" FORMULA | FORMULA "/==" FORMULA |
+                 "[]" "(" FORMULA ")" | "<>" "(" FORMULA ")"
+ATOM		::== PREDICATENAME ("(" TERM ("," TERM)* ")")?
+TERM		::== VARIABLENAME | CONSTANTNAME | FUNCTORNAME "(" (TERM ("," TERM)*)?  ")" 
+
+where SORTNAME, PREDICATENAME, CONSTANTNAME, and FUNCTORNAME are sequences of symbols from {a,...,z,A,...,Z,0,...,9} with a letter at the beginning and VARIABLENAME is a sequence of symbols from {a,...,z,A,...,Z,0,...,9} with an uppercase letter at the beginning.
+
+Note: Equality/Inequality predicates ("==" and "/==") can only be parsed if the parser is given a FolSignature with equality (which is not the case by default).
+
+[Input]
+John believes that if it is raining, Mary will stay at home. However, Mary thinks it is sunny outside. If it is indeed sunny, John will go to the park. But if John goes to the park, then it is necessarily the case that Mary did not stay at home.
++++++
+type(Person = {John,Mary})
+type(believes(Person, Event))
+type(raining(Event))
+type(stayAtHome(Person))
+type(sunny(Event))
+type(goToPark(Person))
+
+forall P E: (P==John && believes(P, E) && E==raining) => [] (forall P: P==Mary => stayAtHome(P))
+forall P E: (P==Mary && believes(P, E) && E==sunny)
+forall P E: (P==John && E==sunny) => goToPark(P)
+forall P: (P==John && goToPark(P)) => ![] (forall P: P==Mary => stayAtHome(P))
+[Input]
+[[{{$input}}]]
++++++

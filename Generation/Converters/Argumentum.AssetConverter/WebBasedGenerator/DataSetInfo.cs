@@ -62,7 +62,7 @@ public class DataSetInfo
 	}
 
 
-	public async Task<string> GetContent(bool useDebugPath, string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues)
+	public async Task<string> GetContent(bool useDebugPath, string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues, bool startsWithValues)
 	{
 		var content = await GetContent(useDebugPath);
 
@@ -70,8 +70,18 @@ public class DataSetInfo
 		{
 			var dataTable = await LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
 
-			var filteredRows = dataTable.AsEnumerable()
-				.Where(row => csvFilterValues.Contains(row[csvFilterField]?.ToString()));
+			EnumerableRowCollection<DataRow> filteredRows;
+			if (startsWithValues)
+			{
+				filteredRows = dataTable.AsEnumerable()
+					.Where(row => csvFilterValues.Any(value=> row[csvFilterField]?.ToString()?.StartsWith(value)??false));
+			}
+			else
+			{
+				filteredRows = dataTable.AsEnumerable()
+					.Where(row => csvFilterValues.Contains(row[csvFilterField]?.ToString()));
+			}
+			
 
 			var filteredTable = dataTable.Clone();
 			foreach (var row in filteredRows)
@@ -198,6 +208,28 @@ public class DataSetInfo
 		return toReturn;
 	}
 
+
+	public async Task<Dictionary<string,Dictionary<string, object>>> GetContentDictionary(List<string> fieldsToInclude,
+		string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues,
+		 bool startsWithValues, bool useDebugPath)
+	{
+		var toReturn = new Dictionary<string, Dictionary<string, object>>();
+		var content = await GetContent(useDebugPath,delimiterIn,primaryKeyColumn, csvFilterField, csvFilterValues, startsWithValues ); // consider handling this async call properly
+		using var textReader = new StringReader(content);
+		var configIn = new CsvConfiguration(CultureInfo.InvariantCulture);
+		using var csvReader = new CsvReader(textReader, configIn);
+		var records = csvReader.GetRecords<dynamic>().ToList();
+
+		// For each record, we filter out the fields we are interested in, and add the resulting dictionary to toReturn.
+		for (var i = 0; i < records.Count; i += 1)
+		{
+			var recordDict = (IDictionary<string, object>)records[i];
+			var selectedFields = recordDict.Where(pair => fieldsToInclude.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value);
+			toReturn.Add(selectedFields[primaryKeyColumn].ToString() ?? throw new InvalidOperationException("missing primary key"), selectedFields);
+		}
+
+		return toReturn;
+	}
 
 
 	public async Task<string> MergeJsonResponsesIntoCsv(List<string> responses, string primaryKeyColumn,

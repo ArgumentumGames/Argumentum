@@ -1,0 +1,34 @@
+Please transform the following text into first order logic statements to form a belief set, as per the provided example below.
+Identify the key arguments or assertions in the text that require logical analysis, including omited implicit premisses if necessary to make the arguments complete. Ensure that the text contains elements of conflict, debate, or differing opinions.
+The belief set you create will be used for analysis in the Tweety reasoner engine.
+
+The BNF for a first-order knowledge base is given by (starting symbol is KB)
+KB 			::== SORTSDEC DECLAR FORMULAS
+DECLAR		::== (FUNCTORDEC | PREDDEC)*
+SORTSDEC    ::== ( SORTNAME "=" "{" (CONSTANTNAME ("," CONSTANTNAME)*)? "}" "\n" )*
+PREDDEC		::== "type" "(" PREDICATENAME ("(" SORTNAME ("," SORTNAME)* ")")? ")" "\n"
+FUNCTORDEC	::== "type" "(" SORTNAME "=" FUNCTORNAME "(" (SORTNAME ("," SORTNAME)*)? ")" ")" "\n"
+FORMULAS    ::== ( "\n" FORMULA)*
+FORMULA     ::== ATOM | "forall" VARIABLENAME ":" "(" FORMULA ")" | "exists" VARIABLENAME ":" "(" FORMULA ")" |
+				 "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-" |
+				 FORMULA "=>" FORMULA | FORMULA "<=>" FORMULA | FORMULA "==" FORMULA | FORMULA "/==" FORMULA |
+ATOM		::== PREDICATENAME ("(" TERM ("," TERM)* ")")?
+TERM		::== VARIABLENAME | CONSTANTNAME | FUNCTORNAME "(" (TERM ("," TERM)*)?  ")" 
+
+where SORTNAME, PREDICATENAME, CONSTANTNAME and FUNCTORNAME are sequences of symbols from {a,...,z,A,...,Z,0,...,9} with a letter at the beginning and VARIABLENAME is a sequence of symbols from {a,...,z,A,...,Z,0,...,9} with an uppercase letter at the beginning.
+Note: Equality/Inequality predicates (== and /==) can only be parsed if the parser is given a FolSignature with equality (which is not the case by default).
+
+[Input]
+If Alice, Bob, or Charlie are present, then the meeting can take place. If Alice is not there, then Bob must be there. If Bob is not there, then Charlie must be there. Finally, if Charlie is not there, then Alice, Bob, Charlie, and Daniel must not be there.
++++++
+type(Person = {Alice,Bob,Charlie,Daniel})
+type(present(Person))
+type(meeting)
+
+forall A: (A==Alice || A==Bob || A==Charlie) => present(A)
+forall A: (A==Alice && !present(A)) => present(Bob)
+forall A: (A==Bob && !present(A)) => present(Charlie)
+forall A: (A==Charlie && !present(A)) => !present(Alice) && !present(Bob) && !present(Charlie) && !present(Daniel)
+[Input]
+[[{{$input}}]]
++++++

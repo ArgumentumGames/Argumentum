@@ -44,7 +44,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mindmaps", "Mindmaps", "{1A
 		Cards\Fallacies\Mindmaps\included.html = Cards\Fallacies\Mindmaps\included.html
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetyIKVM", "..\..\Cours\TPs\Epita\2023\MyIA.Symbolic\TweetyIKVM\TweetyIKVM.csproj", "{9AB44F18-214B-48CA-A704-0250CB3D72B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-chatgpt-azure-function", "Chatgpt-plugin\azure-function\sk-chatgpt-azure-function.csproj", "{2AE661AF-C34F-49EE-9529-48FED455D149}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "semantic-functions-generator", "Chatgpt-plugin\semantic-functions-generator\semantic-functions-generator.csproj", "{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,12 +61,18 @@ Global
 		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Publish|Any CPU.Build.0 = Release|Any CPU
 		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89FCB6CE-E36B-4DAD-8E4F-189F6B7922EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AB44F18-214B-48CA-A704-0250CB3D72B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AB44F18-214B-48CA-A704-0250CB3D72B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AB44F18-214B-48CA-A704-0250CB3D72B4}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AB44F18-214B-48CA-A704-0250CB3D72B4}.Publish|Any CPU.Build.0 = Debug|Any CPU
-		{9AB44F18-214B-48CA-A704-0250CB3D72B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AB44F18-214B-48CA-A704-0250CB3D72B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AE661AF-C34F-49EE-9529-48FED455D149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE661AF-C34F-49EE-9529-48FED455D149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE661AF-C34F-49EE-9529-48FED455D149}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE661AF-C34F-49EE-9529-48FED455D149}.Publish|Any CPU.Build.0 = Debug|Any CPU
+		{2AE661AF-C34F-49EE-9529-48FED455D149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE661AF-C34F-49EE-9529-48FED455D149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
+		{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}.Publish|Any CPU.Build.0 = Debug|Any CPU
+		{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{770EA3AC-0C7D-45FA-B81D-47F953FE9F3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

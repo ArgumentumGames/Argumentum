@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "description": "Given a text in natural language text with statements or arguments, selects the appropriate type of formal logic for translation and analysis. Choosen logic will further be used to create a belief set with the appropriate syntax, to use the appropriate Tweety parser and reasoner. Options available are 'Propositional', 'FirstOrder' or 'Modal'",
+  "type": "completion",
+  "completion": {
+    "max_tokens": 4,
+    "temperature": 0.1,
+    "top_p": 0.1
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The natural language text to analyse",
+        "defaultValue": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+Please analyze the following argumentative text for the presence of fallacies.
+Here is a short extract from a 7 family 1000 nodes fallacy taxonomy, expressed in json:
+
+{{fallaciesShort}}
+
+Here are some more details about the main nodes, to better frame the current branch:
+
+
+{{fallaciesLong}}
+
+
+Please restrict your analysis to the current branch of the fallacy taxonomy exhibited above.
+Write a short answer identifying in the following text potential fallacies, the type of which belongs to the current branch
+If not fallacies of that kind were found, simply write "N.A."
+
+{{$input}}
++++++

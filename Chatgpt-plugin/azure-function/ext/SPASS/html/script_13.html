@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 13. dfg2dfg</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 13. dfg2dfg">
+<meta name="keywords" content="frequently asked questions about SPASS: 13. dfg2dfg">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_12.html#SEC81" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_14.html#SEC95" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="dfg2dfg"></a>
+<a name="SEC88"></a>
+<h1 class="chapter"> 13. dfg2dfg </h1>
+
+<hr size="6">
+<a name="SEC89"></a>
+<h2 class="section"> 13.1 NAME </h2>
+<p>dfg2dfg - calculate approximations of problems
+</p>
+<hr size="6">
+<a name="SEC90"></a>
+<h2 class="section"> 13.2 SYNOPSIS </h2>
+<p><strong>dfg2dfg</strong> [-horn] [-monadic] [-linear] [-shallow] [<var>infile</var>] [<var>outfile</var>]
+</p>
+<hr size="6">
+<a name="SEC91"></a>
+<h2 class="section"> 13.3 DESCRIPTION </h2>
+<p><strong>dfg2dfg</strong> is a program that reads clauses from an input file in DFG
+syntax.
+It then calculates an approximation of the clause set depending on the
+command line options.
+Finally it writes the approximated clause set in DFG syntax to a file.
+</p>
+<p>If neither <var>infile</var> nor <var>outfile</var> are given, <strong>dfg2dfg</strong> reads
+from standard input and writes to standard output.
+If one file name is given, it reads from that file and writes the output to
+standard output.
+If more than one file name is given, <strong>dfg2dfg</strong> reads from the first
+file and writes to the second.
+</p>
+<p>The approximations are described in technical detail in the separate paper 
+<strong>dfg2dfg.ps</strong> included in the SPASS distribution.
+</p>
+<hr size="6">
+<a name="SEC92"></a>
+<h2 class="section"> 13.4 OPTIONS </h2>
+<p><strong>dfg2dfg</strong> has four different command line options that may be combined.
+</p><dl compact="compact">
+<dt> <kbd>-horn</kbd></dt>
+<dd><br><p>This option enables the transformation of non-horn clauses into horn clauses.
+Each non-horn clause with <em>n</em> positive literals is transformed into
+<em>n</em> horn clauses, where the <em>i</em>-th clause contains the <em>i</em>-th
+positive literal and all negative literals of the non-horn clause.
+See also section 3 of the paper.
+</p></dd>
+<dt> <kbd>-monadic[=n]</kbd></dt>
+<dd><p>With this option atoms with non-monadic predicate symbols are transformed into
+monadic atoms.
+If <em>n</em> is omitted or <em>n</em>=1 a term encoding is applied, i.e., all
+non-monadic predicates are moved to the term level.
+With <em>n</em>=2 a projection is applied. All non-monadic atoms are replaced
+by their monadic argument projections.
+See section 4.1 section 4.2 of the paper for more details.
+</p></dd>
+<dt> <kbd>-linear</kbd></dt>
+<dd><p>This approximation transforms a clause with monadic literals and non-linear
+variable occurrences in succedent atoms, into a new clause with possibly
+more negative literals, that doesn't contain any non-linear variables in the
+succedent.
+See section 5 of the paper for details.
+</p></dd>
+<dt> <kbd>-shallow[=n]</kbd></dt>
+<dd><p>This transformation tries to reduce the depth of the terms in positive
+literals.
+The transformation is applied to horn clauses with monadic literals only.
+If <em>n</em> is omitted or <em>n</em>=1 a strict transformation is applied,
+that is equivalence preserving, however.
+For <em>n</em>=2 some preconditions are removed.
+This allows the transformation to be applied more often, but the transformation
+isn't equivalence preserving any more.
+For <em>n</em>=3 even more preconditions are removed.
+Take a look at section 6.<em>n</em> of the paper for the details of the command
+line option <em>-monadic=n</em>.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="SEC93"></a>
+<h2 class="section"> 13.5 AUTHORS </h2>
+<p>Enno Keen
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC94"></a>
+<h2 class="section"> 13.6 SEE ALSO </h2>
+<p>SPASS(1)
+</p>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC88" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_14.html#SEC95" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

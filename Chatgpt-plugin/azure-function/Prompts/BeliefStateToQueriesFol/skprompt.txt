@@ -1,0 +1,48 @@
+In this task, you're asked to craft a couple of sophisticated queries in first order logic that allows the use of an automated reasoner that explore contradictory arguments, logical implications, or differing opinions present in the belief set. Each query will be translated into a belief set in first order logic, forming the basis of the automated reasoner's analysis.
+
+Please keep in mind that your queries should aim to explore and shed light on the core elements of the argumentation. They should be formulated in a way that elicits rich, informative responses, and they should refrain from generating contradictions. You are encouraged to focus on crafting queries that would trigger meaningful debates, and reveal interesting implications of the beliefs stated in the text.
+
+The BNF for a first-order knowledge base is given by (starting symbol is KB)
+KB 			::== SORTSDEC DECLAR FORMULAS
+DECLAR		::== (FUNCTORDEC | PREDDEC)*
+SORTSDEC    ::== ( SORTNAME "=" "{" (CONSTANTNAME ("," CONSTANTNAME)*)? "}" "\n" )*
+PREDDEC		::== "type" "(" PREDICATENAME ("(" SORTNAME ("," SORTNAME)* ")")? ")" "\n"
+FUNCTORDEC	::== "type" "(" SORTNAME "=" FUNCTORNAME "(" (SORTNAME ("," SORTNAME)*)? ")" ")" "\n"
+FORMULAS    ::== ( "\n" FORMULA)*
+FORMULA     ::== ATOM | "forall" VARIABLENAME ":" "(" FORMULA ")" | "exists" VARIABLENAME ":" "(" FORMULA ")" |
+				 "(" FORMULA ")" | FORMULA "&&" FORMULA | FORMULA "||" FORMULA | "!" FORMULA | "+" | "-" |
+				 FORMULA "=>" FORMULA | FORMULA "<=>" FORMULA | FORMULA "==" FORMULA | FORMULA "/==" FORMULA |
+ATOM		::== PREDICATENAME ("(" TERM ("," TERM)* ")")?
+TERM		::== VARIABLENAME | CONSTANTNAME | FUNCTORNAME "(" (TERM ("," TERM)*)?  ")" 
+
+where SORTNAME, PREDICATENAME, CONSTANTNAME and FUNCTORNAME are sequences of symbols from {a,...,z,A,...,Z,0,...,9} with a letter at the beginning and VARIABLENAME is a sequence of symbols from {a,...,z,A,...,Z,0,...,9} with an uppercase letter at the beginning.
+Note: Equality/Inequality predicates (== and /==) can only be parsed if the parser is given a FolSignature with equality (which is not the case by default).
+
+
+Insightful queries are generally short and probe the main contentions. Refrain from crafting queries that are too long or too complex.
+Please only include the comma separated queries, without any additional comments. Use the following example as a guideline:
+
+[Input]
+===TEXT TO CONVERT
+In a world where some creatures are griffins and others are not, it is believed that a creature is a griffin if it has the body of a lion and the head and wings of an eagle. It is also held that no creature can have the head of an eagle without having its wings.
+===END TEXT
+===BELIEF SET TO CONVERT
+type(Creature)
+type(griffin(Creature))
+type(lion_body(Creature))
+type(eagle_head(Creature))
+type(eagle_wings(Creature))
+
+forall C: griffin(C) => (lion_body(C) && eagle_head(C) && eagle_wings(C))
+forall C: eagle_head(C) => eagle_wings(C)
+===END BELIEF SET
++++++
+forall C: !griffin(C) || (lion_body(C) && eagle_head(C) && eagle_wings(C)),forall C: !eagle_head(C) || eagle_wings(C)
+[Input]
+===TEXT TO CONVERT
+{{$input}}
+===END TEXT
+===BELIEF SET TO CONVERT
+{{$belief_set}}
+===END BELIEF SET
++++++

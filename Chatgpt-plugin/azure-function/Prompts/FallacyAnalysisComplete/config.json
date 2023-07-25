@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "description": "Given a text in natural language text with statements or arguments, and given the result of several fallacy analysis focused on distinct fallacy families, does a synthese of the informal analysis",
+  "type": "completion",
+  "completion": {
+    "max_tokens": 200,
+    "temperature": 0.1,
+    "top_p": 0.2
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The natural language text to analyse",
+        "defaultValue": ""
+      },
+      {
+        "name": "BranchAnalysis1",
+        "description": "The result of the first fallacy branch analysis",
+        "defaultValue": ""
+      },
+      {
+        "name": "BranchAnalysis12",
+        "description": "The result of the second fallacy branch analysis",
+        "defaultValue": ""
+      },
+      {
+        "name": "BranchAnalysis3",
+        "description": "The result of the third fallacy branch analysis",
+        "defaultValue": ""
+      },
+      {
+        "name": "BranchAnalysis4",
+        "description": "The result of the fourth fallacy branch analysis",
+        "defaultValue": ""
+      }
+    ]
+  }
+}

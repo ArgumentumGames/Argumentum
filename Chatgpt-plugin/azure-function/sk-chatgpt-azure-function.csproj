@@ -1,0 +1,351 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))</RepoRoot>
+    <UserSecretsId>d733072a-9c0f-473c-a99b-6e12f7b5ef28</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace></RootNamespace>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <OutputType>Exe</OutputType>
+    <LangVersion>10</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IKVM" Version="8.6.2" />
+    <PackageReference Include="IKVM.Image.JDK" Version="8.6.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.6.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.6.23329.7" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.0.13" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.12.0" OutputItemType="Analyzer" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.18.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.OpenApi" Version="2.0.0-preview2" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" Version="2.0.0-preview2" TreatAsUsed="true" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="0.17.230718.1-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Generation\Converters\Argumentum.AssetConverter\Argumentum.AssetConverter.csproj" />
+    <ProjectReference Include="..\semantic-functions-generator\semantic-functions-generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(IntDir).generated\semantic-functions-generator\semantic-functions-generator.SemanticSkillGenerator\**">
+      <Link>.generated\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <IkvmReference Include=".\ext\net.sf.tweety.tweety-full-1.12-with-dependencies.jar">
+      <AssemblyName>Tweety</AssemblyName>
+      <AssemblyVersion>1.12</AssemblyVersion>
+      <AssemblyFileVersion>1.12</AssemblyFileVersion>
+      <DisableAutoAssemblyName>true</DisableAutoAssemblyName>
+      <DisableAutoAssemblyVersion>true</DisableAutoAssemblyVersion>
+      <FallbackAssemblyName>Tweety</FallbackAssemblyName>
+      <FallbackAssemblyVersion>1.12</FallbackAssemblyVersion>
+    </IkvmReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ext\EProver\ALL_RULES.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\BatchSampleLTBHOL.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\BOO001-1+rm_eq_rstfp.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\checkproof.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\checkproof.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\classify_problem.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\classify_problem.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\COL003-1+rm_eq_rstfp.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\cygwin1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\direct_examples.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\direct_examples.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\edpll.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\edpll.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eground.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eground.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_create.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_create.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_delete.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_delete.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_ginsert.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_ginsert.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_insert.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\ekb_insert.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\enormalizer.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\enormalizer.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\epclanalyse.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\epclanalyse.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\epclextract.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\epclextract.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\epcllemma.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\epcllemma.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eproof">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eproof.pl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eproof_ram">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eprover.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\eprover.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_axfilter.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_axfilter.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_client.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_client.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_deduction_server.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_deduction_server.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_ltb_runner.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_ltb_runner.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_server.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\e_server.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\GROUP.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\GRP001-1_natural.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\HUMBLE.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\INVCOM.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\LAT3a.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\LAT4.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\LUSK3.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\LUSK6.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\LUSK6ext.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\Makefile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\Makefile.dependencies">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\MSC006-1.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\NUM030-1+rm_eq_rstfp.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\PLA002-2+rm_eq_rstfp.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\PUZ031-1+rm_eq_rstfp.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\RNG019-6+rm_eq_rstfp.tptp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\SET103-6+rm_eq_rstfp.lop">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\SET366+4+rm_eq_rstfp.tptp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\termprops.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\termprops.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\tsm_classify.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\EProver\tsm_classify.o">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\net.sf.tweety.tweety-full-1.12-with-dependencies.jar">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\dfg2ascii.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\dfg2dfg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\dfg2otter.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\dfg2otter.pl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\dfg2tptp.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\FLOTTER.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\mingwm10.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\noname.dfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ext\SPASS\SPASS.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\ex1.aspic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\examplebeliefbase.dlogic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\examplebeliefbase.proplogic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <AdditionalFiles Include="Prompts\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AdditionalFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Prompts\BeliefStateToQueriesMl\config.json" />
+    <None Remove="Prompts\BeliefStateToQueriesMl\skprompt.txt" />
+    <None Remove="Prompts\BeliefStateToQueriesFol\config.json" />
+    <None Remove="Prompts\BeliefStateToQueriesFol\skprompt.txt" />
+    <None Remove="Prompts\FallacyAnalysisPrepare\config.json" />
+    <None Remove="Prompts\FallacyAnalysisPrepare\skprompt.txt" />
+    <None Remove="Prompts\FallacyAnalysisComplete\config.json" />
+    <None Remove="Prompts\FallacyAnalysisComplete\skprompt.txt" />
+    <None Remove="Prompts\FallacyAnalysisBranch\config.json" />
+    <None Remove="Prompts\FallacyAnalysisBranch\skprompt.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Tweety">
+      <HintPath>C:\TEMP\2\ikvm\cache\1\38b20825ffb48f7813590f5b68c5d198\Tweety.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <AdditionalFiles Remove="Prompts\TweetySkill\BeliefStateToQueriesPl\config.json" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\BeliefStateToQueriesPl\skprompt.txt" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\LogicAnalysisToText\config.json" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\LogicAnalysisToText\skprompt.txt" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToBeliefsetMl\config.json" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToBeliefsetMl\skprompt.txt" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToBeliefsetPl\config.json" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToBeliefsetPl\skprompt.txt" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToBeliefsetFol\config.json" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToBeliefsetFol\skprompt.txt" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToLogicType\config.json" />
+    <AdditionalFiles Remove="Prompts\TweetySkill\TextToLogicType\skprompt.txt" />
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext" />
+  </ItemGroup>
+</Project>

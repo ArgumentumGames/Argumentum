@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 16. spassfaq</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 16. spassfaq">
+<meta name="keywords" content="frequently asked questions about SPASS: 16. spassfaq">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_15.html#SEC101" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="spassfaq"></a>
+<a name="SEC108"></a>
+<h1 class="chapter"> 16. spassfaq </h1>
+
+<hr size="6">
+<a name="SEC109"></a>
+<h2 class="section"> 16.1 QUESTIONS </h2>
+
+<p>Q:      How can I get an answer substitution?
+</p>
+<hr size="6">
+<a name="SEC110"></a>
+<h2 class="section"> 16.2 ANSWERS </h2>
+
+<p>A:      There are no meta predicates in SPASS available. Hence,
+        this functionality is not directly supported. However it
+        can be achieved by a trick. The idea is to add a new literal
+        to the conjecture clause that carries the substitution and
+        will definitely be resolved away in the final step of the proof.
+        For example: let x be the variable where we are
+        interested in the subsitution. Let x occur in the single
+        conjecture clause C. Then extend this clause to C,P(x,a,y)
+        and add the clause -P(z,u,b), where P is new, and a,b are
+        constants. Furthermore make P a minimal predicate using
+        a set_DomPred declaration (see the SPASS man page). This
+        will force that the final step in the proof is the one that
+        eliminates the P literal and the x will be instantiated accordingly.
+        To make this work it may be necessary to turn off certain reduction
+        rules of SPASS. To get it rid of that, a trick is to extend all
+        predicates in C by a further argument with the variable y and all
+        other occurrences of these predicate with fresh variables.
+</p>
+
+<hr size="6">
+<a name="SEC111"></a>
+<h2 class="section"> 16.3 AUTHORS </h2>
+<p>Thomas Hillenbrand, Dalibor Topic and Christoph Weidenbach
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+<hr size="6">
+<a name="SEC112"></a>
+<h2 class="section"> 16.4 SEE ALSO </h2>
+<p>SPASS(1)
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC108" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

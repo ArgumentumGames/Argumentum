@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 15. tptp2dfg</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 15. tptp2dfg">
+<meta name="keywords" content="frequently asked questions about SPASS: 15. tptp2dfg">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_14.html#SEC95" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_16.html#SEC108" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="tptp2dfg"></a>
+<a name="SEC101"></a>
+<h1 class="chapter"> 15. tptp2dfg </h1>
+
+<hr size="6">
+<a name="SEC102"></a>
+<h2 class="section"> 15.1 NAME </h2>
+<p>tptp2dfg - transforms DFG files into TPTP files.
+</p>
+<hr size="6">
+<a name="SEC103"></a>
+<h2 class="section"> 15.2 SYNOPSIS </h2>
+<p><strong>tptp2dfg</strong> [-include] &lt;input-file&gt; &lt;output-file&gt;
+</p>
+<hr size="6">
+<a name="SEC104"></a>
+<h2 class="section"> 15.3 DESCRIPTION </h2>
+<p><strong>tptp2dfg</strong> is a program which converts a problem input file in
+<strong>TPTP</strong> format into a problem input file in <strong>DFG</strong> format.
+The <strong>TPTP</strong> problem format is used by the 
+TPTP library of test problems for automated theorem proving, available
+at <strong>http://www.math.miami.edu/~tptp/</strong>.
+</p>
+<hr size="6">
+<a name="SEC105"></a>
+<h2 class="section"> 15.4 OPTIONS </h2>
+<p><strong>tptp2dfg</strong> supports the following command line options.
+</p><dl compact="compact">
+<dt> <kbd>-include</kbd></dt>
+<dd><br><p>This option enables the expansion of include directives in tptp files.
+If set all TPTP include directives in hte input-file are replaced by the respective file content
+during translation. If not set the TPTP include directives are translated
+into DFG include directives.
+Default is off.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="SEC106"></a>
+<h2 class="section"> 15.5 AUTHORS </h2>
+<p>Martin Suda and Christoph Weidenbach
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC107"></a>
+<h2 class="section"> 15.6 SEE ALSO </h2>
+<p>dfg2tptp(1), dfg2otter(1), SPASS(1)
+</p>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC101" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_16.html#SEC108" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

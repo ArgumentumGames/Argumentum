@@ -1,0 +1,10 @@
+Given the input text, choose which type of formal logic to use to build a corresponding belief set and perform reasoning and argumentation analysis with Tweety. Your answer should be strictly one of the following options and nothing more: 'Propositional', 'FirstOrder' or 'Modal'.
+Here is an example:
+[Input]
+Si Alice, Bob ou Charlie sont présents, alors la réunion peut avoir lieu. Si Alice n'est pas là, alors Bob doit être là. Si Bob n'est pas là, alors Charlie doit être là. Enfin, si Charlie n'est pas là, alors Alice, Bob, Charlie et Daniel ne doivent pas être là.
++++++
+Select 'Propositional', 'FirstOrder' or 'Modal':Propositional
+[Input]
+[[{{$input}}]]
++++++
+Select 'Propositional', 'FirstOrder' or 'Modal':

@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "description": "Given a text in natural language text with statements or arguments, and given a branch of a taxonomy of fallacies given in json format, identify fallacious arguments belonging to that branch",
+  "type": "completion",
+  "completion": {
+    "max_tokens": 200,
+    "temperature": 0.1,
+    "top_p": 0.2
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The natural language text to analyse",
+        "defaultValue": ""
+      }
+    ]
+  }
+}

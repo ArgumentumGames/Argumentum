@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 7. tpform</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 7. tpform">
+<meta name="keywords" content="frequently asked questions about SPASS: 7. tpform">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_6.html#SEC40" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_8.html#SEC55" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="tpform"></a>
+<a name="SEC47"></a>
+<h1 class="chapter"> 7. tpform </h1>
+
+<hr size="6">
+<a name="SEC48"></a>
+<h2 class="section"> 7.1 NAME </h2>
+<p>tpform - transforms SPASS output statements into TPTP style format
+</p>
+<hr size="6">
+<a name="SEC49"></a>
+<h2 class="section"> 7.2 SYNOPSIS </h2>
+<p><strong>tpform</strong> [ -tb] [infile] [outfile]
+</p>
+<hr size="6">
+<a name="SEC50"></a>
+<h2 class="section"> 7.3 DESCRIPTION </h2>
+<p>The <strong>tpform</strong> script transforms a list of SPASS outputs into a TPTP
+result file or another simple file format. Both formats
+are a list of problem file names annotated with information,
+like the logical status of the problem and time needed to decide
+the status etc.
+</p>
+<p>If no file arguments are given, <strong>tpform</strong> reads from stdin and writes
+to stdout. If one file argument is given, <strong>tpform</strong> read from that file, and
+if a second argument is present, <strong>tpform</strong> writes to it.
+</p>
+<hr size="6">
+<a name="SEC51"></a>
+<h2 class="section"> 7.4 OPTIONS </h2>
+<p>The following options are supported by <strong>tpform</strong>:
+</p><dl compact="compact">
+<dt> <kbd>-b</kbd></dt>
+<dd><p>Selects simple output format instead of TPTP format	
+</p></dd>
+<dt> <kbd>-t</kbd></dt>
+<dd><p>If -b is selected, print <strong>SPASS</strong> running time at the end of each output line, eg:
+<code>SteamRoller + 00:00:05.28</code>	
+</p></dd>
+</dl>
+ 
+<hr size="6">
+<a name="SEC52"></a>
+<h2 class="section"> 7.5 FORMATS </h2>
+
+<p>We take the following <strong>SPASS</strong> output as an example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">SPASS V0.78
+SPASS beiseite: Proof found.
+Problem: Tests/Pelletier/problem1.dfg
+SPASS derived 0 clauses, backtracked 0 clauses and kept 3 clauses.
+SPASS allocated 165 KBytes.
+SPASS spent     0:00:00.01 on the problem.
+                0:00:00.00 for the input.
+                0:00:00.00 for the FLOTTER CNF translation.
+                0:00:00.00 for inferences.
+                0:00:00.00 for the backtracking.
+</pre></td></tr></table>
+
+<p>The TPTP format for this information is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">problem1.dfg  P     1        0.01   165     3        -      -
+              ^     ^        ^^^^   ^^^     ^        ^      ^ 
+              P/M   # proofs time   memory  clauses  proof  proof
+              or error                               length depth	
+              message
+</pre></td></tr></table>
+
+<p>The simple format is for this example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">problem1.dfg +
+</pre></td></tr></table>
+
+
+<p>and in general:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">filename {+|-|0} [time]
+</pre></td></tr></table>
+
+<p>where '+' marks problems for which <strong>SPASS</strong> found a proof, '0' stands for found completions
+and '&ndash;' marks undecided problems. The time information is given if the -t option is used.
+</p>
+<hr size="6">
+<a name="SEC53"></a>
+<h2 class="section"> 7.6 AUTHORS </h2>
+<p>Thorsten Engel and Christian Theobalt.
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC54"></a>
+<h2 class="section"> 7.7 SEE ALSO </h2>
+<p>checkstat(1), filestat(1), pcs(1), pgen(1), rescmp(1), tpget(1), deprose(1), dfg2otter(1), dfg2otterpl(1), SPASS(1)
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC47" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_8.html#SEC55" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

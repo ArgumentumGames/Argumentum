@@ -1,0 +1,660 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SemanticKernel.Planning.SequentialPlanner</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.SemanticKernel.Planning.Sequential.FunctionViewExtensions.ToManualString(Microsoft.SemanticKernel.SkillDefinition.FunctionView)">
+            <summary>
+            Create a manual-friendly string for a function.
+            </summary>
+            <param name="function">The function to create a manual-friendly string for.</param>
+            <returns>A manual-friendly string for a function.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.Sequential.FunctionViewExtensions.ToFullyQualifiedName(Microsoft.SemanticKernel.SkillDefinition.FunctionView)">
+            <summary>
+            Create a fully qualified name for a function.
+            </summary>
+            <param name="function">The function to create a fully qualified name for.</param>
+            <returns>A fully qualified name for a function.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.Sequential.FunctionViewExtensions.ToEmbeddingString(Microsoft.SemanticKernel.SkillDefinition.FunctionView)">
+            <summary>
+            Create a string for generating an embedding for a function.
+            </summary>
+            <param name="function">The function to create a string for generating an embedding for.</param>
+            <returns>A string for generating an embedding for a function.</returns>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig">
+            <summary>
+            Common configuration for planner instances.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.RelevancyThreshold">
+            <summary>
+            The minimum relevancy score for a function to be considered
+            </summary>
+            <remarks>
+            Depending on the embeddings engine used, the user ask, the step goal
+            and the functions available, this value may need to be adjusted.
+            For default, this is set to null to exhibit previous behavior.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.MaxRelevantFunctions">
+            <summary>
+            The maximum number of relevant functions to include in the plan.
+            </summary>
+            <remarks>
+            Limits the number of relevant functions as result of semantic
+            search included in the plan creation request.
+            <see cref="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.IncludedFunctions"/> will be included
+            in the plan regardless of this limit.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.ExcludedSkills">
+            <summary>
+            A list of skills to exclude from the plan creation request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.ExcludedFunctions">
+            <summary>
+            A list of functions to exclude from the plan creation request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.IncludedFunctions">
+            <summary>
+            A list of functions to include in the plan creation request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig.MaxTokens">
+            <summary>
+            The maximum number of tokens to allow in a plan.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser">
+            <summary>
+            Parse sequential plan text into a plan.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser.GoalTag">
+            <summary>
+            The tag name used in the plan xml for the user's goal/ask.
+            TODO: never used
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser.SolutionTag">
+            <summary>
+            The tag name used in the plan xml for the solution.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser.FunctionTag">
+            <summary>
+            The tag name used in the plan xml for a step that calls a skill function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser.SetContextVariableTag">
+            <summary>
+            The attribute tag used in the plan xml for setting the context variable name to set the output of a function to.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser.AppendToResultTag">
+            <summary>
+            The attribute tag used in the plan xml for appending the output of a function to the final result for a plan.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.Sequential.SequentialPlanParser.ToPlanFromXml(System.String,System.String,Microsoft.SemanticKernel.Orchestration.SKContext)">
+            <summary>
+            Convert a plan xml string to a plan.
+            </summary>
+            <param name="xmlString">The plan xml string.</param>
+            <param name="goal">The goal for the plan.</param>
+            <param name="context">The semantic kernel context.</param>
+            <returns>The plan.</returns>
+            <exception cref="T:Microsoft.SemanticKernel.Planning.PlanningException">Thrown when the plan xml is invalid.</exception>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Planning.SequentialPlanner">
+            <summary>
+            A planner that uses semantic function to create a sequential plan.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.SequentialPlanner.#ctor(Microsoft.SemanticKernel.IKernel,Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig,System.String)">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.SemanticKernel.Planning.SequentialPlanner"/> class.
+            </summary>
+            <param name="kernel">The semantic kernel instance.</param>
+            <param name="config">The planner configuration.</param>
+            <param name="prompt">Optional prompt override</param>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Planning.SequentialPlanner.CreatePlanAsync(System.String)">
+            <summary>
+            Create a plan for a goal.
+            </summary>
+            <param name="goal">The goal to create a plan for.</param>
+            <returns>The plan.</returns>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.SequentialPlanner._functionFlowFunction">
+            <summary>
+            the function flow semantic function, which takes a goal and creates an xml plan that can be executed
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Planning.SequentialPlanner.RestrictedSkillName">
+            <summary>
+            The name to use when creating semantic functions that are restricted from plan creation
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContextSequentialPlannerExtensions.GetFunctionsManualAsync(Microsoft.SemanticKernel.Orchestration.SKContext,System.String,Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig)">
+            <summary>
+            Returns a string containing the manual for all available functions.
+            </summary>
+            <param name="context">The SKContext to get the functions manual for.</param>
+            <param name="semanticQuery">The semantic query for finding relevant registered functions</param>
+            <param name="config">The planner skill config.</param>
+            <returns>A string containing the manual for all available functions.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContextSequentialPlannerExtensions.GetAvailableFunctionsAsync(Microsoft.SemanticKernel.Orchestration.SKContext,Microsoft.SemanticKernel.Planning.Sequential.SequentialPlannerConfig,System.String)">
+            <summary>
+            Returns a list of functions that are available to the user based on the semantic query and the excluded skills and functions.
+            </summary>
+            <param name="context">The SKContext</param>
+            <param name="config">The planner config.</param>
+            <param name="semanticQuery">The semantic query for finding relevant registered functions</param>
+            <returns>A list of functions that are available to the user based on the semantic query and the excluded skills and functions.</returns>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Orchestration.SKContextSequentialPlannerExtensions.RememberFunctionsAsync(Microsoft.SemanticKernel.Orchestration.SKContext,System.Collections.Generic.List{Microsoft.SemanticKernel.SkillDefinition.FunctionView})">
+            <summary>
+            Saves all available functions to memory.
+            </summary>
+            <param name="context">The SKContext to save the functions to.</param>
+            <param name="availableFunctions">The available functions to save.</param>
+        </member>
+        <member name="T:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType">
+            <summary>
+            Contains the values of status codes defined for HTTP in the response to an HTTP request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Continue">
+            <summary>
+            The server has received the request headers and the client should proceed to send the request body.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.SwitchingProtocols">
+            <summary>
+            The server is switching protocols according to the Upgrade header sent by the client.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Processing">
+            <summary>
+            The server is processing the request, but has not completed it yet.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.EarlyHints">
+            <summary>
+            The server is sending some hints about the response before the final status code.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.OK">
+            <summary>
+            The request has succeeded and the response contains the requested resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Created">
+            <summary>
+            The request has been fulfilled and a new resource has been created.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Accepted">
+            <summary>
+            The request has been accepted for further processing, but the processing has not been completed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NonAuthoritativeInformation">
+            <summary>
+            The server is returning a response from a different source than the requested one, but the response is still valid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NoContent">
+            <summary>
+            The request has been successfully processed, but the server does not need to return any content.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ResetContent">
+            <summary>
+            The server has fulfilled the request and the client should reset the document view.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PartialContent">
+            <summary>
+            The server is returning a partial response to a range request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MultiStatus">
+            <summary>
+            The server is returning a response that contains multiple status codes for different parts of the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.AlreadyReported">
+            <summary>
+            The server has already reported the status of the request and does not need to repeat it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.IMUsed">
+            <summary>
+            The server is returning a response that is the result of applying a delta encoding to the requested resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Ambiguous">
+            <summary>
+            The requested resource has multiple representations and the client should choose one of them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MultipleChoices">
+            <summary>
+            The requested resource has multiple representations and the client should choose one of them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Moved">
+            <summary>
+            The requested resource has been permanently moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MovedPermanently">
+            <summary>
+            The requested resource has been permanently moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Found">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Redirect">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the new URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RedirectMethod">
+            <summary>
+            The requested resource can be found at a different URI and the client should use a GET method to retrieve it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.SeeOther">
+            <summary>
+            The requested resource can be found at a different URI and the client should use a GET method to retrieve it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotModified">
+            <summary>
+            The requested resource has not been modified since the last request and the client can use the cached version.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UseProxy">
+            <summary>
+            The requested resource is only available through a proxy and the client should use the proxy URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Unused">
+            <summary>
+            This status code is no longer used and is reserved for future use.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RedirectKeepVerb">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the same method to access it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.TemporaryRedirect">
+            <summary>
+            The requested resource has been temporarily moved to a new location and the client should use the same method to access it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PermanentRedirect">
+            <summary>
+            The requested resource has been permanently moved to a new location and the client should use the same method to access it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.BadRequest">
+            <summary>
+            The server cannot process the request due to a malformed syntax or an invalid parameter.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Unauthorized">
+            <summary>
+            The request requires authentication and the client should provide valid credentials.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PaymentRequired">
+            <summary>
+            The request requires payment and the client should provide valid payment information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Forbidden">
+            <summary>
+            The server has understood the request, but refuses to authorize it due to insufficient permissions or other reasons.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotFound">
+            <summary>
+            The server cannot find the requested resource and the client should not repeat the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MethodNotAllowed">
+            <summary>
+            The server does not support the method used by the request and the client should use a different method.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotAcceptable">
+            <summary>
+            The server cannot produce a response that matches the preferences specified by the request headers.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ProxyAuthenticationRequired">
+            <summary>
+            The request requires authentication through a proxy and the client should provide valid proxy credentials.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestTimeout">
+            <summary>
+            The server did not receive the complete request within the time limit and the client should try again later.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Conflict">
+            <summary>
+            The request could not be completed due to a conflict with the current state of the resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Gone">
+            <summary>
+            The requested resource is no longer available and the server does not know the new location.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.LengthRequired">
+            <summary>
+            The request requires a Content-Length header and the client should provide it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PreconditionFailed">
+            <summary>
+            The request does not meet the preconditions specified by the request headers and the server cannot process it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestEntityTooLarge">
+            <summary>
+            The request entity is too large and the server cannot process it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestUriTooLong">
+            <summary>
+            The request URI is too long and the server cannot process it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UnsupportedMediaType">
+            <summary>
+            The request entity has a media type that the server does not support or cannot handle.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestedRangeNotSatisfiable">
+            <summary>
+            The request specifies a range that the server cannot satisfy or is invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ExpectationFailed">
+            <summary>
+            The request contains an Expect header that the server cannot meet or is invalid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.MisdirectedRequest">
+            <summary>
+            The request was directed to a server that is not able to produce a response.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UnprocessableEntity">
+            <summary>
+            The request entity is well-formed, but cannot be processed by the server due to semantic errors.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.Locked">
+            <summary>
+            The requested resource is locked and the client should release it before modifying it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.FailedDependency">
+            <summary>
+            The request failed due to a dependency on another request that failed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UpgradeRequired">
+            <summary>
+            The request requires the server to upgrade to a different protocol and the client should use the Upgrade header to specify it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.PreconditionRequired">
+            <summary>
+            The request requires the server to apply preconditions and the client should use the If-Match or If-Unmodified-Since headers to specify them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.TooManyRequests">
+            <summary>
+            The client has sent too many requests in a given time and the server rejects them to prevent overload.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.RequestHeaderFieldsTooLarge">
+            <summary>
+            The request contains headers that are too large and the server cannot process them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.UnavailableForLegalReasons">
+            <summary>
+            The server is denying access to the requested resource for legal reasons and the client should not repeat the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.InternalServerError">
+            <summary>
+            The server encountered an unexpected error and cannot fulfill the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotImplemented">
+            <summary>
+            The server does not support the functionality required by the request and the client should not repeat the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.BadGateway">
+            <summary>
+            The server received an invalid response from an upstream server and cannot fulfill the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.ServiceUnavailable">
+            <summary>
+            The server is temporarily unavailable due to maintenance or overload and the client should try again later.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.GatewayTimeout">
+            <summary>
+            The server did not receive a timely response from an upstream server and cannot fulfill the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.HttpVersionNotSupported">
+            <summary>
+            The server does not support the HTTP version used by the request and the client should use a different version.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.VariantAlsoNegotiates">
+            <summary>
+            The server has a configuration error and cannot negotiate a suitable representation for the requested resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.InsufficientStorage">
+            <summary>
+            The server has insufficient storage space to complete the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.LoopDetected">
+            <summary>
+            The server detected an infinite loop while processing the request.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NotExtended">
+            <summary>
+            The request requires additional extensions that the server does not support or cannot handle.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SemanticKernel.Diagnostics.HttpStatusCodeType.NetworkAuthenticationRequired">
+            <summary>
+            The request requires authentication at the network level and the client should provide valid network credentials.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.Verify.NotNull(System.Object,System.String)">
+            <summary>
+            Equivalent of ArgumentNullException.ThrowIfNull
+            </summary>
+        </member>
+        <member name="M:Microsoft.SemanticKernel.Diagnostics.Verify.ParametersUniqueness(System.Collections.Generic.IList{Microsoft.SemanticKernel.SkillDefinition.ParameterView})">
+            <summary>
+            Make sure every function parameter name is unique
+            </summary>
+            <param name="parameters">List of parameters</param>
+        </member>
+        <member name="T:System.ExceptionExtensions">
+            <summary>
+            Exception extension methods.
+            </summary>
+        </member>
+        <member name="M:System.ExceptionExtensions.IsCriticalException(System.Exception)">
+            <summary>
+            Check if an exception is of a type that should not be caught by the kernel.
+            </summary>
+            <param name="ex">Exception.</param>
+            <returns>True if <paramref name="ex"/> is a critical exception and should not be caught.</returns>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
+            <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisallowNullAttribute">
+            <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullAttribute">
+            <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue"/>, the parameter may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter may be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue"/>, the parameter will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute">
+            <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with the associated parameter name.</summary>
+            <param name="parameterName">
+            The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.ParameterName">
+            <summary>Gets the associated parameter name.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute">
+            <summary>Applied to a method that will never return under any circumstance.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute">
+            <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified parameter value.</summary>
+            <param name="parameterValue">
+            The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
+            the associated parameter matches this value.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
+            <summary>Gets the condition parameter value.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute">
+            <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with a field or property member.</summary>
+            <param name="member">
+            The field or property member that is promised to be not-null.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.#ctor(System.String[])">
+            <summary>Initializes the attribute with the list of field and property members.</summary>
+            <param name="members">
+            The list of field and property members that are promised to be not-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.Members">
+            <summary>Gets field or property member names.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute">
+            <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values when returning with the specified return value condition.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.#ctor(System.Boolean,System.String)">
+            <summary>Initializes the attribute with the specified return value condition and a field or property member.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+            <param name="member">
+            The field or property member that is promised to be not-null.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.#ctor(System.Boolean,System.String[])">
+            <summary>Initializes the attribute with the specified return value condition and list of field and property members.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+            <param name="members">
+            The list of field and property members that are promised to be not-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.Members">
+            <summary>Gets field or property member names.</summary>
+        </member>
+        <member name="T:NonDisposableHttpClientHandler">
+            <summary>
+            Represents a singleton implementation of <see cref="T:System.Net.Http.HttpClientHandler"/> that is not disposable.
+            </summary>
+        </member>
+        <member name="M:NonDisposableHttpClientHandler.#ctor">
+            <summary>
+            Private constructor to prevent direct instantiation of the class.
+            </summary>
+        </member>
+        <member name="P:NonDisposableHttpClientHandler.Instance">
+            <summary>
+            Gets the singleton instance of <see cref="T:NonDisposableHttpClientHandler"/>.
+            </summary>
+        </member>
+        <member name="M:NonDisposableHttpClientHandler.Dispose(System.Boolean)">
+            <summary>
+            Disposes the underlying resources held by the <see cref="T:NonDisposableHttpClientHandler"/>.
+            This implementation does nothing to prevent unintended disposal, as it may affect all references.
+            </summary>
+            <param name="disposing">True if called from <see cref="M:NonDisposableHttpClientHandler.Dispose(System.Boolean)"/>, false if called from a finalizer.</param>
+        </member>
+    </members>
+</doc>

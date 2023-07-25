@@ -1,0 +1,41 @@
+begin_problem(Verify1).
+
+list_of_descriptions.
+name({*Verify1*}).
+author({*Christoph Weidenbach*}).
+status(unsatisfiable).
+description({* A problem from software verification.*}).
+end_of_list.
+
+list_of_symbols.
+  functions[(transsubs, 2), (transadds, 2), (oskf0, 2), (oskc1, 0), (oskc0, 0), (transempty, 0)].
+  predicates[(in, 2), (elem, 1), (set, 1)].
+end_of_list.
+
+list_of_clauses(axioms, cnf).
+end_of_list.
+
+list_of_clauses(conjectures, cnf).
+  clause(or(set(transempty))).
+  clause(or(elem(oskc0))).
+  clause(or(set(oskc1))).
+  clause(or(in(oskc0,oskc1))).
+  clause(forall([V,U],or(elem(oskf0(U,V))))).
+  clause(forall([U],or(not(elem(U)),not(in(U,transempty))))).
+  clause(or(not(equal(transadds(oskc1,oskc0),oskc1)))).
+  clause(forall([U,V],or(not(elem(U)),not(set(V)),set(transsubs(V,U))))).
+  clause(forall([U,V],or(not(elem(U)),not(set(V)),set(transadds(V,U))))).
+  clause(forall([U,V,W],or(not(set(U)),not(elem(V)),not(elem(W)),not(equal(V,W)),in(V,transadds(U,W))))).
+  clause(forall([U,V,W],or(not(set(U)),not(elem(V)),not(elem(W)),not(in(V,U)),in(V,transadds(U,W))))).
+  clause(forall([U,V,W],or(not(set(U)),not(elem(V)),not(elem(W)),not(in(V,transsubs(U,W))),in(V,U)))).
+  clause(forall([U,V],or(not(set(U)),not(set(V)),in(oskf0(U,V),V),in(oskf0(U,V),U),equal(V,U)))).
+  clause(forall([U,V,W],or(not(set(U)),not(elem(V)),not(elem(W)),not(equal(V,W)),not(in(V,transsubs(U,W)))))).
+  clause(forall([U,V,W],or(not(elem(U)),not(set(V)),not(set(W)),not(in(U,W)),not(equal(W,V)),in(U,V)))).
+  clause(forall([U,V,W],or(not(elem(U)),not(set(V)),not(set(W)),not(in(U,V)),not(equal(W,V)),in(U,W)))).
+  clause(forall([U,V],or(not(set(U)),not(set(V)),not(in(oskf0(U,V),V)),not(in(oskf0(U,V),U)),equal(V,U)))).
+  clause(forall([U,V,W],or(not(set(U)),not(elem(V)),not(elem(W)),not(in(V,transadds(U,W))),equal(V,W),in(V,U)))).
+  clause(forall([U,V,W],or(not(set(U)),not(elem(V)),not(elem(W)),not(in(V,U)),equal(V,W),in(V,transsubs(U,W))))).
+end_of_list.
+
+end_problem.
+

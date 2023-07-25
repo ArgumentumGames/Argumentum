@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March, 18 2010 by texi2html 1.78 -->
+<!--
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+
+-->
+<head>
+<title>frequently asked questions about SPASS: 8. tpget</title>
+
+<meta name="description" content="frequently asked questions about SPASS: 8. tpget">
+<meta name="keywords" content="frequently asked questions about SPASS: 8. tpget">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.78">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="script_7.html#SEC47" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_9.html#SEC63" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+
+<hr size="2">
+<a name="tpget"></a>
+<a name="SEC55"></a>
+<h1 class="chapter"> 8. tpget </h1>
+
+<hr size="6">
+<a name="SEC56"></a>
+<h2 class="section"> 8.1 NAME </h2>
+<p>tpget - selects problems from a library
+</p>
+<hr size="6">
+<a name="SEC57"></a>
+<h2 class="section"> 8.2 SYNOPSIS </h2>
+<p><strong>tpget</strong> [-l libdir] file_1 &hellip; file_n target
+</p>
+<hr size="6">
+<a name="SEC58"></a>
+<h2 class="section"> 8.3 DESCRIPTION </h2>
+<p><strong>tpget</strong> reads lists of theorem proving problems in TPTP format (TPTP scripts) and assembles the problem files specifying these problems into a target directory . The problem files are taken from the library specified by the -l option (see example below). If a problem file already exists in the target directory it is not copied again.
+</p>
+<p>The files file_1 &hellip; file_n have to contain one short problem name per line.
+Examples for short problem names are `SYN313-1.001:002' or `LCL354+1'.
+</p>
+<hr size="6">
+<a name="SEC59"></a>
+<h2 class="section"> 8.4 OPTIONS </h2>
+<p>The following option is required by <strong>tpget</strong>:
+</p>
+<dl compact="compact">
+<dt> <kbd>-l</kbd></dt>
+<dd><p>Specifies the library where problem files are taken from.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="SEC60"></a>
+<h2 class="section"> 8.5 EXAMPLES </h2>
+<p>To assemble all problem files specified by <i>file</i> into <i>Dir</i>, using the library <i>/foo/bar</i>:
+</p><dl compact="compact">
+<dd><p><strong>tpget</strong> <i>-l /foo/bar</i> <i>file</i> <i>Dir</i>
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="SEC61"></a>
+<h2 class="section"> 8.6 AUTHORS </h2>
+<p>Thorsten Engel, Enno Keen and Christian Theobalt.
+</p>
+<p>Contact : spass@mpi-inf.mpg.de
+</p>
+
+<hr size="6">
+<a name="SEC62"></a>
+<h2 class="section"> 8.7 SEE ALSO </h2>
+<p>checkstat(1), filestat(1), pcs(1), pgen(1), rescmp(1), tpform(1), deprose(1), dfg2otter(1), dfg2otterpl(1), SPASS(1)
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#SEC55" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="script_9.html#SEC63" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="script.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="script_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Christoph Weidenbach</em> on <em>March, 18 2010</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.78</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
