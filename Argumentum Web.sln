@@ -29,21 +29,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://cardpen.dnndev.me", 
 		UseIISExpress = "false"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
 		Debug.AspNetCompiler.VirtualPath = "/cardpen.dnndev.me"
-		Debug.AspNetCompiler.PhysicalPath = "Cartes\"
+		Debug.AspNetCompiler.PhysicalPath = "..\Argumentum\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\cardpen.dnndev.me\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/cardpen.dnndev.me"
-		Release.AspNetCompiler.PhysicalPath = "Cartes\"
+		Release.AspNetCompiler.PhysicalPath = "..\Argumentum\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\cardpen.dnndev.me\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "Cartes\"
+		SlnRelativePath = "..\Argumentum\"
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argumentum.AssetConverter", "Generation\Converters\Argumentum.AssetConverter\Argumentum.AssetConverter.csproj", "{B66A8A57-0EE1-4BEE-A7C9-897AE734D424}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argumentum.Chatgpt.AzureFunction", "Chatgpt-plugin\azure-function\Argumentum.Chatgpt.AzureFunction.csproj", "{2659613A-A8BC-4A27-9AD4-0C28559514DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "semantic-functions-generator", "Chatgpt-plugin\semantic-functions-generator\semantic-functions-generator.csproj", "{5A35FDBE-F9AE-49C4-B009-1B62CDAFF2FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +65,18 @@ Global
 		{078D2FCD-9347-4E12-8485-190199E19973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{078D2FCD-9347-4E12-8485-190199E19973}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{078D2FCD-9347-4E12-8485-190199E19973}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B66A8A57-0EE1-4BEE-A7C9-897AE734D424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B66A8A57-0EE1-4BEE-A7C9-897AE734D424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B66A8A57-0EE1-4BEE-A7C9-897AE734D424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B66A8A57-0EE1-4BEE-A7C9-897AE734D424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2659613A-A8BC-4A27-9AD4-0C28559514DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2659613A-A8BC-4A27-9AD4-0C28559514DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2659613A-A8BC-4A27-9AD4-0C28559514DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2659613A-A8BC-4A27-9AD4-0C28559514DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A35FDBE-F9AE-49C4-B009-1B62CDAFF2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A35FDBE-F9AE-49C4-B009-1B62CDAFF2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A35FDBE-F9AE-49C4-B009-1B62CDAFF2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A35FDBE-F9AE-49C4-B009-1B62CDAFF2FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
