@@ -1,7 +1,7 @@
 # Argumentation ChatGPT plugin
 
 This project is the submission to a [semantic-kernel hackathon](https://github.com/microsoft/semantic-kernel-plugins) to create a ChatGPT plugin. It includes the following components:
-- An endpoint that serves up an ai-plugin.json file for ChatGPT to discover the plugin. It exposes a series of native functions and automatically builds a series of semantic ones. 
+- An [endpoint](/Chatgpt-plugin/azure-function) that serves up an ai-plugin.json file for ChatGPT to discover the plugin. It exposes a series of native functions and automatically builds a series of semantic ones. 
 - A generator that automatically converts prompts into semantic function endpoints
 - The ability to add additional native functions as endpoints to the plugin.
 
@@ -11,7 +11,7 @@ To learn more about using this starter, see the Semantic Kernel documentation th
 
 ## Argumentation Features
 
-- The plugin offers several [semantic](/azure-function/Prompts) and [native](/azure-function/ArgumentationPlugin.cs) function for  argumentation analysis of a text, typically a transcript.
+- The plugin offers several [semantic](/Chatgpt-plugin/azure-function/Prompts) and [native](/Chatgpt-plugin/azure-function/ArgumentationPlugin.cs) function for  argumentation analysis of a text, typically a transcript.
 - A set of semantic and search-augmented semi-semantic functions are doing informal analysis based on matching text content to branches of the large taxonomy of Fallacies that this whole repository is about.
 - A set of native and semantic methods offer formal reasoning over the text powered by [Tweety project](http://tweetyproject.org/). A pipeline for belief set translation (semantic), query crafting (semantic), query execution (native - Tweety), and results intepretation (semantic) is available in 3 declinations for propositional, first order and modal logics.  
 
