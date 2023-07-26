@@ -6,7 +6,7 @@
     <title>Taxonomy Mind Map</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'DINPro', sans-serif;
         }
 
         .hidden {
@@ -17,9 +17,17 @@
             position: relative;
         }
 
+        .node:hover {
+            cursor: pointer;
+        }
+
+        .node.active {
+            fill: red;
+        }
+
 
         /* -------------------------------------------------------------------------------- */
-        /* Polices */
+        /* Fonts */
         /* -------------------------------------------------------------------------------- */
 
         @font-face {
@@ -52,85 +60,89 @@
 
 
 
-        card {
-            position: absolute;
-            z-index: 100;
-            font-size: 80%;
-            font-family: 'Bebas Neue', sans-serif;
-            background-color: white;
+
+        /* -------------------------------------------------------------------------------- */
+        /* Couleurs */
+        /* -------------------------------------------------------------------------------- */
+
+        card.insuffisance {
+            --color-background: #811da3;
+            --color-text-1: #601362;
+            --color-text-2: #8f5991;
+            --color-text-3: #a173a2;
+        }
+
+        card.influence {
+            --color-background: #ff66eb;
+            --color-text-1: #b3009b;
+            --color-text-2: #cc00b1;
+            --color-text-3: #e566d4;
+        }
+
+        card.erreurMathématique {
+            --color-background: #08af93;
+            --color-text-1: #14555b;
+            --color-text-2: #5a888c;
+            --color-text-3: #749a9e;
+        }
+
+        card.erreurDeRaisonnement {
+            --color-background: #8dc801;
+            --color-text-1: #476205;
+            --color-text-2: #7e9150;
+            --color-text-3: #92a26b;
+        }
+
+        card.abusDeLangage {
+            --color-background: #0054a4;
+            --color-text-1: #0c2861;
+            --color-text-2: #546890;
+            --color-text-3: #6f80a1;
+        }
+
+        card.tricherie {
+            --color-background: #ffc307ff;
+            --color-text-1: #9e7800ff;
+            --color-text-2: #c49500ff;
+            --color-text-3: #d6b755ff;
+        }
+
+        card.obstruction {
+            --color-background: #dc0f0a;
+            --color-text-1: #960a07;
+            --color-text-2: #b55351;
+            --color-text-3: #c16e6c;
         }
 
 
-            /* -------------------------------------------------------------------------------- */
-            /* Couleurs */
-            /* -------------------------------------------------------------------------------- */
 
-            card.insuffisance {
-                --color-background: #811da3;
-                --color-text-1: #601362;
-                --color-text-2: #8f5991;
-                --color-text-3: #a173a2;
-            }
+        card .famille {
+            color: var(--color-text-1);
+        }
 
-            card.influence {
-                --color-background: #ff66eb;
-                --color-text-1: #b3009b;
-                --color-text-2: #cc00b1;
-                --color-text-3: #e566d4;
-            }
+        card .sous_famille {
+            color: var(--color-text-2);
+        }
 
-            card.erreurMathématique {
-                --color-background: #08af93;
-                --color-text-1: #14555b;
-                --color-text-2: #5a888c;
-                --color-text-3: #749a9e;
-            }
-
-            card.erreurDeRaisonnement {
-                --color-background: #8dc801;
-                --color-text-1: #476205;
-                --color-text-2: #7e9150;
-                --color-text-3: #92a26b;
-            }
-
-            card.abusDeLangage {
-                --color-background: #0054a4;
-                --color-text-1: #0c2861;
-                --color-text-2: #546890;
-                --color-text-3: #6f80a1;
-            }
-
-            card.tricherie {
-                --color-background: #ffc307ff;
-                --color-text-1: #9e7800ff;
-                --color-text-2: #c49500ff;
-                --color-text-3: #d6b755ff;
-            }
-
-            card.obstruction {
-                --color-background: #dc0f0a;
-                --color-text-1: #960a07;
-                --color-text-2: #b55351;
-                --color-text-3: #c16e6c;
-            }
-
-
-
-            card .famille {
-                color: var(--color-text-1);
-            }
-
-            card .sous_famille {
-                color: var(--color-text-2);
-            }
-
-            card .Soussousfamille {
-                color: var(--color-text-3);
-            }
+        card .Soussousfamille {
+            color: var(--color-text-3);
+        }
 
         /* -------------------------------------------------------------------------------- */
         /* Structure */
         /* -------------------------------------------------------------------------------- */
+
+        card {
+            position: fixed;
+            z-index: 100;
+            font-size: 80%;
+            font-family: 'Bebas Neue', sans-serif;
+            background-color: white;
+            width: 50vw;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+        }
 
         bleed {
         }
@@ -140,9 +152,9 @@
 
         safe {
             background-color: #fff;
-            position: relative;
+            position: static;
             /* Different Safe Padding */
-            /*padding: 1.2em 2.5em 1.5em 2.5em;*/
+            /*padding: 1.2vh 2.5vh 1.5vh 2.5vh;*/
         }
 
         .cardName {
@@ -161,20 +173,18 @@
 
         .famille {
             text-transform: uppercase;
-            font-size: 2.8em;
+            font-size: 5.6vh;
             text-align: center;
-            line-height: 0.9em;
-            letter-spacing: 0.07em;
             color: var(--color-text-1);
         }
 
         .sous_famille {
-            font-size: 1.7em;
-            letter-spacing: 0.05em;
+            font-size: 3.4vh;
+            letter-spacing: 0.05vh;
         }
 
         .Soussousfamille {
-            font-size: 0.9em !important;
+            font-size: 1.8vh;
         }
 
 
@@ -190,9 +200,9 @@
             flex-flow: column nowrap;
             height: 100%;
             justify-content: space-between;
-            border: 1.4em solid;
+            border: 2.8vh solid;
             border-color: var(--color-background);
-            border-radius: 1em;
+            border-radius: 2vh;
         }
 
         .supersetWrapper .famille {
@@ -221,11 +231,9 @@
         .title {
             width: 100%;
             text-align: center;
-            font-size: 3.5em;
-            line-height: 1em;
+            font-size: 5vh;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
             color: var(--color-text-1);
             box-sizing: border-box;
             flex-shrink: 0;
@@ -233,7 +241,6 @@
             word-wrap: break-word !important;
             display: flex;
             justify-content: center;
-            min-height: 1.4em;
             align-items: center;
         }
 
@@ -276,7 +283,7 @@
 
         .texte {
             /*display: flex;
-    flex-flow: column wrap;*/
+        flex-flow: column wrap;*/
             justify-content: space-between;
             background-color: var(--color-background);
             margin: 0% -1% -1% -1%;
@@ -288,9 +295,7 @@
             text-transform: uppercase;
             font-family: 'DINpro',sans-serif;
             font-weight: 900;
-            font-size: 1.5em;
-            line-height: 1.4em;
-            min-height: 3em;
+            font-size: 3.2vh;
             /*margin:4% 5% 3% 5%;*/
 
             padding: 2% 5% 2% 5%;
@@ -300,26 +305,54 @@
         .exemple_fr {
             font-family: 'DINpro',sans-serif;
             color: var(--color-text-2);
-            font-size: 1.45em;
+            font-size: 2.9vh;
             font-weight: 600;
-            line-height: 1.2em;
             padding: 2% 5% 2% 5%;
             background-color: white;
             -webkit-font-variant-ligatures: no-common-ligatures;
             font-variant-ligatures: no-common-ligatures;
         }
 
+        .desc_fr,
+        .exemple_fr {
+            overflow-wrap: break-word;
+        }
+
+        #externalLink {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: var(--color-text-1);
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition-duration: 0.4s;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+        }
+
+            #externalLink:hover {
+                color: var(--color-text-1);
+                background-color: white;
+                box-shadow: none;
+            }
+
+
         /* -------------------------------------------------------------------------------- */
         /* Pied de page */
         /* -------------------------------------------------------------------------------- */
 
         .footer {
-            height: 2%;
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 2em;
-            height: 2em;
+            width: 4vh;
+            height: 4vh;
             background-color: #fff;
             border: 1px solid;
             border-color: var(--color-background);
@@ -330,70 +363,70 @@
         }
 
         .niveau {
-            font-size: 1.4em;
+            font-size: 2.8vh;
             font-weight: bold;
             text-align: right;
             color: var(--color-background);
         }
 
+        /* -------------------------------------------------------------------------------- */
+        /* Zoom */
+        /* -------------------------------------------------------------------------------- */
 
 
-      
-
-        #externalLink {
-            margin: auto;
-            background-color: #337ab7;
-            color: #ffffff;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
+        .zoomable {
+            transform-origin: top left;
+            transition: transform 0.3s ease;
         }
 
-            #externalLink:hover {
-                background-color: #286090;
-            }
+        .zoom-in {
+            transform: scale(1.2);
+        }
+
+        .zoom-out {
+            transform: scale(0.8);
+        }
     </style>
 </head>
 <body>
-    <div id="mindmap">
+    <div id="mindmap" class="zoomable">
         <object id="svgObject" type="image/svg+xml" data="[SVGPATH]"></object>
     </div>
-<card>
-    <bleed>
-        <cut>
-            <safe>
-                <div class="cardName">Argumentum_Fallacies_1.1.1..Justification triviale</div>
+    <card>
+        <bleed>
+            <cut>
+                <safe>
+                    <div class="cardName">Argumentum_Fallacies_1.1.1..Justification triviale</div>
 
-                <div class="body">
-                    <div class="header">
-                        <div class="supersetWrapper">
-                            <div class="famille">Insuffisance</div>
-                            <div class="sous_famille">
-                                Argument bâclé | <span class="Soussousfamille"> Justification triviale</span>
+                    <div class="body">
+                        <div class="header">
+                            <div class="supersetWrapper">
+                                <div class="famille">Insuffisance</div>
+                                <div class="sous_famille">
+                                    Argument bâclé | <span class="Soussousfamille"> Justification triviale</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="imageSection">
-                        <button id="externalLink">Lien externe</button>
-                        <div class="title">
-                            <div>Justification triviale</div>
+                        <div class="imageSection">
+                            <a id="externalLink" href="#" target="_blank">Lien externe</a>
+                            <div class="title">
+                                <div>Justification triviale</div>
+                            </div>
+                        </div>
+                        <div class="texte">
+                            <div class="desc_fr">Vous attribuez à une habitude, une impression ou un exemple la valeur d'une preuve.</div>
+                            <div class="exemple_fr">J'ai entendu dire que cette personne était sexiste ; il m'est donc impossible d'être en accord avec elle sur quoi que ce soit.</div>
                         </div>
                     </div>
-                    <div class="texte">
-                        <div class="desc_fr">Vous attribuez à une habitude, une impression ou un exemple la valeur d'une preuve.</div>
-                        <div class="exemple_fr">J'ai entendu dire que cette personne était sexiste ; il m'est donc impossible d'être en accord avec elle sur quoi que ce soit.</div>
+                    <div class="footer">
+                        <div class="niveau"> 3 </div>
                     </div>
-                </div>
-                <div class="footer">
-                    <div class="niveau"> 3 </div>
-                </div>
-            </safe>
-        </cut>
-    </bleed>
-</card>
+                </safe>
+            </cut>
+        </bleed>
+    </card>
 
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const overlay = document.getElementsByTagName('card')[0];
             const title = document.getElementsByClassName('title')[0];
@@ -404,50 +437,153 @@
             const example = document.getElementsByClassName('exemple_fr')[0];
             const externalLink = document.getElementById('externalLink');
             const niveau = document.getElementsByClassName('niveau')[0];
-            let isMouseOverNode = false;
+            let isNodeActive = false;
+            let hideOverlayTimeout = null;
+            let activeNode = null;
 
             const svgObject = document.getElementById('svgObject');
             svgObject.addEventListener('load', function () {
                 const svgDocument = svgObject.contentDocument || svgObject.getSVGDocument();
                 const nodes = svgDocument.querySelectorAll('.node');
 
-                overlay.addEventListener('mouseenter', () => {
-                    isMouseOverNode = false;
+                const hideOverlay = () => {
+                    overlay.classList.add('hidden');
+                    isNodeActive = false;
+                    if (activeNode) {
+                        activeNode.classList.remove('active');
+                        activeNode = null;
+                    }
+                };
+
+                const recalculateOverlayPosition = (targetNode) => {
+                    if (targetNode) {
+                        const rect = targetNode.getBoundingClientRect();
+                        const cardHeight = overlay.offsetHeight;
+                        const cardWidth = overlay.offsetWidth;
+
+                        const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
+                        const cardTop = rect.top + rect.height;
+
+                        // Calculate the maximum left position to ensure the card stays within the horizontal viewport
+                        const maxLeft = window.innerWidth - cardWidth;
+                        const cardLeftPosition = Math.max(0, Math.min(maxLeft, cardLeft));
+
+                        // Calculate the maximum top position to ensure the card stays within the vertical viewport
+                        const maxTop = window.innerHeight - cardHeight;
+                        const cardTopPosition = Math.max(0, Math.min(maxTop, cardTop));
+
+                        overlay.style.left = cardLeftPosition + 'px';
+                        overlay.style.top = cardTopPosition + 'px';
+                    }
+                };
+
+
+                const resizeOverlay = () => {
+
+                    overlay.style.maxWidth = '100vw';
+                    overlay.style.maxHeight = '100vh';
+
+                    // Recalculate the overlay position when resizing
+                    if (isNodeActive) {
+                        const activeNode = document.querySelector('.node.active');
+                        recalculateOverlayPosition(activeNode);
+                    }
+                };
+
+                const showOverlay = (e) => {
+                    isNodeActive = true;
+
+                    // Remove the 'active' class from any previously active node
+                    const activeNode = document.querySelector('.node.active');
+                    if (activeNode) {
+                        activeNode.classList.remove('active');
+                    }
+
+                    let targetNode = e.target;
+                    if (!targetNode.classList.contains('node') && targetNode.parentElement.classList.contains('node')) {
+                        targetNode = targetNode.parentElement;
+                    }
+
+                    // Add the 'active' class to the clicked node
+                    targetNode.classList.add('active');
+
+                    title.textContent = targetNode.textContent;
+                    famille.textContent = targetNode.getAttribute('family');
+                    sous_famille.textContent = targetNode.getAttribute('subfamily');
+                    Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
+                    description.innerHTML = targetNode.getAttribute('description');
+                    example.innerHTML = targetNode.getAttribute('example');
+                    externalLink.href = targetNode.getAttribute('link');
+                    niveau.textContent = targetNode.getAttribute('depth');
+
+                    overlay.removeAttribute('class');
+                    const familyClass = targetNode.getAttribute('familyclass');
+                    if (familyClass) {
+                        overlay.classList.add(familyClass);
+                    }
+
+                    // Remove the 'hidden' class if it exists to ensure the card is visible
+                    if (overlay.classList.contains('hidden')) {
+                        overlay.classList.remove('hidden');
+                    }
+
+                    targetNode.classList.add('active');
+                    recalculateOverlayPosition(targetNode);
+                };
+
+
+                nodes.forEach((node) => {
+                    node.addEventListener('click', showOverlay);
+                    node.addEventListener('touchstart', showOverlay);
                 });
 
-                overlay.addEventListener('mouseleave', () => {
-                    if (!isMouseOverNode) {
-                        overlay.classList.add('hidden');
+                overlay.addEventListener('mouseleave', hideOverlay);
+
+                document.addEventListener('click', (e) => {
+                    if (isNodeActive && e.target.closest('.node') === null) {
+                        e.stopPropagation();
+                        return;
+                    }
+                    if (e.target.closest('.node') === null) {
+                        hideOverlay();
                     }
                 });
 
-                nodes.forEach(node => {
-                    node.addEventListener('mouseenter', (e) => {
-                        title.textContent = e.target.textContent;
-                    	famille.textContent = e.target.getAttribute('family');
-                    	sous_famille.textContent = e.target.getAttribute('subfamily');
-                    	Soussousfamille.textContent = e.target.getAttribute('subsubfamily');
-                        description.innerHTML = e.target.getAttribute('description');
-                        example.innerHTML = e.target.getAttribute('example');
-                        externalLink.href = e.target.getAttribute('link');
-                        niveau.textContent = e.target.getAttribute('depth');
+                document.addEventListener('touchstart', (e) => {
+                    const isClickedOutside = !overlay.contains(e.target);
+                    if (isClickedOutside) {
+                        hideOverlay();
+                    }
+                });
 
-                        isMouseOverNode = true;
+                // Trigger the initial resize
+                resizeOverlay();
 
-                        const rect = e.target.getBoundingClientRect();
-                        overlay.style.left = rect.left + 'px';
-                        overlay.style.top = rect.top + 'px';
-                        //overlay.classList.remove('hidden');
-                        overlay.removeAttribute('class');
-                        const familyClass = e.target.getAttribute('familyclass');
-                        overlay.classList.add(familyClass);
-                    });
+                window.addEventListener('resize', resizeOverlay);
+                window.addEventListener('orientationchange', resizeOverlay);
 
-                    overlay.addEventListener('mouseleave', () => {
-                        if (!isMouseOverNode) {
-                            overlay.classList.add('hidden');
-                        }
-                    });
+                //Zoom
+
+                const mindmapContainer = document.getElementById('mindmap');
+                let zoomLevel = 1;
+
+                function zoomIn() {
+                    zoomLevel += 0.1;
+                    mindmapContainer.style.transform = `scale(${zoomLevel})`;
+                }
+
+                function zoomOut() {
+                    zoomLevel -= 0.1;
+                    mindmapContainer.style.transform = `scale(${zoomLevel})`;
+                }
+
+                // Example usage
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === '+') {
+                        zoomIn();
+                    } else if (event.key === '-') {
+                        zoomOut();
+                    }
                 });
             });
         });

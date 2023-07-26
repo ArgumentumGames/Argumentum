@@ -7,6 +7,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Argumentum.AssetConverter.Entities;
 using CsvHelper;
 using Utf8Json;
 using Utf8Json.Formatters;
@@ -34,7 +35,7 @@ namespace Argumentum.AssetConverter.Mindmapper
            
             newConfig.Add(frConfigCards);
             
-            var enConfig = new MindMapDocumentConfig();
+            var enConfig = new MindMapDocumentConfig(){DocumentName = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm" };
             enConfig.DocumentName = enConfig.DocumentName.Replace("Fr", "En");
             enConfig.DescriptionExpression = enConfig.DescriptionExpression.Replace("Fr", "En");
             enConfig.TitleExpression = enConfig.TitleExpression.Replace("Fr", "En");
@@ -42,7 +43,7 @@ namespace Argumentum.AssetConverter.Mindmapper
             enConfig.LinkExpression = enConfig.LinkExpression.Replace("Fr", "En");
             newConfig.Add(enConfig);
             
-            var enConfigCards = new MindMapDocumentConfig();
+            var enConfigCards = new MindMapDocumentConfig(){DocumentName = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm" };
             enConfigCards.InsertCardsThumbnails = true;
             enConfigCards.DocumentName = enConfig.DocumentName.Replace(".mm", "_cards.mm");
             enConfigCards.DescriptionExpression = enConfig.DescriptionExpression;
@@ -62,8 +63,8 @@ namespace Argumentum.AssetConverter.Mindmapper
             foreach (var config in this.MindMaps)
             {
 
-                var fallacies = Fallacy.LoadFallacies(config.DataSet);
-                config.GenerateMindMapFile( fallacies, null, "", "");
+                var fallacies = Fallacy.Load(config.DataSet);
+               config.GenerateMindMapFile( fallacies, null, "", "").GetAwaiter().GetResult();
 
             }
             Logger.LogTitle($"Generation finished, press any key to close");

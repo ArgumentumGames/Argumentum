@@ -22,17 +22,18 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
 using Color = System.Drawing.Color;
+using Argumentum.AssetConverter.Entities;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
-	public class MindMapDocumentConfig : DocumentConfig
+    public class MindMapDocumentConfig : DocumentConfig
 	{
 		// Trying to making sure the assemblies get published
-		private static System.Diagnostics.StackTrace temp1 = new StackTrace();
-		private static System.Drawing.Color temp2 = Color.AliceBlue;
+		private static readonly System.Diagnostics.StackTrace temp1 = new();
+		private static readonly System.Drawing.Color temp2 = Color.AliceBlue;
 
 		public string DataSet { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
-		public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
+		//public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
 
 
 
@@ -94,7 +95,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string DescriptionExpression { get; set; } =
 @"
 <p>
-    <font size='4'>{HttpUtility.HtmlEncode(fallacy.DescFr)}</font>
+    {HttpUtility.HtmlEncode(fallacy.DescFr)}
 </p>
 ";
 
@@ -178,6 +179,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		private Func<Fallacy, string> _Thumbnails;
+		
 
 		[IgnoreDataMember]
 		[JsonIgnore]
@@ -185,12 +187,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			get
 			{
-				if (_Thumbnails == null)
-				{
-					_Thumbnails = fallacy => ThumbnailsPathExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"{fallacy.TextFr}";
-				}
-
-				return _Thumbnails;
+				return _Thumbnails ??= fallacy =>
+					ThumbnailsPathExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"{fallacy.TextFr}";
 			}
 			set
 			{
@@ -199,7 +197,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		
+		public int NbBranchesRight { get; set; } = 2;
+
 		public Dictionary<int, string> Colors { get; set; } = new Dictionary<int, string>()
 		{
 			{1, "#8605ab"},
@@ -236,7 +235,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			var fileNames = Directory.GetFiles(targetDirectory);
 			var thumbnailsFallacyPattern = ThumbnailsFileNamePattern.Interpolate(
 				new Dictionary<string, object>() { { "fallacy", fallacy } });
-			return fileNames.First(fileName => fileName.Contains(thumbnailsFallacyPattern));
+			return fileNames.FirstOrDefault(fileName => fileName.Contains(thumbnailsFallacyPattern));
 		}
 
 
@@ -254,14 +253,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 			var documentPath = Path.Combine(targetDirectory, DocumentName);
 
-			await CreateFreemindmap(fallacies, webBasedGeneratorConfig, language, documentPath, fileName);
+			CreateFreemindmap(fallacies, webBasedGeneratorConfig, language, documentPath, fileName);
 
 			//Task.Run(async () => await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig, webBasedGeneratorConfig.EnableSVGPrompt)).GetAwaiter().GetResult() ;
-			await ProcessSVGFilesAsync(fallacies, fileName, webBasedGeneratorConfig,
+			await ProcessSvgFilesAsync(fallacies, fileName, webBasedGeneratorConfig,
 				webBasedGeneratorConfig.EnableSVGPrompt);
 		}
 
-		private async Task CreateFreemindmap(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string language,
+		private void CreateFreemindmap(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string language,
 			string documentPath, string fileName)
 		{
 			if (File.Exists(documentPath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
@@ -272,16 +271,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				Logger.Log($"Creating Freemind mind map {DocumentName}");
 				var freemindMap = new FreemindMap();
-				var nodesByPath = new Dictionary<string, Node>(fallacies.Count());
-				await CreateFallacyNodes(freemindMap, fallacies, nodesByPath, webBasedGeneratorConfig, language);
+				var nodesByPath = new Dictionary<string, Node>(fallacies.Count);
+				CreateFallacyNodes(freemindMap, fallacies, nodesByPath, webBasedGeneratorConfig, language);
 
 
-				await SerializeMindMapAsync(freemindMap, fileName);
+				SerializeMindMapAsync(freemindMap, fileName);
 			}
 		}
 
 
-		private async Task CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath,
+		private void CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath,
 			WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
 		{
 			foreach (var fallacy in fallacies)
@@ -289,7 +288,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				if (string.IsNullOrEmpty(fallacy.PK)) continue;
 
 				var localPath = fallacy.Path;
-				var fallacyNode = await CreateNode(fallacy, webBasedGeneratorConfig, language);
+				var fallacyNode = CreateNode(fallacy, webBasedGeneratorConfig, language);
 				nodesByPath[localPath] = fallacyNode;
 
 				var lastDotIndex = localPath.LastIndexOf('.');
@@ -297,7 +296,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				if (lastDotIndex > -1)
 				{
 					familyNb = int.Parse(fallacy.Path[0].ToString(), CultureInfo.InvariantCulture);
-					var parentPath = localPath.Substring(0, lastDotIndex);
+					var parentPath = localPath[..lastDotIndex];
 					var parentNode = nodesByPath[parentPath];
 					parentNode.Nodes.Add(fallacyNode);
 				}
@@ -311,7 +310,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-		private async Task<Node> CreateNode(Fallacy fallacy, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		private Node CreateNode(Fallacy fallacy, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
 		{
 			var fallacyNode = new Node { TEXT = TitleFunc(fallacy) };
 			var link = LinkFunc(fallacy);
@@ -320,18 +319,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 				fallacyNode.LINK = link;
 			}
 
-			var descRichContent = await CreateRichContent(fallacy);
+			var descRichContent = CreateRichContent(fallacy);
 			fallacyNode.Richcontents.Add(descRichContent);
 
 			if (fallacy.Carte.HasValue)
 			{
-				await AddCardIcon(fallacy, fallacyNode, webBasedGeneratorConfig, language);
+				AddCardIcon(fallacy, fallacyNode, webBasedGeneratorConfig, language);
 			}
 
 			return fallacyNode;
 		}
 
-		private async Task<Richcontent> CreateRichContent(Fallacy fallacy)
+		private Richcontent CreateRichContent(Fallacy fallacy)
 		{
 			var descDoc = new XmlDocument();
 			descDoc.LoadXml($"{DescFunc(fallacy)}");
@@ -354,7 +353,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 			else
 			{
-				fallacyNode.POSITION = familyNb > 2 ? "left" : "right";
+				fallacyNode.POSITION = familyNb > NbBranchesRight ? "left" : "right";
 				freemindMap.Node.Nodes.Add(fallacyNode);
 			}
 		}
@@ -394,7 +393,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-		private async Task AddCardIcon(Fallacy fallacy, Node fallacyNode, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		private void AddCardIcon(Fallacy fallacy, Node fallacyNode, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
 		{
 			fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
 
@@ -407,9 +406,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 					{
 						var cardSetDirectory = ImageHelper.GetImageFolder(webBasedGeneratorConfig, this, language, ThumbnailsCardSetName);
 						var imageFileName = MatchThumbnailsName(cardSetDirectory, fallacy);
-						var targetDirectory = webBasedGeneratorConfig.GetDocumentDirectory(language);
-						imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
-
+						if (string.IsNullOrEmpty(imageFileName))
+						{
+							Logger.LogProblem($"No thumbnail for fallacy {TitleFunc(fallacy)} in directory {cardSetDirectory}");
+						}
+						else
+						{
+							var targetDirectory = webBasedGeneratorConfig.GetDocumentDirectory(language);
+							imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
+						}
 						return imageFileName;
 					};
 				}
@@ -425,23 +430,21 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		
-		private async Task SerializeMindMapAsync(FreemindMap toReturn, string fileName)
+		private static void SerializeMindMapAsync(FreemindMap toReturn, string fileName)
 		{
 			var serializer = new XmlSerializer(typeof(FreemindMap));
 
 			using (var fs = File.Create(fileName))
 			{
-				XmlWriterSettings writerSettings = new XmlWriterSettings { Indent = true, OmitXmlDeclaration = true };
-				using (var writer = XmlWriter.Create(fs, writerSettings))
-				{
-					serializer.Serialize(writer, toReturn);
-				}
+				XmlWriterSettings writerSettings = new() { Indent = true, OmitXmlDeclaration = true };
+				using var writer = XmlWriter.Create(fs, writerSettings);
+				serializer.Serialize(writer, toReturn);
 			}
 
 
 			Logger.LogSuccess($"Mind map {fileName} successfully generated!");
 		}
-		private async Task ProcessSVGFilesAsync(IList<Fallacy> fallacies, string fileName,
+		private async Task ProcessSvgFilesAsync(IList<Fallacy> fallacies, string fileName,
 			WebBasedGeneratorConfig webBasedGeneratorConfig, bool enableSvgUpdates)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
@@ -463,7 +466,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					{
 						if (enableSvgUpdates)
 						{
-							await DisplaySVGFileNotFoundMessage(svgFilePath);
+							await DisplaySvgFileNotFoundMessage(svgFilePath);
 						}
 						else
 						{
@@ -479,10 +482,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
-					UpdateSVGWithFallacies(svgFreemindMap, fallacies, svgDoc, svgNamespace, xlinkNamespace);
+					UpdateSvgWithFallacies(svgFreemindMap, fallacies, svgDoc, svgNamespace, xlinkNamespace);
 
 
-					svgLoader = async () => await GetSvgContent(svgDoc);
+					svgLoader = () => Task.FromResult(GetSvgContent(svgDoc));
 
 
 					await File.WriteAllTextAsync(svgSavedFilePath, await svgLoader(), Encoding.UTF8);
@@ -490,13 +493,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				}
 
-				await GenerateHtmlSVGWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
+				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
 
-				if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
-				{
-					File.Delete(svgFilePath);
-				}
+				
 
+			}
+
+			if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
+			{
+				File.Delete(svgFilePath);
 			}
 
 		}
@@ -504,7 +509,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private async Task DisplaySVGFileNotFoundMessage(string svgFilePath)
+		private static async Task DisplaySvgFileNotFoundMessage(string svgFilePath)
 		{
 			Logger.LogInstructions($"SVG mindmap {svgFilePath} was not found.\n Please download open-source software freemind to generate a SVG export from the original .mm file.\n" +
 			                       $"[link]https://sourceforge.net/projects/freemind/[/]\nSvg export will be further edited to include fields and links\nPress any key to resume and update or skip the SVG file...");
@@ -517,16 +522,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private void UpdateSVGWithFallacies(SVGFreemindMap svgMap, IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		private void UpdateSvgWithFallacies(SVGFreemindMap svgMap, IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
 		{
 
 
-			var fallacyToSVGNodes = CollectPossibleSVGNodes(fallacies, svgDoc, svgNamespace);
-			var disambiguatedFallacyToSVGNode = DisambiguateSVGNodes(fallacyToSVGNodes, fallacies);
+			var fallacyToSVGNodes = CollectPossibleSvgNodes(fallacies, svgDoc, svgNamespace);
+			var disambiguatedFallacyToSVGNode = DisambiguateSvgNodes(fallacyToSVGNodes, fallacies, svgNamespace);
 			var warned = false;
 			foreach (var pair in disambiguatedFallacyToSVGNode)
 			{
-				UpdateSVGMatch(svgMap, pair.Value, pair.Key, svgNamespace, xlinkNamespace, ref warned);
+				UpdateSvgMatch(svgMap, pair.Value, pair.Key, svgNamespace, xlinkNamespace, ref warned);
 			}
 
 			// Optionally remove all SVG images
@@ -538,9 +543,137 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		
 
-		private void UpdateSVGMatch(SVGFreemindMap svgMap, XElement match, Fallacy fallacy, XNamespace svgNamespace,
+		private Dictionary<Fallacy, List<XElement>> CollectPossibleSvgNodes(IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace)
+		{
+			Dictionary<Fallacy, List<XElement>> fallacyToSvgNodes = new();
+			var textGroups = svgDoc.Descendants(svgNamespace + "g").Where(g => g.Elements(svgNamespace + "text").Any()).ToList();
+
+			foreach (var fallacy in fallacies)
+			{
+				string title = TitleFunc(fallacy);
+				var matchingGroups = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title)).ToList();
+
+				if (matchingGroups.Any())
+				{
+					// Group the g elements by the length of their text content
+					var groupedGroups = matchingGroups.GroupBy(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Length);
+
+					// Get the minimum length among the groups
+					var groups = groupedGroups as IGrouping<int, XElement>[] ?? groupedGroups.ToArray();
+					var minLength = groups.Min(g => g.Key);
+
+					// Retain only the g elements with the minimum length
+					var minLengthGroups = groups.First(g => g.Key == minLength).ToList();
+
+					fallacyToSvgNodes[fallacy] = minLengthGroups;
+				}
+				else
+				{
+					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title.Substring(0, 3))).ToList();
+					var closeMatchesMessages = closeMatches.Select(g => string.Join(" ", g.Elements(svgNamespace + "text").Select(t => t.Value))).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
+					Logger.LogProblem($"Could not find Svg node for fallacy {TitleFunc(fallacy)}\nClose matches:\n{closeMatchesMessages}");
+				}
+			}
+
+			return fallacyToSvgNodes;
+		}
+
+
+		private Dictionary<Fallacy, XElement> DisambiguateSvgNodes(
+			Dictionary<Fallacy, List<XElement>> fallacyToSvgNodes, IList<Fallacy> fallacies, XNamespace svgNamespace)
+		{
+			var tempNode = fallacyToSvgNodes.First().Value.First();
+			var allNodesList = tempNode.Document.Descendants(svgNamespace + tempNode.Name.LocalName).ToList();
+			var nodeIndices = allNodesList.Select((n, i) => new { Node = n, Index = i }).ToDictionary(n => n.Node, n => n.Index);
+			//checking that all nodes have an index
+			foreach (var fallacyToSvgNode in fallacyToSvgNodes)
+			{
+				foreach (var svgNode in fallacyToSvgNode.Value)
+				{
+					if (!nodeIndices.TryGetValue(svgNode, out int tempIndex))
+					{
+						Debugger.Break();
+					}
+				}
+			}
+			Dictionary<Fallacy, XElement> disambiguatedFallacyToSvgNode = new();
+			Dictionary<XElement, Fallacy> svgNodeToFallacy = new();
+
+			foreach (var pair in fallacyToSvgNodes)
+			{
+				Fallacy fallacy = pair.Key;
+				List<XElement> candidateSvgNodes = pair.Value;
+
+				if (candidateSvgNodes.Count == 1)
+				{
+					var candidate = candidateSvgNodes.First();
+					disambiguatedFallacyToSvgNode[fallacy] = candidate;
+					svgNodeToFallacy[candidate] = fallacy;
+				}
+				else
+				{
+					string parentDecimalPath = fallacy.DecimalPath.Remove(fallacy.DecimalPath.Length - 1);
+					var parentFallacyCandidates = fallacies.Where(f => f.DecimalPath == parentDecimalPath).ToArray();
+					if (parentFallacyCandidates.Length == 0)
+					{
+						Logger.LogProblem($"Parent fallacy not found for {TitleFunc(fallacy)}");
+						break;
+					}
+
+					var parentFallacy = parentFallacyCandidates.First();
+
+					if (!disambiguatedFallacyToSvgNode.TryGetValue(parentFallacy, out var parentSvgNode))
+					{
+						if (fallacyToSvgNodes.TryGetValue(parentFallacy, out List<XElement> parentSvgNodes))
+						{
+							if (parentSvgNodes.Count > 1)
+							{
+								Logger.LogProblem($"Could not disambiguate SVG nodes for fallacy {TitleFunc(fallacy)} because its parent {TitleFunc(fallacy)} does not have a single corresponding SVG node.");
+							}
+							parentSvgNode = parentSvgNodes.First();
+						}
+						else
+						{
+							Logger.LogProblem($"Could not find parent node from {TitleFunc(fallacy)}");
+							break;
+						}
+					}
+
+					// Get the index of the parent SVG node in the document order
+					if (!nodeIndices.TryGetValue(parentSvgNode, out int parentIndex))
+					{
+						Logger.LogProblem($"SVG Node index for parent fallacy: {parentFallacy.Path}-{TitleFunc(parentFallacy)} of fallacy {fallacy.Path}-{TitleFunc(fallacy)} not found");
+					}
+					else
+					{
+
+
+						// Sort the candidate SVG nodes based on their index difference with the parent node
+						XElement closestSvgNode = candidateSvgNodes
+							.OrderBy(node => Math.Abs(nodeIndices[node] - parentIndex))
+							.First();
+
+						disambiguatedFallacyToSvgNode[fallacy] = closestSvgNode;
+
+						// Check for conflicts in the node-to-fallacy mapping
+						if (svgNodeToFallacy.TryGetValue(closestSvgNode, out var existingFallacy))
+						{
+							Logger.LogProblem($"Conflicting attribution of SVG node to fallacies: {fallacy.Path}-{TitleFunc(fallacy)} and {existingFallacy.Path}-{TitleFunc(existingFallacy)}");
+						}
+						else
+						{
+							svgNodeToFallacy[closestSvgNode] = fallacy;
+						}
+					}
+				}
+			}
+
+			return disambiguatedFallacyToSvgNode;
+		}
+
+
+		private void UpdateSvgMatch(SVGFreemindMap svgMap, XElement match, Fallacy fallacy, XNamespace svgNamespace,
 			XNamespace xlinkNamespace, ref bool warned)
 		{
 			if (match.Parent.Name.LocalName == "a" && !warned)
@@ -567,7 +700,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				match.SetAttributeValue(nameof(example), example);
 				match.SetAttributeValue(nameof(link), link);
 				match.SetAttributeValue("depth", fallacy.Depth);
-				match.SetAttributeValue("familyClass", fallacy.FamilleCamelCase);
+				match.SetAttributeValue("familyclass", fallacy.FamilleCamelCase);
 			}
 
 			if (svgMap.WrapNodeByLink)
@@ -585,194 +718,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 					linkElem.Add(match);
 				}
 			}
-			
-			
+
+
 		}
 
 
-		private Dictionary<Fallacy, List<XElement>> CollectPossibleSVGNodes(IList<Fallacy> fallacies, XDocument svgDoc, XNamespace svgNamespace)
+		private static string GetSvgContent(XDocument svgDoc)
 		{
-			Dictionary<Fallacy, List<XElement>> fallacyToSVGNodes = new Dictionary<Fallacy, List<XElement>>();
-			foreach (var fallacy in fallacies)
-			{
-				string title = TitleFunc(fallacy);
-				var textElements = svgDoc.Descendants(svgNamespace + "text").Where(t => t.Value.Contains(title)).ToList();
-				if (textElements.Any())
-				{
-					// Group the text elements by length
-					var groupedTextElements = textElements.GroupBy(t => t.Value.Length);
-
-					// Get the minimum length among the groups
-					var minLength = groupedTextElements.Min(g => g.Key);
-
-					// Retain only the text elements with the minimum length
-					var minLengthTextElements = groupedTextElements.First(g => g.Key == minLength).ToList();
-
-					fallacyToSVGNodes[fallacy] = minLengthTextElements;
-				}
-			}
-
-			return fallacyToSVGNodes;
-		}
-
-
-		private Dictionary<Fallacy, XElement> DisambiguateSVGNodes(Dictionary<Fallacy, List<XElement>> fallacyToSVGNodes, IList<Fallacy> fallacies)
-		{
-			Dictionary<Fallacy, XElement> disambiguatedFallacyToSVGNode = new Dictionary<Fallacy, XElement>();
-			Dictionary<XElement, Fallacy> svgNodeToFallacy = new Dictionary<XElement, Fallacy>();
-
-			foreach (var pair in fallacyToSVGNodes)
-			{
-				Fallacy fallacy = pair.Key;
-				List<XElement> candidateSVGNodes = pair.Value;
-
-				if (candidateSVGNodes.Count == 1)
-				{
-					var candidate = candidateSVGNodes.First();
-					disambiguatedFallacyToSVGNode[fallacy] = candidate;
-					svgNodeToFallacy[candidate] = fallacy;
-				}
-				else
-				{
-					string parentDecimalPath = fallacy.DecimalPath.Remove(fallacy.DecimalPath.Length - 1);
-					var parentFallacyCandidates = fallacies.Where(f => f.DecimalPath == parentDecimalPath).ToArray();
-					if (parentFallacyCandidates.Length == 0)
-					{
-						Logger.LogProblem($"Parent fallacy not found for {TitleFunc(fallacy)}");
-						break;
-					}
-
-					var parentFallacy = parentFallacyCandidates.First();
-
-					XElement parentSVGNode;
-					if (!disambiguatedFallacyToSVGNode.TryGetValue(parentFallacy, out parentSVGNode))
-					{
-						if (fallacyToSVGNodes.TryGetValue(parentFallacy, out List<XElement> parentSVGNodes))
-						{
-							if (parentSVGNodes.Count > 1)
-							{
-								Logger.LogProblem($"Could not disambiguate SVG nodes for fallacy {TitleFunc(fallacy)} because its parent {TitleFunc(fallacy)} does not have a single corresponding SVG node.");
-							}
-							parentSVGNode = parentSVGNodes.First();
-						}
-						else
-						{
-							Logger.LogProblem($"Could not find parent node from {TitleFunc(fallacy)}");
-							break;
-						}
-					}
-
-					// Get the index of the parent SVG node in the document order
-					int parentIndex = GetSVGNodeIndex(parentSVGNode);
-
-					// Sort the candidate SVG nodes based on their index difference with the parent node
-					XElement closestSVGNode = candidateSVGNodes
-						.OrderBy(node => Math.Abs(GetSVGNodeIndex(node) - parentIndex))
-						.First();
-
-					disambiguatedFallacyToSVGNode[fallacy] = closestSVGNode;
-
-					// Check for conflicts in the node-to-fallacy mapping
-					if (svgNodeToFallacy.TryGetValue(closestSVGNode, out var existingFallacy))
-					{
-						Logger.LogProblem($"Conflicting attribution of SVG node to fallacies: {TitleFunc(fallacy)} and {TitleFunc(existingFallacy)}");
-					}
-					else
-					{
-						svgNodeToFallacy[closestSVGNode] = fallacy;
-					}
-				}
-			}
-
-			return disambiguatedFallacyToSVGNode;
-		}
-
-		private int GetSVGNodeIndex(XElement svgNode)
-		{
-			// Find the index of the SVG node in the document order
-			int index = 0;
-			XElement currentNode = svgNode;
-			while (currentNode.PreviousNode != null)
-			{
-				currentNode = currentNode.PreviousNode as XElement;
-				if (currentNode != null && currentNode.Name.LocalName == svgNode.Name.LocalName)
-				{
-					index++;
-				}
-			}
-			return index;
-		}
-
-
-
-		//private Dictionary<Fallacy, XElement> DisambiguateSVGNodes(Dictionary<Fallacy, List<XElement>> fallacyToSVGNodes, IList<Fallacy> fallacies)
-		//{
-		//	Dictionary<Fallacy, XElement> disambiguatedFallacyToSVGNode = new Dictionary<Fallacy, XElement>();
-		//	foreach (var pair in fallacyToSVGNodes)
-		//	{
-		//		Fallacy fallacy = pair.Key;
-		//		List<XElement> candidateSVGNodes = pair.Value;
-
-		//		if (candidateSVGNodes.Count == 1)
-		//		{
-		//			disambiguatedFallacyToSVGNode[fallacy] = candidateSVGNodes.First();
-		//		}
-		//		else
-		//		{
-		//			string parentDecimalPath = fallacy.DecimalPath.Remove(fallacy.DecimalPath.Length - 1);
-		//			var parentFallacyCandidates = fallacies.Where(f => f.DecimalPath == parentDecimalPath).ToArray();
-		//			if (parentFallacyCandidates.Length==0)
-		//			{
-		//				Logger.LogProblem($"Parent fallacy not found for {TitleFunc(fallacy)} ");
-		//				break;
-		//			}
-
-		//			var parentFallacy = parentFallacyCandidates.First();
-
-		//			XElement parentSVGNode;
-		//			if (!disambiguatedFallacyToSVGNode.TryGetValue(parentFallacy, out parentSVGNode))
-		//			{
-		//				if (fallacyToSVGNodes.TryGetValue(parentFallacy, out List<XElement> parentSVGNodes))
-		//				{
-		//					if (parentSVGNodes.Count > 1)
-		//					{
-		//						Logger.LogProblem($"Could not disambiguate SVG nodes for fallacy {TitleFunc(fallacy)} because its parent {TitleFunc(fallacy)} does not have a single corresponding SVG node.");
-		//					}
-		//					parentSVGNode = parentSVGNodes.First();
-		//				}
-		//				else
-		//				{
-		//					Logger.LogProblem($"Could not find parent node from {TitleFunc(fallacy)}");
-		//					break;
-		//				}
-		//			}
-		//			float parentX = float.Parse(parentSVGNode.Attribute("x").Value);
-		//			float parentY = float.Parse(parentSVGNode.Attribute("y").Value);
-
-		//			XElement closestSVGNode = candidateSVGNodes.OrderBy(node => EuclideanDistanceSquared(
-		//				float.Parse(node.Attribute("x").Value),
-		//				float.Parse(node.Attribute("y").Value),
-		//				parentX,
-		//				parentY)).First();
-
-		//			disambiguatedFallacyToSVGNode[fallacy] = closestSVGNode;
-		//		}
-		//	}
-
-		//	return disambiguatedFallacyToSVGNode;
-		//}
-
-		private float EuclideanDistanceSquared(float x1, float y1, float x2, float y2)
-		{
-			return MathF.Pow(x1 - x2, 2) + MathF.Pow(y1 - y2, 2);
-		}
-
-
-
-		private async Task<string> GetSvgContent(XDocument svgDoc)
-		{
-			StringBuilder sb = new StringBuilder();
-			XmlWriterSettings settings = new XmlWriterSettings
+			StringBuilder sb = new();
+			XmlWriterSettings settings = new()
 			{
 				Indent = true,
 				IndentChars = "\t", // use tab for indentation
@@ -790,7 +744,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private async Task GenerateHtmlSVGWrappers(SVGFreemindMap svgMap, WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
+		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
 			Func<Task<string>> svgContent)
 		{
 			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
@@ -804,7 +758,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
 
 
-				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingHtmlMaps)
 				{
 					
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
@@ -7,9 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core.Tokenizer;
 using System.Net.Http;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
+using AutoMapper;
 using ExtendedXmlSerializer.Core.Sources;
 using ImageMagick;
 using Spectre.Console;
@@ -19,7 +23,7 @@ using Rule = Spectre.Console.Rule;
 
 namespace Argumentum.AssetConverter
 {
-	public class WebBasedGenerator
+    public class WebBasedGenerator
 	{
 
 		
@@ -96,7 +100,7 @@ namespace Argumentum.AssetConverter
 							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, Config.OverwriteExistingDocs);
 							break;
 						default:
-							throw new ArgumentOutOfRangeException();
+							throw new InvalidOperationException($"Document format {docImageList.Key.document.DocumentFormat} unsupported");
 					}
 				}
 				catch (Exception e)
@@ -128,11 +132,50 @@ namespace Argumentum.AssetConverter
 			var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet);
 			if (dataSet == null)
 			{
-				fallacies = Fallacy.LoadFallacies(mindMap.DataSet);
+				fallacies = Fallacy.Load(mindMap.DataSet);
 			}
 			else
 			{
-				fallacies = await Fallacy.LoadFallaciesAsync(dataSet, Config.UseDebugParams());
+				if (dataSet.CsvType != null && dataSet.CsvType != typeof(Fallacy))
+				{
+
+					if (IsSubclassOfRawGeneric(typeof(CsvBase<,>), dataSet.CsvType))
+					{
+
+						var config = new MapperConfiguration(cfg =>
+						{
+							cfg.AddProfile<MappingProfile>();
+
+						});
+						var mapper = config.CreateMapper();
+
+						// Trouver la méthode LoadAsync sur le type spécifique
+						var loadAsyncMethod = dataSet.CsvType.GetMethod("LoadAsync", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+
+
+						// Invoquer la méthode
+						var task = (Task)loadAsyncMethod.Invoke(null, new object[] { dataSet, Config.UseDebugParams() });
+
+						// Attendre la fin de la tâche et obtenir le résultat
+						await task.ConfigureAwait(false);
+						var result = (IEnumerable)task.GetType().GetProperty("Result")?.GetValue(task, null);
+
+						// Mapper les objets à Fallacy
+						fallacies = (from object baseObject in result select mapper.Map<Fallacy>(baseObject)).ToList();
+
+					}
+					else
+					{
+						throw new InvalidOperationException(
+							$"Dataset type {dataSet.CsvType.AssemblyQualifiedName} is incompatible with mindmap generation");
+					}
+
+				}
+				else
+				{
+					fallacies = await Fallacy.LoadAsync(dataSet, Config.UseDebugParams());
+				}
+				
 			}
 
 			var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
@@ -151,8 +194,21 @@ namespace Argumentum.AssetConverter
 		}
 
 
+		public static bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
+		{
+			while (toCheck != null && toCheck != typeof(object))
+			{
+				var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+				if (generic == cur)
+				{
+					return true;
+				}
+				toCheck = toCheck.BaseType;
+			}
+			return false;
+		}
 
-	
+
 
 	}
 }
