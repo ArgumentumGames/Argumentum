@@ -1,9 +1,11 @@
 # Argumentation ChatGPT plugin
 
-This project is the submission to a [semantic-kernel hackathon] to create a ChatGPT plugin. It includes the following components:
-- An endpoint that serves up an ai-plugin.json file for ChatGPT to discover the plugin
+This project is the submission to a [semantic-kernel hackathon](https://github.com/microsoft/semantic-kernel-plugins) to create a ChatGPT plugin. It includes the following components:
+- An [endpoint](/azure-function) that serves up an ai-plugin.json file for ChatGPT to discover the plugin. It exposes a series of native functions and automatically builds a series of semantic ones. 
 - A generator that automatically converts prompts into semantic function endpoints
-- The ability to add additional native functions as endpoints to the plugin
+- The ability to add additional native functions as endpoints to the plugin.
+
+Plugin is getting tested in one of the modes available with the AssetConverter project, several tools of which are used by this plugin for informal analysis.
 
 To learn more about using this starter, see the Semantic Kernel documentation that describes how to [create a ChatGPT plugin](https://learn.microsoft.com/en-us/semantic-kernel/ai-orchestration/chatgpt-plugins).
 

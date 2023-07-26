@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "Given a text in natural language text with statements or arguments, and given the result of several fallacy analysis focused on distinct fallacy families, does a synthese of the informal analysis",
+  "description": "Given a text in natural language text with statements or arguments, and given the result of several fallacy analysis focused on distinct fallacy family branches, does a synthese of the informal analysis",
   "type": "completion",
   "completion": {
     "max_tokens": 200,
