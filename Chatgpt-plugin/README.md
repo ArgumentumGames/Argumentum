@@ -1,11 +1,18 @@
-# Semantic Kernel ChatGPT plugin starter
+# Argumentation ChatGPT plugin
 
-This project provides starter code to create a ChatGPT plugin. It includes the following components:
+This project is the submission to a [semantic-kernel hackathon] to create a ChatGPT plugin. It includes the following components:
 - An endpoint that serves up an ai-plugin.json file for ChatGPT to discover the plugin
 - A generator that automatically converts prompts into semantic function endpoints
 - The ability to add additional native functions as endpoints to the plugin
 
 To learn more about using this starter, see the Semantic Kernel documentation that describes how to [create a ChatGPT plugin](https://learn.microsoft.com/en-us/semantic-kernel/ai-orchestration/chatgpt-plugins).
+
+## Features
+
+- The plugin offers several [semantic](/azure-function/Prompts) and [native](/azure-function/ArgumentationPlugin.cs) function for  argumentation analysis of a text, typically a transcript.
+- A set of semantic and search-augmented semi-semantic functions are doing informal analysis based on matching text content to branches of the large taxonomy of Fallacies that this whole repository is about.
+- A set of native and semantic methods offer formal reasoning over the text powered by [Tweety project](http://tweetyproject.org/). A pipeline for belief set translation (semantic), query crafting (semantic), query execution (native - Tweety), and results intepretation (semantic) is available in 3 declinations for propositional, first order and modal logics.  
+
 
 ## Prerequisites
 
@@ -15,7 +22,7 @@ To learn more about using this starter, see the Semantic Kernel documentation th
   - [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
   - [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
 
-## Configuring the starter
+## Configuring the plugin
 
 To configure the starter, you need to provide the following information:
 
@@ -44,7 +51,7 @@ Configure an Azure OpenAI endpoint
 1. Copy [local.settings.json.example](./azure-function/local.settings.json.example) to `./azure-function/local.settings.json`
 1. Edit the `Values` object to add your OpenAI endpoint configuration in the `apiKey` property
 
-## Running the starter
+## Running the plugin
 
 To run the Azure Functions application just hit `F5`.
 
