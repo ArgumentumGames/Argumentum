@@ -97,7 +97,7 @@ namespace sk_chatgpt_azure_function
 			TextToBeliefsetMl,
 			TextToBeliefsetPl,
 			TextToLogicType,
-			InformalFallacyAnalysis
+			FallacyAnalysisBranch
 		}
 
 
@@ -177,12 +177,12 @@ namespace sk_chatgpt_azure_function
 		{
 			ContextVariables contextVariables = LoadContextVariablesFromRequest(req);
 
-			var fallaciesShort = LoadFallacies(false, baseFallacyPath, true, 30).ConfigureAwait(false);
+			var fallaciesShort = LoadFallacies(false, baseFallacyPath, true, 30).ConfigureAwait(false).GetAwaiter().GetResult();
 			var strFallaciesShort = JsonConvert.SerializeObject(fallaciesShort, Formatting.Indented);
 
 			contextVariables.Set(nameof(VariableNames.fallaciesShort), strFallaciesShort);
 
-			var fallaciesLong = LoadFallacies(false, baseFallacyPath, false, 4).ConfigureAwait(false);
+			var fallaciesLong = LoadFallacies(false, baseFallacyPath, false, 4).ConfigureAwait(false).GetAwaiter().GetResult();
 			var strFallaciesLong = JsonConvert.SerializeObject(fallaciesLong, Formatting.Indented);
 
 			contextVariables.Set(nameof(VariableNames.fallaciesLong), strFallaciesLong);
@@ -191,11 +191,11 @@ namespace sk_chatgpt_azure_function
 
 			if (!this._kernel.Skills.TryGetFunction(
 				    skillName: appSettings.AIPlugin.NameForModel,
-				    functionName: nameof(SemanticFunctionNames.InformalFallacyAnalysis),
+				    functionName: nameof(SemanticFunctionNames.FallacyAnalysisBranch),
 				    out ISKFunction? function))
 			{
 				HttpResponseData errorResponse = req.CreateResponse(HttpStatusCode.NotFound);
-				errorResponse.WriteString($"Function {SemanticFunctionNames.InformalFallacyAnalysis} not found");
+				errorResponse.WriteString($"Function {SemanticFunctionNames.FallacyAnalysisBranch} not found");
 				return errorResponse;
 			}
 
@@ -373,7 +373,7 @@ namespace sk_chatgpt_azure_function
 
 
 
-		private async Task<IEnumerable<KeyValuePair<string, Dictionary<string, object>>>> LoadFallacies(bool useDebugPath, string basePath, bool shortVersion, int fallacyNb)
+		private async Task<Dictionary<string, KeyValuePair<string, Dictionary<string, object>>>> LoadFallacies(bool useDebugPath, string basePath, bool shortVersion, int fallacyNb)
 		{
 			
 			var appSettings = AppSettings.LoadSettings();
@@ -381,7 +381,7 @@ namespace sk_chatgpt_azure_function
 			// load dataset in chunks, 
 			var filteredFallacies = await appSettings.ArgSettings.SourceDataset.GetContentDictionary(shortVersion? appSettings.ArgSettings.FieldsShort: appSettings.ArgSettings.FieldsLong, ",", "path", "path", new List<string> {basePath},  true, useDebugPath).ConfigureAwait(false);
 
-			var sortedFallacies = filteredFallacies.OrderBy(pair => pair.Key.Length).Take(fallacyNb);
+			var sortedFallacies = filteredFallacies.OrderBy(pair => pair.Key.Length).Take(fallacyNb).ToDictionary(pair =>pair.Key);
 
 			return sortedFallacies;
 
