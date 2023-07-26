@@ -136,15 +136,41 @@ namespace sk_chatgpt_azure_function
 		//{
 		//	return RunLogic(req, LogicType.Modal);
 		//}
+		[Function("LoadFallacies")]
+		[OpenApiOperation(operationId: "LoadFallacies", tags: new[] { "ExecuteFunction" }, Description = "Loads a branch from a fallacy taxonomy, returned serialized in short or detailed format")]
+		[OpenApiParameter(name: "input", Description = "The optional path of the branch to restrict the analysis on, within a taxonomy of fallacies", Required = true, In = ParameterLocation.Query)]
+		[OpenApiParameter(name: "shortVersion", Description = "true to return a condensed branch with paths and title, false for a detailed version with description and example", Required = true, In = ParameterLocation.Query)]
+		[OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Description = "Returns the analysis of the text within the given branch")]
+		[OpenApiResponseWithBody(statusCode: HttpStatusCode.BadRequest, contentType: "application/json", bodyType: typeof(string), Description = "Returns the error of the input.")]
+		public HttpResponseData LoadFallacies(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req, bool shortVersion = true)
+		{
 
+			string jsonInput = req.Query["input"];
+			string input;
 
+			JsonSerializer jsonSerializer = new();
+			using (var sr = new JsonTextReader(new StringReader(jsonInput)))
+			{
+				input = jsonSerializer.Deserialize<OpenAPIMessage>(sr).content;
+
+			}
+
+			var fallacies = LoadFallacies(false, input, shortVersion, 30).ConfigureAwait(false);
+			var serializeResult = JsonConvert.SerializeObject(fallacies, Formatting.Indented);
+
+			var response = req.CreateResponse(HttpStatusCode.OK);
+			response.Headers.Add("Content-Type", "text/plain;charset=utf-8");
+			response.WriteString(serializeResult);
+			return response;
+		}
 
 
 
 		[Function("AnalyzeTextFallaciesInBranch")]
 		[OpenApiOperation(operationId: "AnalyzeTextFallaciesInBranch", tags: new[] { "ExecuteFunction" }, Description = "in a given text, identifies potential fallacies belonging to a fallacy taxonomy branch")]
 		[OpenApiParameter(name: "input", Description = "The argumentative text to perform analysis against", Required = true, In = ParameterLocation.Query)]
-		[OpenApiParameter(name: nameof(VariableNames.baseFallacyPath), Description = "The optional path of the branch to restrict the analysis on, within a taxonomy of fallacies", Required = true, In = ParameterLocation.Query)]
+		[OpenApiParameter(name: nameof(VariableNames.baseFallacyPath), Description = "The optional path of the branch to restrict the analysis on, within a taxonomy of fallacies", Required = false, In = ParameterLocation.Query)]
 		[OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Description = "Returns the analysis of the text within the given branch")]
 		[OpenApiResponseWithBody(statusCode: HttpStatusCode.BadRequest, contentType: "application/json", bodyType: typeof(string), Description = "Returns the error of the input.")]
 		public HttpResponseData AnalyzeTextFallaciesInBranch([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,  string baseFallacyPath = "")

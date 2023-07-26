@@ -311,6 +311,10 @@ public class DataSetInfo
 		dataTable.Load(csvDataReader);
 		if (!string.IsNullOrEmpty(primaryKeyColumn))
 		{
+			var groupedbyPrimaryKey = dataTable.AsEnumerable().GroupBy(row => row[primaryKeyColumn]);
+			var duplicates = groupedbyPrimaryKey.Where(group => group.Count() > 1).ToList();
+			Console.WriteLine($"Found {duplicates.Count} duplicates for primary key {primaryKeyColumn}");
+			Console.WriteLine($"duplicate keys: {string.Join(",", duplicates.Select(group => group.Key))}");
 			dataTable.PrimaryKey = new[] { dataTable.Columns[primaryKeyColumn] };
 		}
 		return dataTable;

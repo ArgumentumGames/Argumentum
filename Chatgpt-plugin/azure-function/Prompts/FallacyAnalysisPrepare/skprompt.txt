@@ -1,7 +1,7 @@
 This is the first part of a multi-step workflow to do informal analysis of argumentative text through the idenfication of fallacies.
 Following is an extract of the main branches of a detailed taxonomy of fallacies, in json format.
 
-{{fallaciesShort}}
+[{path="1", Title="Insuficiency"},{path="2", Title="Influence"},{path="4", Title="Mathematical error"},{path="5", Title="Logical error"}, {path="6", Title="Cheating"},{path="7", Title="Obstruction"}]
 
 As a preparation for further analysis, analyse the following text to identify a couple fallacy branches, that might be useful to further detail in order to pinpoint fallacious arguments it contains.
 Answer with a comma separated list of fallacy paths.

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "Given a text in natural language text with statements or arguments, and given a branch of a taxonomy of fallacies given in json format, identify fallacious arguments belonging to that branch",
+  "description": "Given a text in natural language text with statements or arguments, and given a branch of a taxonomy of fallacies given in json format, identifies fallacious arguments belonging to that branch. This function is meant to be called by native function AnalyzeTextFallaciesInBranch that feeds the branch content as variables injected into the prompt.",
   "type": "completion",
   "completion": {
     "max_tokens": 200,

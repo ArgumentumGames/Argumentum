@@ -121,7 +121,7 @@ public class DatasetUpdaterConfig
 		const string pluginManifestUrl = "http://localhost:7071/.well-known/ai-plugin.json";
 		var argumentationPlugin = await kernel.ImportChatGptPluginSkillFromUrlAsync("ArgumentationPlugin", new Uri(pluginManifestUrl));
 
-		
+
 
 
 
@@ -132,7 +132,9 @@ public class DatasetUpdaterConfig
 
 		//var goal = "The following is the transcript or description of a debate. Return an analysis of the debate. The plan should like that: First, use TextToLogicType then TextToBeliefset then BeliefStateToQuery then QueryLogicReasoner, finally use LogicAnalysisToText to inject the text, belief set, query and result into an intepreter prompt that will return a human readable intepretation of the analysis.\n\n";
 
-		var goal = "The following is the transcript or description of a debate. Return an analysis of the debate. There are 2 pipelines for analysis, Informal analysis is a 3 step process based on fallacy identification. Formal analysis is based on running queries against belief sets, in propositional, first order or modal logic. Informal analysis might help guide formal analysis. Formal analysis steps are translation to belief set, identification of relevant queries, execution of the queries against belief set and interpretation of results.\n\n";
+		//var goal = "The following is the transcript or description of a debate. Return an analysis of the debate. There are 2 pipelines for analysis, Informal analysis is a 3 step process based on fallacy identification. Formal analysis is based on running queries against belief sets, in propositional, first order or modal logic. Informal analysis might help guide formal analysis. Formal analysis steps are translation to belief set, identification of relevant queries, execution of the queries against belief set and interpretation of results.\n\n";
+
+		var goal = "The following is the transcript of a debate with fallacious arguments. Please use the Fallacy functions to do fallacy analysis, starting with the prepare function to ellicit branches of analysis, then the branch analysis function, and then the complete for a wrap up.\n\n";
 
 
 		//var debateText = "Debate Context: Alice claims that if it's sunny, then Bob will go to the park. Bob says that it's indeed sunny, but he won't go to the park because he has work to do.";
@@ -144,7 +146,46 @@ public class DatasetUpdaterConfig
 
 		//var debateText = "Debate Context: In the nascent era of the United States, two significant groups, the Federalists and the Anti-Federalists, grappled with disagreements on the structure of the government.\r\n\r\nThe Federalists staunchly advocated for a robust central government. They postulated that the flourishing nation could only continue to grow and stabilize by upholding a range of fundamental conditions. Among these were: nurturing democratic traditions, ensuring the rule of law, maintaining an independent judiciary, promoting an enlightened citizenry, encouraging responsible citizenship, fostering a vibrant civil society, and preserving faith in the electoral process.\r\n\r\nWith significant emphasis, the Federalists contended that a strong central government was pivotal in coordinating comprehensive responses to national crises, including economic recessions, foreign invasions, and pandemics. They held the conviction that a unified action against these adversities would bolster national resilience and instill a sense of security within the citizenry.\r\n\r\nMoreover, they reasoned that an empowered central government, contrary to the fears of the Anti-Federalists, would be less likely to spiral into tyranny. A strong government, armed with the ability to enforce its laws uniformly across the states, they argued, would ensure that no single state could domineer over others or impose its will on the minority. Such a government would also effectively counterbalance the concentration of wealth and power.\r\n\r\nSimultaneously, the Federalists proposed that the Constitution, the blueprint of this central government, was designed to include checks and balances to prevent the misuse of power. They asserted that the Constitution was not merely an instrument for centralizing power, but was built to address the Anti-Federalist's fears about potential overreach by the central government.\r\n\r\nThe Anti-Federalists, despite recognizing the importance of the aforementioned conditions, remained apprehensive of a potent federal government. They voiced concerns that even with these safeguards in place, such a government might overstep its boundaries and infringe upon individual freedoms.\r\n\r\nHowever, both groups agreed on one crucial point: the rule of law and an independent judiciary were indispensable in checking any misuse of power. They jointly reasoned that a misuse of power would signify a compromised judiciary or a flouting of the rule of law. Conversely, they concurred that if these two conditions were steadfastly preserved, they would serve as robust bulwarks against power misuse.";
 
-		var debateText = "Debate Context: À l'aube de l'ère des États-Unis, deux groupes importants, les Fédéralistes et les Anti-Fédéralistes, se sont affrontés sur la structure du gouvernement.\r\n\r\nLes Fédéralistes ont fermement défendu l'idée d'un gouvernement central fort. Ils ont postulé que la nation en plein essor ne pourrait continuer à croître et à se stabiliser qu'en respectant un ensemble de conditions fondamentales. Parmi celles-ci figuraient la préservation des traditions démocratiques, l'application de l'état de droit, le maintien d'un pouvoir judiciaire indépendant, la promotion d'une citoyenneté éclairée, l'encouragement à une citoyenneté responsable, le soutien à une société civile dynamique et la préservation de la confiance dans le processus électoral.\r\n\r\nDe plus, les Fédéralistes ont soutenu que la Constitution, en tant que document fondateur, était conçue pour inclure des mécanismes de contrôle visant à prévenir les abus de pouvoir. Ils ont affirmé que la Constitution n'était pas simplement un instrument de centralisation du pouvoir, mais qu'elle était spécifiquement élaborée pour répondre aux préoccupations des Anti-Fédéralistes concernant un éventuel dépassement des limites par le gouvernement central.\r\n\r\nLes Anti-Fédéralistes, tout en reconnaissant l'importance des conditions énoncées, ont exprimé des préoccupations quant à un gouvernement central fort. Ils ont souligné que même avec ces mesures de sauvegarde en place, il y avait toujours un risque que le gouvernement central empiète sur les libertés individuelles et abuse de son pouvoir.\r\n\r\nCependant, les Fédéralistes et les Anti-Fédéralistes étaient d'accord sur un point crucial : le respect de l'état de droit et d'un pouvoir judiciaire indépendant était essentiel pour prévenir tout abus de pouvoir. Ils étaient d'accord sur le fait qu'un abus de pouvoir signifierait une compromission du pouvoir judiciaire ou une violation de l'état de droit. Inversement, ils étaient d'accord que si ces deux conditions étaient fermement respectées, elles serviraient de solides remparts contre tout abus de pouvoir.";
+		var debateText =
+			@"TRUMP: Thank you very much, Chris. I will tell you very simply. We won the election. Elections have consequences. We have the Senate, we have the White House, and we have a phenomenal nominee respected by all. Top, top academic, good in every way. Good in every way. In fact, some of her biggest endorsers are very liberal people from Notre Dame and other places. So I think she’s going to be fantastic. We have plenty of time. Even if we did it after the election itself. I have a lot of time after the election, as you know. So I think that she will be outstanding. She’s going to be as good as anybody that has served on that court. We really feel that. We have a professor at Notre Dame, highly respected by all, said she’s the single greatest student he’s ever had. He’s been a professor for a long time at a great school.
+
+And we won the election and therefore we have the right to choose her, and very few people knowingly would say otherwise. And by the way, the Democrats, they wouldn’t even think about not doing it. The only difference is they’d try and do it faster. There’s no way they would give it up. They had Merrick Garland, but the problem is they didn’t have the election so they were stopped. And probably that would happen in reverse, also. Definitely would happen in reverse. So we won the election and we have the right to do it, Chris.
+
+WALLACE: President Trump, thank you. Same question to you, Vice President Biden. You have two minutes.
+
+BIDEN: Well, first of all, thank you for doing this and looking forward to this, Mr. President.
+
+TRUMP: Thank you, Joe.
+
+BIDEN: The American people have a right to have a say in who the Supreme Court nominee is and that say occurs when they vote for United States Senators and when they vote for the President of United States. They’re not going to get that chance now because we’re in the middle of an election already. The election has already started. Tens of thousands of people already voted and so the thing that should happen is we should wait. We should wait and see what the outcome of this election is because that’s the only way the American people get to express their view is by who they elect as President and who they elect as Vice President.
+
+Now, what’s at stake here is the President’s made it clear, he wants to get rid of the Affordable Care Act. He’s been running on that, he ran on that and he’s been governing on that. He’s in the Supreme Court right now trying to get rid of the Affordable Care Act, which will strip 20 million people from having health insurance now, if it goes into court. And the justice, I’m not opposed to the justice, she seems like a very fine person. But she’s written, before she went in the bench, which is her right, that she thinks that the Affordable Care Act is not Constitutional. The other thing that’s on the court, and if it’s struck down, what happens? Women’s rights are fundamentally changed. Once again, a woman could pay more money because she has a pre-existing condition of pregnancy. They’re able to charge women more for the same exact procedure a man gets.
+
+And that ended when we, in fact, passed the Affordable Care Act, and there’s a hundred million people who have pre-existing conditions and they’ll be taken away as well. Those pre-existing conditions, insurance companies are going to love this. And so it’s just not appropriate to do this before this election. If he wins the election and the Senate is Republican, then he goes forward. If not, we should wait until February.
+
+TRUMP: There aren’t a hundred million people with pre-existing conditions. As far as a say is concerned, the people already had their say. Okay, Justice Ginsburg said very powerfully, very strongly, at some point 10 years ago or so, she said a President and the Senate is elected for a period of time, but a President is elected for four years. We’re not elected for three years. I’m not elected for three years. So we have the Senate, we have a President-
+
+BIDEN: He’s elected to the next election.
+
+TRUMP: During that period of time, during that period of time, we have an opening. I’m not elected for three years. I’m elected for four years. Joe, the hundred million people is totally wrong. I don’t know where you got that number. The bigger problem that you have is that you’re going to extinguish 180 million people with their private health care, that they’re very happy with.
+
+BIDEN: That’s simply not true.
+
+TRUMP: Well, you’re certainly going to socialist. You’re going to socialist medicine-
+
+WALLACE: Gentlemen, we’re now into open discussion.
+
+BIDEN: Open discussion.
+
+WALLACE: Open discussion, yes, I agree. Go ahead, Vice President.
+
+BIDEN: Number one, he knows what I proposed. What I proposed is that we expand Obamacare and we increase it. We do not wipe any. And one of the big debates we had with 23 of my colleagues trying to win the nomination that I won, were saying that Biden wanted to allow people to have private insurance still. They can. They do. They will under my proposal.
+
+TRUMP: That’s not what you’ve said and it’s not what your party is saying.
+
+BIDEN: That is simply a lie.";
+
+		//var debateText = "Debate Context: À l'aube de l'ère des États-Unis, deux groupes importants, les Fédéralistes et les Anti-Fédéralistes, se sont affrontés sur la structure du gouvernement.\r\n\r\nLes Fédéralistes ont fermement défendu l'idée d'un gouvernement central fort. Ils ont postulé que la nation en plein essor ne pourrait continuer à croître et à se stabiliser qu'en respectant un ensemble de conditions fondamentales. Parmi celles-ci figuraient la préservation des traditions démocratiques, l'application de l'état de droit, le maintien d'un pouvoir judiciaire indépendant, la promotion d'une citoyenneté éclairée, l'encouragement à une citoyenneté responsable, le soutien à une société civile dynamique et la préservation de la confiance dans le processus électoral.\r\n\r\nDe plus, les Fédéralistes ont soutenu que la Constitution, en tant que document fondateur, était conçue pour inclure des mécanismes de contrôle visant à prévenir les abus de pouvoir. Ils ont affirmé que la Constitution n'était pas simplement un instrument de centralisation du pouvoir, mais qu'elle était spécifiquement élaborée pour répondre aux préoccupations des Anti-Fédéralistes concernant un éventuel dépassement des limites par le gouvernement central.\r\n\r\nLes Anti-Fédéralistes, tout en reconnaissant l'importance des conditions énoncées, ont exprimé des préoccupations quant à un gouvernement central fort. Ils ont souligné que même avec ces mesures de sauvegarde en place, il y avait toujours un risque que le gouvernement central empiète sur les libertés individuelles et abuse de son pouvoir.\r\n\r\nCependant, les Fédéralistes et les Anti-Fédéralistes étaient d'accord sur un point crucial : le respect de l'état de droit et d'un pouvoir judiciaire indépendant était essentiel pour prévenir tout abus de pouvoir. Ils étaient d'accord sur le fait qu'un abus de pouvoir signifierait une compromission du pouvoir judiciaire ou une violation de l'état de droit. Inversement, ils étaient d'accord que si ces deux conditions étaient fermement respectées, elles serviraient de solides remparts contre tout abus de pouvoir.";
 
 		goal = goal + debateText;
 
@@ -152,12 +193,12 @@ public class DatasetUpdaterConfig
 		// to execute and achieve the goal requested.
 		//var plan = planner.CreatePlanAsync(goal).GetAwaiter().GetResult();
 
-		var plan = GetPLogicPlan(goal, argumentationPlugin, debateText, argumentationPlugin);
+		var plan = GetFallacyPlan(goal, argumentationPlugin, debateText, argumentationPlugin);
 
 
 		// Create a stepwise planner and invoke it
-		//var planner = new StepwisePlanner(kernel, new StepwisePlannerConfig(){MaxIterations = 30, MaxRelevantFunctions = 10, MaxTokens = 700});
-		////var question = "I have $2130.23. How much would I have after it grew by 24% and after I spent $5 on a latte?";
+		//var planner = new StepwisePlanner(kernel, new StepwisePlannerConfig() { MaxIterations = 30, MaxRelevantFunctions = 10, MaxTokens = 700 });
+		//////var question = "I have $2130.23. How much would I have after it grew by 24% and after I spent $5 on a latte?";
 		//var plan = planner.CreatePlan(goal);
 
 
@@ -245,6 +286,40 @@ public class DatasetUpdaterConfig
 		planStep.Parameters.Set("tweety_result", "$tweety_result");
 		planStep.Outputs.Add("human interpretation");
 		plan.AddSteps(planStep);
+		return plan;
+	}
+
+
+	private static Plan GetFallacyPlan(string goal, IDictionary<string, ISKFunction> tweetySemanticSkill, string debateText,
+		IDictionary<string, ISKFunction> tweetyNativeSkill)
+	{
+		var plan = new Plan(goal);
+		var planStep = new Plan(tweetySemanticSkill["FallacyAnalysisPrepare"]);
+		planStep.Parameters.Set("input",
+			debateText);
+		planStep.Parameters.Set("payload",
+			debateText);
+		planStep.Outputs.Add("fallacyBranches");
+		plan.AddSteps(planStep);
+
+		planStep = new Plan(tweetySemanticSkill["AnalyzeTextFallaciesInBranch"]);
+		planStep.Parameters.Set("input",
+			debateText);
+		planStep.Parameters.Set("payload", "$input");
+		planStep.Parameters.Set("baseFallacyPath", "");
+		planStep.Outputs.Add("BranchAnalysis1");
+		plan.AddSteps(planStep);
+
+		planStep = new Plan(tweetyNativeSkill["FallacyAnalysisComplete"]);
+		planStep.Parameters.Set("input", "$belief_set");
+		planStep.Parameters.Set("payload",
+			"$input");
+		planStep.Parameters.Set("belief_set", "$belief_set");
+		planStep.Parameters.Set("queries", "queries");
+		planStep.Outputs.Add("fallacyAnalysis");
+		plan.AddSteps(planStep);
+
+		
 		return plan;
 	}
 
