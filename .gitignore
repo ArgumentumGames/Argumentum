@@ -359,3 +359,4 @@ MigrationBackup/
 #Bin DNN
 
 !/DNNPlatform/bin/
+/Chatgpt-plugin/azure-function/local.settings.json
