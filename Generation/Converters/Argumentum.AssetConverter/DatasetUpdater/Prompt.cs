@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OpenAI.GPT3;
-using OpenAI.GPT3.Managers;
-using OpenAI.GPT3.ObjectModels;
-using OpenAI.GPT3.ObjectModels.RequestModels;
+using OpenAI;
+using OpenAI.Managers;
+using OpenAI.ObjectModels;
+using OpenAI.ObjectModels.RequestModels;
+
 
 namespace Argumentum.AssetConverter;
 
@@ -14,7 +15,7 @@ public class Prompt
 
 	private OpenAIService openAiService ;
 
-	public string Model { get; set; } = Models.ChatGpt3_5Turbo;
+	public string Model { get; set; } = Models.Gpt_3_5_Turbo;
 
 	public string ApiKey { get; set; }
 
@@ -42,7 +43,7 @@ public class Prompt
 
 	public async Task<string> Send()
 	{
-		Model = Models.ChatGpt3_5Turbo;
+		Model = Models.Gpt_3_5_Turbo;
 		var completionResult = await OpenAiService.ChatCompletion.CreateCompletion(new ChatCompletionCreateRequest
 		{
 			Messages = new List<ChatMessage>
