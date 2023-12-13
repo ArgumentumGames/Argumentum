@@ -15,7 +15,7 @@ public class Prompt
 
 	private OpenAIService openAiService ;
 
-	public string Model { get; set; } = Models.Gpt_3_5_Turbo;
+	public string Model { get; set; } = Models.Gpt_3_5_Turbo_1106;
 
 	public string ApiKey { get; set; }
 
@@ -24,6 +24,9 @@ public class Prompt
 	public PromptExample Example { get; set; }
 
 	public string UserPrompt { get; set; }
+
+
+	public Action<string> Tokenizer { get; set; }
 
 	public OpenAIService OpenAiService
 	{
@@ -43,9 +46,17 @@ public class Prompt
 
 	public async Task<string> Send()
 	{
-		Model = Models.Gpt_3_5_Turbo;
+		if (Tokenizer != null)
+		{
+			Tokenizer(SystemPrompt);
+			Tokenizer(Example.UserPrompt);
+			Tokenizer(Example.Answer);
+			Tokenizer(UserPrompt);
+		}
+
 		var completionResult = await OpenAiService.ChatCompletion.CreateCompletion(new ChatCompletionCreateRequest
 		{
+			
 			Messages = new List<ChatMessage>
 			{
 				ChatMessage.FromSystem(SystemPrompt),
@@ -58,7 +69,13 @@ public class Prompt
 		});
 		if (completionResult.Successful)
 		{
-			return (completionResult.Choices.First().Message.Content);
+			var messageContent = completionResult.Choices.First().Message.Content;
+			if (Tokenizer != null)
+			{
+				Tokenizer(messageContent);
+				
+			}
+			return messageContent;
 		}
 		throw new ApplicationException(completionResult.Error?.Message ?? "Unsuccessful");
 	}

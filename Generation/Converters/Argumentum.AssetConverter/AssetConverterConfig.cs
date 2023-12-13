@@ -19,7 +19,9 @@ namespace Argumentum.AssetConverter
     public class AssetConverterConfig
     {
 
-		public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration;
+	    public bool SkipConfigFile { get; set; } = true;
+
+		public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -64,7 +66,16 @@ namespace Argumentum.AssetConverter
 
 			toReturn = JsonSerializer.Deserialize<AssetConverterConfig>(configStream);
 
-			Logger.Log($"Config loaded: {path}");
+			if (toReturn.SkipConfigFile)
+			{
+				Logger.Log($"Config loaded and skipped: {path}");
+				toReturn = new AssetConverterConfig();
+			}
+			else
+			{
+				Logger.Log($"Config loaded: {path}");
+			}
+			
 			return toReturn;
         }
 
