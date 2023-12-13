@@ -8,31 +8,34 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.DatasetUpdater;
 using OpenAI.ObjectModels;
+using System.Threading;
 
 namespace Argumentum.AssetConverter;
 
 public class DatasetUpdaterConfig
 {
-	public string SystemPrompt { get; set; } = Resource1.JsonPromptSystem;
+	public string SystemPrompt { get; set; } = Resource1.VirtuesJsonPromptSystem;
 
-	public string UserPrompt { get; set; } = Resource1.JsonPromptSampleUser;
+	public string UserPrompt { get; set; } = Resource1.VirtuesJsonPromptSampleUser;
 
 
-	public string AssistantPrompt { get; set; } = Resource1.JsonPromptSampleAssistant;
+	public string AssistantPrompt { get; set; } = Resource1.VirtuesJsonPromptSampleAssistant;
 
 	public string OpenAIKeyPath { get; set; } = @"G:\Mon Drive\MyIA\Argumentum\Fallacies\Gestion\OpenAI-Key.txt";
 
-	public string Model { get; set; } = Models.Gpt_3_5_Turbo;
+	public string Model { get; set; } = Models.Gpt_4_1106_preview;
+
+	public int MaxTokensPerMinute { get; set; } = 70000;
 
 	public int ChunkSize { get; set; } = 3;
 
-	public int NbMessageCalls { get; set; } = 3;
+	public int NbMessageCalls { get; set; } = 1;
 
-	public int SkipChunkNb { get; set; } = 0;
+	public int SkipChunkNb { get; set; } = 30;
 
-	public int TakeChunkNb { get; set; } = 0;
+	public int TakeChunkNb { get; set; } = 30;
 
-	public int MaxDegreeOfParallelismWebService { get; set; } = 8;
+	public int MaxDegreeOfParallelismWebService { get; set; } = 1;
 
 	public List<string> FieldsToInclude { get; set; } = new List<string>(new[]
 	{
@@ -50,7 +53,7 @@ public class DatasetUpdaterConfig
 
 	public List<string> FieldsToUpdate { get; set; } = new List<string>(new[]
 	{
-		//"title_fr",
+		"title_fr",
 		"description_fr",
 		"remark_fr",
 		"link_fr"
@@ -69,7 +72,21 @@ public class DatasetUpdaterConfig
 	public async Task Apply(bool useDebugPath)
 	{
 		var openAIKey = await File.ReadAllTextAsync(OpenAIKeyPath);
+		var cts = new CancellationTokenSource();
+		var token = cts.Token;
 
+		Task.Run(async () =>
+		{
+			while (!token.IsCancellationRequested)
+			{
+				if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)
+				{
+					cts.Cancel();
+					Logger.Log("Cancel asked by user");
+				}
+				await Task.Delay(100, token);
+			}
+		});
 
 		try
 		{
@@ -88,37 +105,45 @@ public class DatasetUpdaterConfig
 				chunks = chunks.Take(TakeChunkNb).ToList();
 			}
 
-			var csvAnswers = new ConcurrentBag<string>();
+			var answers = new ConcurrentBag<string>();
 
+			var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
 
-
-			var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService };
-			await Parallel.ForEachAsync(chunks, parallelOptions, async (chunk, token) =>
+			var parallelOptions = new ParallelOptions
 			{
-				SystemPrompt = Resource1.JsonPromptSystem;
+				MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
+				CancellationToken = token
+			};
+			await Parallel.ForEachAsync(chunks, parallelOptions, async (chunk, ct) =>
+			{
+				ct.ThrowIfCancellationRequested();
 				var dataPrompt = new Prompt()
 				{
 					ApiKey = openAIKey,
+					Model = Model,
 					SystemPrompt = SystemPrompt,
 					Example = new PromptExample()
 					{
 						UserPrompt = UserPrompt,
 						Answer = AssistantPrompt
 					},
-					UserPrompt = chunk
+					UserPrompt = chunk,
+					Tokenizer = tokenManager.TokenizerAction
 				};
 
 				string result = "";
 
 				for (int i = 0; i < NbMessageCalls; i++)
 				{
+					ct.ThrowIfCancellationRequested();
 					Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
 					
 					try
 					{
+						tokenManager.WaitForTokenAvailability();
 						result = await dataPrompt.Send();
 						//result = chunk;
-						Logger.Log($"ChatGPT answered \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
+						Logger.Log($"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
 						dataPrompt.UserPrompt = result;
 					}
 					catch (Exception e)
@@ -129,13 +154,13 @@ public class DatasetUpdaterConfig
 				
 
 
-				csvAnswers.Add(result);
+				answers.Add(result);
 			});
 
 
 
 			// Merge answers into one csv
-			var mergedCsv = await SourceDataset.MergeJsonResponsesIntoCsv(csvAnswers.ToList(), PrimaryField, FieldsToUpdate, ",", false);
+			var mergedCsv = await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",", false);
 
 
 			// Save mergedCsv to file
@@ -163,6 +188,10 @@ public class DatasetUpdaterConfig
 
 			Logger.Log("Completed ChatGPT calls and saved the output to " + TargetPath);
 		}
+		catch (OperationCanceledException)
+		{
+			Logger.Log("Operation cancelled by user.");
+		}
 		catch (Exception ex)
 		{
 			Logger.LogException(ex);
@@ -170,6 +199,6 @@ public class DatasetUpdaterConfig
 
 	}
 
-	
+
 
 }

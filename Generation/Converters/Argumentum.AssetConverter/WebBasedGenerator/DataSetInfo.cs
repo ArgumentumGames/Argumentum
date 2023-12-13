@@ -189,11 +189,18 @@ public class DataSetInfo
 
 		foreach (var response in responses)
 		{
-			if (!string.IsNullOrEmpty(response))
+			var currentResponse = response;
+			if (!string.IsNullOrEmpty(currentResponse))
 			{
 				try
 				{
-					var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(response);
+					if (!currentResponse.StartsWith("["))
+					{
+						currentResponse = currentResponse.Substring(currentResponse.IndexOf("[", StringComparison.InvariantCulture));
+						currentResponse = currentResponse.Substring(0, currentResponse.LastIndexOf("]", StringComparison.InvariantCulture) + 1);
+
+					}
+					var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
 
 					foreach (var record in records)
 					{
