@@ -106,6 +106,56 @@ namespace Argumentum.AssetConverter.DatasetUpdater {
         ///		&quot;description_fr&quot;: &quot;Syllogisme de mode parfait où le terme moyen est un sujet dans la première prémisse et un prédicat dans la seconde prémisse&quot;,
         ///		&quot;remark_fr&quot;: &quot;Syllogisme du type Tout M est P, or tout S est M, donc tout S est P. Exemple: Tous les félidés sont sympathiques, Tous les chats sont des félidés, [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
+        internal static string FallaciesJsonPromptSampleAssistant {
+            get {
+                return ResourceManager.GetString("FallaciesJsonPromptSampleAssistant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à [
+        ///	{
+        ///		&quot;path&quot;: &quot;4.3.3.1.2.1.1&quot;,
+        ///		&quot;family_fr&quot;: &quot;Raisonnement valide&quot;,
+        ///		&quot;subfamily_fr&quot;: &quot;Déductions correctes&quot;,
+        ///		&quot;subsubfamily_fr&quot;: &quot;Raisonnement concluant&quot;,
+        ///		&quot;title_fr&quot;: &quot;Sylogisme Babara&quot;,
+        ///		&quot;description_fr&quot;: &quot;Le syllogisme Barbara est un syllogisme de mode parfait&quot;,
+        ///		&quot;remark_fr&quot;: &quot;Le syllogisme Barbara est un exemple de syllogisme de mode parfait qui présente une structure de raisonnement concluant particulièrement forte.&quot;,
+        ///		&quot;link_fr&quot;: &quot;&quot;
+        ///	},
+        ///	{
+        ///		&quot;path&quot;: &quot;1.1&quot;,
+        ///		&quot;family_fr&quot;: &quot;Argument  [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string FallaciesJsonPromptSampleUser {
+            get {
+                return ResourceManager.GetString("FallaciesJsonPromptSampleUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous incarnez un éditeur de Json hautement compétent, dont la mission consiste à corriger les champs d&apos;un document Json. Le document à modifier a été divisé en portions de Json qui vous sont soumises sous forme de prompts d&apos;utilisateur. Votre réponse doit contenir la même structure, mais avec les champs corrigés.
+        ///
+        ///Le fichier Json à mettre à jour contient des éléments d&apos;une taxonomie d&apos;arguments vertueux en français. Ce travail vise à contrer une taxonomie de sophismes. Les deux taxonomies utilisent des te [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string FallaciesJsonPromptSystem {
+            get {
+                return ResourceManager.GetString("FallaciesJsonPromptSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à [
+        ///	{
+        ///		&quot;path&quot;: &quot;4.3.3.1.2.1.1&quot;,
+        ///		&quot;family_fr&quot;: &quot;Raisonnement valide&quot;,
+        ///		&quot;subfamily_fr&quot;: &quot;Déductions correctes&quot;,
+        ///		&quot;subsubfamily_fr&quot;: &quot;Raisonnement concluant&quot;,
+        ///		&quot;title_fr&quot;: &quot;Syllogisme Barbara&quot;,
+        ///		&quot;description_fr&quot;: &quot;Syllogisme de mode parfait où le terme moyen est un sujet dans la première prémisse et un prédicat dans la seconde prémisse&quot;,
+        ///		&quot;remark_fr&quot;: &quot;Syllogisme du type Tout M est P, or tout S est M, donc tout S est P. Exemple: Tous les félidés sont sympathiques, Tous les chats sont des félidés, [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
         internal static string VirtuesJsonPromptSampleAssistant {
             get {
                 return ResourceManager.GetString("VirtuesJsonPromptSampleAssistant", resourceCulture);
@@ -119,13 +169,13 @@ namespace Argumentum.AssetConverter.DatasetUpdater {
         ///		&quot;family_fr&quot;: &quot;Raisonnement valide&quot;,
         ///		&quot;subfamily_fr&quot;: &quot;Déductions correctes&quot;,
         ///		&quot;subsubfamily_fr&quot;: &quot;Raisonnement concluant&quot;,
-        ///		&quot;title_fr&quot;: &quot;Syllogisme Barbara&quot;,
+        ///		&quot;title_fr&quot;: &quot;Sylogisme Babara&quot;,
         ///		&quot;description_fr&quot;: &quot;Le syllogisme Barbara est un syllogisme de mode parfait&quot;,
         ///		&quot;remark_fr&quot;: &quot;Le syllogisme Barbara est un exemple de syllogisme de mode parfait qui présente une structure de raisonnement concluant particulièrement forte.&quot;,
         ///		&quot;link_fr&quot;: &quot;&quot;
         ///	},
         ///	{
-        ///		&quot;path&quot;: &quot;1&quot;,
+        ///		&quot;path&quot;: &quot;1.1&quot;,
         ///		&quot;family_fr&quot;: &quot;Argument  [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string VirtuesJsonPromptSampleUser {

@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Betalgo.OpenAI" Version="7.4.2" />
+    <PackageReference Include="Betalgo.OpenAI.Utilities" Version="7.0.3" />
     <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="ExtendedXmlSerializer" Version="3.7.11" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.5.0" />
