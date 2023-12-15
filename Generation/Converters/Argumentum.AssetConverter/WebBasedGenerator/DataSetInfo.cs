@@ -69,16 +69,7 @@ public class DataSetInfo
 
 		if (!string.IsNullOrEmpty(csvFilterField) && csvFilterValues != null && csvFilterValues.Any())
 		{
-			var dataTable = LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
-
-			var filteredRows = dataTable.AsEnumerable()
-				.Where(row => csvFilterValues.Contains(row[csvFilterField]?.ToString()));
-
-			var filteredTable = dataTable.Clone();
-			foreach (var row in filteredRows)
-			{
-				filteredTable.ImportRow(row);
-			}
+			var filteredTable = GetDataTableFromCsv(delimiterIn, primaryKeyColumn, csvFilterField, csvFilterValues, content);
 
 			using var textWriter = new StringWriter();
 			using var csvWriter = new CsvWriter(textWriter, CultureInfo.InvariantCulture);
@@ -90,6 +81,8 @@ public class DataSetInfo
 
 		return content;
 	}
+
+	
 
 	public async Task<List<string>> SplitContentIntoChunks(int chunkSize, string delimiterIn, string delimiterOut, string primaryKeyColumn)
 	{
@@ -157,23 +150,14 @@ public class DataSetInfo
 	}
 
 
-	public async Task<List<string>> SplitContentIntoJsonChunks(int chunkSize, List<string> fieldsToInclude,
-		bool useDebugPath)
+	public List<string> SplitContentIntoJsonChunks(List<Dictionary<string, object>> records, int chunkSize)
 	{
-		var content = await GetContent(useDebugPath); // consider handling this async call properly
-		using var textReader = new StringReader(content);
-		var configIn = new CsvConfiguration(CultureInfo.InvariantCulture);
-		using var csvReader = new CsvReader(textReader, configIn);
-		var records = csvReader.GetRecords<dynamic>().ToList();
 
+		
 		var chunks = new List<string>();
 		for (var i = 0; i < records.Count; i += chunkSize)
 		{
-			var chunkRecords = records.Skip(i).Take(chunkSize).Select(record =>
-			{
-				var recordDict = (IDictionary<string, object>)record;
-				return recordDict.Where(pair => fieldsToInclude.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value);
-			});
+			var chunkRecords = records.Skip(i).Take(chunkSize);
 			string jsonChunk = JsonConvert.SerializeObject(chunkRecords, Formatting.Indented);
 			chunks.Add(jsonChunk);
 		}
@@ -181,79 +165,106 @@ public class DataSetInfo
 		return chunks;
 	}
 
-	public async Task<string> MergeJsonResponsesIntoCsv(List<string> responses, string primaryKeyColumn,
-		List<string> fieldsToUpdate, string delimiterOut, bool addNewRows)
+
+	public List<string> SplitContentIntoJsonChunks(List<List<Dictionary<string, object>>> hierarchicalRecords)
 	{
-		var existingContent = await GetContent(false);  // Assuming we load the existing data
-		var resultTable = LoadCsvIntoDataTable(existingContent, delimiterOut, primaryKeyColumn);
 
-		foreach (var response in responses)
+		var chunks = new List<string>();
+
+		foreach (var hierarchicalRecordList in hierarchicalRecords)
 		{
-			var currentResponse = response;
-			if (!string.IsNullOrEmpty(currentResponse))
-			{
-				try
-				{
-					if (!currentResponse.StartsWith("["))
-					{
-						currentResponse = currentResponse.Substring(currentResponse.IndexOf("[", StringComparison.InvariantCulture));
-						currentResponse = currentResponse.Substring(0, currentResponse.LastIndexOf("]", StringComparison.InvariantCulture) + 1);
-
-					}
-					var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
-
-					foreach (var record in records)
-					{
-						var row = resultTable.Rows.Find(record[primaryKeyColumn]);
-
-						if (addNewRows && row == null)
-						{
-							row = resultTable.NewRow();
-							resultTable.Rows.Add(row);
-						}
-
-						if (row != null)
-						{
-							foreach (var pair in record)
-							{
-								if (pair.Key != primaryKeyColumn)
-								{
-									if (fieldsToUpdate.Contains(pair.Key))
-									{
-										resultTable.Columns[pair.Key].ReadOnly = false;
-										row[pair.Key] = pair.Value;
-									}
-
-								}
-							}
-						}
-					}
-				}
-				catch (Exception e)
-				{
-					Logger.LogException(e);
-				}
-			}
+			var jsonChunk = JsonConvert.SerializeObject(hierarchicalRecordList, Formatting.Indented);
+			chunks.Add(jsonChunk);
 		}
 
-		// Serialize final table into a CSV
-		using var stringWriter = new StringWriter();
-		var configOut = new CsvConfiguration(CultureInfo.InvariantCulture)
+		return chunks;
+
+	}
+
+	public List<List<Dictionary<string, object>>> GetHierarchicalRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel)
+	{
+		
+		var hierarchicalRecords = new List<List<Dictionary<string, object>>>();
+
+		var rootRecords = records.Where(record => (record[pkField].ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == pKHierarchyLevel-1).ToList();
+		var rootWithParentsSiblingsAndChildrenRecords = rootRecords.Select(rootRecord => GetRecordHierarchy(records, pkField, pKHierarchicalChar, pKHierarchyLevel, rootRecord)).ToList();
+
+		return rootWithParentsSiblingsAndChildrenRecords;
+	}
+
+	public static List<Dictionary<string, object>> GetRecordHierarchy(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel,
+		Dictionary<string, object> rootRecord)
+	{
+		var currentRecord = rootRecord;
+		var currentRecordPk = currentRecord[pkField].ToString();
+		var childrenRecords = records.Where(record => record[pkField].ToString() != currentRecordPk
+			&& record[pkField].ToString().StartsWith(currentRecordPk)).ToList();
+		var currentRecordHierarchy = childrenRecords;
+		for (var parentLevel = 1; parentLevel <= pKHierarchyLevel; parentLevel++)
 		{
-			Delimiter = delimiterOut
-		};
-		using var csvWriter = new CsvWriter(stringWriter, configOut);
+			var siblingsRecords = records.Where(record =>
+					record[pkField].ToString().Length == currentRecordPk.Length 
+					&& (currentRecordPk.Length == 1 
+					    || record[pkField].ToString()
+						.StartsWith(currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar) + 1))))
+				.ToList();
+			var newHierarchy = new List<Dictionary<string, object>>();
+			foreach (var siblingRecord in siblingsRecords)
+			{
+				var siblingRecordPk = siblingRecord[pkField].ToString();
+				newHierarchy.Add(siblingRecord);
+				if (siblingRecordPk == currentRecordPk)
+				{
+					newHierarchy.AddRange(currentRecordHierarchy);
+				}
+			}
 
-		csvWriter.ExportDataTable(resultTable);
+			if (parentLevel < pKHierarchyLevel)
+			{
+				currentRecordPk = currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar));
+			}
+			currentRecordHierarchy = newHierarchy;
+		}
 
-		return stringWriter.ToString();
+		return currentRecordHierarchy;
 	}
 
 
+	public List<Dictionary<string, object>> GetDictionaryFromCsv(string content, List<string> fieldsToInclude, bool useDebugPath)
+	{
+		
+		using var textReader = new StringReader(content);
+		var configIn = new CsvConfiguration(CultureInfo.InvariantCulture);
+		using var csvReader = new CsvReader(textReader, configIn);
+		var records = csvReader.GetRecords<dynamic>().ToList();
+		var recordsDictionary = records.Select(record =>
+		{
+			var recordDict = (IDictionary<string, object>)record;
+			return recordDict.Where(pair => fieldsToInclude.Contains(pair.Key))
+				.ToDictionary(pair => pair.Key, pair => pair.Value);
+		}).ToList();
+		return recordsDictionary;
+	}
+
+	public DataTable GetDataTableFromCsv(string delimiterIn, string primaryKeyColumn, string csvFilterField,
+		IList<string> csvFilterValues, string content)
+	{
+		var dataTable = LoadCsvIntoDataTable(content, delimiterIn, primaryKeyColumn);
+
+		var filteredRows = dataTable.AsEnumerable()
+			.Where(row => csvFilterValues.Contains(row[csvFilterField]?.ToString()));
+
+		var filteredTable = dataTable.Clone();
+		foreach (var row in filteredRows)
+		{
+			filteredTable.ImportRow(row);
+		}
+
+		return filteredTable;
+	}
 
 
-
-	private DataTable LoadCsvIntoDataTable(string content, string delimiter, string primaryKeyColumn)
+	public static DataTable LoadCsvIntoDataTable(string content, string delimiter, string primaryKeyColumn)
 	{
 		using var textReader = new StringReader(content);
 		var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -273,4 +284,96 @@ public class DataSetInfo
 	}
 
 
+	//public async Task<string> MergeJsonResponsesIntoCsv(List<string> responses, string primaryKeyColumn,
+	//	List<string> fieldsToUpdate, string delimiterOut, bool addNewRows)
+	//{
+	//	var existingContent = await GetContent(false);  // Assuming we load the existing data
+	//	var resultTable = LoadCsvIntoDataTable(existingContent, delimiterOut, primaryKeyColumn);
+
+	//	foreach (var response in responses)
+	//	{
+	//		var currentResponse = response;
+	//		if (!string.IsNullOrEmpty(currentResponse))
+	//		{
+	//			try
+	//			{
+	//				var records = GetDictionaryRecordsFromJson(currentResponse);
+
+	//				UpdateTableFromRecords(primaryKeyColumn, fieldsToUpdate, addNewRows, records, resultTable);
+	//			}
+	//			catch (Exception e)
+	//			{
+	//				Logger.LogException(e);
+	//			}
+	//		}
+	//	}
+
+	//	return WriteDataTableToCsv(delimiterOut, resultTable);
+	//}
+
+	public static string WriteDataTableToCsv(DataTable resultTable, string delimiterOut)
+	{
+		// Serialize final table into a CSV
+		using var stringWriter = new StringWriter();
+		var configOut = new CsvConfiguration(CultureInfo.InvariantCulture)
+		{
+			Delimiter = delimiterOut
+		};
+		using var csvWriter = new CsvWriter(stringWriter, configOut);
+
+		csvWriter.ExportDataTable(resultTable);
+
+		return stringWriter.ToString();
+	}
+
+	public static void UpdateTableFromRecords(string primaryKeyColumn, List<string> fieldsToUpdate, bool addNewRows, List<Dictionary<string, object>> records,
+		DataTable resultTable)
+	{
+		foreach (var record in records)
+		{
+			var row = resultTable.Rows.Find(record[primaryKeyColumn]);
+
+			if (addNewRows && row == null)
+			{
+				row = resultTable.NewRow();
+				resultTable.Rows.Add(row);
+			}
+
+			if (row != null)
+			{
+				UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, resultTable, row);
+			}
+		}
+	}
+
+	public static void UpdateTableRow(string primaryKeyColumn, List<string> fieldsToUpdate, Dictionary<string, object> record,
+		DataTable resultTable, DataRow row)
+	{
+		foreach (var pair in record)
+		{
+			if (pair.Key != primaryKeyColumn)
+			{
+				if (fieldsToUpdate.Contains(pair.Key))
+				{
+					resultTable.Columns[pair.Key].ReadOnly = false;
+					row[pair.Key] = pair.Value;
+				}
+			}
+		}
+	}
+
+	public static List<Dictionary<string, object>> GetDictionaryRecordsFromJson(string currentResponse)
+	{
+		if (!currentResponse.StartsWith("["))
+		{
+			currentResponse = currentResponse.Substring(currentResponse.IndexOf("[", StringComparison.InvariantCulture));
+			currentResponse =
+				currentResponse.Substring(0, currentResponse.LastIndexOf("]", StringComparison.InvariantCulture) + 1);
+		}
+
+		var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
+		return records;
+	}
+
+	
 }
