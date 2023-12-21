@@ -142,12 +142,14 @@ If you're interested in helping with the data at the heart of this project, cons
 * [Argumentum Fallacies](https://docs.google.com/spreadsheets/d/1TrQUyzXMMM-9pHdNWz1fdJ3xQ5XcHgwVH52SOnM61ow/edit?usp=sharing)
 * [Argumentum Scenarii](https://docs.google.com/spreadsheets/d/1SQb9R7Dpi0jPz2JX-HXk1WFn9t68e3aq9MCGif7lM10/edit?usp=sharing)
 * [Argumentum Rules](https://docs.google.com/spreadsheets/d/1jnhlod6PLgvVI-Qgrz3sTYytMgnrMyZrHcc8htPn_DQ/edit?usp=sharing)
+* [Argumentum Virtues](https://docs.google.com/spreadsheets/d/1Asxe0Kb3_pLUSWJnB1HNiBG_EOaz_oU_X3eO9ixnVhA/edit?usp=sharing)
 
 The content is regularly exported to CSV files in this repository to the following files:
 
 - [Argumentum Fallacies - Taxonomy.csv](/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv)
 - [Argumentum Scenarii - Cards.csv](/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv)       
 - [Argumentum Rules - Cards.csv](/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv)
+- [Argumentum Virtues - Taxonomy.csv](/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv)
 
 Direct Pull requests are welcom too.
 
