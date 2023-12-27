@@ -240,6 +240,11 @@ namespace Argumentum.AssetConverter
 			return new DocumentPayload() { FileName = fileName, Content = content, MimeType = mimeType };
 		}
 
+		public static async Task<string> GetDocumentContent(this string docPath)
+		{
+			var payload = await docPath.GetDocumentPayload();
+			return Encoding.UTF8.GetString(payload.Content);
+		}
 
 
 		private static object lockObj = new object();

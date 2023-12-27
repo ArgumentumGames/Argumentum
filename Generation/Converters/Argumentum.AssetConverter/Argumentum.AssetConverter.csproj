@@ -39,6 +39,30 @@
   </ItemGroup>
 	
   <ItemGroup>
+    <None Update="DatasetUpdater\Resources\PromptDocumentsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptDocumentsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptGeneralSystem.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsUserExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSampleAssistant.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSampleUser.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSystem.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Logo_Argumentum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

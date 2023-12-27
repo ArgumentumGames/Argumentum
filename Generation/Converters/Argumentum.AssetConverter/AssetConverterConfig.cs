@@ -7,7 +7,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Argumentum.AssetConverter.DatasetUpdater;
 using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Mindmapper;
 using OpenAI.ObjectModels;
@@ -21,6 +20,9 @@ namespace Argumentum.AssetConverter
 {
     public class AssetConverterConfig
     {
+
+		private const string PromptsRootPath = @".\DatasetUpdater\Resources\";
+
 
 	    public bool SkipConfigFile { get; set; } = true;
 
@@ -65,18 +67,23 @@ namespace Argumentum.AssetConverter
 				},
 				PrimaryField = "path",
 				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
-				SystemPrompt = Resource1.VirtuesJsonPromptSystem,
-				AddPromptSample = true,
-				UserPrompt = Resource1.VirtuesJsonPromptSampleUser,
-				AssistantPrompt = Resource1.VirtuesJsonPromptSampleAssistant,
-				Model = Models.Gpt_4_1106_preview,
+				SystemPromptPath = PromptsRootPath + "VirtuesJsonPromptSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "VirtuesJsonPromptSampleUser.json",
+						AssistantAnswerPath = PromptsRootPath + "VirtuesJsonPromptSampleAssistant.json"
+					}
+				},
+				Model = Models.Gpt_3_5_Turbo_1106,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 3,
 				UseFunctionCalling = false,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
-				TakeChunkNb = 3,
+				TakeChunkNb = -1,
 				MaxDegreeOfParallelismWebService = 2
 			},
 			new DatasetUpdaterConfig()
@@ -97,31 +104,47 @@ namespace Argumentum.AssetConverter
 					"text_fr",
 					"desc_fr",
 					"example_fr",
+					"carte",
 					//"link_fr"
 				},
 				FieldsToUpdate = new List<string>()
 				{
 					//"path",
-					"text_fr",
-					"desc_fr",
+					//"text_fr",
+					//"desc_fr",
 					"example_fr",
 					//"link_fr"
 				},
 				PrimaryField = "path",
-				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
-				SystemPrompt = Resource1.FallaciesJsonPromptSystem,
-				AddPromptSample = false,
-				UserPrompt = Resource1.FallaciesJsonPromptSampleUser,
-				AssistantPrompt = Resource1.FallaciesJsonPromptSampleAssistant,
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDocumentsUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDocumentsAssistant.txt"
+					},
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptInstructionsUserExamples.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptInstructionsAssistantExamples.txt"
+					}
+				},
 				Model = Models.Gpt_4_1106_preview,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
 				PKHierarchyLevel = 3,
 				UseFunctionCalling = true,
+				//FunctionName = nameof(RecordsUpdater.UpdateRecord),
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
-				TakeChunkNb = 1,
-				MaxDegreeOfParallelismWebService = 2
+				TakeChunkNb = -1,
+				MaxDegreeOfParallelismWebService = 3,
+				CompareMode = false,
+				AutoCompare = true,
+				AutoCompareField = "text_fr",
+				CompareField = "example_fr"
 			}
 		};
 
