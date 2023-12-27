@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Argumentum.AssetConverter.DatasetUpdater;
 using OpenAI.ObjectModels;
 using System.Threading;
 using OpenAI.Utilities.FunctionCalling;
@@ -22,14 +22,11 @@ public class DatasetUpdaterConfig
 
 	public bool Enabled { get; set; } = true;
 
-	public string SystemPrompt { get; set; } = Resource1.VirtuesJsonPromptSystem;
-
-	public bool AddPromptSample { get; set; }
-
-	public string UserPrompt { get; set; } = Resource1.VirtuesJsonPromptSampleUser;
+	public string SystemPromptPath { get; set; }
 
 
-	public string AssistantPrompt { get; set; } = Resource1.VirtuesJsonPromptSampleAssistant;
+	public List<PromptExample> DialogPrompts { get; set; } = new();
+
 
 	public string OpenAIKeyPath { get; set; } = @"G:\Mon Drive\MyIA\Argumentum\Fallacies\Gestion\OpenAI-Key.txt";
 
@@ -39,7 +36,7 @@ public class DatasetUpdaterConfig
 
 	public DivisionMode DivisionMode { get; set; }
 
-	
+
 	public int ChunkSize { get; set; } = 3;
 
 	public Char PKHierarchicalChar { get; set; } = '.';
@@ -48,65 +45,36 @@ public class DatasetUpdaterConfig
 
 	public bool UseFunctionCalling { get; set; } = false;
 
+	public string FunctionName { get; set; }
+
 	public int NbMessageCalls { get; set; } = 1;
 
-	public int SkipChunkNb { get; set; } = 30;
+	public int SkipChunkNb { get; set; } = 0;
 
-	public int TakeChunkNb { get; set; } = 0;
+	public int TakeChunkNb { get; set; } = -1;
+
+	public bool RandomizeChunks { get; set; }
 
 	public int MaxDegreeOfParallelismWebService { get; set; } = 2;
 
-	public List<string> FieldsToInclude { get; set; } = new List<string>(new[]
-	{
-		//Virtues
-		"path",
-		"family_fr",
-		"subfamily_fr",
-		"subsubfamily_fr",
-		"title_fr",
-		"description_fr",
-		"remark_fr",
-		"link_fr"
+	public List<string> FieldsToInclude { get; set; } = new();
 
-		//Fallacies
-		//"path",
-		//"Famille",
-		//"Sous-Famille",
-		//"Soussousfamille",
-		//"text_fr",
-		//"desc_fr",
-		//"example_fr",
-		//"link_fr"
 
-	});
+	public string PrimaryField { get; set; } = "";
 
-	public string PrimaryField { get; set; } = "path";
+	public List<string> FieldsToUpdate { get; set; } = new();
 
-	public List<string> FieldsToUpdate { get; set; } = new List<string>(new[]
-	{
-		//Virtues
-		"title_fr",
-		"description_fr",
-		"remark_fr",
-		"link_fr"
+	public DataSetInfo SourceDataset { get; set; } = new();
 
-		//Fallacies
-		//"path",
-		//"text_fr",
-		//"desc_fr",
-		//"example_fr",
-		//"link_fr"
-	});
+	public string TargetPath { get; set; } = "";
 
-	public DataSetInfo SourceDataset { get; set; } = new DataSetInfo()
-	{
-		Name = "Argumentum - Virtues - Taxonomy",
-		ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
-		DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Virtues - Taxonomy.csv",
-	};
 
-	public string TargetPath { get; set; } = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv";
+	public bool CompareMode { get; set; }
 
+
+	public string CompareField { get; set; }
+	public bool AutoCompare { get; set; }
+	public string AutoCompareField { get; set; } = "";
 
 	public async Task Apply(bool useDebugPath)
 	{
@@ -118,7 +86,7 @@ public class DatasetUpdaterConfig
 		{
 			while (!token.IsCancellationRequested)
 			{
-				if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)
+				if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Z)
 				{
 					cts.Cancel();
 					Logger.Log("Cancel asked by user");
@@ -136,54 +104,67 @@ public class DatasetUpdaterConfig
 
 			var resultTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
 
-			// load dataset in chunks, 
-
-			var records = SourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, useDebugPath);
 
 
-			List<List<Dictionary<string, object>>> recordGroups;
 
-			switch (this.DivisionMode)
+			if (!CompareMode)
 			{
-				case DivisionMode.PKHierarchicalChar:
-					
-					recordGroups = SourceDataset.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel);
-					break;
 
-				case DivisionMode.SequentialChunks:
-					recordGroups = new List<List<Dictionary<string, object>>>();
-					for (var i = 0; i < records.Count; i += ChunkSize)
-					{
-						recordGroups.Add(records.Skip(i).Take(ChunkSize).ToList());
-					}
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
+				// load dataset in chunks, 
 
-			
-			
+				var records = SourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, useDebugPath);
 
-			//Doing short tests
-			if (SkipChunkNb > 0)
-			{
-				recordGroups = recordGroups.Skip(SkipChunkNb).ToList();
-			}
 
-			if (TakeChunkNb > 0)
-			{
-				recordGroups = recordGroups.Take(TakeChunkNb).ToList();
-			}
+				List<List<Dictionary<string, object>>> recordGroups;
 
-			var answers = new ConcurrentBag<string>();
+				switch (this.DivisionMode)
+				{
+					case DivisionMode.PKHierarchicalChar:
 
-			var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
+						recordGroups = SourceDataset.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel);
+						break;
 
-			var parallelOptions = new ParallelOptions
-			{
-				MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
-				CancellationToken = token
-			};
+					case DivisionMode.SequentialChunks:
+						recordGroups = new List<List<Dictionary<string, object>>>();
+						for (var i = 0; i < records.Count; i += ChunkSize)
+						{
+							recordGroups.Add(records.Skip(i).Take(ChunkSize).ToList());
+						}
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+
+
+
+
+				//Doing short tests
+				if (SkipChunkNb > 0)
+				{
+					recordGroups = recordGroups.Skip(SkipChunkNb).ToList();
+				}
+
+				if (TakeChunkNb >= 0)
+				{
+					recordGroups = recordGroups.Take(TakeChunkNb).ToList();
+				}
+
+				if (RandomizeChunks)
+				{
+					recordGroups = recordGroups.OrderBy(x => Guid.NewGuid()).ToList();
+				}
+
+				var answers = new ConcurrentBag<string>();
+
+				var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
+
+				var parallelOptions = new ParallelOptions
+				{
+					MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
+					CancellationToken = token
+				};
+
+				var systemPrompt = await File.ReadAllTextAsync(SystemPromptPath, token);
 
 				await Parallel.ForEachAsync(recordGroups, parallelOptions, async (recordGroup, ct) =>
 				{
@@ -193,26 +174,17 @@ public class DatasetUpdaterConfig
 
 						var chunk = SourceDataset.SplitContentIntoJsonChunks(recordGroup, int.MaxValue)[0];
 
-						
+
 
 						var dataPrompt = new Prompt()
 						{
 							ApiKey = openAIKey,
 							Model = Model,
-							SystemPrompt = SystemPrompt,
-							
+							SystemPrompt = systemPrompt,
+							DialogPrompts = DialogPrompts,
 							UserPrompt = chunk,
 							Tokenizer = tokenManager.TokenizerAction
 						};
-
-						if (this.AddPromptSample)
-						{
-							dataPrompt.Example = new PromptExample()
-							{
-								UserPrompt = UserPrompt,
-								Answer = AssistantPrompt
-							};
-						}
 
 						if (UseFunctionCalling)
 						{
@@ -221,8 +193,11 @@ public class DatasetUpdaterConfig
 								PrimaryKeyField = PrimaryField,
 								Records = recordGroup
 							};
-							dataPrompt.Functions = FunctionCallingHelper.GetFunctionDefinitions<RecordsUpdater>().Select(definition => (definition, (object) recordsUpdator)).ToList();
-							
+							dataPrompt.Functions = FunctionCallingHelper.GetFunctionDefinitions<RecordsUpdater>().Select(definition => (definition, (object)recordsUpdator)).ToList();
+							if (!string.IsNullOrEmpty(FunctionName))
+							{
+								dataPrompt.FunctionName = FunctionName;
+							}
 						}
 
 						string result = "";
@@ -255,8 +230,8 @@ public class DatasetUpdaterConfig
 						{
 							records = DataSetInfo.GetDictionaryRecordsFromJson(result);
 						}
-						
-						
+
+
 
 						lock (resultTable)
 						{
@@ -273,39 +248,94 @@ public class DatasetUpdaterConfig
 				});
 
 
-			//// Merge answers into one csv
-			//var mergedCsv =
-			//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
-			//		false);
 
-			var mergedCsv = DataSetInfo.WriteDataTableToCsv(resultTable, ",");
+				//// Merge answers into one csv
+				//var mergedCsv =
+				//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
+				//		false);
+
+				var mergedCsv = DataSetInfo.WriteDataTableToCsv(resultTable, ",");
 
 
-			// Save mergedCsv to file
+				// Save mergedCsv to file
 
-			if (File.Exists(TargetPath))
+				if (File.Exists(TargetPath))
+				{
+					try
+					{
+						File.Delete(TargetPath);
+					}
+					catch (Exception e)
+					{
+						Logger.LogException(e);
+						Console.ReadKey();
+					}
+
+				}
+
+				if (!Directory.Exists(Path.GetDirectoryName(TargetPath)))
+				{
+					Directory.CreateDirectory(Path.GetDirectoryName(TargetPath));
+				}
+
+				await SourceDataset.SaveContent(TargetPath, mergedCsv);
+
+
+				Logger.Log("Completed ChatGPT calls and saved the output to " + TargetPath);
+			}
+			else
 			{
-				try
+				if (File.Exists(TargetPath))
 				{
-					File.Delete(TargetPath);
-				}
-				catch (Exception e)
-				{
-					Logger.LogException(e);
-					Console.ReadKey();
-				}
+					
 
+					DataTable targetTable;
+
+					if (AutoCompare)
+					{
+						targetTable = resultTable.Copy();
+					}
+					else
+					{
+						var targetContent = await TargetPath.GetDocumentContent();
+						targetTable = DataSetInfo.LoadCsvIntoDataTable(targetContent, ",", PrimaryField);
+					}
+					
+
+					for (int i = 0; i < resultTable.Rows.Count; i++)
+					{
+						var originalRow = resultTable.Rows[i];
+						List<DataRow>  targetRows;
+						if (AutoCompare)
+						{
+							targetRows = targetTable.Select().Where(row => row[AutoCompareField].ToString() == originalRow[AutoCompareField].ToString()).ToList();
+						}
+						else
+						{
+							var targetRow = targetTable.Rows.Find(originalRow[PrimaryField]);
+							targetRows = new List<DataRow>() { targetRow };
+						}
+
+						foreach (var targetRow in targetRows)
+						{
+							if (targetRow != null)
+							{
+								var originalValue = originalRow[CompareField];
+								var targetValue = targetRow[CompareField];
+								if (originalValue.ToString() != targetValue.ToString())
+								{
+									var originalAutoCompareValue = !string.IsNullOrEmpty(AutoCompareField) ? originalRow[AutoCompareField] : "";
+									Logger.Log($"Difference found for {originalAutoCompareValue}: {originalRow[PrimaryField]}:\n{originalValue}\nvs {targetRow[PrimaryField]}:\n{targetValue}");
+								}
+							}
+						}
+					}
+
+				}
 			}
 
-			if (!Directory.Exists(Path.GetDirectoryName(TargetPath)))
-			{
-				Directory.CreateDirectory(Path.GetDirectoryName(TargetPath));
-			}
-
-			await SourceDataset.SaveContent(TargetPath, mergedCsv);
 
 
-			Logger.Log("Completed ChatGPT calls and saved the output to " + TargetPath);
 
 		}
 		catch (Exception ex)

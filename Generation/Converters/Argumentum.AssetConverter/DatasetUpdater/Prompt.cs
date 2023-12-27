@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
@@ -25,7 +26,7 @@ public class Prompt
 
 	public string SystemPrompt { get; set; }
 
-	public PromptExample Example { get; set; }
+	public List<PromptExample> DialogPrompts { get; set; } = new();
 
 	public string UserPrompt { get; set; }
 
@@ -49,16 +50,20 @@ public class Prompt
 
 	public List<(FunctionDefinition functionDefinition, object targetObject)> Functions { get; set; }
 
+	public string FunctionName { get; set; }
 
 	public async Task<string> Send(CancellationToken cancellationToken)
 	{
 		if (Tokenizer != null)
 		{
 			Tokenizer(SystemPrompt);
-			if (this.Example != null)
+			if (this.DialogPrompts != null)
 			{
-				Tokenizer(Example.UserPrompt);
-				Tokenizer(Example.Answer);
+				foreach (var dialogPrompt in DialogPrompts)
+				{
+					Tokenizer(dialogPrompt.UserPrompt);
+					Tokenizer(dialogPrompt.AssistantAnswer);
+				}
 			}
 			
 			Tokenizer(UserPrompt);
@@ -68,11 +73,15 @@ public class Prompt
 		{
 			ChatMessage.FromSystem(SystemPrompt)
 		};
-		if (Example != null)
+		if (this.DialogPrompts != null)
 		{
-			messages.Add(ChatMessage.FromUser(Example.UserPrompt));
-			messages.Add(ChatMessage.FromAssistant(Example.Answer));
+			foreach (var dialogPrompt in DialogPrompts)
+			{
+				messages.Add(ChatMessage.FromUser(dialogPrompt.UserPrompt));
+				messages.Add(ChatMessage.FromAssistant(dialogPrompt.AssistantAnswer));
+			}
 		}
+			
 		messages.Add(ChatMessage.FromUser(UserPrompt));
 
 		var chatCompletionCreateRequest = new ChatCompletionCreateRequest
@@ -85,7 +94,11 @@ public class Prompt
 		if (Functions != null)
 		{
 			chatCompletionCreateRequest.Tools = Functions.Select(tuple =>  ToolDefinition.DefineFunction(tuple.functionDefinition)).ToList();
-			//chatCompletionCreateRequest.ToolChoice = ToolChoice.FunctionChoice();
+			//chatCompletionCreateRequest.ChatResponseFormat = ChatCompletionCreateRequest.ResponseFormats.Json;
+			if (FunctionName != null)
+			{
+				chatCompletionCreateRequest.ToolChoice = ToolChoice.FunctionChoice(FunctionName);
+			}
 		}
 
 
@@ -100,20 +113,39 @@ public class Prompt
 			if (chatMessage.FunctionCall != null)
 			{
 				var functionCall = chatMessage.FunctionCall;
-				var result = FunctionCallingHelper.CallFunction<bool>(functionCall, Functions.First(tuple => tuple.functionDefinition.Name == functionCall.Name).targetObject);
-				chatMessage.Content = result.ToString(CultureInfo.CurrentCulture);
+				var result = CallFunction(functionCall);
+				//chatMessage.Content = result.ToString(CultureInfo.CurrentCulture);
 			}
 
-			var messageContent = chatMessage.Content;
-
-			if (Tokenizer != null)
+			if (chatMessage.ToolCalls != null && chatMessage.ToolCalls.Count > 0)
 			{
-				Tokenizer(messageContent);
-				
+				foreach (var chatMessageToolCall in chatMessage.ToolCalls)
+				{
+					var functionCall = chatMessageToolCall.FunctionCall;
+					var result = CallFunction(functionCall);
+				}
 			}
-			return messageContent;
+
+			if (chatMessage.Content != null)
+			{
+				var messageContent = chatMessage.Content;
+
+				if (Tokenizer != null)
+				{
+					Tokenizer(messageContent);
+
+				}
+				return messageContent;
+			}
+			return "";
 		}
 		throw new ApplicationException(completionResult.Error?.Message ?? "Unsuccessful");
 	}
 
+	private string CallFunction(FunctionCall functionCall)
+	{
+		var result = FunctionCallingHelper.CallFunction<string>(functionCall,
+			Functions.First(tuple => tuple.functionDefinition.Name == functionCall.Name).targetObject);
+		return result;
+	}
 }

@@ -35,8 +35,7 @@ public class DataSetInfo
 		if (string.IsNullOrEmpty(_StringContent))
 		{
 
-			var payLoad = await strPath.GetDocumentPayload();
-			_StringContent = Encoding.UTF8.GetString(payLoad.Content);
+			_StringContent = await strPath.GetDocumentContent();
 		}
 		else
 		{
@@ -317,7 +316,8 @@ public class DataSetInfo
 		using var stringWriter = new StringWriter();
 		var configOut = new CsvConfiguration(CultureInfo.InvariantCulture)
 		{
-			Delimiter = delimiterOut
+			Delimiter = delimiterOut,
+			Encoding = Encoding.UTF8
 		};
 		using var csvWriter = new CsvWriter(stringWriter, configOut);
 
