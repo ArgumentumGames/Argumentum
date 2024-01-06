@@ -10,7 +10,7 @@ namespace Argumentum.AssetConverter
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static async Task Main(string[] args)
 		{
 			try
 			{
@@ -36,7 +36,7 @@ namespace Argumentum.AssetConverter
 					Console.ReadKey();
 				}
 				
-				config.Apply();
+				await config.Apply().ConfigureAwait(false);
 
 				
 				Logger.Log($"Generation finished.");
@@ -47,7 +47,6 @@ namespace Argumentum.AssetConverter
 				Logger.LogException(e);
 
 			}
-			Console.ReadKey();
 		}
 
 

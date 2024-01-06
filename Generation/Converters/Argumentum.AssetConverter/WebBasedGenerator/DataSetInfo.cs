@@ -110,7 +110,7 @@ public class DataSetInfo
 
 
 
-	public string MergeResponsesIntoCsv(List<string> responses, string delimiterIn, string delimiterOut, string primaryKeyColumn)
+	public static string MergeResponsesIntoCsv(List<string> responses, string delimiterIn, string delimiterOut, string primaryKeyColumn)
 	{
 		var resultTable = new DataTable();
 
@@ -149,7 +149,7 @@ public class DataSetInfo
 	}
 
 
-	public List<string> SplitContentIntoJsonChunks(List<Dictionary<string, object>> records, int chunkSize)
+	public static List<string> SplitContentIntoJsonChunks(List<Dictionary<string, object>> records, int chunkSize)
 	{
 
 		
@@ -165,7 +165,7 @@ public class DataSetInfo
 	}
 
 
-	public List<string> SplitContentIntoJsonChunks(List<List<Dictionary<string, object>>> hierarchicalRecords)
+	public static List<string> SplitContentIntoJsonChunks(List<List<Dictionary<string, object>>> hierarchicalRecords)
 	{
 
 		var chunks = new List<string>();
@@ -180,53 +180,95 @@ public class DataSetInfo
 
 	}
 
-	public List<List<Dictionary<string, object>>> GetHierarchicalRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel)
+	public static List<List<Dictionary<string, object>>> GetHierarchicalRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel, bool includeChildren, int maxChildren)
 	{
 		
 		var hierarchicalRecords = new List<List<Dictionary<string, object>>>();
 
-		var rootRecords = records.Where(record => (record[pkField].ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == pKHierarchyLevel-1).ToList();
-		var rootWithParentsSiblingsAndChildrenRecords = rootRecords.Select(rootRecord => GetRecordHierarchy(records, pkField, pKHierarchicalChar, pKHierarchyLevel, rootRecord)).ToList();
+		var rootRecords = GetRootRecords(records, pkField, pKHierarchicalChar, pKHierarchyLevel);
+		var rootWithParentsSiblingsAndChildrenRecords = rootRecords.Select(rootRecord => GetRecordHierarchies(records, pkField, pKHierarchicalChar, pKHierarchyLevel, rootRecord, includeChildren, maxChildren)).ToList();
 
-		return rootWithParentsSiblingsAndChildrenRecords;
+		return rootWithParentsSiblingsAndChildrenRecords.SelectMany(list => list).ToList();
 	}
 
-	public static List<Dictionary<string, object>> GetRecordHierarchy(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel,
-		Dictionary<string, object> rootRecord)
+	public static List<Dictionary<string, object>> GetRootRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel)
 	{
-		var currentRecord = rootRecord;
-		var currentRecordPk = currentRecord[pkField].ToString();
-		var childrenRecords = records.Where(record => record[pkField].ToString() != currentRecordPk
-			&& record[pkField].ToString().StartsWith(currentRecordPk)).ToList();
-		var currentRecordHierarchy = childrenRecords;
-		for (var parentLevel = 1; parentLevel <= pKHierarchyLevel; parentLevel++)
+		return records.Where(record => (record[pkField].ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == pKHierarchyLevel-1).ToList();
+	}
+
+	public static List<List<Dictionary<string, object>>> GetRecordHierarchies(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel,
+		Dictionary<string, object> rootRecord, bool includeChildren, int maxChildren)
+	{
+
+		var rootPk = rootRecord[pkField].ToString();
+
+		List<List<Dictionary<string, object>>> subHierarchies = new();
+		if (includeChildren)
 		{
-			var siblingsRecords = records.Where(record =>
-					record[pkField].ToString().Length == currentRecordPk.Length 
-					&& (currentRecordPk.Length == 1 
-					    || record[pkField].ToString()
-						.StartsWith(currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar) + 1))))
-				.ToList();
-			var newHierarchy = new List<Dictionary<string, object>>();
-			foreach (var siblingRecord in siblingsRecords)
+			var allChildren = records.Where(record => record[pkField].ToString() != rootPk
+							&& record[pkField].ToString().StartsWith(rootPk)).ToList();
+
+			if (allChildren.Count> maxChildren)
 			{
-				var siblingRecordPk = siblingRecord[pkField].ToString();
-				newHierarchy.Add(siblingRecord);
-				if (siblingRecordPk == currentRecordPk)
+				var nbGroups = (int)Math.Ceiling((double)allChildren.Count / maxChildren);
+				for (var i = 0; i < nbGroups; i++)
 				{
-					newHierarchy.AddRange(currentRecordHierarchy);
+					var children = allChildren.Skip(i * maxChildren).Take(maxChildren).ToList();
+					subHierarchies.Add(children);
 				}
 			}
-
-			if (parentLevel < pKHierarchyLevel)
+			else
 			{
-				currentRecordPk = currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar));
+				subHierarchies.Add(allChildren);
 			}
-			currentRecordHierarchy = newHierarchy;
+
+		}
+		else
+		{
+			subHierarchies.Add(new());
 		}
 
-		return currentRecordHierarchy;
+		var returnHierarchies = new List<List<Dictionary<string, object>>>();
+
+		foreach (var subHierarchy in subHierarchies)
+		{
+			var currentRecordHierarchy = subHierarchy;
+
+			var currentRecord = rootRecord;
+			var currentRecordPk = rootPk;
+
+			for (var parentLevel = 1; parentLevel < pKHierarchyLevel; parentLevel++)
+			{
+				var siblingsRecords = records.Where(record =>
+						record[pkField].ToString().Length == currentRecordPk.Length
+						&& (currentRecordPk.Length == 1
+						    || record[pkField].ToString()
+							    .StartsWith(currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar) + 1))))
+					.ToList();
+				var newHierarchy = new List<Dictionary<string, object>>();
+				foreach (var siblingRecord in siblingsRecords)
+				{
+					var siblingRecordPk = siblingRecord[pkField].ToString();
+					newHierarchy.Add(siblingRecord);
+					if (siblingRecordPk == currentRecordPk)
+					{
+						newHierarchy.AddRange(currentRecordHierarchy);
+					}
+				}
+
+				if (parentLevel < pKHierarchyLevel)
+				{
+					currentRecordPk = currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar));
+				}
+				currentRecordHierarchy = newHierarchy;
+			}
+
+			returnHierarchies.Add(currentRecordHierarchy);
+		}
+		return returnHierarchies;
 	}
+
+		
 
 
 	public List<Dictionary<string, object>> GetDictionaryFromCsv(string content, List<string> fieldsToInclude, bool useDebugPath)

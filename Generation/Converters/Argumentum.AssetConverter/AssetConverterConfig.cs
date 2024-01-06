@@ -103,9 +103,78 @@ namespace Argumentum.AssetConverter
 					//"Soussousfamille",
 					"text_fr",
 					"desc_fr",
-					"example_fr",
-					"carte",
+					//"example_fr",
+					//"carte",
 					//"link_fr"
+					"text_en",
+					"desc_en",
+					//"example_en"
+					"link_en"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					//"path",
+					//"text_fr",
+					"desc_fr",
+					//"example_fr",
+					//"link_fr"
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDocumentsLightUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDocumentsAssistant.txt"
+					},
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptInstructionsUserDescription.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptInstructionsAssistantDescription.txt"
+					}
+				},
+				Model = Models.Gpt_4_1106_preview,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchyLevel = 3,
+				UseFunctionCalling = true,
+				//FunctionName = nameof(RecordsUpdater.UpdateRecord),
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				RandomizeChunks = true,
+				MaxDegreeOfParallelismWebService = 3,
+				CompareMode = true,
+				AutoCompare = true,
+				AutoCompareField = "text_fr",
+				CompareField = "desc_fr"
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				SourceDataset = new DataSetInfo()
+				{
+					Name = "Argumentum - Fallacies - Taxonomy",
+					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
+					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv",
+				},
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					//"Famille",
+					//"Sous-Famille",
+					//"Soussousfamille",
+					"text_fr",
+					"desc_fr",
+					"example_fr",
+					//"carte",
+					//"link_fr"
+					"text_en",
+					//"desc_en",
+					//"example_en",
+					//"link_en"
 				},
 				FieldsToUpdate = new List<string>()
 				{
@@ -122,13 +191,13 @@ namespace Argumentum.AssetConverter
 				{
 					new PromptExample()
 					{
-						UserPromptPath = PromptsRootPath + "PromptDocumentsUser.txt",
+						UserPromptPath = PromptsRootPath + "PromptDocumentsLightUser.txt",
 						AssistantAnswerPath = PromptsRootPath + "PromptDocumentsAssistant.txt"
 					},
 					new PromptExample()
 					{
-						UserPromptPath = PromptsRootPath + "PromptInstructionsUserExamples.txt",
-						AssistantAnswerPath = PromptsRootPath + "PromptInstructionsAssistantExamples.txt"
+						UserPromptPath = PromptsRootPath + "PromptInstructionsLightUserExamples.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptInstructionsLightAssistantExamples.txt"
 					}
 				},
 				Model = Models.Gpt_4_1106_preview,
@@ -140,11 +209,14 @@ namespace Argumentum.AssetConverter
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
 				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
 				MaxDegreeOfParallelismWebService = 3,
-				CompareMode = false,
+				CompareMode = true,
 				AutoCompare = true,
 				AutoCompareField = "text_fr",
-				CompareField = "example_fr"
+				CompareField = "example_fr",
+				MaxGroupItemNb = 25,
 			}
 		};
 

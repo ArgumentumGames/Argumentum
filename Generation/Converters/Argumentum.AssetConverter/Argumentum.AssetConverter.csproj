@@ -42,13 +42,28 @@
     <None Update="DatasetUpdater\Resources\PromptDocumentsAssistant.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="DatasetUpdater\Resources\PromptDocumentsLightUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DatasetUpdater\Resources\PromptDocumentsUser.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="DatasetUpdater\Resources\PromptGeneralSystem.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantDescription.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsLightAssistantExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsUserDescription.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsLightUserExamples.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="DatasetUpdater\Resources\PromptInstructionsUserExamples.txt">

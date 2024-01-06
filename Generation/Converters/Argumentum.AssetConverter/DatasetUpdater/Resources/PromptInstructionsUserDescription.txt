@@ -1,0 +1,17 @@
+**Instructions de Mise à Jour :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des arguments fallacieux comportant chacune plusieurs champs utiles à ta tâche. Les noeuds de niveau 2 (e.g. 3.2), et 3 (e.g. 2.2.1) te sont donnés pour contexte mais tu ne dois pas les modifier. Seuls les noeuds plus profonds sont l'objet de ce travail.
+
+Ta tâche concerne le champs "desc_fr": il s'agit de la description du type d'argument fallacieux. 
+Il se trouve que souvent la description utilise un langage trop soutenu, elles sont inutilement complexes, voire carrément incorrecte compte tenu de la position hierarchique de leur entrée. L'objectif est de rendre ces descriptions accessibles au plus grand nombre, y compris un jeune public quand c'est possible sans perdre toutefois la précision aférente à sa position dans la taxonomie. Il s'agira d'identifier parmis toutes les entrées fournies les descriptions qui te semblent les plus mauvaises et d'en proposer une nouvelle version plus accessible, plus concise, ou plus adaptée à leur position dans la taxonomie.
+
+1. **Utilisation du Function calling" :** Pour chaque mise à jour, ne l'inclue pas en texte libre dans ton message mais utilise plutôt un appel à l'une des fonctions disponibles indiquées dans ton prompt système. Cela garantit que les modifications seront correctement appliquées au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
+
+2. **Format des descriptions: ** La description est formulée à la deuxième personne du pluriel, indiquant au lecteur son erreur alors qu'il commet l'argument fallacieux. Elle doit être simple, concise, compréhensible par un public le plus large possible, et bien clarifier les nuances déterminant sa position exacte dans la taxonomie. Certaines descriptions sont de qualité et doivent permettre d'identifier le format idéal attendu.
+
+3. **Respect de la Hiérarchisation :** Il est essentiel de maintenir l'intégrité de la hiérarchie des taxonomies. Les termes doivent être utilisés dans leur contexte spécifique et limiter le recouvrement entre les branches. La description des branches parentes doit correctement englober celle des branches filles et la distinguer des autres branches.
+
+4. **Utilité de la description en anglais :** Le champs "desc_en" est la version anglaise de cette description, formulé à l'infinitif. Ce champs t'est fourni comme contexte supplémentaire car il arrive que la description en anglais soit plus concise et plus claire, même si dans d'autres cas, elle présentera les mêmes défauts ou sera au contraire moins adaptée. A toi d'en juger selon la position hierarchique et ta propre connaissance des termes employés. Si tu estimes que la description en anglais est adéquate et plus claire, tu peux t'en inspirer pour définir le champ "desc_fr".
+
+
+Est-ce que tu es prêt à recevoir les données?
