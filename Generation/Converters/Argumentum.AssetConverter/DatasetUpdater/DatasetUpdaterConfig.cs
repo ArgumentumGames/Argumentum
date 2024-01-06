@@ -55,6 +55,8 @@ public class DatasetUpdaterConfig
 
 	public bool RandomizeChunks { get; set; }
 
+	public bool SelectEmptyTargets { get; set; }
+
 	public int MaxDegreeOfParallelismWebService { get; set; } = 2;
 
 	public List<string> FieldsToInclude { get; set; } = new();
@@ -75,45 +77,109 @@ public class DatasetUpdaterConfig
 	public string CompareField { get; set; }
 	public bool AutoCompare { get; set; }
 	public string AutoCompareField { get; set; } = "";
+	public int MaxGroupItemNb { get; set; } = 20;
+
+
+	public int MaxChildren { get; set; } = 12;
+
 
 	public async Task Apply(bool useDebugPath)
 	{
 		var openAIKey = await File.ReadAllTextAsync(OpenAIKeyPath);
-		var cts = new CancellationTokenSource();
-		var token = cts.Token;
-
-		_ = Task.Run(async () =>
-		{
-			while (!token.IsCancellationRequested)
-			{
-				if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Z)
-				{
-					cts.Cancel();
-					Logger.Log("Cancel asked by user");
-				}
-
-				await Task.Delay(100, token);
-			}
-		}, token);
+		
 
 
 		try
 		{
 
+			var cts = new CancellationTokenSource();
+			var token = cts.Token;
+
+			_ = Task.Run(async () =>
+			{
+				while (!token.IsCancellationRequested)
+				{
+					if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Z)
+					{
+						cts.Cancel();
+						Logger.Log("Cancel asked by user");
+					}
+
+					await Task.Delay(100, token);
+				}
+			}, token);
+
+
 			var content = await SourceDataset.GetContent(useDebugPath);
 
 			var resultTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
 
+			var saveResults = false;
 
+			bool RecordHasEmptyTargetFields(Dictionary<string, object> dictionary)
+			{
+				foreach (var field in FieldsToUpdate)
+				{
+					if (!string.IsNullOrEmpty(dictionary[field].ToString()))
+					{
+						return false;
+					}
+				}
 
+				return true;
+			}
 
 			if (!CompareMode)
 			{
+
+				saveResults = true;
 
 				// load dataset in chunks, 
 
 				var records = SourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, useDebugPath);
 
+				if (SelectEmptyTargets)
+				{
+
+
+					var toReturn = new List<Dictionary<string, object>>();
+
+
+					var emptyRecords = records.Where(RecordHasEmptyTargetFields).ToList();
+
+					toReturn.AddRange(emptyRecords);
+
+					if (DivisionMode == DivisionMode.PKHierarchicalChar)
+					{
+						var rootRecords = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, false, MaxChildren);
+						foreach (var rootRecord in rootRecords.SelectMany(list => list))
+						{
+							if (!toReturn.Exists(record => record[PrimaryField] == rootRecord[PrimaryField]))
+							{
+								toReturn.Add(rootRecord);
+							}
+						}
+
+						foreach (var emptyRecord in emptyRecords)
+						{
+							var pkEmptyRecord = emptyRecord[PrimaryField].ToString();
+							var pkEmptyRecordRoot = pkEmptyRecord.Substring(0, Math.Max(0, pkEmptyRecord.LastIndexOf(PKHierarchicalChar)));
+							var siblings = records.Where(record => record[PrimaryField].ToString().Length == pkEmptyRecord.Length
+										&& record[PrimaryField].ToString().StartsWith(pkEmptyRecordRoot)).ToList();
+							var nonEmptySiblings = siblings.Where(record => !RecordHasEmptyTargetFields(record)).ToList();
+							foreach (var nonEmptySibling in nonEmptySiblings)
+							{
+								if (!toReturn.Exists(record => record[PrimaryField] == nonEmptySibling[PrimaryField]))
+								{
+									toReturn.Add(nonEmptySibling);
+								}
+							}
+						}
+					}
+
+					records = toReturn;
+
+				}
 
 				List<List<Dictionary<string, object>>> recordGroups;
 
@@ -121,7 +187,14 @@ public class DatasetUpdaterConfig
 				{
 					case DivisionMode.PKHierarchicalChar:
 
-						recordGroups = SourceDataset.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel);
+						recordGroups = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, true, MaxChildren);
+
+						if (SelectEmptyTargets)
+						{
+							recordGroups = recordGroups.Where(group => group.Exists(RecordHasEmptyTargetFields)).ToList();
+						}
+
+
 						break;
 
 					case DivisionMode.SequentialChunks:
@@ -135,18 +208,10 @@ public class DatasetUpdaterConfig
 						throw new ArgumentOutOfRangeException();
 				}
 
-
-
-
 				//Doing short tests
 				if (SkipChunkNb > 0)
 				{
 					recordGroups = recordGroups.Skip(SkipChunkNb).ToList();
-				}
-
-				if (TakeChunkNb >= 0)
-				{
-					recordGroups = recordGroups.Take(TakeChunkNb).ToList();
 				}
 
 				if (RandomizeChunks)
@@ -154,108 +219,248 @@ public class DatasetUpdaterConfig
 					recordGroups = recordGroups.OrderBy(x => Guid.NewGuid()).ToList();
 				}
 
-				var answers = new ConcurrentBag<string>();
-
-				var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
-
-				var parallelOptions = new ParallelOptions
+				if (TakeChunkNb >= 0)
 				{
-					MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
-					CancellationToken = token
-				};
+					recordGroups = recordGroups.Take(TakeChunkNb).ToList();
+				}
 
-				var systemPrompt = await File.ReadAllTextAsync(SystemPromptPath, token);
-
-				await Parallel.ForEachAsync(recordGroups, parallelOptions, async (recordGroup, ct) =>
+				if (recordGroups.Count>0)
 				{
-					try
+					
+					recordGroups = recordGroups.Where(group => group.Count > 0).ToList();
+
+					if (MaxGroupItemNb > 0)
 					{
-						ct.ThrowIfCancellationRequested();
-
-						var chunk = SourceDataset.SplitContentIntoJsonChunks(recordGroup, int.MaxValue)[0];
-
-
-
-						var dataPrompt = new Prompt()
+						for (int i = 0; i < recordGroups.Count; i++)
 						{
-							ApiKey = openAIKey,
-							Model = Model,
-							SystemPrompt = systemPrompt,
-							DialogPrompts = DialogPrompts,
-							UserPrompt = chunk,
-							Tokenizer = tokenManager.TokenizerAction
-						};
-
-						if (UseFunctionCalling)
-						{
-							var recordsUpdator = new RecordsUpdater()
-							{
-								PrimaryKeyField = PrimaryField,
-								Records = recordGroup
-							};
-							dataPrompt.Functions = FunctionCallingHelper.GetFunctionDefinitions<RecordsUpdater>().Select(definition => (definition, (object)recordsUpdator)).ToList();
-							if (!string.IsNullOrEmpty(FunctionName))
-							{
-								dataPrompt.FunctionName = FunctionName;
-							}
+							recordGroups[i] = recordGroups[i].Take(Math.Min(recordGroups[i].Count, MaxGroupItemNb)).ToList();
 						}
+					}
 
-						string result = "";
+					var answers = new ConcurrentBag<string>();
 
-						for (int i = 0; i < NbMessageCalls; i++)
+					var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
+
+					var parallelOptions = new ParallelOptions
+					{
+						MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
+						CancellationToken = token
+					};
+
+					var systemPrompt = await File.ReadAllTextAsync(SystemPromptPath, token);
+
+					await Parallel.ForEachAsync(recordGroups, parallelOptions, async (recordGroup, ct) =>
+					{
+						try
 						{
 							ct.ThrowIfCancellationRequested();
-							Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
 
-							try
+							var chunk = DataSetInfo.SplitContentIntoJsonChunks(recordGroup, int.MaxValue)[0];
+
+
+
+							var dataPrompt = new Prompt()
 							{
-								tokenManager.WaitForTokenAvailability();
-								result = await dataPrompt.Send(token).ConfigureAwait(false);
-								//result = chunk;
-								Logger.Log(
-									$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
-								dataPrompt.UserPrompt = result;
-							}
-							catch (Exception e)
+								ApiKey = openAIKey,
+								Model = Model,
+								SystemPrompt = systemPrompt,
+								DialogPrompts = DialogPrompts,
+								UserPrompt = chunk,
+								Tokenizer = tokenManager.TokenizerAction
+							};
+
+							if (UseFunctionCalling)
 							{
-								Logger.LogException(e);
+								var recordsUpdator = new RecordsUpdater()
+								{
+									PrimaryKeyField = PrimaryField,
+									Records = recordGroup
+								};
+								dataPrompt.Functions = FunctionCallingHelper.GetFunctionDefinitions<RecordsUpdater>().Select(definition => (definition, (object)recordsUpdator)).ToList();
+								if (!string.IsNullOrEmpty(FunctionName))
+								{
+									dataPrompt.FunctionName = FunctionName;
+								}
 							}
+
+							string result = "";
+
+							for (int i = 0; i < NbMessageCalls; i++)
+							{
+								ct.ThrowIfCancellationRequested();
+								Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
+
+								try
+								{
+									tokenManager.WaitForTokenAvailability();
+									result = await dataPrompt.Send(token).ConfigureAwait(false);
+									//result = chunk;
+									Logger.Log(
+										$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
+									dataPrompt.UserPrompt = result;
+								}
+								catch (Exception e)
+								{
+									Logger.LogException(e);
+								}
+							}
+							List<Dictionary<string, object>> newRecords;
+							if (UseFunctionCalling)
+							{
+								newRecords = recordGroup;
+							}
+							else
+							{
+								newRecords = DataSetInfo.GetDictionaryRecordsFromJson(result);
+							}
+
+
+
+							lock (resultTable)
+							{
+								DataSetInfo.UpdateTableFromRecords(PrimaryField, FieldsToUpdate, false, newRecords, resultTable);
+							}
+
+
+							answers.Add(result);
 						}
-						List<Dictionary<string, object>> records;
-						if (UseFunctionCalling)
+						catch (OperationCanceledException)
 						{
-							records = recordGroup;
+							Logger.Log("Operation cancelled by user.");
+						}
+					});
+
+
+
+					//// Merge answers into one csv
+					//var mergedCsv =
+					//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
+					//		false);
+
+					
+
+				}
+
+				
+			}
+			else
+			{
+				if (File.Exists(TargetPath))
+				{
+					
+
+					DataTable targetTable;
+
+					if (AutoCompare)
+					{
+						targetTable = resultTable.Copy();
+					}
+					else
+					{
+						var targetContent = await TargetPath.GetDocumentContent();
+						targetTable = DataSetInfo.LoadCsvIntoDataTable(targetContent, ",", PrimaryField);
+					}
+
+					var differences = new List<List<DataRow>>();
+
+					
+
+					for (int i = 0; i < resultTable.Rows.Count; i++)
+					{
+						var originalRow = resultTable.Rows[i];
+
+						var originalKey = originalRow[PrimaryField].ToString();
+
+						
+
+						List<DataRow>  targetRows;
+						if (AutoCompare)
+						{
+							targetRows = targetTable.Select().Where(row => row[AutoCompareField].ToString() == originalRow[AutoCompareField].ToString()).ToList();
 						}
 						else
 						{
-							records = DataSetInfo.GetDictionaryRecordsFromJson(result);
+							var targetRow = targetTable.Rows.Find(originalKey);
+							targetRows = new List<DataRow>() { targetRow };
 						}
 
 
+						List<DataRow> currentAlternative = null;
 
-						lock (resultTable)
+						var originalValue = originalRow[CompareField];
+
+						foreach (var targetRow in targetRows)
 						{
-							DataSetInfo.UpdateTableFromRecords(PrimaryField, FieldsToUpdate, false, records, resultTable);
+							if (targetRow != null)
+							{
+								
+								var targetValue = targetRow[CompareField];
+								if (originalValue.ToString() != targetValue.ToString())
+								{
+									if (currentAlternative == null)
+									{
+										currentAlternative = new();
+										currentAlternative.Add(originalRow);
+										differences.Add(currentAlternative);
+									}
+									currentAlternative.Add(targetRow);
+
+								}
+							}
 						}
 
-
-						answers.Add(result);
 					}
-					catch (OperationCanceledException)
+					var checkedKeys = new HashSet<string>();
+					resultTable.Columns[CompareField].ReadOnly = false;
+					foreach (var difference in differences)
 					{
-						Logger.Log("Operation cancelled by user.");
+						var originalAutoCompareValue = !string.IsNullOrEmpty(AutoCompareField) ? difference[0][AutoCompareField] : "";
+
+						var originalKey = difference[0][PrimaryField].ToString();
+						if (checkedKeys.Contains(originalKey))
+						{
+							continue;
+						}
+						checkedKeys.Add(originalKey);
+
+						Logger.Log($"Found {difference.Count} options for {originalAutoCompareValue} - {difference[0][PrimaryField]}");
+
+
+						var keys = new List<object>();
+						for (int i = 0; i < difference.Count; i++)
+						{
+							var differenceKey = difference[i][PrimaryField];
+							keys.Add(differenceKey);
+							checkedKeys.Add(differenceKey.ToString());
+							Logger.Log($"{i} - {differenceKey.ToString()}\n{difference[i][CompareField]}");
+						}
+
+						Logger.Log("Enter preferred Option:");
+						var optionKey = Console.ReadLine();
+						var intOptionKey = int.Parse(optionKey);
+						var selectedValue = difference[intOptionKey][CompareField];
+						foreach (var key in keys)
+						{
+							var row = resultTable.Rows.Find(key);
+							row[CompareField] = selectedValue;
+						}
+
 					}
-				});
 
 
+					Logger.Log("Save result (y/n)?");
+					var savekey = Console.ReadKey();
+					if (savekey.KeyChar == 'y')
+					{
+						saveResults = true;
+					}
 
-				//// Merge answers into one csv
-				//var mergedCsv =
-				//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
-				//		false);
+				}
+			}
 
+			if (saveResults)
+			{
 				var mergedCsv = DataSetInfo.WriteDataTableToCsv(resultTable, ",");
-
 
 				// Save mergedCsv to file
 
@@ -283,58 +488,6 @@ public class DatasetUpdaterConfig
 
 				Logger.Log("Completed ChatGPT calls and saved the output to " + TargetPath);
 			}
-			else
-			{
-				if (File.Exists(TargetPath))
-				{
-					
-
-					DataTable targetTable;
-
-					if (AutoCompare)
-					{
-						targetTable = resultTable.Copy();
-					}
-					else
-					{
-						var targetContent = await TargetPath.GetDocumentContent();
-						targetTable = DataSetInfo.LoadCsvIntoDataTable(targetContent, ",", PrimaryField);
-					}
-					
-
-					for (int i = 0; i < resultTable.Rows.Count; i++)
-					{
-						var originalRow = resultTable.Rows[i];
-						List<DataRow>  targetRows;
-						if (AutoCompare)
-						{
-							targetRows = targetTable.Select().Where(row => row[AutoCompareField].ToString() == originalRow[AutoCompareField].ToString()).ToList();
-						}
-						else
-						{
-							var targetRow = targetTable.Rows.Find(originalRow[PrimaryField]);
-							targetRows = new List<DataRow>() { targetRow };
-						}
-
-						foreach (var targetRow in targetRows)
-						{
-							if (targetRow != null)
-							{
-								var originalValue = originalRow[CompareField];
-								var targetValue = targetRow[CompareField];
-								if (originalValue.ToString() != targetValue.ToString())
-								{
-									var originalAutoCompareValue = !string.IsNullOrEmpty(AutoCompareField) ? originalRow[AutoCompareField] : "";
-									Logger.Log($"Difference found for {originalAutoCompareValue}: {originalRow[PrimaryField]}:\n{originalValue}\nvs {targetRow[PrimaryField]}:\n{targetValue}");
-								}
-							}
-						}
-					}
-
-				}
-			}
-
-
 
 
 		}

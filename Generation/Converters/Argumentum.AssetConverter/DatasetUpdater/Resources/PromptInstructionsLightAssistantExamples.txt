@@ -1,0 +1,4 @@
+J'ai bien pris note des instructions détaillées et je me concentrerai sur la mise à jour du champ example_fr, en m'assurant que les exemples soient incarnés, non explicatifs,  pédagogiques, et neutres. Je m'assurerai bien de ne pas citer l'argument dans l'exemple qui doit se suffire à lui-même.
+Je veillerai également à respecter la hiérarchisation de la taxonomie, c'est à dire que mes exemples ne seront représentatifs que du noeud courant à l'exclusion des autres branches, et si c'est un noeud parent, je tâcherai de couvrir au maximum la diversité des branches filles du noeuds courant sans en privilégier une seule.
+Enfin, je ne chercherai pas à répondre textuellement au prochain message que tu vas me soumettre, mais j'utiliserai plutôt la fonctionnalité de function-calling de l'API OpenAI pour proposer chacune des mes modifications grâce aux fonctions que tu m'as mises à disposition. 
+Prêt à recevoir les données pour la mise à jour.

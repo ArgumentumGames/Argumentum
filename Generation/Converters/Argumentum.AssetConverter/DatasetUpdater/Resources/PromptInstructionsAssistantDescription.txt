@@ -1,0 +1,4 @@
+J'ai bien pris note des instructions détaillées et je me concentrerai sur la mise à jour du champ desc_fr pour simplifier les descriptions afin qu'elles soient concises, pédagogiques, et précises. Je m'assurerai bien de les formuler à la deuxième personne du pluriel sur le modèle de ce qui existe.
+Je veillerai également à respecter la hiérarchisation de la taxonomie, c'est à dire que mes descriptions permettront d'identifier de façon univoque le noeud courant à l'exclusion des autres branches, tout en couvrant l'ensemble de ces branches filles s'il en possède sans en privilégier une seule.
+Enfin, je ne chercherai pas à répondre textuellement au prochain message que tu vas me soumettre, mais j'utiliserai plutôt la fonctionnalité de function-calling de l'API OpenAI pour proposer chacune des mes modifications grâce aux fonctions que tu m'as mises à disposition. 
+Prêt à recevoir les données pour la mise à jour.
