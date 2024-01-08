@@ -149,7 +149,10 @@ namespace Argumentum.AssetConverter
 				CompareMode = true,
 				AutoCompare = true,
 				AutoCompareField = "text_fr",
-				CompareField = "desc_fr"
+				CompareField = "desc_fr",
+				MaxGroupItemNb = 20,
+				MaxChildren = 12,
+				SelectEmptyTargets = false
 			},
 			new DatasetUpdaterConfig()
 			{
