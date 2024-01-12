@@ -66,7 +66,7 @@ public class DatasetUpdaterConfig
 
 	public List<string> FieldsToUpdate { get; set; } = new();
 
-	public DataSetInfo SourceDataset { get; set; } = new();
+	public string SourceDataset { get; set; }
 
 	public string TargetPath { get; set; } = "";
 
@@ -83,7 +83,7 @@ public class DatasetUpdaterConfig
 	public int MaxChildren { get; set; } = 12;
 
 
-	public async Task Apply(bool useDebugPath)
+	public async Task Apply(AssetConverterConfig config)
 	{
 		var openAIKey = await File.ReadAllTextAsync(OpenAIKeyPath);
 		
@@ -109,8 +109,9 @@ public class DatasetUpdaterConfig
 				}
 			}, token);
 
+			var sourceDataset = config.DataSets.First(dataset => dataset.Name == SourceDataset);
 
-			var content = await SourceDataset.GetContent(useDebugPath);
+			var content = await sourceDataset.GetContent(config.UseDebugParams);
 
 			var resultTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
 
@@ -136,7 +137,7 @@ public class DatasetUpdaterConfig
 
 				// load dataset in chunks, 
 
-				var records = SourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, useDebugPath);
+				var records = sourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, config.UseDebugParams);
 
 				if (SelectEmptyTargets)
 				{
@@ -483,7 +484,7 @@ public class DatasetUpdaterConfig
 					Directory.CreateDirectory(Path.GetDirectoryName(TargetPath));
 				}
 
-				await SourceDataset.SaveContent(TargetPath, mergedCsv);
+				await sourceDataset.SaveContent(TargetPath, mergedCsv);
 
 
 				Logger.Log("Completed ChatGPT calls and saved the output to " + TargetPath);

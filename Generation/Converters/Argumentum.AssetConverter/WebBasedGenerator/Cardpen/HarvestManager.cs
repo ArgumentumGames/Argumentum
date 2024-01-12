@@ -16,6 +16,8 @@ namespace Argumentum.AssetConverter;
 public class HarvestManager
 {
 	public Stopwatch Stopwatch { get; set; }
+
+	public AssetConverterConfig AssetConverterConfig { get; set; }
 	public WebBasedGeneratorConfig Config { get; set; }
 
 
@@ -77,7 +79,7 @@ public class HarvestManager
 		var parallelOptionsCardset = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpen };
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsCardset, async (configCardSet, token) =>
 		{
-			var targetLanguages = Config.LocalizationConfig.BuildLanguageList(configCardSet.Translations);
+			var targetLanguages = AssetConverterConfig.LocalizationConfig.BuildLanguageList(configCardSet.Translations);
 
 			var parallelOptionsCardsetLanguage = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismCardpenTranslations };
 			await Parallel.ForEachAsync(targetLanguages, parallelOptionsCardsetLanguage, async (currentLanguage, newToken) =>
@@ -135,7 +137,7 @@ public class HarvestManager
 			foreach (var currentLanguage in targetlanguages)
 			{
 				//Get the serialization name for the harvest
-				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(Config, currentLanguage);
+				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
 
 				//If the file exists
 				if (File.Exists(jsonHarvestName))
@@ -160,8 +162,8 @@ public class HarvestManager
 
 	public List<string> GetTargetLanguages(CardSetJob configCardSet)
 	{
-		var targetlanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
-		if (Config.LocalizationConfig.Enabled)
+		var targetlanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
+		if (AssetConverterConfig.LocalizationConfig.Enabled)
 		{
 			targetlanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
 		}
@@ -185,7 +187,7 @@ public class HarvestManager
 				var currentHarvest = await GenerateHarvestImages(browser, configCardSet, cardSetDocuments);
 
 				// Get the name of the JSON file for the harvest
-				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(Config, currentLanguage);
+				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
 
 				// Serialize the harvest into a JSON string
 				var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
@@ -213,15 +215,15 @@ public class HarvestManager
 	{
 		(CardSetPayload front, CardSetPayload back) cardSetDocuments;
 
-		if (currentLanguage == Config.LocalizationConfig.DefaultLanguage)
+		if (currentLanguage == AssetConverterConfig.LocalizationConfig.DefaultLanguage)
 		{
-			var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument(Config);
-			var backCardSetDocument = await configCardSet.Config.BackCardSetInfo.GetCardSetDocument(Config);
+			var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument(AssetConverterConfig);
+			var backCardSetDocument = await configCardSet.Config.BackCardSetInfo.GetCardSetDocument(AssetConverterConfig);
 			cardSetDocuments = (frontCardSetDocument, backCardSetDocument);
 		}
 		else
 		{
-			cardSetDocuments = await Config.LocalizationConfig.TranslateCardSet(configCardSet.Config, (Config.LocalizationConfig.DefaultLanguage, currentLanguage), Config);
+			cardSetDocuments = await AssetConverterConfig.LocalizationConfig.TranslateCardSet(configCardSet.Config, (AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage), AssetConverterConfig);
 		}
 
 
@@ -241,15 +243,15 @@ public class HarvestManager
 	{
 		if (!cardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(cardSetInfo.DataSet))
 		{
-			var dataSet = Config.DataSets.First(ds => ds.Name == cardSetInfo.DataSet);
+			var dataSet = AssetConverterConfig.DataSets.First(ds => ds.Name == cardSetInfo.DataSet);
 			string csvContent;
 			if (!string.IsNullOrEmpty(cardSetInfo.CsvFilterField) && cardSetInfo.CsvFilterValues.Count>0)
 			{
-				csvContent = await dataSet.GetContent(Config.UseDebugParams(), ",","",  cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
+				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams, ",","",  cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
 			}
 			else
 			{
-				csvContent = await dataSet.GetContent(Config.UseDebugParams());
+				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams);
 			}
 			cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
 		}

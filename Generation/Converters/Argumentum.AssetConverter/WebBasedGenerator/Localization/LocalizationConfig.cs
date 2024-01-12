@@ -18,7 +18,7 @@ public class LocalizationConfig
 	public  List<DocumentLocalization> MindMapLocalization { get; set; } = new List<DocumentLocalization>();
 
 	public async Task<(CardSetPayload front, CardSetPayload back)> TranslateCardSet(CardSetConfig source,
-		(string sourceLang, string destLang) languages, WebBasedGeneratorConfig config)
+		(string sourceLang, string destLang) languages, AssetConverterConfig config)
 	{
 		
 		

@@ -10,14 +10,13 @@ namespace Argumentum.AssetConverter;
 
 public class ImageFileGenerator
 {
+
+	public AssetConverterConfig AssetConverterConfig { get; set; }
+
 	public  WebBasedGeneratorConfig Config { get; set; }
 
 
-	public ImageFileGenerator(WebBasedGeneratorConfig config)
-	{
-		Config = config;
-	}
-
+	
 
 	/// <summary>
 	/// Generates images for a given document and language, and returns a ConcurrentDictionary of the generated images.
@@ -37,8 +36,8 @@ public class ImageFileGenerator
 			//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
 		{
 
-			var targetLanguages = new List<string>(new[] { Config.LocalizationConfig.DefaultLanguage });
-			if (Config.LocalizationConfig.Enabled)
+			var targetLanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
+			if (AssetConverterConfig.LocalizationConfig.Enabled)
 			{
 				targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
 			}
@@ -64,7 +63,7 @@ public class ImageFileGenerator
 					{
 						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
 							configDocument.DocumentName,
-							Config.LocalizationConfig.DefaultLanguage, currentLanguage);
+							AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage);
 						Logger.Log($"Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
 
 
@@ -99,7 +98,7 @@ public class ImageFileGenerator
 			{
 				var backName = $"{currentHarvestBack.Key.ToLowerInvariant()}";
 				var backImageUrl = currentHarvestBack.Value;
-				var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, true, Config,
+				var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, true, AssetConverterConfig,
 					configDocument, backName, backImageUrl, currentHarvest.Backs.Dpi);
 				if (backName.Contains('-'))
 				{
@@ -127,7 +126,7 @@ public class ImageFileGenerator
 			}
 
 			var faceImageUrl = currentHarvestFace.Value;
-			var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, false, Config, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
+			var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, false, AssetConverterConfig, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
 
 			currentCard = AssembleCurrentCardImages(currentHarvestFace, configDocument, configCardSet, currentLanguage, faceName, faceImage, currentCard, targetList, backImages);
 		}
