@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using ImageMagick;
 
 namespace Argumentum.AssetConverter
@@ -21,7 +22,7 @@ namespace Argumentum.AssetConverter
         public double Modulation { get; set; } = 200;
 
 
-        public void Apply()
+        public async Task Apply()
         {
             var objSourceDir = new DirectoryInfo(SourcePath);
             var objTargetDir = new DirectoryInfo(DestPath);

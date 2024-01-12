@@ -43,7 +43,7 @@ public class CardSetLocalization:DocumentLocalization
 	}
 
 	public async Task<CardSetPayload> TranslateCardSetInfo(CardSetInfo source,
-		bool front, (string sourceLang, string destLang) languages, WebBasedGeneratorConfig config)
+		bool front, (string sourceLang, string destLang) languages, AssetConverterConfig config)
 	{
 		var fieldConversions = this.FrontFieldConversions;
 		if (!front)

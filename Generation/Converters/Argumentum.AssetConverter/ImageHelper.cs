@@ -49,7 +49,7 @@ namespace Argumentum.AssetConverter
             
         }
 
-        public static string GetImageFileName(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
+        public static string GetImageFileName(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
         {
 	      
 	        var cardSetFolderName = GetImageFolder(config, docConfig, language, cardSetName);
@@ -58,7 +58,7 @@ namespace Argumentum.AssetConverter
 	        return Path.Combine(cardSetFolderName, imageFileName);
         }
 
-		public static string GetImageFolder(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName)
+		public static string GetImageFolder(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName)
 		{
 			var imagesFolderName = config.GetImagesDirectory(language);
 
@@ -72,7 +72,7 @@ namespace Argumentum.AssetConverter
 			
 		}
 
-		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
+		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, AssetConverterConfig config, CardSetDocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
 	        string toReturn;

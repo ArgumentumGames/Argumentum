@@ -20,7 +20,7 @@ namespace Argumentum.AssetConverter
 
 
 
-        public string GetHarvestSerializationName(WebBasedGeneratorConfig config, string language)
+        public string GetHarvestSerializationName(AssetConverterConfig config, string language)
         {
             return Path.Combine(config.GetHarvestDirectory(language), $"{Name}_harvest_{language}.json");
         }
