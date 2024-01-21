@@ -7,6 +7,11 @@ namespace Argumentum.AssetConverter.Entities
 	public class Fallacy : CsvBase<Fallacy, FallacyClassMap>
 	{
 
+		public string GetId()
+		{
+            return Path;
+		}
+
         public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
 
         public string LinkEnFallback => string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn;
@@ -100,7 +105,13 @@ namespace Argumentum.AssetConverter.Entities
         public string Image { get; set; }
         public string SvgColor { get; set; }
         public string SvgIllustration { get; set; }
-    }
+
+        public int? PrintAndPlay { get; set; }
+
+        public string DécimalPathPadded { get; set; }
+
+        public string DepthMax4 { get; set; }
+	}
 
     public sealed class FallacyClassMap : ClassMap<Fallacy>
     {
@@ -165,8 +176,11 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Image).Name("image");
             Map(m => m.SvgColor).Name("svg_color");
             Map(m => m.SvgIllustration).Name("svg_illustration");
-        }
-    }
+            Map(m => m.PrintAndPlay).Name("print_and_play");
+            Map(m => m.DécimalPathPadded).Name("decimal_path_padded");
+            Map(m => m.DepthMax4).Name("depth_max4");
+		}
+	}
 
 
    

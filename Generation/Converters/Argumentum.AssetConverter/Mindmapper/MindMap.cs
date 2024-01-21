@@ -81,6 +81,35 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string BUILTIN { get; set; }
 	}
 
+
+	[XmlRoot(ElementName = "arrowlink")]
+	public class Arrowlink
+	{
+		[XmlAttribute(AttributeName = "COLOR")]
+		public string Color { get; set; }
+
+		[XmlAttribute(AttributeName = "DESTINATION")]
+		public string Destination { get; set; }
+
+		[XmlAttribute(AttributeName = "ENDARROW")]
+		public string EndArrow { get; set; }
+
+		[XmlAttribute(AttributeName = "ENDINCLINATION")]
+		public string EndInclination { get; set; }
+
+		[XmlAttribute(AttributeName = "ID")]
+		public string ID { get; set; }
+
+		[XmlAttribute(AttributeName = "STARTARROW")]
+		public string StartArrow { get; set; }
+
+		[XmlAttribute(AttributeName = "STARTINCLINATION")]
+		public string StartInclination { get; set; }
+
+		// Add other attributes as needed
+	}
+
+
 	[XmlRoot(ElementName = "node")]
 	public class Node
 	{
@@ -109,6 +138,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		[XmlElement(ElementName = "font")]
 		public Font Font { get; set; }
+
+		[XmlElement(ElementName = "arrowlink")]
+		public List<Arrowlink> Arrowlinks { get; set; } = new List<Arrowlink>();
+
 
 		[XmlElement(ElementName = "node")]
 		public List<Node> Nodes { get; set; } = new List<Node>();

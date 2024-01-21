@@ -77,7 +77,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		//}
 
-		public int MaxDegreeOfParallelismMindMaps { get; set; } = 6;
+		public int MaxDegreeOfParallelismMindMaps { get; set; } = 1;
 
 
 
@@ -97,47 +97,48 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private async Task ProcessMindMapDocumentAsync(MindMapDocumentConfig mindMap,
 			AssetConverterConfig assetConverterConfig, ParallelOptions parallelOptions)
 		{
-			IList<Fallacy> fallacies;
-			var dataSet = assetConverterConfig.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet);
-			if (dataSet == null)
-			{
-				fallacies = Fallacy.Load(mindMap.DataSet);
-			}
-			else
-			{
-				if (dataSet.CsvType != null && dataSet.CsvType != typeof(Fallacy))
+			
+				IList<Fallacy> fallacies;
+				var dataSet = assetConverterConfig.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet);
+				if (dataSet == null)
 				{
-
-					if (IsSubclassOfRawGeneric(typeof(CsvBase<,>), dataSet.CsvType))
+					fallacies = Fallacy.Load(mindMap.DataSet);
+				}
+				else
+				{
+					if (dataSet.CsvType != null && dataSet.CsvType != typeof(Fallacy))
 					{
 
-						var config = new MapperConfiguration(cfg =>
+						if (IsSubclassOfRawGeneric(typeof(CsvBase<,>), dataSet.CsvType))
 						{
-							cfg.AddProfile<MappingProfile>();
 
-						});
-						var mapper = config.CreateMapper();
+							var config = new MapperConfiguration(cfg =>
+							{
+								cfg.AddProfile<MappingProfile>();
 
-						// Trouver la m�thode LoadAsync sur le type sp�cifique
-						var loadAsyncMethod = dataSet.CsvType.GetMethod("LoadAsync", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+							});
+							var mapper = config.CreateMapper();
+
+							// Trouver la m�thode LoadAsync sur le type sp�cifique
+							var loadAsyncMethod = dataSet.CsvType.GetMethod("LoadAsync", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
 
 
-						// Invoquer la m�thode
-						var task = (Task)loadAsyncMethod.Invoke(null, new object[] { dataSet, assetConverterConfig.UseDebugParams });
+							// Invoquer la m�thode
+							var task = (Task)loadAsyncMethod.Invoke(null, new object[] { dataSet, assetConverterConfig.UseDebugParams });
 
-						// Attendre la fin de la t�che et obtenir le r�sultat
-						await task.ConfigureAwait(false);
-						var result = (IEnumerable)task.GetType().GetProperty("Result")?.GetValue(task, null);
+							// Attendre la fin de la t�che et obtenir le r�sultat
+							await task.ConfigureAwait(false);
+							var result = (IEnumerable)task.GetType().GetProperty("Result")?.GetValue(task, null);
 
-						// Mapper les objets � Fallacy
-						fallacies = (from object baseObject in result select mapper.Map<Fallacy>(baseObject)).ToList();
+							// Mapper les objets � Fallacy
+							fallacies = (from object baseObject in result select mapper.Map<Fallacy>(baseObject)).ToList();
 
-					}
-					else
-					{
-						throw new InvalidOperationException(
-							$"Dataset type {dataSet.CsvType.AssemblyQualifiedName} is incompatible with mindmap generation");
-					}
+						}
+						else
+						{
+							throw new InvalidOperationException(
+								$"Dataset type {dataSet.CsvType.AssemblyQualifiedName} is incompatible with mindmap generation");
+						}
 
 				}
 				else
@@ -150,19 +151,30 @@ namespace Argumentum.AssetConverter.Mindmapper
 			var targetLanguages = assetConverterConfig.LocalizationConfig.BuildLanguageList(mindMap.Translations);
 			await Parallel.ForEachAsync(targetLanguages, parallelOptions, async (targetLanguage, token) =>
 			{
-				var currentTranslatedMap = mindMap.CloneMindMap();
-				foreach (var documentLocalization in assetConverterConfig.LocalizationConfig.MindMapLocalization)
+				try
 				{
-					documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+					var currentTranslatedMap = mindMap.CloneMindMap();
+					foreach (var documentLocalization in assetConverterConfig.LocalizationConfig.MindMapLocalization)
+					{
+						documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+					}
+
+					var documentDirectory = assetConverterConfig.GetDocumentDirectory(targetLanguage);
+
+					await currentTranslatedMap.GenerateMindMapFile(fallacies, assetConverterConfig, documentDirectory, targetLanguage);
 				}
-
-				var documentDirectory = assetConverterConfig.GetDocumentDirectory(targetLanguage);
-
-				await currentTranslatedMap.GenerateMindMapFile(fallacies, assetConverterConfig, documentDirectory, targetLanguage);
+				catch (Exception e)
+				{
+					Logger.LogException(e);
+				}
 			});
-		}
+		
 
-		public static bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
+
+
+	}
+
+	public static bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
 		{
 			while (toCheck != null && toCheck != typeof(object))
 			{
@@ -231,7 +243,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				},
 				new MindMapDocumentConfig()
 				{
-					Enabled = true,
+					Enabled = false,
 					DocumentName = "Argumentum_Fallacies_MindMap_cards_fr.mm",
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					InsertCardsThumbnails = true,

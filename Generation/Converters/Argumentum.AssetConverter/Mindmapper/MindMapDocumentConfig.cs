@@ -230,6 +230,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public bool KeepOriginalSVG { get; set; }
 
+		public CrossLink CrossLinks { get; set; } = CrossLink.None;
+
 		public string MatchThumbnailsName(string targetDirectory, Fallacy fallacy)
 		{
 			var fileNames = Directory.GetFiles(targetDirectory);
@@ -283,12 +285,24 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private void CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath,
 			AssetConverterConfig config, string language)
 		{
+			var linkedFallacies = new HashSet<Fallacy>();
+
 			foreach (var fallacy in fallacies)
 			{
+				linkedFallacies.Add(fallacy);
 				if (string.IsNullOrEmpty(fallacy.PK)) continue;
 
 				var localPath = fallacy.Path;
-				var fallacyNode = CreateNode(fallacy, config, language);
+
+				List<(CrossLink crossLinkType, List<Fallacy> targets)> crossLinks = new();
+
+				if (this.CrossLinks.HasFlag(CrossLink.Identity))
+				{
+					var identityFallacies = fallacies.Where(f => f.TextFr == fallacy.TextFr && !linkedFallacies.Contains(f)).ToList();
+					crossLinks.Add((CrossLink.Identity, identityFallacies));
+				}
+
+				var fallacyNode = CreateNode(fallacy, config, language, crossLinks.ToArray());
 				nodesByPath[localPath] = fallacyNode;
 
 				var lastDotIndex = localPath.LastIndexOf('.');
@@ -310,9 +324,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-		private Node CreateNode(Fallacy fallacy, AssetConverterConfig config, string language)
+
+
+
+
+		private Node CreateNode(Fallacy fallacy, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<Fallacy> targets)[] crossLinks)
 		{
 			var fallacyNode = new Node { TEXT = TitleFunc(fallacy) };
+			fallacyNode.ID = fallacy.GetId();
 			var link = LinkFunc(fallacy);
 			if (!string.IsNullOrEmpty(link))
 			{
@@ -326,6 +345,37 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				AddCardIcon(fallacy, fallacyNode, config, language);
 			}
+
+			foreach (var crossLink in crossLinks)
+			{
+				foreach (var target in crossLink.targets)
+				{
+					var crossLinkNode = new Arrowlink();
+					crossLinkNode.StartArrow = "Default";
+					crossLinkNode.EndArrow = "Default";
+					crossLinkNode.StartInclination = "892;0;";
+					crossLinkNode.EndInclination = "892;0;";
+					crossLinkNode.Destination = target.GetId();
+
+					switch (crossLink.crossLinkType)
+					{
+						case CrossLink.Identity:
+							crossLinkNode.Color = "#dbffd6 ";
+							break;
+						case CrossLink.AppealTo:
+							crossLinkNode.Color = "#ccffff";
+							break;
+						case CrossLink.Opposite:
+							crossLinkNode.Color = "#ffcfcc";
+							break;
+						default:
+							throw new ArgumentOutOfRangeException($"cross link type {crossLink.crossLinkType} unsupported");
+					}
+					fallacyNode.Arrowlinks.Add(crossLinkNode);
+
+				}
+			}
+
 
 			return fallacyNode;
 		}
@@ -802,12 +852,4 @@ namespace Argumentum.AssetConverter.Mindmapper
 			return CloneMindMap();
 		}
 	}
-
-
-
-
-
-
-
-
 }
