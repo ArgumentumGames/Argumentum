@@ -228,7 +228,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public List<SVGFreemindMap> SVGMaps { get; set; } = new List<SVGFreemindMap>();
 
-		public bool KeepOriginalSVG { get; set; }
+		public bool KeepOriginalSVG { get; set; } = true;
 
 		public CrossLink CrossLinks { get; set; } = CrossLink.None;
 
@@ -663,11 +663,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 				}
 				else
 				{
-					string parentDecimalPath = fallacy.DecimalPath.Remove(fallacy.DecimalPath.Length - 1);
+					string parentDecimalPath = fallacy.DecimalPath.Remove(fallacy.DecimalPath.Length == 3 ? 1: fallacy.DecimalPath.Length - 1);
 					var parentFallacyCandidates = fallacies.Where(f => f.DecimalPath == parentDecimalPath).ToArray();
 					if (parentFallacyCandidates.Length == 0)
 					{
-						Logger.LogProblem($"Parent fallacy not found for {TitleFunc(fallacy)}");
+						Logger.LogProblem($"Parent fallacy not found for {TitleFunc(fallacy)} - {fallacy.Path}");
 						break;
 					}
 
