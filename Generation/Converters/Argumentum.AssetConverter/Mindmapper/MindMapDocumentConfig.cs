@@ -46,9 +46,20 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			get
 			{
-				return fallacy => TitleExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } }); // $"{fallacy.TextFr}";
+				return fallacy =>
+				{
+					
+					var title = TitleExpression.Interpolate(new Dictionary<string, object>() { { "fallacy", fallacy } });
+					if (AddNodePath)
+					{
+						title = $"{fallacy.Path} - {title}";
+					}
+					return title;
+				}; 
 			}
 		}
+
+		public bool AddNodePath { get; set; } = false;
 
 
 		const string DefaultFamilleExpression = @"{fallacy.Famille}";
@@ -403,7 +414,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 			else
 			{
-				fallacyNode.POSITION = familyNb > NbBranchesRight ? "left" : "right";
+				fallacyNode.POSITION = familyNb > NbBranchesRight && familyNb <= 6 ? "left" : "right";
 				freemindMap.Node.Nodes.Add(fallacyNode);
 			}
 		}
