@@ -106,7 +106,16 @@ namespace Argumentum.AssetConverter.Entities
         public string SvgColor { get; set; }
         public string SvgIllustration { get; set; }
 
-        public int? PrintAndPlay { get; set; }
+        public string AIFSkosDirectRef { get; set; }
+
+        public string AIFSkosExceptionRef { get; set; }
+
+        public string AIFSkosOther { get; set; }
+
+        public string AIFSkosMappingType { get; set; }
+
+
+		public int? PrintAndPlay { get; set; }
 
         public string DécimalPathPadded { get; set; }
 
@@ -176,12 +185,18 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Image).Name("image");
             Map(m => m.SvgColor).Name("svg_color");
             Map(m => m.SvgIllustration).Name("svg_illustration");
-            Map(m => m.PrintAndPlay).Name("print_and_play");
+            Map(m => m.AIFSkosDirectRef).Name("AIF_skosDirectRef");
+            Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef");
+            Map(m => m.AIFSkosOther).Name("AIF_skosOther");
+            Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType");
+			Map(m => m.PrintAndPlay).Name("print_and_play");
             Map(m => m.DécimalPathPadded).Name("decimal_path_padded");
             Map(m => m.DepthMax4).Name("depth_max4");
 		}
 	}
 
+          
 
-   
+
+
 }
