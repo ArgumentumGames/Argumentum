@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
+using Argumentum.AssetConverter.Ontology;
 using Spectre.Console;
 using Spectre.Console.Json;
 using Utf8Json;
@@ -24,9 +25,9 @@ namespace Argumentum.AssetConverter
 
 
 
-	    public bool SkipConfigFile { get; set; } = true;
+	    public bool SkipConfigFile { get; set; } = false;
 
-		public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper;// | ConverterMode.WebBasedImageGeneration;
+		public ConverterMode Mode { get; set; } = ConverterMode.OwlGenerator;// | ConverterMode.WebBasedImageGeneration;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -265,7 +266,11 @@ namespace Argumentum.AssetConverter
 
 		public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
 
+
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
+
+
+		public OwlGeneratorConfig OwlGeneratorConfig { get; set; } = new OwlGeneratorConfig();
 
 		public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
@@ -406,6 +411,11 @@ namespace Argumentum.AssetConverter
 			    tasks.Add(Task.Run(() => Dnn2sxcConfig.Apply()));
 				
 		    }
+
+			if (Mode.HasFlag(ConverterMode.OwlGenerator))
+			{
+				tasks.Add(OwlGeneratorConfig.Apply(this));
+			}
 
 
 			await Task.WhenAll(tasks);

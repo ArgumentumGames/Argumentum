@@ -26,13 +26,12 @@ using Argumentum.AssetConverter.Entities;
 
 namespace Argumentum.AssetConverter.Mindmapper
 {
-    public class MindMapDocumentConfig : DocumentConfig
+    public class MindMapDocumentConfig : FallacyDocumentConfigBase
 	{
 		// Trying to making sure the assemblies get published
 		private static readonly System.Diagnostics.StackTrace temp1 = new();
 		private static readonly System.Drawing.Color temp2 = Color.AliceBlue;
 
-		public string DataSet { get; set; } = @"..\..\..\Data\Mindmap\Argumentum Fallacies - Taxonomy.csv";
 		//public string DocumentName { get; set; } = @"..\..\..\Data\Mindmap\Argumentum_Fallacies_MindMap_Fr_2.mm";
 
 
@@ -223,10 +222,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 		};
 
 
-		public List<int> FontSizes { get; set; } = new List<int>(new[] { 30, 50, 40, 30, 30, 30, 25, 23, 23, 23, 23 });
+		public List<int> FontSizes { get; set; } = new List<int>(new[] { 60, 60, 50, 40, 30, 30, 25, 23, 23, 23, 23 });
 
 
-		public List<int> EdgeSizes { get; set; } = new List<int>(new[] { 8, 4, 2, 1 });
+		public List<int> EdgeSizes { get; set; } = new List<int>(new[] { 50, 20, 5, 1 });
 
 
 		public bool InsertCardsThumbnails { get; set; }
@@ -252,7 +251,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		public async Task GenerateMindMapFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language )
+		public override async Task GenerateFallacyFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language )
 		{
 			if (string.IsNullOrEmpty(language)) 
 				language=config.LocalizationConfig.DefaultLanguage ;
@@ -335,9 +334,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-
-
-
+		
 
 		private Node CreateNode(Fallacy fallacy, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<Fallacy> targets)[] crossLinks)
 		{

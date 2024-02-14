@@ -11,5 +11,6 @@ namespace Argumentum.AssetConverter
 		Mindmapper = 1 << 2, // 4
 		Dnn2sxc = 1 << 3, // 8
 		DatasetUpdater = 1 << 4, // 16
+		OwlGenerator = 1 << 5, // 32
 	}
 }
