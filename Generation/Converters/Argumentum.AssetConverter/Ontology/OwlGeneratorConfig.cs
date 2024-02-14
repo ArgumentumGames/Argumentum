@@ -84,15 +84,27 @@ namespace Argumentum.AssetConverter.Ontology
 				fileName = Path.Combine(targetDirectory, fileName);
 
 			}
-			var documentPath = Path.Combine(targetDirectory, DocumentName);
+			//var documentPath = Path.Combine(targetDirectory, DocumentName);
 
-			CreateOwlDocument(fallacies, config, language, documentPath, fileName);
+
+			if (File.Exists(fileName) && !config.OverwriteExistingDocs)
+			{
+				Logger.Log($"Skip existing Owl document: {fileName}");
+			}
+			else
+			{
+				Logger.Log($"Creating  Owl document {DocumentName}");
+				CreateOwlDocument(fallacies, config, language, fileName);
+			}
+
+
+			
 		}
 
-	    private void CreateOwlDocument(IList<Fallacy> fallacies, AssetConverterConfig config, string language, string documentPath, string fileName)
+	    private void CreateOwlDocument(IList<Fallacy> fallacies, AssetConverterConfig config, string language, string fileName)
 	    {
 
-		    var fallaciesByPath = fallacies.ToDictionary(f => f.Path, f => f);
+			var fallaciesByPath = fallacies.ToDictionary(f => f.Path, f => f);
 		    Fallacy GetParent(Fallacy f)
 		    {
 			    if (f.Depth <= 1)
@@ -306,6 +318,8 @@ namespace Argumentum.AssetConverter.Ontology
 			var xmlFormat = OWLEnums.OWLFormats.OwlXml;
 			// WRITE OWL2/XML FILE
 			ontology.ToFile(xmlFormat, fileName);
+
+			Logger.LogSuccess($"Owl document {fileName} successfully saved");
 
 		}
 
