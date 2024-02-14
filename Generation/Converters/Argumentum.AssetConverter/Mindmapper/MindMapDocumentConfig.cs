@@ -225,7 +225,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public List<int> FontSizes { get; set; } = new List<int>(new[] { 60, 60, 50, 40, 30, 30, 25, 23, 23, 23, 23 });
 
 
-		public List<int> EdgeSizes { get; set; } = new List<int>(new[] { 50, 20, 5, 1 });
+		public List<int> EdgeSizes { get; set; } = new List<int>(new[] { 20, 10, 5, 1});
 
 
 		public bool InsertCardsThumbnails { get; set; }
@@ -425,10 +425,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			if (fallacy.Depth < EdgeSizes.Count)
 			{
-				fallacyNode.Edge = new Edge() { WIDTH = EdgeSizes[fallacy.Depth].ToString(CultureInfo.InvariantCulture) };
+
+				
 
 				if (familyNb > 0)
 				{
+					fallacyNode.Edge = new Edge() { WIDTH = EdgeSizes[fallacy.Depth - 1].ToString(CultureInfo.InvariantCulture) };
 					fallacyNode.Edge.COLOR = Colors[familyNb];
 					fallacyNode.BACKGROUND_COLOR = HLSColor.GetLighterColor(Colors[familyNb]);
 				}
@@ -438,6 +440,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 			else
 			{
 				fallacyNode.STYLE = "fork";
+				if (fallacy.Depth == EdgeSizes.Count)
+				{
+					fallacyNode.Edge = new Edge() { WIDTH = EdgeSizes[fallacy.Depth - 1].ToString(CultureInfo.InvariantCulture) };
+				}
 			}
 
 			if (fallacy.Depth <= EdgeSizes.Count)

@@ -27,7 +27,7 @@ namespace Argumentum.AssetConverter
 
 	    public bool SkipConfigFile { get; set; } = false;
 
-		public ConverterMode Mode { get; set; } = ConverterMode.OwlGenerator;// | ConverterMode.WebBasedImageGeneration;
+		public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper | ConverterMode.OwlGenerator;// | ConverterMode.WebBasedImageGeneration;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -313,8 +313,8 @@ namespace Argumentum.AssetConverter
 
 		public bool EnableSVGPrompt { get; set; } = true;
 
-		
-		
+
+		public bool AsynchronousPipeline { get; set; }
 
 
 
@@ -384,41 +384,94 @@ namespace Argumentum.AssetConverter
 
 			if (Mode.HasFlag(ConverterMode.BatchImageProcessor))
 		    {
+			    if (AsynchronousPipeline)
+			    {
+				    tasks.Add(Task.Run(() => BatchImageConverterConfig.Apply()));
+				}
+			    else
+			    {
+				    await BatchImageConverterConfig.Apply();
+			    }
 
-			    tasks.Add(Task.Run(() => BatchImageConverterConfig.Apply()));
+			    
 
 		    }
 
 			if (Mode.HasFlag(ConverterMode.DatasetUpdater))
 			{
-				tasks.Add(DatasetUpdaterRootConfig.Apply(this));
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => DatasetUpdaterRootConfig.Apply(this)));
+				}
+				else
+				{
+					await DatasetUpdaterRootConfig.Apply(this);
+				}
+
+
 			}
 
 			if (Mode.HasFlag(ConverterMode.WebBasedImageGeneration))
 		    {
-				
-				tasks.Add(WebBasedGeneratorConfig.Apply(this));
+			    if (AsynchronousPipeline)
+			    {
+				    tasks.Add(Task.Run(() => WebBasedGeneratorConfig.Apply(this)));
+			    }
+			    else
+			    {
+				    await WebBasedGeneratorConfig.Apply(this);
+			    }
+
+
+
 			}
 
 		    if (Mode.HasFlag(ConverterMode.Mindmapper))
 		    {
-				tasks.Add(MindMapCreatorConfig.Apply(this));
+			    if (AsynchronousPipeline)
+			    {
+				    tasks.Add(Task.Run(() => MindMapCreatorConfig.Apply(this)));
+			    }
+			    else
+			    {
+				    await MindMapCreatorConfig.Apply(this);
+			    }
+
+
 			}
 
 
 			if (Mode.HasFlag(ConverterMode.Dnn2sxc))
 		    {
-			    tasks.Add(Task.Run(() => Dnn2sxcConfig.Apply()));
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => Dnn2sxcConfig.Apply()));
+				}
+				else
+				{
+					Dnn2sxcConfig.Apply();
+				}
+
 				
 		    }
 
 			if (Mode.HasFlag(ConverterMode.OwlGenerator))
 			{
-				tasks.Add(OwlGeneratorConfig.Apply(this));
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => OwlGeneratorConfig.Apply(this)));
+				}
+				else
+				{
+					await OwlGeneratorConfig.Apply(this);
+				}
 			}
 
+			if (AsynchronousPipeline)
+			{
+				await Task.WhenAll(tasks);
+			}
 
-			await Task.WhenAll(tasks);
 
 
 			// Handling for None or unrecognized values
