@@ -834,7 +834,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Path.GetDirectoryName(htmlFileName));
 
 					htmlTemplate = htmlTemplate.Replace("[SVGPATH]", svgRelativePath);
-					htmlTemplate = htmlTemplate.Replace("[SVGCONTENT]", await svgContent());
+					htmlTemplate = htmlTemplate.Replace("<!-- Insert here the SVG -->", await svgContent());
 
 					await File.WriteAllTextAsync(htmlFileName, htmlTemplate, Encoding.UTF8);
 					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
