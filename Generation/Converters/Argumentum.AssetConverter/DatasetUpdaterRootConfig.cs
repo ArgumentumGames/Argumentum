@@ -132,7 +132,7 @@ public class DatasetUpdaterRootConfig
 		},
 		new DatasetUpdaterConfig()
 		{
-			Enabled = false,
+			Enabled = true,
 			SourceDataset = @"Argumentum - Fallacies - Taxonomy",
 			FieldsToInclude = new List<string>()
 			{
@@ -174,7 +174,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptInstructionsLightAssistantExamples.txt"
 				}
 			},
-			Model = Models.Gpt_4_1106_preview,
+			Model = Models.Gpt_4_0125_preview,
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.PKHierarchicalChar,
 			PKHierarchyLevel = 3,

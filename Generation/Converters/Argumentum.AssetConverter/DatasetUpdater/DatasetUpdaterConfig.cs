@@ -70,6 +70,7 @@ public class DatasetUpdaterConfig
 
 	public string TargetPath { get; set; } = "";
 
+	public bool WriteOneTargetFileByField { get; set; }
 
 	public bool CompareMode { get; set; }
 
@@ -113,7 +114,11 @@ public class DatasetUpdaterConfig
 
 			var content = await sourceDataset.GetContent(config.UseDebugParams);
 
-			var resultTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
+			var globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
+
+
+			var resultDataTablesPerField = new Dictionary<string, DataTable> { { "", globalDataTable } };
+
 
 			var saveResults = false;
 
@@ -277,7 +282,7 @@ public class DatasetUpdaterConfig
 									PrimaryKeyField = PrimaryField,
 									Records = recordGroup
 								};
-								dataPrompt.Functions = FunctionCallingHelper.GetFunctionDefinitions<RecordsUpdater>().Select(definition => (definition, (object)recordsUpdator)).ToList();
+								dataPrompt.Functions = FunctionCallingHelper.GetToolDefinitions<RecordsUpdater>().Select(definition => (definition.Function, (object)recordsUpdator)).ToList();
 								if (!string.IsNullOrEmpty(FunctionName))
 								{
 									dataPrompt.FunctionName = FunctionName;
@@ -317,9 +322,9 @@ public class DatasetUpdaterConfig
 
 
 
-							lock (resultTable)
+							lock (resultDataTablesPerField)
 							{
-								DataSetInfo.UpdateTableFromRecords(PrimaryField, FieldsToUpdate, false, newRecords, resultTable);
+								DataSetInfo.UpdateTableFromRecords(PrimaryField, FieldsToUpdate, false, newRecords, this.WriteOneTargetFileByField, resultDataTablesPerField);
 							}
 
 
@@ -354,7 +359,7 @@ public class DatasetUpdaterConfig
 
 					if (AutoCompare)
 					{
-						targetTable = resultTable.Copy();
+						targetTable = globalDataTable.Copy();
 					}
 					else
 					{
@@ -366,9 +371,9 @@ public class DatasetUpdaterConfig
 
 					
 
-					for (int i = 0; i < resultTable.Rows.Count; i++)
+					for (int i = 0; i < globalDataTable.Rows.Count; i++)
 					{
-						var originalRow = resultTable.Rows[i];
+						var originalRow = globalDataTable.Rows[i];
 
 						var originalKey = originalRow[PrimaryField].ToString();
 
@@ -412,7 +417,7 @@ public class DatasetUpdaterConfig
 
 					}
 					var checkedKeys = new HashSet<string>();
-					resultTable.Columns[CompareField].ReadOnly = false;
+					globalDataTable.Columns[CompareField].ReadOnly = false;
 					foreach (var difference in differences)
 					{
 						var originalAutoCompareValue = !string.IsNullOrEmpty(AutoCompareField) ? difference[0][AutoCompareField] : "";
@@ -442,7 +447,7 @@ public class DatasetUpdaterConfig
 						var selectedValue = difference[intOptionKey][CompareField];
 						foreach (var key in keys)
 						{
-							var row = resultTable.Rows.Find(key);
+							var row = globalDataTable.Rows.Find(key);
 							row[CompareField] = selectedValue;
 						}
 
@@ -461,33 +466,41 @@ public class DatasetUpdaterConfig
 
 			if (saveResults)
 			{
-				var mergedCsv = DataSetInfo.WriteDataTableToCsv(resultTable, ",");
 
-				// Save mergedCsv to file
-
-				if (File.Exists(TargetPath))
+				foreach (var dataTable in resultDataTablesPerField)
 				{
-					try
+					var mergedCsv = DataSetInfo.WriteDataTableToCsv(dataTable.Value, ",");
+
+					var csvPath = TargetPath.Replace(".csv", $"{dataTable.Key}.csv");
+
+					// Save mergedCsv to file
+
+					if (File.Exists(csvPath))
 					{
-						File.Delete(TargetPath);
-					}
-					catch (Exception e)
-					{
-						Logger.LogException(e);
-						Console.ReadKey();
+						try
+						{
+							File.Delete(csvPath);
+						}
+						catch (Exception e)
+						{
+							Logger.LogException(e);
+							Console.ReadKey();
+						}
+
 					}
 
+					if (!Directory.Exists(Path.GetDirectoryName(csvPath)))
+					{
+						Directory.CreateDirectory(Path.GetDirectoryName(csvPath));
+					}
+
+					await sourceDataset.SaveContent(csvPath, mergedCsv);
+
+
+					Logger.LogSuccess("Completed ChatGPT calls and saved the output to " + csvPath);
 				}
 
-				if (!Directory.Exists(Path.GetDirectoryName(TargetPath)))
-				{
-					Directory.CreateDirectory(Path.GetDirectoryName(TargetPath));
-				}
-
-				await sourceDataset.SaveContent(TargetPath, mergedCsv);
-
-
-				Logger.Log("Completed ChatGPT calls and saved the output to " + TargetPath);
+				
 			}
 
 
