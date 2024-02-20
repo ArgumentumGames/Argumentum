@@ -27,7 +27,7 @@ namespace Argumentum.AssetConverter
 
 	    public bool SkipConfigFile { get; set; } = false;
 
-		public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper | ConverterMode.OwlGenerator;// | ConverterMode.WebBasedImageGeneration;
+		public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater; // | ConverterMode.Mindmapper | ConverterMode.OwlGenerator | ConverterMode.WebBasedImageGeneration;
 
 		public bool ForceDebugParams { get; set; }
 

@@ -368,22 +368,57 @@ public class DataSetInfo
 		return stringWriter.ToString();
 	}
 
-	public static void UpdateTableFromRecords(string primaryKeyColumn, List<string> fieldsToUpdate, bool addNewRows, List<Dictionary<string, object>> records,
-		DataTable resultTable)
+	public static void UpdateTableFromRecords(string primaryKeyColumn, List<string> fieldsToUpdate, bool addNewRows,
+		List<Dictionary<string, object>> records,
+		bool writeOneTargetFileByField,
+		Dictionary<string, DataTable> resultTables)
 	{
+
+		var globalResultTable = resultTables[""];
+
+
 		foreach (var record in records)
 		{
-			var row = resultTable.Rows.Find(record[primaryKeyColumn]);
+			var row = globalResultTable.Rows.Find(record[primaryKeyColumn]);
 
 			if (addNewRows && row == null)
 			{
-				row = resultTable.NewRow();
-				resultTable.Rows.Add(row);
+				row = globalResultTable.NewRow();
+				globalResultTable.Rows.Add(row);
 			}
 
 			if (row != null)
 			{
-				UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, resultTable, row);
+				if (!writeOneTargetFileByField)
+				{
+					UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, globalResultTable, row);
+				}
+				else
+				{
+					foreach (var pair in record)
+					{
+						var columnName = pair.Key;
+						if (columnName != primaryKeyColumn)
+						{
+							if (fieldsToUpdate.Contains(columnName))
+							{
+								if (!resultTables.TryGetValue(columnName, out var fieldDataTable))
+								{
+									fieldDataTable = globalResultTable.Clone();
+
+									resultTables.Add(columnName, fieldDataTable);
+								}
+
+								row = fieldDataTable.Rows.Find(record[primaryKeyColumn]);
+								fieldDataTable.Columns[columnName].ReadOnly = false;
+								row[columnName] = pair.Value;
+							}
+						}
+					}
+				}
+
+
+				
 			}
 		}
 	}
