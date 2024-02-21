@@ -27,7 +27,7 @@ public class DatasetUpdaterRootConfig
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,
-			SourceDataset = @"Argumentum - Virtues - Taxonomy",
+			SourceDataset = KnownDataSets.VirtuesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
 				"path",
@@ -70,7 +70,7 @@ public class DatasetUpdaterRootConfig
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,
-			SourceDataset = @"Argumentum - Fallacies - Taxonomy",
+			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
 				"path",
@@ -133,7 +133,7 @@ public class DatasetUpdaterRootConfig
 		new DatasetUpdaterConfig()
 		{
 			Enabled = true,
-			SourceDataset = @"Argumentum - Fallacies - Taxonomy",
+			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
 				"path",
@@ -182,7 +182,7 @@ public class DatasetUpdaterRootConfig
 			//FunctionName = nameof(RecordsUpdater.UpdateRecord),
 			NbMessageCalls = 1,
 			SkipChunkNb = 0,
-			TakeChunkNb = 0,
+			TakeChunkNb = 10,
 			SelectEmptyTargets = true,
 			RandomizeChunks = false,
 			MaxDegreeOfParallelismWebService = 3,
@@ -190,7 +190,9 @@ public class DatasetUpdaterRootConfig
 			AutoCompare = true,
 			AutoCompareField = "text_fr",
 			CompareField = "example_fr",
-			MaxGroupItemNb = 25,
+			MaxGroupItemNb = 30,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 12
 		}
 	};
 }

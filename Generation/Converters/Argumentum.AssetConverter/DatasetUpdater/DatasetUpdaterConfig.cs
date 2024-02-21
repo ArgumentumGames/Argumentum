@@ -78,7 +78,7 @@ public class DatasetUpdaterConfig
 	public string CompareField { get; set; }
 	public bool AutoCompare { get; set; }
 	public string AutoCompareField { get; set; } = "";
-	public int MaxGroupItemNb { get; set; } = 20;
+	public int MaxGroupItemNb { get; set; } = 30;
 
 
 	public int MaxChildren { get; set; } = 12;
@@ -87,7 +87,7 @@ public class DatasetUpdaterConfig
 	public async Task Apply(AssetConverterConfig config)
 	{
 		var openAIKey = await File.ReadAllTextAsync(OpenAIKeyPath);
-		
+
 
 
 		try
@@ -144,48 +144,48 @@ public class DatasetUpdaterConfig
 
 				var records = sourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, config.UseDebugParams);
 
-				if (SelectEmptyTargets)
-				{
+				//if (SelectEmptyTargets)
+				//{
 
 
-					var toReturn = new List<Dictionary<string, object>>();
+				//	var toReturn = new List<Dictionary<string, object>>();
 
 
-					var emptyRecords = records.Where(RecordHasEmptyTargetFields).ToList();
+				//	var emptyRecords = records.Where(RecordHasEmptyTargetFields).ToList();
 
-					toReturn.AddRange(emptyRecords);
+				//	toReturn.AddRange(emptyRecords);
 
-					if (DivisionMode == DivisionMode.PKHierarchicalChar)
-					{
-						var rootRecords = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, false, MaxChildren);
-						foreach (var rootRecord in rootRecords.SelectMany(list => list))
-						{
-							if (!toReturn.Exists(record => record[PrimaryField] == rootRecord[PrimaryField]))
-							{
-								toReturn.Add(rootRecord);
-							}
-						}
+				//	if (DivisionMode == DivisionMode.PKHierarchicalChar)
+				//	{
+				//		var rootRecords = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, false, MaxChildren);
+				//		foreach (var rootRecord in rootRecords.SelectMany(list => list))
+				//		{
+				//			if (!toReturn.Exists(record => record[PrimaryField] == rootRecord[PrimaryField]))
+				//			{
+				//				toReturn.Add(rootRecord);
+				//			}
+				//		}
 
-						foreach (var emptyRecord in emptyRecords)
-						{
-							var pkEmptyRecord = emptyRecord[PrimaryField].ToString();
-							var pkEmptyRecordRoot = pkEmptyRecord.Substring(0, Math.Max(0, pkEmptyRecord.LastIndexOf(PKHierarchicalChar)));
-							var siblings = records.Where(record => record[PrimaryField].ToString().Length == pkEmptyRecord.Length
-										&& record[PrimaryField].ToString().StartsWith(pkEmptyRecordRoot)).ToList();
-							var nonEmptySiblings = siblings.Where(record => !RecordHasEmptyTargetFields(record)).ToList();
-							foreach (var nonEmptySibling in nonEmptySiblings)
-							{
-								if (!toReturn.Exists(record => record[PrimaryField] == nonEmptySibling[PrimaryField]))
-								{
-									toReturn.Add(nonEmptySibling);
-								}
-							}
-						}
-					}
+				//		foreach (var emptyRecord in emptyRecords)
+				//		{
+				//			var pkEmptyRecord = emptyRecord[PrimaryField].ToString();
+				//			var pkEmptyRecordRoot = pkEmptyRecord.Substring(0, Math.Max(0, pkEmptyRecord.LastIndexOf(PKHierarchicalChar)));
+				//			var siblings = records.Where(record => record[PrimaryField].ToString().Length == pkEmptyRecord.Length
+				//						&& record[PrimaryField].ToString().StartsWith(pkEmptyRecordRoot)).ToList();
+				//			var nonEmptySiblings = siblings.Where(record => !RecordHasEmptyTargetFields(record)).ToList();
+				//			foreach (var nonEmptySibling in nonEmptySiblings)
+				//			{
+				//				if (!toReturn.Exists(record => record[PrimaryField] == nonEmptySibling[PrimaryField]))
+				//				{
+				//					toReturn.Add(nonEmptySibling);
+				//				}
+				//			}
+				//		}
+				//	}
 
-					records = toReturn;
+				//	records = toReturn;
 
-				}
+				//}
 
 				List<List<Dictionary<string, object>>> recordGroups;
 
@@ -194,12 +194,6 @@ public class DatasetUpdaterConfig
 					case DivisionMode.PKHierarchicalChar:
 
 						recordGroups = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, true, MaxChildren);
-
-						if (SelectEmptyTargets)
-						{
-							recordGroups = recordGroups.Where(group => group.Exists(RecordHasEmptyTargetFields)).ToList();
-						}
-
 
 						break;
 
@@ -213,6 +207,13 @@ public class DatasetUpdaterConfig
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
+
+				if (SelectEmptyTargets)
+				{
+					recordGroups = recordGroups.Where(group => group.Exists(RecordHasEmptyTargetFields)).ToList();
+				}
+
+
 
 				//Doing short tests
 				if (SkipChunkNb > 0)
@@ -230,9 +231,9 @@ public class DatasetUpdaterConfig
 					recordGroups = recordGroups.Take(TakeChunkNb).ToList();
 				}
 
-				if (recordGroups.Count>0)
+				if (recordGroups.Count > 0)
 				{
-					
+
 					recordGroups = recordGroups.Where(group => group.Count > 0).ToList();
 
 					if (MaxGroupItemNb > 0)
@@ -257,83 +258,7 @@ public class DatasetUpdaterConfig
 
 					await Parallel.ForEachAsync(recordGroups, parallelOptions, async (recordGroup, ct) =>
 					{
-						try
-						{
-							ct.ThrowIfCancellationRequested();
-
-							var chunk = DataSetInfo.SplitContentIntoJsonChunks(recordGroup, int.MaxValue)[0];
-
-
-
-							var dataPrompt = new Prompt()
-							{
-								ApiKey = openAIKey,
-								Model = Model,
-								SystemPrompt = systemPrompt,
-								DialogPrompts = DialogPrompts,
-								UserPrompt = chunk,
-								Tokenizer = tokenManager.TokenizerAction
-							};
-
-							if (UseFunctionCalling)
-							{
-								var recordsUpdator = new RecordsUpdater()
-								{
-									PrimaryKeyField = PrimaryField,
-									Records = recordGroup
-								};
-								dataPrompt.Functions = FunctionCallingHelper.GetToolDefinitions<RecordsUpdater>().Select(definition => (definition.Function, (object)recordsUpdator)).ToList();
-								if (!string.IsNullOrEmpty(FunctionName))
-								{
-									dataPrompt.FunctionName = FunctionName;
-								}
-							}
-
-							string result = "";
-
-							for (int i = 0; i < NbMessageCalls; i++)
-							{
-								ct.ThrowIfCancellationRequested();
-								Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
-
-								try
-								{
-									tokenManager.WaitForTokenAvailability();
-									result = await dataPrompt.Send(token).ConfigureAwait(false);
-									//result = chunk;
-									Logger.Log(
-										$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
-									dataPrompt.UserPrompt = result;
-								}
-								catch (Exception e)
-								{
-									Logger.LogException(e);
-								}
-							}
-							List<Dictionary<string, object>> newRecords;
-							if (UseFunctionCalling)
-							{
-								newRecords = recordGroup;
-							}
-							else
-							{
-								newRecords = DataSetInfo.GetDictionaryRecordsFromJson(result);
-							}
-
-
-
-							lock (resultDataTablesPerField)
-							{
-								DataSetInfo.UpdateTableFromRecords(PrimaryField, FieldsToUpdate, false, newRecords, this.WriteOneTargetFileByField, resultDataTablesPerField);
-							}
-
-
-							answers.Add(result);
-						}
-						catch (OperationCanceledException)
-						{
-							Logger.Log("Operation cancelled by user.");
-						}
+						await DoChatGPTCall(ct, recordGroup, openAIKey, systemPrompt, tokenManager, token, resultDataTablesPerField, answers);
 					});
 
 
@@ -343,17 +268,17 @@ public class DatasetUpdaterConfig
 					//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
 					//		false);
 
-					
+
 
 				}
 
-				
+
 			}
 			else
 			{
 				if (File.Exists(TargetPath))
 				{
-					
+
 
 					DataTable targetTable;
 
@@ -369,7 +294,7 @@ public class DatasetUpdaterConfig
 
 					var differences = new List<List<DataRow>>();
 
-					
+
 
 					for (int i = 0; i < globalDataTable.Rows.Count; i++)
 					{
@@ -377,9 +302,9 @@ public class DatasetUpdaterConfig
 
 						var originalKey = originalRow[PrimaryField].ToString();
 
-						
 
-						List<DataRow>  targetRows;
+
+						List<DataRow> targetRows;
 						if (AutoCompare)
 						{
 							targetRows = targetTable.Select().Where(row => row[AutoCompareField].ToString() == originalRow[AutoCompareField].ToString()).ToList();
@@ -399,7 +324,7 @@ public class DatasetUpdaterConfig
 						{
 							if (targetRow != null)
 							{
-								
+
 								var targetValue = targetRow[CompareField];
 								if (originalValue.ToString() != targetValue.ToString())
 								{
@@ -500,7 +425,7 @@ public class DatasetUpdaterConfig
 					Logger.LogSuccess("Completed ChatGPT calls and saved the output to " + csvPath);
 				}
 
-				
+
 			}
 
 
@@ -512,5 +437,83 @@ public class DatasetUpdaterConfig
 
 	}
 
+	private async Task DoChatGPTCall(CancellationToken ct, List<Dictionary<string, object>> recordGroup, string openAIKey, string systemPrompt,
+		TokenManager tokenManager, CancellationToken token, Dictionary<string, DataTable> resultDataTablesPerField, ConcurrentBag<string> answers)
+	{
+		try
+		{
 
+			string result = "";
+			for (int i = 0; i < NbMessageCalls; i++)
+			{
+				ct.ThrowIfCancellationRequested();
+
+				var chunk = DataSetInfo.SplitContentIntoJsonChunks(recordGroup, int.MaxValue)[0];
+
+				var dataPrompt = new Prompt()
+				{
+					ApiKey = openAIKey,
+					Model = Model,
+					SystemPrompt = systemPrompt,
+					DialogPrompts = DialogPrompts,
+					UserPrompt = chunk,
+					Tokenizer = tokenManager.TokenizerAction
+				};
+
+				if (UseFunctionCalling)
+				{
+					var recordsUpdator = new RecordsUpdater()
+					{
+						PrimaryKeyField = PrimaryField,
+						Records = recordGroup
+					};
+					dataPrompt.Functions = FunctionCallingHelper.GetToolDefinitions<RecordsUpdater>().Select(definition => (definition.Function, (object)recordsUpdator)).ToList();
+					if (!string.IsNullOrEmpty(FunctionName))
+					{
+						dataPrompt.FunctionName = FunctionName;
+					}
+				}
+
+
+
+
+				ct.ThrowIfCancellationRequested();
+				Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
+
+				try
+				{
+					tokenManager.WaitForTokenAvailability();
+					result = await dataPrompt.Send(token).ConfigureAwait(false);
+					//result = chunk;
+					Logger.Log(
+						$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
+					dataPrompt.UserPrompt = result;
+				}
+				catch (Exception e)
+				{
+					Logger.LogException(e);
+				}
+
+				List<Dictionary<string, object>> newRecords;
+				if (!UseFunctionCalling)
+				{
+					recordGroup = DataSetInfo.GetDictionaryRecordsFromJson(result);
+				}
+
+
+				lock (resultDataTablesPerField)
+				{
+					DataSetInfo.UpdateTableFromRecords(PrimaryField, FieldsToUpdate, false, recordGroup, this.WriteOneTargetFileByField, resultDataTablesPerField);
+				}
+
+			}
+
+
+			answers.Add(result);
+		}
+		catch (OperationCanceledException)
+		{
+			Logger.Log("Operation cancelled by user.");
+		}
+	}
 }

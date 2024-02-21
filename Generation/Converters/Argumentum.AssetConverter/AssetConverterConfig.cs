@@ -347,7 +347,7 @@ namespace Argumentum.AssetConverter
 
 			toReturn = JsonSerializer.Deserialize<AssetConverterConfig>(configStream);
 
-			if (toReturn.SkipConfigFile)
+			if (toReturn.SkipConfigFile || new AssetConverterConfig().SkipConfigFile)
 			{
 				Logger.Log($"Config loaded and skipped: {path}");
 				toReturn = new AssetConverterConfig();
