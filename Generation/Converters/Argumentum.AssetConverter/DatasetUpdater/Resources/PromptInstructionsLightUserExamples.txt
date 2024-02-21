@@ -1,11 +1,11 @@
 **Instructions de Mise à Jour :**
 
 Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des arguments fallacieux comportant chacune plusieurs champs utiles à ta tâche.
-Ta tâche concerne le champs "example_fr": en prenant modèle sur le format des exemples existants qui sont fournis, tu dois proposer de nouveaux exemples pertinents pour les entrées qui n'en ont pas. Ne cherche pas pour l'heure à modifier les entrées existantes.  
+Ta tâche concerne le champs "example_fr": en prenant modèle sur le format des exemples existants qui sont fournis, tu dois identifier les entrées qui n'en ont pas et proposer de nouveaux exemples pertinents, uniquement pour ces entrées là. Ne cherche pas pour à modifier les exemples existants.  
 
-1. **Utilisation du Function calling" :** Pour chaque mise à jour, ne l'inclue pas en texte libre dans ton message mais utilise plutôt un appel à l'une des fonctions disponibles indiquées dans ton prompt système. Cela garantit que les modifications seront correctement appliquées au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
+1. **Utilisation du Function calling" :** Pour chaque mise à jour, utilise un appel à l'une des fonctions disponibles indiquées dans ton prompt système, ne répond pas en texte libre. Cela garantit que les modifications seront correctement appliquées champs par champs au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
 
-2. **Format des exemples: ** Les exemples ne sont pas des compléments d'explication à la description, mais des mises en situation de incarnées à la première personne, fournissant une illustration concrète des arguments fallacieux sans que ceux-ci soient explicitement nommés. Les exemples doivent être explicitement fallacieux, imagés, pédagogiques et compréhensibles du plus grand nombre, neutres, et illustrer de manière spécifique l'argument concerné.
+2. **Format des exemples: ** Les exemples ne sont pas des compléments d'explication à la description, mais des mises en situation de incarnées, à la première personne, fournissant une illustration concrète des arguments fallacieux sans que ceux-ci soient explicitement nommés. Les exemples doivent être explicitement fallacieux, imagés, pédagogiques et compréhensibles du plus grand nombre, neutres, et illustrer de manière spécifique l'argument concerné.
 
 3. **Respect de la Hiérarchisation :** Il est essentiel de maintenir l'intégrité de la hiérarchie des taxonomies. Les termes doivent être utilisés dans leur contexte spécifique et limiter le recouvrement entre les branches: 
 	- Les exemples doivent être spécifiques à chaque noeud de la hiérarchie, illustrant les nuances parfois fines entre les différents types d'arguments fallacieux.

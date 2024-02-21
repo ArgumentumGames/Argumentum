@@ -210,12 +210,16 @@ public class DataSetInfo
 
 			if (allChildren.Count> maxChildren)
 			{
-				var nbGroups = (int)Math.Ceiling((double)allChildren.Count / maxChildren);
-				for (var i = 0; i < nbGroups; i++)
-				{
-					var children = allChildren.Skip(i * maxChildren).Take(maxChildren).ToList();
-					subHierarchies.Add(children);
-				}
+				//var nbGroups = (int)Math.Ceiling((double)allChildren.Count / maxChildren);
+				//for (var i = 0; i < nbGroups; i++)
+				//{
+				//	var children = allChildren.Skip(i * maxChildren).Take(maxChildren).ToList();
+				//	subHierarchies.Add(children);
+				//}
+				var nbHierarchicalChars = rootPk.Count(c => c == pKHierarchicalChar);
+				var children = allChildren.Where(record => record[pkField].ToString().Count(c => c == pKHierarchicalChar) == nbHierarchicalChars + 1).ToList();
+				var childrenHierarchies = children.Select(child => GetRecordHierarchies(records, pkField, pKHierarchicalChar, pKHierarchyLevel+1, child, includeChildren, maxChildren)).ToList();
+				return childrenHierarchies.SelectMany(list => list).ToList();
 			}
 			else
 			{
@@ -404,7 +408,7 @@ public class DataSetInfo
 							{
 								if (!resultTables.TryGetValue(columnName, out var fieldDataTable))
 								{
-									fieldDataTable = globalResultTable.Clone();
+									fieldDataTable = globalResultTable.Copy();
 
 									resultTables.Add(columnName, fieldDataTable);
 								}

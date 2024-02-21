@@ -13,7 +13,7 @@ path	text_fr
 1.2.3	Sophisme moraliste
 1.3	Surinterprétation
 1.3.1	Sophisme ludique
-1.3.2	Mauvaises raisons
+1.3.2	Argument des mauvaises raisons
 1.3.3	Manque de parcimonie
 2	Influence
 2.1	Procédé rhétorique
@@ -36,7 +36,7 @@ path	text_fr
 3.2	Mauvaise interprétation
 3.2.1	Relation infondée
 3.2.2	Probabilités faussées
-3.2.3	Justification infinie
+3.2.3	Infini trompeur
 3.3	Résultat invalide
 3.3.1	Imprécision
 3.3.2	Erreur de calcul
@@ -77,16 +77,16 @@ path	text_fr
 6.2.2	Beurre et argent du beurre
 6.2.3	Exigence relâchée
 6.3	Pensée biaisée
-6.3.1	Anthropocentrisme
-6.3.2	Ethnocentrisme
-6.3.3	Dogmatisme
+6.3.1	Biais naturels
+6.3.2	Biais culturels
+6.3.3	Biais théoriques
 7	Obstruction
 7.1	Refus du débat
 7.1.1	Relativisme abusif
 7.1.2	Sophisme d'Explication
 7.1.3	Preuve par assertion
 7.2	Saboter le débat
-7.2.1	Fausse piste
+7.2.1	Evasion
 7.2.2	Complication exagérée
 7.2.3	Empoisonner le puits
 7.3	Ad hominem
