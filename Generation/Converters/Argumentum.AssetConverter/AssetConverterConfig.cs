@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Argumentum.AssetConverter.DatasetUpdater;
 using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
@@ -24,10 +25,10 @@ namespace Argumentum.AssetConverter
 
 
 
+		//Debug Switch to configure default values
+	    public bool SkipConfigFile { get; set; } = true;
 
-	    public bool SkipConfigFile { get; set; } = false;
-
-	    public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper | ConverterMode.OwlGenerator; // | ConverterMode.Mindmapper | ConverterMode.OwlGenerator | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
+	    public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater; // ConverterMode.Mindmapper | ConverterMode.OwlGenerator | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
 
 		public bool ForceDebugParams { get; set; }
 

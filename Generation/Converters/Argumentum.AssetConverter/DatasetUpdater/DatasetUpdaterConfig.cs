@@ -126,13 +126,13 @@ public class DatasetUpdaterConfig
 			{
 				foreach (var field in FieldsToUpdate)
 				{
-					if (!string.IsNullOrEmpty(dictionary[field].ToString()))
+					if (string.IsNullOrEmpty(dictionary[field].ToString()))
 					{
-						return false;
+						return true;
 					}
 				}
 
-				return true;
+				return false;
 			}
 
 			if (!CompareMode)

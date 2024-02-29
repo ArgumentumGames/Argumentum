@@ -56,10 +56,22 @@
     <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantDescription.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateRuInstructionsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateFrEnInstructionsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DatasetUpdater\Resources\PromptInstructionsLightAssistantExamples.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateRuInstructionsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateFrEnInstructionsUser.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="DatasetUpdater\Resources\PromptInstructionsUserDescription.txt">
