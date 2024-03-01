@@ -26,9 +26,9 @@ namespace Argumentum.AssetConverter
 
 
 		//Debug Switch to configure default values
-	    public bool SkipConfigFile { get; set; } = true;
+	    public bool SkipConfigFile { get; set; } = false;
 
-	    public ConverterMode Mode { get; set; } = ConverterMode.DatasetUpdater; // ConverterMode.Mindmapper | ConverterMode.OwlGenerator | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
+	    public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper | ConverterMode.OwlGenerator; // ConverterMode.Mindmapper | ConverterMode.OwlGenerator; // | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
 
 		public bool ForceDebugParams { get; set; }
 

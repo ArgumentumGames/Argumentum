@@ -258,7 +258,7 @@ public class DatasetUpdaterRootConfig
 		},
 		new DatasetUpdaterConfig()
 		{
-			Enabled = true,
+			Enabled = false,
 			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
@@ -305,18 +305,81 @@ public class DatasetUpdaterRootConfig
 			//FunctionName = nameof(RecordsUpdater.UpdateRecord),
 			NbMessageCalls = 1,
 			SkipChunkNb = 0,
-			TakeChunkNb = 5,
+			TakeChunkNb = -1,
 			ChunkSize = 8,
 			SelectEmptyTargets = true,
 			RandomizeChunks = false,
-			MaxDegreeOfParallelismWebService = 3,
+			MaxDegreeOfParallelismWebService = 5,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "text_fr",
+			CompareField = "example_fr",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = true,
+			SourceDataset = KnownDataSets.FallaciesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				//"Famille",
+				//"Sous-Famille",
+				//"Soussousfamille",
+				"text_fr",
+				"desc_fr",
+				"example_fr",
+				//"carte",
+				"link_fr",
+				"text_en",
+				"desc_en",
+				"example_en",
+				"link_en",
+				"text_pt",
+				"desc_pt",
+				"example_pt",
+				"link_pt"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"text_pt",
+				"desc_pt",
+				"example_pt"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptTranslatePtInstructionsUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptTranslatePtInstructionsAssistant.txt"
+				}
+			},
+			Model = Models.Gpt_4_0125_preview,
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			PKHierarchyLevel = 3,
+			UseFunctionCalling = true,
+			//FunctionName = nameof(RecordsUpdater.UpdateRecord),
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			ChunkSize = 8,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 7,
 			CompareMode = false,
 			AutoCompare = true,
 			AutoCompareField = "text_fr",
 			CompareField = "example_fr",
 			MaxGroupItemNb = 12,
 			WriteOneTargetFileByField = false,
-			MaxChildren = 8
+			MaxChildren = 8,
+			NbGlobalPasses = 2
 		}
 
 	};
