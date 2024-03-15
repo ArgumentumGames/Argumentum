@@ -151,14 +151,19 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Subfamily).Name("Subfamily");
             Map(m => m.Subsubfamily).Name("Subsubfamily");
             Map(m => m.TextEn).Name("text_en");
+            Map(m => m.DescEn).Name("desc_en");
+            Map(m => m.Len115).Name("Len115");
             Map(m => m.ExampleEn).Name("example_en");
+            Map(m => m.Lxen145).Name("Lxen145");
+			Map(m => m.ExampleEn).Name("example_en");
             Map(m => m.LinkEn).Name("link_en");
 
             Map(m => m.FamilyRu).Name("Family_ru");
             Map(m => m.SubfamilyRu).Name("Subfamily_ru");
             Map(m => m.SubsubfamilyRu).Name("Subsubfamily_ru");
             Map(m => m.TextRu).Name("text_ru");
-            Map(m => m.ExampleRu).Name("example_ru");
+			Map(m => m.DescRu).Name("desc_ru");
+			Map(m => m.ExampleRu).Name("example_ru");
             Map(m => m.LinkRu).Name("link_ru");
 
 
@@ -166,14 +171,12 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.SubfamilyPt).Name("Subfamily_pt");
             Map(m => m.SubsubfamilyPt).Name("Subsubfamily_pt");
             Map(m => m.TextPt).Name("text_pt");
-            Map(m => m.ExamplePt).Name("example_pt");
+            Map(m => m.DescPt).Name("desc_pt");
+			Map(m => m.ExamplePt).Name("example_pt");
             Map(m => m.LinkPt).Name("link_pt");
 
             Map(m => m.Lxfr145).Name("Lxfr145");
-            Map(m => m.DescEn).Name("desc_en");
-            Map(m => m.Len115).Name("Len115");
-            Map(m => m.ExampleEn).Name("example_en");
-            Map(m => m.Lxen145).Name("Lxen145");
+
             Map(m => m.Remarques).Name("Remarques");
             Map(m => m.Latin).Name("latin");
             Map(m => m.Exemplepolitique).Name("exemple politique");

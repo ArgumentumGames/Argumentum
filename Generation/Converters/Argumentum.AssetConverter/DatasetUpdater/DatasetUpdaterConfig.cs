@@ -82,7 +82,7 @@ public class DatasetUpdaterConfig
 
 
 	public int MaxChildren { get; set; } = 12;
-
+	public int NbGlobalPasses { get; set; } = 1;
 
 	public async Task Apply(AssetConverterConfig config)
 	{
@@ -114,10 +114,7 @@ public class DatasetUpdaterConfig
 
 			var content = await sourceDataset.GetContent(config.UseDebugParams);
 
-			var globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
-
-
-			var resultDataTablesPerField = new Dictionary<string, DataTable> { { "", globalDataTable } };
+			
 
 
 			var saveResults = false;
@@ -126,268 +123,285 @@ public class DatasetUpdaterConfig
 			{
 				foreach (var field in FieldsToUpdate)
 				{
-					if (!string.IsNullOrEmpty(dictionary[field].ToString()))
+					if (string.IsNullOrEmpty(dictionary[field].ToString()))
 					{
-						return false;
+						return true;
 					}
 				}
 
-				return true;
+				return false;
 			}
 
-			if (!CompareMode)
+
+			DataTable globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
+			var resultDataTablesPerField = new Dictionary<string, DataTable> { };
+			resultDataTablesPerField[""] = globalDataTable;
+
+			for (int globalPassIndex = 0; globalPassIndex < this.NbGlobalPasses; globalPassIndex++)
 			{
-
-				saveResults = true;
-
-				// load dataset in chunks, 
-
-				var records = sourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, config.UseDebugParams);
-
-				//if (SelectEmptyTargets)
-				//{
+				//globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
 
 
-				//	var toReturn = new List<Dictionary<string, object>>();
-
-
-				//	var emptyRecords = records.Where(RecordHasEmptyTargetFields).ToList();
-
-				//	toReturn.AddRange(emptyRecords);
-
-				//	if (DivisionMode == DivisionMode.PKHierarchicalChar)
-				//	{
-				//		var rootRecords = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, false, MaxChildren);
-				//		foreach (var rootRecord in rootRecords.SelectMany(list => list))
-				//		{
-				//			if (!toReturn.Exists(record => record[PrimaryField] == rootRecord[PrimaryField]))
-				//			{
-				//				toReturn.Add(rootRecord);
-				//			}
-				//		}
-
-				//		foreach (var emptyRecord in emptyRecords)
-				//		{
-				//			var pkEmptyRecord = emptyRecord[PrimaryField].ToString();
-				//			var pkEmptyRecordRoot = pkEmptyRecord.Substring(0, Math.Max(0, pkEmptyRecord.LastIndexOf(PKHierarchicalChar)));
-				//			var siblings = records.Where(record => record[PrimaryField].ToString().Length == pkEmptyRecord.Length
-				//						&& record[PrimaryField].ToString().StartsWith(pkEmptyRecordRoot)).ToList();
-				//			var nonEmptySiblings = siblings.Where(record => !RecordHasEmptyTargetFields(record)).ToList();
-				//			foreach (var nonEmptySibling in nonEmptySiblings)
-				//			{
-				//				if (!toReturn.Exists(record => record[PrimaryField] == nonEmptySibling[PrimaryField]))
-				//				{
-				//					toReturn.Add(nonEmptySibling);
-				//				}
-				//			}
-				//		}
-				//	}
-
-				//	records = toReturn;
-
-				//}
-
-				List<List<Dictionary<string, object>>> recordGroups;
-
-				switch (this.DivisionMode)
-				{
-					case DivisionMode.PKHierarchicalChar:
-
-						recordGroups = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, true, MaxChildren);
-
-						break;
-
-					case DivisionMode.SequentialChunks:
-						recordGroups = new List<List<Dictionary<string, object>>>();
-						for (var i = 0; i < records.Count; i += ChunkSize)
-						{
-							recordGroups.Add(records.Skip(i).Take(ChunkSize).ToList());
-						}
-						break;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
-
-				if (SelectEmptyTargets)
-				{
-					recordGroups = recordGroups.Where(group => group.Exists(RecordHasEmptyTargetFields)).ToList();
-				}
-
-
-
-				//Doing short tests
-				if (SkipChunkNb > 0)
-				{
-					recordGroups = recordGroups.Skip(SkipChunkNb).ToList();
-				}
-
-				if (RandomizeChunks)
-				{
-					recordGroups = recordGroups.OrderBy(x => Guid.NewGuid()).ToList();
-				}
-
-				if (TakeChunkNb >= 0)
-				{
-					recordGroups = recordGroups.Take(TakeChunkNb).ToList();
-				}
-
-				if (recordGroups.Count > 0)
+				if (!CompareMode)
 				{
 
-					recordGroups = recordGroups.Where(group => group.Count > 0).ToList();
+					saveResults = true;
 
-					if (MaxGroupItemNb > 0)
+					// load dataset in chunks, 
+
+					var records = sourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, config.UseDebugParams);
+
+					//if (SelectEmptyTargets)
+					//{
+
+
+					//	var toReturn = new List<Dictionary<string, object>>();
+
+
+					//	var emptyRecords = records.Where(RecordHasEmptyTargetFields).ToList();
+
+					//	toReturn.AddRange(emptyRecords);
+
+					//	if (DivisionMode == DivisionMode.PKHierarchicalChar)
+					//	{
+					//		var rootRecords = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, false, MaxChildren);
+					//		foreach (var rootRecord in rootRecords.SelectMany(list => list))
+					//		{
+					//			if (!toReturn.Exists(record => record[PrimaryField] == rootRecord[PrimaryField]))
+					//			{
+					//				toReturn.Add(rootRecord);
+					//			}
+					//		}
+
+					//		foreach (var emptyRecord in emptyRecords)
+					//		{
+					//			var pkEmptyRecord = emptyRecord[PrimaryField].ToString();
+					//			var pkEmptyRecordRoot = pkEmptyRecord.Substring(0, Math.Max(0, pkEmptyRecord.LastIndexOf(PKHierarchicalChar)));
+					//			var siblings = records.Where(record => record[PrimaryField].ToString().Length == pkEmptyRecord.Length
+					//						&& record[PrimaryField].ToString().StartsWith(pkEmptyRecordRoot)).ToList();
+					//			var nonEmptySiblings = siblings.Where(record => !RecordHasEmptyTargetFields(record)).ToList();
+					//			foreach (var nonEmptySibling in nonEmptySiblings)
+					//			{
+					//				if (!toReturn.Exists(record => record[PrimaryField] == nonEmptySibling[PrimaryField]))
+					//				{
+					//					toReturn.Add(nonEmptySibling);
+					//				}
+					//			}
+					//		}
+					//	}
+
+					//	records = toReturn;
+
+					//}
+
+					List<List<Dictionary<string, object>>> recordGroups;
+
+					switch (this.DivisionMode)
 					{
-						for (int i = 0; i < recordGroups.Count; i++)
-						{
-							recordGroups[i] = recordGroups[i].Take(Math.Min(recordGroups[i].Count, MaxGroupItemNb)).ToList();
-						}
-					}
+						case DivisionMode.PKHierarchicalChar:
 
-					var answers = new ConcurrentBag<string>();
+							recordGroups = DataSetInfo.GetHierarchicalRecords(records, PrimaryField, PKHierarchicalChar, PKHierarchyLevel, true, MaxChildren);
 
-					var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
+							break;
 
-					var parallelOptions = new ParallelOptions
-					{
-						MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
-						CancellationToken = token
-					};
-
-					var systemPrompt = await File.ReadAllTextAsync(SystemPromptPath, token);
-
-					await Parallel.ForEachAsync(recordGroups, parallelOptions, async (recordGroup, ct) =>
-					{
-						await DoChatGPTCall(ct, recordGroup, openAIKey, systemPrompt, tokenManager, token, resultDataTablesPerField, answers);
-					});
-
-
-
-					//// Merge answers into one csv
-					//var mergedCsv =
-					//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
-					//		false);
-
-
-
-				}
-
-
-			}
-			else
-			{
-				if (File.Exists(TargetPath))
-				{
-
-
-					DataTable targetTable;
-
-					if (AutoCompare)
-					{
-						targetTable = globalDataTable.Copy();
-					}
-					else
-					{
-						var targetContent = await TargetPath.GetDocumentContent();
-						targetTable = DataSetInfo.LoadCsvIntoDataTable(targetContent, ",", PrimaryField);
-					}
-
-					var differences = new List<List<DataRow>>();
-
-
-
-					for (int i = 0; i < globalDataTable.Rows.Count; i++)
-					{
-						var originalRow = globalDataTable.Rows[i];
-
-						var originalKey = originalRow[PrimaryField].ToString();
-
-
-
-						List<DataRow> targetRows;
-						if (AutoCompare)
-						{
-							targetRows = targetTable.Select().Where(row => row[AutoCompareField].ToString() == originalRow[AutoCompareField].ToString()).ToList();
-						}
-						else
-						{
-							var targetRow = targetTable.Rows.Find(originalKey);
-							targetRows = new List<DataRow>() { targetRow };
-						}
-
-
-						List<DataRow> currentAlternative = null;
-
-						var originalValue = originalRow[CompareField];
-
-						foreach (var targetRow in targetRows)
-						{
-							if (targetRow != null)
+						case DivisionMode.SequentialChunks:
+							recordGroups = new List<List<Dictionary<string, object>>>();
+							for (var i = 0; i < records.Count; i += ChunkSize)
 							{
+								recordGroups.Add(records.Skip(i).Take(ChunkSize).ToList());
+							}
+							break;
+						default:
+							throw new ArgumentOutOfRangeException();
+					}
 
-								var targetValue = targetRow[CompareField];
-								if (originalValue.ToString() != targetValue.ToString())
-								{
-									if (currentAlternative == null)
-									{
-										currentAlternative = new();
-										currentAlternative.Add(originalRow);
-										differences.Add(currentAlternative);
-									}
-									currentAlternative.Add(targetRow);
+					if (SelectEmptyTargets)
+					{
+						recordGroups = recordGroups.Where(group => group.Exists(RecordHasEmptyTargetFields)).ToList();
+					}
 
-								}
+
+
+					//Doing short tests
+					if (SkipChunkNb > 0)
+					{
+						recordGroups = recordGroups.Skip(SkipChunkNb).ToList();
+					}
+
+					if (RandomizeChunks)
+					{
+						recordGroups = recordGroups.OrderBy(x => Guid.NewGuid()).ToList();
+					}
+
+					if (TakeChunkNb >= 0)
+					{
+						recordGroups = recordGroups.Take(TakeChunkNb).ToList();
+					}
+
+					if (recordGroups.Count > 0)
+					{
+
+						recordGroups = recordGroups.Where(group => group.Count > 0).ToList();
+
+						if (MaxGroupItemNb > 0)
+						{
+							for (int i = 0; i < recordGroups.Count; i++)
+							{
+								recordGroups[i] = recordGroups[i].Take(Math.Min(recordGroups[i].Count, MaxGroupItemNb)).ToList();
 							}
 						}
 
-					}
-					var checkedKeys = new HashSet<string>();
-					globalDataTable.Columns[CompareField].ReadOnly = false;
-					foreach (var difference in differences)
-					{
-						var originalAutoCompareValue = !string.IsNullOrEmpty(AutoCompareField) ? difference[0][AutoCompareField] : "";
+						var answers = new ConcurrentBag<string>();
 
-						var originalKey = difference[0][PrimaryField].ToString();
-						if (checkedKeys.Contains(originalKey))
+						var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
+
+						var parallelOptions = new ParallelOptions
 						{
-							continue;
-						}
-						checkedKeys.Add(originalKey);
+							MaxDegreeOfParallelism = MaxDegreeOfParallelismWebService,
+							CancellationToken = token
+						};
 
-						Logger.Log($"Found {difference.Count} options for {originalAutoCompareValue} - {difference[0][PrimaryField]}");
+						var systemPrompt = await File.ReadAllTextAsync(SystemPromptPath, token);
 
-
-						var keys = new List<object>();
-						for (int i = 0; i < difference.Count; i++)
+						await Parallel.ForEachAsync(recordGroups, parallelOptions, async (recordGroup, ct) =>
 						{
-							var differenceKey = difference[i][PrimaryField];
-							keys.Add(differenceKey);
-							checkedKeys.Add(differenceKey.ToString());
-							Logger.Log($"{i} - {differenceKey.ToString()}\n{difference[i][CompareField]}");
-						}
+							await DoChatGPTCall(ct, recordGroup, openAIKey, systemPrompt, tokenManager, token, resultDataTablesPerField, answers);
+						});
 
-						Logger.Log("Enter preferred Option:");
-						var optionKey = Console.ReadLine();
-						var intOptionKey = int.Parse(optionKey);
-						var selectedValue = difference[intOptionKey][CompareField];
-						foreach (var key in keys)
-						{
-							var row = globalDataTable.Rows.Find(key);
-							row[CompareField] = selectedValue;
-						}
+
+
+						//// Merge answers into one csv
+						//var mergedCsv =
+						//	await SourceDataset.MergeJsonResponsesIntoCsv(answers.ToList(), PrimaryField, FieldsToUpdate, ",",
+						//		false);
+
+
 
 					}
 
-
-					Logger.Log("Save result (y/n)?");
-					var savekey = Console.ReadKey();
-					if (savekey.KeyChar == 'y')
-					{
-						saveResults = true;
-					}
 
 				}
+				else
+				{
+					if (File.Exists(TargetPath))
+					{
+
+
+						DataTable targetTable;
+
+						if (AutoCompare)
+						{
+							targetTable = globalDataTable.Copy();
+						}
+						else
+						{
+							var targetContent = await TargetPath.GetDocumentContent();
+							targetTable = DataSetInfo.LoadCsvIntoDataTable(targetContent, ",", PrimaryField);
+						}
+
+						var differences = new List<List<DataRow>>();
+
+
+
+						for (int i = 0; i < globalDataTable.Rows.Count; i++)
+						{
+							var originalRow = globalDataTable.Rows[i];
+
+							var originalKey = originalRow[PrimaryField].ToString();
+
+
+
+							List<DataRow> targetRows;
+							if (AutoCompare)
+							{
+								targetRows = targetTable.Select().Where(row => row[AutoCompareField].ToString() == originalRow[AutoCompareField].ToString()).ToList();
+							}
+							else
+							{
+								var targetRow = targetTable.Rows.Find(originalKey);
+								targetRows = new List<DataRow>() { targetRow };
+							}
+
+
+							List<DataRow> currentAlternative = null;
+
+							var originalValue = originalRow[CompareField];
+
+							foreach (var targetRow in targetRows)
+							{
+								if (targetRow != null)
+								{
+
+									var targetValue = targetRow[CompareField];
+									if (originalValue.ToString() != targetValue.ToString())
+									{
+										if (currentAlternative == null)
+										{
+											currentAlternative = new();
+											currentAlternative.Add(originalRow);
+											differences.Add(currentAlternative);
+										}
+										currentAlternative.Add(targetRow);
+
+									}
+								}
+							}
+
+						}
+						var checkedKeys = new HashSet<string>();
+						globalDataTable.Columns[CompareField].ReadOnly = false;
+						foreach (var difference in differences)
+						{
+							var originalAutoCompareValue = !string.IsNullOrEmpty(AutoCompareField) ? difference[0][AutoCompareField] : "";
+
+							var originalKey = difference[0][PrimaryField].ToString();
+							if (checkedKeys.Contains(originalKey))
+							{
+								continue;
+							}
+							checkedKeys.Add(originalKey);
+
+							Logger.Log($"Found {difference.Count} options for {originalAutoCompareValue} - {difference[0][PrimaryField]}");
+
+
+							var keys = new List<object>();
+							for (int i = 0; i < difference.Count; i++)
+							{
+								var differenceKey = difference[i][PrimaryField];
+								keys.Add(differenceKey);
+								checkedKeys.Add(differenceKey.ToString());
+								Logger.Log($"{i} - {differenceKey.ToString()}\n{difference[i][CompareField]}");
+							}
+
+							Logger.Log("Enter preferred Option:");
+							var optionKey = Console.ReadLine();
+							var intOptionKey = int.Parse(optionKey);
+							var selectedValue = difference[intOptionKey][CompareField];
+							foreach (var key in keys)
+							{
+								var row = globalDataTable.Rows.Find(key);
+								row[CompareField] = selectedValue;
+							}
+
+						}
+
+
+						Logger.Log("Save result (y/n)?");
+						var savekey = Console.ReadKey();
+						if (savekey.KeyChar == 'y')
+						{
+							saveResults = true;
+						}
+
+					}
+				}
+
+
+
+				content = DataSetInfo.WriteDataTableToCsv(globalDataTable, ",");
+
 			}
+
 
 			if (saveResults)
 			{
