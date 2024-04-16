@@ -121,4 +121,9 @@ public class Logger
 	{
 		Log(message, MessageType.Warning);
 	}
+
+	public static void LogInformation(string message)
+	{
+		Log(message, MessageType.Success);
+	}
 }

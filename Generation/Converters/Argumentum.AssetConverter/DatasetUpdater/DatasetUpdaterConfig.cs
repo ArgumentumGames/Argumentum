@@ -22,6 +22,8 @@ public class DatasetUpdaterConfig
 
 	public bool Enabled { get; set; } = true;
 
+	public string Name { get; set; } = "Dataset Update";
+
 	public string SystemPromptPath { get; set; }
 
 
@@ -136,7 +138,7 @@ public class DatasetUpdaterConfig
 			DataTable globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
 			var resultDataTablesPerField = new Dictionary<string, DataTable> { };
 			resultDataTablesPerField[""] = globalDataTable;
-
+			List<Dictionary<string, object>> records = null;
 			for (int globalPassIndex = 0; globalPassIndex < this.NbGlobalPasses; globalPassIndex++)
 			{
 				//globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
@@ -149,7 +151,11 @@ public class DatasetUpdaterConfig
 
 					// load dataset in chunks, 
 
-					var records = sourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, config.UseDebugParams);
+					if (records == null)
+					{
+						records = sourceDataset.GetDictionaryFromCsv(content, FieldsToInclude, config.UseDebugParams);
+					}
+					
 
 					//if (SelectEmptyTargets)
 					//{
@@ -276,7 +282,6 @@ public class DatasetUpdaterConfig
 						//		false);
 
 
-
 					}
 
 
@@ -398,7 +403,7 @@ public class DatasetUpdaterConfig
 
 
 
-				content = DataSetInfo.WriteDataTableToCsv(globalDataTable, ",");
+				//content = DataSetInfo.WriteDataTableToCsv(globalDataTable, ",");
 
 			}
 
@@ -489,15 +494,13 @@ public class DatasetUpdaterConfig
 				}
 
 
-
-
 				ct.ThrowIfCancellationRequested();
 				Logger.Log($"Calling ChatGPT API with chunk: \n{Markup.Escape(chunk)}\n");
 
 				try
 				{
 					tokenManager.WaitForTokenAvailability();
-					result = await dataPrompt.Send(token).ConfigureAwait(false);
+					result = await dataPrompt.Send(token, Logger.LogInformation).ConfigureAwait(false);
 					//result = chunk;
 					Logger.Log(
 						$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
@@ -508,7 +511,6 @@ public class DatasetUpdaterConfig
 					Logger.LogException(e);
 				}
 
-				List<Dictionary<string, object>> newRecords;
 				if (!UseFunctionCalling)
 				{
 					recordGroup = DataSetInfo.GetDictionaryRecordsFromJson(result);
@@ -521,7 +523,6 @@ public class DatasetUpdaterConfig
 				}
 
 			}
-
 
 			answers.Add(result);
 		}
