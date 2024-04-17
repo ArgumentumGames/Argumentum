@@ -39,7 +39,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				new MindMapDocumentConfig()
 				{
 					Enabled = true,
-					DocumentName = "Argumentum_Fallacies_MindMap_fr.mm",
+					DocumentName = "Fallacies_fr.mm",
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					Translations = new List<(string sourceLang, string destLang)>(new[]
 					{
@@ -49,13 +49,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
-					KeepOriginalSVG = false,
+					KeepOriginalSVG = true,
 					SVGMaps = new List<SVGFreemindMap>(new[]
 					{
 						new SVGFreemindMap()
 						{
 							Enabled = true,
 							DocumentName = "links.svg",
+							SvgWidth = "200vh",
+							SvgHeight = "450vh",
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
 							RemoveImages = true
@@ -64,6 +66,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 						{
 							Enabled = true,
 							DocumentName = "content.svg",
+							SvgWidth = "96vw",
+							SvgHeight = "93vh",
 							WrapNodeByLink = false,
 							SetSVGNodeAttributes = true,
 							RemoveImages = true,
@@ -71,12 +75,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 							{
 								new DocumentConfig()
 								{
+									DocumentName	= "Fallacies_[LANGUAGE].html",
 									TemplatePathRelease =
 										"https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
 									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\included.html"
 								},
 								new DocumentConfig()
 								{
+									DocumentName    = "Fallacies_[LANGUAGE]_ext.html",
 									TemplatePathRelease =
 										"https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
 									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\external.html"
@@ -145,12 +151,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 							{
 								new DocumentConfig()
 								{
+									DocumentName    = "Argumentation_Virtues_fr.html",
 									TemplatePathRelease =
 										"https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
 									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\included.html"
 								},
 								new DocumentConfig()
 								{
+									DocumentName    = "Argumentation_Virtues_fr_ext.html",
 									TemplatePathRelease =
 										"https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
 									TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\external.html"

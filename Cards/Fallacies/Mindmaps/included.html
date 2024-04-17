@@ -13,10 +13,13 @@
             display: none;
         }
 
-        /* svg {
-            shape-rendering: optimizeSpeed;
-            text-rendering: optimizeSpeed;
-        }*/
+        svg {
+            /* shape-rendering: optimizeSpeed;
+            text-rendering: optimizeSpeed;*/
+            height: 93vh;
+            width: 96vw;
+            max-width: 2000px;
+        }
 
         #mindmap {
             position: relative;
@@ -625,15 +628,15 @@
                     panEnabled: true,
                     mouseWheelZoomEnabled: true,
                     dblClickZoomEnabled: true,
-                    fit: 0,
+                    fit: 1,
                     controlIconsEnabled: true,
-                    minZoom: 0.15,
-                    maxZoom: 6,
-                    center: 0,
+                    minZoom: 1,
+                    maxZoom: 20,
+                    center: 1,
                     //contain: 1,
                     customEventsHandler: eventsHandler
                 });
-
+                panZoomInstance.zoom(5);
                 //panZoomInstance.resize();
                 //panZoomInstance.fit();
                 //panZoomInstance.center();
