@@ -27,6 +27,7 @@ public class DatasetUpdaterRootConfig
         new DatasetUpdaterConfig()
         {
             Enabled = false,
+			Name = "Update Virtues Taxonomy by chunks 1-shot",
             SourceDataset = KnownDataSets.VirtuesTaxonomy,
             FieldsToInclude = new List<string>()
             {
@@ -70,7 +71,8 @@ public class DatasetUpdaterRootConfig
         new DatasetUpdaterConfig()
         {
             Enabled = false,
-            SourceDataset = KnownDataSets.FallaciesTaxonomy,
+            Name = "Update Fallacies French Description by branch 0-shot",
+			SourceDataset = KnownDataSets.FallaciesTaxonomy,
             FieldsToInclude = new List<string>()
             {
                 "path",
@@ -133,7 +135,8 @@ public class DatasetUpdaterRootConfig
         new DatasetUpdaterConfig()
         {
             Enabled = false,
-            SourceDataset = KnownDataSets.FallaciesTaxonomy,
+            Name = "Update Fallacies French example by branch 0-shot",
+			SourceDataset = KnownDataSets.FallaciesTaxonomy,
             FieldsToInclude = new List<string>()
             {
                 "path",
@@ -197,6 +200,7 @@ public class DatasetUpdaterRootConfig
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,
+			Name = "Translate Fallacies to English by branch empty-only 0-shot",
 			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
@@ -259,6 +263,7 @@ public class DatasetUpdaterRootConfig
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,
+			Name = "Translate Fallacies to Russian by chunk empty-only 0-shot",
 			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
@@ -320,7 +325,8 @@ public class DatasetUpdaterRootConfig
 		},
 		new DatasetUpdaterConfig()
 		{
-			Enabled = true,
+			Enabled = false,
+			Name = "Translate Fallacies to Portuguese by chunk empty-only 0-shot",
 			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
 			{
@@ -371,13 +377,85 @@ public class DatasetUpdaterRootConfig
 			ChunkSize = 8,
 			SelectEmptyTargets = true,
 			RandomizeChunks = false,
-			MaxDegreeOfParallelismWebService = 7,
+			MaxDegreeOfParallelismWebService = 6,
 			CompareMode = false,
 			AutoCompare = true,
 			AutoCompareField = "text_fr",
 			CompareField = "example_fr",
 			MaxGroupItemNb = 12,
 			WriteOneTargetFileByField = false,
+			MaxChildren = 8,
+			NbGlobalPasses = 2
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = true,
+			Name = "Cleanup Fallacies translations by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.FallaciesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"Famille",
+				"Sous-Famille",
+				"Soussousfamille",
+				"text_fr",
+				"desc_fr",
+				"example_fr",
+				//"carte",
+				"link_fr",
+				"text_en",
+				"desc_en",
+				"example_en",
+				"link_en",
+				"text_ru",
+				"desc_ru",
+				"example_ru",
+				"text_pt",
+				"desc_pt",
+				"example_pt",
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"text_en",
+				"desc_en",
+				"example_en",
+				"text_ru",
+				"desc_ru",
+				"example_ru",
+				"text_pt",
+				"desc_pt",
+				"example_pt"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptTranslateCleanupInstructionsUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptTranslateCleanupInstructionsAssistant.txt"
+				}
+			},
+			Model = Models.Gpt_4_turbo,
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			PKHierarchyLevel = 3,
+			UseFunctionCalling = true,
+			//FunctionName = nameof(RecordsUpdater.UpdateRecord),
+			NbMessageCalls = 2,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			ChunkSize = 8,
+			SelectEmptyTargets = false,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 6,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "text_fr",
+			CompareField = "example_fr",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
 			MaxChildren = 8,
 			NbGlobalPasses = 2
 		}

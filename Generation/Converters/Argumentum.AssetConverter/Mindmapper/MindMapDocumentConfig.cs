@@ -14,7 +14,6 @@ using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
-using HarfBuzzSharp;
 using ImageMagick;
 using Spectre.Console;
 using System.Text;
@@ -191,6 +190,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private Func<Fallacy, string> _Thumbnails;
 		
 
+
 		[IgnoreDataMember]
 		[JsonIgnore]
 		public Func<Fallacy, string> ThumbnailsPathFunc
@@ -251,7 +251,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		public override async Task GenerateFallacyFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language )
+		public override async Task GenerateFallacyFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language)
 		{
 			if (string.IsNullOrEmpty(language)) 
 				language=config.LocalizationConfig.DefaultLanguage ;
@@ -268,12 +268,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 			CreateFreemindmap(fallacies, config, language, documentPath, fileName);
 
 			//Task.Run(async () => await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig, webBasedGeneratorConfig.EnableSVGPrompt)).GetAwaiter().GetResult() ;
-			await ProcessSvgFilesAsync(fallacies, fileName, config,
-				config.EnableSVGPrompt);
+			await ProcessSvgFilesAsync(fallacies, fileName, config, config.EnableSVGPrompt, language);
 		}
 
-		private void CreateFreemindmap(IList<Fallacy> fallacies, AssetConverterConfig config, string language,
-			string documentPath, string fileName)
+		private void CreateFreemindmap(IList<Fallacy> fallacies, AssetConverterConfig config, string language, string documentPath, string fileName)
 		{
 			if (File.Exists(documentPath) && !config.OverwriteExistingDocs)
 			{
@@ -292,8 +290,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		private void CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath,
-			AssetConverterConfig config, string language)
+		private void CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
 		{
 			var linkedFallacies = new HashSet<Fallacy>();
 
@@ -509,7 +506,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			Logger.LogSuccess($"Mind map {fileName} successfully generated!");
 		}
 		private async Task ProcessSvgFilesAsync(IList<Fallacy> fallacies, string fileName,
-			AssetConverterConfig webBasedGeneratorConfig, bool enableSvgUpdates)
+			AssetConverterConfig webBasedGeneratorConfig, bool enableSvgUpdates, string language)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
 
@@ -543,6 +540,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 						return;
 					}
 					XDocument svgDoc = XDocument.Load(svgFilePath);
+					
+
+					svgDoc.Root.SetAttributeValue("viewBox", "0 0 8500 20000");
+					svgDoc.Root.SetAttributeValue("width", svgFreemindMap.SvgWidth);
+					svgDoc.Root.SetAttributeValue("height", svgFreemindMap.SvgHeight);
+
+
 					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
@@ -557,7 +561,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				}
 
-				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
+				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader, language);
 
 				
 
@@ -570,6 +574,56 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		}
 
+		//private void AdjustSvgViewBox(XDocument svgDoc)
+		//{
+		//	double minX = double.MaxValue, minY = double.MaxValue;
+		//	double maxX = double.MinValue, maxY = double.MinValue;
+
+		//	// Assumer une logique simplifiée pour le traitement des éléments <g> avec translate
+		//	var gElements = svgDoc.Descendants().Where(el => el.Name.LocalName == "g");
+		//	foreach (var gEl in gElements)
+		//	{
+		//		var transform = gEl.Attribute("transform")?.Value;
+		//		double translateX = 0, translateY = 0;
+		//		if (transform != null && transform.StartsWith("translate"))
+		//		{
+		//			var translateValues = transform.Split('(')[1].Split(')')[0].Split(',');
+		//			translateX = double.Parse(translateValues[0]);
+		//			translateY = double.Parse(translateValues[1]);
+		//		}
+
+		//		// Traiter les éléments enfants comme <text> et <image>
+		//		foreach (var child in gEl.Elements())
+		//		{
+		//			double x = 0, y = 0, width = 0, height = 0;
+		//			switch (child.Name.LocalName)
+		//			{
+		//				case "text":
+		//					x = double.Parse(child.Attribute("x")?.Value ?? "0") + translateX;
+		//					y = double.Parse(child.Attribute("y")?.Value ?? "0") + translateY;
+		//					// Approximation: le texte n'a pas de width/height explicite, ajustement simplifié
+		//					minX = Math.Min(minX, x);
+		//					minY = Math.Min(minY, y);
+		//					break;
+		//				case "image":
+		//					x = double.Parse(child.Attribute("x")?.Value ?? "0") + translateX;
+		//					y = double.Parse(child.Attribute("y")?.Value ?? "0") + translateY;
+		//					width = double.Parse(child.Attribute("width")?.Value ?? "0");
+		//					height = double.Parse(child.Attribute("height")?.Value ?? "0");
+		//					minX = Math.Min(minX, x);
+		//					minY = Math.Min(minY, y);
+		//					maxX = Math.Max(maxX, x + width);
+		//					maxY = Math.Max(maxY, y + height);
+		//					break;
+		//					// Ajouter des cas pour d'autres types d'éléments ici
+		//			}
+		//		}
+		//	}
+
+		//	// Ajuster les dimensions de la viewBox
+		//	string viewBoxValue = $"{minX} {minY} {maxX - minX} {maxY - minY}";
+		//	svgDoc.Root.SetAttributeValue("viewBox", viewBoxValue);
+		//}
 
 
 
@@ -808,8 +862,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, AssetConverterConfig config, string svgSavedFilePath,
-			Func<Task<string>> svgContent)
+		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, AssetConverterConfig config,
+			string svgSavedFilePath,
+			Func<Task<string>> svgContent, string language)
 		{
 			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
 			{
@@ -819,7 +874,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				string htmlTemplate = (await templateFilePath.GetDocumentPayload()).AsString();
 
-				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
+				var languageAwareDocName = htmlSvgWrapper.DocumentName.Replace("[LANGUAGE]", language);
+
+				var htmlFileName = Path.Combine(Directory.GetParent(svgSavedFilePath)!.FullName, languageAwareDocName);  // Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
 
 
 				if (File.Exists(htmlFileName) && !config.OverwriteExistingHtmlMaps)

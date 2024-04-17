@@ -52,7 +52,7 @@ public class Prompt
 
 	public string FunctionName { get; set; }
 
-	public async Task<string> Send(CancellationToken cancellationToken)
+	public async Task<string> Send(CancellationToken cancellationToken, Action<string> log)
 	{
 		if (Tokenizer != null)
 		{
@@ -123,6 +123,7 @@ public class Prompt
 				{
 					var functionCall = chatMessageToolCall.FunctionCall;
 					var result = CallFunction(functionCall);
+					log($"Function call {functionCall.Name} with arguments {functionCall.Arguments}");
 				}
 			}
 

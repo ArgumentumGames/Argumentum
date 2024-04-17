@@ -212,14 +212,13 @@ public class PdfManager
 							g.AlignCenter();
 							g.Spacing(0, Unit.Millimetre);
 							g.Columns(nbColumns);
-							for (int cardIndex = 0; cardIndex < pageCardsArray.Length; cardIndex++)
+							foreach (var pageCard in pageCardsArray)
 							{
 								var gridCell = g.Item()
 									//.Border(0.2f, Unit.Millimetre)
 									.AlignCenter()
 									.AlignMiddle()
 									.Width(cardWidthPoints);
-								var pageCard = pageCardsArray[cardIndex];
 								if (pageCard != null)
 								{
 									MagickImage toPrint = frontOrBack(pageCard);
