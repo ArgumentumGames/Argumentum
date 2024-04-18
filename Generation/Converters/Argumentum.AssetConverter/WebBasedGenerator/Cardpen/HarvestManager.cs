@@ -35,7 +35,7 @@ public class HarvestManager
 					if (browser == null)
 					{
 						Logger.Log("Starting Playwright Browser");
-						var exitCode = Microsoft.Playwright.Program.Main(new[] { "install" });
+						var exitCode = Microsoft.Playwright.Program.Main(new[] { "install", "chromium" });
 						if (exitCode != 0)
 						{
 							throw new Exception($"Playwright exited with code {exitCode}");
@@ -47,6 +47,7 @@ public class HarvestManager
 							 return playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 							 {
 								 Headless = Config.HeadLessBrowser,
+								 //Args = new []{ "--start-maximized" }
 								 //SlowMo = 50,
 							 });
 						 }).Result;
