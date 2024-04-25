@@ -104,6 +104,12 @@
     <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSystem.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Logo_Argumentum &amp; QRCode.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Logo_Argumentum &amp; QRCode_Fallacies.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Logo_Argumentum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
