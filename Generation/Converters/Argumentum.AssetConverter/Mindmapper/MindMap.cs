@@ -165,12 +165,19 @@ namespace Argumentum.AssetConverter.Mindmapper
 	}
 
 	[XmlRoot(ElementName = "map")]
+	[XmlInclude(typeof(FreeplaneMap))]
 	public class FreemindMap
 	{
 		[XmlElement(ElementName = "node")]
 		public Node Node { get; set; }
 
         [XmlAttribute(AttributeName = "version")]
-        public string Version { get; set; } = "1.0.1";
+        public virtual string Version { get; set; } = "1.0.1";
     }
+
+	public class FreeplaneMap : FreemindMap
+	{
+		[XmlAttribute(AttributeName = "version")]
+		public override string Version { get; set; } = "freeplane 1.11.5";
+	}
 }

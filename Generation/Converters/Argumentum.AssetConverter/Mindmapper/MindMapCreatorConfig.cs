@@ -26,7 +26,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public override string GetLogTitle()
 		{
-			return "Generating Freemind, SVG & Html Mindmaps";
+			return "Generating Freemind/Freeplane, SVG & Html Mindmaps";
 		}
 
 		public override string GetLogMessage()
@@ -58,6 +58,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 							DocumentName = "links.svg",
 							SvgWidth = "200vh",
 							SvgHeight = "450vh",
+							SvgViewBox = "0 0 8500 20000",
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
 							RemoveImages = true
@@ -68,6 +69,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 							DocumentName = "content.svg",
 							SvgWidth = "96vw",
 							SvgHeight = "93vh",
+							SvgViewBox = "0 0 8500 20000",
 							WrapNodeByLink = false,
 							SetSVGNodeAttributes = true,
 							RemoveImages = true,
@@ -96,17 +98,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 				},
 				new MindMapDocumentConfig()
 				{
-					Enabled = false,
+					Enabled = true,
 					DocumentName = "Argumentum_Fallacies_MindMap_cards_fr.mm",
+					Format = MindMapFormat.Freemind,
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					InsertCardsThumbnails = true,
 					ThumbnailsCardSetName = KnownCardSets.FallaciesWebThumbnails,
-					Translations = new List<(string sourceLang, string destLang)>(new[]
-					{
-						("fr", "en"),
-						("fr", "ru"),
-						("fr", "pt")
-					}),
+					//Translations = new List<(string sourceLang, string destLang)>(new[]
+					//{
+					//	("fr", "en"),
+					//	("fr", "ru"),
+					//	("fr", "pt")
+					//}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,
 					SVGMaps = new List<SVGFreemindMap>(new[]
@@ -116,6 +119,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 							Enabled = true,
 							DocumentName = "links.svg",
 							WrapNodeByLink = true,
+							RemoveImages = true,
 							SetSVGNodeAttributes = false,
 						},
 					})

@@ -36,6 +36,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		const string DefaultTitleExpression = @"{fallacy.TextFr}";
+
+		public MindMapFormat Format { get; set; } = MindMapFormat.Freemind;
+
 		public string TitleExpression { get; set; } = DefaultTitleExpression;
 
 		[IgnoreDataMember]
@@ -280,7 +283,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 			else
 			{
 				Logger.Log($"Creating Freemind mind map {DocumentName}");
-				var freemindMap = new FreemindMap();
+				FreemindMap freemindMap;
+				if (Format == MindMapFormat.Freeplane)
+				{
+					freemindMap = new FreeplaneMap();
+				}
+				else
+				{
+					freemindMap = new FreemindMap();
+				}
+				
 				var nodesByPath = new Dictionary<string, Node>(fallacies.Count);
 				CreateFallacyNodes(freemindMap, fallacies, nodesByPath, config, language);
 
@@ -540,12 +552,19 @@ namespace Argumentum.AssetConverter.Mindmapper
 						return;
 					}
 					XDocument svgDoc = XDocument.Load(svgFilePath);
-					
 
-					svgDoc.Root.SetAttributeValue("viewBox", "0 0 8500 20000");
-					svgDoc.Root.SetAttributeValue("width", svgFreemindMap.SvgWidth);
-					svgDoc.Root.SetAttributeValue("height", svgFreemindMap.SvgHeight);
-
+					if (!string.IsNullOrEmpty(svgFreemindMap.SvgViewBox))
+					{
+						svgDoc.Root.SetAttributeValue("viewBox", svgFreemindMap.SvgViewBox);
+					}
+					if (!string.IsNullOrEmpty(svgFreemindMap.SvgWidth))
+					{
+						svgDoc.Root.SetAttributeValue("width", svgFreemindMap.SvgWidth);
+					}
+					if (!string.IsNullOrEmpty(svgFreemindMap.SvgHeight))
+					{
+						svgDoc.Root.SetAttributeValue("height", svgFreemindMap.SvgHeight);
+					}
 
 					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
@@ -655,8 +674,21 @@ namespace Argumentum.AssetConverter.Mindmapper
 			// Optionally remove all SVG images
 			if (svgMap.RemoveImages)
 			{
-				var imageTags = svgDoc.Descendants(svgNamespace + "image").ToList();
-				imageTags.Remove();
+				switch (this.Format)
+				{
+					case MindMapFormat.Freemind:
+						var imageTags = svgDoc.Descendants(svgNamespace + "image").ToList();
+						imageTags = imageTags.Where(i => i.Attributes("width").All(wAttr => wAttr.Value != "60")).ToList();
+						imageTags.Remove();
+						break;
+					case MindMapFormat.Freeplane:
+						var iconGroups = svgDoc.Descendants(svgNamespace + "g").Where(g => g.Elements(svgNamespace + "path").Any(x => x.Attributes("stroke").Any(att => att.Value == "none"))).ToList();
+						iconGroups.Remove();
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+				
 			}
 		}
 
@@ -922,5 +954,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			return CloneMindMap();
 		}
+	}
+
+	public enum MindMapFormat
+	{
+		Freemind,
+		Freeplane
 	}
 }
