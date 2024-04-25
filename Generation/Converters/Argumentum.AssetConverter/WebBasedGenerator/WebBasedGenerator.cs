@@ -64,7 +64,7 @@ namespace Argumentum.AssetConverter
 
 			Logger.LogExplanations("In this third stage, Pdf documents are compiled from the individual image files. \nThose are essentially Print&Play documents for individual printers, professional services printing formats, and various posters");
 
-			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
+			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism?  Config.MaxDegreeOfParallelismDocuments : 1 };
 
 			Parallel.ForEach(docImages, parallelOptionsDocuments, docImageList =>
 			{
@@ -85,6 +85,9 @@ namespace Argumentum.AssetConverter
 
 					switch (docImageList.Key.document.DocumentFormat)
 					{
+						case CardDocumentFormat.FacesOnly:
+							objPdfManager.GenerateFacesOnly(baseName, docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
+							break;
 						case CardDocumentFormat.AlternateFaceAndBack:
 							objPdfManager.GenerateAlternateFaceAndBack( baseName, docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
 							break;
