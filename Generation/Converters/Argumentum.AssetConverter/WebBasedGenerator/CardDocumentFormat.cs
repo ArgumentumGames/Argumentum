@@ -4,6 +4,7 @@ namespace Argumentum.AssetConverter
     {
         AlternateFaceAndBack,
         BackFirstOneDocPerBack,
-        PrintAndPlay
-    }
+        PrintAndPlay,
+		FacesOnly
+	}
 }
