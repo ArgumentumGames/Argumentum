@@ -30,7 +30,18 @@ public class PdfManager
 
 
 
+	internal void GenerateFacesOnly(string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
+	{
+		var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
+		var collecBuilderAFB = () =>
+		{
+			var collec = new MagickImageCollection(cardImages.Select(s => new MagickImage(s.Front)));
+			return collec;
+		};
 
+		targetFiles.Add((baseName, collecBuilderAFB));
+		GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+	}
 
 
 	public void GenerateAlternateFaceAndBack( string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
@@ -109,7 +120,16 @@ public class PdfManager
 			var contentWidthPoints = pageSize.Width - totalMarginPoints;
 			var contentHeightPoints = pageSize.Height - totalMarginPoints;
 
-			var nbColumns = (int)(contentWidthPoints / cardWidthPoints);
+			
+			int nbColumns;
+			if (docConfig.NbColumns > 0)
+			{
+				nbColumns = docConfig.NbColumns;
+			}
+			else
+			{
+				nbColumns = (int)(contentWidthPoints / cardWidthPoints);
+			}
 			var nbRows = (int)(contentHeightPoints / cardHeightPoints);
 
 			var nbCardsPerPage = nbRows * nbColumns;
@@ -174,10 +194,78 @@ public class PdfManager
 
 	}
 
-	private static void GenerateCardsPage(IDocumentContainer container, CardSetDocumentConfig docConfig, PageSize pageSize, float pageMarginMm,
-		int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, Func<CardImages, MagickImage> frontOrBack)
-	{
+	//private static void GenerateCardsPage(IDocumentContainer container, CardSetDocumentConfig docConfig, PageSize pageSize, float pageMarginMm,
+	//	int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, Func<CardImages, MagickImage> frontOrBack)
+	//{
 
+	//	container.Page(page =>
+	//	{
+	//		page.Size(pageSize);
+	//		page.Margin(pageMarginMm, Unit.Millimetre);
+	//		page.PageColor(Colors.White);
+	//		page.DefaultTextStyle(x => x.FontSize(20));
+
+	//		if (!string.IsNullOrEmpty(docConfig.Header))
+	//		{
+	//			var imagePath = Path.Combine(Environment.CurrentDirectory, docConfig.Header);
+	//			var currentContainer = page.Header();
+	//			currentContainer = currentContainer.AlignCenter();
+	//			currentContainer = currentContainer.Height(pageSize.Height / 40);
+	//			currentContainer = currentContainer.Padding(pageSize.Width / 150);
+	//			currentContainer.Image(imagePath).FitHeight();
+
+	//		}
+
+
+	//		page.Content()
+	//			.Padding(0)
+	//			.AlignCenter()
+	//			.AlignTop()
+	//			.Column(c =>
+	//			{
+
+	//				c.Item()
+	//					.AlignCenter()
+	//					.AlignTop()
+	//					.Grid(g =>
+	//					{
+	//						g.AlignCenter();
+	//						g.Spacing(0, Unit.Millimetre);
+	//						g.Columns(nbColumns);
+	//						foreach (var pageCard in pageCardsArray)
+	//						{
+	//							var gridCell = g.Item()
+	//								//.Border(0.2f, Unit.Millimetre)
+	//								.AlignCenter()
+	//								.AlignMiddle()
+	//								.Width(cardWidthPoints);
+	//								//.Height(cardWidthPoints);
+
+	//							if (pageCard != null)
+	//							{
+	//								MagickImage toPrint = frontOrBack(pageCard);
+
+	//								PrintMagickImageIntoGridCell(toPrint, gridCell);
+
+	//							}
+	//						}
+	//					});
+	//			});
+
+
+	//		//page.Footer()
+	//		//    .AlignCenter()
+	//		//    .Text(x =>
+	//		//    {
+	//		//        x.Span("Page ");
+	//		//        x.CurrentPageNumber();
+	//		//    });
+	//	});
+	//}
+
+
+	private static void GenerateCardsPage(IDocumentContainer container, CardSetDocumentConfig docConfig, PageSize pageSize, float pageMarginMm, int nbColumns, CardImages[] pageCardsArray, float cardWidthPoints, Func<CardImages, MagickImage> frontOrBack)
+	{
 		container.Page(page =>
 		{
 			page.Size(pageSize);
@@ -188,65 +276,53 @@ public class PdfManager
 			if (!string.IsNullOrEmpty(docConfig.Header))
 			{
 				var imagePath = Path.Combine(Environment.CurrentDirectory, docConfig.Header);
-				var currentContainer = page.Header();
-				currentContainer = currentContainer.AlignCenter();
-				currentContainer = currentContainer.Height(pageSize.Height / 40);
-				currentContainer = currentContainer.Padding(pageSize.Width / 150);
-				currentContainer.Image(imagePath).FitHeight();
-
+				page.Header()
+					.AlignCenter()
+					.Height(pageSize.Height / 20)
+					.Padding(pageSize.Width / 150)
+					.Image(imagePath)
+					.FitHeight();
 			}
-
 
 			page.Content()
 				.Padding(0)
 				.AlignCenter()
 				.AlignTop()
-				.Column(c =>
+				.Table(table =>
 				{
-
-					c.Item()
-						.AlignCenter()
-						.AlignTop()
-						.Grid(g =>
+					table.ColumnsDefinition(h =>
+					{
+						for (int i = 0; i < nbColumns; i++)
 						{
-							g.AlignCenter();
-							g.Spacing(0, Unit.Millimetre);
-							g.Columns(nbColumns);
-							foreach (var pageCard in pageCardsArray)
+							h.ConstantColumn(cardWidthPoints+1);
+						}
+					});
+
+					foreach (var card in pageCardsArray)
+					{
+						table.Cell()
+							//.Border(1)
+							.Padding(docConfig.Padding) 
+							.Element(cell => 
 							{
-								var gridCell = g.Item()
-									//.Border(0.2f, Unit.Millimetre)
-									.AlignCenter()
-									.AlignMiddle()
-									.Width(cardWidthPoints);
-								if (pageCard != null)
+								if (card != null)
 								{
-									MagickImage toPrint = frontOrBack(pageCard);
-
-									PrintMagickImageIntoGridCell(toPrint, gridCell);
-
+									MagickImage toPrint = frontOrBack(card);
+									PrintMagickImageIntoTableCell(toPrint, cell);
 								}
-							}
-						});
+							});
+					}
 				});
-
-
-			//page.Footer()
-			//    .AlignCenter()
-			//    .Text(x =>
-			//    {
-			//        x.Span("Page ");
-			//        x.CurrentPageNumber();
-			//    });
 		});
 	}
+
 
 	/// <summary>
 	/// uses one of the IContainer.Image extension method overloads to add MagickImage object to the corresponding grid cell
 	/// </summary>
 	/// <param name="toPrint">the MagickImage object to render</param>
 	/// <param name="gridCell">the IContainer grid cell in which to add the target image</param>
-	private static void PrintMagickImageIntoGridCell(MagickImage toPrint, IContainer gridCell)
+	private static void PrintMagickImageIntoTableCell(MagickImage toPrint, IContainer gridCell)
 	{
 		if (!string.IsNullOrEmpty(toPrint.FileName))
 		{
@@ -281,6 +357,8 @@ public class PdfManager
 			
 		}
 	}
+
+	
 
 
 	//private List<ImageMagick.MagickImage> GenerateImages(string exampleName)
