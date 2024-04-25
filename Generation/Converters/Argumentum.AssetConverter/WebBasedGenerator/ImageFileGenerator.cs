@@ -30,7 +30,7 @@ public class ImageFileGenerator
 		Logger.LogExplanations("In its second stage, Argumentum creates individual image files from the harvested collections. Images are processed with Magick.Net according to configuration parameters. This is the more taxing stage, the degree of parallelism of which can also be configured.");
 
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
-		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismImages };
+		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism? Config.MaxDegreeOfParallelismImages : 1 };
 
 		Parallel.ForEach(Config.CardSetDocuments.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
 			//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
@@ -41,7 +41,7 @@ public class ImageFileGenerator
 			{
 				targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
 			}
-			var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismImageTranslations };
+			var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism =  Config.EnableParallelism ?  Config.MaxDegreeOfParallelismImageTranslations : 1 };
 			Parallel.ForEach(targetLanguages, parallelOptionsDocumentsTranslations, currentLanguage =>
 				//foreach (var currentLanguage in targetLanguages)
 			{

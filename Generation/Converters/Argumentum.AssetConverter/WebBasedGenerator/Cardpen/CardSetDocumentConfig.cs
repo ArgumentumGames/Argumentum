@@ -22,7 +22,6 @@ public class CardSetDocumentConfig: DocumentConfig
 	public string PageSize { get; set; } = "A4";
 
 	public string Header { get; set; } = "";
-
-
-
+	public int Padding { get; set; }
+	public int NbColumns { get; internal set; }
 }
