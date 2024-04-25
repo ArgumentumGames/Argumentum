@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Utf8Json;
@@ -17,7 +18,10 @@ namespace Argumentum.AssetConverter
 				Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 				Console.InputEncoding = System.Text.Encoding.UTF8;
 				Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				{
+					Console.SetBufferSize(Console.BufferWidth, Int16.MaxValue - 1);
+				}
 				AnsiConsole.Write(new FigletText("Argumentum").Centered().Color(Color.Blue));
 
 				Logger.LogExplanations("Welcome to Argumentum Swiss army knife. This application does a lot of generation in the background that go \"Brrrrrr...\" on the foreground. \nYou may have occasional instructions to follow, but this is about mainly relaxing and watching files and documents being created. \nEnjoy the ride !");
