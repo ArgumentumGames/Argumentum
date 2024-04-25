@@ -26,9 +26,9 @@ namespace Argumentum.AssetConverter
 
 		public bool HeadLessBrowser { get; set; }
 
-		
 
 
+		public bool EnableParallelism { get; set; } = true;
 
 		public int MaxDegreeOfParallelismCardpen { get; set; } = 3;
 
@@ -54,7 +54,7 @@ namespace Argumentum.AssetConverter
 
 
 
-		public bool UseLocalCardpen { get; set; }
+		public bool UseLocalCardpen { get; set; } = false;
 
 
 
@@ -126,7 +126,7 @@ namespace Argumentum.AssetConverter
 						}),
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
-							PauseForEdits = true
+							PauseForEdits = false
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
@@ -608,25 +608,61 @@ namespace Argumentum.AssetConverter
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
 					NoBack = true,
+					Padding = 0,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()
 						{
-							CardSetName = KnownCardSets.FallaciesWebLight,
+							CardSetName = KnownCardSets.FallaciesWeb,
 							NbCopies = 1,
 							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 70,
-								WidthMM = 70,
+								HeigthMM = 69.5m,
+								WidthMM = 69.5m,
+							},
+							//BackCards =  new DocumentCard()
+							//{
+							//	BorderMM = 0,
+							//	HeigthMM = 70,
+							//	WidthMM = 70,
+							//}
+						}
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_Fallacies_Web_fr.pdf",
+					Enabled = true,
+					//Translations = new List<(string sourceLang, string destLang)>(new []
+					//{
+					//	("fr","en"),
+					//	("fr", "ru"),
+					//	("fr", "pt")
+					//}),
+					NoBack = true,
+					DocumentFormat = CardDocumentFormat.FacesOnly,
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.FallaciesWeb,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 66,
+								WidthMM = 66,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 70,
-								WidthMM = 70,
+								HeigthMM = 66,
+								WidthMM = 66,
 							}
 						}
 					}),
@@ -643,8 +679,10 @@ namespace Argumentum.AssetConverter
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A0",
+					Padding = 2,
 					NoBack = true,
-					Header = "Logo_Argumentum.png",
+					Header = "Logo_Argumentum & QRCode.png",
+					NbColumns = 11,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()
@@ -656,15 +694,15 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 72,
-								WidthMM = 72,
+								HeigthMM = 69,
+								WidthMM = 69,
 							},
-							BackCards =  new DocumentCard()
-							{
-								BorderMM = 0,
-								HeigthMM = 72,
-								WidthMM = 72,
-							}
+							//BackCards =  new DocumentCard()
+							//{
+							//	BorderMM = 0,
+							//	HeigthMM = 71,
+							//	WidthMM = 71,
+							//}
 						}
 					}),
 				},
@@ -709,7 +747,7 @@ namespace Argumentum.AssetConverter
 				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_2_fr.pdf",
-					Enabled = true,
+					Enabled = false,
                     //Translations = new List<(string sourceLang, string destLang)>(new []
                     //{
 	                   // ("fr","en"), 
@@ -779,7 +817,7 @@ namespace Argumentum.AssetConverter
 				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_3_fr.pdf",
-					Enabled = true,
+					Enabled = false,
                     //Translations = new List<(string sourceLang, string destLang)>(new []
                     //{
 	                   // ("fr","en"), 
