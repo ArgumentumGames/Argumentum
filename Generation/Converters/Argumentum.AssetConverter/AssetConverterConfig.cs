@@ -12,6 +12,8 @@ using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
 using Argumentum.AssetConverter.Ontology;
+using Argumentum.AssetConverter.Optimization;
+using Argumentum.AssetConverter.Tests;
 using Spectre.Console;
 using Spectre.Console.Json;
 using Utf8Json;
@@ -270,10 +272,22 @@ namespace Argumentum.AssetConverter
 
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
 
+public OwlGeneratorConfig OwlGeneratorConfig { get; set; } = new OwlGeneratorConfig();
 
-		public OwlGeneratorConfig OwlGeneratorConfig { get; set; } = new OwlGeneratorConfig();
+public TaxonomyValidatorConfig TaxonomyValidatorConfig { get; set; } = new TaxonomyValidatorConfig();
 
-		public string DocumentsDirectoryName { get; set; } = @"Documents\";
+public OwlValidatorConfig OwlValidatorConfig { get; set; } = new OwlValidatorConfig();
+
+public CardValidatorConfig CardValidatorConfig { get; set; } = new CardValidatorConfig();
+
+public ContinuousValidationConfig ContinuousValidationConfig { get; set; } = new ContinuousValidationConfig();
+
+public TranslationCoverageConfig TranslationCoverageConfig { get; set; } = new TranslationCoverageConfig();
+
+public ParallelismOptimizerConfig ParallelismOptimizerConfig { get; set; } = new ParallelismOptimizerConfig();
+
+public string DocumentsDirectoryName { get; set; } = @"Documents\";
+
 
 
 		public string HarvestDirectoryName { get; set; } = @"Harvest\";
@@ -465,6 +479,78 @@ namespace Argumentum.AssetConverter
 				else
 				{
 					await OwlGeneratorConfig.Apply(this);
+				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.TaxonomyValidator))
+			{
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => TaxonomyValidatorConfig.Apply(this)));
+				}
+				else
+				{
+					await TaxonomyValidatorConfig.Apply(this);
+				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.OwlValidator))
+			{
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => OwlValidatorConfig.Apply(this)));
+				}
+				else
+				{
+					await OwlValidatorConfig.Apply(this);
+				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.CardValidator))
+			{
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => CardValidatorConfig.Apply(this)));
+				}
+				else
+				{
+					await CardValidatorConfig.Apply(this);
+				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.ContinuousValidator))
+			{
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => ContinuousValidationConfig.Apply(this)));
+				}
+				else
+				{
+					await ContinuousValidationConfig.Apply(this);
+				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.TranslationCoverage))
+			{
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => TranslationCoverageConfig.Apply(this)));
+				}
+				else
+				{
+					await TranslationCoverageConfig.Apply(this);
+				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.ParallelismOptimizer))
+			{
+				if (AsynchronousPipeline)
+				{
+					tasks.Add(Task.Run(() => ParallelismOptimizerConfig.Apply(this)));
+				}
+				else
+				{
+					await ParallelismOptimizerConfig.Apply(this);
 				}
 			}
 

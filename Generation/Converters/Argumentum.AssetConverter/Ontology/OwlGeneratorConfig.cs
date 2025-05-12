@@ -251,7 +251,8 @@ namespace Argumentum.AssetConverter.Ontology
 							typedInferenceConflictResource = new RDFResource(typedInferenceConflictResourceUri);
 
 							ontology.Model.ClassModel.DeclareClass(typedInferenceConflictResource);
-							ontology.Model.ClassModel.DeclareIntersectionClass(typedInferenceConflictResource, new() { conflictResource, hasConflictedTypedInference });
+							var intersectionList = new List<RDFResource> { conflictResource, hasConflictedTypedInference };
+							ontology.Model.ClassModel.DeclareIntersectionClass(typedInferenceConflictResource, intersectionList);
 
 							conflictedTypedInferences[exceptionMapping] = typedInferenceConflictResource;
 						}

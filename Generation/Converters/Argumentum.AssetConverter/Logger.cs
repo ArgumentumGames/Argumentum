@@ -106,6 +106,7 @@ public class Logger
 	public static void LogException(Exception ex)
 	{
 		LogProblem("Execution error");
+		// Utiliser directement AnsiConsole.WriteException car le problème est résolu dans Spectre.Console 0.50.0
 		AnsiConsole.WriteException(ex, ExceptionFormats.ShortenEverything);
 	}
 
