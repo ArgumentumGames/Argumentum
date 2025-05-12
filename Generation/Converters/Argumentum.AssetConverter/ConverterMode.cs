@@ -12,5 +12,11 @@ namespace Argumentum.AssetConverter
 		Dnn2sxc = 1 << 3, // 8
 		DatasetUpdater = 1 << 4, // 16
 		OwlGenerator = 1 << 5, // 32
+		TaxonomyValidator = 1 << 6, // 64
+		OwlValidator = 1 << 7, // 128
+		CardValidator = 1 << 8, // 256
+		ContinuousValidator = 1 << 9, // 512
+		TranslationCoverage = 1 << 10, // 1024
+		ParallelismOptimizer = 1 << 11, // 2048
 	}
 }
