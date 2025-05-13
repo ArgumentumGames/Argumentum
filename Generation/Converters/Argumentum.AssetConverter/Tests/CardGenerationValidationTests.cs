@@ -20,8 +20,9 @@ namespace Argumentum.AssetConverter.Tests
         private readonly AssetConverterConfig _config;
         private readonly CardValidatorConfig _validatorConfig;
         private StringBuilder _reportBuilder;
-        private int _totalErrors;
-        private int _totalWarnings;
+        // Changement de visibilité pour permettre l'accès depuis ContinuousValidationSystem
+        public int _totalErrors;
+        public int _totalWarnings;
         private Dictionary<string, List<string>> _cardFilesByLanguage;
 
         /// <summary>
@@ -165,11 +166,11 @@ namespace Argumentum.AssetConverter.Tests
                             StringBuilder statusDetails = new StringBuilder();
 
                             // Vérifier les dimensions
-                            if (image.Width != expectedDimensions.Width || image.Height != expectedDimensions.Height)
+                            if (image.Width != expectedDimensions.Item1 || image.Height != expectedDimensions.Item2)
                             {
                                 hasError = true;
                                 statusClass = "error";
-                                statusDetails.Append($"Dimensions incorrectes (attendu: {expectedDimensions.Width}x{expectedDimensions.Height}) ");
+                                statusDetails.Append($"Dimensions incorrectes (attendu: {expectedDimensions.Item1}x{expectedDimensions.Item2}) ");
                             }
 
                             // Vérifier la résolution DPI
@@ -368,7 +369,7 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute tous les tests de validation et génère un rapport global.
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task RunAllCardValidations()
+        public async Task<bool> RunAllCardValidations()
         {
             Logger.LogTitle("Exécution de tous les tests de validation des cartes");
             
@@ -387,17 +388,35 @@ namespace Argumentum.AssetConverter.Tests
             if (_totalErrors > 0)
             {
                 Logger.LogProblem($"Validation des cartes terminée avec {_totalErrors} erreurs et {_totalWarnings} avertissements");
+                return false;
             }
             else if (_totalWarnings > 0)
             {
                 Logger.LogWarning($"Validation des cartes terminée avec {_totalWarnings} avertissements");
+                return true; // Les avertissements ne font pas échouer la validation
             }
             else
             {
                 Logger.LogSuccess("Validation des cartes terminée avec succès");
+                return true;
             }
-            
-            Logger.LogTitle("Rapport de validation enregistré dans : " + _validatorConfig.ValidationReportPath);
+        }
+        
+        /// <summary>
+        /// Exécute tous les tests de validation.
+        /// </summary>
+        /// <returns>True si tous les tests ont réussi, sinon false.</returns>
+        public bool RunAllTests()
+        {
+            try
+            {
+                return RunAllCardValidations().Result;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogProblem($"Erreur lors de l'exécution des tests de validation des cartes : {ex.Message}");
+                return false;
+            }
         }
 
         /// <summary>

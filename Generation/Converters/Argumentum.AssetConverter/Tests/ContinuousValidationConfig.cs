@@ -109,15 +109,9 @@ namespace Argumentum.AssetConverter.Tests
         /// <summary>
         /// Niveau de sévérité minimum pour déclencher une notification
         /// </summary>
-        // Définition temporaire de l'énumération ValidationSeverity
-        public enum ValidationSeverity
-        {
-            Info,
-            Warning,
-            Error,
-            Critical
-        }
-
+        /// <summary>
+        /// Niveau de sévérité minimum pour déclencher une notification
+        /// </summary>
         public ValidationSeverity NotificationThreshold { get; set; } = ValidationSeverity.Error;
 
         /// <summary>
