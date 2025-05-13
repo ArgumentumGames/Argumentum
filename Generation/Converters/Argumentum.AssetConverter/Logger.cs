@@ -127,4 +127,9 @@ public class Logger
 	{
 		Log(message, MessageType.Success);
 	}
+
+	public static void LogInfoMessage(string message)
+	{
+		Log(message, MessageType.Info);
+	}
 }
