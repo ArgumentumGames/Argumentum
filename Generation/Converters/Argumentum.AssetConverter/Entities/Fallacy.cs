@@ -7,9 +7,13 @@ namespace Argumentum.AssetConverter.Entities
 	public class Fallacy : CsvBase<Fallacy, FallacyClassMap>
 	{
 
-		public string GetId()
+		/// <summary>
+		/// Identifiant unique de la fallacy
+		/// </summary>
+		public string Id
 		{
-            return Path;
+			get { return Path; }
+			set { /* Permet la désérialisation */ }
 		}
 
         public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
@@ -127,6 +131,7 @@ namespace Argumentum.AssetConverter.Entities
         public FallacyClassMap()
         {
             Map(m => m.PK).Name("PK");
+            Map(m => m.Id).Name("Id");
             Map(m => m.Path).Name("path");
             Map(m => m.DecimalPath).Name("decimal_path");
             Map(m => m.Depth).Name("depth");
@@ -155,7 +160,7 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Len115).Name("Len115");
             Map(m => m.ExampleEn).Name("example_en");
             Map(m => m.Lxen145).Name("Lxen145");
-			Map(m => m.ExampleEn).Name("example_en");
+   Map(m => m.ExampleEnBis).Name("example_en_bis");
             Map(m => m.LinkEn).Name("link_en");
 
             Map(m => m.FamilyRu).Name("Family_ru");

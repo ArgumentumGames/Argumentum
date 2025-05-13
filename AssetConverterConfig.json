@@ -1,0 +1,2386 @@
+{
+  "Mode": "WebBasedImageGeneration",
+  "ForceDebugParams": false,
+  "ForceReleaseParams": false,
+  "WebBasedGeneratorConfig": {
+    "EnableSVGPrompt": true,
+    "ShowInfoLogs": true,
+    "HeadLessBrowser": false,
+    "OverwriteExistingDocs": false,
+    "OverwriteExistingHtmlMaps": false,
+    "MaxDegreeOfParallelismCardpen": 3,
+    "MaxDegreeOfParallelismCardpenTranslations": 2,
+    "MaxDegreeOfParallelismImages": 3,
+    "MaxDegreeOfParallelismImageTranslations": 2,
+    "MaxDegreeOfParallelismDocuments": 4,
+    "MaxDegreeOfParallelismMindMaps": 6,
+    "BaseTargetDirectoryName": "Target\\",
+    "HarvestDirectoryName": "Harvest\\",
+    "ImagesDirectoryName": "Images\\",
+    "DocumentsDirectoryName": "Documents\\",
+    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+    "DataSets": [
+      {
+        "Name": "Rules",
+        "ReleaseFilePath": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
+        "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\Argumentum Rules - Cards.csv",
+        "CsvType": null
+      },
+      {
+        "Name": "Rules - Print & Play",
+        "ReleaseFilePath": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv",
+        "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\Argumentum Rules - Cards Print and Play.csv",
+        "CsvType": null
+      },
+      {
+        "Name": "Scenarii",
+        "ReleaseFilePath": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
+        "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Scenarii\\Argumentum Scenarii - Cards.csv",
+        "CsvType": null
+      },
+      {
+        "Name": "Fallacies - Taxonomy",
+        "ReleaseFilePath": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
+        "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum Fallacies - Taxonomy.csv",
+        "CsvType": "Argumentum.AssetConverter.Entities.Fallacy, Argumentum.AssetConverter, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null"
+      },
+      {
+        "Name": "Fallacies - Virtues",
+        "ReleaseFilePath": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
+        "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum Virtues - Taxonomy.csv",
+        "CsvType": "Argumentum.AssetConverter.Entities.ArgumentVirtue, Argumentum.AssetConverter, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null"
+      }
+    ],
+    "CardSets": [
+      {
+        "Name": "Rules",
+        "FaceCardSetInfo": {
+          "DataSet": "Rules",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\Argumentum_Rules_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": null,
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": null,
+          "JsonFilePathDebug": null,
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Memo",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Memo\\Argumentum_Memo_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Memo\\Argumentum_Memo_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Fallacies",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Virtues",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Virtues",
+          "CsvFilterField": "card",
+          "CsvFilterValues": [
+            "1"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Virtues_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Scenarii",
+        "FaceCardSetInfo": {
+          "DataSet": "Scenarii",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Scenarii\\Argumentum_Scenarii_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "Scenarii",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Scenarii\\Argumentum_Scenarii_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 14
+        }
+      },
+      {
+        "Name": "Fallacies-2",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_2_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_2_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Fallacies-3",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_3_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Fallacies-Print&Play",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "print_and_play",
+          "CsvFilterValues": [
+            "1"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Scenarii-Print&Play",
+        "FaceCardSetInfo": {
+          "DataSet": "Scenarii",
+          "CsvFilterField": "print_and_play",
+          "CsvFilterValues": [
+            "1"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Scenarii\\Argumentum_Scenarii_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "Scenarii",
+          "CsvFilterField": "print_and_play",
+          "CsvFilterValues": [
+            "1"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Scenarii\\Argumentum_Scenarii_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 4
+        }
+      },
+      {
+        "Name": "Rules-Print&Play",
+        "FaceCardSetInfo": {
+          "DataSet": "Rules - Print & Play",
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\Argumentum_Rules_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": null,
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": null,
+          "JsonFilePathDebug": null,
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Memo-Print&Play",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Memo\\Argumentum_Memo_Face_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Memo\\Argumentum_Memo_Back_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Fallacies-Web",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_Web_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 400,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": null,
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": null,
+          "JsonFilePathDebug": null,
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Fallacies-Web-Light",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_Web_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 200,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": null,
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": null,
+          "JsonFilePathDebug": null,
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      },
+      {
+        "Name": "Fallacies-Web-Thumbnails",
+        "FaceCardSetInfo": {
+          "DataSet": "Fallacies - Taxonomy",
+          "CsvFilterField": "carte",
+          "CsvFilterValues": [
+            "1",
+            "2"
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum_Fallacies_Face_Web_fr.json",
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 100,
+          "RowsetNb": 0
+        },
+        "BackCardSetInfo": {
+          "DataSet": null,
+          "CsvFilterField": null,
+          "CsvFilterValues": [
+
+          ],
+          "SkipDataUpdate": false,
+          "JsonFilePathRelease": null,
+          "JsonFilePathDebug": null,
+          "PauseForEdits": false,
+          "FieldsLocalization": [
+
+          ],
+          "Dpi": 0,
+          "RowsetNb": 0
+        }
+      }
+    ],
+    "CardSetDocuments": [
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_TarotCards_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Rules",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Memo",
+            "NbCopies": 7,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Fallacies",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "BackFirstOneDocPerBack",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_TarotCards_Virtues_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Virtues",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "BackFirstOneDocPerBack",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_PokerCards_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Scenarii",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 89,
+              "WidthMM": 58,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 89,
+              "WidthMM": 58,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "BackFirstOneDocPerBack",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_TarotCards_Print&Play_A4_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Rules-Print&Play",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Memo-Print&Play",
+            "NbCopies": 5,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Fallacies-Print&Play",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "PrintAndPlay",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_PokerCards_Print&Play_A4_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Scenarii-Print&Play",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 89,
+              "WidthMM": 58,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 89,
+              "WidthMM": 58,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "PrintAndPlay",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_Fallacies_Web_A4_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Fallacies-Web-Light",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": false,
+            "FrontCards": {
+              "HeigthMM": 70,
+              "WidthMM": 70,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 70,
+              "WidthMM": 70,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "PrintAndPlay",
+        "NoBack": true,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_Fallacies_Web_A0_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Fallacies-Web",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 72,
+              "WidthMM": 72,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 72,
+              "WidthMM": 72,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "PrintAndPlay",
+        "NoBack": true,
+        "PageSize": "A0",
+        "Header": "Logo_Argumentum.png",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_Fallacies_Web_Thumbnails_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Fallacies-Web-Thumbnails",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": false,
+            "FrontCards": {
+              "HeigthMM": 50,
+              "WidthMM": 50,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 72,
+              "WidthMM": 72,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "PrintAndPlay",
+        "NoBack": true,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_TarotCards_2_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Rules",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Memo",
+            "NbCopies": 7,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Fallacies-2",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "BackFirstOneDocPerBack",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "Enabled": true,
+        "DocumentName": "Argumentum_TarotCards_3_fr.pdf",
+        "CardSets": [
+          {
+            "CardSetName": "Rules",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Memo",
+            "NbCopies": 7,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          },
+          {
+            "CardSetName": "Fallacies-3",
+            "NbCopies": 1,
+            "SaveOriginalImage": false,
+            "ConvertToCmyk": true,
+            "FrontCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            },
+            "BackCards": {
+              "HeigthMM": 113,
+              "WidthMM": 60,
+              "BorderMM": 0
+            }
+          }
+        ],
+        "DocumentFormat": "BackFirstOneDocPerBack",
+        "NoBack": false,
+        "PageSize": "A4",
+        "Header": "",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      }
+    ],
+    "MindMapDocuments": [
+      {
+        "DataSet": "Fallacies - Taxonomy",
+        "TitleExpression": "{fallacy.TextFr}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescFr)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextFr}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleFr)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkFrFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 2,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": false,
+        "ThumbnailsCardSetName": null,
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+          {
+            "SetSVGNodeAttributes": false,
+            "WrapNodeByLink": true,
+            "HtmlWrappers": [
+
+            ],
+            "RemoveImages": true,
+            "Enabled": true,
+            "DocumentName": "links.svg",
+            "Translations": [
+
+            ],
+            "TargetDensity": 0,
+            "ImageFormat": "Png",
+            "TemplatePathRelease": null,
+            "TemplatePathDebug": null
+          },
+          {
+            "SetSVGNodeAttributes": true,
+            "WrapNodeByLink": false,
+            "HtmlWrappers": [
+              {
+                "Enabled": true,
+                "DocumentName": null,
+                "Translations": [
+
+                ],
+                "TargetDensity": 0,
+                "ImageFormat": "Png",
+                "TemplatePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
+                "TemplatePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Mindmaps\\included.html"
+              },
+              {
+                "Enabled": true,
+                "DocumentName": null,
+                "Translations": [
+
+                ],
+                "TargetDensity": 0,
+                "ImageFormat": "Png",
+                "TemplatePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
+                "TemplatePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Mindmaps\\external.html"
+              }
+            ],
+            "RemoveImages": true,
+            "Enabled": true,
+            "DocumentName": "content.svg",
+            "Translations": [
+
+            ],
+            "TargetDensity": 0,
+            "ImageFormat": "Png",
+            "TemplatePathRelease": null,
+            "TemplatePathDebug": null
+          }
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "Argumentum_Fallacies_MindMap_fr.mm",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "DataSet": "Fallacies - Taxonomy",
+        "TitleExpression": "{fallacy.TextFr}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescFr)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextFr}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleFr)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkFrFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 2,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": true,
+        "ThumbnailsCardSetName": "Fallacies-Web-Thumbnails",
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+          {
+            "SetSVGNodeAttributes": false,
+            "WrapNodeByLink": true,
+            "HtmlWrappers": [
+
+            ],
+            "RemoveImages": false,
+            "Enabled": true,
+            "DocumentName": "links.svg",
+            "Translations": [
+
+            ],
+            "TargetDensity": 0,
+            "ImageFormat": "Png",
+            "TemplatePathRelease": null,
+            "TemplatePathDebug": null
+          }
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "Argumentum_Fallacies_MindMap_cards_fr.mm",
+        "Translations": [
+          {
+            "Item1": "fr",
+            "Item2": "en"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "ru"
+          },
+          {
+            "Item1": "fr",
+            "Item2": "pt"
+          }
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "DataSet": "Fallacies - Virtues",
+        "TitleExpression": "{fallacy.TextFr}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescFr)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextFr}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleFr)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkFrFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 4,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": false,
+        "ThumbnailsCardSetName": null,
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+          {
+            "SetSVGNodeAttributes": false,
+            "WrapNodeByLink": true,
+            "HtmlWrappers": [
+
+            ],
+            "RemoveImages": true,
+            "Enabled": true,
+            "DocumentName": "links.svg",
+            "Translations": [
+
+            ],
+            "TargetDensity": 0,
+            "ImageFormat": "Png",
+            "TemplatePathRelease": null,
+            "TemplatePathDebug": null
+          },
+          {
+            "SetSVGNodeAttributes": true,
+            "WrapNodeByLink": false,
+            "HtmlWrappers": [
+              {
+                "Enabled": true,
+                "DocumentName": null,
+                "Translations": [
+
+                ],
+                "TargetDensity": 0,
+                "ImageFormat": "Png",
+                "TemplatePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
+                "TemplatePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Mindmaps\\included.html"
+              },
+              {
+                "Enabled": true,
+                "DocumentName": null,
+                "Translations": [
+
+                ],
+                "TargetDensity": 0,
+                "ImageFormat": "Png",
+                "TemplatePathRelease": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
+                "TemplatePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Mindmaps\\external.html"
+              }
+            ],
+            "RemoveImages": true,
+            "Enabled": true,
+            "DocumentName": "content.svg",
+            "Translations": [
+
+            ],
+            "TargetDensity": 0,
+            "ImageFormat": "Png",
+            "TemplatePathRelease": null,
+            "TemplatePathDebug": null
+          }
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "Argumentum_Virtues_MindMap_fr.mm",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      }
+    ],
+    "LocalizationConfig": {
+      "Enabled": true,
+      "DefaultLanguage": "fr",
+      "CardSetLocalizations": [
+        {
+          "CardSetNames": [
+            "Fallacies",
+            "Fallacies-2",
+            "Fallacies-3",
+            "Fallacies-Print&Play",
+            "Fallacies-Web",
+            "Fallacies-Web-Light",
+            "Fallacies-Web-Thumbnails"
+          ],
+          "FrontFieldConversions": [
+            {
+              "Item1": "Soussousfamille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Subsubfamily"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Subsubfamily_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Subsubfamily_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "Sous-Famille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Subfamily"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Subfamily_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Subfamily_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "Famille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Family"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Family_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Family_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "text_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "text_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "text_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "text_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "desc_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "desc_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "desc_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "desc_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "example_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "example_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "example_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "example_pt"
+                }
+              ]
+            }
+          ],
+          "BackFieldConversions": [
+            {
+              "Item1": "tagline_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "tagline_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "tagline_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "tagline_pt"
+                }
+              ]
+            }
+          ],
+          "ExceptionPatterns": [
+
+          ],
+          "StaticConversions": [
+
+          ],
+          "TargetProperties": [
+
+          ]
+        },
+        {
+          "CardSetNames": [
+            "Scenarii",
+            "Scenarii-Print&Play"
+          ],
+          "FrontFieldConversions": [
+            {
+              "Item1": "catégorie",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "category"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "category_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "category_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "titre",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "title"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "title_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "title_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "contexte",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "context"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "context_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "context_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "enjeu",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "issue"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "issue_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "issue_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "piocheur",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "drawer"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "drawer_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "drawer_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "baratineur",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "smoothTalker"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "smoothTalker_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "smoothTalker_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "suggestion",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "suggestion_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "suggestion_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "suggestion_pt"
+                }
+              ]
+            }
+          ],
+          "BackFieldConversions": [
+            {
+              "Item1": "catégorie",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "category"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "category_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "category_pt"
+                }
+              ]
+            }
+          ],
+          "ExceptionPatterns": [
+            "{{rowset.[0].catégorie}}.jpg",
+            "{{rowset.[0].catégorie}}.png"
+          ],
+          "StaticConversions": [
+
+          ],
+          "TargetProperties": [
+
+          ]
+        },
+        {
+          "CardSetNames": [
+            "Rules",
+            "Rules-Print&Play"
+          ],
+          "FrontFieldConversions": [
+            {
+              "Item1": "Text",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Text_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Text_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Text_pt"
+                }
+              ]
+            }
+          ],
+          "BackFieldConversions": [
+
+          ],
+          "ExceptionPatterns": [
+
+          ],
+          "StaticConversions": [
+
+          ],
+          "TargetProperties": [
+
+          ]
+        },
+        {
+          "CardSetNames": [
+            "Memo",
+            "Memo-Print&Play"
+          ],
+          "FrontFieldConversions": [
+            {
+              "Item1": "Famille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Family"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Family_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Family_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "desc_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "desc_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "desc_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "desc_pt"
+                }
+              ]
+            }
+          ],
+          "BackFieldConversions": [
+            {
+              "Item1": "Soussousfamille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Subsubfamily"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Subsubfamily_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Subsubfamily_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "Sous-Famille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Subfamily"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Subfamily_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Subfamily_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "Famille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Family"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Family_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "Family_pt"
+                }
+              ]
+            },
+            {
+              "Item1": "tagline_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "tagline_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "tagline_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "tagline_pt"
+                }
+              ]
+            }
+          ],
+          "ExceptionPatterns": [
+
+          ],
+          "StaticConversions": [
+            {
+              "Item1": "L'art de jamais avoir tort",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "The art of never being wrong"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "Искусство никогда не ошибаться"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "A arte de nunca errar"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+
+          ]
+        }
+      ],
+      "MindMapLocalization": [
+        {
+          "StaticConversions": [
+            {
+              "Item1": "_fr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "_en"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "_ru"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "_pt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "DocumentName"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "Famille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Family"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "FamilyRu"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "FamilyPt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "TitleExpression",
+            "CardExpression",
+            "FamilleExpression"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "SousFamille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Subfamily"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "SubfamilyRu"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "SubfamilyPt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "TitleExpression",
+            "CardExpression"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "Soussousfamille",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "Subsubfamily"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "SubsubfamilyRu"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "SubsubfamilyPt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "TitleExpression",
+            "CardExpression"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "TextFr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "TextEn"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "TextRu"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "TextPt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "TitleExpression",
+            "CardExpression"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "DescFr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "DescEn"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "DescRu"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "DescPt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "DescriptionExpression"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "ExampleFr",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "ExampleEn"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "ExampleRu"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "ExamplePt"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "ExampleExpression"
+          ]
+        },
+        {
+          "StaticConversions": [
+            {
+              "Item1": "LinkFrFallback",
+              "Item2": [
+                {
+                  "Item1": "en",
+                  "Item2": "LinkEnFallback"
+                },
+                {
+                  "Item1": "ru",
+                  "Item2": "LinkRuFallback"
+                },
+                {
+                  "Item1": "pt",
+                  "Item2": "LinkPtFallback"
+                }
+              ]
+            }
+          ],
+          "TargetProperties": [
+            "LinkExpression"
+          ]
+        }
+      ]
+    }
+  },
+  "BatchImageConverterConfig": {
+    "SourcePath": "..\\..\\..\\Data\\Source",
+    "DestPath": "..\\..\\..\\Data\\Target",
+    "Operation": "ModulateHue",
+    "Modulation": 200
+  },
+  "DatasetUpdaterConfig": {
+    "SystemPrompt": "Vous incarnez un éditeur de Json hautement compétent, dont la mission consiste à corriger les champs d'un document Json. Le document à modifier a été divisé en portions de Json qui vous sont soumises sous forme de prompts d'utilisateur. Votre réponse doit contenir la même structure, mais avec les champs corrigés.\r\n\r\nLe fichier Json à mettre à jour contient des éléments d'une taxonomie d'arguments vertueux en français. Ce travail vise à contrer une taxonomie de sophismes. Les deux taxonomies utilisent des termes dont la signification est éclaircie par leur place dans la hiérarchie. Dans certains cas, elle diffère légèrement de la définition courante. De plus, la signification des termes de cette taxonomie est conçue pour correspondre à leurs sophismes opposés.\r\n\r\nVoilà les branches principales de la taxonomie des sophismes que vous devez connaître pour identifier le bon sens des termes utilisés:\r\n\r\npath\ttext_fr\r\n1\tInsuffisance\r\n1.1\tArgument bâclé\r\n1.1.1\tArgument vide\r\n1.1.2\tJustification triviale\r\n1.2\tPréjugé\r\n1.2.1\tArgument d'autorité\r\n1.2.2\tSophisme naturaliste\r\n1.2.3\tSophisme moraliste\r\n1.3\tSurinterprétation\r\n1.3.1\tSophisme ludique\r\n1.3.2\tMauvaises raisons\r\n1.3.3\tManque de parcimonie\r\n2\tInfluence\r\n2.1\tProcédé rhétorique\r\n2.1.1\tLangage persuasif\r\n2.1.2\tHumour\r\n2.1.3\tPoésie\r\n2.2\tAppel à l'émotion\r\n2.2.1\tConnivence\r\n2.2.2\tRepoussoir\r\n2.2.3\tAppel aux conséquences\r\n2.3\tManipulation mentale\r\n2.3.1\tConditionnement\r\n2.3.2\tJeu de pouvoir\r\n2.3.3\tInfluence non verbale\r\n3\tErreur mathématique\r\n3.1\tGénéralisation abusive\r\n3.1.1\tÉchantillon biaisé\r\n3.1.2\tSophisme de l'accident\r\n3.1.3\tTransfert illicite\r\n3.2\tMauvaise interprétation\r\n3.2.1\tRelation infondée\r\n3.2.2\tProbabilités faussées\r\n3.2.3\tJustification infinie\r\n3.3\tRésultat invalide\r\n3.3.1\tImprécision\r\n3.3.2\tErreur de calcul\r\n3.3.3\tOpération inappropriée\r\n4\tErreur de raisonnement\r\n4.1\tCausalité douteuse\r\n4.1.1\tPétition de principe\r\n4.1.2\tInversion de causalité\r\n4.1.3\tEffet cigogne\r\n4.2\tMauvaise composition\r\n4.2.1\tErreur de logique propositionnelle\r\n4.2.2\tErreur de quantification\r\n4.2.3\tErreur de modalité\r\n4.3\tMauvaise déduction\r\n4.3.1\tConclusion hâtive\r\n4.3.2\tInconsistance\r\n4.3.3\tSyllogisme invalide\r\n5\tAbus de langage\r\n5.1\tDéfinition imprécise\r\n5.1.1\tAcception vague\r\n5.1.2\tAcception arbitraire\r\n5.1.3\tDéfinition inconsistante\r\n5.2\tComparaison fallacieuse\r\n5.2.1\tComparaison abusive\r\n5.2.2\tFausse analogie\r\n5.2.3\tSophisme d'association\r\n5.3\tAmbiguïté\r\n5.3.1\tAmphibologie\r\n5.3.1.4\tSolécisme\r\n5.3.1.5\tBarbarisme\r\n5.3.2\tEquivoque\r\n5.3.3\tAmbiguïté narrative\r\n6\tTricherie\r\n6.1\tArranger les faits\r\n6.1.1\tMensonge\r\n6.1.2\tFausse attribution\r\n6.1.3\tAttention sélective\r\n6.2\tChangement de cap\r\n6.2.1\tExigence renforcée\r\n6.2.2\tBeurre et argent du beurre\r\n6.2.3\tExigence relâchée\r\n6.3\tPensée biaisée\r\n6.3.1\tAnthropocentrisme\r\n6.3.2\tEthnocentrisme\r\n6.3.3\tDogmatisme\r\n7\tObstruction\r\n7.1\tRefus du débat\r\n7.1.1\tRelativisme abusif\r\n7.1.2\tSophisme d'Explication\r\n7.1.3\tPreuve par assertion\r\n7.2\tSaboter le débat\r\n7.2.1\tFausse piste\r\n7.2.2\tComplication exagérée\r\n7.2.3\tEmpoisonner le puits\r\n7.3\tAd hominem\r\n7.3.1\tProcès en inconstance\r\n7.3.2\tSophisme génétique\r\n7.3.3\tAttaque personnelle\r\n\r\nLes instructions sont les suivantes, dans l'ordre de priorité:\r\n\r\n- Le champ title_fr devrait être une expression courte, et couvrir au plus possible l'inverse des arguments fallacieux en miroir dans la seconde taxonomie. \r\n- Le champs description_fr devrait être une phrase simple, aussi complète que possible mais synthétique: Si la valeur passée en entrée pour le champ remark_fr est redondante et plus complète, elle pourra servir à compléter le champ description \r\n- le champs remark_fr devrait quant à lui contenir un paragraphe complémentaire distinct du champs description_fr, typiquement un exemple illustrant le concept évoqué, ou un contre-exemple qui illustre le défaut d'application du concept, ou encore une explication importante. \r\n- Le champs link_fr contient actuellement un certain nombre de liens hallucinés. Il s'agit d'y inclure uniquement des liens pertinents dont l'existance est averrée, et le conserver vide si aucun lien sûr n'est pertinent.\r\n\r\nA chaque fois que vous recevez un prompt d'utilisateur contenant une portion du document Json, votre travail est de la renvoyer en retour avec tous les champs correctement remplis ou améliorés si possible.",
+    "UserPrompt": "[\r\n\t{\r\n\t\t\"path\": \"4.3.3.1.2.1.1\",\r\n\t\t\"family_fr\": \"Raisonnement valide\",\r\n\t\t\"subfamily_fr\": \"Déductions correctes\",\r\n\t\t\"subsubfamily_fr\": \"Raisonnement concluant\",\r\n\t\t\"title_fr\": \"Syllogisme Barbara\",\r\n\t\t\"description_fr\": \"Le syllogisme Barbara est un syllogisme de mode parfait\",\r\n\t\t\"remark_fr\": \"Le syllogisme Barbara est un exemple de syllogisme de mode parfait qui présente une structure de raisonnement concluant particulièrement forte.\",\r\n\t\t\"link_fr\": \"\"\r\n\t},\r\n\t{\r\n\t\t\"path\": \"1\",\r\n\t\t\"family_fr\": \"Argument pertinent\",\r\n\t\t\"subfamily_fr\": \"Argument fondé\",\r\n\t\t\"subsubfamily_fr\": \"\",\r\n\t\t\"title_fr\": \"Argument fondé\",\r\n\t\t\"description_fr\": \"Argument correct\",\r\n\t\t\"link_fr\": \"\",\r\n\t\t\"remark_fr\": \"Argument correctement formulé et recevable\"\r\n\t},\r\n\t{\r\n\t\t\"path\": \"4.1.2\",\r\n\t\t\"family_fr\": \"Raisonnement valide\",\r\n\t\t\"subfamily_fr\": \"Identification précise des causalités\",\r\n\t\t\"subsubfamily_fr\": \"Causalité correctement orientée\",\r\n\t\t\"title_fr\": \"Causalité dans le bon sens\",\r\n\t\t\"description_fr\": \"Il ne faut pas confondre cause et effet\",\r\n\t\t\"remark_fr\": \"Bien orienter la causalité évite les erreurs d'attribution ou le fait de confondre une cause avec un effet\",\r\n\t\t\"link_fr\": \"\"\r\n\t}\r\n]",
+    "AssistantPrompt": "[\r\n\t{\r\n\t\t\"path\": \"4.3.3.1.2.1.1\",\r\n\t\t\"family_fr\": \"Raisonnement valide\",\r\n\t\t\"subfamily_fr\": \"Déductions correctes\",\r\n\t\t\"subsubfamily_fr\": \"Raisonnement concluant\",\r\n\t\t\"title_fr\": \"Syllogisme Barbara\",\r\n\t\t\"description_fr\": \"Syllogisme de mode parfait où le terme moyen est un sujet dans la première prémisse et un prédicat dans la seconde prémisse\",\r\n\t\t\"remark_fr\": \"Syllogisme du type Tout M est P, or tout S est M, donc tout S est P. Exemple: Tous les félidés sont sympathiques, Tous les chats sont des félidés, Donc tous les chats sont sympathiques.\",\r\n\t\t\"link_fr\": \"https://fr.wikipedia.org/wiki/Barbara_(syllogisme)\"\r\n\t},\r\n\t{\r\n\t\t\"path\": \"1\",\r\n\t\t\"family_fr\": \"Argument pertinent\",\r\n\t\t\"subfamily_fr\": \"Argument fondé\",\r\n\t\t\"subsubfamily_fr\": \"\",\r\n\t\t\"title_fr\": \"Argument fondé\",\r\n\t\t\"description_fr\": \"Argument correctement formulé et recevable\",\r\n\t\t\"link_fr\": \"https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_l%27argumentation\",\r\n\t\t\"remark_fr\": \"Il existe des ingrédients essentiels qui donnent à un argument sa nature d'argument, comme un ensemble d'hypothèses ou prémisses acceptables, une méthode de raisonnement et une conclusion.\"\r\n\t},\r\n\t{\r\n\t\t\"path\": \"4.1.2\",\r\n\t\t\"family_fr\": \"Raisonnement valide\",\r\n\t\t\"subfamily_fr\": \"Identification précise des causalités\",\r\n\t\t\"subsubfamily_fr\": \"Causalité correctement orientée\",\r\n\t\t\"title_fr\": \"Causalité correctement orientée\",\r\n\t\t\"description_fr\": \"Bien orienter la causalité évite les erreurs d'attribution ou le fait de confondre une cause avec un effet.\",\r\n\t\t\"remark_fr\": \"Du fait de leur corrélation, il n'est pas rare de commettre l'erreur d'inverser les liens de causalité, comme dans l'exemple suivant: L'augmentation du SIDA a été causée par plus d'éducation sexuelle. En fait, l'augmentation de l'éducation sexuelle a été causée par la propagation du SIDA.\",\r\n\t\t\"link_fr\": \"http://sophismes.free.fr/log42.htm\"\r\n\t}\r\n]",
+    "OpenAIKeyPath": "G:\\Mon Drive\\MyIA\\Argumentum\\Fallacies\\Gestion\\OpenAI-Key.txt",
+    "Model": "gpt-3.5-turbo",
+    "ChunkSize": 3,
+    "NbMessageCalls": 3,
+    "SkipChunkNb": 0,
+    "TakeChunkNb": 0,
+    "MaxDegreeOfParallelismWebService": 8,
+    "FieldsToInclude": [
+      "path",
+      "family_fr",
+      "subfamily_fr",
+      "subsubfamily_fr",
+      "title_fr",
+      "description_fr",
+      "remark_fr",
+      "link_fr"
+    ],
+    "PrimaryField": "path",
+    "FieldsToUpdate": [
+      "description_fr",
+      "remark_fr",
+      "link_fr"
+    ],
+    "SourceDataset": {
+      "Name": "Argumentum - Virtues - Taxonomy",
+      "ReleaseFilePath": "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
+      "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Fallacies\\Argumentum Virtues - Taxonomy.csv",
+      "CsvType": null
+    },
+    "TargetPath": ".\\Target\\Datasets\\Argumentum Virtues - Taxonomy.csv"
+  },
+  "Dnn2sxcConfig": {
+    "CsvPathFallacies": "..\\..\\..\\Data\\Dnn2sxc\\Argumentum Fallacies - Taxonomy.csv",
+    "Xml2sxcImportPathFallacies": "..\\..\\..\\Data\\Dnn2sxc\\2sxc Fallacy  Data 20210212131131.xml",
+    "Xml2sxcExportPathFallacies": "..\\..\\..\\Data\\Dnn2sxc\\2sxcContentExport_Argumentum_Fallacies_0.0.1.xml",
+    "TitleExpressionFr": "{fallacy.TextFr}",
+    "DescriptionExpressionFr": "{HttpUtility.HtmlEncode(fallacy.DescFr)}",
+    "ExampleExpressionFr": "{HttpUtility.HtmlEncode(fallacy.ExampleFr)}",
+    "LinkExpressionFr": "{fallacy.LinkFr}",
+    "TitleExpressionEn": "{fallacy.TextEn}",
+    "DescriptionExpressionEn": "{HttpUtility.HtmlEncode(fallacy.DescEn)}",
+    "ExampleExpressionEn": "{HttpUtility.HtmlEncode(fallacy.ExampleEn)}",
+    "LinkExpressionEn": "{fallacy.LinkEn}"
+  },
+  "MindMapCreatorConfig": {
+    "MindMaps": [
+      {
+        "DataSet": "..\\..\\..\\Data\\Mindmap\\Argumentum Fallacies - Taxonomy.csv",
+        "TitleExpression": "{fallacy.TextFr}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescFr)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextFr}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleFr)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkFrFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 2,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": false,
+        "ThumbnailsCardSetName": null,
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "..\\..\\..\\Data\\Mindmap\\Argumentum_Fallacies_MindMap_Fr_2.mm",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "DataSet": "..\\..\\..\\Data\\Mindmap\\Argumentum Fallacies - Taxonomy.csv",
+        "TitleExpression": "{fallacy.TextFr}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescFr)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextFr}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleFr)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkFrFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 2,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": true,
+        "ThumbnailsCardSetName": null,
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "..\\..\\..\\Data\\Mindmap\\Argumentum_Fallacies_MindMap_Fr_2_cards.mm",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "DataSet": "..\\..\\..\\Data\\Mindmap\\Argumentum Fallacies - Taxonomy.csv",
+        "TitleExpression": "{fallacy.TextEn}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescEn)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextFr}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleEn)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkEnFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 2,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": false,
+        "ThumbnailsCardSetName": null,
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "..\\..\\..\\Data\\Mindmap\\Argumentum_Fallacies_MindMap_En_2.mm",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      },
+      {
+        "DataSet": "..\\..\\..\\Data\\Mindmap\\Argumentum Fallacies - Taxonomy.csv",
+        "TitleExpression": "{fallacy.TextEn}",
+        "FamilleExpression": "{fallacy.Famille}",
+        "SousFamilleExpression": "{fallacy.SousFamille}",
+        "SoussousFamilleExpression": "{fallacy.Soussousfamille}",
+        "DescriptionExpression": "\r\n<p>\r\n    {HttpUtility.HtmlEncode(fallacy.DescEn)}\r\n</p>\r\n",
+        "CardExpression": "\r\n<p>\r\n    <img src=\"{mindMap.GetThumbnailsPath(fallacy)}\" width=\"60\" height=\"60\"/>{fallacy.TextEn}\r\n</p>\r\n",
+        "ExampleExpression": "\r\n<p>\r\n    <i>{HttpUtility.HtmlEncode(fallacy.ExampleEn)}</i>\r\n</p>\r\n",
+        "LinkExpression": "{fallacy.LinkEnFallback}",
+        "ThumbnailsPathExpression": "../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{fallacy.Path}_{fallacy.TextFr.ToLower().Replace(\" \",\"_\")}.png",
+        "NbBranchesRight": 2,
+        "Colors": {
+          "1": "#8605ab",
+          "2": "#ff66eb",
+          "3": "#08af93",
+          "4": "#8dc801",
+          "5": "#0054a4",
+          "6": "#ffc307",
+          "7": "#dc0f0a"
+        },
+        "FontSizes": [
+          30,
+          50,
+          40,
+          30,
+          30,
+          30,
+          25,
+          23,
+          23,
+          23,
+          23
+        ],
+        "EdgeSizes": [
+          8,
+          4,
+          2,
+          1
+        ],
+        "InsertCardsThumbnails": true,
+        "ThumbnailsCardSetName": null,
+        "ThumbnailsFileNamePattern": "_{fallacy.Path}..",
+        "SVGMaps": [
+
+        ],
+        "KeepOriginalSVG": false,
+        "Enabled": true,
+        "DocumentName": "..\\..\\..\\Data\\Mindmap\\Argumentum_Fallacies_MindMap_En_2_cards.mm",
+        "Translations": [
+
+        ],
+        "TargetDensity": 0,
+        "ImageFormat": "Png",
+        "TemplatePathRelease": null,
+        "TemplatePathDebug": null
+      }
+    ]
+  },
+  "ContinuousValidationConfig": {
+    "GenerateFullReport": true,
+    "ReportPath": "ValidationReports",
+    "ValidateTaxonomy": true,
+    "ValidateOwl": true,
+    "ValidateCards": true,
+    "Languages": ["fr", "en", "ru", "pt"]
+  }
+}

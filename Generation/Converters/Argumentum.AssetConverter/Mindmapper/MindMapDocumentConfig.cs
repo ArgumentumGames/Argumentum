@@ -348,7 +348,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private Node CreateNode(Fallacy fallacy, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<Fallacy> targets)[] crossLinks)
 		{
 			var fallacyNode = new Node { TEXT = TitleFunc(fallacy) };
-			fallacyNode.ID = fallacy.GetId();
+			fallacyNode.ID = fallacy.Id;
 			var link = LinkFunc(fallacy);
 			if (!string.IsNullOrEmpty(link))
 			{
@@ -372,7 +372,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					crossLinkNode.EndArrow = "Default";
 					crossLinkNode.StartInclination = "892;0;";
 					crossLinkNode.EndInclination = "892;0;";
-					crossLinkNode.Destination = target.GetId();
+					crossLinkNode.Destination = target.Id;
 
 					switch (crossLink.crossLinkType)
 					{
