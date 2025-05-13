@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter.Tests
         /// - Existence des parents pour chaque nœud
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ValidateTaxonomyStructure()
+        public async Task<bool> ValidateTaxonomyStructure()
         {
             Logger.LogTitle("Validation de la structure de la taxonomie");
 
@@ -62,7 +62,7 @@ namespace Argumentum.AssetConverter.Tests
             if (_fallacies == null || !_fallacies.Any())
             {
                 Logger.LogProblem("Impossible de valider la structure de la taxonomie : aucune donnée chargée.");
-                return;
+                return false;
             }
 
             int errorCount = 0;
@@ -134,10 +134,12 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogProblem($"Validation de la structure de la taxonomie : {errorCount} erreurs détectées");
                 Logger.Log(report.ToString());
+                return false;
             }
             else
             {
                 Logger.LogSuccess("Validation de la structure de la taxonomie : aucune erreur détectée");
+                return true;
             }
         }
 
@@ -148,7 +150,7 @@ namespace Argumentum.AssetConverter.Tests
         /// - Génère un rapport des traductions manquantes
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ValidateTranslationCompleteness()
+        public async Task<bool> ValidateTranslationCompleteness()
         {
             Logger.LogTitle("Validation de la complétude des traductions");
 
@@ -160,7 +162,7 @@ namespace Argumentum.AssetConverter.Tests
             if (_fallacies == null || !_fallacies.Any())
             {
                 Logger.LogProblem("Impossible de valider la complétude des traductions : aucune donnée chargée.");
-                return;
+                return false;
             }
 
             var missingTranslations = new Dictionary<string, Dictionary<string, List<string>>>();
@@ -268,10 +270,12 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogProblem($"Validation de la complétude des traductions : {totalMissing} traductions manquantes");
                 Logger.Log(report.ToString());
+                return false;
             }
             else
             {
                 Logger.LogSuccess("Validation de la complétude des traductions : toutes les traductions sont présentes");
+                return true;
             }
         }
 
@@ -308,7 +312,7 @@ namespace Argumentum.AssetConverter.Tests
         /// - Détection des incohérences potentielles
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ValidateTerminologyConsistency()
+        public async Task<bool> ValidateTerminologyConsistency()
         {
             Logger.LogTitle("Validation de la cohérence terminologique");
 
@@ -320,7 +324,7 @@ namespace Argumentum.AssetConverter.Tests
             if (_fallacies == null || !_fallacies.Any())
             {
                 Logger.LogProblem("Impossible de valider la cohérence terminologique : aucune donnée chargée.");
-                return;
+                return false;
             }
 
             // Dictionnaire pour stocker les termes par langue et par niveau hiérarchique
@@ -462,10 +466,12 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogProblem("Validation de la cohérence terminologique : des incohérences ont été détectées");
                 Logger.Log(report.ToString());
+                return false;
             }
             else
             {
                 Logger.LogSuccess("Validation de la cohérence terminologique : aucune incohérence détectée");
+                return true;
             }
         }
 
@@ -473,7 +479,7 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute tous les tests de validation et génère un rapport global.
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task RunAllValidations()
+        public async Task<bool> RunAllValidations()
         {
             Logger.LogTitle("Exécution de tous les tests de validation de taxonomie");
 
@@ -482,14 +488,33 @@ namespace Argumentum.AssetConverter.Tests
             if (_fallacies == null || !_fallacies.Any())
             {
                 Logger.LogProblem("Impossible d'exécuter les validations : aucune donnée chargée.");
-                return;
+                return false;
             }
 
-            await ValidateTaxonomyStructure();
-            await ValidateTranslationCompleteness();
-            await ValidateTerminologyConsistency();
+            bool structureValid = await ValidateTaxonomyStructure();
+            bool translationsValid = await ValidateTranslationCompleteness();
+            bool terminologyValid = await ValidateTerminologyConsistency();
 
             Logger.LogTitle("Fin des tests de validation de taxonomie");
+            
+            return structureValid && translationsValid && terminologyValid;
+        }
+        
+        /// <summary>
+        /// Exécute tous les tests de validation.
+        /// </summary>
+        /// <returns>True si tous les tests ont réussi, sinon false.</returns>
+        public bool RunAllTests()
+        {
+            try
+            {
+                return RunAllValidations().Result;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogProblem($"Erreur lors de l'exécution des tests de validation : {ex.Message}");
+                return false;
+            }
         }
     }
 }

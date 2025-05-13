@@ -19,7 +19,7 @@ namespace Argumentum.AssetConverter.Tests
     public class OwlOntologyValidationTests
     {
         private readonly AssetConverterConfig _config;
-        private OWLOntology _ontology;
+        private OwlAdapter _ontology;
         private readonly OwlValidatorConfig _validatorConfig;
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Argumentum.AssetConverter.Tests
 
             try
             {
-                _ontology = OWLOntology.FromFile(OWLEnums.OWLFormats.OwlXml, owlFilePath);
+                _ontology = OwlAdapter.FromFile(owlFilePath);
                 Logger.LogSuccess($"Ontologie OWL chargée : {owlFilePath}");
             }
             catch (Exception ex)
@@ -59,13 +59,41 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>
+        /// Exécute tous les tests de validation.
+        /// </summary>
+        /// <returns>True si tous les tests ont réussi, sinon false.</returns>
+        public bool RunAllTests()
+        {
+            try
+            {
+                LoadOntology().Wait();
+                
+                if (_ontology == null)
+                {
+                    return false;
+                }
+                
+                bool structureValid = ValidateOwlOntologyStructure().Result;
+                bool annotationsValid = ValidateMultilingualAnnotations().Result;
+                bool mappingsValid = ValidateAIFMappings().Result;
+                
+                return structureValid && annotationsValid && mappingsValid;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogProblem($"Erreur lors de l'exécution des tests de validation : {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Vérifie la structure de base de l'ontologie.
         /// - Présence des concepts principaux
         /// - Hiérarchie correcte des concepts
         /// - Intégrité des relations entre concepts
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ValidateOwlOntologyStructure()
+        public async Task<bool> ValidateOwlOntologyStructure()
         {
             Logger.LogTitle("Validation de la structure de l'ontologie OWL");
 
@@ -77,7 +105,7 @@ namespace Argumentum.AssetConverter.Tests
             if (_ontology == null)
             {
                 Logger.LogProblem("Impossible de valider la structure de l'ontologie : aucune ontologie chargée.");
-                return;
+                return false;
             }
 
             int errorCount = 0;
@@ -90,7 +118,8 @@ namespace Argumentum.AssetConverter.Tests
                 bool conceptExists = false;
                 
                 // Recherche du concept dans l'ontologie
-                foreach (var concept in _ontology.Model.ClassModel.Classes)
+                var ontologyObj = _ontology.GetOntology();
+                foreach (var concept in ontologyObj.Model.ClassModel.Classes)
                 {
                     if (concept.ToString().EndsWith(requiredConcept))
                     {
@@ -118,7 +147,8 @@ namespace Argumentum.AssetConverter.Tests
                 bool relationExists = false;
                 
                 // Recherche de la relation dans l'ontologie
-                foreach (var property in _ontology.Model.PropertyModel.Properties)
+                var ontologyObj = _ontology.GetOntology();
+                foreach (var property in ontologyObj.Model.PropertyModel.Properties)
                 {
                     if (property.ToString().EndsWith(requiredRelation))
                     {
@@ -195,6 +225,7 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogProblem($"Validation de la structure de l'ontologie OWL : {errorCount} erreurs détectées");
                 Logger.Log(report.ToString());
+                return false;
             }
             else
             {
@@ -203,6 +234,7 @@ namespace Argumentum.AssetConverter.Tests
                 {
                     Logger.Log(report.ToString());
                 }
+                return true;
             }
         }
 
@@ -213,7 +245,7 @@ namespace Argumentum.AssetConverter.Tests
         /// - Présence des exemples dans toutes les langues
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ValidateMultilingualAnnotations()
+        public async Task<bool> ValidateMultilingualAnnotations()
         {
             Logger.LogTitle("Validation des annotations multilingues de l'ontologie OWL");
 
@@ -225,7 +257,7 @@ namespace Argumentum.AssetConverter.Tests
             if (_ontology == null)
             {
                 Logger.LogProblem("Impossible de valider les annotations multilingues : aucune ontologie chargée.");
-                return;
+                return false;
             }
 
             int errorCount = 0;
@@ -263,7 +295,7 @@ namespace Argumentum.AssetConverter.Tests
                 var missingDefinitions = new List<string>();
                 foreach (var language in _validatorConfig.LanguagesToValidate)
                 {
-                    var definitions = _ontology.GetConceptDocumentation(concept, SKOSEnums.SKOSDocumentationTypes.Definition)
+                    var definitions = _ontology.GetConceptDocumentation(concept, Ontology.SKOSDocumentationTypes.Definition)
                         .Where(d => d.Language.Equals(language, StringComparison.OrdinalIgnoreCase))
                         .ToList();
                     
@@ -283,7 +315,7 @@ namespace Argumentum.AssetConverter.Tests
                 var missingExamples = new List<string>();
                 foreach (var language in _validatorConfig.LanguagesToValidate)
                 {
-                    var examples = _ontology.GetConceptDocumentation(concept, SKOSEnums.SKOSDocumentationTypes.Example)
+                    var examples = _ontology.GetConceptDocumentation(concept, Ontology.SKOSDocumentationTypes.Example)
                         .Where(e => e.Language.Equals(language, StringComparison.OrdinalIgnoreCase))
                         .ToList();
                     
@@ -307,6 +339,7 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogProblem($"Validation des annotations multilingues : {errorCount} erreurs détectées");
                 Logger.Log(report.ToString());
+                return false;
             }
             else
             {
@@ -315,6 +348,7 @@ namespace Argumentum.AssetConverter.Tests
                 {
                     Logger.Log(report.ToString());
                 }
+                return true;
             }
         }
 
@@ -325,7 +359,7 @@ namespace Argumentum.AssetConverter.Tests
         /// - Couverture des mappings
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ValidateAIFMappings()
+        public async Task<bool> ValidateAIFMappings()
         {
             Logger.LogTitle("Validation des mappings AIF de l'ontologie OWL");
 
@@ -337,16 +371,16 @@ namespace Argumentum.AssetConverter.Tests
             if (_ontology == null)
             {
                 Logger.LogProblem("Impossible de valider les mappings AIF : aucune ontologie chargée.");
-                return;
+                return false;
             }
 
             // Charger l'ontologie AIF si elle existe
-            OWLOntology aifOntology = null;
+            OwlAdapter aifOntology = null;
             if (File.Exists(_validatorConfig.AifOwlFilePath))
             {
                 try
                 {
-                    aifOntology = OWLOntology.FromFile(OWLEnums.OWLFormats.OwlXml, _validatorConfig.AifOwlFilePath);
+                    aifOntology = OwlAdapter.FromFile(_validatorConfig.AifOwlFilePath);
                     Logger.LogSuccess($"Ontologie AIF chargée : {_validatorConfig.AifOwlFilePath}");
                 }
                 catch (Exception ex)
@@ -411,7 +445,7 @@ namespace Argumentum.AssetConverter.Tests
                             // Si l'ontologie AIF est disponible, vérifier que la ressource existe
                             if (aifOntology != null && resource.ToString().Contains(_validatorConfig.AifOwlFilePath))
                             {
-                                bool resourceExists = aifOntology.Model.ClassModel.CheckHasClass(resource);
+                                bool resourceExists = aifOntology.CheckHasClass(resource);
                                 if (!resourceExists)
                                 {
                                     errorCount++;
@@ -448,11 +482,13 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogProblem($"Validation des mappings AIF : {errorCount} erreurs détectées");
                 Logger.Log(report.ToString());
+                return false;
             }
             else
             {
                 Logger.LogSuccess("Validation des mappings AIF : aucune erreur détectée");
                 Logger.Log(report.ToString());
+                return true;
             }
         }
 
@@ -460,7 +496,7 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute tous les tests de validation et génère un rapport global.
         /// </summary>
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task RunAllOwlValidations()
+        public async Task<bool> RunAllOwlValidations()
         {
             Logger.LogTitle("Exécution de tous les tests de validation de l'ontologie OWL");
 
@@ -469,12 +505,12 @@ namespace Argumentum.AssetConverter.Tests
             if (_ontology == null)
             {
                 Logger.LogProblem("Impossible d'exécuter les validations : aucune ontologie chargée.");
-                return;
+                return false;
             }
 
-            await ValidateOwlOntologyStructure();
-            await ValidateMultilingualAnnotations();
-            await ValidateAIFMappings();
+            bool structureValid = await ValidateOwlOntologyStructure();
+            bool annotationsValid = await ValidateMultilingualAnnotations();
+            bool mappingsValid = await ValidateAIFMappings();
 
             // Générer un rapport de validation global
             string reportDirectory = Path.GetDirectoryName(_validatorConfig.ValidationReportPath);
@@ -484,6 +520,8 @@ namespace Argumentum.AssetConverter.Tests
             }
 
             Logger.LogTitle("Fin des tests de validation de l'ontologie OWL");
+            
+            return structureValid && annotationsValid && mappingsValid;
         }
     }
 }

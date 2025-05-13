@@ -40,11 +40,11 @@ namespace Argumentum.AssetConverter
 					{
 						Logger.LogTitle("Mode de validation de taxonomie");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var taxonomyConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var taxonomyConfig = AssetConverterConfig.GetConfig(taxonomyConfigFileName, out var _);
 						
 						// Activer uniquement le mode de validation de taxonomie
-						config.Mode = ConverterMode.TaxonomyValidator;
+						taxonomyConfig.Mode = ConverterMode.TaxonomyValidator;
 						
 						// Configurer les options de validation en fonction des arguments
 						if (args.Length > 1)
@@ -53,37 +53,37 @@ namespace Argumentum.AssetConverter
 							{
 								if (arg.Equals("--structure", StringComparison.OrdinalIgnoreCase))
 								{
-									config.TaxonomyValidatorConfig.ValidateStructure = true;
-									config.TaxonomyValidatorConfig.ValidateTranslations = false;
-									config.TaxonomyValidatorConfig.ValidateTerminology = false;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateStructure = true;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateTranslations = false;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateTerminology = false;
 								}
 								else if (arg.Equals("--translations", StringComparison.OrdinalIgnoreCase))
 								{
-									config.TaxonomyValidatorConfig.ValidateStructure = false;
-									config.TaxonomyValidatorConfig.ValidateTranslations = true;
-									config.TaxonomyValidatorConfig.ValidateTerminology = false;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateStructure = false;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateTranslations = true;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateTerminology = false;
 								}
 								else if (arg.Equals("--terminology", StringComparison.OrdinalIgnoreCase))
 								{
-									config.TaxonomyValidatorConfig.ValidateStructure = false;
-									config.TaxonomyValidatorConfig.ValidateTranslations = false;
-									config.TaxonomyValidatorConfig.ValidateTerminology = true;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateStructure = false;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateTranslations = false;
+									taxonomyConfig.TaxonomyValidatorConfig.ValidateTerminology = true;
 								}
 							}
 						}
 						
-						await config.Apply().ConfigureAwait(false);
+						await taxonomyConfig.Apply().ConfigureAwait(false);
 						return;
 					}
 					else if (args[0].Equals("--validate-owl", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode de validation d'ontologie OWL");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var owlConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var owlConfig = AssetConverterConfig.GetConfig(owlConfigFileName, out var _);
 						
 						// Activer uniquement le mode de validation d'ontologie OWL
-						config.Mode = ConverterMode.OwlValidator;
+						owlConfig.Mode = ConverterMode.OwlValidator;
 						
 						// Configurer les options de validation en fonction des arguments
 						if (args.Length > 1)
@@ -92,37 +92,37 @@ namespace Argumentum.AssetConverter
 							{
 								if (arg.Equals("--structure", StringComparison.OrdinalIgnoreCase))
 								{
-									config.OwlValidatorConfig.ValidateStructure = true;
-									config.OwlValidatorConfig.ValidateMultilingualAnnotations = false;
-									config.OwlValidatorConfig.ValidateAIFMappings = false;
+									owlConfig.OwlValidatorConfig.ValidateStructure = true;
+									owlConfig.OwlValidatorConfig.ValidateMultilingualAnnotations = false;
+									owlConfig.OwlValidatorConfig.ValidateAIFMappings = false;
 								}
 								else if (arg.Equals("--annotations", StringComparison.OrdinalIgnoreCase))
 								{
-									config.OwlValidatorConfig.ValidateStructure = false;
-									config.OwlValidatorConfig.ValidateMultilingualAnnotations = true;
-									config.OwlValidatorConfig.ValidateAIFMappings = false;
+									owlConfig.OwlValidatorConfig.ValidateStructure = false;
+									owlConfig.OwlValidatorConfig.ValidateMultilingualAnnotations = true;
+									owlConfig.OwlValidatorConfig.ValidateAIFMappings = false;
 								}
 								else if (arg.Equals("--mappings", StringComparison.OrdinalIgnoreCase))
 								{
-									config.OwlValidatorConfig.ValidateStructure = false;
-									config.OwlValidatorConfig.ValidateMultilingualAnnotations = false;
-									config.OwlValidatorConfig.ValidateAIFMappings = true;
+									owlConfig.OwlValidatorConfig.ValidateStructure = false;
+									owlConfig.OwlValidatorConfig.ValidateMultilingualAnnotations = false;
+									owlConfig.OwlValidatorConfig.ValidateAIFMappings = true;
 								}
 							}
 						}
 						
-						await config.Apply().ConfigureAwait(false);
+						await owlConfig.Apply().ConfigureAwait(false);
 						return;
 					}
 					else if (args[0].Equals("--validate-cards", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode de validation des cartes générées");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var cardsConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var cardsConfig = AssetConverterConfig.GetConfig(cardsConfigFileName, out var _);
 						
 						// Activer uniquement le mode de validation des cartes
-						config.Mode = ConverterMode.CardValidator;
+						cardsConfig.Mode = ConverterMode.CardValidator;
 						
 						// Configurer les options de validation en fonction des arguments
 						if (args.Length > 1)
@@ -131,37 +131,37 @@ namespace Argumentum.AssetConverter
 							{
 								if (arg.Equals("--existence", StringComparison.OrdinalIgnoreCase))
 								{
-									config.CardValidatorConfig.ValidateFileExistence = true;
-									config.CardValidatorConfig.ValidateImageQuality = false;
-									config.CardValidatorConfig.ValidateMultilingualConsistency = false;
+									cardsConfig.CardValidatorConfig.ValidateFileExistence = true;
+									cardsConfig.CardValidatorConfig.ValidateImageQuality = false;
+									cardsConfig.CardValidatorConfig.ValidateMultilingualConsistency = false;
 								}
 								else if (arg.Equals("--quality", StringComparison.OrdinalIgnoreCase))
 								{
-									config.CardValidatorConfig.ValidateFileExistence = false;
-									config.CardValidatorConfig.ValidateImageQuality = true;
-									config.CardValidatorConfig.ValidateMultilingualConsistency = false;
+									cardsConfig.CardValidatorConfig.ValidateFileExistence = false;
+									cardsConfig.CardValidatorConfig.ValidateImageQuality = true;
+									cardsConfig.CardValidatorConfig.ValidateMultilingualConsistency = false;
 								}
 								else if (arg.Equals("--consistency", StringComparison.OrdinalIgnoreCase))
 								{
-									config.CardValidatorConfig.ValidateFileExistence = false;
-									config.CardValidatorConfig.ValidateImageQuality = false;
-									config.CardValidatorConfig.ValidateMultilingualConsistency = true;
+									cardsConfig.CardValidatorConfig.ValidateFileExistence = false;
+									cardsConfig.CardValidatorConfig.ValidateImageQuality = false;
+									cardsConfig.CardValidatorConfig.ValidateMultilingualConsistency = true;
 								}
 							}
 						}
 						
-						await config.Apply().ConfigureAwait(false);
+						await cardsConfig.Apply().ConfigureAwait(false);
 						return;
 					}
 					else if (args[0].Equals("--continuous-validation", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode de validation continue");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var continuousConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var continuousConfig = AssetConverterConfig.GetConfig(continuousConfigFileName, out var _);
 						
 						// Activer uniquement le mode de validation continue
-						config.Mode = ConverterMode.ContinuousValidator;
+						continuousConfig.Mode = ConverterMode.ContinuousValidator;
 						
 						// Configurer les options de validation en fonction des arguments
 						if (args.Length > 1)
@@ -173,50 +173,50 @@ namespace Argumentum.AssetConverter
 									int intervalIndex = args.ToList().IndexOf(arg) + 1;
 									if (int.TryParse(args[intervalIndex], out int interval))
 									{
-										config.ContinuousValidationConfig.ValidationInterval = interval;
+										continuousConfig.ContinuousValidationConfig.ValidationInterval = interval;
 									}
 								}
 								else if (arg.Equals("--watch", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ContinuousValidationConfig.ValidateOnChanges = true;
+									continuousConfig.ContinuousValidationConfig.ValidateOnChanges = true;
 								}
 								else if (arg.Equals("--no-watch", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ContinuousValidationConfig.ValidateOnChanges = false;
+									continuousConfig.ContinuousValidationConfig.ValidateOnChanges = false;
 								}
 								else if (arg.Equals("--taxonomy", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ContinuousValidationConfig.ValidateTaxonomy = true;
-									config.ContinuousValidationConfig.ValidateOwl = false;
-									config.ContinuousValidationConfig.ValidateCards = false;
+									continuousConfig.ContinuousValidationConfig.ValidateTaxonomy = true;
+									continuousConfig.ContinuousValidationConfig.ValidateOwl = false;
+									continuousConfig.ContinuousValidationConfig.ValidateCards = false;
 								}
 								else if (arg.Equals("--owl", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ContinuousValidationConfig.ValidateTaxonomy = false;
-									config.ContinuousValidationConfig.ValidateOwl = true;
-									config.ContinuousValidationConfig.ValidateCards = false;
+									continuousConfig.ContinuousValidationConfig.ValidateTaxonomy = false;
+									continuousConfig.ContinuousValidationConfig.ValidateOwl = true;
+									continuousConfig.ContinuousValidationConfig.ValidateCards = false;
 								}
 								else if (arg.Equals("--cards", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ContinuousValidationConfig.ValidateTaxonomy = false;
-									config.ContinuousValidationConfig.ValidateOwl = false;
-									config.ContinuousValidationConfig.ValidateCards = true;
+									continuousConfig.ContinuousValidationConfig.ValidateTaxonomy = false;
+									continuousConfig.ContinuousValidationConfig.ValidateOwl = false;
+									continuousConfig.ContinuousValidationConfig.ValidateCards = true;
 								}
 							}
 						}
 						
-						await config.Apply().ConfigureAwait(false);
+						await continuousConfig.Apply().ConfigureAwait(false);
 						return;
 					}
 					else if (args[0].Equals("--translation-coverage", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode de rapport de couverture des traductions");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var translationConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var translationConfig = AssetConverterConfig.GetConfig(translationConfigFileName, out var _);
 						
 						// Activer uniquement le mode de rapport de couverture des traductions
-						config.Mode = ConverterMode.TranslationCoverage;
+						translationConfig.Mode = ConverterMode.TranslationCoverage;
 						
 						// Configurer les options de rapport en fonction des arguments
 						if (args.Length > 1)
@@ -227,41 +227,41 @@ namespace Argumentum.AssetConverter
 								{
 									int languagesIndex = args.ToList().IndexOf(arg) + 1;
 									string[] languages = args[languagesIndex].Split(',');
-									config.TranslationCoverageConfig.Languages = languages.ToList();
+									translationConfig.TranslationCoverageConfig.Languages = languages.ToList();
 								}
 								else if (arg.Equals("--fields", StringComparison.OrdinalIgnoreCase) && args.Length > args.ToList().IndexOf(arg) + 1)
 								{
 									int fieldsIndex = args.ToList().IndexOf(arg) + 1;
 									string[] fields = args[fieldsIndex].Split(',');
-									config.TranslationCoverageConfig.FieldTypes = fields.ToList();
+									translationConfig.TranslationCoverageConfig.FieldTypes = fields.ToList();
 								}
 								else if (arg.Equals("--threshold", StringComparison.OrdinalIgnoreCase) && args.Length > args.ToList().IndexOf(arg) + 1)
 								{
 									int thresholdIndex = args.ToList().IndexOf(arg) + 1;
 									if (int.TryParse(args[thresholdIndex], out int threshold))
 									{
-										config.TranslationCoverageConfig.MinimumCoverageThreshold = threshold;
+										translationConfig.TranslationCoverageConfig.MinimumCoverageThreshold = threshold;
 									}
 								}
 								else if (arg.Equals("--no-charts", StringComparison.OrdinalIgnoreCase))
 								{
-									config.TranslationCoverageConfig.GenerateProgressCharts = false;
+									translationConfig.TranslationCoverageConfig.GenerateProgressCharts = false;
 								}
 							}
 						}
 						
-						await config.Apply().ConfigureAwait(false);
+						await translationConfig.Apply().ConfigureAwait(false);
 						return;
 					}
 					else if (args[0].Equals("--optimize-parallelism", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode d'optimisation du parallélisme");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var parallelismConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var parallelismConfig = AssetConverterConfig.GetConfig(parallelismConfigFileName, out var _);
 						
 						// Activer uniquement le mode d'optimisation du parallélisme
-						config.Mode = ConverterMode.ParallelismOptimizer;
+						parallelismConfig.Mode = ConverterMode.ParallelismOptimizer;
 						
 						// Configurer les options d'optimisation en fonction des arguments
 						if (args.Length > 1)
@@ -270,26 +270,26 @@ namespace Argumentum.AssetConverter
 							{
 								if (arg.Equals("--run-before-generation", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ParallelismOptimizerConfig.RunBeforeGeneration = true;
+									parallelismConfig.ParallelismOptimizerConfig.RunBeforeGeneration = true;
 								}
 								else if (arg.Equals("--no-run-before-generation", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ParallelismOptimizerConfig.RunBeforeGeneration = false;
+									parallelismConfig.ParallelismOptimizerConfig.RunBeforeGeneration = false;
 								}
 								else if (arg.Equals("--dynamic-adjustment", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ParallelismOptimizerConfig.DynamicAdjustment = true;
+									parallelismConfig.ParallelismOptimizerConfig.DynamicAdjustment = true;
 								}
 								else if (arg.Equals("--no-dynamic-adjustment", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ParallelismOptimizerConfig.DynamicAdjustment = false;
+									parallelismConfig.ParallelismOptimizerConfig.DynamicAdjustment = false;
 								}
 								else if (arg.Equals("--monitoring-interval", StringComparison.OrdinalIgnoreCase) && args.Length > args.ToList().IndexOf(arg) + 1)
 								{
 									int intervalIndex = args.ToList().IndexOf(arg) + 1;
 									if (int.TryParse(args[intervalIndex], out int interval))
 									{
-										config.ParallelismOptimizerConfig.MonitoringIntervalSeconds = interval;
+										parallelismConfig.ParallelismOptimizerConfig.MonitoringIntervalSeconds = interval;
 									}
 								}
 								else if (arg.Equals("--target-cpu-usage", StringComparison.OrdinalIgnoreCase) && args.Length > args.ToList().IndexOf(arg) + 1)
@@ -297,7 +297,7 @@ namespace Argumentum.AssetConverter
 									int usageIndex = args.ToList().IndexOf(arg) + 1;
 									if (int.TryParse(args[usageIndex], out int usage))
 									{
-										config.ParallelismOptimizerConfig.TargetCpuUsagePercent = usage;
+										parallelismConfig.ParallelismOptimizerConfig.TargetCpuUsagePercent = usage;
 									}
 								}
 								else if (arg.Equals("--target-memory-usage", StringComparison.OrdinalIgnoreCase) && args.Length > args.ToList().IndexOf(arg) + 1)
@@ -305,29 +305,29 @@ namespace Argumentum.AssetConverter
 									int usageIndex = args.ToList().IndexOf(arg) + 1;
 									if (int.TryParse(args[usageIndex], out int usage))
 									{
-										config.ParallelismOptimizerConfig.TargetMemoryUsagePercent = usage;
+										parallelismConfig.ParallelismOptimizerConfig.TargetMemoryUsagePercent = usage;
 									}
 								}
 								else if (arg.Equals("--detailed-report", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ParallelismOptimizerConfig.GenerateDetailedReport = true;
+									parallelismConfig.ParallelismOptimizerConfig.GenerateDetailedReport = true;
 								}
 								else if (arg.Equals("--no-detailed-report", StringComparison.OrdinalIgnoreCase))
 								{
-									config.ParallelismOptimizerConfig.GenerateDetailedReport = false;
+									parallelismConfig.ParallelismOptimizerConfig.GenerateDetailedReport = false;
 								}
 							}
 						}
 						
-						await config.Apply().ConfigureAwait(false);
+						await parallelismConfig.Apply().ConfigureAwait(false);
 						return;
 					}
 					else if (args[0].Equals("--generate-documentation", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode de génération de documentation");
 						
-						var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
-						var config = AssetConverterConfig.GetConfig(configFileName, out var _);
+						var docConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var docConfig = AssetConverterConfig.GetConfig(docConfigFileName, out var _);
 						
 						string inputDir = Path.Combine(Environment.CurrentDirectory, "Documentation");
 						string outputDir = Path.Combine(Environment.CurrentDirectory, "Output", "Documentation");
@@ -348,7 +348,7 @@ namespace Argumentum.AssetConverter
 							}
 						}
 						
-						Logger.LogInfo($"Génération de la documentation à partir de {inputDir} vers {outputDir}");
+						Logger.LogInfoMessage($"Génération de la documentation à partir de {inputDir} vers {outputDir}");
 						
 						var docGenerator = new Documentation.DocumentationGenerator(inputDir, outputDir);
 						await docGenerator.GenerateAsync();
