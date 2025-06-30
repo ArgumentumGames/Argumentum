@@ -143,3 +143,10 @@ yarn-error.log*
 
 # Fichiers de configuration locaux
 /Chatgpt-plugin/azure-function/local.settings.json
+
+
+# BFG & Mirror Repo Artifacts
+Argumentum.git-mirror/
+*.bfg-report/
+
+bfg.jar
