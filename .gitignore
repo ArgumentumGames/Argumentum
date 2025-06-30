@@ -150,3 +150,7 @@ Argumentum.git-mirror/
 *.bfg-report/
 
 bfg.jar
+
+
+# Dossiers de sortie générés
+**/[Oo]utput/
