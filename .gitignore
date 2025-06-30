@@ -154,3 +154,11 @@ bfg.jar
 
 # Dossiers de sortie générés
 **/[Oo]utput/
+
+
+# Fichiers et répertoires de projet non suivis
+Cards/en/
+Cards/fr/
+Cards/pt/
+Cards/ru/
+Scripts/
