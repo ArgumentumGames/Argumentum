@@ -13,10 +13,16 @@ namespace Argumentum.AssetConverter
 {
 	class Program
 	{
+		public static bool IsInteractive = true;
+
 		static async Task Main(string[] args)
 		{
 			try
 			{
+				var exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+				var exeDir = Path.GetDirectoryName(exePath);
+				Directory.SetCurrentDirectory(exeDir);
+				
 				Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 				Console.InputEncoding = System.Text.Encoding.UTF8;
 				Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -35,6 +41,11 @@ namespace Argumentum.AssetConverter
 				// Vérifier si des arguments de ligne de commande sont fournis
 				if (args.Length > 0)
 				{
+					if (args.Any(a => a.Equals("--non-interactive", StringComparison.OrdinalIgnoreCase)))
+					{
+						IsInteractive = false;
+					}
+					
 					// Traiter les arguments de ligne de commande
 					if (args[0].Equals("--validate-taxonomy", StringComparison.OrdinalIgnoreCase))
 					{
@@ -360,7 +371,7 @@ namespace Argumentum.AssetConverter
 
 				var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
 				var config = AssetConverterConfig.GetConfig(configFileName, out var newConfig);
-				if (newConfig)
+				if (newConfig && IsInteractive)
 				{
 					Logger.LogInstructions($"If you wish to edit the configuration file, then close this window and relaunch application after applying edits to the configuration file.\n If you wish to run the default configuration, press any key.");
 					

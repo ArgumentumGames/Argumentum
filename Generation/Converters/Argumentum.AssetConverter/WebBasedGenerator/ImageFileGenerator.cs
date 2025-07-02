@@ -68,7 +68,13 @@ public class ImageFileGenerator
 
 
 
-						var currentHarvest = harvestDictionary[(configCardSet.CardSetName, currentLanguage)]();
+						var harvestKey = (configCardSet.CardSetName, currentLanguage);
+						if (!harvestDictionary.ContainsKey(harvestKey))
+						{
+							Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
+							continue;
+						}
+						var currentHarvest = harvestDictionary[harvestKey]();
 						var backImages = new ConcurrentDictionary<string, string>();
 						GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
 

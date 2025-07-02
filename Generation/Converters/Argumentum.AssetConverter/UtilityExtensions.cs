@@ -209,13 +209,20 @@ namespace Argumentum.AssetConverter
 					using var client = new HttpClient();
 
 					var response = await client.GetAsync(urlFile);
-					response.EnsureSuccessStatusCode();
-					fileName = response.Content.Headers.ContentDisposition?.FileName ??
-					           System.IO.Path.GetFileName(urlFile.LocalPath);
-					mimeType = response.Content.Headers.ContentType?.MediaType;
-					content = await response.Content.ReadAsByteArrayAsync();
+					if (response.IsSuccessStatusCode)
+					{
+						fileName = response.Content.Headers.ContentDisposition?.FileName ??
+						           System.IO.Path.GetFileName(urlFile.LocalPath);
+						mimeType = response.Content.Headers.ContentType?.MediaType;
+						content = await response.Content.ReadAsByteArrayAsync();
 
-					Logger.Log($"Downloaded Document {docPath}");
+						Logger.Log($"Downloaded Document {docPath}");
+					}
+					else
+					{
+						Logger.LogWarning($"Failed to download document {docPath}. Status code: {response.StatusCode}");
+						return null;
+					}
 				}
 				finally
 				{
@@ -243,6 +250,10 @@ namespace Argumentum.AssetConverter
 		public static async Task<string> GetDocumentContent(this string docPath)
 		{
 			var payload = await docPath.GetDocumentPayload();
+			if (payload == null)
+			{
+				return null;
+			}
 			return Encoding.UTF8.GetString(payload.Content);
 		}
 

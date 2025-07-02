@@ -121,7 +121,7 @@ namespace Argumentum.AssetConverter.Tests
                 if (_validationConfig.ValidateOwl)
                 {
                     Logger.Log("Exécution des tests de validation d'ontologie OWL...");
-                    owlResult = _owlValidator.RunAllTests();
+                    owlResult = await _owlValidator.RunAllTests();
                     
                     var result = new ValidationResult
                     {

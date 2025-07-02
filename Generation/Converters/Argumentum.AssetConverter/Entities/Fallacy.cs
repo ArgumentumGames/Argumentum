@@ -131,7 +131,6 @@ namespace Argumentum.AssetConverter.Entities
         public FallacyClassMap()
         {
             Map(m => m.PK).Name("PK");
-            Map(m => m.Id).Name("Id");
             Map(m => m.Path).Name("path");
             Map(m => m.DecimalPath).Name("decimal_path");
             Map(m => m.Depth).Name("depth");

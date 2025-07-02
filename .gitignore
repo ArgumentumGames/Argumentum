@@ -162,3 +162,6 @@ Cards/fr/
 Cards/pt/
 Cards/ru/
 Scripts/
+# Temporary folders
+.temp/
+temp_owl_sharp/

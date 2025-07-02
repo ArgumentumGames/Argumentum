@@ -254,7 +254,10 @@ public class HarvestManager
 			{
 				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams);
 			}
-			cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
+			if (csvContent != null)
+			{
+				cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
+			}
 		}
 
 		if (cardSetInfo.Dpi > 0)
