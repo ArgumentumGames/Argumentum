@@ -32,7 +32,7 @@ namespace Argumentum.AssetConverter.Ontology
 				new OwlDocumentConfig()
 				{
 					Enabled = true,
-					DocumentName = "argumentum_fallacies.owl",
+					DocumentName = "argumentum.owl",
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					OntologyNamespace = "https://www.argumentum.games/argumentum_fallacies.owl#",
 					ExternalReferenceOntologyNamespaceURI = "http://www.arg.dundee.ac.uk/aif#",
@@ -73,29 +73,24 @@ namespace Argumentum.AssetConverter.Ontology
 		
 
 		public override async Task GenerateFallacyFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language)
-	    {
+		   {
 			if (string.IsNullOrEmpty(language))
 				language = config.LocalizationConfig.DefaultLanguage;
 
+			// Définir le répertoire de sortie correct
+			var outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output", "Ontology");
+			Directory.CreateDirectory(outputDir); // S'assurer que le répertoire existe
 
-			var fileName = DocumentName;
-			if (!string.IsNullOrEmpty(targetDirectory))
+			var fileName = Path.Combine(outputDir, DocumentName);
+
+			// On efface l'ancien fichier pour forcer la regénération
+			if (File.Exists(fileName))
 			{
-				fileName = Path.Combine(targetDirectory, fileName);
-
+				File.Delete(fileName);
 			}
-			//var documentPath = Path.Combine(targetDirectory, DocumentName);
 
-
-			if (File.Exists(fileName) && !config.OverwriteExistingDocs)
-			{
-				Logger.Log($"Skip existing Owl document: {fileName}");
-			}
-			else
-			{
-				Logger.Log($"Creating  Owl document {DocumentName}");
-				await CreateOwlDocument(fallacies, config, language, fileName);
-			}
+			Logger.Log($"Creating  Owl document {DocumentName} in {outputDir}");
+			await CreateOwlDocument(fallacies, config, language, fileName);
 		}
 
 				 private async Task CreateOwlDocument(IList<Fallacy> fallacies, AssetConverterConfig config, string language, string fileName)

@@ -382,10 +382,10 @@ namespace Argumentum.AssetConverter
 
 				
 				Logger.Log($"Generation finished.");
-				Logger.LogInstructions($"Thanks for the ride. \nLet's now check those files located in {Environment.CurrentDirectory}\nPress any key to close");
+				// Logger.LogInstructions($"Thanks for the ride. \nLet's now check those files located in {Environment.CurrentDirectory}\nPress any key to close");
 
 				// Afficher l'aide pour la validation de taxonomie, d'ontologie OWL et des cartes
-				Logger.LogExplanations("Pour exécuter les tests de validation de taxonomie, utilisez la commande suivante :\n" +
+				/* Logger.LogExplanations("Pour exécuter les tests de validation de taxonomie, utilisez la commande suivante :\n" +
 					"Argumentum.AssetConverter.exe --validate-taxonomy [options]\n\n" +
 					"Options disponibles :\n" +
 					"  --structure    : Valide uniquement la structure de la taxonomie\n" +
@@ -442,7 +442,7 @@ namespace Argumentum.AssetConverter
 					"Options disponibles :\n" +
 					"  --input=<chemin>  : Spécifie le répertoire contenant les fichiers Markdown (par défaut: ./Documentation)\n" +
 					"  --output=<chemin> : Spécifie le répertoire de sortie pour les fichiers HTML (par défaut: ./Output/Documentation)\n\n" +
-					"La documentation générée inclut une table des matières, un index de recherche et une navigation conviviale.");
+					"La documentation générée inclut une table des matières, un index de recherche et une navigation conviviale."); */
 			}
 			catch (Exception e)
 			{

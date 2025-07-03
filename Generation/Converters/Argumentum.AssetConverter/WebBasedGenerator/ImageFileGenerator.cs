@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,13 +11,14 @@ namespace Argumentum.AssetConverter;
 
 public class ImageFileGenerator
 {
+	private static readonly object _logLock = new object();
 
 	public AssetConverterConfig AssetConverterConfig { get; set; }
 
 	public  WebBasedGeneratorConfig Config { get; set; }
 
 
-	
+
 
 	/// <summary>
 	/// Generates images for a given document and language, and returns a ConcurrentDictionary of the generated images.
@@ -32,66 +34,69 @@ public class ImageFileGenerator
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
 		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism? Config.MaxDegreeOfParallelismImages : 1 };
 
-		Parallel.ForEach(Config.CardSetDocuments.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
-			//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
+		using (var logStream = new StreamWriter("debug_log.txt", false))
+		using (var synchronizedLogWriter = TextWriter.Synchronized(logStream))
 		{
-
-			var targetLanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
-			if (AssetConverterConfig.LocalizationConfig.Enabled)
-			{
-				targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
-			}
-			var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism =  Config.EnableParallelism ?  Config.MaxDegreeOfParallelismImageTranslations : 1 };
-			Parallel.ForEach(targetLanguages, parallelOptionsDocumentsTranslations, currentLanguage =>
-				//foreach (var currentLanguage in targetLanguages)
+			Parallel.ForEach(Config.CardSetDocuments.Where(d => d.Enabled), parallelOptionsDocuments, configDocument =>
+				//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
 			{
 
-				try
+				var targetLanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
+				if (AssetConverterConfig.LocalizationConfig.Enabled)
 				{
-					List<CardImages> targetList;
+					targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
+				}
+				var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism =  Config.EnableParallelism ?  Config.MaxDegreeOfParallelismImageTranslations : 1 };
+				Parallel.ForEach(targetLanguages, parallelOptionsDocumentsTranslations, currentLanguage =>
+					//foreach (var currentLanguage in targetLanguages)
+				{
 
-					if (!toReturn.TryGetValue((configDocument, currentLanguage), out targetList))
+					try
 					{
-						targetList = new List<CardImages>();
-						toReturn[(configDocument, currentLanguage)] = targetList;
-					}
+						List<CardImages> targetList;
 
-					//foreach (var configCardSet in configDocument.CardSets)
-
-
-					foreach (var configCardSet in configDocument.CardSets)
-					{
-						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
-							configDocument.DocumentName,
-							AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage);
-						Logger.Log($"Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
-
-
-
-						var harvestKey = (configCardSet.CardSetName, currentLanguage);
-						if (!harvestDictionary.ContainsKey(harvestKey))
+						if (!toReturn.TryGetValue((configDocument, currentLanguage), out targetList))
 						{
-							Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
-							continue;
+							targetList = new List<CardImages>();
+							toReturn[(configDocument, currentLanguage)] = targetList;
 						}
-						var currentHarvest = harvestDictionary[harvestKey]();
-						var backImages = new ConcurrentDictionary<string, string>();
-						GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
 
-						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, targetList);
+						//foreach (var configCardSet in configDocument.CardSets)
 
 
+						foreach (var configCardSet in configDocument.CardSets)
+						{
+							var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
+								configDocument.DocumentName,
+								AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage);
+							Logger.Log($"Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
+
+
+
+							var harvestKey = (configCardSet.CardSetName, currentLanguage);
+							if (!harvestDictionary.ContainsKey(harvestKey))
+							{
+								Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
+								continue;
+							}
+							var currentHarvest = harvestDictionary[harvestKey]();
+							var backImages = new ConcurrentDictionary<string, string>();
+							GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
+
+							GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, targetList, synchronizedLogWriter);
+
+
+						}
 					}
-				}
-				catch (Exception e)
-				{
-					Logger.LogException(e);
-				}
+					catch (Exception e)
+					{
+						Logger.LogException(e);
+					}
 
 
+				});
 			});
-		});
-
+		}
 		return toReturn;
 	}
 
@@ -118,11 +123,8 @@ public class ImageFileGenerator
 
 
 
-	private CardImages GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList)
+	private void GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList, TextWriter logWriter)
 	{
-		CardImages currentCard = null;
-
-
 		foreach (var currentHarvestFace in currentHarvest.Faces.Images)
 		{
 			var faceName = $"{currentHarvestFace.Key.ToLowerInvariant()}";
@@ -134,65 +136,82 @@ public class ImageFileGenerator
 			var faceImageUrl = currentHarvestFace.Value;
 			var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, false, AssetConverterConfig, configDocument, faceName, faceImageUrl, currentHarvest.Faces.Dpi);
 
-			currentCard = AssembleCurrentCardImages(currentHarvestFace, configDocument, configCardSet, currentLanguage, faceName, faceImage, currentCard, targetList, backImages);
+			AssembleCurrentCardImages(configDocument, faceName, faceImage, targetList, backImages, logWriter);
 		}
-
-		return currentCard;
 	}
 
-
-	private static CardImages AssembleCurrentCardImages(KeyValuePair<string, string> currentHarvestFace, CardSetDocumentConfig configDocument, DocumentCardSet configCardSet, string currentLanguage, string faceName, string faceImage, CardImages currentCard, List<CardImages> targetList, ConcurrentDictionary<string, string> backImages)
+	private static void AssembleCurrentCardImages(CardSetDocumentConfig configDocument, string faceName, string faceImage, List<CardImages> targetList, ConcurrentDictionary<string, string> backImages, TextWriter logWriter)
 	{
-		if (currentCard == null)
+		var currentCard = new CardImages { Front = faceImage };
+		targetList.Add(currentCard);
+
+		if (configDocument.NoBack)
 		{
-			currentCard = new CardImages();
-			targetList.Add(currentCard);
-			currentCard.Front = faceImage;
-			if (configDocument.NoBack)
-			{
-				currentCard = null;
-			}
-		}
-		else
-		{
-			currentCard.Back = faceImage;
-			currentCard = null;
+			return;
 		}
 
 		if (backImages.Count > 0)
 		{
-			if (backImages.Count == 1)
+			try
 			{
-				currentCard.Back = backImages.Values.First();
-			}
-			else
-			{
-				try
-				{
+				var targetBackName = backImages.Keys.FirstOrDefault(bn => faceName.Contains(bn));
 
-					var targetBackName = backImages.Keys.FirstOrDefault(bn => faceName.Contains(bn));
-					if (targetBackName == null || !faceName.Contains(targetBackName))
+				logWriter.WriteLine("--- Log Entry ---");
+				logWriter.WriteLine($"Timestamp: {DateTime.Now}");
+				logWriter.WriteLine($"faceName: {faceName}");
+				logWriter.WriteLine($"Available backImages Keys: {string.Join(", ", backImages.Keys)}");
+
+				if (targetBackName == null)
+				{
+					logWriter.WriteLine($"!!! targetBackName is NULL. No matching key found for face '{faceName}'. Using default. !!!");
+					targetBackName = "default";
+				}
+
+				if (!backImages.ContainsKey(targetBackName))
+				{
+					logWriter.WriteLine($"!!! KEY NOT FOUND: '{targetBackName}'. Attempting to use default fallback. !!!");
+					Logger.LogProblem($"Key '{targetBackName}' not found for face '{faceName}'. Available keys: {string.Join(", ", backImages.Keys)}");
+
+					if (backImages.ContainsKey("default"))
 					{
-						if (Debugger.IsAttached)
-						{
-							Debugger.Break();
-						}
-						targetBackName = backImages.Keys.First();
+						targetBackName = "default";
+						logWriter.WriteLine($"Found 'default' key as fallback.");
 					}
+					else
+					{
+						targetBackName = backImages.Keys.FirstOrDefault();
+						logWriter.WriteLine($"!!! No 'default' key. Using first available key as last resort: {targetBackName} !!!");
+					}
+				}
+
+				if (targetBackName != null)
+				{
+					logWriter.WriteLine($"Final targetBackName to be used: {targetBackName}");
 					currentCard.Back = backImages[targetBackName];
 				}
-				catch (Exception e)
+				else
 				{
-					Logger.LogProblem($"Problem with Document Card Back: Front : {currentCard.Front}, Back : {currentCard.Back}\nBack not found: \n Face Name: {faceName}\n  keys: {backImages.Keys.ToList().Aggregate((key1, key2) => $"{key1},{key2}")} ");
-					Logger.LogException(e);
-					throw;
+					logWriter.WriteLine("!!! CRITICAL: No keys available in backImages dictionary and no fallback possible. Cannot assign back. !!!");
+					Logger.LogProblem($"CRITICAL: No back could be assigned for face '{faceName}'.");
 				}
+
+				logWriter.WriteLine($"-----------------\n");
 			}
+			catch (Exception e)
+			{
+				logWriter.WriteLine($"--- EXCEPTION ---");
+				logWriter.WriteLine($"Timestamp: {DateTime.Now}");
+				logWriter.WriteLine($"Exception during back assignment for faceName: {faceName}");
+				logWriter.WriteLine($"Exception Type: {e.GetType().FullName}");
+				logWriter.WriteLine($"Exception Message: {e.Message}");
+				logWriter.WriteLine($"Stack Trace: {e.StackTrace}");
+				logWriter.WriteLine($"-----------------\n");
 
-			currentCard = null;
+				Logger.LogProblem($"Problem with Document Card Back: Front: {currentCard?.Front}\nFace Name: {faceName}\nAvailable keys: {string.Join(", ", backImages.Keys)}");
+				Logger.LogException(e);
+				// Do not rethrow to allow other threads to continue processing
+			}
 		}
-
-		return currentCard;
 	}
 
 

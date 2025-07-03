@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Reflection;
 using OWLSharp;
 using OWLSharp.Ontology;
-//using owlsharp.skos;
 using RDFSharp.Model;
 using VDS.RDF;
 using VDS.RDF.Parsing;
@@ -83,52 +82,23 @@ namespace Argumentum.AssetConverter.Ontology
         {
             try
             {
-                // Créer une instance vide
-                var adapter = new OwlAdapter("http://temp.namespace.org");
+                OWLOntology ontology = OWLOntology.FromFileAsync(OWLEnums.OWLFormats.OWL2XML, filePath).GetAwaiter().GetResult();
                 
-                // Trouver le type OWLOntology par réflexion
-                Type owlOntologyType = Type.GetType("OWLSharp.Ontology.OWLOntology, OWLSharp");
-                if (owlOntologyType == null)
+                if (ontology == null)
                 {
-                    owlOntologyType = Type.GetType("OWLOntology, OWLSharp");
+                    throw new InvalidOperationException("Le chargement de l'ontologie a retourné null.");
                 }
+
+                var adapter = new OwlAdapter(ontology.IRI.ToString());
+                adapter._ontology = ontology;
+                adapter._namespace = ontology.IRI.ToString();
                 
-                if (owlOntologyType != null)
-                {
-                    // Trouver la méthode FromFile
-                    var fromFileMethod = owlOntologyType.GetMethod("FromFile",
-                        BindingFlags.Public | BindingFlags.Static);
-                    
-                    if (fromFileMethod != null)
-                    {
-                        // Trouver l'enum RDFFormats.RdfXml
-                        Type rdfFormatsType = Type.GetType("RDFSharp.Model.RDFModelEnums+RDFFormats, RDFSharp");
-                        if (rdfFormatsType != null)
-                        {
-                            object rdfXmlFormat = Enum.Parse(rdfFormatsType, "RdfXml");
-                            
-                            // Appeler la méthode FromFile
-                            adapter._ontology = (OWLOntology)fromFileMethod.Invoke(null, new object[] { rdfXmlFormat, filePath });
-                            
-                            // Extraire le namespace de l'ontologie chargée
-                            var ontologyProperty = owlOntologyType.GetProperty("Ontology");
-                            if (ontologyProperty != null)
-                            {
-                                var ontologyValue = ontologyProperty.GetValue(adapter._ontology);
-                                adapter._namespace = ontologyValue?.ToString() ?? "http://unknown.namespace.org";
-                            }
-                            
-                            return adapter;
-                        }
-                    }
-                }
-                
-                throw new InvalidOperationException("Impossible de charger l'ontologie OWL à partir du fichier");
+                return adapter;
             }
             catch (Exception ex)
             {
                 Logger.LogProblem($"Erreur lors du chargement de l'ontologie: {ex.Message}");
-                throw;
+                throw new InvalidOperationException("Impossible de charger l'ontologie OWL à partir du fichier", ex);
             }
         }
 
