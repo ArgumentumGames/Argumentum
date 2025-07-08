@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -16,9 +17,6 @@ using Argumentum.AssetConverter.Optimization;
 using Argumentum.AssetConverter.Tests;
 using Spectre.Console;
 using Spectre.Console.Json;
-using Utf8Json;
-using Utf8Json.Formatters;
-using Utf8Json.Resolvers;
 
 namespace Argumentum.AssetConverter
 {
@@ -28,9 +26,10 @@ namespace Argumentum.AssetConverter
 
 
 		//Debug Switch to configure default values
-	    public bool SkipConfigFile { get; set; } = false;
+	    public bool SkipConfigFile { get; set; } = true;
 
-	    public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.Mindmapper | ConverterMode.OwlGenerator; // | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
+	       [JsonConverter(typeof(JsonStringEnumConverter))]
+	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.Mindmapper | ConverterMode.OwlGenerator; // | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -70,7 +69,7 @@ namespace Argumentum.AssetConverter
 				new DataSetInfo()
 				{
 					Name = KnownDataSets.VirtuesTaxonomy,
-					CsvType = typeof(ArgumentVirtue),
+					CsvType = typeof(Virtue),
 					ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
 					DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Virtues - Taxonomy.csv"
 				}
@@ -155,7 +154,7 @@ namespace Argumentum.AssetConverter
 
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new []{
-							("L'art de jamais avoir tort", new List<(string Language, string destFieldName)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться"), ("pt", "A arte de nunca errar") }) ),
+							("L'art de jamais avoir tort", new List<(string Language, string destText)>(new []{("en", "The art of never being wrong"), ("ru", "Искусство никогда не ошибаться"), ("pt", "A arte de nunca errar") }) ),
 						}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt") }) ),
@@ -177,8 +176,7 @@ namespace Argumentum.AssetConverter
 							nameof (MindMapDocumentConfig.DocumentName),
 						}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("_fr", new List<(string Language, string destFieldName)>(new []{("en", "_en"), ("ru", "_ru"), ("pt", "_pt") }) ),
-
+						("_fr", new List<(string Language, string destText)>(new []{("en", "_en"), ("ru", "_ru"), ("pt", "_pt") }) )
 					}),
 				},
 				new DocumentLocalization(){
@@ -189,8 +187,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.FamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Famille), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.Family)), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)) }) ),
-
+						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Family)), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)) }) )
 					}),
 				},
 				new DocumentLocalization(){
@@ -200,8 +197,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.SousFamille), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) ),
-
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) )
 					}),
 				},
 				new DocumentLocalization(){
@@ -211,8 +207,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) ),
-
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) )
 					}),
 				},
 				new DocumentLocalization(){
@@ -222,8 +217,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.TextFr), new List<(string Language, string destFieldName)>(new []{("en", "TextEn"), ("ru", "TextRu"), ("pt", "TextPt") }) ),
-
+						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", "TextEn"), ("ru", "TextRu"), ("pt", "TextPt") }) )
 					}),
 				},
 				new DocumentLocalization(){
@@ -232,7 +226,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.DescriptionExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.DescFr), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)) }) )
+						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)) }) )
 					}),
 
 				},
@@ -242,7 +236,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.ExampleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.ExampleFr), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.ExampleRu)), ("pt", nameof(Fallacy.ExamplePt)) }) ),
+						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)) }) ),
 					}),
 
 				},
@@ -252,7 +246,7 @@ namespace Argumentum.AssetConverter
 						nameof (MindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.LinkFrFallback), new List<(string Language, string destFieldName)>(new []{("en", nameof(Fallacy.LinkEnFallback)), ("ru", nameof(Fallacy.LinkRuFallback)), ("pt", nameof(Fallacy.LinkPtFallback)) }) ),
+						(nameof(Fallacy.LinkFrFallback), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.LinkEnFallback)), ("ru", nameof(Fallacy.LinkRuFallback)), ("pt", nameof(Fallacy.LinkPtFallback)) }) ),
 
 					})
 				}
@@ -268,6 +262,8 @@ namespace Argumentum.AssetConverter
 		public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
 
 		public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
+
+		public string FreeplanePath { get; set; } = @"C:\Program Files (x86)\Freeplane\freeplane.bat";
 
 
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
@@ -303,12 +299,15 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 				Directory.CreateDirectory(toReturn);
 			}
 
+			Console.WriteLine($"DEBUG: GetDocumentDirectory for language '{language}' returns: {toReturn}");
 			return toReturn;
 		}
 
 		public string GetBaseTargetDirectory(string language)
 		{
-			var toReturn = Path.Combine(System.Environment.CurrentDirectory, BaseTargetDirectoryName);
+			// remonter de 3 niveaux (depuis bin/Debug/net8.0) pour atteindre la racine du projet
+			var projectRoot = Path.GetFullPath(Path.Combine(System.Environment.CurrentDirectory, @"..\..\..\"));
+			var toReturn = Path.Combine(projectRoot, BaseTargetDirectoryName);
 			if (!Directory.Exists(toReturn))
 			{
 				Directory.CreateDirectory(toReturn);
@@ -326,7 +325,7 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 		public bool OverwriteExistingHtmlMaps { get; set; }
 
-		public bool EnableSVGPrompt { get; set; } = true;
+		public bool EnableSVGPrompt { get; set; } = false;
 
 
 		public bool AsynchronousPipeline { get; set; }
@@ -335,32 +334,29 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 
 		public static AssetConverterConfig GetConfig(string path, out bool newConfig)
-        {
-            AssetConverterConfig toReturn;
-            CompositeResolver.RegisterAndSetAsDefault(new IJsonFormatter[] { new TimeSpanFormatter() }, new IJsonFormatterResolver[] { StandardResolver.Default });
-            newConfig = false;
-            if (!File.Exists(path))
-            {
+		{
+			AssetConverterConfig toReturn;
+			newConfig = false;
+			if (!File.Exists(path))
+			{
+				toReturn = new AssetConverterConfig();
+				var options = new JsonSerializerOptions { WriteIndented = true, Converters = { new JsonStringEnumConverter() } };
+				var strNewConfig = System.Text.Json.JsonSerializer.Serialize(toReturn, options);
 
-                toReturn = new AssetConverterConfig();
-                var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(toReturn));
-
-
-                File.WriteAllText(path, strNewConfig);
-                newConfig = true;
-
+				File.WriteAllText(path, strNewConfig);
+				newConfig = true;
 
 				//Logger.LogJson(strNewConfig);
-
 				Logger.LogSuccess($"Config file created: {path}");
 			}
 
-            
-            using var configStream = File.OpenRead(path);
-
-            
-
-			toReturn = JsonSerializer.Deserialize<AssetConverterConfig>(configStream);
+			var jsonString = File.ReadAllText(path);
+			var serializerOptions = new JsonSerializerOptions
+			{
+				PropertyNameCaseInsensitive = true,
+				Converters = { new JsonStringEnumConverter() }
+			};
+			toReturn = System.Text.Json.JsonSerializer.Deserialize<AssetConverterConfig>(jsonString, serializerOptions);
 
 			if (toReturn.SkipConfigFile || new AssetConverterConfig().SkipConfigFile)
 			{
