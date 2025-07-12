@@ -56,9 +56,16 @@ public class CardSetLocalization:DocumentLocalization
 		foreach (var fieldConversion in fieldConversions)
 		{
 			var sourceFieldPattern = FormatField(fieldConversion.sourceFieldName);
-			var convertedField =
-				fieldConversion.fieldConversions.First(convertedField => convertedField.Language == languages.destLang).destFieldName;
-			var destFieldPattern = FormatField(convertedField);
+			if (fieldConversion.fieldConversions == null || !fieldConversion.fieldConversions.Any())
+			{
+				continue;
+			}
+			var conversion = fieldConversion.fieldConversions.FirstOrDefault(convertedField => convertedField.Language == languages.destLang);
+			if (string.IsNullOrEmpty(conversion.destFieldName))
+			{
+				continue;
+			}
+			var destFieldPattern = FormatField(conversion.destFieldName);
 			template = template.Replace(sourceFieldPattern, destFieldPattern);
 			foreach (var exception in this.ExceptionPatterns)
 			{

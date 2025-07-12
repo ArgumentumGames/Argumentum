@@ -18,5 +18,6 @@ namespace Argumentum.AssetConverter
 		ContinuousValidator = 1 << 9, // 512
 		TranslationCoverage = 1 << 10, // 1024
 		ParallelismOptimizer = 1 << 11, // 2048
+		QuestPdfGeneration = 1 << 12, // 4096
 	}
 }

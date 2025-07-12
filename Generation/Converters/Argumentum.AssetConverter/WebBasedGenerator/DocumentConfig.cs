@@ -41,7 +41,7 @@ namespace Argumentum.AssetConverter
 
 		public string GetDensityDirectory(string baseDirectory)
 		{
-			var densityDirectory = Path.Combine(baseDirectory, $@".\density-{TargetDensity}\");
+			var densityDirectory = Path.Combine(baseDirectory, $"density-{TargetDensity}");
 			if (!Directory.Exists(densityDirectory))
 			{
 				Directory.CreateDirectory(densityDirectory);

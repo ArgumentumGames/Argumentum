@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -72,13 +73,14 @@ namespace Argumentum.AssetConverter.Ontology
 		public Version Version { get; set; } = new Version(1,0,0);
 		
 
-		public override async Task GenerateFallacyFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language)
-		   {
+		public override async Task GenerateMindMapFile(IList objects, AssetConverterConfig config, string targetDirectory, string language)
+		{
+			var fallacyList = objects.Cast<Fallacy>().ToList();
 			if (string.IsNullOrEmpty(language))
 				language = config.LocalizationConfig.DefaultLanguage;
 
 			// Définir le répertoire de sortie correct
-			var outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output", "Ontology");
+			var outputDir = Path.Combine(config.GetBaseTargetDirectory(language), "Ontology");
 			Directory.CreateDirectory(outputDir); // S'assurer que le répertoire existe
 
 			var fileName = Path.Combine(outputDir, DocumentName);
@@ -90,7 +92,7 @@ namespace Argumentum.AssetConverter.Ontology
 			}
 
 			Logger.Log($"Creating  Owl document {DocumentName} in {outputDir}");
-			await CreateOwlDocument(fallacies, config, language, fileName);
+			await CreateOwlDocument(fallacyList, config, language, fileName);
 		}
 
 				 private async Task CreateOwlDocument(IList<Fallacy> fallacies, AssetConverterConfig config, string language, string fileName)

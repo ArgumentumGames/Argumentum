@@ -10,7 +10,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using Argumentum.AssetConverter.Json;
+using NewtonsoftJson = Newtonsoft.Json;
 
 namespace Argumentum.AssetConverter;
 
@@ -22,6 +24,8 @@ public class DataSetInfo
 
 	public string ReleaseFilePath { get; set; }
 	public string DebugFilePath { get; set; }
+	
+	[JsonConverter(typeof(TypeConverter))]
 	public Type CsvType { get; set; }
 
 	public string FilePath(bool debug) =>
@@ -157,7 +161,7 @@ public class DataSetInfo
 		for (var i = 0; i < records.Count; i += chunkSize)
 		{
 			var chunkRecords = records.Skip(i).Take(chunkSize);
-			string jsonChunk = JsonConvert.SerializeObject(chunkRecords, Formatting.Indented);
+			string jsonChunk = NewtonsoftJson.JsonConvert.SerializeObject(chunkRecords, NewtonsoftJson.Formatting.Indented);
 			chunks.Add(jsonChunk);
 		}
 
@@ -172,7 +176,7 @@ public class DataSetInfo
 
 		foreach (var hierarchicalRecordList in hierarchicalRecords)
 		{
-			var jsonChunk = JsonConvert.SerializeObject(hierarchicalRecordList, Formatting.Indented);
+			var jsonChunk = NewtonsoftJson.JsonConvert.SerializeObject(hierarchicalRecordList, NewtonsoftJson.Formatting.Indented);
 			chunks.Add(jsonChunk);
 		}
 
@@ -451,8 +455,8 @@ public class DataSetInfo
 			currentResponse =
 				currentResponse.Substring(0, currentResponse.LastIndexOf("]", StringComparison.InvariantCulture) + 1);
 		}
-
-		var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
+	
+		var records = NewtonsoftJson.JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
 		return records;
 	}
 

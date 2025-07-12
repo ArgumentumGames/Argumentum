@@ -173,7 +173,7 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 						{
-							nameof (MindMapDocumentConfig.DocumentName),
+							nameof (FallacyMindMapDocumentConfig.DocumentName),
 						}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						("_fr", new List<(string Language, string destText)>(new []{("en", "_en"), ("ru", "_ru"), ("pt", "_pt") }) )
@@ -182,9 +182,9 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof(MindMapDocumentConfig.TitleExpression),
-						nameof (MindMapDocumentConfig.CardExpression),
-						nameof (MindMapDocumentConfig.FamilleExpression),
+						nameof(FallacyMindMapDocumentConfig.TitleExpression),
+						nameof (FallacyMindMapDocumentConfig.CardExpression),
+						nameof (FallacyMindMapDocumentConfig.FamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Family)), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)) }) )
@@ -193,8 +193,8 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof(MindMapDocumentConfig.TitleExpression),
-						nameof (MindMapDocumentConfig.CardExpression)
+						nameof(FallacyMindMapDocumentConfig.TitleExpression),
+						nameof (FallacyMindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) )
@@ -203,8 +203,8 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof(MindMapDocumentConfig.TitleExpression),
-						nameof (MindMapDocumentConfig.CardExpression)
+						nameof(FallacyMindMapDocumentConfig.TitleExpression),
+						nameof (FallacyMindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) )
@@ -213,8 +213,8 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof(MindMapDocumentConfig.TitleExpression),
-						nameof (MindMapDocumentConfig.CardExpression)
+						nameof(FallacyMindMapDocumentConfig.TitleExpression),
+						nameof (FallacyMindMapDocumentConfig.CardExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", "TextEn"), ("ru", "TextRu"), ("pt", "TextPt") }) )
@@ -223,7 +223,7 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof (MindMapDocumentConfig.DescriptionExpression),
+						nameof (FallacyMindMapDocumentConfig.DescriptionExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)) }) )
@@ -233,7 +233,7 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof (MindMapDocumentConfig.ExampleExpression),
+						nameof (FallacyMindMapDocumentConfig.ExampleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)) }) ),
@@ -243,7 +243,7 @@ namespace Argumentum.AssetConverter
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof (MindMapDocumentConfig.LinkExpression),
+						nameof (FallacyMindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Fallacy.LinkFrFallback), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.LinkEnFallback)), ("ru", nameof(Fallacy.LinkRuFallback)), ("pt", nameof(Fallacy.LinkPtFallback)) }) ),
@@ -261,7 +261,8 @@ namespace Argumentum.AssetConverter
 
 		public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
 
-		public MindMapCreatorConfig MindMapCreatorConfig { get; set; } = new MindMapCreatorConfig();
+		public FallacyMindMapCreatorConfig FallacyMindMapCreatorConfig { get; set; } = new FallacyMindMapCreatorConfig();
+		public VirtueMindMapCreatorConfig VirtueMindMapCreatorConfig { get; set; } = new VirtueMindMapCreatorConfig();
 
 		public string FreeplanePath { get; set; } = @"C:\Program Files (x86)\Freeplane\freeplane.bat";
 
@@ -325,7 +326,7 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 		public bool OverwriteExistingHtmlMaps { get; set; }
 
-		public bool EnableSVGPrompt { get; set; } = false;
+		public bool EnableSVGPrompt { get; set; } = true;
 
 
 		public bool AsynchronousPipeline { get; set; }
@@ -441,12 +442,14 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 		    {
 			    if (AsynchronousPipeline)
 			    {
-				    tasks.Add(Task.Run(() => MindMapCreatorConfig.Apply(this)));
-			    }
-			    else
-			    {
-				    await MindMapCreatorConfig.Apply(this);
-			    }
+				    tasks.Add(Task.Run(() => FallacyMindMapCreatorConfig.Apply(this)));
+				    tasks.Add(Task.Run(() => VirtueMindMapCreatorConfig.Apply(this)));
+				   }
+				   else
+				   {
+				    await FallacyMindMapCreatorConfig.Apply(this);
+				    await VirtueMindMapCreatorConfig.Apply(this);
+				   }
 
 
 			}

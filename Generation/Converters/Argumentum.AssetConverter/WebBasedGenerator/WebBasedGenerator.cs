@@ -23,7 +23,7 @@ using Rule = Spectre.Console.Rule;
 
 namespace Argumentum.AssetConverter
 {
-    public class WebBasedGenerator
+    public partial class WebBasedGenerator
 	{
 
 		public AssetConverterConfig AssetConverterConfig { get; set; }
@@ -60,11 +60,21 @@ namespace Argumentum.AssetConverter
 		/// <param name="docImages">The card images to generate the documents from.</param>
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
+			Logger.Log("Checking if QuestPdfGeneration mode is enabled.");
+			if (!AssetConverterConfig.Mode.HasFlag(ConverterMode.QuestPdfGeneration))
+			{
+				Logger.Log("QuestPdfGeneration mode is disabled. Skipping PDF generation.");
+				return;
+			}
+			Logger.Log("QuestPdfGeneration mode is enabled. Entering PDF generation logic.");
+
 			Logger.LogTitle("Generating pdf documents");
 
 			Logger.LogExplanations("In this third stage, Pdf documents are compiled from the individual image files. \nThose are essentially Print&Play documents for individual printers, professional services printing formats, and various posters");
 
 			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism?  Config.MaxDegreeOfParallelismDocuments : 1 };
+
+			Logger.Log($"Found {docImages.Count} document configurations to process for PDF generation.");
 
 			Parallel.ForEach(docImages, parallelOptionsDocuments, docImageList =>
 			{

@@ -117,6 +117,7 @@ public class HarvestManager
 			usedCardSet.Config = Config.CardSets.First(c => c.Name == usedCardSet.Name);
 		}
 
+		Logger.Log($"Found {targetCardSets.Length} target card sets to process.");
 		return targetCardSets;
 	}
 
@@ -157,6 +158,7 @@ public class HarvestManager
 			return ValueTask.CompletedTask;
 		});
 
+		Logger.Log($"Loaded {harvestDictionary.Count} existing harvests.");
 		//Return the dictionary
 		return harvestDictionary;
 	}

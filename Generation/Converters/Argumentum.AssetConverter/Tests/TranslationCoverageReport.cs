@@ -262,7 +262,7 @@ namespace Argumentum.AssetConverter.Tests
                     {
                         case "text": fallacy.TextRu = value; break;
                         case "desc": fallacy.DescRu = value; break;
-                        case "example": fallacy.ExampleRu = value; break;
+                        case "example": fallacy.Exampleru = value; break;
                         case "link": fallacy.LinkRu = value; break;
                     }
                     break;
@@ -311,7 +311,7 @@ namespace Argumentum.AssetConverter.Tests
                     {
                         case "text": return fallacy.TextRu;
                         case "desc": return fallacy.DescRu;
-                        case "example": return fallacy.ExampleRu;
+                        case "example": return fallacy.Exampleru;
                         case "link": return fallacy.LinkRu;
                     }
                     break;

@@ -198,7 +198,7 @@ namespace Argumentum.AssetConverter.Tests
                     missingTranslations["ru"]["Text"].Add(fallacy.Path);
                 if (language_is_missing(fallacy, "ru", "Desc", fallacy.DescRu))
                     missingTranslations["ru"]["Desc"].Add(fallacy.Path);
-                if (language_is_missing(fallacy, "ru", "Example", fallacy.ExampleRu))
+                if (language_is_missing(fallacy, "ru", "Example", fallacy.Exampleru))
                     missingTranslations["ru"]["Example"].Add(fallacy.Path);
                 if (language_is_missing(fallacy, "ru", "Family", fallacy.FamilyRu))
                     missingTranslations["ru"]["Family"].Add(fallacy.Path);

@@ -17,6 +17,12 @@ public class DocumentLocalization
 	{
 		foreach (var staticConversion in StaticConversions)
 		{
+			if (staticConversion.textConversions == null)
+			{
+				// Log or handle the null case, perhaps continue to the next iteration
+				Console.WriteLine($"Warning: textConversions is null for sourceText: '{staticConversion.sourceText}'");
+				continue;
+			}
 			var translations =
 				staticConversion.textConversions.Where(convertedText => convertedText.Language == destLang).ToArray();
 			if (translations.Length>0)
@@ -47,6 +53,10 @@ public class DocumentLocalization
 		foreach (var prop in properties)
 		{
 			var value = (string)prop.GetValue(targetObject);
+			if (value == null)
+			{
+				continue;
+			}
 			var translatedValue = DoStaticConversions(value, destLang);
 			prop.SetValue(targetObject, translatedValue);
 		}
