@@ -135,23 +135,16 @@ namespace Argumentum.AssetConverter
 
                         var pageCardsArray = pageCards.ToArray();
 
-                        try
+                        if (!docConfig.NoBack)
                         {
-                            if (!docConfig.NoBack)
-                            {
-                                Logger.Log($"Generating back page {pageIndex + 1}/{nbPages} for {fileName}");
-                                GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Back));
-                                pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
-                                    .ToArray().Flatten();
-                            }
+                            Logger.Log($"Generating back page {pageIndex + 1}/{nbPages} for {fileName}");
+                            GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Back));
+                            pageCardsArray = pageCardsArray.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray())
+                                .ToArray().Flatten();
+                        }
 
-                            Logger.Log($"Generating front page {pageIndex + 1}/{nbPages} for {fileName}");
-                            GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Front));
-                        }
-                        catch (Exception e)
-                        {
-                            Logger.LogException(e);
-                        }
+                        Logger.Log($"Generating front page {pageIndex + 1}/{nbPages} for {fileName}");
+                        GenerateCardsPage(container, docConfig, pageSize, pageMarginMm, nbColumns, pageCardsArray, cardWidthPoints, cardImages => new MagickImage(cardImages.Front));
                     }
                 })
                 .WithMetadata(docMetadata)
@@ -203,8 +196,8 @@ namespace Argumentum.AssetConverter
                                 {
                                     if (card != null)
                                     {
-                                        MagickImage toPrint = frontOrBack(card);
-                                        PrintMagickImageIntoTableCell(toPrint, cell);
+                                       MagickImage toPrint = frontOrBack(card);
+                                       PrintMagickImageIntoTableCell(toPrint, cell);
                                     }
                                 });
                         }
@@ -214,51 +207,44 @@ namespace Argumentum.AssetConverter
 
         private static void PrintMagickImageIntoTableCell(MagickImage toPrint, IContainer gridCell)
         {
-            try
+            if (toPrint == null)
             {
-                if (toPrint == null)
-                {
-                    Logger.LogWarning("Attempted to print a null MagickImage.");
-                    return;
-                }
+                Logger.LogWarning("Attempted to print a null MagickImage.");
+                return;
+            }
 
-                if (!string.IsNullOrEmpty(toPrint.FileName))
+            if (!string.IsNullOrEmpty(toPrint.FileName))
+            {
+                if (File.Exists(toPrint.FileName))
                 {
-                    if (File.Exists(toPrint.FileName))
-                    {
-                        gridCell.Image(toPrint.FileName);
-                    }
-                    else
-                    {
-                        Logger.LogWarning($"Image file not found: {toPrint.FileName}");
-                    }
+                    gridCell.Image(toPrint.FileName);
                 }
                 else
                 {
-                    using (var memStream = new MemoryStream())
+                    Logger.LogWarning($"Image file not found: {toPrint.FileName}");
+                }
+            }
+            else
+            {
+                using (var memStream = new MemoryStream())
+                {
+                    if (toPrint.Width > 0 && toPrint.Height > 0)
                     {
-                        if (toPrint.Width > 0 && toPrint.Height > 0)
+                        toPrint.Write(memStream);
+                        if (memStream.Length > 0)
                         {
-                            toPrint.Write(memStream);
-                            if (memStream.Length > 0)
-                            {
-                                gridCell.Image(memStream.ToArray());
-                            }
-                            else
-                            {
-                                Logger.LogWarning("MagickImage has no data to write to stream.");
-                            }
+                            gridCell.Image(memStream.ToArray());
                         }
                         else
                         {
-                            Logger.LogWarning("MagickImage has invalid dimensions.");
+                            Logger.LogWarning("MagickImage has no data to write to stream.");
                         }
                     }
+                    else
+                    {
+                        Logger.LogWarning("MagickImage has invalid dimensions.");
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Logger.LogException(e);
             }
         }
 
