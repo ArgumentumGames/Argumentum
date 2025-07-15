@@ -76,6 +76,7 @@ namespace Argumentum.AssetConverter
 
 			Logger.Log($"Found {docImages.Count} document configurations to process for PDF generation.");
 
+			var pdfLock = new object();
 			Parallel.ForEach(docImages, parallelOptionsDocuments, docImageList =>
 			{
 				try
@@ -91,24 +92,32 @@ namespace Argumentum.AssetConverter
 
 					Logger.Log($"Start Generating pdf document {baseName}");
 
-					var objPdfManager = new PdfManager() ;
-
-					switch (docImageList.Key.document.DocumentFormat)
+					lock (pdfLock)
 					{
-						case CardDocumentFormat.FacesOnly:
-							objPdfManager.GenerateFacesOnly(baseName, docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
-							break;
-						case CardDocumentFormat.AlternateFaceAndBack:
-							objPdfManager.GenerateAlternateFaceAndBack( baseName, docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
-							break;
-						case CardDocumentFormat.BackFirstOneDocPerBack:
-							objPdfManager.GenerateBackFirstOneDocPerBack( baseName, docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
-							break;
-						case CardDocumentFormat.PrintAndPlay:
-							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
-							break;
-						default:
-							throw new InvalidOperationException($"Document format {docImageList.Key.document.DocumentFormat} unsupported");
+						var objPdfManager = new PdfManager();
+
+						switch (docImageList.Key.document.DocumentFormat)
+						{
+							case CardDocumentFormat.FacesOnly:
+								objPdfManager.GenerateFacesOnly(baseName, docImageList.Value,
+									AssetConverterConfig.OverwriteExistingDocs);
+								break;
+							case CardDocumentFormat.AlternateFaceAndBack:
+								objPdfManager.GenerateAlternateFaceAndBack(baseName, docImageList.Value,
+									AssetConverterConfig.OverwriteExistingDocs);
+								break;
+							case CardDocumentFormat.BackFirstOneDocPerBack:
+								objPdfManager.GenerateBackFirstOneDocPerBack(baseName, docImageList.Value,
+									AssetConverterConfig.OverwriteExistingDocs);
+								break;
+							case CardDocumentFormat.PrintAndPlay:
+								objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document,
+									docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
+								break;
+							default:
+								throw new InvalidOperationException(
+									$"Document format {docImageList.Key.document.DocumentFormat} unsupported");
+						}
 					}
 				}
 				catch (Exception e)

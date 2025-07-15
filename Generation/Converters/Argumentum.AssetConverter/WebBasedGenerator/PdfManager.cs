@@ -171,7 +171,8 @@ namespace Argumentum.AssetConverter
 
                 if (!string.IsNullOrEmpty(docConfig.Header))
                 {
-                    var imagePath = Path.Combine(Environment.CurrentDirectory, docConfig.Header);
+                    var projectRoot = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\"));
+                    var imagePath = Path.Combine(projectRoot, docConfig.Header);
                     page.Header()
                     	.AlignCenter()
                     	.Height(pageSize.Height / 20)

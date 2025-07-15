@@ -29,7 +29,7 @@ namespace Argumentum.AssetConverter
 	    public bool SkipConfigFile { get; set; } = true;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
-	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.Mindmapper | ConverterMode.OwlGenerator; // | ConverterMode.WebBasedImageGeneration; // ConverterMode.DatasetUpdater;
+	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -322,7 +322,7 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 			return toReturn;
 		}
 
-		public bool OverwriteExistingDocs { get; set; }
+		public bool OverwriteExistingDocs { get; set; } = true;
 
 		public bool OverwriteExistingHtmlMaps { get; set; }
 
@@ -437,8 +437,7 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 
 			}
-
-		    if (Mode.HasFlag(ConverterMode.Mindmapper))
+			if (Mode.HasFlag(ConverterMode.Mindmapper))
 		    {
 			    if (AsynchronousPipeline)
 			    {

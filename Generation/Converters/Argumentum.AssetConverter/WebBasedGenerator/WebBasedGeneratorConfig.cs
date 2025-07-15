@@ -681,7 +681,7 @@ namespace Argumentum.AssetConverter
 					PageSize = "A0",
 					Padding = 2,
 					NoBack = true,
-					Header = "Generation/Converters/Argumentum.AssetConverter/Logo_Argumentum_QRCode.png",
+					Header = "Logo_Argumentum & QRCode.png",
 					NbColumns = 11,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
