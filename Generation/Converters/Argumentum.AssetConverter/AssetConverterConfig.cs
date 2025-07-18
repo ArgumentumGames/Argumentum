@@ -26,7 +26,7 @@ namespace Argumentum.AssetConverter
 
 
 		//Debug Switch to configure default values
-	    public bool SkipConfigFile { get; set; } = true;
+	    public bool SkipConfigFile { get; set; } = false;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
 	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;
@@ -359,7 +359,7 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 			};
 			toReturn = System.Text.Json.JsonSerializer.Deserialize<AssetConverterConfig>(jsonString, serializerOptions);
 
-			if (toReturn.SkipConfigFile || new AssetConverterConfig().SkipConfigFile)
+			if (toReturn.SkipConfigFile)
 			{
 				Logger.Log($"Config loaded and skipped: {path}");
 				toReturn = new AssetConverterConfig();

@@ -46,7 +46,7 @@ public class HarvestManager
 						 {
 							 return playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 							 {
-								 Headless = Config.HeadLessBrowser,
+								 Headless = true,
 								 //Args = new []{ "--start-maximized" }
 								 //SlowMo = 50,
 							 });
@@ -333,6 +333,7 @@ public class HarvestManager
 		var toReturn = new CardPenHarvest();
 
 		await UploadCardPenDocument(driver, cardSetDocument, pauseForEdits);
+		//await driver.PauseAsync();
 		//var objIFrame = driver.FindElement(By.Id("cpOutput"));
 		var objIFrame = driver.FrameLocator("#cpOutput");
 

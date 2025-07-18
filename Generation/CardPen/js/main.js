@@ -551,9 +551,11 @@ var cardpen = {};
             var storedProj;
             if (window.localStorage) {
                 try {
-                    var tempProj = JSON.parse(window.localStorage["cardpen"]);
-                    if (_.isObject(tempProj) && !_.isEmpty(tempProj)) {
-                        storedProj = tempProj;
+                    if (window.localStorage["cardpen"]) {
+                        var tempProj = JSON.parse(window.localStorage["cardpen"]);
+                        if (_.isObject(tempProj) && !_.isEmpty(tempProj)) {
+                            storedProj = tempProj;
+                        }
                     }
                 } catch (e) {
                     console.log("Error checking local storage.");
@@ -565,9 +567,9 @@ var cardpen = {};
                 document.getElementById("stored").classList.add("selected");
                 context.write.tryGenerate();
             } else if (defaultToEg) {
-                //context.form.example();
+                context.form.load({target: document.getElementById("eg")});
                 document.getElementById("eg").classList.add("selected");
-                //context.write.help();
+                context.write.help();
             }
         }
 

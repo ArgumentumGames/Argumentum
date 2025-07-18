@@ -165,3 +165,10 @@ Scripts/
 # Temporary folders
 .temp/
 temp_owl_sharp/
+
+
+# Fichiers PDF générés à la racine
+/*.pdf
+
+# Dépendances Node.js de CardPen
+/Generation/CardPen/node_modules/
