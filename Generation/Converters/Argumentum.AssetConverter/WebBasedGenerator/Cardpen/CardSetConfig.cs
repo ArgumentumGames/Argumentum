@@ -12,7 +12,10 @@ namespace Argumentum.AssetConverter
 
         public string Name { get; set; }
 
+        public bool IsEnabled { get; set; } = true;
 
+
+		public string FilePattern { get; set; } = "*.csv";
 		public CardSetInfo FaceCardSetInfo { get; set; } = new CardSetInfo();
 
         public CardSetInfo BackCardSetInfo { get; set; } = new CardSetInfo();

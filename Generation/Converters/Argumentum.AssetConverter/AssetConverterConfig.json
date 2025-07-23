@@ -1,0 +1,40 @@
+{
+  "Mode": "WebBasedImageGeneration, QuestPdfGeneration",
+  "ForceDebugParams": true,
+  "OverwriteExistingDocs": true,
+  "WebBasedGeneratorConfig": {
+    "CardSetDocuments": [
+      {
+        "DocumentName": "Argumentum_Rules_fr.pdf",
+        "Enabled": true,
+        "DocumentFormat": "PrintAndPlay",
+        "PageSize": "A4",
+        "CardSets": [
+          {
+            "CardSetName": "RulesPrintAndPlay",
+            "FrontCards": {
+              "WidthMM": 60,
+              "HeigthMM": 113
+            }
+          }
+        ]
+      }
+    ],
+    "CardSets": [
+      {
+        "Name": "RulesPrintAndPlay",
+        "FaceCardSetInfo": {
+          "DataSet": "RulesPrintAndPlay",
+          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\Argumentum_Rules_fr.json"
+        }
+      }
+    ]
+  },
+  "DataSets": [
+    {
+      "Name": "RulesPrintAndPlay",
+      "IsDirectory": true,
+      "DebugFilePath": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\"
+    }
+  ]
+}

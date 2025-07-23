@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
+using Argumentum.AssetConverter.PdfAuditor;
 using AutoMapper;
 using ExtendedXmlSerializer.Core.Sources;
 using ImageMagick;
@@ -117,6 +118,26 @@ namespace Argumentum.AssetConverter
 							default:
 								throw new InvalidOperationException(
 									$"Document format {docImageList.Key.document.DocumentFormat} unsupported");
+						}
+
+						if (AssetConverterConfig.Mode.HasFlag(ConverterMode.PdfAuditor))
+						{
+							var pdfPath = $"{baseName}.pdf";
+							var auditResult = global::Argumentum.AssetConverter.PdfAuditor.PdfAuditor.AuditPdf(pdfPath, docImageList.Key.document, docImageList.Value);
+							
+							if (auditResult.IsSuccess)
+							{
+								Logger.LogSuccess("PDF Audit Report:");
+							}
+							else
+							{
+								Logger.Log("ERROR: PDF Audit Report:");
+							}
+
+							foreach (var message in auditResult.Messages)
+							{
+								Logger.Log(message);
+							}
 						}
 					}
 				}

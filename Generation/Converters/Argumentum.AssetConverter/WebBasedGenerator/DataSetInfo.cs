@@ -24,7 +24,8 @@ public class DataSetInfo
 
 	public string ReleaseFilePath { get; set; }
 	public string DebugFilePath { get; set; }
-	
+	public bool IsDirectory { get; set; }
+
 	[JsonConverter(typeof(TypeConverter))]
 	public Type CsvType { get; set; }
 
@@ -33,19 +34,51 @@ public class DataSetInfo
 
 	private string _StringContent;
 
-	public async Task<string> GetContent(bool useDebugPath)
+	public async Task<string> GetContent(bool useDebugPath, string filePattern = "*.csv")
 	{
-		var strPath = FilePath(useDebugPath);
-		if (string.IsNullOrEmpty(_StringContent))
+		if (!string.IsNullOrEmpty(_StringContent))
 		{
+			Logger.Log($"Using cached content for {Name}");
+			return _StringContent;
+		}
 
-			_StringContent = await strPath.GetDocumentContent();
+		var path = FilePath(useDebugPath);
+		var contentBuilder = new StringBuilder();
+
+		if (IsDirectory)
+		{
+			if (Directory.Exists(path))
+			{
+				var files = Directory.GetFiles(path, filePattern);
+				Logger.Log($"Found {files.Length} files in directory {path} with pattern {filePattern}");
+				bool firstFile = true;
+				foreach (var file in files)
+				{
+					var fileContent = await file.GetDocumentContent();
+					if (!firstFile)
+					{
+						// Remove header from subsequent files
+						var headerEndIndex = fileContent.IndexOf(Environment.NewLine);
+						if (headerEndIndex != -1)
+						{
+							fileContent = fileContent.Substring(headerEndIndex + Environment.NewLine.Length);
+						}
+					}
+					contentBuilder.Append(fileContent);
+					firstFile = false;
+				}
+			}
+			else
+			{
+				Logger.Log($"Directory not found: {path}");
+			}
 		}
 		else
 		{
-			Logger.Log($"Using cached Value for {strPath}");
+			contentBuilder.Append(await path.GetDocumentContent());
 		}
 
+		_StringContent = contentBuilder.ToString();
 		return _StringContent;
 	}
 
@@ -66,9 +99,9 @@ public class DataSetInfo
 	}
 
 
-	public async Task<string> GetContent(bool useDebugPath, string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues)
+	public async Task<string> GetContent(bool useDebugPath, string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues, string filePattern = "*.csv")
 	{
-		var content = await GetContent(useDebugPath);
+		var content = await GetContent(useDebugPath, filePattern);
 
 		if (!string.IsNullOrEmpty(csvFilterField) && csvFilterValues != null && csvFilterValues.Any())
 		{

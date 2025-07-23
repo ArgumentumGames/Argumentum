@@ -33,42 +33,32 @@ public class ImageFileGenerator
 
 		Logger.LogExplanations("In its second stage, Argumentum creates individual image files from the harvested collections. Images are processed with Magick.Net according to configuration parameters. This is the more taxing stage, the degree of parallelism of which can also be configured.");
 
-		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
-		var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism? Config.MaxDegreeOfParallelismImages : 1 };
+		var intermediateDict = new ConcurrentDictionary<(string docName, string lang), (CardSetDocumentConfig doc, List<CardImages> images)>();
 
 		var enabledDocs = Config.CardSetDocuments.Where(d => d.Enabled).ToList();
 		Logger.Log($"Found {enabledDocs.Count} enabled documents to process in ImageFileGenerator.");
-		Parallel.ForEach(enabledDocs, parallelOptionsDocuments, configDocument =>
-			//foreach (var configDocument in Config.Documents.Where(d => d.Enabled))
+
+		var parallelOptionsDocs = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism ? Config.MaxDegreeOfParallelismImageTranslations : 1 };
+		Parallel.ForEach(enabledDocs, parallelOptionsDocs, configDocument =>
 		{
 			var targetLanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
 			if (AssetConverterConfig.LocalizationConfig.Enabled)
 			{
 				targetLanguages.AddRange(configDocument.Translations.Select(t => t.targetLanguage));
 			}
-			var parallelOptionsDocumentsTranslations = new ParallelOptions { MaxDegreeOfParallelism =  Config.EnableParallelism ?  Config.MaxDegreeOfParallelismImageTranslations : 1 };
-			Parallel.ForEach(targetLanguages, parallelOptionsDocumentsTranslations, currentLanguage =>
-			//foreach (var currentLanguage in targetLanguages)
+
+			var parallelOptionsLang = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism ? Config.MaxDegreeOfParallelismImageTranslations : 1 };
+			Parallel.ForEach(targetLanguages, parallelOptionsLang, currentLanguage =>
 			{
 				try
 				{
-					List<CardImages> targetList;
-
-					if (!toReturn.TryGetValue((configDocument, currentLanguage), out targetList))
-					{
-						targetList = new List<CardImages>();
-						toReturn[(configDocument, currentLanguage)] = targetList;
-					}
-
-					//foreach (var configCardSet in configDocument.CardSets)
+					var imageList = new List<CardImages>();
 					foreach (var configCardSet in configDocument.CardSets)
 					{
 						var documentLocalizedName = CardSetLocalization.GetLocalizedFileName(
 							configDocument.DocumentName,
 							AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage);
 						Logger.Log($"Generating card set images for {documentLocalizedName} - {configCardSet.CardSetName}");
-
-
 
 						var harvestKey = (configCardSet.CardSetName, currentLanguage);
 						if (!harvestDictionary.ContainsKey(harvestKey))
@@ -80,8 +70,9 @@ public class ImageFileGenerator
 						var backImages = new ConcurrentDictionary<string, string>();
 						GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
 
-						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, targetList);
+						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, imageList);
 					}
+					intermediateDict.TryAdd((configDocument.DocumentName, currentLanguage), (configDocument, imageList));
 				}
 				catch (Exception e)
 				{
@@ -89,6 +80,13 @@ public class ImageFileGenerator
 				}
 			});
 		});
+
+		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
+		foreach (var item in intermediateDict)
+		{
+			toReturn.TryAdd((item.Value.doc, item.Key.lang), item.Value.images);
+		}
+
 		return toReturn;
 	}
 
@@ -103,11 +101,6 @@ public class ImageFileGenerator
 				var backImageUrl = currentHarvestBack.Value;
 				var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, true, AssetConverterConfig,
 					configDocument, backName, backImageUrl, currentHarvest.Backs.Dpi);
-				if (backName.Contains('-'))
-				{
-					backName = backName.Substring(backName.LastIndexOf('-'));
-				}
-
 				backImages[backName] = backImage;
 			}
 		}
@@ -143,7 +136,8 @@ public class ImageFileGenerator
 
 	       if (backImages.Count == 0)
 	       {
-	           Logger.LogProblem($"CRITICAL: No back could be assigned for face '{faceKey}'. No back images available for this card set.");
+	   Logger.LogWarning($"No back could be assigned for face '{faceKey}'. No back images available for this card set. Adding face only.");
+	   targetList.Add(currentCard); // Ajoute la carte avec seulement le recto
 	           return;
 	       }
 

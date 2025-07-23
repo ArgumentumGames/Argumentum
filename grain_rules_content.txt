@@ -1,0 +1,20 @@
+Contenu de 'main_content':
+"Règles du jeu Argumentum"
+"Introduction au jeu."
+"Préparation du jeu pour 2 joueurs."
+"Les phases d'un tour de jeu."
+"Comment gagner la partie."
+
+Contenu de 'secondary_content':
+"Version 1.0"
+"But du jeu."
+"Distribution des cartes."
+"Pioche, Action, Fin."
+"Épuiser l'adversaire."
+
+Contenu de 'markdown_content_fr':
+"# Les Règles Complètes d'Argumentum"
+"# Introduction\n\nBienvenue dans Argumentum, le jeu où la force de vos arguments détermine votre victoire. Ce document détaille tout ce que vous devez savoir pour jouer."
+"# Mise en Place\n\n## Préparation\n1. Chaque joueur choisit un deck de 40 cartes Argument.\n2. Mélangez votre deck et placez-le face cachée devant vous.\n3. Chaque joueur pioche 5 cartes pour former sa main de départ.\n\n## Le Terrain de Jeu\n*   **Le Deck :** Votre pile de cartes à piocher.\n*   **Le Champ de Bataille :** La zone où les arguments sont joués.\n*   **La Défausse :** Où vont les cartes utilisées."
+"# Le Tour de Jeu\n\nUn tour se compose de trois phases :\n\n1.  **Phase de Pioche :** Vous piochez une carte de votre deck. Si votre deck est vide, vous ne pouvez plus piocher.\n2.  **Phase d'Action :** Vous pouvez jouer une carte Argument de votre main sur le Champ de Bataille. L'argument doit contrer l'argument précédent de votre adversaire, selon les règles de validité.\n3.  **Phase de Fin :** Si vous ne pouvez ou ne voulez pas jouer de carte, votre tour se termine."
+"# Conditions de Victoire\n\nVous gagnez la partie si l'une des conditions suivantes est remplie :\n\n*   Votre adversaire ne peut pas jouer d'argument valide pour contrer le vôtre.\n*   Votre adversaire ne peut plus piocher de cartes car son deck est vide et il ne peut pas jouer de carte de sa main."

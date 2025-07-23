@@ -51,14 +51,14 @@ namespace Argumentum.AssetConverter.Tests
             _reportBuilder.AppendLine("<tr><th>Type de jeu</th><th>Langue</th><th>Statut</th><th>Détails</th></tr>");
 
             int errorCount = 0;
-            
+
             foreach (var cardSetType in _validatorConfig.CardSetTypes)
             {
                 foreach (var language in _validatorConfig.Languages)
                 {
                     string cardSetPath = _validatorConfig.GetCardSetPath(cardSetType, language);
                     bool directoryExists = Directory.Exists(cardSetPath);
-                    
+
                     if (!directoryExists)
                     {
                         errorCount++;
@@ -79,7 +79,7 @@ namespace Argumentum.AssetConverter.Tests
                     else
                     {
                         _reportBuilder.AppendLine($"<tr><td>{cardSetType}</td><td>{language}</td><td class='success'>Succès</td><td>{imageFiles.Count} fichiers d'image trouvés</td></tr>");
-                        
+
                         // Stocker les fichiers pour les validations ultérieures
                         string key = $"{cardSetType}_{language}";
                         if (!_cardFilesByLanguage.ContainsKey(key))
@@ -102,6 +102,7 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogSuccess("Validation de l'existence des fichiers de cartes : aucune erreur détectée");
             }
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -149,9 +150,9 @@ namespace Argumentum.AssetConverter.Tests
                 string[] parts = entry.Key.Split('_');
                 string cardSetType = parts[0];
                 string language = parts[1];
-                
-                var expectedDimensions = _validatorConfig.ExpectedDimensions.ContainsKey(cardSetType) 
-                    ? _validatorConfig.ExpectedDimensions[cardSetType] 
+
+                var expectedDimensions = _validatorConfig.ExpectedDimensions.ContainsKey(cardSetType)
+                    ? _validatorConfig.ExpectedDimensions[cardSetType]
                     : (825, 1125); // Dimensions par défaut si non spécifiées
 
                 foreach (var imagePath in entry.Value)
@@ -186,7 +187,7 @@ namespace Argumentum.AssetConverter.Tests
 
                             // Vérifier le format de l'image
                             string format = image.Format.ToString();
-                            
+
                             _reportBuilder.AppendLine($"<tr><td>{cardSetType}</td><td>{language}</td><td>{fileName}</td>" +
                                 $"<td>{image.Width}x{image.Height}</td><td>{image.Density.X}x{image.Density.Y}</td><td>{format}</td>" +
                                 $"<td class='{statusClass}'>{(hasError ? "Erreur" : (statusDetails.Length > 0 ? "Avertissement" : "Succès"))}: {statusDetails}</td></tr>");
@@ -223,6 +224,7 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogSuccess("Validation de la qualité des images de cartes : aucune erreur détectée");
             }
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -245,7 +247,7 @@ namespace Argumentum.AssetConverter.Tests
                 // Récupérer les fichiers de la langue de référence (français)
                 string refLanguage = "fr";
                 string refKey = $"{cardSetType}_{refLanguage}";
-                
+
                 if (!_cardFilesByLanguage.ContainsKey(refKey) || _cardFilesByLanguage[refKey].Count == 0)
                 {
                     _reportBuilder.AppendLine($"<tr><td>{cardSetType}</td><td colspan='4' class='error'>Aucun fichier de référence trouvé pour la langue {refLanguage}</td></tr>");
@@ -254,12 +256,12 @@ namespace Argumentum.AssetConverter.Tests
                 }
 
                 var refFiles = _cardFilesByLanguage[refKey];
-                
+
                 // Pour chaque langue cible
                 foreach (var targetLanguage in _validatorConfig.Languages.Where(l => l != refLanguage))
                 {
                     string targetKey = $"{cardSetType}_{targetLanguage}";
-                    
+
                     if (!_cardFilesByLanguage.ContainsKey(targetKey) || _cardFilesByLanguage[targetKey].Count == 0)
                     {
                         _reportBuilder.AppendLine($"<tr><td>{cardSetType}</td><td colspan='4' class='error'>Aucun fichier trouvé pour la langue {targetLanguage}</td></tr>");
@@ -268,7 +270,7 @@ namespace Argumentum.AssetConverter.Tests
                     }
 
                     var targetFiles = _cardFilesByLanguage[targetKey];
-                    
+
                     // Vérifier que le nombre de cartes est identique
                     if (refFiles.Count != targetFiles.Count)
                     {
@@ -280,7 +282,7 @@ namespace Argumentum.AssetConverter.Tests
                     // Extraire les identifiants de cartes pour faire correspondre les fichiers entre les langues
                     var refCardIds = ExtractCardIds(refFiles);
                     var targetCardIds = ExtractCardIds(targetFiles);
-                    
+
                     // Vérifier les cartes manquantes
                     var missingCards = refCardIds.Keys.Except(targetCardIds.Keys).ToList();
                     if (missingCards.Any())
@@ -311,13 +313,13 @@ namespace Argumentum.AssetConverter.Tests
                     {
                         string refFilePath = refCardIds[cardId];
                         string targetFilePath = targetCardIds[cardId];
-                        
+
                         try
                         {
                             double difference = CompareImages(refFilePath, targetFilePath);
                             string status = "success";
                             string statusText = "Succès";
-                            
+
                             if (difference > _validatorConfig.ImageDifferenceThreshold)
                             {
                                 if (difference > _validatorConfig.ImageDifferenceThreshold * 2)
@@ -333,7 +335,7 @@ namespace Argumentum.AssetConverter.Tests
                                     warningCount++;
                                 }
                             }
-                            
+
                             _reportBuilder.AppendLine($"<tr><td>{cardSetType}</td><td>{cardId}</td><td>{refLanguage} vs {targetLanguage}</td>" +
                                 $"<td>Différence d'image: {difference:P2}</td><td class='{status}'>{statusText}</td></tr>");
                         }
@@ -363,6 +365,7 @@ namespace Argumentum.AssetConverter.Tests
             {
                 Logger.LogSuccess("Validation de la cohérence multilingue des cartes : aucune erreur détectée");
             }
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -372,18 +375,18 @@ namespace Argumentum.AssetConverter.Tests
         public async Task<bool> RunAllCardValidations()
         {
             Logger.LogTitle("Exécution de tous les tests de validation des cartes");
-            
+
             // Initialiser le rapport HTML
             InitializeHtmlReport();
-            
+
             // Exécuter les validations
             await ValidateCardFilesExistence();
             await ValidateCardImagesQuality();
             await ValidateMultilingualConsistency();
-            
+
             // Finaliser et enregistrer le rapport
             FinalizeHtmlReport();
-            
+
             // Afficher le résumé
             if (_totalErrors > 0)
             {
@@ -406,11 +409,11 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute tous les tests de validation.
         /// </summary>
         /// <returns>True si tous les tests ont réussi, sinon false.</returns>
-        public bool RunAllTests()
+        public async Task<bool> RunAllTests()
         {
             try
             {
-                return RunAllCardValidations().Result;
+                return await RunAllCardValidations();
             }
             catch (Exception ex)
             {

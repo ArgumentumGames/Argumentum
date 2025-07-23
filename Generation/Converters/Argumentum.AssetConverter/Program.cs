@@ -28,7 +28,10 @@ namespace Argumentum.AssetConverter
 				Console.OutputEncoding = System.Text.Encoding.UTF8;
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 				{
-					Console.SetBufferSize(Console.BufferWidth, Int16.MaxValue - 1);
+					if (!Console.IsOutputRedirected)
+					{
+						Console.SetBufferSize(Console.BufferWidth, Int16.MaxValue - 1);
+					}
 				}
 				AnsiConsole.Write(new FigletText("Argumentum").Centered().Color(Color.Blue));
 

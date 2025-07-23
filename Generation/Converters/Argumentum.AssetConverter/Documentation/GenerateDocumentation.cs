@@ -783,7 +783,6 @@ document.addEventListener('DOMContentLoaded', function() {
         private string GetRelativePath(string fromPath, string toPath)
         {
             var fromDir = Path.GetDirectoryName(fromPath);
-            var toDir = "";
             
             if (string.IsNullOrEmpty(fromDir))
             {

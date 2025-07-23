@@ -115,8 +115,95 @@ namespace Argumentum.AssetConverter
 
             Logger.Log($"Starting PDF generation for {images.Count} images.");
 
-            try
+            // Booklet logic
+            var isBooklet = docConfig.CardSets.Any(cs => cs.CardSetName == KnownCardSets.RulesPrintAndPlay);
+
+            if (isBooklet)
             {
+                // Create a list of all pages (cards), adding blank pages at the end to make the total a multiple of 4.
+                var allPagesContent = new List<CardImages[]>();
+                for (int i = 0; i < nbPages; i++)
+                {
+                    allPagesContent.Add(images.Skip(i * nbCardsPerPage).Take(nbCardsPerPage).ToArray());
+                }
+
+                var totalPages = nbPages;
+                while (totalPages % 4 != 0)
+                {
+                    allPagesContent.Add(new CardImages[0]); // Add a blank page
+                    totalPages++;
+                }
+
+                // Correct booklet imposition algorithm
+                var bookletPagesOrder = new List<int>();
+                for (int i = 0; i < totalPages / 2; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        bookletPagesOrder.Add(totalPages - i - 1);
+                        bookletPagesOrder.Add(i);
+                    }
+                    else
+                    {
+                        bookletPagesOrder.Add(i);
+                        bookletPagesOrder.Add(totalPages - i - 1);
+                    }
+                }
+                
+                // This is the standard imposition for a booklet
+                // Example for 8 pages: 8,1,2,7,6,3,4,5
+                var impositionOrder = new List<int>();
+                for (int i = 0; i < totalPages / 2; i += 2)
+                {
+                    impositionOrder.Add(totalPages - i -1);
+                    impositionOrder.Add(i);
+                    impositionOrder.Add(i+1);
+                    impositionOrder.Add(totalPages - i - 2);
+                }
+
+
+                Document.Create(container =>
+                {
+                    foreach (var pageNumber in impositionOrder)
+                    {
+                        container.Page(page =>
+                        {
+                            page.Size(pageSize);
+                            page.Margin(pageMarginMm, Unit.Millimetre);
+                            var pageCards = allPagesContent[pageNumber];
+
+                            page.Header()
+                                .AlignCenter()
+                                .Text($"Argumentum - Livret de règles")
+                                .SemiBold().FontSize(10).FontColor(Colors.Grey.Medium);
+                            
+                            page.Content().Table(table =>
+                                {
+                                    table.ColumnsDefinition(h => { for (int i = 0; i < nbColumns; i++) h.ConstantColumn(cardWidthPoints + 1); });
+                                    foreach (var card in pageCards)
+                                    {
+                                        table.Cell().Padding(docConfig.Padding).Image(File.ReadAllBytes(card.Front));
+                                    }
+                                });
+
+                            page.Footer()
+                                .AlignCenter()
+                                .Text(x =>
+                                {
+                                    x.Span("Page ");
+                                    x.CurrentPageNumber();
+                                    x.Span(" / ");
+                                    x.TotalPages();
+                                });
+                        });
+                    }
+                })
+                .WithMetadata(docMetadata)
+                .GeneratePdf(fileName);
+            }
+            else
+            {
+                // Original logic for non-booklet print and play
                 Document.Create(container =>
                 {
                     for (int pageIndex = 0; pageIndex < nbPages; pageIndex++)
@@ -137,8 +224,7 @@ namespace Argumentum.AssetConverter
 
                                 if (!string.IsNullOrEmpty(docConfig.Header))
                                 {
-                                    var projectRoot = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\"));
-                                    var imagePath = Path.Combine(projectRoot, docConfig.Header);
+                                    var imagePath = Path.Combine(Environment.CurrentDirectory, docConfig.Header);
                                     page.Header().AlignCenter().Height(pageSize.Height / 20).Padding(pageSize.Width / 150).Image(imagePath).FitHeight();
                                 }
 
@@ -149,12 +235,9 @@ namespace Argumentum.AssetConverter
                                     {
                                         table.Cell().Padding(docConfig.Padding).Element(cell =>
                                         {
-                                            if (card != null)
+                                            if (card != null && !string.IsNullOrEmpty(card.Back) && File.Exists(card.Back))
                                             {
-                                                using var toPrint = new MagickImage(card.Back);
-                                                using var memStream = new MemoryStream();
-                                                toPrint.Write(memStream);
-                                                cell.Image(memStream.ToArray());
+                                                cell.Image(File.ReadAllBytes(card.Back));
                                             }
                                         });
                                     }
@@ -173,8 +256,7 @@ namespace Argumentum.AssetConverter
 
                             if (!string.IsNullOrEmpty(docConfig.Header))
                             {
-                                var projectRoot = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\"));
-                                var imagePath = Path.Combine(projectRoot, docConfig.Header);
+                                var imagePath = Path.Combine(Environment.CurrentDirectory, docConfig.Header);
                                 page.Header().AlignCenter().Height(pageSize.Height / 20).Padding(pageSize.Width / 150).Image(imagePath).FitHeight();
                             }
 
@@ -187,10 +269,7 @@ namespace Argumentum.AssetConverter
                                     {
                                         if (card != null)
                                         {
-                                            using var toPrint = new MagickImage(card.Front);
-                                            using var memStream = new MemoryStream();
-                                            toPrint.Write(memStream);
-                                            cell.Image(memStream.ToArray());
+                                            cell.Image(File.ReadAllBytes(card.Front));
                                         }
                                     });
                                 }
@@ -200,13 +279,9 @@ namespace Argumentum.AssetConverter
                 })
                 .WithMetadata(docMetadata)
                 .GeneratePdf(fileName);
+            }
 
-                Logger.LogSuccess($"Generated pdf document {fileName}");
-            }
-            catch (Exception ex)
-            {
-                Logger.Log($"[red]FATAL: Error generating PDF {fileName}: {ex.ToString()}[/]");
-            }
+            Logger.LogSuccess($"Generated pdf document {fileName}");
         }
 
         public void GeneratePdfsFromImages(List<(string fileName, Func<MagickImageCollection> documentImages)> targetFiles,

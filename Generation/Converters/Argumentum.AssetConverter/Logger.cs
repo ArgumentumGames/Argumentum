@@ -101,7 +101,7 @@ public class Logger
 				var markup = messageType == MessageType.Info ? "dim" : messageType == MessageType.Warning ? "sandybrown" : "green3";
 				if (LogInfo || messageType != MessageType.Info)
 				{
-					AnsiConsole.MarkupLine($"{Stopwatch.Elapsed}: [{markup}]{message}[/]");
+					AnsiConsole.MarkupLine($"{Stopwatch.Elapsed}: [{markup}]{Markup.Escape(message)}[/]");
 				}
 				break;
 			case MessageType.Title:

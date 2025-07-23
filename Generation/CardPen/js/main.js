@@ -1355,7 +1355,10 @@ var cardpen = {};
                         return new Handlebars.SafeString(text);
                     });
                     Handlebars.registerHelper("markdown", function (md) {
-                        return new Handlebars.SafeString(marked(md));
+                       marked.setOptions({
+                           breaks: true
+                       });
+                       return new Handlebars.SafeString(marked(md));
                     });
                     Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 

@@ -143,7 +143,7 @@ namespace Argumentum.AssetConverter.Tests
                 if (_validationConfig.ValidateCards)
                 {
                     Logger.Log("Exécution des tests de validation des cartes générées...");
-                    await _cardValidator.RunAllCardValidations();
+                    cardResult = await _cardValidator.RunAllCardValidations();
                     
                     // Déterminer le résultat en fonction des erreurs et avertissements
                     cardResult = _cardValidator._totalErrors == 0;

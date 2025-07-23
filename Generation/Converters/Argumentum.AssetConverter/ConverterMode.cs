@@ -19,5 +19,6 @@ namespace Argumentum.AssetConverter
 		TranslationCoverage = 1 << 10, // 1024
 		ParallelismOptimizer = 1 << 11, // 2048
 		QuestPdfGeneration = 1 << 12, // 4096
+		PdfAuditor = 1 << 13, // 8192
 	}
 }
