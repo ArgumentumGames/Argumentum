@@ -385,7 +385,7 @@ public class HarvestManager
 		{
 			Name = cardSetDocument.FileName,
 			MimeType = cardSetDocument.GetMimeType(),
-			Buffer = JsonSerializer.Serialize(cardSetDocument.CardSetDocument)
+			Buffer = System.Text.Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument))
 		};
 
 		await driver.SetInputFilesAsync("#import", filePayLoad);
@@ -512,7 +512,7 @@ public class HarvestManager
 	private  CardSetHarvest LoadCardSetHarvest(string jsonHarvestName)
 	{
 		using var configStream = File.OpenRead(jsonHarvestName);
-		var currentHarvest = JsonSerializer.Deserialize<CardSetHarvest>(configStream);
+		var currentHarvest = System.Text.Json.JsonSerializer.Deserialize<CardSetHarvest>(configStream);
 		Logger.Log($"Loaded Harvest {jsonHarvestName}");
 		return currentHarvest;
 	}
