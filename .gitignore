@@ -172,3 +172,5 @@ temp_owl_sharp/
 
 # Dépendances Node.js de CardPen
 /Generation/CardPen/node_modules/
+
+**/imageflow_hybrid_cache/
