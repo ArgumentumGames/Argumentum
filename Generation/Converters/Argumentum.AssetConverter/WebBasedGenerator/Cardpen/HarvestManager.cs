@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Playwright;
 using Spectre.Console;
 using Utf8Json;
+using System.Text.Json;
 
 namespace Argumentum.AssetConverter;
 
@@ -192,14 +193,14 @@ public class HarvestManager
 				// Get the name of the JSON file for the harvest
 				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
 
-				// Serialize the harvest into a JSON string
-				var strNewConfig = JsonSerializer.PrettyPrint(JsonSerializer.ToJsonString(currentHarvest));
+				// Utiliser un FileStream pour créer le fichier. Le 'using' garantit sa fermeture correcte.
+				using var fileStream = File.Create(jsonHarvestName);
 
-				// Write the JSON string to the file
-				File.WriteAllText(jsonHarvestName, strNewConfig);
-
-				// Log the time it took to serialize the harvest
-				Logger.LogSuccess($"Sucessfully saved Harvest file {jsonHarvestName}");
+				// Sérialiser directement l'objet 'currentHarvest' dans le flux.
+				// JsonSerializer gère l'ouverture et la fermeture des objets JSON,
+				// garantissant ainsi que le fichier n'est pas tronqué.
+				System.Text.Json.JsonSerializer.Serialize(fileStream, currentHarvest, new JsonSerializerOptions { WriteIndented = true });
+				fileStream.Flush();
 
 				// Create a function to load the card set harvest
 				Func<CardSetHarvest> funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
@@ -468,15 +469,38 @@ public class HarvestManager
 	{
 		var generatedImagesDiv = objIFrame.Locator("#cpImages");
 		var generatedImages = generatedImagesDiv.Locator("img");
+		var generatedCount = await generatedImages.CountAsync();
 
-		if (await generatedImages.CountAsync() != cardNames.Count)
+		// CAS 1: Le nombre d'images générées ne correspond pas au nombre de noms de cartes.
+		if (generatedCount != cardNames.Count)
 		{
-			
-			var message = $"Not same number of generated cards ({await generatedImages.CountAsync()}) and card names ({cardNames.Count})\nEXCEPTION HINT: Cards: {cardNames.Aggregate((s1, s2) => $"{s1},{s2}")}";
-			throw new ApplicationException(message);
+			// CAS 1A (Exception tolérée): C'est un dos de carte commun.
+			// Un seul nom de carte ("Back") est défini, mais aucune image n'est générée
+			// car le dos est générique et sera réutilisé.
+			if (cardNames.Count == 1 && generatedCount == 0)
+			{
+				// C'est un cas normal pour un dos de carte, on ne fait rien et on sort de la validation.
+				Logger.Log("Detected common card back. No images to download.");
+			}
+			// CAS 1B (Exception tolérée): Une seule image a été générée sans nom de carte.
+			// Cela peut arriver pour des cartes simples. On assigne un nom par défaut.
+			else if (cardNames.Count == 0 && generatedCount == 1)
+			{
+				cardNames.Add("000"); // Nom par défaut
+				Logger.Log("Detected a single generated image without a card name. Assigning default name '000'.");
+			}
+			// CAS 1C (Erreur): Tous les autres scénarios de décalage sont des erreurs.
+			else
+			{
+				var cardNamesStr = cardNames.Any() ? string.Join(", ", cardNames) : "none";
+				var message = $"Mismatch between generated card count ({generatedCount}) and card name count ({cardNames.Count}). Card names found: [{cardNamesStr}].";
+				throw new ApplicationException(message);
+			}
 		}
 
-		for (int i = 0; i < await generatedImages.CountAsync(); i++)
+		// Le téléchargement des images ne se produit que si la validation est passée
+		// et qu'il y a effectivement des images à télécharger.
+		for (int i = 0; i < generatedCount; i++)
 		{
 			var currentGeneratedImage = generatedImages.Nth(i);
 			var currentCardName = cardNames[i];
