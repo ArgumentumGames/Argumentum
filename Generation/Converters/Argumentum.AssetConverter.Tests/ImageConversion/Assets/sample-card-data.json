@@ -1,0 +1,11 @@
+{
+  "cards": [
+    {
+      "template": "card-template-simple.html",
+      "data": {
+        "title": "Test Card from JSON",
+        "description": "This card was generated from a local JSON file for integration testing."
+      }
+    }
+  ]
+}
