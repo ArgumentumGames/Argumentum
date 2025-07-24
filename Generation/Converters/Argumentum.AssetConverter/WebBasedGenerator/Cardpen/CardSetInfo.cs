@@ -66,6 +66,7 @@ namespace Argumentum.AssetConverter
 	{
 		public string FileName { get; set; }
 		public CardSetDocument CardSetDocument { get; set; }
+		public System.Type CsvType { get; set; }
 
 		public string GetMimeType()
 		{

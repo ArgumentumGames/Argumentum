@@ -924,6 +924,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			if (svgMap.SetSVGNodeAttributes)
 			{
+				match.SetAttributeValue("id", item.Id);
 				match.SetAttributeValue("class", "node");
 				match.SetAttributeValue(nameof(family), family);
 				match.SetAttributeValue(nameof(subfamily), subfamily);

@@ -458,7 +458,23 @@
         </bleed>
     </card>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', async function () {
+           const data = {};
+
+           async function loadData() {
+               const fallaciesResponse = await fetch('../../Argumentum Fallacies - Taxonomy.csv');
+               const fallaciesText = await fallaciesResponse.text();
+               const fallacies = Papa.parse(fallaciesText, { header: true }).data;
+               fallacies.forEach(item => { if (item.ID) data[item.ID] = item; });
+
+               const virtuesResponse = await fetch('../../Argumentum Virtues - Taxonomy.csv');
+               const virtuesText = await virtuesResponse.text();
+               const virtues = Papa.parse(virtuesText, { header: true }).data;
+               virtues.forEach(item => { if (item.ID) data[item.ID] = item; });
+           }
+
+           await loadData();
+
             const overlay = document.getElementsByTagName('card')[0];
             const title = document.getElementsByClassName('title')[0];
             const famille = document.getElementsByClassName('famille')[0];
@@ -500,27 +516,31 @@
                 // Add the 'active' class to the clicked node
                 targetNode.classList.add('active');
 
-                title.textContent = targetNode.textContent;
-                famille.textContent = targetNode.getAttribute('family');
-                sous_famille.textContent = targetNode.getAttribute('subfamily');
-                Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
-                description.innerHTML = targetNode.getAttribute('description');
-                example.innerHTML = targetNode.getAttribute('example');
+                const item = data[targetNode.id];
+                if (!item) return;
+
+                title.textContent = item.nom_vulgarisé || item.title_fr;
+                famille.textContent = item.Famille || item.family_fr;
+                sous_famille.textContent = item['Sous-Famille'] || item.subfamily_fr;
+                Soussousfamille.textContent = item.Soussousfamille || item.subsubfamily_fr;
+                description.innerHTML = item.desc_fr || item.description_fr;
+                example.innerHTML = item.example_fr || '';
 
                 // Hide external link button if no link is set
-                if (targetNode.getAttribute('link') === '') {
+                const link = item.link_fr || item.link_fr;
+                if (link === '') {
                     externalLink.href = '#'
                     externalLink.classList.add('hidden');
                 } else {
-                    externalLink.href = targetNode.getAttribute('link');
+                    externalLink.href = link;
                     externalLink.classList.remove('hidden')
                 }
 
 
-                niveau.textContent = targetNode.getAttribute('depth');
+                niveau.textContent = item.depth;
 
                 overlay.removeAttribute('class');
-                const familyClass = targetNode.getAttribute('familyclass');
+                const familyClass = (item.Famille_camelCase || item.family_fr_camelcase).replace(/\s/g, '');
                 if (familyClass) {
                     overlay.classList.add(familyClass);
                 }
@@ -664,5 +684,6 @@
 
 
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ using Microsoft.Playwright;
 using Spectre.Console;
 using Utf8Json;
 using System.Text.Json;
+using Argumentum.AssetConverter.Entities;
 
 namespace Argumentum.AssetConverter;
 
@@ -261,6 +262,7 @@ public class HarvestManager
 			{
 				cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
 			}
+			cardSetDocumentWrapper.CsvType = dataSet.CsvType;
 		}
 
 		if (cardSetInfo.Dpi > 0)
@@ -308,12 +310,12 @@ public class HarvestManager
 			await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 			Thread.Sleep(TimeSpan.FromSeconds(2));
 
-			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo.PauseForEdits);
+			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
 			currentHarvest.Faces = faces;
 
 			if (cardSetDocuments.back != null)
 			{
-				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo.PauseForEdits);
+				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
 				currentHarvest.Backs = backs;
 			}
 
@@ -329,38 +331,52 @@ public class HarvestManager
 	}
 
 
-	public async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetPayload cardSetDocument, bool pauseForEdits)
+	public async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo)
 	{
 		var toReturn = new CardPenHarvest();
 
-		await UploadCardPenDocument(driver, cardSetDocument, pauseForEdits);
-		//await driver.PauseAsync();
-		//var objIFrame = driver.FindElement(By.Id("cpOutput"));
+		await UploadCardPenDocument(driver, cardSetDocument, cardSetInfo.PauseForEdits);
 		var objIFrame = driver.FrameLocator("#cpOutput");
-
-
-		//var objSession = ((ChromiumDriver) driver).CreateDevToolsSession();
-
 
 		await WaitForCards(driver, objIFrame);
 
-		//var dpi = (long)driver.ExecuteScript("return dpi;");
-		//var dpi = await driver.EvaluateAsync("return dpi;");
-		//var dpi = await driver.EvaluateAsync("dpi");
-
-
 		var dpi = await driver.Locator("#dpi").InputValueAsync();
-
-
 		toReturn.Dpi = Convert.ToInt32(dpi);
 
 		await ClickGenerateAndWait(objIFrame);
 
-		var cardNames = await ExtractCardNames(objIFrame);
+		if (cardSetDocument.CsvType == null)
+		{
+			Logger.LogWarning($"No CsvType defined for DataSet '{cardSetInfo.DataSet}'. Skipping image download.");
+			if (string.IsNullOrWhiteSpace(cardSetDocument.CardSetDocument.csv))
+			{
+				return toReturn;
+			}
+		}
 
-		await DownloadImages(toReturn, objIFrame, cardNames);
+		// Use reflection to call the static LoadFromString method on the correct CsvBase<T, TMap> type
+		var csvType = cardSetDocument.CsvType;
+		var classMapType = csvType.Assembly.GetType($"{csvType.FullName}ClassMap");
 
+		if (classMapType == null)
+		{
+			throw new InvalidOperationException($"Could not find ClassMap type: {csvType.FullName}ClassMap");
+		}
+		
+		var csvBaseType = typeof(CsvBase<,>);
+		var genericCsvBaseType = csvBaseType.MakeGenericType(csvType, classMapType);
+		var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
+		
+		if (loadMethod == null)
+		{
+			throw new InvalidOperationException($"Could not find 'LoadFromContent' method on {genericCsvBaseType.Name}");
+		}
 
+		var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { cardSetDocument.CardSetDocument.csv });
+
+		var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
+
+		await DownloadImages(toReturn, objIFrame, cardIds);
 
 		return toReturn;
 	}
@@ -446,68 +462,34 @@ public class HarvestManager
 		var generatedImages = generatedImagesDiv.Locator("img");
 	}
 
-	public async Task<List<string>> ExtractCardNames(IFrameLocator objIFrame)
+public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds)
+{
+	var generatedImagesDiv = objIFrame.Locator("#cpImages");
+	var generatedImages = generatedImagesDiv.Locator("img");
+	var generatedCount = await generatedImages.CountAsync();
+
+	if (generatedCount != cardIds.Count)
 	{
-		var cardNames = new List<string>();
-		var cardsHtml = objIFrame.Locator("card");
-		for (var idxCard = 0; idxCard < await cardsHtml.CountAsync(); idxCard++)
+		// Un dos de carte n'aura qu'un seul ID mais potentiellement aucune image générée
+		// si le dos est générique
+		if (cardIds.Count == 1 && generatedCount == 0)
 		{
-			var strCardName = idxCard.ToString(CultureInfo.InvariantCulture).PadLeft(3, '0');
-			var cardElement = cardsHtml.Nth(idxCard);
-			var cardCssName = cardElement.Locator(".cardName");
-			if (await cardCssName.CountAsync() > 0)
-			{
-				var currentCard = cardCssName.Nth(0);
-				strCardName = (await currentCard.TextContentAsync())?.Trim('-');
-			}
-			cardNames.Add(strCardName);
+			Logger.Log("Detected common card back. No images to download.");
+			return;
 		}
-		return cardNames;
+		
+		var idsStr = string.Join(", ", cardIds);
+		throw new ApplicationException($"Mismatch between generated image count ({generatedCount}) and expected card count ({cardIds.Count}). Card IDs: [{idsStr}]");
 	}
 
-	public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardNames)
+	for (int i = 0; i < generatedCount; i++)
 	{
-		var generatedImagesDiv = objIFrame.Locator("#cpImages");
-		var generatedImages = generatedImagesDiv.Locator("img");
-		var generatedCount = await generatedImages.CountAsync();
-
-		// CAS 1: Le nombre d'images générées ne correspond pas au nombre de noms de cartes.
-		if (generatedCount != cardNames.Count)
-		{
-			// CAS 1A (Exception tolérée): C'est un dos de carte commun.
-			// Un seul nom de carte ("Back") est défini, mais aucune image n'est générée
-			// car le dos est générique et sera réutilisé.
-			if (cardNames.Count == 1 && generatedCount == 0)
-			{
-				// C'est un cas normal pour un dos de carte, on ne fait rien et on sort de la validation.
-				Logger.Log("Detected common card back. No images to download.");
-			}
-			// CAS 1B (Exception tolérée): Une seule image a été générée sans nom de carte.
-			// Cela peut arriver pour des cartes simples. On assigne un nom par défaut.
-			else if (cardNames.Count == 0 && generatedCount == 1)
-			{
-				cardNames.Add("000"); // Nom par défaut
-				Logger.Log("Detected a single generated image without a card name. Assigning default name '000'.");
-			}
-			// CAS 1C (Erreur): Tous les autres scénarios de décalage sont des erreurs.
-			else
-			{
-				var cardNamesStr = cardNames.Any() ? string.Join(", ", cardNames) : "none";
-				var message = $"Mismatch between generated card count ({generatedCount}) and card name count ({cardNames.Count}). Card names found: [{cardNamesStr}].";
-				throw new ApplicationException(message);
-			}
-		}
-
-		// Le téléchargement des images ne se produit que si la validation est passée
-		// et qu'il y a effectivement des images à télécharger.
-		for (int i = 0; i < generatedCount; i++)
-		{
-			var currentGeneratedImage = generatedImages.Nth(i);
-			var currentCardName = cardNames[i];
-			toReturn.Images[currentCardName] = await currentGeneratedImage.GetAttributeAsync("src");
-			Logger.Log($"Downloaded Card Image - {currentCardName}");
-		}
+		var currentGeneratedImage = generatedImages.Nth(i);
+		var currentCardId = cardIds[i];
+		toReturn.Images[currentCardId] = await currentGeneratedImage.GetAttributeAsync("src");
+		Logger.Log($"Downloaded Card Image - {currentCardId}");
 	}
+}
 
 	private  CardSetHarvest LoadCardSetHarvest(string jsonHarvestName)
 	{

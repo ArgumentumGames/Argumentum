@@ -1,8 +1,0 @@
-// Utiliser un FileStream pour créer le fichier. Le 'using' garantit sa fermeture correcte.
-using var fileStream = File.Create(jsonHarvestName);
-
-// Sérialiser directement l'objet 'currentHarvest' dans le flux.
-// JsonSerializer gère l'ouverture et la fermeture des objets JSON,
-// garantissant ainsi que le fichier n'est pas tronqué.
-System.Text.Json.JsonSerializer.Serialize(fileStream, currentHarvest, new JsonSerializerOptions { WriteIndented = true });
-fileStream.Flush();

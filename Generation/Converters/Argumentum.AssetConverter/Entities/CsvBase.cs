@@ -59,7 +59,7 @@ namespace Argumentum.AssetConverter.Entities
         return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
     }
 
-    private static IList<T> LoadFromContent(string fileContent)
+    public static IList<T> LoadFromContent(string fileContent)
     {
         IEnumerable<T> items;
         using (var reader = new StringReader(fileContent))
@@ -67,6 +67,7 @@ namespace Argumentum.AssetConverter.Entities
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 PrepareHeaderForMatch = args => RemoveDiacritics(args.Header.ToLower().Replace("_", "").Replace("-", "").Replace(" ", "")),
+                MissingFieldFound = null,
             };
             using (var csv = new CsvReader(reader, config))
             {

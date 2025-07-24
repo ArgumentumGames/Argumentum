@@ -4,9 +4,14 @@ using CsvHelper.Configuration;
 
 namespace Argumentum.AssetConverter.Entities
 {
-	public class Fallacy : CsvBase<Fallacy, FallacyClassMap>, IMindMapItem
+	public class Fallacy : CsvBase<Fallacy, FallacyClassMap>, IMindMapItem, ICsvBase
 	{
-	       public string Family => Famille;
+		public string GetId()
+		{
+			return Id;
+		}
+
+		public string Family => Famille;
 	       public string SubFamily => SousFamille;
 	       public string SubSubFamily => Soussousfamille;
 	       public string Title => NomVulgarisé;
@@ -14,11 +19,11 @@ namespace Argumentum.AssetConverter.Entities
 	       public string Description => DescFr;
 	       public string Example => ExampleFr;
 	       public string Link => LinkFrFallback;
-	          public string Id { get => PK; set => PK = value; }
+	          public string Id { get; set; }
 
-        public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
+	       public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
 
-        public string LinkEnFallback => string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn;
+	       public string LinkEnFallback => string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn;
 
         public string LinkRuFallback => string.IsNullOrEmpty(LinkRu) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkRu;
 
@@ -191,8 +196,9 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.PrintAndPlay).Name("print_and_play").Optional();
             Map(m => m.DécimalPathPadded).Name("decimal_path_padded");
             Map(m => m.DepthMax4).Name("depth_max4");
-		}
-	}
+            Map(m => m.Id).Name("ID");
+  }
+ }
 
           
 

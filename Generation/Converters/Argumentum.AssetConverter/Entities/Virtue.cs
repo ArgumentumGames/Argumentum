@@ -13,7 +13,7 @@ namespace Argumentum.AssetConverter.Entities
         public string Example => string.Empty; // No example in source for Virtues
         public string Link => LinkFr;
         public int? Carte => int.TryParse(Card, out int c) ? c : null;
-        public string Id { get => Pk; set => Pk = value; }
+        public string Id { get; set; }
         public string PK => Pk;
         public string DecimalPath { get; set; }
 
@@ -57,6 +57,7 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Card).Name("card");
             Map(m => m.Update).Name("update");
             Map(m => m.Locked).Name("locked");
+            Map(m => m.Id).Name("ID");
         }
     }
 }
