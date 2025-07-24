@@ -80,62 +80,48 @@ Cela signifie que les templates n'ont pas besoin de contenir de syntaxe Markdown
 
 C'est une limitation importante à prendre en compte pour des fonctionnalités comme la numérotation automatique des pages ou des cartes. Une solution de contournement pourrait consister à ajouter une colonne d'index manuellement dans le fichier CSV source.
 
-## 3. Étape 1 : Configuration
+## 3. Étape 1 : Le Système de Configuration
 
-*(Cette section est un placeholder pour le contenu existant du document. Vous ne devez insérer que le contenu ci-dessus)*
+Le cœur de l'outil `AssetConverter` réside dans son système de configuration flexible, mais puissant. Sa compréhension est cruciale pour utiliser l'outil efficacement et éviter les erreurs de production.
 
-## 4. La structure-clef de AssetConverterConfig.json
+### 3.1 Le Rôle Central de `AssetConverterConfig.json`
 
-Une découverte cruciale a été faite concernant la structure du fichier `AssetConverterConfig.json`. Un fonctionnement correct dépend de la présence et de la configuration de deux sections distinctes au sein de `WebBasedGeneratorConfig` : `CardSetDocuments` et `CardSets`.
+Le fichier `AssetConverterConfig.json`, situé à la racine du projet de conversion, est le **point de contrôle principal** pour toutes les opérations. C'est ce fichier qui définit :
+-   Quelles actions effectuer (génération d'images, de PDF, mise à jour de datasets, etc.).
+-   Quelles sources de données utiliser (`CardSets`).
+-   Quels documents finaux produire (`CardSetDocuments`).
+-   Quels paramètres de localisation et de parallélisation appliquer.
 
--   **`CardSetDocuments`** : Cette section définit les **tâches de sortie**. Chaque élément de cette liste correspond à un document PDF à générer, en spécifiant son nom, son format, et les ensembles de cartes (`CardSets`) qu'il doit contenir.
+En principe, **toute la configuration d'une session de travail devrait être définie dans ce fichier.**
 
--   **`CardSets`** : Cette section définit les **sources de données**. Chaque élément est une source de données nommée, pointant vers les fichiers JSON ou CSV qui contiennent les informations à afficher sur les cartes.
+### 3.2 La Configuration par Défaut : Source de Vérité et Mécanisme de Repli
 
-### Le repli silencieux : un piège à éviter
+Une caractéristique essentielle de l'application est son mécanisme de "repli" (fallback) qui garantit la robustesse et la prévisibilité du processus de génération.
 
-Le problème principal venait d'un mécanisme de "repli silencieux". Si la section `CardSets` est absente ou mal configurée, le programme **ne génère pas d'erreur**. À la place, il utilise une configuration par défaut codée en dur, ce qui mène à des comportements inattendus : le mauvais jeu de données est utilisé, les templates ne correspondent pas, et la sortie est incorrecte, sans qu'aucun avertissement clair ne soit donné.
+-   **La classe `AssetConverterConfig.cs` comme source de vérité** : La configuration par défaut est entièrement définie dans la classe `Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.cs`. Ce fichier initialise toutes les propriétés avec des valeurs fonctionnelles, incluant les `DataSets` (pointant vers les fichiers CSV sur GitHub), la `LocalizationConfig`, et les configurations pour chaque mode de conversion.
 
-### Exemple de structure fonctionnelle
+-   **Génération automatique du `AssetConverterConfig.json`** : Si le fichier `AssetConverterConfig.json` **n'est pas trouvé** au démarrage, l'application ne se contente pas de charger les valeurs par défaut en mémoire. La méthode `GetConfig` dans `AssetConverterConfig.cs` **crée physiquement le fichier `AssetConverterConfig.json`** à la racine du projet, en le peuplant avec une sérialisation complète de la configuration par défaut.
 
-Pour que la génération fonctionne comme prévu, les deux sections doivent être présentes et liées par un nom commun.
+-   **Le fichier JSON comme point de départ** : Une fois le fichier créé, c'est lui qui est lu et utilisé pour la suite du processus. Cela permet à l'utilisateur d'avoir immédiatement un exemple complet et fonctionnel comme base pour ses propres modifications, sans avoir à créer le fichier manuellement.
 
-Voici un exemple fonctionnel tiré de notre configuration pour générer les règles du jeu :
+**Important :** Cette configuration par défaut est riche et complète. Elle contient les définitions nécessaires pour générer la quasi-totalité des assets de référence du projet (tous les sets de cartes, les PDFs Print & Play, les versions web, etc.). Elle sert de "configuration d'usine" et garantit que l'outil est toujours dans un état de fonctionnement connu.
 
-```json
-{
-  "WebBasedGeneratorConfig": {
-    "CardSetDocuments": [
-      {
-        "DocumentName": "Argumentum_Rules_fr.pdf",
-        "Enabled": true,
-        "DocumentFormat": "PrintAndPlay",
-        "PageSize": "A4",
-        "CardSets": [
-          {
-            "CardSetName": "RulesPrintAndPlay"
-          }
-        ]
-      }
-    ],
-    "CardSets": [
-      {
-        "Name": "RulesPrintAndPlay",
-        "FaceCardSetInfo": {
-          "DataSet": "RulesPrintAndPlay",
-          "JsonFilePathDebug": "..\\..\\..\\..\\..\\..\\Cards\\Rules\\Argumentum_Rules_fr.json"
-        }
-      }
-    ]
-  }
-}
-```
+### 3.3 Le Piège du "Repli Silencieux" - Historique d'une Régression
 
-**Analyse de cet exemple :**
+Une régression critique a été identifiée et corrigée. Lors d'une refactorisation, la configuration par défaut codée en dur avait été accidentellement **supprimée** et remplacée par des listes vides.
 
-1.  La section `CardSetDocuments` déclare un document PDF à créer.
-2.  À l'intérieur, elle spécifie qu'il doit utiliser un `CardSetName` appelé `"RulesPrintAndPlay"`.
-3.  La section `CardSets` (au même niveau que `CardSetDocuments`) définit une source de données dont le `Name` est également `"RulesPrintAndPlay"`.
-4.  Le programme peut alors faire le lien : pour le document `Argumentum_Rules_fr.pdf`, il doit utiliser la source de données définie sous le nom `"RulesPrintAndPlay"`, qui pointe vers le fichier `Argumentum_Rules_fr.json`.
+Cela a conduit à un comportement très problématique :
+1.  En l'absence d'un `AssetConverterConfig.json` valide, l'application chargeait la configuration "par défaut".
+2.  Cette configuration étant vide (aucune tâche `CardSetDocuments` définie), l'application s'exécutait, ne trouvait aucune tâche à accomplir, et **se terminait sans erreur ni avertissement**, ne produisant aucun fichier.
 
-Cette structure à deux niveaux est essentielle pour le bon fonctionnement du générateur.
+Ce "repli silencieux" vers une configuration vide rendait le débogage extrêmement difficile.
+
+**La configuration par défaut complète a depuis été restaurée.** Le comportement attendu est maintenant le suivant : si `AssetConverterConfig.json` est manquant, l'application chargera la configuration d'usine et générera tous les documents de référence.
+
+### 3.4 Recommandations et Bonnes Pratiques
+
+1.  **Laissez l'outil générer le premier `AssetConverterConfig.json`** : La manière la plus sûre de commencer est de s'assurer qu'aucun `AssetConverterConfig.json` n'existe et de lancer l'outil. Il créera pour vous un fichier de configuration complet et valide, que vous pourrez ensuite modifier.
+2.  **Utilisez le `AssetConverterConfig.json` généré comme source de vérité** : Une fois le fichier généré, personnalisez-le pour vos besoins spécifiques. N'hésitez pas à supprimer des sections entières (`Modes` de conversion, `CardSetDocuments`, `CardSets`) dont vous n'avez pas besoin pour alléger la configuration.
+3.  **Consultez `AssetConverterConfig.cs` pour la structure de référence** : En cas de doute sur la structure, les types de données ou les valeurs par défaut d'une propriété, consultez directement la classe `AssetConverterConfig.cs` et les classes de configuration associées. C'est la référence ultime et la plus à jour.
+4.  **Ne modifiez pas la configuration par défaut en C# à la légère** : Les modifications dans le code C# doivent être réservées à des changements permanents et globaux de la logique de génération du projet, car elles impacteront toute nouvelle configuration générée.
+5.  **En cas de comportement inattendu** : Vérifiez la syntaxe de votre `AssetConverterConfig.json` et assurez-vous que les noms des `CardSetName` dans `CardSetDocuments` correspondent exactement aux noms (`Name`) définis dans `CardSets`.
