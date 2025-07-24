@@ -97,9 +97,23 @@ Argumentum.AssetConverter.Tests/
 ### Étape 4 : Assemblage du PDF
 
 *   **Localisation :** `PdfAssembly/PdfAssemblerTests.cs`
-*   **Objectif :** Valider que plusieurs images PNG peuvent être assemblées en un document PDF.
+*   **Objectif :** Valider de bout en bout que plusieurs images PNG peuvent être assemblées en un document PDF fonctionnel. Ce test est crucial car il constitue la dernière étape du pipeline de génération.
+*   **Stratégie d'implémentation :**
+    *   Le test ne se contente pas de prendre des images PNG pré-existantes. Pour une validation plus complète, il génère lui-même ses propres images PNG de test à partir de fichiers HTML simples via Playwright. Cela garantit que les artefacts d'entrée de l'étape d'assemblage sont frais et valides.
+    *   Une fois les images PNG créées, le test invoque `PdfManager` pour les assembler en un fichier PDF.
 *   **Tests Clés :**
-    *   **Test de nombre de pages :** Fournir une liste de 3 `byte[]` (images PNG) à la méthode d'assemblage. Utiliser ensuite une librairie comme `PdfPig` pour lire le PDF résultant en mémoire et vérifier que le nombre de pages est bien de 3.
+    *   **`AssemblePngsToPdf_WithGeneratedImages_ShouldProduceValidPdf`** :
+        1.  **Arrange (Préparation) :**
+            *   Crée un répertoire de sortie de test isolé.
+            *   Utilise Playwright pour convertir une série de fichiers HTML de test (`page1.html`, `page2.html`, etc.) en fichiers PNG dans ce répertoire.
+            *   Prépare une liste d'objets `CardImages` pointant vers les fichiers PNG nouvellement créés.
+            *   Instancie le `PdfManager`.
+        2.  **Act (Action) :**
+            *   Appelle la méthode `GeneratePrintAndPlay` du `PdfManager` pour générer le document PDF.
+        3.  **Assert (Vérification) :**
+            *   Affirme que le fichier PDF de sortie a bien été créé (`File.Exists`).
+            *   Affirme que sa taille est supérieure à zéro (`FileInfo.Length > 0`).
+            *   Utilise la bibliothèque `PdfPig` pour ouvrir le PDF généré et affirmer que le nombre de pages correspond exactement au nombre d'images PNG initiales, validant ainsi l'intégrité de l'assemblage.
 
 ## 6. Stratégie pour les Tests d'Intégration du Pipeline
 
