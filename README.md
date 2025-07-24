@@ -59,20 +59,34 @@ The content is regularly exported to CSV files in this repository. Direct Pull R
 
 We aim to distribute our material to the widest possible audience. If you are fluent in a language not yet available, please let us know. We also welcome corrections and improvements to existing translations and content.
 
-## Generating Cards and Documents
+## How to Generate Assets
 
-The generation tool is a .Net 7.0 console application. For detailed instructions on how to run it, please refer to the [Developer Guide](/Generation/Converters/Argumentum.AssetConverter/Documentation/DeveloperGuide.md).
+The pipeline for generating card and document assets is fully tested and automated.
 
-### Quick Start for Developers
+### Running the Generation Pipeline
 
-If you'd like to customize the app's behavior, clone this repository, build the app, and run it in Debug mode.
+To generate all assets, run the following command from the root of the repository:
 
-**Requirements:**
+```bash
+dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
+```
 
-*   Visual Studio or JetBrains Rider
-*   .NET 7.0
+This command will:
+1.  Compile the `Argumentum.AssetConverter` project.
+2.  If `AssetConverterConfig.json` is missing, it will be created with default settings.
+3.  Execute the generation pipeline, which includes "harvesting" card images and assembling them into final PDF documents.
 
-Load the "Argumentum Converters.sln" solution, build and run the included C# console project. For more detailed instructions, please refer to the [Developer Guide](/Generation/Converters/Argumentum.AssetConverter/Documentation/DeveloperGuide.md).
+### Output Directory
+
+All generated files, including the final PDFs, can be found in the following directory:
+
+`Generation/Converters/Argumentum.AssetConverter/bin/Debug/net8.0/Target/`
+
+The assets are organized by language within this directory (e.g., `fr/`, `en/`).
+
+### Test Coverage
+
+The entire generation pipeline is covered by a comprehensive suite of tests, ensuring the reliability and correctness of the generated assets.
 
 ### Automatic Configuration File Generation
 
