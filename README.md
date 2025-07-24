@@ -74,6 +74,14 @@ If you'd like to customize the app's behavior, clone this repository, build the 
 
 Load the "Argumentum Converters.sln" solution, build and run the included C# console project. For more detailed instructions, please refer to the [Developer Guide](/Generation/Converters/Argumentum.AssetConverter/Documentation/DeveloperGuide.md).
 
+### Automatic Configuration File Generation
+
+The `Argumentum.AssetConverter` application uses a configuration file named `AssetConverterConfig.json` to control its behavior.
+
+If this file is missing when the application starts, it will be automatically generated with default values. These defaults are sourced directly from the `AssetConverterConfig.cs` file within the project.
+
+To restore the default configuration, you can simply delete or rename the existing `AssetConverterConfig.json` file. A new one will be created with the default settings the next time you run the application.
+
 ## How to build the website
 
 The DNN website's data and decryption key are not included in the current commit. If you're interested in running a copy of Argumentum.games, please contact us.
