@@ -182,3 +182,10 @@ public void PdfAssembly_Should_Create_Valid_Pdf_From_Existing_Pngs()
 }
 ```
 Ce filet de sécurité est indispensable pour garantir la robustesse de notre suite de tests.
+
+## 7. Stratégie de Test pour la Génération de Mindmap
+
+Le pipeline de génération de mindmap, utilisant des outils externes comme Freeplane, présente des défis uniques qui nécessitent une approche de test spécifique. La stratégie se concentre sur la validation des données et des processus plutôt que sur l'esthétique du rendu final.
+
+Pour une analyse complète et une description détaillée de l'architecture de test pour ce pipeline, veuillez consulter le document dédié :
+**[Architecture de Test pour le Pipeline de Génération de Mindmap](./MINDMAP_TESTING_ARCHITECTURE.md)**

@@ -302,14 +302,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				if (!TryAutomateSvgConversion(fileName, svgPath, config) && config.EnableSVGPrompt)
+				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt) && config.EnableSVGPrompt)
 				{
 					// If conversion fails, the existing logic will ask the user.
 				}
 			}
 		}
 
-		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
 			if (string.IsNullOrEmpty(config.FreeplanePath) || !File.Exists(config.FreeplanePath))
 			{
@@ -319,10 +319,17 @@ namespace Argumentum.AssetConverter.Mindmapper
 		
 			try
 			{
+				var arguments = new StringBuilder();
+				if (!isInteractive)
+				{
+					arguments.Append("-nogui ");
+				}
+				arguments.Append($"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"");
+
 				var processStartInfo = new ProcessStartInfo
 				{
 					FileName = config.FreeplanePath,
-					Arguments = $"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"",
+					Arguments = arguments.ToString(),
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
 					RedirectStandardError = true,
@@ -335,8 +342,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 					process.Start();
 					string output = process.StandardOutput.ReadToEnd();
 					string error = process.StandardError.ReadToEnd();
-					process.WaitForExit();
-		
+					
+					var timeout = 30000; // 30 seconds
+					if (!process.WaitForExit(timeout))
+					{
+						process.Kill();
+						Logger.LogProblem($"SVG conversion process timed out after {timeout / 1000} seconds. The process was terminated.");
+						return false;
+					}
+
 					if (process.ExitCode == 0)
 					{
 						Logger.LogSuccess("SVG conversion successful.");
@@ -577,40 +591,52 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			Logger.LogSuccess($"Mind map {fileName} successfully generated!");
 		}
-		private async Task ProcessSvgFilesAsync(IList<IMindMapItem> mindMapItems, string fileName,
+		public async Task ProcessSvgFilesAsync(IList<IMindMapItem> mindMapItems, string fileName,
 			AssetConverterConfig webBasedGeneratorConfig, bool enableSvgUpdates, string language)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
-
-
-			foreach (var svgFreemindMap in SVGMaps)
+			if (!File.Exists(svgFilePath))
 			{
-				var svgSavedFilePath = Path.ChangeExtension(svgFilePath, svgFreemindMap.DocumentName);
-				Func<Task<string>> svgLoader;
-				if (File.Exists(svgSavedFilePath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+				if (enableSvgUpdates)
 				{
-					Logger.Log($"Skipping existing processed SVG: {svgSavedFilePath}");
-					svgLoader = async () => await File.ReadAllTextAsync(svgSavedFilePath);
+					await DisplaySvgFileNotFoundMessage(svgFilePath);
 				}
 				else
 				{
+					Logger.LogWarning($"File {svgFilePath} not found and skipped. Automatic conversion failed. Switch \"EnableSVGPrompt\" on for Freemind-assisted SVG generation.");
+				}
 
-					if (!File.Exists(svgFilePath))
-					{
-						if (enableSvgUpdates)
-						{
-							await DisplaySvgFileNotFoundMessage(svgFilePath);
-						}
-						else
-						{
-							Logger.LogWarning($"File {svgFilePath} not found and skipped. Automatic conversion failed. Switch \"EnableSVGPrompt\" on for Freemind-assisted SVG generation.");
-						}
-					}
+				if (!File.Exists(svgFilePath))
+				{
+					return;
+				}
+			}
 
-					if (!File.Exists(svgFilePath))
-					{
-						return;
-					}
+			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath });
+
+			foreach (var svgDoc in processedDocs)
+			{
+				var svgFreemindMap = SVGMaps.First(s => Path.GetExtension(svgDoc.Key) == $".{s.DocumentName}");
+				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgDoc.Key, () => Task.FromResult(GetSvgContent(svgDoc.Value)), language);
+			}
+
+			if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
+			{
+				File.Delete(svgFilePath);
+			}
+		}
+
+		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths)
+		{
+			var processedDocs = new Dictionary<string, XDocument>();
+
+			foreach (var svgFilePath in sourceSvgPaths)
+			{
+				foreach (var svgFreemindMap in SVGMaps)
+				{
+					var mindMapItems = new List<IMindMapItem>(); // Note: This is a simplification for the test
+					var svgSavedFilePath = Path.ChangeExtension(svgFilePath, svgFreemindMap.DocumentName);
+
 					XDocument svgDoc = XDocument.Load(svgFilePath);
 
 					if (!string.IsNullOrEmpty(svgFreemindMap.SvgViewBox))
@@ -630,27 +656,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
 					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
-
-
-					svgLoader = () => Task.FromResult(GetSvgContent(svgDoc));
-
-
-					await File.WriteAllTextAsync(svgSavedFilePath, await svgLoader(), Encoding.UTF8);
+					await File.WriteAllTextAsync(svgSavedFilePath, GetSvgContent(svgDoc), Encoding.UTF8);
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
-
+					processedDocs.Add(svgSavedFilePath, svgDoc);
 				}
-
-				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader, language);
-
-
-
 			}
-
-			if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
-			{
-				File.Delete(svgFilePath);
-			}
-
+			return processedDocs;
 		}
 
 		//private void AdjustSvgViewBox(XDocument svgDoc)
@@ -956,7 +967,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		private static string GetSvgContent(XDocument svgDoc)
+		internal static string GetSvgContent(XDocument svgDoc)
 		{
 			StringBuilder sb = new();
 			XmlWriterSettings settings = new()

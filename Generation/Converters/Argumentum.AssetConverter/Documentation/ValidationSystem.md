@@ -222,6 +222,12 @@ La validation de la cohérence multilingue vérifie :
 - La correspondance des traductions entre la taxonomie et les cartes générées
 - L'adaptation correcte des mises en page pour les différentes langues
 
+#### Stratégie de tests d'intégration
+
+En plus des validations de base, une stratégie de tests d'intégration ciblés est essentielle pour valider les étapes de conversion complexes, comme la transformation de HTML en PNG. Ces tests doivent être granulaires, rapides et indépendants pour garantir une couverture efficace sans ralentir le cycle de développement.
+
+Pour une explication détaillée de l'approche et des exemples de mise en œuvre, veuillez consulter le document [TESTING_ARCHITECTURE.md](TESTING_ARCHITECTURE.md).
+
 ## Système de validation continue
 
 Le système de validation continue est géré par la classe `ContinuousValidationSystem` et configuré via `ContinuousValidationConfig`.
