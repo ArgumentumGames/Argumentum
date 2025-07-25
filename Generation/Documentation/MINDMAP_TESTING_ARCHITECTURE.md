@@ -76,7 +76,24 @@ Cette partie teste l'interaction avec un système externe et doit être couverte
         -   **Objectif :** Valider que l'ID unique a été préservé par l'outil externe.
         -   **Mise en œuvre :** Le test doit parser le SVG et vérifier que des éléments (probablement `<g>`) possèdent l'attribut `id` avec la valeur attendue.
 
-### 3.3. Abandon de la Logique de "Disambiguation" (Étape F)
+### 3.3. Tests du Post-Traitement SVG via Snapshot (Étape E -> G)
+
+Cette étape est cruciale pour garantir la non-régression du post-traitement appliqué aux fichiers SVG. La logique, bien que simplifiée, modifie le DOM du SVG (nettoyage, ajout de styles, etc.).
+
+- **Acteurs Clés :** La méthode `ProcessSvgFilesAsync` dans les configurations de mindmap.
+- **Type de Tests :** Tests de Snapshot.
+- **Principe :**
+    1.  Un fichier SVG source (`.svg`) est traité par la méthode.
+    2.  Le contenu du SVG résultant est comparé, au caractère près, à un fichier de référence stocké dans le projet (`.snapshot.svg`). Ce fichier de référence représente l'état "approuvé" de la sortie.
+    3.  Le test échoue si la moindre différence est détectée entre la sortie actuelle et le snapshot.
+- **Avantages :**
+    - **Exhaustivité :** Capture la moindre modification inattendue (espaces, ordre des attributs, etc.).
+    - **Stabilité :** Verrouille le comportement de la sortie et empêche les régressions visuelles ou structurelles.
+    - **Documentation implicite :** Le fichier `.snapshot.svg` documente concrètement la sortie attendue.
+- **Points de Validation :**
+    - **Identité de la sortie :** Le test valide que pour une entrée donnée, la sortie est toujours rigoureusement identique à la version approuvée.
+
+### 3.4. Abandon de la Logique de "Disambiguation" (Étape F)
 
 Conformément aux conclusions des analyses précédentes (voir `Refactoring_SVG_Data_Binding.md`), la stratégie de test n'est pas de tester cette logique, mais de **supporter sa suppression**. Elle est une source de dette technique trop importante.
 
@@ -111,3 +128,13 @@ Cette section documente l'état d'avancement de l'implémentation de la stratég
     -   **Création de l'Artefact :** Le test valide que le fichier `.svg` de sortie existe et a une taille supérieure à zéro.
 -   **Fichiers Clés :**
     -   Test : `Generation/Converters/Argumentum.AssetConverter.Tests/MindmapGeneration/SvgConversionIntegrationTests.cs`
+
+### 5.3. Tests du Post-Traitement SVG (Étape E -> G)
+
+-   **Statut :** **TERMINÉ**
+-   **Description :** Pour verrouiller le comportement du post-traitement SVG et éviter toute régression, un test de snapshot a été implémenté. Ce test compare la sortie de la méthode `ProcessSvgFilesAsync` à une version "approuvée" du fichier (`.snapshot.svg`). Toute modification, même mineure, dans la sortie SVG provoquera l'échec du test, assurant ainsi une grande stabilité du rendu final.
+-   **Couverture des Validations :**
+    -   **Non-régression de la sortie :** Le test garantit que le code produit un SVG strictement identique à la version de référence validée.
+-   **Fichiers Clés :**
+    -   Test : `Generation/Converters/Argumentum.AssetConverter.Tests/MindmapGeneration/SvgPostProcessingTests.cs`
+    -   Snapshot : `Generation/Converters/Argumentum.AssetConverter.Tests/snapshots/sample_fallacy_map.snapshot.svg`
