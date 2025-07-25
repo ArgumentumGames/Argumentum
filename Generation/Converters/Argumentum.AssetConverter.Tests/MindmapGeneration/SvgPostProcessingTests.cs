@@ -19,30 +19,27 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         [Fact]
-        public async Task ProcessSvgFilesAsync_ShouldMatchVerifiedSnapshot()
+        [Fact(DisplayName = "ProcessSvgFilesAsync should return a valid SVG file that matches the approved snapshot")]
+        public async Task ProcessSvgFilesAsync_WithSimpleSvg_ShouldMatchApprovedSnapshot()
         {
             // Arrange
             var config = new FallacyMindMapDocumentConfig();
             config.SVGMaps.Add(new SVGFreemindMap { DocumentName = "snapshot.svg" });
             var testFilePath = await SetupTestFileAsync("Argumentum.AssetConverter.Tests.Assets.Mindmap.sample_fallacy_map.svg");
             
-            _output.WriteLine($"Using temporary SVG file at: {testFilePath}");
-
             var processedSvgDocs = await config.ProcessSvgFilesAsync(new[] { testFilePath });
             var processedSvgContent = FallacyMindMapDocumentConfig.GetSvgContent(processedSvgDocs.Values.First());
 
             // Assert
             var snapshotDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "snapshots");
-            Directory.CreateDirectory(snapshotDirectory);
-            var snapshotFile = Path.Combine(snapshotDirectory, "SvgPostProcessing.snapshot.svg");
-            var receivedFile = Path.Combine(snapshotDirectory, "SvgPostProcessing.received.svg");
-
-            await File.WriteAllTextAsync(receivedFile, processedSvgContent);
-
-            if (!File.Exists(snapshotFile))
-            {
-                Assert.Fail($"Snapshot file not found. Review the received file and rename it to .snapshot.svg:\n{receivedFile}");
-            }
+            var snapshotFile = Path.Combine(snapshotDirectory, "sample_fallacy_map.snapshot.svg");
+            
+            // Pour générer le fichier de snapshot la première fois ou après une modification :
+            // 1. Décommentez la ligne ci-dessous.
+            // 2. Exécutez le test (il échouera, c'est normal).
+            // 3. Renommez le fichier .received.svg en .snapshot.svg dans le répertoire de sortie.
+            // 4. Recommentez la ligne ci-dessous.
+            // await File.WriteAllTextAsync(Path.ChangeExtension(snapshotFile, ".received.svg"), processedSvgContent);
 
             var expected = await File.ReadAllTextAsync(snapshotFile);
             Assert.Equal(expected, processedSvgContent);

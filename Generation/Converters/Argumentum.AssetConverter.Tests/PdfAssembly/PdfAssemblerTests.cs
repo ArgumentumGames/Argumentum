@@ -41,11 +41,11 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             // Création d'une configuration minimale pour le document
             var docConfig = new CardSetDocumentConfig
             {
-                DocumentFormat = DocumentFormat.PrintAndPlay,
+                DocumentFormat = CardDocumentFormat.PrintAndPlay,
                 PageSize = "A4",
-                CardSets = new List<CardSetConfig>
+                CardSets = new List<DocumentCardSet>
                 {
-                    new CardSetConfig()
+                    new DocumentCardSet()
                 }
             };
 
