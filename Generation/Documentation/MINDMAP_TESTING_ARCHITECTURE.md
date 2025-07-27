@@ -131,10 +131,10 @@ Cette section documente l'état d'avancement de l'implémentation de la stratég
 
 ### 5.3. Tests du Post-Traitement SVG (Étape E -> G)
 
--   **Statut :** **TERMINÉ**
+-   **Statut :** **INCOMPLET - Le fichier snapshot de référence est manquant.**
 -   **Description :** Pour verrouiller le comportement du post-traitement SVG et éviter toute régression, un test de snapshot a été implémenté. Ce test compare la sortie de la méthode `ProcessSvgFilesAsync` à une version "approuvée" du fichier (`.snapshot.svg`). Toute modification, même mineure, dans la sortie SVG provoquera l'échec du test, assurant ainsi une grande stabilité du rendu final.
 -   **Couverture des Validations :**
     -   **Non-régression de la sortie :** Le test garantit que le code produit un SVG strictement identique à la version de référence validée.
 -   **Fichiers Clés :**
     -   Test : `Generation/Converters/Argumentum.AssetConverter.Tests/MindmapGeneration/SvgPostProcessingTests.cs`
-    -   Snapshot : `Generation/Converters/Argumentum.AssetConverter.Tests/snapshots/sample_fallacy_map.snapshot.svg`
+    -   **Note sur le snapshot :** Le code de test s'attend à trouver un fichier `sample_fallacy_map.snapshot.svg` dans un répertoire `snapshots` situé à côté de l'assembly de test (ex: `bin/Debug/netcoreapp3.1/snapshots/`). **Ce fichier est actuellement manquant.**
