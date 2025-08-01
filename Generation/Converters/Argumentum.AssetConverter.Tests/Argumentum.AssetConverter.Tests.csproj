@@ -40,5 +40,5 @@
      <ItemGroup>
        <EmbeddedResource Include="Assets\Mindmap\sample_fallacy_map.svg" />
      </ItemGroup>
-   
+
    </Project>

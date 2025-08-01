@@ -25,7 +25,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             _htmlTestFiles = Directory.GetFiles(assetsDir, "*.html").ToList();
         }
 
-        [Fact(Timeout = 60000)] // Timeout augmenté pour la génération de 3 images + 1 PDF
+        [Fact] // Timeout augmenté pour la génération de 3 images + 1 PDF
         public async Task AssemblePngsToPdf_WithGeneratedImages_ShouldProduceValidPdf()
         {
             // ARRANGE

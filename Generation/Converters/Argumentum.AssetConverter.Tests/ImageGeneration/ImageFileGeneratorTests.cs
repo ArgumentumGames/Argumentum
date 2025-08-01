@@ -23,7 +23,15 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
             // Utiliser le répertoire de base de l'application (bin/Debug/...) pour les tests
             var testRunDir = Path.Combine(AppContext.BaseDirectory, "TestRuns", Guid.NewGuid().ToString());
             _testOutputDir = testRunDir;
+
+            // Nettoyage préventif pour garantir un état de départ propre
+            if (Directory.Exists(_testOutputDir))
+            {
+                Directory.Delete(_testOutputDir, true);
+            }
             Directory.CreateDirectory(_testOutputDir);
+            
+            _output.WriteLine($"Test output directory created at: {Path.GetFullPath(_testOutputDir)}");
         }
 
         private string SetupTestConfiguration(List<CardSetDocumentConfig> docConfigs)
@@ -60,7 +68,13 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         {
             var fakeImagePath = ImageHelper.GetImageFileName(config, docConfig, language, cardSetName, imageName);
             Directory.CreateDirectory(Path.GetDirectoryName(fakeImagePath));
-            File.Create(fakeImagePath).Close();
+            // Crée une image PNG valide de 1x1 pixel au lieu d'un fichier vide.
+            using (var image = new MagickImage(MagickColors.Transparent, 1, 1))
+            {
+                image.Format = MagickFormat.Png;
+                image.Write(fakeImagePath);
+                _output.WriteLine($"[FakeImageCreated] Path: {Path.GetFullPath(fakeImagePath)}");
+            }
         }
 
         [Fact]

@@ -15,8 +15,15 @@ using Argumentum.AssetConverter.Entities;
 
 namespace Argumentum.AssetConverter;
 
-public class HarvestManager
+public class HarvestManager : IAsyncDisposable
 {
+    public async ValueTask DisposeAsync()
+    {
+        if (browser != null)
+        {
+            await browser.CloseAsync();
+        }
+    }
 	public Stopwatch Stopwatch { get; set; }
 
 	public AssetConverterConfig AssetConverterConfig { get; set; }
@@ -90,14 +97,6 @@ public class HarvestManager
 				await ProcessLocalizedHarvest(configCardSet, currentLanguage, harvestDictionary, funcBrowser);
 			});
 		});
-		if (browser!=null)
-		{
-			while (Freepages.TryPop(out IPage result))
-			{
-				await result.CloseAsync();
-			}
-			await browser.CloseAsync();
-		}
 
 		return harvestDictionary;
 	}
@@ -348,10 +347,7 @@ public class HarvestManager
 		if (cardSetDocument.CsvType == null)
 		{
 			Logger.LogWarning($"No CsvType defined for DataSet '{cardSetInfo.DataSet}'. Skipping image download.");
-			if (string.IsNullOrWhiteSpace(cardSetDocument.CardSetDocument.csv))
-			{
-				return toReturn;
-			}
+			return toReturn;
 		}
 
 		// Use reflection to call the static LoadFromString method on the correct CsvBase<T, TMap> type

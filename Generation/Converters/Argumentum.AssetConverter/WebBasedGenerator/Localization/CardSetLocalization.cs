@@ -29,6 +29,11 @@ public class CardSetLocalization:DocumentLocalization
 
 	public static string GetLocalizedFileName(string fileName, string defaultLanguage, string targetLanguage)
 	{
+		if (string.IsNullOrEmpty(fileName))
+		{
+			return fileName;
+		}
+
 		string newFileName;
 		if (fileName.Contains($"_{defaultLanguage}"))
 		{
@@ -37,7 +42,17 @@ public class CardSetLocalization:DocumentLocalization
 		else
 		{
 			string extension = Path.GetExtension(fileName);
-			newFileName = fileName.Replace(extension, $"_{targetLanguage}{extension}");
+			if (string.IsNullOrEmpty(extension))
+			{
+				// If there's no extension, just append the language code.
+				newFileName = $"{fileName}_{targetLanguage}";
+			}
+			else
+			{
+				// Safely replace the extension part
+				var fileNameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
+				newFileName = $"{fileNameWithoutExt}_{targetLanguage}{extension}";
+			}
 		}
 		return newFileName;
 	}

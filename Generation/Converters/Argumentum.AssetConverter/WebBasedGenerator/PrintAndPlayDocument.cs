@@ -62,9 +62,10 @@ namespace Argumentum.AssetConverter
                 var pageBackImages = _backImagesData.Skip(pageIndex * nbCardsPerPage).Take(nbCardsPerPage).ToArray();
 
                 // Back page
-                if (!_docConfig.NoBack && pageBackImages.Any())
+                if (!_docConfig.NoBack && pageBackImages.Any(b => b != null))
                 {
-                    var backCardsArray = pageBackImages.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray()).ToArray().Flatten();
+                    var validBackImages = pageBackImages.Where(b => b != null).ToArray();
+                    var backCardsArray = validBackImages.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray()).ToArray().Flatten();
                     container.Page(page =>
                     {
                         ComposePage(page, pageSize, pageMarginMm, nbColumns, backCardsArray);

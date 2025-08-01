@@ -176,3 +176,7 @@ temp_owl_sharp/
 **/imageflow_hybrid_cache/
 
 Logs/
+
+
+# Sorties des tests d'intégration
+Generation/Converters/Argumentum.AssetConverter.Tests/TestOutput/

@@ -18,7 +18,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             _output = output;
         }
 
-        [Fact]
         [Fact(DisplayName = "ProcessSvgFilesAsync should return a valid SVG file that matches the approved snapshot")]
         public async Task ProcessSvgFilesAsync_WithSimpleSvg_ShouldMatchApprovedSnapshot()
         {

@@ -41,12 +41,14 @@ namespace Argumentum.AssetConverter
 				Logger.LogInfo = false;
 			}
 
-			var harvestManager = new HarvestManager() { Config = Config, AssetConverterConfig=AssetConverterConfig };
-			var harvestDictionary = await harvestManager.HarvestImages();
+			await using (var harvestManager = new HarvestManager() { Config = Config, AssetConverterConfig = AssetConverterConfig })
+			{
+				var harvestDictionary = await harvestManager.HarvestImages();
 
-			var imageManager = new ImageFileGenerator() { Config = Config, AssetConverterConfig = AssetConverterConfig };
-			var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
-			GenerateCardSetDocuments(docImages);
+				var imageManager = new ImageFileGenerator() { Config = Config, AssetConverterConfig = AssetConverterConfig };
+				var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
+				GenerateCardSetDocuments(docImages);
+			}
 			
 			Logger.LogInfo = tempLogSwitch;
 		}

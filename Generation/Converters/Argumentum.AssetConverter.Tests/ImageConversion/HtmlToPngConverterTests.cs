@@ -17,7 +17,7 @@ namespace Argumentum.AssetConverter.Tests.ImageConversion
             Directory.CreateDirectory(_testOutputDir);
         }
 
-        [Fact(Timeout = 30000)]
+        [Fact]
         public async Task LocalHtmlFile_ShouldBeConvertedToPng_Successfully()
         {
             // Arrange

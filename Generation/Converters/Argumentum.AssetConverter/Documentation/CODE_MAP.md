@@ -56,17 +56,20 @@ Ce répertoire contient la logique métier principale pour la génération d'ass
     - Appelle une méthode de traitement d'image pour chaque image de carte.
     - **Point Critique :** C'est ici que l'appel à la méthode d'extension `LoadAndProcessImageUrl` est effectué sur un objet `DocumentCardSet`.
 
-### `ImageHelper.cs` (Fichier Suspecté)
-- **Rôle :** Fournisseur de méthodes utilitaires pour la manipulation d'images.
-- **Responsabilités :**
-    - **Hypothèse :** Ce fichier contient la définition de la méthode d'extension `LoadAndProcessImageUrl(this DocumentCardSet ..., string imageUrl, ...)`.
-    - **Logique Clé :** Cette méthode est le cœur du problème. Elle est responsable de :
-        1.  Identifier si `imageUrl` est une URL web (http/https) ou un chemin de fichier local.
-        2.  Si c'est une URL, la télécharger.
-        3.  Si c'est un fichier local, le lire directement.
-        4.  Appliquer les transformations d'image (redimensionnement, effets, etc.) via `Magick.NET` selon la configuration.
-        5.  Sauvegarder l'image traitée dans le répertoire de sortie cible.
-        6.  Retourner le chemin complet du fichier final, ou `null`/`string.Empty` en cas d'échec.
+### `ImageHelper.cs`
+
+-   **Rôle :** Fournisseur de méthodes utilitaires pour la manipulation d'images.
+-   **Responsabilités :**
+    -   Contient la définition de la méthode d'extension `LoadAndProcessImageUrl(this DocumentCardSet ..., string imageUrl, ...)`.
+    -   Cette méthode utilise `UtilityExtensions.PathIsUrl` pour déterminer si `imageUrl` est une URL ou un chemin de fichier local.
+    -   Applique les transformations d'image et sauvegarde le résultat.
+
+### `UtilityExtensions.cs`
+
+-   **Rôle :** Fournit des méthodes d'extension utilitaires pour tout le projet.
+-   **Responsabilités :**
+    -   Contient `PathIsUrl(this string path)`, la méthode clé pour différencier les chemins de fichiers locaux des URLs. Elle est plus robuste que `File.Exists` car elle gère les deux cas.
+    -   Contient également `GetDocumentPayload(this string docPath)`, qui utilise `PathIsUrl` pour récupérer le contenu d'un fichier, qu'il soit local ou distant.
 
 ## 3. Analyse du Bug Actuel (`ImageFileGeneratorTests`)
 

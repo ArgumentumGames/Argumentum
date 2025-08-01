@@ -25,6 +25,22 @@ Nous proposons l'adoption du framework **xUnit** pour tous les tests du projet.
 *   **Exécution Parallèle :** Le projet montre déjà des optimisations pour le parallélisme. xUnit exécute les tests en parallèle par défaut, ce qui s'aligne avec la philosophie du projet et accélérera significativement le pipeline de build.
 *   **Intégration et Outillage :** Il s'intègre parfaitement avec `dotnet test` et le Test Explorer de Visual Studio.
 
+> **Attention : Contrainte d'Exécution Spécifique au Projet**
+>
+> Bien que xUnit s'intègre parfaitement avec `dotnet test`, l'utilisation directe de la commande `dotnet test` est **fortement déconseillée et non supportée** dans le contexte de ce projet.
+>
+> **Raison** : L'exécution via `dotnet test` seul a démontré qu'elle pouvait entraîner des **blocages de processus indéfinis (deadlocks)**, en particulier lors des tests d'intégration qui sollicitent des ressources externes comme Playwright.
+>
+> La seule méthode d'exécution fiable et approuvée consiste à utiliser les **scripts d'orchestration PowerShell** fournis dans le projet. Ces scripts gèrent correctement l'initialisation, l'exécution et le nettoyage nécessaires.
+>
+> **Commande à utiliser :**
+> ```powershell
+> # Exemple pour lancer les tests du convertisseur
+> ./run-converter-tests.ps1
+> ```
+>
+> Le respect de cette directive est essentiel pour garantir la stabilité et la reproductibilité des tests.
+
 ## 4. Architecture du Projet de Test
 
 ### 4.1. Nouveau Projet de Test

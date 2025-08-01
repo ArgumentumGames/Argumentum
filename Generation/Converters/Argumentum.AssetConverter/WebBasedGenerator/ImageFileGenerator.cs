@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter;
 using Spectre.Console;
 using System;
 using System.Collections.Concurrent;
@@ -66,7 +67,12 @@ public class ImageFileGenerator
 							Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
 							continue;
 						}
-						var currentHarvest = harvestDictionary[harvestKey]();
+						if (!harvestDictionary.TryGetValue(harvestKey, out var harvestFunc))
+						{
+							Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
+							continue;
+						}
+						var currentHarvest = harvestFunc();
 						var backImages = new ConcurrentDictionary<string, string>();
 						GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
 
@@ -77,6 +83,9 @@ public class ImageFileGenerator
 				catch (Exception e)
 				{
 					Logger.LogException(e);
+					// Ensure that even in case of an error, we return an entry for this document/language pair.
+					// This is important for the caller to know that a process was attempted.
+					intermediateDict.TryAdd((configDocument.DocumentName, currentLanguage), (configDocument, new List<CardImages>()));
 				}
 			});
 		});
@@ -117,10 +126,12 @@ public class ImageFileGenerator
 			{
 				faceName = $"{faceName}_face";
 			}
-
 			var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, false, AssetConverterConfig, configDocument, faceName, cardFaceUrl, currentHarvest.Faces.Dpi);
 
-			AssembleCurrentCardImages(configDocument, faceKey, faceImage, targetList, backImages);
+			if (!string.IsNullOrEmpty(faceImage))
+			{
+				AssembleCurrentCardImages(configDocument, faceKey, faceImage, targetList, backImages);
+			}
 		}
 	}
 
@@ -136,8 +147,8 @@ public class ImageFileGenerator
 
 	       if (backImages.Count == 0)
 	       {
-	   Logger.LogWarning($"No back could be assigned for face '{faceKey}'. No back images available for this card set. Adding face only.");
-	   targetList.Add(currentCard); // Ajoute la carte avec seulement le recto
+	           Logger.LogWarning($"No back could be assigned for face '{faceKey}'. No back images available for this card set. Adding face only.");
+	           targetList.Add(currentCard); // Ajoute la carte avec seulement le recto
 	           return;
 	       }
 

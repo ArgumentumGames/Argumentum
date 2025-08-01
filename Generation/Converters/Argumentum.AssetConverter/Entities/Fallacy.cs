@@ -196,7 +196,7 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.PrintAndPlay).Name("print_and_play").Optional();
             Map(m => m.DécimalPathPadded).Name("decimal_path_padded");
             Map(m => m.DepthMax4).Name("depth_max4");
-            Map(m => m.Id).Name("ID");
+            Map(m => m.Id).Name("PK");
   }
  }
 

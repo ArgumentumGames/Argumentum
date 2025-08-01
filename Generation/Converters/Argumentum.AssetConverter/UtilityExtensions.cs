@@ -156,17 +156,22 @@ namespace Argumentum.AssetConverter
 
 		public static bool PathIsUrl(this string path)
 		{
-			if (File.Exists(path))
-				return false;
-			try
-			{
-				Uri uri = new Uri(path);
-				return true;
-			}
-			catch (Exception)
+			if (string.IsNullOrWhiteSpace(path))
 			{
 				return false;
 			}
+
+			// Trim to handle potential whitespace issues
+			var trimmedPath = path.Trim();
+
+			// Use Uri.TryCreate to safely parse the path
+			if (Uri.TryCreate(trimmedPath, UriKind.Absolute, out Uri uri))
+			{
+				// Check for explicit http or https schemes
+				return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
+			}
+
+			return false;
 		}
 
 		public static string GetRelativePathFrom(this string referencedPath, string mainPath)
