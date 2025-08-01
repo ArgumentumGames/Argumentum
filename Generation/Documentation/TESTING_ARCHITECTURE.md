@@ -205,3 +205,28 @@ Le pipeline de génération de mindmap, utilisant des outils externes comme Free
 
 Pour une analyse complète et une description détaillée de l'architecture de test pour ce pipeline, veuillez consulter le document dédié :
 **[Architecture de Test pour le Pipeline de Génération de Mindmap](./MINDMAP_TESTING_ARCHITECTURE.md)**
+
+## Leçons Apprises et État Actuel (Août 2025)
+
+Suite à une investigation approfondie et une stabilisation majeure de la suite de tests `Argumentum.AssetConverter.Tests`, plusieurs points fondamentaux ont été clarifiés.
+
+### 1. Les Tests de `ImageFileGenerator` sont des Mocks
+
+**Avertissement critique :** Les tests situés dans `ImageFileGeneratorTests.cs` **ne sont pas des tests d'intégration**. Ils ne valident **pas** le pipeline de génération d'images de production qui implique `CardPen` et `Playwright`.
+
+Ces tests utilisent une méthode de mock, `CreateFakeImageFile`, qui génère une image factice de 1x1 pixel. Leur but est de valider la logique interne de la classe `ImageFileGenerator` (gestion des états, des erreurs, etc.) dans un contexte isolé, et non la qualité ou la conformité du rendu visuel des cartes.
+
+Toute tentative de validation du rendu des images via ces tests est vouée à l'échec. Une véritable stratégie de test d'intégration visuelle reste à définir.
+
+### 2. Impératif d'utiliser le script d'exécution
+
+Il est confirmé que l'exécution directe via `dotnet test` conduit à des plantages et des processus `testhost` zombies qui verrouillent les fichiers.
+
+**La seule méthode supportée et stable** pour lancer cette suite de tests est l'utilisation du script PowerShell :
+`./Generation/Converters/run-converter-tests.ps1`
+
+### 3. Stabilisation de la suite
+La suite a été purgée de nombreux bugs causant de l'instabilité, notamment :
+*   Correction de tests qui dépendaient d'un état partagé.
+*   Correction d'assertions qui cassaient à cause de données inattendues (ex: pages PDF blanches).
+*   Amélioration du script de lancement pour inclure des timeouts et le nettoyage des processus.
