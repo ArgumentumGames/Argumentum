@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
+using Xunit.Abstractions;
 using Argumentum.AssetConverter.PdfAuditor;
 using AutoMapper;
 using ExtendedXmlSerializer.Core.Sources;
@@ -30,28 +31,30 @@ namespace Argumentum.AssetConverter
 		public AssetConverterConfig AssetConverterConfig { get; set; }
 
 		public WebBasedGeneratorConfig Config { get; set; }
+		      public ITestOutputHelper Output { get; set; }
+	
+			public HarvestManager HarvestManager { get; private set; }
 
+			public async Task Run()
+			{
+				var tempLogSwitch = Logger.LogInfo;
+				if (!Config.ShowInfoLogs)
+				{
+					Logger.LogInfo = false;
+				}
+
+				HarvestManager = new HarvestManager() { Config = Config, AssetConverterConfig = AssetConverterConfig, Output = Output };
+				await using (HarvestManager)
+				{
+					var harvestDictionary = await HarvestManager.HarvestImages();
 		
-
-		public async Task Run()
-		{
-			var tempLogSwitch = Logger.LogInfo;
-			if (!Config.ShowInfoLogs)
-			{
-				Logger.LogInfo = false;
+					var imageManager = new ImageFileGenerator() { Config = Config, AssetConverterConfig = AssetConverterConfig };
+					var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
+					GenerateCardSetDocuments(docImages);
+				}
+				
+				Logger.LogInfo = tempLogSwitch;
 			}
-
-			await using (var harvestManager = new HarvestManager() { Config = Config, AssetConverterConfig = AssetConverterConfig })
-			{
-				var harvestDictionary = await harvestManager.HarvestImages();
-
-				var imageManager = new ImageFileGenerator() { Config = Config, AssetConverterConfig = AssetConverterConfig };
-				var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
-				GenerateCardSetDocuments(docImages);
-			}
-			
-			Logger.LogInfo = tempLogSwitch;
-		}
 
 
 
@@ -61,7 +64,7 @@ namespace Argumentum.AssetConverter
 		/// Generates PDF documents for a given card set document configuration and language.
 		/// </summary>
 		/// <param name="docImages">The card images to generate the documents from.</param>
-		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
+		public void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
 			Logger.Log("Checking if QuestPdfGeneration mode is enabled.");
 			if (!AssetConverterConfig.Mode.HasFlag(ConverterMode.QuestPdfGeneration))

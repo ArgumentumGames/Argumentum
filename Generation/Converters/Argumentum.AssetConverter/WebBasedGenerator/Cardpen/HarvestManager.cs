@@ -12,85 +12,76 @@ using Spectre.Console;
 using Utf8Json;
 using System.Text.Json;
 using Argumentum.AssetConverter.Entities;
-
-namespace Argumentum.AssetConverter;
-
+using Xunit.Abstractions;
+ 
+ namespace Argumentum.AssetConverter;
 public class HarvestManager : IAsyncDisposable
 {
     public async ValueTask DisposeAsync()
     {
-        if (browser != null)
+        if (_browser != null)
         {
-            await browser.CloseAsync();
+            await _browser.CloseAsync();
         }
     }
 	public Stopwatch Stopwatch { get; set; }
 
 	public AssetConverterConfig AssetConverterConfig { get; set; }
 	public WebBasedGeneratorConfig Config { get; set; }
+	  public ITestOutputHelper Output { get; set; }
 
-
-	IBrowser browser;
-
-
-	public IBrowser Browser
+	private static readonly SemaphoreSlim _browserSemaphore = new SemaphoreSlim(1, 1);
+	private static IBrowser _browser;
+	
+	private async Task<IBrowser> GetBrowserAsync()
 	{
-		get
+		Log("Entering GetBrowserAsync.");
+		if (_browser == null)
 		{
-			if (browser == null)
+			Log("Browser is null, entering semaphore.");
+			await _browserSemaphore.WaitAsync();
+			try
 			{
-				lock (this.Config)
+				if (_browser == null)
 				{
-					if (browser == null)
+					Log("Browser is still null inside lock, initializing Playwright.");
+					var playwright = await Playwright.CreateAsync();
+					Log("Playwright created. Launching Chromium.");
+					_browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 					{
-						Logger.Log("Starting Playwright Browser");
-						var exitCode = Microsoft.Playwright.Program.Main(new[] { "install", "chromium" });
-						if (exitCode != 0)
-						{
-							throw new Exception($"Playwright exited with code {exitCode}");
-						}
-						var playwright = Task.Run(() => Playwright.CreateAsync()).Result;
-
-						browser = Task.Run(() =>
-						 {
-							 return playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-							 {
-								 Headless = true,
-								 //Args = new []{ "--start-maximized" }
-								 //SlowMo = 50,
-							 });
-						 }).Result;
-
-					}
+						Headless = true,
+						Timeout = 120 * 1000,
+					});
+					Log("Browser launched successfully.");
 				}
 			}
-			return browser;
+			finally
+			{
+				_browserSemaphore.Release();
+				Log("Semaphore released.");
+			}
 		}
+		Log("Exiting GetBrowserAsync.");
+		return _browser;
 	}
 
 	public async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> HarvestImages()
 	{
+		Log("Harvesting Cardpen Images");
+		Log("In its first stage, Argumentum uses the web-based cardpen generator...");
 
-		Logger.LogTitle("Harvesting Cardpen Images");
-
-		Logger.LogExplanations("In its first stage, Argumentum uses the web-based cardpen generator to produce and download images. You can change the hosting url in the configuration. Web generation is performed in a Browser controlled automatically through Playwright. Accordingly, Playwright will be downloaded in the working directory the first time the application is launched. Then several browser instances will be started in Parallel. You can control the number of parallel instances in the configuration file. Generating images in the browser takes some time, and then the images are harversted to local json files for later post-processing.");
-
-		ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary;
+		var harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>();
 		var parallelOptionsLoading = new ParallelOptions { MaxDegreeOfParallelism = 4 };
 
 		var targetCardSets = GetTargetCardSets();
-		harvestDictionary = await LoadHarvestsAsync(targetCardSets, parallelOptionsLoading);
+		await LoadHarvestsAsync(targetCardSets, parallelOptionsLoading, harvestDictionary);
 
-		var expectedHarvestNb = targetCardSets.Sum(tcs => tcs.Translations.Count + 1);
-
-
-		var funcBrowser =  () => Browser;
+		var funcBrowser = new Func<Task<IBrowser>>(GetBrowserAsync);
 
 		var parallelOptionsCardset = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism? Config.MaxDegreeOfParallelismCardpen : 1 };
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsCardset, async (configCardSet, token) =>
 		{
 			var targetLanguages = AssetConverterConfig.LocalizationConfig.BuildLanguageList(configCardSet.Translations);
-
 			var parallelOptionsCardsetLanguage = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism?  Config.MaxDegreeOfParallelismCardpenTranslations : 1 };
 			await Parallel.ForEachAsync(targetLanguages, parallelOptionsCardsetLanguage, async (currentLanguage, newToken) =>
 			{
@@ -101,12 +92,7 @@ public class HarvestManager : IAsyncDisposable
 		return harvestDictionary;
 	}
 
-
-	/// <summary>
-	/// Gets the target card sets from the configuration.
-	/// </summary>
-	/// <returns>An array of CardSetJob objects.</returns>
-	private CardSetJob[] GetTargetCardSets()
+	public CardSetJob[] GetTargetCardSets()
 	{
 		var targetCardSets = Config.CardSetDocuments
 			.Where(d => d.Enabled)
@@ -117,51 +103,28 @@ public class HarvestManager : IAsyncDisposable
 		{
 			usedCardSet.Config = Config.CardSets.First(c => c.Name == usedCardSet.Name);
 		}
-
-		Logger.Log($"Found {targetCardSets.Length} target card sets to process.");
+		Log($"Found {targetCardSets.Length} target card sets to process.");
 		return targetCardSets;
 	}
 
-
-	//Rewritten code with comments
-
-	public async Task<ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>> LoadHarvestsAsync(CardSetJob[] targetCardSets, ParallelOptions parallelOptionsLoading)
+	public async Task LoadHarvestsAsync(CardSetJob[] targetCardSets, ParallelOptions parallelOptionsLoading, ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary)
 	{
-		//Create a new concurrent dictionary to store the card set harvests
-		var harvestDictionary = new ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>>();
-
-		//Loop through each card set job in the target card sets
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsLoading, (configCardSet, token) =>
 		{
-			//Get the target languages for the current card set job
 			var targetlanguages = GetTargetLanguages(configCardSet);
-
-			//Loop through each language in the target languages
 			foreach (var currentLanguage in targetlanguages)
 			{
-				//Get the serialization name for the harvest
 				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
-
-				//If the file exists
 				if (File.Exists(jsonHarvestName))
 				{
-					//Print out the elapsed time and the existing harvest
-					Logger.Log($"Found existing Harvest {jsonHarvestName}");
-
-					//Create a function to load the card set harvest
+					Log($"Found existing Harvest {jsonHarvestName}");
 					var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
-
-					//Add the card set name and language to the dictionary with the function to load the harvest
 					harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
 				}
 			}
-
 			return ValueTask.CompletedTask;
 		});
-
-		Logger.Log($"Loaded {harvestDictionary.Count} existing harvests.");
-		//Return the dictionary
-		return harvestDictionary;
+		Log($"Loaded {harvestDictionary.Count} existing harvests.");
 	}
 
 	public List<string> GetTargetLanguages(CardSetJob configCardSet)
@@ -171,46 +134,28 @@ public class HarvestManager : IAsyncDisposable
 		{
 			targetlanguages.AddRange(configCardSet.Translations.Select(t => t.targetLanguage));
 		}
-
 		return targetlanguages;
 	}
 
-
-	
-
-	public async Task ProcessLocalizedHarvest(CardSetJob configCardSet, string currentLanguage, ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary, Func<IBrowser> browser)
+	public async Task ProcessLocalizedHarvest(CardSetJob configCardSet, string currentLanguage, ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary, Func<Task<IBrowser>> browser)
 	{
 		if (!harvestDictionary.ContainsKey((configCardSet.Name, currentLanguage)))
 		{
 			try
 			{
-				// Get the documents needed to prepare the card set
 				var cardSetDocuments = await PrepareCardSetDocuments(configCardSet, currentLanguage);
-
-				// Generate the harvest images
 				var currentHarvest = await GenerateHarvestImages(browser, configCardSet, cardSetDocuments);
-
-				// Get the name of the JSON file for the harvest
 				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
-
-				// Utiliser un FileStream pour créer le fichier. Le 'using' garantit sa fermeture correcte.
 				using var fileStream = File.Create(jsonHarvestName);
-
-				// Sérialiser directement l'objet 'currentHarvest' dans le flux.
-				// JsonSerializer gère l'ouverture et la fermeture des objets JSON,
-				// garantissant ainsi que le fichier n'est pas tronqué.
 				System.Text.Json.JsonSerializer.Serialize(fileStream, currentHarvest, new JsonSerializerOptions { WriteIndented = true });
 				fileStream.Flush();
-
-				// Create a function to load the card set harvest
 				Func<CardSetHarvest> funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
-
-				// Add the function to the harvest dictionary
 				harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
 			}
 			catch (Exception e)
 			{
 				Logger.LogException(e);
+				throw;
 			}
 		}
 	}
@@ -218,7 +163,6 @@ public class HarvestManager : IAsyncDisposable
 	public async Task<(CardSetPayload front, CardSetPayload back)> PrepareCardSetDocuments(CardSetJob configCardSet, string currentLanguage)
 	{
 		(CardSetPayload front, CardSetPayload back) cardSetDocuments;
-
 		if (currentLanguage == AssetConverterConfig.LocalizationConfig.DefaultLanguage)
 		{
 			var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument(AssetConverterConfig);
@@ -229,29 +173,26 @@ public class HarvestManager : IAsyncDisposable
 		{
 			cardSetDocuments = await AssetConverterConfig.LocalizationConfig.TranslateCardSet(configCardSet.Config, (AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage), AssetConverterConfig);
 		}
-
-
 		await UpdateCardSetDocumentInfo(cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
-
 		if (cardSetDocuments.back != null)
 		{
 			await UpdateCardSetDocumentInfo(cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
 		}
-
-
 		return cardSetDocuments;
 	}
-
 
 	private async Task UpdateCardSetDocumentInfo(CardSetPayload cardSetDocumentWrapper, CardSetInfo cardSetInfo)
 	{
 		if (!cardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(cardSetInfo.DataSet))
 		{
+			Log("Dumping AssetConverterConfig and cardSetInfo before First()");
+			Logger.LogJson(System.Text.Json.JsonSerializer.Serialize(AssetConverterConfig));
+			Log($"Searching for DataSet with name: '{cardSetInfo.DataSet}'");
 			var dataSet = AssetConverterConfig.DataSets.First(ds => ds.Name == cardSetInfo.DataSet);
 			string csvContent;
 			if (!string.IsNullOrEmpty(cardSetInfo.CsvFilterField) && cardSetInfo.CsvFilterValues.Count>0)
 			{
-				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams, ",","",  cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
+				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams, ",", "",  cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
 			}
 			else
 			{
@@ -263,12 +204,10 @@ public class HarvestManager : IAsyncDisposable
 			}
 			cardSetDocumentWrapper.CsvType = dataSet.CsvType;
 		}
-
 		if (cardSetInfo.Dpi > 0)
 		{
 			cardSetDocumentWrapper.CardSetDocument.dpi = cardSetInfo.Dpi;
 		}
-
 		if (cardSetInfo.RowsetNb > 0)
 		{
 			cardSetDocumentWrapper.CardSetDocument.rscount = cardSetInfo.RowsetNb;
@@ -277,7 +216,7 @@ public class HarvestManager : IAsyncDisposable
 
 	private ConcurrentStack<IPage> Freepages = new ConcurrentStack<IPage>();
 
-	private async Task<IPage> GetFreePage(Func<IBrowser> browser)
+	private async Task<IPage> GetFreePage(Func<Task<IBrowser>> browser)
 	{
 		if (Freepages.TryPop(out var page))
 		{
@@ -285,7 +224,8 @@ public class HarvestManager : IAsyncDisposable
 		}
 		else
 		{
-			var newPage = await browser().NewPageAsync();
+			var b = await browser();
+			var newPage = await b.NewPageAsync();
 			return newPage;
 		}
 	}
@@ -295,34 +235,68 @@ public class HarvestManager : IAsyncDisposable
 		Freepages.Push(page);
 	}
 
-	public async Task<CardSetHarvest> GenerateHarvestImages(Func<IBrowser> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
+	public async Task<CardSetHarvest> GenerateHarvestImages(Func<Task<IBrowser>> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
 	{
-
+		Log("Entering GenerateHarvestImages.");
 		var currentHarvest = new CardSetHarvest();
 		var page = await GetFreePage(browser);
+		var consoleMessages = new List<string>();
+
+		void Page_Console(object sender, IConsoleMessage msg) => consoleMessages.Add($"[CONSOLE] {msg.Type}: {msg.Text}");
+		page.Console += Page_Console;
+
 		try
 		{
+			var cardpenUrl = $"{Config.CardpenUrl}?_={DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
+			Log($"Navigating to Cardpen URL: {cardpenUrl}");
+			await page.GotoAsync(cardpenUrl, new PageGotoOptions { Timeout = 60000 });
+			Log("Navigation successful.");
+			await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions { Timeout = 60000 });
 
-			
-			await page.GotoAsync(Config.CardpenUrl);
-			await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
-			await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-			Thread.Sleep(TimeSpan.FromSeconds(2));
+			var result = await page.EvaluateAsync<System.Text.Json.JsonElement>(
+			    "(() => {" +
+			    "    const startTime = Date.now();" +
+			    "    const timeout = 58000;" +
+			    "    let logs = ['Diagnostic script started'];" +
+			    "    return new Promise(resolve => {" +
+			    "        const intervalId = setInterval(() => {" +
+			    "            const iframe = document.getElementById('cpOutput');" +
+			    "            if (iframe && iframe.contentWindow) {" +
+			    "                clearInterval(intervalId);" +
+			    "                logs.push('SUCCESS: #cpOutput iframe found.');" +
+			    "                resolve({ success: true, logs: logs });" +
+			    "            } else if (Date.now() - startTime > timeout) {" +
+			    "                clearInterval(intervalId);" +
+			    "                logs.push('FAILURE: Timeout waiting for #cpOutput iframe.');" +
+			    "                resolve({ success: false, logs: logs });" +
+			    "            }" +
+			    "        }, 100);" +
+			    "    });" +
+			    "})()");
 
-			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
+			if (!result.GetProperty("success").GetBoolean())
+			{
+				var logs = result.GetProperty("logs").EnumerateArray().Select(l => l.GetString()).ToList();
+				var errorMsg = "Diagnostic check failed: #cpOutput iframe did not become available in time.";
+				Log(errorMsg);
+				foreach(var log in logs) { Log($"[BROWSER LOG] {log}"); }
+				throw new TimeoutException(errorMsg);
+			}
+
+			Log("Diagnostic check passed: #cpOutput iframe is ready.");
+
+			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo, consoleMessages);
 			currentHarvest.Faces = faces;
 
 			if (cardSetDocuments.back != null)
 			{
-				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
+				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo, consoleMessages);
 				currentHarvest.Backs = backs;
 			}
-
-			
 		}
 		finally
 		{
-			//await page.CloseAsync();
+			page.Console -= Page_Console;
 			ReleasePage(page);
 		}
 
@@ -330,172 +304,185 @@ public class HarvestManager : IAsyncDisposable
 	}
 
 
-	public async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo)
+	public async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
 	{
 		var toReturn = new CardPenHarvest();
-
-		await UploadCardPenDocument(driver, cardSetDocument, cardSetInfo.PauseForEdits);
 		var objIFrame = driver.FrameLocator("#cpOutput");
 
-		await WaitForCards(driver, objIFrame);
+		await UploadCardPenDocument(driver, cardSetDocument, cardSetInfo.PauseForEdits);
+		
+		try
+		{
+			Log("Waiting for card rendering to complete...");
+			await driver.WaitForFunctionAsync("() => document.getElementById('cpOutput')?.contentWindow?.cardRenderingComplete === true", null, new PageWaitForFunctionOptions { Timeout = 60000 });
+			Log("Card rendering confirmed.");
+		}
+		catch (Exception ex)
+		{
+			Log("Timeout waiting for cards to render. Dumping console and taking screenshot.");
+			foreach (var msg in consoleMessages) { Log(msg); }
+			var screenshotPath = $"debug_screenshot_{DateTime.Now:yyyyMMdd_HHmmss}.png";
+			await driver.ScreenshotAsync(new() { Path = screenshotPath, FullPage = true });
+			Log($"Screenshot saved to: {screenshotPath}");
+			throw new Exception("Failed to render cards.", ex);
+		}
 
+		await WaitForCards(driver, objIFrame);
 		var dpi = await driver.Locator("#dpi").InputValueAsync();
 		toReturn.Dpi = Convert.ToInt32(dpi);
-
-		await ClickGenerateAndWait(objIFrame);
+		await ClickGenerateAndWait(objIFrame, consoleMessages);
 
 		if (cardSetDocument.CsvType == null)
 		{
-			Logger.LogWarning($"No CsvType defined for DataSet '{cardSetInfo.DataSet}'. Skipping image download.");
+			Log($"WARNING: No CsvType for DataSet '{cardSetInfo.DataSet}'. Skipping image download.");
 			return toReturn;
 		}
 
-		// Use reflection to call the static LoadFromString method on the correct CsvBase<T, TMap> type
 		var csvType = cardSetDocument.CsvType;
 		var classMapType = csvType.Assembly.GetType($"{csvType.FullName}ClassMap");
-
-		if (classMapType == null)
-		{
-			throw new InvalidOperationException($"Could not find ClassMap type: {csvType.FullName}ClassMap");
-		}
-		
 		var csvBaseType = typeof(CsvBase<,>);
 		var genericCsvBaseType = csvBaseType.MakeGenericType(csvType, classMapType);
 		var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
-		
-		if (loadMethod == null)
-		{
-			throw new InvalidOperationException($"Could not find 'LoadFromContent' method on {genericCsvBaseType.Name}");
-		}
-
 		var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { cardSetDocument.CardSetDocument.csv });
-
 		var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
-
 		await DownloadImages(toReturn, objIFrame, cardIds);
-
 		return toReturn;
 	}
 
-
 	public async Task UploadCardPenDocument(IPage driver, CardSetPayload cardSetDocument, bool pauseForEdits)
 	{
-		var importInput = driver.Locator("#import");
+		Log($"Generating CardSet {cardSetDocument.FileName} by direct data injection.");
+		var jsonString = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
+		var escapedJsonString = System.Text.Json.JsonSerializer.Serialize(jsonString);
 
+		var script = $"let jsonData = JSON.parse({escapedJsonString}); window.cardpen.form.set(jsonData); window.cardpen.write.generate(window.cardpen.form.get(), 'image');";
+		await driver.EvaluateAsync(script);
 
-		if (!await importInput.IsVisibleAsync())
-		{
-			var exampleButton = driver.Locator("#load");
-			await exampleButton.ClickAsync();
-
-			Thread.Sleep(TimeSpan.FromSeconds(2));
-		}
-
-		Logger.Log($"Generating CardSet {cardSetDocument.FileName}");
-
-		var filePayLoad = new FilePayload()
-		{
-			Name = cardSetDocument.FileName,
-			MimeType = cardSetDocument.GetMimeType(),
-			Buffer = System.Text.Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument))
-		};
-
-		await driver.SetInputFilesAsync("#import", filePayLoad);
-
-
+		Log("Data injection script executed.");
 		if (pauseForEdits)
 		{
-			Logger.LogInstructions($"Browser is paused for you to do tests and edits.\n Press any key to resume browser automation");
+			Log("Browser is paused. Press any key to resume.");
 			Console.Read();
 		}
-		else
-		{
-			Thread.Sleep(TimeSpan.FromSeconds(5));
-		}
-
 	}
-
 
 	public async Task WaitForCards(IPage driver, IFrameLocator objIFrame)
 	{
+		Log("=== Entering WaitForCards ===");
 		var objCardTag = objIFrame.Locator("card");
-		while (await objCardTag.CountAsync() == 0)
-		{
-			Thread.Sleep(100);
-		}
-		await driver.Locator(".image").ClickAsync();
-
-		Thread.Sleep(TimeSpan.FromSeconds(5));
-
-		while (await objCardTag.CountAsync() == 0)
-		{
-			Thread.Sleep(100);
-		}
-	}
-
-	public async Task ClickGenerateAndWait(IFrameLocator objIFrame)
-	{
-		var objGenerateButton = objIFrame.Locator("#generateButton");
-		Thread.Sleep(TimeSpan.FromSeconds(5));
-		await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached, Timeout = 0 });
-		await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 0 });
-
-		await objGenerateButton.ClickAsync();
-
-		Thread.Sleep(TimeSpan.FromSeconds(5));
-
-		var zipButton = objIFrame.Locator("#zipButton");
-		await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Attached, Timeout = 0 });
-		await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 0 });
-		var zipHandler = await zipButton.ElementHandleAsync();
-		await zipHandler.WaitForElementStateAsync(ElementState.Enabled);
-
-		//Logger.Log($"images generated {sw.Elapsed}");
-		//var generatedImagesDiv = driver.FindElement(By.Id("cpImages"));
-		var generatedImagesDiv = objIFrame.Locator("#cpImages");
-
-		//var generatedImages = generatedImagesDiv.FindElements(By.TagName("img"));
-		var generatedImages = generatedImagesDiv.Locator("img");
-	}
-
-public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds)
-{
-	var generatedImagesDiv = objIFrame.Locator("#cpImages");
-	var generatedImages = generatedImagesDiv.Locator("img");
-	var generatedCount = await generatedImages.CountAsync();
-
-	if (generatedCount != cardIds.Count)
-	{
-		// Un dos de carte n'aura qu'un seul ID mais potentiellement aucune image générée
-		// si le dos est générique
-		if (cardIds.Count == 1 && generatedCount == 0)
-		{
-			Logger.Log("Detected common card back. No images to download.");
-			return;
-		}
+		Log("Waiting for cards to appear and be visible...");
 		
-		var idsStr = string.Join(", ", cardIds);
-		throw new ApplicationException($"Mismatch between generated image count ({generatedCount}) and expected card count ({cardIds.Count}). Card IDs: [{idsStr}]");
+		var stopwatch = Stopwatch.StartNew();
+		var timeout = 60000; // 60 seconds
+
+		while (stopwatch.ElapsedMilliseconds < timeout)
+		{
+			var firstCard = objCardTag.First;
+			if (await firstCard.IsVisibleAsync())
+			{
+				Log("First card is now visible.");
+				break;
+			}
+			await Task.Delay(250); // Poll every 250ms
+		}
+
+		if (stopwatch.ElapsedMilliseconds >= timeout)
+		{
+			throw new TimeoutException($"Timeout of {timeout}ms exceeded waiting for the first card to become visible.");
+		}
+		stopwatch.Stop();
+
+		var finalCount = await objCardTag.CountAsync();
+		Log($"Final card count: {finalCount}");
+		Log("=== Exiting WaitForCards ===");
 	}
 
-	for (int i = 0; i < generatedCount; i++)
+	public async Task ClickGenerateAndWait(IFrameLocator objIFrame, List<string> consoleMessages = null)
 	{
-		var currentGeneratedImage = generatedImages.Nth(i);
-		var currentCardId = cardIds[i];
-		toReturn.Images[currentCardId] = await currentGeneratedImage.GetAttributeAsync("src");
-		Logger.Log($"Downloaded Card Image - {currentCardId}");
+		Log("=== Entering ClickGenerateAndWait ===");
+		var objGenerateButton = objIFrame.Locator("#generateButton");
+		await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 60000 });
+		await objGenerateButton.ClickAsync();
+		var zipButton = objIFrame.Locator("#zipButton");
+		await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 120000 });
+		Log("Zip button is visible.");
+		var generatedImagesDiv = objIFrame.Locator("#cpImages");
+		var generatedImages = generatedImagesDiv.Locator("img");
+		var imageCount = await generatedImages.CountAsync();
+		Log($"Found {imageCount} generated images.");
+		Log("=== Exiting ClickGenerateAndWait ===");
 	}
-}
+
+    public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds)
+    {
+        Log("=== Entering DownloadImages ===");
+        var generatedImagesDiv = objIFrame.Locator("#cpImages");
+        var generatedImages = generatedImagesDiv.Locator("img");
+        var generatedCount = await generatedImages.CountAsync();
+        Log($"Expecting {cardIds.Count} images, found {generatedCount} img tags.");
+
+        if (generatedCount != cardIds.Count)
+        {
+            if (cardIds.Count == 1 && generatedCount == 0)
+            {
+                Log("Detected common card back. No images to download.");
+                return;
+            }
+            var idsStr = string.Join(", ", cardIds);
+            throw new ApplicationException($"Mismatch between generated image count ({generatedCount}) and expected card count ({cardIds.Count}). Card IDs: [{idsStr}]");
+        }
+
+        for (int i = 0; i < generatedCount; i++)
+        {
+            var currentGeneratedImage = generatedImages.Nth(i);
+            var currentCardId = cardIds[i];
+            
+            string imgSrc = null;
+            var sw = Stopwatch.StartNew();
+            var timeout = 30000; // 30 secondes
+            while (sw.ElapsedMilliseconds < timeout)
+            {
+                imgSrc = await currentGeneratedImage.GetAttributeAsync("src");
+                if (!string.IsNullOrEmpty(imgSrc) && imgSrc.StartsWith("data:image"))
+                {
+                    Log($"Image src found after {sw.ElapsedMilliseconds}ms.");
+                    break;
+                }
+                await Task.Delay(100);
+            }
+            sw.Stop();
+
+            if (string.IsNullOrEmpty(imgSrc) || !imgSrc.StartsWith("data:image"))
+            {
+                Log($"!!! ERROR: Timed out after {timeout}ms waiting for image source for card ID '{currentCardId}'. Final src: '{imgSrc}'");
+                toReturn.Images[currentCardId] = null;
+            }
+            else
+            {
+                Log($"Downloaded Card Image src for ID '{currentCardId}'. Length: {imgSrc.Length}");
+                toReturn.Images[currentCardId] = imgSrc;
+            }
+        }
+        Log("=== Exiting DownloadImages ===");
+    }
 
 	private  CardSetHarvest LoadCardSetHarvest(string jsonHarvestName)
 	{
 		using var configStream = File.OpenRead(jsonHarvestName);
 		var currentHarvest = System.Text.Json.JsonSerializer.Deserialize<CardSetHarvest>(configStream);
-		Logger.Log($"Loaded Harvest {jsonHarvestName}");
+		Log($"Loaded Harvest {jsonHarvestName}");
 		return currentHarvest;
 	}
 
-
-
-	
+	   private void Log(string message)
+	   {
+	       if (Output != null)
+	       {
+	           Output.WriteLine(message);
+	       }
+	       else
+	       {
+	           Logger.Log(message);
+	       }
+	   }
 }
