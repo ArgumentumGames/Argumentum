@@ -180,3 +180,6 @@ Logs/
 
 # Sorties des tests d'intégration
 Generation/Converters/Argumentum.AssetConverter.Tests/TestOutput/
+
+# Fichiers de sortie de test
+test_output.txt

@@ -119,6 +119,7 @@ public class ImageFileGenerator
 
 	private void GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList)
 	{
+		Logger.Log($"Processing {currentHarvest.Faces.Images.Count} face images for card set.");
 		foreach (var (faceKey, cardFaceUrl) in currentHarvest.Faces.Images)
 		{
 			var faceName = $"{faceKey.ToLowerInvariant()}";
@@ -127,10 +128,16 @@ public class ImageFileGenerator
 				faceName = $"{faceName}_face";
 			}
 			var faceImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, false, AssetConverterConfig, configDocument, faceName, cardFaceUrl, currentHarvest.Faces.Dpi);
+			Logger.Log($"Processed face '{faceKey}'. Resulting image path: {(string.IsNullOrEmpty(faceImage) ? "NULL or EMPTY" : faceImage)}");
 
 			if (!string.IsNullOrEmpty(faceImage))
 			{
+				Logger.Log($"Image for '{faceKey}' is valid, proceeding to assemble.");
 				AssembleCurrentCardImages(configDocument, faceKey, faceImage, targetList, backImages);
+			}
+			else
+			{
+				Logger.LogWarning($"Image for '{faceKey}' was not generated or path is empty. Skipping assembly.");
 			}
 		}
 	}

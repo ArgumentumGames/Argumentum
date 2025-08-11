@@ -507,13 +507,14 @@
                 if (!(clone instanceof SVGElement)) return;
                 clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
-                if (!(clone instanceof SVGRectElement)) return;
-                ['width', 'height', 'mask'].forEach(function (attribute) {
-                    const value = clone.getAttribute(attribute);
-                    if (!value) return;
+                if (clone instanceof SVGRectElement) {
+                    ['width', 'height'].forEach(function (attribute) {
+                        const value = clone.getAttribute(attribute);
+                        if (!value) return;
 
-                    clone.style.setProperty(attribute, value);
-                });
+                        clone.style.setProperty(attribute, value);
+                    });
+                }
             }
         }
     }
