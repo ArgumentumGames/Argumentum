@@ -19,9 +19,10 @@ public class HarvestManager : IAsyncDisposable
 {
     public async ValueTask DisposeAsync()
     {
-        if (_browser != null)
+        if (_browser != null && !KeepBrowserOpen)
         {
             await _browser.CloseAsync();
+            _browser = null;
         }
     }
 	public Stopwatch Stopwatch { get; set; }
@@ -32,6 +33,8 @@ public class HarvestManager : IAsyncDisposable
 
 	private static readonly SemaphoreSlim _browserSemaphore = new SemaphoreSlim(1, 1);
 	private static IBrowser _browser;
+	public IPage LastPageUsed { get; private set; }
+	public bool KeepBrowserOpen { get; set; } = false;
 	
 	private async Task<IBrowser> GetBrowserAsync()
 	{
@@ -212,6 +215,10 @@ public class HarvestManager : IAsyncDisposable
 		{
 			cardSetDocumentWrapper.CardSetDocument.rscount = cardSetInfo.RowsetNb;
 		}
+		if (!string.IsNullOrEmpty(cardSetInfo.CardSize))
+		{
+			cardSetDocumentWrapper.CardSetDocument.csize = cardSetInfo.CardSize;
+		}
 	}
 
 	private ConcurrentStack<IPage> Freepages = new ConcurrentStack<IPage>();
@@ -226,6 +233,7 @@ public class HarvestManager : IAsyncDisposable
 		{
 			var b = await browser();
 			var newPage = await b.NewPageAsync();
+			LastPageUsed = newPage;
 			return newPage;
 		}
 	}
@@ -242,7 +250,7 @@ public class HarvestManager : IAsyncDisposable
 		var page = await GetFreePage(browser);
 		var consoleMessages = new List<string>();
 
-		void Page_Console(object sender, IConsoleMessage msg) => consoleMessages.Add($"[CONSOLE] {msg.Type}: {msg.Text}");
+		void Page_Console(object sender, IConsoleMessage msg) => Log($"[BROWSER CONSOLE] {msg.Type}: {msg.Text}");
 		page.Console += Page_Console;
 
 		try
@@ -304,17 +312,17 @@ public class HarvestManager : IAsyncDisposable
 	}
 
 
-	public async Task<CardPenHarvest> GenerateImages(IPage driver, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
+	public async Task<CardPenHarvest> GenerateImages(IPage page, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
 	{
 		var toReturn = new CardPenHarvest();
-		var objIFrame = driver.FrameLocator("#cpOutput");
+		var objIFrame = page.FrameLocator("#cpOutput");
 
-		await UploadCardPenDocument(driver, cardSetDocument, cardSetInfo.PauseForEdits);
+		await UploadCardPenDocument(page, cardSetDocument, cardSetInfo.PauseForEdits);
 		
 		try
 		{
 			Log("Waiting for card rendering to complete...");
-			await driver.WaitForFunctionAsync("() => document.getElementById('cpOutput')?.contentWindow?.cardRenderingComplete === true", null, new PageWaitForFunctionOptions { Timeout = 60000 });
+			await page.WaitForFunctionAsync("() => document.getElementById('cpOutput')?.contentWindow?.cardRenderingComplete === true", null, new PageWaitForFunctionOptions { Timeout = 60000 });
 			Log("Card rendering confirmed.");
 		}
 		catch (Exception ex)
@@ -322,13 +330,12 @@ public class HarvestManager : IAsyncDisposable
 			Log("Timeout waiting for cards to render. Dumping console and taking screenshot.");
 			foreach (var msg in consoleMessages) { Log(msg); }
 			var screenshotPath = $"debug_screenshot_{DateTime.Now:yyyyMMdd_HHmmss}.png";
-			await driver.ScreenshotAsync(new() { Path = screenshotPath, FullPage = true });
+			await page.ScreenshotAsync(new() { Path = screenshotPath, FullPage = true });
 			Log($"Screenshot saved to: {screenshotPath}");
 			throw new Exception("Failed to render cards.", ex);
 		}
 
-		await WaitForCards(driver, objIFrame);
-		var dpi = await driver.Locator("#dpi").InputValueAsync();
+		var dpi = await page.Locator("#dpi").InputValueAsync();
 		toReturn.Dpi = Convert.ToInt32(dpi);
 		await ClickGenerateAndWait(objIFrame, consoleMessages);
 
@@ -349,14 +356,14 @@ public class HarvestManager : IAsyncDisposable
 		return toReturn;
 	}
 
-	public async Task UploadCardPenDocument(IPage driver, CardSetPayload cardSetDocument, bool pauseForEdits)
+	public async Task UploadCardPenDocument(IPage page, CardSetPayload cardSetDocument, bool pauseForEdits)
 	{
 		Log($"Generating CardSet {cardSetDocument.FileName} by direct data injection.");
 		var jsonString = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
 		var escapedJsonString = System.Text.Json.JsonSerializer.Serialize(jsonString);
 
 		var script = $"let jsonData = JSON.parse({escapedJsonString}); window.cardpen.form.set(jsonData); window.cardpen.write.generate(window.cardpen.form.get(), 'image');";
-		await driver.EvaluateAsync(script);
+		await page.EvaluateAsync(script);
 
 		Log("Data injection script executed.");
 		if (pauseForEdits)
@@ -372,25 +379,16 @@ public class HarvestManager : IAsyncDisposable
 		var objCardTag = objIFrame.Locator("card");
 		Log("Waiting for cards to appear and be visible...");
 		
-		var stopwatch = Stopwatch.StartNew();
-		var timeout = 60000; // 60 seconds
-
-		while (stopwatch.ElapsedMilliseconds < timeout)
+		try
 		{
-			var firstCard = objCardTag.First;
-			if (await firstCard.IsVisibleAsync())
-			{
-				Log("First card is now visible.");
-				break;
-			}
-			await Task.Delay(250); // Poll every 250ms
+			await objCardTag.First.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 60000 });
+			Log("First card is visible.");
 		}
-
-		if (stopwatch.ElapsedMilliseconds >= timeout)
+		catch (TimeoutException)
 		{
-			throw new TimeoutException($"Timeout of {timeout}ms exceeded waiting for the first card to become visible.");
+			Log("Timeout (60s) while waiting for the first card to become visible.");
+			throw;
 		}
-		stopwatch.Stop();
 
 		var finalCount = await objCardTag.CountAsync();
 		Log($"Final card count: {finalCount}");
@@ -434,33 +432,46 @@ public class HarvestManager : IAsyncDisposable
 
         for (int i = 0; i < generatedCount; i++)
         {
-            var currentGeneratedImage = generatedImages.Nth(i);
             var currentCardId = cardIds[i];
             
-            string imgSrc = null;
-            var sw = Stopwatch.StartNew();
-            var timeout = 30000; // 30 secondes
-            while (sw.ElapsedMilliseconds < timeout)
+            try
             {
-                imgSrc = await currentGeneratedImage.GetAttributeAsync("src");
-                if (!string.IsNullOrEmpty(imgSrc) && imgSrc.StartsWith("data:image"))
-                {
-                    Log($"Image src found after {sw.ElapsedMilliseconds}ms.");
-                    break;
-                }
-                await Task.Delay(100);
-            }
-            sw.Stop();
+                var selector = $"#cpImages img:nth-child({i + 1})";
+                string script = @"
+                    (body, selector) => {
+                        return new Promise((resolve, reject) => {
+                            const startTime = Date.now();
+                            const timeout = 60000;
 
-            if (string.IsNullOrEmpty(imgSrc) || !imgSrc.StartsWith("data:image"))
-            {
-                Log($"!!! ERROR: Timed out after {timeout}ms waiting for image source for card ID '{currentCardId}'. Final src: '{imgSrc}'");
-                toReturn.Images[currentCardId] = null;
-            }
-            else
-            {
+                            const checkImage = () => {
+                                // Query inside the iframe's document context
+                                const img = document.querySelector(selector);
+                                if (img && img.getAttribute('src') && img.getAttribute('src').startsWith('data:image')) {
+                                    resolve(img.getAttribute('src'));
+                                } else if (Date.now() - startTime > timeout) {
+                                    // Construct a meaningful error message
+                                    const imgExists = !!img;
+                                    const src = img ? img.getAttribute('src') : 'null';
+                                    reject(new Error(`Timeout: Image source for selector '${selector}' did not load in ${timeout}ms. Img found: ${imgExists}, src: '${src}'.`));
+                                } else {
+                                    setTimeout(checkImage, 250); // Poll every 250ms
+                                }
+                            };
+                            checkImage();
+                        });
+                    }";
+
+                var iframeBody = objIFrame.Locator("body");
+                var imgSrc = await iframeBody.EvaluateAsync<string>(script, selector);
+
                 Log($"Downloaded Card Image src for ID '{currentCardId}'. Length: {imgSrc.Length}");
                 toReturn.Images[currentCardId] = imgSrc;
+            }
+            catch (PlaywrightException ex)
+            {
+                // This will catch the timeout from the rejected promise and other Playwright errors
+                Log($"!!! ERROR: Playwright/JS error for card ID '{currentCardId}'. Exception: {ex.Message}");
+                toReturn.Images[currentCardId] = null;
             }
         }
         Log("=== Exiting DownloadImages ===");

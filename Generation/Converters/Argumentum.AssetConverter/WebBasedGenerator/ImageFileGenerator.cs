@@ -122,6 +122,11 @@ public class ImageFileGenerator
 		Logger.Log($"Processing {currentHarvest.Faces.Images.Count} face images for card set.");
 		foreach (var (faceKey, cardFaceUrl) in currentHarvest.Faces.Images)
 		{
+			if (string.IsNullOrEmpty(cardFaceUrl))
+			{
+				Logger.LogWarning($"Face image URL for '{faceKey}' is null or empty. Skipping processing.");
+				continue;
+			}
 			var faceName = $"{faceKey.ToLowerInvariant()}";
 			if (!configDocument.NoBack)
 			{

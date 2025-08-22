@@ -562,7 +562,7 @@ var cardpen = {};
                 document.getElementById("stored").classList.add("selected");
                 context.write.tryGenerate();
             } else if (defaultToEg) {
-                context.form.load({ target: document.getElementById("eg") });
+                // context.form.load({ target: document.getElementById("eg") });
                 document.getElementById("eg").classList.add("selected");
                 context.write.help();
             }
@@ -1079,138 +1079,158 @@ var cardpen = {};
         }
 
         function frame(doc) {
-            var ifrm = document.getElementById("cpOutput");
-            ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
-            ifrm.document.open();
-            ifrm.document.write(doc);
-            ifrm.document.close();
+            return new Promise((resolve, reject) => {
+                var ifrm = document.getElementById("cpOutput");
+                ifrm.onload = () => resolve();
+                ifrm.onerror = () => reject(new Error("Iframe loading failed"));
+                ifrm.srcdoc = doc;
+            });
         }
 
-        function generate(realData, format) {
-            var cards, cardsParsed, cardsTemp;
-            var externalLink = "";
-            var templateOutput = "";
-            var fullOutput = "";
-            var forImages = (format == "image");
-
-            //Set format in UI.
-            context.form.unselect("format");
-            switch (format) {
-                case "print":
-                    context.form.select("format", "print");
-                    break;
-                case "image":
-                    context.form.select("format", "image");
-                    break;
-                default:
-                    context.form.select("format", "html");
-                    break;
-            }
-
-            //Massage the data.
-            var data = massage(realData, format);
-
-            //Parse csv.
-            cardsTemp = Papa.parse(data.csv, {
-                header: true,
-                skipEmptyLines: true
-            });
-
-            //Massage the csv.
-            if (data.rscount && parseInt(data.rscount) > 1) {
-                cardsParsed = restructure(parseInt(data.rscount), data.rsstyle, cardsTemp).data;
-            } else {
-                cardsParsed = cardsTemp.data;
-            }
-
-            if (data.cindices !== "") {
-                var indicesParsed = data.cindices.split`,`.map(x => +x);
-                var tempCards = [];
-                for (var co = 0; co < cardsParsed.length; co++) {
-                    if (indicesParsed.indexOf(co)>-1) {
-                        tempCards.push(cardsParsed[co]);
-                    }
-                }
-                cardsParsed = tempCards;
-
-            }
-
-
-            //Handle the noop case automatically, so the user doesn't have to fill it in.
-            if (cardsParsed.length == 0)
-                cardsParsed = [{ noop: 1 }];
-
-            //Summon the goog.
-            if (data.extCSS)
-                externalLink = '\t<link href="' + data.extCSS + '" rel="stylesheet" crossorigin="anonymous">';
-
-            //Alter cardset to include image tags for mustache.
-            cards = _.map(cardsParsed, function (val, idx) {
-                val.cardImage = (forImages ? true : false);
-                //don't really need this b/c mustache has negation
-                //val.cardHTML = (forImages ? false : true);
-                return val;
-            });
-
-            //Apply template.
-            templateOutput = formatter(data, cards, forImages);
-
-            //Assemble webpage.
-            fullOutput = '<!DOCTYPE html>\n<html>\n<head>\n\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>\n';
-            fullOutput += externalLink;
-            //Prepare for image.
-            if (forImages) {
-                //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
-
-                //Sanitize projectname.
-                var cleanName = context.util.sanitize(data.name);
-                var dims = context.size.pixels(data);
-
-                fullOutput += '\t<script type="text/javascript">var dpi = ' + data.dpi + ';\n ' +
-                    'var height = ' + dims[0] + ';\n' +
-                    'var width = ' + dims[1] + ';\n' +
-                    'var projectName = "' + cleanName + '";' +
-                    '</script>\n';
-                fullOutput += "<style>#cpOutput {display: block;}\n";
-                fullOutput += "#cpError {padding:5px;color:red;}</style>\n";
-            } 
-            fullOutput += "<style>\n" + context.style.page(data, forImages) + "</style>\n";
-            fullOutput += "<style>\n" + context.style.card(data) + "</style>\n";
-            fullOutput += "<style>\n" + data.css + "</style>\n</head>\n<body>\n";
-            if (forImages) {
-                fullOutput += "<div id='cpError'></div>\n";
-                fullOutput += "<button id='generateButton' type='button' onclick='generateImages();'>Generate Images</button>\n";
-                fullOutput += "<button id='zipButton' type='button' style='display: none;' onclick='zipper();'>Zip Images</button>\n";
-                fullOutput += "<div id='cpImages'></div>\n";
-            }
-            fullOutput += templateOutput + "\n</body>\n</html>\n";
-
-            //Write to frame.
-            context.write.frame(fullOutput);
-            
-            // Enhanced signal to the HarvestManager that card rendering is complete
-            // Set completion flags on multiple window objects for robust synchronization
+        async function generate(realData, format) {
             try {
-                window.cardRenderingComplete = true;
-                
-                // Also set the flag on the iframe's window if we're in an iframe context
-                if (window.parent && window.parent !== window) {
-                    window.parent.cardRenderingComplete = true;
+                var cards, cardsParsed, cardsTemp;
+                var externalLink = "";
+                var templateOutput = "";
+                var fullOutput = "";
+                var forImages = (format == "image");
+
+                //Set format in UI.
+                context.form.unselect("format");
+                switch (format) {
+                    case "print":
+                        context.form.select("format", "print");
+                        break;
+                    case "image":
+                        context.form.select("format", "image");
+                        break;
+                    default:
+                        context.form.select("format", "html");
+                        break;
                 }
-                
-                // If there's a cpOutput iframe, ensure its contentWindow also gets the flag
-                const iframe = document.getElementById('cpOutput');
-                if (iframe && iframe.contentWindow) {
-                    iframe.contentWindow.cardRenderingComplete = true;
+
+                //Massage the data.
+                var data = massage(realData, format);
+
+                //Parse csv.
+                cardsTemp = Papa.parse(data.csv, {
+                    header: true,
+                    skipEmptyLines: true,
+                    delimiter: ","
+                });
+
+                if (cardsTemp.errors && cardsTemp.errors.length > 0) {
+                    var errorMsg = "PapaParse CSV parsing error: " + cardsTemp.errors.map(function (e) { return e.message; }).join('; ');
+                    console.error(errorMsg);
+                    throw new Error(errorMsg);
                 }
-                
-            } catch (e) {
-                // Always set the basic flag even if enhanced signaling fails
-                window.cardRenderingComplete = true;
+
+                //Massage the csv.
+                if (data.rscount && parseInt(data.rscount) > 1) {
+                    cardsParsed = restructure(parseInt(data.rscount), data.rsstyle, cardsTemp).data;
+                } else {
+                    cardsParsed = cardsTemp.data;
+                }
+
+                if (data.cindices !== "") {
+                    var indicesParsed = data.cindices.split`,`.map(x => +x);
+                    var tempCards = [];
+                    for (var co = 0; co < cardsParsed.length; co++) {
+                        if (indicesParsed.indexOf(co) > -1) {
+                            tempCards.push(cardsParsed[co]);
+                        }
+                    }
+                    cardsParsed = tempCards;
+
+                }
+
+
+                //Handle the noop case automatically, so the user doesn't have to fill it in.
+                if (cardsParsed.length == 0)
+                    cardsParsed = [{ noop: 1 }];
+
+                //Summon the goog.
+                if (data.extCSS)
+                    externalLink = '\t<link href="' + data.extCSS + '" rel="stylesheet" crossorigin="anonymous">';
+
+                //Alter cardset to include image tags for mustache.
+                cards = _.map(cardsParsed, function (val, idx) {
+                    val.cardImage = (forImages ? true : false);
+                    //don't really need this b/c mustache has negation
+                    //val.cardHTML = (forImages ? false : true);
+                    return val;
+                });
+
+                //Apply template.
+                templateOutput = formatter(data, cards, forImages);
+
+                //Assemble webpage.
+                fullOutput = '<!DOCTYPE html>\n<html>\n<head>\n\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>\n';
+                fullOutput += externalLink;
+                //Prepare for image.
+                if (forImages) {
+                    //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
+
+                    //Sanitize projectname.
+                    var cleanName = context.util.sanitize(data.name);
+                    var dims = context.size.pixels(data);
+
+                    fullOutput += '\t<script type="text/javascript">var dpi = ' + data.dpi + ';\n ' +
+                        'var height = ' + dims[0] + ';\n' +
+                        'var width = ' + dims[1] + ';\n' +
+                        'var projectName = "' + cleanName + '";' +
+                        '</script>\n';
+                    fullOutput += "<style>#cpOutput {display: block;}\n";
+                    fullOutput += "#cpError {padding:5px;color:red;}</style>\n";
+                }
+                fullOutput += "<style>\n" + context.style.page(data, forImages) + "</style>\n";
+                fullOutput += "<style>\n" + context.style.card(data) + "</style>\n";
+                fullOutput += "<style>\n" + data.css + "</style>\n</head>\n<body>\n";
+                if (forImages) {
+                    fullOutput += "<div id='cpError'></div>\n";
+                    fullOutput += "<button id='generateButton' type='button' onclick='generateImages();'>Generate Images</button>\n";
+                    fullOutput += "<button id='zipButton' type='button' style='display: none;' onclick='zipper();'>Zip Images</button>\n";
+                    fullOutput += "<div id='cpImages'></div>\n";
+                }
+                fullOutput += templateOutput + "\n";
+                            fullOutput += `
+                                <script type="text/javascript">
+                                    const loadPromise = new Promise(resolve => {
+                                        window.addEventListener('load', resolve);
+                                    });
+                                    Promise.all([
+                                        loadPromise,
+                                        document.fonts.ready
+                                    ]).then(() => {
+                                        console.log('All fonts and resources loaded, signaling completion.');
+                                        window.cardRenderingComplete = true;
+                                    }).catch(error => {
+                                        console.error('Error waiting for fonts or resources:', error);
+                                    });
+                                </script>
+                            `;
+                fullOutput += "</body>\n</html>\n";
+
+                //Write to frame.
+                await context.write.frame(fullOutput);
+            } catch (error) {
+                var msg = `[CardPen.write.generate] Fatal error during card generation: ${error.toString()}`;
+                console.error(msg, error);
+
+                var ifrm = document.getElementById("cpOutput");
+                var ifrmDoc = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+                ifrmDoc.open();
+                ifrmDoc.write('<html><head></head><body></body></html>');
+                ifrmDoc.close();
+
+                var errorDiv = ifrmDoc.createElement('div');
+                errorDiv.className = 'cp-js-error';
+                errorDiv.innerHTML = msg;
+                ifrmDoc.body.appendChild(errorDiv);
             }
         }
 
@@ -1349,62 +1369,73 @@ var cardpen = {};
             var rows = rolms[0];
             var cols = rolms[1];
             var formatted = '';
-            for (var c = 0; c < cards.length; c++) {
-                if (c % (rows * cols) == 0) {
-                    if (c > 0) {
-                        formatted += '\n</page>\n';
+
+            if (data.useMustache) {
+                 for (var c = 0; c < cards.length; c++) {
+                    if (c % (rows * cols) == 0) {
+                        if (c > 0) {
+                            formatted += '\n</page>\n';
+                        }
+                        formatted += '<page>\n';
                     }
-                    formatted += '<page>\n';
-                }
-                if (data.useMustache)
                     formatted += Mustache.to_html(templateA + (c + 1) + templateB, { cardpen: cards[c] });
-                else {
-                    Handlebars.registerHelper("unidecode",
-                        function (text) {
-                            //text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                           if(text) text = unidecode(text);
-                            return new Handlebars.SafeString(text);
-                        });
-                    Handlebars.registerHelper('breaklines', function (text) {
-                        text = Handlebars.Utils.escapeExpression(text);
-                        text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
+                }
+            } else {
+                Handlebars.registerHelper("unidecode",
+                    function (text) {
+                        if(text) text = unidecode(text);
                         return new Handlebars.SafeString(text);
                     });
-                    Handlebars.registerHelper("markdown", function (md) {
-                       marked.setOptions({
-                           breaks: true
-                       });
-                       return new Handlebars.SafeString(marked(md));
-                    });
-                    Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+                Handlebars.registerHelper('breaklines', function (text) {
+                    text = Handlebars.Utils.escapeExpression(text);
+                    text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
+                    return new Handlebars.SafeString(text);
+                });
+                Handlebars.registerHelper("markdown", function (md) {
+                   marked.setOptions({
+                       breaks: true
+                   });
+                   return new Handlebars.SafeString(marked(md));
+                });
+                Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
-                        switch (operator) {
-                        case '==':
-                            return (v1 == v2) ? options.fn(this) : options.inverse(this);
-                        case '===':
-                            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-                        case '!=':
-                            return (v1 != v2) ? options.fn(this) : options.inverse(this);
-                        case '!==':
-                            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-                        case '<':
-                            return (v1 < v2) ? options.fn(this) : options.inverse(this);
-                        case '<=':
-                            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-                        case '>':
-                            return (v1 > v2) ? options.fn(this) : options.inverse(this);
-                        case '>=':
-                            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-                        case '&&':
-                            return (v1 && v2) ? options.fn(this) : options.inverse(this);
-                        case '||':
-                            return (v1 || v2) ? options.fn(this) : options.inverse(this);
-                        default:
-                            return options.inverse(this);
+                    switch (operator) {
+                    case '==':
+                        return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                    case '===':
+                        return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                    case '!=':
+                        return (v1 != v2) ? options.fn(this) : options.inverse(this);
+                    case '!==':
+                        return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+                    case '<':
+                        return (v1 < v2) ? options.fn(this) : options.inverse(this);
+                    case '<=':
+                        return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+                    case '>':
+                        return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                    case '>=':
+                        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                    case '&&':
+                        return (v1 && v2) ? options.fn(this) : options.inverse(this);
+                    case '||':
+                        return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                    default:
+                        return options.inverse(this);
+                    }
+                });
+                
+                var compiledTemplate = Handlebars.compile(templateA + " {{cardIndex}}" + templateB);
+                for (var c = 0; c < cards.length; c++) {
+                    if (c % (rows * cols) == 0) {
+                        if (c > 0) {
+                            formatted += '\n</page>\n';
                         }
-                    });
+                        formatted += '<page>\n';
+                    }
                     cards[c].cards = cards;
-                    formatted += Handlebars.compile(templateA + (c + 1) + templateB)({ cardpen: cards[c] });
+                    cards[c].cardIndex = c + 1;
+                    formatted += compiledTemplate({ cardpen: cards[c] });
                 }
             }
             formatted += '</page></page>\n';

@@ -17,6 +17,16 @@ namespace Argumentum.AssetConverter.VisualTests
         public FallacyCardTests(ITestOutputHelper output)
         {
             _output = output;
+
+            // --- Test Cleanup ---
+            // Supprime les anciens fichiers de "harvest" pour garantir un état propre
+            // et éviter la pollution entre les exécutions de test.
+            var harvestPath = "TestData/FallacyCard/Render_Nominal/Output/fr/Harvest/FallacyTestSet_harvest_fr.json";
+            if (File.Exists(harvestPath))
+            {
+                File.Delete(harvestPath);
+                _output.WriteLine($"CLEANUP: Deleted stale harvest file at {harvestPath}");
+            }
         }
 
         [Fact]
@@ -42,36 +52,58 @@ namespace Argumentum.AssetConverter.VisualTests
                 testDataSet.ReleaseFilePath = csvPath;
                 config.DataSets.AddRange(testDataSets);
             }
-            var webGenerator = new WebBasedGenerator { AssetConverterConfig = config, Config = config.WebBasedGeneratorConfig, Output = _output };
+            var webGenerator = new WebBasedGenerator { AssetConverterConfig = config, Config = config.WebBasedGeneratorConfig, Output = _output, KeepBrowserOpen = true };
             
             _output.WriteLine("--- DUMPING CONFIGURATION BEFORE RUN ---");
             _output.WriteLine(JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true }));
             _output.WriteLine("--------------------------------------");
 
-            // 2. Exécution "in-process"
-            await webGenerator.Run();
-            
-            var postProcessor = new ImageFileGenerator() { AssetConverterConfig = config, Config = config.WebBasedGeneratorConfig };
-            var harvests = new System.Collections.Concurrent.ConcurrentDictionary<(string, string), System.Func<CardSetHarvest>>();
-            await webGenerator.HarvestManager.LoadHarvestsAsync(
-                webGenerator.HarvestManager.GetTargetCardSets(),
-                new System.Threading.Tasks.ParallelOptions { MaxDegreeOfParallelism = 1 },
-                harvests);
-            var docImages = postProcessor.GenerateDocumentImages(harvests);
-            _output.WriteLine($"docImages collection contains {docImages.Count} items.");
-            foreach (var item in docImages)
+            string imageFile = null;
+            try
             {
-                _output.WriteLine($"  - Document: {item.Key.document.DocumentName}, Lang: {item.Key.language}, Images: {item.Value.Count}");
+                // 2. Exécution "in-process"
+                await webGenerator.Run();
+
+                var postProcessor = new ImageFileGenerator() { AssetConverterConfig = config, Config = config.WebBasedGeneratorConfig };
+                var harvests = new System.Collections.Concurrent.ConcurrentDictionary<(string, string), System.Func<CardSetHarvest>>();
+                await webGenerator.HarvestManager.LoadHarvestsAsync(
+                    webGenerator.HarvestManager.GetTargetCardSets(),
+                    new System.Threading.Tasks.ParallelOptions { MaxDegreeOfParallelism = 1 },
+                    harvests);
+                var docImages = postProcessor.GenerateDocumentImages(harvests);
+                _output.WriteLine($"docImages collection contains {docImages.Count} items.");
+                foreach (var item in docImages)
+                {
+                    _output.WriteLine($"  - Document: {item.Key.document.DocumentName}, Lang: {item.Key.language}, Images: {item.Value.Count}");
+                }
+                webGenerator.GenerateCardSetDocuments(docImages);
+
+                imageFile = Directory.EnumerateFiles(config.GetImagesDirectory("fr"), "chewbacca-defense_face.png", SearchOption.AllDirectories).FirstOrDefault();
+
+                // 3. Assertion
+                if (imageFile == null)
+                {
+                    var errorDiv = webGenerator.LastPageUsed.FrameLocator("#cpOutput").Locator("div.cp-js-error");
+                    var errorMessage = "Image file was not generated, but no JavaScript error was detected in the DOM.";
+                    if (await errorDiv.IsVisibleAsync())
+                    {
+                        var jsError = await errorDiv.InnerTextAsync();
+                        errorMessage = $"Image file not generated. A JavaScript error was captured in the DOM: {jsError}";
+                    }
+                    Assert.Fail(errorMessage);
+                }
             }
-            webGenerator.GenerateCardSetDocuments(docImages);
-            
-            var imageFile = Directory.EnumerateFiles(config.GetImagesDirectory("fr"), "fr-fallacytestset-chewbacca-defense_face.png", SearchOption.AllDirectories).FirstOrDefault();
-            
-            // 3. Assertion
-            Assert.NotNull(imageFile);
+            finally
+            {
+                // Ensure the browser is closed even if assertions fail
+                if (webGenerator.HarvestManager?.LastPageUsed?.Context.Browser != null)
+                {
+                    await webGenerator.HarvestManager.LastPageUsed.Context.Browser.CloseAsync();
+                }
+            }
             
             var imageBytes = await File.ReadAllBytesAsync(imageFile);
-
+ 
             // 4. Vérification du Snapshot
             await Verifier.Verify(imageBytes, "png");
         }

@@ -53,6 +53,7 @@
      */
     function getFontsBefore() {
         cachedFonts = fontFaces.resolveAll();
+        return cachedFonts;
     }
     /**
      * @param {Node} node - The DOM Node object to render
@@ -684,7 +685,7 @@
         }
 
         function makeImage(uri) {
-            if (uri === 'data:,') return Promise.resolve();
+            if (uri === 'data:,') return Promise.reject(new Error("makeImage received an empty data URI."));
             return new Promise(function (resolve, reject) {
                 const image = new Image();
                 if (domtoimage.impl.options.useCredentials) {
@@ -712,7 +713,7 @@
                 url += (/\?/u.test(url) ? '&' : '?') + new Date().getTime();
             }
 
-            var promise = new Promise(function (resolve) {
+            var promise = new Promise(function (resolve, reject) {
                 const request = new XMLHttpRequest();
 
                 request.onreadystatechange = done;
@@ -729,48 +730,24 @@
                 request.open('GET', parsedUrl, true);
                 request.send();
 
-                let placeholder;
-                if (domtoimage.impl.options.imagePlaceholder) {
-                    const split = domtoimage.impl.options.imagePlaceholder.split(/,/);
-                    if (split && split[1]) {
-                        placeholder = split[1];
-                    }
-                }
-
                 function done() {
                     if (request.readyState !== 4) return;
 
                     if (request.status !== 200) {
-                        if (placeholder) {
-                            resolve(placeholder);
-                        } else {
-                            fail('cannot fetch resource: ' + url + ', status: ' + request.status);
-                        }
-
+                        reject(new Error('cannot fetch resource: ' + url + ', status: ' + request.status));
                         return;
                     }
 
                     const encoder = new FileReader();
                     encoder.onloadend = function () {
                         const content = encoder.result.split(/,/u)[1];
-                        //var dataUrl = util.dataAsUrl(content, util.mimeType(url) || request.getResponseHeader('Content-Type'));
-                        //resolve(dataUrl);
                         resolve(content);
                     };
                     encoder.readAsDataURL(request.response);
                 }
 
                 function timeout() {
-                    if (placeholder) {
-                        resolve(placeholder);
-                    } else {
-                        fail('timeout of ' + TIMEOUT + 'ms occurred while fetching resource: ' + url);
-                    }
-                }
-
-                function fail(message) {
-                    console.error(message);
-                    resolve('');
+                    reject(new Error('timeout of ' + TIMEOUT + 'ms occurred while fetching resource: ' + url));
                 }
             });
             _obj = {

@@ -40,6 +40,7 @@ namespace Argumentum.AssetConverter
 
 		
 		public int Dpi { get; set; }
+		public string CardSize { get; set; }
 
 		public int RowsetNb { get; set; }
 

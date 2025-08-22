@@ -24,6 +24,7 @@
     "DocumentsDirectoryName": "TestData/FallacyCard/Render_Nominal/Output/Documents/",
     "UseLocalCardpen": true,
     "ReleaseCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+    "LocalCardpenUrl": "file:///D:/Dev/Argumentum/Generation/CardPen/index.html",
     "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
     "CardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
     "CardSets": [
@@ -34,6 +35,7 @@
           "JsonFilePathRelease": "TestData/FallacyCard/Render_Nominal/template.json",
           "JsonFilePathDebug": "TestData/FallacyCard/Render_Nominal/template.json",
           "Dpi": 300,
+          "CardSize": "poker",
           "RowsetNb": 1,
           "SkipDataUpdate": false
         },

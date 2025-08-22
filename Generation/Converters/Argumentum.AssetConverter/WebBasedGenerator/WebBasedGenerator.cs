@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
+using Microsoft.Playwright;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -34,7 +35,9 @@ namespace Argumentum.AssetConverter
 		      public ITestOutputHelper Output { get; set; }
 	
 			public HarvestManager HarvestManager { get; private set; }
-
+			public IPage LastPageUsed => HarvestManager?.LastPageUsed;
+			public bool KeepBrowserOpen { get; set; } = false;
+	
 			public async Task Run()
 			{
 				var tempLogSwitch = Logger.LogInfo;
@@ -43,7 +46,7 @@ namespace Argumentum.AssetConverter
 					Logger.LogInfo = false;
 				}
 
-				HarvestManager = new HarvestManager() { Config = Config, AssetConverterConfig = AssetConverterConfig, Output = Output };
+				HarvestManager = new HarvestManager() { Config = Config, AssetConverterConfig = AssetConverterConfig, Output = Output, KeepBrowserOpen = this.KeepBrowserOpen };
 				await using (HarvestManager)
 				{
 					var harvestDictionary = await HarvestManager.HarvestImages();
