@@ -315,29 +315,35 @@ public class HarvestManager : IAsyncDisposable
 	public async Task<CardPenHarvest> GenerateImages(IPage page, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
 	{
 		var toReturn = new CardPenHarvest();
-		var objIFrame = page.FrameLocator("#cpOutput");
+		Log($"Generating CardSet {cardSetDocument.FileName} by direct data injection.");
 
-		await UploadCardPenDocument(page, cardSetDocument, cardSetInfo.PauseForEdits);
-		
-		try
+		// Étape 1 & 2 : Injection des données et déclenchement du rendu de l'iframe
+		Log("Injecting data and triggering iframe render...");
+		var cardsJson = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
+		// Note: Using a simple Replace for this specific case. For more complex scenarios, a full JS escaping library would be better.
+		var escapedJson = cardsJson.Replace("\\", "\\\\").Replace("'", "\\'");
+		await page.EvaluateAsync($"cardpen.form.set(JSON.parse('{escapedJson}'))");
+		await page.EvaluateAsync("cardpen.write.generate(cardpen.form.get(), 'image')");
+
+		// Étape 3 : Obtenir une référence sur l'iframe
+		Log("Getting iframe handle...");
+		var iframeElement = await page.QuerySelectorAsync("#cpOutput");
+		var iframe = await iframeElement.ContentFrameAsync();
+		if (iframe == null)
 		{
-			Log("Waiting for card rendering to complete...");
-			await page.WaitForFunctionAsync("() => document.getElementById('cpOutput')?.contentWindow?.cardRenderingComplete === true", null, new PageWaitForFunctionOptions { Timeout = 60000 });
-			Log("Card rendering confirmed.");
-		}
-		catch (Exception ex)
-		{
-			Log("Timeout waiting for cards to render. Dumping console and taking screenshot.");
-			foreach (var msg in consoleMessages) { Log(msg); }
-			var screenshotPath = $"debug_screenshot_{DateTime.Now:yyyyMMdd_HHmmss}.png";
-			await page.ScreenshotAsync(new() { Path = screenshotPath, FullPage = true });
-			Log($"Screenshot saved to: {screenshotPath}");
-			throw new Exception("Failed to render cards.", ex);
+			throw new ApplicationException("Could not find or access the content of the #cpOutput iframe.");
 		}
 
-		var dpi = await page.Locator("#dpi").InputValueAsync();
-		toReturn.Dpi = Convert.ToInt32(dpi);
-		await ClickGenerateAndWait(objIFrame, consoleMessages);
+		// Étape 4 : Appeler directement la fonction de génération d'images
+		Log("Calling generateImages() in iframe context...");
+		await iframe.EvaluateAsync("generateImages()");
+
+		// Étape 5 : Attendre la fin de la génération des images, qui est le seul signal fiable.
+		Log("Waiting for image generation to finish...");
+		var zipButtonLocator = iframe.Locator("#zipButton");
+		await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 60000 });
+		Log("Image generation process completed successfully.");
+
 
 		if (cardSetDocument.CsvType == null)
 		{
@@ -352,63 +358,11 @@ public class HarvestManager : IAsyncDisposable
 		var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
 		var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { cardSetDocument.CardSetDocument.csv });
 		var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
+
+		var objIFrame = page.FrameLocator("#cpOutput");
 		await DownloadImages(toReturn, objIFrame, cardIds);
+
 		return toReturn;
-	}
-
-	public async Task UploadCardPenDocument(IPage page, CardSetPayload cardSetDocument, bool pauseForEdits)
-	{
-		Log($"Generating CardSet {cardSetDocument.FileName} by direct data injection.");
-		var jsonString = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
-		var escapedJsonString = System.Text.Json.JsonSerializer.Serialize(jsonString);
-
-		var script = $"let jsonData = JSON.parse({escapedJsonString}); window.cardpen.form.set(jsonData); window.cardpen.write.generate(window.cardpen.form.get(), 'image');";
-		await page.EvaluateAsync(script);
-
-		Log("Data injection script executed.");
-		if (pauseForEdits)
-		{
-			Log("Browser is paused. Press any key to resume.");
-			Console.Read();
-		}
-	}
-
-	public async Task WaitForCards(IPage driver, IFrameLocator objIFrame)
-	{
-		Log("=== Entering WaitForCards ===");
-		var objCardTag = objIFrame.Locator("card");
-		Log("Waiting for cards to appear and be visible...");
-		
-		try
-		{
-			await objCardTag.First.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 60000 });
-			Log("First card is visible.");
-		}
-		catch (TimeoutException)
-		{
-			Log("Timeout (60s) while waiting for the first card to become visible.");
-			throw;
-		}
-
-		var finalCount = await objCardTag.CountAsync();
-		Log($"Final card count: {finalCount}");
-		Log("=== Exiting WaitForCards ===");
-	}
-
-	public async Task ClickGenerateAndWait(IFrameLocator objIFrame, List<string> consoleMessages = null)
-	{
-		Log("=== Entering ClickGenerateAndWait ===");
-		var objGenerateButton = objIFrame.Locator("#generateButton");
-		await objGenerateButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 60000 });
-		await objGenerateButton.ClickAsync();
-		var zipButton = objIFrame.Locator("#zipButton");
-		await zipButton.WaitForAsync(new LocatorWaitForOptions() { State = WaitForSelectorState.Visible, Timeout = 120000 });
-		Log("Zip button is visible.");
-		var generatedImagesDiv = objIFrame.Locator("#cpImages");
-		var generatedImages = generatedImagesDiv.Locator("img");
-		var imageCount = await generatedImages.CountAsync();
-		Log($"Found {imageCount} generated images.");
-		Log("=== Exiting ClickGenerateAndWait ===");
 	}
 
     public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds)

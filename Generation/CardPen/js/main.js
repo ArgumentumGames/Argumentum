@@ -1433,7 +1433,6 @@ var cardpen = {};
                         }
                         formatted += '<page>\n';
                     }
-                    cards[c].cards = cards;
                     cards[c].cardIndex = c + 1;
                     formatted += compiledTemplate({ cardpen: cards[c] });
                 }

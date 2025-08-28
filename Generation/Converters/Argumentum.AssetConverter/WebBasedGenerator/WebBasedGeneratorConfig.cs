@@ -50,11 +50,11 @@ namespace Argumentum.AssetConverter
 
 
 		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
-		public string LocalCardpenUrl { get; set; } = @"http://cardpen.dnndev.me/Generation/CardPen/index.html";
+		public string LocalCardpenUrl { get; set; } = @"http://localhost:5258/index.html";
 
 
 
-		public bool UseLocalCardpen { get; set; } = false;
+		public bool UseLocalCardpen { get; set; } = true;
 
 
 
@@ -119,7 +119,8 @@ namespace Argumentum.AssetConverter
 						}),
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Virtues_Face_fr.json",
-					}
+					},
+					BackCardSetInfo = new CardSetInfo()
 				},
 				new CardSetConfig(){
 					Name =KnownCardSets.Scenarii,
@@ -347,7 +348,7 @@ namespace Argumentum.AssetConverter
 				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_Virtues_fr.pdf",
-					Enabled = true,
+					Enabled = false,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()
