@@ -224,7 +224,7 @@ namespace Argumentum.AssetConverter
 						{
 							"1"
 						}),
-						RowsetNb = 4
+						RowsetNb = 0  // ✅ FIX: Désactiver le regroupement pour Print&Play (27 cartes doivent être générées individuellement)
 					}
 				},
 				new CardSetConfig(){
@@ -318,6 +318,25 @@ namespace Argumentum.AssetConverter
 								WidthMM = 60,
 							},
 							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Memo,
+							NbCopies = 7,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards = new DocumentCard()
 							{
 								BorderMM = 0,
 								HeigthMM = 113,
@@ -707,6 +726,41 @@ namespace Argumentum.AssetConverter
 							}
 						},
 					}),
+				},
+				// AJOUTER CI-DESSOUS LES CONFIGURATIONS RESTAURÉES
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum-PokerCards-Restored.pdf", // Nom modifié pour éviter les conflits
+					Enabled = true,
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet() { CardSetName = KnownCardSets.Scenarii },
+						new DocumentCardSet() { CardSetName = KnownCardSets.Fallacies },
+						new DocumentCardSet() { CardSetName = KnownCardSets.Virtues }
+					})
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum-TarotCards-Restored.pdf", // Nom modifié pour éviter les conflits
+					Enabled = true,
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet() { CardSetName = KnownCardSets.Rules },
+						new DocumentCardSet() { CardSetName = KnownCardSets.Scenarii },
+						new DocumentCardSet() { CardSetName = KnownCardSets.Fallacies },
+						new DocumentCardSet() { CardSetName = KnownCardSets.Virtues }
+					})
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum-Fallacies-Web-A0-Restored.pdf", // Nom modifié pour éviter les conflits
+					Enabled = true,
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+					PageSize = "A0",
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet() { CardSetName = KnownCardSets.FallaciesWeb }
+					})
 				}
 			});
 

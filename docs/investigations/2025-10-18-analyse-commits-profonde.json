@@ -1,0 +1,205 @@
+[
+  {
+    "FileName": "7.2.3.4.png",
+    "CommitCount": 1,
+    "Commits": [
+      {
+        "Hash": "b55fe0b0",
+        "Date": "2024-04-19 00:17:16 +0200",
+        "Message": "Clean up images fallacies",
+        "Exists": true,
+        "SizeKB": 648.56
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  },
+  {
+    "FileName": "2.3.2.2.1.png",
+    "CommitCount": 4,
+    "Commits": [
+      {
+        "Hash": "07d72133",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": false,
+        "SizeKB": 0.0
+      },
+      {
+        "Hash": "a01f26ea",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": true,
+        "SizeKB": 993.25
+      },
+      {
+        "Hash": "d5a63139",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 414.82
+      },
+      {
+        "Hash": "c690fa99",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 414.82
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  },
+  {
+    "FileName": "5.2.1.3.png",
+    "CommitCount": 4,
+    "Commits": [
+      {
+        "Hash": "35d1d449",
+        "Date": "2024-04-17 23:12:31 +0200",
+        "Message": "illustrations",
+        "Exists": false,
+        "SizeKB": 0.0
+      },
+      {
+        "Hash": "369f7449",
+        "Date": "2024-04-17 23:12:31 +0200",
+        "Message": "illustrations",
+        "Exists": true,
+        "SizeKB": 646.73
+      },
+      {
+        "Hash": "d5a63139",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 167.53
+      },
+      {
+        "Hash": "c690fa99",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 167.53
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  },
+  {
+    "FileName": "2.3.2.png",
+    "CommitCount": 4,
+    "Commits": [
+      {
+        "Hash": "07d72133",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": false,
+        "SizeKB": 0.0
+      },
+      {
+        "Hash": "a01f26ea",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": true,
+        "SizeKB": 592.44
+      },
+      {
+        "Hash": "d5a63139",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 257.14
+      },
+      {
+        "Hash": "c690fa99",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 257.14
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  },
+  {
+    "FileName": "2.3.1.png",
+    "CommitCount": 4,
+    "Commits": [
+      {
+        "Hash": "07d72133",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": false,
+        "SizeKB": 0.0
+      },
+      {
+        "Hash": "a01f26ea",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": true,
+        "SizeKB": 1041.82
+      },
+      {
+        "Hash": "d5a63139",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 483.71
+      },
+      {
+        "Hash": "c690fa99",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 483.71
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  },
+  {
+    "FileName": "7.2.3.3.png",
+    "CommitCount": 1,
+    "Commits": [
+      {
+        "Hash": "b55fe0b0",
+        "Date": "2024-04-19 00:17:16 +0200",
+        "Message": "Clean up images fallacies",
+        "Exists": true,
+        "SizeKB": 569.27
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  },
+  {
+    "FileName": "6.1.1.2.png",
+    "CommitCount": 4,
+    "Commits": [
+      {
+        "Hash": "07d72133",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": false,
+        "SizeKB": 0.0
+      },
+      {
+        "Hash": "a01f26ea",
+        "Date": "2024-03-15 18:20:50 +0100",
+        "Message": "illustrations",
+        "Exists": true,
+        "SizeKB": 3634.2
+      },
+      {
+        "Hash": "d5a63139",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 248.36
+      },
+      {
+        "Hash": "c690fa99",
+        "Date": "2023-03-17 09:54:51 +0100",
+        "Message": "Renamed Cards folder",
+        "Exists": true,
+        "SizeKB": 248.36
+      }
+    ],
+    "Status": "RÉCUPÉRABLE (commit valide trouvé)"
+  }
+]

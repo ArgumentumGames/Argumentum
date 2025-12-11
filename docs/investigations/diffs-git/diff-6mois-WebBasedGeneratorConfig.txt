@@ -1,0 +1,511 @@
+diff --git a/Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs b/Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs
+index 7239a706..7e3062fc 100644
+--- a/Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs
++++ b/Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs
+@@ -50,11 +50,11 @@ namespace Argumentum.AssetConverter
+ 
+ 
+ 		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
+-		public string LocalCardpenUrl { get; set; } = @"http://cardpen.dnndev.me/Generation/CardPen/index.html";
++		public string LocalCardpenUrl { get; set; } = @"http://localhost:5258/index.html";
+ 
+ 
+ 
+-		public bool UseLocalCardpen { get; set; } = false;
++		public bool UseLocalCardpen { get; set; } = true;
+ 
+ 
+ 
+@@ -77,40 +77,12 @@ namespace Argumentum.AssetConverter
+ 			{
+ 				new CardSetConfig(){
+ 					Name = KnownCardSets.Rules,
+-					FaceCardSetInfo = new CardSetInfo()
+-						{
+-							DataSet = KnownDataSets.Rules,
+-							JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
+-							JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
+-							SkipDataUpdate = false
+-						}
+-					  },
+-				new CardSetConfig(){
+-					Name =KnownCardSets.Memo,
+ 					FaceCardSetInfo = new CardSetInfo()
+ 					{
+-						DataSet = KnownDataSets.FallaciesTaxonomy,
+-						CsvFilterField = "carte",
+-						CsvFilterValues = new List<string>(new []
+-						{
+-							"1",
+-							"2"
+-						}),
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Face_fr.json",
+-					},
+-					BackCardSetInfo = new CardSetInfo()
+-					{
+-						DataSet = KnownDataSets.FallaciesTaxonomy,
+-						CsvFilterField = "carte",
+-						CsvFilterValues = new List<string>(new []
+-						{
+-							"1",
+-							"2"
+-						}),
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Back_fr.json",
+-						
++						DataSet = KnownDataSets.Rules,
++						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
++						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
++						SkipDataUpdate = false
+ 					}
+ 				},
+ 				new CardSetConfig(){
+@@ -126,7 +98,7 @@ namespace Argumentum.AssetConverter
+ 						}),
+ 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+ 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
+-							PauseForEdits = false
++						PauseForEdits = false
+ 					},
+ 					BackCardSetInfo = new CardSetInfo()
+ 					{
+@@ -146,15 +118,9 @@ namespace Argumentum.AssetConverter
+ 							"1",
+ 						}),
+ 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Virtues_Face_fr.json"
+-
++						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Virtues_Face_fr.json",
+ 					},
+ 					BackCardSetInfo = new CardSetInfo()
+-					{
+-						DataSet = KnownDataSets.None,
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+-					}
+ 				},
+ 				new CardSetConfig(){
+ 					Name =KnownCardSets.Scenarii,
+@@ -163,6 +129,7 @@ namespace Argumentum.AssetConverter
+ 						DataSet = KnownDataSets.Scenarii,
+ 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+ 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Face_fr.json",
++						RowsetNb = 14
+ 					},
+ 					BackCardSetInfo = new CardSetInfo()
+ 					{
+@@ -200,10 +167,10 @@ namespace Argumentum.AssetConverter
+ 						DataSet = KnownDataSets.FallaciesTaxonomy,
+ 						CsvFilterField = "carte",
+ 						CsvFilterValues = new List<string>(new []
+-							{
+-								"1",
+-								"2"
+-							}),
++						{
++							"1",
++							"2"
++						}),
+ 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json",
+ 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_3_fr.json",
+ 
+@@ -216,13 +183,21 @@ namespace Argumentum.AssetConverter
+ 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+ 					}
+ 				},
++				new CardSetConfig(){
++					Name =KnownCardSets.RulesPrintAndPlay,
++					FaceCardSetInfo = new CardSetInfo()
++					{
++						DataSet = KnownDataSets.RulesPrintAndPlay,
++						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
++						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
++						SkipDataUpdate = false,
++					}
++				},
+ 				new CardSetConfig(){
+ 					Name =KnownCardSets.FallaciesPrintAndPlay,
+ 					FaceCardSetInfo = new CardSetInfo()
+ 					{
+ 						DataSet = KnownDataSets.FallaciesTaxonomy,
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
+ 						CsvFilterField = "print_and_play",
+ 						CsvFilterValues = new List<string>(new []
+ 						{
+@@ -247,32 +222,11 @@ namespace Argumentum.AssetConverter
+ 						CsvFilterField = "print_and_play",
+ 						CsvFilterValues = new List<string>(new []
+ 						{
+-							"1",
+-						})
+-					},
+-					BackCardSetInfo = new CardSetInfo()
+-					{
+-						DataSet = KnownDataSets.Scenarii,
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
+-						CsvFilterField = "print_and_play",
+-						CsvFilterValues = new List<string>(new []
+-							{
+-								"1",
+-							}),
++							"1"
++						}),
+ 						RowsetNb = 4
+ 					}
+ 				},
+-				new CardSetConfig(){
+-					Name =KnownCardSets.RulesPrintAndPlay,
+-					FaceCardSetInfo = new CardSetInfo()
+-					{
+-						DataSet = KnownDataSets.RulesPrintAndPlay,
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
+-						SkipDataUpdate = false,
+-					}
+-				},
+ 				new CardSetConfig(){
+ 					Name =KnownCardSets.MemoPrintAndPlay,
+ 					FaceCardSetInfo = new CardSetInfo()
+@@ -303,22 +257,6 @@ namespace Argumentum.AssetConverter
+ 				new CardSetConfig(){
+ 					Name =KnownCardSets.FallaciesWeb,
+ 					FaceCardSetInfo = new CardSetInfo()
+-					{
+-						DataSet = KnownDataSets.FallaciesTaxonomy,
+-						CsvFilterField = "carte",
+-						CsvFilterValues = new List<string>(new []
+-						{
+-							"1",
+-							"2"
+-						}),
+-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json",
+-						Dpi = 400
+-					}
+-				},
+-				new CardSetConfig(){
+-					Name =KnownCardSets.FallaciesWebLight,
+-					FaceCardSetInfo = new CardSetInfo()
+ 					{
+ 						DataSet = KnownDataSets.FallaciesTaxonomy,
+ 						CsvFilterField = "carte",
+@@ -346,9 +284,9 @@ namespace Argumentum.AssetConverter
+ 						}),
+ 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+ 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json",
+-						Dpi = 100
++						Dpi = 72
+ 					}
+-				}
++				},
+ 			});
+ 
+ 
+@@ -373,25 +311,6 @@ namespace Argumentum.AssetConverter
+ 							NbCopies = 1,
+ 							ConvertToCmyk = true,
+ 							SaveOriginalImage = false,
+-							FrontCards = new DocumentCard()
+-								{
+-									BorderMM = 0,
+-									HeigthMM = 113,
+-									WidthMM = 60,
+-								},
+-							BackCards =  new DocumentCard()
+-							{
+-								BorderMM = 0,
+-								HeigthMM = 113,
+-								WidthMM = 60,
+-							}
+-						},
+-						new DocumentCardSet()
+-						{
+-							CardSetName = KnownCardSets.Memo,
+-							NbCopies = 7,
+-							ConvertToCmyk = true,
+-							SaveOriginalImage = false,
+ 							FrontCards = new DocumentCard()
+ 							{
+ 								BorderMM = 0,
+@@ -429,8 +348,7 @@ namespace Argumentum.AssetConverter
+ 				new CardSetDocumentConfig()
+ 				{
+ 					DocumentName = "Argumentum_TarotCards_Virtues_fr.pdf",
+-					Enabled = true,
+-					Translations = new List<(string sourceLang, string destLang)>(),
++					Enabled = false,
+ 					CardSets = new List<DocumentCardSet>(new[]
+ 					{
+ 						new DocumentCardSet()
+@@ -451,7 +369,7 @@ namespace Argumentum.AssetConverter
+ 								HeigthMM = 113,
+ 								WidthMM = 60,
+ 							}
+-						},
++						}
+ 					}),
+ 				},
+ 				new CardSetDocumentConfig()
+@@ -487,16 +405,10 @@ namespace Argumentum.AssetConverter
+ 						}
+ 					}),
+ 				},
+-				 new CardSetDocumentConfig()
++				new CardSetDocumentConfig()
+ 				{
+ 					DocumentName = "Argumentum_TarotCards_Print&Play_A4_fr.pdf",
+ 					Enabled = true,
+-					Translations = new List<(string sourceLang, string destLang)>(new []
+-					{
+-						("fr","en"), 
+-	                    ("fr", "ru"),
+-	                    ("fr", "pt")
+-					}),
+ 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+ 					PageSize = "A4",
+ 					CardSets = new List<DocumentCardSet>(new[]
+@@ -508,11 +420,11 @@ namespace Argumentum.AssetConverter
+ 							ConvertToCmyk = true,
+ 							SaveOriginalImage = false,
+ 							FrontCards = new DocumentCard()
+-								{
+-									BorderMM = 0,
+-									HeigthMM = 113,
+-									WidthMM = 60,
+-								},
++							{
++								BorderMM = 0,
++								HeigthMM = 113,
++								WidthMM = 60,
++							},
+ 							BackCards =  new DocumentCard()
+ 							{
+ 								BorderMM = 0,
+@@ -522,8 +434,8 @@ namespace Argumentum.AssetConverter
+ 						},
+ 						new DocumentCardSet()
+ 						{
+-							CardSetName = KnownCardSets.MemoPrintAndPlay,
+-							NbCopies = 5,
++							CardSetName = KnownCardSets.FallaciesPrintAndPlay,
++							NbCopies = 1,
+ 							ConvertToCmyk = true,
+ 							SaveOriginalImage = false,
+ 							FrontCards = new DocumentCard()
+@@ -541,8 +453,8 @@ namespace Argumentum.AssetConverter
+ 						},
+ 						new DocumentCardSet()
+ 						{
+-							CardSetName = KnownCardSets.FallaciesPrintAndPlay,
+-							NbCopies = 1,
++							CardSetName = KnownCardSets.MemoPrintAndPlay,
++							NbCopies = 5,
+ 							ConvertToCmyk = true,
+ 							SaveOriginalImage = false,
+ 							FrontCards = new DocumentCard()
+@@ -564,12 +476,6 @@ namespace Argumentum.AssetConverter
+ 				{
+ 					DocumentName = "Argumentum_PokerCards_Print&Play_A4_fr.pdf",
+ 					Enabled = true,
+-					Translations = new List<(string sourceLang, string destLang)>(new []
+-					{
+-						("fr","en"),
+-						("fr", "ru"),
+-						("fr", "pt")
+-					}),
+ 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+ 					PageSize = "A4",
+ 					CardSets = new List<DocumentCardSet>(new[]
+@@ -616,42 +522,7 @@ namespace Argumentum.AssetConverter
+ 							CardSetName = KnownCardSets.FallaciesWeb,
+ 							NbCopies = 1,
+ 							ConvertToCmyk = false,
+-							SaveOriginalImage = false,
+-							FrontCards = new DocumentCard()
+-							{
+-								BorderMM = 0,
+-								HeigthMM = 69.5m,
+-								WidthMM = 69.5m,
+-							},
+-							//BackCards =  new DocumentCard()
+-							//{
+-							//	BorderMM = 0,
+-							//	HeigthMM = 70,
+-							//	WidthMM = 70,
+-							//}
+-						}
+-					}),
+-				},
+-				new CardSetDocumentConfig()
+-				{
+-					DocumentName = "Argumentum_Fallacies_Web_fr.pdf",
+-					Enabled = true,
+-					//Translations = new List<(string sourceLang, string destLang)>(new []
+-					//{
+-					//	("fr","en"),
+-					//	("fr", "ru"),
+-					//	("fr", "pt")
+-					//}),
+-					NoBack = true,
+-					DocumentFormat = CardDocumentFormat.FacesOnly,
+-					CardSets = new List<DocumentCardSet>(new[]
+-					{
+-						new DocumentCardSet()
+-						{
+-							CardSetName = KnownCardSets.FallaciesWeb,
+-							NbCopies = 1,
+-							ConvertToCmyk = true,
+-							SaveOriginalImage = false,
++							SaveOriginalImage = true,
+ 							FrontCards = new DocumentCard()
+ 							{
+ 								BorderMM = 0,
+@@ -679,10 +550,8 @@ namespace Argumentum.AssetConverter
+ 					}),
+ 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+ 					PageSize = "A0",
+-					Padding = 2,
+ 					NoBack = true,
+-					Header = "Logo_Argumentum & QRCode.png",
+-					NbColumns = 11,
++					Header = "Logo_Argumentum.png",
+ 					CardSets = new List<DocumentCardSet>(new[]
+ 					{
+ 						new DocumentCardSet()
+@@ -690,25 +559,25 @@ namespace Argumentum.AssetConverter
+ 							CardSetName = KnownCardSets.FallaciesWeb,
+ 							NbCopies = 1,
+ 							ConvertToCmyk = true,
+-							SaveOriginalImage = false,
++							SaveOriginalImage = true,
+ 							FrontCards = new DocumentCard()
+ 							{
+ 								BorderMM = 0,
+-								HeigthMM = 69,
+-								WidthMM = 69,
++								HeigthMM = 72,
++								WidthMM = 72,
+ 							},
+-							//BackCards =  new DocumentCard()
+-							//{
+-							//	BorderMM = 0,
+-							//	HeigthMM = 71,
+-							//	WidthMM = 71,
+-							//}
++							BackCards =  new DocumentCard()
++							{
++								BorderMM = 0,
++								HeigthMM = 72,
++								WidthMM = 72,
++							}
+ 						}
+ 					}),
+ 				},
+ 				new CardSetDocumentConfig()
+ 				{
+-					DocumentName = "Argumentum_Fallacies_Web_Thumbnails_fr.pdf",
++					DocumentName = "Argumentum_Fallacies_Web_Thumbnails_A4_fr.pdf",
+ 					Enabled = true,
+ 					Translations = new List<(string sourceLang, string destLang)>(new []
+ 					{
+@@ -718,8 +587,6 @@ namespace Argumentum.AssetConverter
+ 					}),
+ 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+ 					PageSize = "A4",
+-					ImageFormat = MagickFormat.Png,
+-					TargetDensity = 0,
+ 					NoBack = true,
+ 					CardSets = new List<DocumentCardSet>(new[]
+ 					{
+@@ -748,11 +615,6 @@ namespace Argumentum.AssetConverter
+ 				{
+ 					DocumentName = "Argumentum_TarotCards_2_fr.pdf",
+ 					Enabled = false,
+-                    //Translations = new List<(string sourceLang, string destLang)>(new []
+-                    //{
+-	                   // ("fr","en"), 
+-	                   // ("fr", "ru")
+-                    //}),
+ 					CardSets = new List<DocumentCardSet>(new[]
+ 					{
+ 						new DocumentCardSet()
+@@ -775,25 +637,6 @@ namespace Argumentum.AssetConverter
+ 							}
+ 						},
+ 						new DocumentCardSet()
+-						{
+-							CardSetName = KnownCardSets.Memo,
+-							NbCopies = 7,
+-							ConvertToCmyk = true,
+-							SaveOriginalImage = false,
+-							FrontCards = new DocumentCard()
+-							{
+-								BorderMM = 0,
+-								HeigthMM = 113,
+-								WidthMM = 60,
+-							},
+-							BackCards =  new DocumentCard()
+-							{
+-								BorderMM = 0,
+-								HeigthMM = 113,
+-								WidthMM = 60,
+-							}
+-						},
+-						new DocumentCardSet()
+ 						{
+ 							CardSetName = KnownCardSets.Fallacies2,
+ 							NbCopies = 1,
+@@ -811,18 +654,18 @@ namespace Argumentum.AssetConverter
+ 								HeigthMM = 113,
+ 								WidthMM = 60,
+ 							}
+-						},
++						}
+ 					}),
+ 				},
+ 				new CardSetDocumentConfig()
+ 				{
+ 					DocumentName = "Argumentum_TarotCards_3_fr.pdf",
+ 					Enabled = false,
+-                    //Translations = new List<(string sourceLang, string destLang)>(new []
+-                    //{
+-	                   // ("fr","en"), 
+-	                   // ("fr", "ru")
+-                    //}),
++					//Translations = new List<(string sourceLang, string destLang)>(new []
++					//{
++					// ("fr","en"),
++					// ("fr", "ru")
++					//}),
+ 					CardSets = new List<DocumentCardSet>(new[]
+ 					{
+ 						new DocumentCardSet()
+@@ -845,25 +688,6 @@ namespace Argumentum.AssetConverter
+ 							}
+ 						},
+ 						new DocumentCardSet()
+-						{
+-							CardSetName = KnownCardSets.Memo,
+-							NbCopies = 7,
+-							ConvertToCmyk = true,
+-							SaveOriginalImage = false,
+-							FrontCards = new DocumentCard()
+-							{
+-								BorderMM = 0,
+-								HeigthMM = 113,
+-								WidthMM = 60,
+-							},
+-							BackCards =  new DocumentCard()
+-							{
+-								BorderMM = 0,
+-								HeigthMM = 113,
+-								WidthMM = 60,
+-							}
+-						},
+-						new DocumentCardSet()
+ 						{
+ 							CardSetName = KnownCardSets.Fallacies3,
+ 							NbCopies = 1,
