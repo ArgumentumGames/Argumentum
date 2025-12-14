@@ -13,7 +13,7 @@ using Utf8Json;
 using System.Text.Json;
 using Argumentum.AssetConverter.Entities;
 using Xunit.Abstractions;
- 
+
  namespace Argumentum.AssetConverter;
 public class HarvestManager : IAsyncDisposable
 {
@@ -34,7 +34,7 @@ public class HarvestManager : IAsyncDisposable
 	private static readonly SemaphoreSlim _browserSemaphore = new SemaphoreSlim(1, 1);
 	private static IBrowser _browser;
 	public IPage LastPageUsed { get; private set; }
-	public bool KeepBrowserOpen { get; set; } = false;
+	public bool KeepBrowserOpen { get; set; } = true;
 	
 	private async Task<IBrowser> GetBrowserAsync()
 	{
@@ -52,7 +52,7 @@ public class HarvestManager : IAsyncDisposable
 					Log("Playwright created. Launching Chromium.");
 					_browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 					{
-						Headless = true,
+						Headless = true, // ✅ Mode headless pour exécution sans encombrer le bureau
 						Timeout = 120 * 1000,
 					});
 					Log("Browser launched successfully.");
@@ -104,7 +104,7 @@ public class HarvestManager : IAsyncDisposable
 			.ToArray();
 		foreach (var usedCardSet in targetCardSets)
 		{
-			usedCardSet.Config = Config.CardSets.First(c => c.Name == usedCardSet.Name);
+			usedCardSet.Config = Config.CardSets.FirstOrDefault(c => c.Name == usedCardSet.Name);
 		}
 		Log($"Found {targetCardSets.Length} target card sets to process.");
 		return targetCardSets;
@@ -114,15 +114,18 @@ public class HarvestManager : IAsyncDisposable
 	{
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsLoading, (configCardSet, token) =>
 		{
-			var targetlanguages = GetTargetLanguages(configCardSet);
-			foreach (var currentLanguage in targetlanguages)
+			if (configCardSet.Config != null)
 			{
-				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
-				if (File.Exists(jsonHarvestName))
+				var targetlanguages = GetTargetLanguages(configCardSet);
+				foreach (var currentLanguage in targetlanguages)
 				{
-					Log($"Found existing Harvest {jsonHarvestName}");
-					var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
-					harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
+					var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
+					if (File.Exists(jsonHarvestName))
+					{
+						Log($"Found existing Harvest {jsonHarvestName}");
+						var funcLoad = () => { return LoadCardSetHarvest(jsonHarvestName); };
+						harvestDictionary[(configCardSet.Name, currentLanguage)] = funcLoad;
+					}
 				}
 			}
 			return ValueTask.CompletedTask;
@@ -165,18 +168,40 @@ public class HarvestManager : IAsyncDisposable
 
 	public async Task<(CardSetPayload front, CardSetPayload back)> PrepareCardSetDocuments(CardSetJob configCardSet, string currentLanguage)
 	{
+		Logger.Log($"[PrepareCardSetDocuments] Processing CardSet: {configCardSet?.Name}, Language: {currentLanguage}");
+
+		if (configCardSet == null) throw new ArgumentNullException(nameof(configCardSet));
+		if (configCardSet.Config == null) throw new NullReferenceException($"configCardSet.Config is null for {configCardSet.Name}");
+
 		(CardSetPayload front, CardSetPayload back) cardSetDocuments;
 		if (currentLanguage == AssetConverterConfig.LocalizationConfig.DefaultLanguage)
 		{
-			var frontCardSetDocument = await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument(AssetConverterConfig);
-			var backCardSetDocument = await configCardSet.Config.BackCardSetInfo.GetCardSetDocument(AssetConverterConfig);
+			if (configCardSet.Config.FaceCardSetInfo == null)
+			{
+				Logger.Log($"[WARNING] FaceCardSetInfo is null for {configCardSet.Name}. Skipping front card generation.");
+			}
+			var frontCardSetDocument = configCardSet.Config.FaceCardSetInfo != null
+				? await configCardSet.Config.FaceCardSetInfo.GetCardSetDocument(AssetConverterConfig)
+				: null;
+
+			if (configCardSet.Config.BackCardSetInfo == null)
+			{
+				Logger.Log($"[WARNING] BackCardSetInfo is null for {configCardSet.Name}. Skipping back card generation.");
+			}
+			var backCardSetDocument = configCardSet.Config.BackCardSetInfo != null
+				? await configCardSet.Config.BackCardSetInfo.GetCardSetDocument(AssetConverterConfig)
+				: null;
+				
 			cardSetDocuments = (frontCardSetDocument, backCardSetDocument);
 		}
 		else
 		{
 			cardSetDocuments = await AssetConverterConfig.LocalizationConfig.TranslateCardSet(configCardSet.Config, (AssetConverterConfig.LocalizationConfig.DefaultLanguage, currentLanguage), AssetConverterConfig);
 		}
-		await UpdateCardSetDocumentInfo(cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
+		if (cardSetDocuments.front != null)
+		{
+			await UpdateCardSetDocumentInfo(cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
+		}
 		if (cardSetDocuments.back != null)
 		{
 			await UpdateCardSetDocumentInfo(cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
@@ -186,39 +211,113 @@ public class HarvestManager : IAsyncDisposable
 
 	private async Task UpdateCardSetDocumentInfo(CardSetPayload cardSetDocumentWrapper, CardSetInfo cardSetInfo)
 	{
-		if (!cardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(cardSetInfo.DataSet))
+		if (cardSetInfo != null && !cardSetInfo.SkipDataUpdate && !string.IsNullOrEmpty(cardSetInfo.DataSet))
 		{
 			Log("Dumping AssetConverterConfig and cardSetInfo before First()");
 			Logger.LogJson(System.Text.Json.JsonSerializer.Serialize(AssetConverterConfig));
 			Log($"Searching for DataSet with name: '{cardSetInfo.DataSet}'");
-			var dataSet = AssetConverterConfig.DataSets.First(ds => ds.Name == cardSetInfo.DataSet);
-			string csvContent;
-			if (!string.IsNullOrEmpty(cardSetInfo.CsvFilterField) && cardSetInfo.CsvFilterValues.Count>0)
+			var dataSet = AssetConverterConfig.DataSets.FirstOrDefault(ds => ds.Name == cardSetInfo.DataSet);
+			if (dataSet != null)
 			{
-				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams, ",", "",  cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
+				string csvContent;
+				if (!string.IsNullOrEmpty(cardSetInfo.CsvFilterField) && cardSetInfo.CsvFilterValues.Count > 0)
+				{
+					csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams, ",", "", cardSetInfo.CsvFilterField, cardSetInfo.CsvFilterValues);
+				}
+				else
+				{
+					csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams);
+				}
+				if (!string.IsNullOrEmpty(csvContent) && cardSetDocumentWrapper?.CardSetDocument != null)
+				{
+					// ✅ CORRECTION: Échapper les newlines pour éviter erreur PapaParse
+					// Le CSV source contient de vraies newlines dans les cellules markdown (entre guillemets)
+					// PapaParse ne peut pas les parser correctement, il faut les échapper en \\n
+					cardSetDocumentWrapper.CardSetDocument.csv = csvContent.Replace("\r\n", "\\n").Replace("\r", "\\n").Replace("\n", "\\n");
+				}
+				cardSetDocumentWrapper.CsvType = dataSet.CsvType;
 			}
-			else
-			{
-				csvContent = await dataSet.GetContent(AssetConverterConfig.UseDebugParams);
-			}
-			if (csvContent != null)
-			{
-				cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
-			}
-			cardSetDocumentWrapper.CsvType = dataSet.CsvType;
 		}
-		if (cardSetInfo.Dpi > 0)
+		if (cardSetInfo != null && cardSetInfo.Dpi > 0)
 		{
 			cardSetDocumentWrapper.CardSetDocument.dpi = cardSetInfo.Dpi;
 		}
-		if (cardSetInfo.RowsetNb > 0)
+		if (cardSetInfo != null && cardSetInfo.RowsetNb > 0)
 		{
 			cardSetDocumentWrapper.CardSetDocument.rscount = cardSetInfo.RowsetNb;
+			Console.WriteLine($"[DEBUG rscount] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': rscount set to {cardSetInfo.RowsetNb}");
 		}
-		if (!string.IsNullOrEmpty(cardSetInfo.CardSize))
+		else
+		{
+			// ✅ CORRECTION BUG #3: Forcer rscount=0 pour ÉCRASER les valeurs précédentes
+			// Le formulaire CardPen fusionne les données, donc on doit TOUJOURS envoyer rscount
+			cardSetDocumentWrapper.CardSetDocument.rscount = 0;
+			Console.WriteLine($"[DEBUG rscount] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': rscount FORCED to 0 (prevents contamination)");
+		}
+		if (cardSetInfo != null && !string.IsNullOrEmpty(cardSetInfo.CardSize))
 		{
 			cardSetDocumentWrapper.CardSetDocument.csize = cardSetInfo.CardSize;
 		}
+	}
+
+	/// <summary>
+	/// Nettoie le contenu CSV en remplaçant les cellules vides par des chaînes vides
+	/// pour éviter les valeurs undefined qui cassent le parser Markdown de CardPen
+	/// </summary>
+	private string CleanCsvContent(string csvContent)
+	{
+		if (string.IsNullOrEmpty(csvContent))
+		{
+			return csvContent;
+		}
+
+		var lines = csvContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+		var cleanedLines = new List<string>();
+
+		foreach (var line in lines)
+		{
+			if (string.IsNullOrWhiteSpace(line))
+			{
+				cleanedLines.Add(line);
+				continue;
+			}
+
+			// Parser CSV simple : séparer par virgules en tenant compte des guillemets
+			var cells = new List<string>();
+			var currentCell = new System.Text.StringBuilder();
+			bool inQuotes = false;
+
+			for (int i = 0; i < line.Length; i++)
+			{
+				char c = line[i];
+
+				if (c == '"')
+				{
+					inQuotes = !inQuotes;
+					currentCell.Append(c);
+				}
+				else if (c == ',' && !inQuotes)
+				{
+					// Fin de cellule : nettoyer et ajouter
+					var cellValue = currentCell.ToString().Trim();
+					// Remplacer les cellules vides par des chaînes vides entre guillemets
+					cells.Add(string.IsNullOrWhiteSpace(cellValue) || cellValue == "\"\"" ? "\"\"" : cellValue);
+					currentCell.Clear();
+				}
+				else
+				{
+					currentCell.Append(c);
+				}
+			}
+
+			// Ajouter la dernière cellule
+			var lastCellValue = currentCell.ToString().Trim();
+			cells.Add(string.IsNullOrWhiteSpace(lastCellValue) || lastCellValue == "\"\"" ? "\"\"" : lastCellValue);
+
+			cleanedLines.Add(string.Join(",", cells));
+		}
+
+		return string.Join("\n", cleanedLines);
 	}
 
 	private ConcurrentStack<IPage> Freepages = new ConcurrentStack<IPage>();
@@ -250,7 +349,14 @@ public class HarvestManager : IAsyncDisposable
 		var page = await GetFreePage(browser);
 		var consoleMessages = new List<string>();
 
-		void Page_Console(object sender, IConsoleMessage msg) => Log($"[BROWSER CONSOLE] {msg.Type}: {msg.Text}");
+		void Page_Console(object sender, IConsoleMessage msg)
+		{
+			Log("--- CONSOLE MESSAGE RECEIVED ---");
+			Log($"Type: {msg.Type}");
+			Log($"Text: {msg.Text}");
+			Log($"Location: {msg.Location}");
+			Log("--- END CONSOLE MESSAGE ---");
+		}
 		page.Console += Page_Console;
 
 		try
@@ -312,58 +418,100 @@ public class HarvestManager : IAsyncDisposable
 	}
 
 
-	public async Task<CardPenHarvest> GenerateImages(IPage page, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
-	{
-		var toReturn = new CardPenHarvest();
-		Log($"Generating CardSet {cardSetDocument.FileName} by direct data injection.");
+	      public async Task<CardPenHarvest> GenerateImages(IPage page, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
+	      {
+	          var toReturn = new CardPenHarvest();
+	          if (cardSetDocument?.CardSetDocument == null)
+	          {
+	              return toReturn;
+	          }
+	          
+	          // Sanitize data to prevent JS errors
+	          cardSetDocument.CardSetDocument.csv ??= string.Empty;
+	          cardSetDocument.CardSetDocument.mustache ??= string.Empty;
+	          cardSetDocument.CardSetDocument.css ??= string.Empty;
+	          
+	          try
+	          {
+	              // Étape 1 & 2 : Injection des données et déclenchement du rendu de l'iframe
+	              Log("Injecting data and triggering iframe render...");
+	              
+	              // [DEBUG] Compter les lignes CSV réelles
+	              var csv = cardSetDocument.CardSetDocument.csv ?? string.Empty;
+	              var realCsvLines = csv.Split(new[] { "\n" }, StringSplitOptions.None).Length;
+	              Log($"[DEBUG] CSV real newlines count: {realCsvLines}");
+	              Log($"[DEBUG] CSV first 500 chars: {csv.Substring(0, Math.Min(500, csv.Length))}");
+	              
+	              // ✅ CORRECTION BUG #3: Sérialiser normalement SANS ignorer les valeurs par défaut
+	              // TOUJOURS inclure rscount dans le JSON pour écraser les valeurs précédentes du formulaire
+	              var cardsJson = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
+	              
+	              // [DEBUG] Log JSON first chars to inspect escaping
+	              Log($"[DEBUG] JSON first 500 chars: {cardsJson.Substring(0, Math.Min(500, cardsJson.Length))}");
+	              
+	              // ✅ CORRECTION FINALE: Passer le JSON comme argument de fonction
+	              // Cela évite les problèmes d'échappement multiples des string literals JavaScript
+	              await page.EvaluateAsync("(jsonString) => cardpen.form.set(JSON.parse(jsonString))", cardsJson);
+	              await page.EvaluateAsync("cardpen.write.generate(cardpen.form.get(), 'image')");
 
-		// Étape 1 & 2 : Injection des données et déclenchement du rendu de l'iframe
-		Log("Injecting data and triggering iframe render...");
-		var cardsJson = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
-		// Note: Using a simple Replace for this specific case. For more complex scenarios, a full JS escaping library would be better.
-		var escapedJson = cardsJson.Replace("\\", "\\\\").Replace("'", "\\'");
-		await page.EvaluateAsync($"cardpen.form.set(JSON.parse('{escapedJson}'))");
-		await page.EvaluateAsync("cardpen.write.generate(cardpen.form.get(), 'image')");
+	              // Étape 3 : Obtenir une référence sur l'iframe
+	              Log("Getting iframe handle...");
+	              var iframeElement = await page.QuerySelectorAsync("#cpOutput");
+	              if (iframeElement == null)
+	              {
+	                  throw new ApplicationException("Could not find the #cpOutput iframe element.");
+	              }
+	              var iframe = await iframeElement.ContentFrameAsync();
+	              if (iframe == null)
+	              {
+	                  throw new ApplicationException("Could not find or access the content of the #cpOutput iframe.");
+	              }
 
-		// Étape 3 : Obtenir une référence sur l'iframe
-		Log("Getting iframe handle...");
-		var iframeElement = await page.QuerySelectorAsync("#cpOutput");
-		var iframe = await iframeElement.ContentFrameAsync();
-		if (iframe == null)
-		{
-			throw new ApplicationException("Could not find or access the content of the #cpOutput iframe.");
-		}
+	              // Étape 4 : Attendre que l'iframe soit prêt et appeler generateImages()
+	              // Note: frame.js est déjà chargé par CardPen via main.js ligne 1199
+	              Log("Waiting for iframe to be ready...");
+	              
+	              // Attendre que le bouton Generate Images soit présent (signal que l'iframe est chargé)
+	              var generateButtonLocator = iframe.Locator("#generateButton");
+	              await generateButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 30000 });
+	              Log("Generate button found, iframe is ready.");
+	              
+	              // Appeler generateImages() dans le contexte de l'iframe pour démarrer la génération
+	              Log("Calling generateImages() in iframe context...");
+	              await iframe.EvaluateAsync("generateImages()");
+	              Log("generateImages() called, waiting for completion...");
+	              
+	              // Attendre que le bouton ZIP devienne visible (signal que la génération est terminée)
+	              var zipButtonLocator = iframe.Locator("#zipButton");
+	              await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 120000 });
+	              Log("Image generation process completed successfully.");
 
-		// Étape 4 : Appeler directement la fonction de génération d'images
-		Log("Calling generateImages() in iframe context...");
-		await iframe.EvaluateAsync("generateImages()");
-
-		// Étape 5 : Attendre la fin de la génération des images, qui est le seul signal fiable.
-		Log("Waiting for image generation to finish...");
-		var zipButtonLocator = iframe.Locator("#zipButton");
-		await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 60000 });
-		Log("Image generation process completed successfully.");
-
-
-		if (cardSetDocument.CsvType == null)
-		{
-			Log($"WARNING: No CsvType for DataSet '{cardSetInfo.DataSet}'. Skipping image download.");
-			return toReturn;
-		}
-
-		var csvType = cardSetDocument.CsvType;
-		var classMapType = csvType.Assembly.GetType($"{csvType.FullName}ClassMap");
-		var csvBaseType = typeof(CsvBase<,>);
-		var genericCsvBaseType = csvBaseType.MakeGenericType(csvType, classMapType);
-		var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
-		var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { cardSetDocument.CardSetDocument.csv });
-		var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
-
-		var objIFrame = page.FrameLocator("#cpOutput");
-		await DownloadImages(toReturn, objIFrame, cardIds);
-
-		return toReturn;
-	}
+	              if (cardSetDocument.CsvType == null)
+	              {
+	                  return toReturn;
+	              }
+	              var csvType = cardSetDocument.CsvType;
+	              var classMapType = csvType.Assembly.GetType($"{csvType.FullName}ClassMap");
+	              var csvBaseType = typeof(CsvBase<,>);
+	              var genericCsvBaseType = csvBaseType.MakeGenericType(csvType, classMapType);
+	              var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
+	              // ✅ CORRECTION: Dé-échapper les \\n pour CsvHelper
+	              // Le CSV a été échappé (ligne 216) pour PapaParse JavaScript
+	              // Maintenant il faut restaurer les vraies newlines pour CsvHelper C#
+	              var csvContentUnescaped = cardSetDocument.CardSetDocument.csv.Replace("\\n", "\n");
+	              var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { csvContentUnescaped });
+	              var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
+	              var objIFrame = page.FrameLocator("#cpOutput");
+	              await DownloadImages(toReturn, objIFrame, cardIds);
+	          }
+	          catch (PlaywrightException ex)
+	          {
+	              Log($"!!! PlaywrightException in GenerateImages: {ex.Message}");
+	              Log($"Problematic CSV content:\n{cardSetDocument.CardSetDocument.csv}");
+	              throw;
+	          }
+	          return toReturn;
+	       }
 
     public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds)
     {
@@ -387,7 +535,7 @@ public class HarvestManager : IAsyncDisposable
         for (int i = 0; i < generatedCount; i++)
         {
             var currentCardId = cardIds[i];
-            
+            Log($"Processing card ID: {currentCardId}");
             try
             {
                 var selector = $"#cpImages img:nth-child({i + 1})";
@@ -450,4 +598,14 @@ public class HarvestManager : IAsyncDisposable
 	           Logger.Log(message);
 	       }
 	   }
+
+	private string GetProjectRoot()
+	{
+	    var currentDir = new DirectoryInfo(AppContext.BaseDirectory);
+	    while (currentDir != null && currentDir.Name != "Argumentum")
+	    {
+	        currentDir = currentDir.Parent;
+	    }
+	    return currentDir?.FullName ?? throw new DirectoryNotFoundException("Could not find the project root directory 'Argumentum'.");
+	}
 }

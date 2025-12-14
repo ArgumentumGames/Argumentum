@@ -13,7 +13,6 @@ namespace Argumentum.AssetConverter.Entities
         public string Example => string.Empty; // No example in source for Virtues
         public string Link => LinkFr;
         public int? Carte => int.TryParse(Card, out int c) ? c : null;
-        public string Id { get; set; }
         public string PK => Pk;
         public string DecimalPath { get; set; }
 

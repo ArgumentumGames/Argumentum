@@ -213,6 +213,33 @@ namespace Argumentum.AssetConverter
 					}
 				},
 				new CardSetConfig(){
+					Name =KnownCardSets.Memo,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Face_fr.json",
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "carte",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+							"2"
+						}),
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Back_fr.json",
+					}
+				},
+				new CardSetConfig(){
 					Name =KnownCardSets.ScenariiPrintAndPlay,
 					FaceCardSetInfo = new CardSetInfo()
 					{
@@ -394,7 +421,7 @@ namespace Argumentum.AssetConverter
 				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_PokerCards_fr.pdf",
-					Enabled = true,
+					Enabled = true, // Verified and activated
 					Translations = new List<(string sourceLang, string destLang)>(new []
 					{
 						("fr","en"),

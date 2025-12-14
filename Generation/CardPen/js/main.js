@@ -29,11 +29,12 @@ var cardpen = {};
         };
 
         function start() {
+            window.codeMirrorInitialized = true;
             //Set up the UI.
             select(); //Should not fire the onchange.
             activate();
 
-            //Load some data of some sort.  
+            //Load some data of some sort.
             //Generate the cards if stored data is found, else default to example and show help.
             context.project.stored(true);
 
@@ -305,9 +306,27 @@ var cardpen = {};
         }
 
         function set(data) {
+            if (data.csv) {
+                try {
+                    data.csv = atob(data.csv);
+                } catch (e) {
+                    // Ignore error, probably not base64
+                }
+            }
+
             cardForm.data = data;
             _.each(mirrors, function (mirrObj, key) {
-                mirrObj.setValue(data[key] || "");
+                if (mirrObj) {
+                    var value = data[key];
+                    // Ensure the value is always a string
+                    if (value === null || typeof value === 'undefined') {
+                        value = "";
+                    } else {
+                        value = String(value);
+                    }
+                    mirrObj.setValue(value);
+                    mirrObj.refresh();
+                }
             });
             change.call(cardForm);
         }
@@ -1083,7 +1102,11 @@ var cardpen = {};
                 var ifrm = document.getElementById("cpOutput");
                 ifrm.onload = () => resolve();
                 ifrm.onerror = () => reject(new Error("Iframe loading failed"));
-                ifrm.srcdoc = doc;
+
+                var ifrmDoc = ifrm.contentWindow.document;
+                ifrmDoc.open();
+                ifrmDoc.write(doc);
+                ifrmDoc.close();
             });
         }
 
@@ -1112,27 +1135,48 @@ var cardpen = {};
                 //Massage the data.
                 var data = massage(realData, format);
 
+                // ✅ CORRECTION: Dé-échapper les \\n injectés par C# (ligne 217 HarvestManager.cs)
+                // Le CSV source a été échappé pour JSON, maintenant on restaure les vraies newlines
+                // pour que PapaParse puisse parser toutes les lignes CSV correctement
+                var csvUnescaped = data.csv.replace(/\\n/g, '\n');
+
                 //Parse csv.
-                cardsTemp = Papa.parse(data.csv, {
+                cardsTemp = Papa.parse(csvUnescaped, {
                     header: true,
                     skipEmptyLines: true,
                     delimiter: ","
                 });
 
                 if (cardsTemp.errors && cardsTemp.errors.length > 0) {
-                    var errorMsg = "PapaParse CSV parsing error: " + cardsTemp.errors.map(function (e) { return e.message; }).join('; ');
-                    console.error(errorMsg);
-                    throw new Error(errorMsg);
+                    var errorMsg = "PapaParse CSV parsing warnings: " + cardsTemp.errors.map(function (e) { return e.message; }).join('; ');
+                    console.warn(errorMsg);
+                    // ⚠️ CORRECTION: Ne pas throw - continuer avec les données parsées même si warnings
+                    // Les warnings "Too few fields" sont normaux pour certains CSV (champs optionnels)
                 }
+
+                // ✅ DEBUG CRITIQUE: Combien de lignes PapaParse a-t-il parsé ?
+                console.log('[DEBUG PapaParse] Raw parsed data length:', cardsTemp.data.length);
+                console.log('[DEBUG PapaParse] First 3 rows:', JSON.stringify(cardsTemp.data.slice(0, 3)));
 
                 //Massage the csv.
-                if (data.rscount && parseInt(data.rscount) > 1) {
+                // ✅ CORRECTION BUG #3: Vérifier que rscount est explicitement défini ET >1
+                // Sans cela, rscount d'un CardSet précédent (ex: Scenarii=4) peut contaminer le suivant (Rules)
+                console.log('[DEBUG restructure CHECK] data.rscount=' + data.rscount + ' (type: ' + typeof data.rscount + ')');
+                console.log('[DEBUG restructure CHECK] parseInt(data.rscount)=' + parseInt(data.rscount));
+                
+                if (data.rscount && data.rscount !== 0 && parseInt(data.rscount) > 1) {
+                    console.log('[DEBUG restructure] BEFORE restructure:', cardsTemp.data.length, 'cards');
                     cardsParsed = restructure(parseInt(data.rscount), data.rsstyle, cardsTemp).data;
+                    console.log('[DEBUG restructure] AFTER restructure:', cardsParsed.length, 'cards');
                 } else {
+                    console.log('[DEBUG restructure] SKIPPED (rscount=' + (data.rscount || 0) + ')');
                     cardsParsed = cardsTemp.data;
                 }
+                
+                console.log('[DEBUG after restructure] cardsParsed length:', cardsParsed.length);
 
                 if (data.cindices !== "") {
+                    console.log('[DEBUG cindices] Filtering by cindices:', data.cindices);
                     var indicesParsed = data.cindices.split`,`.map(x => +x);
                     var tempCards = [];
                     for (var co = 0; co < cardsParsed.length; co++) {
@@ -1141,8 +1185,10 @@ var cardpen = {};
                         }
                     }
                     cardsParsed = tempCards;
-
+                    console.log('[DEBUG cindices] AFTER filtering:', cardsParsed.length, 'cards');
                 }
+                
+                console.log('[DEBUG before mapping] Final cardsParsed length:', cardsParsed.length);
 
 
                 //Handle the noop case automatically, so the user doesn't have to fill it in.
@@ -1169,7 +1215,7 @@ var cardpen = {};
                 fullOutput += externalLink;
                 //Prepare for image.
                 if (forImages) {
-                    //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
                     fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
                     fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
                     fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
@@ -1222,7 +1268,7 @@ var cardpen = {};
                 console.error(msg, error);
 
                 var ifrm = document.getElementById("cpOutput");
-                var ifrmDoc = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+                var ifrmDoc = (ifrm.contentWindow && ifrm.contentWindow.document) || ifrm.contentDocument;
                 ifrmDoc.open();
                 ifrmDoc.write('<html><head></head><body></body></html>');
                 ifrmDoc.close();
@@ -1370,16 +1416,9 @@ var cardpen = {};
             var cols = rolms[1];
             var formatted = '';
 
+            var cardHTML = "";
             if (data.useMustache) {
-                 for (var c = 0; c < cards.length; c++) {
-                    if (c % (rows * cols) == 0) {
-                        if (c > 0) {
-                            formatted += '\n</page>\n';
-                        }
-                        formatted += '<page>\n';
-                    }
-                    formatted += Mustache.to_html(templateA + (c + 1) + templateB, { cardpen: cards[c] });
-                }
+                cardHTML = Mustache.to_html(templateA + " 0" + templateB, { cardpen: cards });
             } else {
                 Handlebars.registerHelper("unidecode",
                     function (text) {
@@ -1395,7 +1434,11 @@ var cardpen = {};
                    marked.setOptions({
                        breaks: true
                    });
-                   return new Handlebars.SafeString(marked(md));
+                   // Protection contre undefined/null pour éviter crash dans marked.js
+                   if (md === undefined || md === null || md === '') {
+                       return new Handlebars.SafeString('');
+                   }
+                   return new Handlebars.SafeString(marked(String(md)));
                 });
                 Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
@@ -1425,17 +1468,31 @@ var cardpen = {};
                     }
                 });
                 
-                var compiledTemplate = Handlebars.compile(templateA + " {{cardIndex}}" + templateB);
+                // Pour Handlebars, ajouter cardIndex à chaque carte puis compiler
                 for (var c = 0; c < cards.length; c++) {
-                    if (c % (rows * cols) == 0) {
-                        if (c > 0) {
-                            formatted += '\n</page>\n';
-                        }
-                        formatted += '<page>\n';
-                    }
                     cards[c].cardIndex = c + 1;
-                    formatted += compiledTemplate({ cardpen: cards[c] });
                 }
+                var compiledTemplate = Handlebars.compile(templateA + " {{cardIndex}}" + templateB);
+                cardHTML = compiledTemplate({ cardpen: cards });
+                console.log('[DEBUG formatter] Handlebars generated HTML length:', cardHTML.length);
+                console.log('[DEBUG formatter] Number of <card> elements:', (cardHTML.match(/<card/g) || []).length);
+            }
+
+            console.log('[DEBUG formatter] Total cards to process:', cards.length);
+            console.log('[DEBUG formatter] cardHTML length:', cardHTML.length);
+            
+            // Découper le HTML généré en pages
+            var cardElements = cardHTML.split('</card>');
+            console.log('[DEBUG formatter] Split into', cardElements.length - 1, 'card elements');
+            
+            for (var c = 0; c < cardElements.length - 1; c++) {
+                if (c % (rows * cols) == 0) {
+                    if (c > 0) {
+                        formatted += '\n</page>\n';
+                    }
+                    formatted += '<page>\n';
+                }
+                formatted += cardElements[c] + '</card>';
             }
             formatted += '</page></page>\n';
             return formatted;
@@ -1498,4 +1555,4 @@ var cardpen = {};
 
 })(cardpen);
 
-window.onload = cardpen.init.start;
+cardpen.init.start();

@@ -26,8 +26,14 @@ namespace Argumentum.AssetConverter.Entities
         string PK { get; }
         string DecimalPath { get; }
     }
-    public abstract class CsvBase<T, TMap> where T : CsvBase<T, TMap>, new() where TMap : ClassMap<T>, new()
+    public abstract class CsvBase<T, TMap> : ICsvBase where T : CsvBase<T, TMap>, new() where TMap : ClassMap<T>, new()
 {
+    public string Id { get; set; }
+    public string GetId()
+    {
+        return Id;
+    }
+
     public static IList<T> Load(string filePath)
     {
         Logger.Log($"Loading csv from file {filePath}");

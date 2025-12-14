@@ -7,15 +7,21 @@ var nodes = [];
 
 async function generateImages() {
     var zipButton = document.getElementById('zipButton');
-    zipButton.style.display = 'none';
-    var generateButton = document.getElementById('generateButton');
-	generateButton.style.display = 'none';
-	nodes = document.getElementsByTagName("card");
-    for (var n = 0; n < nodes.length; n++) {
-        //imaginer(nodes[n],n);
-        await imaginerSync(nodes[n], n);
+    if (zipButton) {
+        zipButton.style.display = 'none';
     }
-    zipButton.style.display = 'block';
+    var generateButton = document.getElementById('generateButton');
+    if (generateButton) {
+        generateButton.style.display = 'none';
+    }
+   nodes = document.getElementsByTagName("card");
+       for (var n = 0; n < nodes.length; n++) {
+           //imaginer(nodes[n],n);
+           await imaginerSync(nodes[n], n);
+       }
+    if (zipButton) {
+        zipButton.style.display = 'block';
+    }
 }
 
 

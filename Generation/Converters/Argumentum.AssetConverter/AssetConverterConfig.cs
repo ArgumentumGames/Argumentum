@@ -28,7 +28,7 @@ namespace Argumentum.AssetConverter
 
 
 		//Debug Switch to configure default values
-	    public bool SkipConfigFile { get; set; } = true;
+	    public bool SkipConfigFile { get; set; } = false;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
 	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;

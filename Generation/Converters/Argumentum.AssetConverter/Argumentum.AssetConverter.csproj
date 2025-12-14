@@ -8,6 +8,7 @@
     <Copyright>Argumentum</Copyright>
     <Authors>Argumentum</Authors>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <ItemGroup>

@@ -134,7 +134,7 @@ var exampleFiles = [
 		mustache: '',
 		useMustache: false,
 		cardClass: '',
-		rscount: 1,
+		rscount: 0,  // ✅ CORRECTION BUG #3: Valeur par défaut à 0 pour éviter restructure() indésirable
 		rsstyle: 'bunch',
 		cindices: ''
 	};
@@ -172,7 +172,7 @@ var exampleFiles = [
 		mustache: "<div class=\"wrapper\">\n\t<div class=\"corner\">{{Number}}<div class=\"score score{{Score}}\"></div>{{Number}}</div>\n\t<div class=\"main font-effect-shadow-multiple\">\n\t\t<div>{{Number}}</div>\n\t</div>\n\t<div class=\"corner reversed\">{{Number}}<div class=\"score score{{Score}}\"></div>{{Number}}</div>\n</div>",
 		useMustache: false,
 		cardClass: '',
-		rscount: 1,
+		rscount: 0,  // ✅ CORRECTION BUG #3: Valeur par défaut à 0 pour éviter restructure() indésirable
 		rsstyle: 'bunch',
         cindices: ''
 	};
@@ -210,7 +210,7 @@ var exampleFiles = [
 		mustache: "<div class=\"wrapper\" id=\"thing{{thing}}\">\n\t<div class=\"corner\">{{name}}</div>\n\t<div class=\"info\">\n\t\t<table>\n\t\t\t<tr>\n\t\t\t\t<th>Players:</th><td>{{{players}}}</td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<th>Time:</th><td>{{{playtime}}} min</td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<th>Rating:</th><td>{{average}}</td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<th>Rank:</th><td>{{rank}}</td>\n\t\t\t</tr>\n\t\t</table>\n\t</div>\n\t<div class=\"main\">\n\t\t<img src=\"{{#cardImage}}" + corsProxy + "https:{{/cardImage}}{{src}}\">\n\t</div>\n\t<div class=\"corner reversed\">{{year}}</div>\n</div>",
 		useMustache: false,
 		cardClass: '',
-		rscount: 1,
+		rscount: 0,  // ✅ CORRECTION BUG #3: Valeur par défaut à 0 pour éviter restructure() indésirable
 		rsstyle: 'bunch',
         cindices: ''
 	};

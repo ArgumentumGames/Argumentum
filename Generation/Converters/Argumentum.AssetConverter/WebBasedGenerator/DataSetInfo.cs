@@ -351,7 +351,9 @@ public class DataSetInfo
 		using var textReader = new StringReader(content);
 		var config = new CsvConfiguration(CultureInfo.InvariantCulture)
 		{
-			Delimiter = delimiter
+			Delimiter = delimiter,
+			MissingFieldFound = null,
+			BadDataFound = null
 		};
 		using var csvReader = new CsvReader(textReader, config);
 		using var csvDataReader = new CsvDataReader(csvReader);

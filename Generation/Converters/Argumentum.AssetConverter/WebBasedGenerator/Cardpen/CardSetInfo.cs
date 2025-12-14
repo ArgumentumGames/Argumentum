@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -67,11 +68,39 @@ namespace Argumentum.AssetConverter
 	{
 		public string FileName { get; set; }
 		public CardSetDocument CardSetDocument { get; set; }
+
+		[JsonIgnore]
 		public System.Type CsvType { get; set; }
 
 		public string GetMimeType()
 		{
 			return "application/json";
+		}
+	}
+	
+	public class CardSetPayloadDto
+	{
+		public string FileName { get; set; }
+		public CardSetDocument CardSetDocument { get; set; }
+		public string CsvTypeName { get; set; }
+
+		public static CardSetPayloadDto FromCardSetPayload(CardSetPayload payload)
+		{
+			// Assurer que les champs textuels ne sont jamais nuls pour éviter les erreurs JavaScript.
+			var doc = payload.CardSetDocument;
+			if (doc != null)
+			{
+				doc.csv = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(doc.csv ?? string.Empty));
+				doc.css = doc.css ?? string.Empty;
+				doc.mustache = doc.mustache ?? string.Empty;
+			}
+
+			return new CardSetPayloadDto
+			{
+				FileName = payload.FileName,
+				CardSetDocument = payload.CardSetDocument,
+				CsvTypeName = payload.CsvType?.FullName
+			};
 		}
 	}
 
