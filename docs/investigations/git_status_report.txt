@@ -1,0 +1,199 @@
+On branch fix/recovery-october-2025
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gitignore
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/1.2.2.3.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/1.2.3.5.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.2.3.1.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.3.1.1.1.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.3.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.3.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.3.2.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.3.2.3.4.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/2.3.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/3.2.1.3.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/3.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/3.3.1.2.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/4.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/4.2.2.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/4.2.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/4.2.3.1.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/4.3.3.1.1.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/5.2.1.3.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/5.2.3.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/5.3.2.3.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/5.3.3.1.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/6.1.1.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/6.2.3.3.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/6.3.1.2.1.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/6.3.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/6.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.2.1.2.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.2.1.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.2.3.3.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.2.3.4.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.2.3.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.3.2.3.2.png.REMOVED.git-id
+	deleted:    Cards/Fallacies/Assets/Fallacy-front/7.png.REMOVED.git-id
+	modified:   Cards/Rules/Argumentum Rules - Cards Print and Play.csv
+	modified:   Generation/CardPen/js/const.js
+	modified:   Generation/CardPen/js/frame.js
+	modified:   Generation/CardPen/js/main.js
+	modified:   Generation/CardPen/package-lock.json
+	modified:   Generation/CardPen/package.json
+	modified:   Generation/CardPen/server/Program.cs
+	modified:   Generation/CardPen/server/appsettings.json
+	modified:   Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj
+	modified:   Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/Entities/CsvBase.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/Entities/Virtue.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/Cardpen/CardSetDocument.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/Cardpen/CardSetInfo.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/Cardpen/HarvestManager.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/DataSetInfo.cs
+	modified:   Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Cards/Rules/Argumentum Rules - Cards Print and Play_cleaned.csv
+	Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.minimal.json
+	Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.test-js-fix.json
+	Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.test-rules-only.json
+	Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.test-sans-scenarii.json
+	Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.validation.json
+	Generation/Converters/Argumentum.AssetConverter/Entities/Scenario.cs
+	Generation/Converters/Argumentum.AssetConverter/prepare-environment.ps1
+	Generation/Converters/Argumentum.AssetConverter/run-full-pipeline.ps1
+	Generation/Converters/Argumentum.AssetConverter/test-html-gen-fix.ps1
+	Generation/Converters/Argumentum.AssetConverter/test_correction_20251016_095522.log.err
+	docs/investigations/2025-12-11-rapport-generation-complete.md
+	docs/investigations/2025-12-11-rapport-stabilisation-git.md
+	docs/investigations/2025-12-11-rapport-validation-finale.md
+	docs/investigations/2025-12-13-rapport-cloture-mission.md
+	docs/investigations/pdf-validation/package-lock.json
+	docs/investigations/pdf-validation/package.json
+	docs/investigations/pdf-validation/validate-pdfs.js
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum-Fallacies-Web-A0-Restored_fr.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum-PokerCards-Restored_fr-FacesOnly.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum-TarotCards-Restored_fr-FacesOnly.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_Fallacies_Web_A0_fr.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_Fallacies_Web_A4_fr.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_Fallacies_Web_Thumbnails_A4_fr.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_TarotCards_Print&Play_A4_fr.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_TarotCards_fr-1.pdf.png
+	docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_TarotCards_fr-FacesOnly.pdf.png
+	docs/sddd/2025--08-28-reparation-config-defaut.md
+	docs/sddd/2025-08-28-investigation-regressions-generation.md
+	docs/sddd/2025-09-20-finalisation-pipeline-pdf.md
+	docs/sddd/2025-10-15-grounding-conversationnel-pipeline-pdf.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+==========================================
+ANALYSE DÉTAILLÉE
+==========================================
+
+--- Fichiers par extension ---
+  34 fichiers .git-id
+  10 fichiers .cs
+  10 fichiers .json
+   9 fichiers .png
+   8 fichiers .md
+   4 fichiers .js
+   3 fichiers .ps1
+   2 fichiers .csv
+   1 fichiers .csproj
+   1 fichiers .err
+   1 fichiers .gitignore
+   1 fichiers .txt
+
+--- Fichiers potentiellement artefacts/générés (à vérifier) ---
+
+--- Liste complète des modifications ---
+[M] .gitignore
+[D] Cards/Fallacies/Assets/Fallacy-front/1.2.2.3.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/1.2.3.5.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.2.3.1.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.3.1.1.1.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.3.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.3.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.3.2.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.3.2.3.4.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/2.3.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/3.2.1.3.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/3.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/3.3.1.2.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/4.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/4.2.2.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/4.2.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/4.2.3.1.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/4.3.3.1.1.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/5.2.1.3.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/5.2.3.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/5.3.2.3.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/5.3.3.1.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/6.1.1.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/6.2.3.3.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/6.3.1.2.1.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/6.3.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/6.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.2.1.2.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.2.1.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.2.3.3.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.2.3.4.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.2.3.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.3.2.3.2.png.REMOVED.git-id
+[D] Cards/Fallacies/Assets/Fallacy-front/7.png.REMOVED.git-id
+[??] Cards/Rules/Argumentum Rules - Cards Print and Play_cleaned.csv
+[M] Cards/Rules/Argumentum Rules - Cards Print and Play.csv
+[??] docs/investigations/2025-12-11-rapport-generation-complete.md
+[??] docs/investigations/2025-12-11-rapport-stabilisation-git.md
+[??] docs/investigations/2025-12-11-rapport-validation-finale.md
+[??] docs/investigations/2025-12-13-rapport-cloture-mission.md
+[??] docs/investigations/git_status_report.txt
+[??] docs/investigations/pdf-validation/package-lock.json
+[??] docs/investigations/pdf-validation/package.json
+[??] docs/investigations/pdf-validation/validate-pdfs.js
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_Fallacies_Web_A0_fr.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_Fallacies_Web_A4_fr.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_Fallacies_Web_Thumbnails_A4_fr.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_TarotCards_fr-1.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_TarotCards_fr-FacesOnly.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum_TarotCards_Print&Play_A4_fr.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum-Fallacies-Web-A0-Restored_fr.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum-PokerCards-Restored_fr-FacesOnly.pdf.png
+[??] docs/investigations/screenshots/validation-finale-2025-12-13T14-21-34-422Z/Argumentum-TarotCards-Restored_fr-FacesOnly.pdf.png
+[??] docs/sddd/2025--08-28-reparation-config-defaut.md
+[??] docs/sddd/2025-08-28-investigation-regressions-generation.md
+[??] docs/sddd/2025-09-20-finalisation-pipeline-pdf.md
+[??] docs/sddd/2025-10-15-grounding-conversationnel-pipeline-pdf.md
+[M] Generation/CardPen/js/const.js
+[M] Generation/CardPen/js/frame.js
+[M] Generation/CardPen/js/main.js
+[M] Generation/CardPen/package-lock.json
+[M] Generation/CardPen/package.json
+[M] Generation/CardPen/server/appsettings.json
+[M] Generation/CardPen/server/Program.cs
+[M] Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj
+[M] Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.cs
+[??] Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.minimal.json
+[??] Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.test-js-fix.json
+[??] Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.test-rules-only.json
+[??] Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.test-sans-scenarii.json
+[??] Generation/Converters/Argumentum.AssetConverter/AssetConverterConfig.validation.json
+[M] Generation/Converters/Argumentum.AssetConverter/Entities/CsvBase.cs
+[??] Generation/Converters/Argumentum.AssetConverter/Entities/Scenario.cs
+[M] Generation/Converters/Argumentum.AssetConverter/Entities/Virtue.cs
+[??] Generation/Converters/Argumentum.AssetConverter/prepare-environment.ps1
+[??] Generation/Converters/Argumentum.AssetConverter/run-full-pipeline.ps1
+[??] Generation/Converters/Argumentum.AssetConverter/test_correction_20251016_095522.log.err
+[??] Generation/Converters/Argumentum.AssetConverter/test-html-gen-fix.ps1
+[M] Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/Cardpen/CardSetDocument.cs
+[M] Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/Cardpen/CardSetInfo.cs
+[M] Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/Cardpen/HarvestManager.cs
+[M] Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/DataSetInfo.cs
+[M] Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs
