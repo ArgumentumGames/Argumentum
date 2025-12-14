@@ -183,3 +183,17 @@ Generation/Converters/Argumentum.AssetConverter.Tests/TestOutput/
 
 # Fichiers de sortie de test
 test_output.txt
+*_cleaned.csv
+
+# Configuration générée automatiquement par AssetConverter
+AssetConverterConfig.json
+AssetConverterConfig.*.json
+!AssetConverterConfig.cs
+
+# Logs d'erreur temporaires
+*.log.err
+
+# Screenshots de validation automatique
+docs/investigations/screenshots/validation-finale-*/
+
+docs/investigations/pdf-validation/node_modules/
