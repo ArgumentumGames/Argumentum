@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter
 
 
 		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
-		public string LocalCardpenUrl { get; set; } = @"http://localhost:5258/index.html";
+		public string LocalCardpenUrl { get; set; } = @"http://argumentum.myia.io/index.html";
 
 
 
@@ -246,6 +246,8 @@ namespace Argumentum.AssetConverter
 						DataSet = KnownDataSets.Scenarii,
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Face_fr.json",
+						// ✅ CORRECTION: Utiliser 'print_and_play' au lieu de 'print_&_play_fevrier_2022'
+						// Le caractère '&' dans le nom de colonne cause des problèmes de parsing CSV
 						CsvFilterField = "print_and_play",
 						CsvFilterValues = new List<string>(new []
 						{
@@ -294,7 +296,7 @@ namespace Argumentum.AssetConverter
 						}),
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json",
-						Dpi = 200
+						Dpi = 400
 
 					}
 				},
@@ -394,7 +396,7 @@ namespace Argumentum.AssetConverter
 				new CardSetDocumentConfig()
 				{
 					DocumentName = "Argumentum_TarotCards_Virtues_fr.pdf",
-					Enabled = false,
+					Enabled = true,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()
@@ -596,8 +598,10 @@ namespace Argumentum.AssetConverter
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A0",
+					Padding = 2,
 					NoBack = true,
-					Header = "Logo_Argumentum.png",
+					Header = "Logo_Argumentum & QRCode.png",
+					NbColumns = 11,
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()
@@ -609,14 +613,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 72,
-								WidthMM = 72,
+								HeigthMM = 69,  // ✅ FIX: 69mm (référence avril 2024) pour tenir sur 1 page A0
+								WidthMM = 69,   // ✅ FIX: 69mm (référence avril 2024)
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 72,
-								WidthMM = 72,
+								HeigthMM = 69,
+								WidthMM = 69,
 							}
 						}
 					}),
@@ -754,41 +758,6 @@ namespace Argumentum.AssetConverter
 						},
 					}),
 				},
-				// AJOUTER CI-DESSOUS LES CONFIGURATIONS RESTAURÉES
-				new CardSetDocumentConfig()
-				{
-					DocumentName = "Argumentum-PokerCards-Restored.pdf", // Nom modifié pour éviter les conflits
-					Enabled = true,
-					CardSets = new List<DocumentCardSet>(new[]
-					{
-						new DocumentCardSet() { CardSetName = KnownCardSets.Scenarii },
-						new DocumentCardSet() { CardSetName = KnownCardSets.Fallacies },
-						new DocumentCardSet() { CardSetName = KnownCardSets.Virtues }
-					})
-				},
-				new CardSetDocumentConfig()
-				{
-					DocumentName = "Argumentum-TarotCards-Restored.pdf", // Nom modifié pour éviter les conflits
-					Enabled = true,
-					CardSets = new List<DocumentCardSet>(new[]
-					{
-						new DocumentCardSet() { CardSetName = KnownCardSets.Rules },
-						new DocumentCardSet() { CardSetName = KnownCardSets.Scenarii },
-						new DocumentCardSet() { CardSetName = KnownCardSets.Fallacies },
-						new DocumentCardSet() { CardSetName = KnownCardSets.Virtues }
-					})
-				},
-				new CardSetDocumentConfig()
-				{
-					DocumentName = "Argumentum-Fallacies-Web-A0-Restored.pdf", // Nom modifié pour éviter les conflits
-					Enabled = true,
-					DocumentFormat = CardDocumentFormat.PrintAndPlay,
-					PageSize = "A0",
-					CardSets = new List<DocumentCardSet>(new[]
-					{
-						new DocumentCardSet() { CardSetName = KnownCardSets.FallaciesWeb }
-					})
-				}
 			});
 
 

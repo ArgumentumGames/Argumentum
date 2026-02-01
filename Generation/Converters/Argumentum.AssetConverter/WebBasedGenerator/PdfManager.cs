@@ -134,7 +134,13 @@ namespace Argumentum.AssetConverter
                 return;
             }
 
-            Logger.Log($"Starting PDF generation for {images.Count} images.");
+            Logger.Log($"Starting PDF generation for {images.Count} images. File: {fileName}");
+
+            if (images.Count == 0)
+            {
+                Logger.LogWarning($"Skipping PDF generation for {fileName} because there are no images.");
+                return;
+            }
 
             // 1. Lire toutes les images en mémoire une seule fois
             var frontImagesData = images
@@ -152,9 +158,17 @@ namespace Argumentum.AssetConverter
             var document = new PrintAndPlayDocument(docConfig, frontImagesData, backImagesData);
 
             // 3. Générer le PDF
-            document.GeneratePdf(fileName);
-
-            Logger.LogSuccess($"Generated pdf document {fileName}");
+            try
+            {
+                document.GeneratePdf(fileName);
+                Logger.LogSuccess($"Generated pdf document {fileName}");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogProblem($"FAILED to generate PDF document {fileName}: {ex.Message}");
+                Logger.LogException(ex);
+                throw; // Rethrow to maintain behavior
+            }
         }
 
         public void GeneratePdfsFromImages(List<(string fileName, Func<MagickImageCollection> documentImages)> targetFiles,

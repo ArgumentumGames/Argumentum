@@ -23,5 +23,5 @@ public class CardSetDocumentConfig: DocumentConfig
 
 	public string Header { get; set; } = "";
 	public int Padding { get; set; }
-	public int NbColumns { get; internal set; }
+	public int NbColumns { get; set; }
 }

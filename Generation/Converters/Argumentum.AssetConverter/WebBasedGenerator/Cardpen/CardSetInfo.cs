@@ -29,8 +29,15 @@ namespace Argumentum.AssetConverter
 
 		public bool SkipDataUpdate { get; set; }
 
-		
-		public string GetJsonFilePath(AssetConverterConfig config) => config.UseDebugParams ? JsonFilePathDebug : JsonFilePathRelease;
+
+		public string GetJsonFilePath(AssetConverterConfig config)
+	{
+		var useDebug = config.UseDebugParams;
+		Logger.Log($"[CardSetInfo] JsonFilePathDebug='{JsonFilePathDebug}', JsonFilePathRelease='{JsonFilePathRelease}'");
+		var selectedPath = useDebug ? JsonFilePathDebug : JsonFilePathRelease;
+		Logger.Log($"[CardSetInfo] UseDebugParams={useDebug}, Selected path: '{selectedPath}'");
+		return selectedPath;
+	}
 		public string JsonFilePathRelease { get; set; }
 		public string JsonFilePathDebug { get; set; }
 
@@ -39,7 +46,7 @@ namespace Argumentum.AssetConverter
 		public List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> FieldsLocalization { get; set; }
 			= new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>();
 
-		
+
 		public int Dpi { get; set; }
 		public string CardSize { get; set; }
 
@@ -55,8 +62,27 @@ namespace Argumentum.AssetConverter
 			}
 			var docPayload = await jsonFilePath.GetDocumentPayload();
 			//var strContent = Encoding.UTF8.GetString(docPayload.Content);
-			
+
 			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);
+
+			// Transform relative filesystem paths to absolute web paths when using local CardPen
+			if (config.WebBasedGeneratorConfig.UseLocalCardpen)
+			{
+				if (!string.IsNullOrEmpty(cardSetDoc.css))
+				{
+					cardSetDoc.css = cardSetDoc.css.Replace("../../Cards/", "/Cards/");
+				}
+				if (!string.IsNullOrEmpty(cardSetDoc.mustache))
+				{
+					cardSetDoc.mustache = cardSetDoc.mustache.Replace("../../Cards/", "/Cards/");
+				}
+				if (!string.IsNullOrEmpty(cardSetDoc.extCSS))
+				{
+					cardSetDoc.extCSS = cardSetDoc.extCSS.Replace("../../Cards/", "/Cards/");
+				}
+				Logger.Log($"[CardSetInfo] Transformed paths from '../../Cards/' to '/Cards/' for local CardPen");
+			}
+
 			return new CardSetPayload(){CardSetDocument = cardSetDoc, FileName = docPayload.FileName} ;
 
 		}
@@ -77,7 +103,7 @@ namespace Argumentum.AssetConverter
 			return "application/json";
 		}
 	}
-	
+
 	public class CardSetPayloadDto
 	{
 		public string FileName { get; set; }
