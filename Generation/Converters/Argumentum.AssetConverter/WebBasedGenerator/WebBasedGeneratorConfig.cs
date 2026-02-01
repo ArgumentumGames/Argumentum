@@ -129,14 +129,14 @@ namespace Argumentum.AssetConverter
 						DataSet = KnownDataSets.Scenarii,
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Face_fr.json",
-						RowsetNb = 14
+						// RowsetNb non défini → utilise rscount=1 du template JSON (1 ligne CSV par carte)
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
-						RowsetNb = 14
+						// RowsetNb non défini → utilise rscount=1 du template JSON
 					}
 				},
 				new CardSetConfig(){
