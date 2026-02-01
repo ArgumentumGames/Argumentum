@@ -231,10 +231,9 @@ public class HarvestManager : IAsyncDisposable
 				}
 				if (!string.IsNullOrEmpty(csvContent) && cardSetDocumentWrapper?.CardSetDocument != null)
 				{
-					// ✅ CORRECTION: Échapper les newlines pour éviter erreur PapaParse
-					// Le CSV source contient de vraies newlines dans les cellules markdown (entre guillemets)
-					// PapaParse ne peut pas les parser correctement, il faut les échapper en \\n
-					cardSetDocumentWrapper.CardSetDocument.csv = csvContent.Replace("\r\n", "\\n").Replace("\r", "\\n").Replace("\n", "\\n");
+					// Golden Master (avril 2024): passer le CSV sans modification
+					// PapaParse gère correctement les newlines dans les cellules entre guillemets
+					cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
 				}
 				cardSetDocumentWrapper.CsvType = dataSet.CsvType;
 			}
