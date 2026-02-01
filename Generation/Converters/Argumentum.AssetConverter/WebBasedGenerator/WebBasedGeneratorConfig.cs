@@ -601,7 +601,7 @@ namespace Argumentum.AssetConverter
 					Padding = 2,
 					NoBack = true,
 					Header = "Logo_Argumentum & QRCode.png",
-					NbColumns = 11,
+					NbColumns = 12,  // ✅ FIX: 12 colonnes pour tenir sur 1 page A0 (était 11)
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()
