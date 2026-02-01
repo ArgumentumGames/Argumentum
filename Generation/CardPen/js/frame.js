@@ -14,7 +14,9 @@ async function generateImages() {
     if (generateButton) {
         generateButton.style.display = 'none';
     }
-   nodes = document.getElementsByTagName("card");
+    // Précharger les polices avant génération (restauré du Golden Master)
+    domtoimage.getFontsBefore();
+    nodes = document.getElementsByTagName("card");
        for (var n = 0; n < nodes.length; n++) {
            //imaginer(nodes[n],n);
            await imaginerSync(nodes[n], n);
@@ -46,7 +48,14 @@ function imaginer(node,n) {
 async function imaginerSync(node, n) {
     try {
         console.log(`[imaginerSync] Processing node ${n}`, node);
-        const options = { height: height, width: width, webfont: true, /* scale: dpi / 96, */ imagePlaceholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/epv2AAAAABJRU5ErkJggg==" };
+        // Restauré du Golden Master: scale et cachedFonts au lieu de webfont
+        const options = {
+            height: height,
+            width: width,
+            scale: dpi / 96,  // Restauré - important pour la résolution correcte
+            cachedFonts: true,  // Restauré - utilise les polices préchargées
+            imagePlaceholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/epv2AAAAABJRU5ErkJggg=="
+        };
         console.log(`[imaginerSync] Options for domtoimage:`, options);
         console.log(`[imaginerSync] Node HTML content for node ${n}:`, node.outerHTML);
 

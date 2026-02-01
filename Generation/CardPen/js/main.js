@@ -1243,22 +1243,6 @@ var cardpen = {};
                     fullOutput += "<div id='cpImages'></div>\n";
                 }
                 fullOutput += templateOutput + "\n";
-                            fullOutput += `
-                                <script type="text/javascript">
-                                    const loadPromise = new Promise(resolve => {
-                                        window.addEventListener('load', resolve);
-                                    });
-                                    Promise.all([
-                                        loadPromise,
-                                        document.fonts.ready
-                                    ]).then(() => {
-                                        console.log('All fonts and resources loaded, signaling completion.');
-                                        window.cardRenderingComplete = true;
-                                    }).catch(error => {
-                                        console.error('Error waiting for fonts or resources:', error);
-                                    });
-                                </script>
-                            `;
                 fullOutput += "</body>\n</html>\n";
 
                 //Write to frame.

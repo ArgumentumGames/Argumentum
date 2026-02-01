@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
@@ -242,17 +243,17 @@ public class HarvestManager : IAsyncDisposable
 		{
 			cardSetDocumentWrapper.CardSetDocument.dpi = cardSetInfo.Dpi;
 		}
+		// ✅ FIX: Ne modifier rscount QUE si RowsetNb est explicitement défini dans la config C#
+		// Sinon, conserver la valeur du template JSON (ex: Memo a rscount=200, rsstyle="bunch")
+		// Note: Le comportement de référence avril 2024 ne forçait PAS rscount à 0
 		if (cardSetInfo != null && cardSetInfo.RowsetNb > 0)
 		{
 			cardSetDocumentWrapper.CardSetDocument.rscount = cardSetInfo.RowsetNb;
-			Console.WriteLine($"[DEBUG rscount] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': rscount set to {cardSetInfo.RowsetNb}");
+			Console.WriteLine($"[DEBUG rscount] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': rscount overridden to {cardSetInfo.RowsetNb} from C# config");
 		}
 		else
 		{
-			// ✅ CORRECTION BUG #3: Forcer rscount=0 pour ÉCRASER les valeurs précédentes
-			// Le formulaire CardPen fusionne les données, donc on doit TOUJOURS envoyer rscount
-			cardSetDocumentWrapper.CardSetDocument.rscount = 0;
-			Console.WriteLine($"[DEBUG rscount] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': rscount FORCED to 0 (prevents contamination)");
+			Console.WriteLine($"[DEBUG rscount] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': keeping template rscount={cardSetDocumentWrapper.CardSetDocument.rscount}");
 		}
 		if (cardSetInfo != null && !string.IsNullOrEmpty(cardSetInfo.CardSize))
 		{
@@ -436,6 +437,10 @@ public class HarvestManager : IAsyncDisposable
 	              // Étape 1 & 2 : Injection des données et déclenchement du rendu de l'iframe
 	              Log("Injecting data and triggering iframe render...");
 	              
+	              // ✅ CORRECTION BUG #4: Réécrire les chemins d'images relatifs en URLs absolues IIS
+	              // Les chemins relatifs comme "../../Cards/..." ne fonctionnent pas quand CardPen est servi depuis IIS
+	              RewriteImagePathsToAbsoluteUrls(cardSetDocument.CardSetDocument);
+	              
 	              // [DEBUG] Compter les lignes CSV réelles
 	              var csv = cardSetDocument.CardSetDocument.csv ?? string.Empty;
 	              var realCsvLines = csv.Split(new[] { "\n" }, StringSplitOptions.None).Length;
@@ -502,7 +507,21 @@ public class HarvestManager : IAsyncDisposable
 	              var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { csvContentUnescaped });
 	              var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
 	              var objIFrame = page.FrameLocator("#cpOutput");
-	              await DownloadImages(toReturn, objIFrame, cardIds);
+
+	              // ✅ FIX: Calculer le nombre d'images attendues en tenant compte de rscount/rsstyle
+	              // Avec rsstyle="bunch" et rscount>=N, CardPen génère ceil(cardIds.Count/rscount) images
+	              var rscount = cardSetDocument.CardSetDocument.rscount;
+	              var rsstyle = cardSetDocument.CardSetDocument.rsstyle;
+	              int expectedImageCount = cardIds.Count;
+
+	              if (rscount > 1 && !string.IsNullOrEmpty(rsstyle) &&
+	                  (rsstyle == "bunch" || rsstyle == "cycle" || rsstyle == "random"))
+	              {
+	                  expectedImageCount = (int)Math.Ceiling((double)cardIds.Count / rscount);
+	                  Log($"[rscount adjustment] rscount={rscount}, rsstyle={rsstyle}, original={cardIds.Count} -> expected={expectedImageCount}");
+	              }
+
+	              await DownloadImages(toReturn, objIFrame, cardIds, expectedImageCount);
 	          }
 	          catch (PlaywrightException ex)
 	          {
@@ -513,23 +532,34 @@ public class HarvestManager : IAsyncDisposable
 	          return toReturn;
 	       }
 
-    public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds)
+    public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds, int expectedImageCount = -1)
     {
         Log("=== Entering DownloadImages ===");
         var generatedImagesDiv = objIFrame.Locator("#cpImages");
         var generatedImages = generatedImagesDiv.Locator("img");
         var generatedCount = await generatedImages.CountAsync();
-        Log($"Expecting {cardIds.Count} images, found {generatedCount} img tags.");
 
-        if (generatedCount != cardIds.Count)
+        // ✅ FIX: Utiliser expectedImageCount si fourni, sinon cardIds.Count
+        var expectedCount = expectedImageCount > 0 ? expectedImageCount : cardIds.Count;
+        Log($"Expecting {expectedCount} images (cardIds={cardIds.Count}, expectedImageCount={expectedImageCount}), found {generatedCount} img tags.");
+
+        if (generatedCount != expectedCount)
         {
             if (cardIds.Count == 1 && generatedCount == 0)
             {
                 Log("Detected common card back. No images to download.");
                 return;
             }
-            var idsStr = string.Join(", ", cardIds);
-            throw new ApplicationException($"Mismatch between generated image count ({generatedCount}) and expected card count ({cardIds.Count}). Card IDs: [{idsStr}]");
+            // ✅ FIX: Accepter 1 image si c'est un template "bunch" (rscount > cardIds)
+            if (expectedCount == 1 && generatedCount == 1)
+            {
+                Log("Single bunched image generated as expected.");
+            }
+            else
+            {
+                var idsStr = string.Join(", ", cardIds);
+                throw new ApplicationException($"Mismatch between generated image count ({generatedCount}) and expected card count ({expectedCount}). Card IDs: [{idsStr}]");
+            }
         }
 
         for (int i = 0; i < generatedCount; i++)
@@ -579,7 +609,40 @@ public class HarvestManager : IAsyncDisposable
         Log("=== Exiting DownloadImages ===");
     }
 
-	private  CardSetHarvest LoadCardSetHarvest(string jsonHarvestName)
+ /// <summary>
+ /// Réécrit les chemins d'images relatifs en URLs absolues vers GitHub.
+ /// Les chemins relatifs comme "../../Cards/...", "../Cards/...", "Fallacies/...", "Scenarii/..." ne fonctionnent pas
+ /// quand CardPen est servi depuis IIS ou GitHub Pages.
+ /// </summary>
+ private void RewriteImagePathsToAbsoluteUrls(CardSetDocument cardSetDocument)
+ {
+     if (cardSetDocument == null || string.IsNullOrEmpty(cardSetDocument.mustache))
+     {
+         return;
+     }
+
+     // URL de base GitHub pour les assets (le JSON est déjà sur GitHub)
+     const string githubBaseUrl = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/";
+     
+     // Regex pour trouver les chemins relatifs d'images dans les attributs src
+     // Correspond à: src="../../Cards/...", src="../Cards/...", src="Fallacies/...", src="Scenarii/..."
+     // NOTE: Les variables Handlebars comme {{path}} seront remplacées par les valeurs réelles lors du rendu,
+     // donc nous remplaçons les chemins relatifs AVANT le rendu Handlebars.
+     var relativePathRegex = new Regex(@"src=""(\.\./)+((?:Fallacies|Scenarii|Cards)/[^""]+)""", RegexOptions.Compiled);
+     
+     // Remplacer les chemins relatifs par des URLs absolues vers GitHub
+     cardSetDocument.mustache = relativePathRegex.Replace(cardSetDocument.mustache, match =>
+     {
+         var relativePath = match.Groups[1].Value; // Le chemin relatif complet (ex: "../../Cards/Scenarii/Assets/...")
+         var assetPath = match.Groups[2].Value; // Le chemin après "Cards/" (ex: "Scenarii/Assets/...")
+         var absoluteUrl = $"{githubBaseUrl}{assetPath}";
+         Log($"Rewriting image path: {relativePath} -> {absoluteUrl}");
+         return $"src=\"{absoluteUrl}\"";
+     });
+     
+     Log("Image paths rewritten to absolute GitHub URLs.");
+ }
+ private  CardSetHarvest LoadCardSetHarvest(string jsonHarvestName)
 	{
 		using var configStream = File.OpenRead(jsonHarvestName);
 		var currentHarvest = System.Text.Json.JsonSerializer.Deserialize<CardSetHarvest>(configStream);
