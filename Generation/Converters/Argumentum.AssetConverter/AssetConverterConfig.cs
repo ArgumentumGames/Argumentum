@@ -60,7 +60,8 @@ namespace Argumentum.AssetConverter
 			{
 				Name = KnownDataSets.Scenarii,
 				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
-				DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv"
+				DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv",
+				CsvType = typeof(Argumentum.AssetConverter.Entities.Scenario)
 			},
 			new DataSetInfo()
 			{

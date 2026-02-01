@@ -491,34 +491,50 @@ public class HarvestManager : IAsyncDisposable
 	              await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 120000 });
 	              Log("Image generation process completed successfully.");
 
+	              var objIFrame = page.FrameLocator("#cpOutput");
+	              List<string> cardIds;
+	              int expectedImageCount;
+
+	              // ✅ FIX SCENARII: Gérer les CardSets sans CsvType (comme Scenarii)
+	              // Pour ces CardSets, on génère des IDs synthétiques basés sur le nombre d'images
 	              if (cardSetDocument.CsvType == null)
 	              {
-	                  return toReturn;
+	                  Log($"[No CsvType] CardSet sans type CSV défini - détection des images générées...");
+	                  var generatedImagesDiv = objIFrame.Locator("#cpImages");
+	                  var generatedImages = generatedImagesDiv.Locator("img");
+	                  var generatedCount = await generatedImages.CountAsync();
+	                  Log($"[No CsvType] Détecté {generatedCount} images générées");
+
+	                  // Générer des IDs synthétiques pour les images
+	                  cardIds = Enumerable.Range(1, generatedCount).Select(i => $"card_{i:D3}").ToList();
+	                  expectedImageCount = generatedCount;
 	              }
-	              var csvType = cardSetDocument.CsvType;
-	              var classMapType = csvType.Assembly.GetType($"{csvType.FullName}ClassMap");
-	              var csvBaseType = typeof(CsvBase<,>);
-	              var genericCsvBaseType = csvBaseType.MakeGenericType(csvType, classMapType);
-	              var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
-	              // ✅ CORRECTION: Dé-échapper les \\n pour CsvHelper
-	              // Le CSV a été échappé (ligne 216) pour PapaParse JavaScript
-	              // Maintenant il faut restaurer les vraies newlines pour CsvHelper C#
-	              var csvContentUnescaped = cardSetDocument.CardSetDocument.csv.Replace("\\n", "\n");
-	              var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { csvContentUnescaped });
-	              var cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
-	              var objIFrame = page.FrameLocator("#cpOutput");
-
-	              // ✅ FIX: Calculer le nombre d'images attendues en tenant compte de rscount/rsstyle
-	              // Avec rsstyle="bunch" et rscount>=N, CardPen génère ceil(cardIds.Count/rscount) images
-	              var rscount = cardSetDocument.CardSetDocument.rscount;
-	              var rsstyle = cardSetDocument.CardSetDocument.rsstyle;
-	              int expectedImageCount = cardIds.Count;
-
-	              if (rscount > 1 && !string.IsNullOrEmpty(rsstyle) &&
-	                  (rsstyle == "bunch" || rsstyle == "cycle" || rsstyle == "random"))
+	              else
 	              {
-	                  expectedImageCount = (int)Math.Ceiling((double)cardIds.Count / rscount);
-	                  Log($"[rscount adjustment] rscount={rscount}, rsstyle={rsstyle}, original={cardIds.Count} -> expected={expectedImageCount}");
+	                  var csvType = cardSetDocument.CsvType;
+	                  var classMapType = csvType.Assembly.GetType($"{csvType.FullName}ClassMap");
+	                  var csvBaseType = typeof(CsvBase<,>);
+	                  var genericCsvBaseType = csvBaseType.MakeGenericType(csvType, classMapType);
+	                  var loadMethod = genericCsvBaseType.GetMethod("LoadFromContent", new[] { typeof(string) });
+	                  // ✅ CORRECTION: Dé-échapper les \\n pour CsvHelper
+	                  // Le CSV a été échappé (ligne 216) pour PapaParse JavaScript
+	                  // Maintenant il faut restaurer les vraies newlines pour CsvHelper C#
+	                  var csvContentUnescaped = cardSetDocument.CardSetDocument.csv.Replace("\\n", "\n");
+	                  var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { csvContentUnescaped });
+	                  cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
+
+	                  // ✅ FIX: Calculer le nombre d'images attendues en tenant compte de rscount/rsstyle
+	                  // Avec rsstyle="bunch" et rscount>=N, CardPen génère ceil(cardIds.Count/rscount) images
+	                  var rscount = cardSetDocument.CardSetDocument.rscount;
+	                  var rsstyle = cardSetDocument.CardSetDocument.rsstyle;
+	                  expectedImageCount = cardIds.Count;
+
+	                  if (rscount > 1 && !string.IsNullOrEmpty(rsstyle) &&
+	                      (rsstyle == "bunch" || rsstyle == "cycle" || rsstyle == "random"))
+	                  {
+	                      expectedImageCount = (int)Math.Ceiling((double)cardIds.Count / rscount);
+	                      Log($"[rscount adjustment] rscount={rscount}, rsstyle={rsstyle}, original={cardIds.Count} -> expected={expectedImageCount}");
+	                  }
 	              }
 
 	              await DownloadImages(toReturn, objIFrame, cardIds, expectedImageCount);
