@@ -313,6 +313,95 @@ Pour tenir sur 1 page A0 (841×1189mm):
 - NbColumns = 11
 - Padding = 2mm
 
+### RowsetNb vs rscount (CRITIQUE)
+
+**Règle**: Si le template JSON attend 1 ligne CSV par carte (variables simples comme `{{titre}}`), ne PAS définir `RowsetNb` dans la config C#.
+
+```csharp
+// ✅ CORRECT - template avec rscount=1 utilise 1 ligne par carte
+FaceCardSetInfo = new CardSetInfo()
+{
+    DataSet = KnownDataSets.Scenarii,
+    JsonFilePathDebug = @"...\Argumentum_Scenarii_Face_fr.json",
+    // RowsetNb non défini → utilise rscount du template JSON
+}
+
+// ❌ INCORRECT - force 14 lignes par carte mais template attend 1 ligne
+FaceCardSetInfo = new CardSetInfo()
+{
+    ...
+    RowsetNb = 14  // Casse le template !
+}
+```
+
+**Symptôme si RowsetNb incorrect**: Cartes générées avec contenu vide (seuls éléments statiques visibles).
+
+### CSV Injection dans CardPen (CRITIQUE)
+
+**Règle absolue**: NE JAMAIS modifier le contenu CSV avant injection dans CardPen.
+
+```csharp
+// ✅ CORRECT - Golden Master (avril 2024)
+cardSetDocumentWrapper.CardSetDocument.csv = csvContent;
+
+// ❌ INCORRECT - Casse le parsing PapaParse
+cardSetDocumentWrapper.CardSetDocument.csv = csvContent.Replace("\n", "\\n");
+```
+
+**Pourquoi**: PapaParse gère correctement les newlines dans les cellules CSV entre guillemets.
+L'échappement transforme les vrais newlines en chaînes littérales "\\n", cassant le parsing.
+
+**Symptôme**: Cartes générées avec contenu vide (seules les icônes statiques visibles).
+
+### Classes CSS Familles (Virtues/Fallacies)
+
+Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste complète pour Virtues:
+
+| Classe CSS | Famille | Couleur |
+|------------|---------|---------|
+| `argumentsVertueux` | Arguments vertueux (racine) | Gris #555555 |
+| `argumentPertinent` | Argument pertinent | Violet #811da3 |
+| `présentationIntègre` | Présentation intègre | Rose #ff66eb |
+| `exactitudeMathématique` | Exactitude mathématique | Turquoise #08af93 |
+| `raisonnementValide` | Raisonnement valide | Vert #8dc801 |
+| `langageRigoureux` | Langage rigoureux | Bleu #0054a4 |
+| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | Jaune #ffc307 |
+| `débatRespectueux` | Débat respectueux | Rouge #dc0f0a |
+
+**Symptôme si classe manquante**: Carte avec fond blanc au lieu de la couleur de famille.
+
+## Pipeline Recovery Status (Février 2026)
+
+### État actuel par CardSet (FR - COMPLET)
+
+| CardSet | Images | PDFs | Status |
+|---------|--------|------|--------|
+| Fallacies Tarot FR | 177 | ✅ | TarotCards_fr-1/2.pdf |
+| FallaciesWeb FR | 176 | ✅ | A0 (99MB), A4 (98MB), Thumbnails |
+| Virtues Tarot FR | 113 | ✅ | TarotCards_Virtues_fr-FacesOnly.pdf |
+| Scenarii Poker FR | 97 | ✅ | PokerCards_fr-1.pdf (12MB) |
+| Rules Tarot FR | 24 | ✅ | Dans TarotCards |
+| Memo Tarot FR | 1 | ✅ | Dans TarotCards |
+| Print&Play A4 | 34 | ✅ | Poker + Tarot Print&Play |
+| Multilingue (EN/RU/PT) | ❌ | ❌ | À implémenter |
+
+### Prochaines étapes
+
+1. ~~Valider génération images après corrections CSV/CSS~~ FAIT
+2. ~~Tester génération PDFs (QuestPDF)~~ FAIT
+3. Activer et tester génération multilingue
+4. ~~Valider formats: Tarot, Poker, A0, Print&Play~~ FAIT
+
+### Commits clés de la recovery
+
+| Commit | Description |
+|--------|-------------|
+| `37600e4a` | fix(harvest): restore Golden Master CSV injection |
+| `f0b1cd35` | fix(templates): add argumentsVertueux CSS class |
+| `09b427ef` | fix(templates): Scenarii asset paths to GitHub URLs |
+| `30483257` | fix(templates): Virtues CSS and Rules naming |
+| `9b19d5e8` | fix(config): remove RowsetNb=14 for Scenarii CardSet |
+
 ## Related Documentation
 
 - [ARCHITECTURE_PIPELINE.md](Generation/Documentation/ARCHITECTURE_PIPELINE.md) - Detailed pipeline architecture
