@@ -621,8 +621,9 @@ public class HarvestManager : IAsyncDisposable
          return;
      }
 
-     // URL de base GitHub pour les assets (le JSON est déjà sur GitHub)
-     const string githubBaseUrl = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/";
+     // URL de base GitHub pour les assets (sans /Cards/ pour éviter duplication)
+     // La regex capture le chemin complet incluant "Cards/" si présent
+     const string githubBaseUrl = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/";
      
      // Regex pour trouver les chemins relatifs d'images dans les attributs src
      // Correspond à: src="../../Cards/...", src="../Cards/...", src="Fallacies/...", src="Scenarii/..."
