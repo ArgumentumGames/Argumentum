@@ -5,18 +5,13 @@ namespace Argumentum.AssetConverter.Entities
     public class Rule : CsvBase<Rule, RuleClassMap>, ICsvBase
     {
         /// <summary>
-        /// Returns a unique ID based on the first 20 alphanumeric characters of the Text.
-        /// Falls back to base.Id if Text is empty.
+        /// Returns a sequential ID in format "Rules_01", "Rules_02", etc.
+        /// Uses the RowIndex assigned during CSV loading for predictable ordering.
         /// </summary>
         public new string GetId()
         {
-            if (string.IsNullOrWhiteSpace(Text))
-                return Id ?? string.Empty;
-
-            var sanitized = System.Text.RegularExpressions.Regex.Replace(Text, "[^a-zA-Z0-9]", "");
-            return sanitized.Length > 0
-                ? sanitized.Substring(0, System.Math.Min(sanitized.Length, 20))
-                : Id ?? string.Empty;
+            // Use 1-based numbering for user-friendly names (Rules_01, Rules_02, etc.)
+            return $"Rules_{RowIndex + 1:D2}";
         }
 
         public string Text { get; set; }

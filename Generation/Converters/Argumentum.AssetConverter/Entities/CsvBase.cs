@@ -29,6 +29,12 @@ namespace Argumentum.AssetConverter.Entities
     public abstract class CsvBase<T, TMap> : ICsvBase where T : CsvBase<T, TMap>, new() where TMap : ClassMap<T>, new()
 {
     public string Id { get; set; }
+
+    /// <summary>
+    /// 0-based index of this row in the CSV file. Assigned during LoadFromContent.
+    /// </summary>
+    public int RowIndex { get; set; }
+
     public string GetId()
     {
         return Id;
@@ -86,8 +92,14 @@ namespace Argumentum.AssetConverter.Entities
                 items = csv.GetRecords<T>().ToList();
             }
         }
-        Logger.Log($"Loaded {items.Count()} items");
-        return items.ToList();
+        var itemList = items.ToList();
+        // Assign sequential row indices
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            itemList[i].RowIndex = i;
+        }
+        Logger.Log($"Loaded {itemList.Count} items");
+        return itemList;
     }
     }
 }
