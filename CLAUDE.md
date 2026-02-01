@@ -280,9 +280,30 @@ Les chemins `../../Cards/...` ne fonctionnent pas avec CardPen local (IIS).
 | Symptôme | Cause probable | Solution |
 |----------|---------------|----------|
 | Harvest vide (`Images: {}`) | Erreur JS dans CardPen | Vérifier console Playwright |
+| Harvest vide + Dpi=0 | CsvType manquant dans DataSet | Ajouter `CsvType = typeof(Entity)` |
 | Images blanches/vides | Chemins assets relatifs | Réécrire en URLs absolues |
 | `data:,` (empty dataUrl) | Timeout ou erreur fonts | Augmenter timeout à 120s |
 | Mismatch image count | rscount mal calculé | Vérifier formule expectedImageCount |
+
+### CsvType et DataSets
+
+**CRITIQUE**: Chaque DataSet doit avoir un `CsvType` défini dans `AssetConverterConfig.cs` pour que le harvesting fonctionne.
+
+```csharp
+// ✅ CORRECT - CsvType défini
+new DataSetInfo() {
+    Name = KnownDataSets.Scenarii,
+    CsvType = typeof(Scenario),  // ← OBLIGATOIRE
+    DebugFilePath = @"..\..\Cards\Scenarii\..."
+}
+
+// ❌ INCORRECT - génère harvest vide
+new DataSetInfo() {
+    Name = KnownDataSets.Scenarii,
+    // CsvType manquant → early return dans HarvestManager ligne ~494
+    DebugFilePath = @"..\..\Cards\Scenarii\..."
+}
+```
 
 ### Dimensions FallaciesWeb A0
 
