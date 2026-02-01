@@ -73,7 +73,12 @@ namespace Argumentum.AssetConverter.Entities
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 PrepareHeaderForMatch = args => RemoveDiacritics(args.Header.ToLower().Replace("_", "").Replace("-", "").Replace(" ", "")),
-                MissingFieldFound = null,
+                MissingFieldFound = args =>
+                {
+                    // Log missing fields for debugging instead of silently ignoring
+                    var headerNames = args.HeaderNames != null ? string.Join(", ", args.HeaderNames) : "unknown";
+                    Logger.Log($"[CSV Warning] Missing field '{headerNames}' at index {args.Index} in {typeof(T).Name}");
+                },
             };
             using (var csv = new CsvReader(reader, config))
             {

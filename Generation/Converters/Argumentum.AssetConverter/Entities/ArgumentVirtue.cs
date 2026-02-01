@@ -47,5 +47,6 @@ public sealed class ArgumentVirtueClassMap : ClassMap<ArgumentVirtue>
 		Map(m => m.Card).Name("card");
 		Map(m => m.Update).Name("update");
 		Map(m => m.Locked).Name("locked");
+		Map(m => m.Id).Name("ID").Optional();
 	}
 }
