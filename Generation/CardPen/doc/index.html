@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+	<title>CardPen</title>
+	<link href="../css/help.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+	<div id="TOC" class="TOC">
+		<ul>
+			<li><a href="index.html">About</a></li>
+			<li><a href="howto.html">How To</a></li>
+			<li><a href="examples.html">Examples</a></li>
+		</ul>
+	</div>
+<h1>About CardPen</h1>
+<h2>What</h2>
+<p>CardPen generates simple HTML pages of cards for printing up yourself,
+or it can convert your HTML cards to PNG images at any DPI
+for uploading to card printing services that accept image files.</p>
+<p>CardPen includes presets for most common (and many uncommon) card sizes,
+as well as custom sizes, circular cards, bleed support, zipping of your generated images, 
+overlays, and turning your BoardGameGeek game collection into cards.</p>
+<h2>Where</h2>
+<p>CardPen is available online at <a href="http://cardpen.mcdemarco.net/">cardpen.mcdemarco.net</a>;
+you can also download the project <a href="https://bitbucket.org/mcdemarco/cardpen">from BitBucket</a> and run it locally.</p>
+<h2>Why</h2>
+<p>CardPen assumes that you know your way around HTML but not around inDesign or nanDECK.
+Maybe you can&#39;t afford Adobe products and don&#39;t have a Windows machine handy to run nanDECK on,
+or your layout is simple and your project too casual to invest the time in learning a more powerful tool.
+But you know HTML already, and maybe even Mustache.</p>
+<p>If you&#39;ve used <a href="https://github.com/vaemendis/hccd/">hccd</a>,
+you might find it worth switching to CardPen for extra options like bleed and overlays.</p>
+<h3>Why Not</h3>
+<p>Some printers require inDesign or other professional file formats, and CardPen won&#39;t help you there.</p>
+<p>Mustache (the templating engine used by CardPen) is not a scripting language
+and cannot do some of the <a href="https://boardgamegeek.com/blogpost/39003/nandeck-metrotsuro-hex-tile">very cool things</a> that other tools do.</p>
+<p>If you don&#39;t know HTML and CSS already, or don&#39;t feel like hacking your way around Mustache,
+you may want to spend your time learning more appropriate tools for the job.
+Also, if you&#39;re not willing to run it in a modern browser, CardPen may not work well for you.</p>
+<p>See the end of this file for some alternatives to CardPen.</p>
+<h2>How</h2>
+<p>Your cards are assembled from a card list, a Mustache/Handlebars template, and optional CSS styles.
+You edit these and other settings in the upper half of the CardPen window,
+while the cards themselves appear in the bottom half of the CardPen window (as does this documentation).
+See the How To page for more details.</p>
+<h2>Whence</h2>
+<p>Not all card printing services accept PNG files, but many do.</p>
+<h3>Card Printing Services</h3>
+<ul>
+<li><a href="http://www.artscow.com/">ArtsCow</a> prints a handful of card sizes and shapes.  (Beware their weird minis!)   Not all their offerings let you set up more than one back, and some come with a pre-configured suit that you will probably need to remove from the cards.  On the bright side, they have enticing sale prices and they also print memo pads, which may be useful for scorepads.  (<a href="https://boardgamegeek.com/thread/1760777/how-make-score-pad">Rumor has it</a> that you can also get scorepads printed at some FedEx Office/Kinkos locations.)</li>
+<li><a href="https://www.thegamecrafter.com">The Game Crafter</a>&#39;s card sizes are listed <a href="http://help.thegamecrafter.com/article/85-cards">here</a>; they recently added <a href="https://www.thegamecrafter.com/publish/product/EuroPokerDeck">Euro Poker</a> size.  They also print everything you might need for an entire board game: score pads, boxes, boards, etc. and sell non-customized bits, too.  (You need to register and create a game to buy most of them.)</li>
+<li><a href="http://www.makeplayingcards.com/">Make Playing Cards</a>&#39; card sizes and prices are <a href="http://www.makeplayingcards.com/low-price-for-bulk.aspx">here</a>; they also make custom poker chips.</li>
+<li><a href="http://www.printerstudio.com/">Printer&#39;s Studio</a>&#39;s card sizes are listed <a href="http://www.printerstudio.com/unique-ideas/blank-playing-cards.html">here</a>.  They also make a large variety of game mats.</li>
+<li><a href="http://www.superiorpod.com/">Superior Pod</a> doesn&#39;t have a single card size list, but their sizes seem to be poker, bridge, mini, question, 3.5&quot; square and tarot.  Their submission requirements are <a href="http://support.superiorpod.com/customer/en/portal/articles/2727142-file-submission-guidelines-for-card-decks">somewhat unclear</a> but seem to include a zip file of individual image files.  There&#39;s a <a href="https://boardgamegeek.com/thread/427619/superior-pod-thread/">long BGG thread</a> about them you might want to read before buying.</li>
+</ul>
+<p>Although they print the rare Skinny Mini, <a href="http://www.drivethrucards.com">DriveThruCards</a> doesn&#39;t actually seem to accept image files, only PDFs.  For the record, their card sizes and costs are listed <a href="https://onebookshelfpublisherservice.zendesk.com/hc/en-us/articles/227867627-Printed-Card-Formats-Costs">here</a>.</p>
+<p>Although they accept image files, <a href="https://www.printplaygames.com/">Print &amp; Play</a> requires that you format them in large sheets of 18 or so cards for printing.  CardPen will not do that part automatically for you, though you may be able to do it yourself.  For the record, their sizes are listed <a href="https://www.printplaygames.com/product/standard_sizes">here</a>, including unusual square and index card sizes.</p>
+<h3>Sleeves</h3>
+<p>Sleeves are a cheap way to mock up a card game.
+Sleeve your printouts in front of actual cards, or use thicker paper or opaque sleeves for the best results.
+The bigger sleeve manufacturers support all sorts of weird sizes.</p>
+<ul>
+<li><a href="http://www.arcanetinmen.dk/products/board-game-sleeves">Dragon Shield sleeves</a> aren&#39;t just for Magic anymore.</li>
+<li><a href="https://www.fantasyflightgames.com/en/products/fantasy-flight-supply/">Fantasy Flight sleeves</a> are not the cheapest.</li>
+<li><a href="http://kmcsleeves.com">KMC sleeves</a> are still mostly for Magic; beware the minis that aren&#39;t really mini!</li>
+<li><a href="https://www.maydaygames.com/collections/card-sleeves">Mayday Games&#39; sleeves</a> are not, rumor has it, always of consistent quality.</li>
+<li><a href="http://www.ultimateguard.com/en/card-sleeves.html">Ultimate Guard sleeves</a> come in many colors and types.</li>
+<li><a href="http://www.ultrapro.com/product_list.php?cPath=70">Ultra PRO sleeves</a> are called <em>deck protectors</em>.</li>
+</ul>
+<h2>Which</h2>
+<p>You can&#39;t swing a cat without hitting a card-making program.
+Here are some alternatives you might want to try instead of CardPen.</p>
+<h3>For Windows</h3>
+<ul>
+<li><a href="http://www.nand.it/nandeck/">nanDECK</a> is the father of them all, but Windows-only.</li>
+<li><a href="https://github.com/nhmkdev/cardmaker">CardMaker</a> is Windows-only.</li>
+<li><a href="http://cardbuilder.blob.core.windows.net/cardgamemanagementsystem/publish.htm">Card Game Management System</a> is yet another Windows program.</li>
+</ul>
+<h3>For Mac</h3>
+<ul>
+<li><a href="http://multideck.blogspot.com">MultiDeck</a> runs on MacOS only.</li>
+</ul>
+<h3>Multiplatform:</h3>
+<ul>
+<li><a href="http://squib.rocks">Squib</a> is similar in functionality to nanDECK, but Ruby-based.</li>
+<li><a href="https://github.com/vaemendis/hccd/">hccd</a> is Java-based.</li>
+<li><a href="http://cgjennings.ca/eons/help.html#developers">Strange Eons</a> is also multi-platform.</li>
+<li><a href="https://github.com/clearclaw/xxpaper">XXPaper</a> makes bits for 18xx games.</li>
+</ul>
+<h3>Online</h3>
+<ul>
+<li><a href="http://court-jus.github.io/PnPDeliver/">PnPDeliver</a> is &quot;a tool to help game designers distribute their PnP games and to help PnP players to print them.&quot;  It relies on online image files, though it will work with locally-hosted image files---you can use the webserver that comes with CardPen for this purpose.</li>
+<li><a href="http://gulix.github.io/geckos/">Geckos</a> is a replacement for (not to mention an improvement over) several online Magic-style card making programs that have disappeared over the years.</li>
+</ul>
+<h2>Who</h2>
+<p>CardPen is by M. C. DeMarco (<a href="https://www.boardgamegeek.com/user/fiddly_bits">fiddly_bits</a> at BGG);
+it was inspired by <a href="https://github.com/vaemendis/hccd/">hccd</a> and <a href="https://codepen.io">CodePen</a>.
+The code and more gory details are available at <a href="https://bitbucket.org/mcdemarco/cardpen/">BitBucket</a>.</p>
+<p>CardPen is licensed under the GNU General Public License v3.0.</p>
+<h3>When</h3>
+<p>This is CardPen version 1.0.1, &copy; 2017.</p>
+
+	<div id="FOOt" class="TOC">
+		<ul>
+			<li><a href="index.html">About</a></li>
+			<li><a href="howto.html">How To</a></li>
+			<li><a href="examples.html">Examples</a></li>
+		</ul>
+	</div>
+</body>
+</html>

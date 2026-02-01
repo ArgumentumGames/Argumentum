@@ -197,3 +197,6 @@ AssetConverterConfig.*.json
 docs/investigations/screenshots/validation-finale-*/
 
 docs/investigations/pdf-validation/node_modules/
+
+# Claude Code coordination directory
+.claude/

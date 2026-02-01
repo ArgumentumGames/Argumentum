@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+	<title>CardPen</title>
+	<link href="../css/help.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+	<div id="TOC" class="TOC">
+		<ul>
+			<li><a href="index.html">About</a></li>
+			<li><a href="howto.html">How To</a></li>
+			<li><a href="examples.html">Examples</a></li>
+		</ul>
+	</div>
+<h1>How To Use CardPen</h1>
+<p>Your cards are assembled from a card list, a Mustache/Handlebars template, and optional CSS styles.
+You edit these and other settings in the upper half of the CardPen window,
+while the cards themselves appear in the bottom half of the CardPen window (as does this documentation).</p>
+<h2>Projects</h2>
+<p>Sets of cards are organized into projects.
+To change your current project, click one of the buttons under Project (at the top of the CardPen window):</p>
+<ul>
+<li><strong>New</strong> resets the editor to an empty project with some popular defaults.</li>
+<li><strong>Saved</strong> loads the last project you edited.</li>
+<li><strong>Examples</strong> loads the Pico example by default, or your choice among the other examples.</li>
+<li><strong>Load</strong> opens a form for loading an existing project file from your computer.</li>
+</ul>
+<p>By default, CardPen will load your last project, or if you haven&#39;t used it before, the Pico example.
+In the <code>examples/</code> directory, there are several more sample project files you can load. </p>
+<h2>Views</h2>
+<p>Switching between views in CardPen changes the layout of the editor (not of your cards).</p>
+<p>Individual editors for your card list, styles, and card template are available in the <strong>Editor</strong> view.  The editors plus all other options are shown in the <strong>Advanced</strong> view.  The <strong>Cards Only</strong> view maximizes the section of the window devoted to your cards.  This documentation is visible in the <strong>Help</strong> view.</p>
+<h3>Editor View</h3>
+<p>The Editor view is the default view.</p>
+<h4>Your Card List</h4>
+<p>You can upload a CSV (comma-separated value) file containing all the information about your cards, or you can enter the data manually.  In either case, the CSV delimiter (usually a comma, semicolon, or tab) will be detected automatically.</p>
+<p>The first line of your card list should be a header with short names for each of your columns.
+Each remaining line should have the same number of columns and should describe one card from your set.  You can leave some fields blank, but you should include the delimiter.  (Load the Scottish Sleuth Clue Deck example to see a card list with blank fields.)</p>
+<p>The <strong>+</strong> button will add a duplicate card to the end of your list.  The <strong>-</strong> button will remove the last card from your list.</p>
+<p>Note that the card list is optional; if you only want one card (such as for a card back, score pad, game box or the like), you don&#39;t need to fill anything in here.</p>
+<h5>Card Classes</h5>
+<p>The <strong>Card classes</strong> setting turns one or more columns from your card list into CSS classes on each card, which is especially useful for adding background images when doing card bleeds.  (Because the card wrapper element itself, <code>card</code>, does not appear in your Mustache template, you can&#39;t put a CSS class on it directly.)</p>
+<p>To use the <strong>Card classes</strong> setting, switch to the Advanced view and put the exact name(s) of your card list column(s) into the field.  Be sure that the <em>contents</em> of each column you&#39;re using this way are valid CSS class names---<em>e.g.</em>, single words, not starting with a number, and not including any special characters beyond hyphens or underscores.  (The class can also be blank for some cards.)  To add more than one class/column to <strong>Card classes</strong>, separate the column names with spaces.</p>
+<p>There is a built-in card class, <em>cardN</em>, for the nth card of your current list.  There are also built-in classes, <em>cardHTML</em> and <em>cardImage</em>, corresponding to your output format.  (The <em>cardHTML</em> class is applied for HTML and print but not images.)</p>
+<h5>Rowsets</h5>
+<p>The <strong>Rowsets</strong> setting lets you use more than one row from your card list make a single card.  To use the <strong>Rowsets</strong> setting, switch to the Advanced view and put the number of rows you want to group together into the field.  Then choose whether you want rows to be picked from your list at random (without reuse), in order (in bunches), or equidistantly (cycling through the whole list).</p>
+<p>To iterate over the rows individually in your template, use the <code>{{#rowset}}</code> and  <code>{{/rowset}}</code> tags.  In addition to the normal columns, the particular <code>{{@index}}</code> of your row within the rowset is also available.
+(See the Xendo example for more details.)</p>
+<h4>Your Template</h4>
+<p>You can upload a Mustache or Handlebars template, or enter one manually.</p>
+<p>The template is mostly plain HTML laying out a single card from your set.
+To insert card-specific information, use Mustache-style braces around one of your column titles from your card list:  <code>{{YourColumnNameHere}}</code>.  (If you have HTML in your column that you want parsed, use three braces when referring to it instead of two:  <code>{{{YourColumnNameHere}}}</code>.)</p>
+<p>In the Pico example, there are only two columns in the CSV file, named <em>Number</em> and <em>Score</em>.  The card&#39;s number is inserted in five places on the card: the center and the four corners.  The card&#39;s score is used as part of a CSS class that inserts the scoring pips.</p>
+<p>There is a built-in tag that you can use to change your template based on whether you are generating cards as HTML or as images: <code>{{cardImage}}</code>.  To turn a section of the template on when you are generating card images, put it between two tags <code>{{#cardImage}}</code> and <code>{{/cardImage}}</code>.  To turn a section off, put it between <code>{{^cardImage}}</code> and <code>{{/cardImage}}</code>.</p>
+<p>For an example of using this tag, open the BGG non-local example and scroll down to the bottom of that template.  The template uses the tag to add a proxy to the BoardGameGeek image URL when generating images (because BGG is not set up correctly for CORS).  You can also use these tags (or the related CSS classes) to compensate for unexpected differences between your HTML and image output.</p>
+<p>CardPen defaults to using Handlebars to process your template; this usually doesn&#39;t make a difference, but if you need Mustache in particular check the <em>mustache</em> checkbox above the template area.  (It&#39;s visible in the Advanced view.)</p>
+<p>For more hints on how to set up your Mustache/Handlebars template, see the additional examples, <a href="https://github.com/vaemendis/hccd/tree/master/examples">the examples from hccd</a>, the <a href="https://mustache.github.io/mustache.5.html">Mustache documentation</a>, or the <a href="http://handlebarsjs.com">Handlebars docs</a>.</p>
+<h4>Your Styles</h4>
+<p>You can upload a CSS file, enter CSS styles manually, or skip this section of the editor altogether.  It is possible to put all your styles inline on elements in your template instead of in this section (though not within <code>&lt;style&gt;</code> tags).  CardPen will not judge you for this.</p>
+<p>Most of the examples use flexbox and some CSS transforms to position various card elements, but you can use tables or any other approach you like.  When styling your cards, you should use print units like <em>in</em>, <em>mm</em>, or <em>pt</em> (points) instead of <em>px</em> in order to keep your output true to the chosen card size.</p>
+<p>When writing your styles, keep in mind that you can add your own card classes (as explained previously), use the built-in card class <em>cardN</em> of each card, and even (carefully) style the parent <code>card</code> element.</p>
+<h3>Advanced View</h3>
+<p>Click the <strong>Advanced</strong> button to view and change your project settings.</p>
+<h4>Card Size</h4>
+<p>The most important setting is card size, which defaults to <em>poker (2.5&quot;x3.5&quot;)</em>.
+You can change the orientation of your cards to <em>landscape</em>; the default is <em>portrait</em>.
+You can also set the spacing (gutter) between the cards.</p>
+<p>You don&#39;t have to keep all the units (millimeters or inches) in sync, but it certainly can&#39;t hurt.</p>
+<h4>Bleed</h4>
+<p>You can add a bleed outside the card proper (which increases the size of your cards by the specified amount), and you can also designate a safe region inside the card proper.  Most printing services require 1/8&quot; bleed per side and recommend a 1/8&quot; safe zone (sometimes expressed as 36 pixels at 300 DPI rather than as 0.125&quot; or  0.12&quot;).</p>
+<p>To visualize your bleed and safe areas, check the <strong>overlay</strong> checkbox.  The overlay only appears in the HTML view; it will not print out or be included in your card images.</p>
+<h5>Overlay Templates</h5>
+<p>You can overlay an entire template image in place of the bleed and safe lines.  This is particularly useful for laying out unusual shapes.  Enter the image URL in the URL field under Overlay.  (If it&#39;s a local image and you&#39;re running locally, you can put it in the overlays directory and refer to it as <code>/overlays/my-overlay-filename.png</code> in the URL field.)  </p>
+<p>Load the Scottish Sleuth Box example to see an overlay image in action.</p>
+<p>If you need to rotate a template to match your rotated cards,
+follow the directions below for rotating image output, and use your rotated template as the overlay URL.
+For example, Scottish Sleuth Scorepad (Simple) uses a rotated overlay.</p>
+<p>Once you&#39;ve produced your images, follow the same directions to rotate your image output back (to match the original direction of the template).</p>
+<h4>Fonts</h4>
+<p>You can add Google Fonts or other fonts (<em>e.g.</em>, <a href="https://www.bootstrapcdn.com/fontawesome/">FontAwesome</a>) using the <strong>External Stylesheet</strong> setting.  <a href="http://fontcdn.org">FontCDN</a> is a handy way to search for Google Fonts.  The Pico example also uses a <a href="https://developers.google.com/fonts/docs/getting_started#enabling_font_effects_beta">Google font effect</a> for the text shadow.  (If you don&#39;t see it, you may not be using a browser that supports their font effects.)</p>
+<p>The Pico example uses two Google Fonts; see the CSS for how they are invoked.</p>
+<p>Please note that Google fonts may scale incorrectly when converted to images at higher DPI.  If you experience this problem, try installing the fonts on your computer.  (Most Google fonts are also available free elsewhere online in system font format.)</p>
+<h4>Corners</h4>
+<p>You can set the corner radius in CardPen, though leaving it off or getting it wrong will probably not matter much in the print process.  In the wild, card corner diameters vary between 1/8&quot; and 1/4&quot;; The Game Crafter claims that &quot;US Game&quot; size tends to larger corner radius while smaller is standard.</p>
+<p>Read more about corners at <a href="http://dreadfulgames.com/rounders-your-guide-to-rounded-corner-cards-for-your-board-game/">Dreadful Games</a>.</p>
+<h3>Art</h3>
+<p>You can include URLs for background images in your CSS, and trigger different ones using classes in your template.  (This is done in all the Scottish Sleuth card examples.)</p>
+<p>For foreground images, you can include the URLs as part of the card list and put the url into an <em>img</em> tag in your template.  (See the BGG example for a foreground image.)  If your foreground image never changes, you can put it into your template directly instead.</p>
+<p>CardPen needs to be able to find your images &quot;online&quot;.
+You can use public URLs of images that are already available online
+or that you&#39;ve uploaded to an image hosting site like <a href="https://www.google.com/photos/about/">Google Photos</a> or <a href="https://unsee.cc">Unsee</a>, but note that some public images may not work with CardPen due to CORS issues.  (Click the <code>BGG</code> button for an example of using a CORS proxy to work around CORS issues.)</p>
+<p>If you need lots of images or if you&#39;re having CORS issues, you should run CardPen locally.
+Download CardPen <a href="https://bitbucket.org/mcdemarco/cardpen">from BitBucket</a>,
+run it using the instructions there,
+put your images in the images directory, and refer to them as the examples do (<em>e.g.,</em> the BGG Local Images example.)</p>
+<h3>BGG</h3>
+<p>CardPen can generate a special card list from your <a href="https://boardgamegeek.com">BoardGameGeek</a> game collection for making an <a href="https://boardgamegeek.com/boardgame/28567/i-dont-know-what-do-you-want-play">I Don&#39;t Know, What Do You Want to Play?</a> deck or for similar purposes.
+Optionally, open a BGG sample template and edit the template and styles to set up the cards the way you want.</p>
+<p>Next, in the Advanced view enter your own username in the <strong>BGG username</strong> field.
+Click the <strong>Get Games</strong> button; this will replace the sample card list with one based on your own game collection.</p>
+<h2>Output Format</h2>
+<p>You have three card generation options under Format:</p>
+<ul>
+<li>The <strong>HTML</strong> button generates an HTML preview.</li>
+<li>The <strong>Print</strong> button prints the HTML page (for DIY cards).</li>
+<li>The <strong>Images</strong> button generates individual PNG images of your cards for uploading to a commercial card printing site.</li>
+</ul>
+<h3>Printing HTML</h3>
+<p>Before printing, choose the appropriate page size for your paper (in the Advanced view).
+Your cards may fit better in one direction than the other, so try switching from landscape to portrait or back before printing.</p>
+<p>The <strong>Print</strong> button prints the cards; in some browsers you can also right-click on the frame and choose Print Frame from the context menu.</p>
+<p>When printing, be sure to uncheck or undo any scaling
+and remove any headers/footers that the browser might add.
+Some browsers will not detect your choice of landscape or portrait for your page layout,
+so you may need to set that manually in the print dialog before printing.
+You may also need to turn background images on in your browser&#39;s print settings
+if you have them on your cards.</p>
+<h4>Cut Lines</h4>
+<p>The <strong>cutline</strong> checkbox (in the Advanced view) is for adding a cut line when printing cards yourself, not for making borders.</p>
+<p>Making actual thick borders around a card is not generally recommended and so is not automated by CardPen, though you can do it using your CSS.  When making your own borders around cards against all advice, some recommend that the border extend about 1/8&quot; into the safe zone.</p>
+<h3>Generating Images</h3>
+<p>Due to browser security settings affecting the library that CardPen uses to generate images, not all browsers will generate cards as images.  Safari will not, nor will any iOS browser; Chrome generally will.</p>
+<p>When generating images, choose an adequate DPI (300 is the default and is most printers&#39; minimum), then click the <strong>Images</strong> button under Format.  The images will appear in the output section of the page, with a <strong>Zip Images</strong> button above them.  To download the images as a zip file, click the button.
+The images inside the zip file will be named after your project and numbered sequentially.</p>
+<p>Some browsers will display the images at a strangely small resolution; in that case, right-click on an image to open it in a new tab (then, additionally, zoom in if your browser is zoomed out) in order to see the image at its real pixel size.  (You don&#39;t need to do anything special to zip such images.)</p>
+<p>Image generation is a dark art that sometimes goes wrong;
+if something else looks awry or if you get a failure message, try again.</p>
+<h4>Rotating Images</h4>
+<p>If you need to rotate your landscape cards back to portrait to upload to a printer, I recommend using <a href="https://www.imagemagick.org/">ImageMagick</a>.  The relevant command is:</p>
+<p><code>convert -rotate &quot;90&quot; filename.png newfilename.png</code></p>
+<p>You probably want to rotate the back in the opposite direction:</p>
+<p><code>convert -rotate &quot;-90&quot; filename.png newfilename.png</code></p>
+<p>Often it&#39;s easier just to edit the all files in place (as long as you&#39;ve saved your project and can regenerate them if something goes wrong):</p>
+<p><code>mogrify -rotate &quot;90&quot; *.png</code></p>
+<p>If you want to use a GUI instead of the command line, Preview on MacOS X or Photos on Windows 10 (among others) will let you rotate images.</p>
+<p>To flip an image, use &quot;180&quot; instead of &quot;90&quot;:</p>
+<p><code>convert -rotate &quot;180&quot; filename.png newfilename.png</code></p>
+<h3>Saving</h3>
+<p>CardPen stores your current card edits in your browser&#39;s local storage, so you can come back to it in the same browser later on (but not forever, and not if you overwrite it with another set of cards).</p>
+<p>For longer-term storage, use the <strong>Export</strong> button (next to your project name in the Advanced view) to save your card project as a json file.  You can load the saved file again later using the <strong>Load</strong> button under Project.  You can also load the extra examples from the examples directory this way.</p>
+<h2>Sizes</h2>
+<p>The <strong>Show All</strong> button next to the card sizes will show you all the built-in card sizes using your current settings for bleed and card orientation, including conversion to millimeters, inches, and pixels.  You should always double-check your card sizes rather than relying on card size names, which can vary strangely from publisher to publisher.</p>
+<h3>Card Size Clarifications</h3>
+<ul>
+<li>When in doubt, the size is poker.</li>
+<li>Sometimes poker size is described as &quot;Standard Game&quot; or &quot;Standard Card Game&quot;, and bridge size as &quot;Standard American&quot; or &quot;American Board Game&quot; for the purposes of sleeving, but these are not to be confused with the actual panoply of weird &quot;game&quot; sizes.</li>
+<li>Magic the Gathering cards are Euro Poker size.  They&#39;re sometimes described as poker size, but that&#39;s just a rounding error.  The original (&quot;Alpha&quot;) printing may have actually been poker sized.</li>
+<li>Euro Mini (44mm x 67mm) is sometimes listed in US sizes as 1.73&quot; x 2.64&quot;.</li>
+<li><em>Skinny Mini</em> is a nickname for the Fantasy Flight/DriveThruCards size of 1 5/8&quot; x 2 1/2&quot;, also known as Mini American; more commonly Mini means 1 3/4&quot; x 2 1/2&quot; instead.  (Bicycle claims &quot;mini&quot; is actually 1 11/16&quot; x 2 3/8&quot;, but no one prints that size.)</li>
+<li><em>Cow Mini</em> is a nickname for ArtsCow&#39;s weird mini size (h/t <a href="https://boardgamegeek.com/thread/759945/artscow-mini-playing-cards-size-vs-ideal-image-siz">this BGG thread</a> about some old typos at ArtsCow).</li>
+<li><em>Game</em> is the size of, <em>e.g.</em>, Fluxx cards, and is sometimes listed in US sizes as 2.20472&quot; x 3.4252&quot;.</li>
+<li>Square (2.75&quot;) is sometimes listed as 2 11/16&quot; or 70mm for the purposes of sleeving.</li>
+<li>Small Memo is a larger square (3.75&quot;).</li>
+<li>Business is sometimes called Biz or Question.</li>
+</ul>
+<p>Some sizes are included because sleeves for them are common, though no one will print them for you---most notably, euroGame and euroMiniGame.</p>
+
+	<div id="FOOt" class="TOC">
+		<ul>
+			<li><a href="index.html">About</a></li>
+			<li><a href="howto.html">How To</a></li>
+			<li><a href="examples.html">Examples</a></li>
+		</ul>
+	</div>
+</body>
+</html>
