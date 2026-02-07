@@ -28,7 +28,9 @@ namespace Argumentum.AssetConverter
 
 
 		//Debug Switch to configure default values
-	    public bool SkipConfigFile { get; set; } = false;
+	// NOTE: SkipConfigFile=true car les tuples List<(string,string)> ne sont pas correctement sérialisés en JSON
+	// Les Translations deviennent des {} vides après sérialisation/désérialisation
+	    public bool SkipConfigFile { get; set; } = true;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
 	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;
@@ -81,6 +83,7 @@ namespace Argumentum.AssetConverter
 
 		public LocalizationConfig LocalizationConfig { get; set; } = new LocalizationConfig()
 		{
+		Enabled = true,
 			CardSetLocalizations = new List<CardSetLocalization>(new[]
 			{
 				new CardSetLocalization()

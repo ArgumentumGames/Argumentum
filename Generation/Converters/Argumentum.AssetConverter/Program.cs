@@ -1,4 +1,4 @@
-﻿using Spectre.Console;
+﻿﻿using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -48,9 +48,9 @@ namespace Argumentum.AssetConverter
 					{
 						IsInteractive = false;
 					}
-					
-					// Traiter les arguments de ligne de commande
-					if (args[0].Equals("--validate-taxonomy", StringComparison.OrdinalIgnoreCase))
+
+				
+				if (args[0].Equals("--validate-taxonomy", StringComparison.OrdinalIgnoreCase))
 					{
 						Logger.LogTitle("Mode de validation de taxonomie");
 						

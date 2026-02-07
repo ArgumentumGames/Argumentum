@@ -66,6 +66,11 @@ public class CardSetLocalization:DocumentLocalization
 			fieldConversions = this.BackFieldConversions;
 		}
 		var sourceCardSetPayload = await source.GetCardSetDocument(config);
+		if (sourceCardSetPayload?.CardSetDocument == null)
+		{
+			Logger.Log($"[CardSetLocalization] No CardSetDocument found for translation ({languages.sourceLang} → {languages.destLang}). Returning null.");
+			return null;
+		}
 		var template = sourceCardSetPayload.CardSetDocument.mustache;
 		var exceptionsBacktrack = new List<(string sourcePattern, string destPattern)>();
 		foreach (var fieldConversion in fieldConversions)

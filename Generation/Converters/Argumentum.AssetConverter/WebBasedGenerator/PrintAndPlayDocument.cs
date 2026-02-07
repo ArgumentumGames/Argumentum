@@ -95,7 +95,7 @@ namespace Argumentum.AssetConverter
                 if(File.Exists(imagePath))
                 {
                     var imageData = File.ReadAllBytes(imagePath);
-                    page.Header().AlignCenter().Height(pageSize.Height / 20).Padding(pageSize.Width / 150).Image(imageData, ImageScaling.FitHeight);
+                    page.Header().AlignCenter().Height(pageSize.Height / 10).Padding(pageSize.Width / 150).Image(imageData, ImageScaling.FitHeight);
                 }
             }
 
