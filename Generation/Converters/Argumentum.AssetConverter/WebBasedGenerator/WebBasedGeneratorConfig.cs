@@ -136,7 +136,7 @@ namespace Argumentum.AssetConverter
 						DataSet = KnownDataSets.Scenarii,
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
-						// RowsetNb non défini → utilise rscount=1 du template JSON
+						RowsetNb = 14  // Requis car template utilise {{rowset.[0].catégorie}}
 					}
 				},
 				new CardSetConfig(){

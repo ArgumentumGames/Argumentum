@@ -50,11 +50,11 @@ namespace Argumentum.AssetConverter
             {
                 var allImages = new List<MagickImage>();
                 
-                // Ajouter les cartes avec dos (face + dos alternés)
+                // Ajouter les cartes avec dos (dos + face alternés pour recto-verso)
                 foreach (var card in cardsWithBack)
                 {
-                    allImages.Add(new MagickImage(card.Front));
-                    allImages.Add(new MagickImage(card.Back));
+                    allImages.Add(new MagickImage(card.Back));   // Dos d'abord
+                    allImages.Add(new MagickImage(card.Front));  // Face ensuite
                 }
                 
                 // Ajouter les cartes sans dos (face uniquement)

@@ -147,6 +147,10 @@ public class ImageFileGenerator
 		}
 	}
 
+	// Static field to track current back index for cycling through backs when multiple faces share backs
+	private static int _currentBackIndex = 0;
+	private static readonly object _backIndexLock = new object();
+
 	private static void AssembleCurrentCardImages(CardSetDocumentConfig configDocument, string faceKey, string faceImage, List<CardImages> targetList, ConcurrentDictionary<string, string> backImages)
 	   {
 	       var currentCard = new CardImages { Front = faceImage };
@@ -184,11 +188,17 @@ public class ImageFileGenerator
 	           }
 	           else
 	           {
-	               var firstAvailableBack = backImages.FirstOrDefault();
-	               if (firstAvailableBack.Value != null)
+	               // BUGFIX: Cycle through available backs instead of always using first one
+	               // This supports the RowsetNb pattern where N faces share M backs (N > M)
+	               var backsList = backImages.Values.ToList();
+	               if (backsList.Count > 0)
 	               {
-	                   foundBackImage = firstAvailableBack.Value;
-	                   Logger.LogWarning($"Default back not found. Using first available back '{firstAvailableBack.Key}' as a fallback for face '{faceKey}'.");
+	                   lock (_backIndexLock)
+	                   {
+	                       foundBackImage = backsList[_currentBackIndex % backsList.Count];
+	                       _currentBackIndex++;
+	                   }
+	                   Logger.LogWarning($"Default back not found. Using cycled back (index {_currentBackIndex - 1} mod {backsList.Count}) as fallback for face '{faceKey}'.");
 	               }
 	           }
 	       }
