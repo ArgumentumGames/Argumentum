@@ -15,7 +15,7 @@ public class CardSetDocumentConfig: DocumentConfig
 	public List<DocumentCardSet> CardSets { get; set; }
 
 
-	public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.AlternateFaceAndBack;
+	public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.BackFirstOneDocPerBack;
 
 	public bool NoBack { get; set; }
 

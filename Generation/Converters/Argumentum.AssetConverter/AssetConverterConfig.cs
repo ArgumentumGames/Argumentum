@@ -83,7 +83,7 @@ namespace Argumentum.AssetConverter
 
 		public LocalizationConfig LocalizationConfig { get; set; } = new LocalizationConfig()
 		{
-		Enabled = true,
+		Enabled = true,  // Enabled for Russian comparison testing
 			CardSetLocalizations = new List<CardSetLocalization>(new[]
 			{
 				new CardSetLocalization()

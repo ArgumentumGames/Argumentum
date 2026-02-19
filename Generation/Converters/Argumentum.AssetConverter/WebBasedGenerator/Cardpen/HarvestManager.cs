@@ -238,9 +238,13 @@ public class HarvestManager : IAsyncDisposable
 				cardSetDocumentWrapper.CsvType = dataSet.CsvType;
 			}
 		}
+		// ✅ FIX: Forcer le DPI depuis la config C# pour écraser la valeur du template JSON
+		// Cela permet de garantir une résolution cohérente (300 DPI) pour tous les CardSets
 		if (cardSetInfo != null && cardSetInfo.Dpi > 0)
 		{
+			int originalDpi = cardSetDocumentWrapper.CardSetDocument.dpi;
 			cardSetDocumentWrapper.CardSetDocument.dpi = cardSetInfo.Dpi;
+			Log($"[DPI Override] CardSet '{cardSetDocumentWrapper.CardSetDocument.name}': DPI {originalDpi} -> {cardSetInfo.Dpi}");
 		}
 		// ✅ FIX: Ne modifier rscount QUE si RowsetNb est explicitement défini dans la config C#
 		// Sinon, conserver la valeur du template JSON (ex: Memo a rscount=200, rsstyle="bunch")
@@ -484,11 +488,31 @@ public class HarvestManager : IAsyncDisposable
 	              Log("Calling generateImages() in iframe context...");
 	              await iframe.EvaluateAsync("generateImages()");
 	              Log("generateImages() called, waiting for completion...");
-	              
+
 	              // Attendre que le bouton ZIP devienne visible (signal que la génération est terminée)
 	              var zipButtonLocator = iframe.Locator("#zipButton");
 	              await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 120000 });
 	              Log("Image generation process completed successfully.");
+
+	              // ✅ FIX: Capturer le DPI depuis CardPen après la génération
+	              // Le DPI utilisé pour générer les images est stocké dans cardpen.form.data.dpi
+	              try
+	              {
+	                  var capturedDpi = await iframe.EvaluateAsync<int>("() => { const d = cardpen.form.get().data; return d && d.dpi ? parseInt(d.dpi, 10) : 0; }");
+	                  Log($"[DPI] Captured DPI from CardPen: {capturedDpi}");
+	                  if (capturedDpi > 0)
+	                  {
+	                      toReturn.Dpi = capturedDpi;
+	                  }
+	                  else
+	                  {
+	                      // Fallback: utiliser le DPI de la configuration si CardPen ne retourne rien
+	                  }
+	              }
+	              catch (Exception dpiEx)
+	              {
+	                  Log($"[DPI] Warning: Could not capture DPI from CardPen: {dpiEx.Message}");
+	              }
 
 	              var objIFrame = page.FrameLocator("#cpOutput");
 	              List<string> cardIds;

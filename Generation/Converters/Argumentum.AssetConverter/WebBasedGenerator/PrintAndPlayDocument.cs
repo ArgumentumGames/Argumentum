@@ -49,7 +49,11 @@ namespace Argumentum.AssetConverter
 
             var totalMarginPoints = 2 * pageMarginMm * MmToPointsFactor;
             var contentWidthPoints = pageSize.Width - totalMarginPoints;
-            var contentHeightPoints = pageSize.Height - totalMarginPoints;
+
+            // ✅ FIX: Soustraire la hauteur du header de l'espace disponible pour le contenu
+            // Le header utilise pageSize.Height / 10, donc on le soustrait de contentHeightPoints
+            var headerHeightPoints = !string.IsNullOrEmpty(_docConfig.Header) ? pageSize.Height / 10 : 0;
+            var contentHeightPoints = pageSize.Height - totalMarginPoints - headerHeightPoints;
 
             int nbColumns = _docConfig.NbColumns > 0 ? _docConfig.NbColumns : (int)(contentWidthPoints / cardWidthPoints);
             var nbRows = (int)(contentHeightPoints / cardHeightPoints);

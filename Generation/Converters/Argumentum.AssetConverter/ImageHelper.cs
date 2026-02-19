@@ -147,6 +147,12 @@ namespace Argumentum.AssetConverter
                     documentCard = documentCardSet.BackCards;
                 }
 
+                // ✅ FIX CRITIQUE: Corriger le DPI avant toute opération
+                // Les images de CardPen peuvent avoir un metadata DPI incorrect (~400 DPI)
+                // On force le DPI à 300 pour garantir un redimensionnement correct
+                // Cela évite les dimensions 8x trop grandes dans les PDFs finaux
+                imageFromEmbeddedUrl.Density = new Density(300, DensityUnit.PixelsPerInch);
+
                 if (documentCard.WidthMM > 0 && documentCard.HeigthMM > 0)
                 {
                     imageFromEmbeddedUrl.ResizeInMM(documentCard.WidthMM, documentCard.HeigthMM, documentCard.BorderMM);
