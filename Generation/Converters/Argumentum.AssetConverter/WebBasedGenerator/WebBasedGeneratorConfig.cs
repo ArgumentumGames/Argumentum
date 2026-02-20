@@ -473,14 +473,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 89,
-								WidthMM = 58,
+								HeigthMM = 88.9m,  // Standard poker: 3.5" = 88.9mm
+								WidthMM = 63.5m,   // Standard poker: 2.5" = 63.5mm (was 58mm - incorrect)
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 89,
-								WidthMM = 58,
+								HeigthMM = 88.9m,  // Standard poker: 3.5" = 88.9mm
+								WidthMM = 63.5m,   // Standard poker: 2.5" = 63.5mm (was 58mm - incorrect)
 							}
 						}
 					}),
@@ -583,14 +583,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 89,
-								WidthMM = 58,
+								HeigthMM = 88.9m,  // Standard poker: 3.5" = 88.9mm
+								WidthMM = 63.5m,   // Standard poker: 2.5" = 63.5mm (was 58mm - incorrect)
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 89,
-								WidthMM = 58,
+								HeigthMM = 88.9m,  // Standard poker: 3.5" = 88.9mm
+								WidthMM = 63.5m,   // Standard poker: 2.5" = 63.5mm (was 58mm - incorrect)
 							}
 						}
 					}),
