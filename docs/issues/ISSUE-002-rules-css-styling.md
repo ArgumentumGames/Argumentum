@@ -75,4 +75,14 @@ card:has(h2:contains("Dernier")) { --color-box: #0066ff; }
 
 ## Status
 
-⚠️ **DEFERRED** - Requires design decision on styling approach. Other issues (#1, #3) should be validated first.
+✅ **RESOLVED** - Implemented Option C (CSS based on card indices)
+
+## Solution Applied
+
+Added CSS rules in `Argumentum_Rules_fr.json` for cards 7-24:
+- **Bingo** (cards 7-10): Orange theme (#ff6600)
+- **Dernier beau parleur** (cards 11-15): Blue theme (#0066cc)
+- **Moulin à baratin** (cards 16-20): Green theme (#228b22)
+- **Parlote coinchée** (cards 21-24): Purple theme (#7b2d9e)
+
+Each variant has distinct background colors and colored boxes for headers.
