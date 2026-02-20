@@ -20,7 +20,7 @@ The new CSV contains 6 game variants:
 File: `Cards/Rules/Argumentum_Rules_fr.json`
 - Uses `{{markdown Text}}` for rendering
 - CSS classes defined: `.card1`, `.card2`, `.card3`, `.card4`, `.card5`, `.card6`
-- But these classes are based on card index, not game variant
+- **Key issue**: Classes are based on card INDEX, not game VARIANT
 
 ## Root Cause
 
@@ -29,23 +29,50 @@ The template CSS was designed for the base game rules split across multiple card
 2. Custom styling per variant
 3. Visual distinction between games
 
-## Proposed Solution
+## Proposed Solutions (Pick One)
 
-Options:
-1. **Add CSS classes per game variant** - Requires adding a field to identify the game
-2. **Create separate templates per variant** - More work but cleaner separation
-3. **Use conditional CSS** based on content markers like `## Title`
+### Option A: Add `game_type` column to CSV
+```csv
+game_type,Text,Text_en,...
+ecolemententeurs,"# Argumentum## L'école des menteurs",...
+bingo,"# Argumentum## Le Bingo mixologie argumentative",...
+```
+Then modify template to use `{{#ifCond game_type "==" "bingo"}}class="bingo"{{/ifCond}}`
+
+### Option B: Create separate templates per variant
+- `Argumentum_Rules_Bingo_fr.json`
+- `Argumentum_Rules_DernierBeauParleur_fr.json`
+- etc.
+
+### Option C: CSS based on markdown title detection (Recommended)
+Use CSS to detect `h2` content and apply styles:
+```css
+card:has(h2:contains("Bingo")) { --color-box: #ff6600; }
+card:has(h2:contains("Dernier")) { --color-box: #0066ff; }
+```
+
+## Recommended Approach
+
+**Option C** is recommended because:
+- No CSV schema change needed
+- No new templates needed
+- CSS-only solution
+- Works with existing markdown structure
 
 ## Acceptance Criteria
 
-- [ ] Analyze new rules content structure
-- [ ] Design CSS styling approach
-- [ ] Implement CSS for new game variants
-- [ ] Validate visual rendering of all 6 variants
-- [ ] Test with Print&Play output
+- [ ] Design color scheme for 6 game variants
+- [ ] Implement CSS selectors based on h2 content
+- [ ] Test rendering of all variants
+- [ ] Validate Print&Play output
+- [ ] Update template JSON
 
 ## Related
 
 - File: `Cards/Rules/Argumentum Rules - Cards.csv` (new multi-variant file)
 - File: `Cards/Rules/Argumentum Rules - Cards.old.csv` (original single-variant backup)
 - Template: `Cards/Rules/Argumentum_Rules_fr.json`
+
+## Status
+
+⚠️ **DEFERRED** - Requires design decision on styling approach. Other issues (#1, #3) should be validated first.
