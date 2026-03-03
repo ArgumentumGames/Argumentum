@@ -28,7 +28,6 @@ msbuild.wrn
 
 # Fichiers de Visual Studio
 .vs/
-.vscode/
 *_i.c
 *_p.c
 *_h.h
@@ -200,3 +199,7 @@ docs/investigations/pdf-validation/node_modules/
 
 # Claude Code coordination directory
 .claude/
+!.claude/commands/
+!.claude/commands/*.md
+!.claude/*checkpoint*.md
+!.claude/*debrief*.md
