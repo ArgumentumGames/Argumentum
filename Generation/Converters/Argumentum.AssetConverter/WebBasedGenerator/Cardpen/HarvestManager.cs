@@ -518,19 +518,33 @@ public class HarvestManager : IAsyncDisposable
 	              List<string> cardIds;
 	              int expectedImageCount;
 
-	              // ✅ FIX SCENARII: Gérer les CardSets sans CsvType (comme Scenarii)
-	              // Pour ces CardSets, on génère des IDs synthétiques basés sur le nombre d'images
+	              // ✅ FIX: Gérer les CardSets sans CsvType (comme Scenarii, Rules Back)
+	              // Pour ces CardSets, on essaie d'extraire les IDs depuis la colonne 'card' du CSV
+	              // Si pas de colonne 'card', on génère des IDs synthétiques
 	              if (cardSetDocument.CsvType == null)
 	              {
-	                  Log($"[No CsvType] CardSet sans type CSV défini - détection des images générées...");
-	                  var generatedImagesDiv = objIFrame.Locator("#cpImages");
-	                  var generatedImages = generatedImagesDiv.Locator("img");
-	                  var generatedCount = await generatedImages.CountAsync();
-	                  Log($"[No CsvType] Détecté {generatedCount} images générées");
+	                  // Essayer d'extraire les IDs depuis la colonne 'card' du CSV
+	                  var csvContent = cardSetDocument.CardSetDocument.csv;
+	                  cardIds = ExtractCardIdsFromCsv(csvContent);
 
-	                  // Générer des IDs synthétiques pour les images
-	                  cardIds = Enumerable.Range(1, generatedCount).Select(i => $"card_{i:D3}").ToList();
-	                  expectedImageCount = generatedCount;
+	                  if (cardIds.Count > 0)
+	                  {
+	                      Log($"[No CsvType] Extrait {cardIds.Count} IDs depuis le CSV: {string.Join(", ", cardIds.Take(3))}...");
+	                      expectedImageCount = cardIds.Count;
+	                  }
+	                  else
+	                  {
+	                      // Fallback: détecter le nombre d'images générées et générer des IDs synthétiques
+	                      Log($"[No CsvType] Pas de colonne 'card' - détection des images générées...");
+	                      var generatedImagesDiv = objIFrame.Locator("#cpImages");
+	                      var generatedImages = generatedImagesDiv.Locator("img");
+	                      var generatedCount = await generatedImages.CountAsync();
+	                      Log($"[No CsvType] Détecté {generatedCount} images générées");
+
+	                      // Générer des IDs synthétiques pour les images
+	                      cardIds = Enumerable.Range(1, generatedCount).Select(i => $"card_{i:D3}").ToList();
+	                      expectedImageCount = generatedCount;
+	                  }
 	              }
 	              else
 	              {
@@ -710,5 +724,121 @@ public class HarvestManager : IAsyncDisposable
 	        currentDir = currentDir.Parent;
 	    }
 	    return currentDir?.FullName ?? throw new DirectoryNotFoundException("Could not find the project root directory 'Argumentum'.");
+	}
+
+	/// <summary>
+	/// Extrait les IDs de carte depuis la colonne 'card' d'un CSV.
+	/// Utilisé pour les CardSets sans CsvType défini (comme les backs de cartes).
+	/// </summary>
+	/// <param name="csvContent">Le contenu CSV à parser</param>
+	/// <returns>Liste des IDs de carte extraits, ou liste vide si pas de colonne 'card'</returns>
+	private List<string> ExtractCardIdsFromCsv(string csvContent)
+	{
+		var cardIds = new List<string>();
+		if (string.IsNullOrEmpty(csvContent))
+		{
+			return cardIds;
+		}
+
+		try
+		{
+			// Parser le CSV manuellement pour extraire la colonne 'card'
+			var lines = csvContent.Split('\n');
+			if (lines.Length < 2)
+			{
+				return cardIds; // Pas assez de lignes (header + data)
+			}
+
+			// Trouver l'index de la colonne 'card'
+			var headerLine = lines[0].Trim();
+			var headers = ParseCsvLine(headerLine);
+			int cardIndex = -1;
+			for (int i = 0; i < headers.Count; i++)
+			{
+				if (headers[i].Equals("card", StringComparison.OrdinalIgnoreCase))
+				{
+					cardIndex = i;
+					break;
+				}
+			}
+
+			if (cardIndex < 0)
+			{
+				return cardIds; // Pas de colonne 'card' trouvée
+			}
+
+			// Extraire les valeurs de la colonne 'card' pour chaque ligne de données
+			for (int i = 1; i < lines.Length; i++)
+			{
+				var line = lines[i].Trim();
+				if (string.IsNullOrEmpty(line))
+				{
+					continue;
+				}
+
+				var values = ParseCsvLine(line);
+				if (values.Count > cardIndex)
+				{
+					var cardValue = values[cardIndex].Trim();
+					if (!string.IsNullOrEmpty(cardValue))
+					{
+						cardIds.Add(cardValue);
+					}
+				}
+			}
+
+			Log($"[ExtractCardIdsFromCsv] Trouvé {cardIds.Count} IDs: {string.Join(", ", cardIds.Take(5))}{(cardIds.Count > 5 ? "..." : "")}");
+		}
+		catch (Exception ex)
+		{
+			Log($"[ExtractCardIdsFromCsv] Erreur lors du parsing CSV: {ex.Message}");
+		}
+
+		return cardIds;
+	}
+
+	/// <summary>
+	/// Parse une ligne CSV en gérant les guillemets et les virgules à l'intérieur des valeurs
+	/// </summary>
+	private List<string> ParseCsvLine(string line)
+	{
+		var values = new List<string>();
+		var currentValue = new System.Text.StringBuilder();
+		bool inQuotes = false;
+
+		for (int i = 0; i < line.Length; i++)
+		{
+			char c = line[i];
+
+			if (c == '"')
+			{
+				if (inQuotes && i + 1 < line.Length && line[i + 1] == '"')
+				{
+					// Guillemet échappé
+					currentValue.Append('"');
+					i++;
+				}
+				else
+				{
+					// Toggle l'état des guillemets
+					inQuotes = !inQuotes;
+				}
+			}
+			else if (c == ',' && !inQuotes)
+			{
+				// Fin de la valeur
+				values.Add(currentValue.ToString().Trim());
+				currentValue.Clear();
+			}
+			else
+			{
+				currentValue.Append(c);
+			}
+		}
+
+		// Ajouter la dernière valeur
+		values.Add(currentValue.ToString().Trim());
+
+		return values;
 	}
 }

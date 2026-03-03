@@ -50,7 +50,7 @@ namespace Argumentum.AssetConverter
 
 
 		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
-		public string LocalCardpenUrl { get; set; } = @"http://argumentum.myia.io/index.html";
+		public string LocalCardpenUrl { get; set; } = @"https://argumentum.myia.io/index.html";
 
 
 
@@ -83,6 +83,13 @@ namespace Argumentum.AssetConverter
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
 						SkipDataUpdate = false,
+						Dpi = 300
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.None,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_Back_fr.json",
 						Dpi = 300
 					}
 				},
