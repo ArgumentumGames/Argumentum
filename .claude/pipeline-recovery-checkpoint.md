@@ -1,12 +1,11 @@
 # Pipeline Recovery Checkpoint
 
-**Dernière mise à jour**: 2026-03-03 (Session 9 - Handover)
+**Dernière mise à jour**: 2026-03-03 (Session 10 - Opus 4.6 sur myia-ai-01)
 **Branche**: fix/recovery-october-2025
 **Objectif**: PDFs format "1 Dos + N Faces" conformes à la référence RU 2024
-**Plan détaillé**: [giggly-knitting-yao.md](file:///C:/Users/jsboi/.claude/plans/giggly-knitting-yao.md)
-**Debrief session**: [debrief-pipeline-recovery-20260303.md](.claude/debrief-pipeline-recovery-20260303.md)
+**Référence 2024**: `G:\Mon Drive\MyIA\Argumentum\Fallacies\Matériel\Argumentum_ru`
 
-## État Actuel - HANDOVER EN COURS
+## État Actuel - PIPELINE FR VALIDÉ
 
 ### Corrections Appliquées (Commits récents)
 

@@ -558,7 +558,7 @@ public class HarvestManager : IAsyncDisposable
 	                  // Maintenant il faut restaurer les vraies newlines pour CsvHelper C#
 	                  var csvContentUnescaped = cardSetDocument.CardSetDocument.csv.Replace("\\n", "\n");
 	                  var cardData = (System.Collections.IEnumerable)loadMethod.Invoke(null, new object[] { csvContentUnescaped });
-	                  cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).ToList();
+	                  cardIds = cardData.Cast<ICsvBase>().Select(c => c.GetId()).Where(id => !string.IsNullOrEmpty(id)).ToList();
 
 	                  // ✅ FIX: Calculer le nombre d'images attendues en tenant compte de rscount/rsstyle
 	                  // Avec rsstyle="bunch" et rscount>=N, CardPen génère ceil(cardIds.Count/rscount) images
@@ -574,7 +574,24 @@ public class HarvestManager : IAsyncDisposable
 	                  }
 	              }
 
-	              await DownloadImages(toReturn, objIFrame, cardIds, expectedImageCount);
+	              // ✅ RESTORED from Golden Master: Extract card names from .cardName elements
+	              // This is critical for category-based back matching (e.g., Scenarii backs keyed by catégorie)
+	              // The golden master used .cardName text as harvest keys, enabling:
+	              // - Multiple batches with same category to overwrite → only 7 unique backs
+	              // - Face-to-back matching via faceName.Contains(backName)
+	              var cardNames = await ExtractCardNames(objIFrame);
+	              if (cardNames.Count == expectedImageCount && cardNames.Any(n => !Regex.IsMatch(n, @"^\d{3}$")))
+	              {
+	                  // Card names from .cardName are available and meaningful (not just indices)
+	                  Log($"[ExtractCardNames] Using {cardNames.Count} card names from .cardName: {string.Join(", ", cardNames.Take(5))}...");
+	                  await DownloadImages(toReturn, objIFrame, cardNames, expectedImageCount);
+	              }
+	              else
+	              {
+	                  // Fallback to cardIds when .cardName is not available or doesn't match
+	                  Log($"[ExtractCardNames] Card names not usable (count={cardNames.Count}, expected={expectedImageCount}). Using cardIds.");
+	                  await DownloadImages(toReturn, objIFrame, cardIds, expectedImageCount);
+	              }
 	          }
 	          catch (PlaywrightException ex)
 	          {
@@ -584,6 +601,38 @@ public class HarvestManager : IAsyncDisposable
 	          }
 	          return toReturn;
 	       }
+
+    /// <summary>
+    /// RESTORED from Golden Master (commit 0087f0ec).
+    /// Extracts card names from .cardName elements in the rendered CardPen HTML.
+    /// This enables category-based back matching for Scenarii and other card sets
+    /// where the back design depends on a field from the CSV data (e.g., catégorie).
+    /// </summary>
+    public async Task<List<string>> ExtractCardNames(IFrameLocator objIFrame)
+    {
+        var cardNames = new List<string>();
+        var cardsHtml = objIFrame.Locator("card");
+        var cardCount = await cardsHtml.CountAsync();
+
+        for (var idxCard = 0; idxCard < cardCount; idxCard++)
+        {
+            var strCardName = idxCard.ToString(CultureInfo.InvariantCulture).PadLeft(3, '0');
+            var cardElement = cardsHtml.Nth(idxCard);
+            var cardCssName = cardElement.Locator(".cardName");
+            if (await cardCssName.CountAsync() > 0)
+            {
+                var currentCard = cardCssName.Nth(0);
+                var textContent = await currentCard.TextContentAsync();
+                if (!string.IsNullOrEmpty(textContent))
+                {
+                    strCardName = textContent.Trim('-').Trim();
+                }
+            }
+            cardNames.Add(strCardName);
+        }
+        Log($"[ExtractCardNames] Extracted {cardNames.Count} card names from {cardCount} card elements");
+        return cardNames;
+    }
 
     public async Task DownloadImages(CardPenHarvest toReturn, IFrameLocator objIFrame, List<string> cardIds, int expectedImageCount = -1)
     {

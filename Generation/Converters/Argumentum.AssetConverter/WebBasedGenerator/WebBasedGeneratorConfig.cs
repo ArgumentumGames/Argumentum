@@ -84,13 +84,6 @@ namespace Argumentum.AssetConverter
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
 						SkipDataUpdate = false,
 						Dpi = 300
-					},
-					BackCardSetInfo = new CardSetInfo()
-					{
-						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_Back_fr.json",
-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_Back_fr.json",
-						Dpi = 300
 					}
 				},
 				new CardSetConfig(){
@@ -133,6 +126,9 @@ namespace Argumentum.AssetConverter
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
+						DataSet = KnownDataSets.None,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
 						Dpi = 300
 					}
 				},
@@ -287,9 +283,10 @@ namespace Argumentum.AssetConverter
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
-						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+						DataSet = KnownDataSets.Scenarii,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
+						RowsetNb = 14,  // Requis car template utilise {{rowset.[0].catégorie}}
 						Dpi = 300
 					}
 				},

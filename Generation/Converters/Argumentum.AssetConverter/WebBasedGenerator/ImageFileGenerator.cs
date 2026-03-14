@@ -110,6 +110,12 @@ public class ImageFileGenerator
 				var backImageUrl = currentHarvestBack.Value;
 				var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, true, AssetConverterConfig,
 					configDocument, backName, backImageUrl, currentHarvest.Backs.Dpi);
+				// RESTORED from Golden Master: strip to suffix after last hyphen
+				// This normalizes back names for matching (e.g., "scenarii-01-histoire" → "-histoire")
+				if (backName.Contains('-'))
+				{
+					backName = backName.Substring(backName.LastIndexOf('-'));
+				}
 				backImages[backName] = backImage;
 			}
 		}
@@ -147,72 +153,57 @@ public class ImageFileGenerator
 		}
 	}
 
-	// Static field to track current back index for cycling through backs when multiple faces share backs
-	private static int _currentBackIndex = 0;
-	private static readonly object _backIndexLock = new object();
-
+	/// <summary>
+	/// RESTORED from Golden Master (commit 0087f0ec).
+	/// Matches face cards to back images using name-based matching:
+	/// - Single back: all faces use the same back
+	/// - Multiple backs: finds back whose name is contained in the face name
+	///   (e.g., face "Argumentum_Scenarii_1.1.1..histoire_titre" matches back "histoire")
+	/// - Fallback: uses first available back
+	/// </summary>
 	private static void AssembleCurrentCardImages(CardSetDocumentConfig configDocument, string faceKey, string faceImage, List<CardImages> targetList, ConcurrentDictionary<string, string> backImages)
-	   {
-	       var currentCard = new CardImages { Front = faceImage };
+	{
+		var currentCard = new CardImages { Front = faceImage };
 
-	       if (configDocument.NoBack)
-	       {
-	           targetList.Add(currentCard);
-	           return;
-	       }
+		if (configDocument.NoBack)
+		{
+			targetList.Add(currentCard);
+			return;
+		}
 
-	       if (backImages.Count == 0)
-	       {
-	           Logger.LogWarning($"No back could be assigned for face '{faceKey}'. No back images available for this card set. Adding face only.");
-	           targetList.Add(currentCard); // Ajoute la carte avec seulement le recto
-	           return;
-	       }
+		if (backImages.Count == 0)
+		{
+			Logger.LogWarning($"No back images available for face '{faceKey}'. Adding face only.");
+			targetList.Add(currentCard);
+			return;
+		}
 
-	       string foundBackImage = null;
-	       var backType = "default";
-	       if (faceKey.Contains('-'))
-	       {
-	           backType = faceKey.Substring(faceKey.LastIndexOf('-') + 1);
-	       }
+		if (backImages.Count == 1)
+		{
+			currentCard.Back = backImages.Values.First();
+		}
+		else
+		{
+			// Golden Master matching: find back whose name is contained in the face key
+			var faceKeyLower = faceKey.ToLowerInvariant();
+			var targetBackName = backImages.Keys
+				.OrderByDescending(bn => bn.Length) // Match longest name first to avoid partial matches
+				.FirstOrDefault(bn => faceKeyLower.Contains(bn.ToLowerInvariant()));
 
-	       if (backImages.TryGetValue(backType, out var backImage))
-	       {
-	           foundBackImage = backImage;
-	       }
-	       else
-	       {
-	           Logger.LogWarning($"Back type '{backType}' not found for face '{faceKey}'. Trying 'default'.");
-	           if (backImages.TryGetValue("default", out var defaultBackImage))
-	           {
-	               foundBackImage = defaultBackImage;
-	           }
-	           else
-	           {
-	               // BUGFIX: Cycle through available backs instead of always using first one
-	               // This supports the RowsetNb pattern where N faces share M backs (N > M)
-	               var backsList = backImages.Values.ToList();
-	               if (backsList.Count > 0)
-	               {
-	                   lock (_backIndexLock)
-	                   {
-	                       foundBackImage = backsList[_currentBackIndex % backsList.Count];
-	                       _currentBackIndex++;
-	                   }
-	                   Logger.LogWarning($"Default back not found. Using cycled back (index {_currentBackIndex - 1} mod {backsList.Count}) as fallback for face '{faceKey}'.");
-	               }
-	           }
-	       }
+			if (targetBackName != null)
+			{
+				currentCard.Back = backImages[targetBackName];
+			}
+			else
+			{
+				// Fallback: use first back
+				currentCard.Back = backImages.Values.First();
+				Logger.LogWarning($"No matching back found for face '{faceKey}'. Using first available back.");
+			}
+		}
 
-	       if (foundBackImage != null)
-	       {
-	           currentCard.Back = foundBackImage;
-	           targetList.Add(currentCard);
-	       }
-	       else
-	       {
-	           Logger.LogProblem($"CRITICAL: No back could be assigned for face '{faceKey}'. No back of type '{backType}', no 'default' back, and no other backs available.");
-	       }
-	   }
+		targetList.Add(currentCard);
+	}
 
 
 

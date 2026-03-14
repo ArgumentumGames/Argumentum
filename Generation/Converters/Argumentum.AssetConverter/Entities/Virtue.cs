@@ -39,6 +39,7 @@ namespace Argumentum.AssetConverter.Entities
     {
         public VirtueClassMap()
         {
+            Map(m => m.Id).Name("pk");
             Map(m => m.Pk).Name("pk");
             Map(m => m.Path).Name("path");
             Map(m => m.Depth).Name("depth");
@@ -56,7 +57,6 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Card).Name("card");
             Map(m => m.Update).Name("update");
             Map(m => m.Locked).Name("locked");
-            Map(m => m.Id).Name("ID");
         }
     }
 }
