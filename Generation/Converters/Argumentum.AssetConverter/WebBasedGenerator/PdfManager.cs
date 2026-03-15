@@ -39,30 +39,34 @@ namespace Argumentum.AssetConverter
         public void GenerateAlternateFaceAndBack(string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
         {
             var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
-            
-            // BUGFIX CORRIGÉ: Partitionner les cartes avec/sans dos au lieu de filtrer
-            var cardsWithBack = cardImages.Where(card => !string.IsNullOrEmpty(card.Back)).ToList();
-            var cardsWithoutBack = cardImages.Where(card => string.IsNullOrEmpty(card.Back)).ToList();
-            
-            AnsiConsole.MarkupLine($"[cyan]INFO: Processing {cardsWithBack.Count} cards with back, {cardsWithoutBack.Count} cards without back for '{baseName}'[/]");
-            
+
+            // BUGFIX #119: Préserver l'ordre original des CardSets (Rules en premier)
+            var cardsWithBackCount = cardImages.Count(card => !string.IsNullOrEmpty(card.Back));
+            var cardsWithoutBackCount = cardImages.Count(card => string.IsNullOrEmpty(card.Back));
+
+            AnsiConsole.MarkupLine($"[cyan]INFO: Processing {cardsWithBackCount} cards with back, {cardsWithoutBackCount} cards without back for '{baseName}'[/]");
+            AnsiConsole.MarkupLine($"[cyan]INFO: Preserving original CardSet order (Rules first, then Memo, Fallacies, etc.)[/]");
+
             var collecBuilderAFB = () =>
             {
                 var allImages = new List<MagickImage>();
-                
-                // Ajouter les cartes avec dos (dos + face alternés pour recto-verso)
-                foreach (var card in cardsWithBack)
+
+                // Parcourir les cartes dans l'ordre original des CardSets
+                foreach (var card in cardImages)
                 {
-                    allImages.Add(new MagickImage(card.Back));   // Dos d'abord
-                    allImages.Add(new MagickImage(card.Front));  // Face ensuite
+                    if (!string.IsNullOrEmpty(card.Back))
+                    {
+                        // Carte avec dos: dos d'abord, face ensuite (pour recto-verso)
+                        allImages.Add(new MagickImage(card.Back));
+                        allImages.Add(new MagickImage(card.Front));
+                    }
+                    else
+                    {
+                        // Carte sans dos (Rules): face uniquement
+                        allImages.Add(new MagickImage(card.Front));
+                    }
                 }
-                
-                // Ajouter les cartes sans dos (face uniquement)
-                foreach (var card in cardsWithoutBack)
-                {
-                    allImages.Add(new MagickImage(card.Front));
-                }
-                
+
                 var collec = new MagickImageCollection(allImages);
                 return collec;
             };
