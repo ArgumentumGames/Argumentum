@@ -1,0 +1,11 @@
+{
+  "mustache": "<html><body><h1>{{item.TextFr}}</h1></body></html>",
+  "data": {
+    "items": [
+      {
+        "Id": "1.1",
+        "TextFr": "Test Card"
+      }
+    ]
+  }
+}

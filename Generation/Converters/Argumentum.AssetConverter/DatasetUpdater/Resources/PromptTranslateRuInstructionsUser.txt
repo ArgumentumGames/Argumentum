@@ -1,0 +1,14 @@
+**Instructions de Mise à Jour :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des arguments fallacieux comportant chacune plusieurs champs utiles à ta tâche.
+Ta tâche consiste à assurer la traduction ou la correction de la traduction en russe par la mise à jour des champs "text_ru" "desc_ru" et "example_ru". En prenant modèle sur le format des valeurs existantes quand elles sont fournis, tu dois identifier les entrées pour lesquels certains de ces champs sont vides, et proposer des ajouts, uniquement pour ces entrées là, à partir des valeurs en français et en anglais existantes. 
+
+1. **Utilisation du Function calling" :** Pour chaque mise à jour, utilise un appel à l'une des fonctions disponibles indiquées dans ton prompt système, ne répond pas en texte libre. Cela garantit que les modifications seront correctement appliquées champs par champs au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
+
+2. **Format des descriptions: ** Les descriptions n'ont pas tout à fait le même format en français / russe et en anglais. En français et en russe, elles sont formulées à la deuxième personne du pluriel tandis qu'en anglais elles sont formulées à l'infinitif. Assure toi de respecter ce format.
+
+2. **Format des exemples: ** Les exemples ne sont pas des compléments d'explication à la description, mais des mises en situation de incarnées, à la première personne, fournissant une illustration concrète des arguments fallacieux sans que ceux-ci soient explicitement nommés. 
+
+3. **Respect de la Hiérarchisation :** Il est essentiel de maintenir l'intégrité de la hiérarchie des taxonomies. Les termes doivent être utilisés dans leur contexte spécifique et limiter le recouvrement entre les branches:  
+
+Est-ce que tu es prêt à recevoir les données?
