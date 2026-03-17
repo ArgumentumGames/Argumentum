@@ -1,5 +1,4 @@
-﻿using OpenAI.GPT3.ObjectModels;
-using Spectre.Console;
+﻿using Spectre.Console;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.DatasetUpdater;
+using OpenAI.ObjectModels;
 
 namespace Argumentum.AssetConverter;
 
@@ -22,7 +22,7 @@ public class DatasetUpdaterConfig
 
 	public string OpenAIKeyPath { get; set; } = @"G:\Mon Drive\MyIA\Argumentum\Fallacies\Gestion\OpenAI-Key.txt";
 
-	public string Model { get; set; } = Models.ChatGpt3_5Turbo;
+	public string Model { get; set; } = Models.Gpt_3_5_Turbo;
 
 	public int ChunkSize { get; set; } = 3;
 
