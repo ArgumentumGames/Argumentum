@@ -171,6 +171,7 @@ The pipeline worked correctly before May 2025. A series of "vibecodés" commits 
 3. **HarvestManager.cs - generateImages()**: Added explicit call (no UI click in automation)
 4. **PdfManager.cs - Lock**: Global lock on QuestPDF (NOT thread-safe)
 5. **WebBasedGeneratorConfig.cs - CardSet Memo**: Reintegrated (critical for Print&Play Tarot)
+6. **PdfManager.cs - Issue #119**: Rules cards positioning (lines 43-72) - preserves CardSet order so Rules appear first in TarotCards PDFs
 
 ### Known CSV Mapping Issues
 
@@ -190,7 +191,7 @@ In `WebBasedGeneratorConfig.cs`:
 - `LocalCardpenUrl = "http://argumentum.myia.io"` (local IIS site)
 - FallaciesWeb DPI = 400 (not 72)
 - Virtues `Enabled = true`
-- Format A0: `NbColumns = 11`
+- Format A0: `NbColumns = 12`
 
 ## Diagnostic Resources
 
@@ -310,7 +311,7 @@ new DataSetInfo() {
 Pour tenir sur 1 page A0 (841×1189mm):
 - HeightMM = 69mm (pas 72mm)
 - WidthMM = 69mm
-- NbColumns = 11
+- NbColumns = 12
 - Padding = 2mm
 
 ### RowsetNb vs rscount (CRITIQUE)
