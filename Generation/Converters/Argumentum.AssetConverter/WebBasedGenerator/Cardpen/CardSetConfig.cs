@@ -12,10 +12,7 @@ namespace Argumentum.AssetConverter
 
         public string Name { get; set; }
 
-        public bool IsEnabled { get; set; } = true;
 
-
-		public string FilePattern { get; set; } = "*.csv";
 		public CardSetInfo FaceCardSetInfo { get; set; } = new CardSetInfo();
 
         public CardSetInfo BackCardSetInfo { get; set; } = new CardSetInfo();
@@ -23,7 +20,7 @@ namespace Argumentum.AssetConverter
 
 
 
-        public string GetHarvestSerializationName(AssetConverterConfig config, string language)
+        public string GetHarvestSerializationName(WebBasedGeneratorConfig config, string language)
         {
             return Path.Combine(config.GetHarvestDirectory(language), $"{Name}_harvest_{language}.json");
         }

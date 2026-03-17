@@ -24,7 +24,7 @@ function imaginer(node,n) {
 	//Need to pass height and width due to an issue with oversized transparent canvases (#50).
 	//domtoimage.toPng(node, { height: height, width: width, dpi: dpi }).then(function (dataUrl) {
     domtoimage.toPng(node, { height: height, width: width, scale: dpi / 150 }).then(function (dataUrl) {
-  cards[n] = dataUrl;
+		cards[n] = dataUrl;
 		var img = new Image();
 		img.src = dataUrl;
 		document.getElementById("cpImages").appendChild(img);
@@ -41,7 +41,7 @@ function imaginer(node,n) {
 async function imaginerSync(node, n) {
     try {
 		var dataUrl = await domtoimage.toPng(node, { height: height, width: width, scale: dpi / 96, cachedFonts: true });
-		      cards[n] = dataUrl;
+        cards[n] = dataUrl;
         var img = new Image();
         img.src = dataUrl;
         document.getElementById("cpImages").appendChild(img);

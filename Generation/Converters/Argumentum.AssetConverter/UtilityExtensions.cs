@@ -156,22 +156,17 @@ namespace Argumentum.AssetConverter
 
 		public static bool PathIsUrl(this string path)
 		{
-			if (string.IsNullOrWhiteSpace(path))
+			if (File.Exists(path))
+				return false;
+			try
+			{
+				Uri uri = new Uri(path);
+				return true;
+			}
+			catch (Exception)
 			{
 				return false;
 			}
-
-			// Trim to handle potential whitespace issues
-			var trimmedPath = path.Trim();
-
-			// Use Uri.TryCreate to safely parse the path
-			if (Uri.TryCreate(trimmedPath, UriKind.Absolute, out Uri uri))
-			{
-				// Check for explicit http or https schemes
-				return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
-			}
-
-			return false;
 		}
 
 		public static string GetRelativePathFrom(this string referencedPath, string mainPath)
@@ -214,20 +209,13 @@ namespace Argumentum.AssetConverter
 					using var client = new HttpClient();
 
 					var response = await client.GetAsync(urlFile);
-					if (response.IsSuccessStatusCode)
-					{
-						fileName = response.Content.Headers.ContentDisposition?.FileName ??
-						           System.IO.Path.GetFileName(urlFile.LocalPath);
-						mimeType = response.Content.Headers.ContentType?.MediaType;
-						content = await response.Content.ReadAsByteArrayAsync();
+					response.EnsureSuccessStatusCode();
+					fileName = response.Content.Headers.ContentDisposition?.FileName ??
+					           System.IO.Path.GetFileName(urlFile.LocalPath);
+					mimeType = response.Content.Headers.ContentType?.MediaType;
+					content = await response.Content.ReadAsByteArrayAsync();
 
-						Logger.Log($"Downloaded Document {docPath}");
-					}
-					else
-					{
-						Logger.LogWarning($"Failed to download document {docPath}. Status code: {response.StatusCode}");
-						return null;
-					}
+					Logger.Log($"Downloaded Document {docPath}");
 				}
 				finally
 				{
@@ -252,15 +240,6 @@ namespace Argumentum.AssetConverter
 			return new DocumentPayload() { FileName = fileName, Content = content, MimeType = mimeType };
 		}
 
-		public static async Task<string> GetDocumentContent(this string docPath)
-		{
-			var payload = await docPath.GetDocumentPayload();
-			if (payload == null)
-			{
-				return null;
-			}
-			return Encoding.UTF8.GetString(payload.Content);
-		}
 
 
 		private static object lockObj = new object();

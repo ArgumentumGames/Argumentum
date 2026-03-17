@@ -551,11 +551,9 @@ var cardpen = {};
             var storedProj;
             if (window.localStorage) {
                 try {
-                    if (window.localStorage["cardpen"]) {
-                        var tempProj = JSON.parse(window.localStorage["cardpen"]);
-                        if (_.isObject(tempProj) && !_.isEmpty(tempProj)) {
-                            storedProj = tempProj;
-                        }
+                    var tempProj = JSON.parse(window.localStorage["cardpen"]);
+                    if (_.isObject(tempProj) && !_.isEmpty(tempProj)) {
+                        storedProj = tempProj;
                     }
                 } catch (e) {
                     console.log("Error checking local storage.");
@@ -567,9 +565,9 @@ var cardpen = {};
                 document.getElementById("stored").classList.add("selected");
                 context.write.tryGenerate();
             } else if (defaultToEg) {
-                context.form.load({target: document.getElementById("eg")});
+                //context.form.example();
                 document.getElementById("eg").classList.add("selected");
-                context.write.help();
+                //context.write.help();
             }
         }
 
@@ -1355,10 +1353,7 @@ var cardpen = {};
                         return new Handlebars.SafeString(text);
                     });
                     Handlebars.registerHelper("markdown", function (md) {
-                       marked.setOptions({
-                           breaks: true
-                       });
-                       return new Handlebars.SafeString(marked(md));
+                        return new Handlebars.SafeString(marked(md));
                     });
                     Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 

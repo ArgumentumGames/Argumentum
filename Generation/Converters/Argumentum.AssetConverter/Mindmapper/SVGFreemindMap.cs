@@ -10,13 +10,6 @@ public class SVGFreemindMap : DocumentConfig, ICloneable
 
 	public bool SetSVGNodeAttributes { get; set; }
 
-	public string SvgWidth { get; set; } 
-
-	public string SvgHeight { get; set; } 
-
-
-	public string SvgViewBox { get; set; }
-
 	public bool WrapNodeByLink { get; set; }
 
 

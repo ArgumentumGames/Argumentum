@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using ImageMagick;
 
 namespace Argumentum.AssetConverter
@@ -22,7 +21,7 @@ namespace Argumentum.AssetConverter
         public double Modulation { get; set; } = 200;
 
 
-        public async Task Apply()
+        public void Apply()
         {
             var objSourceDir = new DirectoryInfo(SourcePath);
             var objTargetDir = new DirectoryInfo(DestPath);
@@ -33,7 +32,7 @@ namespace Argumentum.AssetConverter
                     BatchImagePngToCnykJpegsInternal(objSourceDir, objTargetDir);
                     break;
                 case BatchImageOperation.ModulateHue:
-					await BatchImageModulate(objSourceDir, objTargetDir).ConfigureAwait(false);
+                    BatchImageModulate(objSourceDir, objTargetDir);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -43,7 +42,7 @@ namespace Argumentum.AssetConverter
 
         }
 
-        private async Task BatchImageModulate(DirectoryInfo sourceDir, DirectoryInfo targetDir)
+        private void BatchImageModulate(DirectoryInfo sourceDir, DirectoryInfo targetDir)
         {
             foreach (var sourceFile in sourceDir.GetFiles())
             {
@@ -55,7 +54,7 @@ namespace Argumentum.AssetConverter
                         ImageHelper.Modulate(image, Modulation);
 
                         var targetFile = new FileInfo(Path.Combine(targetDir.ToString(), sourceFile.Name));
-                        await image.WriteAsync(targetFile).ConfigureAwait(false);
+                        image.Write(targetFile);
                         
                         Logger.LogSuccess($"Image Converted: {targetFile.Directory?.Name}\\{targetFile.Name}");
 

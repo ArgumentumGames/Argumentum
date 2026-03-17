@@ -17,8 +17,7 @@ namespace Argumentum.AssetConverter
         {
             HashSet<Type> types = DefaultProvider.GetCustomTypes();
             types.Add(typeof(HttpUtility));
-            types.Add(typeof(FallacyMindMapDocumentConfig));
-            types.Add(typeof(VirtueMindMapDocumentConfig));
+            types.Add(typeof(MindMapDocumentConfig));
             return types;
         }
 

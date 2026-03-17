@@ -29,7 +29,7 @@ namespace Argumentum.AssetConverter
 		public bool SkipDataUpdate { get; set; }
 
 		
-		public string GetJsonFilePath(AssetConverterConfig config) => config.UseDebugParams ? JsonFilePathDebug : JsonFilePathRelease;
+		public string GetJsonFilePath(WebBasedGeneratorConfig config) => config.UseDebugParams() ? JsonFilePathDebug : JsonFilePathRelease;
 		public string JsonFilePathRelease { get; set; }
 		public string JsonFilePathDebug { get; set; }
 
@@ -44,7 +44,7 @@ namespace Argumentum.AssetConverter
 		public int RowsetNb { get; set; }
 
 
-		public async Task<CardSetPayload> GetCardSetDocument(AssetConverterConfig config)
+		public async Task<CardSetPayload> GetCardSetDocument(WebBasedGeneratorConfig config)
 		{
 			var jsonFilePath = GetJsonFilePath(config);
 			if (string.IsNullOrEmpty(jsonFilePath))
@@ -66,7 +66,6 @@ namespace Argumentum.AssetConverter
 	{
 		public string FileName { get; set; }
 		public CardSetDocument CardSetDocument { get; set; }
-		public System.Type CsvType { get; set; }
 
 		public string GetMimeType()
 		{

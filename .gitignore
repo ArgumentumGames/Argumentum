@@ -178,5 +178,46 @@ temp_owl_sharp/
 Logs/
 
 
-# Sorties des tests d'intégration
-Generation/Converters/Argumentum.AssetConverter.Tests/TestOutput/
+# BizTalk build output
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# OpenCover UI analysis results
+OpenCover/
+
+# Azure Stream Analytics local run output
+ASALocalRun/
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# NVidia Nsight GPU debugger configuration file
+*.nvuser
+
+# MFractors (Xamarin productivity tool) working folder
+.mfractor/
+
+# Local History for Visual Studio
+.localhistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
+
+# Mac
+.DS_Store
+
+/DNNPlatform/App_Data/Search
+/Cartes/Generation/Converters/Argumentum.AssetConverter/Data
+/Cartes/Generation/Converters/Mindmapper/Data
+
+#Bin DNN
+
+!/DNNPlatform/bin/

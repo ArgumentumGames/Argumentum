@@ -29,11 +29,6 @@ public class CardSetLocalization:DocumentLocalization
 
 	public static string GetLocalizedFileName(string fileName, string defaultLanguage, string targetLanguage)
 	{
-		if (string.IsNullOrEmpty(fileName))
-		{
-			return fileName;
-		}
-
 		string newFileName;
 		if (fileName.Contains($"_{defaultLanguage}"))
 		{
@@ -42,23 +37,13 @@ public class CardSetLocalization:DocumentLocalization
 		else
 		{
 			string extension = Path.GetExtension(fileName);
-			if (string.IsNullOrEmpty(extension))
-			{
-				// If there's no extension, just append the language code.
-				newFileName = $"{fileName}_{targetLanguage}";
-			}
-			else
-			{
-				// Safely replace the extension part
-				var fileNameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
-				newFileName = $"{fileNameWithoutExt}_{targetLanguage}{extension}";
-			}
+			newFileName = fileName.Replace(extension, $"_{targetLanguage}{extension}");
 		}
 		return newFileName;
 	}
 
 	public async Task<CardSetPayload> TranslateCardSetInfo(CardSetInfo source,
-		bool front, (string sourceLang, string destLang) languages, AssetConverterConfig config)
+		bool front, (string sourceLang, string destLang) languages, WebBasedGeneratorConfig config)
 	{
 		var fieldConversions = this.FrontFieldConversions;
 		if (!front)
@@ -71,16 +56,9 @@ public class CardSetLocalization:DocumentLocalization
 		foreach (var fieldConversion in fieldConversions)
 		{
 			var sourceFieldPattern = FormatField(fieldConversion.sourceFieldName);
-			if (fieldConversion.fieldConversions == null || !fieldConversion.fieldConversions.Any())
-			{
-				continue;
-			}
-			var conversion = fieldConversion.fieldConversions.FirstOrDefault(convertedField => convertedField.Language == languages.destLang);
-			if (string.IsNullOrEmpty(conversion.destFieldName))
-			{
-				continue;
-			}
-			var destFieldPattern = FormatField(conversion.destFieldName);
+			var convertedField =
+				fieldConversion.fieldConversions.First(convertedField => convertedField.Language == languages.destLang).destFieldName;
+			var destFieldPattern = FormatField(convertedField);
 			template = template.Replace(sourceFieldPattern, destFieldPattern);
 			foreach (var exception in this.ExceptionPatterns)
 			{

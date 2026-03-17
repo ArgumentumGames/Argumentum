@@ -13,7 +13,6 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
-using Argumentum.AssetConverter.PdfAuditor;
 using AutoMapper;
 using ExtendedXmlSerializer.Core.Sources;
 using ImageMagick;
@@ -24,14 +23,19 @@ using Rule = Spectre.Console.Rule;
 
 namespace Argumentum.AssetConverter
 {
-    public partial class WebBasedGenerator
+    public class WebBasedGenerator
 	{
 
-		public AssetConverterConfig AssetConverterConfig { get; set; }
+		
 
 		public WebBasedGeneratorConfig Config { get; set; }
 
-		
+		public WebBasedGenerator(WebBasedGeneratorConfig config)
+		{
+			Config = config;
+
+		}
+
 
 		public async Task Run()
 		{
@@ -41,15 +45,13 @@ namespace Argumentum.AssetConverter
 				Logger.LogInfo = false;
 			}
 
-			await using (var harvestManager = new HarvestManager() { Config = Config, AssetConverterConfig = AssetConverterConfig })
-			{
-				var harvestDictionary = await harvestManager.HarvestImages();
+			var harvestManager = new HarvestManager() { Config = Config };
+			var harvestDictionary = await harvestManager.HarvestImages();
 
-				var imageManager = new ImageFileGenerator() { Config = Config, AssetConverterConfig = AssetConverterConfig };
-				var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
-				GenerateCardSetDocuments(docImages);
-			}
-			
+			var imageManager = new ImageFileGenerator(Config);
+			var docImages = imageManager.GenerateDocumentImages(harvestDictionary);
+			GenerateCardSetDocuments(docImages);
+			 await GenerateMindMapDocuments();
 			Logger.LogInfo = tempLogSwitch;
 		}
 
@@ -63,84 +65,42 @@ namespace Argumentum.AssetConverter
 		/// <param name="docImages">The card images to generate the documents from.</param>
 		private void GenerateCardSetDocuments(ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> docImages)
 		{
-			Logger.Log("Checking if QuestPdfGeneration mode is enabled.");
-			if (!AssetConverterConfig.Mode.HasFlag(ConverterMode.QuestPdfGeneration))
-			{
-				Logger.Log("QuestPdfGeneration mode is disabled. Skipping PDF generation.");
-				return;
-			}
-			Logger.Log("QuestPdfGeneration mode is enabled. Entering PDF generation logic.");
-
 			Logger.LogTitle("Generating pdf documents");
 
 			Logger.LogExplanations("In this third stage, Pdf documents are compiled from the individual image files. \nThose are essentially Print&Play documents for individual printers, professional services printing formats, and various posters");
 
-			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism?  Config.MaxDegreeOfParallelismDocuments : 1 };
+			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismDocuments };
 
-			Logger.Log($"Found {docImages.Count} document configurations to process for PDF generation.");
-
-			var pdfLock = new object();
 			Parallel.ForEach(docImages, parallelOptionsDocuments, docImageList =>
 			{
 				try
 				{
-					var pdfDirectory = AssetConverterConfig.GetDocumentDirectory(docImageList.Key.language);
+					var pdfDirectory = Config.GetDocumentDirectory(docImageList.Key.language);
 					var densityDirectory = docImageList.Key.document.GetDensityDirectory(pdfDirectory);
 
 					var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
 
 					var documentName = CardSetLocalization.GetLocalizedFileName(docImageList.Key.document.DocumentName,
-						AssetConverterConfig.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
+						Config.LocalizationConfig.DefaultLanguage, docImageList.Key.language);
 					var baseName = Path.Combine(densityDirectory, documentName);
 
 					Logger.Log($"Start Generating pdf document {baseName}");
 
-					lock (pdfLock)
+					var objPdfManager = new PdfManager() ;
+
+					switch (docImageList.Key.document.DocumentFormat)
 					{
-						var objPdfManager = new PdfManager();
-
-						switch (docImageList.Key.document.DocumentFormat)
-						{
-							case CardDocumentFormat.FacesOnly:
-								objPdfManager.GenerateFacesOnly(baseName, docImageList.Value,
-									AssetConverterConfig.OverwriteExistingDocs);
-								break;
-							case CardDocumentFormat.AlternateFaceAndBack:
-								objPdfManager.GenerateAlternateFaceAndBack(baseName, docImageList.Value,
-									AssetConverterConfig.OverwriteExistingDocs);
-								break;
-							case CardDocumentFormat.BackFirstOneDocPerBack:
-								objPdfManager.GenerateBackFirstOneDocPerBack(baseName, docImageList.Value,
-									AssetConverterConfig.OverwriteExistingDocs);
-								break;
-							case CardDocumentFormat.PrintAndPlay:
-								objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document,
-									docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
-								break;
-							default:
-								throw new InvalidOperationException(
-									$"Document format {docImageList.Key.document.DocumentFormat} unsupported");
-						}
-
-						if (AssetConverterConfig.Mode.HasFlag(ConverterMode.PdfAuditor))
-						{
-							var pdfPath = $"{baseName}.pdf";
-							var auditResult = global::Argumentum.AssetConverter.PdfAuditor.PdfAuditor.AuditPdf(pdfPath, docImageList.Key.document, docImageList.Value);
-							
-							if (auditResult.IsSuccess)
-							{
-								Logger.LogSuccess("PDF Audit Report:");
-							}
-							else
-							{
-								Logger.Log("ERROR: PDF Audit Report:");
-							}
-
-							foreach (var message in auditResult.Messages)
-							{
-								Logger.Log(message);
-							}
-						}
+						case CardDocumentFormat.AlternateFaceAndBack:
+							objPdfManager.GenerateAlternateFaceAndBack( baseName, docImageList.Value, Config.OverwriteExistingDocs);
+							break;
+						case CardDocumentFormat.BackFirstOneDocPerBack:
+							objPdfManager.GenerateBackFirstOneDocPerBack( baseName, docImageList.Value, Config.OverwriteExistingDocs);
+							break;
+						case CardDocumentFormat.PrintAndPlay:
+							objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document, docImageList.Value, Config.OverwriteExistingDocs);
+							break;
+						default:
+							throw new InvalidOperationException($"Document format {docImageList.Key.document.DocumentFormat} unsupported");
 					}
 				}
 				catch (Exception e)
@@ -153,11 +113,101 @@ namespace Argumentum.AssetConverter
 
 
 
-	
+		private async Task GenerateMindMapDocuments()
+		{
+			Logger.LogTitle("Generating Freemind, SVG & Html Mindmaps");
+			Logger.LogExplanations("In this last stage, Freemind mindmaps are generated from the same dataset that was used for cards pdfs. \nOptional Manual intervention is required for SVG processing. Once a Freemind mindmap is generated, you get prompted to use the free tool to generate an SVG file, which is then further processed for HTML generation. \nNote that Html files with the svg file embedded externally will only display properly when hosted behind a URL, whereas html documents with svg embedded inside will also display properly when opened locally");
 
-		
+			var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = Config.MaxDegreeOfParallelismMindMaps };
 
-		
+			await Task.WhenAll(Config.MindMapDocuments
+				.Where(config => config.Enabled)
+				.Select(mindMap => ProcessMindMapDocumentAsync(mindMap, parallelOptionsDocuments)));
+
+		}
+
+		private async Task ProcessMindMapDocumentAsync(MindMapDocumentConfig mindMap, ParallelOptions parallelOptions)
+		{
+			IList<Fallacy> fallacies;
+			var dataSet = Config.DataSets.FirstOrDefault(ds => ds.Name == mindMap.DataSet);
+			if (dataSet == null)
+			{
+				fallacies = Fallacy.Load(mindMap.DataSet);
+			}
+			else
+			{
+				if (dataSet.CsvType != null && dataSet.CsvType != typeof(Fallacy))
+				{
+
+					if (IsSubclassOfRawGeneric(typeof(CsvBase<,>), dataSet.CsvType))
+					{
+
+						var config = new MapperConfiguration(cfg =>
+						{
+							cfg.AddProfile<MappingProfile>();
+
+						});
+						var mapper = config.CreateMapper();
+
+						// Trouver la méthode LoadAsync sur le type spécifique
+						var loadAsyncMethod = dataSet.CsvType.GetMethod("LoadAsync", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+
+
+						// Invoquer la méthode
+						var task = (Task)loadAsyncMethod.Invoke(null, new object[] { dataSet, Config.UseDebugParams() });
+
+						// Attendre la fin de la tâche et obtenir le résultat
+						await task.ConfigureAwait(false);
+						var result = (IEnumerable)task.GetType().GetProperty("Result")?.GetValue(task, null);
+
+						// Mapper les objets à Fallacy
+						fallacies = (from object baseObject in result select mapper.Map<Fallacy>(baseObject)).ToList();
+
+					}
+					else
+					{
+						throw new InvalidOperationException(
+							$"Dataset type {dataSet.CsvType.AssemblyQualifiedName} is incompatible with mindmap generation");
+					}
+
+				}
+				else
+				{
+					fallacies = await Fallacy.LoadAsync(dataSet, Config.UseDebugParams());
+				}
+				
+			}
+
+			var targetLanguages = Config.LocalizationConfig.BuildLanguageList(mindMap.Translations);
+			await Parallel.ForEachAsync(targetLanguages, parallelOptions, async (targetLanguage, token) =>
+			{
+				var currentTranslatedMap = mindMap.CloneMindMap();
+				foreach (var documentLocalization in Config.LocalizationConfig.MindMapLocalization)
+				{
+					documentLocalization.DoReflectionTranslate(currentTranslatedMap, targetLanguage);
+				}
+
+				var documentDirectory = Config.GetDocumentDirectory(targetLanguage);
+
+				await currentTranslatedMap.GenerateMindMapFile(fallacies, Config, documentDirectory, targetLanguage);
+			});
+		}
+
+
+		public static bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
+		{
+			while (toCheck != null && toCheck != typeof(object))
+			{
+				var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+				if (generic == cur)
+				{
+					return true;
+				}
+				toCheck = toCheck.BaseType;
+			}
+			return false;
+		}
+
 
 
 	}
