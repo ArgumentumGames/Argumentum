@@ -1,0 +1,10 @@
+Error accessing directory X:: Error: ENOENT: no such file or directory, stat 'X:'
+    at async Object.stat (node:internal/fs/promises:1032:18)
+    at async file:///C:/Users/jsboi/AppData/Roaming/npm/node_modules/@modelcontextprotocol/server-filesystem/dist/index.js:48:23
+    at async Promise.all (index 1)
+    at async file:///C:/Users/jsboi/AppData/Roaming/npm/node_modules/@modelcontextprotocol/server-filesystem/dist/index.js:46:1 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: 'X:'
+}
