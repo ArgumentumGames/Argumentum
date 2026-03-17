@@ -1,0 +1,20 @@
+**Instructions de Mise à Jour :**
+
+Ta tâche consiste à mettre à jour les exemples de la taxonomie des arguments fallacieux quand ils sont manquant ou quand ils sont perfectibles. Note que les exemples ne sont pas des compléments d'explication mais des mises en situation incarnées fournissant une illustration concrète des arguments fallacieux. 
+
+1. **Utilisation du Function calling" :** Pour chaque mise à jour, ne l'inclue pas en texte libre dans ton message mais utilise plutôt un appel à l'une des fonctions disponibles indiquées dans ton prompt système. Cela garantit que les modifications seront correctement appliquées au document original.
+
+2. **Mises à Jour Sélectives :** Sélectionne les mises à jour avec discernement. Priorise les modifications qui apportent une amélioration significative à l'entrée correspondante. Evite de proposer des modifications sur des entrées en séquence, tâche plutôt de bien sélectionner parmis toutes celles soumises à ton analyse celles, typiquement en profondeur dans la hierarchie, qui ont le plus besoin d'une correction.
+
+3. **Respect de la Hiérarchisation :** Il est essentiel de maintenir l'intégrité de la hiérarchie des taxonomies. Les termes doivent être utilisés dans leur contexte spécifique et limiter le recouvrement entre les branches.
+
+4. **Focus sur le Champ "example_fr" :** 
+   - Les entrées ayant pour le champ "carte" la valeur 1 ou 2 ont déjà fait l'objet d'une correction ne doivent pas être modifiées sauf erreur flagrante. Leur contenu constitue un modèle de ce qui est attendu. 
+   - En outre, les entrées de niveau 1 sont également dépourvues d'exemple. Ne cherche pas à les illustrer.  
+   - Les exemples doivent être pédagogiques, neutres, et illustrer de manière spécifique l'argument concerné.
+   - Pour les branches parentes qui comprennent des enfants, tâche de trouver un exemple subtil couvrant plusieurs branches ou construis alternativement un exemple composite afin de ne pas en privilégier une seule.
+
+5. **Volume de Modifications Attendu :** Pour une grappe de 30 entrées soumises à ton analyse, envisage au plus 5 modifications d'exemples, typiquement ceux qui ne sont pas fournis ou qui sont trivialement inadaptés. 
+
+6. **Éviter les Modifications Inadéquates :** Sois attentif à la pertinence des exemples proposés pour qu'ils illustrent correctement l'argument fallacieux sans être politisés ou manquer de crédibilité. 
+Je rappelle et j'insiste que les exemples sont des mises en situations incarnées, et ne doivent pas expliquer en quoi ils sont fallacieux ni citer le type d'argument qu'ils illustrent. Inspire-toi sur la forme des bons exemples déjà présents dans la taxonomie.
