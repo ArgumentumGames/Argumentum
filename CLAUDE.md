@@ -371,7 +371,20 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 **Symptôme si classe manquante**: Carte avec fond blanc au lieu de la couleur de famille.
 
-## Pipeline Recovery Status (Février 2026)
+## Pipeline Recovery Status (Mars 2026)
+
+### Validation Multilingue - 17 Mars 2026 ✅ COMPLETE
+
+**P1 - Pipeline multilingue validé** : 79 PDFs générés, 4209 images, dimensions correctes
+
+| Langue | PDFs | Images | Status |
+|--------|------|--------|--------|
+| FR (Français) | 18 | 620 | ✅ Golden Master |
+| EN (English) | 22 | 1781 | ✅ Cards + FallaciesWeb |
+| RU (Русский) | 17 | 1270 | ✅ Cards + FallaciesWeb |
+| PT (Português) | 22 | 538 | ✅ Cards + FallaciesWeb |
+
+**Issue #119 validée** : Rules cards apparaissent en premier dans tous les TarotCards multilingues.
 
 ### État actuel par CardSet (FR - COMPLET)
 
@@ -384,13 +397,12 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 | Rules Tarot FR | 24 | ✅ | Dans TarotCards |
 | Memo Tarot FR | 1 | ✅ | Dans TarotCards |
 | Print&Play A4 | 34 | ✅ | Poker + Tarot Print&Play |
-| Multilingue (EN/RU/PT) | ❌ | ❌ | À implémenter |
 
 ### Prochaines étapes
 
 1. ~~Valider génération images après corrections CSV/CSS~~ FAIT
 2. ~~Tester génération PDFs (QuestPDF)~~ FAIT
-3. Activer et tester génération multilingue
+3. ~~Activer et tester génération multilingue~~ FAIT (17 Mars 2026)
 4. ~~Valider formats: Tarot, Poker, A0, Print&Play~~ FAIT
 
 ### Commits clés de la recovery
