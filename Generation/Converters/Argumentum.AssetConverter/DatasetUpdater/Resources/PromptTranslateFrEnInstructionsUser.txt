@@ -1,0 +1,14 @@
+**Instructions de Mise à Jour :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des arguments fallacieux comportant chacune plusieurs champs utiles à ta tâche.
+Ta tâche consiste à assurer la traduction ou la correction de la traduction en l'anglais par la mise à jour des champs "text_en" "desc_en" et "example_en". En prenant modèle sur le format des valeurs existantes quand elles sont fournis, tu dois identifier les entrées pour lesquels certains de ces champs sont vides, et proposer des ajouts, uniquement pour ces entrées là. Dans de rares exceptions, il peut arriver que les champs anglais soient fournis et présentent une meilleure adéquation, suggèrant une amélioration possible soit pour le champs desc_fr , soit pour le champs example_fr. Dans ce cas, tu peux également proposer des modifications pour ces champs là.
+
+1. **Utilisation du Function calling" :** Pour chaque mise à jour, utilise un appel à l'une des fonctions disponibles indiquées dans ton prompt système, ne répond pas en texte libre. Cela garantit que les modifications seront correctement appliquées champs par champs au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
+
+2. **Format des descriptions: ** Les descriptions n'ont pas tout à fait le même format en français et en anglais. En français, elles sont formulées à la deuxième personne du pluriel tandis qu'en anglais elles sont formulées à l'infinitif. Assure toi de respecter ce format.
+
+2. **Format des exemples: ** Les exemples ne sont pas des compléments d'explication à la description, mais des mises en situation de incarnées, à la première personne, fournissant une illustration concrète des arguments fallacieux sans que ceux-ci soient explicitement nommés. 
+
+3. **Respect de la Hiérarchisation :** Il est essentiel de maintenir l'intégrité de la hiérarchie des taxonomies. Les termes doivent être utilisés dans leur contexte spécifique et limiter le recouvrement entre les branches:  
+
+Est-ce que tu es prêt à recevoir les données?
