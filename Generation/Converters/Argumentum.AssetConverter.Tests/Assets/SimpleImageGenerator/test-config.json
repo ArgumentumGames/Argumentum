@@ -1,0 +1,29 @@
+{
+  "BaseTargetDirectoryName": "TestOutput/SimpleImageGeneratorTests",
+  "LocalizationConfig": {
+    "Enabled": false,
+    "DefaultLanguage": "fr"
+  },
+  "WebBasedGeneratorConfig": {
+    "EnableParallelism": false,
+    "CardSets": [
+      {
+        "Name": "TestSet",
+        "FaceCardSetInfo": {
+          "JsonFilePathRelease": "Assets/SimpleImageGenerator/data.json"
+        }
+      }
+    ],
+    "CardSetDocuments": [
+      {
+        "DocumentName": "TestDoc",
+        "Enabled": true,
+        "CardSets": [
+          {
+            "CardSetName": "TestSet"
+          }
+        ]
+      }
+    ]
+  }
+}

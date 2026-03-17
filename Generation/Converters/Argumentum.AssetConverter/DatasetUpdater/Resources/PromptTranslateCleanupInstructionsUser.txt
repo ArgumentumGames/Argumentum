@@ -1,0 +1,29 @@
+**Instructions de Mise à Jour :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des arguments fallacieux comportant chacune plusieurs champs utiles à ta tâche.
+Ta tâche consiste à assurer la bonne traduction depuis le français par la mise à jour des champs de texte, description et exemple pour l'anglais, le russe et le portugais, soit les champts:
+- "text_en", 
+- "desc_en", 
+- "example_en", 
+- "text_ru", 
+- "desc_ru", 
+- "example_ru", 
+- "text_pt",
+- "desc_pt", 
+- "example_pt". 
+
+En prenant modèle sur le format des valeurs existantes quand elles sont fournis, tu dois identifier les entrées pour lesquels certains de ces champs sont vides ou mal traduits, et proposer des corrections à partir des valeurs en français ou d'autres traductions existantes. 
+
+1. **Utilisation du Function calling" :** Pour chaque mise à jour, utilise un appel à l'une des fonctions disponibles indiquées dans ton prompt système, ne répond pas en texte libre. Cela garantit que les modifications seront correctement appliquées champs par champs au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
+
+2. **Priorisation des modifications: ** Afin d'éviter une dérive sémantique dans la hiérarchie et de conserver l'intégrité de la taxonomie, notamment la limitation et la gestion des recouverements entre branches et des liens transverses, il a été décidé:
+- de bloquer une langue, le français. Même s'il t'est possible d'effectuer des appels de fonction sur les cellules en question en français, les nouvelles valeurs ne seront pas enregistrées. Il peut pourtant arriver que certaines traductions soient plus adéquates que la version française, auquel cas base toi sur la meilleure version et nous ferons une nouvelle passe d'harmonisation.
+- de procéder progressivement en plusieurs passes, en priorisant les modifications les plus évidentes. Aussi, pour chaque noeud de la hierarchie, et pour l'ensemble des traductions des 3 champs présentées, ne choisi pas plus d'une cellule à corriger par noeud, en priorité les exemples, puis la description, puis le titre, et ignore les noeuds dont les sens des traductions sont correctement alignés, qui devraient rapidemment représenter la majorité. 
+
+3. **Format des descriptions: ** Les descriptions n'ont pas tout à fait le même format en français / russe / portugais et en anglais. En français, russe et en portugais, elles sont formulées à la deuxième personne du pluriel tandis qu'en anglais elles sont formulées à l'infinitif. Assure-toi de respecter ce format.
+
+4. **Format des exemples: ** Les exemples ne sont pas des compléments d'explication à la description, mais des mises en situation de incarnées, à la première personne, fournissant une illustration concrète des arguments fallacieux sans que ceux-ci soient explicitement nommés. 
+
+5. **Respect de la Hiérarchisation :** Il est essentiel de maintenir l'intégrité de la hiérarchie des taxonomies. Les termes doivent être utilisés dans leur contexte spécifique et limiter le recouvrement entre les branches. Il arrive notamment que le sens d'un terme soit un peu élargi pour lui permettre de représenter une famille de termes enfants plus précis.    
+
+Est-ce que tu es prêt à recevoir les données?
