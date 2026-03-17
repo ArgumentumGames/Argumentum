@@ -1,0 +1,5 @@
+ID,pk,path,depth,Famille,Sous-Famille,Soussousfamille,état,carte,niveau,nom_vulgarisé,text_fr,desc_fr,example_fr,link_fr
+ROOT,0,0,0,"Sophismes","","","C",0,0,"Sophismes","Sophismes","Root node for all fallacies.","",
+F001,1,1,1,"Sophismes","Fallacies of Relevance","","C",1,1,"Ad Hominem","Ad Hominem","Attacking the person making the argument, rather than the argument itself.","'You can't trust his opinion on economics; he's a convicted felon.'",
+F002,2,2,1,"Sophismes","Fallacies of Relevance","","C",1,1,"Strawman","Strawman","Misrepresenting someone's argument to make it easier to attack.","'So you want to ban all guns and leave us defenseless? That's ridiculous.'",
+F003,3,3,1,"Sophismes","Fallacies of Ambiguity","","C",1,1,"Equivocation","Equivocation","Using a word with two different meanings in an argument.","'The sign said 'fine for parking here', and since it was fine, I parked there.'",
