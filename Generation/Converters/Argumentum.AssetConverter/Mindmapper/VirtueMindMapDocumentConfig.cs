@@ -291,41 +291,55 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				if (!TryAutomateSvgConversion(fileName, svgPath, config) && config.EnableSVGPrompt)
+				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt) && config.EnableSVGPrompt)
 				{
 					// If conversion fails, the existing logic will ask the user.
 				}
 			}
 		}
 
-		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
 			if (string.IsNullOrEmpty(config.FreeplanePath) || !File.Exists(config.FreeplanePath))
 			{
 				Logger.LogWarning("Freeplane executable not found or path not configured. Skipping automatic SVG conversion.");
 				return false;
 			}
-		
+
 			try
 			{
+				var arguments = new StringBuilder();
+				if (!isInteractive)
+				{
+					arguments.Append("-nogui ");
+				}
+				arguments.Append($"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"");
+
 				var processStartInfo = new ProcessStartInfo
 				{
 					FileName = config.FreeplanePath,
-					Arguments = $"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"",
+					Arguments = arguments.ToString(),
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
 					RedirectStandardError = true,
 					CreateNoWindow = true
 				};
-		
+
 				using (var process = new Process { StartInfo = processStartInfo })
 				{
 					Logger.Log($"Attempting automatic SVG conversion for: {sourceMmPath}");
 					process.Start();
 					string output = process.StandardOutput.ReadToEnd();
 					string error = process.StandardError.ReadToEnd();
-					process.WaitForExit();
-		
+
+					var timeout = 120000; // 120 seconds
+					if (!process.WaitForExit(timeout))
+					{
+						process.Kill();
+						Logger.LogProblem($"SVG conversion process timed out after {timeout / 1000} seconds. The process was terminated.");
+						return false;
+					}
+
 					if (process.ExitCode == 0)
 					{
 						Logger.LogSuccess("SVG conversion successful.");

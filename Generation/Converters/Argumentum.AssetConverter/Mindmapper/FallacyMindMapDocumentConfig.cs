@@ -343,7 +343,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					string output = process.StandardOutput.ReadToEnd();
 					string error = process.StandardError.ReadToEnd();
 					
-					var timeout = 30000; // 30 seconds
+					var timeout = 120000; // 120 seconds
 					if (!process.WaitForExit(timeout))
 					{
 						process.Kill();

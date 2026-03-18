@@ -433,6 +433,12 @@ namespace Argumentum.AssetConverter
 				{
 					DocumentName = "Argumentum_TarotCards_Virtues_fr.pdf",
 					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr","en"),
+						("fr", "ru"),
+						("fr", "pt")
+					}),
 					CardSets = new List<DocumentCardSet>(new[]
 					{
 						new DocumentCardSet()

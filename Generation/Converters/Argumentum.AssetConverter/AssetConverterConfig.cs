@@ -189,7 +189,7 @@ namespace Argumentum.AssetConverter
 		public FallacyMindMapCreatorConfig FallacyMindMapCreatorConfig { get; set; } = new FallacyMindMapCreatorConfig();
 		public VirtueMindMapCreatorConfig VirtueMindMapCreatorConfig { get; set; } = new VirtueMindMapCreatorConfig();
 
-		public string FreeplanePath { get; set; } = @"C:\Program Files (x86)\Freeplane\freeplane.bat";
+		public string FreeplanePath { get; set; } = @"C:\Users\MYIA\AppData\Local\Programs\Freeplane\freeplane.bat";
 
 
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
