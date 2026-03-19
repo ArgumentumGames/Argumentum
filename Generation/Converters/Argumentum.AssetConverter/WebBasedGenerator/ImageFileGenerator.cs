@@ -76,7 +76,18 @@ public class ImageFileGenerator
 						var backImages = new ConcurrentDictionary<string, string>();
 						GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
 
-						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, imageList);
+						var cardSetImages = new List<CardImages>();
+						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, cardSetImages);
+
+						// Apply NbCopies: duplicate cards for this CardSet
+						for (int copy = 0; copy < configCardSet.NbCopies; copy++)
+						{
+							imageList.AddRange(cardSetImages);
+						}
+						if (configCardSet.NbCopies > 1)
+						{
+							Logger.Log($"Applied NbCopies={configCardSet.NbCopies} for {configCardSet.CardSetName}: {cardSetImages.Count} cards × {configCardSet.NbCopies} = {cardSetImages.Count * configCardSet.NbCopies} total");
+						}
 					}
 					intermediateDict.TryAdd((configDocument.DocumentName, currentLanguage), (configDocument, imageList));
 				}
