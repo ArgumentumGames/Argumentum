@@ -34,7 +34,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
             _output.WriteLine($"Test output directory created at: {Path.GetFullPath(_testOutputDir)}");
         }
 
-        private string SetupTestConfiguration(List<CardSetDocumentConfig> docConfigs)
+        private AssetConverterConfig SetupTestConfiguration(List<CardSetDocumentConfig> docConfigs)
         {
             // Le répertoire de sortie des images doit être un sous-répertoire du répertoire de test
             var imageOutputDir = Path.Combine(_testOutputDir, "GeneratedImages");
@@ -51,17 +51,12 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
                     CardSetDocuments = docConfigs
                 }
             };
-            
-            // Le fichier de configuration est créé à la racine du répertoire d'exécution du tes
-            var configPath = Path.Combine(_testOutputDir, "AssetConverterConfig.json");
-            var jsonString = JsonSerializer.Serialize(assetConfig, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(configPath, jsonString);
-            
-            _output.WriteLine($"Configuration file created at: {configPath}");
+
+            _output.WriteLine($"Configuration file created at: {_testOutputDir}");
             _output.WriteLine($"Images will be generated in: {imageOutputDir}");
-            
-            // On retourne le chemin absolu du fichier de config
-            return Path.GetFullPath(configPath);
+
+            // Return config directly — SkipConfigFile=true ignores JSON files
+            return assetConfig;
         }
 
         private void CreateFakeImageFile(AssetConverterConfig config, string language, string cardSetName, DocumentConfig docConfig, string imageName)
@@ -82,9 +77,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         {
             // Arrange
             var docConfig = new CardSetDocumentConfig { DocumentName = "TestDoc", Enabled = true, NoBack = false, ImageFormat = MagickFormat.Png, CardSets = new List<DocumentCardSet> { new DocumentCardSet { CardSetName = "TestSet" } } };
-            var configPath = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
-
-            var config = AssetConverterConfig.GetConfig(configPath, out _);
+            var config = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
             var sut = new ImageFileGenerator
             {
                 AssetConverterConfig = config,
@@ -121,9 +114,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         {
             // Arrange
             var docConfig = new CardSetDocumentConfig { DocumentName = "TestDoc", Enabled = true, NoBack = true, ImageFormat = MagickFormat.Png, CardSets = new List<DocumentCardSet> { new DocumentCardSet { CardSetName = "TestSet" } } };
-            var configPath = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
-
-            var config = AssetConverterConfig.GetConfig(configPath, out _);
+            var config = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
             var sut = new ImageFileGenerator
             {
                 AssetConverterConfig = config,
@@ -136,7 +127,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
 
             var harvest = new CardSetHarvest();
             harvest.Faces.Images.TryAdd("card1", facePath);
-            
+
             var harvestDictionary = new ConcurrentDictionary<(string, string), Func<CardSetHarvest>>();
             harvestDictionary.TryAdd(("TestSet", "en"), () => harvest);
 
@@ -157,9 +148,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         {
             // Arrange
             var docConfig = new CardSetDocumentConfig { DocumentName = "TestDoc", Enabled = true, NoBack = false, CardSets = new List<DocumentCardSet> { new DocumentCardSet { CardSetName = "FailingSet" } } };
-            var configPath = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
-
-            var config = AssetConverterConfig.GetConfig(configPath, out _);
+            var config = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
             var sut = new ImageFileGenerator
             {
                 AssetConverterConfig = config,

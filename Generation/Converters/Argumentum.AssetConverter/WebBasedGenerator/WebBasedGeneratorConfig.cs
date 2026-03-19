@@ -207,13 +207,7 @@ namespace Argumentum.AssetConverter
 						SkipDataUpdate = false,
 						Dpi = 300
 					},
-					BackCardSetInfo = new CardSetInfo()
-					{
-						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_Back_fr.json",
-						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_Back_fr.json",
-						Dpi = 300
-					}
+					// BackCardSetInfo removed: Rules cards are face-only (no separate back)
 				},
 				new CardSetConfig(){
 					Name =KnownCardSets.FallaciesPrintAndPlay,
