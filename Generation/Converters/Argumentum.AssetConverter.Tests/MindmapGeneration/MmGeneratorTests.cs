@@ -49,7 +49,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             return records;
         }
 
-        [Fact(Skip = "Temporarily disabled to diagnose hang in test runner.")]
+        [Fact]
         public async Task GenerateMmFile_WithValidCsv_ShouldProduceWellFormedXmlWithCorrectIdsAndText()
         {
             // Arrange
@@ -59,35 +59,44 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 DocumentName = "test-fallacies.mm",
                 CrossLinks = CrossLink.None // Simplify test
             };
-            
-            generator.TitleExpression = "{item.TextFr}";
 
-            // Act
-            await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
-            var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
-
-            // Assert
-            File.Exists(generatedFilePath).Should().BeTrue("because the mindmap file should have been created.");
-
-            var mmContent = await File.ReadAllTextAsync(generatedFilePath);
-            mmContent.Should().NotBeNullOrEmpty();
-
-            var xmlDoc = XDocument.Parse(mmContent);
-            xmlDoc.Should().NotBeNull();
-            xmlDoc.Root.Name.LocalName.Should().Be("map");
-
-            // Validate root node separately if it has a special, hardcoded ID
-            xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value.Should().Be("Sophismes");
-            
-            foreach (var fallacy in fallacies)
+            var originalInteractive = Program.IsInteractive;
+            try
             {
-                if (string.IsNullOrEmpty(fallacy.Id) || fallacy.Id == "ROOT") continue;
+                // Must disable interactive mode to prevent hang on SVG file not found prompt
+                Program.IsInteractive = false;
 
-                var node = xmlDoc.XPathSelectElement($"//node[@ID='{fallacy.Id}']");
-                node.Should().NotBeNull($"because a node for fallacy with ID '{fallacy.Id}' should exist.");
+                // Act
+                await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
+                var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
 
-                var textAttribute = node.Attribute("TEXT")?.Value;
-                textAttribute.Should().Be(fallacy.TextFr, $"because the node text should match the fallacy TextFr '{fallacy.TextFr}'.");
+                // Assert
+                File.Exists(generatedFilePath).Should().BeTrue("because the mindmap file should have been created.");
+
+                var mmContent = await File.ReadAllTextAsync(generatedFilePath);
+                mmContent.Should().NotBeNullOrEmpty();
+
+                var xmlDoc = XDocument.Parse(mmContent);
+                xmlDoc.Should().NotBeNull();
+                xmlDoc.Root.Name.LocalName.Should().Be("map");
+
+                // Validate root node (TitleFunc uses DefaultTitleExpression = "{item.Text}")
+                xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value.Should().Be("Sophismes");
+
+                foreach (var fallacy in fallacies)
+                {
+                    if (string.IsNullOrEmpty(fallacy.Id) || fallacy.Id == "ROOT") continue;
+
+                    var node = xmlDoc.XPathSelectElement($"//node[@ID='{fallacy.Id}']");
+                    node.Should().NotBeNull($"because a node for fallacy with ID '{fallacy.Id}' should exist.");
+
+                    var textAttribute = node.Attribute("TEXT")?.Value;
+                    textAttribute.Should().Be(fallacy.TextFr, $"because the node text should match the fallacy TextFr '{fallacy.TextFr}'.");
+                }
+            }
+            finally
+            {
+                Program.IsInteractive = originalInteractive;
             }
         }
 
