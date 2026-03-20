@@ -129,6 +129,106 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             }
         }
 
+        [Fact]
+        public async Task CreateVirtueMindmap_ShouldCreateNonEmptyFile()
+        {
+            // Arrange
+            var virtues = await GetVirtueTestDataAsync("simple-virtues.csv");
+            virtues.Should().NotBeEmpty();
+
+            var generator = new VirtueMindMapDocumentConfig
+            {
+                DocumentName = "test-virtues.mm",
+            };
+
+            var originalInteractive = Program.IsInteractive;
+            try
+            {
+                Program.IsInteractive = false;
+
+                // Act
+                await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, "fr");
+                var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+
+                // Assert
+                File.Exists(generatedFilePath).Should().BeTrue("the Virtue mind map file should be created.");
+                var fileInfo = new FileInfo(generatedFilePath);
+                fileInfo.Length.Should().BeGreaterThan(0, "the file should not be empty.");
+
+                var mmContent = await File.ReadAllTextAsync(generatedFilePath);
+                var xmlDoc = XDocument.Parse(mmContent);
+                xmlDoc.Root.Should().NotBeNull();
+                xmlDoc.Root.Element("node").Should().NotBeNull("the map should contain a root node.");
+                xmlDoc.Root.Element("node").Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
+
+                // Verify specific virtue nodes exist
+                mmContent.Should().Contain("Argument pertinent");
+                mmContent.Should().Contain("Présentation intègre");
+            }
+            finally
+            {
+                Program.IsInteractive = originalInteractive;
+            }
+        }
+
+        [Fact]
+        public async Task XsltConversion_WithGeneratedMm_ShouldProduceValidSvg()
+        {
+            // Arrange - generate a real .mm from test data
+            var fallacies = await GetTestDataAsync("simple-fallacies.csv");
+            var generator = new FallacyMindMapDocumentConfig
+            {
+                DocumentName = "xslt-pipeline-test.mm",
+            };
+
+            var originalInteractive = Program.IsInteractive;
+            try
+            {
+                Program.IsInteractive = false;
+                await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
+            }
+            finally
+            {
+                Program.IsInteractive = originalInteractive;
+            }
+
+            var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+            File.Exists(mmPath).Should().BeTrue();
+
+            var svgPath = Path.ChangeExtension(mmPath, ".svg");
+
+            // Act - apply XSLT conversion
+            var result = FallacyMindMapDocumentConfig.TryXsltSvgConversion(mmPath, svgPath);
+
+            // Assert
+            result.Should().BeTrue("XSLT conversion should succeed on a pipeline-generated .mm file.");
+            File.Exists(svgPath).Should().BeTrue();
+
+            var svgContent = await File.ReadAllTextAsync(svgPath);
+            svgContent.Should().Contain("<svg", "output should be valid SVG.");
+            svgContent.Should().Contain("Sophismes", "SVG should contain root node text.");
+        }
+
+        private async Task<List<Virtue>> GetVirtueTestDataAsync(string csvFileName)
+        {
+            var csvPath = Path.Combine("Assets", csvFileName);
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HeaderValidated = null,
+                MissingFieldFound = null
+            };
+            using var reader = new StreamReader(csvPath);
+            using var csv = new CsvReader(reader, config);
+            csv.Context.RegisterClassMap<VirtueClassMap>();
+
+            var records = new List<Virtue>();
+            await foreach (var record in csv.GetRecordsAsync<Virtue>())
+            {
+                records.Add(record);
+            }
+            return records;
+        }
+
         public void Dispose()
         {
             if (Directory.Exists(_tempTestDirectory))
