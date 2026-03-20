@@ -214,3 +214,10 @@ comparison_output/
 
 # Playwright MCP cache
 .playwright-mcp/
+
+# Mindmap SVG export workspace
+_mm_export/
+
+# Generated preview directories
+_gen_preview/
+_ref_preview/
