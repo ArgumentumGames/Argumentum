@@ -173,16 +173,14 @@ The pipeline worked correctly before May 2025. A series of "vibecodés" commits 
 5. **WebBasedGeneratorConfig.cs - CardSet Memo**: Reintegrated (critical for Print&Play Tarot)
 6. **PdfManager.cs - Issue #119**: Rules cards positioning (lines 43-72) - preserves CardSet order so Rules appear first in TarotCards PDFs
 
-### Known CSV Mapping Issues
+### Known CSV Mapping Issues — ALL RESOLVED ✅
 
-These issues were identified but may not be fully resolved:
-
-| File | Issue | Impact |
-|------|-------|--------|
-| `Rule.cs` | `GetId()` returns `string.Empty` | Empty IDs everywhere |
-| `RuleClassMap.cs` | `print_and_play` column not mapped | Column ignored |
-| `ArgumentVirtueClassMap.cs` | `Id` not mapped | Virtues without ID |
-| `CsvBase.cs` | `MissingFieldFound = null` | Silent failures |
+| File | Original Issue | Resolution |
+|------|---------------|------------|
+| `Rule.cs` | `GetId()` returned `string.Empty` | Now returns `Rules_01`, `Rules_02` etc. via RowIndex |
+| `RuleClassMap.cs` | `print_and_play` not mapped | Mapped with `.Optional()` to `PrintAndPlay` property |
+| `ArgumentVirtueClassMap.cs` | `Id` not mapped | Uses `Pk` property mapped to CSV `pk` column |
+| `CsvBase.cs` | `MissingFieldFound = null` | Now logs warnings via `Logger.Log()` instead of silent |
 
 ### Critical Config Values to Verify
 
