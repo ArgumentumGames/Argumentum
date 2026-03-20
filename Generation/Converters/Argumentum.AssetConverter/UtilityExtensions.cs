@@ -73,7 +73,10 @@ namespace Argumentum.AssetConverter
 				match =>
 				{
 					var matchToken = match.Groups[1].Value;
-					var key = $"{value}/{matchToken}";
+					// Include parameter types in cache key to avoid type mismatches
+					// (e.g., Fallacy vs Virtue both using "{item.Text}" expression)
+					var typeKey = string.Join(",", context.Values.Select(v => v.GetType().FullName));
+					var key = $"{value}/{matchToken}/{typeKey}";
 					if (!_CachedIntepolationExpressions.TryGetValue(key, out var tokenDelegate))
 					{
 						var parameters = new List<ParameterExpression>(context.Count);
