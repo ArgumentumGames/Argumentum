@@ -57,9 +57,50 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             // Assert
             Assert.True(result, "L'exécution du processus de conversion SVG doit réussir.");
             Assert.True(File.Exists(svgPath), "Le fichier SVG aurait dû être créé par le processus.");
-            
+
             var fileInfo = new FileInfo(svgPath);
             Assert.True(fileInfo.Length > 0, "Le fichier SVG ne doit pas être vide.");
+        }
+
+        [Fact]
+        public void TryXsltSvgConversion_WithValidMmFile_ShouldProduceValidSvg()
+        {
+            // Arrange
+            var mmPath = Path.Combine(_tempTestDirectory, "xslt-test.mm");
+            var svgPath = Path.Combine(_tempTestDirectory, "xslt-test.svg");
+
+            var mmContent = @"<map version=""1.0.1"">
+<node TEXT=""Fallacies"">
+<node TEXT=""Ad Hominem"" POSITION=""right"">
+  <node TEXT=""Tu Quoque""/>
+  <node TEXT=""Poisoning the Well""/>
+</node>
+<node TEXT=""Straw Man"" POSITION=""left""/>
+<node TEXT=""Appeal to Authority"" POSITION=""right"">
+  <node TEXT=""Appeal to Celebrity""/>
+</node>
+</node>
+</map>";
+            File.WriteAllText(mmPath, mmContent);
+
+            // Act
+            var result = FallacyMindMapDocumentConfig.TryXsltSvgConversion(mmPath, svgPath);
+
+            // Assert
+            Assert.True(result, "XSLT SVG conversion should succeed.");
+            Assert.True(File.Exists(svgPath), "SVG file should be created.");
+
+            var svgContent = File.ReadAllText(svgPath);
+            Assert.Contains("<svg", svgContent);
+            Assert.Contains("Fallacies", svgContent);
+            Assert.Contains("Ad Hominem", svgContent);
+            Assert.Contains("Tu Quoque", svgContent);
+            Assert.Contains("Straw Man", svgContent);
+            Assert.Contains("Appeal to Authority", svgContent);
+            Assert.Contains("Appeal to Celebrity", svgContent);
+
+            var fileInfo = new FileInfo(svgPath);
+            Assert.True(fileInfo.Length > 100, "SVG file should have meaningful content.");
         }
     }
 }
