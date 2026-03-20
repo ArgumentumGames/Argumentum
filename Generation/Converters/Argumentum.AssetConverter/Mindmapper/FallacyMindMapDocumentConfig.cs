@@ -21,6 +21,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
+using System.Xml.Xsl;
 using Color = System.Drawing.Color;
 using Argumentum.AssetConverter.Entities;
 
@@ -302,9 +303,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt) && config.EnableSVGPrompt)
+				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt))
 				{
-					// If conversion fails, the existing logic will ask the user.
+					// Freeplane failed — try XSLT fallback
+					if (!TryXsltSvgConversion(fileName, svgPath) && config.EnableSVGPrompt)
+					{
+						// Both methods failed, existing logic will ask the user.
+					}
 				}
 			}
 		}
@@ -435,6 +440,78 @@ if (mapFile != null) {
 ";
 				File.WriteAllText(scriptPath, groovyScript);
 				Logger.Log($"Groovy export script ensured at: {scriptPath}");
+			}
+		}
+
+
+		/// <summary>
+		/// XSLT-based mm→SVG conversion using tstephen/mindmap's two-step pipeline.
+		/// Used as fallback when Freeplane GUI export is not available.
+		/// Step 1: polyfill.xslt adds layout bounds to .mm nodes
+		/// Step 2: mm2svg.xslt converts the polyfilled .mm to SVG
+		/// </summary>
+		internal static bool TryXsltSvgConversion(string sourceMmPath, string destinationSvgPath)
+		{
+			try
+			{
+				var assembly = Assembly.GetExecutingAssembly();
+				var resourcePrefix = "Argumentum.AssetConverter.Mindmapper.xslt.";
+
+				using var polyfillStream = assembly.GetManifestResourceStream(resourcePrefix + "polyfill.xslt");
+				using var mm2svgStream = assembly.GetManifestResourceStream(resourcePrefix + "mm2svg.xslt");
+
+				if (polyfillStream == null || mm2svgStream == null)
+				{
+					Logger.LogWarning("XSLT resources not found in assembly. Skipping XSLT SVG conversion.");
+					return false;
+				}
+
+				// Step 1: Apply polyfill.xslt to add layout bounds
+				var polyfillTransform = new XslCompiledTransform();
+				using (var reader = XmlReader.Create(polyfillStream))
+				{
+					polyfillTransform.Load(reader);
+				}
+
+				var polyfillResult = new MemoryStream();
+				using (var inputReader = XmlReader.Create(sourceMmPath))
+				{
+					using var writer = XmlWriter.Create(polyfillResult, polyfillTransform.OutputSettings);
+					polyfillTransform.Transform(inputReader, writer);
+				}
+				polyfillResult.Position = 0;
+
+				// Step 2: Apply mm2svg.xslt to convert to SVG
+				var mm2svgTransform = new XslCompiledTransform();
+				using (var reader = XmlReader.Create(mm2svgStream))
+				{
+					mm2svgTransform.Load(reader);
+				}
+
+				var destDir = Path.GetDirectoryName(destinationSvgPath);
+				if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+					Directory.CreateDirectory(destDir);
+
+				using (var inputReader = XmlReader.Create(polyfillResult))
+				{
+					using var outputStream = File.Create(destinationSvgPath);
+					using var writer = XmlWriter.Create(outputStream, mm2svgTransform.OutputSettings);
+					mm2svgTransform.Transform(inputReader, writer);
+				}
+
+				if (File.Exists(destinationSvgPath) && new FileInfo(destinationSvgPath).Length > 0)
+				{
+					Logger.LogSuccess($"XSLT SVG conversion successful: {destinationSvgPath}");
+					return true;
+				}
+
+				Logger.LogWarning($"XSLT SVG conversion produced empty file: {destinationSvgPath}");
+				return false;
+			}
+			catch (Exception ex)
+			{
+				Logger.LogProblem($"XSLT SVG conversion failed: {ex.Message}");
+				return false;
 			}
 		}
 

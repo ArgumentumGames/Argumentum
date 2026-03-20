@@ -291,9 +291,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt) && config.EnableSVGPrompt)
+				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt))
 				{
-					// If conversion fails, the existing logic will ask the user.
+					// Freeplane failed — try XSLT fallback
+					if (!FallacyMindMapDocumentConfig.TryXsltSvgConversion(fileName, svgPath) && config.EnableSVGPrompt)
+					{
+						// Both methods failed, existing logic will ask the user.
+					}
 				}
 			}
 		}

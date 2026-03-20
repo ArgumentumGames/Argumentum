@@ -143,4 +143,9 @@
     <InternalsVisibleTo Include="Argumentum.AssetConverter.Tests" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Mindmapper\xslt\polyfill.xslt" />
+    <EmbeddedResource Include="Mindmapper\xslt\mm2svg.xslt" />
+  </ItemGroup>
+
 </Project>
