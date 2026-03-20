@@ -203,3 +203,14 @@ docs/investigations/pdf-validation/node_modules/
 !.claude/commands/*.md
 !.claude/*checkpoint*.md
 !.claude/*debrief*.md
+
+# Validation artifacts (temporary PNGs, PDFs, and output from debug sessions)
+Validation/*.png
+Validation/*.pdf
+Validation/comparison_output/
+Validation/pdf_inspection/
+Validation/Argumentum_ru_Validation/
+comparison_output/
+
+# Playwright MCP cache
+.playwright-mcp/
