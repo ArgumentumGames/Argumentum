@@ -9,23 +9,6 @@ using CsvHelper.Configuration;
 
 namespace Argumentum.AssetConverter.Entities
 {
-    public interface IMindMapItem
-    {
-        string Path { get; }
-        int Depth { get; }
-        string Family { get; }
-        string SubFamily { get; }
-        string SubSubFamily { get; }
-        string Title { get; }
-        string Text { get; }
-        string Description { get; }
-        string Example { get; }
-        string Link { get; }
-        int? Carte { get; }
-        string Id { get; set; }
-        string PK { get; }
-        string DecimalPath { get; }
-    }
     public abstract class CsvBase<T, TMap> : ICsvBase where T : CsvBase<T, TMap>, new() where TMap : ClassMap<T>, new()
 {
     public string Id { get; set; }

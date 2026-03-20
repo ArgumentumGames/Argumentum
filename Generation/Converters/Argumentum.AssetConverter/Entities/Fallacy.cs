@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Argumentum.AssetConverter.Mindmapper;
 using CsvHelper.Configuration;
 
 namespace Argumentum.AssetConverter.Entities
@@ -127,6 +128,9 @@ namespace Argumentum.AssetConverter.Entities
         public string DécimalPathPadded { get; set; }
 
         public string DepthMax4 { get; set; }
+
+        // IMindMapItem explicit implementation for Pk (interface requires both Pk and PK)
+        string IMindMapItem.Pk { get => PK; set => PK = value; }
 	}
 
     public sealed class FallacyClassMap : ClassMap<Fallacy>

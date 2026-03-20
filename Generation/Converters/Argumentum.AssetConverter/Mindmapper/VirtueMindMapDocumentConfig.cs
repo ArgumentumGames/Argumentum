@@ -306,19 +306,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 				return false;
 			}
 
+			// Ensure the Groovy export script exists in Freeplane's scripts directory
+			FallacyMindMapDocumentConfig.EnsureGroovyExportScript(config);
+
 			try
 			{
-				var arguments = new StringBuilder();
-				if (!isInteractive)
-				{
-					arguments.Append("-nogui ");
-				}
-				arguments.Append($"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"");
+				// Freeplane 1.13+ uses Groovy scripts for headless export.
+				var arguments = $"-S -N -Xexport_to_svg \"{sourceMmPath}\"";
 
 				var processStartInfo = new ProcessStartInfo
 				{
 					FileName = config.FreeplanePath,
-					Arguments = arguments.ToString(),
+					Arguments = arguments,
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
 					RedirectStandardError = true,
@@ -327,7 +326,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				using (var process = new Process { StartInfo = processStartInfo })
 				{
-					Logger.Log($"Attempting automatic SVG conversion for: {sourceMmPath}");
+					Logger.Log($"Attempting automatic SVG conversion via Groovy script for: {sourceMmPath}");
 					process.Start();
 					string output = process.StandardOutput.ReadToEnd();
 					string error = process.StandardError.ReadToEnd();
@@ -342,7 +341,17 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 					if (process.ExitCode == 0)
 					{
-						Logger.LogSuccess("SVG conversion successful.");
+						// The Groovy script generates SVG alongside the .mm file
+						var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
+						if (File.Exists(generatedSvgPath) && generatedSvgPath != destinationSvgPath)
+						{
+							var destDir = System.IO.Path.GetDirectoryName(destinationSvgPath);
+							if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+								Directory.CreateDirectory(destDir);
+							File.Move(generatedSvgPath, destinationSvgPath, true);
+						}
+
+						Logger.LogSuccess($"SVG conversion successful: {destinationSvgPath}");
 						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
 						return true;
 					}

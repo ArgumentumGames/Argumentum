@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter.Mindmapper;
 using CsvHelper.Configuration;
 
 namespace Argumentum.AssetConverter.Entities
@@ -13,7 +14,7 @@ namespace Argumentum.AssetConverter.Entities
         public string Example => string.Empty; // No example in source for Virtues
         public string Link => LinkFr;
         public int? Carte => int.TryParse(Card, out int c) ? c : null;
-        public string PK => Pk;
+        public string PK { get => Pk; set => Pk = value; }
         public string DecimalPath { get; set; }
 
 

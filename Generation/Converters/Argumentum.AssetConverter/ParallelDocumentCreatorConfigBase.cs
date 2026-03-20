@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.Entities;
+using Argumentum.AssetConverter.Mindmapper;
 using AutoMapper;
 using ImageMagick;
 
