@@ -174,6 +174,15 @@ namespace Argumentum.AssetConverter
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						("Vertus", new List<(string Language, string destText)>(new []{("en", "Virtues"), ("ru", "Dobrodeteli"), ("pt", "Virtudes") }) )
 					}),
+				},
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(DocumentConfig.DocumentName)
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("_fr.", new List<(string Language, string destText)>(new []{("en", "_en."), ("ru", "_ru."), ("pt", "_pt.") }) )
+					}),
 				}
 			})
 		};

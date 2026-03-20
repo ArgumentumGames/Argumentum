@@ -317,15 +317,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 				return false;
 			}
 
-			// Ensure the Groovy export script exists in Freeplane's scripts directory
+			// Ensure the Groovy export script exists in Freeplane's user scripts directory
 			EnsureGroovyExportScript(config);
 
 			try
 			{
-				// Freeplane 1.13+ uses Groovy scripts for headless export.
-				// The old -X ConvertToSvg syntax is not a valid menu item key.
-				// Instead, we use a Groovy script placed in Freeplane's scripts/ directory.
-				var arguments = $"-S -N -Xexport_to_svg \"{sourceMmPath}\"";
+				// Freeplane SVG export requires a graphics context (Java2D rendering).
+				// Headless mode (-S -N) cannot render SVG because HeadlessMapViewController
+				// does not implement getMapViewComponent(). We must launch in GUI mode.
+				// The -Xexport_to_svg flag executes the Groovy script after opening the file.
+				var arguments = $"-N -Xexport_to_svg \"{sourceMmPath}\"";
 
 				var processStartInfo = new ProcessStartInfo
 				{
@@ -334,29 +335,52 @@ namespace Argumentum.AssetConverter.Mindmapper
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
 					RedirectStandardError = true,
-					CreateNoWindow = true
+					CreateNoWindow = false // GUI mode needed for SVG rendering
 				};
 
 				using (var process = new Process { StartInfo = processStartInfo })
 				{
-					Logger.Log($"Attempting automatic SVG conversion via Groovy script for: {sourceMmPath}");
+					Logger.Log($"Launching Freeplane GUI for SVG export: {sourceMmPath}");
 					process.Start();
-					string output = process.StandardOutput.ReadToEnd();
-					string error = process.StandardError.ReadToEnd();
 
-					var timeout = 120000; // 120 seconds
-					if (!process.WaitForExit(timeout))
+					// Poll for the SVG file to appear (Groovy script generates it)
+					var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
+					var timeout = TimeSpan.FromSeconds(120);
+					var pollInterval = TimeSpan.FromSeconds(2);
+					var startTime = DateTime.UtcNow;
+					var svgGenerated = false;
+					var initialSvgSize = File.Exists(generatedSvgPath) ? new FileInfo(generatedSvgPath).Length : 0;
+
+					while (DateTime.UtcNow - startTime < timeout)
 					{
-						process.Kill();
-						Logger.LogProblem($"SVG conversion process timed out after {timeout / 1000} seconds. The process was terminated.");
-						return false;
+						if (File.Exists(generatedSvgPath))
+						{
+							var currentSize = new FileInfo(generatedSvgPath).Length;
+							if (currentSize > 0 && currentSize != initialSvgSize)
+							{
+								// Wait a bit more for the file to be fully written
+								Thread.Sleep(2000);
+								svgGenerated = true;
+								break;
+							}
+						}
+
+						if (process.HasExited)
+							break;
+
+						Thread.Sleep((int)pollInterval.TotalMilliseconds);
 					}
 
-					if (process.ExitCode == 0)
+					// Kill the Freeplane process (it stays open after export)
+					if (!process.HasExited)
 					{
-						// The Groovy script generates SVG alongside the .mm file (same name, .svg extension)
-						var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
-						if (File.Exists(generatedSvgPath) && generatedSvgPath != destinationSvgPath)
+						try { process.Kill(); }
+						catch { /* ignore */ }
+					}
+
+					if (svgGenerated && File.Exists(generatedSvgPath))
+					{
+						if (generatedSvgPath != destinationSvgPath)
 						{
 							var destDir = System.IO.Path.GetDirectoryName(destinationSvgPath);
 							if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
@@ -365,15 +389,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 						}
 
 						Logger.LogSuccess($"SVG conversion successful: {destinationSvgPath}");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
 						return true;
 					}
 					else
 					{
-						Logger.LogWarning($"SVG conversion failed with exit code {process.ExitCode}.");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
-						if (!string.IsNullOrWhiteSpace(error)) Logger.LogProblem(error);
-						Logger.LogWarning("Manual conversion might be required.");
+						Logger.LogWarning("SVG conversion failed. Freeplane GUI mode requires a visible desktop session.");
+						Logger.LogWarning("Manual conversion: open the .mm file in Freeplane, then File > Export > SVG.");
 						return false;
 					}
 				}
@@ -387,28 +408,33 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 		/// <summary>
-		/// Ensures the Groovy export script exists in Freeplane's scripts directory.
-		/// The script uses Freeplane's c.export() API for headless SVG export.
+		/// Ensures the Groovy export script exists in Freeplane's user scripts directory.
+		/// The script uses Freeplane's c.export() API for SVG export.
+		/// Freeplane 1.13 uses %APPDATA%\Freeplane\1.13.x\scripts\ for user scripts.
 		/// </summary>
 		internal static void EnsureGroovyExportScript(AssetConverterConfig config)
 		{
-			var freeplanePath = config.FreeplanePath;
-			var freeplaneDir = System.IO.Path.GetDirectoryName(freeplanePath);
-			if (string.IsNullOrEmpty(freeplaneDir)) return;
+			// Freeplane user scripts go in %APPDATA%\Freeplane\{version}\scripts\
+			var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			var freeplaneUserDirs = new[] { "1.13.x", "1.12.x" };
 
-			var scriptsDir = System.IO.Path.Combine(freeplaneDir, "scripts");
-			if (!Directory.Exists(scriptsDir))
-				Directory.CreateDirectory(scriptsDir);
-
-			var scriptPath = System.IO.Path.Combine(scriptsDir, "export_to_svg.groovy");
-			if (!File.Exists(scriptPath))
+			foreach (var versionDir in freeplaneUserDirs)
 			{
-				var groovyScript = @"// Auto-generated by Argumentum pipeline for headless SVG export
-def svgFile = new File(node.map.file.path.replaceFirst('\\.mm$', '.svg'))
-c.export(node.map, svgFile, 'Scalable Vector Graphic (SVG) (.svg)', true)
+				var scriptsDir = System.IO.Path.Combine(appData, "Freeplane", versionDir, "scripts");
+				if (!Directory.Exists(scriptsDir))
+					Directory.CreateDirectory(scriptsDir);
+
+				var scriptPath = System.IO.Path.Combine(scriptsDir, "export_to_svg.groovy");
+				var groovyScript = @"// Auto-generated by Argumentum pipeline for SVG export
+// Usage: freeplane -Xexport_to_svg input.mm
+def mapFile = node.map.file
+if (mapFile != null) {
+    def svgFile = new File(mapFile.path.replaceFirst('\\.mm$', '.svg'))
+    c.export(node.map, svgFile, 'Scalable Vector Graphic (SVG) (.svg)', true)
+}
 ";
 				File.WriteAllText(scriptPath, groovyScript);
-				Logger.Log($"Created Groovy export script at: {scriptPath}");
+				Logger.Log($"Groovy export script ensured at: {scriptPath}");
 			}
 		}
 
