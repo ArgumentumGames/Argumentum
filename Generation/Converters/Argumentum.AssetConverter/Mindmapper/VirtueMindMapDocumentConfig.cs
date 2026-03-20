@@ -306,13 +306,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 				return false;
 			}
 
-			// Ensure the Groovy export script exists in Freeplane's scripts directory
+			// Ensure the Groovy export script exists in Freeplane's user scripts directory
 			FallacyMindMapDocumentConfig.EnsureGroovyExportScript(config);
 
 			try
 			{
-				// Freeplane 1.13+ uses Groovy scripts for headless export.
-				var arguments = $"-S -N -Xexport_to_svg \"{sourceMmPath}\"";
+				// Freeplane SVG export requires a graphics context (Java2D rendering).
+				// Headless mode (-S -N) cannot render SVG. We must launch in GUI mode.
+				var arguments = $"-N -Xexport_to_svg \"{sourceMmPath}\"";
 
 				var processStartInfo = new ProcessStartInfo
 				{
@@ -321,29 +322,50 @@ namespace Argumentum.AssetConverter.Mindmapper
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
 					RedirectStandardError = true,
-					CreateNoWindow = true
+					CreateNoWindow = false // GUI mode needed for SVG rendering
 				};
 
 				using (var process = new Process { StartInfo = processStartInfo })
 				{
-					Logger.Log($"Attempting automatic SVG conversion via Groovy script for: {sourceMmPath}");
+					Logger.Log($"Launching Freeplane GUI for SVG export: {sourceMmPath}");
 					process.Start();
-					string output = process.StandardOutput.ReadToEnd();
-					string error = process.StandardError.ReadToEnd();
 
-					var timeout = 120000; // 120 seconds
-					if (!process.WaitForExit(timeout))
+					// Poll for the SVG file to appear
+					var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
+					var timeout = TimeSpan.FromSeconds(120);
+					var pollInterval = TimeSpan.FromSeconds(2);
+					var startTime = DateTime.UtcNow;
+					var svgGenerated = false;
+					var initialSvgSize = File.Exists(generatedSvgPath) ? new FileInfo(generatedSvgPath).Length : 0;
+
+					while (DateTime.UtcNow - startTime < timeout)
 					{
-						process.Kill();
-						Logger.LogProblem($"SVG conversion process timed out after {timeout / 1000} seconds. The process was terminated.");
-						return false;
+						if (File.Exists(generatedSvgPath))
+						{
+							var currentSize = new FileInfo(generatedSvgPath).Length;
+							if (currentSize > 0 && currentSize != initialSvgSize)
+							{
+								Thread.Sleep(2000);
+								svgGenerated = true;
+								break;
+							}
+						}
+
+						if (process.HasExited)
+							break;
+
+						Thread.Sleep((int)pollInterval.TotalMilliseconds);
 					}
 
-					if (process.ExitCode == 0)
+					if (!process.HasExited)
 					{
-						// The Groovy script generates SVG alongside the .mm file
-						var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
-						if (File.Exists(generatedSvgPath) && generatedSvgPath != destinationSvgPath)
+						try { process.Kill(); }
+						catch { /* ignore */ }
+					}
+
+					if (svgGenerated && File.Exists(generatedSvgPath))
+					{
+						if (generatedSvgPath != destinationSvgPath)
 						{
 							var destDir = System.IO.Path.GetDirectoryName(destinationSvgPath);
 							if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
@@ -352,15 +374,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 						}
 
 						Logger.LogSuccess($"SVG conversion successful: {destinationSvgPath}");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
 						return true;
 					}
 					else
 					{
-						Logger.LogWarning($"SVG conversion failed with exit code {process.ExitCode}.");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
-						if (!string.IsNullOrWhiteSpace(error)) Logger.LogProblem(error);
-						Logger.LogWarning("Manual conversion might be required.");
+						Logger.LogWarning("SVG conversion failed. Freeplane GUI mode requires a visible desktop session.");
+						Logger.LogWarning("Manual conversion: open the .mm file in Freeplane, then File > Export > SVG.");
 						return false;
 					}
 				}
