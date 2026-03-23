@@ -199,6 +199,7 @@ namespace Argumentum.AssetConverter
 		public VirtueMindMapCreatorConfig VirtueMindMapCreatorConfig { get; set; } = new VirtueMindMapCreatorConfig();
 
 		public string FreeplanePath { get; set; } = @"C:\Users\MYIA\AppData\Local\Programs\Freeplane\freeplane.exe";
+		public string FreeMindPath { get; set; } = @"C:\Program Files (x86)\FreeMind\FreeMind.exe";
 
 
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
