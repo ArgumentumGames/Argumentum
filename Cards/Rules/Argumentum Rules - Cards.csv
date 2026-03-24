@@ -1,9 +1,9 @@
-"Text","Text_en","Text_ru","Text_pt","print_and_play"
+Text,Text_en,Text_ru,Text_pt,print_and_play
 "# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Argumentum
 ## Школа лжецов","# Argumentum
-## Liars 'School",""
+## Liars 'School",
 "*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
@@ -56,7 +56,7 @@ Argumentum is based on a classification of fallacious arguments, arranged in ord
 
 Os jogadores, por sua vez, tentarão adivinhar um cartão de argumento falacioso com a maioria dos outros jogadores, durante um SayNet de improvisação de um cenário aleatório. Enquanto se divertem, os jogadores aprendem a reconhecer, decodificar e, portanto, desconstruir os argumentos falaciosos.
 
-Argumentum é baseado na classificação desses argumentos falaciosos, organizados em ordens e famílias que são indicadas no topo do mapa. Por exemplo, a Flatterie é uma sub -categoria da chamada para emoções. Os cartões de memorando resumem essa classificação.",""
+Argumentum é baseado na classificação desses argumentos falaciosos, organizados em ordens e famílias que são indicadas no topo do mapa. Por exemplo, a Flatterie é uma sub -categoria da chamada para emoções. Os cartões de memorando resumem essa classificação.",
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’arguments fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7 x le nombre de joueurs.
@@ -97,7 +97,7 @@ Escolhemos a duração do jogo. Isso inclui uma sucessão de rodadas de cerca de
 
 Constituímos 2 desenhos de cartões de cartão de cenário colocados no meio da mesa. Cada jogador é distribuído a 5 argumentos falaciosos que ele mantém para ele. O restante dos cartões constitui a reserva.
 
-Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação. O primeiro picador é quem primeiro se lembra de um argumento enganoso.",""
+Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação. O primeiro picador é quem primeiro se lembra de um argumento enganoso.",
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -112,9 +112,7 @@ Le rôle de baratineur est attribué au premier joueur qui pose, face cachée, l
 
 ### 3.       La saynète
 
-Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. Le baratineur et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle le baratineur va tâcher d’utiliser le type d’argument indiqué par la carte qu’il a choisie.
-
-Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.","## Course of a round
+Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. Le baratineur et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle le baratineur va tâcher d’utiliser le type d’argument indiqué par la carte qu’il a choisie. ","## Course of a round
 
 ### 1.       The drawer
 
@@ -156,8 +154,10 @@ O papel de Baratineur é designado para o primeiro jogador que posa, em frente a
 
 ### 3. SayNet
 
-O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu.",""
-"### 4.       Le jury
+O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu.",
+"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
+
+### 4.       Le jury
 
 Tous les joueurs à l’exception du baratineur, mais piocheur compris, constituent le jury. A la fin de la saynète, chaque juré choisit parmi ses propres cartes celle qui se rapproche au mieux de l’argumentation entendue et la pose face cachée avec celle du baratineur. A 3 ou à 4 joueurs, les jurés choisissent 2 cartes.
 
@@ -167,10 +167,8 @@ Quand le jury est prêt, sans concertation, chacun de ses membres désigne simul
 
 ### 5.       Le décompte
 
-Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, baratineur ou membre du jury. 
-Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui.
-
-En cas d’égalité, le baratineur l'emporte, et à défaut, les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs. Si aucun des jurés concernés ne l'a trouvée, c'est le baratineur qui l’emporte.","The smooth talker presents his arguments and the drawer gives him the reply. The smooth talker can choose to shorten the skit at any time.
+Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, baratineur ou membre du jury (🥇👇👇…➜🏆). 
+Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui.","The smooth talker presents his arguments and the drawer gives him the reply. The smooth talker can choose to shorten the skit at any time.
 
 ### 4.       The jury
 
@@ -209,25 +207,27 @@ Quando o júri estiver pronto, sem consulta, cada um de seus membros designa sim
 ### 5. A contagem
 
 O vencedor do canal é aquele cujo cartão obteve o maior número de votos, baratineur ou membro do júri (🥇👇👇… ➜).
-Ele então mantém seu cartão, que vale 1 ponto e o rosto visível e deitado na frente dele.",""
-"### 6.       Les pioches
+Ele então mantém seu cartão, que vale 1 ponto e o rosto visível e deitado na frente dele.",
+"En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le baratineur qui l’emporte (❌👇🎭➜🎭🏆).
+
+### 6.       Les pioches
 
 Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certain nombre de cartes:
 
-* Le vainqueur de la manche ne pioche pas de nouvelle carte.
-* Tous les autres joueurs piochent une carte, ou 2 cartes à 3 ou 4 joueurs
-* Les membres du jury qui ont obtenu des votes piochent une carte de plus
-* Les jurés qui ont trouvé la carte du baratineur piochent une carte de plus
+* Le vainqueur de la manche ne pioche pas de nouvelle carte. (✅🏆➜❌0🎴)
+* Tous les autres joueurs piochent une carte (❌🏆➜✅1🎴), ou 2 cartes à 3 ou 4 joueurs
+* Les membres du jury qui ont obtenu des votes piochent une carte de plus (✅🧲👇➜✅+1🎴)
+* Les jurés qui ont trouvé la carte du baratineur piochent une carte de plus (✅👇🎭➜✅+1🎴)
 * Les cartes jouées sont remises à la réserve.
 * Le voisin de gauche du vainqueur devient le piocheur de la manche suivante.
 
 ## Variantes :
 
-* Si la carte du baratineur est désignée par l’ensemble du jury, il ne remporte pas la manche, chacun pioche une carte dans la réserve à l’exception du baratineur.
-* Pendant la saynète, un juré peut jouer une de ses cartes en intervenant comme piocheur. S'il illustre bien sa carte, il la repioche et devient prochain piocheur, sinon il la perd.
+*Si la carte du baratineur est désignée par l’ensemble du jury, il ne remporte pas la manche, chacun pioche une carte dans la réserve à l’exception du baratineur.
+* Au cours de la saynète, n'importe quel membre du jury peut utiliser une carte de son jeu pour intervenir dans le rôle du piocheur. Si son intervention illustre bien sa carte, il en repioche une et sera désigné le prochain piocheur, sinon, il perd sa carte et la partie reprend son cour.
 * Le piocheur a le droit de désigner directement le baratineur de la manche.
 * Si le piocheur gagne, il gagne également la carte du baratineur.
-* Le baratineur peut poser plusieurs cartes, autant de vainqueurs sont déclarés.
+* Le baratineur peut poser plusieurs cartes. Autant de vainqueurs au nombre de votes sont déclarés, le baratineur pouvant remporter tout ou partie de ses cartes.
 * Le vainqueur de la partie doit incarner le baratineur d’un ultime scenario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
 
 With the exception of the winner, each player earns 1 point if their card has been chosen by at least one member of the jury and another point if they have found the smooth talker's card. The other players, including the smooth talker if he has not won the round, draw a card. Played cards are returned to the deck.
@@ -280,11 +280,13 @@ Depois que o vencedor for designado, os jogadores desenham uma série de cartas 
 * Picher tem o direito de designar diretamente o baratineur do canal.
 * Se o picador vencer, ele também vence o cartão Baratineur.
 * O baratineur pode definir vários cartões. Muitos vencedores de votação são declarados, o Baratinener que pode ganhar todas ou parte de suas cartas.
-* O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo.",""
+* O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo.",
 "# Argumentum
-## Le Bingo mixologie argumentative
-
-*Règles du jeu :  de 1 à 20 joueurs*
+## Le Bingo mixologie argumentative","# Argumentum
+## The school of liars","# Argumentum
+## Школа лжецов","# Argumentum
+## a mixologia de bingo argumentativa",
+"*Règles du jeu :  de 1 à 20 joueurs*
 
 ## Matériel
 
@@ -301,10 +303,7 @@ Aux termes du débat, le joueur qui aura repéré le plus grand nombre d'argumen
 ## Installation
 
 On divise au hasard l'ensemble des cartes d'arguments fallacieux disponible entre tous les joueurs, à hauteur de 10 cartes par personne.
-Chaque joueur prend connaissance de ses cartes, les dispose en s'assurant de les garder au mieux en tête, et s'installe pour assister au débat.","# Argumentum
-## Argumentative Mixology Bingo
-
-*Game rules: from 1 to 20 players*
+Chaque joueur prend connaissance de ses cartes, les dispose en s'assurant de les garder au mieux en tête, et s'installe pour assister au débat.","*Game rules: from 1 to 20 players*
 
 ## Material
 
@@ -321,10 +320,7 @@ Under the terms of the debate, the player who has spotted the greatest number of
 ## Facility
 
 We have randomly divide all the fallacious arguments available between all players, up to 10 cards per person.
-Each player takes note of his cards, has them by ensuring that they keep them in mind, and settles down to attend the debate.","# Argumentum
-## Бинго аргументативной миксологии
-
-*Правила игры: от 1 до 20 игроков*
+Each player takes note of his cards, has them by ensuring that they keep them in mind, and settles down to attend the debate.","*Правила игры: от 1 до 20 игроков*
 
 ## Потребуется: 
 
@@ -341,10 +337,7 @@ Each player takes note of his cards, has them by ensuring that they keep them in
 ## Начало игры
 
 Мы случайным образом распределяем все ошибочные аргументы между всеми игроками, например, по 10 карт на человека.
-Каждый игрок смотрит в свои карты, после этого начинается трансляция дебатов.","# Argumentum
-## a mixologia de bingo argumentativa
-
-*Regras de jogo: de 1 a 20 jogadores*
+Каждый игрок смотрит в свои карты, после этого начинается трансляция дебатов. ","*Regras de jogo: de 1 a 20 jogadores*
 
 ## material
 
@@ -361,7 +354,7 @@ Sob os termos do debate, o jogador que viu o maior número de argumentos falacio
 ## Instalação
 
 Dividimos aleatoriamente todos os argumentos falaciosos disponíveis entre todos os jogadores, até 10 cartas por pessoa.
-Cada jogador obtém nota de suas cartas, garantindo -as que eles tenham em mente e se estabelecem para participar do debate.",""
+Cada jogador obtém nota de suas cartas, garantindo -as que eles tenham em mente e se estabelecem para participar do debate.",
 "## Pendant le débat
 
 Chaque joueur écoute les arguments formulés. S'il repère un argument qui relève de l'une des cartes de sa grille de bingo, il note le temps écoulé, un début de citation qui permettra de retrouver le bon passage, et le nom de sa carte accompagné au besoin d'un peu de contexte pour pouvoir restituer plus tard à l'oral son analyse.
@@ -427,11 +420,13 @@ A Assembléia vota manualmente para validar ou não sua análise.
 A pontuação final dos jogadores é o número de suas cartas validadas pela Assembléia
 Se no final de uma primeira declaração, outros jogadores não realizados agora são encontrados com mais cartas do que a melhor pontuação validada, eles serão validados e assim por diante até que a melhor pontuação validada não seja mais questionável.
 
-Jogadores que obtiveram a melhor pontuação são declarados vencedores",""
+Jogadores que obtiveram a melhor pontuação são declarados vencedores",
 "# Argumentum
-## Le dernier beau parleur
-
-*Règles du jeu : de 1 à 8 joueurs*
+## Le dernier beau parleur","# Argumentum
+## The last beautiful speaker","# Argumentum
+## Последний оратор","# Argumentum
+## o último lindas orador",
+"*Règles du jeu : de 1 à 8 joueurs*
 
 ## Matériel
 
@@ -442,10 +437,7 @@ Jogadores que obtiveram a melhor pontuação são declarados vencedores",""
    
 ## Résumé du jeu
 
-Les joueurs vont tour à tour proposer des arguments autour de scénarii tirés à chaque manche et essayer de se débarasser de leurs cartes en repérant les arguments fallacieux utilisés par les autres joueurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à éviter d'en commettre.","# Argumentum
-## The last beautiful speaker
-
-*Game rules: from 1 to 8 players*
+Les joueurs vont tour à tour proposer des arguments autour de scénarii tirés à chaque manche et essayer de se débarasser de leurs cartes en repérant les arguments fallacieux utilisés par les autres joueurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à éviter d'en commettre.","*Game rules: from 1 to 8 players*
 
 ## Material
 
@@ -456,10 +448,7 @@ Les joueurs vont tour à tour proposer des arguments autour de scénarii tirés 
    
 ## Summary of the game
 
-The players will in turn offer arguments around scenarios drawn at each round and try to get rid of their cards by identifying the fallacious arguments used by other players. In addition to recognizing the fallacious arguments, players train to avoid committing them.","# Argumentum
-## Последний оратор
-
-*Правила игры: от 1 до 8 игроков*
+The players will in turn offer arguments around scenarios drawn at each round and try to get rid of their cards by identifying the fallacious arguments used by other players. In addition to recognizing the fallacious arguments, players train to avoid committing them.","*Правила игры: от 1 до 8 игроков*
 
 ## Потребуется: 
 
@@ -471,10 +460,7 @@ The players will in turn offer arguments around scenarios drawn at each round an
    
 ## Краткое содержание игры
 
-Игроки по очереди будут предлагать аргументы к ситуациям сценариевкаждого раунда, и попытаются избавиться от своих карт, называя ошибочные аргументы, используемые другими игроками. В дополнение к нахождению ошибочных аргументов, игроки тренируются, чтобы избежать их использования, когда приводят свои аргументы. ","# Argumentum
-## o último lindas orador
-
-*Regras de jogo: de 1 a 8 jogadores*
+Игроки по очереди будут предлагать аргументы к ситуациям сценариевкаждого раунда, и попытаются избавиться от своих карт, называя ошибочные аргументы, используемые другими игроками. В дополнение к нахождению ошибочных аргументов, игроки тренируются, чтобы избежать их использования, когда приводят свои аргументы. ","*Regras de jogo: de 1 a 8 jogadores*
 
 ## material
 
@@ -485,16 +471,33 @@ The players will in turn offer arguments around scenarios drawn at each round an
    
 ## Resumo do jogo
 
-Os jogadores, por sua vez, oferecerão argumentos em torno de cenários desenhados a cada rodada e tentarão se livrar de suas cartas, identificando os argumentos falaciosos usados ​​por outros jogadores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para evitar cometê -los.",""
+Os jogadores, por sua vez, oferecerão argumentos em torno de cenários desenhados a cada rodada e tentarão se livrar de suas cartas, identificando os argumentos falaciosos usados ​​por outros jogadores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para evitar cometê -los.",
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de quelques minutes qui seront jouées.
 
 Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. On distribue à chaque joueur 5 cartes d’argument fallacieux qu’il garde pour lui. Le reste des cartes constitue la pioche. 
 
-Le premier piocheur est celui qui s'est fait influencer en dernier par un appel à l'émotion.
+Le premier piocheur est celui qui s'est fait influencer en dernier par un appel à l'émotion.","## Facility
 
-## Déroulé de la manche
+Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of sleeves of a few minutes that will be played.
+
+The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards placed in the middle of the table. Each player is distributed to 5 fallacious argument cards he keeps for him. The rest of the cards are the pick.
+
+The first pickler is the one who was influenced last by a call to emotion.","## Начало игры
+
+В зависимости от количества игроков и желаемого уровня сложности, мы составляем колоду карт с псевдоаргументами, выбрав нужные нам уровни сложности (они указаны в правом нижнем углу карт). Мы договариваемся о том, сколько кругов сыграем. 
+
+Карты с псевдоаргументами перетасованы, также и карты со сценариями. На середину стола мы кладем 2 колоды карт со сценариями. Каждый игрок получает по 5 карт с псевдоаргументами. Остальные карты - колода.
+
+Первый ведущий - тот, которого в последний раз спровоцировали на эмоции.","## Instalação
+
+Dependendo do número de jogadores e do nível de dificuldade desejado, constituímos o sorteio dos cartões de argumento falaciosos, adicionando os níveis indicados no canto inferior direito das cartas em ordem crescente. Escolhemos o número máximo de mangas de alguns minutos que serão reproduzidas.
+
+Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões é a escolha.
+
+O primeiro picador é aquele que foi influenciado por um chamado à emoção.",
+"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
@@ -509,15 +512,7 @@ Si un joueur ne trouve plus de nouvel argument au bout de 10 secondes, il pioche
 
 ### 3.       Fin de la manche
 
-La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.  ","## Facility
-
-Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of sleeves of a few minutes that will be played.
-
-The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards placed in the middle of the table. Each player is distributed to 5 fallacious argument cards he keeps for him. The rest of the cards are the pick.
-
-The first pickler is the one who was influenced last by a call to emotion.
-
-# Roll of the English Channel
+La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.  ","# Roll of the English Channel
 
 ### 1. The peacher
 
@@ -532,15 +527,7 @@ If a player no longer finds a new argument after 10 seconds, he draws a new card
 
 ### 3. End of the round
 
-The sleeve stops when there is only one person left is at stake. The neighbor on the left of the pickler becomes the new pickler and pulls the scenario of the next round.","## Начало игры
-
-В зависимости от количества игроков и желаемого уровня сложности, мы составляем колоду карт с псевдоаргументами, выбрав нужные нам уровни сложности (они указаны в правом нижнем углу карт). Мы договариваемся о том, сколько кругов сыграем. 
-
-Карты с псевдоаргументами перетасованы, также и карты со сценариями. На середину стола мы кладем 2 колоды карт со сценариями. Каждый игрок получает по 5 карт с псевдоаргументами. Остальные карты - колода.
-
-Первый ведущий - тот, которого в последний раз спровоцировали на эмоции.
-
-# Ход партии
+The sleeve stops when there is only one person left is at stake. The neighbor on the left of the pickler becomes the new pickler and pulls the scenario of the next round.","# Ход партии
 
 ### 1. Ведущий
 
@@ -555,15 +542,7 @@ The sleeve stops when there is only one person left is at stake. The neighbor on
 
 ### 3. Конец раунда
 
-Раунд завершается, когда остается только один игрок. Сосед слева от ведущего становится новым ведущим и вытягивает сценарий следующего раунда.","## Instalação
-
-Dependendo do número de jogadores e do nível de dificuldade desejado, constituímos o sorteio dos cartões de argumento falaciosos, adicionando os níveis indicados no canto inferior direito das cartas em ordem crescente. Escolhemos o número máximo de mangas de alguns minutos que serão reproduzidas.
-
-Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões é a escolha.
-
-O primeiro picador é aquele que foi influenciado por um chamado à emoção.
-
-# Roll of the English Channel
+Раунд завершается, когда остается только один игрок. Сосед слева от ведущего становится новым ведущим и вытягивает сценарий следующего раунда.","# Roll of the English Channel
 
 ### 1. o pêssego
 
@@ -578,7 +557,7 @@ Se um jogador não encontrar mais um novo argumento após 10 segundos, ele desen
 
 ### 3. Fim da rodada
 
-A manga para quando há apenas uma pessoa está em jogo. O vizinho à esquerda do picador se torna o novo picador e puxa o cenário da próxima rodada.",""
+A manga para quando há apenas uma pessoa está em jogo. O vizinho à esquerda do picador se torna o novo picador e puxa o cenário da próxima rodada.",
 "##       Fin de partie et décompte
 
 
@@ -595,11 +574,13 @@ Otherwise the game stops at the end of the number of sleeves initially planned. 
 
 
 Se um jogador consegue se livrar de todas as suas cartas, ele vence o jogo.
-Caso contrário, o jogo para no final do número de mangas inicialmente planejado. O vencedor é quem tem menos cartas.",""
+Caso contrário, o jogo para no final do número de mangas inicialmente planejado. O vencedor é quem tem menos cartas.",
 "# Argumentum
-## Le moulin à baratin
-
-*Règles du jeu : de 2 à 8 joueurs*
+## Le moulin à baratin","# Argumentum
+## Le Moulin in Baratin","# Argumentum
+## Мели, Емеля","# Argumentum
+## Le Moulin em Baratin",
+"*Règles du jeu : de 2 à 8 joueurs*
 
 ## Matériel
 
@@ -610,10 +591,7 @@ Caso contrário, o jogo para no final do número de mangas inicialmente planejad
    
 ## Résumé du jeu
 
-A chaque manche, sur un scenario tiré au sort, l'un des joueurs trouve en un temps limité le plus grand nombre d'arguments fallacieux illustrant les cartes piochées en séquence.","# Argumentum
-## Le Moulin in Baratin
-
-*Game rules: from 2 to 8 players*
+A chaque manche, sur un scenario tiré au sort, l'un des joueurs trouve en un temps limité le plus grand nombre d'arguments fallacieux illustrant les cartes piochées en séquence.","*Game rules: from 2 to 8 players*
 
 ## Material
 
@@ -624,10 +602,7 @@ A chaque manche, sur un scenario tiré au sort, l'un des joueurs trouve en un te
    
 ## Summary of the game
 
-With each round, on a scenario drawn, one of the players finds in a limited time the greatest number of fallacious arguments illustrating the cards drawn in sequence.","# Argumentum
-## Мели, Емеля
-
-*Правила игры: от 2 до 8 игроков*
+With each round, on a scenario drawn, one of the players finds in a limited time the greatest number of fallacious arguments illustrating the cards drawn in sequence.","*Правила игры: от 2 до 8 игроков*
 
 ## Потребуется: 
 
@@ -640,10 +615,7 @@ With each round, on a scenario drawn, one of the players finds in a limited time
    
 ## Резюме игры
 
-В каждом раунде по одному сценарию один из игроков за ограниченное время находит наибольшее количество псевдоаргументов, иллюстрирующих карты, которые он последовательно вытягивает.","# Argumentum
-## Le Moulin em Baratin
-
-*Regras de jogo: de 2 a 8 jogadores*
+В каждом раунде по одному сценарию один из игроков за ограниченное время находит наибольшее количество псевдоаргументов, иллюстрирующих карты, которые он последовательно вытягивает.","*Regras de jogo: de 2 a 8 jogadores*
 
 ## material
 
@@ -654,7 +626,7 @@ With each round, on a scenario drawn, one of the players finds in a limited time
    
 ## Resumo do jogo
 
-A cada rodada, em um cenário desenhado, um dos jogadores encontra em um tempo limitado o maior número de argumentos falaciosos que ilustram as cartas desenhadas em sequência.",""
+A cada rodada, em um cenário desenhado, um dos jogadores encontra em um tempo limitado o maior número de argumentos falaciosos que ilustram as cartas desenhadas em sequência.",
 "## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de 3 minutes par joueur qui seront jouées.
@@ -679,7 +651,7 @@ Dependendo do número de jogadores e do nível de dificuldade desejado, constitu
 
 Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário e 1 picada de argumento falaciosa, colocada no meio da mesa.
 
-A primeira picareta é quem premiou uma discussão pela última vez.",""
+A primeira picareta é quem premiou uma discussão pela última vez.",
 "## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -746,7 +718,7 @@ Ele começa a desenhar argumentos falaciosos. Para cada cartão, ele deve oferec
 
 ### 3. Fim da rodada
 
-A manga para no final do tempo alocada, o baratineur obtém em pontos o número de cartas varridas na manga. Ele se torna exigente com a próxima rodada.",""
+A manga para no final do tempo alocada, o baratineur obtém em pontos o número de cartas varridas na manga. Ele se torna exigente com a próxima rodada.",
 "##       Fin de partie
 
 
@@ -779,11 +751,13 @@ O primeiro jogador que chega a 20 pontos leva o jogo
 ## variantes
 
 * Em cada carta de desenho, após o argumento do Baratiner, os outros jogadores podem oferecer outra ilustração do cartão. Para cada nova proposta, a Assembléia vota se for considerada melhor que os anteriores, e o autor da melhor proposta manteve o cartão.
-",""
+",
 "# Argumentum
-## La parlote coinchée
-
-*Règles du jeu : 4 joueurs*
+## La parlote coinchée","# Argumentum
+## La Parlote Coinchée","# Argumentum
+## Косноязычное красноречие","# Argumentum
+## LA Parlote Coinchée",
+"*Règles du jeu : 4 joueurs*
 
 ## Matériel
 
@@ -794,18 +768,7 @@ O primeiro jogador que chega a 20 pontos leva o jogo
    
 ## Résumé du jeu
 
-Dans une succession de manches opposant 2 équipes de 2 joueurs se faisant face, ils se verront distribuer des mains d'arguments fallacieux à utiliser dans une succession de tours sur un scénario tiré au sort.  Le niveau de spécificité des cartes constitue leur force et 2 couleurs dites d'atout peut être jouée à tout moment, et l'emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à évaluer le niveau de spécificité des cartes,et à coopérer.
-
-## Installation
-
-On sélectionne 28 cartes d'arguments fallacieux pour la partie, soit 4 par couleur.
-
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. 
-
-Le premier piocheur est celui qui a menti en dernier.","# Argumentum
-## La Parlote Coinchée
-
-*Game rules: 4 players*
+Dans une succession de manches opposant 2 équipes de 2 joueurs se faisant face, ils se verront distribuer des mains d'arguments fallacieux à utiliser dans une succession de tours sur un scénario tiré au sort.  Le niveau de spécificité des cartes constitue leur force et 2 couleurs dites d'atout peut être jouée à tout moment, et l'emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à évaluer le niveau de spécificité des cartes,et à coopérer.","*Game rules: 4 players*
 
 ## Material
 
@@ -816,18 +779,7 @@ Le premier piocheur est celui qui a menti en dernier.","# Argumentum
    
 ## Summary of the game
 
-In a succession of sleeves between 2 teams of 2 players facing each other, they will be distributed handsome fallacious arguments to use in a succession of towers on a scenario drawn. The level of specificity of the cards constitutes their strength and 2 so -called asset colors can be played at any time, and prevail over other colors. In addition to recognizing the fallacious arguments, players train to assess the level of specificity of the cards, and to cooperate.
-
-## Facility
-
-We select 28 fallacious arguments cards for the game, 4 per color.
-
-The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards placed in the middle of the table.
-
-The first pickaxe is the one who lied last.","# Argumentum
-## Косноязычное красноречие
-
-*Правила игры: 4 игрока*
+In a succession of sleeves between 2 teams of 2 players facing each other, they will be distributed handsome fallacious arguments to use in a succession of towers on a scenario drawn. The level of specificity of the cards constitutes their strength and 2 so -called asset colors can be played at any time, and prevail over other colors. In addition to recognizing the fallacious arguments, players train to assess the level of specificity of the cards, and to cooperate.","*Правила игры: 4 игрока*
 
 ## Потребуется: 
 
@@ -840,18 +792,7 @@ The first pickaxe is the one who lied last.","# Argumentum
    
 ## Резюме игры
 
-Играется двое надвое. Наугад вытягивается карта сценария. По очереди команды предлагают аргументы, при этом определенный класс аргументов может быть выбран козырем. Такая игра учит не только распознаванию ошибочных аргументов, но и оценке специфики разных типов умозаключений, а также способствует работе в группе.
-
-## Начало игры
-
-Мы выбираем 28 карт псевдоаргументов для игры, по 4 каждого цвета.
-
-Карты с псевдоаргументами смешаны, как и карты сценариев. Мы составляем 2 колоды карт сценариев и размещаем на середине стола.
-
-Первый ведущий - тот, кто был последним болтуном.","# Argumentum
-## LA Parlote Coinchée
-
-*Regras do jogo: 4 jogadores*
+Играется двое надвое. Наугад вытягивается карта сценария. По очереди команды предлагают аргументы, при этом определенный класс аргументов может быть выбран козырем. Такая игра учит не только распознаванию ошибочных аргументов, но и оценке специфики разных типов умозаключений, а также способствует работе в группе. ","*Regras do jogo: 4 jogadores*
 
 ## material
 
@@ -862,15 +803,32 @@ The first pickaxe is the one who lied last.","# Argumentum
    
 ## Resumo do jogo
 
-Em uma sucessão de mangas entre 2 equipes de 2 jogadores que se enfrentam, eles serão distribuídos por belos argumentos falaciosos para usar em uma sucessão de torres em um cenário desenhado. O nível de especificidade das cartas constitui sua força e 2 cores de ativos chamadas podem ser reproduzidas a qualquer momento e prevalecem sobre outras cores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para avaliar o nível de especificidade dos cartões e cooperar.
+Em uma sucessão de mangas entre 2 equipes de 2 jogadores que se enfrentam, eles serão distribuídos por belos argumentos falaciosos para usar em uma sucessão de torres em um cenário desenhado. O nível de especificidade das cartas constitui sua força e 2 cores de ativos chamadas podem ser reproduzidas a qualquer momento e prevalecem sobre outras cores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para avaliar o nível de especificidade dos cartões e cooperar.",
+"## Installation
 
-## Instalação
+On sélectionne 28 cartes d'arguments fallacieux pour la partie, soit 4 par couleur.
+
+Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. 
+
+Le premier piocheur est celui qui a menti en dernier.","## Facility
+
+We select 28 fallacious arguments cards for the game, 4 per color.
+
+The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards placed in the middle of the table.
+
+The first pickaxe is the one who lied last.","## Начало игры
+
+Мы выбираем 28 карт псевдоаргументов для игры, по 4 каждого цвета.
+
+Карты с псевдоаргументами смешаны, как и карты сценариев. Мы составляем 2 колоды карт сценариев и размещаем на середине стола.
+
+Первый ведущий - тот, кто был последним болтуном.","## Instalação
 
 Selecionamos 28 cartões de argumentos falaciosos para o jogo, 4 por cor.
 
 Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa.
 
-A primeira picareta é a que mais se esforçou.",""
+A primeira picareta é a que mais se esforçou.",
 "## Début de la manche
 
 ### 1.       Le piocheur
@@ -881,22 +839,28 @@ Puis il mélange et distribue les 28 cartes d'arguments fallacieux aux 4 joueurs
 ### 2.       Les enchères d'atout
 
 A commencer par le voisin de gauche du piocheur, les joueurs choisissent ou non de surenchérir pour désigner les 2 couleurs d'atout de la manche. Les cartes d'atout permettent de l'emporter sur d'autres types de cartes, et valent également plus de point au décompte de la manche.
-La mise aux enchères des atout est de 80 et les enchères montent de 10 en 10.
+La mise aux enchères des atout est de 80 et les enchères montent de 10 en 10. 
 
 A tout moment, l'un des deux membres d'une équipe peut dire ""je coinche"" et mettre fin aux enchères tout en doublant l'enjeu de la manche.
 Quand plus personne ne surenchérit, les deux couleurs d'atout sont désignées pour la manche et la phase de jeu peut commencer.
 
+
 ### 2.       Les tours de jeu
 
 Dans une succession de 7 tours, les joueurs vont confronter chacun 1 carte d'argument fallacieux sur le scenario.
-En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer une carte et jouer un argument illustratif répondant à l'injonction du scénario.
+En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer une carte et jouer un argument illustratif répondant à l'injonction du scénario. 
 
 Si aucune carte d'atout n'est jouée, la carte au plus grand niveau de profondeur emporte le pli.
 Si des atouts sont joués, la carte d'atout du plus faible niveau de profondeur emporte le pli.
 Les joueurs dans la même équipe partagent les plis qu'ils remportent.
 
-Pour emporter un pli un joueur doit expliciter un argument correspondant à la carte.
-Si aucun joueur ne propose d'argument, la meilleure carte l'emporte.","## Start of the round
+Pour emporter un pli un joueur doit expliciter un argument correspondant à la carte. 
+Si aucun joueur ne propose d'argument, la meilleure carte l'emporte.
+
+
+
+
+  ","## Start of the round
 
 ### 1. The peacher
 
@@ -981,7 +945,7 @@ Se nenhum jogador oferece uma discussão, a melhor carta vence.
 
 
 
-  ",""
+  ",
 "### 3.       Décompte de la manche
 
 La manche s'arrête quand tous les plis ont été joués.
@@ -1042,4 +1006,4 @@ Se os leilões fossem cantos, as pontuações são dobradas.
 
 ## final do jogo e contagem
 
-A equipe que prevalece é a primeira a exceder 1000 pontos",""
+A equipe que prevalece é a primeira a exceder 1000 pontos",
