@@ -437,7 +437,15 @@ Jogadores que obtiveram a melhor pontuação são declarados vencedores",
    
 ## Résumé du jeu
 
-Les joueurs vont tour à tour proposer des arguments autour de scénarii tirés à chaque manche et essayer de se débarasser de leurs cartes en repérant les arguments fallacieux utilisés par les autres joueurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à éviter d'en commettre.","*Game rules: from 1 to 8 players*
+Les joueurs vont tour à tour proposer des arguments autour de scénarii tirés à chaque manche et essayer de se débarasser de leurs cartes en repérant les arguments fallacieux utilisés par les autres joueurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à éviter d'en commettre.
+
+## Installation
+
+Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de quelques minutes qui seront jouées.
+
+Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. On distribue à chaque joueur 5 cartes d’argument fallacieux qu’il garde pour lui. Le reste des cartes constitue la pioche. 
+
+Le premier piocheur est celui qui s'est fait influencer en dernier par un appel à l'émotion.","*Game rules: from 1 to 8 players*
 
 ## Material
 
@@ -472,13 +480,17 @@ The players will in turn offer arguments around scenarios drawn at each round an
 ## Resumo do jogo
 
 Os jogadores, por sua vez, oferecerão argumentos em torno de cenários desenhados a cada rodada e tentarão se livrar de suas cartas, identificando os argumentos falaciosos usados ​​por outros jogadores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para evitar cometê -los.",
-"## Installation
+"## Déroulé de la manche
 
-Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de quelques minutes qui seront jouées.
+### 1.       Le piocheur
 
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. On distribue à chaque joueur 5 cartes d’argument fallacieux qu’il garde pour lui. Le reste des cartes constitue la pioche. 
+Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
 
-Le premier piocheur est celui qui s'est fait influencer en dernier par un appel à l'émotion.","## Facility
+
+### 2.       La ronde des arguments
+
+En commançant par le voisin de gauche du piocheur, chaque joueur doit proposer un argument répondant à l'injonction du scénario. Si un joueur repère une de ses cartes dans les arguments donnés, il donne sa carte à celui qui l'a utilisée et l'écarte de la manche.  
+Si un joueur ne trouve plus de nouvel argument au bout de 10 secondes, il pioche une nouvelle carte et est exclu de la manche.","## Facility
 
 Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of sleeves of a few minutes that will be played.
 
@@ -497,22 +509,9 @@ Dependendo do número de jogadores e do nível de dificuldade desejado, constitu
 Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões é a escolha.
 
 O primeiro picador é aquele que foi influenciado por um chamado à emoção.",
-"## Déroulé de la manche
+"### 3.       Fin de la manche
 
-### 1.       Le piocheur
-
-Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
-
-
-### 2.       La ronde des arguments
-
-En commançant par le voisin de gauche du piocheur, chaque joueur doit proposer un argument répondant à l'injonction du scénario. Si un joueur repère une de ses cartes dans les arguments donnés, il donne sa carte à celui qui l'a utilisée et l'écarte de la manche.  
-Si un joueur ne trouve plus de nouvel argument au bout de 10 secondes, il pioche une nouvelle carte et est exclu de la manche.
-
-
-### 3.       Fin de la manche
-
-La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.  ","# Roll of the English Channel
+La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.","# Roll of the English Channel
 
 ### 1. The peacher
 
@@ -591,7 +590,15 @@ Caso contrário, o jogo para no final do número de mangas inicialmente planejad
    
 ## Résumé du jeu
 
-A chaque manche, sur un scenario tiré au sort, l'un des joueurs trouve en un temps limité le plus grand nombre d'arguments fallacieux illustrant les cartes piochées en séquence.","*Game rules: from 2 to 8 players*
+A chaque manche, sur un scenario tiré au sort, l'un des joueurs trouve en un temps limité le plus grand nombre d'arguments fallacieux illustrant les cartes piochées en séquence.
+
+## Installation
+
+Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de 3 minutes par joueur qui seront jouées.
+
+Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario et 1 pioche d’argument fallacieux, placées au milieu de la table. 
+
+Le premier piocheur est celui qui a en dernier concédé un argument à l'usure.","*Game rules: from 2 to 8 players*
 
 ## Material
 
@@ -627,13 +634,19 @@ With each round, on a scenario drawn, one of the players finds in a limited time
 ## Resumo do jogo
 
 A cada rodada, em um cenário desenhado, um dos jogadores encontra em um tempo limitado o maior número de argumentos falaciosos que ilustram as cartas desenhadas em sequência.",
-"## Installation
+"## Déroulé de la manche
 
-Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de 3 minutes par joueur qui seront jouées.
+### 1.       Le piocheur
 
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario et 1 pioche d’argument fallacieux, placées au milieu de la table. 
+Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
 
-Le premier piocheur est celui qui a en dernier concédé un argument à l'usure.","## Facility
+
+### 2.       La course de vitesse
+
+Le voisin de gauche du piocheur est le baratineur..
+On prépare un minuteur de 3 minutes.
+
+Il commence à piocher des cartes d'arguments fallacieux. Pour chaque carte, il doit proposer un argument illustrant la carte pour acter le scénario. S'il y parvient, il remporte la carte, sinon il peut également passer, à raison de 3 jokers par manche, et piocher la suivante.","## Facility
 
 Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of rounds of 3 minutes per player who will be played.
 
@@ -652,24 +665,14 @@ Dependendo do número de jogadores e do nível de dificuldade desejado, constitu
 Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário e 1 picada de argumento falaciosa, colocada no meio da mesa.
 
 A primeira picareta é quem premiou uma discussão pela última vez.",
-"## Déroulé de la manche
+"### 3.       Fin de la manche
 
-### 1.       Le piocheur
+La manche s'arrête au bout du temps imparti, Le baratineur obtient en points le nombre de cartes emportées sur la manche. Il devient piocheur de la manche suivante.
 
-Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
-
-
-### 2.       La course de vitesse
-
-Le voisin de gauche du piocheur est le baratineur..
-On prépare un minuteur de 3 minutes.
-
-Il commence à piocher des cartes d'arguments fallacieux. Pour chaque carte, il doit proposer un argument illustrant la carte pour acter le scénario. S'il y parvient, il remporte la carte, sinon il peut également passer, à raison de 3 jokers par manche, et piocher la suivante.
+##       Fin de partie
 
 
-### 3.       Fin de la manche
-
-La manche s'arrête au bout du temps imparti, Le baratineur obtient en points le nombre de cartes emportées sur la manche. Il devient piocheur de la manche suivante.","# Roll of the English Channel
+Le premier joueur arrivant à 20 points emporte la partie","# Roll of the English Channel
 
 ### 1. The peacher
 
@@ -719,15 +722,9 @@ Ele começa a desenhar argumentos falaciosos. Para cada cartão, ele deve oferec
 ### 3. Fim da rodada
 
 A manga para no final do tempo alocada, o baratineur obtém em pontos o número de cartas varridas na manga. Ele se torna exigente com a próxima rodada.",
-"##       Fin de partie
+"## Variantes
 
-
-Le premier joueur arrivant à 20 points emporte la partie
-
-## Variantes
-
-* A chaque carte piochée, après l'argument du baratineur, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l'assemblée vote si elle est jugée meilleure que les précédentes, et l'auteur de la meilleure proposition retenue remporte la carte. 
-","##       Game over
+* A chaque carte piochée, après l'argument du baratineur, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l'assemblée vote si elle est jugée meilleure que les précédentes, et l'auteur de la meilleure proposition retenue remporte la carte.","##       Game over
 
 
 The first player arriving at 20 points takes the game
@@ -768,7 +765,15 @@ O primeiro jogador que chega a 20 pontos leva o jogo
    
 ## Résumé du jeu
 
-Dans une succession de manches opposant 2 équipes de 2 joueurs se faisant face, ils se verront distribuer des mains d'arguments fallacieux à utiliser dans une succession de tours sur un scénario tiré au sort.  Le niveau de spécificité des cartes constitue leur force et 2 couleurs dites d'atout peut être jouée à tout moment, et l'emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à évaluer le niveau de spécificité des cartes,et à coopérer.","*Game rules: 4 players*
+Dans une succession de manches opposant 2 équipes de 2 joueurs se faisant face, ils se verront distribuer des mains d'arguments fallacieux à utiliser dans une succession de tours sur un scénario tiré au sort.  Le niveau de spécificité des cartes constitue leur force et 2 couleurs dites d'atout peut être jouée à tout moment, et l'emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à évaluer le niveau de spécificité des cartes,et à coopérer.
+
+## Installation
+
+On sélectionne 28 cartes d'arguments fallacieux pour la partie, soit 4 par couleur.
+
+Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. 
+
+Le premier piocheur est celui qui a menti en dernier.","*Game rules: 4 players*
 
 ## Material
 
@@ -804,13 +809,20 @@ In a succession of sleeves between 2 teams of 2 players facing each other, they 
 ## Resumo do jogo
 
 Em uma sucessão de mangas entre 2 equipes de 2 jogadores que se enfrentam, eles serão distribuídos por belos argumentos falaciosos para usar em uma sucessão de torres em um cenário desenhado. O nível de especificidade das cartas constitui sua força e 2 cores de ativos chamadas podem ser reproduzidas a qualquer momento e prevalecem sobre outras cores. Além de reconhecer os argumentos falaciosos, os jogadores treinam para avaliar o nível de especificidade dos cartões e cooperar.",
-"## Installation
+"## Début de la manche
 
-On sélectionne 28 cartes d'arguments fallacieux pour la partie, soit 4 par couleur.
+### 1.       Le piocheur
 
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. 
+Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
+Puis il mélange et distribue les 28 cartes d'arguments fallacieux aux 4 joueurs.
 
-Le premier piocheur est celui qui a menti en dernier.","## Facility
+### 2.       Les enchères d'atout
+
+A commencer par le voisin de gauche du piocheur, les joueurs choisissent ou non de surenchérir pour désigner les 2 couleurs d'atout de la manche. Les cartes d'atout permettent de l'emporter sur d'autres types de cartes, et valent également plus de point au décompte de la manche.
+La mise aux enchères des atout est de 80 et les enchères montent de 10 en 10. 
+
+A tout moment, l'un des deux membres d'une équipe peut dire ""je coinche"" et mettre fin aux enchères tout en doublant l'enjeu de la manche.
+Quand plus personne ne surenchérit, les deux couleurs d'atout sont désignées pour la manche et la phase de jeu peut commencer.","## Facility
 
 We select 28 fallacious arguments cards for the game, 4 per color.
 
@@ -829,23 +841,7 @@ Selecionamos 28 cartões de argumentos falaciosos para o jogo, 4 por cor.
 Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa.
 
 A primeira picareta é a que mais se esforçou.",
-"## Début de la manche
-
-### 1.       Le piocheur
-
-Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
-Puis il mélange et distribue les 28 cartes d'arguments fallacieux aux 4 joueurs.
-
-### 2.       Les enchères d'atout
-
-A commencer par le voisin de gauche du piocheur, les joueurs choisissent ou non de surenchérir pour désigner les 2 couleurs d'atout de la manche. Les cartes d'atout permettent de l'emporter sur d'autres types de cartes, et valent également plus de point au décompte de la manche.
-La mise aux enchères des atout est de 80 et les enchères montent de 10 en 10. 
-
-A tout moment, l'un des deux membres d'une équipe peut dire ""je coinche"" et mettre fin aux enchères tout en doublant l'enjeu de la manche.
-Quand plus personne ne surenchérit, les deux couleurs d'atout sont désignées pour la manche et la phase de jeu peut commencer.
-
-
-### 2.       Les tours de jeu
+"### 3.       Les tours de jeu
 
 Dans une succession de 7 tours, les joueurs vont confronter chacun 1 carte d'argument fallacieux sur le scenario.
 En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer une carte et jouer un argument illustratif répondant à l'injonction du scénario. 
@@ -855,12 +851,7 @@ Si des atouts sont joués, la carte d'atout du plus faible niveau de profondeur 
 Les joueurs dans la même équipe partagent les plis qu'ils remportent.
 
 Pour emporter un pli un joueur doit expliciter un argument correspondant à la carte. 
-Si aucun joueur ne propose d'argument, la meilleure carte l'emporte.
-
-
-
-
-  ","## Start of the round
+Si aucun joueur ne propose d'argument, la meilleure carte l'emporte.","## Start of the round
 
 ### 1. The peacher
 
