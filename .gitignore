@@ -28,7 +28,6 @@ msbuild.wrn
 
 # Fichiers de Visual Studio
 .vs/
-.vscode/
 *_i.c
 *_p.c
 *_h.h
@@ -178,47 +177,47 @@ temp_owl_sharp/
 Logs/
 
 
-# BizTalk build output
-*.btp.cs
-*.btm.cs
-*.odx.cs
-*.xsd.cs
+# Sorties des tests d'intégration
+Generation/Converters/Argumentum.AssetConverter.Tests/TestOutput/
 
-# OpenCover UI analysis results
-OpenCover/
+# Fichiers de sortie de test
+test_output.txt
+*_cleaned.csv
 
-# Azure Stream Analytics local run output
-ASALocalRun/
+# Configuration générée automatiquement par AssetConverter
+AssetConverterConfig.json
+AssetConverterConfig.*.json
+!AssetConverterConfig.cs
 
-# MSBuild Binary and Structured Log
-*.binlog
+# Logs d'erreur temporaires
+*.log.err
 
-# NVidia Nsight GPU debugger configuration file
-*.nvuser
+# Screenshots de validation automatique
+docs/investigations/screenshots/validation-finale-*/
 
-# MFractors (Xamarin productivity tool) working folder
-.mfractor/
+docs/investigations/pdf-validation/node_modules/
 
-# Local History for Visual Studio
-.localhistory/
+# Claude Code coordination directory
+.claude/
+!.claude/commands/
+!.claude/commands/*.md
+!.claude/*checkpoint*.md
+!.claude/*debrief*.md
 
-# BeatPulse healthcheck temp database
-healthchecksdb
+# Validation artifacts (temporary PNGs, PDFs, and output from debug sessions)
+Validation/*.png
+Validation/*.pdf
+Validation/comparison_output/
+Validation/pdf_inspection/
+Validation/Argumentum_ru_Validation/
+comparison_output/
 
-# Backup folder for Package Reference Convert tool in Visual Studio 2017
-MigrationBackup/
+# Playwright MCP cache
+.playwright-mcp/
 
-# Ionide (cross platform F# VS Code tools) working folder
-.ionide/
+# Mindmap SVG export workspace
+_mm_export/
 
-# Mac
-.DS_Store
-
-/DNNPlatform/App_Data/Search
-/Cartes/Generation/Converters/Argumentum.AssetConverter/Data
-/Cartes/Generation/Converters/Mindmapper/Data
-
-#Bin DNN
-
-!/DNNPlatform/bin/
-/Chatgpt-plugin/azure-function/local.settings.json
+# Generated preview directories
+_gen_preview/
+_ref_preview/

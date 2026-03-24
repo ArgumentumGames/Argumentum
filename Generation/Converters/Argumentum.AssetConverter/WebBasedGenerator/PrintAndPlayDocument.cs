@@ -49,7 +49,11 @@ namespace Argumentum.AssetConverter
 
             var totalMarginPoints = 2 * pageMarginMm * MmToPointsFactor;
             var contentWidthPoints = pageSize.Width - totalMarginPoints;
-            var contentHeightPoints = pageSize.Height - totalMarginPoints;
+
+            // ✅ FIX: Soustraire la hauteur du header de l'espace disponible pour le contenu
+            // Le header utilise pageSize.Height / 10, donc on le soustrait de contentHeightPoints
+            var headerHeightPoints = !string.IsNullOrEmpty(_docConfig.Header) ? pageSize.Height / 10 : 0;
+            var contentHeightPoints = pageSize.Height - totalMarginPoints - headerHeightPoints;
 
             int nbColumns = _docConfig.NbColumns > 0 ? _docConfig.NbColumns : (int)(contentWidthPoints / cardWidthPoints);
             var nbRows = (int)(contentHeightPoints / cardHeightPoints);
@@ -61,11 +65,10 @@ namespace Argumentum.AssetConverter
                 var pageFrontImages = _frontImagesData.Skip(pageIndex * nbCardsPerPage).Take(nbCardsPerPage).ToArray();
                 var pageBackImages = _backImagesData.Skip(pageIndex * nbCardsPerPage).Take(nbCardsPerPage).ToArray();
 
-                // Back page
+                // Back page — only render if at least one card on this page has a non-null back
                 if (!_docConfig.NoBack && pageBackImages.Any(b => b != null))
                 {
-                    var validBackImages = pageBackImages.Where(b => b != null).ToArray();
-                    var backCardsArray = validBackImages.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray()).ToArray().Flatten();
+                    var backCardsArray = pageBackImages.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray()).ToArray().Flatten();
                     container.Page(page =>
                     {
                         ComposePage(page, pageSize, pageMarginMm, nbColumns, backCardsArray);
@@ -96,7 +99,7 @@ namespace Argumentum.AssetConverter
                 if(File.Exists(imagePath))
                 {
                     var imageData = File.ReadAllBytes(imagePath);
-                    page.Header().AlignCenter().Height(pageSize.Height / 20).Padding(pageSize.Width / 150).Image(imageData, ImageScaling.FitHeight);
+                    page.Header().AlignCenter().Height(pageSize.Height / 10).Padding(pageSize.Width / 150).Image(imageData, ImageScaling.FitHeight);
                 }
             }
 

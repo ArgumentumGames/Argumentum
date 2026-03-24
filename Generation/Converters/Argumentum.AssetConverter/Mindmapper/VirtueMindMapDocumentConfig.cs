@@ -15,6 +15,7 @@ using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Xml.Xsl;
 using ImageMagick;
 using Spectre.Console;
 using System.Text;
@@ -291,63 +292,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				if (!TryAutomateSvgConversion(fileName, svgPath, config) && config.EnableSVGPrompt)
-				{
-					// If conversion fails, the existing logic will ask the user.
-				}
+				TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt);
 			}
 		}
 
-		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			if (string.IsNullOrEmpty(config.FreeplanePath) || !File.Exists(config.FreeplanePath))
-			{
-				Logger.LogWarning("Freeplane executable not found or path not configured. Skipping automatic SVG conversion.");
-				return false;
-			}
-		
-			try
-			{
-				var processStartInfo = new ProcessStartInfo
-				{
-					FileName = config.FreeplanePath,
-					Arguments = $"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"",
-					UseShellExecute = false,
-					RedirectStandardOutput = true,
-					RedirectStandardError = true,
-					CreateNoWindow = true
-				};
-		
-				using (var process = new Process { StartInfo = processStartInfo })
-				{
-					Logger.Log($"Attempting automatic SVG conversion for: {sourceMmPath}");
-					process.Start();
-					string output = process.StandardOutput.ReadToEnd();
-					string error = process.StandardError.ReadToEnd();
-					process.WaitForExit();
-		
-					if (process.ExitCode == 0)
-					{
-						Logger.LogSuccess("SVG conversion successful.");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
-						return true;
-					}
-					else
-					{
-						Logger.LogWarning($"SVG conversion failed with exit code {process.ExitCode}.");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
-						if (!string.IsNullOrWhiteSpace(error)) Logger.LogProblem(error);
-						Logger.LogWarning("Manual conversion might be required.");
-						return false;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Logger.LogProblem($"An exception occurred during automatic SVG conversion: {ex.Message}");
-				Logger.LogWarning("Manual conversion might be required.");
-				return false;
-			}
+			return FallacyMindMapDocumentConfig.TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
 		}
 
 

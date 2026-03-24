@@ -10,7 +10,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using Argumentum.AssetConverter.Json;
+using NewtonsoftJson = Newtonsoft.Json;
 
 namespace Argumentum.AssetConverter;
 
@@ -22,6 +24,9 @@ public class DataSetInfo
 
 	public string ReleaseFilePath { get; set; }
 	public string DebugFilePath { get; set; }
+	public bool IsDirectory { get; set; }
+
+	[JsonConverter(typeof(TypeConverter))]
 	public Type CsvType { get; set; }
 
 	public string FilePath(bool debug) =>
@@ -29,20 +34,51 @@ public class DataSetInfo
 
 	private string _StringContent;
 
-	public async Task<string> GetContent(bool useDebugPath)
+	public async Task<string> GetContent(bool useDebugPath, string filePattern = "*.csv")
 	{
-		var strPath = FilePath(useDebugPath);
-		if (string.IsNullOrEmpty(_StringContent))
+		if (!string.IsNullOrEmpty(_StringContent))
 		{
+			Logger.Log($"Using cached content for {Name}");
+			return _StringContent;
+		}
 
-			var payLoad = await strPath.GetDocumentPayload();
-			_StringContent = Encoding.UTF8.GetString(payLoad.Content);
+		var path = FilePath(useDebugPath);
+		var contentBuilder = new StringBuilder();
+
+		if (IsDirectory)
+		{
+			if (Directory.Exists(path))
+			{
+				var files = Directory.GetFiles(path, filePattern);
+				Logger.Log($"Found {files.Length} files in directory {path} with pattern {filePattern}");
+				bool firstFile = true;
+				foreach (var file in files)
+				{
+					var fileContent = await file.GetDocumentContent();
+					if (!firstFile)
+					{
+						// Remove header from subsequent files
+						var headerEndIndex = fileContent.IndexOf(Environment.NewLine);
+						if (headerEndIndex != -1)
+						{
+							fileContent = fileContent.Substring(headerEndIndex + Environment.NewLine.Length);
+						}
+					}
+					contentBuilder.Append(fileContent);
+					firstFile = false;
+				}
+			}
+			else
+			{
+				Logger.Log($"Directory not found: {path}");
+			}
 		}
 		else
 		{
-			Logger.Log($"Using cached Value for {strPath}");
+			contentBuilder.Append(await path.GetDocumentContent());
 		}
 
+		_StringContent = contentBuilder.ToString();
 		return _StringContent;
 	}
 
@@ -63,9 +99,9 @@ public class DataSetInfo
 	}
 
 
-	public async Task<string> GetContent(bool useDebugPath, string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues)
+	public async Task<string> GetContent(bool useDebugPath, string delimiterIn, string primaryKeyColumn, string csvFilterField, IList<string> csvFilterValues, string filePattern = "*.csv")
 	{
-		var content = await GetContent(useDebugPath);
+		var content = await GetContent(useDebugPath, filePattern);
 
 		if (!string.IsNullOrEmpty(csvFilterField) && csvFilterValues != null && csvFilterValues.Any())
 		{
@@ -111,7 +147,7 @@ public class DataSetInfo
 
 
 
-	public string MergeResponsesIntoCsv(List<string> responses, string delimiterIn, string delimiterOut, string primaryKeyColumn)
+	public static string MergeResponsesIntoCsv(List<string> responses, string delimiterIn, string delimiterOut, string primaryKeyColumn)
 	{
 		var resultTable = new DataTable();
 
@@ -150,7 +186,7 @@ public class DataSetInfo
 	}
 
 
-	public List<string> SplitContentIntoJsonChunks(List<Dictionary<string, object>> records, int chunkSize)
+	public static List<string> SplitContentIntoJsonChunks(List<Dictionary<string, object>> records, int chunkSize)
 	{
 
 		
@@ -158,7 +194,7 @@ public class DataSetInfo
 		for (var i = 0; i < records.Count; i += chunkSize)
 		{
 			var chunkRecords = records.Skip(i).Take(chunkSize);
-			string jsonChunk = JsonConvert.SerializeObject(chunkRecords, Formatting.Indented);
+			string jsonChunk = NewtonsoftJson.JsonConvert.SerializeObject(chunkRecords, NewtonsoftJson.Formatting.Indented);
 			chunks.Add(jsonChunk);
 		}
 
@@ -166,14 +202,14 @@ public class DataSetInfo
 	}
 
 
-	public List<string> SplitContentIntoJsonChunks(List<List<Dictionary<string, object>>> hierarchicalRecords)
+	public static List<string> SplitContentIntoJsonChunks(List<List<Dictionary<string, object>>> hierarchicalRecords)
 	{
 
 		var chunks = new List<string>();
 
 		foreach (var hierarchicalRecordList in hierarchicalRecords)
 		{
-			var jsonChunk = JsonConvert.SerializeObject(hierarchicalRecordList, Formatting.Indented);
+			var jsonChunk = NewtonsoftJson.JsonConvert.SerializeObject(hierarchicalRecordList, NewtonsoftJson.Formatting.Indented);
 			chunks.Add(jsonChunk);
 		}
 
@@ -181,53 +217,99 @@ public class DataSetInfo
 
 	}
 
-	public List<List<Dictionary<string, object>>> GetHierarchicalRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel)
+	public static List<List<Dictionary<string, object>>> GetHierarchicalRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel, bool includeChildren, int maxChildren)
 	{
 		
 		var hierarchicalRecords = new List<List<Dictionary<string, object>>>();
 
-		var rootRecords = records.Where(record => (record[pkField].ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == pKHierarchyLevel-1).ToList();
-		var rootWithParentsSiblingsAndChildrenRecords = rootRecords.Select(rootRecord => GetRecordHierarchy(records, pkField, pKHierarchicalChar, pKHierarchyLevel, rootRecord)).ToList();
+		var rootRecords = GetRootRecords(records, pkField, pKHierarchicalChar, pKHierarchyLevel);
+		var rootWithParentsSiblingsAndChildrenRecords = rootRecords.Select(rootRecord => GetRecordHierarchies(records, pkField, pKHierarchicalChar, pKHierarchyLevel, rootRecord, includeChildren, maxChildren)).ToList();
 
-		return rootWithParentsSiblingsAndChildrenRecords;
+		return rootWithParentsSiblingsAndChildrenRecords.SelectMany(list => list).ToList();
 	}
 
-	public static List<Dictionary<string, object>> GetRecordHierarchy(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel,
-		Dictionary<string, object> rootRecord)
+	public static List<Dictionary<string, object>> GetRootRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel)
 	{
-		var currentRecord = rootRecord;
-		var currentRecordPk = currentRecord[pkField].ToString();
-		var childrenRecords = records.Where(record => record[pkField].ToString() != currentRecordPk
-			&& record[pkField].ToString().StartsWith(currentRecordPk)).ToList();
-		var currentRecordHierarchy = childrenRecords;
-		for (var parentLevel = 1; parentLevel <= pKHierarchyLevel; parentLevel++)
+		return records.Where(record => (record[pkField].ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == pKHierarchyLevel-1).ToList();
+	}
+
+	public static List<List<Dictionary<string, object>>> GetRecordHierarchies(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel,
+		Dictionary<string, object> rootRecord, bool includeChildren, int maxChildren)
+	{
+
+		var rootPk = rootRecord[pkField].ToString();
+
+		List<List<Dictionary<string, object>>> subHierarchies = new();
+		if (includeChildren)
 		{
-			var siblingsRecords = records.Where(record =>
-					record[pkField].ToString().Length == currentRecordPk.Length 
-					&& (currentRecordPk.Length == 1 
-					    || record[pkField].ToString()
-						.StartsWith(currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar) + 1))))
-				.ToList();
-			var newHierarchy = new List<Dictionary<string, object>>();
-			foreach (var siblingRecord in siblingsRecords)
+			var allChildren = records.Where(record => record[pkField].ToString() != rootPk
+							&& record[pkField].ToString().StartsWith(rootPk)).ToList();
+
+			if (allChildren.Count> maxChildren)
 			{
-				var siblingRecordPk = siblingRecord[pkField].ToString();
-				newHierarchy.Add(siblingRecord);
-				if (siblingRecordPk == currentRecordPk)
-				{
-					newHierarchy.AddRange(currentRecordHierarchy);
-				}
+				//var nbGroups = (int)Math.Ceiling((double)allChildren.Count / maxChildren);
+				//for (var i = 0; i < nbGroups; i++)
+				//{
+				//	var children = allChildren.Skip(i * maxChildren).Take(maxChildren).ToList();
+				//	subHierarchies.Add(children);
+				//}
+				var nbHierarchicalChars = rootPk.Count(c => c == pKHierarchicalChar);
+				var children = allChildren.Where(record => record[pkField].ToString().Count(c => c == pKHierarchicalChar) == nbHierarchicalChars + 1).ToList();
+				var childrenHierarchies = children.Select(child => GetRecordHierarchies(records, pkField, pKHierarchicalChar, pKHierarchyLevel+1, child, includeChildren, maxChildren)).ToList();
+				return childrenHierarchies.SelectMany(list => list).ToList();
+			}
+			else
+			{
+				subHierarchies.Add(allChildren);
 			}
 
-			if (parentLevel < pKHierarchyLevel)
-			{
-				currentRecordPk = currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar));
-			}
-			currentRecordHierarchy = newHierarchy;
+		}
+		else
+		{
+			subHierarchies.Add(new());
 		}
 
-		return currentRecordHierarchy;
+		var returnHierarchies = new List<List<Dictionary<string, object>>>();
+
+		foreach (var subHierarchy in subHierarchies)
+		{
+			var currentRecordHierarchy = subHierarchy;
+
+			var currentRecord = rootRecord;
+			var currentRecordPk = rootPk;
+
+			for (var parentLevel = 1; parentLevel < pKHierarchyLevel; parentLevel++)
+			{
+				var siblingsRecords = records.Where(record =>
+						record[pkField].ToString().Length == currentRecordPk.Length
+						&& (currentRecordPk.Length == 1
+						    || record[pkField].ToString()
+							    .StartsWith(currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar) + 1))))
+					.ToList();
+				var newHierarchy = new List<Dictionary<string, object>>();
+				foreach (var siblingRecord in siblingsRecords)
+				{
+					var siblingRecordPk = siblingRecord[pkField].ToString();
+					newHierarchy.Add(siblingRecord);
+					if (siblingRecordPk == currentRecordPk)
+					{
+						newHierarchy.AddRange(currentRecordHierarchy);
+					}
+				}
+
+				if (parentLevel < pKHierarchyLevel)
+				{
+					currentRecordPk = currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar));
+				}
+				currentRecordHierarchy = newHierarchy;
+			}
+
+			returnHierarchies.Add(currentRecordHierarchy);
+		}
+		return returnHierarchies;
 	}
+
+		
 
 
 	public List<Dictionary<string, object>> GetDictionaryFromCsv(string content, List<string> fieldsToInclude, bool useDebugPath)
@@ -269,7 +351,9 @@ public class DataSetInfo
 		using var textReader = new StringReader(content);
 		var config = new CsvConfiguration(CultureInfo.InvariantCulture)
 		{
-			Delimiter = delimiter
+			Delimiter = delimiter,
+			MissingFieldFound = null,
+			BadDataFound = null
 		};
 		using var csvReader = new CsvReader(textReader, config);
 		using var csvDataReader = new CsvDataReader(csvReader);
@@ -317,7 +401,8 @@ public class DataSetInfo
 		using var stringWriter = new StringWriter();
 		var configOut = new CsvConfiguration(CultureInfo.InvariantCulture)
 		{
-			Delimiter = delimiterOut
+			Delimiter = delimiterOut,
+			Encoding = Encoding.UTF8
 		};
 		using var csvWriter = new CsvWriter(stringWriter, configOut);
 
@@ -326,22 +411,57 @@ public class DataSetInfo
 		return stringWriter.ToString();
 	}
 
-	public static void UpdateTableFromRecords(string primaryKeyColumn, List<string> fieldsToUpdate, bool addNewRows, List<Dictionary<string, object>> records,
-		DataTable resultTable)
+	public static void UpdateTableFromRecords(string primaryKeyColumn, List<string> fieldsToUpdate, bool addNewRows,
+		List<Dictionary<string, object>> records,
+		bool writeOneTargetFileByField,
+		Dictionary<string, DataTable> resultTables)
 	{
+
+		var globalResultTable = resultTables[""];
+
+
 		foreach (var record in records)
 		{
-			var row = resultTable.Rows.Find(record[primaryKeyColumn]);
+			var row = globalResultTable.Rows.Find(record[primaryKeyColumn]);
 
 			if (addNewRows && row == null)
 			{
-				row = resultTable.NewRow();
-				resultTable.Rows.Add(row);
+				row = globalResultTable.NewRow();
+				globalResultTable.Rows.Add(row);
 			}
 
 			if (row != null)
 			{
-				UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, resultTable, row);
+				if (!writeOneTargetFileByField)
+				{
+					UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, globalResultTable, row);
+				}
+				else
+				{
+					foreach (var pair in record)
+					{
+						var columnName = pair.Key;
+						if (columnName != primaryKeyColumn)
+						{
+							if (fieldsToUpdate.Contains(columnName))
+							{
+								if (!resultTables.TryGetValue(columnName, out var fieldDataTable))
+								{
+									fieldDataTable = globalResultTable.Copy();
+
+									resultTables.Add(columnName, fieldDataTable);
+								}
+
+								row = fieldDataTable.Rows.Find(record[primaryKeyColumn]);
+								fieldDataTable.Columns[columnName].ReadOnly = false;
+								row[columnName] = pair.Value;
+							}
+						}
+					}
+				}
+
+
+				
 			}
 		}
 	}
@@ -370,8 +490,8 @@ public class DataSetInfo
 			currentResponse =
 				currentResponse.Substring(0, currentResponse.LastIndexOf("]", StringComparison.InvariantCulture) + 1);
 		}
-
-		var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
+	
+		var records = NewtonsoftJson.JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(currentResponse);
 		return records;
 	}
 

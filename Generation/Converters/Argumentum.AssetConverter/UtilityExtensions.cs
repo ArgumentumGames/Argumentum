@@ -73,7 +73,10 @@ namespace Argumentum.AssetConverter
 				match =>
 				{
 					var matchToken = match.Groups[1].Value;
-					var key = $"{value}/{matchToken}";
+					// Include parameter types in cache key to avoid type mismatches
+					// (e.g., Fallacy vs Virtue both using "{item.Text}" expression)
+					var typeKey = string.Join(",", context.Values.Select(v => v.GetType().FullName));
+					var key = $"{value}/{matchToken}/{typeKey}";
 					if (!_CachedIntepolationExpressions.TryGetValue(key, out var tokenDelegate))
 					{
 						var parameters = new List<ParameterExpression>(context.Count);
@@ -156,17 +159,22 @@ namespace Argumentum.AssetConverter
 
 		public static bool PathIsUrl(this string path)
 		{
-			if (File.Exists(path))
-				return false;
-			try
-			{
-				Uri uri = new Uri(path);
-				return true;
-			}
-			catch (Exception)
+			if (string.IsNullOrWhiteSpace(path))
 			{
 				return false;
 			}
+
+			// Trim to handle potential whitespace issues
+			var trimmedPath = path.Trim();
+
+			// Use Uri.TryCreate to safely parse the path
+			if (Uri.TryCreate(trimmedPath, UriKind.Absolute, out Uri uri))
+			{
+				// Check for explicit http or https schemes
+				return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
+			}
+
+			return false;
 		}
 
 		public static string GetRelativePathFrom(this string referencedPath, string mainPath)
@@ -209,13 +217,20 @@ namespace Argumentum.AssetConverter
 					using var client = new HttpClient();
 
 					var response = await client.GetAsync(urlFile);
-					response.EnsureSuccessStatusCode();
-					fileName = response.Content.Headers.ContentDisposition?.FileName ??
-					           System.IO.Path.GetFileName(urlFile.LocalPath);
-					mimeType = response.Content.Headers.ContentType?.MediaType;
-					content = await response.Content.ReadAsByteArrayAsync();
+					if (response.IsSuccessStatusCode)
+					{
+						fileName = response.Content.Headers.ContentDisposition?.FileName ??
+						           System.IO.Path.GetFileName(urlFile.LocalPath);
+						mimeType = response.Content.Headers.ContentType?.MediaType;
+						content = await response.Content.ReadAsByteArrayAsync();
 
-					Logger.Log($"Downloaded Document {docPath}");
+						Logger.Log($"Downloaded Document {docPath}");
+					}
+					else
+					{
+						Logger.LogWarning($"Failed to download document {docPath}. Status code: {response.StatusCode}");
+						return null;
+					}
 				}
 				finally
 				{
@@ -240,6 +255,15 @@ namespace Argumentum.AssetConverter
 			return new DocumentPayload() { FileName = fileName, Content = content, MimeType = mimeType };
 		}
 
+		public static async Task<string> GetDocumentContent(this string docPath)
+		{
+			var payload = await docPath.GetDocumentPayload();
+			if (payload == null)
+			{
+				return null;
+			}
+			return Encoding.UTF8.GetString(payload.Content);
+		}
 
 
 		private static object lockObj = new object();

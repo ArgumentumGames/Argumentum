@@ -15,12 +15,14 @@ using System.Web;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Xml.Xsl;
 using ImageMagick;
 using Spectre.Console;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
+using System.Xml.Xsl;
 using Color = System.Drawing.Color;
 using Argumentum.AssetConverter.Entities;
 
@@ -302,78 +304,363 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				if (!TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt) && config.EnableSVGPrompt)
-				{
-					// If conversion fails, the existing logic will ask the user.
-				}
+				TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt);
 			}
 		}
+
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern bool SetForegroundWindow(IntPtr hWnd);
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+		// Mutex: only one FreeMind GUI automation at a time (shared across Fallacy + Virtue)
+		private static readonly object FreeMindLock = new object();
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			if (string.IsNullOrEmpty(config.FreeplanePath) || !File.Exists(config.FreeplanePath))
+			return TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
+		}
+
+		/// <summary>
+		/// Exports a .mm file to SVG by launching FreeMind GUI and automating menu navigation.
+		/// FreeMind 1.0.1 File menu (FR): Nouveau, Ouvrir, Fermer, Enregistrer, Enregistrer sous,
+		/// ---separator---, Exporter▸, Importer▸, ---separator---, Mise en page, Imprimer, Aperçu,
+		/// ---separator---, Quitter.
+		/// Export submenu: Branche..., Using XSLT..., As HTML..., As XHTML..., As HTML template...,
+		///                 ---separator---, As PDF..., Branch As PDF..., As SVG...
+		/// </summary>
+		internal static bool TryFreeMindSvgExport(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		{
+			lock (FreeMindLock)
 			{
-				Logger.LogWarning("Freeplane executable not found or path not configured. Skipping automatic SVG conversion.");
+				return TryFreeMindSvgExportCore(sourceMmPath, destinationSvgPath, config);
+			}
+		}
+
+		private static void CleanFreeMindRecoveryFiles()
+		{
+			var freemindUserDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".freemind");
+			if (!Directory.Exists(freemindUserDir)) return;
+			foreach (var f in Directory.GetFiles(freemindUserDir, "FM_*.mm"))
+			{
+				try { File.Delete(f); Logger.Log($"Deleted FreeMind recovery file: {Path.GetFileName(f)}"); } catch { }
+			}
+			foreach (var f in Directory.GetFiles(freemindUserDir, "*.lck"))
+			{
+				try { File.Delete(f); } catch { }
+			}
+		}
+
+		private static void KillAllFreeMind()
+		{
+			foreach (var jp in Process.GetProcessesByName("javaw"))
+			{
+				try
+				{
+					if (jp.MainWindowTitle.Contains("FreeMind"))
+					{
+						Logger.Log($"Killing FreeMind: {jp.MainWindowTitle}");
+						jp.Kill();
+						jp.WaitForExit(5000);
+					}
+				}
+				catch { }
+			}
+			CleanFreeMindRecoveryFiles();
+		}
+
+		private static bool TryFreeMindSvgExportCore(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		{
+			var freemindPath = config.FreeMindPath;
+			if (string.IsNullOrEmpty(freemindPath) || !File.Exists(freemindPath))
+			{
+				Logger.LogWarning($"FreeMind not found at '{freemindPath}'. Skipping GUI export.");
 				return false;
 			}
-		
+
+			// SVG will be saved next to .mm with same name (FreeMind default behavior)
+			var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
+			var svgTimeBefore = File.Exists(generatedSvgPath) ? File.GetLastWriteTimeUtc(generatedSvgPath) : DateTime.MinValue;
+
 			try
 			{
-				var arguments = new StringBuilder();
-				if (!isInteractive)
-				{
-					arguments.Append("-nogui ");
-				}
-				arguments.Append($"-X ConvertToSvg -S \"{sourceMmPath}\" \"{destinationSvgPath}\"");
+				// 1. Clean slate
+				KillAllFreeMind();
+				Thread.Sleep(2000);
 
-				var processStartInfo = new ProcessStartInfo
+				// 2. Launch FreeMind
+				Logger.Log($"Launching FreeMind: {System.IO.Path.GetFileName(sourceMmPath)}");
+				var process = Process.Start(new ProcessStartInfo
 				{
-					FileName = config.FreeplanePath,
-					Arguments = arguments.ToString(),
-					UseShellExecute = false,
-					RedirectStandardOutput = true,
-					RedirectStandardError = true,
-					CreateNoWindow = true
-				};
-		
-				using (var process = new Process { StartInfo = processStartInfo })
-				{
-					Logger.Log($"Attempting automatic SVG conversion for: {sourceMmPath}");
-					process.Start();
-					string output = process.StandardOutput.ReadToEnd();
-					string error = process.StandardError.ReadToEnd();
-					
-					var timeout = 30000; // 30 seconds
-					if (!process.WaitForExit(timeout))
-					{
-						process.Kill();
-						Logger.LogProblem($"SVG conversion process timed out after {timeout / 1000} seconds. The process was terminated.");
-						return false;
-					}
+					FileName = freemindPath,
+					Arguments = $"\"{sourceMmPath}\"",
+					UseShellExecute = true
+				});
+				if (process == null) { Logger.LogWarning("Failed to start FreeMind."); return false; }
 
-					if (process.ExitCode == 0)
+				// 3. Poll for window (up to 30s)
+				Process freemindProcess = null;
+				var mmFileName = System.IO.Path.GetFileName(sourceMmPath);
+				Logger.Log("Waiting for FreeMind window...");
+				for (int i = 0; i < 30 && freemindProcess == null; i++)
+				{
+					Thread.Sleep(1000);
+					foreach (var jp in Process.GetProcessesByName("javaw"))
 					{
-						Logger.LogSuccess("SVG conversion successful.");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
-						return true;
-					}
-					else
-					{
-						Logger.LogWarning($"SVG conversion failed with exit code {process.ExitCode}.");
-						if (!string.IsNullOrWhiteSpace(output)) Logger.Log(output);
-						if (!string.IsNullOrWhiteSpace(error)) Logger.LogProblem(error);
-						Logger.LogWarning("Manual conversion might be required.");
-						return false;
+						try { if (jp.MainWindowTitle.Contains("FreeMind")) { freemindProcess = jp; break; } } catch { }
 					}
 				}
+				if (freemindProcess == null)
+				{
+					Logger.LogWarning("FreeMind window not found after 30s.");
+					try { process.Kill(); } catch { }
+					return false;
+				}
+				Logger.Log($"FreeMind ready: '{freemindProcess.MainWindowTitle}'");
+				Thread.Sleep(5000); // let rendering finish
+
+				// 4. Focus window
+				ShowWindow(freemindProcess.MainWindowHandle, 9); // SW_RESTORE
+				SetForegroundWindow(freemindProcess.MainWindowHandle);
+				Thread.Sleep(2000);
+
+				// 5. Menu navigation: Alt+F → 8×DOWN → RIGHT → 12×DOWN → ENTER → ENTER → ENTER
+				Logger.Log("Sending keystrokes: Alt+F, 8×DOWN, RIGHT, 12×DOWN, ENTER, ENTER, ENTER");
+
+				System.Windows.Forms.SendKeys.SendWait("{ESC}");
+				Thread.Sleep(500);
+
+				System.Windows.Forms.SendKeys.SendWait("%f");
+				Thread.Sleep(2000);
+
+				for (int i = 0; i < 8; i++)
+				{
+					System.Windows.Forms.SendKeys.SendWait("{DOWN}");
+					Thread.Sleep(300);
+				}
+
+				System.Windows.Forms.SendKeys.SendWait("{RIGHT}");
+				Thread.Sleep(1500);
+
+				for (int i = 0; i < 12; i++)
+				{
+					System.Windows.Forms.SendKeys.SendWait("{DOWN}");
+					Thread.Sleep(300);
+				}
+
+				// ENTER = select "En SVG..."
+				System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+				Thread.Sleep(3000);
+
+				// ENTER = confirm save dialog (default path = same dir as .mm)
+				System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+				Thread.Sleep(3000);
+
+				// ENTER = overwrite confirmation (if file exists)
+				System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+				Thread.Sleep(5000);
+
+				// 6. Check result: file must exist with a newer timestamp
+				bool svgGenerated = File.Exists(generatedSvgPath)
+					&& File.GetLastWriteTimeUtc(generatedSvgPath) > svgTimeBefore;
+
+				if (svgGenerated)
+					Logger.LogSuccess($"FreeMind SVG exported: {generatedSvgPath} ({new FileInfo(generatedSvgPath).Length / 1024} KB)");
+				else
+					Logger.LogWarning($"FreeMind SVG not detected at '{generatedSvgPath}'");
+
+				// 7. Kill FreeMind + cleanup
+				KillAllFreeMind();
+				Thread.Sleep(3000);
+
+				// 8. Move to destination if different from generated path
+				if (svgGenerated && generatedSvgPath != destinationSvgPath)
+				{
+					var destDir = System.IO.Path.GetDirectoryName(destinationSvgPath);
+					if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+						Directory.CreateDirectory(destDir);
+					File.Move(generatedSvgPath, destinationSvgPath, true);
+				}
+
+				return svgGenerated;
 			}
 			catch (Exception ex)
 			{
-				Logger.LogProblem($"An exception occurred during automatic SVG conversion: {ex.Message}");
-				Logger.LogWarning("Manual conversion might be required.");
+				Logger.LogWarning($"FreeMind SVG export error: {ex.Message}");
+				KillAllFreeMind();
 				return false;
 			}
 		}
+
+		/// <summary>
+		/// Fallback SVG conversion using XSLT stylesheets (mm2svg.xslt from tstephen/mindmap).
+		/// Lower fidelity than FreeMind/Freeplane native rendering but works without GUI.
+		/// </summary>
+		internal static bool TryXsltSvgConversion(string sourceMmPath, string destinationSvgPath)
+		{
+			try
+			{
+				var assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
+				string xsltDir = null;
+
+				var candidates = new[]
+				{
+					Path.Combine(assemblyDir, "Mindmapper", "xslt"),
+					Path.GetFullPath(Path.Combine(assemblyDir, "..", "..", "..", "Mindmapper", "xslt")),
+					Path.GetFullPath(Path.Combine(assemblyDir, "..", "..", "..", "..", "..", "Mindmapper", "xslt")),
+				};
+
+				foreach (var candidate in candidates)
+				{
+					if (Directory.Exists(candidate) && File.Exists(Path.Combine(candidate, "mm2svg.xslt")))
+					{
+						xsltDir = candidate;
+						break;
+					}
+				}
+
+				if (xsltDir == null)
+				{
+					Logger.LogWarning("XSLT stylesheet mm2svg.xslt not found.");
+					return false;
+				}
+
+				var xsltPath = Path.Combine(xsltDir, "mm2svg.xslt");
+				Logger.Log($"Using XSLT fallback for SVG conversion: {xsltPath}");
+
+				var xslt = new XslCompiledTransform();
+				var xsltSettings = new XsltSettings(enableDocumentFunction: true, enableScript: false);
+				xslt.Load(xsltPath, xsltSettings, new XmlUrlResolver());
+
+				var destDir = Path.GetDirectoryName(destinationSvgPath);
+				if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+					Directory.CreateDirectory(destDir);
+
+				using (var writer = XmlWriter.Create(destinationSvgPath, xslt.OutputSettings))
+				{
+					xslt.Transform(sourceMmPath, writer);
+				}
+
+				if (File.Exists(destinationSvgPath) && new FileInfo(destinationSvgPath).Length > 0)
+				{
+					Logger.LogSuccess($"SVG via XSLT: {destinationSvgPath} ({new FileInfo(destinationSvgPath).Length / 1024} KB)");
+					return true;
+				}
+
+				Logger.LogWarning("XSLT transformation produced empty output.");
+				return false;
+			}
+			catch (Exception ex)
+			{
+				Logger.LogProblem($"XSLT SVG conversion failed: {ex.Message}");
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Ensures the Groovy export script exists in Freeplane's user scripts directory.
+		/// The script uses Freeplane's c.export() API for SVG export.
+		/// Freeplane 1.13 uses %APPDATA%\Freeplane\1.13.x\scripts\ for user scripts.
+		/// </summary>
+		internal static void EnsureGroovyExportScript(AssetConverterConfig config)
+		{
+			// Freeplane user scripts go in %APPDATA%\Freeplane\{version}\scripts\
+			var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			var freeplaneUserDirs = new[] { "1.13.x", "1.12.x" };
+
+			foreach (var versionDir in freeplaneUserDirs)
+			{
+				var scriptsDir = System.IO.Path.Combine(appData, "Freeplane", versionDir, "scripts");
+				if (!Directory.Exists(scriptsDir))
+					Directory.CreateDirectory(scriptsDir);
+
+				var scriptPath = System.IO.Path.Combine(scriptsDir, "export_to_svg.groovy");
+				var groovyScript = @"// Auto-generated by Argumentum pipeline for SVG export
+// Usage: freeplane -Xexport_to_svg input.mm
+def mapFile = node.map.file
+if (mapFile != null) {
+    def svgFile = new File(mapFile.path.replaceFirst('\\.mm$', '.svg'))
+    c.export(node.map, svgFile, 'Scalable Vector Graphic (SVG) (.svg)', true)
+}
+";
+				File.WriteAllText(scriptPath, groovyScript);
+				Logger.Log($"Groovy export script ensured at: {scriptPath}");
+			}
+		}
+
+
+		/* Removed duplicate TryXsltSvgConversion — the file-based version at line ~525 is used.
+		/// <summary>
+		/// XSLT-based mm→SVG conversion (DUPLICATE - DISABLED).
+		/// Used as fallback when Freeplane GUI export is not available.
+		/// Step 1: polyfill.xslt adds layout bounds to .mm nodes
+		/// Step 2: mm2svg.xslt converts the polyfilled .mm to SVG
+		/// </summary>
+		internal static bool TryXsltSvgConversion(string sourceMmPath, string destinationSvgPath)
+		{
+			try
+			{
+				var assembly = Assembly.GetExecutingAssembly();
+				var resourcePrefix = "Argumentum.AssetConverter.Mindmapper.xslt.";
+
+				using var polyfillStream = assembly.GetManifestResourceStream(resourcePrefix + "polyfill.xslt");
+				using var mm2svgStream = assembly.GetManifestResourceStream(resourcePrefix + "mm2svg.xslt");
+
+				if (polyfillStream == null || mm2svgStream == null)
+				{
+					Logger.LogWarning("XSLT resources not found in assembly. Skipping XSLT SVG conversion.");
+					return false;
+				}
+
+				// Step 1: Apply polyfill.xslt to add layout bounds
+				var polyfillTransform = new XslCompiledTransform();
+				using (var reader = XmlReader.Create(polyfillStream))
+				{
+					polyfillTransform.Load(reader);
+				}
+
+				var polyfillResult = new MemoryStream();
+				using (var inputReader = XmlReader.Create(sourceMmPath))
+				{
+					using var writer = XmlWriter.Create(polyfillResult, polyfillTransform.OutputSettings);
+					polyfillTransform.Transform(inputReader, writer);
+				}
+				polyfillResult.Position = 0;
+
+				// Step 2: Apply mm2svg.xslt to convert to SVG
+				var mm2svgTransform = new XslCompiledTransform();
+				using (var reader = XmlReader.Create(mm2svgStream))
+				{
+					mm2svgTransform.Load(reader);
+				}
+
+				var destDir = Path.GetDirectoryName(destinationSvgPath);
+				if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+					Directory.CreateDirectory(destDir);
+
+				using (var inputReader = XmlReader.Create(polyfillResult))
+				{
+					using var outputStream = File.Create(destinationSvgPath);
+					using var writer = XmlWriter.Create(outputStream, mm2svgTransform.OutputSettings);
+					mm2svgTransform.Transform(inputReader, writer);
+				}
+
+				if (File.Exists(destinationSvgPath) && new FileInfo(destinationSvgPath).Length > 0)
+				{
+					Logger.LogSuccess($"XSLT SVG conversion successful: {destinationSvgPath}");
+					return true;
+				}
+
+				Logger.LogWarning($"XSLT SVG conversion produced empty file: {destinationSvgPath}");
+				return false;
+			}
+			catch (Exception ex)
+			{
+				Logger.LogProblem($"XSLT SVG conversion failed: {ex.Message}");
+				return false;
+			}
+		}
+		*/
 
 
 		private void CreateMindMapNodes(FreemindMap freemindMap, IList<IMindMapItem> mindMapItems, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
@@ -616,7 +903,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			foreach (var svgDoc in processedDocs)
 			{
-				var svgFreemindMap = SVGMaps.First(s => Path.GetExtension(svgDoc.Key) == $".{s.DocumentName}");
+				var svgFreemindMap = SVGMaps.First(s => svgDoc.Key.EndsWith($".{s.DocumentName}", StringComparison.OrdinalIgnoreCase));
 				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgDoc.Key, () => Task.FromResult(GetSvgContent(svgDoc.Value)), language);
 			}
 

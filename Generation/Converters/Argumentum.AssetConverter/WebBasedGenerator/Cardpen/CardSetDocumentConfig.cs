@@ -15,14 +15,13 @@ public class CardSetDocumentConfig: DocumentConfig
 	public List<DocumentCardSet> CardSets { get; set; }
 
 
-	public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.BackFirstOneDocPerBack;
+	public CardDocumentFormat DocumentFormat { get; set; } = CardDocumentFormat.AlternateFaceAndBack;
 
 	public bool NoBack { get; set; }
 
 	public string PageSize { get; set; } = "A4";
 
 	public string Header { get; set; } = "";
-
-
-
+	public int Padding { get; set; }
+	public int NbColumns { get; set; }
 }

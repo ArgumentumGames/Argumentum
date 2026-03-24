@@ -1,0 +1,20 @@
+d324bd3b feat(pipeline): Stabilize visual asset generation pipeline
+f7641878 refactor(core): General improvements to asset generation logic
+082073ec feat(generation): Enhance asset converter and add PDF auditor
+6723d628 feat: Clean up repository and update documentation
+6edf683c feat: Refactor MindMap generation for Virtues and Fallacies
+04cff567 Fix: Mise à jour des configurations et des classes du convertisseur d'assets
+0a515939 Updated default documents
+1aad1696 Updated default documents
+c8e7dd2f Updated images, fallacy taxonomy, introduced cross links
+0391bf2b Updated images, fallacy taxonomy, introduced cross links
+ad6c8c45 Updating images and promoting main config parameters
+2749dc14 Updating images and promoting main config parameters
+44093efb include Html override
+8c085c91 include Html override
+ad019445 Mindmap virtues
+766ec16f Mindmap virtues
+a9616a30 Accounting for warning
+260cd89b Accounting for warning
+03af76bb Introducing Dataset updater
+ac262814 Introducing Dataset updater

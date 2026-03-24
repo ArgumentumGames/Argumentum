@@ -24,7 +24,12 @@ namespace Argumentum.AssetConverter.Mindmapper
                 Enabled = true,
                 DocumentName = "Argumentum_Virtues_MindMap_fr.mm",
                 DataSet = KnownDataSets.VirtuesTaxonomy,
-                Translations = new List<(string sourceLang, string destLang)>(),
+                Translations = new List<(string sourceLang, string destLang)>(new[]
+                {
+                    ("fr", "en"),
+                    ("fr", "ru"),
+                    ("fr", "pt")
+                }),
                 ImageFormat = MagickFormat.Png,
                 TargetDensity = 0,
                 KeepOriginalSVG = false,

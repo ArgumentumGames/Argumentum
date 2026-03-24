@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.Entities;
+using Argumentum.AssetConverter.Mindmapper;
 using AutoMapper;
 using ImageMagick;
 
@@ -32,9 +33,11 @@ namespace Argumentum.AssetConverter
 
             var parallelOptionsDocuments = new ParallelOptions { MaxDegreeOfParallelism = MaxDegreeOfParallelismMindMaps };
 
-            await Task.WhenAll(Enumerable
-                .Where(DocumentConfigs, config => config.Enabled)
-                .Select(mindMap => ProcessDocumentAsync(mindMap, config, parallelOptionsDocuments)));
+            // Process documents sequentially to avoid multiple FreeMind GUI instances
+            foreach (var mindMap in DocumentConfigs.Where(c => c.Enabled))
+            {
+                await ProcessDocumentAsync(mindMap, config, parallelOptionsDocuments);
+            }
         }
 
         public abstract string GetLogTitle();

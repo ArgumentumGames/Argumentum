@@ -2,8 +2,13 @@
 
 namespace Argumentum.AssetConverter.Entities;
 
-public class ArgumentVirtue : CsvBase<ArgumentVirtue, ArgumentVirtueClassMap>
+public class ArgumentVirtue : CsvBase<ArgumentVirtue, ArgumentVirtueClassMap>, ICsvBase
 {
+	public string GetId()
+	{
+		return Pk;
+	}
+
 	public string Pk { get; set; }
 	public string Path { get; set; }
 	public int Depth { get; set; }

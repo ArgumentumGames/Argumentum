@@ -7,16 +7,23 @@ var nodes = [];
 
 async function generateImages() {
     var zipButton = document.getElementById('zipButton');
-    zipButton.style.display = 'none';
-    var generateButton = document.getElementById('generateButton');
-	generateButton.style.display = 'none';
-    domtoimage.getFontsBefore();
-	nodes = document.getElementsByTagName("card");
-    for (var n = 0; n < nodes.length; n++) {
-        //imaginer(nodes[n],n);
-        await imaginerSync(nodes[n], n);
+    if (zipButton) {
+        zipButton.style.display = 'none';
     }
-    zipButton.style.display = 'block';
+    var generateButton = document.getElementById('generateButton');
+    if (generateButton) {
+        generateButton.style.display = 'none';
+    }
+    // Précharger les polices avant génération (restauré du Golden Master)
+    domtoimage.getFontsBefore();
+    nodes = document.getElementsByTagName("card");
+       for (var n = 0; n < nodes.length; n++) {
+           //imaginer(nodes[n],n);
+           await imaginerSync(nodes[n], n);
+       }
+    if (zipButton) {
+        zipButton.style.display = 'block';
+    }
 }
 
 
@@ -24,7 +31,7 @@ function imaginer(node,n) {
 	//Need to pass height and width due to an issue with oversized transparent canvases (#50).
 	//domtoimage.toPng(node, { height: height, width: width, dpi: dpi }).then(function (dataUrl) {
     domtoimage.toPng(node, { height: height, width: width, scale: dpi / 150 }).then(function (dataUrl) {
-		cards[n] = dataUrl;
+  cards[n] = dataUrl;
 		var img = new Image();
 		img.src = dataUrl;
 		document.getElementById("cpImages").appendChild(img);
@@ -40,17 +47,38 @@ function imaginer(node,n) {
 
 async function imaginerSync(node, n) {
     try {
-		var dataUrl = await domtoimage.toPng(node, { height: height, width: width, scale: dpi / 96, cachedFonts: true });
-        cards[n] = dataUrl;
+        console.log(`[imaginerSync] Processing node ${n}`, node);
+        // Restauré du Golden Master: scale et cachedFonts au lieu de webfont
+        const options = {
+            height: height,
+            width: width,
+            scale: dpi / 96,  // Restauré - important pour la résolution correcte
+            cachedFonts: true,  // Restauré - utilise les polices préchargées
+            imagePlaceholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/epv2AAAAABJRU5ErkJggg=="
+        };
+        console.log(`[imaginerSync] Options for domtoimage:`, options);
+        console.log(`[imaginerSync] Node HTML content for node ${n}:`, node.outerHTML);
+
+  var dataUrl = await domtoimage.toPng(node, options);
+
+        console.log(`[imaginerSync] Received dataUrl for node ${n}: ${dataUrl.substring(0, 100)}...`);
+
+        if (dataUrl === 'data:,') {
+            throw new Error('domtoimage.toPng returned an empty data URL.');
+        }
+
+		cards[n] = dataUrl;
         var img = new Image();
         img.src = dataUrl;
         document.getElementById("cpImages").appendChild(img);
     } catch (error) {
-		var msg = 'Something went wrong!  Your browser may not support image generation.';
-        if (console)
-            console.error(msg, error);
+        var msg = `[imaginerSync] Error processing node ${n}: ${error.toString()}`;
+        console.error(msg, error);
+        var errorDiv = document.createElement('div');
+        errorDiv.className = 'cp-js-error';
+        errorDiv.innerHTML = msg;
+        document.body.appendChild(errorDiv); // Make error visible to Playwright
         document.getElementById("cpError").innerHTML = msg;
-       
     }
 }
 

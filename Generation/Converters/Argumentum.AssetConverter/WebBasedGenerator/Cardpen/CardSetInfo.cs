@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -28,8 +29,15 @@ namespace Argumentum.AssetConverter
 
 		public bool SkipDataUpdate { get; set; }
 
-		
-		public string GetJsonFilePath(WebBasedGeneratorConfig config) => config.UseDebugParams() ? JsonFilePathDebug : JsonFilePathRelease;
+
+		public string GetJsonFilePath(AssetConverterConfig config)
+	{
+		var useDebug = config.UseDebugParams;
+		Logger.Log($"[CardSetInfo] JsonFilePathDebug='{JsonFilePathDebug}', JsonFilePathRelease='{JsonFilePathRelease}'");
+		var selectedPath = useDebug ? JsonFilePathDebug : JsonFilePathRelease;
+		Logger.Log($"[CardSetInfo] UseDebugParams={useDebug}, Selected path: '{selectedPath}'");
+		return selectedPath;
+	}
 		public string JsonFilePathRelease { get; set; }
 		public string JsonFilePathDebug { get; set; }
 
@@ -38,13 +46,14 @@ namespace Argumentum.AssetConverter
 		public List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> FieldsLocalization { get; set; }
 			= new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>();
 
-		
+
 		public int Dpi { get; set; }
+		public string CardSize { get; set; }
 
 		public int RowsetNb { get; set; }
 
 
-		public async Task<CardSetPayload> GetCardSetDocument(WebBasedGeneratorConfig config)
+		public async Task<CardSetPayload> GetCardSetDocument(AssetConverterConfig config)
 		{
 			var jsonFilePath = GetJsonFilePath(config);
 			if (string.IsNullOrEmpty(jsonFilePath))
@@ -53,8 +62,27 @@ namespace Argumentum.AssetConverter
 			}
 			var docPayload = await jsonFilePath.GetDocumentPayload();
 			//var strContent = Encoding.UTF8.GetString(docPayload.Content);
-			
+
 			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);
+
+			// Transform relative filesystem paths to absolute web paths when using local CardPen
+			if (config.WebBasedGeneratorConfig.UseLocalCardpen)
+			{
+				if (!string.IsNullOrEmpty(cardSetDoc.css))
+				{
+					cardSetDoc.css = cardSetDoc.css.Replace("../../Cards/", "/Cards/");
+				}
+				if (!string.IsNullOrEmpty(cardSetDoc.mustache))
+				{
+					cardSetDoc.mustache = cardSetDoc.mustache.Replace("../../Cards/", "/Cards/");
+				}
+				if (!string.IsNullOrEmpty(cardSetDoc.extCSS))
+				{
+					cardSetDoc.extCSS = cardSetDoc.extCSS.Replace("../../Cards/", "/Cards/");
+				}
+				Logger.Log($"[CardSetInfo] Transformed paths from '../../Cards/' to '/Cards/' for local CardPen");
+			}
+
 			return new CardSetPayload(){CardSetDocument = cardSetDoc, FileName = docPayload.FileName} ;
 
 		}
@@ -67,9 +95,38 @@ namespace Argumentum.AssetConverter
 		public string FileName { get; set; }
 		public CardSetDocument CardSetDocument { get; set; }
 
+		[JsonIgnore]
+		public System.Type CsvType { get; set; }
+
 		public string GetMimeType()
 		{
 			return "application/json";
+		}
+	}
+
+	public class CardSetPayloadDto
+	{
+		public string FileName { get; set; }
+		public CardSetDocument CardSetDocument { get; set; }
+		public string CsvTypeName { get; set; }
+
+		public static CardSetPayloadDto FromCardSetPayload(CardSetPayload payload)
+		{
+			// Assurer que les champs textuels ne sont jamais nuls pour éviter les erreurs JavaScript.
+			var doc = payload.CardSetDocument;
+			if (doc != null)
+			{
+				doc.csv = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(doc.csv ?? string.Empty));
+				doc.css = doc.css ?? string.Empty;
+				doc.mustache = doc.mustache ?? string.Empty;
+			}
+
+			return new CardSetPayloadDto
+			{
+				FileName = payload.FileName,
+				CardSetDocument = payload.CardSetDocument,
+				CsvTypeName = payload.CsvType?.FullName
+			};
 		}
 	}
 

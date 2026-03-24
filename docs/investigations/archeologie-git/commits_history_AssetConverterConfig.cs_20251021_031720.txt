@@ -1,0 +1,20 @@
+d324bd3b feat(pipeline): Stabilize visual asset generation pipeline
+f7641878 refactor(core): General improvements to asset generation logic
+082073ec feat(generation): Enhance asset converter and add PDF auditor
+365e4c6b fix(converter): Repair cardpen and asset converter logic
+6723d628 feat: Clean up repository and update documentation
+6edf683c feat: Refactor MindMap generation for Virtues and Fallacies
+fc62618c Fix(Converter): Resolve ParseException and enable Virtue generation
+04cff567 Fix: Mise à jour des configurations et des classes du convertisseur d'assets
+fa9b7992 Mise à jour de Spectre.Console vers la version 0.50.0 et corrections associées
+9df0178d Mise à jour de Spectre.Console vers la version 0.50.0 et corrections associées
+08a00da1 Default pipeline update
+edbb061e Default pipeline update
+a44214d0 Updated Mindmap generator
+ebf2ccb6 Updated Mindmap generator
+4097f877 Fallacy translations ru + pt
+4286d3a4 Fallacy translations ru + pt
+22212344 English translation
+3b54a156 English translation
+eb83d113 svg-pan-zoom integration
+03f02cbe svg-pan-zoom integration

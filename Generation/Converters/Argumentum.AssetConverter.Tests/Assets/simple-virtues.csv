@@ -1,0 +1,7 @@
+pk,path,depth,decimal_path_padded,family_fr,subfamily_fr,subsubfamily_fr,title_fr,description_fr,remark_fr,link_fr,family_fr_camelcase,depth_max4,card,update,locked
+0,0,0,,Arguments vertueux,,,Arguments vertueux,Racine des arguments vertueux.,,,argumentsVertueux,0,0,,
+1,1,1,,Argument pertinent,,,Argument pertinent,Un argument directement lié au sujet.,,,argumentPertinent,1,1,,
+2,2,1,,Présentation intègre,,,Présentation intègre,Présenter les faits honnêtement.,,,présentationIntègre,1,1,,
+3,1.1,2,,Argument pertinent,Preuve directe,,Preuve directe,Une preuve qui soutient directement la thèse.,,,argumentPertinent,2,2,,
+4,1.2,2,,Argument pertinent,Raisonnement logique,,Raisonnement logique,Un raisonnement qui suit les règles de la logique.,,,argumentPertinent,2,2,,
+5,2.1,2,,Présentation intègre,Citation exacte,,Citation exacte,Citer fidèlement les sources.,,,présentationIntègre,2,2,,

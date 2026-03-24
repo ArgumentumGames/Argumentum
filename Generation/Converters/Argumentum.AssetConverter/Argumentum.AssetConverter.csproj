@@ -2,48 +2,135 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <AssemblyVersion>1.3</AssemblyVersion>
     <FileVersion>1.3</FileVersion>
     <Copyright>Argumentum</Copyright>
     <Authors>Argumentum</Authors>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="Betalgo.OpenAI" Version="7.4.2" />
-    <PackageReference Include="Betalgo.OpenAI.Utilities" Version="7.0.3" />
-    <PackageReference Include="CsvHelper" Version="30.0.1" />
-    <PackageReference Include="ExtendedXmlSerializer" Version="3.7.11" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="Betalgo.OpenAI" Version="8.1.0" />
+    <PackageReference Include="Betalgo.OpenAI.Utilities" Version="8.0.1" />
+    <PackageReference Include="CsvHelper" Version="31.0.4" />
+    <PackageReference Include="dotNetRdf" Version="3.3.2" />
+    <PackageReference Include="ExtendedXmlSerializer" Version="3.7.18" />
+    <PackageReference Include="Humanizer" Version="2.14.1" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.5.0" />
-    <PackageReference Include="Microsoft.Playwright" Version="1.40.0" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.43.0" />
     <PackageReference Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="QuestPDF" Version="2023.12.0" />
-    <PackageReference Include="SharpToken" Version="1.2.12" />
-    <PackageReference Include="Spectre.Console" Version="0.48.1-preview.0.5" />
-    <PackageReference Include="Spectre.Console.Json" Version="0.48.1-preview.0.5" />
+    <PackageReference Include="OWLSharp" Version="4.9.0" />
+    <PackageReference Include="QuestPDF" Version="2022.12.12" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.6" />
+    <PackageReference Include="SharpToken" Version="2.0.2" />
+    <PackageReference Include="Spectre.Console" Version="0.50.0" />
+    <PackageReference Include="Spectre.Console.Json" Version="0.50.0" />
     <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.7" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.12" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
     <PackageReference Include="Utf8Json" Version="1.3.7" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.8.1" />
   </ItemGroup>
-
-	<ItemGroup>
-		<DotNetCliToolReference Include="Microsoft.XmlSerializer.Generator" Version="7.0.0" />
-	</ItemGroup>
-	
+ 
   <ItemGroup>
     <Folder Include="Data\Target\" />
     <Folder Include="Published\v1.3\" />
   </ItemGroup>
 	
   <ItemGroup>
+    <None Update="DatasetUpdater\Resources\PromptDocumentsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptDocumentsLightUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptDocumentsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptGeneralSystem.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantDescription.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateCleanupInstructionsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslatePtInstructionsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateCleanupInstructionsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateRuInstructionsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateFrEnInstructionsAssistant.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsLightAssistantExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsAssistantExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslatePtInstructionsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateRuInstructionsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptTranslateFrEnInstructionsUser.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsUserDescription.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsLightUserExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\PromptInstructionsUserExamples.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSampleAssistant.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSampleUser.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatasetUpdater\Resources\VirtuesJsonPromptSystem.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Logo_Argumentum &amp; QRCode.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Logo_Argumentum &amp; QRCode_Fallacies.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Logo_Argumentum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="AssetConverterConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Mindmapper\xslt\mm2svg.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Mindmapper\xslt\polyfill.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
   <ItemGroup>
     <Compile Update="DatasetUpdater\Resource1.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -59,5 +146,13 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Argumentum.AssetConverter.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Mindmapper\xslt\polyfill.xslt" />
+    <EmbeddedResource Include="Mindmapper\xslt\mm2svg.xslt" />
+  </ItemGroup>
 
 </Project>

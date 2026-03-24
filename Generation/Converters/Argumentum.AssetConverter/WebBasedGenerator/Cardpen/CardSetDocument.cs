@@ -80,7 +80,7 @@ public class CardSetDocument:ICloneable
 			overlay = overlay,
 			pori = pori,
 			psize = psize,
-			rscount = rscount,
+			rscount = rscount, // Maintenant nullable int?, clone la valeur null si présente
 			rsstyle = rsstyle,
 			ssize = ssize,
 			sunit = sunit,

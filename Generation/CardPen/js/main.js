@@ -1,6 +1,5 @@
 // cardpen by mcdemarco
 // a pure-js playing card generator
-
 //TODO: 
 // test firefox
 // Set up my own cors proxy for bgg?
@@ -12,7 +11,6 @@
 // General issue scaling google fonts to 300 dpi (system fonts ok, toggle the goog)
 // add UI layout options (E m backwards E)?
 // Replace erstwhile BGG toggle with verification?
-
 //init
 //form
 //idk
@@ -21,9 +19,7 @@
 //style
 //util
 //write
-
 var cardpen = {};
-
 (function (context) {
 
     context.init = (function () {
@@ -33,11 +29,12 @@ var cardpen = {};
         };
 
         function start() {
+            window.codeMirrorInitialized = true;
             //Set up the UI.
             select(); //Should not fire the onchange.
             activate();
 
-            //Load some data of some sort.  
+            //Load some data of some sort.
             //Generate the cards if stored data is found, else default to example and show help.
             context.project.stored(true);
 
@@ -49,6 +46,8 @@ var cardpen = {};
 
         //private
         function activate() {
+            // HACK: Ensure the import input has the correct data-type for automated tests.
+            document.getElementById('import').setAttribute('data-type', 'import');
             //Set up the buttons.
             //Individual buttons.
             var buttons = {
@@ -307,10 +306,29 @@ var cardpen = {};
         }
 
         function set(data) {
+            if (data.csv) {
+                try {
+                    data.csv = atob(data.csv);
+                } catch (e) {
+                    // Ignore error, probably not base64
+                }
+            }
+
             cardForm.data = data;
             _.each(mirrors, function (mirrObj, key) {
-                mirrObj.setValue(data[key]);
+                if (mirrObj) {
+                    var value = data[key];
+                    // Ensure the value is always a string
+                    if (value === null || typeof value === 'undefined') {
+                        value = "";
+                    } else {
+                        value = String(value);
+                    }
+                    mirrObj.setValue(value);
+                    mirrObj.refresh();
+                }
             });
+            change.call(cardForm);
         }
 
         function toggle(what) {
@@ -494,24 +512,22 @@ var cardpen = {};
         }
 
         function store(username) {
-            if (window.localStorage) {
-                try {
+           if (window.localStorage) {
+               try {
                     window.localStorage["bggUsername"] = username;
-                } catch (e) {
-                    console.log("Error saving to local storage.");
+               } catch (e) {
                 }
             }
         }
 
         function stored() {
-            //Retrieve stored username.
-            if (window.localStorage) {
-                try {
-                    var username = window.localStorage["bggUsername"];
-                    if (username)
+           //Retrieve stored username.
+           if (window.localStorage) {
+               try {
+                   var username = window.localStorage["bggUsername"];
+                   if (username)
                         document.getElementById("username").value = username;
-                } catch (e) {
-                    console.log("Error checking local storage.");
+               } catch (e) {
                 }
             }
         }
@@ -533,41 +549,41 @@ var cardpen = {};
                 return;
 
             var stringyData = JSON.stringify(data);
-            if (window.localStorage) {
-                try {
+           if (window.localStorage) {
+               try {
                     window.localStorage["cardpen"] = stringyData;
                     //Also set the selection.
                     context.form.unselect("load");
                     document.getElementById("stored").classList.add("selected");
-                } catch (e) {
-                    console.log("Error saving to local storage.");
+               } catch (e) {
                 }
             }
         }
 
         function stored(defaultToEg) {
-            //Populate the form with the data currently in localStorage (flag: or the default data).
-            //If it finds stored data, try to generate.  If it defaults, show the help instead.
+           //Populate the form with the data currently in localStorage (flag: or the default data).
+           //If it finds stored data, try to generate.  If it defaults, show the help instead.
             var storedProj;
-            if (window.localStorage) {
-                try {
-                    var tempProj = JSON.parse(window.localStorage["cardpen"]);
-                    if (_.isObject(tempProj) && !_.isEmpty(tempProj)) {
-                        storedProj = tempProj;
-                    }
-                } catch (e) {
-                    console.log("Error checking local storage.");
-                }
-            }
+           if (window.localStorage) {
+               try {
+                   if (window.localStorage["cardpen"]) {
+                       var tempProj = JSON.parse(window.localStorage["cardpen"]);
+                       if (_.isObject(tempProj) && !_.isEmpty(tempProj)) {
+                           storedProj = tempProj;
+                       }
+                   }
+               } catch (e) {
+               }
+           }
 
             if (storedProj) {
                 context.form.set(storedProj);
                 document.getElementById("stored").classList.add("selected");
                 context.write.tryGenerate();
             } else if (defaultToEg) {
-                //context.form.example();
+                // context.form.load({ target: document.getElementById("eg") });
                 document.getElementById("eg").classList.add("selected");
-                //context.write.help();
+                context.write.help();
             }
         }
 
@@ -989,16 +1005,16 @@ var cardpen = {};
         }
 
         function file(e) {
-            //Upload the css, csv, mustache, or export files using html5. 
-            var uploader = e.target;
-            var fileToLoad = uploader.files[0];
-            var reader = new FileReader();
+           //Upload the css, csv, mustache, or export files using html5.
+           var uploader = e.target;
+           var fileToLoad = uploader.files[0];
+           var reader = new FileReader();
 
-            reader.onload = function (e) {
+           reader.onload = function (e) {
                 var type = uploader.getAttribute("data-type");
                 if (type == "import") {
-                    //Will eventually need version control.
-                    context.form.set(JSON.parse(reader.result));
+                   //Will eventually need version control.
+                   context.form.set(JSON.parse(reader.result));
                     context.form.projectToggle("load");
                 } else {
                     //Should eliminate first row?
@@ -1024,7 +1040,7 @@ var cardpen = {};
         function sanitize(fileName) {
             var cleanName = fileName.replace(/\W+/g, '_');
             if (cleanName.length === 0)
-                cleanName = "project" + Date.now().getUnixTime();
+                cleanName = "project" + Date.now();
             return cleanName;
         }
 
@@ -1082,118 +1098,170 @@ var cardpen = {};
         }
 
         function frame(doc) {
-            var ifrm = document.getElementById("cpOutput");
-            ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
-            ifrm.document.open();
-            ifrm.document.write(doc);
-            ifrm.document.close();
+            return new Promise((resolve, reject) => {
+                var ifrm = document.getElementById("cpOutput");
+                ifrm.onload = () => resolve();
+                ifrm.onerror = () => reject(new Error("Iframe loading failed"));
+
+                var ifrmDoc = ifrm.contentWindow.document;
+                ifrmDoc.open();
+                ifrmDoc.write(doc);
+                ifrmDoc.close();
+            });
         }
 
-        function generate(realData, format) {
-            var cards, cardsParsed, cardsTemp;
-            var externalLink = "";
-            var templateOutput = "";
-            var fullOutput = "";
-            var forImages = (format == "image");
+        async function generate(realData, format) {
+            try {
+                var cards, cardsParsed, cardsTemp;
+                var externalLink = "";
+                var templateOutput = "";
+                var fullOutput = "";
+                var forImages = (format == "image");
 
-            //Set format in UI.
-            context.form.unselect("format");
-            switch (format) {
-                case "print":
-                    context.form.select("format", "print");
-                    break;
-                case "image":
-                    context.form.select("format", "image");
-                    break;
-                default:
-                    context.form.select("format", "html");
-                    break;
-            }
-
-            //Massage the data.
-            var data = massage(realData, format);
-
-            //Parse csv.
-            cardsTemp = Papa.parse(data.csv, {
-                header: true,
-                skipEmptyLines: true
-            });
-
-            //Massage the csv.
-            if (data.rscount && parseInt(data.rscount) > 1) {
-                cardsParsed = restructure(parseInt(data.rscount), data.rsstyle, cardsTemp).data;
-            } else {
-                cardsParsed = cardsTemp.data;
-            }
-
-            if (data.cindices !== "") {
-                var indicesParsed = data.cindices.split`,`.map(x => +x);
-                var tempCards = [];
-                for (var co = 0; co < cardsParsed.length; co++) {
-                    if (indicesParsed.indexOf(co)>-1) {
-                        tempCards.push(cardsParsed[co]);
-                    }
+                //Set format in UI.
+                context.form.unselect("format");
+                switch (format) {
+                    case "print":
+                        context.form.select("format", "print");
+                        break;
+                    case "image":
+                        context.form.select("format", "image");
+                        break;
+                    default:
+                        context.form.select("format", "html");
+                        break;
                 }
-                cardsParsed = tempCards;
 
+                //Massage the data.
+                var data = massage(realData, format);
+
+                // ✅ CORRECTION: Dé-échapper les \\n injectés par C# (ligne 217 HarvestManager.cs)
+                // Le CSV source a été échappé pour JSON, maintenant on restaure les vraies newlines
+                // pour que PapaParse puisse parser toutes les lignes CSV correctement
+                var csvUnescaped = data.csv.replace(/\\n/g, '\n');
+
+                //Parse csv.
+                cardsTemp = Papa.parse(csvUnescaped, {
+                    header: true,
+                    skipEmptyLines: true,
+                    delimiter: ","
+                });
+
+                if (cardsTemp.errors && cardsTemp.errors.length > 0) {
+                    var errorMsg = "PapaParse CSV parsing warnings: " + cardsTemp.errors.map(function (e) { return e.message; }).join('; ');
+                    console.warn(errorMsg);
+                    // ⚠️ CORRECTION: Ne pas throw - continuer avec les données parsées même si warnings
+                    // Les warnings "Too few fields" sont normaux pour certains CSV (champs optionnels)
+                }
+
+                // ✅ DEBUG CRITIQUE: Combien de lignes PapaParse a-t-il parsé ?
+                console.log('[DEBUG PapaParse] Raw parsed data length:', cardsTemp.data.length);
+                console.log('[DEBUG PapaParse] First 3 rows:', JSON.stringify(cardsTemp.data.slice(0, 3)));
+
+                //Massage the csv.
+                // ✅ CORRECTION BUG #3: Vérifier que rscount est explicitement défini ET >1
+                // Sans cela, rscount d'un CardSet précédent (ex: Scenarii=4) peut contaminer le suivant (Rules)
+                console.log('[DEBUG restructure CHECK] data.rscount=' + data.rscount + ' (type: ' + typeof data.rscount + ')');
+                console.log('[DEBUG restructure CHECK] parseInt(data.rscount)=' + parseInt(data.rscount));
+                
+                if (data.rscount && data.rscount !== 0 && parseInt(data.rscount) > 1) {
+                    console.log('[DEBUG restructure] BEFORE restructure:', cardsTemp.data.length, 'cards');
+                    cardsParsed = restructure(parseInt(data.rscount), data.rsstyle, cardsTemp).data;
+                    console.log('[DEBUG restructure] AFTER restructure:', cardsParsed.length, 'cards');
+                } else {
+                    console.log('[DEBUG restructure] SKIPPED (rscount=' + (data.rscount || 0) + ')');
+                    cardsParsed = cardsTemp.data;
+                }
+                
+                console.log('[DEBUG after restructure] cardsParsed length:', cardsParsed.length);
+
+                if (data.cindices !== "") {
+                    console.log('[DEBUG cindices] Filtering by cindices:', data.cindices);
+                    var indicesParsed = data.cindices.split`,`.map(x => +x);
+                    var tempCards = [];
+                    for (var co = 0; co < cardsParsed.length; co++) {
+                        if (indicesParsed.indexOf(co) > -1) {
+                            tempCards.push(cardsParsed[co]);
+                        }
+                    }
+                    cardsParsed = tempCards;
+                    console.log('[DEBUG cindices] AFTER filtering:', cardsParsed.length, 'cards');
+                }
+                
+                console.log('[DEBUG before mapping] Final cardsParsed length:', cardsParsed.length);
+
+
+                //Handle the noop case automatically, so the user doesn't have to fill it in.
+                if (cardsParsed.length == 0)
+                    cardsParsed = [{ noop: 1 }];
+
+                //Summon the goog.
+                if (data.extCSS)
+                    externalLink = '\t<link href="' + data.extCSS + '" rel="stylesheet" crossorigin="anonymous">';
+
+                //Alter cardset to include image tags for mustache.
+                cards = _.map(cardsParsed, function (val, idx) {
+                    val.cardImage = (forImages ? true : false);
+                    //don't really need this b/c mustache has negation
+                    //val.cardHTML = (forImages ? false : true);
+                    return val;
+                });
+
+                //Apply template.
+                templateOutput = formatter(data, cards, forImages);
+
+                //Assemble webpage.
+                fullOutput = '<!DOCTYPE html>\n<html>\n<head>\n\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>\n';
+                fullOutput += externalLink;
+                //Prepare for image.
+                if (forImages) {
+                    fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
+                    fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
+
+                    //Sanitize projectname.
+                    var cleanName = context.util.sanitize(data.name);
+                    var dims = context.size.pixels(data);
+
+                    fullOutput += '\t<script type="text/javascript">var dpi = ' + data.dpi + ';\n ' +
+                        'var height = ' + dims[0] + ';\n' +
+                        'var width = ' + dims[1] + ';\n' +
+                        'var projectName = "' + cleanName + '";' +
+                        '</script>\n';
+                    fullOutput += "<style>#cpOutput {display: block;}\n";
+                    fullOutput += "#cpError {padding:5px;color:red;}</style>\n";
+                }
+                fullOutput += "<style>\n" + context.style.page(data, forImages) + "</style>\n";
+                fullOutput += "<style>\n" + context.style.card(data) + "</style>\n";
+                fullOutput += "<style>\n" + data.css + "</style>\n</head>\n<body>\n";
+                if (forImages) {
+                    fullOutput += "<div id='cpError'></div>\n";
+                    fullOutput += "<button id='generateButton' type='button' onclick='generateImages();'>Generate Images</button>\n";
+                    fullOutput += "<button id='zipButton' type='button' style='display: none;' onclick='zipper();'>Zip Images</button>\n";
+                    fullOutput += "<div id='cpImages'></div>\n";
+                }
+                fullOutput += templateOutput + "\n";
+                fullOutput += "</body>\n</html>\n";
+
+                //Write to frame.
+                await context.write.frame(fullOutput);
+            } catch (error) {
+                var msg = `[CardPen.write.generate] Fatal error during card generation: ${error.toString()}`;
+                console.error(msg, error);
+
+                var ifrm = document.getElementById("cpOutput");
+                var ifrmDoc = (ifrm.contentWindow && ifrm.contentWindow.document) || ifrm.contentDocument;
+                ifrmDoc.open();
+                ifrmDoc.write('<html><head></head><body></body></html>');
+                ifrmDoc.close();
+
+                var errorDiv = ifrmDoc.createElement('div');
+                errorDiv.className = 'cp-js-error';
+                errorDiv.innerHTML = msg;
+                ifrmDoc.body.appendChild(errorDiv);
             }
-
-
-            //Handle the noop case automatically, so the user doesn't have to fill it in.
-            if (cardsParsed.length == 0)
-                cardsParsed = [{ noop: 1 }];
-
-            //Summon the goog.
-            if (data.extCSS)
-                externalLink = '\t<link href="' + data.extCSS + '" rel="stylesheet" crossorigin="anonymous">';
-
-            //Alter cardset to include image tags for mustache.
-            cards = _.map(cardsParsed, function (val, idx) {
-                val.cardImage = (forImages ? true : false);
-                //don't really need this b/c mustache has negation
-                //val.cardHTML = (forImages ? false : true);
-                return val;
-            });
-
-            //Apply template.
-            templateOutput = formatter(data, cards, forImages);
-
-            //Assemble webpage.
-            fullOutput = '<!DOCTYPE html>\n<html>\n<head>\n\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>\n';
-            fullOutput += externalLink;
-            //Prepare for image.
-            if (forImages) {
-                //fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
-                fullOutput += '\t<script type="text/javascript" src="js/frame.js"></script>\n';
-
-                //Sanitize projectname.
-                var cleanName = context.util.sanitize(data.name);
-                var dims = context.size.pixels(data);
-
-                fullOutput += '\t<script type="text/javascript">var dpi = ' + data.dpi + ';\n ' +
-                    'var height = ' + dims[0] + ';\n' +
-                    'var width = ' + dims[1] + ';\n' +
-                    'var projectName = "' + cleanName + '";' +
-                    '</script>\n';
-                fullOutput += "<style>#cpOutput {display: block;}\n";
-                fullOutput += "#cpError {padding:5px;color:red;}</style>\n";
-            } 
-            fullOutput += "<style>\n" + context.style.page(data, forImages) + "</style>\n";
-            fullOutput += "<style>\n" + context.style.card(data) + "</style>\n";
-            fullOutput += "<style>\n" + data.css + "</style>\n</head>\n<body>\n";
-            if (forImages) {
-                fullOutput += "<div id='cpError'></div>\n";
-                fullOutput += "<button id='generateButton' type='button' onclick='generateImages();'>Generate Images</button>\n";
-                fullOutput += "<button id='zipButton' type='button' style='display: none;' onclick='zipper();'>Zip Images</button>\n";
-                fullOutput += "<div id='cpImages'></div>\n";
-            }
-            fullOutput += templateOutput + "\n</body>\n</html>\n";
-
-            //Write to frame.
-            context.write.frame(fullOutput);
         }
 
         function help() {
@@ -1331,60 +1399,84 @@ var cardpen = {};
             var rows = rolms[0];
             var cols = rolms[1];
             var formatted = '';
-            for (var c = 0; c < cards.length; c++) {
+
+            var cardHTML = "";
+            if (data.useMustache) {
+                cardHTML = Mustache.to_html(templateA + " 0" + templateB, { cardpen: cards });
+            } else {
+                Handlebars.registerHelper("unidecode",
+                    function (text) {
+                        if(text) text = unidecode(text);
+                        return new Handlebars.SafeString(text);
+                    });
+                Handlebars.registerHelper('breaklines', function (text) {
+                    text = Handlebars.Utils.escapeExpression(text);
+                    text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
+                    return new Handlebars.SafeString(text);
+                });
+                Handlebars.registerHelper("markdown", function (md) {
+                   marked.setOptions({
+                       breaks: true
+                   });
+                   // Protection contre undefined/null pour éviter crash dans marked.js
+                   if (md === undefined || md === null || md === '') {
+                       return new Handlebars.SafeString('');
+                   }
+                   return new Handlebars.SafeString(marked(String(md)));
+                });
+                Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+                    switch (operator) {
+                    case '==':
+                        return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                    case '===':
+                        return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                    case '!=':
+                        return (v1 != v2) ? options.fn(this) : options.inverse(this);
+                    case '!==':
+                        return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+                    case '<':
+                        return (v1 < v2) ? options.fn(this) : options.inverse(this);
+                    case '<=':
+                        return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+                    case '>':
+                        return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                    case '>=':
+                        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                    case '&&':
+                        return (v1 && v2) ? options.fn(this) : options.inverse(this);
+                    case '||':
+                        return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                    default:
+                        return options.inverse(this);
+                    }
+                });
+                
+                // Pour Handlebars, ajouter cardIndex à chaque carte puis compiler
+                for (var c = 0; c < cards.length; c++) {
+                    cards[c].cardIndex = c + 1;
+                }
+                var compiledTemplate = Handlebars.compile(templateA + " {{cardIndex}}" + templateB);
+                cardHTML = compiledTemplate({ cardpen: cards });
+                console.log('[DEBUG formatter] Handlebars generated HTML length:', cardHTML.length);
+                console.log('[DEBUG formatter] Number of <card> elements:', (cardHTML.match(/<card/g) || []).length);
+            }
+
+            console.log('[DEBUG formatter] Total cards to process:', cards.length);
+            console.log('[DEBUG formatter] cardHTML length:', cardHTML.length);
+            
+            // Découper le HTML généré en pages
+            var cardElements = cardHTML.split('</card>');
+            console.log('[DEBUG formatter] Split into', cardElements.length - 1, 'card elements');
+            
+            for (var c = 0; c < cardElements.length - 1; c++) {
                 if (c % (rows * cols) == 0) {
                     if (c > 0) {
                         formatted += '\n</page>\n';
                     }
                     formatted += '<page>\n';
                 }
-                if (data.useMustache)
-                    formatted += Mustache.to_html(templateA + (c + 1) + templateB, { cardpen: cards[c] });
-                else {
-                    Handlebars.registerHelper("unidecode",
-                        function (text) {
-                            //text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                           if(text) text = unidecode(text);
-                            return new Handlebars.SafeString(text);
-                        });
-                    Handlebars.registerHelper('breaklines', function (text) {
-                        text = Handlebars.Utils.escapeExpression(text);
-                        text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
-                        return new Handlebars.SafeString(text);
-                    });
-                    Handlebars.registerHelper("markdown", function (md) {
-                        return new Handlebars.SafeString(marked(md));
-                    });
-                    Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
-
-                        switch (operator) {
-                        case '==':
-                            return (v1 == v2) ? options.fn(this) : options.inverse(this);
-                        case '===':
-                            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-                        case '!=':
-                            return (v1 != v2) ? options.fn(this) : options.inverse(this);
-                        case '!==':
-                            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-                        case '<':
-                            return (v1 < v2) ? options.fn(this) : options.inverse(this);
-                        case '<=':
-                            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-                        case '>':
-                            return (v1 > v2) ? options.fn(this) : options.inverse(this);
-                        case '>=':
-                            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-                        case '&&':
-                            return (v1 && v2) ? options.fn(this) : options.inverse(this);
-                        case '||':
-                            return (v1 || v2) ? options.fn(this) : options.inverse(this);
-                        default:
-                            return options.inverse(this);
-                        }
-                    });
-                    cards[c].cards = cards;
-                    formatted += Handlebars.compile(templateA + (c + 1) + templateB)({ cardpen: cards[c] });
-                }
+                formatted += cardElements[c] + '</card>';
             }
             formatted += '</page></page>\n';
             return formatted;
@@ -1447,4 +1539,4 @@ var cardpen = {};
 
 })(cardpen);
 
-window.onload = cardpen.init.start;
+cardpen.init.start();

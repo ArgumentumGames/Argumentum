@@ -25,31 +25,39 @@ namespace Argumentum.AssetConverter
 
         public static MagickImage LoadImageFromEmbeddedUrl(string srcUrl)
         {
-
-            var settings = new MagickReadSettings();
-            settings.ColorSpace = ColorSpace.sRGB;
-            if (urlExtractorRegex.IsMatch(srcUrl))
+            var settings = new MagickReadSettings
             {
-                var base64Content = urlExtractorRegex.Match(srcUrl).Groups[base64ContentGroupName].Captures[0].Value;
+                ColorSpace = ColorSpace.sRGB
+            };
+
+            var match = urlExtractorRegex.Match(srcUrl);
+            if (match.Success)
+            {
+                var base64Content = match.Groups[base64ContentGroupName].Value;
                 byte[] imageContent = Convert.FromBase64String(base64Content);
-
-                return new MagickImage(imageContent);
+                return new MagickImage(imageContent, settings);
             }
-            else
+
+            // Gérer le cas où l'URL est un SVG embarqué (pas en base64)
+            var svgIndex = srcUrl.IndexOf("<svg", StringComparison.InvariantCultureIgnoreCase);
+            if (svgIndex != -1)
             {
-                var readSettings = new MagickReadSettings() { Format = MagickFormat.Svg };
-                var svgString = srcUrl.Substring(srcUrl.IndexOf("<svg", StringComparison.InvariantCultureIgnoreCase));
+                var svgString = srcUrl.Substring(svgIndex);
                 byte[] byteArray = Encoding.UTF8.GetBytes(svgString);
-                MemoryStream stream = new MemoryStream(byteArray);
-                using (var objStream = new MemoryStream(byteArray))
+                using (var stream = new MemoryStream(byteArray))
                 {
-                    return new MagickImage(objStream, readSettings);
+                    var readSettings = new MagickReadSettings() { Format = MagickFormat.Svg };
+                    return new MagickImage(stream, readSettings);
                 }
             }
-            
+
+            // Si ce n'est ni base64, ni un SVG direct, on suppose que c'est une URL standard.
+            // Cette partie reste un point de défaillance potentiel si l'URL n'est pas valide.
+            // Pour l'instant on retourne une exception claire.
+            throw new NotSupportedException($"The provided image URL is not a valid data URL (base64) or an embedded SVG: {srcUrl}");
         }
 
-        public static string GetImageFileName(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
+        public static string GetImageFileName(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
         {
 	      
 	        var cardSetFolderName = GetImageFolder(config, docConfig, language, cardSetName);
@@ -58,7 +66,7 @@ namespace Argumentum.AssetConverter
 	        return Path.Combine(cardSetFolderName, imageFileName);
         }
 
-		public static string GetImageFolder(WebBasedGeneratorConfig config, DocumentConfig docConfig, string language, string cardSetName)
+		public static string GetImageFolder(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName)
 		{
 			var imagesFolderName = config.GetImagesDirectory(language);
 
@@ -72,7 +80,7 @@ namespace Argumentum.AssetConverter
 			
 		}
 
-		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, WebBasedGeneratorConfig config, CardSetDocumentConfig docConfig,
+		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, AssetConverterConfig config, CardSetDocumentConfig docConfig,
              string imageName, string imageUrl, double sourceDpi)
         {
 	        string toReturn;
@@ -82,8 +90,7 @@ namespace Argumentum.AssetConverter
 
 			var imageFileName = GetImageFileName(config, docConfig, language, documentCardSet.CardSetName, imageName);
 
-
-            if (File.Exists(imageFileName))
+			         if (File.Exists(imageFileName))
             {
 				//imageFromEmbeddedUrl = new MagickImage(imageFileName);
 
@@ -92,7 +99,20 @@ namespace Argumentum.AssetConverter
 			}
             else
             {
-                imageFromEmbeddedUrl = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
+                if (imageUrl.StartsWith("data:image"))
+                {
+                    imageFromEmbeddedUrl = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
+                }
+                else if (imageUrl.PathIsUrl())
+                {
+                    // This case might be for other URL types in the future,
+                    // but for now, we assume it's also an embedded URL.
+                    imageFromEmbeddedUrl = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
+                }
+                else
+                {
+                    imageFromEmbeddedUrl = ImageHelper.LoadImageFromPath(imageUrl);
+                }
                 imageFromEmbeddedUrl.Density = new Density(sourceDpi);
                 if (documentCardSet.SaveOriginalImage)
                 {
@@ -126,6 +146,12 @@ namespace Argumentum.AssetConverter
                 {
                     documentCard = documentCardSet.BackCards;
                 }
+
+                // ✅ FIX CRITIQUE: Corriger le DPI avant toute opération
+                // Les images de CardPen peuvent avoir un metadata DPI incorrect (~400 DPI)
+                // On force le DPI à 300 pour garantir un redimensionnement correct
+                // Cela évite les dimensions 8x trop grandes dans les PDFs finaux
+                imageFromEmbeddedUrl.Density = new Density(300, DensityUnit.PixelsPerInch);
 
                 if (documentCard.WidthMM > 0 && documentCard.HeigthMM > 0)
                 {

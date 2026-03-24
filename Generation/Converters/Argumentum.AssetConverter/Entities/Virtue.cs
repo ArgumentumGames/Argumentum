@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter.Mindmapper;
 using CsvHelper.Configuration;
 
 namespace Argumentum.AssetConverter.Entities
@@ -13,8 +14,7 @@ namespace Argumentum.AssetConverter.Entities
         public string Example => string.Empty; // No example in source for Virtues
         public string Link => LinkFr;
         public int? Carte => int.TryParse(Card, out int c) ? c : null;
-        public string Id { get; set; }
-        public string PK => Pk;
+        public string PK { get => Pk; set => Pk = value; }
         public string DecimalPath { get; set; }
 
 
@@ -40,6 +40,7 @@ namespace Argumentum.AssetConverter.Entities
     {
         public VirtueClassMap()
         {
+            Map(m => m.Id).Name("pk");
             Map(m => m.Pk).Name("pk");
             Map(m => m.Path).Name("path");
             Map(m => m.Depth).Name("depth");
@@ -57,7 +58,6 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Card).Name("card");
             Map(m => m.Update).Name("update");
             Map(m => m.Locked).Name("locked");
-            Map(m => m.Id).Name("ID");
         }
     }
 }
