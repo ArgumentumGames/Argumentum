@@ -33,7 +33,7 @@ namespace Argumentum.AssetConverter
 	    public bool SkipConfigFile { get; set; } = true;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
-	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;
+	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration | ConverterMode.Mindmapper;
 
 		public bool ForceDebugParams { get; set; }
 
