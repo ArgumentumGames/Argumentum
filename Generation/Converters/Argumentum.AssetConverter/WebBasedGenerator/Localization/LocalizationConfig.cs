@@ -1,4 +1,3 @@
-using HarfBuzzSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,18 +17,28 @@ public class LocalizationConfig
 	public  List<DocumentLocalization> MindMapLocalization { get; set; } = new List<DocumentLocalization>();
 
 	public async Task<(CardSetPayload front, CardSetPayload back)> TranslateCardSet(CardSetConfig source,
-		(string sourceLang, string destLang) languages, WebBasedGeneratorConfig config)
+		(string sourceLang, string destLang) languages, AssetConverterConfig config)
 	{
-		
-		
-		var localization = CardSetLocalizations.First(setLocalization => setLocalization.CardSetNames.Contains(source.Name));
+
+
+		var localization = CardSetLocalizations.FirstOrDefault(setLocalization => setLocalization.CardSetNames.Contains(source.Name));
+		if (localization == null)
+		{
+			Logger.LogWarning($"No localization found for card set '{source.Name}' for language '{languages.destLang}'. Skipping translation.");
+			var front = await source.FaceCardSetInfo.GetCardSetDocument(config);
+			var back = string.IsNullOrEmpty(source.BackCardSetInfo.GetJsonFilePath(config))
+				? null
+				: await source.BackCardSetInfo.GetCardSetDocument(config);
+			return (front, back);
+		}
+
 		var frontTranslated = await localization.TranslateCardSetInfo(source.FaceCardSetInfo, true, languages, config);
 		CardSetPayload backTranslated = null;
 		if (!string.IsNullOrEmpty(source.BackCardSetInfo.GetJsonFilePath(config)))
 		{
 			backTranslated = await localization.TranslateCardSetInfo(source.BackCardSetInfo, false, languages, config);
 		}
-		 
+
 
 		return (frontTranslated, backTranslated);
 
