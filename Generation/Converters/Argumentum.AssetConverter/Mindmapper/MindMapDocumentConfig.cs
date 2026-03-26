@@ -239,10 +239,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		public async Task GenerateMindMapFile(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string targetDirectory, string language )
+		public async Task GenerateMindMapFile(IList<Fallacy> fallacies, AssetConverterConfig config, string targetDirectory, string language )
 		{
-			if (string.IsNullOrEmpty(language)) 
-				language=webBasedGeneratorConfig.LocalizationConfig.DefaultLanguage ;
+			if (string.IsNullOrEmpty(language))
+				language=config.LocalizationConfig.DefaultLanguage ;
 
 
 			var fileName = DocumentName;
@@ -253,17 +253,17 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 			var documentPath = Path.Combine(targetDirectory, DocumentName);
 
-			CreateFreemindmap(fallacies, webBasedGeneratorConfig, language, documentPath, fileName);
+			CreateFreemindmap(fallacies, config, language, documentPath, fileName);
 
-			//Task.Run(async () => await ProcessSVGFiles(fallacies, fileName, webBasedGeneratorConfig, webBasedGeneratorConfig.EnableSVGPrompt)).GetAwaiter().GetResult() ;
-			await ProcessSvgFilesAsync(fallacies, fileName, webBasedGeneratorConfig,
-				webBasedGeneratorConfig.EnableSVGPrompt);
+			//Task.Run(async () => await ProcessSVGFiles(fallacies, fileName, config, config.EnableSVGPrompt)).GetAwaiter().GetResult() ;
+			await ProcessSvgFilesAsync(fallacies, fileName, config,
+				config.EnableSVGPrompt);
 		}
 
-		private void CreateFreemindmap(IList<Fallacy> fallacies, WebBasedGeneratorConfig webBasedGeneratorConfig, string language,
+		private void CreateFreemindmap(IList<Fallacy> fallacies, AssetConverterConfig config, string language,
 			string documentPath, string fileName)
 		{
-			if (File.Exists(documentPath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+			if (File.Exists(documentPath) && !config.OverwriteExistingDocs)
 			{
 				Logger.Log($"Skip existing Mindmap: {documentPath}");
 			}
@@ -272,7 +272,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				Logger.Log($"Creating Freemind mind map {DocumentName}");
 				var freemindMap = new FreemindMap();
 				var nodesByPath = new Dictionary<string, Node>(fallacies.Count);
-				CreateFallacyNodes(freemindMap, fallacies, nodesByPath, webBasedGeneratorConfig, language);
+				CreateFallacyNodes(freemindMap, fallacies, nodesByPath, config, language);
 
 
 				SerializeMindMapAsync(freemindMap, fileName);
@@ -281,14 +281,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		private void CreateFallacyNodes(FreemindMap freemindMap, IList<Fallacy> fallacies, Dictionary<string, Node> nodesByPath,
-			WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+			AssetConverterConfig config, string language)
 		{
 			foreach (var fallacy in fallacies)
 			{
 				if (string.IsNullOrEmpty(fallacy.PK)) continue;
 
 				var localPath = fallacy.Path;
-				var fallacyNode = CreateNode(fallacy, webBasedGeneratorConfig, language);
+				var fallacyNode = CreateNode(fallacy, config, language);
 				nodesByPath[localPath] = fallacyNode;
 
 				var lastDotIndex = localPath.LastIndexOf('.');
@@ -310,7 +310,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-		private Node CreateNode(Fallacy fallacy, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		private Node CreateNode(Fallacy fallacy, AssetConverterConfig config, string language)
 		{
 			var fallacyNode = new Node { TEXT = TitleFunc(fallacy) };
 			var link = LinkFunc(fallacy);
@@ -324,7 +324,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 			if (fallacy.Carte.HasValue)
 			{
-				AddCardIcon(fallacy, fallacyNode, webBasedGeneratorConfig, language);
+				AddCardIcon(fallacy, fallacyNode, config, language);
 			}
 
 			return fallacyNode;
@@ -393,18 +393,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-		private void AddCardIcon(Fallacy fallacy, Node fallacyNode, WebBasedGeneratorConfig webBasedGeneratorConfig, string language)
+		private void AddCardIcon(Fallacy fallacy, Node fallacyNode, AssetConverterConfig config, string language)
 		{
 			fallacyNode.Icons.Add(new Icon() { BUILTIN = $"full-{fallacy.Carte}" });
 
-			if (InsertCardsThumbnails && webBasedGeneratorConfig != null)
+			if (InsertCardsThumbnails && config != null)
 			{
-				var cardSetConfig = webBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
+				var cardSetConfig = config.WebBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
 				if (cardSetConfig != null)
 				{
 					this.ThumbnailsPathFunc = objFallacy =>
 					{
-						var cardSetDirectory = ImageHelper.GetImageFolder(webBasedGeneratorConfig, this, language, ThumbnailsCardSetName);
+						var cardSetDirectory = ImageHelper.GetImageFolder(config, this, language, ThumbnailsCardSetName);
 						var imageFileName = MatchThumbnailsName(cardSetDirectory, fallacy);
 						if (string.IsNullOrEmpty(imageFileName))
 						{
@@ -412,7 +412,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 						}
 						else
 						{
-							var targetDirectory = webBasedGeneratorConfig.GetDocumentDirectory(language);
+							var targetDirectory = config.GetDocumentDirectory(language);
 							imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
 						}
 						return imageFileName;
@@ -445,7 +445,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			Logger.LogSuccess($"Mind map {fileName} successfully generated!");
 		}
 		private async Task ProcessSvgFilesAsync(IList<Fallacy> fallacies, string fileName,
-			WebBasedGeneratorConfig webBasedGeneratorConfig, bool enableSvgUpdates)
+			AssetConverterConfig config, bool enableSvgUpdates)
 		{
 			string svgFilePath = Path.ChangeExtension(fileName, "svg");
 
@@ -454,7 +454,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				var svgSavedFilePath = Path.ChangeExtension(svgFilePath, svgFreemindMap.DocumentName);
 				Func<Task<string>> svgLoader;
-				if (File.Exists(svgSavedFilePath) && !webBasedGeneratorConfig.OverwriteExistingDocs)
+				if (File.Exists(svgSavedFilePath) && !config.OverwriteExistingDocs)
 				{
 					Logger.Log($"Skipping existing processed SVG: {svgSavedFilePath}");
 					svgLoader = async () => await File.ReadAllTextAsync(svgSavedFilePath);
@@ -493,7 +493,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				}
 
-				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader);
+				await GenerateHtmlSvgWrappers(svgFreemindMap, config, svgSavedFilePath, svgLoader);
 
 				
 
@@ -583,6 +583,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private Dictionary<Fallacy, XElement> DisambiguateSvgNodes(
 			Dictionary<Fallacy, List<XElement>> fallacyToSvgNodes, IList<Fallacy> fallacies, XNamespace svgNamespace)
 		{
+			if (!fallacyToSvgNodes.Any() || !fallacyToSvgNodes.First().Value.Any())
+			{
+				Logger.LogWarning("DisambiguateSvgNodes: no SVG nodes to disambiguate");
+				return new Dictionary<Fallacy, XElement>();
+			}
 			var tempNode = fallacyToSvgNodes.First().Value.First();
 			var allNodesList = tempNode.Document.Descendants(svgNamespace + tempNode.Name.LocalName).ToList();
 			var nodeIndices = allNodesList.Select((n, i) => new { Node = n, Index = i }).ToDictionary(n => n.Node, n => n.Index);
@@ -627,6 +632,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 					{
 						if (fallacyToSvgNodes.TryGetValue(parentFallacy, out List<XElement> parentSvgNodes))
 						{
+							if (parentSvgNodes.Count == 0)
+							{
+								Logger.LogProblem($"Empty SVG node list for parent of {TitleFunc(fallacy)}");
+								break;
+							}
 							if (parentSvgNodes.Count > 1)
 							{
 								Logger.LogProblem($"Could not disambiguate SVG nodes for fallacy {TitleFunc(fallacy)} because its parent {TitleFunc(fallacy)} does not have a single corresponding SVG node.");
@@ -645,10 +655,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 					{
 						Logger.LogProblem($"SVG Node index for parent fallacy: {parentFallacy.Path}-{TitleFunc(parentFallacy)} of fallacy {fallacy.Path}-{TitleFunc(fallacy)} not found");
 					}
+					else if (candidateSvgNodes.Count == 0)
+					{
+						Logger.LogProblem($"No candidate SVG nodes for {TitleFunc(fallacy)}");
+					}
 					else
 					{
-
-
 						// Sort the candidate SVG nodes based on their index difference with the parent node
 						XElement closestSvgNode = candidateSvgNodes
 							.OrderBy(node => Math.Abs(nodeIndices[node] - parentIndex))
@@ -744,12 +756,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, WebBasedGeneratorConfig webBasedGeneratorConfig, string svgSavedFilePath,
+		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, AssetConverterConfig config, string svgSavedFilePath,
 			Func<Task<string>> svgContent)
 		{
 			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
 			{
-				var templateFilePath = webBasedGeneratorConfig.UseDebugParams()
+				var templateFilePath = config.UseDebugParams
 					? htmlSvgWrapper.TemplatePathDebug
 					: htmlSvgWrapper.TemplatePathRelease;
 
@@ -758,7 +770,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				var htmlFileName = Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
 
 
-				if (File.Exists(htmlFileName) && !webBasedGeneratorConfig.OverwriteExistingHtmlMaps)
+				if (File.Exists(htmlFileName) && !config.OverwriteExistingHtmlMaps)
 				{
 					
 
