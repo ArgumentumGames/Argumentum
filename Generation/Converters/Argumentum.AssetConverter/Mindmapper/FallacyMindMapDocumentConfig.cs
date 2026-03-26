@@ -903,7 +903,12 @@ if (mapFile != null) {
 
 			foreach (var svgDoc in processedDocs)
 			{
-				var svgFreemindMap = SVGMaps.First(s => svgDoc.Key.EndsWith($".{s.DocumentName}", StringComparison.OrdinalIgnoreCase));
+				var svgFreemindMap = SVGMaps.FirstOrDefault(s => svgDoc.Key.EndsWith($".{s.DocumentName}", StringComparison.OrdinalIgnoreCase));
+				if (svgFreemindMap == null)
+				{
+					Logger.LogWarning($"No SVGMap matching processed file: {svgDoc.Key}");
+					continue;
+				}
 				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgDoc.Key, () => Task.FromResult(GetSvgContent(svgDoc.Value)), language);
 			}
 

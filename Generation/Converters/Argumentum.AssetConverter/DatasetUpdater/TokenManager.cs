@@ -8,13 +8,26 @@ namespace Argumentum.AssetConverter;
 
 public class TokenManager
 {
-	private readonly int maxTokensPerMinute;
+	
 	private readonly ConcurrentQueue<(int tokenCount, DateTime timestamp)> tokenTimestamps;
 	private readonly GptEncoding encoding;
+	public int MillisecondsDelay { get; set; } = 5000;
+	public int MaxTokensPerMinute { get; set; }
+
+	public int CurrentMinuteTokenCount
+	{
+		get
+		{
+			CleanupTokens();
+			return tokenTimestamps.Sum(item => item.tokenCount);
+		}
+	}
+
+	public int TotalMaxTokens { get; set; } = 0;
 
 	public TokenManager(int maxTokensPerMinute, string model)
 	{
-		this.maxTokensPerMinute = maxTokensPerMinute;
+		this.MaxTokensPerMinute = maxTokensPerMinute;
 		this.encoding = GptEncoding.GetEncodingForModel(model);
 		tokenTimestamps = new ConcurrentQueue<(int, DateTime)>();
 	}
@@ -24,19 +37,20 @@ public class TokenManager
 	private void Tokenize(string text)
 	{
 		var tokenCount = encoding.Encode(text).Count;
+		TotalMaxTokens += tokenCount;
 		tokenTimestamps.Enqueue((tokenCount, DateTime.UtcNow));
 		CleanupTokens();
 	}
 
 	public void WaitForTokenAvailability()
 	{
-		while (GetTotalTokenCount() >= maxTokensPerMinute)
+		while (CurrentMinuteTokenCount >= MaxTokensPerMinute)
 		{
 			CleanupTokens();
-			Logger.Log($"Waiting for token availability. Current token count: {GetTotalTokenCount()}");
-			Task.Delay(5000).Wait(); // Attendre 1 seconde avant de réessayer
+			Logger.Log($"Waiting for token availability. Current token count: {CurrentMinuteTokenCount}");
+			Task.Delay(MillisecondsDelay).Wait();
 		}
-		Logger.Log($"Tokens over last minute: {GetTotalTokenCount()}");
+		Logger.Log($"Tokens over last minute: {CurrentMinuteTokenCount}");
 	}
 
 	private void CleanupTokens()
@@ -47,9 +61,5 @@ public class TokenManager
 		}
 	}
 
-	private int GetTotalTokenCount()
-	{
-		CleanupTokens();
-		return tokenTimestamps.Sum(item => item.tokenCount);
-	}
+	
 }
