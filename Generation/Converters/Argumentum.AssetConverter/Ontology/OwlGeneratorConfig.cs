@@ -9,7 +9,7 @@ using Argumentum.AssetConverter.Mindmapper;
 using Humanizer;
 using ImageMagick;
 using OWLSharp;
-//using OWLSharp.Extensions.SKOS;
+// SKOS via raw OWL annotations (SKOSHelper broken in OWLSharp 4.9.0)
 using QuestPDF.Elements;
 using RDFSharp.Model;
 
@@ -127,7 +127,7 @@ namespace Argumentum.AssetConverter.Ontology
 	        // Scheme declaration
 	        var schemeName = GetId(fallacies.First().TextEn);
 	        RDFResource mainScheme = new RDFResource($"{OntologyNamespace}{schemeName}Scheme" );
-	        //ontology.DeclareConceptScheme(mainScheme);
+	        ontology.DeclareConceptScheme(mainScheme);
 
 	        var concepts = new Dictionary<Fallacy, RDFResource>();
 	        var conflictedTypedInferences = new Dictionary<string, RDFResource>();
@@ -142,14 +142,14 @@ namespace Argumentum.AssetConverter.Ontology
 
 	            if (parentFallacy == fallacy)
 	            {
-	                //ontology.DeclareTopConcept(fallacyConcept, mainScheme);
+	                ontology.DeclareTopConcept(fallacyConcept, mainScheme);
 	            }
 	            else
 	            {
 	                var parentResource = concepts[parentFallacy];
 	                try
 	                {
-	                    //ontology.DeclareNarrowerConcepts(parentResource, fallacyConcept);
+	                    ontology.DeclareNarrowerConcepts(parentResource, fallacyConcept);
 	                }
 	                catch (Exception e)
 	                {
@@ -218,19 +218,19 @@ namespace Argumentum.AssetConverter.Ontology
 	                    switch (fallacy.AIFSkosMappingType)
 	                    {
 	                        case "skos:exactMatch":
-	                            //ontology.DeclareExactMatchConcepts(fallacyConcept, mappedConcept);
+	                            ontology.DeclareExactMatchConcepts(fallacyConcept, mappedConcept);
 	                            break;
 	                        case "skos:closeMatch":
-	                            //ontology.DeclareCloseMatchConcepts(fallacyConcept, mappedConcept);
+	                            ontology.DeclareCloseMatchConcepts(fallacyConcept, mappedConcept);
 	                            break;
 	                        case "skos:broadMatch":
-	                            //ontology.DeclareBroadMatchConcepts(fallacyConcept, mappedConcept);
+	                            ontology.DeclareBroadMatchConcepts(fallacyConcept, mappedConcept);
 	                            break;
 	                        case "skos:narrowMatch":
-	                            //ontology.DeclareNarrowMatchConcepts(fallacyConcept, mappedConcept);
+	                            ontology.DeclareNarrowMatchConcepts(fallacyConcept, mappedConcept);
 	                            break;
 	                        case "skos:relatedMatch":
-	                            //ontology.DeclareRelatedMatchConcepts(fallacyConcept, mappedConcept);
+	                            ontology.DeclareRelatedMatchConcepts(fallacyConcept, mappedConcept);
 	                            break;
 	                    }
 	                }
@@ -248,16 +248,16 @@ namespace Argumentum.AssetConverter.Ontology
 	        var fallacyUri = $"{OntologyNamespace}{fallacyId}";
 
 	        RDFResource fallacyResource = new RDFResource(fallacyUri);
-	        //ontology.DeclareConcept(fallacyResource, mainScheme);
+	        ontology.DeclareConcept(fallacyResource, mainScheme);
 
-	        //ontology.AnnotateConceptPreferredLabel(fallacyResource, new RDFPlainLiteral(targetFallacy.TextFr, "fr"));
-	        //ontology.AnnotateConceptPreferredLabel(fallacyResource, new RDFPlainLiteral(targetFallacy.TextEn, "en"));
+	        ontology.AnnotateConceptPreferredLabel(fallacyResource, new RDFPlainLiteral(targetFallacy.TextFr, "fr"));
+	        ontology.AnnotateConceptPreferredLabel(fallacyResource, new RDFPlainLiteral(targetFallacy.TextEn, "en"));
 	  
-	        //ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Definition, new RDFPlainLiteral(targetFallacy.DescFr, "fr"));
-	        //ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Definition, new RDFPlainLiteral(targetFallacy.DescEn, "en"));
+	        ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Definition, new RDFPlainLiteral(targetFallacy.DescFr, "fr"));
+	        ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Definition, new RDFPlainLiteral(targetFallacy.DescEn, "en"));
 
-	        //ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Example, new RDFPlainLiteral(targetFallacy.ExampleFr, "fr"));
-	        //ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Example, new RDFPlainLiteral(targetFallacy.ExampleEn, "en"));
+	        ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Example, new RDFPlainLiteral(targetFallacy.ExampleFr, "fr"));
+	        ontology.DocumentConcept(fallacyResource, Ontology.SKOSDocumentationTypes.Example, new RDFPlainLiteral(targetFallacy.ExampleEn, "en"));
 
 	        if (!string.IsNullOrEmpty(targetFallacy.LinkEn))
 	        {
