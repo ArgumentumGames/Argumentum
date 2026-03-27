@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using OWLSharp;
 using OWLSharp.Ontology;
+using OWLSharp.Extensions.SKOS;
 using RDFSharp.Model;
 using VDS.RDF;
 using VDS.RDF.Parsing;
@@ -146,24 +147,25 @@ namespace Argumentum.AssetConverter.Ontology
         public void DeclareConceptScheme(RDFResource scheme)
         {
             DeclareClass(scheme);
-            AnnotateConceptWithResource(scheme, RDFVocabulary.RDF.TYPE, SKOSVocabulary.ConceptScheme);
+            SKOSHelper.DeclareConceptScheme(_ontology, scheme);
         }
 
         public void DeclareConcept(RDFResource concept, RDFResource scheme)
         {
             DeclareClass(concept);
-            AnnotateConceptWithResource(concept, RDFVocabulary.RDF.TYPE, SKOSVocabulary.Concept);
-            AnnotateConceptWithResource(concept, SKOSVocabulary.InScheme, scheme);
+            SKOSHelper.DeclareConcept(_ontology, concept, conceptScheme: scheme);
         }
 
         public void DeclareTopConcept(RDFResource concept, RDFResource scheme)
         {
+            // SKOSHelper has no DeclareTopConcept — use raw annotations
             AnnotateConceptWithResource(scheme, SKOSVocabulary.HasTopConcept, concept);
             AnnotateConceptWithResource(concept, SKOSVocabulary.TopConceptOf, scheme);
         }
 
         public void DeclareNarrowerConcepts(RDFResource parentConcept, RDFResource childConcept)
         {
+            // SKOSHelper has no DeclareNarrowerConcept — use raw annotations
             AnnotateConceptWithResource(parentConcept, SKOSVocabulary.Narrower, childConcept);
             AnnotateConceptWithResource(childConcept, SKOSVocabulary.Broader, parentConcept);
         }
@@ -251,6 +253,20 @@ namespace Argumentum.AssetConverter.Ontology
 
         public List<RDFResource> GetConcepts()
         {
+            // Try SKOSHelper first, fall back to raw annotation scan
+            try
+            {
+                var schemes = _ontology.DeclarationAxioms
+                    .Where(ax => ax.Entity is OWLClass)
+                    .Select(ax => new RDFResource(((OWLClass)ax.Entity).GetIRI().ToString()))
+                    .ToList();
+                foreach (var scheme in schemes)
+                {
+                    var concepts = SKOSHelper.GetConceptsInScheme(_ontology, scheme);
+                    if (concepts.Count > 0) return concepts;
+                }
+            }
+            catch { }
             return GetAnnotationSubjects(SKOSVocabulary.Concept);
         }
 
@@ -261,10 +277,17 @@ namespace Argumentum.AssetConverter.Ontology
 
         public bool CheckIsNarrowerConcept(RDFResource concept, RDFResource parentConcept)
         {
-            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                .Any(a => a.AnnotationProperty.GetIRI().Equals(SKOSVocabulary.Narrower.URI)
-                    && a.SubjectIRI.Equals(parentConcept.URI)
-                    && a.ValueIRI != null && a.ValueIRI.Equals(concept.URI));
+            try
+            {
+                return SKOSHelper.CheckHasNarrowerConcept(_ontology, parentConcept, concept);
+            }
+            catch
+            {
+                return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                    .Any(a => a.AnnotationProperty.GetIRI().Equals(SKOSVocabulary.Narrower.URI)
+                        && a.SubjectIRI.Equals(parentConcept.URI)
+                        && a.ValueIRI != null && a.ValueIRI.Equals(concept.URI));
+            }
         }
 
         public List<RDFPlainLiteral> GetConceptPreferredLabels(RDFResource concept)
@@ -285,17 +308,20 @@ namespace Argumentum.AssetConverter.Ontology
 
         public List<RDFResource> GetExactMatchConcepts(RDFResource concept)
         {
-            return GetResourceAnnotations(concept, SKOSVocabulary.ExactMatch);
+            try { return SKOSHelper.GetExactMatchConcepts(_ontology, concept); }
+            catch { return GetResourceAnnotations(concept, SKOSVocabulary.ExactMatch); }
         }
 
         public List<RDFResource> GetCloseMatchConcepts(RDFResource concept)
         {
-            return GetResourceAnnotations(concept, SKOSVocabulary.CloseMatch);
+            try { return SKOSHelper.GetCloseMatchConcepts(_ontology, concept); }
+            catch { return GetResourceAnnotations(concept, SKOSVocabulary.CloseMatch); }
         }
 
         public List<RDFResource> GetRelatedMatchConcepts(RDFResource concept)
         {
-            return GetResourceAnnotations(concept, SKOSVocabulary.RelatedMatch);
+            try { return SKOSHelper.GetRelatedMatchConcepts(_ontology, concept); }
+            catch { return GetResourceAnnotations(concept, SKOSVocabulary.RelatedMatch); }
         }
 
         private List<RDFResource> GetAnnotationSubjects(RDFResource typeResource)
@@ -341,7 +367,7 @@ namespace Argumentum.AssetConverter.Ontology
 
         public bool CheckHasClass(RDFResource resource)
         {
-            return _ontology.DeclarationAxioms.Any(ax => ax.Expression is OWLClass cls && cls.GetIRI().Equals(resource.URI));
+            return _ontology.DeclarationAxioms.Any(ax => ax.Entity is OWLClass cls && cls.GetIRI().Equals(resource.URI));
         }
 
         public OWLOntology GetOntology()
