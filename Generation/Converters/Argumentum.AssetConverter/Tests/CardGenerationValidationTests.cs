@@ -538,12 +538,9 @@ namespace Argumentum.AssetConverter.Tests
                 }
                 
                 // Comparer les images
-                using (var diff = new MagickImage())
-                {
-                    // Calculer la différence
-                    var error = image1.Compare(image2, ErrorMetric.RootMeanSquared, diff);
-                    return error;
-                }
+                // Calculer la différence
+                using var diff = image1.Compare(image2, ErrorMetric.RootMeanSquared, Channels.Composite, out double error);
+                return error;
             }
         }
     }
