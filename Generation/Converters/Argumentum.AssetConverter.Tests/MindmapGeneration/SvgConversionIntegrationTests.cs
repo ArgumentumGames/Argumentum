@@ -15,7 +15,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
         public SvgConversionIntegrationTests()
         {
-            _config = new AssetConverterConfig { OverwriteExistingDocs = true, FreeplanePath = "C:/Program Files/Freeplane/freeplane.bat" };
+            _config = new AssetConverterConfig
+            {
+                OverwriteExistingDocs = true,
+                FreeMindPath = "",  // Disable FreeMind GUI in tests
+                FreeplanePath = "", // Disable Freeplane GUI in tests
+            };
             _tempTestDirectory = Path.Combine(Path.GetTempPath(), "SvgConversionTests", Path.GetRandomFileName());
             Directory.CreateDirectory(_tempTestDirectory);
 

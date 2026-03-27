@@ -22,7 +22,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
         public MmGeneratorTests()
         {
-            _config = new AssetConverterConfig { OverwriteExistingDocs = true };
+            _config = new AssetConverterConfig
+            {
+                OverwriteExistingDocs = true,
+                FreeMindPath = "",  // Disable FreeMind GUI in tests — use XSLT fallback only
+                FreeplanePath = "", // Disable Freeplane GUI in tests
+            };
             _config.LocalizationConfig.DefaultLanguage = "fr"; // Set default language for test consistency
             _tempTestDirectory = Path.Combine(Path.GetTempPath(), "MmGeneratorTests", Path.GetRandomFileName());
             Directory.CreateDirectory(_tempTestDirectory);
