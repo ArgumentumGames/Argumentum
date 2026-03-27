@@ -298,7 +298,17 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			return FallacyMindMapDocumentConfig.TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
+			if (FallacyMindMapDocumentConfig.TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
+				return true;
+
+			Logger.Log($"FreeMind GUI unavailable, falling back to XSLT for {Path.GetFileName(sourceMmPath)}");
+			if (FallacyMindMapDocumentConfig.TryXsltSvgConversion(sourceMmPath, destinationSvgPath))
+				return true;
+
+			if (isInteractive && Program.IsInteractive)
+				Logger.LogWarning($"SVG not generated. Please convert manually: {sourceMmPath}");
+
+			return false;
 		}
 
 
