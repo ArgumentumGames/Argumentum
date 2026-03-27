@@ -85,7 +85,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 xmlDoc.Should().NotBeNull();
                 xmlDoc.Root.Name.LocalName.Should().Be("map");
 
-                // Validate root node (TitleFunc uses DefaultTitleExpression = "{item.Text}")
+                // Validate root node (TitleFunc uses TitleExpression = "{item.TextFr}")
                 xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value.Should().Be("Sophismes");
 
                 foreach (var fallacy in fallacies)
@@ -241,6 +241,57 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 records.Add(record);
             }
             return records;
+        }
+
+        [Theory]
+        [InlineData("en", "TextEn", "DescEn", "ExampleEn", "LinkEnFallback", "Subfamily", "Subsubfamily", "Family")]
+        [InlineData("ru", "TextRu", "DescRu", "Exampleru", "LinkRuFallback", "SubfamilyRu", "SubsubfamilyRu", "FamilyRu")]
+        [InlineData("pt", "TextPt", "DescPt", "ExamplePt", "LinkPtFallback", "SubfamilyPt", "SubsubfamilyPt", "FamilyPt")]
+        public void MindMapLocalization_ShouldTranslateAllFallacyExpressions(
+            string lang, string expectedText, string expectedDesc, string expectedExample,
+            string expectedLink, string expectedSubFamily, string expectedSubSubFamily, string expectedFamily)
+        {
+            // Arrange
+            var config = new FallacyMindMapDocumentConfig();
+
+            // Act - apply all localizations like the pipeline does
+            foreach (var localization in _config.LocalizationConfig.MindMapLocalization)
+            {
+                localization.DoReflectionTranslate(config, lang);
+            }
+
+            // Assert - text fields
+            config.TitleExpression.Should().Contain(expectedText,
+                $"TitleExpression should reference {expectedText} for language '{lang}'");
+            config.DescriptionExpression.Should().Contain(expectedDesc,
+                $"DescriptionExpression should reference {expectedDesc} for language '{lang}'");
+            config.ExampleExpression.Should().Contain(expectedExample,
+                $"ExampleExpression should reference {expectedExample} for language '{lang}'");
+            config.LinkExpression.Should().Contain(expectedLink,
+                $"LinkExpression should reference {expectedLink} for language '{lang}'");
+
+            // Assert - family hierarchy
+            config.FamilleExpression.Should().Contain(expectedFamily,
+                $"FamilleExpression should reference {expectedFamily} for language '{lang}'");
+            config.SousFamilleExpression.Should().Contain(expectedSubFamily,
+                $"SousFamilleExpression should reference {expectedSubFamily} for language '{lang}'");
+            config.SoussousFamilleExpression.Should().Contain(expectedSubSubFamily,
+                $"SoussousFamilleExpression should reference {expectedSubSubFamily} for language '{lang}'");
+        }
+
+        [Fact]
+        public void MindMapLocalization_FrenchDefaults_ShouldUseFrProperties()
+        {
+            // Verify the default (FR) expressions use concrete FR property names
+            var config = new FallacyMindMapDocumentConfig();
+
+            config.TitleExpression.Should().Contain("TextFr");
+            config.DescriptionExpression.Should().Contain("DescFr");
+            config.ExampleExpression.Should().Contain("ExampleFr");
+            config.LinkExpression.Should().Contain("LinkFrFallback");
+            config.FamilleExpression.Should().Contain("Famille");
+            config.SousFamilleExpression.Should().Contain("SousFamille");
+            config.SoussousFamilleExpression.Should().Contain("Soussousfamille");
         }
 
         public void Dispose()

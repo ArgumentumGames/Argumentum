@@ -39,7 +39,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		const string DefaultTitleExpression = @"{item.Text}";
+		const string DefaultTitleExpression = @"{item.TextFr}";
 
 		public string TitleExpression { get; set; } = DefaultTitleExpression;
 
@@ -51,8 +51,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				return item =>
 				{
-					
-					var expression = DefaultTitleExpression;
+
+					var expression = TitleExpression;
 					var title = expression.Interpolate(new Dictionary<string, object>() { { "item", item } });
 					if (AddNodePath)
 					{
@@ -66,7 +66,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public bool AddNodePath { get; set; } = false;
 
 
-		const string DefaultFamilleExpression = @"{item.Family}";
+		const string DefaultFamilleExpression = @"{item.Famille}";
 		public string FamilleExpression { get; set; } = DefaultFamilleExpression;
 
 		[IgnoreDataMember]
@@ -80,7 +80,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		const string DefaultSousFamilleExpression = @"{item.SubFamily}";
+		const string DefaultSousFamilleExpression = @"{item.SousFamille}";
 		public string SousFamilleExpression { get; set; } = DefaultSousFamilleExpression;
 
 		[IgnoreDataMember]
@@ -94,7 +94,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		const string DefaultSoussousFamilleExpression = @"{item.SubSubFamily}";
+		const string DefaultSoussousFamilleExpression = @"{item.Soussousfamille}";
 		public string SoussousFamilleExpression { get; set; } = DefaultSoussousFamilleExpression;
 
 		[IgnoreDataMember]
@@ -110,7 +110,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string DescriptionExpression { get; set; } =
 @"
 <p>
-    {HttpUtility.HtmlEncode(item.Description)}
+    {HttpUtility.HtmlEncode(item.DescFr)}
 </p>
 ";
 
@@ -148,7 +148,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string ExampleExpression { get; set; } =
 @"
 <p>
-    <i>{HttpUtility.HtmlEncode(item.Example)}</i>
+    <i>{HttpUtility.HtmlEncode(item.ExampleFr)}</i>
 </p>
 ";
 
@@ -165,7 +165,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		public string LinkExpression { get; set; } = @"{item.Link}";
+		public string LinkExpression { get; set; } = @"{item.LinkFrFallback}";
 
 
 		[IgnoreDataMember]
