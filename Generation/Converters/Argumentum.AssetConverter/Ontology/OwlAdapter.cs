@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using OWLSharp;
 using OWLSharp.Ontology;
+using OWLSharp.Extensions.SKOS;
 using RDFSharp.Model;
 using VDS.RDF;
 using VDS.RDF.Parsing;
@@ -22,7 +23,33 @@ namespace Argumentum.AssetConverter.Ontology
     }
 
     /// <summary>
-    /// Adaptateur pour la bibliothèque OWLSharp 4.6.1
+    /// SKOS vocabulary constants (http://www.w3.org/2004/02/skos/core#)
+    /// Used to add SKOS triples as raw OWL annotation assertions,
+    /// bypassing the broken SKOSHelper extension methods in OWLSharp 4.9.0.
+    /// </summary>
+    public static class SKOSVocabulary
+    {
+        private const string NS = "http://www.w3.org/2004/02/skos/core#";
+
+        public static readonly RDFResource ConceptScheme = new RDFResource($"{NS}ConceptScheme");
+        public static readonly RDFResource Concept = new RDFResource($"{NS}Concept");
+        public static readonly RDFResource InScheme = new RDFResource($"{NS}inScheme");
+        public static readonly RDFResource HasTopConcept = new RDFResource($"{NS}hasTopConcept");
+        public static readonly RDFResource TopConceptOf = new RDFResource($"{NS}topConceptOf");
+        public static readonly RDFResource Narrower = new RDFResource($"{NS}narrower");
+        public static readonly RDFResource Broader = new RDFResource($"{NS}broader");
+        public static readonly RDFResource PrefLabel = new RDFResource($"{NS}prefLabel");
+        public static readonly RDFResource Definition = new RDFResource($"{NS}definition");
+        public static readonly RDFResource Example = new RDFResource($"{NS}example");
+        public static readonly RDFResource ExactMatch = new RDFResource($"{NS}exactMatch");
+        public static readonly RDFResource CloseMatch = new RDFResource($"{NS}closeMatch");
+        public static readonly RDFResource BroadMatch = new RDFResource($"{NS}broadMatch");
+        public static readonly RDFResource NarrowMatch = new RDFResource($"{NS}narrowMatch");
+        public static readonly RDFResource RelatedMatch = new RDFResource($"{NS}relatedMatch");
+    }
+
+    /// <summary>
+    /// Adaptateur pour la bibliothèque OWLSharp 4.9.0
     /// </summary>
     public class OwlAdapter
     {
@@ -117,51 +144,56 @@ namespace Argumentum.AssetConverter.Ontology
             _ontology.DeclarationAxioms.Add(new OWLDeclaration(new OWLObjectProperty(resource)));
         }
 
-        // public void DeclareConceptScheme(RDFResource scheme)
-        // {
-        //     _ontology.DeclareSKOSConceptScheme(scheme);
-        // }
+        public void DeclareConceptScheme(RDFResource scheme)
+        {
+            DeclareClass(scheme);
+            SKOSHelper.DeclareConceptScheme(_ontology, scheme);
+        }
 
-        // public void DeclareConcept(RDFResource concept, RDFResource scheme)
-        // {
-        //     _ontology.DeclareSKOSConcept(concept);
-        //     _ontology.AddSKOSConceptToScheme(concept, scheme);
-        // }
+        public void DeclareConcept(RDFResource concept, RDFResource scheme)
+        {
+            DeclareClass(concept);
+            SKOSHelper.DeclareConcept(_ontology, concept, conceptScheme: scheme);
+        }
 
-        // public void DeclareTopConcept(RDFResource concept, RDFResource scheme)
-        // {
-        //     _ontology.DeclareSKOSTopConcept(concept, scheme);
-        // }
+        public void DeclareTopConcept(RDFResource concept, RDFResource scheme)
+        {
+            // SKOSHelper has no DeclareTopConcept — use raw annotations
+            AnnotateConceptWithResource(scheme, SKOSVocabulary.HasTopConcept, concept);
+            AnnotateConceptWithResource(concept, SKOSVocabulary.TopConceptOf, scheme);
+        }
 
-        // public void DeclareNarrowerConcepts(RDFResource parentConcept, RDFResource childConcept)
-        // {
-        //     _ontology.DeclareSKOSNarrowerConcept(parentConcept, childConcept);
-        // }
+        public void DeclareNarrowerConcepts(RDFResource parentConcept, RDFResource childConcept)
+        {
+            // SKOSHelper has no DeclareNarrowerConcept — use raw annotations
+            AnnotateConceptWithResource(parentConcept, SKOSVocabulary.Narrower, childConcept);
+            AnnotateConceptWithResource(childConcept, SKOSVocabulary.Broader, parentConcept);
+        }
 
-        // public void DeclareExactMatchConcepts(RDFResource concept1, RDFResource concept2)
-        // {
-        //     _ontology.DeclareSKOSExactMatch(concept1, concept2);
-        // }
+        public void DeclareExactMatchConcepts(RDFResource concept1, RDFResource concept2)
+        {
+            AnnotateConceptWithResource(concept1, SKOSVocabulary.ExactMatch, concept2);
+        }
 
-        // public void DeclareCloseMatchConcepts(RDFResource concept1, RDFResource concept2)
-        // {
-        //     _ontology.DeclareSKOSCloseMatch(concept1, concept2);
-        // }
+        public void DeclareCloseMatchConcepts(RDFResource concept1, RDFResource concept2)
+        {
+            AnnotateConceptWithResource(concept1, SKOSVocabulary.CloseMatch, concept2);
+        }
 
-        // public void DeclareBroadMatchConcepts(RDFResource concept1, RDFResource concept2)
-        // {
-        //     _ontology.DeclareSKOSBroadMatch(concept1, concept2);
-        // }
+        public void DeclareBroadMatchConcepts(RDFResource concept1, RDFResource concept2)
+        {
+            AnnotateConceptWithResource(concept1, SKOSVocabulary.BroadMatch, concept2);
+        }
 
-        // public void DeclareNarrowMatchConcepts(RDFResource concept1, RDFResource concept2)
-        // {
-        //     _ontology.DeclareSKOSNarrowMatch(concept1, concept2);
-        // }
+        public void DeclareNarrowMatchConcepts(RDFResource concept1, RDFResource concept2)
+        {
+            AnnotateConceptWithResource(concept1, SKOSVocabulary.NarrowMatch, concept2);
+        }
 
-        // public void DeclareRelatedMatchConcepts(RDFResource concept1, RDFResource concept2)
-        // {
-        //     _ontology.DeclareSKOSRelatedMatch(concept1, concept2);
-        // }
+        public void DeclareRelatedMatchConcepts(RDFResource concept1, RDFResource concept2)
+        {
+            AnnotateConceptWithResource(concept1, SKOSVocabulary.RelatedMatch, concept2);
+        }
 
         public void DeclareQualifiedCardinalityRestriction(RDFResource restrictionClass, RDFResource onProperty, int cardinality, RDFResource onClass)
         {
@@ -188,85 +220,154 @@ namespace Argumentum.AssetConverter.Ontology
             _ontology.ClassAxioms.Add(equivalentClassesAxiom);
         }
 
-        // public void AnnotateConceptPreferredLabel(RDFResource concept, RDFPlainLiteral label)
-        // {
-        //     _ontology.AnnotateSKOSPreferredLabel(concept, label);
-        // }
+        public void AnnotateConceptPreferredLabel(RDFResource concept, RDFPlainLiteral label)
+        {
+            AnnotateConcept(concept, SKOSVocabulary.PrefLabel, label);
+        }
 
         public void AnnotateConcept(RDFResource concept, RDFResource property, RDFPlainLiteral value)
         {
             _ontology.AnnotationAxioms.Add(new OWLAnnotationAssertion(new OWLAnnotationProperty(property), concept, new OWLLiteral(value)));
         }
 
-        // public void DocumentConcept(RDFResource concept, SKOSDocumentationTypes documentationType, RDFPlainLiteral value)
-        // {
-        //     switch (documentationType)
-        //     {
-        //         case SKOSDocumentationTypes.Definition:
-        //             _ontology.AnnotateSKOSDefinition(concept, value);
-        //             break;
-        //         case SKOSDocumentationTypes.Example:
-        //             _ontology.AnnotateSKOSExample(concept, value);
-        //             break;
-        //     }
-        // }
+        public void AnnotateConceptWithResource(RDFResource subject, RDFResource property, RDFResource value)
+        {
+            _ontology.AnnotationAxioms.Add(new OWLAnnotationAssertion(new OWLAnnotationProperty(property), subject, value));
+        }
+
+        public void DocumentConcept(RDFResource concept, SKOSDocumentationTypes documentationType, RDFPlainLiteral value)
+        {
+            var property = documentationType switch
+            {
+                SKOSDocumentationTypes.Definition => SKOSVocabulary.Definition,
+                SKOSDocumentationTypes.Example => SKOSVocabulary.Example,
+                _ => throw new ArgumentOutOfRangeException(nameof(documentationType))
+            };
+            AnnotateConcept(concept, property, value);
+        }
 
         public Task ToFileAsync(OWLEnums.OWLFormats format, string filePath)
         {
             return _ontology.ToFileAsync(format, filePath);
         }
 
-        // public List<RDFResource> GetConcepts()
-        // {
-        //     return _ontology.GetSKOSConcepts().ToList();
-        // }
+        public List<RDFResource> GetConcepts()
+        {
+            // Try SKOSHelper first, fall back to raw annotation scan
+            try
+            {
+                var schemes = _ontology.DeclarationAxioms
+                    .Where(ax => ax.Entity is OWLClass)
+                    .Select(ax => new RDFResource(((OWLClass)ax.Entity).GetIRI().ToString()))
+                    .ToList();
+                foreach (var scheme in schemes)
+                {
+                    var concepts = SKOSHelper.GetConceptsInScheme(_ontology, scheme);
+                    if (concepts.Count > 0) return concepts;
+                }
+            }
+            catch { }
+            return GetAnnotationSubjects(SKOSVocabulary.Concept);
+        }
 
-        // public List<RDFResource> GetTopConcepts()
-        // {
-        //     return _ontology.GetSKOSTopConcepts().ToList();
-        // }
+        public List<RDFResource> GetTopConcepts()
+        {
+            return GetAnnotationObjects(SKOSVocabulary.HasTopConcept);
+        }
 
-        // public bool CheckIsNarrowerConcept(RDFResource concept, RDFResource parentConcept)
-        // {
-        //     return _ontology.CheckHasSKOSNarrowerConcept(parentConcept, concept);
-        // }
+        public bool CheckIsNarrowerConcept(RDFResource concept, RDFResource parentConcept)
+        {
+            try
+            {
+                return SKOSHelper.CheckHasNarrowerConcept(_ontology, parentConcept, concept);
+            }
+            catch
+            {
+                return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                    .Any(a => a.AnnotationProperty.GetIRI().Equals(SKOSVocabulary.Narrower.URI)
+                        && a.SubjectIRI.Equals(parentConcept.URI)
+                        && a.ValueIRI != null && a.ValueIRI.Equals(concept.URI));
+            }
+        }
 
-        // public List<RDFPlainLiteral> GetConceptPreferredLabels(RDFResource concept)
-        // {
-        //     return _ontology.GetSKOSPreferredLabels(concept).ToList();
-        // }
+        public List<RDFPlainLiteral> GetConceptPreferredLabels(RDFResource concept)
+        {
+            return GetLiteralAnnotations(concept, SKOSVocabulary.PrefLabel);
+        }
 
-        // public List<RDFPlainLiteral> GetConceptDocumentation(RDFResource concept, SKOSDocumentationTypes documentationType)
-        // {
-        //     switch (documentationType)
-        //     {
-        //         case SKOSDocumentationTypes.Definition:
-        //             return _ontology.GetSKOSDefinitions(concept).ToList();
-        //         case SKOSDocumentationTypes.Example:
-        //             return _ontology.GetSKOSExamples(concept).ToList();
-        //         default:
-        //             return new List<RDFPlainLiteral>();
-        //     }
-        // }
+        public List<RDFPlainLiteral> GetConceptDocumentation(RDFResource concept, SKOSDocumentationTypes documentationType)
+        {
+            var property = documentationType switch
+            {
+                SKOSDocumentationTypes.Definition => SKOSVocabulary.Definition,
+                SKOSDocumentationTypes.Example => SKOSVocabulary.Example,
+                _ => throw new ArgumentOutOfRangeException(nameof(documentationType))
+            };
+            return GetLiteralAnnotations(concept, property);
+        }
 
-        // public List<RDFResource> GetExactMatchConcepts(RDFResource concept)
-        // {
-        //     return _ontology.GetSKOSExactMatches(concept).ToList();
-        // }
+        public List<RDFResource> GetExactMatchConcepts(RDFResource concept)
+        {
+            try { return SKOSHelper.GetExactMatchConcepts(_ontology, concept); }
+            catch { return GetResourceAnnotations(concept, SKOSVocabulary.ExactMatch); }
+        }
 
-        // public List<RDFResource> GetCloseMatchConcepts(RDFResource concept)
-        // {
-        //     return _ontology.GetSKOSCloseMatches(concept).ToList();
-        // }
+        public List<RDFResource> GetCloseMatchConcepts(RDFResource concept)
+        {
+            try { return SKOSHelper.GetCloseMatchConcepts(_ontology, concept); }
+            catch { return GetResourceAnnotations(concept, SKOSVocabulary.CloseMatch); }
+        }
 
-        // public List<RDFResource> GetRelatedMatchConcepts(RDFResource concept)
-        // {
-        //     return _ontology.GetSKOSRelatedMatches(concept).ToList();
-        // }
+        public List<RDFResource> GetRelatedMatchConcepts(RDFResource concept)
+        {
+            try { return SKOSHelper.GetRelatedMatchConcepts(_ontology, concept); }
+            catch { return GetResourceAnnotations(concept, SKOSVocabulary.RelatedMatch); }
+        }
+
+        private List<RDFResource> GetAnnotationSubjects(RDFResource typeResource)
+        {
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Where(a => a.AnnotationProperty.GetIRI().Equals(RDFVocabulary.RDF.TYPE.URI)
+                    && a.ValueIRI != null && a.ValueIRI.Equals(typeResource.URI))
+                .Select(a => new RDFResource(a.SubjectIRI.ToString()))
+                .ToList();
+        }
+
+        private List<RDFResource> GetAnnotationObjects(RDFResource property)
+        {
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Where(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
+                    && a.ValueIRI != null)
+                .Select(a => new RDFResource(a.ValueIRI.ToString()))
+                .ToList();
+        }
+
+        private List<RDFResource> GetResourceAnnotations(RDFResource subject, RDFResource property)
+        {
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Where(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
+                    && a.SubjectIRI.Equals(subject.URI)
+                    && a.ValueIRI != null)
+                .Select(a => new RDFResource(a.ValueIRI.ToString()))
+                .ToList();
+        }
+
+        private List<RDFPlainLiteral> GetLiteralAnnotations(RDFResource subject, RDFResource property)
+        {
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Where(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
+                    && a.SubjectIRI.Equals(subject.URI)
+                    && a.ValueLiteral != null)
+                .Select(a => {
+                    var literal = a.ValueLiteral.GetLiteral();
+                    return literal is RDFPlainLiteral plain ? plain : new RDFPlainLiteral(literal.Value);
+                })
+                .ToList();
+        }
 
         public bool CheckHasClass(RDFResource resource)
         {
-            return _ontology.DeclarationAxioms.Any(ax => ax.Expression is OWLClass cls && cls.GetIRI().Equals(resource.URI));
+            return _ontology.DeclarationAxioms.Any(ax => ax.Entity is OWLClass cls && cls.GetIRI().Equals(resource.URI));
         }
 
         public OWLOntology GetOntology()
