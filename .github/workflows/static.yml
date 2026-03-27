@@ -32,6 +32,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Clean broken symlinks
+        run: |
+          # Remove Windows pseudo-symlinks (text files containing paths)
+          # that break tar --dereference on Linux
+          find Generation/CardPen -maxdepth 1 -type f -size -100c \
+            -exec grep -lq '^[A-Z]:/' {} \; -delete 2>/dev/null || true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
