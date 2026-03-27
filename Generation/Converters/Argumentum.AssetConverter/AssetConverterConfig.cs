@@ -146,26 +146,39 @@ namespace Argumentum.AssetConverter
 			}),
 			MindMapLocalization = new List<DocumentLocalization>(new[]
 			{
+				// Fallacy text fields: FR property names → localized property names
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
 						nameof(FallacyMindMapDocumentConfig.TitleExpression),
-						nameof (FallacyMindMapDocumentConfig.CardExpression)
+						nameof(FallacyMindMapDocumentConfig.CardExpression),
+						nameof(FallacyMindMapDocumentConfig.DescriptionExpression),
+						nameof(FallacyMindMapDocumentConfig.ExampleExpression),
+						nameof(FallacyMindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) )
+						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.TextEn)), ("ru", nameof(Fallacy.TextRu)), ("pt", nameof(Fallacy.TextPt)) }) ),
+						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)) }) ),
+						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)) }) ),
+						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback") }) ),
 					}),
 				},
+				// Fallacy family hierarchy: FR names → localized names
+				// Order: most specific first (Soussousfamille > SousFamille > Famille) to avoid partial matches
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof(FallacyMindMapDocumentConfig.TitleExpression),
-						nameof (FallacyMindMapDocumentConfig.CardExpression)
+						nameof(FallacyMindMapDocumentConfig.FamilleExpression),
+						nameof(FallacyMindMapDocumentConfig.SousFamilleExpression),
+						nameof(FallacyMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) )
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) ),
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) ),
+						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)) }) ),
 					}),
 				},
+				// Virtue root title translation (data is FR-only, only tree root name changes)
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
@@ -175,6 +188,7 @@ namespace Argumentum.AssetConverter
 						("Vertus", new List<(string Language, string destText)>(new []{("en", "Virtues"), ("ru", "Dobrodeteli"), ("pt", "Virtudes") }) )
 					}),
 				},
+				// Document name: _fr. → _en./_ru./_pt.
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{

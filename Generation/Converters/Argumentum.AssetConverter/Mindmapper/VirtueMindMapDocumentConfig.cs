@@ -47,7 +47,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				return item =>
 				{
 					
-					var expression = DefaultTitleExpression;
+					var expression = TitleExpression;
 					var title = expression.Interpolate(new Dictionary<string, object>() { { "item", item } });
 					if (AddNodePath)
 					{

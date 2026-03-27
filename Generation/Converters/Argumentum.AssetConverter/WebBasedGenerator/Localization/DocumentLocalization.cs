@@ -15,6 +15,7 @@ public class DocumentLocalization
 
 	public string DoStaticConversions(string template, string destLang)
 	{
+		if (template == null) return template;
 		foreach (var staticConversion in StaticConversions)
 		{
 			var translations =
