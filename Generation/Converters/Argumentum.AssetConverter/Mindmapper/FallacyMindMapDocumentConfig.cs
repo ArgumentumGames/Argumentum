@@ -318,7 +318,20 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			return TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
+			// 1. Try FreeMind GUI (high-fidelity Batik SVG, requires interactive desktop)
+			if (TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
+				return true;
+
+			// 2. Fallback to XSLT (lower fidelity but works headless)
+			Logger.Log($"FreeMind GUI unavailable, falling back to XSLT for {Path.GetFileName(sourceMmPath)}");
+			if (TryXsltSvgConversion(sourceMmPath, destinationSvgPath))
+				return true;
+
+			// 3. Prompt user if interactive
+			if (isInteractive && Program.IsInteractive)
+				Logger.LogWarning($"SVG not generated. Please convert manually: {sourceMmPath}");
+
+			return false;
 		}
 
 		/// <summary>
