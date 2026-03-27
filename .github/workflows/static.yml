@@ -32,12 +32,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Clean broken symlinks
+      - name: Remove git symlinks
         run: |
-          # Remove Windows pseudo-symlinks (text files containing paths)
-          # that break tar --dereference on Linux
-          find Generation/CardPen -maxdepth 1 -type f -size -100c \
-            -exec grep -lq '^[A-Z]:/' {} \; -delete 2>/dev/null || true
+          # These are git symlinks (mode 120000) pointing to Windows paths.
+          # On Linux they become text files that break tar --dereference.
+          rm -f Generation/CardPen/Fallacies Generation/CardPen/Memo \
+               Generation/CardPen/Rules Generation/CardPen/Scenarii
+          # Also remove server/ subproject (not needed for Pages)
+          rm -rf Generation/CardPen/server
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
