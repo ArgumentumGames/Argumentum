@@ -35,8 +35,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Deploy only CardPen (HTML card renderer used by the pipeline)
+          path: 'Generation/CardPen'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
