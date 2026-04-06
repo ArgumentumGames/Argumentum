@@ -396,12 +396,34 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 | Memo Tarot FR | 1 | ✅ | Dans TarotCards |
 | Print&Play A4 | 34 | ✅ | Poker + Tarot Print&Play |
 
+### Mind Maps & SVGs — April 2026 ✅ COMPLETE
+
+- 20 FreeMind Batik SVGs generated and committed (4 languages × 5 types)
+- FreeMind GUI automation via `SendKeys.SendWait` — VALIDATED (commit `46d6cd9b`)
+- Issues #127, #128, #129 closed
+- OWL ontology with SKOS — committed (PR #161), issue #130 closed
+
+### Translation Pipeline (DatasetUpdater)
+
+- **SDK**: `Betalgo.OpenAI` v8.1.0 — **outdated**, evaluate alternatives (Semantic Kernel, official OpenAI SDK)
+- **Models**: All deprecated (`gpt-3.5-turbo-1106`, `gpt-4-1106-preview`, `gpt-4-0125-preview`, `gpt-4-turbo`)
+- **Config**: `DatasetUpdater/DatasetUpdaterRootConfig.cs` — 7 task configs
+- **Prompts**: 29 files in `DatasetUpdater/Resources/`
+- **Virtues CSV has NO multilingual columns** — only `_fr` fields, translation entirely absent
+- **Issue #183** tracks full upgrade plan
+
 ### Prochaines étapes
 
 1. ~~Valider génération images après corrections CSV/CSS~~ FAIT
 2. ~~Tester génération PDFs (QuestPDF)~~ FAIT
 3. ~~Activer et tester génération multilingue~~ FAIT (17 Mars 2026)
 4. ~~Valider formats: Tarot, Poker, A0, Print&Play~~ FAIT
+5. ~~Mind Maps + SVGs (Batik)~~ FAIT (6 Avril 2026)
+6. Valider tous les documents générés avant publication
+7. #183 — Upgrade pipeline traduction (SDK + modèles SOTA + Vertues i18n)
+8. #134 — GitHub Release
+9. #133 — Publication OWL
+10. #131/#132 — DNN site + déploiement
 
 ### Commits clés de la recovery
 
@@ -412,6 +434,8 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 | `09b427ef` | fix(templates): Scenarii asset paths to GitHub URLs |
 | `30483257` | fix(templates): Virtues CSS and Rules naming |
 | `9b19d5e8` | fix(config): remove RowsetNb=14 for Scenarii CardSet |
+| `75a049d3` | fix(mindmap): restore validated FreeMind SendKeys automation |
+| `55c6774e` | feat(assets): replace XSLT SVGs with FreeMind Batik SVGs |
 
 ## Related Documentation
 
