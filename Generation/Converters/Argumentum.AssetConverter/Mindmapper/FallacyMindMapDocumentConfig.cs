@@ -318,20 +318,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			// 1. Try FreeMind GUI (high-fidelity Batik SVG, requires interactive desktop)
-			if (TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
-				return true;
-
-			// 2. Fallback to XSLT (lower fidelity but works headless)
-			Logger.Log($"FreeMind GUI unavailable, falling back to XSLT for {Path.GetFileName(sourceMmPath)}");
-			if (TryXsltSvgConversion(sourceMmPath, destinationSvgPath))
-				return true;
-
-			// 3. Prompt user if interactive
-			if (isInteractive && Program.IsInteractive)
-				Logger.LogWarning($"SVG not generated. Please convert manually: {sourceMmPath}");
-
-			return false;
+			return TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
 		}
 
 		/// <summary>
@@ -411,7 +398,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				});
 				if (process == null) { Logger.LogWarning("Failed to start FreeMind."); return false; }
 
-				// 3. Poll for window (up to 30s)
+				// 3. Poll for window (up to 30s) — wait for title to contain the .mm filename
 				Process freemindProcess = null;
 				var mmFileName = System.IO.Path.GetFileName(sourceMmPath);
 				Logger.Log("Waiting for FreeMind window...");
@@ -420,7 +407,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 					Thread.Sleep(1000);
 					foreach (var jp in Process.GetProcessesByName("javaw"))
 					{
-						try { if (jp.MainWindowTitle.Contains("FreeMind")) { freemindProcess = jp; break; } } catch { }
+						try
+						{
+							jp.Refresh();
+							if (jp.MainWindowTitle.Contains(mmFileName))
+							{
+								freemindProcess = jp;
+								break;
+							}
+						}
+						catch { }
 					}
 				}
 				if (freemindProcess == null)
