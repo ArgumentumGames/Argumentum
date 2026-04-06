@@ -130,6 +130,9 @@
     <None Update="Mindmapper\xslt\polyfill.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Mindmapper\xslt\Export-FreeMindSvg.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
   <ItemGroup>
