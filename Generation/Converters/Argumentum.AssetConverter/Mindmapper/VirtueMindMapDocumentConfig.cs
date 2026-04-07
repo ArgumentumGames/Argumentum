@@ -585,7 +585,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					svgLoader = () => Task.FromResult(GetSvgContent(svgDoc));
 
 
-					await File.WriteAllTextAsync(svgSavedFilePath, await svgLoader(), Encoding.UTF8);
+					File.WriteAllText(svgSavedFilePath, svgLoader().GetAwaiter().GetResult(), Encoding.UTF8);
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
 
 				}
@@ -893,7 +893,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					htmlTemplate = htmlTemplate.Replace("[SVGPATH]", svgRelativePath);
 					htmlTemplate = htmlTemplate.Replace("<!-- Insert here the SVG -->", await svgContent());
 
-					await File.WriteAllTextAsync(htmlFileName, htmlTemplate, Encoding.UTF8);
+					File.WriteAllText(htmlFileName, htmlTemplate, Encoding.UTF8);
 					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
 				}
 			}
