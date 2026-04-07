@@ -304,7 +304,10 @@ namespace Argumentum.AssetConverter.Mindmapper
 				SerializeMindMapAsync(freemindMap, fileName);
 
 				var svgPath = Path.ChangeExtension(fileName, "svg");
-				TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt);
+				// Run on thread pool to isolate WinForms SyncContext installed by SendKeys
+				Task.Run(() => TryAutomateSvgConversion(fileName, svgPath, config, config.EnableSVGPrompt)).GetAwaiter().GetResult();
+				// Clean up any WinForms SyncContext that may have been installed
+				System.Threading.SynchronizationContext.SetSynchronizationContext(null);
 			}
 		}
 
@@ -957,7 +960,7 @@ if (mapFile != null) {
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
 					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
-					await File.WriteAllTextAsync(svgSavedFilePath, GetSvgContent(svgDoc), Encoding.UTF8);
+					File.WriteAllText(svgSavedFilePath, GetSvgContent(svgDoc), Encoding.UTF8);
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
 					processedDocs.Add(svgSavedFilePath, svgDoc);
 				}
@@ -1320,7 +1323,7 @@ if (mapFile != null) {
 					htmlTemplate = htmlTemplate.Replace("[SVGPATH]", svgRelativePath);
 					htmlTemplate = htmlTemplate.Replace("<!-- Insert here the SVG -->", await svgContent());
 
-					await File.WriteAllTextAsync(htmlFileName, htmlTemplate, Encoding.UTF8);
+					File.WriteAllText(htmlFileName, htmlTemplate, Encoding.UTF8);
 					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
 				}
 
