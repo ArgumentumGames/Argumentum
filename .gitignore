@@ -198,9 +198,9 @@ docs/investigations/screenshots/validation-finale-*/
 docs/investigations/pdf-validation/node_modules/
 
 # Claude Code coordination directory
-.claude/
-!.claude/commands/
-!.claude/commands/*.md
+.claude/*
+!.claude/skills/
+!.claude/skills/**
 !.claude/*checkpoint*.md
 !.claude/*debrief*.md
 
