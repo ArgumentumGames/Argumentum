@@ -151,7 +151,7 @@ public class HarvestManager : IAsyncDisposable
 			try
 			{
 				var cardSetDocuments = await PrepareCardSetDocuments(configCardSet, currentLanguage);
-				var currentHarvest = await GenerateHarvestImages(browser, configCardSet, cardSetDocuments);
+				var currentHarvest = await GenerateHarvestImages(browser, configCardSet, cardSetDocuments, currentLanguage);
 				var jsonHarvestName = configCardSet.Config.GetHarvestSerializationName(AssetConverterConfig, currentLanguage);
 				using var fileStream = File.Create(jsonHarvestName);
 				System.Text.Json.JsonSerializer.Serialize(fileStream, currentHarvest, new JsonSerializerOptions { WriteIndented = true });
@@ -346,7 +346,7 @@ public class HarvestManager : IAsyncDisposable
 		Freepages.Push(page);
 	}
 
-	public async Task<CardSetHarvest> GenerateHarvestImages(Func<Task<IBrowser>> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments)
+	public async Task<CardSetHarvest> GenerateHarvestImages(Func<Task<IBrowser>> browser, CardSetJob configCardSet, (CardSetPayload front, CardSetPayload back) cardSetDocuments, string currentLanguage = null)
 	{
 		Log("Entering GenerateHarvestImages.");
 		var currentHarvest = new CardSetHarvest();
@@ -405,6 +405,27 @@ public class HarvestManager : IAsyncDisposable
 
 			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo, consoleMessages);
 			currentHarvest.Faces = faces;
+
+			// Issue #190 phase 1: opportunistic overflow detection on Virtues face cards.
+			// Runs while the face DOM is still in the iframe — must happen before the back
+			// cardset generation overwrites the iframe content.
+			if (configCardSet.Config.FaceCardSetInfo?.DataSet == KnownDataSets.VirtuesTaxonomy)
+			{
+				try
+				{
+					var iframe = page.FrameLocator("#cpOutput");
+					var report = await OverflowDetector.DetectAsync(iframe, configCardSet.Name, currentLanguage ?? "");
+					var qaDir = Path.Combine(AssetConverterConfig.GetBaseTargetDirectory(currentLanguage ?? ""), "QA");
+					var reportPath = Path.Combine(qaDir, $"{configCardSet.Name}_overflow_{currentLanguage}.md");
+					OverflowDetector.WriteMarkdownReport(report, reportPath);
+					Log($"[Overflow] {report.CardsWithOverflowCount}/{report.Cards.Count} cards with overflow. Report: {reportPath}");
+				}
+				catch (Exception ex)
+				{
+					// Non-fatal: a detection failure must not break the harvest pipeline.
+					Log($"[Overflow] Detection failed: {ex.Message}");
+				}
+			}
 
 			if (cardSetDocuments.back != null)
 			{
