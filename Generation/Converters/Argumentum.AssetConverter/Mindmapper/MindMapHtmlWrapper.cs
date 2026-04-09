@@ -8,14 +8,16 @@ namespace Argumentum.AssetConverter.Mindmapper;
 ///
 /// The templates used by the pipeline are <c>Cards/Fallacies/Mindmaps/included.html</c>
 /// (inline SVG variant) and <c>external.html</c> (external <c>&lt;object&gt;</c> variant).
-/// They share two placeholder tokens:
+/// They each carry exactly one placeholder token — the helper runs both substitutions
+/// unconditionally, which is a no-op on whichever token is absent:
 /// <list type="bullet">
-///   <item><c>[SVGPATH]</c> — relative path from the wrapper directory to the SVG file. Used by the
-///       external variant inside <c>&lt;object data="..."&gt;</c>. Also present in included.html
-///       for fallback, harmless there.</item>
-///   <item><c>[SVGCONTENT]</c> — the full inline SVG markup. Used only by the included variant.
-///       External.html does not contain this token.</item>
+///   <item><c>[SVGPATH]</c> — external.html only. Relative path from the wrapper directory to
+///       the SVG file, injected inside <c>&lt;object data="..."&gt;</c>.</item>
+///   <item><c>[SVGCONTENT]</c> — included.html only. Full inline SVG markup, dropped directly
+///       into the <c>#mindmap</c> container.</item>
 /// </list>
+/// <c>FormatWrapper_External_TemplateHasNoSvgContentPlaceholder</c> and the
+/// <c>grep</c>-backed precondition in the unit tests pin this contract.
 /// </summary>
 public static class MindMapHtmlWrapper
 {
