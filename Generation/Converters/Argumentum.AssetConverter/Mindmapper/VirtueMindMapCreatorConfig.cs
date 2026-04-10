@@ -53,16 +53,19 @@ namespace Argumentum.AssetConverter.Mindmapper
                         RemoveImages = true,
                         HtmlWrappers = new List<DocumentConfig>(new[]
                         {
+                            // Issue #196: use [LANGUAGE] placeholder so each language produces its
+                            // own file name, mirroring the Fallacies convention. Previous hardcoded
+                            // "_fr" caused every language to ship a misnamed file.
                             new DocumentConfig()
                             {
-                                DocumentName    = "Argumentation_Virtues_fr.html",
+                                DocumentName    = "Argumentation_Virtues_[LANGUAGE].html",
                                 TemplatePathRelease =
                                     "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
                                 TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\included.html"
                             },
                             new DocumentConfig()
                             {
-                                DocumentName    = "Argumentation_Virtues_fr_ext.html",
+                                DocumentName    = "Argumentation_Virtues_[LANGUAGE]_ext.html",
                                 TemplatePathRelease =
                                     "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
                                 TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\external.html"
