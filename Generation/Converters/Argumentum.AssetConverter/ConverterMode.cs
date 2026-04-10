@@ -20,5 +20,6 @@ namespace Argumentum.AssetConverter
 		ParallelismOptimizer = 1 << 11, // 2048
 		QuestPdfGeneration = 1 << 12, // 4096
 		PdfAuditor = 1 << 13, // 8192
+		GSheetSync = 1 << 14, // 16384
 	}
 }

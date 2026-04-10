@@ -10,6 +10,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Argumentum.AssetConverter.DatasetUpdater;
+using Argumentum.AssetConverter.GSheetSync;
 using Argumentum.AssetConverter.Dnn2sxc;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
@@ -205,6 +206,8 @@ namespace Argumentum.AssetConverter
 
 
 		public DatasetUpdaterRootConfig DatasetUpdaterRootConfig { get; set; } = new DatasetUpdaterRootConfig();
+
+		public GSheetSyncRootConfig GSheetSyncRootConfig { get; set; } = new GSheetSyncRootConfig();
 
 
 		public WebBasedGeneratorConfig WebBasedGeneratorConfig { get; set; } = new WebBasedGeneratorConfig();
@@ -520,6 +523,11 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 				{
 					await PdfAuditorConfig.Apply(this);
 				}
+			}
+
+			if (Mode.HasFlag(ConverterMode.GSheetSync))
+			{
+				await GSheetSyncRootConfig.Apply(this);
 			}
 
 			if (AsynchronousPipeline)
