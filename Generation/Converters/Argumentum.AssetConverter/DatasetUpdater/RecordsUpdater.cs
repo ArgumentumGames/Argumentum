@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using OpenAI.Utilities.FunctionCalling;
 
 namespace Argumentum.AssetConverter;
 
@@ -13,7 +12,6 @@ public class RecordsUpdater
 
 	public List<Dictionary<string, object>> Records { get; set; }
 
-	[FunctionDescription("Updates a record's field given its primary key, the field's name and the new value for that field, returns both values separated by a line")]
 	public string UpdateRecord(string primaryKey, string fieldName, string newValue)
 	{
 		newValue = DecodeValue(newValue);
