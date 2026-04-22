@@ -7,11 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using OpenAI.ObjectModels;
 using System.Threading;
-using OpenAI.Utilities.FunctionCalling;
 using Newtonsoft.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
 
@@ -32,7 +29,7 @@ public class DatasetUpdaterConfig
 
 	public string OpenAIKeyPath { get; set; } = @"G:\Mon Drive\MyIA\Argumentum\Fallacies\Gestion\OpenAI-Key.txt";
 
-	public string Model { get; set; } = Models.Gpt_4_1106_preview;
+	public string Model { get; set; } = "gpt-4.1";
 
 	public int MaxTokensPerMinute { get; set; } = 70000;
 
@@ -486,7 +483,7 @@ public class DatasetUpdaterConfig
 						PrimaryKeyField = PrimaryField,
 						Records = recordGroup
 					};
-					dataPrompt.Functions = FunctionCallingHelper.GetToolDefinitions<RecordsUpdater>().Select(definition => (definition.Function, (object)recordsUpdator)).ToList();
+					dataPrompt.Functions = GetRecordsUpdaterToolDefinitions(recordsUpdator);
 					if (!string.IsNullOrEmpty(FunctionName))
 					{
 						dataPrompt.FunctionName = FunctionName;
@@ -530,5 +527,27 @@ public class DatasetUpdaterConfig
 		{
 			Logger.Log("Operation cancelled by user.");
 		}
+	}
+
+	private static List<FunctionToolDef> GetRecordsUpdaterToolDefinitions(RecordsUpdater recordsUpdater)
+	{
+		var toolDef = new FunctionToolDef(
+			name: "UpdateRecord",
+			description: "Updates a record's field given its primary key, the field's name and the new value for that field, returns both values separated by a line",
+			methodName: "UpdateRecord",
+			parametersJson: """
+				{
+					"type": "object",
+					"properties": {
+						"primaryKey": { "type": "string", "description": "The primary key value of the record to update" },
+						"fieldName": { "type": "string", "description": "The name of the field to update" },
+						"newValue": { "type": "string", "description": "The new value for the field" }
+					},
+					"required": ["primaryKey", "fieldName", "newValue"]
+				}
+				"""
+		);
+		toolDef.TargetObject = recordsUpdater;
+		return new List<FunctionToolDef> { toolDef };
 	}
 }

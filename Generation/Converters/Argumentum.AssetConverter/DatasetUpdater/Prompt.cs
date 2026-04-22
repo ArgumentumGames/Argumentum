@@ -1,152 +1,170 @@
-﻿using System;
+#nullable enable
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Playwright;
-using OpenAI;
-using OpenAI.Managers;
-using OpenAI.ObjectModels;
-using OpenAI.ObjectModels.RequestModels;
-using OpenAI.Utilities.FunctionCalling;
-
+using OpenAI.Chat;
 
 namespace Argumentum.AssetConverter;
 
 public class Prompt
 {
+    private OpenAI.OpenAIClient? _openAIClient;
+    private ChatClient? _chatClient;
 
-	private OpenAIService openAiService ;
+    public string Model { get; set; } = "gpt-4.1-mini";
 
-	public string Model { get; set; } = Models.Gpt_3_5_Turbo_1106;
+    public string ApiKey { get; set; } = "";
 
-	public string ApiKey { get; set; }
+    public string SystemPrompt { get; set; } = "";
 
-	public string SystemPrompt { get; set; }
+    public List<PromptExample> DialogPrompts { get; set; } = new();
 
-	public List<PromptExample> DialogPrompts { get; set; } = new();
+    public string UserPrompt { get; set; } = "";
 
-	public string UserPrompt { get; set; }
+    public Action<string>? Tokenizer { get; set; }
 
+    public ChatClient ChatClient
+    {
+        get
+        {
+            if (_chatClient == null)
+            {
+                _openAIClient = new OpenAI.OpenAIClient(ApiKey);
+                _chatClient = _openAIClient.GetChatClient(Model);
+            }
+            return _chatClient;
+        }
+    }
 
-	public Action<string> Tokenizer { get; set; }
+    public List<FunctionToolDef> Functions { get; set; } = new();
 
-	public OpenAIService OpenAiService
-	{
-		get
-		{
-			if (openAiService == null)
-			{
-				openAiService = new OpenAIService(new OpenAiOptions()
-				{
-					ApiKey = ApiKey
-				});
-			}
-			return openAiService;
-		}
-	}
+    public string? FunctionName { get; set; }
 
-	public List<(FunctionDefinition functionDefinition, object targetObject)> Functions { get; set; }
+    public async Task<string> Send(CancellationToken cancellationToken, Action<string> log)
+    {
+        if (Tokenizer != null)
+        {
+            Tokenizer(SystemPrompt);
+            if (DialogPrompts != null)
+            {
+                foreach (var dialogPrompt in DialogPrompts)
+                {
+                    Tokenizer(dialogPrompt.UserPrompt);
+                    Tokenizer(dialogPrompt.AssistantAnswer);
+                }
+            }
+            Tokenizer(UserPrompt);
+        }
 
-	public string FunctionName { get; set; }
+        var messages = new List<ChatMessage>
+        {
+            new SystemChatMessage(SystemPrompt)
+        };
 
-	public async Task<string> Send(CancellationToken cancellationToken, Action<string> log)
-	{
-		if (Tokenizer != null)
-		{
-			Tokenizer(SystemPrompt);
-			if (this.DialogPrompts != null)
-			{
-				foreach (var dialogPrompt in DialogPrompts)
-				{
-					Tokenizer(dialogPrompt.UserPrompt);
-					Tokenizer(dialogPrompt.AssistantAnswer);
-				}
-			}
-			
-			Tokenizer(UserPrompt);
-		}
+        if (DialogPrompts != null)
+        {
+            foreach (var dialogPrompt in DialogPrompts)
+            {
+                messages.Add(new UserChatMessage(dialogPrompt.UserPrompt));
+                messages.Add(new AssistantChatMessage(dialogPrompt.AssistantAnswer));
+            }
+        }
 
-		var messages = new List<ChatMessage>
-		{
-			ChatMessage.FromSystem(SystemPrompt)
-		};
-		if (this.DialogPrompts != null)
-		{
-			foreach (var dialogPrompt in DialogPrompts)
-			{
-				messages.Add(ChatMessage.FromUser(dialogPrompt.UserPrompt));
-				messages.Add(ChatMessage.FromAssistant(dialogPrompt.AssistantAnswer));
-			}
-		}
-			
-		messages.Add(ChatMessage.FromUser(UserPrompt));
+        messages.Add(new UserChatMessage(UserPrompt));
 
-		var chatCompletionCreateRequest = new ChatCompletionCreateRequest
-		{
-			
-			Messages = messages,
-			Model = Model,
-			//MaxTokens = 500//optional
-		};
-		if (Functions != null)
-		{
-			chatCompletionCreateRequest.Tools = Functions.Select(tuple =>  ToolDefinition.DefineFunction(tuple.functionDefinition)).ToList();
-			//chatCompletionCreateRequest.ChatResponseFormat = ChatCompletionCreateRequest.ResponseFormats.Json;
-			if (FunctionName != null)
-			{
-				chatCompletionCreateRequest.ToolChoice = ToolChoice.FunctionChoice(FunctionName);
-			}
-		}
+        var options = new ChatCompletionOptions();
 
+        if (Functions != null && Functions.Count > 0)
+        {
+            foreach (var func in Functions)
+            {
+                options.Tools.Add(func.ToChatTool());
+            }
 
-		var completionResult = await OpenAiService.ChatCompletion.CreateCompletion(chatCompletionCreateRequest, cancellationToken: cancellationToken);
-		
+            if (FunctionName != null)
+            {
+                options.ToolChoice = ChatToolChoice.CreateFunctionChoice(FunctionName);
+            }
+        }
 
-		if (completionResult.Successful)
-		{
-			var chatMessage = completionResult.Choices.First().Message;
+        var completion = await ChatClient.CompleteChatAsync(messages, options, cancellationToken);
 
+        var chatMessage = completion.Value.Content.FirstOrDefault()?.Text;
 
-			if (chatMessage.FunctionCall != null)
-			{
-				var functionCall = chatMessage.FunctionCall;
-				var result = CallFunction(functionCall);
-				//chatMessage.Content = result.ToString(CultureInfo.CurrentCulture);
-			}
+        if (completion.Value.ToolCalls.Count > 0)
+        {
+            foreach (var toolCall in completion.Value.ToolCalls)
+            {
+                var result = CallFunction(toolCall.FunctionName, toolCall.FunctionArguments.ToString());
+                log($"Function call {toolCall.FunctionName} with arguments {toolCall.FunctionArguments}");
+            }
+        }
 
-			if (chatMessage.ToolCalls != null && chatMessage.ToolCalls.Count > 0)
-			{
-				foreach (var chatMessageToolCall in chatMessage.ToolCalls)
-				{
-					var functionCall = chatMessageToolCall.FunctionCall;
-					var result = CallFunction(functionCall);
-					log($"Function call {functionCall.Name} with arguments {functionCall.Arguments}");
-				}
-			}
+        if (chatMessage != null)
+        {
+            if (Tokenizer != null)
+            {
+                Tokenizer(chatMessage);
+            }
+            return chatMessage;
+        }
 
-			if (chatMessage.Content != null)
-			{
-				var messageContent = chatMessage.Content;
+        return "";
+    }
 
-				if (Tokenizer != null)
-				{
-					Tokenizer(messageContent);
+    private string CallFunction(string functionName, string argumentsJson)
+    {
+        var funcDef = Functions.FirstOrDefault(f => f.Name == functionName);
+        if (funcDef == null || funcDef.TargetObject == null)
+            return "function not found";
 
-				}
-				return messageContent;
-			}
-			return "";
-		}
-		throw new ApplicationException(completionResult.Error?.Message ?? "Unsuccessful");
-	}
+        var method = funcDef.TargetObject.GetType().GetMethod(funcDef.MethodName);
+        if (method == null)
+            return "method not found";
 
-	private string CallFunction(FunctionCall functionCall)
-	{
-		var result = FunctionCallingHelper.CallFunction<string>(functionCall,
-			Functions.First(tuple => tuple.functionDefinition.Name == functionCall.Name).targetObject);
-		return result;
-	}
+        using var doc = JsonDocument.Parse(argumentsJson);
+        var args = new List<object?>();
+        foreach (var param in method.GetParameters())
+        {
+            if (param.Name != null && doc.RootElement.TryGetProperty(param.Name, out var elem))
+            {
+                args.Add(elem.ValueKind == JsonValueKind.String
+                    ? elem.GetString()
+                    : elem.GetRawText());
+            }
+            else
+            {
+                args.Add(null);
+            }
+        }
+
+        var result = method.Invoke(funcDef.TargetObject, args.ToArray());
+        return result?.ToString() ?? "";
+    }
+}
+
+public class FunctionToolDef
+{
+    public string Name { get; }
+    public string Description { get; }
+    public string ParametersJson { get; }
+    public string MethodName { get; }
+    public object TargetObject { get; set; }
+
+    public FunctionToolDef(string name, string description, string methodName, string parametersJson)
+    {
+        Name = name;
+        Description = description;
+        MethodName = methodName;
+        ParametersJson = parametersJson;
+        TargetObject = null!;
+    }
+
+    public ChatTool ToChatTool()
+    {
+        return ChatTool.CreateFunctionTool(Name, Description, BinaryData.FromString(ParametersJson));
+    }
 }

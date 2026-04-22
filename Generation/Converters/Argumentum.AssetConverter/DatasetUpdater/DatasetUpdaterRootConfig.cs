@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenAI.ObjectModels;
 
 namespace Argumentum.AssetConverter.DatasetUpdater;
 
@@ -58,7 +57,7 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "VirtuesJsonPromptSampleAssistant.json"
                 }
             },
-            Model = Models.Gpt_3_5_Turbo_1106,
+            Model = "gpt-4.1-mini",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.SequentialChunks,
             ChunkSize = 3,
@@ -113,7 +112,7 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "PromptInstructionsAssistantDescription.txt"
                 }
             },
-            Model = Models.Gpt_4_1106_preview,
+            Model = "gpt-4.1",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
             PKHierarchyLevel = 3,
@@ -177,7 +176,7 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "PromptInstructionsLightAssistantExamples.txt"
                 }
             },
-            Model = Models.Gpt_4_0125_preview,
+            Model = "gpt-4.1",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
             PKHierarchyLevel = 3,
@@ -240,7 +239,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateFrEnInstructionsAssistant.txt"
 				}
 			},
-			Model = Models.Gpt_4_0125_preview,
+			Model = "gpt-4.1",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.PKHierarchicalChar,
 			PKHierarchyLevel = 3,
@@ -302,7 +301,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateRuInstructionsAssistant.txt"
 				}
 			},
-			Model = Models.Gpt_4_0125_preview,
+			Model = "gpt-4.1",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -365,7 +364,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslatePtInstructionsAssistant.txt"
 				}
 			},
-			Model = Models.Gpt_4_0125_preview,
+			Model = "gpt-4.1",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -437,7 +436,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateCleanupInstructionsAssistant.txt"
 				}
 			},
-			Model = Models.Gpt_4_turbo,
+			Model = "gpt-4.1",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
