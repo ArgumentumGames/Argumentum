@@ -405,12 +405,29 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 ### Translation Pipeline (DatasetUpdater)
 
-- **SDK**: `Betalgo.OpenAI` v8.1.0 — **outdated**, evaluate alternatives (Semantic Kernel, official OpenAI SDK)
-- **Models**: All deprecated (`gpt-3.5-turbo-1106`, `gpt-4-1106-preview`, `gpt-4-0125-preview`, `gpt-4-turbo`)
-- **Config**: `DatasetUpdater/DatasetUpdaterRootConfig.cs` — 7 task configs
+- **SDK**: Official OpenAI .NET SDK v2.10.0 (PR #210 merged)
+- **Models**: `gpt-4.1`, `gpt-4.1-mini` (all deprecated model constants replaced)
+- **Config**: `DatasetUpdater/DatasetUpdaterRootConfig.cs` — 7 task configs (all `Enabled = false`)
 - **Prompts**: 29 files in `DatasetUpdater/Resources/`
+- **Function calling**: Manual `FunctionToolDef` + JSON schema + `BinaryData.FromString()`
 - **Virtues CSV has NO multilingual columns** — only `_fr` fields, translation entirely absent
-- **Issue #183** tracks full upgrade plan
+- **Issue #183** DONE — merged via PR #210
+
+### GSheet ↔ CSV Sync (PR #200 merged)
+
+- **Module**: `GSheetSync/` (9 files: CsvDiffEngine, DiffReport, SyncSafetyChecker, Auth, Service, Runner, configs)
+- **Mode flag**: `ConverterMode.GSheetSync = 1 << 14` (16384)
+- **Safety**: 6-layer upload protection (dry-run, diff, thresholds, confirmation, backup, verify)
+- **4 spreadsheet configs**: Fallacies, Scenarii, Virtues, Rules (all `Enabled = false`)
+- **Pending**: OAuth credentials for end-to-end testing
+- **Tests**: 77 pass / 0 fail / 1 skip (includes CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid tests)
+
+### Test Coverage (April 2026)
+
+- **77 tests** pass, 1 skip (Freeplane GUI — requires interactive session)
+- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, Playwright visual tests
+- Issue #204 tracks expansion (target >= 70, now exceeded)
+- Issue #212 tracks Playwright visual regression tests for generated PDFs
 
 ### Prochaines étapes
 
@@ -419,11 +436,17 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 3. ~~Activer et tester génération multilingue~~ FAIT (17 Mars 2026)
 4. ~~Valider formats: Tarot, Poker, A0, Print&Play~~ FAIT
 5. ~~Mind Maps + SVGs (Batik)~~ FAIT (6 Avril 2026)
-6. Valider tous les documents générés avant publication
-7. #183 — Upgrade pipeline traduction (SDK + modèles SOTA + Vertues i18n)
-8. #134 — GitHub Release
-9. #133 — Publication OWL
-10. #131/#132 — DNN site + déploiement
+6. ~~#183 — Upgrade SDK traduction~~ FAIT (PR #210 merged, avril 2026)
+7. ~~#193 — GSheet ↔ CSV sync~~ FAIT (PR #200 merged, avril 2026)
+8. ~~#202 Phase 1 — CSV text micro-fixes~~ FAIT (PR #203 + #213 merged)
+9. Valider DatasetUpdater round-trip avec OpenAI API (3-5 records, Enabled=true)
+10. #211 — Retraduction complète PT Rules via pipeline (débloqué par #183)
+11. #212 — Playwright visual regression tests pour PDFs générés
+12. Virtues i18n — ajouter colonnes _en/_ru/_pt au CSV + traduire
+13. Scenarii — 77 scénarios manquants EN/RU/PT à traduire
+14. #134 — GitHub Release
+15. #133 — Publication OWL
+16. #131/#132 — DNN site + déploiement
 
 ### Commits clés de la recovery
 
@@ -436,6 +459,18 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 | `9b19d5e8` | fix(config): remove RowsetNb=14 for Scenarii CardSet |
 | `75a049d3` | fix(mindmap): restore validated FreeMind SendKeys automation |
 | `55c6774e` | feat(assets): replace XSLT SVGs with FreeMind Batik SVGs |
+| `fd2aef10` | feat(dataset-updater): migrate to official OpenAI SDK v2.10.0 (#183) |
+| `e24cbd17` | fix(prompt): enable #nullable context and guard null param.Name |
+| `092d4639` | Merge PR #200 — bidirectional GSheet ↔ CSV sync (#193) |
+
+### Data Quality Issues (April 2026)
+
+| Issue | Description | Status |
+| ------- | ----------- | ------ |
+| Fallacies duplicate PKs 520, 1000 | Warning surfaces during GSheet sync | Needs upstream fix |
+| Scenarii 53% translated | 77/167 scenarios missing EN/RU/PT | Blocked by #211 → then pipeline run |
+| Virtues 0% translated | No _en/_ru/_pt columns | Unblocked by #183, needs CSV columns added |
+| PT Rules MT errors (#211) | Catastrophic MT translations | Needs full retranslation via pipeline |
 
 ## Related Documentation
 

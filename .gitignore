@@ -221,3 +221,6 @@ _mm_export/
 # Generated preview directories
 _gen_preview/
 _ref_preview/
+
+# Claude Code session artifacts in subdirectories (not root .claude/)
+Generation/**/.claude/
