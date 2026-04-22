@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,7 +129,7 @@ public class Prompt
         var args = new List<object?>();
         foreach (var param in method.GetParameters())
         {
-            if (doc.RootElement.TryGetProperty(param.Name, out var elem))
+            if (param.Name != null && doc.RootElement.TryGetProperty(param.Name, out var elem))
             {
                 args.Add(elem.ValueKind == JsonValueKind.String
                     ? elem.GetString()
