@@ -192,13 +192,44 @@ namespace Argumentum.AssetConverter.GSheetSync
 				return index;
 			}
 
+			var duplicates = new List<string>();
+			var empties = 0;
+
 			foreach (DataRow row in table.Rows)
 			{
 				var key = row[primaryKeyColumn]?.ToString()?.Trim() ?? "";
-				if (!string.IsNullOrEmpty(key) && !index.ContainsKey(key))
+				if (string.IsNullOrEmpty(key))
 				{
-					index[key] = row;
+					empties++;
+					continue;
 				}
+
+				if (index.ContainsKey(key))
+				{
+					duplicates.Add(key);
+					continue;
+				}
+
+				index[key] = row;
+			}
+
+			if (duplicates.Count > 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine(
+					$"  ⚠ {duplicates.Count} duplicate PK value(s) in column '{primaryKeyColumn}': " +
+					$"{string.Join(", ", duplicates.Take(5))}" +
+					(duplicates.Count > 5 ? $" ... (+{duplicates.Count - 5} more)" : "") +
+					" — only first occurrence kept for diff.");
+				Console.ResetColor();
+			}
+
+			if (empties > 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine(
+					$"  ⚠ {empties} row(s) with empty PK in column '{primaryKeyColumn}' — excluded from diff.");
+				Console.ResetColor();
 			}
 
 			return index;
