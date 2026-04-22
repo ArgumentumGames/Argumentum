@@ -25,6 +25,6 @@
     "webpackbar": "^5.0.2"
   },
   "dependencies": {
-    "@knight-lab/timelinejs": "^3.8.19"
+    "@knight-lab/timelinejs": "^3.9.11"
   }
 }
