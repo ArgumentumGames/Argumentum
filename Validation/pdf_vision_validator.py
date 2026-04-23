@@ -40,7 +40,7 @@ import httpx
 # ---------------------------------------------------------------------------
 
 DEFAULT_TARGET = Path(__file__).resolve().parent.parent / (
-    "Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/Target"
+    "Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target"
 )
 
 # GLM-4.6V via z.ai cloud (same as sk-agent vision-analyst)
