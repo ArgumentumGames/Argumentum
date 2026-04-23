@@ -57,7 +57,8 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "VirtuesJsonPromptSampleAssistant.json"
                 }
             },
-            Model = "gpt-4.1-mini",
+            // Taxonomy creation/refinement — quality tier. Fallback: gpt-4.1-mini
+            Model = "gpt-5.4",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.SequentialChunks,
             ChunkSize = 3,
@@ -112,7 +113,8 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "PromptInstructionsAssistantDescription.txt"
                 }
             },
-            Model = "gpt-4.1",
+            // desc_fr refinement — quality tier for nuanced taxonomic descriptions. Fallback: gpt-4.1
+            Model = "gpt-5.4",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
             PKHierarchyLevel = 3,
@@ -176,7 +178,8 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "PromptInstructionsLightAssistantExamples.txt"
                 }
             },
-            Model = "gpt-4.1",
+            // example_fr creative generation — quality tier. Fallback: gpt-4.1
+            Model = "gpt-5.4",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
             PKHierarchyLevel = 3,
@@ -239,7 +242,8 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateFrEnInstructionsAssistant.txt"
 				}
 			},
-			Model = "gpt-4.1",
+			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.PKHierarchicalChar,
 			PKHierarchyLevel = 3,
@@ -301,7 +305,8 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateRuInstructionsAssistant.txt"
 				}
 			},
-			Model = "gpt-4.1",
+			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -364,7 +369,8 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslatePtInstructionsAssistant.txt"
 				}
 			},
-			Model = "gpt-4.1",
+			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -436,7 +442,8 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateCleanupInstructionsAssistant.txt"
 				}
 			},
-			Model = "gpt-4.1",
+			// Multi-lang cleanup review — quality tier for nuanced comparisons. Fallback: gpt-4.1
+			Model = "gpt-5.4",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
