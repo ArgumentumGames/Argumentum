@@ -87,6 +87,10 @@ namespace Argumentum.AssetConverter
 		Enabled = true,  // Enabled for multilingual generation (FR, EN, RU, PT)
 			CardSetLocalizations = new List<CardSetLocalization>(new[]
 			{
+				// Fallacies: mappings aligned with real CSV columns and template placeholders.
+				// Templates use {{text_fr}}, {{desc_fr}}, {{example_fr}}, {{Famille}}, {{Sous-Famille}}, {{Soussousfamille}}.
+				// CSV exposes text_en/text_ru/text_pt, desc_en/desc_ru/desc_pt, example_en/example_ru/example_pt,
+				// and Family/Subfamily/Subsubfamily (+ _ru / _pt suffixes, preserving CSV casing).
 				new CardSetLocalization()
 				{
 					CardSetNames = new List<string>(new []
@@ -99,24 +103,46 @@ namespace Argumentum.AssetConverter
 						KnownCardSets.FallaciesWebThumbnails
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Titre", new List<(string Language, string destFieldName)>(new []{("en", "Title"), ("ru", "Title_ru"), ("pt", "title_pt") }) ),
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "family_pt") }) ),
-						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "subfamily_pt") }) ),
-						("soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt") }) ),
-						("Definition", new List<(string Language, string destFieldName)>(new []{("en", "Definition_en"), ("ru", "Definition_ru"), ("pt", "Definition_pt") }) ),
-						("Exemple", new List<(string Language, string destFieldName)>(new []{("en", "Example"), ("ru", "Example_ru"), ("pt", "Example_pt") }) ),
-						("Contre-Exemple", new List<(string Language, string destFieldName)>(new []{("en", "Counterexample"), ("ru", "Counterexample_ru"), ("pt", "Counterexample_pt") }) )
+						// Order: most specific first (Soussousfamille > Sous-Famille > Famille) to avoid partial-string collisions.
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru"), ("pt", "Subsubfamily_pt") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "Subfamily_pt") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt") }) ),
+						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru"), ("pt", "text_pt") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru"), ("pt", "desc_pt") }) ),
+						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru"), ("pt", "example_pt") }) ),
+					}),
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt") }) ),
 					}),
 				},
 				new CardSetLocalization()
 				{
+					// Rules: template uses {{markdown Text}} and CSV exposes Text/Text_en/Text_ru/Text_pt.
+					CardSetNames = new List<string>(new []
+					{
+						KnownCardSets.Rules,
+						KnownCardSets.RulesPrintAndPlay,
+					}),
+					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt") }) ),
+					}),
+				},
+				new CardSetLocalization()
+				{
+					// Virtues: CSV currently only has _fr columns (issue #183/#205 upgrade unblocks translation but dataset not yet regenerated).
+					// Mapping is a no-op until the CSV exposes title_en/description_en/... etc.
+					// Template placeholders use {{title_fr}}, {{description_fr}}, {{family_fr}}, {{subfamily_fr}}, {{subsubfamily_fr}}, {{remark_fr}}.
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Virtues,
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Nom", new List<(string Language, string destFieldName)>(new []{("en", "Name"), ("ru", "Name_ru"), ("pt", "Name_pt") }) ),
-						("Description", new List<(string Language, string destFieldName)>(new []{("en", "Description_en"), ("ru", "Description_ru"), ("pt", "Description_pt") }) ),
+						("title_fr", new List<(string Language, string destFieldName)>(new []{("en", "title_en"), ("ru", "title_ru"), ("pt", "title_pt") }) ),
+						("description_fr", new List<(string Language, string destFieldName)>(new []{("en", "description_en"), ("ru", "description_ru"), ("pt", "description_pt") }) ),
+						("remark_fr", new List<(string Language, string destFieldName)>(new []{("en", "remark_en"), ("ru", "remark_ru"), ("pt", "remark_pt") }) ),
+						("family_fr", new List<(string Language, string destFieldName)>(new []{("en", "family_en"), ("ru", "family_ru"), ("pt", "family_pt") }) ),
+						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt") }) ),
+						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt") }) ),
 					}),
 				},
 				new CardSetLocalization()
