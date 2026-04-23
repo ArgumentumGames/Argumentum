@@ -371,18 +371,20 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 ## Pipeline Recovery Status (Mars 2026)
 
-### Validation Multilingue - 17 Mars 2026 ✅ COMPLETE
+### Validation Multilingue - 17 Mars 2026 (dimensions OK, contenu CASSÉ)
 
-**P1 - Pipeline multilingue validé** : 79 PDFs générés, 4209 images, dimensions correctes
+**P1 - Pipeline multilingue validé en DIMENSIONS uniquement** : 79 PDFs générés, 4209 images, dimensions correctes.
 
 | Langue | PDFs | Images | Status |
 |--------|------|--------|--------|
 | FR (Français) | 18 | 620 | ✅ Golden Master |
-| EN (English) | 22 | 1781 | ✅ Cards + FallaciesWeb |
-| RU (Русский) | 17 | 1270 | ✅ Cards + FallaciesWeb |
-| PT (Português) | 22 | 538 | ✅ Cards + FallaciesWeb |
+| EN (English) | 22 | 1781 | ⚠ Structure OK, contenu FR (voir #216) |
+| RU (Русский) | 17 | 1270 | ⚠ Structure OK, contenu FR (voir #216) |
+| PT (Português) | 22 | 538 | ⚠ Structure OK, contenu FR (voir #216) |
 
 **Issue #119 validée** : Rules cards apparaissent en premier dans tous les TarotCards multilingues.
+
+**Bug #216 découvert 2026-04-22 + corrigé 2026-04-23** : `LocalizationConfig.FrontFieldConversions` pour Fallacies référençait des noms de champs (`Titre`, `Definition`, `Exemple`, `Contre-Exemple`) qui n'existaient PAS dans les templates Mustache (qui utilisent `{{text_fr}}`, `{{desc_fr}}`, `{{example_fr}}`, `{{Famille}}`, `{{Sous-Famille}}`, `{{Soussousfamille}}`). Résultat : `template.Replace()` ne trouvait rien à remplacer → tous les PDFs EN/RU/PT contenaient du contenu français. Corrigé en restaurant le mapping Golden Master (avril 2024) + ajout de Rules (absent) + tests de régression `FallaciesLocalizationTests`. **Regénération pipeline complète requise** pour produire les PDFs réellement multilingues.
 
 ### État actuel par CardSet (FR - COMPLET)
 
