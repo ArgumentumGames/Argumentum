@@ -18,11 +18,9 @@ namespace Argumentum.AssetConverter.VisualTests
         private readonly ITestOutputHelper _output;
         private static readonly string TargetRoot = Path.GetFullPath(Path.Combine(
             AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0", "Target"));
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target"));
 
         private static readonly string[] Languages = { "fr", "en", "ru", "pt" };
-
-        private static readonly HashSet<string> _skipIfMissing = new();
 
         public PdfDimensionTests(ITestOutputHelper output)
         {

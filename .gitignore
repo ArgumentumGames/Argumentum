@@ -188,6 +188,8 @@ test_output.txt
 AssetConverterConfig.json
 AssetConverterConfig.*.json
 !AssetConverterConfig.cs
+# Exception: VisualTests fixture must be committed (referenced by FallacyCardTests)
+!Generation/Converters/Argumentum.AssetConverter.VisualTests/TestData/**/AssetConverterConfig.test.json
 
 # Logs d'erreur temporaires
 *.log.err
