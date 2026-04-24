@@ -464,6 +464,198 @@ public class DatasetUpdaterRootConfig
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8,
 			NbGlobalPasses = 2
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Virtues to English by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.VirtuesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"family_fr",
+				"subfamily_fr",
+				"subsubfamily_fr",
+				"title_fr",
+				"description_fr",
+				"remark_fr",
+				"link_fr",
+				"family_en",
+				"subfamily_en",
+				"subsubfamily_en",
+				"title_en",
+				"description_en",
+				"remark_en",
+				"link_en"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"family_en",
+				"subfamily_en",
+				"subsubfamily_en",
+				"title_en",
+				"description_en",
+				"remark_en",
+				"link_en"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptVirtuesTranslateEnUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateEnAssistant.txt"
+				}
+			},
+			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "title_fr",
+			CompareField = "title_en",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Virtues to Russian by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.VirtuesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"family_fr",
+				"subfamily_fr",
+				"subsubfamily_fr",
+				"title_fr",
+				"description_fr",
+				"remark_fr",
+				"link_fr",
+				"family_ru",
+				"subfamily_ru",
+				"subsubfamily_ru",
+				"title_ru",
+				"description_ru",
+				"remark_ru",
+				"link_ru"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"family_ru",
+				"subfamily_ru",
+				"subsubfamily_ru",
+				"title_ru",
+				"description_ru",
+				"remark_ru",
+				"link_ru"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptVirtuesTranslateRuUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateRuAssistant.txt"
+				}
+			},
+			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "title_fr",
+			CompareField = "title_ru",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Virtues to Portuguese by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.VirtuesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"family_fr",
+				"subfamily_fr",
+				"subsubfamily_fr",
+				"title_fr",
+				"description_fr",
+				"remark_fr",
+				"link_fr",
+				"family_pt",
+				"subfamily_pt",
+				"subsubfamily_pt",
+				"title_pt",
+				"description_pt",
+				"remark_pt",
+				"link_pt"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"family_pt",
+				"subfamily_pt",
+				"subsubfamily_pt",
+				"title_pt",
+				"description_pt",
+				"remark_pt",
+				"link_pt"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptVirtuesTranslatePtUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslatePtAssistant.txt"
+				}
+			},
+			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "title_fr",
+			CompareField = "title_pt",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
 		}
 
 	};

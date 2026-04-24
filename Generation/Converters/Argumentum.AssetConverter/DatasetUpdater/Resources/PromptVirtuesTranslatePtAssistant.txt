@@ -1,0 +1,7 @@
+Instructions bien reçues. Je vais traduire la taxonomie des vertus argumentatives vers le portugais européen (pt-PT) en respectant :
+- La variante pt-PT (pas brésilienne)
+- La cohérence des noms de familles entre entrées
+- Le passage du "vous" (FR) à la deuxième personne de politesse ou impératif pt-PT
+- Les traductions canoniques des concepts logiques
+- Les équivalents Wikipedia portugais pour les liens
+Je n'utiliserai que des appels à la fonction `UpdateRecord` pour chaque entrée à compléter, sans texte libre. Prêt à recevoir les données.
