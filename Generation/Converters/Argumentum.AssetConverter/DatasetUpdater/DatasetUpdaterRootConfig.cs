@@ -657,49 +657,251 @@ public class DatasetUpdaterRootConfig
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8
 		},
-			new DatasetUpdaterConfig()
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Rules to Portuguese by chunk 0-shot",
+			SourceDataset = KnownDataSets.Rules,
+			FieldsToInclude = new List<string>()
 			{
-				Enabled = false,
-				Name = "Translate Rules to Portuguese by chunk 0-shot",
-				SourceDataset = KnownDataSets.Rules,
-				FieldsToInclude = new List<string>()
+				"pk",
+				"Text",
+				"Text_pt"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"Text_pt"
+			},
+			PrimaryField = "pk",
+			TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
 				{
-					"pk",
-					"Text",
-					"Text_pt"
-				},
-				FieldsToUpdate = new List<string>()
+					UserPromptPath = PromptsRootPath + "PromptRulesTranslatePtUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslatePtAssistant.txt"
+				}
+			},
+			Model = "gpt-5.4-mini", // Fallback: gpt-4.1-mini
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 3,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = false,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 3,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Scenarii to English by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.Scenarii,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"catégorie",
+				"sous-catégorie",
+				"titre",
+				"baratineur",
+				"piocheur",
+				"contexte",
+				"enjeu",
+				"suggestion",
+				"category",
+				"subcategory",
+				"title",
+				"smoothTalker",
+				"drawer",
+				"context",
+				"issue",
+				"suggestion_en"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"category",
+				"subcategory",
+				"title",
+				"smoothTalker",
+				"drawer",
+				"context",
+				"issue",
+				"suggestion_en"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
 				{
-					"Text_pt"
-				},
-				PrimaryField = "pk",
-				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
-				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
-				DialogPrompts = new List<PromptExample>()
-				{
-					new PromptExample()
-					{
-						UserPromptPath = PromptsRootPath + "PromptRulesTranslatePtUser.txt",
-						AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslatePtAssistant.txt"
-					}
-				},
-				Model = "gpt-5.4-mini", // Fallback: gpt-4.1-mini
-				MaxTokensPerMinute = 70000,
-				DivisionMode = DivisionMode.SequentialChunks,
-				ChunkSize = 3,
-				UseFunctionCalling = true,
-				NbMessageCalls = 1,
-				SkipChunkNb = 0,
-				TakeChunkNb = -1,
-				SelectEmptyTargets = false,
-				RandomizeChunks = false,
-				MaxDegreeOfParallelismWebService = 3,
-				CompareMode = false,
-				AutoCompare = false,
-				MaxGroupItemNb = 12,
-				WriteOneTargetFileByField = false,
-				MaxChildren = 8
-			}
+					UserPromptPath = PromptsRootPath + "PromptScenariiTranslateEnUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateEnAssistant.txt"
+				}
+			},
+			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "titre",
+			CompareField = "title",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
+		},
 
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Scenarii to Russian by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.Scenarii,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"catégorie",
+				"sous-catégorie",
+				"titre",
+				"baratineur",
+				"piocheur",
+				"contexte",
+				"enjeu",
+				"suggestion",
+				"category_ru",
+				"subcategory_ru",
+				"title_ru",
+				"smoothTalker_ru",
+				"drawer_ru",
+				"context_ru",
+				"issue_ru",
+				"suggestion_ru"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"category_ru",
+				"subcategory_ru",
+				"title_ru",
+				"smoothTalker_ru",
+				"drawer_ru",
+				"context_ru",
+				"issue_ru",
+				"suggestion_ru"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptScenariiTranslateRuUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateRuAssistant.txt"
+				}
+			},
+			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "titre",
+			CompareField = "title_ru",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
+		},
+
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Scenarii to Portuguese by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.Scenarii,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"catégorie",
+				"sous-catégorie",
+				"titre",
+				"baratineur",
+				"piocheur",
+				"contexte",
+				"enjeu",
+				"suggestion",
+				"category_pt",
+				"subcategory_pt",
+				"title_pt",
+				"smoothTalker_pt",
+				"drawer_pt",
+				"context_pt",
+				"issue_pt",
+				"suggestion_pt"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"category_pt",
+				"subcategory_pt",
+				"title_pt",
+				"smoothTalker_pt",
+				"drawer_pt",
+				"context_pt",
+				"issue_pt",
+				"suggestion_pt"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptScenariiTranslatePtUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslatePtAssistant.txt"
+				}
+			},
+			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = true,
+			AutoCompareField = "titre",
+			CompareField = "title_pt",
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = true,
+			MaxChildren = 8
+		}
 	};
 }

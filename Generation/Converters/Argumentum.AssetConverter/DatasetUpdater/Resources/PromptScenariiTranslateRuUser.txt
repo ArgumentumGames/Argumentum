@@ -1,0 +1,28 @@
+**Instructions de Traduction :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble de scénarios du jeu Argumentum. Chaque entrée décrit une situation de dialogue piégeuse où un personnage « baratineur » tente de convaincre un « piocheur » avec des arguments fallacieux. Chaque entrée comporte plusieurs champs :
+- `path` : identifiant hiérarchique (ex. "1.2.3")
+- `catégorie`, `sous-catégorie` : classification thématique française
+- `titre` : titre court du scénario
+- `baratineur` : nom/rôle du personnage qui tente de convaincre
+- `piocheur` : nom/rôle du personnage cible
+- `contexte` : mise en situation (lieu, circonstances)
+- `enjeu` : ce qui est en jeu dans la discussion
+- `suggestion` : piste de réplique ou conseil ludique
+- Les champs cibles russes (suffixe `_ru`) : `category_ru`, `subcategory_ru`, `title_ru`, `smoothTalker_ru`, `drawer_ru`, `context_ru`, `issue_ru`, `suggestion_ru`
+
+Ta tâche consiste à traduire en **russe** les champs source français vers les champs cible, uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
+
+2. **Cohérence lexicale :** Les catégories et sous-catégories doivent rester cohérentes entre scénarios. Utilise un vocabulaire russe naturel et contemporain (pas soutenu/archaïque, ce sont des situations de jeu quotidiennes).
+
+3. **Ton narratif :** Les scénarios sont ludiques et vivants. Préserve le rythme, l'humour, la brièveté. En russe, privilégie les tournures idiomatiques naturelles plutôt que des calques du français.
+
+4. **Rôles des personnages :** "baratineur" et "piocheur" désignent des rôles de jeu. Traduis par des équivalents russes naturels évoquant le sens (ex. un personnage qui cherche à embobiner vs le personnage cible). Reste cohérent entre scénarios.
+
+5. **Noms propres et culture :** Les noms de personnages français peuvent être conservés en translittération cyrillique ou russifiés selon ce qui est plus naturel. Les références culturelles trop franco-françaises peuvent être adaptées si elles rendent le scénario incompréhensible pour un lecteur russe.
+
+6. **Argumentum :** "Argumentum" reste "Argumentum" (ou "Аргументум" en translittération cyrillique si le contexte l'exige).
+
+Es-tu prêt à recevoir les données ?
