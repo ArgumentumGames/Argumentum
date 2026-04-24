@@ -464,7 +464,7 @@ public class DatasetUpdaterRootConfig
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8,
 			NbGlobalPasses = 2
-		},
+},
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,
@@ -656,7 +656,50 @@ public class DatasetUpdaterRootConfig
 			MaxGroupItemNb = 12,
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8
-		}
+		},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Rules to Portuguese by chunk 0-shot",
+				SourceDataset = KnownDataSets.Rules,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"Text",
+					"Text_pt"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"Text_pt"
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRulesTranslatePtUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslatePtAssistant.txt"
+					}
+				},
+				Model = "gpt-5.4-mini", // Fallback: gpt-4.1-mini
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 3,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 3,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			}
 
 	};
 }
