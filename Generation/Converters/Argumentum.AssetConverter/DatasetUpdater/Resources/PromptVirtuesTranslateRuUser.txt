@@ -1,0 +1,22 @@
+**Instructions de Traduction :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des vertus argumentatives du jeu Argumentum. Chaque entrée comporte plusieurs champs :
+- `path` : identifiant hiérarchique (ex. "1.2.3")
+- `family_fr`, `subfamily_fr`, `subsubfamily_fr` : position taxonomique en français
+- `title_fr`, `description_fr`, `remark_fr` : contenu éditorial en français
+- `link_fr` : lien de référence (souvent Wikipedia FR)
+- Les champs cibles : `family_ru`, `subfamily_ru`, `subsubfamily_ru`, `title_ru`, `description_ru`, `remark_ru`, `link_ru`
+
+Ta tâche consiste à traduire en **russe** les champs source (suffixe `_fr`) vers les champs cible (suffixe `_ru`), uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
+
+2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées. Utilise un vocabulaire russe soutenu et philosophique (pas familier).
+
+3. **Format des descriptions :** En français, les descriptions de vertus sont formulées à la deuxième personne du pluriel ("Vous..."). En russe, utilise la forme impérative (повелительное наклонение) ou infinitif selon le contexte.
+
+4. **Noms propres du jeu :** "Argumentum" reste "Argumentum" (ou en translitération cyrillique si le contexte l'exige : "Аргументум").
+
+5. **Liens :** Si le `link_fr` pointe vers une page Wikipedia française, cherche l'équivalent russe si possible (ru.wikipedia.org/...). Sinon, laisse `link_ru` vide.
+
+Es-tu prêt à recevoir les données ?

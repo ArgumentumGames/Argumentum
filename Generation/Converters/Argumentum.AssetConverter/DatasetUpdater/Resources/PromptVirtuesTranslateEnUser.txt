@@ -1,0 +1,22 @@
+**Instructions de Traduction :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des vertus argumentatives du jeu Argumentum. Chaque entrée comporte plusieurs champs :
+- `path` : identifiant hiérarchique (ex. "1.2.3")
+- `family_fr`, `subfamily_fr`, `subsubfamily_fr` : position taxonomique en français
+- `title_fr`, `description_fr`, `remark_fr` : contenu éditorial en français
+- `link_fr` : lien de référence (souvent Wikipedia FR)
+- Les champs cibles : `family_en`, `subfamily_en`, `subsubfamily_en`, `title_en`, `description_en`, `remark_en`, `link_en`
+
+Ta tâche consiste à traduire en **anglais** les champs source (suffixe `_fr`) vers les champs cible (suffixe `_en`), uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
+
+2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées — si "argumentPertinent" a été traduit "relevantArgument" dans une entrée, réutilise cette traduction pour toutes les entrées de cette famille.
+
+3. **Format des descriptions :** En français, les descriptions de vertus sont formulées à la deuxième personne du pluriel ("Vous..."). En anglais, utilise la forme impérative ou à l'infinitif ("To..." ou verbe d'action).
+
+4. **Noms propres du jeu :** "Argumentum" reste "Argumentum". Les concepts logiques classiques ont des traductions canoniques (ex. "raisonnement valide" → "valid reasoning", "honnêteté intellectuelle" → "intellectual honesty").
+
+5. **Liens :** Si le `link_fr` pointe vers une page Wikipedia française, cherche l'équivalent anglais si possible (en.wikipedia.org/...). Sinon, laisse `link_en` vide.
+
+Es-tu prêt à recevoir les données ?

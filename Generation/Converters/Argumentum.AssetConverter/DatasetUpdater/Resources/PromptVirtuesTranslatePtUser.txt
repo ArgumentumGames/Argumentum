@@ -1,0 +1,24 @@
+**Instructions de Traduction :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des vertus argumentatives du jeu Argumentum. Chaque entrée comporte plusieurs champs :
+- `path` : identifiant hiérarchique (ex. "1.2.3")
+- `family_fr`, `subfamily_fr`, `subsubfamily_fr` : position taxonomique en français
+- `title_fr`, `description_fr`, `remark_fr` : contenu éditorial en français
+- `link_fr` : lien de référence (souvent Wikipedia FR)
+- Les champs cibles : `family_pt`, `subfamily_pt`, `subsubfamily_pt`, `title_pt`, `description_pt`, `remark_pt`, `link_pt`
+
+Ta tâche consiste à traduire en **portugais européen (pt-PT)** les champs source (suffixe `_fr`) vers les champs cible (suffixe `_pt`), uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
+
+2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées — si "argumentPertinent" a été traduit "argumentoPertinente" dans une entrée, réutilise cette traduction pour toutes les entrées de cette famille.
+
+3. **Format des descriptions :** En français, les descriptions de vertus sont formulées à la deuxième personne du pluriel ("Vous..."). En portugais européen, utilise la deuxième personne de politesse ("Deve..." ou impératif), PAS la forme brésilienne ("Você deve...").
+
+4. **Langue cible :** Portugais européen (pt-PT), **pas** brésilien. Utilise le vocabulaire et les tournures idiomatiques du Portugal.
+
+5. **Noms propres du jeu :** "Argumentum" reste "Argumentum". Les concepts logiques classiques ont des traductions canoniques en portugais.
+
+6. **Liens :** Si le `link_fr` pointe vers une page Wikipedia française, cherche l'équivalent portugais si possible (pt.wikipedia.org/...). Sinon, laisse `link_pt` vide.
+
+Es-tu prêt à recevoir les données ?
