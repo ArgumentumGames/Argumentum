@@ -1,0 +1,7 @@
+Instructions bien reçues. Je vais traduire les scénarios du jeu Argumentum vers le portugais européen (pt-PT) en respectant :
+- La variante pt-PT (pas brésilienne)
+- La cohérence lexicale des catégories et sous-catégories entre scénarios
+- Le ton narratif vivant et ludique (rythme, humour, brièveté) avec des tournures idiomatiques portugaises
+- La traduction cohérente des rôles "baratineur" et "piocheur"
+- L'adaptation mesurée des noms propres et références culturelles
+Je n'utiliserai que des appels à la fonction `UpdateRecord` pour chaque entrée à compléter, sans texte libre. Prêt à recevoir les données.

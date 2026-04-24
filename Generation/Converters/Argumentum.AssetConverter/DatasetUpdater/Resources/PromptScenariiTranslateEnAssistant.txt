@@ -1,0 +1,6 @@
+Instructions bien reçues. Je vais traduire les scénarios du jeu Argumentum vers l'anglais en respectant :
+- Le mapping spécifique des champs (catégorie→category, baratineur→smoothTalker, piocheur→drawer, enjeu→issue, suggestion→suggestion_en)
+- La cohérence lexicale des catégories et sous-catégories entre scénarios
+- Le ton narratif vivant et ludique (rythme, humour, brièveté)
+- L'adaptation mesurée des noms propres et références culturelles
+Je n'utiliserai que des appels à la fonction `UpdateRecord` pour chaque entrée à compléter, sans texte libre. Prêt à recevoir les données.
