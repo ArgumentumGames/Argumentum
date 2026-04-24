@@ -1,10 +1,10 @@
-﻿Text,Text_en,Text_ru,Text_pt,print_and_play
-"# Argumentum
+﻿pk,Text,Text_en,Text_ru,Text_pt,print_and_play
+Rules_01,"# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Argumentum
 ## Школа лжецов","# Argumentum
 ## A escola dos mentirosos",
-"*Règles du jeu : de 4 à 8 joueurs*
+Rules_02,"*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
 
@@ -57,7 +57,7 @@ Argumentum is based on a classification of fallacious arguments, arranged in ord
 Os jogadores, por turnos, vão tentar fazer adivinhar uma carta de argumento falacioso a uma maioria dos outros jogadores, no decorrer de uma pequena cena de improvisação a partir de um cenário tirado ao acaso. Divertindo-se, os jogadores aprendem assim a reconhecer, descodificar e, portanto, a desconstruir os argumentos falaciosos.
 
 Argumentum baseia-se numa classificação destes argumentos falaciosos, organizados em ordens e famílias, indicadas no topo da carta. Por exemplo, a lisonja é uma subcategoria do apelo às emoções. As cartas de memória resumem esta classificação.",
-"## Installation
+Rules_03,"## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’arguments fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7 x le nombre de joueurs.
 
@@ -98,7 +98,7 @@ Escolhe-se a duração da partida. Esta é composta por uma sucessão de rondas 
 Constituem-se 2 baralhos de cartas de cenário colocados no centro da mesa. Distribuem-se a cada jogador 5 cartas de argumentos falaciosos, que guarda para si. O restante das cartas constitui a reserva.
 
 Cada jogador munir-se-á de um pequeno objeto único (moeda, feijão…) para a votação. O primeiro a comprar é aquele que se lembra primeiro de um argumento enganador.",
-"## Déroulé de la manche
+Rules_04,"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
@@ -155,7 +155,7 @@ O papel de Baratineur é atribuído ao primeiro jogador que coloca, virada para 
 ### 3.       A encenação
 
 O comprador dá início ao debate como quiser. Pode retomar a sugestão da primeira réplica em itálico no fundo da carta de cenário. O Baratineur e o comprador dispõem então de, no máximo, um minuto para improvisar uma conversa durante a qual o Baratineur tentará utilizar o tipo de argumento indicado pela carta que escolheu.",
-"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
+Rules_05,"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
 
@@ -208,7 +208,7 @@ Quando o júri estiver pronto, sem concertação, cada um dos seus membros desig
 
 O vencedor da ronda é aquele cuja carta obteve o maior número de votos, seja o Baratineur ou um membro do júri (🥇👇👇…➜🏆). 
 Fica então com a sua carta, que vale 1 ponto, e coloca-a, virada para cima, à sua frente.",
-"En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le baratineur qui l’emporte (❌👇🎭➜🎭🏆).
+Rules_06,"En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le baratineur qui l’emporte (❌👇🎭➜🎭🏆).
 
 ### 6.       Les pioches
 
@@ -281,7 +281,7 @@ Uma vez designado o vencedor, os jogadores compram da reserva um certo número d
 * Se o comprador vencer, ganha também a carta do Baratineur.
 * O Baratineur pode colocar várias cartas. São declarados tantos vencedores quantos os votos, podendo o Baratineur ganhar todas ou parte das suas cartas.
 * O vencedor da partida deve encarnar o Baratineur num cenário final em que terá de pôr em jogo todas as cartas que ganhou ao longo da partida.",
-"# Argumentum
+Rules_07,"# Argumentum
 ## Le Bingo mixologie argumentative
 
 *Règles du jeu :  de 1 à 20 joueurs*
@@ -362,7 +362,7 @@ No final do debate, o jogador que tiver identificado o maior número de argument
 
 Divide-se aleatoriamente o conjunto de cartas de argumentos falaciosos disponível por todos os jogadores, à razão de 10 cartas por pessoa.
 Cada jogador toma conhecimento das suas cartas, dispõe-as de forma a mantê-las o melhor possível na memória e instala-se para assistir ao debate.",
-"## Pendant le débat
+Rules_08,"## Pendant le débat
 
 Chaque joueur écoute les arguments formulés. S'il repère un argument qui relève de l'une des cartes de sa grille de bingo, il note le temps écoulé, un début de citation qui permettra de retrouver le bon passage, et le nom de sa carte accompagné au besoin d'un peu de contexte pour pouvoir restituer plus tard à l'oral son analyse.
 
@@ -428,7 +428,7 @@ A pontuação final dos jogadores é o número de cartas validadas pela assemble
 Se, após uma primeira contagem, outros jogadores não selecionados passarem entretanto a ter mais cartas do que a melhor pontuação validada, procede-se à sua validação, e assim sucessivamente até que a melhor pontuação validada deixe de poder ser contestada.
 
 Os jogadores que obtiverem a melhor pontuação são declarados vencedores",
-"# Argumentum
+Rules_09,"# Argumentum
 ## Le dernier beau parleur
 
 *Règles du jeu : de 1 à 8 joueurs*
@@ -502,7 +502,7 @@ Consoante o número de jogadores e o nível de dificuldade pretendido, constitui
 As cartas de argumentos falaciosos são baralhadas, tal como as cartas de cenário. Constituem-se 2 baralhos de cartas de cenário colocados no centro da mesa. Distribuem-se a cada jogador 5 cartas de argumento falacioso que este guarda em segredo. O resto das cartas constitui a pilha de compra. 
 
 O primeiro a comprar é aquele que foi influenciado por último por um apelo à emoção.",
-"## Déroulé de la manche
+Rules_10,"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
@@ -535,7 +535,7 @@ O jogador que compra tira uma carta de cenário de entre os dois montes disponí
 
 Começando pelo jogador à esquerda do jogador que compra, cada jogador deve propor um argumento que responda à injunção do cenário. Se um jogador identificar uma das suas cartas entre os argumentos apresentados, entrega a sua carta a quem a utilizou e fica fora da ronda.  
 Se um jogador deixar de encontrar um novo argumento ao fim de 10 segundos, compra uma nova carta e é excluído da ronda.",
-"### 3.       Fin de la manche
+Rules_11,"### 3.       Fin de la manche
 
 La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.
 
@@ -594,7 +594,7 @@ A ronda termina quando só restar uma pessoa em jogo. O vizinho à esquerda de q
 
 Se um jogador conseguir livrar-se de todas as suas cartas, vence a partida. 
 Caso contrário, a partida termina ao fim do número de rondas inicialmente previsto. O vencedor é aquele que tiver menos cartas na mão.",
-"# Argumentum
+Rules_12,"# Argumentum
 ## Le moulin à baratin
 
 *Règles du jeu : de 2 à 8 joueurs*
@@ -669,7 +669,7 @@ Consoante o número de jogadores e o nível de dificuldade pretendido, constitui
 As cartas de argumentos falaciosos são baralhadas, tal como as cartas de cenário. Constituem-se 2 pilhas de cartas de cenário e 1 pilha de argumento falacioso, colocadas no centro da mesa. 
 
 O primeiro a tirar cartas é quem, por último, cedeu a um argumento pelo cansaço.",
-"## Déroulé de la manche
+Rules_13,"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
@@ -760,7 +760,7 @@ A ronda termina quando o tempo previsto se esgota. O Baratineur ganha em pontos 
 
 
 O primeiro jogador a chegar aos 20 pontos vence a partida",
-"## Variantes
+Rules_14,"## Variantes
 
 * A chaque carte piochée, après l'argument du baratineur, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l'assemblée vote si elle est jugée meilleure que les précédentes, et l'auteur de la meilleure proposition retenue remporte la carte.","##       Game over
 
@@ -781,7 +781,7 @@ The first player arriving at 20 points takes the game
 ","## Variantes
 
 * Em cada carta comprada, depois do argumento do Baratineur, os outros jogadores podem, cada um, propor outra ilustração para a carta. Por cada nova proposta, a assembleia vota se a considera melhor do que as anteriores, e o autor da melhor proposta escolhida ganha a carta.",
-"# Argumentum
+Rules_15,"# Argumentum
 ## La parlote coinchée
 
 *Règles du jeu : 4 joueurs*
@@ -856,7 +856,7 @@ Selecionam-se 28 cartas de argumentos falaciosos para a partida, ou seja, 4 por 
 As cartas de argumentos falaciosos são baralhadas, assim como as cartas de cenário. Formam-se 2 pilhas de cartas de cenário colocadas no centro da mesa. 
 
 O primeiro a comprar é aquele que mentiu por último.",
-"## Déroulé de la manche
+Rules_16,"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
@@ -895,7 +895,7 @@ A aposta inicial no leilão dos trunfos é de 80 e as propostas sobem de 10 em 1
 
 A qualquer momento, um dos dois membros de uma equipa pode dizer ""je coinche"" e pôr fim aos leilões, duplicando ao mesmo tempo o valor em jogo na ronda.
 Quando já ninguém faz nova proposta, as duas cores de trunfo ficam designadas para a ronda e a fase de jogo pode começar.",
-"### 3.       Les tours de jeu
+Rules_17,"### 3.       Les tours de jeu
 
 Dans une succession de 7 tours, les joueurs vont confronter chacun 1 carte d'argument fallacieux sur le scenario.
 En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer une carte et jouer un argument illustratif répondant à l'injonction du scénario. 
@@ -970,7 +970,7 @@ Os jogadores da mesma equipa partilham as vazas que conquistam.
 
 Para ganhar uma vazada, um jogador deve explicitar um argumento correspondente à carta. 
 Se nenhum jogador propor um argumento, a melhor carta vence.",
-"### 3.       Décompte de la manche
+Rules_18,"### 3.       Décompte de la manche
 
 La manche s'arrête quand tous les plis ont été joués.
 
