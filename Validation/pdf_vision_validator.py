@@ -48,9 +48,13 @@ DEFAULT_BASE_URL = "https://api.z.ai/api/coding/paas/v4"
 DEFAULT_MODEL = "glm-4.6v"
 DEFAULT_API_KEY_ENV = "ZAI_API_KEY"
 
-# Fallback: read from sk-agent config if env var not set
+# Fallback: read from sk-agent config if env var not set.
+# Set SK_AGENT_CONFIG_PATH env var to override (required on machines
+# where roo-extensions is not a sibling of Argumentum).
 SK_AGENT_CONFIG = (
-    Path(__file__).resolve().parent.parent.parent.parent
+    Path(os.environ["SK_AGENT_CONFIG_PATH"])
+    if os.environ.get("SK_AGENT_CONFIG_PATH")
+    else Path(__file__).resolve().parent.parent.parent.parent
     / "roo-extensions/mcps/internal/servers/sk-agent/sk_agent_config.json"
 )
 
