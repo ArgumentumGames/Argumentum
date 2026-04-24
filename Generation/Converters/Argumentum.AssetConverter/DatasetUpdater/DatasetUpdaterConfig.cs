@@ -29,7 +29,7 @@ public class DatasetUpdaterConfig
 
 	public string OpenAIKeyPath { get; set; } = @"G:\Mon Drive\MyIA\Argumentum\Fallacies\Gestion\OpenAI-Key.txt";
 
-	public string Model { get; set; } = "gpt-4.1";
+	public string Model { get; set; } = "gpt-5.4-mini";
 
 	public int MaxTokensPerMinute { get; set; } = 70000;
 
