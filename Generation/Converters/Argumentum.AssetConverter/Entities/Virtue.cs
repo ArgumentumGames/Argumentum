@@ -34,6 +34,30 @@ namespace Argumentum.AssetConverter.Entities
         public string Card { get; set; }
         public string Update { get; set; }
         public string Locked { get; set; }
+
+        public string FamilyEn { get; set; }
+        public string SubfamilyEn { get; set; }
+        public string SubsubfamilyEn { get; set; }
+        public string TitleEn { get; set; }
+        public string DescriptionEn { get; set; }
+        public string RemarkEn { get; set; }
+        public string LinkEn { get; set; }
+
+        public string FamilyRu { get; set; }
+        public string SubfamilyRu { get; set; }
+        public string SubsubfamilyRu { get; set; }
+        public string TitleRu { get; set; }
+        public string DescriptionRu { get; set; }
+        public string RemarkRu { get; set; }
+        public string LinkRu { get; set; }
+
+        public string FamilyPt { get; set; }
+        public string SubfamilyPt { get; set; }
+        public string SubsubfamilyPt { get; set; }
+        public string TitlePt { get; set; }
+        public string DescriptionPt { get; set; }
+        public string RemarkPt { get; set; }
+        public string LinkPt { get; set; }
     }
 
     public sealed class VirtueClassMap : ClassMap<Virtue>
@@ -58,6 +82,30 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Card).Name("card");
             Map(m => m.Update).Name("update");
             Map(m => m.Locked).Name("locked");
+
+            Map(m => m.FamilyEn).Name("family_en").Optional();
+            Map(m => m.SubfamilyEn).Name("subfamily_en").Optional();
+            Map(m => m.SubsubfamilyEn).Name("subsubfamily_en").Optional();
+            Map(m => m.TitleEn).Name("title_en").Optional();
+            Map(m => m.DescriptionEn).Name("description_en").Optional();
+            Map(m => m.RemarkEn).Name("remark_en").Optional();
+            Map(m => m.LinkEn).Name("link_en").Optional();
+
+            Map(m => m.FamilyRu).Name("family_ru").Optional();
+            Map(m => m.SubfamilyRu).Name("subfamily_ru").Optional();
+            Map(m => m.SubsubfamilyRu).Name("subsubfamily_ru").Optional();
+            Map(m => m.TitleRu).Name("title_ru").Optional();
+            Map(m => m.DescriptionRu).Name("description_ru").Optional();
+            Map(m => m.RemarkRu).Name("remark_ru").Optional();
+            Map(m => m.LinkRu).Name("link_ru").Optional();
+
+            Map(m => m.FamilyPt).Name("family_pt").Optional();
+            Map(m => m.SubfamilyPt).Name("subfamily_pt").Optional();
+            Map(m => m.SubsubfamilyPt).Name("subsubfamily_pt").Optional();
+            Map(m => m.TitlePt).Name("title_pt").Optional();
+            Map(m => m.DescriptionPt).Name("description_pt").Optional();
+            Map(m => m.RemarkPt).Name("remark_pt").Optional();
+            Map(m => m.LinkPt).Name("link_pt").Optional();
         }
     }
 }
