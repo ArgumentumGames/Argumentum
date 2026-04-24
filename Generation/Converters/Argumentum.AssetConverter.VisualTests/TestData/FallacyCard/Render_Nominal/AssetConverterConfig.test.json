@@ -1,0 +1,75 @@
+{
+  "Mode": "WebBasedImageGeneration",
+  "BaseTargetDirectoryName": "TestData/FallacyCard/Render_Nominal/Output/",
+  "LocalizationConfig": {
+    "Enabled": false,
+    "DefaultLanguage": "fr"
+  },
+  "WebBasedGeneratorConfig": {
+    "EnableParallelism": false,
+    "EnableSVGPrompt": false,
+    "ShowInfoLogs": true,
+    "HeadLessBrowser": true,
+    "OverwriteExistingDocs": true,
+    "OverwriteExistingHtmlMaps": true,
+    "MaxDegreeOfParallelismCardpen": 1,
+    "MaxDegreeOfParallelismCardpenTranslations": 1,
+    "MaxDegreeOfParallelismImages": 1,
+    "MaxDegreeOfParallelismImageTranslations": 1,
+    "MaxDegreeOfParallelismDocuments": 1,
+    "MaxDegreeOfParallelismMindMaps": 1,
+    "BaseTargetDirectoryName": "TestData/FallacyCard/Render_Nominal/Output/",
+    "HarvestDirectoryName": "TestData/FallacyCard/Render_Nominal/Output/Harvest/",
+    "ImagesDirectoryName": "TestData/FallacyCard/Render_Nominal/Output/Images/",
+    "DocumentsDirectoryName": "TestData/FallacyCard/Render_Nominal/Output/Documents/",
+    "UseLocalCardpen": false,
+    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "LocalCardpenUrl": "https://argumentum.myia.io/index.html",
+    "DebugCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "CardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
+    "CardSets": [
+      {
+        "Name": "FallacyTestSet",
+        "FaceCardSetInfo": {
+          "DataSet": "FallacyTestData",
+          "JsonFilePathRelease": "TestData/FallacyCard/Render_Nominal/template.json",
+          "JsonFilePathDebug": "TestData/FallacyCard/Render_Nominal/template.json",
+          "Dpi": 300,
+          "CardSize": "poker",
+          "RowsetNb": 1,
+          "SkipDataUpdate": false
+        },
+        "BackCardSetInfo": {
+          "SkipDataUpdate": true
+        }
+      }
+    ],
+    "CardSetDocuments": [
+      {
+        "DocumentName": "FallacyTestDoc",
+        "Enabled": true,
+        "DocumentFormat": "FacesOnly",
+        "PageSize": "A4",
+        "Padding": 10,
+        "Header": "",
+        "Footer": "",
+        "CardSets": [
+          {
+            "CardSetName": "FallacyTestSet",
+            "NbCopies": 1
+          }
+        ],
+        "Translations": [],
+        "DataSet": "FallacyTestData"
+      }
+    ],
+    "DataSets": [
+      {
+        "Name": "FallacyTestData",
+        "CsvType": "Argumentum.AssetConverter.Entities.TestFallacyCard",
+        "CsvPath": "TestData/FallacyCard/Render_Nominal/test-data.csv",
+        "UseDebugParams": false
+      }
+    ]
+  }
+}
