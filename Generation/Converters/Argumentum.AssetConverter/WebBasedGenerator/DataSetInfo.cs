@@ -88,7 +88,7 @@ public class DataSetInfo
 
 		if (!string.IsNullOrEmpty(content))
 		{
-			await File.WriteAllTextAsync(strPath, content, Encoding.UTF8);
+			await File.WriteAllTextAsync(strPath, content, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
 			Logger.LogSuccess($"Successfully saves {strPath}");
 		}
 		else

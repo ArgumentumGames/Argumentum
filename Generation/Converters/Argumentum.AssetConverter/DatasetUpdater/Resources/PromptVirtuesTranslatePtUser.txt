@@ -13,7 +13,23 @@ Ta tâche consiste à traduire en **portugais européen (pt-PT)** les champs sou
 
 2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées — si "argumentPertinent" a été traduit "argumentoPertinente" dans une entrée, réutilise cette traduction pour toutes les entrées de cette famille.
 
-3. **Format des descriptions :** En français, les descriptions de vertus sont formulées à la deuxième personne du pluriel ("Vous..."). En portugais européen, utilise la deuxième personne de politesse ("Deve..." ou impératif), PAS la forme brésilienne ("Você deve...").
+**Mapping de familles canoniques :** Les noms de familles doivent rester rigoureusement cohérents entre toutes les entrées de cette famille. Utilise les traductions suivantes :
+- `Arguments vertueux` (racine) → `Argumentos virtuosos`
+- `Argument valable` → `Argumento válido`
+- `Argument pertinent` → `Argumento pertinente`
+- `Présentation intègre` → `Apresentação íntegra`
+- `Exactitude mathématique` → `Rigor matemático`
+- `Raisonnement valide` → `Raciocínio válido`
+- `Langage rigoureux` → `Linguagem rigorosa`
+- `Honnêteté intellectuelle` → `Honestidade intelectual`
+- `Débat respectueux` → `Debate respeitoso`
+- `Langage exact` → `Linguagem rigorosa`
+- `Rigueur mathématique` → `Rigor matemático`
+- `Échange enrichissant` → `Troca enriquecedora`
+
+Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rigueur : une fois traduit pour la première entrée d'une sous-famille, réutilise mot pour mot pour toutes les autres entrées de cette sous-famille.
+
+3. **Format des descriptions :** Les descriptions FR sont **déclaratives/nominales** (style définitionnel), pas à la deuxième personne. Conserve un registre déclaratif/nominal équivalent en PT — pas d'impératif, pas de "Você".
 
 4. **Langue cible :** Portugais européen (pt-PT), **pas** brésilien. Utilise le vocabulaire et les tournures idiomatiques du Portugal.
 

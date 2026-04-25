@@ -13,10 +13,23 @@ Ta tâche consiste à traduire en **anglais** les champs source (suffixe `_fr`) 
 
 2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées — si "argumentPertinent" a été traduit "relevantArgument" dans une entrée, réutilise cette traduction pour toutes les entrées de cette famille.
 
-3. **Format des descriptions :** En français, les descriptions de vertus sont formulées à la deuxième personne du pluriel ("Vous..."). En anglais, utilise la forme impérative ou à l'infinitif ("To..." ou verbe d'action).
+**Mapping de familles canoniques :** Les noms de familles doivent rester rigoureusement cohérents entre toutes les entrées de cette famille. Utilise les traductions suivantes (issues du template visuel et de la taxonomie) :
+- `Arguments vertueux` (racine) → `Virtuous arguments`
+- `Argument valable` → `Valid argument`
+- `Argument pertinent` → `Relevant argument`
+- `Présentation intègre` → `Honest presentation`
+- `Exactitude mathématique` → `Mathematical accuracy`
+- `Raisonnement valide` → `Valid reasoning`
+- `Langage rigoureux` → `Rigorous language`
+- `Honnêteté intellectuelle` → `Intellectual honesty`
+- `Débat respectueux` → `Respectful debate`
+
+Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rigueur : une fois traduit pour la première entrée d'une sous-famille, réutilise mot pour mot pour toutes les autres entrées de cette sous-famille.
+
+3. **Format des descriptions :** Les descriptions FR sont **déclaratives/nominales** (style définitionnel), pas à la deuxième personne. Conserve un registre déclaratif/nominal équivalent en EN — pas d'impératif, pas de "You". Exemples : "Arguments bien construits, constitué d'idées claires, pertinentes, structurées et justifiables." → "Well-constructed arguments made of clear, relevant, structured and justifiable ideas." | "Argument fondé sur des faits avérés." → "Argument grounded in established facts."
 
 4. **Noms propres du jeu :** "Argumentum" reste "Argumentum". Les concepts logiques classiques ont des traductions canoniques (ex. "raisonnement valide" → "valid reasoning", "honnêteté intellectuelle" → "intellectual honesty").
 
-5. **Liens :** Si le `link_fr` pointe vers une page Wikipedia française, cherche l'équivalent anglais si possible (en.wikipedia.org/...). Sinon, laisse `link_en` vide.
+5. **Liens Wikipedia :** Si tu connais avec certitude l'URL Wikipedia EN équivalente du `link_fr` (ex. `fr.wikipedia.org/wiki/Argumentation` → `en.wikipedia.org/wiki/Argumentation`), fournis-la. **En cas de doute, laisse `link_en` vide** — il vaut mieux un champ vide qu'un lien fabriqué qui retourne 404.
 
 Es-tu prêt à recevoir les données ?

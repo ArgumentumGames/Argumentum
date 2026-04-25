@@ -262,7 +262,7 @@ namespace Argumentum.AssetConverter
 			{
 				return null;
 			}
-			return Encoding.UTF8.GetString(payload.Content);
+			return Encoding.UTF8.GetString(payload.Content).TrimStart('﻿');
 		}
 
 

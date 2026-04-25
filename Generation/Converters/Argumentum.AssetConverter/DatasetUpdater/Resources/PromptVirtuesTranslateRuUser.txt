@@ -13,7 +13,23 @@ Ta tâche consiste à traduire en **russe** les champs source (suffixe `_fr`) ve
 
 2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées. Utilise un vocabulaire russe soutenu et philosophique (pas familier).
 
-3. **Format des descriptions :** En français, les descriptions de vertus sont formulées à la deuxième personne du pluriel ("Vous..."). En russe, utilise la forme impérative (повелительное наклонение) ou infinitif selon le contexte.
+**Mapping de familles canoniques :** Les noms de familles doivent rester rigoureusement cohérents entre toutes les entrées de cette famille. Utilise les traductions suivantes :
+- `Arguments vertueux` (racine) → `Добродетельные аргументы`
+- `Argument valable` → `Обоснованный аргумент`
+- `Argument pertinent` → `Уместный аргумент`
+- `Présentation intègre` → `Честная презентация`
+- `Exactitude mathématique` → `Математическая точность`
+- `Raisonnement valide` → `Правильное рассуждение`
+- `Langage rigoureux` → `Строгий язык`
+- `Honnêteté intellectuelle` → `Интеллектуальная честность`
+- `Débat respectueux` → `Уважительная дискуссия`
+- `Langage exact` → `Строгий язык`
+- `Rigueur mathématique` → `Математическая точность`
+- `Échange enrichissant` → `Обогащающий обмен`
+
+Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rigueur : une fois traduit pour la première entrée d'une sous-famille, réutilise mot pour mot pour toutes les autres entrées de cette sous-famille.
+
+3. **Format des descriptions :** Les descriptions FR sont **déclaratives/nominales** (style définitionnel), pas à la deuxième personne. Conserve un registre déclaratif/nominal équivalent en RU — pas d'impératif.
 
 4. **Noms propres du jeu :** "Argumentum" reste "Argumentum" (ou en translitération cyrillique si le contexte l'exige : "Аргументум").
 
