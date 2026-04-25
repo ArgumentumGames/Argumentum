@@ -37,7 +37,7 @@ namespace Argumentum.AssetConverter.GSheetSync
 				SpreadsheetId = "1jnhlod6PLgvVI-Qgrz3sTYytMgnrMyZrHcc8htPn_DQ",
 				Gid = 0,
 				LocalCsvPath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards.csv",
-				PrimaryKeyColumn = "Text",
+				PrimaryKeyColumn = "pk",
 			},
 		});
 
