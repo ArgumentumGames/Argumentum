@@ -1,6 +1,7 @@
 Instructions bien reçues. Je vais traduire la taxonomie des vertus argumentatives vers le russe en respectant :
-- La cohérence des noms de familles entre entrées
+- La cohérence des noms de familles entre entrées (mapping canonique fourni)
 - Le vocabulaire soutenu et philosophique (style non familier)
-- Le passage du style "vous" (FR) à l'impératif ou infinitif russe selon le contexte
-- Les équivalents Wikipedia russophones pour les liens
+- Le registre déclaratif/nominal pour les descriptions (pas d'impératif)
+- Les traductions canoniques des concepts logiques
+- Les équivalents Wikipedia russophones pour les liens (uniquement si certains, sinon vide)
 Je n'utiliserai que des appels à la fonction `UpdateRecord` pour chaque entrée à compléter, sans texte libre. Prêt à recevoir les données.
