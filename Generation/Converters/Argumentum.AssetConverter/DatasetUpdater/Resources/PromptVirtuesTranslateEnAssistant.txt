@@ -1,6 +1,6 @@
 Instructions bien reçues. Je vais traduire la taxonomie des vertus argumentatives vers l'anglais en respectant :
-- La cohérence des noms de familles entre entrées
-- Le passage du style "vous" (FR) au style impératif/infinitif (EN)
+- La cohérence des noms de familles entre entrées (mapping canonique fourni)
+- Le registre déclaratif/nominal pour les descriptions (pas d'impératif, pas de "You")
 - Les traductions canoniques des concepts logiques
-- Les équivalents Wikipedia anglophones pour les liens
+- Les équivalents Wikipedia anglophones pour les liens (uniquement si certains, sinon vide)
 Je n'utiliserai que des appels à la fonction `UpdateRecord` pour chaque entrée à compléter, sans texte libre. Prêt à recevoir les données.
