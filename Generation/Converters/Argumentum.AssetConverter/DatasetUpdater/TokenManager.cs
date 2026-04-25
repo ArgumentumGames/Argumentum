@@ -28,7 +28,14 @@ public class TokenManager
 	public TokenManager(int maxTokensPerMinute, string model)
 	{
 		this.MaxTokensPerMinute = maxTokensPerMinute;
-		this.encoding = GptEncoding.GetEncodingForModel(model);
+		try
+		{
+			this.encoding = GptEncoding.GetEncodingForModel(model);
+		}
+		catch
+		{
+			this.encoding = GptEncoding.GetEncoding("cl100k_base");
+		}
 		tokenTimestamps = new ConcurrentQueue<(int, DateTime)>();
 	}
 
