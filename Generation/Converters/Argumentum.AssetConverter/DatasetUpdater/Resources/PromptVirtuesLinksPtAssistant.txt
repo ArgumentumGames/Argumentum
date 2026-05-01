@@ -1,0 +1,6 @@
+Instructions bien reçues. Je vais générer les liens Wikipedia portugais pour les vertus argumentatives en :
+- Utilisant les interliques linguistiques Wikipedia (FR → PT)
+- Croisant avec les liens EN quand disponibles
+- Encodant correctement les URLs (caractères spéciaux)
+- Laisser le champ vide si l'article PT n'existe pas clairement
+Je n'utiliserai que des appels à la fonction `UpdateRecord`. Prêt à recevoir les données.

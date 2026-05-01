@@ -660,6 +660,53 @@ public class DatasetUpdaterRootConfig
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,
+			Name = "Generate Virtues Portuguese Wikipedia links empty-only 0-shot",
+			SourceDataset = KnownDataSets.VirtuesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"title_fr",
+				"title_pt",
+				"link_fr",
+				"link_en",
+				"link_pt"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"link_pt"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptVirtuesLinksPtUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesLinksPtAssistant.txt"
+				}
+			},
+			// Wikipedia link lookup - eco tier. Fallback: gpt-4.1-mini
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 8,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
 			Name = "Translate Rules to Portuguese by chunk 0-shot",
 			SourceDataset = KnownDataSets.Rules,
 			FieldsToInclude = new List<string>()

@@ -1,0 +1,23 @@
+**Instructions de Génération de Liens Wikipedia Portugais :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des vertus argumentatives du jeu Argumentum. Chaque entrée comporte :
+- `path` : identifiant hiérarchique (ex. "1.2.3")
+- `title_fr`, `title_pt` : titre en français et portugais
+- `link_fr` : lien Wikipedia français de référence
+- `link_en` : lien Wikipedia anglais de référence (optionnel)
+- Le champ cible : `link_pt`
+
+Ta tâche consiste à fournir le lien Wikipedia portugais (pt.wikipedia.org) correspondant à chaque entrée, **uniquement pour les entrées où `link_pt` est vide**.
+
+1. **Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre.
+
+2. **Stratégie de recherche :**
+   - Le `link_fr` pointe vers un article Wikipedia français. Utilise les interliques linguistiques de Wikipedia pour trouver l'article équivalent en portugais.
+   - Si `link_en` est fourni, il peut aussi aider à identifier l'article PT.
+   - Le titre `title_pt` donne le vocabulaire exact à chercher sur pt.wikipedia.org.
+
+3. **Format :** L'URL doit être complète et encodée (ex: `https://pt.wikipedia.org/wiki/Argumenta%C3%A7%C3%A3o`).
+
+4. **En cas d'absence :** Si l'article portugais n'existe pas clairement, laisse `link_pt` vide — ne devine pas.
+
+Es-tu prêt à recevoir les données ?
