@@ -40,6 +40,41 @@ namespace Argumentum.AssetConverter.GSheetSync
 		}
 
 		/// <summary>
+		/// Downloads a sheet tab twice in parallel — once with FORMULA render
+		/// option (so cells holding formulas surface as <c>"=…"</c> strings)
+		/// and once with UNFORMATTED_VALUE (so cells surface their evaluated
+		/// values). Pairs the two grids into a <see cref="SheetSnapshot"/>
+		/// with the protected-cells set pre-computed.
+		/// </summary>
+		public async Task<SheetSnapshot> GetSheetWithFormulasAsync(string spreadsheetId, int gid)
+		{
+			var sheetTitle = await GetSheetTitleByGidAsync(spreadsheetId, gid);
+			var range = $"'{sheetTitle}'";
+
+			var formulaRequest = _sheetsService.Spreadsheets.Values.Get(spreadsheetId, range);
+			formulaRequest.ValueRenderOption =
+				SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
+
+			var valueRequest = _sheetsService.Spreadsheets.Values.Get(spreadsheetId, range);
+			valueRequest.ValueRenderOption =
+				SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.UNFORMATTEDVALUE;
+
+			var formulaTask = formulaRequest.ExecuteAsync();
+			var valueTask = valueRequest.ExecuteAsync();
+			await Task.WhenAll(formulaTask, valueTask);
+
+			var formulas = formulaTask.Result.Values ?? new List<IList<object>>();
+			var values = valueTask.Result.Values ?? new List<IList<object>>();
+
+			return new SheetSnapshot
+			{
+				Values = values,
+				Formulas = formulas,
+				ProtectedCells = SheetSnapshot.BuildProtectedCells(formulas),
+			};
+		}
+
+		/// <summary>
 		/// Converts a 2D grid of cell values to a CSV string.
 		/// </summary>
 		public string GridToCsv(IList<IList<object>> grid)
