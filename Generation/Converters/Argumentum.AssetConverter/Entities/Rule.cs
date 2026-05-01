@@ -25,7 +25,7 @@ namespace Argumentum.AssetConverter.Entities
     {
         public RuleClassMap()
         {
-            Map(m => m.Pk).Name("pk");
+            Map(m => m.Pk).Name("pk").Optional();
             Map(m => m.Text).Name("Text");
             Map(m => m.Text_en).Name("Text_en");
             Map(m => m.Text_ru).Name("Text_ru");
