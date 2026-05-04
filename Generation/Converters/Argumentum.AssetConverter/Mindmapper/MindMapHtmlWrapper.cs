@@ -28,6 +28,20 @@ public static class MindMapHtmlWrapper
     public static string FormatWrapper(string template, string svgRelativePath, string svgContent)
     {
         if (template == null) throw new ArgumentNullException(nameof(template));
+
+        // Strip XML declaration from inline SVG — invalid inside HTML documents
+        // (browsers may misinterpret encoding="utf-16" and break rendering)
+        if (svgContent != null)
+        {
+            var xmlDeclStart = svgContent.IndexOf("<?xml", StringComparison.Ordinal);
+            if (xmlDeclStart >= 0)
+            {
+                var xmlDeclEnd = svgContent.IndexOf("?>", xmlDeclStart, StringComparison.Ordinal);
+                if (xmlDeclEnd >= 0)
+                    svgContent = svgContent.Remove(xmlDeclStart, xmlDeclEnd + 2 - xmlDeclStart).TrimStart();
+            }
+        }
+
         return template
             .Replace("[SVGPATH]", svgRelativePath ?? string.Empty)
             .Replace("[SVGCONTENT]", svgContent ?? string.Empty);

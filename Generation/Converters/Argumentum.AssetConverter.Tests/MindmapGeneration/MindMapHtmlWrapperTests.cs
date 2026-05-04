@@ -93,6 +93,31 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         [Fact]
+        public void FormatWrapper_StripsXmlDeclaration_FromInlineSvg()
+        {
+            var template = "<html><div id=\"mindmap\">[SVGCONTENT]</div></html>";
+            var svgWithXmlDecl = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<svg><g/></svg>";
+
+            var result = MindMapHtmlWrapper.FormatWrapper(template, "a.svg", svgWithXmlDecl);
+
+            result.Should().NotContain("<?xml",
+                "XML declarations are invalid inside HTML and break browser rendering");
+            result.Should().Contain("<svg><g/></svg>",
+                "the SVG body must be preserved after stripping the XML declaration");
+        }
+
+        [Fact]
+        public void FormatWrapper_StripsXmlDeclaration_NoChange_WhenAbsent()
+        {
+            var template = "<html>[SVGCONTENT]</html>";
+            var svgNoXmlDecl = "<svg xmlns=\"http://www.w3.org/2000/svg\"><g/></svg>";
+
+            var result = MindMapHtmlWrapper.FormatWrapper(template, "a.svg", svgNoXmlDecl);
+
+            result.Should().Contain("<svg xmlns=\"http://www.w3.org/2000/svg\"><g/></svg>");
+        }
+
+        [Fact]
         public void FormatWrapper_Idempotent_SecondCallIsNoOp()
         {
             var template = "<html>[SVGPATH] [SVGCONTENT]</html>";
