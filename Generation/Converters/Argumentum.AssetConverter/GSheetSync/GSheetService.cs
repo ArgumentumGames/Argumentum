@@ -40,6 +40,41 @@ namespace Argumentum.AssetConverter.GSheetSync
 		}
 
 		/// <summary>
+		/// Downloads a sheet tab twice in parallel — once with FORMULA render
+		/// option (so cells holding formulas surface as <c>"=…"</c> strings)
+		/// and once with UNFORMATTED_VALUE (so cells surface their evaluated
+		/// values). Pairs the two grids into a <see cref="SheetSnapshot"/>
+		/// with the protected-cells set pre-computed.
+		/// </summary>
+		public async Task<SheetSnapshot> GetSheetWithFormulasAsync(string spreadsheetId, int gid)
+		{
+			var sheetTitle = await GetSheetTitleByGidAsync(spreadsheetId, gid);
+			var range = $"'{sheetTitle}'";
+
+			var formulaRequest = _sheetsService.Spreadsheets.Values.Get(spreadsheetId, range);
+			formulaRequest.ValueRenderOption =
+				SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
+
+			var valueRequest = _sheetsService.Spreadsheets.Values.Get(spreadsheetId, range);
+			valueRequest.ValueRenderOption =
+				SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.UNFORMATTEDVALUE;
+
+			var formulaTask = formulaRequest.ExecuteAsync();
+			var valueTask = valueRequest.ExecuteAsync();
+			await Task.WhenAll(formulaTask, valueTask);
+
+			var formulas = formulaTask.Result.Values ?? new List<IList<object>>();
+			var values = valueTask.Result.Values ?? new List<IList<object>>();
+
+			return new SheetSnapshot
+			{
+				Values = values,
+				Formulas = formulas,
+				ProtectedCells = SheetSnapshot.BuildProtectedCells(formulas),
+			};
+		}
+
+		/// <summary>
 		/// Converts a 2D grid of cell values to a CSV string.
 		/// </summary>
 		public string GridToCsv(IList<IList<object>> grid)
@@ -210,6 +245,113 @@ namespace Argumentum.AssetConverter.GSheetSync
 			}
 
 			return grid;
+		}
+
+		/// <summary>
+		/// Applies targeted cell patches via <c>Values.BatchUpdate</c>.
+		/// Each patch writes a single cell using RAW input mode so accidental
+		/// <c>=</c> prefixes from CSV values are never interpreted as formulas.
+		/// </summary>
+		public async Task BatchUpdateCellsAsync(
+			string spreadsheetId, string sheetTitle, List<CellPatch> patches)
+		{
+			if (patches == null || patches.Count == 0) return;
+
+			var valueRanges = new List<ValueRange>();
+			foreach (var patch in patches)
+			{
+				var a1 = $"'{sheetTitle}'!{patch.A1Notation}";
+				valueRanges.Add(new ValueRange
+				{
+					Range = a1,
+					Values = new List<IList<object>>
+					{
+						new List<object> { patch.NewValue }
+					}
+				});
+			}
+
+			var batchRequest = new BatchUpdateValuesRequest
+			{
+				Data = valueRanges,
+				ValueInputOption = "RAW",
+			};
+
+			var request = _sheetsService.Spreadsheets.Values.BatchUpdate(
+				batchRequest, spreadsheetId);
+			var response = await request.ExecuteAsync();
+
+			if (response.TotalUpdatedCells != patches.Count)
+			{
+				throw new InvalidOperationException(
+					$"Batch update mismatch: expected {patches.Count} cells updated, " +
+					$"got {response.TotalUpdatedCells}.");
+			}
+		}
+
+		/// <summary>
+		/// Re-reads patched cells and verifies each one matches the expected new value.
+		/// Returns a list of mismatch descriptions (empty if all verified).
+		/// </summary>
+		public async Task<List<string>> VerifyCellPatchesAsync(
+			string spreadsheetId, string sheetTitle, List<CellPatch> patches)
+		{
+			var mismatches = new List<string>();
+			if (patches == null || patches.Count == 0) return mismatches;
+
+			var ranges = patches
+				.Select(p => $"'{sheetTitle}'!{p.A1Notation}")
+				.ToList();
+
+			var request = _sheetsService.Spreadsheets.Values.BatchGet(
+				spreadsheetId);
+			request.Ranges = ranges;
+			request.ValueRenderOption =
+				SpreadsheetsResource.ValuesResource.BatchGetRequest.ValueRenderOptionEnum.UNFORMATTEDVALUE;
+
+			var response = await request.ExecuteAsync();
+			var valueRanges = response.ValueRanges ?? new List<ValueRange>();
+
+			for (int i = 0; i < patches.Count; i++)
+			{
+				if (i >= valueRanges.Count)
+				{
+					mismatches.Add(
+						$"{patches[i].A1Notation} (PK={patches[i].PrimaryKey}): " +
+						$"no data returned from Sheets API");
+					continue;
+				}
+
+				var vr = valueRanges[i];
+				var actualValue = vr.Values?.FirstOrDefault()?.FirstOrDefault()?.ToString() ?? "";
+
+				if (!string.Equals(
+					NormalizeCell(actualValue),
+					NormalizeCell(patches[i].NewValue),
+					StringComparison.Ordinal))
+				{
+					mismatches.Add(
+						$"{patches[i].A1Notation} (PK={patches[i].PrimaryKey}, " +
+						$"col={patches[i].ColumnName}): " +
+						$"expected '{Truncate(patches[i].NewValue, 50)}', " +
+						$"got '{Truncate(actualValue, 50)}'");
+				}
+			}
+
+			return mismatches;
+		}
+
+		private static string NormalizeCell(string value)
+		{
+			if (string.IsNullOrEmpty(value)) return "";
+			return value.Replace("\r\n", "\n").Replace("\r", "\n").Trim();
+		}
+
+		private static string Truncate(string value, int maxLength)
+		{
+			if (value == null) return "";
+			if (value.Length <= maxLength) return value;
+			return value.Substring(0, maxLength - 3) + "...";
 		}
 	}
 }
