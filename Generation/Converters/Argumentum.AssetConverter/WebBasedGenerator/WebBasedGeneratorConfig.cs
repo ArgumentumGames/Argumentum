@@ -214,10 +214,11 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.FallaciesTaxonomy,
-						CsvFilterField = "print_and_play",
+						CsvFilterField = "carte",
 						CsvFilterValues = new List<string>(new []
 						{
 							"1",
+							"2"
 						}),
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
@@ -526,6 +527,25 @@ namespace Argumentum.AssetConverter
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.FallaciesPrintAndPlay,
+							NbCopies = 1,
+							ConvertToCmyk = true,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.Virtues,
 							NbCopies = 1,
 							ConvertToCmyk = true,
 							SaveOriginalImage = false,
