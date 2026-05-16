@@ -117,6 +117,22 @@ CSV parsing uses CsvHelper. Entity classes in `Entities/` have inner `ClassMap` 
 - Playwright harvesting uses a page pool (`ConcurrentStack<IPage>`)
 - `Logger` is thread-safe (uses locks)
 
+### Debug vs Release Builds
+
+The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfig.cs:363-376`) to control output quality. Convention: each config property has a `XxxDebug`/`XxxRelease` pair with a `GetXxx(config)` helper that resolves based on build mode.
+
+| Aspect | Debug (`dotnet run`) | Release (`-c Release`) |
+|--------|----------------------|------------------------|
+| Print&Play image format | JPEG Q=85 (~71 MB Tarot) | PNG lossless (~222 MB) |
+| CMYK conversion | Disabled (RGB) | Enabled |
+| CardPen source | Local IIS (`UseLocalCardpen=true`) | GitHub Pages URL |
+| Template paths | `JsonFilePathDebug` | `JsonFilePathRelease` |
+| Harvest output | Debug density directory | Release density directory |
+
+**Override**: Set `ForceReleaseParams = true` in JSON config to use Release params in Debug builds.
+
+**Key files with Debug/Release pairs**: `DocumentCardSet.cs` (CMYK), `PdfManager.cs` (JPEG), `WebBasedGeneratorConfig.cs` (CardPen URL, template paths), `MindMapDocumentConfig.cs` (paths), `HarvestManager.cs` (URLs).
+
 ### Known Fragile Areas
 1. SVG disambiguation in mind map generation
 2. Manual PDF layout calculations in `PrintAndPlayDocument.cs`
