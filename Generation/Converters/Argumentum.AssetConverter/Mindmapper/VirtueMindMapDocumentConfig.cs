@@ -173,7 +173,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
-		public string ThumbnailsPathExpression { get; set; } = @"../../bin/Debug/netcoreapp3.1/Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{item.Path}_{item.Text.ToLower().Replace("" "",""_"")}.png";
+		public string ThumbnailsPathExpression { get; set; } = @"Target/Images/density-0/Fallacies-Web-Thumbnails/argumentum_{item.Path}_{item.Text.ToLower().Replace("" "",""_"")}.png";
 
 
 		public string GetThumbnailsPath(IMindMapItem item)
