@@ -130,7 +130,7 @@ namespace Argumentum.AssetConverter
             GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
         }
 
-        public void GeneratePrintAndPlay(string fileName, CardSetDocumentConfig docConfig, List<CardImages> images, bool configOverwriteExistingDocs)
+        public void GeneratePrintAndPlay(string fileName, CardSetDocumentConfig docConfig, List<CardImages> images, bool configOverwriteExistingDocs, bool useReleaseMode = false)
         {
             if (File.Exists(fileName) && !configOverwriteExistingDocs)
             {
@@ -146,15 +146,13 @@ namespace Argumentum.AssetConverter
                 return;
             }
 
-            // 1. Lire toutes les images en mémoire une seule fois
-            // Convert to JPEG Q=85 for Print&Play to reduce PDF size (PNG lossless = 223 MB → ~15-30 MB)
-            var frontImagesData = images
-                .Select(img => !string.IsNullOrEmpty(img.Front) && File.Exists(img.Front) ? ConvertToJpeg(File.ReadAllBytes(img.Front), 85) : null)
-                .ToList();
+            // 1. Read images — JPEG Q=85 for Debug (Edge preview), PNG lossless for Release (printer)
+            byte[] ProcessImage(string path) => !string.IsNullOrEmpty(path) && File.Exists(path)
+                ? (useReleaseMode ? File.ReadAllBytes(path) : ConvertToJpeg(File.ReadAllBytes(path), 85))
+                : null;
 
-            var backImagesData = images
-                .Select(img => !string.IsNullOrEmpty(img.Back) && File.Exists(img.Back) ? ConvertToJpeg(File.ReadAllBytes(img.Back), 85) : null)
-                .ToList();
+            var frontImagesData = images.Select(img => ProcessImage(img.Front)).ToList();
+            var backImagesData = images.Select(img => ProcessImage(img.Back)).ToList();
 
             // La logique de livret sera gérée à l'intérieur de PrintAndPlayDocument
             // if (isBooklet) { ... }

@@ -136,7 +136,7 @@ namespace Argumentum.AssetConverter
 					}
                 }
 
-                if (documentCardSet.ConvertToCmyk)
+                if (documentCardSet.GetConvertToCmyk(config))
                 {
                     imageFromEmbeddedUrl.ConvertToCmyk();
                 }

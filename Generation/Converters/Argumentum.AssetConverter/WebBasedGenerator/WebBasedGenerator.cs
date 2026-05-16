@@ -121,7 +121,8 @@ namespace Argumentum.AssetConverter
 								break;
 							case CardDocumentFormat.PrintAndPlay:
 								objPdfManager.GeneratePrintAndPlay(baseName, docImageList.Key.document,
-									docImageList.Value, AssetConverterConfig.OverwriteExistingDocs);
+									docImageList.Value, AssetConverterConfig.OverwriteExistingDocs,
+									AssetConverterConfig.UseReleaseParams);
 								break;
 							default:
 								throw new InvalidOperationException(
