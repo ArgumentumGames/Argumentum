@@ -48,6 +48,9 @@ namespace Argumentum.AssetConverter.Mindmapper
                     {
                         Enabled = true,
                         DocumentName = "content.svg",
+                        SvgViewBox = "0 0 6625 5807",
+                        SvgWidth = "96vw",
+                        SvgHeight = "93vh",
                         WrapNodeByLink = false,
                         SetSVGNodeAttributes = true,
                         RemoveImages = true,
