@@ -147,12 +147,13 @@ namespace Argumentum.AssetConverter
             }
 
             // 1. Lire toutes les images en mémoire une seule fois
+            // Convert to JPEG Q=85 for Print&Play to reduce PDF size (PNG lossless = 223 MB → ~15-30 MB)
             var frontImagesData = images
-                .Select(img => !string.IsNullOrEmpty(img.Front) && File.Exists(img.Front) ? File.ReadAllBytes(img.Front) : null)
+                .Select(img => !string.IsNullOrEmpty(img.Front) && File.Exists(img.Front) ? ConvertToJpeg(File.ReadAllBytes(img.Front), 85) : null)
                 .ToList();
 
             var backImagesData = images
-                .Select(img => !string.IsNullOrEmpty(img.Back) && File.Exists(img.Back) ? File.ReadAllBytes(img.Back) : null)
+                .Select(img => !string.IsNullOrEmpty(img.Back) && File.Exists(img.Back) ? ConvertToJpeg(File.ReadAllBytes(img.Back), 85) : null)
                 .ToList();
 
             // La logique de livret sera gérée à l'intérieur de PrintAndPlayDocument
@@ -172,6 +173,22 @@ namespace Argumentum.AssetConverter
                 Logger.LogProblem($"FAILED to generate PDF document {fileName}: {ex.Message}");
                 Logger.LogException(ex);
                 throw; // Rethrow to maintain behavior
+            }
+        }
+
+        private static byte[] ConvertToJpeg(byte[] imageData, int quality)
+        {
+            if (imageData == null || imageData.Length == 0) return imageData;
+            try
+            {
+                using var image = new MagickImage(imageData);
+                image.Quality = (uint)quality;
+                image.Format = MagickFormat.Jpeg;
+                return image.ToByteArray();
+            }
+            catch
+            {
+                return imageData;
             }
         }
 
