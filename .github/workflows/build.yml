@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '.claude/**'
+      - 'tmp/**'
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore "Argumentum Converters.sln"
+
+      - name: Build (${{ matrix.configuration }})
+        run: dotnet build "Argumentum Converters.sln" --no-restore -c ${{ matrix.configuration }}
+
+      - name: Test
+        run: dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj" --no-build -c ${{ matrix.configuration }} --verbosity normal
