@@ -49,7 +49,7 @@ namespace Argumentum.AssetConverter
 
 
 
-		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html";
+		public string ReleaseCardpenUrl { get; set; } = @"https://argumentumgames.github.io/Argumentum/index.html";
 		public string LocalCardpenUrl { get; set; } = @"https://argumentum.myia.io/index.html";
 
 
