@@ -315,6 +315,125 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private static extern bool SetForegroundWindow(IntPtr hWnd);
 		[System.Runtime.InteropServices.DllImport("user32.dll")]
 		private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern IntPtr GetForegroundWindow();
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr processId);
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool fAttach);
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern bool BringWindowToTop(IntPtr hWnd);
+		[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+		private static extern uint GetCurrentThreadId();
+		[System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+		private static extern int GetWindowText(IntPtr hWnd, System.Text.StringBuilder text, int count);
+		[System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+		private static extern IntPtr OpenInputDesktop(uint dwFlags, bool fInherit, uint dwDesiredAccess);
+		[System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+		private static extern bool SetThreadDesktop(IntPtr hDesktop);
+		[System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+		private static extern bool CloseDesktop(IntPtr hDesktop);
+		[System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+		private static extern IntPtr GetThreadDesktop(uint dwThreadId);
+		[System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+		private static extern bool GetUserObjectInformation(IntPtr hObj, int nIndex, System.Text.StringBuilder pvInfo, uint nLength, out uint lpnLengthNeeded);
+
+		private static string GetDesktopName(IntPtr hDesktop)
+		{
+			if (hDesktop == IntPtr.Zero) return "<null>";
+			var sb = new System.Text.StringBuilder(256);
+			return GetUserObjectInformation(hDesktop, 2 /* UOI_NAME */, sb, (uint)sb.Capacity, out _) ? sb.ToString() : "<unknown>";
+		}
+
+		/// <summary>
+		/// Switches the calling thread to the interactive input desktop (WinSta0\Default).
+		/// Returns the new desktop handle (to CloseDesktop later) or IntPtr.Zero if the thread
+		/// was already on the input desktop or attaching failed. Required when our process runs
+		/// on a non-interactive desktop (e.g. Service-0x0-3e7$\Default): without this switch,
+		/// GetForegroundWindow is NULL on our desktop, SetForegroundWindow is a no-op, and
+		/// SendKeys.SendWait routes keystrokes to a desktop with no visible window.
+		/// </summary>
+		// Tracks whether SetThreadDesktop has already been called on the pipeline's main thread.
+		// SetThreadDesktop refuses (Win32 ERROR_BUSY = 170) on subsequent calls because the thread
+		// retains hooks/windows from the previous SendKeys run — but that's fine: we're already on
+		// the right desktop, so we can no-op silently.
+		private static bool _threadAttachedToInputDesktop = false;
+
+		private static IntPtr TryAttachToInteractiveDesktop()
+		{
+			if (_threadAttachedToInputDesktop)
+				return IntPtr.Zero; // already on input desktop from a previous call
+
+			var hCurrent = GetThreadDesktop(GetCurrentThreadId());
+			var hInput = OpenInputDesktop(0, false, 0x10000000 /* GENERIC_ALL */);
+			if (hInput == IntPtr.Zero)
+			{
+				Logger.LogWarning($"OpenInputDesktop failed (Win32 err {System.Runtime.InteropServices.Marshal.GetLastWin32Error()}). Current desktop: {GetDesktopName(hCurrent)}");
+				return IntPtr.Zero;
+			}
+			if (!SetThreadDesktop(hInput))
+			{
+				int err = System.Runtime.InteropServices.Marshal.GetLastWin32Error();
+				// 170 = ERROR_BUSY: thread already has windows on its current desktop. If the names match,
+				// we're already on the input desktop and can proceed silently.
+				if (err == 170 && GetDesktopName(hCurrent) == GetDesktopName(hInput))
+				{
+					_threadAttachedToInputDesktop = true;
+					CloseDesktop(hInput);
+					return IntPtr.Zero;
+				}
+				Logger.LogWarning($"SetThreadDesktop failed (Win32 err {err}). From {GetDesktopName(hCurrent)} to {GetDesktopName(hInput)}");
+				CloseDesktop(hInput);
+				return IntPtr.Zero;
+			}
+			Logger.Log($"Attached thread to interactive desktop: {GetDesktopName(hCurrent)} → {GetDesktopName(hInput)}");
+			_threadAttachedToInputDesktop = true;
+			return hInput;
+		}
+
+		private static string DescribeWindow(IntPtr hWnd)
+		{
+			if (hWnd == IntPtr.Zero) return "<null>";
+			var sb = new System.Text.StringBuilder(256);
+			GetWindowText(hWnd, sb, sb.Capacity);
+			return $"hWnd=0x{hWnd.ToInt64():X} title='{sb}'";
+		}
+
+		/// <summary>
+		/// Forces a window to the foreground reliably. Plain SetForegroundWindow is silently
+		/// refused by Windows when the calling process isn't already foreground, so we attach
+		/// our input queue to the current foreground thread (AttachThreadInput) for the call,
+		/// then verify GetForegroundWindow actually points at the target before returning.
+		/// </summary>
+		private static bool ForceForeground(IntPtr hWnd)
+		{
+			ShowWindow(hWnd, 9); // SW_RESTORE
+			for (int attempt = 0; attempt < 5; attempt++)
+			{
+				uint fgThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
+				uint thisThread = GetCurrentThreadId();
+				bool attached = false;
+				try
+				{
+					if (fgThread != 0 && fgThread != thisThread)
+						attached = AttachThreadInput(thisThread, fgThread, true);
+					BringWindowToTop(hWnd);
+					SetForegroundWindow(hWnd);
+					ShowWindow(hWnd, 9);
+				}
+				finally
+				{
+					if (attached)
+						AttachThreadInput(thisThread, fgThread, false);
+				}
+				Thread.Sleep(400);
+				if (GetForegroundWindow() == hWnd)
+					return true;
+			}
+			var fg = GetForegroundWindow();
+			Logger.LogWarning($"ForceForeground failed. Target {DescribeWindow(hWnd)} | Actual foreground {DescribeWindow(fg)}");
+			return fg == hWnd;
+		}
 
 		// Mutex: only one FreeMind GUI automation at a time (shared across Fallacy + Virtue)
 		private static readonly object FreeMindLock = new object();
@@ -340,6 +459,27 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
+		/// <summary>
+		/// Sends keystrokes to the foreground window, swallowing the spurious
+		/// Win32Exception "L'opération a réussi" (NativeErrorCode 0) that SendKeys.SendWait
+		/// raises as a false negative — see Mindmapper/xslt/Export-FreeMindSvg.ps1.
+		/// Without this guard the very first keystroke aborts the whole export.
+		/// </summary>
+		private static void SendKeysSafe(string keys)
+		{
+			try
+			{
+				System.Windows.Forms.SendKeys.SendWait(keys);
+			}
+			catch (System.ComponentModel.Win32Exception ex)
+			{
+				// SendKeys.SendWait raises a spurious Win32Exception "L'opération a réussi."
+				// (NativeErrorCode 0) as a false negative — the keystroke is actually delivered.
+				// The sibling PS1 script (Mindmapper/xslt/Export-FreeMindSvg.ps1) swallows it the same way.
+				Logger.Log($"SendKeys spurious Win32Exception ignored ({ex.NativeErrorCode}): {ex.Message}");
+			}
+		}
+
 		private static void CleanFreeMindRecoveryFiles()
 		{
 			var freemindUserDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".freemind");
@@ -352,20 +492,60 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				try { File.Delete(f); } catch { }
 			}
+			ClearFreeMindAutoOpenedTabs(freemindUserDir);
+		}
+
+		/// <summary>
+		/// Clears the lastOpened / mindmap_last_state_map_storage keys in auto.properties so that
+		/// FreeMind opens ONLY the .mm passed on the CLI, not 5 stale tabs from previous runs.
+		/// Without this, the keystrokes target whichever tab FreeMind happens to focus on first,
+		/// and the SVG export silently writes to the wrong file (or nothing at all).
+		/// </summary>
+		private static void ClearFreeMindAutoOpenedTabs(string freemindUserDir)
+		{
+			var propsPath = Path.Combine(freemindUserDir, "auto.properties");
+			if (!File.Exists(propsPath)) return;
+			try
+			{
+				var lines = File.ReadAllLines(propsPath);
+				bool changed = false;
+				for (int i = 0; i < lines.Length; i++)
+				{
+					if (lines[i].StartsWith("lastOpened=") && lines[i] != "lastOpened=")
+					{
+						lines[i] = "lastOpened=";
+						changed = true;
+					}
+					else if (lines[i].StartsWith("mindmap_last_state_map_storage="))
+					{
+						lines[i] = "mindmap_last_state_map_storage=";
+						changed = true;
+					}
+				}
+				if (changed)
+				{
+					File.WriteAllLines(propsPath, lines);
+					Logger.Log("Cleared FreeMind auto-restored tabs from auto.properties");
+				}
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Could not clear FreeMind auto.properties: {ex.Message}");
+			}
 		}
 
 		private static void KillAllFreeMind()
 		{
+			// Kill ALL javaw processes — we deliberately don't filter on MainWindowTitle.Contains("FreeMind")
+			// because a FreeMind that's still loading a large .mm has an empty/unstable title, and
+			// would otherwise survive between iterations and steal focus from the next run.
 			foreach (var jp in Process.GetProcessesByName("javaw"))
 			{
 				try
 				{
-					if (jp.MainWindowTitle.Contains("FreeMind"))
-					{
-						Logger.Log($"Killing FreeMind: {jp.MainWindowTitle}");
-						jp.Kill();
-						jp.WaitForExit(5000);
-					}
+					Logger.Log($"Killing javaw pid={jp.Id} title='{jp.MainWindowTitle}'");
+					jp.Kill();
+					jp.WaitForExit(5000);
 				}
 				catch { }
 			}
@@ -385,6 +565,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 			var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
 			var svgTimeBefore = File.Exists(generatedSvgPath) ? File.GetLastWriteTimeUtc(generatedSvgPath) : DateTime.MinValue;
 
+			// Switch our thread to the interactive input desktop (WinSta0\Default) so that
+			// GetForegroundWindow / SetForegroundWindow / SendKeys actually reach the FreeMind
+			// window. Without this, a process spawned from a non-interactive context sees a
+			// NULL foreground and keystrokes are dropped on its phantom desktop.
+			IntPtr hInputDesktop = TryAttachToInteractiveDesktop();
 			try
 			{
 				// 1. Clean slate
@@ -401,11 +586,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 				});
 				if (process == null) { Logger.LogWarning("Failed to start FreeMind."); return false; }
 
-				// 3. Poll for window (up to 30s) — wait for title to contain the .mm filename
+				// 3. Poll for window (up to 90s) — wait for title to contain the .mm filename.
+				// Large mindmaps (cards-per-fallacy variants ~1MB) take 30-60s to load on FreeMind 1.0.1.
 				Process freemindProcess = null;
 				var mmFileName = System.IO.Path.GetFileName(sourceMmPath);
 				Logger.Log("Waiting for FreeMind window...");
-				for (int i = 0; i < 30 && freemindProcess == null; i++)
+				for (int i = 0; i < 90 && freemindProcess == null; i++)
 				{
 					Thread.Sleep(1000);
 					foreach (var jp in Process.GetProcessesByName("javaw"))
@@ -424,52 +610,57 @@ namespace Argumentum.AssetConverter.Mindmapper
 				}
 				if (freemindProcess == null)
 				{
-					Logger.LogWarning("FreeMind window not found after 30s.");
+					Logger.LogWarning("FreeMind window not found after 90s.");
 					try { process.Kill(); } catch { }
+					KillAllFreeMind(); // make sure no stray javaw survives to pollute the next iteration
 					return false;
 				}
 				Logger.Log($"FreeMind ready: '{freemindProcess.MainWindowTitle}'");
 				Thread.Sleep(5000); // let rendering finish
 
-				// 4. Focus window
-				ShowWindow(freemindProcess.MainWindowHandle, 9); // SW_RESTORE
-				SetForegroundWindow(freemindProcess.MainWindowHandle);
+				// 4. Focus window — robust foreground via AttachThreadInput, verified
+				if (ForceForeground(freemindProcess.MainWindowHandle))
+					Logger.Log("FreeMind window focused.");
+				else
+					Logger.LogWarning("Could not confirm FreeMind window focus — keystrokes may misfire.");
 				Thread.Sleep(2000);
 
 				// 5. Menu navigation: Alt+F → 8×DOWN → RIGHT → 12×DOWN → ENTER → ENTER → ENTER
 				Logger.Log("Sending keystrokes: Alt+F, 8×DOWN, RIGHT, 12×DOWN, ENTER, ENTER, ENTER");
 
-				System.Windows.Forms.SendKeys.SendWait("{ESC}");
+				// Re-assert focus right before typing, in case it drifted during the sleep
+				ForceForeground(freemindProcess.MainWindowHandle);
+				SendKeysSafe("{ESC}");
 				Thread.Sleep(500);
 
-				System.Windows.Forms.SendKeys.SendWait("%f");
+				SendKeysSafe("%f");
 				Thread.Sleep(2000);
 
 				for (int i = 0; i < 8; i++)
 				{
-					System.Windows.Forms.SendKeys.SendWait("{DOWN}");
+					SendKeysSafe("{DOWN}");
 					Thread.Sleep(300);
 				}
 
-				System.Windows.Forms.SendKeys.SendWait("{RIGHT}");
+				SendKeysSafe("{RIGHT}");
 				Thread.Sleep(1500);
 
 				for (int i = 0; i < 12; i++)
 				{
-					System.Windows.Forms.SendKeys.SendWait("{DOWN}");
+					SendKeysSafe("{DOWN}");
 					Thread.Sleep(300);
 				}
 
 				// ENTER = select "En SVG..."
-				System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+				SendKeysSafe("{ENTER}");
 				Thread.Sleep(3000);
 
 				// ENTER = confirm save dialog (default path = same dir as .mm)
-				System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+				SendKeysSafe("{ENTER}");
 				Thread.Sleep(3000);
 
 				// ENTER = overwrite confirmation (if file exists)
-				System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+				SendKeysSafe("{ENTER}");
 				Thread.Sleep(5000);
 
 				// 6. Check result: file must exist with a newer timestamp
@@ -501,6 +692,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 				Logger.LogWarning($"FreeMind SVG export error: {ex.Message}");
 				KillAllFreeMind();
 				return false;
+			}
+			finally
+			{
+				if (hInputDesktop != IntPtr.Zero)
+					CloseDesktop(hInputDesktop);
 			}
 		}
 
