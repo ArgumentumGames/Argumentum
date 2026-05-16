@@ -24,24 +24,47 @@ The repository is organized as follows:
 
  ## Generating Cards images and documents
 
-The generation tool is a .Net 7.0 console/terminal application. It employs multiple browsers to draw images from a hosted Cardpen website, utilizes Magick.Net library for individual image file processing, and QuestPDF library for printable PDF creation.
+The generation tool is a .NET 9.0 console application. It uses Playwright to automate Chromium for card rendering, ImageMagick for image processing, and QuestPDF for printable PDF creation.
 
- Here's how to get started:
+### Quick Start (Developers)
 
-1. Download the generation tool's prerelease executable from the [this directory](https://github.com/ArgumentumGames/Argumentum/tree/master/Generation/Converters/Argumentum.AssetConverter/Published/v1.3).
-2. [Install the .NET 7.0 runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
-3. Run the program either by executing the "Argumentum.AssetConverter.exe" file (Windows) or "Argumentum.AssetConverter" (Mac) or by running the following command from a terminal: `dotnet ./Argumentum.AssetConverter.dll`.
+```bash
+# Prerequisites: .NET 9.0 SDK + Node.js (for Playwright)
 
-> Note: In MacOS, after unzipping the App directory, you can set a terminal to the target directory with a right-click from Finder.
+# 1. Clone and build
+git clone https://github.com/ArgumentumGames/Argumentum.git
+cd Argumentum
+dotnet build "Argumentum Converters.sln"
+
+# 2. Install Playwright browsers (first time only)
+pwsh Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/playwright.ps1 install chromium
+
+# 3. Run the pipeline (generates images + PDFs)
+dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
+```
+
+Output goes to `Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/Target/`.
+
+### Quick Start (End Users — no build required)
+
+1. Install the [.NET 9.0 runtime](https://dotnet.microsoft.com/download/dotnet/9.0/runtime).
+2. Run from the repository root:
+
+   ```bash
+   dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
+   ```
+
+3. Generated PDFs appear in `Target/{language}/Documents/`.
+
+> **Note**: On first run, `AssetConverterConfig.json` is auto-generated with default settings. Edit it to customize which card sets and languages to generate.
 
 ### MacOS / Linux
 
-On MacOS or Linux systems, you may encounter certain security measures that necessitate additional steps for proper execution.
+On macOS or Linux, you may need additional steps:
 
-- Should you wish to directly run the executable, it may be necessary to provide the appropriate permissions. This can be achieved with the following command: "chmod +x ./Argumentum.AssetConverter".
-- If you are executing the command through terminal, elevated permissions may be required for an automated browser to run. If this is the case, prepend your command with "sudo": "sudo dotnet ./Argumentum.AssetConverter.dll".
-- In the event that you receive an error message indicating rejection of certain application libraries, navigate to "System Preferences -> Privacy & Security" and choose to unblock the problematic library. Please note that this may need to be repeated until all the necessary libraries are unblocked.
-- For optimal functionality, ensure that in the same "Privacy & Security" settings section, download execution permissions are set to "AppStore & identified developers".
+- Grant execute permissions: `chmod +x ./Argumentum.AssetConverter`
+- For browser automation, elevated permissions may be needed: `sudo dotnet run --project ...`
+- If libraries are rejected, go to **System Preferences → Privacy & Security** and unblock them (may need to be repeated).
 
 
 
@@ -77,8 +100,8 @@ The top-level configuration is composed of several key sections:
     "HarvestDirectoryName": "Harvest\\",
     "ImagesDirectoryName": "Images\\",
     "DocumentsDirectoryName": "Documents\\",
-    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/Generation/CardPen/index.html",
-    "DebugCardpenUrl": "http://cardpen.dnndev.me/Generation/CardPen/index.html",
+    "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/index.html",
+    "DebugCardpenUrl": "https://argumentum.myia.io/index.html",
     "DataSets": [
 	(...)
     ],
