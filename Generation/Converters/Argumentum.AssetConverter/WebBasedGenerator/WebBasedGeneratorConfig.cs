@@ -509,7 +509,7 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.RulesPrintAndPlay,
 							NbCopies = 1,
-							ConvertToCmyk = true,
+							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -528,7 +528,7 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesPrintAndPlay,
 							NbCopies = 1,
-							ConvertToCmyk = true,
+							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -566,7 +566,7 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.MemoPrintAndPlay,
 							NbCopies = 5,
-							ConvertToCmyk = true,
+							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -602,7 +602,7 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.ScenariiPrintAndPlay,
 							NbCopies = 1,
-							ConvertToCmyk = true,
+							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
