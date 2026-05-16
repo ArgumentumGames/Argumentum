@@ -1,0 +1,31 @@
+name: Healthcheck — Pages URLs
+
+on:
+  workflow_run:
+    workflows: ["Deploy static content to Pages"]
+    types: [completed]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 6 * * 1'  # Weekly Monday ~06:23 UTC
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CardPen GitHub Pages
+        run: |
+          URLS=(
+            "https://argumentumgames.github.io/Argumentum/index.html"
+          )
+          for url in "${URLS[@]}"; do
+            STATUS=$(curl -o /dev/null -s -w "%{http_code}" -L --max-time 15 "$url")
+            if [ "$STATUS" -ne 200 ]; then
+              echo "::error::$url returned HTTP $STATUS (expected 200)"
+              FAILED=1
+            else
+              echo "::notice::$url OK (HTTP $STATUS)"
+            fi
+          done
+          if [ -n "$FAILED" ]; then
+            exit 1
+          fi
