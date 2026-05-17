@@ -509,11 +509,13 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateEnAssistant.txt"
 				}
 			},
-			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			// FR → EN via OpenAI gpt-5.5 (best quality per benchmark)
+			Model = "gpt-5.5",
+			OpenAIKeyPath = @".keys\openai-key.txt",
+			MaxOutputTokens = 4096,
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
-			ChunkSize = 8,
+			ChunkSize = 4,
 			UseFunctionCalling = true,
 			NbMessageCalls = 1,
 			SkipChunkNb = 0,
@@ -794,11 +796,13 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateEnAssistant.txt"
 				}
 			},
-			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			// FR → EN via OpenAI gpt-5.5 (best quality per benchmark)
+			Model = "gpt-5.5",
+			OpenAIKeyPath = @".keys\openai-key.txt",
+			MaxOutputTokens = 4096,
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
-			ChunkSize = 8,
+			ChunkSize = 4,
 			UseFunctionCalling = true,
 			NbMessageCalls = 1,
 			SkipChunkNb = 0,

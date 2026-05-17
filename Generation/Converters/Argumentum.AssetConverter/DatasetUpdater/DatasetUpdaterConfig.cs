@@ -31,6 +31,10 @@ public class DatasetUpdaterConfig
 
 	public string Model { get; set; } = "gpt-5.4-mini";
 
+	public string? BaseUrl { get; set; }
+
+	public int? MaxOutputTokens { get; set; }
+
 	public int MaxTokensPerMinute { get; set; } = 70000;
 
 	public DivisionMode DivisionMode { get; set; }
@@ -469,6 +473,8 @@ public class DatasetUpdaterConfig
 				var dataPrompt = new Prompt()
 				{
 					ApiKey = openAIKey,
+					BaseUrl = BaseUrl,
+					MaxOutputTokens = MaxOutputTokens,
 					Model = Model,
 					SystemPrompt = systemPrompt,
 					DialogPrompts = DialogPrompts,
