@@ -8,11 +8,7 @@ Ta tâche consiste à traduire ou retraduire en portugais européen (pt-PT) le c
 
 2. **Format du texte :** Les règles contiennent du markdown (titres ##, listes à puces *, gras **, italique *, séparateurs ---). Préserve exactement ce formatage.
 
-3. **Termes du jeu :** Conserve les noms propres du jeu tels que :
-   - "Argumentum" (nom du jeu)
-   - "Baratineur" (rôle du jeu)
-   - "Mixologue" (rôle du jeu)
-   Les noms des familles de cartes (en français) sont des noms propres — conserve-les en français.
+3. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum". Les noms des familles de cartes (en français) sont des noms propres — conserve-les en français. Les rôles comme "Baratineur" et "Mixologue" doivent être traduits en équivalents portugais naturels.
 
 4. **Langue cible :** Portugais européen (pt-PT), PAS brésilien. Traduis de manière naturelle et idiomatique, pas mot à mot.
 
