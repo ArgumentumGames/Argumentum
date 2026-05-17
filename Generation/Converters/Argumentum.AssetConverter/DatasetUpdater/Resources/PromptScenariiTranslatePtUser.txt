@@ -15,16 +15,26 @@ Ta tâche consiste à traduire en **portugais européen (pt-PT)** les champs sou
 
 1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
 
-2. **Langue cible :** Portugais européen (pt-PT), **pas** brésilien. Utilise le vocabulaire et les tournures idiomatiques du Portugal (ex. "telemóvel" pas "celular", "casa de banho" pas "banheiro").
+2. **Mapping des champs (ATTENTION) :**
+   - `catégorie` → `category_pt`
+   - `sous-catégorie` → `subcategory_pt`
+   - `titre` → `title_pt`
+   - `baratineur` → `smoothTalker_pt`
+   - `piocheur` → `drawer_pt`
+   - `contexte` → `context_pt`
+   - `enjeu` → `issue_pt`
+   - `suggestion` → `suggestion_pt`
 
-3. **Cohérence lexicale :** Les catégories et sous-catégories doivent rester cohérentes entre scénarios — si "Vie quotidienne" est traduit "Vida quotidiana" dans un scénario, réutilise cette traduction pour tous les scénarios de la même catégorie.
+3. **Langue cible :** Portugais européen (pt-PT), **pas** brésilien. Utilise le vocabulaire et les tournures idiomatiques du Portugal (ex. "telemóvel" pas "celular", "casa de banho" pas "banheiro").
 
-4. **Ton narratif :** Les scénarios sont ludiques et vivants. Préserve le rythme, l'humour, la brièveté. En pt-PT, privilégie les tournures idiomatiques naturelles du Portugal plutôt que des calques du français.
+4. **Cohérence lexicale :** Les catégories et sous-catégories doivent rester cohérentes entre scénarios — si "Vie quotidienne" est traduit "Vida quotidiana" dans un scénario, réutilise cette traduction pour tous les scénarios de la même catégorie.
 
-5. **Rôles des personnages :** "baratineur" et "piocheur" désignent des rôles de jeu. Traduis par des équivalents portugais naturels évoquant le sens. Reste cohérent entre scénarios.
+5. **Ton narratif :** Les scénarios sont ludiques et vivants. Préserve le rythme, l'humour, la brièveté. En pt-PT, privilégie les tournures idiomatiques naturelles du Portugal plutôt que des calques du français.
 
-6. **Noms propres et culture :** Les noms de personnages clairement français peuvent être conservés ou adaptés à des prénoms portugais courants selon ce qui est plus naturel. Les références culturelles trop franco-françaises peuvent être adaptées si elles rendent le scénario incompréhensible pour un lecteur portugais.
+6. **Rôles des personnages — TRADUIRE OBLIGATOIREMENT :** "baratineur" et "piocheur" sont des rôles de jeu qui **doivent être traduits** en portugais. Ces mots sont français et ne doivent **jamais** apparaître tels quels dans les champs cibles. Utilise des équivalents portugais naturels (ex. "convencedor", "bobo" ou similaires). Reste cohérent entre scénarios.
 
-7. **Argumentum :** "Argumentum" reste "Argumentum".
+7. **Noms propres et culture :** Les noms de personnages clairement français peuvent être conservés ou adaptés à des prénoms portugais courants selon ce qui est plus naturel. Les références culturelles trop franco-françaises peuvent être adaptées si elles rendent le scénario incompréhensible pour un lecteur portugais.
+
+8. **Argumentum :** "Argumentum" reste "Argumentum".
 
 Es-tu prêt à recevoir les données ?
