@@ -402,6 +402,8 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 **Bug #216 découvert 2026-04-22 + corrigé 2026-04-23** : `LocalizationConfig.FrontFieldConversions` pour Fallacies référençait des noms de champs (`Titre`, `Definition`, `Exemple`, `Contre-Exemple`) qui n'existaient PAS dans les templates Mustache (qui utilisent `{{text_fr}}`, `{{desc_fr}}`, `{{example_fr}}`, `{{Famille}}`, `{{Sous-Famille}}`, `{{Soussousfamille}}`). Résultat : `template.Replace()` ne trouvait rien à remplacer → tous les PDFs EN/RU/PT contenaient du contenu français. Corrigé en restaurant le mapping Golden Master (avril 2024) + ajout de Rules (absent) + tests de régression `FallaciesLocalizationTests`. **Regénération pipeline complète requise** pour produire les PDFs réellement multilingues.
 
+**Mise à jour cycle 56+59 (mai 2026)** : Bug #216 corrigé avril 2026, pipeline régen post-merges #301/#302 auditée cycle 56 (Stratégie D recommandée : spot-check 5 cartes pixel diff ~15 min avant décision régen complète A ou aucune C). Tableau ci-dessus reste snapshot 17 mars 2026 (pré-fix).
+
 ### État actuel par CardSet (FR - COMPLET)
 
 | CardSet | Images | PDFs | Status |
@@ -424,11 +426,12 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 ### Translation Pipeline (DatasetUpdater)
 
 - **SDK**: Official OpenAI .NET SDK v2.10.0 (PR #210 merged)
-- **Models**: `gpt-4.1`, `gpt-4.1-mini` (all deprecated model constants replaced)
+- **Models**: `gpt-5.5` (EN translations primary, PR #302), `gpt-4.1`/`gpt-4.1-mini` (fallback + RU/PT)
+- **Multi-provider**: API support added via PR #302 (OpenAI + alternative providers configurable)
 - **Config**: `DatasetUpdater/DatasetUpdaterRootConfig.cs` — 7 task configs (all `Enabled = false`)
 - **Prompts**: 29 files in `DatasetUpdater/Resources/`
 - **Function calling**: Manual `FunctionToolDef` + JSON schema + `BinaryData.FromString()`
-- **Virtues CSV has NO multilingual columns** — only `_fr` fields, translation entirely absent
+- **Virtues CSV**: 100% translated (title/description/remark × fr/en/ru/pt), via PRs #218, #236, #246, #290, #295
 - **Issue #183** DONE — merged via PR #210
 
 ### GSheet ↔ CSV Sync (PR #200 merged)
@@ -457,12 +460,12 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 6. ~~#183 — Upgrade SDK traduction~~ FAIT (PR #210 merged, avril 2026)
 7. ~~#193 — GSheet ↔ CSV sync~~ FAIT (PR #200 merged, avril 2026)
 8. ~~#202 Phase 1 — CSV text micro-fixes~~ FAIT (PR #203 + #213 merged)
-9. Valider DatasetUpdater round-trip avec OpenAI API (3-5 records, Enabled=true)
-10. #211 — Retraduction complète PT Rules via pipeline (débloqué par #183)
+9. Valider DatasetUpdater round-trip avec OpenAI API (3-5 records, Enabled=true) — smoke test gpt-5.5 en cours (po-2023, cycle 61bis)
+10. ~~#211 — Retraduction PT Rules~~ ✅ DONE (closed 2026-05-17), Rules PT 100% sauf row 1 cover (fix PR #306 cycle 47)
 11. #212 — Playwright visual regression tests pour PDFs générés
-12. Virtues i18n — ajouter colonnes _en/_ru/_pt au CSV + traduire
-13. Scenarii — 77 scénarios manquants EN/RU/PT à traduire
-14. #134 — GitHub Release
+12. ~~Virtues i18n — ajouter colonnes _en/_ru/_pt~~ ✅ DONE (April-May 2026, PRs #218/#236/#246/#290/#295) — 100% coverage title/description/remark
+13. Scenarii EN/RU/PT — 76/167 records missing (~46%), Phase 1 EN run via gpt-5.5 (post smoke test cycle 61bis)
+14. #134 — GitHub Release v0.9.0 (en attente validation docs)
 15. #133 — Publication OWL
 16. #131/#132 — DNN site + déploiement
 
@@ -481,14 +484,14 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 | `e24cbd17` | fix(prompt): enable #nullable context and guard null param.Name |
 | `092d4639` | Merge PR #200 — bidirectional GSheet ↔ CSV sync (#193) |
 
-### Data Quality Issues (April 2026)
+### Data Quality Issues (April-May 2026)
 
 | Issue | Description | Status |
 | ------- | ----------- | ------ |
 | Fallacies duplicate PKs 520, 1000 | Warning surfaces during GSheet sync | Needs upstream fix |
-| Scenarii 53% translated | 77/167 scenarios missing EN/RU/PT | Blocked by #211 → then pipeline run |
-| Virtues 0% translated | No _en/_ru/_pt columns | Unblocked by #183, needs CSV columns added |
-| PT Rules MT errors (#211) | Catastrophic MT translations | Needs full retranslation via pipeline |
+| Scenarii 54% translated | 76/167 records missing EN/RU/PT (title/context/issue) | Pipeline run via gpt-5.5 (smoke test cycle 61bis in progress) |
+| ~~Virtues 0% translated~~ | ✅ Resolved via PRs #218, #236, #246, #290, #295 (April-May 2026) — 100% coverage title/description/remark × 4 languages | DONE |
+| PT Rules row 1 EN contamination | Rules cover showed "Liars 'School" instead of "A Escola dos Mentirosos" | ✅ Fix PR #306 cycle 47 (1 cell CSV, native PT validated po-2023) |
 
 ## Related Documentation
 
