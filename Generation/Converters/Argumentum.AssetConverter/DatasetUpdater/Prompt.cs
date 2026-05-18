@@ -18,6 +18,10 @@ public class Prompt
 
     public string ApiKey { get; set; } = "";
 
+    public string? BaseUrl { get; set; }
+
+    public int? MaxOutputTokens { get; set; }
+
     public string SystemPrompt { get; set; } = "";
 
     public List<PromptExample> DialogPrompts { get; set; } = new();
@@ -32,7 +36,15 @@ public class Prompt
         {
             if (_chatClient == null)
             {
-                _openAIClient = new OpenAI.OpenAIClient(ApiKey);
+                if (!string.IsNullOrEmpty(BaseUrl))
+                {
+                    var options = new OpenAI.OpenAIClientOptions { Endpoint = new Uri(BaseUrl) };
+                    _openAIClient = new OpenAI.OpenAIClient(new System.ClientModel.ApiKeyCredential(ApiKey), options);
+                }
+                else
+                {
+                    _openAIClient = new OpenAI.OpenAIClient(ApiKey);
+                }
                 _chatClient = _openAIClient.GetChatClient(Model);
             }
             return _chatClient;
@@ -76,6 +88,11 @@ public class Prompt
         messages.Add(new UserChatMessage(UserPrompt));
 
         var options = new ChatCompletionOptions();
+
+        if (MaxOutputTokens.HasValue)
+        {
+            options.MaxOutputTokenCount = MaxOutputTokens.Value;
+        }
 
         if (Functions != null && Functions.Count > 0)
         {

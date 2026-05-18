@@ -226,3 +226,4 @@ _ref_preview/
 
 # Claude Code session artifacts in subdirectories (not root .claude/)
 Generation/**/.claude/
+.keys/
