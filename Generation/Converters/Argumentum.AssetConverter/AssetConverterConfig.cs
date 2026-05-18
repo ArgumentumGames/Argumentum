@@ -129,9 +129,9 @@ namespace Argumentum.AssetConverter
 				},
 				new CardSetLocalization()
 				{
-					// Virtues: CSV currently only has _fr columns (issue #183/#205 upgrade unblocks translation but dataset not yet regenerated).
-					// Mapping is a no-op until the CSV exposes title_en/description_en/... etc.
+					// Virtues: CSV has fr/en/ru/pt at 100% coverage on title/description/remark (PRs #218, #236, #246, #290, #295 — April-May 2026).
 					// Template placeholders use {{title_fr}}, {{description_fr}}, {{family_fr}}, {{subfamily_fr}}, {{subsubfamily_fr}}, {{remark_fr}}.
+					// FrontFieldConversions below swap _fr → _en/_ru/_pt at runtime via LocalizationConfig.CardSetLocalizations.
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Virtues,
