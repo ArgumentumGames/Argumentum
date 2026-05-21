@@ -1,4 +1,4 @@
-pk,Text,Text_en,Text_ru,Text_pt,print_and_play
+﻿pk,Text,Text_en,Text_ru,Text_pt,print_and_play
 Rules_01,"# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Argumentum
@@ -75,7 +75,8 @@ Fallacy cards are shuffled, as well as scenario cards. Two piles of scenario car
 
 The first drawer is drawn at random. Each player has a small unique object (coin, bean...) for voting.","
 
-## Начало игры
+
+## Начало игры
 
 В зависимости от количества игроков и желаемого уровня сложности, мы раздаем карты ошибочных аргументов, минимум по 7 на игрока. Справа внизу на картах обозначен уровень сложности, вы можете выбирать тот, что нужен вам. 
 
@@ -96,22 +97,22 @@ Escolhemos a duração do jogo. Isso inclui uma sucessão de rodadas de cerca de
 
 Constituímos 2 desenhos de cartões de cartão de cenário colocados no meio da mesa. Cada jogador é distribuído a 5 argumentos falaciosos que ele mantém para ele. O restante dos cartões constitui a reserva.
 
-Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação. O primeiro picador é quem primeiro se lembra de um argumento enganoso."
+Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação. O primeiro puxador é quem primeiro se lembra de um argumento enganoso."
 Rules_04,"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
 Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
 
-### 2.       Le baratineur
+### 2.       Le embromador
 
-Le baratineur sera chargé de conduire l’argumentation du scenario, pour illustrer l’une de ses cartes d’argument fallacieux. Son objectif sera de faire deviner cette carte à une majorité d’autres joueurs.
+Le embromador sera chargé de conduire l’argumentation du scenario, pour illustrer l’une de ses cartes d’argument fallacieux. Son objectif sera de faire deviner cette carte à une majorité d’autres joueurs.
 
-Le rôle de baratineur est attribué au premier joueur qui pose, face cachée, la carte d’argument fallacieux qu’il compte jouer. A défaut, le joueur à la gauche du piocheur est désigné baratineur et pose sa carte.
+Le rôle de embromador est attribué au premier joueur qui pose, face cachée, la carte d’argument fallacieux qu’il compte jouer. A défaut, le joueur à la gauche du piocheur est désigné embromador et pose sa carte.
 
 ### 3.       La saynète
 
-Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. Le baratineur et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle le baratineur va tâcher d’utiliser le type d’argument indiqué par la carte qu’il a choisie. ","## Course of a round
+Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. Le embromador et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle le embromador va tâcher d’utiliser le type d’argument indiqué par la carte qu’il a choisie. ","## Course of a round
 
 ### 1.       The drawer
 
@@ -141,32 +142,32 @@ The drawer starts the debate as he wishes. He can use the suggestion in italics 
 Ведущий начинает дебаты, как желает. Он может прочитать  предложение в нижней части карты сценария. Затем у болтуна и ведущего есть максимум минута для импровизации дискуссии, в ходе которой болтун попытается использовать тип аргумента, указанный выбранной им картой.
 ","# Roll of the English Channel
 
-### 1. o pêssego
+### 1. o embromador
 
 A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
 
-### 2. O baratineur
+### 2. O embromador
 
-O Baratiner será responsável por conduzir o argumento do cenário, para ilustrar um de seus cartões de argumento falacioso. Seu objetivo será adivinhar esta carta para a maioria dos outros jogadores.
+O Embromador será responsável por conduzir o argumento do cenário, para ilustrar um de seus cartões de argumento falacioso. Seu objetivo será adivinhar esta carta para a maioria dos outros jogadores.
 
-O papel de Baratineur é designado para o primeiro jogador que posa, em frente a Hidden, o argumento falacioso que ele pretende jogar. Caso contrário, o jogador à esquerda do picador é designado baratineur e coloca seu cartão.
+O papel de Embromador é designado para o primeiro jogador que posa, em frente a Hidden, o argumento falacioso que ele pretende jogar. Caso contrário, o jogador à esquerda do puxador é designado embromador e coloca seu cartão.
 
 ### 3. SayNet
 
-O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu."
-Rules_05,"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
+O puxador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O embromador e o puxador têm um minuto máximo para improvisar uma discussão durante a qual o embromador tentará usar o tipo de argumento indicado pelo cartão que ele escolheu."
+Rules_05,"Le embromador expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le embromador peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
 
-Tous les joueurs à l’exception du baratineur, mais piocheur compris, constituent le jury. A la fin de la saynète, chaque juré choisit parmi ses propres cartes celle qui se rapproche au mieux de l’argumentation entendue et la pose face cachée avec celle du baratineur. A 3 ou à 4 joueurs, les jurés choisissent 2 cartes.
+Tous les joueurs à l’exception du embromador, mais piocheur compris, constituent le jury. A la fin de la saynète, chaque juré choisit parmi ses propres cartes celle qui se rapproche au mieux de l’argumentation entendue et la pose face cachée avec celle du embromador. A 3 ou à 4 joueurs, les jurés choisissent 2 cartes.
 
-Le baratineur ramasse les cartes, les mélange et les révèle au milieu de la table. Les jurés prennent connaissance des cartes révélées, un juré peut en faire la lecture à haute voix. Chacun des jurés lève le doigt pour signaler quand il est prêt à voter.
+Le embromador ramasse les cartes, les mélange et les révèle au milieu de la table. Les jurés prennent connaissance des cartes révélées, un juré peut en faire la lecture à haute voix. Chacun des jurés lève le doigt pour signaler quand il est prêt à voter.
 
-Quand le jury est prêt, sans concertation, chacun de ses membres désigne simultanément la carte qu’il pense avoir été jouée par le baratineur en y posant sont petit objet unique (ou à défaut en y posant le doigt).
+Quand le jury est prêt, sans concertation, chacun de ses membres désigne simultanément la carte qu’il pense avoir été jouée par le embromador en y posant sont petit objet unique (ou à défaut en y posant le doigt).
 
 ### 5.       Le décompte
 
-Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, baratineur ou membre du jury (🥇👇👇…➜🏆). 
+Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, embromador ou membre du jury (🥇👇👇…➜🏆). 
 Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui.","The smooth talker presents his arguments and the drawer gives him the reply. The smooth talker can choose to shorten the skit at any time.
 
 ### 4.       The jury
@@ -193,21 +194,21 @@ Otherwise, the winner of the round is the one whose card has obtained the most v
 
 Победителем этого круга является тот, чья карта получила наибольшее количество голосов, это может быть болтун или кто-то из игроков (🥇👇👇… ➜).
 Победивший оставляет карту себе и кладет ее перед собой лицом вверх. Он получил 1 очко. 
-","O baratiner exibe seus argumentos e o picador lhe dá a réplica sem tentar dominar a cena. O Baratinener pode optar por reduzir o Saynet quando desejar.
+","O embromador exibe seus argumentos e o puxador lhe dá a réplica sem tentar dominar a cena. O Baratinener pode optar por reduzir o Saynet quando desejar.
 
 ### 4. O júri
 
-Todos os jogadores com exceção do baratineur, mas incluídos, constituem o júri. No final do Saynet, cada jurado escolhe entre seus próprios cartões que estão mais próximos do argumento ouvido e a instalação está escondida com a do baratineur. Com 3 ou 4 jogadores, os jurados escolhem 2 cartas.
+Todos os jogadores com exceção do embromador, mas incluídos, constituem o júri. No final do Saynet, cada jurado escolhe entre seus próprios cartões que estão mais próximos do argumento ouvido e a instalação está escondida com a do embromador. Com 3 ou 4 jogadores, os jurados escolhem 2 cartas.
 
-O baratiner pega os cartões, os mistura e os revela no meio da mesa. Os jurados tomam nota dos cartões revelados, um jurado pode lê -lo em voz alta. Cada um dos jurados levanta o dedo para apontar quando estiver pronto para votar.
+O embromador pega os cartões, os mistura e os revela no meio da mesa. Os jurados tomam nota dos cartões revelados, um jurado pode lê -lo em voz alta. Cada um dos jurados levanta o dedo para apontar quando estiver pronto para votar.
 
-Quando o júri estiver pronto, sem consulta, cada um de seus membros designa simultaneamente o cartão que ele acha que foi interpretado pelo baratineur, posando, é um pequeno objeto único (ou falhando que colocando o dedo).
+Quando o júri estiver pronto, sem consulta, cada um de seus membros designa simultaneamente o cartão que ele acha que foi interpretado pelo embromador, posando, é um pequeno objeto único (ou falhando que colocando o dedo).
 
 ### 5. A contagem
 
-O vencedor do canal é aquele cujo cartão obteve o maior número de votos, baratineur ou membro do júri (🥇👇👇… ➜).
+O vencedor do canal é aquele cujo cartão obteve o maior número de votos, embromador ou membro do júri (🥇👇👇… ➜).
 Ele então mantém seu cartão, que vale 1 ponto e o rosto visível e deitado na frente dele."
-Rules_06,"En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le baratineur qui l’emporte (❌👇🎭➜🎭🏆).
+Rules_06,"En cas d’égalité (🥈👇👇≟🥈👇👇), le embromador l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du embromador sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le embromador qui l’emporte (❌👇🎭➜🎭🏆).
 
 ### 6.       Les pioches
 
@@ -216,18 +217,18 @@ Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certai
 * Le vainqueur de la manche ne pioche pas de nouvelle carte. (✅🏆➜❌0🎴)
 * Tous les autres joueurs piochent une carte (❌🏆➜✅1🎴), ou 2 cartes à 3 ou 4 joueurs
 * Les membres du jury qui ont obtenu des votes piochent une carte de plus (✅🧲👇➜✅+1🎴)
-* Les jurés qui ont trouvé la carte du baratineur piochent une carte de plus (✅👇🎭➜✅+1🎴)
+* Les jurés qui ont trouvé la carte du embromador piochent une carte de plus (✅👇🎭➜✅+1🎴)
 * Les cartes jouées sont remises à la réserve.
 * Le voisin de gauche du vainqueur devient le piocheur de la manche suivante.
 
 ## Variantes :
 
-*Si la carte du baratineur est désignée par l’ensemble du jury, il ne remporte pas la manche, chacun pioche une carte dans la réserve à l’exception du baratineur.
+*Si la carte du embromador est désignée par l’ensemble du jury, il ne remporte pas la manche, chacun pioche une carte dans la réserve à l’exception du embromador.
 * Au cours de la saynète, n'importe quel membre du jury peut utiliser une carte de son jeu pour intervenir dans le rôle du piocheur. Si son intervention illustre bien sa carte, il en repioche une et sera désigné le prochain piocheur, sinon, il perd sa carte et la partie reprend son cour.
-* Le piocheur a le droit de désigner directement le baratineur de la manche.
-* Si le piocheur gagne, il gagne également la carte du baratineur.
-* Le baratineur peut poser plusieurs cartes. Autant de vainqueurs au nombre de votes sont déclarés, le baratineur pouvant remporter tout ou partie de ses cartes.
-* Le vainqueur de la partie doit incarner le baratineur d’un ultime scenario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
+* Le piocheur a le droit de désigner directement le embromador de la manche.
+* Si le piocheur gagne, il gagne également la carte du embromador.
+* Le embromador peut poser plusieurs cartes. Autant de vainqueurs au nombre de votes sont déclarés, le embromador pouvant remporter tout ou partie de ses cartes.
+* Le vainqueur de la partie doit incarner le embromador d’un ultime scenario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
 
 With the exception of the winner, each player earns 1 point if their card has been chosen by at least one member of the jury and another point if they have found the smooth talker's card. The other players, including the smooth talker if he has not won the round, draw a card. Played cards are returned to the deck.
 
@@ -258,7 +259,8 @@ The winner's left-hand neighbour becomes the drawer for the next round.
 * Если ведущий выиграет, он забирает также и карту болтуна. 
 * Победителем всей игры будет болтун, разыгравший в последнем сценарии все карты, которые он забрал в ходе партии. 
 
-Болтун демонстрирует свои аргументы, и ведущий отвечает ему, не стремясь доминировать на сцене. Болтун может остановить сценку, когда пожелает.","No caso de igualdade (🥈👇👇≟🥈👇👇), o baratineur prevalece (✅🎭➜🎭🏆 ✅🎭➜🎭🏆 ✅🎭➜🎭🏆), e falhando nisso (❌🎭), os jurados aclamados que encontraram o cartão Baratineur são todos declarados vitoriosos (✅👇 ✅👇 🎭 Marca). Se nenhum dos jurados em questão o encontrou, é o baratineur que ganha (marca).
+Болтун демонстрирует свои аргументы, и ведущий отвечает ему, не стремясь доминировать на сцене. Болтун может остановить сценку, когда пожелает.
+","No caso de igualdade (🥈👇👇≟🥈👇👇), o embromador prevalece (✅🎭➜🎭🏆 ✅🎭➜🎭🏆 ✅🎭➜🎭🏆), e falhando nisso (❌🎭), os jurados aclamados que encontraram o cartão Embromador são todos declarados vitoriosos (✅👇 ✅👇 🎭 Marca). Se nenhum dos jurados em questão o encontrou, é o embromador que ganha (marca).
 
 ### 6. Escolhas
 
@@ -267,17 +269,17 @@ Depois que o vencedor for designado, os jogadores desenham uma série de cartas 
 * O vencedor do canal não desenha uma nova carta. (✅🏆Eceds0🎴)
 * Todos os outros jogadores desenham uma carta (❌🏆 Brandies ❌🏆1🎴) ou 2 cartas em 3 ou 4 jogadores
 * Os membros do júri que obtiveram votos desenham mais uma carta (✅🧲👇➜✅+1🎴)
-* Os jurados que encontraram o cartão Baratineur desenham mais uma carta (✅👇🎭➜✅+1🎴)
+* Os jurados que encontraram o cartão Embromador desenham mais uma carta (✅👇🎭➜✅+1🎴)
 * As cartas jogadas são devolvidas à reserva.
 * O vizinho esquerdo do vizinho se torna o próximo cabo da próxima rodada.
 
 ## variantes:
 
-*Se o cartão Baratineur for designado por todo o júri, ele não ganha a rodada, cada um desenhe uma carta na reserva, exceto o baratineur.
+*Se o cartão Embromador for designado por todo o júri, ele não ganha a rodada, cada um desenhe uma carta na reserva, exceto o embromador.
 * Durante o Saynet, qualquer membro do júri pode usar uma carta de seu jogo para intervir no papel de pickaxe. Se sua intervenção ilustrar bem o cartão, ele reipoca um e será nomeado a próxima picareta, se não, ele perde o cartão e o jogo assume sua quadra.
-* Picher tem o direito de designar diretamente o baratineur do canal.
-* Se o picador vencer, ele também vence o cartão Baratineur.
-* O baratineur pode definir vários cartões. Muitos vencedores de votação são declarados, o Baratinener que pode ganhar todas ou parte de suas cartas.
+* Picher tem o direito de designar diretamente o embromador do canal.
+* Se o puxador vencer, ele também vence o cartão Embromador.
+* O embromador pode definir vários cartões. Muitos vencedores de votação são declarados, o Baratinener que pode ganhar todas ou parte de suas cartas.
 * O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo."
 Rules_07,"# Argumentum
 ## Le Bingo mixologie argumentative","# Argumentum
@@ -494,7 +496,7 @@ Dependendo do número de jogadores e do nível de dificuldade desejado, constitu
 
 Os cartões de argumento falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 escolhas de cartas de cenário colocadas no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões é a escolha.
 
-O primeiro picador é aquele que foi influenciado por um chamado à emoção."
+O primeiro puxador é aquele que foi influenciado por um chamado à emoção."
 Rules_13,"## Déroulé de la manche
 
 ### 1.       Le piocheur
@@ -512,9 +514,9 @@ Si un joueur ne trouve plus de nouvel argument au bout de 10 secondes, il pioche
 
 La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.  ","# Roll of the English Channel
 
-### 1. The peacher
+### 1. The smooth talker
 
-The drawer draws a scenario card from the two picks available and bed aloud, with the exception of the last sentence in italics at the bottom of the card.
+The drawer draws a scenario card from the two picks available and reads aloud, with the exception of the last sentence in italics at the bottom of the card.
 
 
 ### 2. The round of arguments
@@ -542,20 +544,20 @@ The sleeve stops when there is only one person left is at stake. The neighbor on
 
 Раунд завершается, когда остается только один игрок. Сосед слева от ведущего становится новым ведущим и вытягивает сценарий следующего раунда.","# Roll of the English Channel
 
-### 1. o pêssego
+### 1. o embromador
 
 A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
 
 
 ### 2. A rodada de argumentos
 
-Ao chegar à esquerda do vizinho do pêssego, cada jogador deve oferecer um argumento que responda à liminar do cenário. Se um jogador vê uma de suas cartas nos argumentos apresentados, ele dá seu cartão àquele que o usou e o espalha para fora do canal.
+Ao chegar à esquerda do vizinho do embromador, cada jogador deve oferecer um argumento que responda à liminar do cenário. Se um jogador vê uma de suas cartas nos argumentos apresentados, ele dá seu cartão àquele que o usou e o espalha para fora do canal.
 Se um jogador não encontrar mais um novo argumento após 10 segundos, ele desenha um novo cartão e é excluído do canal.
 
 
 ### 3. Fim da rodada
 
-A manga para quando há apenas uma pessoa está em jogo. O vizinho à esquerda do picador se torna o novo picador e puxa o cenário da próxima rodada."
+A manga para quando há apenas uma pessoa está em jogo. O vizinho à esquerda do puxador se torna o novo puxador e puxa o cenário da próxima rodada."
 Rules_14,"##       Fin de partie et décompte
 
 
@@ -575,9 +577,9 @@ Se um jogador consegue se livrar de todas as suas cartas, ele vence o jogo.
 Caso contrário, o jogo para no final do número de mangas inicialmente planejado. O vencedor é quem tem menos cartas."
 Rules_15,"# Argumentum
 ## Le moulin à baratin","# Argumentum
-## Le Moulin in Baratin","# Argumentum
+## The Smooth-Talk Mill","# Argumentum
 ## Мели, Емеля","# Argumentum
-## Le Moulin em Baratin"
+## O Moinho de Embromada"
 Rules_16,"*Règles du jeu : de 2 à 8 joueurs*
 
 ## Matériel
@@ -659,7 +661,7 @@ Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la
 
 ### 2.       La course de vitesse
 
-Le voisin de gauche du piocheur est le baratineur..
+Le voisin de gauche du piocheur est le embromador..
 On prépare un minuteur de 3 minutes.
 
 Il commence à piocher des cartes d'arguments fallacieux. Pour chaque carte, il doit proposer un argument illustrant la carte pour acter le scénario. S'il y parvient, il remporte la carte, sinon il peut également passer, à raison de 3 jokers par manche, et piocher la suivante.
@@ -667,16 +669,16 @@ Il commence à piocher des cartes d'arguments fallacieux. Pour chaque carte, il 
 
 ### 3.       Fin de la manche
 
-La manche s'arrête au bout du temps imparti, Le baratineur obtient en points le nombre de cartes emportées sur la manche. Il devient piocheur de la manche suivante.","# Roll of the English Channel
+La manche s'arrête au bout du temps imparti, Le embromador obtient en points le nombre de cartes emportées sur la manche. Il devient piocheur de la manche suivante.","# Roll of the English Channel
 
-### 1. The peacher
+### 1. The smooth talker
 
-The drawer draws a scenario card from the two picks available and bed aloud, with the exception of the last sentence in italics at the bottom of the card.
+The drawer draws a scenario card from the two picks available and reads aloud, with the exception of the last sentence in italics at the bottom of the card.
 
 
 ### 2. speed running
 
-The neighbor's left of the pickler is the baratineur.
+The neighbor's left of the pickler is the embromador.
 We are preparing a 3 -minute timer.
 
 He starts drawing fallacious arguments. For each card, he must offer an argument illustrating the card to act the scenario. If it succeeds, he wins the card, otherwise he can also pass, at the rate of 3 jokers per handle, and draw the next one.
@@ -684,7 +686,7 @@ He starts drawing fallacious arguments. For each card, he must offer an argument
 
 ### 3. End of the round
 
-The sleeve stops at the end of the time allocated, the baratineur obtains in points the number of cards swept away on the sleeve. He becomes picky of the next round.","# Ход партии
+The sleeve stops at the end of the time allocated, the embromador obtains in points the number of cards swept away on the sleeve. He becomes picky of the next round.","# Ход партии
 
 ### 1Ведущий
 
@@ -701,14 +703,14 @@ The sleeve stops at the end of the time allocated, the baratineur obtains in poi
 
 Раунд прекращается, когда время вышло. Болтун получает столько баллов, сколько карт у него оказалось. Он становится ведущим следующего раунда. ","# Roll of the English Channel
 
-### 1. o pêssego
+### 1. o embromador
 
 A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
 
 
 ### 2. Velocidade em execução
 
-A esquerda do vizinho do picador é o baratineur.
+A esquerda do vizinho do puxador é o embromador.
 Estamos preparando um cronômetro de 3 minuto.
 
 Ele começa a desenhar argumentos falaciosos. Para cada cartão, ele deve oferecer um argumento que ilustra o cartão para agir o cenário. Se for bem -sucedido, ele vence o cartão, caso contrário, ele também poderá passar, à taxa de 3 brincadeiras por manípulo, e desenhar o próximo.
@@ -716,7 +718,7 @@ Ele começa a desenhar argumentos falaciosos. Para cada cartão, ele deve oferec
 
 ### 3. Fim da rodada
 
-A manga para no final do tempo alocada, o baratineur obtém em pontos o número de cartas varridas na manga. Ele se torna exigente com a próxima rodada."
+A manga para no final do tempo alocada, o embromador obtém em pontos o número de cartas varridas na manga. Ele se torna exigente com a próxima rodada."
 Rules_19,"##       Fin de partie
 
 
@@ -724,7 +726,7 @@ Le premier joueur arrivant à 20 points emporte la partie
 
 ## Variantes
 
-* A chaque carte piochée, après l'argument du baratineur, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l'assemblée vote si elle est jugée meilleure que les précédentes, et l'auteur de la meilleure proposition retenue remporte la carte. 
+* A chaque carte piochée, après l'argument du embromador, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l'assemblée vote si elle est jugée meilleure que les précédentes, et l'auteur de la meilleure proposition retenue remporte la carte. 
 ","##       Game over
 
 
@@ -748,13 +750,13 @@ O primeiro jogador que chega a 20 pontos leva o jogo
 
 ## variantes
 
-* Em cada carta de desenho, após o argumento do Baratiner, os outros jogadores podem oferecer outra ilustração do cartão. Para cada nova proposta, a Assembléia vota se for considerada melhor que os anteriores, e o autor da melhor proposta manteve o cartão.
+* Em cada carta de desenho, após o argumento do Embromador, os outros jogadores podem oferecer outra ilustração do cartão. Para cada nova proposta, a Assembléia vota se for considerada melhor que os anteriores, e o autor da melhor proposta manteve o cartão.
 "
 Rules_20,"# Argumentum
 ## La parlote coinchée","# Argumentum
-## La Parlote Coinchée","# Argumentum
+## The Coinched Chat","# Argumentum
 ## Косноязычное красноречие","# Argumentum
-## LA Parlote Coinchée"
+## O Papo Engatilhado"
 Rules_21,"*Règles du jeu : 4 joueurs*
 
 ## Matériel
@@ -860,9 +862,9 @@ Si aucun joueur ne propose d'argument, la meilleure carte l'emporte.
 
   ","## Start of the round
 
-### 1. The peacher
+### 1. The smooth talker
 
-The drawer draws a scenario card from the two picks available and bed aloud, with the exception of the last sentence in italics at the bottom of the card.
+The drawer draws a scenario card from the two picks available and reads aloud, with the exception of the last sentence in italics at the bottom of the card.
 Then he mixes and distributes the 28 fallacious arguments cards to the 4 players.
 
 ### 2. Atout auction
@@ -914,7 +916,7 @@ If no player offers an argument, the best card wins.
 
   ","## início da rodada
 
-### 1. o pêssego
+### 1. o embromador
 
 A gaveta desenha uma carta de cenário das duas escolhas disponíveis e da cama em voz alta, com exceção da última frase em itálico na parte inferior do cartão.
 Em seguida, ele mistura e distribui os 28 cartões de argumentos falaciosos para os 4 jogadores.
