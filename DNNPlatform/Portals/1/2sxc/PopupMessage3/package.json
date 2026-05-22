@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "js-cookie": "^3.0.1",
+    "js-cookie": "^3.0.7",
     "micromodal": "^0.4.6"
   }
 }
