@@ -1,0 +1,6 @@
+﻿{
+  File: Argumentum_PokerCards_en.pdf,
+  PageWidth: 180.0,
+  PageHeight: 252.0,
+  PageCount: 334
+}
