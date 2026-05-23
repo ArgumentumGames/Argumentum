@@ -1,0 +1,6 @@
+﻿{
+  File: Argumentum_TarotCards_pt.pdf,
+  PageWidth: 169.9,
+  PageHeight: 320.2,
+  PageCount: 390
+}

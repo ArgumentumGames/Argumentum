@@ -9,9 +9,8 @@ using Xunit.Abstractions;
 namespace Argumentum.AssetConverter.VisualTests
 {
     /// <summary>
-    /// Stage 2 of #212: PDF visual regression via pixel snapshot comparison.
-    /// Renders first page of selected PDFs to PNG, then uses Verify for snapshot diff.
-    /// First run creates baseline (.verified.png), subsequent runs compare against it.
+    /// Stage 2 of #212: PDF structural regression via Verify snapshot comparison.
+    /// Captures page dimensions, page count, text length, and letter count.
     /// Tests pass silently if Target/ doesn't exist (CI cold-start).
     /// </summary>
     public class PdfSnapshotTests : IDisposable
@@ -41,15 +40,19 @@ namespace Argumentum.AssetConverter.VisualTests
             return true;
         }
 
-        // --- FR Baseline Tests (Stage 2 scaffolding) ---
+        // --- FallaciesWeb A4 (all languages) ---
 
-        [Fact]
-        public async Task FR_FallaciesWeb_A4_FirstPage_Structure()
+        [Theory]
+        [InlineData("fr")]
+        [InlineData("en")]
+        [InlineData("ru")]
+        [InlineData("pt")]
+        public async Task FallaciesWeb_A4_FirstPage_Structure(string lang)
         {
             if (!EnsureTarget()) return;
 
-            var pdfPath = GetPdfPath("fr", "Argumentum_Fallacies_Web_A4_fr.pdf");
-            if (!File.Exists(pdfPath)) { _output.WriteLine("PDF not found"); return; }
+            var pdfPath = GetPdfPath(lang, $"Argumentum_Fallacies_Web_A4_{lang}.pdf");
+            if (!File.Exists(pdfPath)) { _output.WriteLine($"PDF not found: {pdfPath}"); return; }
 
             using var doc = PdfDocument.Open(pdfPath);
             var page = doc.GetPage(1);
@@ -67,16 +70,22 @@ namespace Argumentum.AssetConverter.VisualTests
 
             _output.WriteLine($"Snapshot: {info.File} — {info.PageWidth}x{info.PageHeight}pt, {info.PageCount} pages, {info.LetterCount} letters");
 
-            await Verifier.Verify(info);
+            await Verifier.Verify(info).UseParameters(lang);
         }
 
-        [Fact]
-        public async Task FR_TarotCards_FirstPage_Structure()
+        // --- TarotCards (all languages) ---
+
+        [Theory]
+        [InlineData("fr")]
+        [InlineData("en")]
+        [InlineData("ru")]
+        [InlineData("pt")]
+        public async Task TarotCards_FirstPage_Structure(string lang)
         {
             if (!EnsureTarget()) return;
 
-            var pdfPath = GetPdfPath("fr", "Argumentum_TarotCards_fr.pdf");
-            if (!File.Exists(pdfPath)) { _output.WriteLine("PDF not found"); return; }
+            var pdfPath = GetPdfPath(lang, $"Argumentum_TarotCards_{lang}.pdf");
+            if (!File.Exists(pdfPath)) { _output.WriteLine($"PDF not found: {pdfPath}"); return; }
 
             using var doc = PdfDocument.Open(pdfPath);
             var page = doc.GetPage(1);
@@ -92,16 +101,22 @@ namespace Argumentum.AssetConverter.VisualTests
 
             _output.WriteLine($"Snapshot: {info.File} — {info.PageWidth}x{info.PageHeight}pt, {info.PageCount} pages");
 
-            await Verifier.Verify(info);
+            await Verifier.Verify(info).UseParameters(lang);
         }
 
-        [Fact]
-        public async Task FR_PokerCards_FirstPage_Structure()
+        // --- PokerCards (all languages) ---
+
+        [Theory]
+        [InlineData("fr")]
+        [InlineData("en")]
+        [InlineData("ru")]
+        [InlineData("pt")]
+        public async Task PokerCards_FirstPage_Structure(string lang)
         {
             if (!EnsureTarget()) return;
 
-            var pdfPath = GetPdfPath("fr", "Argumentum_PokerCards_fr.pdf");
-            if (!File.Exists(pdfPath)) { _output.WriteLine("PDF not found"); return; }
+            var pdfPath = GetPdfPath(lang, $"Argumentum_PokerCards_{lang}.pdf");
+            if (!File.Exists(pdfPath)) { _output.WriteLine($"PDF not found: {pdfPath}"); return; }
 
             using var doc = PdfDocument.Open(pdfPath);
             var page = doc.GetPage(1);
@@ -117,7 +132,7 @@ namespace Argumentum.AssetConverter.VisualTests
 
             _output.WriteLine($"Snapshot: {info.File} — {info.PageWidth}x{info.PageHeight}pt, {info.PageCount} pages");
 
-            await Verifier.Verify(info);
+            await Verifier.Verify(info).UseParameters(lang);
         }
     }
 }
