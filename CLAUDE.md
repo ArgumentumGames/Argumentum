@@ -498,3 +498,29 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 - [ARCHITECTURE_PIPELINE.md](Generation/Documentation/ARCHITECTURE_PIPELINE.md) - Detailed pipeline architecture
 - [docs/sddd/](docs/sddd/) - SDDD methodology and investigation reports
 - [docs/investigations/](docs/investigations/) - Debug/archaeology reports (37 reports + scripts)
+
+## Multi-Agent Coordination Protocol (May 2026)
+
+### Agents
+
+- **myia-ai-01** (coordinator) : review, gating, visual validation, merges, jsboige liaison
+- **myia-po-2023** (worker) : DatasetUpdater runs, pipeline regeneration, mechanical tasks
+
+### Anti-Silence Rules (lesson learned from repeated deadlocks)
+
+1. **ACK obligatoire** : Tout TASK/GO reçu DOIT être ACK dans les 15 min (1 ligne : « ACK GO reçu, ETA = X »). Pas d'ACK = signal de session endormie.
+2. **Pas d'attente passive** : Si un ACK est attendu de l'autre agent depuis >30 min → poster un follow-up. Si >1h → escalader à jsboige via dashboard tag ASK.
+3. **Dashboard = source de vérité** : Toujours lire le dashboard en DEBUT de session ET à CHAQUE tick de boucle autonome. Les GO/décisions sont dedans — ne PAS se baser uniquement sur `gh pr list`. Un agent qui ne lit que les PRs et ignore le dashboard est sourd aux instructions de coordination.
+4. **Condensation** : Ne JAMAIS condenser manuellement — laisser le moteur automatique gérer (seuil ~88%).
+5. **Post-actions** : Après chaque action (run, PR, merge), poster un message dashboard avec le résultat. Ne pas disparaître silencieusement.
+6. **ScheduleWakeup** : Réarmer APRÈS chaque message DONE/task burst. Ne pas laisser la boucle mourir.
+7. **Boucle autonome = active, pas passive** : À chaque tick, lire le dashboard + inbox. Si un TASK/GO est en attente → agir immédiatement. Ne PAS faire que `gh pr list` → `[]` → re-arm. C'est le pattern qui a causé 10h+ de deadlock (mai 2026).
+
+### DatasetUpdater Campaign (Issue #335)
+
+Plan validé par jsboige + coordinateur :
+
+- **P1** : Scenarii RU puis PT (76 lignes, bloquant v0.9.0) — BLOCKED sur quota OpenAI
+- **P2** : Fallacies taxonomy gaps (desc_en, example_en, hierarchy)
+- **P3** : Virtues taxonomy gaps (subfamily, subsubfamily)
+- **P4** : Quality passes (relecture + amélioration)
