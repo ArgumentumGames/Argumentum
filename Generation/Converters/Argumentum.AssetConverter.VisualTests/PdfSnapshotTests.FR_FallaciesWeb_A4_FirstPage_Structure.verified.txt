@@ -1,0 +1,7 @@
+﻿{
+  File: Argumentum_Fallacies_Web_A4_fr.pdf,
+  PageWidth: 595.0,
+  PageHeight: 842.0,
+  PageCount: 15,
+  TextPreview: 
+}
