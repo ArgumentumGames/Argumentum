@@ -147,13 +147,16 @@ namespace Argumentum.AssetConverter.Ontology
         public void DeclareConceptScheme(RDFResource scheme)
         {
             DeclareClass(scheme);
-            SKOSHelper.DeclareConceptScheme(_ontology, scheme);
+            // SKOSHelper.DeclareConceptScheme is broken in OWLSharp 4.9.0 — emit rdf:type directly
+            AnnotateConceptWithResource(scheme, RDFVocabulary.RDF.TYPE, SKOSVocabulary.ConceptScheme);
         }
 
         public void DeclareConcept(RDFResource concept, RDFResource scheme)
         {
             DeclareClass(concept);
-            SKOSHelper.DeclareConcept(_ontology, concept, conceptScheme: scheme);
+            // SKOSHelper.DeclareConcept is broken in OWLSharp 4.9.0 — emit rdf:type + skos:inScheme directly
+            AnnotateConceptWithResource(concept, RDFVocabulary.RDF.TYPE, SKOSVocabulary.Concept);
+            AnnotateConceptWithResource(concept, SKOSVocabulary.InScheme, scheme);
         }
 
         public void DeclareTopConcept(RDFResource concept, RDFResource scheme)
@@ -373,6 +376,19 @@ namespace Argumentum.AssetConverter.Ontology
         public OWLOntology GetOntology()
         {
             return _ontology;
+        }
+
+        public List<RDFResource> GetResourcesByType(RDFResource typeResource)
+        {
+            return GetAnnotationSubjects(typeResource);
+        }
+
+        public bool HasAnnotation(RDFResource subject, RDFResource property, RDFResource value)
+        {
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Any(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
+                    && a.SubjectIRI.Equals(subject.URI)
+                    && a.ValueIRI != null && a.ValueIRI.Equals(value.URI));
         }
     }
 }

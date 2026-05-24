@@ -95,9 +95,63 @@ namespace Argumentum.AssetConverter.Tests
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
         public async Task<bool> ValidateOwlOntologyStructure()
         {
-            // Pour l'instant on ne fait rien, mais il faudra implémenter les tests
             await Task.CompletedTask;
-            return true;
+            var errors = new List<string>();
+
+            // Check ConceptScheme has rdf:type skos:ConceptScheme
+            var conceptSchemes = _ontology.GetResourcesByType(SKOSVocabulary.ConceptScheme);
+            if (conceptSchemes.Count == 0)
+            {
+                errors.Add("No skos:ConceptScheme found with rdf:type assertion");
+            }
+            Logger.Log($"ConceptSchemes with rdf:type: {conceptSchemes.Count}");
+
+            // Check concepts have rdf:type skos:Concept
+            var concepts = _ontology.GetResourcesByType(SKOSVocabulary.Concept);
+            if (concepts.Count == 0)
+            {
+                errors.Add("No skos:Concept found with rdf:type assertion");
+            }
+            Logger.Log($"Concepts with rdf:type: {concepts.Count}");
+
+            // Check top concepts exist
+            var topConcepts = _ontology.GetTopConcepts();
+            if (topConcepts.Count == 0)
+            {
+                errors.Add("No top concepts found (skos:hasTopConcept)");
+            }
+            Logger.Log($"Top concepts: {topConcepts.Count}");
+
+            // Check hierarchy via narrower/broader on top concepts
+            int totalNarrower = 0;
+            foreach (var topConcept in topConcepts.Take(5))
+            {
+                var labels = _ontology.GetConceptPreferredLabels(topConcept);
+                var label = labels.Count > 0 ? labels[0].Value : topConcept.URI.ToString();
+                // Check that top concept has narrower children
+                var childConcepts = _ontology.GetConcepts();
+                foreach (var child in childConcepts.Take(20))
+                {
+                    if (_ontology.CheckIsNarrowerConcept(child, topConcept))
+                    {
+                        totalNarrower++;
+                    }
+                }
+                Logger.Log($"  Top concept '{label}': checked narrower relations");
+            }
+            if (totalNarrower == 0)
+            {
+                errors.Add("No narrower concepts found in hierarchy");
+            }
+
+            foreach (var error in errors)
+            {
+                Logger.LogProblem(error);
+            }
+
+            bool valid = errors.Count == 0;
+            Logger.Log(valid ? "Structure validation: PASS" : $"Structure validation: FAIL ({errors.Count} errors)");
+            return valid;
         }
 
         /// <summary>
@@ -109,9 +163,46 @@ namespace Argumentum.AssetConverter.Tests
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
         public async Task<bool> ValidateMultilingualAnnotations()
         {
-            // Pour l'instant on ne fait rien, mais il faudra implémenter les tests
             await Task.CompletedTask;
-            return true;
+            var errors = new List<string>();
+
+            var concepts = _ontology.GetResourcesByType(SKOSVocabulary.Concept);
+            if (concepts.Count == 0)
+            {
+                Logger.Log("No concepts to validate annotations — skipping");
+                return true;
+            }
+
+            int missingLabels = 0, missingDefs = 0, checkedCount = 0;
+            foreach (var concept in concepts.Take(50))
+            {
+                checkedCount++;
+                var labels = _ontology.GetConceptPreferredLabels(concept);
+                if (labels.Count == 0) missingLabels++;
+
+                var defs = _ontology.GetConceptDocumentation(concept, SKOSDocumentationTypes.Definition);
+                if (defs.Count == 0) missingDefs++;
+            }
+
+            Logger.Log($"Checked {checkedCount} concepts: {missingLabels} missing prefLabel, {missingDefs} missing definition");
+
+            if (missingLabels > checkedCount / 2)
+            {
+                errors.Add($"{missingLabels}/{checkedCount} concepts missing skos:prefLabel");
+            }
+            if (missingDefs > checkedCount / 2)
+            {
+                errors.Add($"{missingDefs}/{checkedCount} concepts missing skos:definition");
+            }
+
+            foreach (var error in errors)
+            {
+                Logger.LogProblem(error);
+            }
+
+            bool valid = errors.Count == 0;
+            Logger.Log(valid ? "Annotation validation: PASS" : $"Annotation validation: FAIL ({errors.Count} errors)");
+            return valid;
         }
 
         /// <summary>
@@ -123,9 +214,42 @@ namespace Argumentum.AssetConverter.Tests
         /// <returns>Une tâche représentant l'opération asynchrone.</returns>
         public async Task<bool> ValidateAIFMappings()
         {
-            // Pour l'instant on ne fait rien, mais il faudra implémenter les tests
             await Task.CompletedTask;
-            return true;
+            var errors = new List<string>();
+
+            var concepts = _ontology.GetResourcesByType(SKOSVocabulary.Concept);
+            if (concepts.Count == 0)
+            {
+                Logger.Log("No concepts to validate AIF mappings — skipping");
+                return true;
+            }
+
+            int withExactMatch = 0, withAnyMatch = 0;
+            foreach (var concept in concepts)
+            {
+                var exact = _ontology.GetExactMatchConcepts(concept);
+                var close = _ontology.GetCloseMatchConcepts(concept);
+                var related = _ontology.GetRelatedMatchConcepts(concept);
+
+                if (exact.Count > 0) withExactMatch++;
+                if (exact.Count > 0 || close.Count > 0 || related.Count > 0) withAnyMatch++;
+            }
+
+            Logger.Log($"AIF mappings: {withExactMatch}/{concepts.Count} with exactMatch, {withAnyMatch}/{concepts.Count} with any match");
+
+            if (withAnyMatch == 0)
+            {
+                errors.Add("No concepts have any AIF match mappings (exactMatch, closeMatch, relatedMatch)");
+            }
+
+            foreach (var error in errors)
+            {
+                Logger.LogProblem(error);
+            }
+
+            bool valid = errors.Count == 0;
+            Logger.Log(valid ? "AIF mapping validation: PASS" : $"AIF mapping validation: FAIL ({errors.Count} errors)");
+            return valid;
         }
 
         /// <summary>
