@@ -204,5 +204,132 @@ namespace Argumentum.AssetConverter.VisualTests
             await page.CloseAsync();
         }
 
+        /// <summary>
+        /// Verifies mouse wheel zoom changes the transform on #mindmap.
+        /// Uses the synthetic SVG fixture to keep the test self-contained.
+        /// </summary>
+        [Fact]
+        public async Task Included_Wrapper_Wheel_Zoom_Changes_Transform()
+        {
+            Assert.True(File.Exists(IncludedTemplatePath), $"Missing template: {IncludedTemplatePath}");
+
+            var template = await File.ReadAllTextAsync(IncludedTemplatePath);
+            const string syntheticSvg = @"<svg xmlns=""http://www.w3.org/2000/svg"" width=""400"" height=""200"">
+  <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
+</svg>";
+
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperPath = Path.Combine(_tempDir, "wheel_zoom_test.html");
+            await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
+
+            var page = await _browser.NewPageAsync();
+            await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
+            await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+
+            // Read initial transform
+            var initialTransform = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"Initial transform: '{initialTransform}'");
+
+            // Simulate mouse wheel up (zoom in) on the mindmap container
+            await page.Locator("#mindmap").EvaluateAsync(@"el => {
+                const event = new WheelEvent('wheel', { deltaY: -100, bubbles: true });
+                el.dispatchEvent(event);
+            }");
+
+            var afterZoomIn = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"After wheel-up (zoom in): '{afterZoomIn}'");
+            Assert.Contains("scale(1.1)", afterZoomIn);
+
+            // Simulate mouse wheel down (zoom out)
+            await page.Locator("#mindmap").EvaluateAsync(@"el => {
+                const event = new WheelEvent('wheel', { deltaY: 100, bubbles: true });
+                el.dispatchEvent(event);
+            }");
+
+            var afterZoomOut = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"After wheel-down (zoom out): '{afterZoomOut}'");
+            Assert.Contains("scale(1)", afterZoomOut);
+
+            await page.CloseAsync();
+        }
+
+        /// <summary>
+        /// Verifies keyboard +/- zoom still works alongside the new wheel zoom.
+        /// </summary>
+        [Fact]
+        public async Task Included_Wrapper_Keyboard_Zoom_Still_Works()
+        {
+            Assert.True(File.Exists(IncludedTemplatePath), $"Missing template: {IncludedTemplatePath}");
+
+            var template = await File.ReadAllTextAsync(IncludedTemplatePath);
+            const string syntheticSvg = @"<svg xmlns=""http://www.w3.org/2000/svg"" width=""400"" height=""200"">
+  <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
+</svg>";
+
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperPath = Path.Combine(_tempDir, "keyboard_zoom_test.html");
+            await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
+
+            var page = await _browser.NewPageAsync();
+            await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
+            await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+
+            // Press '+' key
+            await page.Keyboard.PressAsync("+");
+            var afterPlus = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"After '+': '{afterPlus}'");
+            Assert.Contains("scale(1.1)", afterPlus);
+
+            // Press '-' key
+            await page.Keyboard.PressAsync("-");
+            var afterMinus = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"After '-': '{afterMinus}'");
+            Assert.Contains("scale(1)", afterMinus);
+
+            await page.CloseAsync();
+        }
+
+        /// <summary>
+        /// Verifies zoom is clamped: cannot go below MIN_ZOOM (0.2) or above MAX_ZOOM (5).
+        /// </summary>
+        [Fact]
+        public async Task Included_Wrapper_Zoom_Clamped_To_Min_Max()
+        {
+            Assert.True(File.Exists(IncludedTemplatePath), $"Missing template: {IncludedTemplatePath}");
+
+            var template = await File.ReadAllTextAsync(IncludedTemplatePath);
+            const string syntheticSvg = @"<svg xmlns=""http://www.w3.org/2000/svg"" width=""400"" height=""200"">
+  <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
+</svg>";
+
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperPath = Path.Combine(_tempDir, "zoom_clamp_test.html");
+            await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
+
+            var page = await _browser.NewPageAsync();
+            await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
+            await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+
+            // Zoom out 20 times (should clamp at 0.2, not go to 0 or negative)
+            for (int i = 0; i < 20; i++)
+            {
+                await page.Keyboard.PressAsync("-");
+            }
+            var afterMinClamp = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"After 20 zoom-outs: '{afterMinClamp}'");
+            Assert.Contains("scale(0.2)", afterMinClamp);
+
+            // Zoom in 60 times (should clamp at 5, not go higher)
+            for (int i = 0; i < 60; i++)
+            {
+                await page.Keyboard.PressAsync("+");
+            }
+            var afterMaxClamp = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
+            _output.WriteLine($"After 60 zoom-ins: '{afterMaxClamp}'");
+            Assert.Contains("scale(5)", afterMaxClamp);
+
+            await page.CloseAsync();
+        }
+
     }
 }

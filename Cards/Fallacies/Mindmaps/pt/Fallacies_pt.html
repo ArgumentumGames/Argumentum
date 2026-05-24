@@ -373,16 +373,13 @@
 
 
         .zoomable {
-            transform-origin: top left;
-            transition: transform 0.3s ease;
+            transform-origin: 0 0;
+            transition: none;
+            cursor: grab;
         }
 
-        .zoom-in {
-            transform: scale(1.2);
-        }
-
-        .zoom-out {
-            transform: scale(0.8);
+        .zoomable.panning {
+            cursor: grabbing;
         }
 
 
@@ -17271,18 +17268,24 @@
 
         const mindmapContainer = document.getElementById('mindmap');
         let zoomLevel = 1;
+        let panX = 0, panY = 0;
+        const MIN_ZOOM = 0.2, MAX_ZOOM = 5;
+
+        function applyTransform() {
+            mindmapContainer.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomLevel})`;
+        }
 
         function zoomIn() {
-            zoomLevel += 0.1;
-            mindmapContainer.style.transform = `scale(${zoomLevel})`;
+            zoomLevel = Math.min(zoomLevel + 0.1, MAX_ZOOM);
+            applyTransform();
         }
 
         function zoomOut() {
-            zoomLevel -= 0.1;
-            mindmapContainer.style.transform = `scale(${zoomLevel})`;
+            zoomLevel = Math.max(zoomLevel - 0.1, MIN_ZOOM);
+            applyTransform();
         }
 
-        // Example usage
+        // Keyboard zoom
         document.addEventListener('keydown', (event) => {
             if (event.key === '+') {
                 zoomIn();
@@ -17290,6 +17293,59 @@
                 zoomOut();
             }
         });
+
+        // Mouse wheel zoom
+        mindmapContainer.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            if (event.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }, { passive: false });
+
+        // Pan with mouse drag
+        let isPanning = false, panStartX, panStartY;
+        mindmapContainer.addEventListener('mousedown', (event) => {
+            if (event.button !== 0) return;
+            isPanning = true;
+            panStartX = event.clientX - panX;
+            panStartY = event.clientY - panY;
+            mindmapContainer.classList.add('panning');
+        });
+        document.addEventListener('mousemove', (event) => {
+            if (!isPanning) return;
+            panX = event.clientX - panStartX;
+            panY = event.clientY - panStartY;
+            applyTransform();
+        });
+        document.addEventListener('mouseup', () => {
+            isPanning = false;
+            mindmapContainer.classList.remove('panning');
+        });
+
+        // Pinch-to-zoom (touch)
+        let initialPinchDistance = 0, pinchZoomStart = 1;
+        mindmapContainer.addEventListener('touchstart', (event) => {
+            if (event.touches.length === 2) {
+                initialPinchDistance = Math.hypot(
+                    event.touches[0].clientX - event.touches[1].clientX,
+                    event.touches[0].clientY - event.touches[1].clientY
+                );
+                pinchZoomStart = zoomLevel;
+            }
+        }, { passive: true });
+        mindmapContainer.addEventListener('touchmove', (event) => {
+            if (event.touches.length === 2) {
+                event.preventDefault();
+                const currentDistance = Math.hypot(
+                    event.touches[0].clientX - event.touches[1].clientX,
+                    event.touches[0].clientY - event.touches[1].clientY
+                );
+                zoomLevel = Math.min(Math.max(pinchZoomStart * (currentDistance / initialPinchDistance), MIN_ZOOM), MAX_ZOOM);
+                applyTransform();
+            }
+        }, { passive: false });
 
     });
 
