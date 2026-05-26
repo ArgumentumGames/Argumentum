@@ -227,3 +227,10 @@ _ref_preview/
 # Claude Code session artifacts in subdirectories (not root .claude/)
 Generation/**/.claude/
 .keys/
+
+# Local ai-01 cycle scratch directories (specs, drafts, logs, screenshots)
+/cycle*/
+/MASTER-INDEX.md
+/cycle*.jpeg
+/cycle*.png
+/title_repro_shot.png
