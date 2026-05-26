@@ -222,7 +222,7 @@ namespace Argumentum.AssetConverter
 						nameof(DocumentConfig.DocumentName)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("_fr.", new List<(string Language, string destText)>(new []{("en", "_en."), ("ru", "_ru."), ("pt", "_pt."), ("es", "_es.") }) )
+						("_fr.", new List<(string Language, string destText)>(new []{("en", "_en."), ("ru", "_ru."), ("pt", "_pt."), ("es", "_es."), ("ar", "_ar."), ("fa", "_fa."), ("zh", "_zh.") }) )
 					}),
 				}
 			})
