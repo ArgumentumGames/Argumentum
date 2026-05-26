@@ -27,8 +27,8 @@ public static class OverflowDetector
     private static readonly string[] DefaultTargetSelectors = new[]
     {
         ".texte",
-        ".desc_fr", ".desc_en", ".desc_ru", ".desc_pt",
-        ".exemple_fr", ".exemple_en", ".exemple_ru", ".exemple_pt",
+        ".desc_fr", ".desc_en", ".desc_ru", ".desc_pt", ".desc_es", ".desc_ar", ".desc_fa", ".desc_zh",
+        ".exemple_fr", ".exemple_en", ".exemple_ru", ".exemple_pt", ".exemple_es", ".exemple_ar", ".exemple_fa", ".exemple_zh",
         ".title",
         ".famille",
         ".sous_famille"

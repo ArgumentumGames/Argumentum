@@ -107,6 +107,18 @@ namespace Argumentum.AssetConverter.Entities
 
         public string LinkPt { get; set; }
 
+        public string FamilyEs { get; set; }
+        public string SubfamilyEs { get; set; }
+        public string SubsubfamilyEs { get; set; }
+
+        public string TextEs { get; set; }
+
+        public string DescEs { get; set; }
+
+        public string ExampleEs { get; set; }
+
+        public string LinkEs { get; set; }
+
         public string PlusLienstransverses { get; set; }
         public string TypeLienTransverse { get; set; }
         public string Shape { get; set; }
@@ -181,6 +193,13 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.DescPt).Name("desc_pt").Optional();
             Map(m => m.ExamplePt).Name("example_pt").Optional();
             Map(m => m.LinkPt).Name("link_pt").Optional();
+            Map(m => m.FamilyEs).Name("Family_es").Optional();
+            Map(m => m.SubfamilyEs).Name("Subfamily_es").Optional();
+            Map(m => m.SubsubfamilyEs).Name("Subsubfamily_es").Optional();
+            Map(m => m.TextEs).Name("text_es").Optional();
+            Map(m => m.DescEs).Name("desc_es").Optional();
+            Map(m => m.ExampleEs).Name("example_es").Optional();
+            Map(m => m.LinkEs).Name("link_es").Optional();
             Map(m => m.Lxfr145).Name("Lxfr145").Optional();
             Map(m => m.Remarques).Name("Remarques");
             Map(m => m.Latin).Name("Latin").Optional();

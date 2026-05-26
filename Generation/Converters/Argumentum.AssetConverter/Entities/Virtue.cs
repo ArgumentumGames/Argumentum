@@ -58,6 +58,14 @@ namespace Argumentum.AssetConverter.Entities
         public string DescriptionPt { get; set; }
         public string RemarkPt { get; set; }
         public string LinkPt { get; set; }
+
+        public string FamilyEs { get; set; }
+        public string SubfamilyEs { get; set; }
+        public string SubsubfamilyEs { get; set; }
+        public string TitleEs { get; set; }
+        public string DescriptionEs { get; set; }
+        public string RemarkEs { get; set; }
+        public string LinkEs { get; set; }
     }
 
     public sealed class VirtueClassMap : ClassMap<Virtue>
@@ -106,6 +114,14 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.DescriptionPt).Name("description_pt").Optional();
             Map(m => m.RemarkPt).Name("remark_pt").Optional();
             Map(m => m.LinkPt).Name("link_pt").Optional();
+
+            Map(m => m.FamilyEs).Name("family_es").Optional();
+            Map(m => m.SubfamilyEs).Name("subfamily_es").Optional();
+            Map(m => m.SubsubfamilyEs).Name("subsubfamily_es").Optional();
+            Map(m => m.TitleEs).Name("title_es").Optional();
+            Map(m => m.DescriptionEs).Name("description_es").Optional();
+            Map(m => m.RemarkEs).Name("remark_es").Optional();
+            Map(m => m.LinkEs).Name("link_es").Optional();
         }
     }
 }

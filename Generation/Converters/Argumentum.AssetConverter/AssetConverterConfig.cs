@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -104,15 +104,15 @@ namespace Argumentum.AssetConverter
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						// Order: most specific first (Soussousfamille > Sous-Famille > Famille) to avoid partial-string collisions.
-						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru"), ("pt", "Subsubfamily_pt") }) ),
-						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "Subfamily_pt") }) ),
-						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt") }) ),
-						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru"), ("pt", "text_pt") }) ),
-						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru"), ("pt", "desc_pt") }) ),
-						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru"), ("pt", "example_pt") }) ),
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru"), ("pt", "Subsubfamily_pt"), ("es", "Subsubfamily_es"), ("ar", "Subsubfamily_ar"), ("fa", "Subsubfamily_fa"), ("zh", "Subsubfamily_zh") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "Subfamily_pt"), ("es", "Subfamily_es"), ("ar", "Subfamily_ar"), ("fa", "Subfamily_fa"), ("zh", "Subfamily_zh") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt"), ("es", "Family_es"), ("ar", "Family_ar"), ("fa", "Family_fa"), ("zh", "Family_zh") }) ),
+						("text_fr", new List<(string Language, string destFieldName)>(new []{("en", "text_en"), ("ru", "text_ru"), ("pt", "text_pt"), ("es", "text_es"), ("ar", "text_ar"), ("fa", "text_fa"), ("zh", "text_zh") }) ),
+						("desc_fr", new List<(string Language, string destFieldName)>(new []{("en", "desc_en"), ("ru", "desc_ru"), ("pt", "desc_pt"), ("es", "desc_es"), ("ar", "desc_ar"), ("fa", "desc_fa"), ("zh", "desc_zh") }) ),
+						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru"), ("pt", "example_pt"), ("es", "example_es"), ("ar", "example_ar"), ("fa", "example_fa"), ("zh", "example_zh") }) ),
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt") }) ),
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt"), ("es", "tagline_es"), ("ar", "tagline_ar"), ("fa", "tagline_fa"), ("zh", "tagline_zh") }) ),
 					}),
 				},
 				new CardSetLocalization()
@@ -124,7 +124,7 @@ namespace Argumentum.AssetConverter
 						KnownCardSets.RulesPrintAndPlay,
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt") }) ),
+						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt"), ("es", "Text_es"), ("ar", "Text_ar"), ("fa", "Text_fa"), ("zh", "Text_zh") }) ),
 					}),
 				},
 				new CardSetLocalization()
@@ -137,12 +137,12 @@ namespace Argumentum.AssetConverter
 						KnownCardSets.Virtues,
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("title_fr", new List<(string Language, string destFieldName)>(new []{("en", "title_en"), ("ru", "title_ru"), ("pt", "title_pt") }) ),
-						("description_fr", new List<(string Language, string destFieldName)>(new []{("en", "description_en"), ("ru", "description_ru"), ("pt", "description_pt") }) ),
-						("remark_fr", new List<(string Language, string destFieldName)>(new []{("en", "remark_en"), ("ru", "remark_ru"), ("pt", "remark_pt") }) ),
-						("family_fr", new List<(string Language, string destFieldName)>(new []{("en", "family_en"), ("ru", "family_ru"), ("pt", "family_pt") }) ),
-						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt") }) ),
-						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt") }) ),
+						("title_fr", new List<(string Language, string destFieldName)>(new []{("en", "title_en"), ("ru", "title_ru"), ("pt", "title_pt"), ("es", "title_es"), ("ar", "title_ar"), ("fa", "title_fa"), ("zh", "title_zh") }) ),
+						("description_fr", new List<(string Language, string destFieldName)>(new []{("en", "description_en"), ("ru", "description_ru"), ("pt", "description_pt"), ("es", "description_es"), ("ar", "description_ar"), ("fa", "description_fa"), ("zh", "description_zh") }) ),
+						("remark_fr", new List<(string Language, string destFieldName)>(new []{("en", "remark_en"), ("ru", "remark_ru"), ("pt", "remark_pt"), ("es", "remark_es"), ("ar", "remark_ar"), ("fa", "remark_fa"), ("zh", "remark_zh") }) ),
+						("family_fr", new List<(string Language, string destFieldName)>(new []{("en", "family_en"), ("ru", "family_ru"), ("pt", "family_pt"), ("es", "family_es"), ("ar", "family_ar"), ("fa", "family_fa"), ("zh", "family_zh") }) ),
+						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt"), ("es", "subfamily_es"), ("ar", "subfamily_ar"), ("fa", "subfamily_fa"), ("zh", "subfamily_zh") }) ),
+						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt"), ("es", "subsubfamily_es"), ("ar", "subsubfamily_ar"), ("fa", "subsubfamily_fa"), ("zh", "subsubfamily_zh") }) ),
 					}),
 				},
 				new CardSetLocalization()
@@ -153,16 +153,16 @@ namespace Argumentum.AssetConverter
 						KnownCardSets.ScenariiPrintAndPlay
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt") }) ),
-						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru"), ("pt", "title_pt") }) ),
-						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru"), ("pt", "context_pt") }) ),
-						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru"), ("pt", "issue_pt") }) ),
-						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru"), ("pt", "drawer_pt") }) ),
-						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru"), ("pt", "smoothTalker_pt") }) ),
-						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_ru"), ("pt", "suggestion_pt") }) ),
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt"), ("es", "category_es"), ("ar", "category_ar"), ("fa", "category_fa"), ("zh", "category_zh") }) ),
+						("titre", new List<(string Language, string destFieldName)>(new []{("en", "title"), ("ru", "title_ru"), ("pt", "title_pt"), ("es", "title_es"), ("ar", "title_ar"), ("fa", "title_fa"), ("zh", "title_zh") }) ),
+						("contexte", new List<(string Language, string destFieldName)>(new []{("en", "context"), ("ru", "context_ru"), ("pt", "context_pt"), ("es", "context_es"), ("ar", "context_ar"), ("fa", "context_fa"), ("zh", "context_zh") }) ),
+						("enjeu", new List<(string Language, string destFieldName)>(new []{("en", "issue"), ("ru", "issue_ru"), ("pt", "issue_pt"), ("es", "issue_es"), ("ar", "issue_ar"), ("fa", "issue_fa"), ("zh", "issue_zh") }) ),
+						("piocheur", new List<(string Language, string destFieldName)>(new []{("en", "drawer"), ("ru", "drawer_ru"), ("pt", "drawer_pt"), ("es", "drawer_es"), ("ar", "drawer_ar"), ("fa", "drawer_fa"), ("zh", "drawer_zh") }) ),
+						("baratineur", new List<(string Language, string destFieldName)>(new []{("en", "smoothTalker"), ("ru", "smoothTalker_ru"), ("pt", "smoothTalker_pt"), ("es", "smoothTalker_es"), ("ar", "smoothTalker_ar"), ("fa", "smoothTalker_fa"), ("zh", "smoothTalker_zh") }) ),
+						("suggestion", new List<(string Language, string destFieldName)>(new []{("en", "suggestion_en"), ("ru", "suggestion_ru"), ("pt", "suggestion_pt"), ("es", "suggestion_es"), ("ar", "suggestion_ar"), ("fa", "suggestion_fa"), ("zh", "suggestion_zh") }) ),
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
-						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt") }) ),
+						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt"), ("es", "category_es"), ("ar", "category_ar"), ("fa", "category_fa"), ("zh", "category_zh") }) ),
 					}),
 					ExceptionPatterns = new List<string>(new []
 					{
@@ -184,10 +184,10 @@ namespace Argumentum.AssetConverter
 						nameof(FallacyMindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.TextEn)), ("ru", nameof(Fallacy.TextRu)), ("pt", nameof(Fallacy.TextPt)) }) ),
-						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)) }) ),
-						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)) }) ),
-						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback") }) ),
+						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.TextEn)), ("ru", nameof(Fallacy.TextRu)), ("pt", nameof(Fallacy.TextPt)), ("es", nameof(Fallacy.TextEs))}) ),
+						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)), ("es", nameof(Fallacy.DescEs))}) ),
+						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)), ("es", nameof(Fallacy.ExampleEs))}) ),
+						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback") }) ),
 					}),
 				},
 				// Fallacy family hierarchy: FR names → localized names
@@ -200,9 +200,9 @@ namespace Argumentum.AssetConverter
 						nameof(FallacyMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)) }) ),
-						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)) }) ),
-						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)) }) ),
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs))}) ),
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs))}) ),
+						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs))}) ),
 					}),
 				},
 				// Virtue root title translation (data is FR-only, only tree root name changes)
@@ -212,7 +212,7 @@ namespace Argumentum.AssetConverter
 						nameof(VirtueMindMapDocumentConfig.TitleExpression)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("Vertus", new List<(string Language, string destText)>(new []{("en", "Virtues"), ("ru", "Dobrodeteli"), ("pt", "Virtudes") }) )
+						("Vertus", new List<(string Language, string destText)>(new []{("en", "Virtues"), ("ru", "Dobrodeteli"), ("pt", "Virtudes"), ("es", "Virtudes") }) )
 					}),
 				},
 				// Document name: _fr. → _en./_ru./_pt.
@@ -222,7 +222,7 @@ namespace Argumentum.AssetConverter
 						nameof(DocumentConfig.DocumentName)
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("_fr.", new List<(string Language, string destText)>(new []{("en", "_en."), ("ru", "_ru."), ("pt", "_pt.") }) )
+						("_fr.", new List<(string Language, string destText)>(new []{("en", "_en."), ("ru", "_ru."), ("pt", "_pt."), ("es", "_es.") }) )
 					}),
 				}
 			})
