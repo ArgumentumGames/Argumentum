@@ -18,7 +18,11 @@ public class RecordsUpdater
 		var targetRecord = Records.FirstOrDefault(x => x[PrimaryKeyField].ToString() == primaryKey);
 		if (targetRecord == null)
 		{
-			return "target record not found";
+			return $"target record not found for pk={primaryKey}";
+		}
+		if (!targetRecord.ContainsKey(fieldName))
+		{
+			return $"field '{fieldName}' not found in record {primaryKey}. Available: {string.Join(", ", targetRecord.Keys)}";
 		}
 		var existingValue = targetRecord[fieldName];
 		targetRecord[fieldName] = newValue;
