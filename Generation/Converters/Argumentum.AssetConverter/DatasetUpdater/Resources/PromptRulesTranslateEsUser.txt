@@ -1,0 +1,17 @@
+**Instructions de Traduction :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble de sections de règles du jeu de cartes Argumentum, comportant chacune les champs "pk" (identifiant), "Text" (texte source en français) et "Text_es" (texte cible en espagnol).
+
+Ta tâche consiste à traduire ou retraduire en espagnol (es-ES) le contenu du champ "Text" pour le placer dans le champ "Text_es".
+
+1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord` disponible dans ton prompt système. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
+
+2. **Format du texte :** Les règles contiennent du markdown (titres ##, listes à puces *, gras **, italique *, séparateurs ---). Préserve exactement ce formatage.
+
+3. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum". Les noms des familles de cartes (en français) sont des noms propres — conserve-les en français. Les rôles comme "Baratineur" et "Mixologue" doivent être traduits en équivalents espagnols naturels.
+
+4. **Langue cible :** Espagnol (es-ES). Traduis de manière naturelle et idiomatique, pas mot à mot.
+
+5. **Symboles et emoji :** Conserve exactement tous les symboles (🎲, 🃏, 🎭, 🥈, 👇, ✅, ❌, etc.).
+
+Es-tu prêt à recevoir les données ?
