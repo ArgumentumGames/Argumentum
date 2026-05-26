@@ -1,0 +1,3 @@
+J'ai bien pris note des instructions détaillées. Je me concentrerai sur la traduction vers l'arabe standard moderne des règles du jeu Argumentum, en préservant le formatage markdown, les termes propres du jeu et les symboles. J'utiliserai le function-calling pour proposer chacune de mes modifications.
+
+Prêt à recevoir les données pour la traduction.

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Argumentum.AssetConverter.DatasetUpdater;
@@ -953,6 +953,178 @@ public class DatasetUpdaterRootConfig
 			MaxGroupItemNb = 12,
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8
+			},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Rules to Spanish by chunk 0-shot",
+			SourceDataset = KnownDataSets.Rules,
+			FieldsToInclude = new List<string>()
+			{
+				"pk",
+				"Text",
+				"Text_es"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"Text_es"
+			},
+			PrimaryField = "pk",
+			TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptRulesTranslateEsUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateEsAssistant.txt"
+				}
+			},
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 3,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = false,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 3,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Rules to Arabic by chunk 0-shot",
+			SourceDataset = KnownDataSets.Rules,
+			FieldsToInclude = new List<string>()
+			{
+				"pk",
+				"Text",
+				"Text_ar"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"Text_ar"
+			},
+			PrimaryField = "pk",
+			TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptRulesTranslateArUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateArAssistant.txt"
+				}
+			},
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 3,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = false,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 3,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Rules to Farsi by chunk 0-shot",
+			SourceDataset = KnownDataSets.Rules,
+			FieldsToInclude = new List<string>()
+			{
+				"pk",
+				"Text",
+				"Text_fa"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"Text_fa"
+			},
+			PrimaryField = "pk",
+			TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptRulesTranslateFaUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateFaAssistant.txt"
+				}
+			},
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 3,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = false,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 3,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Rules to Chinese Simplified by chunk 0-shot",
+			SourceDataset = KnownDataSets.Rules,
+			FieldsToInclude = new List<string>()
+			{
+				"pk",
+				"Text",
+				"Text_zh"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"Text_zh"
+			},
+			PrimaryField = "pk",
+			TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptRulesTranslateZhUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateZhAssistant.txt"
+				}
+			},
+			Model = "gpt-5.4-mini",
+			MaxTokensPerMinute = 70000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 3,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = false,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 3,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
 		}
-	};
+		};
 }
