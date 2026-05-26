@@ -44,6 +44,14 @@ namespace Argumentum.AssetConverter.Entities
         public string context_pt { get; set; }
         public string issue_pt { get; set; }
         public string suggestion_pt { get; set; }
+        public string category_es { get; set; }
+        public string subcategory_es { get; set; }
+        public string title_es { get; set; }
+        public string smoothTalker_es { get; set; }
+        public string drawer_es { get; set; }
+        public string context_es { get; set; }
+        public string issue_es { get; set; }
+        public string suggestion_es { get; set; }
         public string edition_fevrier_2022 { get; set; }
         public string print_and_play_fevrier_2022 { get; set; }
         public string print_and_play { get; set; }
@@ -89,6 +97,14 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.context_pt).Name("context_pt");
             Map(m => m.issue_pt).Name("issue_pt");
             Map(m => m.suggestion_pt).Name("suggestion_pt");
+            Map(m => m.category_es).Name("category_es");
+            Map(m => m.subcategory_es).Name("subcategory_es");
+            Map(m => m.title_es).Name("title_es");
+            Map(m => m.smoothTalker_es).Name("smoothTalker_es");
+            Map(m => m.drawer_es).Name("drawer_es");
+            Map(m => m.context_es).Name("context_es");
+            Map(m => m.issue_es).Name("issue_es");
+            Map(m => m.suggestion_es).Name("suggestion_es");
             Map(m => m.edition_fevrier_2022).Name("édition février 2022");
             Map(m => m.print_and_play_fevrier_2022).Name("print_&_play_fevrier_2022");
             Map(m => m.print_and_play).Name("print_and_play").Optional();

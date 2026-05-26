@@ -367,14 +367,14 @@ public class HarvestManager : IAsyncDisposable
 		{
 			var cardpenUrl = $"{Config.CardpenUrl}?_={DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
 			Log($"Navigating to Cardpen URL: {cardpenUrl}");
-			await page.GotoAsync(cardpenUrl, new PageGotoOptions { Timeout = 60000 });
+			await page.GotoAsync(cardpenUrl, new PageGotoOptions { Timeout = 120000 });
 			Log("Navigation successful.");
-			await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions { Timeout = 60000 });
+			await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions { Timeout = 120000 });
 
 			var result = await page.EvaluateAsync<System.Text.Json.JsonElement>(
 			    "(() => {" +
 			    "    const startTime = Date.now();" +
-			    "    const timeout = 58000;" +
+			    "    const timeout = 118000;" +
 			    "    let logs = ['Diagnostic script started'];" +
 			    "    return new Promise(resolve => {" +
 			    "        const intervalId = setInterval(() => {" +
@@ -696,7 +696,7 @@ public class HarvestManager : IAsyncDisposable
                     (body, selector) => {
                         return new Promise((resolve, reject) => {
                             const startTime = Date.now();
-                            const timeout = 60000;
+                            const timeout = 120000;
 
                             const checkImage = () => {
                                 // Query inside the iframe's document context

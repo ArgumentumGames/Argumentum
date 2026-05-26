@@ -361,7 +361,11 @@ namespace Argumentum.AssetConverter
 					{
 						("fr","en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					CardSets = new List<DocumentCardSet>(new[]
 					{
@@ -432,7 +436,11 @@ namespace Argumentum.AssetConverter
 					{
 						("fr","en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					CardSets = new List<DocumentCardSet>(new[]
 					{
@@ -465,7 +473,11 @@ namespace Argumentum.AssetConverter
 					{
 						("fr","en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					CardSets = new List<DocumentCardSet>(new[]
 					{
@@ -498,7 +510,11 @@ namespace Argumentum.AssetConverter
 				{
 					("fr","en"),
 					("fr", "ru"),
-					("fr", "pt")
+					("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 				}),
 
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
@@ -588,7 +604,11 @@ namespace Argumentum.AssetConverter
 				{
 					("fr","en"),
 					("fr", "ru"),
-					("fr", "pt")
+					("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 				}),
 
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
@@ -623,7 +643,11 @@ namespace Argumentum.AssetConverter
 					{
 						("fr","en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
@@ -660,7 +684,11 @@ namespace Argumentum.AssetConverter
 					{
 						("fr","en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A0",
@@ -699,7 +727,11 @@ namespace Argumentum.AssetConverter
 					{
 						("fr","en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					DocumentFormat = CardDocumentFormat.PrintAndPlay,
 					PageSize = "A4",
