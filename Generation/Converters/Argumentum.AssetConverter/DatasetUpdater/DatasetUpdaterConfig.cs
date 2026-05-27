@@ -490,7 +490,8 @@ public class DatasetUpdaterConfig
 						PrimaryKeyField = PrimaryField,
 						Records = recordGroup
 					};
-					dataPrompt.Functions = GetRecordsUpdaterToolDefinitions(recordsUpdator);
+					string langSuffix = FieldsToUpdate.FirstOrDefault()?.Split('_').LastOrDefault() ?? "";
+					dataPrompt.Functions = GetRecordsUpdaterToolDefinitions(recordsUpdator, langSuffix);
 					if (!string.IsNullOrEmpty(FunctionName))
 					{
 						dataPrompt.FunctionName = FunctionName;
@@ -540,11 +541,12 @@ public class DatasetUpdaterConfig
 		}
 	}
 
-	private static List<FunctionToolDef> GetRecordsUpdaterToolDefinitions(RecordsUpdater recordsUpdater)
+	private static List<FunctionToolDef> GetRecordsUpdaterToolDefinitions(RecordsUpdater recordsUpdater, string langSuffix = "")
 	{
 		var toolDef = new FunctionToolDef(
 			name: "UpdateRecord",
-			description: "Call this function for EVERY target field that needs updating in EVERY record. Issue ALL calls as parallel tool calls in a single response - do not call one at a time. For example, if 3 records each have 4 target fields to update, emit 12 parallel UpdateRecord calls. Parameters: primaryKey = the primary key value, fieldName = the target field name, newValue = the translated value",
+			description: "Call this function for EVERY target field that needs updating in EVERY record. Issue ALL calls as parallel tool calls in a single response - do not call one at a time. For example, if 3 records each have 4 target fields to update, emit 12 parallel UpdateRecord calls." +
+			"Parameters: primaryKey = the primary key value, fieldName = the target field name (e.g. title" + langSuffix + ", description" + langSuffix + "), newValue = the translated value",
 			methodName: "UpdateRecord",
 			parametersJson: """
 				{

@@ -1084,7 +1084,7 @@ public class DatasetUpdaterRootConfig
 
 			new DatasetUpdaterConfig()
 			{
-				Enabled = false,
+				Enabled = true, 
 				Name = "Translate Virtues to Ar by chunk empty-only 0-shot",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
@@ -1135,7 +1135,7 @@ public class DatasetUpdaterRootConfig
 				UseFunctionCalling = true,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
-				TakeChunkNb = -1,
+				TakeChunkNb = 1,
 				SelectEmptyTargets = true,
 				RandomizeChunks = false,
 				MaxDegreeOfParallelismWebService = 1,
