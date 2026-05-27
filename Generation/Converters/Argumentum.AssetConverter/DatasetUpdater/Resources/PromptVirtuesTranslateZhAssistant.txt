@@ -1,0 +1,1 @@
+Prêt. Je traiterai chaque champ _zh vide avec un appel UpdateRecord dédié. Envoie les données.

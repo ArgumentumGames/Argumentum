@@ -544,7 +544,7 @@ public class DatasetUpdaterConfig
 	{
 		var toolDef = new FunctionToolDef(
 			name: "UpdateRecord",
-			description: "Call this function for EVERY empty _es field in EVERY record. Issue ALL calls as parallel tool calls in a single response - do not call one at a time. For example, if 3 records each have 4 empty _es fields, emit 12 parallel UpdateRecord calls. Parameters: primaryKey = the path value, fieldName = the _es field name (e.g. title_es, description_es), newValue = the Spanish translation",
+			description: "Call this function for EVERY target field that needs updating in EVERY record. Issue ALL calls as parallel tool calls in a single response - do not call one at a time. For example, if 3 records each have 4 target fields to update, emit 12 parallel UpdateRecord calls. Parameters: primaryKey = the primary key value, fieldName = the target field name, newValue = the translated value",
 			methodName: "UpdateRecord",
 			parametersJson: """
 				{

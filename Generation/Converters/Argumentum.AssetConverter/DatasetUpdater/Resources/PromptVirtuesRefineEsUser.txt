@@ -1,0 +1,48 @@
+# Goal
+
+Améliore les traductions espagnoles existantes du jeu de données ci-après. Chaque entrée a des champs `_fr` (source) et `_es` (traduction existante). Ton rôle est de passer en revue les traductions `_es` et de les corriger via `UpdateRecord` **uniquement si** tu identifies un problème réel.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse.
+
+# What to improve
+
+Priorité décroissante :
+
+1. **Contamination linguistique** : un champ `_es` qui contient du français ou de l'anglais au lieu d'espagnol
+2. **Incohérence familiale** : un nom de famille/sous-famille qui diffère du mapping canonique ou de la traduction utilisée dans les autres entrées de la même famille
+3. **Registre incorrect** : l'espagnol utilise l'impératif ou le tutoiement au lieu du registre déclaratif/nominal
+4. **Faute de grammaire ou d'orthographe** en espagnol
+5. **Traduction inexacte** : le sens du `_es` ne correspond pas au `_fr`
+6. **Redondance ou lourdeur stylistique** : une traduction techniquement correcte mais qui peut être rendue plus naturelle
+
+**Ne modifie PAS** un champ qui est déjà correct et naturel. Chaque appel `UpdateRecord` doit améliorer réellement la traduction.
+
+# Success
+
+- Seules les traductions avec un problème réel sont corrigées
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des noms de familles entre entrées (mapping ci-dessous)
+- Registre déclaratif/nominal pour les descriptions (pas d'impératif)
+- Espagnol neutre/international
+
+# Mapping canonique des familles
+
+- `Arguments vertueux` → `Argumentos virtuosos`
+- `Argument valable` → `Argumento válido`
+- `Argument pertinent` → `Argumento pertinente`
+- `Présentation intègre` → `Presentación íntegra`
+- `Exactitude mathématique` → `Exactitud matemática`
+- `Raisonnement valide` → `Razonamiento válido`
+- `Langage rigoureux` → `Lenguaje riguroso`
+- `Honnêteté intellectuelle` → `Honestidad intelectual`
+- `Débat respectueux` → `Debate respetuoso`
+
+Pour les sous-familles non listées, utilise la traduction la plus fréquente dans les entrées existantes.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia ES : uniquement si certain, sinon laisser tel quel ou vide
+- Champs vides : ne pas remplir — cette passe est pour le peaufinage, pas le remplissage
+
+Es-tu prêt à recevoir les données ?
