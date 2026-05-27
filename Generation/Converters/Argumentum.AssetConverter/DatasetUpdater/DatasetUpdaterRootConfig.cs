@@ -1076,7 +1076,7 @@ public class DatasetUpdaterRootConfig
 				RandomizeChunks = false,
 				MaxDegreeOfParallelismWebService = 1,
 				CompareMode = false,
-				AutoCompare = false,
+					AutoCompare = false,
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 12
@@ -1084,7 +1084,7 @@ public class DatasetUpdaterRootConfig
 
 			new DatasetUpdaterConfig()
 			{
-				Enabled = true, 
+				Enabled = false , 
 				Name = "Translate Virtues to Ar by chunk empty-only 0-shot",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
@@ -1135,7 +1135,7 @@ public class DatasetUpdaterRootConfig
 				UseFunctionCalling = true,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
-				TakeChunkNb = 1,
+				TakeChunkNb = -1,
 				SelectEmptyTargets = true,
 				RandomizeChunks = false,
 				MaxDegreeOfParallelismWebService = 1,
