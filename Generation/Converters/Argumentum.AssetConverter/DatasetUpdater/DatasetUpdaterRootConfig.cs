@@ -1017,7 +1017,6 @@ public class DatasetUpdaterRootConfig
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8
 			},
-
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
@@ -1273,7 +1272,6 @@ public class DatasetUpdaterRootConfig
 				WriteOneTargetFileByField = false,
 				MaxChildren = 12
 			},
-
 
 		new DatasetUpdaterConfig()
 		{
