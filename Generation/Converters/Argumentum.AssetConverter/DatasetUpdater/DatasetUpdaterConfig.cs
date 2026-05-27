@@ -482,14 +482,16 @@ public class DatasetUpdaterConfig
 					Tokenizer = tokenManager.TokenizerAction
 				};
 
+				RecordsUpdater recordsUpdator = null;
 				if (UseFunctionCalling)
 				{
-					var recordsUpdator = new RecordsUpdater()
+					recordsUpdator = new RecordsUpdater()
 					{
 						PrimaryKeyField = PrimaryField,
 						Records = recordGroup
 					};
-					dataPrompt.Functions = GetRecordsUpdaterToolDefinitions(recordsUpdator);
+					string langSuffix = FieldsToUpdate.FirstOrDefault()?.Split('_').LastOrDefault() ?? "";
+					dataPrompt.Functions = GetRecordsUpdaterToolDefinitions(recordsUpdator, langSuffix);
 					if (!string.IsNullOrEmpty(FunctionName))
 					{
 						dataPrompt.FunctionName = FunctionName;
@@ -508,6 +510,10 @@ public class DatasetUpdaterConfig
 					Logger.Log(
 						$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
 					dataPrompt.UserPrompt = result;
+					if (UseFunctionCalling)
+					{
+						Logger.Log($"Function call stats: {recordsUpdator.CallCount} calls, {recordsUpdator.FilledOverwriteCount} overwrites of filled cells (chunk size: {recordGroup.Count})");
+					}
 				}
 				catch (Exception e)
 				{
@@ -535,11 +541,12 @@ public class DatasetUpdaterConfig
 		}
 	}
 
-	private static List<FunctionToolDef> GetRecordsUpdaterToolDefinitions(RecordsUpdater recordsUpdater)
+	private static List<FunctionToolDef> GetRecordsUpdaterToolDefinitions(RecordsUpdater recordsUpdater, string langSuffix = "")
 	{
 		var toolDef = new FunctionToolDef(
 			name: "UpdateRecord",
-			description: "Updates a record's field given its primary key, the field's name and the new value for that field, returns both values separated by a line",
+			description: "Call this function for EVERY target field that needs updating in EVERY record. Issue ALL calls as parallel tool calls in a single response - do not call one at a time. For example, if 3 records each have 4 target fields to update, emit 12 parallel UpdateRecord calls." +
+			"Parameters: primaryKey = the primary key value, fieldName = the target field name (e.g. title" + langSuffix + ", description" + langSuffix + "), newValue = the translated value",
 			methodName: "UpdateRecord",
 			parametersJson: """
 				{

@@ -1,0 +1,35 @@
+# Goal
+
+Traduis en persan (farsi) les champs vides `_fa` du jeu de données ci-après. Pour chaque champ `_fa` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallèle.
+
+# Success
+
+- Tous les champs `_fa` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des noms de familles entre entrées (mapping ci-dessous)
+- Registre déclaratif/nominal pour les descriptions (pas d'impératif)
+- Persan standard (فارسی معیار)
+
+# Mapping canonique des familles
+
+- `Arguments vertueux` → `استدلال‌های فضیلت‌مند`
+- `Argument valable` → `استدلال معتبر`
+- `Argument pertinent` → `استدلال مرتبط`
+- `Présentation intègre` → `ارائه صادقانه`
+- `Exactitude mathématique` → `دقت ریاضی`
+- `Raisonnement valide` → `استنتاج معتبر`
+- `Langage rigoureux` → `زبان دقیق`
+- `Honnêteté intellectuelle` → `صداقت فکری`
+- `Débat respectueux` → `مناظره محترمانه`
+
+Pour les sous-familles non listées, traduis la première occurrence puis réutilise mot pour mot.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia FA : uniquement si certain, sinon laisser vide
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
+
+Es-tu prêt à recevoir les données ?

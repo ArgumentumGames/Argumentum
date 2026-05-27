@@ -1,0 +1,35 @@
+# Goal
+
+Traduis en chinois simplifié les champs vides `_zh` du jeu de données ci-après. Pour chaque champ `_zh` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallèle.
+
+# Success
+
+- Tous les champs `_zh` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des noms de familles entre entrées (mapping ci-dessous)
+- Registre déclaratif/nominal pour les descriptions (pas d'impératif)
+- Chinois simplifié standard (简体中文)
+
+# Mapping canonique des familles
+
+- `Arguments vertueux` → `优良论证`
+- `Argument valable` → `有效论证`
+- `Argument pertinent` → `相关论证`
+- `Présentation intègre` → `诚实陈述`
+- `Exactitude mathématique` → `数学精确性`
+- `Raisonnement valide` → `有效推理`
+- `Langage rigoureux` → `严谨语言`
+- `Honnêteté intellectuelle` → `智识诚实`
+- `Débat respectueux` → `尊重性辩论`
+
+Pour les sous-familles non listées, traduis la première occurrence puis réutilise mot pour mot.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia ZH : uniquement si certain, sinon laisser vide
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
+
+Es-tu prêt à recevoir les données ?

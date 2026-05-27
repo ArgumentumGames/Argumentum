@@ -795,7 +795,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslatePtAssistant.txt"
 				}
 			},
-			Model = "gpt-5.4-mini", // Fallback: gpt-4.1-mini
+			Model = "gpt-5.5", // Fallback: gpt-4.1-mini
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1017,6 +1017,262 @@ public class DatasetUpdaterRootConfig
 			WriteOneTargetFileByField = true,
 			MaxChildren = 8
 			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Refine Virtues ES translations",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"family_fr",
+					"subfamily_fr",
+					"subsubfamily_fr",
+					"title_fr",
+					"description_fr",
+					"remark_fr",
+					"link_fr",
+					"family_es",
+					"subfamily_es",
+					"subsubfamily_es",
+					"title_es",
+					"description_es",
+					"remark_es",
+					"link_es"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"family_es",
+					"subfamily_es",
+					"subsubfamily_es",
+					"title_es",
+					"description_es",
+					"remark_es",
+					"link_es"
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesRefineEsUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesRefineEsAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+					AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 12
+			},
+
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false , 
+				Name = "Translate Virtues to Ar by chunk empty-only 0-shot",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"family_fr",
+					"subfamily_fr",
+					"subsubfamily_fr",
+					"title_fr",
+					"description_fr",
+					"remark_fr",
+					"link_fr",
+					"family_ar",
+					"subfamily_ar",
+					"subsubfamily_ar",
+					"title_ar",
+					"description_ar",
+					"remark_ar",
+					"link_ar"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"family_ar",
+					"subfamily_ar",
+					"subsubfamily_ar",
+					"title_ar",
+					"description_ar",
+					"remark_ar",
+					"link_ar"
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesTranslateArUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateArAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 12
+			},
+
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Virtues to Fa by chunk empty-only 0-shot",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"family_fr",
+					"subfamily_fr",
+					"subsubfamily_fr",
+					"title_fr",
+					"description_fr",
+					"remark_fr",
+					"link_fr",
+					"family_fa",
+					"subfamily_fa",
+					"subsubfamily_fa",
+					"title_fa",
+					"description_fa",
+					"remark_fa",
+					"link_fa"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"family_fa",
+					"subfamily_fa",
+					"subsubfamily_fa",
+					"title_fa",
+					"description_fa",
+					"remark_fa",
+					"link_fa"
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesTranslateFaUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateFaAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 12
+			},
+
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Virtues to Zh by chunk empty-only 0-shot",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"family_fr",
+					"subfamily_fr",
+					"subsubfamily_fr",
+					"title_fr",
+					"description_fr",
+					"remark_fr",
+					"link_fr",
+					"family_zh",
+					"subfamily_zh",
+					"subsubfamily_zh",
+					"title_zh",
+					"description_zh",
+					"remark_zh",
+					"link_zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"family_zh",
+					"subfamily_zh",
+					"subsubfamily_zh",
+					"title_zh",
+					"description_zh",
+					"remark_zh",
+					"link_zh"
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesTranslateZhUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateZhAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 12
+			},
+
 		new DatasetUpdaterConfig()
 		{
 			Enabled = false,

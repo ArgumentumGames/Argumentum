@@ -1,20 +1,20 @@
-**Instructions de Traduction :**
+# Goal
 
-Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des vertus argumentatives du jeu Argumentum. Chaque entrée comporte plusieurs champs :
-- `path` : identifiant hiérarchique (ex. "1.2.3")
-- `family_fr`, `subfamily_fr`, `subsubfamily_fr` : position taxonomique en français
-- `title_fr`, `description_fr`, `remark_fr` : contenu éditorial en français
-- `link_fr` : lien de référence (souvent Wikipedia FR)
-- Les champs cibles : `family_es`, `subfamily_es`, `subsubfamily_es`, `title_es`, `description_es`, `remark_es`, `link_es`
+Traduis en espagnol les champs vides `_es` du jeu de données ci-après. Pour chaque champ `_es` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
 
-Ta tâche consiste à traduire en **espagnol** les champs source (suffixe `_fr`) vers les champs cible (suffixe `_es`), uniquement pour les entrées dont les champs cibles sont vides.
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de reponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallele.
 
-1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
+# Success criteria
 
-2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées.
+- Tous les champs `_es` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des noms de familles entre entrées (mapping ci-dessous)
+- Registre déclaratif/nominal pour les descriptions (pas d'impératif)
+- Espagnol neutre/international
 
-**Mapping de familles canoniques :** Utilise les traductions suivantes :
-- `Arguments vertueux` (racine) → `Argumentos virtuosos`
+# Mapping canonique des familles
+
+- `Arguments vertueux` → `Argumentos virtuosos`
 - `Argument valable` → `Argumento válido`
 - `Argument pertinent` → `Argumento pertinente`
 - `Présentation intègre` → `Presentación íntegra`
@@ -24,14 +24,12 @@ Ta tâche consiste à traduire en **espagnol** les champs source (suffixe `_fr`)
 - `Honnêteté intellectuelle` → `Honestidad intelectual`
 - `Débat respectueux` → `Debate respetuoso`
 
-Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rigueur : une fois traduit pour la première entrée d'une sous-famille, réutilise mot pour mot pour toutes les autres entrées de cette sous-famille.
+Pour les sous-familles non listées, traduis la première occurrence puis réutilise mot pour mot.
 
-3. **Format des descriptions :** Les descriptions FR sont **déclaratives/nominales** (style définitionnel). Conserve un registre déclaratif/nominal équivalent en ES. Pas de tutoiement ni d'impératif.
+# Constraints
 
-4. **Noms propres du jeu :** "Argumentum" reste "Argumentum".
-
-5. **Liens Wikipedia :** Si tu connais avec certitude l'URL Wikipedia ES équivalente du `link_fr`, fournis-la. **En cas de doute, laisse `link_es` vide.**
-
-6. **Registre :** Espagnol neutre/international. Évite les régionalismes.
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia ES : uniquement si certain, sinon laisser vide
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
 
 Es-tu prêt à recevoir les données ?

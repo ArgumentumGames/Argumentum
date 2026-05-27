@@ -1,0 +1,1 @@
+Prêt. Je passerai en revue chaque traduction _es et n'émettrai des appels UpdateRecord que pour les corrections réellement nécessaires. Envoie les données.
