@@ -12,8 +12,12 @@ public class RecordsUpdater
 
 	public List<Dictionary<string, object>> Records { get; set; }
 
+	public int CallCount { get; set; }
+	public int FilledOverwriteCount { get; set; }
+
 	public string UpdateRecord(string primaryKey, string fieldName, string newValue)
 	{
+		CallCount++;
 		newValue = DecodeValue(newValue);
 		var targetRecord = Records.FirstOrDefault(x => x[PrimaryKeyField].ToString() == primaryKey);
 		if (targetRecord == null)
@@ -25,6 +29,10 @@ public class RecordsUpdater
 			return $"field '{fieldName}' not found in record {primaryKey}. Available: {string.Join(", ", targetRecord.Keys)}";
 		}
 		var existingValue = targetRecord[fieldName];
+		if (!string.IsNullOrEmpty(existingValue?.ToString()))
+		{
+			FilledOverwriteCount++;
+		}
 		targetRecord[fieldName] = newValue;
 		return $"{existingValue}\n==>\n{newValue}";
 	}

@@ -482,9 +482,10 @@ public class DatasetUpdaterConfig
 					Tokenizer = tokenManager.TokenizerAction
 				};
 
+				RecordsUpdater recordsUpdator = null;
 				if (UseFunctionCalling)
 				{
-					var recordsUpdator = new RecordsUpdater()
+					recordsUpdator = new RecordsUpdater()
 					{
 						PrimaryKeyField = PrimaryField,
 						Records = recordGroup
@@ -508,6 +509,10 @@ public class DatasetUpdaterConfig
 					Logger.Log(
 						$"ChatGPT answered chunk: \n{Markup.Escape(chunk)}\n with chunk \n{Markup.Escape(result)}\n");
 					dataPrompt.UserPrompt = result;
+					if (UseFunctionCalling)
+					{
+						Logger.Log($"Function call stats: {recordsUpdator.CallCount} calls, {recordsUpdator.FilledOverwriteCount} overwrites of filled cells (chunk size: {recordGroup.Count})");
+					}
 				}
 				catch (Exception e)
 				{
