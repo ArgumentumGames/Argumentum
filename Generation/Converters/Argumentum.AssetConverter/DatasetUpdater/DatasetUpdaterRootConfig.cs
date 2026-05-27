@@ -394,7 +394,7 @@ public class DatasetUpdaterRootConfig
 		},
 		new DatasetUpdaterConfig()
 		{
-			Enabled = true,
+			Enabled = false,
 			Name = "Cleanup Fallacies translations by chunk empty-only 0-shot",
 			SourceDataset = KnownDataSets.FallaciesTaxonomy,
 			FieldsToInclude = new List<string>()
@@ -700,6 +700,69 @@ public class DatasetUpdaterRootConfig
 			SelectEmptyTargets = true,
 			RandomizeChunks = false,
 			MaxDegreeOfParallelismWebService = 4,
+			CompareMode = false,
+			AutoCompare = false,
+			MaxGroupItemNb = 12,
+			WriteOneTargetFileByField = false,
+			MaxChildren = 8
+		},
+		new DatasetUpdaterConfig()
+		{
+			Enabled = false,
+			Name = "Translate Virtues to Spanish by chunk empty-only 0-shot",
+			SourceDataset = KnownDataSets.VirtuesTaxonomy,
+			FieldsToInclude = new List<string>()
+			{
+				"path",
+				"family_fr",
+				"subfamily_fr",
+				"subsubfamily_fr",
+				"title_fr",
+				"description_fr",
+				"remark_fr",
+				"link_fr",
+				"family_es",
+				"subfamily_es",
+				"subsubfamily_es",
+				"title_es",
+				"description_es",
+				"remark_es",
+				"link_es"
+			},
+			FieldsToUpdate = new List<string>()
+			{
+				"family_es",
+				"subfamily_es",
+				"subsubfamily_es",
+				"title_es",
+				"description_es",
+				"remark_es",
+				"link_es"
+			},
+			PrimaryField = "path",
+			TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+			SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+			DialogPrompts = new List<PromptExample>()
+			{
+				new PromptExample()
+				{
+					UserPromptPath = PromptsRootPath + "PromptVirtuesTranslateEsUser.txt",
+					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateEsAssistant.txt"
+				}
+			},
+			// FR -> ES translation empty-only - quality tier
+			Model = "gpt-5.5",
+			MaxOutputTokens = 4096,
+			MaxTokensPerMinute = 300000,
+			DivisionMode = DivisionMode.SequentialChunks,
+			ChunkSize = 4,
+			UseFunctionCalling = true,
+			NbMessageCalls = 1,
+			SkipChunkNb = 0,
+			TakeChunkNb = -1,
+			SelectEmptyTargets = true,
+			RandomizeChunks = false,
+			MaxDegreeOfParallelismWebService = 1,
 			CompareMode = false,
 			AutoCompare = false,
 			MaxGroupItemNb = 12,

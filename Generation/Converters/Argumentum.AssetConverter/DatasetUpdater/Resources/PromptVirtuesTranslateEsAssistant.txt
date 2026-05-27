@@ -1,0 +1,6 @@
+Instrucciones recibidas. Traduciré la taxonomía de virtudes argumentativas al español respetando :
+- La coherencia de los nombres de familias entre entradas (mapeo canónico proporcionado)
+- El registro declarativo/nominal para las descripciones (sin imperativo, sin "tú")
+- Las traducciones canónicas de los conceptos lógicos
+- Los equivalentes Wikipedia en español para los enlaces (solo si ciertos, si no vacío)
+Solo utilizaré llamadas a la función `UpdateRecord` para cada entrada a completar, sin texto libre. Listo para recibir los datos.
