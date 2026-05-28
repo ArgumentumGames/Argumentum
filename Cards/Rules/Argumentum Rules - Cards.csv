@@ -1,4 +1,4 @@
-pk,Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa
+﻿pk,Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa
 Rules_01,"# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Argumentum
@@ -12,16 +12,16 @@ Rules_02,"*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
 
-* 1 paquet de cartes d’argument fallacieux organisées en 7 classes de couleurs,  chacune répartie en 3 ordres puis en 3 familles.
-* 1 paquet cartes de scénario organisés en 7 thèmes identifiables sur leur dos
-* 5 cartes mémo
-* Règles de jeu
+* 1 paquet de cartes d’arguments fallacieux, organisées en 7 classes de couleurs, chacune répartie en 3 ordres puis en 3 familles.
+* 1 paquet de cartes scénario, organisées en 7 thèmes identifiables au dos des cartes.
+* 5 cartes mémo.
+* Les règles du jeu.
    
 ## Résumé du jeu
 
-Les joueurs vont à tour de rôle essayer de faire deviner une carte d’argument fallacieux à une majorité d’autres joueurs, au cours d’une saynète d’improvisation à partir d'un scénario tiré au hasard. Tout en s’amusant, les joueurs apprennent ainsi à reconnaître, à décoder et donc à déconstruire les arguments fallacieux.
+À tour de rôle, les joueurs essaient de faire deviner une carte d’argument fallacieux à une majorité des autres joueurs, au cours d’une saynète improvisée à partir d’un scénario tiré au hasard. Tout en s’amusant, ils apprennent ainsi à reconnaître, à décoder et donc à déconstruire les arguments fallacieux.
 
-Argumentum s’appuie sur une classification de ces arguments fallacieux, rangés en ordres et en familles qui sont indiqués en haut de la carte. Par exemple, flatterie est une sous catégorie de l’appel aux émotions. Les cartes mémo résument cette classification.","*Rules of the game: 4 to 8 players*
+Argumentum s’appuie sur une classification de ces arguments fallacieux, rangés en ordres et en familles indiqués en haut de chaque carte. Par exemple, la flatterie est une sous-catégorie de l’appel aux émotions. Les cartes mémo résument cette classification.","*Rules of the game: 4 to 8 players*
 
 ## Game material
 
@@ -115,13 +115,13 @@ Argumentum 依据对这些诡辩的分类体系，将它们按阶层和家族归
 Argumentum بر طبقه‌بندیِ این استدلال‌های مغالطی تکیه دارد که بر حسب مرتبه‌ها و خانواده‌ها مرتب شده‌اند و در بالای کارت مشخص شده‌اند. برای نمونه، چاپلوسی زیرمجموعهٔ توسل به احساسات است. کارت‌های یادآور این طبقه‌بندی را به‌اختصار خلاصه می‌کنند."
 Rules_03,"## Installation
 
-Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’arguments fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7 x le nombre de joueurs.
+Selon le nombre de joueurs et le niveau de difficulté souhaité, vous constituez la pioche des cartes d’arguments fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes, par ordre croissant. Il en faut au minimum 7 x le nombre de joueurs.
 
-On choisit la durée de la partie. Celle-ci comprend une succession de manches de 7 minutes environ. A l’issue du temps imparti, on finit la manche en cours et le joueur qui a le plus de points remporte la partie. Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes scénario.
+Vous choisissez la durée de la partie. Celle-ci comprend une succession de manches d’environ 7 minutes. À l’issue du temps imparti, vous terminez la manche en cours : le joueur qui a le plus de points remporte la partie. Mélangez les cartes d’arguments fallacieux, ainsi que les cartes scénario.
 
-On constitue 2 pioches de cartes scénario placées au milieu de la table. On distribue à chaque joueur 5 cartes d’arguments fallacieux qu’il garde pour lui. Le reste des cartes constitue la réserve.
+Constituez 2 pioches de cartes scénario et placez-les au milieu de la table. Distribuez à chaque joueur 5 cartes d’arguments fallacieux, qu’il garde pour lui. Le reste des cartes constitue la réserve.
 
-Chaque joueur se munit d’un petit objet unique (pièce de monnaie, haricot…) pour le vote. Le premier piocheur est celui qui se rappelle en premier d'un argument trompeur.","## Installation
+Chaque joueur se munit d’un petit objet unique (pièce de monnaie, haricot…) pour le vote. Le premier piocheur est le joueur qui se souvient en premier d’un argument trompeur.","## Installation
 
 Depending on the number of players and the desired level of difficulty, the deck of fallacy cards is built up by adding the levels shown at the bottom right of the cards in ascending order. A minimum of 7 cards per player is required. 
 
@@ -188,19 +188,19 @@ Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la
 هر بازیکن یک شیء کوچک و منحصربه‌فرد برای رأی‌گیری همراه دارد (سکه، لوبیا، …). نخستین کارت‌کش کسی است که زودتر از همه یک استدلالِ فریبنده را به یاد بیاورد."
 Rules_04,"## Déroulé de la manche
 
-### 1.       Le piocheur
+### 1. Le piocheur
 
-Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
+Le piocheur tire une carte scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
 
-### 2.       Le embromador
+### 2. L’embromador
 
-Le embromador sera chargé de conduire l’argumentation du scenario, pour illustrer l’une de ses cartes d’argument fallacieux. Son objectif sera de faire deviner cette carte à une majorité d’autres joueurs.
+L’embromador est chargé de conduire l’argumentation du scénario pour illustrer l’une de ses cartes d’argument fallacieux. Son objectif est de faire deviner cette carte à une majorité des autres joueurs.
 
-Le rôle de embromador est attribué au premier joueur qui pose, face cachée, la carte d’argument fallacieux qu’il compte jouer. A défaut, le joueur à la gauche du piocheur est désigné embromador et pose sa carte.
+Le rôle d’embromador est attribué au premier joueur qui pose, face cachée, la carte d’argument fallacieux qu’il compte jouer. À défaut, le joueur à la gauche du piocheur est désigné embromador et pose sa carte.
 
-### 3.       La saynète
+### 3. La saynète
 
-Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. Le embromador et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle le embromador va tâcher d’utiliser le type d’argument indiqué par la carte qu’il a choisie. ","## Course of a round
+Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. L’embromador et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle l’embromador tâche d’utiliser le type d’argument indiqué par la carte qu’il a choisie.","## Course of a round
 
 ### 1.       The drawer
 
@@ -299,20 +299,20 @@ Quien roba inicia el debate como quiera. Puede retomar la sugerencia de primera 
 ### 3.       نمایش کوتاه
 
 کارت‌کش بحث را هرطور که بخواهد آغاز می‌کند. او می‌تواند پیشنهادِ نخستین جمله‌ی مورب در پایینِ کارت سناریو را به کار بگیرد. سپس چرب‌زبان و کارت‌کش حداکثر یک دقیقه فرصت دارند تا گفت‌وگویی بداهه اجرا کنند؛ در این مدت، چرب‌زبان تلاش می‌کند از نوع استدلالی که کارتِ انتخابی‌اش مشخص کرده استفاده کند. "
-Rules_05,"Le embromador expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le embromador peut choisir d’écourter la saynète quand il le souhaite.
+Rules_05,"L’embromador expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. L’embromador peut écourter la saynète quand il le souhaite.
 
-### 4.       Le jury
+### 4. Le jury
 
-Tous les joueurs à l’exception du embromador, mais piocheur compris, constituent le jury. A la fin de la saynète, chaque juré choisit parmi ses propres cartes celle qui se rapproche au mieux de l’argumentation entendue et la pose face cachée avec celle du embromador. A 3 ou à 4 joueurs, les jurés choisissent 2 cartes.
+Tous les joueurs, sauf l’embromador, constituent le jury, piocheur compris. À la fin de la saynète, chaque juré choisit, parmi ses propres cartes, celle qui se rapproche le plus de l’argumentation entendue et la pose face cachée avec celle de l’embromador. À 3 ou 4 joueurs, les jurés choisissent 2 cartes.
 
-Le embromador ramasse les cartes, les mélange et les révèle au milieu de la table. Les jurés prennent connaissance des cartes révélées, un juré peut en faire la lecture à haute voix. Chacun des jurés lève le doigt pour signaler quand il est prêt à voter.
+L’embromador ramasse les cartes, les mélange et les révèle au milieu de la table. Les jurés prennent connaissance des cartes révélées ; un juré peut les lire à haute voix. Chaque juré lève le doigt pour signaler qu’il est prêt à voter.
 
-Quand le jury est prêt, sans concertation, chacun de ses membres désigne simultanément la carte qu’il pense avoir été jouée par le embromador en y posant sont petit objet unique (ou à défaut en y posant le doigt).
+Quand le jury est prêt, sans concertation, chacun de ses membres désigne simultanément la carte qu’il pense avoir été jouée par l’embromador, en y posant son petit objet unique (ou, à défaut, son doigt).
 
-### 5.       Le décompte
+### 5. Le décompte
 
-Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, embromador ou membre du jury (🥇👇👇…➜🏆). 
-Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui.","The smooth talker presents his arguments and the drawer gives him the reply. The smooth talker can choose to shorten the skit at any time.
+Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de votes, qu’il s’agisse de l’embromador ou d’un membre du jury (🥇👇👇…➜🏆).
+Il garde alors sa carte, qui vaut 1 point, et la pose face visible devant lui.","The smooth talker presents his arguments and the drawer gives him the reply. The smooth talker can choose to shorten the skit at any time.
 
 ### 4.       The jury
 
@@ -404,27 +404,27 @@ Entonces se queda con su carta, que vale 1 punto, y la coloca boca arriba delant
 
 برنده‌ی دور کسی است که کارتش بیشترین تعداد رأی را به‌دست آورده باشد، چه چرب‌زبان باشد چه یکی از اعضای هیئت داوران (🥇👇👇…➜🏆). 
 سپس کارت خود را که 1 امتیاز دارد نگه می‌دارد و آن را به‌صورت رو به بالا جلوی خود می‌گذارد."
-Rules_06,"En cas d’égalité (🥈👇👇≟🥈👇👇), le embromador l'emporte (✅🎭➜🎭🏆), et à défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du embromador sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l'a trouvée, c'est le embromador qui l’emporte (❌👇🎭➜🎭🏆).
+Rules_06,"En cas d’égalité (🥈👇👇≟🥈👇👇), l’embromador l’emporte (✅🎭➜🎭🏆). À défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte de l’embromador sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l’a trouvée, l’embromador l’emporte (❌👇🎭➜🎭🏆).
 
-### 6.       Les pioches
+### 6. Les pioches
 
-Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certain nombre de cartes:
+Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certain nombre de cartes :
 
 * Le vainqueur de la manche ne pioche pas de nouvelle carte. (✅🏆➜❌0🎴)
-* Tous les autres joueurs piochent une carte (❌🏆➜✅1🎴), ou 2 cartes à 3 ou 4 joueurs
-* Les membres du jury qui ont obtenu des votes piochent une carte de plus (✅🧲👇➜✅+1🎴)
-* Les jurés qui ont trouvé la carte du embromador piochent une carte de plus (✅👇🎭➜✅+1🎴)
-* Les cartes jouées sont remises à la réserve.
+* Tous les autres joueurs piochent une carte (❌🏆➜✅1🎴), ou 2 cartes à 3 ou 4 joueurs.
+* Les membres du jury qui ont obtenu des votes piochent une carte de plus. (✅🧲👇➜✅ 1🎴)
+* Les jurés qui ont trouvé la carte de l’embromador piochent une carte de plus. (✅👇🎭➜✅ 1🎴)
+* Les cartes jouées sont remises dans la réserve.
 * Le voisin de gauche du vainqueur devient le piocheur de la manche suivante.
 
 ## Variantes :
 
-*Si la carte du embromador est désignée par l’ensemble du jury, il ne remporte pas la manche, chacun pioche une carte dans la réserve à l’exception du embromador.
-* Au cours de la saynète, n'importe quel membre du jury peut utiliser une carte de son jeu pour intervenir dans le rôle du piocheur. Si son intervention illustre bien sa carte, il en repioche une et sera désigné le prochain piocheur, sinon, il perd sa carte et la partie reprend son cour.
-* Le piocheur a le droit de désigner directement le embromador de la manche.
-* Si le piocheur gagne, il gagne également la carte du embromador.
-* Le embromador peut poser plusieurs cartes. Autant de vainqueurs au nombre de votes sont déclarés, le embromador pouvant remporter tout ou partie de ses cartes.
-* Le vainqueur de la partie doit incarner le embromador d’un ultime scenario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
+* Si la carte de l’embromador est désignée par l’ensemble du jury, il ne remporte pas la manche ; chacun pioche une carte dans la réserve, à l’exception de l’embromador.
+* Au cours de la saynète, n’importe quel membre du jury peut utiliser une carte de son jeu pour intervenir dans le rôle du piocheur. Si son intervention illustre bien sa carte, il en repioche une et sera désigné comme prochain piocheur ; sinon, il perd sa carte et la partie reprend son cours.
+* Le piocheur a le droit de désigner directement l’embromador de la manche.
+* Si le piocheur gagne, il gagne également la carte de l’embromador.
+* L’embromador peut poser plusieurs cartes. Autant de vainqueurs qu’il y a de cartes ayant obtenu le plus grand nombre de votes sont déclarés ; l’embromador peut ainsi remporter tout ou partie de ses cartes.
+* Le vainqueur de la partie doit incarner l’embromador dans un ultime scénario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
 
 With the exception of the winner, each player earns 1 point if their card has been chosen by at least one member of the jury and another point if they have found the smooth talker's card. The other players, including the smooth talker if he has not won the round, draw a card. Played cards are returned to the deck.
 
@@ -566,24 +566,23 @@ Rules_07,"# Argumentum
 ## El bingo de la mixología argumentativa","# Argumentum
 ## 论证调配宾果","# Argumentum
 ## بینگوی میکسولوژی استدلالی"
-Rules_08,"*Règles du jeu :  de 1 à 20 joueurs*
+Rules_08,"*Règles du jeu : de 1 à 20 joueurs*
 
 ## Matériel
 
-* 1 débat ou 1 discours auquel les joueurs vont assister ensemble et qui pourra faire l'objet d'un revisionage.
-* De quoi prendre des notes, et un moyen de noter le temps écoulé depuis le début du débat.
-* 1 ou plusieurs paquets des cartes d’argument fallacieux
+* 1 débat ou 1 discours auquel les joueurs vont assister ensemble et qui pourra faire l’objet d’un revisionnage.
+* De quoi prendre des notes et un moyen de noter le temps écoulé depuis le début du débat.
+* 1 ou plusieurs paquets de cartes d’arguments fallacieux.
 
-   
 ## Résumé du jeu
 
-Muni d'une grille de bingo constituée par les cartes d'arguments fallacieux tirées au sort, les joueurs vont tâcher de repérer celles de leurs cartes illustrées pendant le débat. 
-Aux termes du débat, le joueur qui aura repéré le plus grand nombre d'arguments fallacieux, après validation par une majorité d'autres joueurs, remporte la partie.
+Munis d’une grille de bingo constituée de cartes d’arguments fallacieux tirées au sort, les joueurs tâchent de repérer celles qui sont illustrées pendant le débat.
+À la fin du débat, le joueur qui a repéré le plus grand nombre d’arguments fallacieux, après validation par une majorité des autres joueurs, remporte la partie.
 
 ## Installation
 
-On divise au hasard l'ensemble des cartes d'arguments fallacieux disponible entre tous les joueurs, à hauteur de 10 cartes par personne.
-Chaque joueur prend connaissance de ses cartes, les dispose en s'assurant de les garder au mieux en tête, et s'installe pour assister au débat.","*Game rules: from 1 to 20 players*
+On répartit au hasard l’ensemble des cartes d’arguments fallacieux disponibles entre tous les joueurs, à hauteur de 10 cartes par personne.
+Chaque joueur prend connaissance de ses cartes, les dispose en essayant de les garder au mieux en tête, puis s’installe pour assister au débat.","*Game rules: from 1 to 20 players*
 
 ## Material
 
@@ -705,22 +704,22 @@ Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo 
 هر بازیکن کارت‌های خود را می‌خواند، آن‌ها را طوری می‌چیند که تا حد ممکن در ذهنش بمانند، و برای تماشای مناظره مستقر می‌شود."
 Rules_09,"## Pendant le débat
 
-Chaque joueur écoute les arguments formulés. S'il repère un argument qui relève de l'une des cartes de sa grille de bingo, il note le temps écoulé, un début de citation qui permettra de retrouver le bon passage, et le nom de sa carte accompagné au besoin d'un peu de contexte pour pouvoir restituer plus tard à l'oral son analyse.
+Chaque joueur écoute les arguments formulés. S'il repère un argument qui correspond à l'une des cartes de sa grille de bingo, il note le temps écoulé, le début d'une citation permettant de retrouver le bon passage, ainsi que le nom de la carte. Il ajoute au besoin un peu de contexte afin de pouvoir restituer plus tard son analyse à l'oral.
 
 ## Validations post-débat
 
 Les joueurs qui revendiquent le plus grand nombre de cartes utilisées sont sélectionnés pour validation.
 
-On établit à partir de leurs notes et de l'enregistrement la séquence des moments où chacune de leurs cartes a été utilisée. 
-Pour chacune des cartes, on repasse le moment incriminé et le joueur explicite pourquoi l'argumentation relève de sa carte.
-L'assemblée vote à main levée pour valider ou pas son analyse.
+À partir de leurs notes et de l'enregistrement, on établit la séquence des moments où chacune de leurs cartes a été utilisée.
+Pour chaque carte, on repasse le moment concerné et le joueur explique pourquoi l'argumentation correspond à sa carte.
+L'assemblée vote à main levée pour valider ou non son analyse.
 
 ## Conditions de victoire
 
-Le score final des joueurs est le nombre de leurs cartes validées par l'assemblée
-Si à l'issu d'un premier décompte, d'autres joueurs non sélectionnés se retrouvent désormais avec plus de cartes que le meilleur score validé, on procède à leur validation, et ainsi de suite jusqu'à ce que le meilleur score validé ne soit plus contestable.
+Le score final de chaque joueur correspond au nombre de ses cartes validées par l'assemblée.
+Si, à l'issue d'un premier décompte, d'autres joueurs non sélectionnés ont désormais plus de cartes que le meilleur score validé, on procède à leur validation, et ainsi de suite jusqu'à ce que le meilleur score validé ne soit plus contestable.
 
-Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs","## during the debate
+Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs.","## during the debate
 
 Each player listens to the arguments formulated. If he spots an argument that is one of the cards of his bingo grid, he notes the past time, a beginning of quote which will allow us to find the right passage, and the name of his card accompanied if necessary a Little context to be able to restore his analysis later orally.
 
@@ -850,14 +849,14 @@ Rules_11,"*Règles du jeu : de 1 à 8 joueurs*
 
 ## Matériel
 
-* 1 paquet de cartes d’argument fallacieux organisées en 7 classes de couleurs,  chacune répartie en 3 ordres puis en 3 familles.
-* 1 paquet de cartes de scénario organisés en 7 thèmes identifiables sur leur dos
+* 1 paquet de cartes d’argument fallacieux organisées en 7 classes de couleurs, chacune répartie en 3 ordres puis en 3 familles.
+* 1 paquet de cartes de scénario organisées en 7 thèmes identifiables au dos.
 * 5 cartes mémo
-* Règles de jeu
+* Règles du jeu
    
 ## Résumé du jeu
 
-Les joueurs vont tour à tour proposer des arguments autour de scénarii tirés à chaque manche et essayer de se débarasser de leurs cartes en repérant les arguments fallacieux utilisés par les autres joueurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à éviter d'en commettre.","*Game rules: from 1 to 8 players*
+À chaque manche, les joueurs proposent tour à tour des arguments autour de scénarios tirés au sort. Ils essaient de se débarrasser de leurs cartes en repérant les arguments fallacieux utilisés par les autres joueurs. En plus de reconnaître les arguments fallacieux, les joueurs s’entraînent à éviter d’en commettre.","*Game rules: from 1 to 8 players*
 
 ## Material
 
@@ -938,11 +937,11 @@ Los jugadores, por turnos, irán proponiendo argumentos en torno a los escenario
 بازیکنان به نوبت، پیرامون سناریوهایی که در هر دور کشیده می‌شوند استدلال مطرح می‌کنند و تلاش می‌کنند با شناسایی استدلال‌های مغالطه‌آمیزی که دیگر بازیکنان به کار می‌برند، از شرِ کارت‌های خود خلاص شوند. افزون بر تشخیص استدلال‌های مغالطه‌آمیز، بازیکنان تمرین می‌کنند که خود نیز مرتکب آن‌ها نشوند."
 Rules_12,"## Installation
 
-Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de quelques minutes qui seront jouées.
+Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes, par ordre croissant. Choisissez le nombre maximum de manches de quelques minutes qui seront jouées.
 
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. On distribue à chaque joueur 5 cartes d’argument fallacieux qu’il garde pour lui. Le reste des cartes constitue la pioche. 
+Mélangez les cartes d’argument fallacieux, puis les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table. Distribuez à chaque joueur 5 cartes d’argument fallacieux, qu’il garde pour lui. Le reste des cartes constitue la pioche.
 
-Le premier piocheur est celui qui s'est fait influencer en dernier par un appel à l'émotion.","## Facility
+Le premier piocheur est celui qui s'est fait influencer le plus récemment par un appel à l'émotion.","## Facility
 
 Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of sleeves of a few minutes that will be played.
 
@@ -987,20 +986,19 @@ El primer jugador en robar es quien se ha dejado influir por última vez por una
 نخستین کسی که کارت می‌کشد، کسی است که آخرین بار تحت تأثیرِ توسل به احساسات قرار گرفته است."
 Rules_13,"## Déroulé de la manche
 
-### 1.       Le piocheur
+### 1. Le piocheur
 
-Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
+Le piocheur tire une carte Scénario parmi les deux pioches disponibles et la lit à voix haute, sauf la dernière phrase en italique au bas de la carte.
 
+### 2. La ronde des arguments
 
-### 2.       La ronde des arguments
+En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer un argument répondant à l'injonction du scénario. Si un joueur reconnaît l’une de ses cartes dans un argument donné, il remet cette carte au joueur qui l’a utilisée et l’écarte de la manche.
 
-En commançant par le voisin de gauche du piocheur, chaque joueur doit proposer un argument répondant à l'injonction du scénario. Si un joueur repère une de ses cartes dans les arguments donnés, il donne sa carte à celui qui l'a utilisée et l'écarte de la manche.  
-Si un joueur ne trouve plus de nouvel argument au bout de 10 secondes, il pioche une nouvelle carte et est exclu de la manche.
+Si un joueur ne trouve pas de nouvel argument au bout de 10 secondes, il pioche une nouvelle carte et est exclu de la manche.
 
+### 3. Fin de la manche
 
-### 3.       Fin de la manche
-
-La manche s'arrête quand il ne reste plus qu'une personne est en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.  ","# Roll of the English Channel
+La manche s'arrête quand il ne reste plus qu'une personne en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.","# Roll of the English Channel
 
 ### 1. The smooth talker
 
@@ -1106,11 +1104,11 @@ La ronda termina cuando solo queda una persona en juego. El jugador situado a la
 ### 3.       پایانِ دور
 
 دور زمانی تمام می‌شود که فقط یک نفر در بازی باقی بماند. همسایهٔ سمتِ چپِ کارت‌کش، کارت‌کشِ جدید می‌شود و سناریوی دورِ بعد را می‌کشد.  "
-Rules_14,"##       Fin de partie et décompte
+Rules_14,"## Fin de partie et décompte
 
+Si un joueur parvient à se débarrasser de toutes ses cartes, il gagne la partie.
 
-Si un joueur arrive à se débarasser de toutes ses cartes, il gagne la partie. 
-Sinon la partie s'arrête au bout du nombre de manches initialement prévu. Le vainqueur est celui qui a en main le moins de cartes.","## End of game and count
+Sinon, la partie s'arrête au bout du nombre de manches initialement prévu. Le vainqueur est celui qui a le moins de cartes en main.","## End of game and count
 
 
 If a player manages to get rid of all his cards, he wins the game.
@@ -1152,14 +1150,14 @@ Rules_16,"*Règles du jeu : de 2 à 8 joueurs*
 
 ## Matériel
 
-* 1 paquet de cartes d’argument fallacieux organisées en 7 classes de couleurs,  chacune répartie en 3 ordres puis en 3 familles.
-* 1 paquet de cartes de scénario organisés en 7 thèmes identifiables sur leur dos
-* 5 cartes mémo
-* Règles de jeu
-   
+* 1 paquet de cartes d’argument fallacieux, organisées en 7 classes de couleurs, chacune répartie en 3 ordres puis en 3 familles.
+* 1 paquet de cartes de scénario, organisées en 7 thèmes identifiables au dos des cartes.
+* 5 cartes mémo.
+* Règles du jeu.
+
 ## Résumé du jeu
 
-A chaque manche, sur un scenario tiré au sort, l'un des joueurs trouve en un temps limité le plus grand nombre d'arguments fallacieux illustrant les cartes piochées en séquence.","*Game rules: from 2 to 8 players*
+À chaque manche, à partir d’un scénario tiré au sort, l’un des joueurs trouve, en un temps limité, le plus grand nombre d’arguments fallacieux illustrant les cartes piochées successivement.","*Game rules: from 2 to 8 players*
 
 ## Material
 
@@ -1241,11 +1239,11 @@ En cada ronda, sobre un escenario elegido al azar, uno de los jugadores encuentr
 در هر دور، روی یک سناریوی تصادفی، یکی از بازیکنان در زمانی محدود بیشترین تعداد استدلالِ مغالطه‌آمیز را که کارت‌های کشیده‌شده را به‌صورت پی‌درپی نشان می‌دهند، پیدا می‌کند."
 Rules_17,"## Installation
 
-Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. On choisit le nombre maximum de manches de 3 minutes par joueur qui seront jouées.
+Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes, par ordre croissant. Choisissez le nombre maximum de manches de 3 minutes par joueur qui seront jouées.
 
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario et 1 pioche d’argument fallacieux, placées au milieu de la table. 
+Mélangez les cartes d’argument fallacieux, ainsi que les cartes de scénario. Formez 2 pioches de cartes de scénario et 1 pioche d’argument fallacieux, puis placez-les au milieu de la table.
 
-Le premier piocheur est celui qui a en dernier concédé un argument à l'usure.","## Facility
+Le premier piocheur est le joueur qui a le plus récemment concédé un argument à l’usure.","## Facility
 
 Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of rounds of 3 minutes per player who will be played.
 
@@ -1290,22 +1288,20 @@ El primer robador es quien haya cedido por última vez ante un argumento por des
 نخستین کارت‌کش کسی است که آخرین بار یک استدلال را از سرِ فرسودگی پذیرفته است."
 Rules_18,"## Déroulé de la manche
 
-### 1.       Le piocheur
+### 1. Le piocheur
 
 Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
 
+### 2. La course de vitesse
 
-### 2.       La course de vitesse
+Le voisin de gauche du piocheur est l’embromador.
+Préparez un minuteur de 3 minutes.
 
-Le voisin de gauche du piocheur est le embromador..
-On prépare un minuteur de 3 minutes.
+L’embromador commence à piocher des cartes d’argument fallacieux. Pour chaque carte, il doit proposer un argument qui illustre la carte afin d’acter le scénario. S’il y parvient, il remporte la carte ; sinon, il peut passer, dans la limite de 3 jokers par manche, puis piocher la suivante.
 
-Il commence à piocher des cartes d'arguments fallacieux. Pour chaque carte, il doit proposer un argument illustrant la carte pour acter le scénario. S'il y parvient, il remporte la carte, sinon il peut également passer, à raison de 3 jokers par manche, et piocher la suivante.
+### 3. Fin de la manche
 
-
-### 3.       Fin de la manche
-
-La manche s'arrête au bout du temps imparti, Le embromador obtient en points le nombre de cartes emportées sur la manche. Il devient piocheur de la manche suivante.","# Roll of the English Channel
+La manche s’arrête à la fin du temps imparti. L’embromador marque autant de points qu’il a remporté de cartes pendant la manche. Il devient le piocheur de la manche suivante.","# Roll of the English Channel
 
 ### 1. The smooth talker
 
@@ -1423,15 +1419,13 @@ La ronda termina cuando se agota el tiempo. El charlatán obtiene como puntos el
 ### 3.       پایان دور
 
 دور با پایان زمانِ تعیین‌شده متوقف می‌شود، و چرب‌زبان به تعداد کارت‌هایی که در آن دور برده است امتیاز می‌گیرد. او در دور بعدی کارت‌کش می‌شود."
-Rules_19,"##       Fin de partie
+Rules_19,"## Fin de partie
 
-
-Le premier joueur arrivant à 20 points emporte la partie
+Le premier joueur à atteindre 20 points remporte la partie.
 
 ## Variantes
 
-* A chaque carte piochée, après l'argument du embromador, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l'assemblée vote si elle est jugée meilleure que les précédentes, et l'auteur de la meilleure proposition retenue remporte la carte. 
-","##       Game over
+* À chaque carte piochée, après l’argument de l’embromador, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l’assemblée vote pour déterminer si elle est meilleure que les précédentes. L’auteur de la meilleure proposition retenue remporte la carte.","##       Game over
 
 
 The first player arriving at 20 points takes the game
@@ -1501,14 +1495,14 @@ Rules_21,"*Règles du jeu : 4 joueurs*
 
 ## Matériel
 
-* 1 paquet de cartes d’argument fallacieux organisées en 7 classes de couleurs,  chacune répartie en 3 ordres puis en 3 familles. Une sélection de 32 cartes
-* 1 paquet de cartes de scénario organisés en 7 thèmes identifiables sur leur dos
+* 1 paquet de cartes d’arguments fallacieux, organisé en 7 classes de couleurs, chacune répartie en 3 ordres puis en 3 familles. Une sélection de 32 cartes
+* 1 paquet de cartes de scénario, organisées en 7 thèmes identifiables au dos des cartes
 * 5 cartes mémo
-* Règles de jeu
+* Règles du jeu
    
 ## Résumé du jeu
 
-Dans une succession de manches opposant 2 équipes de 2 joueurs se faisant face, ils se verront distribuer des mains d'arguments fallacieux à utiliser dans une succession de tours sur un scénario tiré au sort.  Le niveau de spécificité des cartes constitue leur force et 2 couleurs dites d'atout peut être jouée à tout moment, et l'emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s'entraînent à évaluer le niveau de spécificité des cartes,et à coopérer.","*Game rules: 4 players*
+Au cours d’une succession de manches, 2 équipes de 2 joueurs se font face. Les joueurs reçoivent des mains de cartes d’arguments fallacieux, qu’ils utilisent à tour de rôle sur un scénario tiré au sort. Le niveau de spécificité des cartes détermine leur force. Deux couleurs, dites d’atout, peuvent être jouées à tout moment et l’emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s’entraînent à évaluer le niveau de spécificité des cartes et à coopérer.","*Game rules: 4 players*
 
 ## Material
 
@@ -1590,11 +1584,11 @@ En una sucesión de rondas que enfrentan a 2 equipos de 2 jugadores colocados un
 در رشته‌ای از دورها که در آن دو تیمِ ۲ نفره روبه‌روی هم قرار می‌گیرند، به آن‌ها دست‌هایی از استدلال‌های مغالطی داده می‌شود تا در پیاپیِ نوبت‌ها روی یک سناریوی قرعه‌کشی‌شده به کار ببرند. میزانِ اختصاصی‌بودنِ کارت‌ها، قدرت آن‌ها را تعیین می‌کند و ۲ رنگِ موسوم به برگِ برنده را می‌توان در هر لحظه بازی کرد و این دو رنگ بر سایر رنگ‌ها غلبه می‌کنند. افزون بر شناساییِ استدلال‌های مغالطی، بازیکنان تمرین می‌کنند که سطحِ اختصاصی‌بودنِ کارت‌ها را ارزیابی کنند و همکاری کنند."
 Rules_22,"## Installation
 
-On sélectionne 28 cartes d'arguments fallacieux pour la partie, soit 4 par couleur.
+Sélectionnez 28 cartes d’arguments fallacieux pour la partie, soit 4 par couleur.
 
-Les cartes d’arguments fallacieux sont mélangées, ainsi que les cartes de scénario. On constitue 2 pioches de cartes de scénario placées au milieu de la table. 
+Mélangez séparément les cartes d’arguments fallacieux et les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table.
 
-Le premier piocheur est celui qui a menti en dernier.","## Facility
+Le premier piocheur est le joueur qui a menti en dernier.","## Facility
 
 We select 28 fallacious arguments cards for the game, 4 per color.
 
@@ -1639,36 +1633,37 @@ El primer jugador en robar es el que haya mentido más recientemente.","## 设�
 اولین کارت‌کش کسی است که آخرین بار دروغ گفته است."
 Rules_23,"## Début de la manche
 
-### 1.       Le piocheur
+### 1. Le piocheur
 
 Le piocheur tire une carte de scénario parmi les deux pioches disponibles et la lit à voix haute, à l’exception de la dernière phrase en italique au bas de la carte.
-Puis il mélange et distribue les 28 cartes d'arguments fallacieux aux 4 joueurs.
 
-### 2.       Les enchères d'atout
+Il mélange ensuite les 28 cartes d’arguments fallacieux et les distribue aux 4 joueurs.
 
-A commencer par le voisin de gauche du piocheur, les joueurs choisissent ou non de surenchérir pour désigner les 2 couleurs d'atout de la manche. Les cartes d'atout permettent de l'emporter sur d'autres types de cartes, et valent également plus de point au décompte de la manche.
-La mise aux enchères des atout est de 80 et les enchères montent de 10 en 10. 
+### 2. Les enchères d’atout
 
-A tout moment, l'un des deux membres d'une équipe peut dire ""je coinche"" et mettre fin aux enchères tout en doublant l'enjeu de la manche.
-Quand plus personne ne surenchérit, les deux couleurs d'atout sont désignées pour la manche et la phase de jeu peut commencer.
+En commençant par le voisin de gauche du piocheur, les joueurs choisissent ou non de surenchérir afin de désigner les 2 couleurs d’atout de la manche. Les cartes d’atout permettent de l’emporter sur d’autres types de cartes et valent également plus de points lors du décompte de la manche.
 
+La mise aux enchères des atouts commence à 80, puis les enchères montent de 10 en 10.
 
-### 2.       Les tours de jeu
+À tout moment, l’un des deux membres d’une équipe peut dire « je coinche » pour mettre fin aux enchères et doubler l’enjeu de la manche.
 
-Dans une succession de 7 tours, les joueurs vont confronter chacun 1 carte d'argument fallacieux sur le scenario.
-En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer une carte et jouer un argument illustratif répondant à l'injonction du scénario. 
+Quand plus personne ne surenchérit, les deux couleurs d’atout sont désignées pour la manche et la phase de jeu peut commencer.
 
-Si aucune carte d'atout n'est jouée, la carte au plus grand niveau de profondeur emporte le pli.
-Si des atouts sont joués, la carte d'atout du plus faible niveau de profondeur emporte le pli.
-Les joueurs dans la même équipe partagent les plis qu'ils remportent.
+### 3. Les tours de jeu
 
-Pour emporter un pli un joueur doit expliciter un argument correspondant à la carte. 
-Si aucun joueur ne propose d'argument, la meilleure carte l'emporte.
+Pendant 7 tours, chaque joueur confronte 1 carte d’argument fallacieux au scénario.
 
+En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer une carte et formuler un argument illustratif répondant à l’injonction du scénario.
 
+Si aucune carte d’atout n’est jouée, la carte ayant le plus grand niveau de profondeur emporte le pli.
 
+Si des atouts sont joués, la carte d’atout ayant le plus faible niveau de profondeur emporte le pli.
 
-  ","## Start of the round
+Les joueurs d’une même équipe partagent les plis qu’ils remportent.
+
+Pour emporter un pli, un joueur doit expliciter un argument correspondant à sa carte.
+
+Si aucun joueur ne propose d’argument, la meilleure carte l’emporte.","## Start of the round
 
 ### 1. The smooth talker
 
@@ -1878,22 +1873,25 @@ Si ningún jugador propone un argumento, gana la mejor carta.
 
 
   "
-Rules_24,"### 3.       Décompte de la manche
+Rules_24,"### 4. Décompte de la manche
 
-La manche s'arrête quand tous les plis ont été joués.
+La manche s’arrête quand tous les plis ont été joués.
 
-On compte alors les points des deux équipes.
-Pour les cartes en dehors des couleurs d'atout, chaque carte vaut en point 2 fois son niveau de profondeur.
-Pour les cartes à la couleur d'atout, chaque carte vaut 12 - (2 fois son niveau de profondeur)
+Comptez alors les points des deux équipes.
 
-Si l'équipe qui a gagné les enchères d'atout respecte son contrat avec un score supérieur, elle remporte en points le montant de ses enchères plus les points effectivement remportés.
-Si c'est l'autre équipe qui gagne, c'est celle-là qui emporte 160 points plus le montant des enchères qui n'a pas été honoré. 
+Pour les cartes qui ne sont pas dans les couleurs d’atout, chaque carte vaut 2 fois son niveau de profondeur.
 
-Si les enchères étaient coinchées, les scores sont doublé.
+Pour les cartes dans les couleurs d’atout, chaque carte vaut 12 - (2 fois son niveau de profondeur).
 
-##       Fin de partie et décompte
+Si l’équipe qui a remporté les enchères d’atout respecte son contrat avec un score supérieur, elle marque le montant de ses enchères plus les points effectivement remportés.
 
-L'équipe qui l'emporte est la première à dépasser 1000 points","### 3.
+Si c’est l’autre équipe qui gagne, elle marque 160 points plus le montant des enchères qui n’a pas été honoré.
+
+Si les enchères ont été coinchées, les scores sont doublés.
+
+## Fin de partie et décompte
+
+L’équipe qui l’emporte est la première à dépasser 1000 points.","### 3.
 
 The sleeve stops when all the folds were played.
 
