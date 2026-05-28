@@ -2010,6 +2010,108 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Rules cascade drift remap gpt-5.5",
+				SourceDataset = KnownDataSets.Rules,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"Text",
+					"Text_en","Text_ru","Text_pt","Text_es",
+					"Text_ar","Text_fa","Text_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"Text_en","Text_ru","Text_pt","Text_es",
+					"Text_ar","Text_fa","Text_zh",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRulesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRulesCascadeDriftAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Virtues cascade drift remap gpt-5.5",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"title_fr","description_fr","remark_fr",
+					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesCascadeDriftAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }
