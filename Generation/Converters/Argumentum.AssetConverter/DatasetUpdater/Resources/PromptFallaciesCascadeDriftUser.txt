@@ -1,18 +1,43 @@
-You are updating translations of French fallacy taxonomy texts for "Argumentum: L'école des menteurs". The French text (text_fr, desc_fr, example_fr) has been revised and is the reference. Your task: review the translations for each language and update them to match the French text.
+**Cascade Drift Remap — Fallacies Taxonomy**
 
-IMPORTANT:
-- Compare each translation against the French fields
-- If the French text is unchanged and the translation is already accurate, do NOT call UpdateRecord — skip it
-- Preserve technical logical fallacy names accurately in each language
-- Keep the hierarchical context (famille → sous-famille → sous-sous-famille)
-- EN: impersonal style (infinitive/gerund, no "you")
-- RU/PT/ES/AR/FA/ZH: mirror the French "Vous" style (formal register in 2nd person)
+Le texte français (`text_fr`, `desc_fr`, `example_fr`) vient d'être affiné en clarté et précision (passe FR clarity gpt-5.5). Les traductions multilingues ont été produites AVANT cet affinement et présentent donc une dérive stylistique ou sémantique. Tu reçois plusieurs entrées hiérarchisées (famille → sous-famille → sous-sous-famille) de la taxonomie pour évaluer cette dérive et proposer des correctifs progressifs.
 
-Target language fields to update (7 languages × 3 fields):
-- EN: text_en, desc_en, example_en
-- RU: text_ru, desc_ru, example_ru
-- PT: text_pt, desc_pt, example_pt
-- ES: text_es, desc_es, example_es
-- AR: text_ar, desc_ar, example_ar
-- FA: text_fa, desc_fa, example_fa
-- ZH: text_zh, desc_zh, example_zh
+**Langues cibles** (7 langues × 3 champs) :
+- EN (impersonnel, infinitif/gérondif)
+- RU, PT, ES, AR, FA, ZH (registre formel, miroir du "Vous" français)
+
+**Champs concernés** (par langue) :
+- `text_*` : nom court de la fallacie
+- `desc_*` : description (formelle, 2e personne pluriel sauf EN)
+- `example_*` : mise en situation incarnée, 1ère personne, sans nommer la fallacie
+
+---
+
+**Stratégie de mise à jour progressive** (CRITIQUE — sans cela tu vas sur-corriger ou tout sauter)
+
+1. **Function calling exclusif** : Pour chaque correction, appelle `UpdateRecord`. Pas de texte libre. Utilise autant d'appels que de modifications souhaitées.
+
+2. **Hiérarchie d'arbitrage** : Pour la majorité des nœuds, les traductions restent globalement valides ; ne propose des corrections que là où la dérive est tangible. Ce devrait être une minorité progressivement décroissante au fil des passes.
+
+3. **Priorisation par champ** (par noeud) : `example_*` > `desc_*` > `text_*`. **Maximum UNE cellule corrigée par noeud par passe**, en commençant par l'exemple si dérive détectable, sinon la description, sinon le titre. Si rien n'est tangiblement améliorable, passe au noeud suivant. Cette règle force une convergence progressive en plusieurs passes au lieu d'un sur-update massif.
+
+4. **Critères de dérive tangible** (au moins UN de ces signaux) :
+   - **Sémantique** : la traduction colle à un ancien sens du FR (ex: "based on" alors que le FR a évolué vers "fondé sur" ⇒ "founded on")
+   - **Style** : la traduction ne reflète pas la nouvelle clarté/précision FR (lourdeur, ambiguïté que le FR a résolue)
+   - **Fidélité incarnée** (exemples) : l'exemple ne mime plus la situation FR de manière vivante
+   - **Cohérence cross-langue** : une langue diverge clairement des autres alors que toutes devraient miroiter le FR
+
+5. **Ne PAS toucher** :
+   - Traductions où le sens est correctement aligné (la majorité)
+   - Champs `_fr` (verrouillés source, gérés par la passe FR clarity)
+   - Termes techniques bien établis (noms de fallacies reconnaissables : "Ad Hominem", "Strawman", etc.)
+   - Variations stylistiques minimes mais légitimes (idiotismes de langue)
+
+6. **Format** :
+   - EN : infinitif/gérondif, impersonnel ("Avoiding the question" pas "You avoid the question")
+   - RU/PT/ES : registre formel 2e personne pluriel (miroir "Vous")
+   - AR/FA/ZH : registre formel, idiomatique
+
+---
+
+**Output attendu** : Une série d'appels `UpdateRecord` ciblés (idéalement 0 à ~30% des cellules du chunk selon dérive observée), pas une mise à jour massive ni un skip total. Si tout est aligné, peu d'appels ; si dérive significative, plusieurs appels mais respectant le quota d'1 cellule/noeud/passe.
