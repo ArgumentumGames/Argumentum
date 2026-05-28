@@ -1444,6 +1444,266 @@ public class DatasetUpdaterRootConfig
 			MaxGroupItemNb = 12,
 			WriteOneTargetFileByField = false,
 			MaxChildren = 8
-		}
+		},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Scenarii to Spanish empty-only gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"catégorie",
+					"sous-catégorie",
+					"titre",
+					"baratineur",
+					"piocheur",
+					"contexte",
+					"enjeu",
+					"suggestion",
+					"category_es",
+					"subcategory_es",
+					"title_es",
+					"smoothTalker_es",
+					"drawer_es",
+					"context_es",
+					"issue_es",
+					"suggestion_es",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"category_es",
+					"subcategory_es",
+					"title_es",
+					"smoothTalker_es",
+					"drawer_es",
+					"context_es",
+					"issue_es",
+					"suggestion_es",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiTranslateEsUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateEsAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Scenarii to Arabic empty-only gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"catégorie",
+					"sous-catégorie",
+					"titre",
+					"baratineur",
+					"piocheur",
+					"contexte",
+					"enjeu",
+					"suggestion",
+					"category_ar",
+					"subcategory_ar",
+					"title_ar",
+					"smoothTalker_ar",
+					"drawer_ar",
+					"context_ar",
+					"issue_ar",
+					"suggestion_ar",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"category_ar",
+					"subcategory_ar",
+					"title_ar",
+					"smoothTalker_ar",
+					"drawer_ar",
+					"context_ar",
+					"issue_ar",
+					"suggestion_ar",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiTranslateArUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateArAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Scenarii to Persian empty-only gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"catégorie",
+					"sous-catégorie",
+					"titre",
+					"baratineur",
+					"piocheur",
+					"contexte",
+					"enjeu",
+					"suggestion",
+					"category_fa",
+					"subcategory_fa",
+					"title_fa",
+					"smoothTalker_fa",
+					"drawer_fa",
+					"context_fa",
+					"issue_fa",
+					"suggestion_fa",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"category_fa",
+					"subcategory_fa",
+					"title_fa",
+					"smoothTalker_fa",
+					"drawer_fa",
+					"context_fa",
+					"issue_fa",
+					"suggestion_fa",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiTranslateFaUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateFaAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate Scenarii to Chinese empty-only gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"catégorie",
+					"sous-catégorie",
+					"titre",
+					"baratineur",
+					"piocheur",
+					"contexte",
+					"enjeu",
+					"suggestion",
+					"category_zh",
+					"subcategory_zh",
+					"title_zh",
+					"smoothTalker_zh",
+					"drawer_zh",
+					"context_zh",
+					"issue_zh",
+					"suggestion_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"category_zh",
+					"subcategory_zh",
+					"title_zh",
+					"smoothTalker_zh",
+					"drawer_zh",
+					"context_zh",
+					"issue_zh",
+					"suggestion_zh",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiTranslateZhUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateZhAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			}
 		};
 }

@@ -1,0 +1,71 @@
+# Goal
+
+Traduis en chinois simplifié les champs vides `_zh` du jeu de données ci-après. Pour chaque champ `_zh` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallèle.
+
+# Success criteria
+
+- Tous les champs `_zh` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des catégories et sous-catégories entre scénarios (mapping ci-dessous)
+- Registre déclaratif, chinois simplifié standard (简体中文)
+- Ton narratif ludique et vivant préservé (rythme, humour, brièveté)
+- Phrasé naturel en chinois moderne, éviter les calques du français
+
+# Mapping des champs (ATTENTION)
+
+- `catégorie` → `category_zh`
+- `sous-catégorie` → `subcategory_zh`
+- `titre` → `title_zh`
+- `baratineur` → `smoothTalker_zh`
+- `piocheur` → `drawer_zh`
+- `contexte` → `context_zh`
+- `enjeu` → `issue_zh`
+- `suggestion` → `suggestion_zh`
+
+# Mapping canonique des catégories
+
+- `histoire` → `历史`
+- `mythologie` → `神话`
+- `politique` → `政治`
+- `pop culture` → `流行文化`
+- `relation intime` → `亲密关系`
+- `vie personnelle` → `个人生活`
+- `vie professionnelle` → `职业生活`
+
+# Mapping canonique des sous-catégories
+
+- `20e et 21e siècle` → `20世纪与21世纪`
+- `Bandes dessinées` → `漫画`
+- `antiquité` → `古代`
+- `campagne` → `乡村`
+- `cinéma & télévision` → `电影与电视`
+- `contes` → `童话故事`
+- `drague et séduction` → `搭讪与诱惑`
+- `famille et enfance` → `家庭与童年`
+- `gestion et administration` → `管理与行政`
+- `gouvernance` → `治理`
+- `interactions professionnelles` → `职场互动`
+- `littérature` → `文学`
+- `loisirs et espace public` → `休闲与公共空间`
+- `manoeuvres et collusion` → `操纵与勾结`
+- `moyen-âge et temps modernes` → `中世纪与近代`
+- `relations au travail` → `职场关系`
+- `religions` → `宗教`
+- `romance` → `浪漫爱情`
+- `science` → `科学`
+- `vie de couple` → `情侣生活`
+- `voisins et amis` → `邻居与朋友`
+
+Pour les termes non listés, traduis la première occurrence puis réutilise mot pour mot.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia ZH : uniquement si certain, sinon laisser vide
+- Noms propres français (ex. "Jean-Michel") : conserver en caractères latins ou transcrire selon l'usage chinois courant
+- Références culturelles universelles : conserver ; références trop franco-françaises : adapter si nécessaire à la compréhension
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
+
+Es-tu prêt à recevoir les données ?

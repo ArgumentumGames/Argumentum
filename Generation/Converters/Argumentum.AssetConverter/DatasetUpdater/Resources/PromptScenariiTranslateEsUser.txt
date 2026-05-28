@@ -1,0 +1,70 @@
+# Goal
+
+Traduis en espagnol les champs vides `_es` du jeu de données ci-après. Pour chaque champ `_es` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallèle.
+
+# Success criteria
+
+- Tous les champs `_es` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des catégories et sous-catégories entre scénarios (mapping ci-dessous)
+- Registre impersonnel : infinitif ou gerondif (pas de tu/vosotros), espagnol naturel et international
+- Ton narratif ludique et vivant préservé (rythme, humour, brièveté)
+
+# Mapping des champs (ATTENTION)
+
+- `catégorie` → `category_es`
+- `sous-catégorie` → `subcategory_es`
+- `titre` → `title_es`
+- `baratineur` → `smoothTalker_es`
+- `piocheur` → `drawer_es`
+- `contexte` → `context_es`
+- `enjeu` → `issue_es`
+- `suggestion` → `suggestion_es`
+
+# Mapping canonique des catégories
+
+- `histoire` → `historia`
+- `mythologie` → `mitología`
+- `politique` → `política`
+- `pop culture` → `cultura popular`
+- `relation intime` → `relación íntima`
+- `vie personnelle` → `vida personal`
+- `vie professionnelle` → `vida profesional`
+
+# Mapping canonique des sous-catégories
+
+- `20e et 21e siècle` → `siglos XX y XXI`
+- `Bandes dessinées` → `Cómics`
+- `antiquité` → `antigüedad`
+- `campagne` → `zona rural`
+- `cinéma & télévision` → `cine y televisión`
+- `contes` → `cuentos`
+- `drague et séduction` → `ligoteo y seducción`
+- `famille et enfance` → `familia e infancia`
+- `gestion et administration` → `gestión y administración`
+- `gouvernance` → `gobernanza`
+- `interactions professionnelles` → `interacciones profesionales`
+- `littérature` → `literatura`
+- `loisirs et espace public` → `ocio y espacio público`
+- `manoeuvres et collusion` → `maniobras y colusión`
+- `moyen-âge et temps modernes` → `Edad Media y era moderna`
+- `relations au travail` → `relaciones laborales`
+- `religions` → `religiones`
+- `romance` → `romance`
+- `science` → `ciencia`
+- `vie de couple` → `vida en pareja`
+- `voisins et amis` → `vecinos y amigos`
+
+Pour les termes non listés, traduis la première occurrence puis réutilise mot pour mot.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia ES : uniquement si certain, sinon laisser vide
+- Noms propres français (ex. "Jean-Michel") : conserver ou adapter selon ce qui est plus naturel en espagnol
+- Références culturelles universelles : conserver ; références trop franco-françaises : adapter si nécessaire à la compréhension
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
+
+Es-tu prêt à recevoir les données ?

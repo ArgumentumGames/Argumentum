@@ -1,0 +1,71 @@
+# Goal
+
+Traduis en persan (farsi) les champs vides `_fa` du jeu de données ci-après. Pour chaque champ `_fa` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallèle.
+
+# Success criteria
+
+- Tous les champs `_fa` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des catégories et sous-catégories entre scénarios (mapping ci-dessous)
+- Registre déclaratif, persan standard (فارسی معیار)
+- Ton narratif ludique et vivant préservé (rythme, humour, brièveté)
+- Phrasé naturel en persan, éviter les calques du français
+
+# Mapping des champs (ATTENTION)
+
+- `catégorie` → `category_fa`
+- `sous-catégorie` → `subcategory_fa`
+- `titre` → `title_fa`
+- `baratineur` → `smoothTalker_fa`
+- `piocheur` → `drawer_fa`
+- `contexte` → `context_fa`
+- `enjeu` → `issue_fa`
+- `suggestion` → `suggestion_fa`
+
+# Mapping canonique des catégories
+
+- `histoire` → `تاریخ`
+- `mythologie` → `اسطوره‌شناسی`
+- `politique` → `سیاست`
+- `pop culture` → `فرهنگ عامه`
+- `relation intime` → `رابطه صمیمی`
+- `vie personnelle` → `زندگی شخصی`
+- `vie professionnelle` → `زندگی حرفه‌ای`
+
+# Mapping canonique des sous-catégories
+
+- `20e et 21e siècle` → `قرن بیستم و بیست‌ویكم`
+- `Bandes dessinées` → `کمیک‌ها`
+- `antiquité` → `باستان`
+- `campagne` → `روستا`
+- `cinéma & télévision` → `سینما و تلویزیون`
+- `contes` → `افسانه‌ها`
+- `drague et séduction` → `معاشقه و اغوای`
+- `famille et enfance` → `خانواده و کودکی`
+- `gestion et administration` → `مدیریت و اداره`
+- `gouvernance` → `حکمرانی`
+- `interactions professionnelles` → `تعاملات حرفه‌ای`
+- `littérature` → `ادبیات`
+- `loisirs et espace public` → `تفریح و فضای عمومی`
+- `manoeuvres et collusion` → `تبانی و توطئه`
+- `moyen-âge et temps modernes` → `قرون وسطی و دوران مدرن`
+- `relations au travail` → `روابط در محیط کار`
+- `religions` → `ادیان`
+- `romance` → `عاشقانه`
+- `science` → `علم`
+- `vie de couple` → `زندگی زناشویی`
+- `voisins et amis` → `همسایه‌ها و دوستان`
+
+Pour les termes non listés, traduis la première occurrence puis réutilise mot pour mot.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia FA : uniquement si certain, sinon laisser vide
+- Noms propres français (ex. "Jean-Michel") : conserver en حروف لاتین ou translittérer selon l'usage persan courant
+- Références culturelles universelles : conserver ; références trop franco-françaises : adapter si nécessaire à la compréhension
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
+
+Es-tu prêt à recevoir les données ?

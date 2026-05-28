@@ -1,0 +1,71 @@
+# Goal
+
+Traduis en arabe les champs vides `_ar` du jeu de données ci-après. Pour chaque champ `_ar` vide, traduis le champ `_fr` correspondant en appelant la fonction `UpdateRecord`. Tu dois traiter **tous** les champs vides de **toutes** les entrées.
+
+**Important :** Emet tous tes appels `UpdateRecord` en parallel tool calls dans un seul bloc de réponse. N'appelle pas les fonctions une par une. Si 5 records ont chacun 3 champs vides, emets 15 appels UpdateRecord en parallèle.
+
+# Success criteria
+
+- Tous les champs `_ar` vides sont traduits via des appels `UpdateRecord`
+- Aucun texte libre dans ta réponse — uniquement des appels de fonction
+- Cohérence exacte des catégories et sous-catégories entre scénarios (mapping ci-dessous)
+- Registre déclaratif, arabe standard moderne (فصحى)
+- Ton narratif ludique et vivant préservé (rythme, humour, brièveté)
+- Phrasé naturel en arabe, éviter les calques du français
+
+# Mapping des champs (ATTENTION)
+
+- `catégorie` → `category_ar`
+- `sous-catégorie` → `subcategory_ar`
+- `titre` → `title_ar`
+- `baratineur` → `smoothTalker_ar`
+- `piocheur` → `drawer_ar`
+- `contexte` → `context_ar`
+- `enjeu` → `issue_ar`
+- `suggestion` → `suggestion_ar`
+
+# Mapping canonique des catégories
+
+- `histoire` → `تاريخ`
+- `mythologie` → `ميثولوجيا`
+- `politique` → `سياسة`
+- `pop culture` → `ثقافة شعبية`
+- `relation intime` → `علاقة حميمية`
+- `vie personnelle` → `حياة شخصية`
+- `vie professionnelle` → `حياة مهنية`
+
+# Mapping canonique des sous-catégories
+
+- `20e et 21e siècle` → `القرنان العشرون والحادي والعشرون`
+- `Bandes dessinées` → `قصص مصورة`
+- `antiquité` → `العصور القديمة`
+- `campagne` → `الريف`
+- `cinéma & télévision` → `السينما والتلفزيون`
+- `contes` → `حكايات`
+- `drague et séduction` → `الغزل والإغواء`
+- `famille et enfance` → `الأسرة والطفولة`
+- `gestion et administration` → `الإدارة والتسيير`
+- `gouvernance` → `الحوكمة`
+- `interactions professionnelles` → `التفاعلات المهنية`
+- `littérature` → `أدب`
+- `loisirs et espace public` → `الترفيه والفضاء العام`
+- `manoeuvres et collusion` → `المناورات والتواطؤ`
+- `moyen-âge et temps modernes` → `العصور الوسطى والعصور الحديثة`
+- `relations au travail` → `العلاقات في العمل`
+- `religions` → `الأديان`
+- `romance` → `رومانسية`
+- `science` → `علوم`
+- `vie de couple` → `الحياة الزوجية`
+- `voisins et amis` → `الجيران والأصدقاء`
+
+Pour les termes non listés, traduis la première occurrence puis réutilise mot pour mot.
+
+# Constraints
+
+- "Argumentum" reste "Argumentum"
+- Liens Wikipedia AR : uniquement si certain, sinon laisser vide
+- Noms propres français (ex. "Jean-Michel") : conserver tels quels ou translittérer selon l'usage arabe courant
+- Références culturelles universelles : conserver ; références trop franco-françaises : adapter si nécessaire à la compréhension
+- Champs déjà remplis : tu peux les améliorer si tu identifies une erreur, mais priorité aux champs vides
+
+Es-tu prêt à recevoir les données ?
