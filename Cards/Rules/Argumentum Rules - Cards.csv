@@ -425,7 +425,7 @@ Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certai
 * Le piocheur a le droit de désigner directement l’embromador de la manche.
 * Si le piocheur gagne, il gagne également la carte de l’embromador.
 * L’embromador peut poser plusieurs cartes. Autant de vainqueurs qu’il y a de cartes ayant obtenu le plus grand nombre de votes sont déclarés ; l’embromador peut ainsi remporter tout ou partie de ses cartes.
-* Le vainqueur de la partie doit incarner l’embromador dans un ultime scénario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","In the event of a tie (🥈👇👇≟🥈👇👇), the embromador wins (✅🎭➜🎭🏆). If not (❌🎭), the acclaimed jurors who found the embromador’s card are all declared winners (✅👇🎭➜👇🏆). If none of the jurors concerned found it, the embromador wins (❌👇🎭➜🎭🏆).
+* Le vainqueur de la partie doit incarner l’embromador dans un ultime scénario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","In the event of a tie (🥈👇👇≟🥈👇👇), the embromador wins (✅🎭➜🎭🏆). Otherwise (❌🎭), all tied jurors who received the most votes and identified the embromador’s card are declared winners (✅👇🎭➜👇🏆). If none of the jurors concerned identified it, the embromador wins (❌👇🎭➜🎭🏆).
 
 ### 6. The draws
 
@@ -729,24 +729,24 @@ L'assemblée vote à main levée pour valider ou non son analyse.
 Le score final de chaque joueur correspond au nombre de ses cartes validées par l'assemblée.
 Si, à l'issue d'un premier décompte, d'autres joueurs non sélectionnés ont désormais plus de cartes que le meilleur score validé, on procède à leur validation, et ainsi de suite jusqu'à ce que le meilleur score validé ne soit plus contestable.
 
-Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs.","## during the debate
+Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs.","## During the debate
 
-Each player listens to the arguments formulated. If he spots an argument that is one of the cards of his bingo grid, he notes the past time, a beginning of quote which will allow us to find the right passage, and the name of his card accompanied if necessary a Little context to be able to restore his analysis later orally.
+Each player listens to the arguments being made. If an argument matches one of the cards on their bingo grid, they note the elapsed time, the beginning of a quotation that will make it possible to find the right passage, and the name of the card. If needed, they add a little context so they can later present their analysis orally.
 
 ## Post-debate validations
 
-Players who claim the largest number of cards used are selected for validation.
+Players claiming the largest number of used cards are selected for validation.
 
-From their notes and recording the sequence of moments when each of their cards has been established.
-For each of the cards, we go back to the accused moment and the explicit player why the argument is his card.
-The assembly votes by hand to validate or not its analysis.
+Using their notes and the recording, establish the sequence of moments when each of their cards was used.
+For each card, replay the relevant moment, and the player explains why the argumentation matches their card.
+The assembly votes by show of hands to validate or reject their analysis.
 
 ## Victory conditions
 
-The final score of players is the number of their cards validated by the Assembly
-If at the end of a first statement, other unrealized players are now found with more cards than the best validated score, they are validated, and so on until the best validated score does not is more questionable.
+Each player's final score is the number of their cards validated by the assembly.
+If, after a first count, other non-selected players now have more cards than the best validated score, proceed with their validation, and so on until the best validated score can no longer be challenged.
 
-Players who have obtained the best score are declared victors","## Во время дебатов
+Players with the best score are declared winners.","## Во время дебатов
 
 Каждый игрок слушает сформулированные аргументы. Если он заметит аргумент, который соответствует одной из его карт, он записывает таймкод, начало цитаты, которая позволит нам найти правильный отрывок, и название его карты, а также, если это необходимо, контекст, чтобы легче восстановить ситуацию.
 
@@ -951,13 +951,13 @@ Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la 
 
 Mélangez les cartes d’argument fallacieux, puis les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table. Distribuez à chaque joueur 5 cartes d’argument fallacieux, qu’il garde pour lui. Le reste des cartes constitue la pioche.
 
-Le premier piocheur est celui qui s'est fait influencer le plus récemment par un appel à l'émotion.","## Facility
+Le premier piocheur est celui qui s'est fait influencer le plus récemment par un appel à l'émotion.","## Setup
 
-Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of sleeves of a few minutes that will be played.
+Depending on the number of players and the desired difficulty level, build the draw pile of fallacious argument cards by adding the levels indicated at the bottom right of the cards, in ascending order. Choose the maximum number of rounds of a few minutes that will be played.
 
-The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards placed in the middle of the table. Each player is distributed to 5 fallacious argument cards he keeps for him. The rest of the cards are the pick.
+Shuffle the fallacious argument cards, then the scenario cards. Create 2 draw piles of scenario cards and place them in the middle of the table. Deal 5 fallacious argument cards to each player, which they keep to themselves. The remaining cards form the draw pile.
 
-The first pickler is the one who was influenced last by a call to emotion.","## Начало игры
+The first drawer is the player who was most recently influenced by an appeal to emotion.","## Начало игры
 
 В зависимости от количества игроков и желаемого уровня сложности, мы составляем колоду карт с псевдоаргументами, выбрав нужные нам уровни сложности (они указаны в правом нижнем углу карт). Мы договариваемся о том, сколько кругов сыграем. 
 
@@ -1008,22 +1008,21 @@ Si un joueur ne trouve pas de nouvel argument au bout de 10 secondes, il pioche 
 
 ### 3. Fin de la manche
 
-La manche s'arrête quand il ne reste plus qu'une personne en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.","# Roll of the English Channel
+La manche s'arrête quand il ne reste plus qu'une personne en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.","## Round sequence
 
-### 1. The smooth talker
+### 1. The drawer
 
-The drawer draws a scenario card from the two picks available and reads aloud, with the exception of the last sentence in italics at the bottom of the card.
-
+The drawer draws a Scenario card from the two available draw piles and reads it aloud, except for the final italicized sentence at the bottom of the card.
 
 ### 2. The round of arguments
 
-By comming by the neighbor's left of the smooth talker, each player must offer an argument responding to the injunction of the scenario. If a player spots one of his cards in the arguments given, he gives his card to the one who used it and spreads it out of the Channel.
-If a player no longer finds a new argument after 10 seconds, he draws a new card and is excluded from the Channel.
+Starting with the player to the drawer's left, each player must offer an argument responding to the scenario's prompt. If a player recognizes one of their cards in a given argument, they give that card to the player who used it and remove it from the round.
 
+If a player cannot find a new argument within 10 seconds, they draw a new card and are excluded from the round.
 
 ### 3. End of the round
 
-The sleeve stops when there is only one person left is at stake. The neighbor on the left of the pickler becomes the new pickler and pulls the scenario of the next round.","# Ход партии
+The round ends when only one person remains in play. The player to the drawer's left becomes the new drawer and draws the scenario for the next round.","# Ход партии
 
 ### 1. Ведущий
 
@@ -1253,13 +1252,13 @@ Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la 
 
 Mélangez les cartes d’argument fallacieux, ainsi que les cartes de scénario. Formez 2 pioches de cartes de scénario et 1 pioche d’argument fallacieux, puis placez-les au milieu de la table.
 
-Le premier piocheur est le joueur qui a le plus récemment concédé un argument à l’usure.","## Facility
+Le premier piocheur est le joueur qui a le plus récemment concédé un argument à l’usure.","## Setup
 
-Depending on the number of players and the level of difficulty desired, we constitute the draw of the fallacious argument cards by adding the levels indicated at the bottom right of the cards in increasing order. We choose the maximum number of rounds of 3 minutes per player who will be played.
+Depending on the number of players and the desired difficulty level, build the fallacious argument card deck by adding the levels indicated at the bottom right of the cards, in ascending order. Choose the maximum number of 3-minute rounds per player to be played.
 
-The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards and 1 fallacious argument pick, placed in the middle of the table.
+Shuffle the fallacious argument cards, as well as the scenario cards. Form 2 scenario card decks and 1 fallacious argument deck, then place them in the middle of the table.
 
-The first pickaxe is the one who has last awarded an argument for wear.","## Начало игры
+The first drawer is the player who most recently conceded an argument through sheer weariness.","## Начало игры
 
 В зависимости от количества игроков и желаемого уровня сложности, мы составляем колоду карт с псевдоаргументами, выбрав нужные нам уровни сложности (они указаны в правом нижнем углу карт). 
 
@@ -1311,24 +1310,22 @@ L’embromador commence à piocher des cartes d’argument fallacieux. Pour chaq
 
 ### 3. Fin de la manche
 
-La manche s’arrête à la fin du temps imparti. L’embromador marque autant de points qu’il a remporté de cartes pendant la manche. Il devient le piocheur de la manche suivante.","# Roll of the English Channel
+La manche s’arrête à la fin du temps imparti. L’embromador marque autant de points qu’il a remporté de cartes pendant la manche. Il devient le piocheur de la manche suivante.","## Round sequence
 
-### 1. The smooth talker
+### 1. The drawer
 
-The drawer draws a scenario card from the two picks available and reads aloud, with the exception of the last sentence in italics at the bottom of the card.
+The drawer draws a scenario card from the two available decks and reads it aloud, except for the last sentence in italics at the bottom of the card.
 
+### 2. The speed race
 
-### 2. speed running
+The player to the drawer’s left is the embromador.
+Set a 3-minute timer.
 
-The neighbor's left of the pickler is the embromador.
-We are preparing a 3 -minute timer.
-
-He starts drawing fallacious arguments. For each card, he must offer an argument illustrating the card to act the scenario. If it succeeds, he wins the card, otherwise he can also pass, at the rate of 3 jokers per handle, and draw the next one.
-
+The embromador starts drawing fallacious argument cards. For each card, they must propose an argument that illustrates the card in order to enact the scenario. If they succeed, they win the card; otherwise, they may pass, up to a limit of 3 jokers per round, then draw the next one.
 
 ### 3. End of the round
 
-The sleeve stops at the end of the time allocated, the embromador obtains in points the number of cards swept away on the sleeve. He becomes picky of the next round.","# Ход партии
+The round ends when the allotted time runs out. The embromador scores as many points as the number of cards they won during the round. They become the drawer for the next round.","# Ход партии
 
 ### 1Ведущий
 
@@ -1435,15 +1432,13 @@ Le premier joueur à atteindre 20 points remporte la partie.
 
 ## Variantes
 
-* À chaque carte piochée, après l’argument de l’embromador, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l’assemblée vote pour déterminer si elle est meilleure que les précédentes. L’auteur de la meilleure proposition retenue remporte la carte.","##       Game over
+* À chaque carte piochée, après l’argument de l’embromador, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l’assemblée vote pour déterminer si elle est meilleure que les précédentes. L’auteur de la meilleure proposition retenue remporte la carte.","## End of the game
 
-
-The first player arriving at 20 points takes the game
+The first player to reach 20 points wins the game.
 
 ## Variants
 
-* On each drawing card, after the argument of the smooth talker, the other players can each offer another illustration of the card. For each new proposal, the Assembly votes if it is deemed better than the previous ones, and the author of the best proposal retained wins the card.
-","##       Конец игры
+* For each card drawn, after the embromador’s argument, the other players may each propose another illustration of the card. For each new proposal, the group votes to determine whether it is better than the previous ones. The author of the best accepted proposal wins the card.","##       Конец игры
 
 
 Первый игрок, набравший на 20 очков, объявляется победителем.
@@ -1514,16 +1509,16 @@ Rules_21,"*Règles du jeu : 4 joueurs*
 
 Au cours d’une succession de manches, 2 équipes de 2 joueurs se font face. Les joueurs reçoivent des mains de cartes d’arguments fallacieux, qu’ils utilisent à tour de rôle sur un scénario tiré au sort. Le niveau de spécificité des cartes détermine leur force. Deux couleurs, dites d’atout, peuvent être jouées à tout moment et l’emportent sur les autres couleurs. En plus de reconnaître les arguments fallacieux, les joueurs s’entraînent à évaluer le niveau de spécificité des cartes et à coopérer.","*Game rules: 4 players*
 
-## Material
+## Components
 
-* 1 pack of fallacious argument cards organized in 7 classes of colors, each divided into 3 orders and then in 3 families. A selection of 32 cards
-* 1 package of scenario cards organized in 7 identifiable themes on their back
-* 5 Memo cards
+* 1 deck of fallacious argument cards, organized into 7 color classes, each divided into 3 orders and then 3 families. A selection of 32 cards
+* 1 deck of scenario cards, organized into 7 themes identifiable on the backs of the cards
+* 5 memo cards
 * Game rules
    
-## Summary of the game
+## Game summary
 
-In a succession of sleeves between 2 teams of 2 players facing each other, they will be distributed handsome fallacious arguments to use in a succession of towers on a scenario drawn. The level of specificity of the cards constitutes their strength and 2 so -called asset colors can be played at any time, and prevail over other colors. In addition to recognizing the fallacious arguments, players train to assess the level of specificity of the cards, and to cooperate.","*Правила игры: 4 игрока*
+Over a succession of rounds, 2 teams of 2 players face each other. Players receive hands of fallacious argument cards, which they use in turn on a randomly drawn scenario. The level of specificity of the cards determines their strength. Two colors, called trump colors, may be played at any time and prevail over the other colors. In addition to recognizing fallacious arguments, players practice assessing the level of specificity of the cards and cooperating.","*Правила игры: 4 игрока*
 
 ## Потребуется: 
 
@@ -1598,13 +1593,13 @@ Sélectionnez 28 cartes d’arguments fallacieux pour la partie, soit 4 par coul
 
 Mélangez séparément les cartes d’arguments fallacieux et les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table.
 
-Le premier piocheur est le joueur qui a menti en dernier.","## Facility
+Le premier piocheur est le joueur qui a menti en dernier.","## Setup
 
-We select 28 fallacious arguments cards for the game, 4 per color.
+Select 28 fallacious argument cards for the game, 4 per color.
 
-The fallacious argument cards are mixed, as well as the scenario cards. We constitute 2 picks of scenario cards placed in the middle of the table.
+Shuffle the fallacious argument cards and the scenario cards separately. Form 2 scenario card decks and place them in the middle of the table.
 
-The first pickaxe is the one who lied last.","## Начало игры
+The first drawer is the player who lied most recently.","## Начало игры
 
 Мы выбираем 28 карт псевдоаргументов для игры, по 4 каждого цвета.
 
@@ -1675,36 +1670,37 @@ Pour emporter un pli, un joueur doit expliciter un argument correspondant à sa 
 
 Si aucun joueur ne propose d’argument, la meilleure carte l’emporte.","## Start of the round
 
-### 1. The smooth talker
+### 1. The drawer
 
-The drawer draws a scenario card from the two picks available and reads aloud, with the exception of the last sentence in italics at the bottom of the card.
-Then he mixes and distributes the 28 fallacious arguments cards to the 4 players.
+The drawer draws a scenario card from the two available decks and reads it aloud, except for the last sentence in italics at the bottom of the card.
 
-### 2. Atout auction
+They then shuffle the 28 fallacious argument cards and deal them to the 4 players.
 
-Starting with the neighbor's neighbor's neighbor, players choose or not to outbid to designate the 2 asset colors of the Channel. The asset cards prevail over other types of cards, and are also worth more points to the round of the Channel.
-The auction of the assets is 80 and the auctions go up from 10 to 10.
+### 2. Trump bidding
 
-At any time, one of the two members of a team can say ""I corner"" and put an end to auction while doubling the stake of the Channel.
-When no one is overbirth, the two asset colors are designated for the Channel and the game phase can start.
+Starting with the player to the drawer’s left, players choose whether or not to raise the bid in order to designate the 2 trump colors for the round. Trump cards make it possible to beat other types of cards and are also worth more points during the round scoring.
 
+Trump bidding starts at 80, then bids increase by 10.
 
-### 2. The playing laps
+At any time, one of the two members of a team may say “I coinche” to end the bidding and double the stakes of the round.
 
-In a succession of 7 laps, the players will each confront 1 fallacious argument card on the scenario.
-By comming by the neighbor's neighbor of the pickler, each player must offer a card and play an illustrative argument responding to the injunction of the scenario.
+When no one raises any further, the two trump colors are designated for the round and the play phase can begin.
 
-If no asset card is played, the card at the largest level of depth takes the fold.
-If advantages are played, the asset card of the lowest level of depth takes the fold.
-The players in the same team share the folds they win.
+### 3. The turns of play
 
-To take a fold a player must explain an argument corresponding to the card.
-If no player offers an argument, the best card wins.
+For 7 turns, each player confronts 1 fallacious argument card with the scenario.
 
+Starting with the player to the drawer’s left, each player must propose a card and formulate an illustrative argument responding to the scenario’s injunction.
 
+If no trump card is played, the card with the highest depth level wins the trick.
 
+If trump cards are played, the trump card with the lowest depth level wins the trick.
 
-  ","## Начало раунда
+Players on the same team share the tricks they win.
+
+To win a trick, a player must make explicit an argument corresponding to their card.
+
+If no player proposes an argument, the best card wins.","## Начало раунда
 
 ### 1. Ведущий
 
@@ -1901,22 +1897,25 @@ Si les enchères ont été coinchées, les scores sont doublés.
 
 ## Fin de partie et décompte
 
-L’équipe qui l’emporte est la première à dépasser 1000 points.","### 3.
+L’équipe qui l’emporte est la première à dépasser 1000 points.","### 4. Round scoring
 
-The sleeve stops when all the folds were played.
+The round ends when all tricks have been played.
 
-We then count the points of the two teams.
-For cards apart from the asset colors, each card is worth its level of depth twice.
-For asset color cards, each card is worth 12 - (2 times its level of depth)
+Then count the points for both teams.
 
-If the team that won the asset auction respects its contract with a higher score, it wins the amount of its auctions more the points actually won.
-If it is the other team that wins, it is this which takes 160 points more the amount of auctions which was not honored.
+For cards that are not in the trump colors, each card is worth 2 times its depth level.
 
-If the auctions were corner, the scores are doubled.
+For cards in the trump colors, each card is worth 12 - (2 times its depth level).
 
-## End of game and count
+If the team that won the trump bidding fulfills its contract with a higher score, it scores the amount of its bid plus the points actually won.
 
-The team that prevails is the first to exceed 1000 points","### 3.
+If the other team wins, it scores 160 points plus the amount of the bid that was not fulfilled.
+
+If the bidding was coinched, the scores are doubled.
+
+## End of the game and scoring
+
+The winning team is the first to exceed 1000 points.","### 3.
 
 Рукав останавливается, когда все складки играли.
 
