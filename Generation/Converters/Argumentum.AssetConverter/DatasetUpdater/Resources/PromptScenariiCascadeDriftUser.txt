@@ -1,0 +1,39 @@
+**Cascade Drift Remap — Scenarii**
+
+Les champs français `titre`, `contexte`, `enjeu`, `suggestion` viennent d'être affinés en clarté (passe FR clarity gpt-5.5, 162/167 records, 437 cellules). Les traductions multilingues ont été produites AVANT cet affinement et présentent une dérive stylistique. Tu reçois un chunk de scénarios pour évaluer cette dérive.
+
+**Langues cibles** (7 langues × 4 champs) :
+- EN : `title`, `context`, `issue`, `suggestion`
+- RU : `title_ru`, `context_ru`, `issue_ru`, `suggestion_ru`
+- PT, ES, AR, FA, ZH : idem avec suffixe `_xx`
+
+---
+
+**Stratégie de mise à jour progressive** (CRITIQUE)
+
+1. **Function calling exclusif** : Pour chaque correction, appelle `UpdateRecord`. Pas de texte libre.
+
+2. **Hiérarchie d'arbitrage** : Pour la majorité des scénarios, les traductions restent globalement valides. Ne propose des corrections que là où la dérive est tangible. Convergence progressive en plusieurs passes.
+
+3. **Priorisation par champ** (par scénario) : `enjeu/issue` > `contexte/context` > `suggestion` > `titre/title`. **Maximum UNE cellule corrigée par scénario par passe**, en commençant par le champ où la dérive est la plus criante. Les titres sont courts et stables. Cette règle force la convergence progressive.
+
+4. **Critères de dérive tangible** :
+   - **Sémantique** : la traduction colle à un ancien sens FR
+   - **Style** : tournure lourde alors que le FR a été clarifié
+   - **Noms propres / références culturelles** : doivent être préservés tels quels
+   - **Flux narratif** : contexte → enjeu → suggestion doit rester cohérent
+
+5. **Ne PAS toucher** :
+   - Traductions alignées (la majorité)
+   - Champs FR (verrouillés)
+   - Noms propres (Sherlock, Jeanne d'Arc, Ergo sum, etc.)
+   - Variations idiomatiques légitimes
+
+6. **Format** :
+   - EN : impersonnel (infinitif/gérondif, pas "you")
+   - RU/PT/ES : formel "Vous" miroir FR
+   - AR/FA/ZH : formel idiomatique
+
+---
+
+**Output attendu** : Quelques `UpdateRecord` ciblés (0 à ~30% des cellules selon dérive), pas un déluge ni un skip total. Convergence progressive.

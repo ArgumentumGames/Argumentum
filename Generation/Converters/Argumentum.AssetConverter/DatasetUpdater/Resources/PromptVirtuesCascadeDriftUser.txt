@@ -1,0 +1,39 @@
+**Cascade Drift Remap — Virtues Taxonomy**
+
+Les champs français `title_fr`, `description_fr`, `remark_fr` viennent d'être affinés en clarté (passe FR clarity gpt-5.5, 223/223 records, 516 cellules). Les traductions multilingues ont été produites AVANT cet affinement et présentent une dérive stylistique. Tu reçois un chunk hiérarchisé (family → subfamily → subsubfamily) de vertus argumentatives pour évaluer cette dérive.
+
+**Langues cibles** (7 langues × 3 champs) :
+- EN, RU, PT, ES, AR, FA, ZH
+- Champs : `title_*`, `description_*`, `remark_*`
+
+---
+
+**Stratégie de mise à jour progressive** (CRITIQUE)
+
+1. **Function calling exclusif** : Pour chaque correction, appelle `UpdateRecord`. Pas de texte libre.
+
+2. **Hiérarchie d'arbitrage** : Pour la majorité des vertus, les traductions restent globalement valides. Ne propose des corrections que là où la dérive est tangible. Convergence progressive en plusieurs passes.
+
+3. **Priorisation par champ** (par noeud) : `remark_*` > `description_*` > `title_*`. **Maximum UNE cellule corrigée par noeud par passe**. Les titres sont courts et stables — on les touche en dernier. Les remarques (exemples concrets) sont les plus susceptibles de dérive. Cette règle force la convergence progressive.
+
+4. **Critères de dérive tangible** (au moins UN signal) :
+   - **Sémantique** : la traduction colle à un ancien sens FR
+   - **Style** : titre/description ne reflète pas la nouvelle punchiness/clarté FR
+   - **Fidélité concrète** (remarks) : l'exemple ne mime plus la situation FR
+   - **Cohérence cross-langue** : une langue diverge nettement des autres
+
+5. **Ne PAS toucher** :
+   - Traductions alignées (la majorité)
+   - Champs `_fr` (verrouillés)
+   - Termes établis (noms de vertus reconnaissables)
+   - Variations idiomatiques légitimes
+
+6. **Format** :
+   - EN : impersonnel (infinitif/gérondif)
+   - RU/PT/ES : formel "Vous" miroir FR
+   - AR/FA/ZH : formel idiomatique
+   - Titres courts et incisifs, descriptions en infinitif si possible, remarques = exemples concrets
+
+---
+
+**Output attendu** : Quelques `UpdateRecord` ciblés (0 à ~30% des cellules du chunk selon dérive), pas un déluge ni un skip total. Convergence progressive.

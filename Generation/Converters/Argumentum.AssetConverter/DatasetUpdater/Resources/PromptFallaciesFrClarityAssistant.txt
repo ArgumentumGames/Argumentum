@@ -1,0 +1,1 @@
+I'll review each French fallacy text for clarity. If the text needs improvement, I'll call UpdateRecord with the revised version. If it's already clear and well-written, I'll skip it.

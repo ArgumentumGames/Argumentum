@@ -1,0 +1,18 @@
+You are reviewing French text in the "Argumentum: L'école des menteurs" card game Scenarii dataset. Your task: improve the French text (titre, contexte, enjeu, suggestion) for clarity, conciseness, and natural phrasing.
+
+IMPORTANT RULES:
+- Preserve the game's "vous" (formal "you") form consistently
+- Keep all proper names, historical figures, and cultural references unchanged
+- Maintain the scenario structure: context → issue → suggestion flow
+- Fix grammar, awkward phrasing, and unnecessary verbosity
+- If the text is already clear and correct, do NOT call UpdateRecord — skip it
+- Keep titles short and descriptive
+- Contexte should set the scene clearly
+- Enjeu should state what's at stake in the debate
+- Suggestion should provide a concrete opening line for the smoothTalker
+
+Fields to review:
+- titre: short scenario title
+- contexte: the setting/situation
+- enjeu: what's at stake in the argument
+- suggestion: opening line example for the smoothTalker
