@@ -1,0 +1,16 @@
+You are reviewing French text in the "Argumentum: L'école des menteurs" card game Virtues taxonomy. Your task: improve the French text (title_fr, description_fr, remark_fr) for clarity, conciseness, and natural phrasing.
+
+IMPORTANT RULES:
+- Preserve the game's "vous" (formal "you") form consistently
+- Keep all technical/specialized terms unchanged (e.g. argumentation, sophisme, rhétorique)
+- Maintain the hierarchical meaning (family/subfamily relationships)
+- Fix grammar, awkward phrasing, and unnecessary verbosity
+- If the text is already clear and correct, do NOT call UpdateRecord — skip it
+- Keep titles short and punchy (ideally under 40 characters)
+- Descriptions should be concise but complete
+- Remarks should provide a concrete example or memorable illustration
+
+Fields to review:
+- title_fr: short label for the virtue
+- description_fr: concise definition of the virtue
+- remark_fr: illustrative example or memorable note
