@@ -1802,13 +1802,13 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Scenarii cascade drift remap gpt-5.5",
+				Name = "Scenarii cascade multi-lang gpt-5.5",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
 					"path",
 					"titre","contexte","enjeu","suggestion",
-					"title","context","issue","suggestion",
+					"title","context","issue","suggestion_en",
 					"title_ru","context_ru","issue_ru","suggestion_ru",
 					"title_pt","context_pt","issue_pt","suggestion_pt",
 					"title_es","context_es","issue_es","suggestion_es",
@@ -1818,7 +1818,6 @@ public class DatasetUpdaterRootConfig
 				},
 				FieldsToUpdate = new List<string>()
 				{
-					"title","context","issue","suggestion",
 					"title_ru","context_ru","issue_ru","suggestion_ru",
 					"title_pt","context_pt","issue_pt","suggestion_pt",
 					"title_es","context_es","issue_es","suggestion_es",
@@ -1909,7 +1908,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies cascade drift remap gpt-5.5",
+				Name = "Fallacies cascade multi-lang gpt-5.5",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -1925,7 +1924,6 @@ public class DatasetUpdaterRootConfig
 				},
 				FieldsToUpdate = new List<string>()
 				{
-					"text_en","desc_en","example_en",
 					"text_ru","desc_ru","example_ru",
 					"text_pt","desc_pt","example_pt",
 					"text_es","desc_es","example_es",
@@ -2014,18 +2012,19 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Rules cascade drift remap gpt-5.5",
+				Name = "Rules cascade multi-lang gpt-5.5",
 				SourceDataset = KnownDataSets.Rules,
 				FieldsToInclude = new List<string>()
 				{
 					"pk",
 					"Text",
-					"Text_en","Text_ru","Text_pt","Text_es",
+					"Text_en",
+					"Text_ru","Text_pt","Text_es",
 					"Text_ar","Text_fa","Text_zh",
 				},
 				FieldsToUpdate = new List<string>()
 				{
-					"Text_en","Text_ru","Text_pt","Text_es",
+					"Text_ru","Text_pt","Text_es",
 					"Text_ar","Text_fa","Text_zh",
 				},
 				PrimaryField = "pk",
@@ -2043,7 +2042,7 @@ public class DatasetUpdaterRootConfig
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
-				ChunkSize = 4,
+				ChunkSize = 8,
 				UseFunctionCalling = true,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
@@ -2060,7 +2059,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Virtues cascade drift remap gpt-5.5",
+				Name = "Virtues cascade multi-lang gpt-5.5",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2076,7 +2075,6 @@ public class DatasetUpdaterRootConfig
 				},
 				FieldsToUpdate = new List<string>()
 				{
-					"title_en","description_en","remark_en",
 					"title_ru","description_ru","remark_ru",
 					"title_pt","description_pt","remark_pt",
 					"title_es","description_es","remark_es",
@@ -2099,7 +2097,7 @@ public class DatasetUpdaterRootConfig
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
-				ChunkSize = 4,
+				ChunkSize = 6,
 				UseFunctionCalling = true,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
@@ -2112,6 +2110,186 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Rules cascade EN-only gpt-5.5",
+				SourceDataset = KnownDataSets.Rules,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"Text",
+					"Text_en",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"Text_en",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRulesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRulesCascadeDriftAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 8,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Virtues cascade EN-only gpt-5.5",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"title_fr","description_fr","remark_fr",
+					"title_en","description_en","remark_en",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"title_en","description_en","remark_en",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesCascadeDriftAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Scenarii cascade EN-only gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"titre","contexte","enjeu","suggestion",
+					"title","context","issue","suggestion_en",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"title","context","issue","suggestion_en",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiCascadeDriftAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				PKHierarchicalChar = '.',
+				PKHierarchyLevel = 3,
+				ChunkSize = 12,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Fallacies cascade EN-only gpt-5.5",
+				SourceDataset = KnownDataSets.FallaciesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"text_fr","desc_fr","example_fr",
+					"text_en","desc_en","example_en",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"text_en","desc_en","example_en",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptFallaciesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesCascadeDriftAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchicalChar = '.',
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 20
 			}
 		};
 }
