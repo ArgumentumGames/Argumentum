@@ -100,7 +100,11 @@ namespace Argumentum.AssetConverter
 						KnownCardSets.Fallacies3,
 						KnownCardSets.FallaciesPrintAndPlay,
 						KnownCardSets.FallaciesWeb,
-						KnownCardSets.FallaciesWebThumbnails
+						KnownCardSets.FallaciesWebThumbnails,
+						// Memo + MemoPrintAndPlay share FallaciesTaxonomy dataset and reuse the same {{text_fr}}, {{desc_fr}}, {{Famille}}, {{Sous-Famille}}, {{Soussousfamille}} placeholders.
+						// Without entries here, MEMO pages on non-FR PDFs render FR content (#358).
+						KnownCardSets.Memo,
+						KnownCardSets.MemoPrintAndPlay
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						// Order: most specific first (Soussousfamille > Sous-Famille > Famille) to avoid partial-string collisions.
