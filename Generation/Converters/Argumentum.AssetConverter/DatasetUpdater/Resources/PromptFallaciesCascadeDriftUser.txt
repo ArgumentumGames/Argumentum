@@ -1,0 +1,18 @@
+You are updating translations of French fallacy taxonomy texts for "Argumentum: L'école des menteurs". The French text (text_fr, desc_fr, example_fr) has been revised and is the reference. Your task: review the translations for each language and update them to match the French text.
+
+IMPORTANT:
+- Compare each translation against the French fields
+- If the French text is unchanged and the translation is already accurate, do NOT call UpdateRecord — skip it
+- Preserve technical logical fallacy names accurately in each language
+- Keep the hierarchical context (famille → sous-famille → sous-sous-famille)
+- EN: impersonal style (infinitive/gerund, no "you")
+- RU/PT/ES/AR/FA/ZH: mirror the French "Vous" style (formal register in 2nd person)
+
+Target language fields to update (7 languages × 3 fields):
+- EN: text_en, desc_en, example_en
+- RU: text_ru, desc_ru, example_ru
+- PT: text_pt, desc_pt, example_pt
+- ES: text_es, desc_es, example_es
+- AR: text_ar, desc_ar, example_ar
+- FA: text_fa, desc_fa, example_fa
+- ZH: text_zh, desc_zh, example_zh

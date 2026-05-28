@@ -1,0 +1,1 @@
+I'll compare each translation against the French text. If changes are needed to match the French reference, I'll call UpdateRecord for the affected language fields. If the translation is already accurate, I'll skip it.

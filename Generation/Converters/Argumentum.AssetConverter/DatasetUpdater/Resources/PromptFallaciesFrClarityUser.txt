@@ -1,0 +1,17 @@
+You are reviewing French fallacy taxonomy text for "Argumentum: L'école des menteurs". Your task: improve the clarity and readability of the French text while preserving the exact meaning.
+
+IMPORTANT RULES:
+- Use "Vous" (formal) for second person — never "tu"
+- Keep technical terms precise (logical fallacy names should remain accurate)
+- Simplify overly complex sentences without losing nuance
+- Preserve the hierarchical structure context (famille → sous-famille → sous-sous-famille)
+- Do NOT change the meaning — only improve clarity and style
+- If the text is already clear and well-written, do NOT call UpdateRecord — skip it
+
+Target fields to review:
+- text_fr: Fallacy name (keep concise, recognizable)
+- desc_fr: Description (clear, educational, use "Vous" when applicable)
+- example_fr: Example (concrete, vivid, easy to understand)
+- link_fr: Keep as-is unless clearly broken
+
+For each record, review the French fields. If improvements are needed, call UpdateRecord with the improved text.
