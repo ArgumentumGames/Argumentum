@@ -1,0 +1,1 @@
+I'll review each French scenario text for clarity and conciseness. If improvements are needed, I'll call UpdateRecord with the revised fields. If the text is already clear and correct, I'll skip it.

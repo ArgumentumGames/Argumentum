@@ -1,0 +1,35 @@
+**Cascade Drift Remap — Rules**
+
+Le champ français `Text` (règles du jeu) vient d'être affiné en clarté (passe FR clarity gpt-5.5, 19/24 règles améliorées). Les traductions multilingues (`Text_en`, `Text_ru`, `Text_pt`, `Text_es`, `Text_ar`, `Text_fa`, `Text_zh`) ont été produites AVANT cet affinement et présentent une dérive stylistique. Tu reçois un chunk de règles pour évaluer cette dérive.
+
+---
+
+**Stratégie de mise à jour progressive** (CRITIQUE)
+
+1. **Function calling exclusif** : Pour chaque correction, appelle `UpdateRecord`. Pas de texte libre.
+
+2. **Hiérarchie d'arbitrage** : Pour la majorité des règles, les traductions restent globalement valides. Ne propose des corrections que là où la dérive est tangible. Vise la convergence progressive en plusieurs passes, pas un sur-update massif.
+
+3. **Une langue à la fois par règle (max)** : Pour chaque règle, **au plus UNE langue corrigée par passe**, en commençant par celle où la dérive est la plus criante. Si plusieurs langues divergent, prends la pire — les autres seront traitées dans une passe future.
+
+4. **Critères de dérive tangible** :
+   - **Sémantique** : la traduction colle à un ancien sens FR (mécanique de jeu décrite différemment)
+   - **Markdown perdu** : la mise en forme (`#`, `##`, `*`, `**`) ne suit plus le FR refondu
+   - **Terminologie** : noms du jeu (embromador, baratineur, jurés...) traduits incohéremment
+   - **Style** : tournure lourde alors que le FR a été simplifié
+
+5. **Ne PAS toucher** :
+   - Traductions où le sens et le style sont alignés
+   - Champ `Text` (FR verrouillé)
+   - Variations idiomatiques légitimes
+   - Noms propres du jeu
+
+6. **Format par langue** :
+   - EN : impersonnel (infinitif/gérondif)
+   - RU/PT/ES : formel "Vous" miroir FR
+   - AR/FA/ZH : formel idiomatique
+   - Markdown (`#`, `##`, `*`, `**`) à préserver exactement
+
+---
+
+**Output attendu** : Quelques `UpdateRecord` ciblés (typiquement 1 par règle qui dérive, sur 1 langue), pas un déluge ni un skip total. Convergence progressive.

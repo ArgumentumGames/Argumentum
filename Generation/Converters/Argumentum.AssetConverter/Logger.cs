@@ -166,8 +166,24 @@ public class Logger
 	public static void LogException(Exception ex)
 	{
 		LogProblem("Execution error");
-		// Utiliser directement AnsiConsole.WriteException car le problème est résolu dans Spectre.Console 0.50.0
-		AnsiConsole.WriteException(ex, ExceptionFormats.ShortenEverything);
+		// Always log the raw exception type+message first (Spectre formatter has a known IndexOutOfRangeException bug)
+		var raw = $"{ex.GetType().FullName}: {ex.Message}";
+		var inner = ex.InnerException;
+		while (inner != null)
+		{
+			raw += $" --> {inner.GetType().FullName}: {inner.Message}";
+			inner = inner.InnerException;
+		}
+		AnsiConsole.MarkupLine($"[bold red]{Markup.Escape(raw)}[/]");
+		try
+		{
+			AnsiConsole.WriteException(ex, ExceptionFormats.ShortenEverything);
+		}
+		catch (Exception spectreEx)
+		{
+			AnsiConsole.MarkupLine($"[yellow]Spectre formatter failed: {Markup.Escape(spectreEx.Message)}. Stack:[/]");
+			AnsiConsole.WriteLine(ex.StackTrace ?? "(no stack)");
+		}
 		try
 		{
 			lock (fileLock)
