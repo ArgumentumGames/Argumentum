@@ -1859,7 +1859,7 @@ public class DatasetUpdaterRootConfig
 			},
 			new DatasetUpdaterConfig()
 			{
-				Enabled = true,
+				Enabled = false,
 				Name = "Fallacies FR clarity review gpt-5.5",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
@@ -1963,64 +1963,6 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 20
-			},
-			new DatasetUpdaterConfig()
-			{
-				Enabled = false,
-				Name = "Scenarii cascade drift remap gpt-5.5",
-				SourceDataset = KnownDataSets.Scenarii,
-				FieldsToInclude = new List<string>()
-				{
-					"path",
-					"titre","contexte","enjeu","suggestion",
-					"title","context","issue","suggestion",
-					"title_ru","context_ru","issue_ru","suggestion_ru",
-					"title_pt","context_pt","issue_pt","suggestion_pt",
-					"title_es","context_es","issue_es","suggestion_es",
-					"title_ar","context_ar","issue_ar","suggestion_ar",
-					"title_fa","context_fa","issue_fa","suggestion_fa",
-					"title_zh","context_zh","issue_zh","suggestion_zh",
-				},
-				FieldsToUpdate = new List<string>()
-				{
-					"title","context","issue","suggestion",
-					"title_ru","context_ru","issue_ru","suggestion_ru",
-					"title_pt","context_pt","issue_pt","suggestion_pt",
-					"title_es","context_es","issue_es","suggestion_es",
-					"title_ar","context_ar","issue_ar","suggestion_ar",
-					"title_fa","context_fa","issue_fa","suggestion_fa",
-					"title_zh","context_zh","issue_zh","suggestion_zh",
-				},
-				PrimaryField = "path",
-				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
-				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
-				DialogPrompts = new List<PromptExample>()
-				{
-					new PromptExample()
-					{
-						UserPromptPath = PromptsRootPath + "PromptScenariiCascadeDriftUser.txt",
-						AssistantAnswerPath = PromptsRootPath + "PromptScenariiCascadeDriftAssistant.txt"
-					}
-				},
-				Model = "gpt-5.5",
-				MaxOutputTokens = 8192,
-				MaxTokensPerMinute = 300000,
-				DivisionMode = DivisionMode.PKHierarchicalChar,
-				PKHierarchicalChar = '.',
-				PKHierarchyLevel = 2,
-				ChunkSize = 4,
-				UseFunctionCalling = true,
-				NbMessageCalls = 1,
-				SkipChunkNb = 0,
-				TakeChunkNb = -1,
-				SelectEmptyTargets = false,
-				RandomizeChunks = false,
-				MaxDegreeOfParallelismWebService = 1,
-				CompareMode = false,
-				AutoCompare = false,
-				MaxGroupItemNb = 12,
-				WriteOneTargetFileByField = false,
-				MaxChildren = 8
 			}
 		};
 }
