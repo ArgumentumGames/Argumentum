@@ -1,0 +1,1 @@
+I'll review the French rules text for clarity. If improvements are needed, I'll call UpdateRecord with a cleaner version. If the text is already clear, I'll skip it.
