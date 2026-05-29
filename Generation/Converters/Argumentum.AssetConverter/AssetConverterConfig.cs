@@ -118,6 +118,14 @@ namespace Argumentum.AssetConverter
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt"), ("es", "tagline_es"), ("ar", "tagline_ar"), ("fa", "tagline_fa"), ("zh", "tagline_zh") }) ),
 					}),
+					// RU title overflow fix (#316): Cyrillic titles run ~15-20% wider than Latin and clip off-card
+					// (e.g. "НЕЙРОЛИНГВИСТИЧЕСКОЕ ПРОГРАММИРОВАНИЕ"). Inject a `lang-ru` marker class on the card
+					// body wrapper for RU only; the templates carry inert `.lang-ru .title { ... }` rules (font-size
+					// reduction + overflow-wrap break-word) that engage solely when this class is present.
+					// FR/EN/PT mustache is untouched (no entry → DoStaticConversions is a no-op for those langs).
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("<div class=\"body\">", new List<(string Language, string destText)>(new []{("ru", "<div class=\"body lang-ru\">") }) ),
+					}),
 				},
 				new CardSetLocalization()
 				{

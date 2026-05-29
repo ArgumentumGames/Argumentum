@@ -134,5 +134,49 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			textConv.fieldConversions.Should().Contain(c => c.Language == "ru" && c.destFieldName == "Text_ru");
 			textConv.fieldConversions.Should().Contain(c => c.Language == "pt" && c.destFieldName == "Text_pt");
 		}
+
+		[Theory]
+		[InlineData("ru", true)]
+		[InlineData("en", false)]
+		[InlineData("pt", false)]
+		[InlineData("fr", false)]
+		public void Fallacies_StaticConversions_Inject_LangRu_Body_Class_For_Ru_Only(string destLang, bool expectLangRu)
+		{
+			// #316: Cyrillic Fallacies titles run ~15-20% wider than Latin and clip off-card.
+			// The fix injects a `lang-ru` marker class on the card body wrapper for RU only,
+			// which engages the inert `.lang-ru .title` rules carried by the templates.
+			// EN/PT/FR mustache must stay byte-for-byte untouched (no StaticConversion entry).
+			var loc = GetFallaciesLocalization();
+			const string template = "<div class=\"body\"><div class=\"title\"><div>NLP</div></div></div>";
+
+			var converted = loc.DoStaticConversions(template, destLang);
+
+			if (expectLangRu)
+			{
+				converted.Should().Contain("<div class=\"body lang-ru\">",
+					"RU mustache must carry the lang-ru marker class so the .lang-ru CSS rules apply");
+			}
+			else
+			{
+				converted.Should().Be(template,
+					$"{destLang} mustache must be left untouched by the RU-only overflow fix");
+			}
+		}
+
+		[Theory]
+		[InlineData("Cards/Fallacies/Argumentum_Fallacies_Face_fr.json")]
+		[InlineData("Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json")]
+		public void Fallacies_OverflowProne_Templates_Carry_LangRu_Title_Rules(string templateRelPath)
+		{
+			// The injected lang-ru body class is inert without matching CSS. Guard that the
+			// large-title templates ship the `.lang-ru .title` font-size reduction plus the
+			// overflow-wrap break-word escape hatch for extreme single Cyrillic words (#316).
+			var template = ReadTemplate(templateRelPath);
+
+			template.Should().Contain(".lang-ru .title",
+				"overflow-prone Fallacies templates must carry the .lang-ru title rules (#316)");
+			template.Should().Contain("overflow-wrap: break-word",
+				"long single Cyrillic words must be allowed to break to avoid clipping off-card");
+		}
 	}
 }
