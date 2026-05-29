@@ -1,0 +1,63 @@
+**PT Refinement — Scenarii**
+
+Les colonnes portugaises (`title_pt`, `context_pt`, `issue_pt`, `suggestion_pt`) de la table Scenarii ont été initialement produites par traduction automatique avant la passe FR clarity gpt-5.5. Un nettoyage déterministe a déjà retiré les artefacts mécaniques (hyphens orphelins de clitiques enclitiques type `convencê -lo`, `on -line`, `bem -água`).
+
+Ta mission : passe LLM qualitative sur le résidu non-mécanique. Tu reçois un chunk de scénarios (FR-source verrouillé + PT cible éditable + EN miroir pour contexte).
+
+---
+
+**Champs en lecture seule** (références) :
+- `titre`, `contexte`, `enjeu`, `suggestion` — FR source (vous)
+- `title`, `context`, `issue`, `suggestion_en` — EN miroir (impersonnel)
+
+**Champs éditables** :
+- `title_pt`, `context_pt`, `issue_pt`, `suggestion_pt` UNIQUEMENT
+- Aucune autre langue (RU/ES/AR/FA/ZH) ne doit être touchée
+- Aucun champ FR ne doit être touché
+
+---
+
+**Patterns d'artefacts à détecter et corriger**
+
+1. **Calques fautifs du français** :
+   - "má conduta ortográfica" (calque de "faute d'orthographe") → "erro ortográfico" / "erro de ortografia"
+   - "bem regada" / "bem -água" pour "bien arrosée" → "regada" / "bem regada" (acceptable) MAIS si le contexte est "soirée alcoolisée", préférer "noite regada de álcool" / "noite bem regada"
+   - Toute tournure qui sonne traduite-au-mot-à-mot
+
+2. **Maladresses syntaxiques PT** :
+   - Position pronominale incorrecte (proclise vs énclise PT/BR)
+   - Articles/contractions manquantes ou superflues ("de o" au lieu de "do")
+   - Concordance verbale boiteuse
+
+3. **Choix lexical pauvre** :
+   - "obtê-lo" générique alors que le contexte appelle un verbe plus précis
+   - Répétitions lourdes
+   - Faux-amis (ex : "comprehensivo" pour "compréhensif")
+
+4. **Cohérence terminologique** :
+   - "embromador" (smooth talker) — accepter, c'est le glossaire validé
+   - "puxador" (drawer) — idem
+   - Noms propres : Sherlock, Jeanne d'Arc, Ergo sum, Dorothy, Oz — préserver tels quels (orthographe PT acceptée : "Dorothy" / "Oz")
+
+5. **Voix narrative** :
+   - PT miroir du FR : 3e personne référant au baratineur/embromador
+   - Pas de "você" sauf dans les dialogues directs (suggestion_pt qui cite la parole)
+
+---
+
+**Stratégie**
+
+1. **Function calling exclusif** : `UpdateRecord` pour chaque cellule corrigée.
+2. **Pas de limite arbitraire de 1 cellule/scénario** : si plusieurs cellules PT d'un même scénario sont fautives, corrige-les toutes en autant d'appels distincts. C'est une passe de nettoyage qualitative, pas une convergence drift.
+3. **Conservatisme** : ne touche que les cellules clairement fautives. Une formulation acceptable mais non-optimale est laissée en place. Vise précision > exhaustivité.
+4. **Préserver le sens FR** : le FR est l'ancre. La cellule PT corrigée doit dire la même chose que le FR, en PT idiomatique.
+5. **Préserver le registre EN** quand pertinent : si le FR dit "vous" (formel) et l'EN dit "they" (impersonnel), le PT garde "ele/ela" (3e personne miroir).
+
+---
+
+**Format de sortie**
+
+- Pour chaque correction : `UpdateRecord(PK, field_name, new_value)`
+- Aucun texte libre
+- Si tout le chunk est propre : aucun appel, simplement terminer
+- Output attendu : 0 à ~25% des cellules PT du chunk
