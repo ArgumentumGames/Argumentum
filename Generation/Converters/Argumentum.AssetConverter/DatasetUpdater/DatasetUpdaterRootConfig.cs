@@ -2307,17 +2307,29 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies cascade EN-only gpt-5.5",
+				Name = "Fallacies cascade v2 multilang gpt-5.5",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
 					"path",
 					"text_fr","desc_fr","example_fr",
 					"text_en","desc_en","example_en",
+					"text_ru","desc_ru","example_ru",
+					"text_pt","desc_pt","example_pt",
+					"text_es","desc_es","example_es",
+					"text_ar","desc_ar","example_ar",
+					"text_fa","desc_fa","example_fa",
+					"text_zh","desc_zh","example_zh",
 				},
 				FieldsToUpdate = new List<string>()
 				{
 					"text_en","desc_en","example_en",
+					"text_ru","desc_ru","example_ru",
+					"text_pt","desc_pt","example_pt",
+					"text_es","desc_es","example_es",
+					"text_ar","desc_ar","example_ar",
+					"text_fa","desc_fa","example_fa",
+					"text_zh","desc_zh","example_zh",
 				},
 				PrimaryField = "path",
 				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
@@ -2340,10 +2352,10 @@ public class DatasetUpdaterRootConfig
 				UseFunctionCalling = true,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
-				TakeChunkNb = 1,
+				TakeChunkNb = -1,
 				SelectEmptyTargets = false,
 				RandomizeChunks = false,
-				MaxDegreeOfParallelismWebService = 1,
+				MaxDegreeOfParallelismWebService = 4,
 				CompareMode = false,
 				AutoCompare = false,
 				MaxGroupItemNb = 12,
