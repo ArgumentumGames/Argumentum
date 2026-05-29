@@ -26,6 +26,7 @@ Le texte français (`text_fr`, `desc_fr`, `example_fr`) vient d'être affiné en
    - **Style** : la traduction ne reflète pas la nouvelle clarté/précision FR (lourdeur, ambiguïté que le FR a résolue)
    - **Fidélité incarnée** (exemples) : l'exemple ne mime plus la situation FR de manière vivante
    - **Cohérence cross-langue** : une langue diverge clairement des autres alors que toutes devraient miroiter le FR
+   - **Drift sémantique structurel** : la `desc_*` traduite porte un concept différent de `desc_fr`. Exemple observé : `desc_fr="Vous confondez votre perspective individuelle avec une objectivité universelle"` mais `desc_en="Confusing subjective experience of reality with the essence of that which is being observed"` (concept différent — plus proche de William James). Si la traduction est conceptuellement plus précise mais ne correspond plus au FR : ALIGNER sur le FR (la taxonomie FR fait foi). Si toutes les langues divergent dans la même direction : signaler sans corriger.
 
 5. **Ne PAS toucher** :
    - Traductions où le sens est correctement aligné (la majorité)

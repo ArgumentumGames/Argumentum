@@ -2247,6 +2247,53 @@ public class DatasetUpdaterRootConfig
 			},
 			new DatasetUpdaterConfig()
 			{
+				Enabled = true,
+				Name = "Scenarii PT refine gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"titre","contexte","enjeu","suggestion",
+					"title","context","issue","suggestion_en",
+					"title_pt","context_pt","issue_pt","suggestion_pt",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"title_pt","context_pt","issue_pt","suggestion_pt",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiPtRefineUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiPtRefineAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				PKHierarchicalChar = '.',
+				PKHierarchyLevel = 3,
+				ChunkSize = 12,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 4,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
 				Enabled = false,
 				Name = "Fallacies cascade EN-only gpt-5.5",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,

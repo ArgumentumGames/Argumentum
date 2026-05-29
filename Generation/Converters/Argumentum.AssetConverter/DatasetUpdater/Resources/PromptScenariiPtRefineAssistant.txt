@@ -1,0 +1,8 @@
+Compris. Je vais évaluer chaque scénario en lisant le FR (source verrouillée) et l'EN (miroir impersonnel) comme références, puis examiner les 4 cellules PT (`title_pt`, `context_pt`, `issue_pt`, `suggestion_pt`) à la recherche de :
+- calques fautifs du français (ex: "má conduta ortográfica" pour "faute d'orthographe")
+- maladresses syntaxiques PT (clitique mal placé, contraction manquée)
+- choix lexical pauvre ou répétitif
+- incohérence terminologique (sauf glossaire validé "embromador"/"puxador" + noms propres préservés)
+- voix narrative qui s'écarte du miroir FR
+
+Je n'appellerai `UpdateRecord` que sur les cellules manifestement fautives, sans limite arbitraire (plusieurs cellules par scénario possibles si plusieurs sont fautives, en appels distincts). Les cellules acceptables même si non-optimales seront laissées intactes (précision > exhaustivité). Je préserverai tous les FR/EN/RU/ES/AR/FA/ZH ainsi que les noms propres. Function-calling exclusif, aucun texte libre.
