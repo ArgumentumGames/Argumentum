@@ -2157,18 +2157,30 @@ public class DatasetUpdaterRootConfig
 			},
 			new DatasetUpdaterConfig()
 			{
-				Enabled = false,
-				Name = "Virtues cascade EN-only gpt-5.5",
+				Enabled = true,
+				Name = "Virtues cascade v2 multilang gpt-5.5",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
 					"pk",
 					"title_fr","description_fr","remark_fr",
 					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
 				},
 				FieldsToUpdate = new List<string>()
 				{
 					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
 				},
 				PrimaryField = "pk",
 				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
@@ -2185,14 +2197,14 @@ public class DatasetUpdaterRootConfig
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
-				ChunkSize = 6,
+				ChunkSize = 4,
 				UseFunctionCalling = true,
 				NbMessageCalls = 1,
 				SkipChunkNb = 0,
-				TakeChunkNb = 1,
+				TakeChunkNb = -1,
 				SelectEmptyTargets = false,
 				RandomizeChunks = false,
-				MaxDegreeOfParallelismWebService = 1,
+				MaxDegreeOfParallelismWebService = 4,
 				CompareMode = false,
 				AutoCompare = false,
 				MaxGroupItemNb = 12,
@@ -2247,7 +2259,7 @@ public class DatasetUpdaterRootConfig
 			},
 			new DatasetUpdaterConfig()
 			{
-				Enabled = true,
+				Enabled = false,
 				Name = "Scenarii PT refine gpt-5.5",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
