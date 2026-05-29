@@ -2157,7 +2157,7 @@ public class DatasetUpdaterRootConfig
 			},
 			new DatasetUpdaterConfig()
 			{
-				Enabled = true,
+				Enabled = false,
 				Name = "Virtues cascade v2 multilang gpt-5.5",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
