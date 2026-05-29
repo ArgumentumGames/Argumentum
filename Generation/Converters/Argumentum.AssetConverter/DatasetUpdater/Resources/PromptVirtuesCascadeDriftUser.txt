@@ -21,6 +21,7 @@ Les champs français `title_fr`, `description_fr`, `remark_fr` viennent d'être 
    - **Style** : titre/description ne reflète pas la nouvelle punchiness/clarté FR
    - **Fidélité concrète** (remarks) : l'exemple ne mime plus la situation FR
    - **Cohérence cross-langue** : une langue diverge nettement des autres
+   - **Re-conceptualisation des titres** : le titre traduit a glissé vers un concept différent du `title_fr`. Exemple observé : `title_fr="Indépendance des événements"` (le concept lui-même) mais `title_en="Assessment of independence"` (l'évaluation du concept). À corriger pour aligner sur le concept FR exact, sauf si toutes les langues divergent dans la même direction (auquel cas le FR est peut-être à reconsidérer — signaler sans corriger).
 
 5. **Ne PAS toucher** :
    - Traductions alignées (la majorité)
