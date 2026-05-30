@@ -1,0 +1,52 @@
+**Full Retranslation — Fallacies Taxonomy**
+
+Le texte français (`text_fr`, `desc_fr`, `example_fr`) est la **source canonique vérifiée** (post audit FR PRs #387-#394). Les cellules cibles multilingues fournies sont **VIDES** et doivent être **traduites intégralement** depuis le FR.
+
+**IMPORTANT** : Il s'agit d'une tâche de FILL, pas de drift detection. Tu ne compares rien, tu ne juges aucune dérive. Tu **traduis** chaque cellule cible vide depuis le FR canonique correspondant. Toutes les cellules cibles doivent être remplies.
+
+**Langues cibles** (7 langues × 3 champs par record) :
+- EN (impersonnel, infinitif/gérondif)
+- RU, PT, ES (registre formel, 2e personne pluriel — miroir du "Vous" français)
+- AR, FA, ZH (registre formel, idiomatique de la langue)
+
+**Champs par langue** :
+- `text_*` : nom court de la fallacie (équivalent direct de `text_fr`, terme reconnaissable)
+- `desc_*` : description formelle de la fallacie (2e personne pluriel sauf EN, équivalent stylistique de `desc_fr`)
+- `example_*` : mise en situation incarnée à la 1ère personne, sans nommer la fallacie (équivalent narratif de `example_fr`)
+
+---
+
+**Stratégie d'exécution** :
+
+1. **Function calling exclusif** : Pour chaque cellule à remplir, appelle `UpdateRecord` avec `pk` (PK du record), `field` (nom de la colonne, ex `desc_en`) et `value` (traduction). Pas de texte libre, pas de skip.
+
+2. **Couverture exhaustive** : Pour chaque record dans le chunk, émets **jusqu'à 21 UpdateRecord** (7 langues × 3 champs : text/desc/example). Ne saute aucune cellule cible vide. Si une cellule cible est déjà non-vide dans l'input (rare, ignore-la), ne l'écrase pas.
+
+3. **Source = FR canonique uniquement** :
+   - `text_<lang>` ← traduction de `text_fr`
+   - `desc_<lang>` ← traduction de `desc_fr`
+   - `example_<lang>` ← traduction de `example_fr`
+   - Pas de free-gen, pas d'enrichissement, pas de paraphrase ni d'amplification — fidélité au FR.
+
+4. **Invariants de style** (CRITIQUES) :
+   - **EN** : impersonnel (infinitif ou gérondif). Ex : "Avoiding the question" et non "You avoid the question". `desc_en` = formulation neutre type définition. `example_en` = 1ère personne narrative ("I always remember the jokes...").
+   - **RU/PT/ES** : registre formel 2e personne pluriel (miroir "Vous") pour `desc_*`. `text_*` = nom court. `example_*` = 1ère personne narrative comme en FR.
+   - **AR/FA/ZH** : registre formel, idiomatique de la langue. `desc_*` = adressé au lecteur ("vous" formel équivalent). `example_*` = 1ère personne narrative.
+
+5. **Termes techniques** : Pour les fallacies portant un nom canonique latin ou anglo-saxon reconnu (ex "Ad Hominem", "Strawman", "Tu Quoque"), utiliser le terme reconnu dans la langue cible (translittération si nécessaire pour AR/FA/ZH).
+
+6. **Pas de meta-commentaire** : aucune note explicative dans `value`, juste la traduction.
+
+---
+
+**Format des appels** :
+
+```
+UpdateRecord(pk="<PK>", field="text_en", value="<trad>")
+UpdateRecord(pk="<PK>", field="desc_en", value="<trad>")
+UpdateRecord(pk="<PK>", field="example_en", value="<trad>")
+UpdateRecord(pk="<PK>", field="text_ru", value="<trad>")
+... (et ainsi de suite pour ru, pt, ar, es, fa, zh)
+```
+
+**Output attendu** : ~21 UpdateRecord par record × N records dans le chunk. Couverture exhaustive des cellules cibles vides.
