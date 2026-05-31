@@ -1,11 +1,16 @@
 # Argumentum Card Catalog — Publishable Formats
 
 > **Source of truth.** [`WebBasedGeneratorConfig.cs`](../../Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs) — `CardSetDocuments` section.
-> **Inventory date.** 2026‑05‑30 (branch `master`, commit `1811afc4`).
+> **Inventory date.** 2026‑05‑30 (branch `master`).
 
 Argumentum is a **dual‑deck** game: a large‑card deck (fallacies/virtues) and a small‑card deck (scenarios). The repository's generation produces **eight PDF deliverables** enabled by default, from the same CSV sources (`Cards/Fallacies/`, `Cards/Scenarii/`, `Cards/Rules/`).
 
-All formats are localized in **8 languages**: `fr` (canonical) + `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh` (translations).
+On the language side, the configuration (`WebBasedGeneratorConfig.cs`, `Translations` lists) declares:
+
+- **Cards** (Tarot, Poker, Print&Play, Web/Poster/Thumbnails) → **8 languages**: `fr` (canonical) + `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh`.
+- **Mind maps** → **4 languages** only: `fr`, `en`, `ru`, `pt`.
+
+CSV data is populated for all 8 languages, but the rendering of **non‑Latin scripts** — `ar`/`fa` (right‑to‑left) and `zh` (CJK) — **has not yet been visually validated** and may require font/CSS fixes. The language set actually produced for a given release is decided at regeneration time.
 
 ## Summary table
 
@@ -75,6 +80,17 @@ All formats are localized in **8 languages**: `fr` (canonical) + `en`, `ru`, `pt
 - **Cards**: FallaciesWebThumbnails (mini thumbnails).
 - **Dimensions**: 50×50 mm (front), 72×72 mm (back), RGB, back not published.
 - **Use**: compact visual index, reference sheet for a binder.
+
+## Game rules ("booklet")
+
+Argumentum's **rulebook** is not a separate document: the rules are printed as **Rules cards** (24 cards), embedded directly in the decks.
+
+- **Source**: `Cards/Rules/Argumentum Rules - Cards.csv` (+ `… Print and Play.csv`).
+- **Where**: included in the **Professional Tarot** (`Argumentum_TarotCards_fr.pdf`, at the front of the deck — see issue #119) and in the **Print&Play Tarot A4**.
+- **Volume**: 24 Rules cards.
+- **Multilingual**: source field `Text` → `Text_en` / `Text_ru` / `Text_pt` / … (same 8 languages as the cards).
+
+> There is no standalone PDF/LaTeX booklet ("The Liars' School"). If a separate bound booklet is produced one day, this section will be extended then.
 
 ## Recommendation by audience and channel
 

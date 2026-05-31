@@ -1,11 +1,16 @@
 # Catalogue des cartes Argumentum — formats publiables
 
 > **Source de vérité.** [`WebBasedGeneratorConfig.cs`](../../Generation/Converters/Argumentum.AssetConverter/WebBasedGenerator/WebBasedGeneratorConfig.cs) — section `CardSetDocuments`.
-> **Date de l'inventaire.** 2026‑05‑30 (branche `master`, commit `1811afc4`).
+> **Date de l'inventaire.** 2026‑05‑30 (branche `master`).
 
 Argumentum est un jeu **à double deck** : un deck de grandes cartes (sophismes/vertus) et un deck de petites cartes (scénarios). La génération du dépôt produit **huit livrables PDF** activés par défaut, à partir des mêmes sources CSV (`Cards/Fallacies/`, `Cards/Scenarii/`, `Cards/Rules/`).
 
-Tous les formats sont déclinés en **8 langues** : `fr` (canonique) + `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh` (traductions).
+Côté langues, la configuration (`WebBasedGeneratorConfig.cs`, listes `Translations`) déclare :
+
+- **Cartes** (Tarot, Poker, Print&Play, Web/Poster/Vignettes) → **8 langues** : `fr` (canonique) + `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh`.
+- **Mind maps** → **4 langues** seulement : `fr`, `en`, `ru`, `pt`.
+
+Les données CSV sont remplies pour les 8 langues, mais le rendu des **scripts non latins** — `ar`/`fa` (écriture droite‑à‑gauche) et `zh` (sinogrammes) — **n'a pas encore été validé visuellement** et peut nécessiter des correctifs de police/CSS. Le set de langues effectivement produit pour une release donnée est arbitré au moment de la régénération.
 
 ## Tableau récapitulatif
 
@@ -75,6 +80,17 @@ Tous les formats sont déclinés en **8 langues** : `fr` (canonique) + `en`, `ru
 - **Cartes** : FallaciesWebThumbnails (mini‑vignettes).
 - **Dimensions** : 50×50 mm (face), 72×72 mm (dos), RGB, sans dos publié.
 - **Usage** : index visuel compact, fiche de référence à glisser dans un classeur.
+
+## Règles du jeu (« livret »)
+
+Le **livret de règles** d'Argumentum n'est pas un document séparé : les règles sont imprimées sous forme de **cartes Rules** (24 cartes), intégrées directement dans les decks.
+
+- **Source** : `Cards/Rules/Argumentum Rules - Cards.csv` (+ `… Print and Play.csv`).
+- **Où** : incluses dans le **Tarot professionnel** (`Argumentum_TarotCards_fr.pdf`, en tête de deck — cf. issue #119) et dans le **Print&Play Tarot A4**.
+- **Volume** : 24 cartes Rules.
+- **Multilingue** : champ source `Text` → `Text_en` / `Text_ru` / `Text_pt` / … (mêmes 8 langues que les cartes).
+
+> Il n'existe pas de livret PDF/LaTeX autonome (« The Liars' School »). Si un livret relié distinct est produit un jour, cette section sera étendue à ce moment‑là.
 
 ## Recommandation par audience et canal
 
