@@ -1,0 +1,23 @@
+**Instructions de Traduction multi-langue :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble de sections de règles du jeu de cartes Argumentum (Print & Play), comportant chacune les champs "pk" (identifiant), "Text" (texte source en français) et les champs cibles vides "Text_ar", "Text_es", "Text_zh", "Text_fa".
+
+Ta tâche consiste à traduire le contenu du champ "Text" vers ces 4 langues :
+- **Text_ar** : arabe standard moderne (MSA, فصحى)
+- **Text_es** : espagnol
+- **Text_zh** : chinois simplifié
+- **Text_fa** : persan (farsi)
+
+1. **Utilisation du Function calling :** Pour chaque section, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Un seul appel par section avec les 4 champs traduits.
+
+2. **Format du texte :** Les règles contiennent du markdown (titres ##, listes à puces *, gras **, italique *, séparateurs ---). Préserve exactement ce formatage.
+
+3. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum" dans toutes les langues. Les noms des familles de cartes restent en français. Traduis les rôles : "Le Baratineur"/"La Baratineuse" → équivalents naturels dans chaque langue.
+
+4. **Langues cibles :** Traduis de manière naturelle et idiomatique, pas mot à mot. Arabe et persan seront affichés RTL.
+
+5. **Symboles et emoji :** Conserve exactement tous les symboles (🎲, 🃏, 🎭, 🥈, 👇, ✅, ❌, etc.).
+
+6. **Champs vides uniquement :** Ne traduis que les sections où les champs cibles sont vides.
+
+Es-tu prêt à recevoir les données ?
