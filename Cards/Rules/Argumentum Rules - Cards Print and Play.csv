@@ -1,10 +1,14 @@
-Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa
-"# Argumentum
+pk,Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa
+RulesPP_01,"# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Armeryum
 ## школа лжецов","# Argumentum
-## Liars' School",1,,,,
-"*Règles du jeu : de 4 à 8 joueurs*
+## Liars' School",1,"# Argumentum
+## مدرسة الكاذبين","# Argumentum
+## La escuela de los mentirosos","# Argumentum
+## 骗子学校","# Argumentum
+## مدرسهٔ دروغ‌گویان"
+RulesPP_02,"*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
 
@@ -56,8 +60,60 @@ Argiryum основан на классификации этих ошибочн�
 
 Os jogadores, por sua vez, tentarão adivinhar um cartão de argumento falacioso com a maioria dos outros jogadores, durante um SayNet de improvisação de um cenário aleatório. Enquanto se divertem, os jogadores aprendem a reconhecer, decodificar e, portanto, desconstruir os argumentos falaciosos.
 
-Argumentum é baseado na classificação desses argumentos falaciosos, organizados em ordens e famílias que são indicadas no topo do mapa. Por exemplo, a Flatterie é uma sub -categoria da chamada para emoções. Os cartões de memorando resumem essa classificação.",1,,,,
-"## Installation
+Argumentum é baseado na classificação desses argumentos falaciosos, organizados em ordens e famílias que são indicadas no topo do mapa. Por exemplo, a Flatterie é uma sub -categoria da chamada para emoções. Os cartões de memorando resumem essa classificação.",1,"*قواعد اللعبة: من 4 إلى 8 لاعبين*
+
+## المكوّنات
+
+* رزمة واحدة من بطاقات الحجج المغلوطة منظّمة في 7 فئات لونية، كلّ منها مقسّم إلى 3 رُتب ثم إلى 3 عائلات.
+* رزمة واحدة من بطاقات السيناريو منظّمة في 7 موضوعات يمكن تمييزها من ظهر البطاقة
+* 5 بطاقات تذكير
+* قواعد اللعبة
+   
+## ملخّص اللعبة
+
+يتناوب اللاعبون على محاولة جعل أغلبية اللاعبين الآخرين يخمّنون بطاقة حجة مغلوطة، ضمن مشهد ارتجالي انطلاقًا من سيناريو يُسحب عشوائيًا. وهكذا، بينما يستمتعون، يتعلّم اللاعبون التعرّف إلى الحجج المغلوطة وفكّ شفراتها، ومن ثم تفكيكها.
+
+تعتمد Argumentum على تصنيف لهذه الحجج المغلوطة، مرتّبة في رُتب وعائلات مبيّنة في أعلى البطاقة. فعلى سبيل المثال، يُعدّ التملّق فئة فرعية من الاحتكام إلى العواطف. تلخّص بطاقات التذكير هذا التصنيف.","*Reglas del juego: de 4 a 8 jugadores*
+
+## Material
+
+* 1 mazo de cartas de argumentos falaces organizadas en 7 clases de colores, cada una dividida en 3 órdenes y luego en 3 familias.
+* 1 mazo de cartas de escenario organizadas en 7 temas identificables por su reverso
+* 5 cartas de ayuda
+* Reglas del juego
+   
+## Resumen del juego
+
+Los jugadores intentarán por turnos hacer adivinar una carta de argumento falaz a una mayoría de los demás jugadores, durante una escena de improvisación a partir de un escenario elegido al azar. Mientras se divierten, los jugadores aprenden así a reconocer, descodificar y, por tanto, deconstruir los argumentos falaces.
+
+Argumentum se basa en una clasificación de estos argumentos falaces, ordenados en órdenes y familias que se indican en la parte superior de la carta. Por ejemplo, la adulación es una subcategoría de la apelación a las emociones. Las cartas de ayuda resumen esta clasificación.","*游戏规则：4至8名玩家*
+
+## 配件
+
+* 1副谬误论证卡，按7种颜色类别组织，每个类别再分为3个阶层，继而分为3个家族。
+* 1副情景卡，按7个主题组织，可通过卡背识别
+* 5张备忘卡
+* 游戏规则
+   
+## 游戏概要
+
+玩家轮流尝试让其他玩家中的多数猜出一张谬误论证卡；这一过程在根据随机抽取的情景进行的即兴小短剧中完成。玩家在娱乐的同时，也学会识别、解读并因此拆解谬误论证。
+
+Argumentum 基于对这些谬误论证的分类：它们按阶层和家族排列，并标注在卡牌顶部。例如，奉承是诉诸情感的一个子类别。备忘卡概括了这一分类。","*قواعد بازی: برای ۴ تا ۸ بازیکن*
+
+## اجزا
+
+* ۱ دسته کارت استدلال مغالطه‌آمیز که در ۷ ردهٔ رنگی سازمان‌دهی شده‌اند؛ هر رده به ۳ رتبه و سپس به ۳ خانواده تقسیم می‌شود.
+* ۱ دسته کارت سناریو که در ۷ موضوع سازمان‌دهی شده‌اند و از پشت کارت قابل شناسایی‌اند
+* ۵ کارت یادآور
+* قواعد بازی
+   
+## خلاصهٔ بازی
+
+بازیکنان به نوبت تلاش می‌کنند کاری کنند که اکثریتِ بازیکنان دیگر، یک کارت استدلال مغالطه‌آمیز را در جریان یک نمایش کوتاه بداهه، بر اساس سناریویی که به‌طور تصادفی کشیده شده، حدس بزنند. بازیکنان در عین سرگرم شدن، یاد می‌گیرند استدلال‌های مغالطه‌آمیز را بشناسند، رمزگشایی کنند و در نتیجه واسازی کنند.
+
+Argumentum بر پایهٔ طبقه‌بندی این استدلال‌های مغالطه‌آمیز بنا شده است؛ این استدلال‌ها در رتبه‌ها و خانواده‌هایی مرتب شده‌اند که در بالای کارت نشان داده می‌شوند. برای مثال، چاپلوسی زیررده‌ای از توسل به احساسات است. کارت‌های یادآور این طبقه‌بندی را خلاصه می‌کنند."
+RulesPP_03,"## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7  x  le nombre de joueurs.
 
@@ -89,8 +145,40 @@ Escolhemos a duração do jogo. Isso inclui uma sucessão de rodadas de 7 minuto
 
 Os argumentos falaciosos são misturados, bem como os cartões de cenário. Constituímos 2 desenhos de cartões de cartão de cenário colocados no meio da mesa. Cada jogador é distribuído para 5 cartões de argumento falaciosos que ele mantém para ele. O restante dos cartões constitui a reserva.
 
-O primeiro picador é desenhado. Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação.",1,,,,
-"## Déroulé de la manche
+O primeiro picador é desenhado. Cada jogador tem um pequeno objeto único (moeda, feijão, etc.) para a votação.",1,"## الإعداد
+
+بحسب عدد اللاعبين ومستوى الصعوبة المطلوب، تُشكَّل رزمة السحب الخاصة ببطاقات الحجج المغلوطة بإضافة المستويات المبيّنة في أسفل يمين البطاقات بترتيب تصاعدي. يجب أن تضم على الأقل 7 x عدد اللاعبين.
+
+تُختار مدة اللعبة. وتتكوّن من سلسلة من جولات تدوم نحو 7 دقائق. عند انتهاء الوقت المحدد، تُستكمل الجولة الجارية، واللاعب الذي يملك أكبر عدد من النقاط يفوز باللعبة.
+
+تُخلط بطاقات الحجج المغلوطة، وكذلك بطاقات السيناريو. تُشكَّل رزمتا سحب من بطاقات السيناريو وتوضعان في وسط الطاولة. تُوزَّع على كل لاعب 5 بطاقات حجة مغلوطة يحتفظ بها لنفسه. وتشكل البطاقات المتبقية الاحتياطي. 
+
+يُختار الساحب الأول بالقرعة. يجهّز كل لاعب غرضًا صغيرًا فريدًا (قطعة نقدية، حبة فاصولياء…) للتصويت.","## Preparación
+
+Según el número de jugadores y el nivel de dificultad deseado, se forma el mazo de robo de cartas de argumento falaz añadiendo los niveles indicados en la parte inferior derecha de las cartas en orden creciente. Se necesitan como mínimo 7 x el número de jugadores.
+
+Se elige la duración de la partida. Esta comprende una sucesión de rondas de unos 7 minutos. Al finalizar el tiempo previsto, se termina la ronda en curso y el jugador con más puntos gana la partida.
+
+Se barajan las cartas de argumentos falaces, así como las cartas de escenario. Se forman 2 mazos de robo de cartas de escenario y se colocan en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumento falaz, que mantiene en secreto. El resto de las cartas forma la reserva. 
+
+El primer jugador en robar se elige al azar. Cada jugador toma un pequeño objeto único (moneda, frijol…) para la votación.","## 设置
+
+根据玩家人数和希望的难度等级，按卡牌右下角标示的等级从低到高加入卡牌，组成谬误论证卡抽牌堆。至少需要 7 x 玩家人数 张卡。
+
+选择本局游戏的时长。游戏由一连串约7分钟的回合组成。规定时间结束后，完成正在进行的回合，得分最高的玩家赢得游戏。
+
+将谬误论证卡洗混，情景卡也洗混。组成2个情景卡抽牌堆，放在桌子中央。给每位玩家发5张谬误论证卡，由其保密持有。其余卡牌组成备用牌库。 
+
+随机决定第一位抽牌者。每位玩家准备一个独特的小物件（硬币、豆子…）用于投票。","## آماده‌سازی
+
+بر اساس تعداد بازیکنان و سطح دشواریِ مورد نظر، دستهٔ کارت‌های استدلال مغالطه‌آمیز برای کشیدن ساخته می‌شود؛ به این صورت که سطح‌های نشان‌داده‌شده در پایینِ سمت راست کارت‌ها به ترتیب صعودی افزوده می‌شوند. حداقل باید ۷ x تعداد بازیکنان کارت وجود داشته باشد.
+
+مدت زمان بازی انتخاب می‌شود. بازی شامل رشته‌ای از دورهاست که هر کدام حدود ۷ دقیقه طول می‌کشند. پس از پایان زمان تعیین‌شده، دورِ در حال انجام به پایان رسانده می‌شود و بازیکنی که بیشترین امتیاز را دارد برندهٔ بازی است.
+
+کارت‌های استدلال مغالطه‌آمیز و نیز کارت‌های سناریو بُر زده می‌شوند. ۲ دستهٔ کشیدن از کارت‌های سناریو ساخته و در وسط میز قرار داده می‌شود. به هر بازیکن ۵ کارت استدلال مغالطه‌آمیز داده می‌شود که نزد خود نگه می‌دارد. بقیهٔ کارت‌ها ذخیره را تشکیل می‌دهند. 
+
+نخستین کارت‌کش به قید قرعه انتخاب می‌شود. هر بازیکن یک شیء کوچک و منحصربه‌فرد (سکه، لوبیا…) برای رأی‌گیری برمی‌دارد."
+RulesPP_04,"## Déroulé de la manche
 
 ### 1.       Le piocheur
 
@@ -146,8 +234,64 @@ O papel de Baratineur é designado para o primeiro jogador que posa, em frente a
 
 ### 3. SayNet
 
-O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu.",,,,
-"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
+O picador inicia o debate como ele deseja. Ele pode retomar a sugestão de primeira réplica em itálico na parte inferior do cartão de cenário. O baratiner e o picador têm um minuto máximo para improvisar uma discussão durante a qual o baratineur tentará usar o tipo de argumento indicado pelo cartão que ele escolheu.",,"## سير الجولة
+
+### 1.       الساحب
+
+يسحب الساحب بطاقة سيناريو من بين الرزمتين المتاحتين ويقرؤها بصوت عالٍ، باستثناء الجملة الأخيرة المكتوبة بالمائل في أسفل البطاقة.
+
+### 2.       المتحذلق
+
+سيتولى المتحذلق قيادة الحجاج في السيناريو، لتجسيد إحدى بطاقاته الخاصة بالحجج المغالِطة. وسيكون هدفه أن يجعل أغلبية اللاعبين الآخرين يخمّنون هذه البطاقة، من دون أن يكتشفها الجميع.
+
+يُمنح دور المتحذلق لأول لاعب يضع، مقلوبةً، بطاقة الحجة المغالِطة التي ينوي لعبها. وإلا، يُعيَّن اللاعب الجالس على يسار الساحب متحذلقًا ويضع بطاقته.
+
+### 3.       المشهد القصير
+
+يفتتح الساحب النقاش كما يشاء. ويمكنه أن يستعمل الاقتراح الخاص بأول جملة حوارية، المكتوب بالمائل في أسفل بطاقة السيناريو. ثم يكون لدى المتحذلق والساحب دقيقة واحدة كحد أقصى لارتجال نقاش يحاول خلاله المتحذلق استخدام نوع الحجة المشار إليه في البطاقة التي اختارها. ","## Desarrollo de la ronda
+
+### 1.       El robador
+
+El robador toma una carta de escenario de uno de los dos mazos disponibles y la lee en voz alta, excepto la última frase en cursiva situada al pie de la carta.
+
+### 2.       El charlatán
+
+El charlatán se encargará de conducir la argumentación del escenario para ilustrar una de sus cartas de argumento falaz. Su objetivo será hacer que la mayoría de los demás jugadores adivinen esa carta, pero sin que todos lleguen a descubrirla.
+
+El papel de charlatán se asigna al primer jugador que coloque, boca abajo, la carta de argumento falaz que tiene intención de jugar. En su defecto, el jugador situado a la izquierda del robador es designado charlatán y coloca su carta.
+
+### 3.       La escena
+
+El robador inicia el debate como quiera. Puede retomar la sugerencia de primera réplica en cursiva situada al pie de la carta de escenario. Entonces, el charlatán y el robador disponen de un minuto como máximo para improvisar una conversación durante la cual el charlatán intentará utilizar el tipo de argumento indicado por la carta que ha elegido. ","## 回合流程
+
+### 1.       抽牌者
+
+抽牌者从可用的两叠牌中抽取一张情景牌，并大声朗读，但不读牌底部斜体的最后一句话。
+
+### 2.       诡辩者
+
+诡辩者负责引导该情景中的论辩，以体现自己手中的一张谬误论证牌。他的目标是让多数其他玩家猜出这张牌，但又不能让所有人都发现。
+
+诡辩者的角色由第一个将自己打算使用的谬误论证牌面朝下放出的玩家担任。如果没有人这样做，则由抽牌者左侧的玩家被指定为诡辩者并放出自己的牌。
+
+### 3.       小短剧
+
+抽牌者可以按自己的方式开启辩论。也可以采用情景牌底部以斜体标出的第一句台词建议。随后，诡辩者和抽牌者最多有一分钟时间即兴展开一段讨论，在此期间诡辩者要尽力使用自己所选牌上指明的论证类型。 ","## روند دور
+
+### 1.       کارت‌کش
+
+کارت‌کش از میان دو دسته‌کارت موجود، یک کارت سناریو می‌کشد و آن را با صدای بلند می‌خواند، به‌جز آخرین جملهٔ ایتالیک‌شده در پایین کارت.
+
+### 2.       لاف‌زن
+
+لاف‌زن وظیفه دارد استدلال سناریو را پیش ببرد تا یکی از کارت‌های استدلال مغالطه‌آمیز خود را به نمایش بگذارد. هدف او این است که اکثریت بازیکنان دیگر آن کارت را حدس بزنند، اما نه اینکه همه آن را کشف کنند.
+
+نقش لاف‌زن به نخستین بازیکنی داده می‌شود که کارت استدلال مغالطه‌آمیزی را که قصد بازی کردنش را دارد، رو به پایین می‌گذارد. در غیر این صورت، بازیکنِ سمت چپ کارت‌کش به‌عنوان لاف‌زن تعیین می‌شود و کارت خود را می‌گذارد.
+
+### 3.       نمایش کوتاه
+
+کارت‌کش بحث را هر طور که بخواهد آغاز می‌کند. او می‌تواند از پیشنهادِ نخستین دیالوگِ ایتالیک‌شده در پایین کارت سناریو استفاده کند. سپس لاف‌زن و کارت‌کش حداکثر یک دقیقه فرصت دارند تا گفت‌وگویی بداهه انجام دهند که در جریان آن، لاف‌زن می‌کوشد نوع استدلالی را که کارتِ انتخابی‌اش نشان می‌دهد به کار ببرد. "
+RulesPP_05,"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
 
@@ -195,8 +339,56 @@ Os membros do júri tomam nota das cartas reveladas, um jogador pode lê -lo em 
 
 Se o cartão Baratineur for designado por todo o júri, cada um desenha uma carta na reserva, exceto o baratineur.
 
-Caso contrário, o vencedor do canal é aquele cujo cartão obteve o maior número de votos, baratineur ou membro do júri.",,,,
-"Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui. Il ne pioche pas de nouvelle carte.
+Caso contrário, o vencedor do canal é aquele cujo cartão obteve o maior número de votos, baratineur ou membro do júri.",,"يعرض المتحذلق حججه، ويردّ عليه الساحب من دون أن يسعى إلى الهيمنة على المشهد. ويمكن للمتحذلق أن يختار اختصار المشهد القصير متى شاء.
+
+### 4.       هيئة التحكيم
+
+يشكّل جميع اللاعبين، باستثناء المتحذلق ولكن بما في ذلك الساحب، هيئة التحكيم. في نهاية المشهد القصير، يختار كل عضو من أعضاء هيئة التحكيم من بين بطاقاته الخاصة البطاقة الأقرب إلى الحجاج الذي سمعه، ويضعها مقلوبةً مع بطاقة المتحذلق. يجمع المتحذلق البطاقات، ويخلطها، ثم يكشفها في وسط الطاولة.
+
+يطّلع أعضاء هيئة التحكيم على البطاقات المكشوفة، ويمكن لأحد اللاعبين قراءتها بصوت عالٍ. وعندما تكون هيئة التحكيم جاهزة، ومن دون تشاور، يشير كل عضو فيها في الوقت نفسه إلى البطاقة التي يعتقد أن المتحذلق لعبها، وذلك بوضع غرضه الصغير الفريد عليها.
+
+### 5.       احتساب النقاط
+
+إذا أشار جميع أعضاء هيئة التحكيم إلى بطاقة المتحذلق، يسحب كل لاعب بطاقة من الاحتياطي باستثناء المتحذلق.
+
+وإلا، فإن الفائز بالجولة هو صاحب البطاقة التي حصلت على أكبر عدد من الأصوات، سواء كان المتحذلق أو أحد أعضاء هيئة التحكيم. ","El charlatán expone sus argumentos y el robador le da la réplica sin intentar dominar la escena. El charlatán puede optar por acortar la escena cuando quiera.
+
+### 4.       El jurado
+
+Todos los jugadores, excepto el charlatán pero incluido el robador, forman el jurado. Al final de la escena, cada miembro del jurado elige entre sus propias cartas la que más se aproxime a la argumentación escuchada y la coloca boca abajo junto a la del charlatán. Este recoge las cartas, las mezcla y las revela en el centro de la mesa.
+
+Los miembros del jurado examinan las cartas reveladas; un jugador puede leerlas en voz alta. Cuando el jurado esté listo, sin ponerse de acuerdo, cada uno de sus miembros señala simultáneamente la carta que cree que fue jugada por el charlatán colocando sobre ella su pequeño objeto único.
+
+### 5.       El recuento
+
+Si la carta del charlatán es señalada por todo el jurado, todos roban una carta de la reserva excepto el charlatán.
+
+En caso contrario, el vencedor de la ronda es aquel cuya carta haya obtenido el mayor número de votos, ya sea el charlatán o un miembro del jurado. ","诡辩者陈述自己的论点，抽牌者则与其对话，但不要试图主导场面。诡辩者可以在任何时候选择缩短这段小短剧。
+
+### 4.       评审团
+
+除诡辩者以外的所有玩家，包括抽牌者在内，组成评审团。小短剧结束时，每位评审团成员从自己的牌中选择一张最接近刚才所听到论辩的牌，并将其面朝下与诡辩者的牌放在一起。诡辩者收起这些牌，洗混后在桌子中央翻开。
+
+评审团成员查看翻开的牌；可以由一名玩家大声朗读。当评审团准备好后，不得商量，每位成员同时指出自己认为由诡辩者打出的那张牌，并将自己的独特小物件放在其上。
+
+### 5.       结算
+
+如果诡辩者的牌被全体评审团成员指出，则除诡辩者外，每人从牌库中抽一张牌。
+
+否则，本回合的胜利者是其牌获得最多票数的人，可以是诡辩者，也可以是评审团成员。 ","لاف‌زن استدلال‌های خود را مطرح می‌کند و کارت‌کش در پاسخ به او نقش مقابل را بازی می‌کند، بی‌آنکه بکوشد صحنه را در دست بگیرد. لاف‌زن می‌تواند هر زمان که بخواهد نمایش کوتاه را کوتاه کند.
+
+### 4.       هیئت داوران
+
+همهٔ بازیکنان، به‌جز لاف‌زن اما با احتساب کارت‌کش، هیئت داوران را تشکیل می‌دهند. در پایان نمایش کوتاه، هر عضو هیئت داوران از میان کارت‌های خود، کارتی را که بیشترین شباهت را به استدلال شنیده‌شده دارد انتخاب می‌کند و آن را همراه با کارت لاف‌زن رو به پایین می‌گذارد. لاف‌زن کارت‌ها را جمع می‌کند، بر می‌زند و در وسط میز آشکار می‌کند.
+
+اعضای هیئت داوران کارت‌های آشکارشده را بررسی می‌کنند؛ یکی از بازیکنان می‌تواند آن‌ها را با صدای بلند بخواند. وقتی هیئت داوران آماده شد، بدون مشورت، هر یک از اعضا هم‌زمان کارتی را که فکر می‌کند لاف‌زن بازی کرده است نشان می‌دهد، با گذاشتن شیء کوچک و منحصربه‌فرد خود روی آن.
+
+### 5.       شمارش
+
+اگر کارت لاف‌زن توسط همهٔ اعضای هیئت داوران نشان داده شود، همه به‌جز لاف‌زن یک کارت از ذخیره می‌کشند.
+
+در غیر این صورت، برندهٔ دور کسی است که کارت او بیشترین تعداد رأی را گرفته باشد، چه لاف‌زن باشد و چه یکی از اعضای هیئت داوران. "
+RulesPP_06,"Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui. Il ne pioche pas de nouvelle carte.
 
 En cas d’égalité, les joueurs concernés qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs. Si aucun des joueurs concernés ne l'a trouvé, c'est le baratineur qui l’emporte.
 
@@ -242,4 +434,52 @@ O vizinho esquerdo do vizinho se torna o próximo cabo da próxima rodada.
 
 * No Tribunal do Saynet, qualquer membro do júri pode usar uma carta de seu jogo para intervir no papel de pickaxe. Se sua intervenção ilustrar bem o cartão, ele reipoca um e será nomeado a próxima picareta, se não, ele perde o cartão e o jogo assume sua quadra.
 * A picareta tem o direito de designar diretamente o baratineur do Canal da Mancha.
-* O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo.",,,,
+* O vencedor do jogo deve incorporar o baratinener de um cenário final, onde ele deve colocar em jogo todas as cartas que ganhou durante o jogo.",,"عندئذٍ يحتفظ ببطاقته التي تساوي نقطة واحدة ويضعها مكشوفةً أمامه. ولا يسحب بطاقة جديدة.
+
+في حال التعادل، يُعلَن جميع اللاعبين المعنيين الذين وجدوا بطاقة المتحذلق فائزين. وإذا لم يجدها أيٌّ من اللاعبين المعنيين، فإن المتحذلق هو الفائز.
+
+باستثناء الفائز، يسحب أعضاء هيئة التحكيم الذين حصلوا على أصوات أو وجدوا بطاقة المتحذلق بطاقتين من الاحتياطي. أما اللاعبون الآخرون، بمن فيهم المتحذلق إذا لم يفز بالجولة، فيسحبون منه بطاقة واحدة. وتُعاد البطاقات الملعوبة إلى الاحتياطي.
+
+يصبح الجار الأيسر للفائز هو الساحب في الجولة التالية.
+
+## تنويعات:
+
+* أثناء المشهد القصير، يمكن لأي عضو في هيئة التحكيم أن يستخدم بطاقة من يده للتدخل في دور الساحب. إذا كان تدخله يجسّد بطاقته جيدًا، يسحب بطاقة بديلة ويُعيَّن الساحب التالي؛ وإلا يفقد بطاقته وتُستأنف اللعبة من حيث توقفت.
+* يحق للساحب أن يعيّن متحذلق الجولة مباشرةً.
+* يجب على الفائز باللعبة أن يؤدي دور المتحذلق في سيناريو أخير يضع فيه جميع البطاقات التي فاز بها خلال اللعبة موضع اللعب.","Entonces conserva su carta, que vale 1 punto, y la coloca boca arriba delante de él. No roba una carta nueva.
+
+En caso de empate, todos los jugadores implicados que hayan encontrado la carta del charlatán son declarados vencedores. Si ninguno de los jugadores implicados la ha encontrado, gana el charlatán.
+
+Excepto el vencedor, los miembros del jurado que hayan recibido votos o que hayan encontrado la carta del charlatán roban 2 cartas de la reserva. Los demás jugadores, incluido el charlatán si no ha ganado la ronda, roban 1 carta de la reserva. Las cartas jugadas se devuelven a la reserva.
+
+El vecino de la izquierda del vencedor se convierte en el robador de la siguiente ronda.
+
+## Variantes:
+
+* Durante la escena, cualquier miembro del jurado puede usar una carta de su mano para intervenir en el papel del robador. Si su intervención ilustra bien su carta, roba una nueva y será designado como el próximo robador; si no, pierde su carta y la partida continúa su curso.
+* El robador tiene derecho a designar directamente al charlatán de la ronda.
+* El vencedor de la partida debe encarnar al charlatán en un escenario final en el que debe poner en juego todas las cartas que haya ganado durante la partida.","随后他保留自己的牌，该牌价值 1 分，并将其面朝上放在自己面前。他不抽新的牌。
+
+如果出现平票，相关玩家中凡是找出诡辩者牌的人都被宣布为胜利者。如果相关玩家中没有人找出这张牌，则诡辩者获胜。
+
+除胜利者外，获得过票数或找出诡辩者牌的评审团成员从牌库中抽 2 张牌。其他玩家，包括未赢得本回合的诡辩者，从牌库中抽 1 张牌。已打出的牌放回牌库。
+
+胜利者左侧的邻座玩家成为下一回合的抽牌者。
+
+## 变体：
+
+* 在小短剧进行过程中，任何评审团成员都可以使用自己手中的一张牌，以抽牌者的角色介入。如果他的介入很好地体现了自己的牌，他重新抽一张牌，并将被指定为下一位抽牌者；否则，他失去这张牌，游戏继续进行。
+* 抽牌者有权直接指定本回合的诡辩者。
+* 整局游戏的胜利者必须在最后一个情景中扮演诡辩者，并在其中使用自己在游戏过程中赢得的所有牌。","سپس کارت خود را که ۱ امتیاز دارد نگه می‌دارد و آن را رو به بالا جلوی خود می‌گذارد. او کارت جدیدی نمی‌کشد.
+
+در صورت تساوی، همهٔ بازیکنان مربوطه که کارت لاف‌زن را پیدا کرده‌اند برنده اعلام می‌شوند. اگر هیچ‌یک از بازیکنان مربوطه آن را پیدا نکرده باشد، لاف‌زن برنده می‌شود.
+
+به‌جز برنده، اعضای هیئت داوران که رأی گرفته‌اند یا کارت لاف‌زن را پیدا کرده‌اند، ۲ کارت از ذخیره می‌کشند. بازیکنان دیگر، از جمله لاف‌زن اگر دور را نبرده باشد، ۱ کارت از ذخیره می‌کشند. کارت‌های بازی‌شده به ذخیره برگردانده می‌شوند.
+
+همسایهٔ سمت چپ برنده، کارت‌کشِ دور بعدی می‌شود.
+
+## گونه‌ها:
+
+* در جریان نمایش کوتاه، هر عضو هیئت داوران می‌تواند از یک کارتِ دست خود استفاده کند تا در نقش کارت‌کش وارد صحنه شود. اگر مداخلهٔ او کارت خودش را خوب نشان دهد، یک کارت جایگزین می‌کشد و به‌عنوان کارت‌کش بعدی تعیین می‌شود؛ در غیر این صورت، کارت خود را از دست می‌دهد و بازی به روند خود ادامه می‌دهد.
+* کارت‌کش حق دارد لاف‌زنِ دور را مستقیماً تعیین کند.
+* برندهٔ بازی باید در یک سناریوی نهایی نقش لاف‌زن را بازی کند؛ سناریویی که در آن باید همهٔ کارت‌هایی را که در طول بازی برده است وارد بازی کند."

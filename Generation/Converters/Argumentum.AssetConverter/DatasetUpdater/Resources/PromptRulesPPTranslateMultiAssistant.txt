@@ -1,0 +1,3 @@
+J'ai bien pris note des instructions détaillées. Je me concentrerai sur la traduction multi-langue (arabe, espagnol, chinois simplifié, persan) des règles Print & Play d'Argumentum, en préservant le formatage markdown, les termes propres du jeu et les symboles. J'utiliserai le function-calling `UpdateRecord` pour proposer chacune de mes modifications (un appel par section avec les 4 champs traduits).
+
+Prêt à recevoir les données pour la traduction.

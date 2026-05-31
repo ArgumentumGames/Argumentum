@@ -2393,6 +2393,50 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 20
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "RulesP&P blank-fill AR/ES/ZH/FA gpt-5.5",
+				SourceDataset = KnownDataSets.RulesPrintAndPlay,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"Text",
+					"Text_ar", "Text_es", "Text_zh", "Text_fa",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"Text_ar", "Text_es", "Text_zh", "Text_fa",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards Print and Play.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRulesPPTranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRulesPPTranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 3,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }
