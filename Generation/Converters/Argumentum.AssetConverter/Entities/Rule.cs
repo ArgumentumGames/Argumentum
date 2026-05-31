@@ -19,6 +19,9 @@ namespace Argumentum.AssetConverter.Entities
         public string Text_ru { get; set; }
         public string Text_pt { get; set; }
         public string Text_es { get; set; }
+        public string Text_ar { get; set; }
+        public string Text_fa { get; set; }
+        public string Text_zh { get; set; }
         public string PrintAndPlay { get; set; }
     }
 
@@ -31,7 +34,10 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.Text_en).Name("Text_en");
             Map(m => m.Text_ru).Name("Text_ru");
             Map(m => m.Text_pt).Name("Text_pt");
-            Map(m => m.Text_es).Name("Text_es");
+            Map(m => m.Text_es).Name("Text_es").Optional();
+            Map(m => m.Text_ar).Name("Text_ar").Optional();
+            Map(m => m.Text_fa).Name("Text_fa").Optional();
+            Map(m => m.Text_zh).Name("Text_zh").Optional();
             Map(m => m.PrintAndPlay).Name("print_and_play").Optional();
         }
     }
