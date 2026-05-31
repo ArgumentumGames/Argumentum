@@ -20,12 +20,9 @@ Any substantive update to an FR document must be mirrored in the EN counterpart 
 - **[cards-catalog.en.md](cards-catalog.en.md)** — exhaustive inventory of `CardSetDocuments` (Tarot, Poker, Print&Play, Web A0/A4/Thumbnails), physical dimensions, recommendations by audience.
 - **[cards-catalog.fr.md](cards-catalog.fr.md)** — French source.
 
-### 2. "The Liars' School" booklet
+### 2. Game rules
 
-- **[booklet.en.md](booklet.en.md)** — *placeholder* pending scope clarification (the external LaTeX repo could not be located under `ArgumentumGames`).
-- **[booklet.fr.md](booklet.fr.md)** — French placeholder.
-
-> This section will be completed once the booklet's source repository is identified (cf. `[ASK]` message dated 2026‑05‑30 on the workspace dashboard).
+The rules ("booklet") ship as **Rules cards** in the Tarot deck (and the Print&Play A4) — there is no separate document. See the "Game rules" section of [cards-catalog.en.md](cards-catalog.en.md).
 
 ## Conventions
 

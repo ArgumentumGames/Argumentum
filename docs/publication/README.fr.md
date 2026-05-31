@@ -20,12 +20,9 @@ Toute mise à jour matérielle d'un document FR doit être répliquée dans le m
 - **[cards-catalog.fr.md](cards-catalog.fr.md)** — inventaire exhaustif des `CardSetDocuments` (Tarot, Poker, Print&Play, Web A0/A4/Thumbnails), dimensions physiques, recommandations par audience.
 - **[cards-catalog.en.md](cards-catalog.en.md)** — English mirror.
 
-### 2. Livret « The Liars' School »
+### 2. Règles du jeu
 
-- **[booklet.fr.md](booklet.fr.md)** — *placeholder* en attente de précision de scope (le dépôt LaTeX externe est introuvable côté `ArgumentumGames`).
-- **[booklet.en.md](booklet.en.md)** — English mirror placeholder.
-
-> Cette section sera complétée une fois le dépôt source du livret identifié (cf. message `[ASK]` 2026‑05‑30 sur le dashboard workspace).
+Les règles (« livret ») sont livrées sous forme de **cartes Rules** dans le deck Tarot (et le Print&Play A4) — il n'existe pas de document séparé. Voir la section « Règles du jeu » de [cards-catalog.fr.md](cards-catalog.fr.md).
 
 ## Conventions
 
