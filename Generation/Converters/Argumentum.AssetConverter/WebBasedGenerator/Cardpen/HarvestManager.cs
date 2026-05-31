@@ -480,6 +480,19 @@ public class HarvestManager : IAsyncDisposable
 	              
 	              // ✅ CORRECTION FINALE: Passer le JSON comme argument de fonction
 	              // Cela évite les problèmes d'échappement multiples des string literals JavaScript
+
+	              // Garde anti-race (Release / GitHub Pages) : le global `cardpen` est défini par
+	              // main.js (main.js:22), qui est le DERNIER script de la page. Le gate amont
+	              // (attente de l'iframe #cpOutput) ne vérifie que la présence d'un élément HTML
+	              // statique, pas l'exécution de main.js. En local IIS (Debug) la latence ~0 masque
+	              // la course ; servi depuis GitHub Pages (Release) elle peut être perdue → l'appel
+	              // ci-dessous lève "ReferenceError: cardpen is not defined". Attendre explicitement
+	              // que l'API cardpen soit prête rend le harvest robuste quelle que soit la source.
+	              await page.WaitForFunctionAsync(
+	                  "() => typeof cardpen !== 'undefined' && cardpen.form && cardpen.write",
+	                  null,
+	                  new PageWaitForFunctionOptions { Timeout = 120000 });
+
 	              await page.EvaluateAsync("(jsonString) => cardpen.form.set(JSON.parse(jsonString))", cardsJson);
 	              await page.EvaluateAsync("cardpen.write.generate(cardpen.form.get(), 'image')");
 
