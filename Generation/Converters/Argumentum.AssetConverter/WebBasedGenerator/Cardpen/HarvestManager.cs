@@ -336,6 +336,11 @@ public class HarvestManager : IAsyncDisposable
 		{
 			var b = await browser();
 			var newPage = await b.NewPageAsync();
+			// CardPen renders heavy datasets (AR/FA/ZH cards) slowly; the Playwright default
+			// operation timeout is only 30s, which causes uncaught TimeoutExceptions that kill
+			// the whole Release run. Raise the default for every await on this page to 120s
+			// (matches the explicit 120s waits elsewhere; lesson "CardPen needs 90-120s").
+			newPage.SetDefaultTimeout(120000);
 			LastPageUsed = newPage;
 			return newPage;
 		}
@@ -515,7 +520,7 @@ public class HarvestManager : IAsyncDisposable
 	              
 	              // Attendre que le bouton Generate Images soit présent (signal que l'iframe est chargé)
 	              var generateButtonLocator = iframe.Locator("#generateButton");
-	              await generateButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 30000 });
+	              await generateButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 120000 });
 	              Log("Generate button found, iframe is ready.");
 	              
 	              // Appeler generateImages() dans le contexte de l'iframe pour démarrer la génération
