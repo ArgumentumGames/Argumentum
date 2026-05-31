@@ -5,6 +5,65 @@ var cards = [];
 var nodes = [];
 
 
+// ---------------------------------------------------------------------------
+// Auto-shrink des titres (Option B — issue #316)
+// Réduit dynamiquement la taille de police d'un titre qui déborde son conteneur
+// AVANT la capture domtoimage. No-op si le titre tient déjà (cas Latin courant) :
+// n'agit que sur les débordements horizontaux (mots longs non sécables — p.ex.
+// cyrillique RU "НЕЙРОЛИНГВИСТИЧЕСКОЕ ПРОГРАММИРОВАНИЕ" — qui, avec
+// overflow-wrap:normal, sont rognés au lieu de revenir à la ligne).
+// Indépendant de la langue et du gabarit : ne touche que ce qui déborde.
+// ---------------------------------------------------------------------------
+
+// Vrai si le contenu de l'élément (et de ses descendants) tient sans débordement
+// horizontal. Tolérance de 1px pour les arrondis sub-pixels.
+function titleContentFits(el) {
+    if (el.scrollWidth > el.clientWidth + 1) {
+        return false;
+    }
+    var descendants = el.getElementsByTagName('*');
+    for (var i = 0; i < descendants.length; i++) {
+        if (descendants[i].scrollWidth > descendants[i].clientWidth + 1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Recherche dichotomique de la plus grande taille de police qui tient.
+function autoFitTitle(title, minFontPx) {
+    minFontPx = minFontPx || 8;
+    // Repartir de la taille définie par le template (idempotent si rappelé).
+    title.style.fontSize = '';
+    var naturalPx = parseFloat(window.getComputedStyle(title).fontSize);
+    if (!naturalPx || titleContentFits(title)) {
+        return; // Tient déjà : aucun changement (cas le plus fréquent).
+    }
+    var lo = minFontPx;
+    var hi = naturalPx;
+    var best = minFontPx;
+    for (var iter = 0; iter < 12; iter++) {
+        var mid = (lo + hi) / 2;
+        title.style.fontSize = mid + 'px';
+        if (titleContentFits(title)) {
+            best = mid;   // tient → viser plus grand
+            lo = mid;
+        } else {
+            hi = mid;     // déborde → réduire
+        }
+    }
+    title.style.fontSize = best + 'px';
+}
+
+// Applique l'auto-shrink à tous les titres d'une carte avant sa capture.
+function autoFitCardTitles(cardNode) {
+    var titles = cardNode.querySelectorAll('.title');
+    for (var t = 0; t < titles.length; t++) {
+        autoFitTitle(titles[t]);
+    }
+}
+
+
 async function generateImages() {
     var zipButton = document.getElementById('zipButton');
     if (zipButton) {
@@ -19,6 +78,7 @@ async function generateImages() {
     nodes = document.getElementsByTagName("card");
        for (var n = 0; n < nodes.length; n++) {
            //imaginer(nodes[n],n);
+           autoFitCardTitles(nodes[n]);   // Option B (#316) : ajuster les titres débordants avant capture
            await imaginerSync(nodes[n], n);
        }
     if (zipButton) {
