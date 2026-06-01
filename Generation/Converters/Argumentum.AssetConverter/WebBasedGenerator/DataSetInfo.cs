@@ -499,51 +499,89 @@ public class DataSetInfo
 	{
 
 		var globalResultTable = resultTables[""];
+		var globalPkColumn = globalResultTable.Columns[primaryKeyColumn];
+		var droppedCount = 0;
 
 
 		foreach (var record in records)
 		{
-			var row = globalResultTable.Rows.Find(record[primaryKeyColumn]);
+			var pkValue = record[primaryKeyColumn];
+			var typedPk = CoercePrimaryKeyValue(pkValue, globalPkColumn.DataType);
+			var row = globalResultTable.Rows.Find(typedPk);
 
-			if (addNewRows && row == null)
+			if (row == null && addNewRows)
 			{
 				row = globalResultTable.NewRow();
+				row[primaryKeyColumn] = typedPk;
 				globalResultTable.Rows.Add(row);
 			}
 
-			if (row != null)
+			if (row == null)
 			{
-				if (!writeOneTargetFileByField)
+				droppedCount++;
+				continue;
+			}
+
+			if (!writeOneTargetFileByField)
+			{
+				UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, globalResultTable, row);
+			}
+			else
+			{
+				foreach (var pair in record)
 				{
-					UpdateTableRow(primaryKeyColumn, fieldsToUpdate, record, globalResultTable, row);
-				}
-				else
-				{
-					foreach (var pair in record)
+					var columnName = pair.Key;
+					if (columnName != primaryKeyColumn && fieldsToUpdate.Contains(columnName))
 					{
-						var columnName = pair.Key;
-						if (columnName != primaryKeyColumn)
+						if (!resultTables.TryGetValue(columnName, out var fieldDataTable))
 						{
-							if (fieldsToUpdate.Contains(columnName))
-							{
-								if (!resultTables.TryGetValue(columnName, out var fieldDataTable))
-								{
-									fieldDataTable = globalResultTable.Copy();
-
-									resultTables.Add(columnName, fieldDataTable);
-								}
-
-								row = fieldDataTable.Rows.Find(record[primaryKeyColumn]);
-								fieldDataTable.Columns[columnName].ReadOnly = false;
-								row[columnName] = pair.Value;
-							}
+							fieldDataTable = globalResultTable.Copy();
+							resultTables.Add(columnName, fieldDataTable);
 						}
+
+						var fieldPkColumn = fieldDataTable.Columns[primaryKeyColumn];
+						var fieldTypedPk = CoercePrimaryKeyValue(pkValue, fieldPkColumn.DataType);
+						var fieldRow = fieldDataTable.Rows.Find(fieldTypedPk);
+						if (fieldRow == null)
+						{
+							Logger.LogProblem($"UpdateTableFromRecords: PK '{pkValue}' missing from per-field table '{columnName}' — field update skipped.");
+							continue;
+						}
+
+						fieldDataTable.Columns[columnName].ReadOnly = false;
+						fieldRow[columnName] = pair.Value;
 					}
 				}
-
-
-				
 			}
+		}
+
+		if (droppedCount > 0)
+		{
+			Logger.LogProblem($"UpdateTableFromRecords: {droppedCount} record(s) dropped (PK not found in target table, addNewRows=false). First PK seen: '{records.FirstOrDefault()?[primaryKeyColumn]}'.");
+		}
+	}
+
+	/// <summary>
+	/// Coerces a runtime PK value to the DataTable column's DataType so that
+	/// <see cref="DataRowCollection.Find(object)"/> matches regardless of whether
+	/// the LLM returned the PK as a JSON number, string, or other primitive.
+	/// Without this, type mismatches (e.g. <c>double</c> from JSON vs <c>string</c>
+	/// column) cause <c>Rows.Find</c> to silently return null and the record is lost.
+	/// </summary>
+	private static object CoercePrimaryKeyValue(object rawValue, Type columnType)
+	{
+		if (rawValue == null) return null;
+		var runtimeType = rawValue.GetType();
+		if (runtimeType == columnType) return rawValue;
+		try
+		{
+			if (columnType == typeof(string)) return Convert.ToString(rawValue, System.Globalization.CultureInfo.InvariantCulture);
+			return Convert.ChangeType(rawValue, columnType, System.Globalization.CultureInfo.InvariantCulture);
+		}
+		catch (Exception ex)
+		{
+			Logger.LogProblem($"UpdateTableFromRecords: cannot coerce PK '{rawValue}' ({runtimeType.Name}) to {columnType.Name} — {ex.Message}. Falling back to raw value.");
+			return rawValue;
 		}
 	}
 
