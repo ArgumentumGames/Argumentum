@@ -529,8 +529,9 @@ public class HarvestManager : IAsyncDisposable
 	              Log("generateImages() called, waiting for completion...");
 
 	              // Attendre que le bouton ZIP devienne visible (signal que la génération est terminée)
+	              // NOTE: 300s (5 min) nécessaire pour les gros CardSets (Fallacies 1408 cartes × plusieurs langues)
 	              var zipButtonLocator = iframe.Locator("#zipButton");
-	              await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 120000 });
+	              await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 300000 });
 	              Log("Image generation process completed successfully.");
 
 	              // ✅ FIX: Capturer le DPI depuis CardPen après la génération
