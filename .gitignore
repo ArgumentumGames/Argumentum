@@ -234,3 +234,22 @@ Generation/**/.claude/
 /cycle*.jpeg
 /cycle*.png
 /title_repro_shot.png
+
+# ============================================================
+# Phase 1 — #415: Remove trackable build artifacts from repo
+# These are all regenerable via pipeline build or re-downloadable.
+# ============================================================
+
+# Published build outputs (.NET self-contained zips & executables)
+**/Published/
+
+# DNN distributable downloads (regenerable via pipeline)
+DNNPlatform/Portals/*/Downloads/*.zip
+DNNPlatform/Portals/*/Downloads/*.zip.REMOVED.git-id
+
+# DNN extension packages (re-downloadable installers)
+DNNPlatform/App_Data/ExtensionPackages/*.resources
+
+# Large generated SVGs (regenerable via MindMapper pipeline)
+# Note: small source SVGs in Cards/ are kept
+Generation/Converters/Argumentum.AssetConverter/Mindmapper/*.svg
