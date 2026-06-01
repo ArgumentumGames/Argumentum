@@ -219,18 +219,90 @@ public class DataSetInfo
 
 	public static List<List<Dictionary<string, object>>> GetHierarchicalRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel, bool includeChildren, int maxChildren)
 	{
-		
-		var hierarchicalRecords = new List<List<Dictionary<string, object>>>();
 
 		var rootRecords = GetRootRecords(records, pkField, pKHierarchicalChar, pKHierarchyLevel);
 		var rootWithParentsSiblingsAndChildrenRecords = rootRecords.Select(rootRecord => GetRecordHierarchies(records, pkField, pKHierarchicalChar, pKHierarchyLevel, rootRecord, includeChildren, maxChildren)).ToList();
 
-		return rootWithParentsSiblingsAndChildrenRecords.SelectMany(list => list).ToList();
+		var groups = rootWithParentsSiblingsAndChildrenRecords.SelectMany(list => list).ToList();
+
+		// Completeness guarantee (issue #409 Bug 1): the standard root selection picks records
+		// with exactly (level-1) separators, and GetRecordHierarchies gathers descendants via
+		// StartsWith on those roots. Records with FEWER than (level-1) separators that are NOT
+		// reached as ancestors of a selected root (e.g. a dot-less top-level PK "0" with no
+		// children, or a shallow parent the parent-walk fails to include) are silently orphaned.
+		// Sweep for any record absent from every group and emit it as its own singleton group so
+		// it still reaches downstream processing. Previously this shortfall was silent.
+		var coveredPks = new HashSet<string>(
+			groups.SelectMany(group => group)
+				.Select(record => (record[pkField]?.ToString() ?? string.Empty)));
+
+		var orphanedRecords = records
+			.Where(record => !coveredPks.Contains(record[pkField]?.ToString() ?? string.Empty))
+			.ToList();
+
+		if (orphanedRecords.Count > 0)
+		{
+			Logger.Log(
+				$"GetHierarchicalRecords: {orphanedRecords.Count} record(s) not covered by any root group at level {pKHierarchyLevel} " +
+				$"(PKs: {string.Join(", ", orphanedRecords.Take(20).Select(record => record[pkField]?.ToString()))}" +
+				$"{(orphanedRecords.Count > 20 ? ", ..." : string.Empty)}). " +
+				"Adding them as shallow-root singleton groups so they are not silently dropped.");
+
+			foreach (var orphanedRecord in orphanedRecords)
+			{
+				groups.Add(new List<Dictionary<string, object>> { orphanedRecord });
+			}
+		}
+
+		var coveredCount = groups.SelectMany(group => group)
+			.Select(record => record[pkField]?.ToString() ?? string.Empty)
+			.Distinct()
+			.Count();
+
+		if (coveredCount != records.Count)
+		{
+			Logger.Log(
+				$"GetHierarchicalRecords: coverage assertion shortfall — {coveredCount} distinct PK(s) covered out of {records.Count} input record(s) at level {pKHierarchyLevel}.");
+		}
+
+		return groups;
 	}
 
 	public static List<Dictionary<string, object>> GetRootRecords(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel)
 	{
-		return records.Where(record => (record[pkField].ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == pKHierarchyLevel-1).ToList();
+		var rootSeparatorCount = pKHierarchyLevel - 1;
+
+		// Standard roots: PKs with exactly (level-1) separators.
+		var standardRoots = records
+			.Where(record => (record[pkField]?.ToString() ?? string.Empty).Count(c => c == pKHierarchicalChar) == rootSeparatorCount)
+			.ToList();
+
+		// Shallow roots (issue #409 Bug 1): PKs with FEWER than (level-1) separators that have no
+		// descendant in the dataset (terminal shallow nodes, e.g. a dot-less top-level PK "0" with
+		// no children). Without this they match neither the standard root predicate nor any root's
+		// StartsWith children query, so they are silently dropped at level >= 2. Shallow nodes that
+		// DO have descendants are intentionally excluded here: their subtrees are already covered by
+		// the deeper standard roots, and the post-grouping sweep in GetHierarchicalRecords re-adds
+		// any shallow parent the hierarchy walk still misses.
+		var shallowRoots = records
+			.Where(record =>
+			{
+				var pk = record[pkField]?.ToString() ?? string.Empty;
+				if (pk.Count(c => c == pKHierarchicalChar) >= rootSeparatorCount)
+				{
+					return false;
+				}
+
+				var childPrefix = pk + pKHierarchicalChar;
+				var hasDescendant = records.Any(other =>
+					!ReferenceEquals(other, record)
+					&& (other[pkField]?.ToString() ?? string.Empty).StartsWith(childPrefix, StringComparison.Ordinal));
+
+				return !hasDescendant;
+			})
+			.ToList();
+
+		return standardRoots.Concat(shallowRoots).ToList();
 	}
 
 	public static List<List<Dictionary<string, object>>> GetRecordHierarchies(List<Dictionary<string, object>> records, string pkField, char pKHierarchicalChar, int pKHierarchyLevel,
@@ -299,7 +371,16 @@ public class DataSetInfo
 
 				if (parentLevel < pKHierarchyLevel)
 				{
-					currentRecordPk = currentRecordPk.Substring(0, currentRecordPk.LastIndexOf(pKHierarchicalChar));
+					var lastSeparatorIndex = currentRecordPk.LastIndexOf(pKHierarchicalChar);
+					if (lastSeparatorIndex < 0)
+					{
+						// Shallow root (issue #409 Bug 1): a PK with no separator has no parent to
+						// walk up to. Without this guard LastIndexOf returns -1 and Substring(0, -1)
+						// throws. Stop the parent walk here — the current hierarchy is complete.
+						currentRecordHierarchy = newHierarchy;
+						break;
+					}
+					currentRecordPk = currentRecordPk.Substring(0, lastSeparatorIndex);
 				}
 				currentRecordHierarchy = newHierarchy;
 			}
