@@ -1,0 +1,8 @@
+I will review each entry for Portuguese register consistency and return only records that need correction.
+
+[
+  {
+    "pk": "1",
+    "description_pt": "Corrected Portuguese text with você register..."
+  }
+]

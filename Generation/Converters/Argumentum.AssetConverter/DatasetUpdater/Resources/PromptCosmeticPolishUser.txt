@@ -1,0 +1,42 @@
+You are reviewing a CSV of logical fallacies for cosmetic translation quality issues. Each row is a fallacy entry with multilingual fields.
+
+## Your task
+
+Review ONLY the specific cosmetic defects listed below. Do NOT rewrite or improve translations generally — fix ONLY the listed issues.
+
+## Defect categories to fix
+
+### Cat B — PT register harmonization (desc_pt)
+- Some `desc_pt` mix register levels: singular informal, plural informal, archaic forms
+- **Fix**: Harmonize ALL `desc_pt` to use **singular informal** (você/teu) — the most common register in Brazilian Portuguese
+- Replace plural informal (vocês) and archaic (tu/vosso) with singular informal equivalents
+- Adjust verb conjugations accordingly
+
+### Cat C — FA title-style normalization (text_fa)
+- Some `text_fa` entries are full descriptive sentences instead of short titles
+- **Fix**: Convert sentence-length `text_fa` to concise title-form (noun phrase or short label)
+- Reference the corresponding `text_fr` or `text_en` for the intended title length
+
+### Cat C — ZH terminology disambiguation (text_zh)
+- Some `text_zh` entries reuse the same Chinese term for 2 distinct concepts in the taxonomy
+- **Fix**: Where the same `text_zh` value appears for concepts that are siblings or in different branches, differentiate them using more specific terms
+- Do NOT change entries where the shared term is genuinely appropriate
+
+## Input data
+
+For each fallacy entry, you will see:
+- `pk`: primary key (path in taxonomy hierarchy)
+- `path`: taxonomy path (e.g. "1.2.3")
+- `text_fr`: French title (reference for meaning)
+- `text_en`: English title (reference for meaning)
+- `desc_pt`: Portuguese description (check register)
+- `text_fa`: Farsi title (check title vs sentence)
+- `text_zh`: Chinese title (check term duplication)
+
+## Output
+
+Return a JSON array of records to update. Only include records where you actually changed something. For each record:
+- `path`: the taxonomy path (primary identifier)
+- Fields you changed with their corrected values
+
+If a field needs no correction, omit it from the output.

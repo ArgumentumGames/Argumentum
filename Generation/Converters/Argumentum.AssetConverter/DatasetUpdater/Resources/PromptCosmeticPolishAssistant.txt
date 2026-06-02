@@ -1,0 +1,8 @@
+I will review each fallacy entry for the specific cosmetic defects (PT register, FA title-style, ZH terminology) and return only records that need correction.
+
+[
+  {
+    "path": "1.1",
+    "desc_pt": "Corrected Portuguese description with você register..."
+  }
+]
