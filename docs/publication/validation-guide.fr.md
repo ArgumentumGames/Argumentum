@@ -114,13 +114,13 @@ Sinogrammes, sens gauche→droite. Vérifie la **forme** :
 | Dataset | fr | en | ru | pt | es | ar | fa | zh |
 |---|---|---|---|---|---|---|---|---|
 | Fallacies — contenu (text/desc/example) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Fallacies — taxonomie | ✅ | ✅ | ⏳ #403 | ⏳ #403 | ✅ | ✅ | ✅ | ✅ |
-| Virtues | ✅ | ⏳ | ⏳ | ⏳ | ✅ | ⏳ #403 | ⏳ #403 | ⏳ #403 |
+| Fallacies — taxonomie | ✅ | ✅ | ✅ #408 | ✅ #408 | ✅ | ✅ | ✅ | ✅ |
+| Virtues | ✅ | ✅ #407 | ✅ #407 | ✅ #407 | ✅ | ✅ #407 | ✅ #407 | ✅ #407 |
 | Scenarii | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Rules (deck) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Rules Print&Play | ✅ | ✅ | ✅ | ✅ | ⏳ #403 | ⏳ #403 | ⏳ #403 | ⏳ #403 |
+| Rules Print&Play | ✅ | ✅ | ✅ | ✅ | ✅ #405 | ✅ #405 | ✅ #405 | ✅ #405 |
 
-`⏳ #403` = cellules en cours de remplissage (po‑2023, gpt‑5.5). **Aucune release tant que cette colonne n'est pas tout ✅** (mandat : *100 % + repasse de finition*). Mind maps : `fr/en/ru/pt` uniquement (pas de version es/ar/fa/zh — c'est voulu, cf. catalogue).
+**100 % couverture atteinte** (PRs #405, #407, #408 merged 2026‑05‑31 / 2026‑06‑01). Mandat respecté : *100 % + repasse de finition*. Mind maps : `fr/en/ru/pt` uniquement (pas de version es/ar/fa/zh — c'est voulu, cf. catalogue).
 
 ---
 
