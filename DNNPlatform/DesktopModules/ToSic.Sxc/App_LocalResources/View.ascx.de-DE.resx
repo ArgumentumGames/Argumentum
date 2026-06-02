@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionChangeLayoutOrContent.Text" xml:space="preserve">
+    <value>Vorlage wechseln</value>
+  </data>
+  <data name="ActionEdit.Text" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="hlkConfigurePortal.Text" xml:space="preserve">
+    <value>Portal Konfigurieren</value>
+  </data>
+  <data name="NoDemoItem.Text" xml:space="preserve">
+    <value>Für die ausgewählte Vorlage wurde noch kein Inhalt eingegeben.</value>
+  </data>
+  <data name="TemplateConfigurationMissing.Text" xml:space="preserve">
+    <value>Die gewählte Vorlage existiert nicht mehr.</value>
+  </data>
+  <data name="ActionEditTemplateFile.Text" xml:space="preserve">
+    <value>Vorlage bearbeiten</value>
+  </data>
+  <data name="ActionAdd.Text" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="ActionList.Text" xml:space="preserve">
+    <value>Liste bearbeiten</value>
+  </data>
+  <data name="DeleteContentGroupItem.Text" xml:space="preserve">
+    <value>Möchten Sie \"{0} ({1})\" wirklich löschen?</value>
+  </data>
+  <data name="hlkConfigureZone.Text" xml:space="preserve">
+    <value>Klick hier um dies einzurichten</value>
+  </data>
+  <data name="ddlContentTypeDefaultItem.Text" xml:space="preserve">
+    <value>&lt;Typ des Inhalts auswählen&gt;</value>
+  </data>
+  <data name="TemplateError.Text" xml:space="preserve">
+    <value>&lt;b&gt;Beim Rendern des Templates ist ein Fehler aufgetreten&lt;/b&gt;</value>
+  </data>
+  <data name="EnableDataPublishing.Text" xml:space="preserve">
+    <value>Dieses Modul benötigt Daten vom Server. Wenn Du diese Meldung siehst, ist das Veröffentlichen für dieses Modul nicht aktiviert. Bitte aktiviere das in den Moduleinstellungen des Moduls {0} (das Modul mit dem Titel "{1}").</value>
+  </data>
+  <data name="btnInstallGettingStarted.Text" xml:space="preserve">
+    <value>"Getting Started" Vorlagen installieren</value>
+  </data>
+</root>

@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Blocks;
+@using ToSic.Sxc.Services;
 @{
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
@@ -11,7 +11,7 @@
   var mainToolbar = new [] { "+contentitems&pos=2?contentType=Question" };  // add the content-items button
   var catToolbar = new [] { "toolbar=empty&hover=left", "contentitems?contentType=Category" };
   var qToolbar = new [] { "-layout", "%new&show=true?contentType=Question&entityId=0" };
-  var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
+  var render = GetService<ToSic.Sxc.Services.IRenderService>();
 }
 <div class="app-faq4-js-@CmsContext.Module.Id position-relative" @Edit.TagToolbar(Content, toolbar: mainToolbar )>
 	<div class="app-faq4-wrapper" @Edit.Attribute("quick-edit-config", new { modules = new {  enable = true }})>

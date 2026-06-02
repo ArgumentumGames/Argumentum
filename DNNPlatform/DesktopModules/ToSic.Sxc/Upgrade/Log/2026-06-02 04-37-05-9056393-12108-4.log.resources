@@ -1,0 +1,15 @@
+2026-06-02T04:37:05 20.00.00 - UpgradeModule - UpgradeModule starting
+2026-06-02T04:37:05 20.00.00 - IsUpgradeComplete - Check upgrade marker file - Check on Start UpgradeModule
+2026-06-02T04:37:05 20.00.00 - Upgrade marker not found: 'D:\Dev\Argumentum\DNNPlatform\desktopmodules\tosic.sxc\Upgrade\Log\20.00.00.resources'
+2026-06-02T04:37:05 20.00.00 - IsUpgradeComplete - Upgrade complete: False
+2026-06-02T04:37:05 20.00.00 - Upgrade status check OK (marker not found yet, so upgrade should run)
+2026-06-02T04:37:05 20.00.00 - Upgrade running check OK (no concurrent upgrade detected)
+2026-06-02T04:37:05  - Upgrade running flag => True
+2026-06-02T04:37:05  - Upgrade running flag => True (done)
+2026-06-02T04:37:05 20.00.00 - ----- Upgrade to 20.00.00 started -----
+2026-06-02T04:37:05 20.00.00 - Old 'system-custom' folder migrated to new location: D:\Dev\Argumentum\DNNPlatform\desktopmodules\tosic.sxc\App_Data\system-custom
+2026-06-02T04:37:05 20.00.00 - UpgradeModule - version-list check / switch done
+2026-06-02T04:37:05 20.00.00 - ----- Upgrade to 20.00.00 completed -----
+2026-06-02T04:37:05  - Upgrade running flag => False
+2026-06-02T04:37:05  - Upgrade running flag => False (done)
+2026-06-02T04:37:05 20.00.00 - UpgradeModule done / returning

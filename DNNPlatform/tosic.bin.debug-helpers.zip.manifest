@@ -6,7 +6,27 @@
     </file>
     <file>
       <path>bin/</path>
-      <name>ToSic.Eav.Core.pdb</name>
+      <name>ToSic.Eav.Apps.Persistence.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Context.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Data.Build.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Data.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Data.Stack.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.DataSource.pdb</name>
     </file>
     <file>
       <path>bin/</path>
@@ -18,11 +38,19 @@
     </file>
     <file>
       <path>bin/</path>
-      <name>ToSic.Eav.pdb</name>
+      <name>ToSic.Eav.Insights.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.LookUp.pdb</name>
     </file>
     <file>
       <path>bin/</path>
       <name>ToSic.Eav.Persistence.Efc.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Persistence.pdb</name>
     </file>
     <file>
       <path>bin/</path>
@@ -34,7 +62,47 @@
     </file>
     <file>
       <path>bin/</path>
-      <name>ToSic.Lib.Core.pdb</name>
+      <name>ToSic.Eav.Work.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Adam.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Apps.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Blocks.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Cms.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Code.Generate.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Code.HotBuild.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Code.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Core.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Custom.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Data.pdb</name>
     </file>
     <file>
       <path>bin/</path>
@@ -54,11 +122,67 @@
     </file>
     <file>
       <path>bin/</path>
-      <name>ToSic.Sxc.pdb</name>
+      <name>ToSic.Sxc.Dnn.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Edit.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Engines.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Images.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.LightSpeed.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Render.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Services.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Web.pdb</name>
     </file>
     <file>
       <path>bin/</path>
       <name>ToSic.Sxc.WebApi.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Caching.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Code.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Core.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Features.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.OData.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Security.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Utils.pdb</name>
     </file>
   </files>
 </dotnetnuke>

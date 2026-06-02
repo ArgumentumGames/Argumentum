@@ -1,16 +1,9 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
-<!-- unimportant stuff, hidden -->
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using System.Linq;
-Example from CSV... <!-- unimportant stuff, hidden -->
 @{
-  // get the query
   var query = App.Query["FallaciesFromCSV"];
-
-  // get the data from the query
   var fallacies = AsList(query);
-
-
 }
 <div @Edit.TagToolbar(Content)>
    <ul>

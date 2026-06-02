@@ -11,7 +11,7 @@
   var page = GetService<ToSic.Sxc.Web.IPageService>();
 
   var article = AsList(Data).FirstOrDefault();
-  var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
+  var render = GetService<ToSic.Sxc.Services.IRenderService>();
 
   @* Show article not found notification and stop processing *@
   if(article == null) {

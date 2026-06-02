@@ -1,0 +1,3584 @@
+{
+  "_": {
+    "V": 1
+  },
+  "Bundles": [
+    {
+      "Name": "default",
+      "Entities": [
+        {
+          "Id": 42901,
+          "Version": 27,
+          "Guid": "d680fba2-9ab7-417a-8821-db23c15f4a2e",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all apps of a zone (site)"
+              },
+              "Name": {
+                "en-us": "System.Apps"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "ListContent,Default"
+              },
+              "StreamWiring": {
+                "en-us": "3e0daa8d-2c13-4b73-94f9-cae9d1c412e8:Default>666576b7-65f7-4d93-96ca-238ef1d336dd:Default\r\n666576b7-65f7-4d93-96ca-238ef1d336dd:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:ZoneId]=2"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=1",
+          "Metadata": [
+            {
+              "Id": 42968,
+              "Version": 7,
+              "Guid": "3e0daa8d-2c13-4b73-94f9-cae9d1c412e8",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Apps"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.System.Apps, ToSic.Eav.Apps"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 480,\r\n  \"Left\": 440\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "d680fba2-9ab7-417a-8821-db23c15f4a2e"
+              },
+              "Metadata": [
+                {
+                  "Id": 42969,
+                  "Version": 2,
+                  "Guid": "ead6c3a7-cd8f-433d-bee0-c1fd40d9802e",
+                  "Type": {
+                    "Id": "fabc849e-b426-42ea-8e1c-c04e69facd9b",
+                    "Name": "ToSic.Eav.DataSources.Apps"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "Title": {
+                        "*": ""
+                      },
+                      "ZoneId": {
+                        "*": "[QueryString:ZoneId]"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "3e0daa8d-2c13-4b73-94f9-cae9d1c412e8"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 42970,
+              "Version": 5,
+              "Guid": "666576b7-65f7-4d93-96ca-238ef1d336dd",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "ValueSort"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 240,\r\n  \"Left\": 440\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "d680fba2-9ab7-417a-8821-db23c15f4a2e"
+              },
+              "Metadata": [
+                {
+                  "Id": 42971,
+                  "Version": 1,
+                  "Guid": "bdda4bef-cee9-439a-b92b-622472bf5a01",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.ValueSort",
+                    "Name": "ToSic.Eav.DataSources.ValueSort"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "Attributes": {
+                        "*": "Name"
+                      },
+                      "Directions": {
+                        "*": "Asc"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "666576b7-65f7-4d93-96ca-238ef1d336dd"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 166436,
+              "Version": 1,
+              "Guid": "1c219107-bc74-492f-8bc3-131a18e631b1",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "d680fba2-9ab7-417a-8821-db23c15f4a2e"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 42938,
+          "Version": 19,
+          "Guid": "95041b6d-8669-4941-a516-47725acfe6ec",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all attributes of a content-type"
+              },
+              "Name": {
+                "en-us": "System.Attributes"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "ListContent,Default"
+              },
+              "StreamWiring": {
+                "en-us": "018a942b-1bad-4124-978c-0d0c35633be1:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:ContentTypeName]=@All,@Entity"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=1",
+          "Metadata": [
+            {
+              "Id": 42980,
+              "Version": 9,
+              "Guid": "018a942b-1bad-4124-978c-0d0c35633be1",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Attributes"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.System.Attributes, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 354,\r\n  \"Left\": 400\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "95041b6d-8669-4941-a516-47725acfe6ec"
+              },
+              "Metadata": [
+                {
+                  "Id": 43014,
+                  "Version": 1,
+                  "Guid": "788a504a-9636-4b1b-9620-db2dcf612fa5",
+                  "Type": {
+                    "Id": "5461d34d-7dc6-4d38-9250-a0729cc8ead3",
+                    "Name": "ToSic.Eav.DataSources.Attributes"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "ContentTypeName": {
+                        "*": "[QueryString:ContentTypeName]"
+                      },
+                      "Title": {
+                        "*": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "018a942b-1bad-4124-978c-0d0c35633be1"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 166437,
+              "Version": 1,
+              "Guid": "d06b4574-0b8b-41a9-87c2-57610f505ae2",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "95041b6d-8669-4941-a516-47725acfe6ec"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 42937,
+          "Version": 33,
+          "Guid": "ede9fc6f-34bb-4a1f-8482-6dd0742e365f",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "*": "Retrieve the content-types of an app"
+              },
+              "Name": {
+                "*": "System.ContentTypes"
+              },
+              "Params": {
+                "*": "AppId=[QueryString:AppId]\nScope=[QueryString:Scope]"
+              },
+              "StreamsOut": {
+                "*": "ListContent,Default"
+              },
+              "StreamWiring": {
+                "*": "db8515d1-e8c9-4e84-a1ec-970376ea9922:Default>Out:Default"
+              },
+              "TestParameters": {
+                "*": "[QueryString:AppId]=\n[QueryString:Scope]="
+              },
+              "VisualDesignerData": {
+                "*": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "*": true
+              },
+              "HiddenInQueryPicker": {
+                "*": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=1",
+          "Metadata": [
+            {
+              "Id": 42978,
+              "Version": 14,
+              "Guid": "db8515d1-e8c9-4e84-a1ec-970376ea9922",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "ContentTypes"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.System.ContentTypes, ToSic.Eav.Apps"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 400,\r\n  \"Left\": 460\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "ede9fc6f-34bb-4a1f-8482-6dd0742e365f"
+              },
+              "Metadata": [
+                {
+                  "Id": 42979,
+                  "Version": 3,
+                  "Guid": "d0ef68cc-151d-4cc5-bb57-1b424c9f7d19",
+                  "Type": {
+                    "Id": "37b25044-29bb-4c78-85e4-7b89f0abaa2c",
+                    "Name": "ToSic.Eav.DataSources.ContentTypes"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AppId": {
+                        "en-us": "[Params:AppId]"
+                      },
+                      "Scope": {
+                        "en-us": "[Params:Scope]"
+                      },
+                      "Title": {
+                        "en-us": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "db8515d1-e8c9-4e84-a1ec-970376ea9922"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 166438,
+              "Version": 1,
+              "Guid": "5a87e94f-a3f2-4809-9aa4-7386d1ecc907",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "ede9fc6f-34bb-4a1f-8482-6dd0742e365f"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 129754,
+          "Version": 22,
+          "Guid": "34acb79b-21e1-423e-bdec-b67f4a5c8c85",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all pages of the current site. "
+              },
+              "Name": {
+                "en-us": "System.Pages"
+              },
+              "Params": {
+                "en-us": "IncludeHidden=[QueryString:IncludeHidden]\nIncludeLinks=[QueryString:IncludeLinks]\nIncludeDeleted=[QueryString:IncludeDeleted]\nIncludeAdmin=[QueryString:IncludeAdmin]\nIncludeSystem=[QueryString:IncludeSystem]"
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "b1fa7bee-c137-4e60-b8b5-3588b9c16b9a:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:IncludeHidden]=true"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 129756,
+              "Version": 13,
+              "Guid": "b1fa7bee-c137-4e60-b8b5-3588b9c16b9a",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Pages"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "e35031b2-3e99-41fe-a5ac-b79f447d5800"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 280,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "34acb79b-21e1-423e-bdec-b67f4a5c8c85"
+              },
+              "Metadata": [
+                {
+                  "Id": 169984,
+                  "Version": 2,
+                  "Guid": "fb4d8d0d-9eef-4a95-acd0-0d9843b432e7",
+                  "Type": {
+                    "Id": "3d970d2b-32cb-4ecb-aeaf-c49fbcc678a5",
+                    "Name": "PagesDataSourceConfig"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "IncludeAdmin": {
+                        "en-us": "[Params:IncludeAdmin||false]"
+                      },
+                      "IncludeDeleted": {
+                        "en-us": "[Params:IncludeDeleted||false]"
+                      },
+                      "IncludeHidden": {
+                        "en-us": "[Params:IncludeHidden||false]"
+                      },
+                      "IncludeLinks": {
+                        "en-us": "[Params:IncludeLinks||true]"
+                      },
+                      "IncludeSystem": {
+                        "en-us": "[Params:IncludeSystem||false]"
+                      },
+                      "RequireEditPermissions": {
+                        "en-us": "false"
+                      },
+                      "RequireViewPermissions": {
+                        "en-us": "true"
+                      },
+                      "Title": {
+                        "en-us": "Pages Configuration"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "b1fa7bee-c137-4e60-b8b5-3588b9c16b9a"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 129760,
+              "Version": 1,
+              "Guid": "d540eb1f-f7f9-45cb-8651-8daf71b1bffb",
+              "Type": {
+                "Id": "PermissionConfiguration",
+                "Name": "PermissionConfiguration"
+              },
+              "Attributes": {
+                "String": {
+                  "Condition": {
+                    "*": "SecurityAccessLevel.Edit"
+                  },
+                  "Grant": {
+                    "*": "r"
+                  },
+                  "Identity": {
+                    "*": ""
+                  },
+                  "Title": {
+                    "*": "Accessible for content editors"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "34acb79b-21e1-423e-bdec-b67f4a5c8c85"
+              }
+            },
+            {
+              "Id": 166439,
+              "Version": 1,
+              "Guid": "02d62934-cca2-4c75-bfcb-079297f458ad",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "34acb79b-21e1-423e-bdec-b67f4a5c8c85"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 42915,
+          "Version": 20,
+          "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Retrieves the queries of the current app (usually for drop-downs)"
+              },
+              "Name": {
+                "en-us": "System.Queries"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "89b3116e-efab-4fee-8a7c-afe1e28825d2:DataPipeline>3d48f6fe-81dd-4cef-8717-45ab3c786625:Default\r\n3b01ba93-62ea-4f73-b150-c8129eb82cab:Default>40460932-1d32-4005-8bd1-c45f8599da24:Default\r\n40460932-1d32-4005-8bd1-c45f8599da24:Default>Out:Default\r\n3d48f6fe-81dd-4cef-8717-45ab3c786625:Default>3b01ba93-62ea-4f73-b150-c8129eb82cab:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=1",
+          "Metadata": [
+            {
+              "Id": 42916,
+              "Version": 14,
+              "Guid": "89b3116e-efab-4fee-8a7c-afe1e28825d2",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "App"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.App, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 840,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502"
+              },
+              "Metadata": [
+                {
+                  "Id": 169176,
+                  "Version": 1,
+                  "Guid": "8e81803b-1701-4417-85d9-1c9ad1caf422",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.App",
+                    "Name": "ToSic.Eav.DataSources.App"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AppSwitch": {
+                        "en-us": ""
+                      },
+                      "WithAncestors": {
+                        "en-us": "true"
+                      },
+                      "ZoneSwitch": {
+                        "en-us": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "89b3116e-efab-4fee-8a7c-afe1e28825d2"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 42917,
+              "Version": 11,
+              "Guid": "3b01ba93-62ea-4f73-b150-c8129eb82cab",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "AttributeFilter"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.AttributeFilter, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 460,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502"
+              },
+              "Metadata": [
+                {
+                  "Id": 42918,
+                  "Version": 2,
+                  "Guid": "33ab87f2-ae04-4b2f-a80c-664d0a87a96e",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.AttributeFilter",
+                    "Name": "ToSic.Eav.DataSources.AttributeFilter"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AttributeNames": {
+                        "*": "Name,Id,Guid"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "3b01ba93-62ea-4f73-b150-c8129eb82cab"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 42919,
+              "Version": 7,
+              "Guid": "40460932-1d32-4005-8bd1-c45f8599da24",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "ValueSort"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 220,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502"
+              },
+              "Metadata": [
+                {
+                  "Id": 42920,
+                  "Version": 2,
+                  "Guid": "f0034b9d-9255-4cb1-906a-33081a79bca3",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.ValueSort",
+                    "Name": "ToSic.Eav.DataSources.ValueSort"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "Attributes": {
+                        "en-us": "AppId,Name"
+                      },
+                      "Directions": {
+                        "en-us": "Desc,Asc"
+                      },
+                      "Languages": {
+                        "en-us": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "40460932-1d32-4005-8bd1-c45f8599da24"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 42926,
+              "Version": 1,
+              "Guid": "6f0a476e-9b25-4a41-9aed-71711b3e46f3",
+              "Type": {
+                "Id": "PermissionConfiguration",
+                "Name": "PermissionConfiguration"
+              },
+              "Attributes": {
+                "String": {
+                  "Condition": {
+                    "*": "SecurityAccessLevel.Admin"
+                  },
+                  "Grant": {
+                    "*": "r"
+                  },
+                  "Title": {
+                    "*": "Security Rule"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502"
+              }
+            },
+            {
+              "Id": 166440,
+              "Version": 1,
+              "Guid": "dcbe1853-edb8-4433-80e8-d9a5d51182f7",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502"
+              }
+            },
+            {
+              "Id": 169180,
+              "Version": 2,
+              "Guid": "3d48f6fe-81dd-4cef-8717-45ab3c786625",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Value Filter"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.ValueFilter, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 660,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e57cfebc-2c9f-4feb-95e0-9362049b7502"
+              },
+              "Metadata": [
+                {
+                  "Id": 169181,
+                  "Version": 1,
+                  "Guid": "4667674d-dbdf-4a0d-a184-8d37f09373c3",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.ValueFilter",
+                    "Name": "ToSic.Eav.DataSources.ValueFilter"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "Attribute": {
+                        "en-us": "HiddenInQueryPicker"
+                      },
+                      "Languages": {
+                        "en-us": ""
+                      },
+                      "Operator": {
+                        "en-us": "!="
+                      },
+                      "Take": {
+                        "en-us": ""
+                      },
+                      "Value": {
+                        "en-us": "true"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "3d48f6fe-81dd-4cef-8717-45ab3c786625"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": 42946,
+          "Version": 39,
+          "Guid": "2889c62f-9c07-4027-b85e-af7ddf55f44f",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Retrieve streams and fields of a query. "
+              },
+              "Name": {
+                "en-us": "System.QueryInfo"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "ListContent,Default,Attributes"
+              },
+              "StreamWiring": {
+                "en-us": "c11d7835-035d-441c-8cbc-287aaecbea81:Attributes>Out:Attributes\r\nc11d7835-035d-441c-8cbc-287aaecbea81:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:QueryName]=System.Apps\n[QueryString:StreamName]=Default"
+              },
+              "VisualDesignerData": {
+                "en-us": ""
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=1",
+          "Metadata": [
+            {
+              "Id": 42976,
+              "Version": 12,
+              "Guid": "c11d7835-035d-441c-8cbc-287aaecbea81",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "QueryInfo"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.System.QueryInfo, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 340,\r\n  \"Left\": 427\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "2889c62f-9c07-4027-b85e-af7ddf55f44f"
+              },
+              "Metadata": [
+                {
+                  "Id": 42977,
+                  "Version": 1,
+                  "Guid": "beaa3575-01f6-4730-9232-3b29a8287e1d",
+                  "Type": {
+                    "Id": "4638668f-d506-4f5c-ae37-aa7fdbbb5540",
+                    "Name": "ToSic.Eav.DataSources.QueryInfo"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "QueryName": {
+                        "*": "[QueryString:QueryName]"
+                      },
+                      "StreamName": {
+                        "*": "[QueryString:StreamName]"
+                      },
+                      "Title": {
+                        "*": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "c11d7835-035d-441c-8cbc-287aaecbea81"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 166441,
+              "Version": 1,
+              "Guid": "cf5ae7aa-f70e-42e0-ad42-83d6398c0cc8",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "2889c62f-9c07-4027-b85e-af7ddf55f44f"
+              }
+            },
+            {
+              "Id": 169163,
+              "Version": 2,
+              "Guid": "f61dbc48-f992-41c2-9d04-f6aa0d6342fa",
+              "Type": {
+                "Id": "5e958dc6-2922-4d68-835c-7b9711538b12",
+                "Name": "NoteDecorator"
+              },
+              "Attributes": {
+                "String": {
+                  "Note": {
+                    "en-us": "<p>IMPORTANT: The test-values should not be changed - they must be [QueryString:QueryName]=System.Apps and [QueryString:StreamName]=Default</p>"
+                  },
+                  "NoteType": {
+                    "en-us": "warning"
+                  },
+                  "Title": {
+                    "en-us": "IMPORTANT: The test-values sho..."
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "2889c62f-9c07-4027-b85e-af7ddf55f44f"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 42900,
+          "Version": 20,
+          "Guid": "e8a702d2-eccd-4b0f-83bd-600d8a8449d9",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Retrieve full list of all zones"
+              },
+              "Name": {
+                "en-us": "System.Zones"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "ListContent,Default"
+              },
+              "StreamWiring": {
+                "en-us": "a942aaca-088c-41f4-b938-f625a5170ab0:Default>Out:Default\r\ne60248e9-4dce-475a-a99d-61d11a6fb1cc:Default>a942aaca-088c-41f4-b938-f625a5170ab0:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=1",
+          "Metadata": [
+            {
+              "Id": 42948,
+              "Version": 9,
+              "Guid": "a942aaca-088c-41f4-b938-f625a5170ab0",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Sort by Tenant Name"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 226,\r\n  \"Left\": 466\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e8a702d2-eccd-4b0f-83bd-600d8a8449d9"
+              },
+              "Metadata": [
+                {
+                  "Id": 42949,
+                  "Version": 3,
+                  "Guid": "b47783df-02fd-482f-9548-a231d79a702e",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.ValueSort",
+                    "Name": "ToSic.Eav.DataSources.ValueSort"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "Attributes": {
+                        "*": "TenantName"
+                      },
+                      "Directions": {
+                        "*": "Asc"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=1",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "a942aaca-088c-41f4-b938-f625a5170ab0"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 42967,
+              "Version": 3,
+              "Guid": "e60248e9-4dce-475a-a99d-61d11a6fb1cc",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Zones"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.System.Zones, ToSic.Eav.Apps"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 400,\r\n  \"Left\": 469\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=1",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e8a702d2-eccd-4b0f-83bd-600d8a8449d9"
+              }
+            },
+            {
+              "Id": 166442,
+              "Version": 1,
+              "Guid": "4a5b205b-9b1f-4a24-bb71-e880dc74b73f",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e8a702d2-eccd-4b0f-83bd-600d8a8449d9"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 160746,
+          "Version": 23,
+          "Guid": "f54e66aa-0ed1-47ca-b15d-774f3a5d60ca",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Retrieve all roles of the current site."
+              },
+              "Name": {
+                "en-us": "System.UserRoles"
+              },
+              "Params": {
+                "en-us": "RoleIds=[QueryString:RoleIds]\nExcludeRoleIds=[QueryString:ExcludeRoleIds]"
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "e5837542-beeb-4528-829b-2983d11e566a:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[Params:ExcludeRoleIds]=351"
+              },
+              "VisualDesignerData": {
+                "en-us": ""
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 160751,
+              "Version": 9,
+              "Guid": "e5837542-beeb-4528-829b-2983d11e566a",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Roles"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "eee54266-d7ad-4f5e-9422-2d00c8f93b45"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 440,\r\n  \"Left\": 440\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "f54e66aa-0ed1-47ca-b15d-774f3a5d60ca"
+              },
+              "Metadata": [
+                {
+                  "Id": 160759,
+                  "Version": 3,
+                  "Guid": "68bac4d0-8a56-4cbd-b7fd-c656c290b062",
+                  "Type": {
+                    "Id": "1b9fd9d1-dde0-40ad-bb66-5cd7f30de18d",
+                    "Name": "RolesDataSourceConfig"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "ExcludeRoleIds": {
+                        "en-us": "[Params:ExcludeRoleIds]"
+                      },
+                      "RoleIds": {
+                        "en-us": "[Params:RoleIds]"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "e5837542-beeb-4528-829b-2983d11e566a"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 166443,
+              "Version": 1,
+              "Guid": "140ce9e2-6018-4fdb-b9ec-dab072f6a38a",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "f54e66aa-0ed1-47ca-b15d-774f3a5d60ca"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 160760,
+          "Version": 27,
+          "Guid": "dd3021bf-1b9a-4d10-8dde-12efe9832f47",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get users of this site."
+              },
+              "Name": {
+                "en-us": "System.Users"
+              },
+              "Params": {
+                "en-us": "UserIds=[QueryString:UserIds]\nExcludeUserIds=[QueryString:ExcludeUserIds]\nRoleIds=[QueryString:RoleIds]\nExcludeRoleIds=[QueryString:ExcludeRoleIds]\nIncludeSystemAdmins=[QueryString:IncludeSystemAdmins]"
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header,Roles"
+              },
+              "StreamWiring": {
+                "en-us": "71a257cd-cebf-4c3c-a588-c46e9244a398:Default>Out:Default\r\n71a257cd-cebf-4c3c-a588-c46e9244a398:Roles>Out:Roles"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:IncludeSystemAdmins]=false"
+              },
+              "VisualDesignerData": {
+                "en-us": ""
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 160762,
+              "Version": 15,
+              "Guid": "71a257cd-cebf-4c3c-a588-c46e9244a398",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Users"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "93ac53c6-adc6-4218-b979-48d1071a5765"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 380,\r\n  \"Left\": 380\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "dd3021bf-1b9a-4d10-8dde-12efe9832f47"
+              },
+              "Metadata": [
+                {
+                  "Id": 160780,
+                  "Version": 6,
+                  "Guid": "580dc00d-497c-45b4-9422-c8e426d34e4a",
+                  "Type": {
+                    "Id": "ac11fae7-1916-4d2d-8583-09872e1e6966",
+                    "Name": "UsersDataSourceConfig"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AddRoles": {
+                        "en-us": "true"
+                      },
+                      "ExcludeRoleIds": {
+                        "en-us": "[Params:ExcludeRoleIds]"
+                      },
+                      "ExcludeUserIds": {
+                        "en-us": "[Params:ExcludeUserIds]"
+                      },
+                      "IncludeSystemAdmins": {
+                        "en-us": "[Params:IncludeSystemAdmins]"
+                      },
+                      "RoleIds": {
+                        "en-us": "[Params:RoleIds]"
+                      },
+                      "UserIds": {
+                        "en-us": "[Params:UserIds]"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "71a257cd-cebf-4c3c-a588-c46e9244a398"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 166444,
+              "Version": 1,
+              "Guid": "2d383a38-e609-4edc-b925-1573a4d0c677",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "dd3021bf-1b9a-4d10-8dde-12efe9832f47"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 166473,
+          "Version": 7,
+          "Guid": "34693704-fa1f-48bd-a5d7-0ace93d1ee3e",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all the data scopes of the current App (like folders to organize content-types)"
+              },
+              "Name": {
+                "en-us": "System.Scopes"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "0d20bfd8-52c8-411a-bf78-fc6908c70ad1:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166475,
+              "Version": 2,
+              "Guid": "0d20bfd8-52c8-411a-bf78-fc6908c70ad1",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Scopes"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "f134e3c1-f09f-4fbc-85be-de43a64c6eed"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 320,\r\n  \"Left\": 480\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "34693704-fa1f-48bd-a5d7-0ace93d1ee3e"
+              }
+            },
+            {
+              "Id": 166476,
+              "Version": 1,
+              "Guid": "7288dd48-5fbd-455e-9610-f2f7fbf50c33",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "34693704-fa1f-48bd-a5d7-0ace93d1ee3e"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 166484,
+          "Version": 36,
+          "Guid": "05ab1404-55f3-45f4-8252-a3c9bd59d6f6",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Retrieve settings entities from global App and from current App."
+              },
+              "Name": {
+                "en-us": "System.SettingsEntities"
+              },
+              "Params": {
+                "en-us": "ContentType=[QueryString:ContentType]"
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "706d272f-9cd5-4c10-80a7-cfa4128a8e7b:Default>Out:Default\r\n2a723149-7dee-407d-8831-14180e294705:Default>425988c7-0851-47f5-8955-9949b52cfa3e:Default\r\n425988c7-0851-47f5-8955-9949b52cfa3e:Default>706d272f-9cd5-4c10-80a7-cfa4128a8e7b:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:ContentType]=⚙️Image"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166503,
+              "Version": 1,
+              "Guid": "d41628cd-68af-45ac-9350-6158dc989904",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "05ab1404-55f3-45f4-8252-a3c9bd59d6f6"
+              }
+            },
+            {
+              "Id": 166533,
+              "Version": 12,
+              "Guid": "706d272f-9cd5-4c10-80a7-cfa4128a8e7b",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Serialization Configuration"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "2952e680-4aaa-4a12-adf7-325cb2854358"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 180,\r\n  \"Left\": 320\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "05ab1404-55f3-45f4-8252-a3c9bd59d6f6"
+              },
+              "Metadata": [
+                {
+                  "Id": 166534,
+                  "Version": 1,
+                  "Guid": "75ac5a8d-c218-453e-954c-55fa4a1c1d72",
+                  "Type": {
+                    "Id": "5c84cd3f-f853-40b3-81cf-dee6a07dc411",
+                    "Name": "DsSerializationConfiguration"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "IncludeAppId": {
+                        "en-us": "true"
+                      },
+                      "IncludeCreated": {
+                        "en-us": ""
+                      },
+                      "IncludeGuid": {
+                        "en-us": ""
+                      },
+                      "IncludeId": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadata": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataFor": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataForId": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataForType": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataGuid": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataId": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataTitle": {
+                        "en-us": ""
+                      },
+                      "IncludeModified": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipGuid": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipId": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationships": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipTitle": {
+                        "en-us": ""
+                      },
+                      "IncludeTitle": {
+                        "en-us": ""
+                      },
+                      "Notes": {
+                        "en-us": ""
+                      },
+                      "RemoveEmptyStringValues": {
+                        "en-us": ""
+                      },
+                      "RemoveFalseValues": {
+                        "en-us": ""
+                      },
+                      "RemoveNullValues": {
+                        "en-us": ""
+                      },
+                      "RemoveZeroValues": {
+                        "en-us": ""
+                      },
+                      "Title": {
+                        "en-us": "Serialization Configuration - include AppId"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "706d272f-9cd5-4c10-80a7-cfa4128a8e7b"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 169174,
+              "Version": 10,
+              "Guid": "2a723149-7dee-407d-8831-14180e294705",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "App"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.App, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 600,\r\n  \"Left\": 320\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "05ab1404-55f3-45f4-8252-a3c9bd59d6f6"
+              },
+              "Metadata": [
+                {
+                  "Id": 169175,
+                  "Version": 1,
+                  "Guid": "10e5c50a-439a-4264-9ecc-dddb812a633a",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.App",
+                    "Name": "ToSic.Eav.DataSources.App"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AppSwitch": {
+                        "en-us": ""
+                      },
+                      "WithAncestors": {
+                        "en-us": "true"
+                      },
+                      "ZoneSwitch": {
+                        "en-us": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "2a723149-7dee-407d-8831-14180e294705"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 183840,
+              "Version": 4,
+              "Guid": "425988c7-0851-47f5-8955-9949b52cfa3e",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Type-Filter"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.EntityTypeFilter, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 380,\r\n  \"Left\": 300\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "05ab1404-55f3-45f4-8252-a3c9bd59d6f6"
+              },
+              "Metadata": [
+                {
+                  "Id": 183841,
+                  "Version": 1,
+                  "Guid": "b3b9d389-d9a9-4bbc-9d58-23fc43ac16d4",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.EntityTypeFilter",
+                    "Name": "ToSic.Eav.DataSources.EntityTypeFilter"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "TypeName": {
+                        "en-us": "[Params:ContentType||error-no-type-should-be-used]"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "425988c7-0851-47f5-8955-9949b52cfa3e"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": 166506,
+          "Version": 6,
+          "Guid": "9e0c28ce-e4fe-4fe4-8cac-35fa6dad5df5",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "List of Metadata TargetTypes, which determine what kind of target the metadata is for."
+              },
+              "Name": {
+                "en-us": "System.MetadataTargetTypes"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "67cc45e2-fe12-4161-8181-930777d46e53:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166508,
+              "Version": 2,
+              "Guid": "67cc45e2-fe12-4161-8181-930777d46e53",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Metadata Target Types"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "fba0d40d-f6af-4593-9ccb-54cfd73d8217"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 360,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "9e0c28ce-e4fe-4fe4-8cac-35fa6dad5df5"
+              }
+            },
+            {
+              "Id": 166509,
+              "Version": 1,
+              "Guid": "08dad3ad-1002-4cc3-9bb4-09999db29ca3",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "9e0c28ce-e4fe-4fe4-8cac-35fa6dad5df5"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 166627,
+          "Version": 5,
+          "Guid": "1e8d613c-e68b-471a-a438-c9325e53f003",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get a list of all licenses in the system."
+              },
+              "Name": {
+                "en-us": "System.Licenses"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "70cab874-14f8-41b1-8991-def591ae0de8:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166629,
+              "Version": 2,
+              "Guid": "70cab874-14f8-41b1-8991-def591ae0de8",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Licenses"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "402fa226-5584-46d1-a763-e63ba0774c31"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 300,\r\n  \"Left\": 400\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "1e8d613c-e68b-471a-a438-c9325e53f003"
+              }
+            },
+            {
+              "Id": 166633,
+              "Version": 1,
+              "Guid": "d22b716c-f4e4-4090-8a42-8ad6763d006f",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "1e8d613c-e68b-471a-a438-c9325e53f003"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 166630,
+          "Version": 6,
+          "Guid": "abb9d5ee-3333-4a15-9539-36e1e0f00953",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Retrieve a list of all features and their state."
+              },
+              "Name": {
+                "en-us": "System.Features"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "200e0670-301e-4cb7-b0b3-da6344894fcc:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166632,
+              "Version": 2,
+              "Guid": "200e0670-301e-4cb7-b0b3-da6344894fcc",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Features"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "398d0b9f-044f-48f7-83ef-307872f7ed93"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 260,\r\n  \"Left\": 440\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "abb9d5ee-3333-4a15-9539-36e1e0f00953"
+              }
+            },
+            {
+              "Id": 166634,
+              "Version": 1,
+              "Guid": "6f8ba371-8e2b-4148-aeaa-815519ff6549",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "abb9d5ee-3333-4a15-9539-36e1e0f00953"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 166646,
+          "Version": 8,
+          "Guid": "310cc86c-2281-4614-8605-a423c87105e9",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all the sites in the system."
+              },
+              "Name": {
+                "en-us": "System.Sites"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "39f544b2-45a2-4229-9e26-1f95c950f8f6:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166648,
+              "Version": 3,
+              "Guid": "39f544b2-45a2-4229-9e26-1f95c950f8f6",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Sites"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "a11c28fb-7d8d-40a2-a22c-50beaa019e41"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 320,\r\n  \"Left\": 400\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "310cc86c-2281-4614-8605-a423c87105e9"
+              }
+            },
+            {
+              "Id": 166649,
+              "Version": 1,
+              "Guid": "71f07571-ac86-46b3-ab6e-a840d39177b6",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "310cc86c-2281-4614-8605-a423c87105e9"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 169100,
+          "Version": 9,
+          "Guid": "2317bfff-79bc-4812-89dd-0e0b9cba1cb9",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all settings of the current app incl. global and preset settings."
+              },
+              "Name": {
+                "en-us": "System.Settings"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "b897b9c9-4dc2-4c2e-959b-eca18871b062:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": ""
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 169102,
+              "Version": 2,
+              "Guid": "b897b9c9-4dc2-4c2e-959b-eca18871b062",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "App Stack"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "60806cb1-0c76-4c1e-8dfe-dcec94726f8d"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 300,\r\n  \"Left\": 460\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "2317bfff-79bc-4812-89dd-0e0b9cba1cb9"
+              },
+              "Metadata": [
+                {
+                  "Id": 169115,
+                  "Version": 2,
+                  "Guid": "a84c055f-55e1-4faa-a5d7-e49f118bcdb6",
+                  "Type": {
+                    "Id": "f9aca0f0-1b1b-4414-b42e-b337de124124",
+                    "Name": "SystemStackConfig"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AddValues": {
+                        "en-us": ""
+                      },
+                      "StackNames": {
+                        "en-us": "Settings"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "b897b9c9-4dc2-4c2e-959b-eca18871b062"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 169103,
+              "Version": 1,
+              "Guid": "97754be9-8b32-483b-8dea-a36cc17ef0c3",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "2317bfff-79bc-4812-89dd-0e0b9cba1cb9"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 182360,
+          "Version": 13,
+          "Guid": "68af1a61-9362-4cc5-8e60-cd9c37fe88c3",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "*": "Retrieve all Picker Sources to reuse in pickers."
+              },
+              "Name": {
+                "*": "System.UiPickers"
+              },
+              "Params": {
+                "*": ""
+              },
+              "StreamsOut": {
+                "*": "Default,Header"
+              },
+              "StreamWiring": {
+                "*": "6c04fa59-082e-428c-9a1f-ac511e3d04b6:UiPickerSourceCustomList>e73021f3-b121-4fc0-81c3-a8800bbd14d9:CustomList\r\n6c04fa59-082e-428c-9a1f-ac511e3d04b6:UiPickerSourceEntity>e73021f3-b121-4fc0-81c3-a8800bbd14d9:Entity\r\n6c04fa59-082e-428c-9a1f-ac511e3d04b6:UiPickerSourceQuery>e73021f3-b121-4fc0-81c3-a8800bbd14d9:Query\r\ne73021f3-b121-4fc0-81c3-a8800bbd14d9:Default>Out:Default\r\n6c04fa59-082e-428c-9a1f-ac511e3d04b6:UiPickerSourceCustomCsv>e73021f3-b121-4fc0-81c3-a8800bbd14d9:Default\r\n6c04fa59-082e-428c-9a1f-ac511e3d04b6:UiPickerSourceCss>e73021f3-b121-4fc0-81c3-a8800bbd14d9:UiPickerSourceCss\r\n6c04fa59-082e-428c-9a1f-ac511e3d04b6:UiPickerSourceAppAssets>e73021f3-b121-4fc0-81c3-a8800bbd14d9:UiPickerSourceAppAssets"
+              },
+              "TestParameters": {
+                "*": ""
+              },
+              "VisualDesignerData": {
+                "*": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "*": true
+              },
+              "HiddenInQueryPicker": {
+                "*": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 182362,
+              "Version": 11,
+              "Guid": "6c04fa59-082e-428c-9a1f-ac511e3d04b6",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "App"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.App, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 480,\r\n  \"Left\": 420\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "68af1a61-9362-4cc5-8e60-cd9c37fe88c3"
+              }
+            },
+            {
+              "Id": 182363,
+              "Version": 9,
+              "Guid": "e73021f3-b121-4fc0-81c3-a8800bbd14d9",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Merge Streams"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.StreamMerge, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 200,\r\n  \"Left\": 400\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "68af1a61-9362-4cc5-8e60-cd9c37fe88c3"
+              }
+            },
+            {
+              "Id": 182365,
+              "Version": 2,
+              "Guid": "acba9b5f-fead-4181-8a36-e39281fc7288",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "68af1a61-9362-4cc5-8e60-cd9c37fe88c3"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 182535,
+          "Version": 14,
+          "Guid": "ca79c11d-0c2e-422a-8bcb-0a89d493ecc0",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Entity picker for UI with special security, as security is handled in the data source. "
+              },
+              "Name": {
+                "en-us": "System.EntityPicker"
+              },
+              "Params": {
+                "en-us": ""
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header"
+              },
+              "StreamWiring": {
+                "en-us": "d0fac9fe-78ce-464a-8696-57fb5f69646d:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:TypeNames]=SystemExportDecorator,@All\n[QueryString:xx-ItemIds]=42930,42931"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 182537,
+              "Version": 7,
+              "Guid": "d0fac9fe-78ce-464a-8696-57fb5f69646d",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Entity-Picker (internal)"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "32369814-8f6d-47d8-a648-ce5372de78a8"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 220,\r\n  \"Left\": 440\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "ca79c11d-0c2e-422a-8bcb-0a89d493ecc0"
+              }
+            },
+            {
+              "Id": 182538,
+              "Version": 1,
+              "Guid": "d65d5b41-6770-447b-895d-fc449a6b2545",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "ca79c11d-0c2e-422a-8bcb-0a89d493ecc0"
+              }
+            },
+            {
+              "Id": 183752,
+              "Version": 1,
+              "Guid": "c324500c-8dd9-41ec-a7ae-b30809384e2f",
+              "Type": {
+                "Id": "PermissionConfiguration",
+                "Name": "PermissionConfiguration"
+              },
+              "Attributes": {
+                "String": {
+                  "Condition": {
+                    "en-us": "SecurityAccessLevel.View"
+                  },
+                  "Grant": {
+                    "en-us": "r"
+                  },
+                  "Identity": {
+                    "en-us": ""
+                  },
+                  "PermissionType": {
+                    "en-us": ""
+                  },
+                  "Title": {
+                    "en-us": "Allow Anonymous Access with View Permission"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "ca79c11d-0c2e-422a-8bcb-0a89d493ecc0"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 167720,
+          "Version": 26,
+          "Guid": "952633f8-c04b-4592-9db9-a3e6ecf2dbb5",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get all the files / folders from an App (new v18.02)"
+              },
+              "Name": {
+                "en-us": "System.AppAssets"
+              },
+              "Params": {
+                "en-us": "RootFolder=[QueryString:RootFolder||/]\nFileFilter=[QueryString:FileFilter||*.*]\nSearchSubfolders=[QueryString:SearchSubfolders||false]\nAssetType=[QueryString:AssetType||Files]\n"
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header,Files,Folders,All"
+              },
+              "StreamWiring": {
+                "en-us": "da65ba2b-ae16-4446-84f7-90d76c98c513:Files>Out:Files\r\nda65ba2b-ae16-4446-84f7-90d76c98c513:Folders>Out:Folders\r\nda65ba2b-ae16-4446-84f7-90d76c98c513:All>Out:All\r\nda65ba2b-ae16-4446-84f7-90d76c98c513:Files>0ccade9c-343a-4d4f-b037-66ed381d8cee:Files\r\nda65ba2b-ae16-4446-84f7-90d76c98c513:Folders>0ccade9c-343a-4d4f-b037-66ed381d8cee:Folders\r\nda65ba2b-ae16-4446-84f7-90d76c98c513:All>0ccade9c-343a-4d4f-b037-66ed381d8cee:All\r\n0ccade9c-343a-4d4f-b037-66ed381d8cee:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:RootFolder]=/\n[QueryString:FileFilter]=*.*\n[QueryString:SearchSubfolders]=false\n[QueryString:AssetType]=Folders"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": false
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 167722,
+              "Version": 15,
+              "Guid": "da65ba2b-ae16-4446-84f7-90d76c98c513",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "AppFiles"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "3fe6c215-4c37-45c1-8883-b4b2a47162a7"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 520,\r\n  \"Left\": 200\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "952633f8-c04b-4592-9db9-a3e6ecf2dbb5"
+              },
+              "Metadata": [
+                {
+                  "Id": 184022,
+                  "Version": 4,
+                  "Guid": "6059b2f9-28d6-4673-b165-540c6d85828b",
+                  "Type": {
+                    "Id": "477d5de4-5ffa-43ef-8553-37354cb27660",
+                    "Name": "AppFilesDataSourceConfig"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "FileFilter": {
+                        "en-us": "[Params:FileFilter]"
+                      },
+                      "RootFolder": {
+                        "en-us": "[Params:RootFolder]"
+                      },
+                      "SearchSubfolders": {
+                        "en-us": "[Params:SearchSubfolders]"
+                      },
+                      "Title": {
+                        "en-us": "App Files"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "da65ba2b-ae16-4446-84f7-90d76c98c513"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 184023,
+              "Version": 1,
+              "Guid": "72559058-b7e0-4be1-bca6-ecf809c55b14",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "952633f8-c04b-4592-9db9-a3e6ecf2dbb5"
+              }
+            },
+            {
+              "Id": 184053,
+              "Version": 6,
+              "Guid": "0ccade9c-343a-4d4f-b037-66ed381d8cee",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Pick Stream"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.StreamPick, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 260,\r\n  \"Left\": 540\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "952633f8-c04b-4592-9db9-a3e6ecf2dbb5"
+              },
+              "Metadata": [
+                {
+                  "Id": 184054,
+                  "Version": 1,
+                  "Guid": "cb686948-965b-4b9b-a14a-920c0594b48c",
+                  "Type": {
+                    "Id": "67b19864-df6d-400b-9f37-f41f1dd69c4a",
+                    "Name": "StreamPick"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "StreamName": {
+                        "en-us": "[Params:AssetType]"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "0ccade9c-343a-4d4f-b037-66ed381d8cee"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": 184091,
+          "Version": 34,
+          "Guid": "3d492956-301c-4ad9-afce-085b41661035",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "en-us": "Get everything with a specific Metadata - for now Entities & ContentTypes"
+              },
+              "Name": {
+                "en-us": "System.BundleDetails"
+              },
+              "Params": {
+                "en-us": "ConfigurationGuid=[QueryString:ConfigurationGuid]"
+              },
+              "StreamsOut": {
+                "en-us": "Default,Header,PleaseRename54247"
+              },
+              "StreamWiring": {
+                "en-us": "29f1a49c-aad2-46b7-adcc-4de99b5a4e54:Default>7e8e2c29-d170-4738-b99d-5bcfdcfdafb3:Default\r\nac245cea-8418-4a29-8ef7-76062b006c49:Default>0f5703bc-6e2f-4e02-b864-191aaf76d1d2:Default\r\n7e8e2c29-d170-4738-b99d-5bcfdcfdafb3:Default>1cdab8ab-f4ff-4965-a8bc-acdbbfafd015:Default\r\n1cdab8ab-f4ff-4965-a8bc-acdbbfafd015:Default>ac245cea-8418-4a29-8ef7-76062b006c49:Default\r\n0f5703bc-6e2f-4e02-b864-191aaf76d1d2:Default>dd5fafd6-7b3e-4fe5-874e-330381df561d:Default\r\ndd5fafd6-7b3e-4fe5-874e-330381df561d:Default>Out:Default"
+              },
+              "TestParameters": {
+                "en-us": "[QueryString:ConfigurationGuid]=1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+              },
+              "VisualDesignerData": {
+                "en-us": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "en-us": true
+              },
+              "HiddenInQueryPicker": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 184093,
+              "Version": 26,
+              "Guid": "29f1a49c-aad2-46b7-adcc-4de99b5a4e54",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "App"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.App, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 820,\r\n  \"Left\": 120\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              },
+              "Metadata": [
+                {
+                  "Id": 184096,
+                  "Version": 2,
+                  "Guid": "900c5376-38e3-41d3-be5a-953ef8d37b91",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.App",
+                    "Name": "ToSic.Eav.DataSources.App"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "AppSwitch": {
+                        "en-us": ""
+                      },
+                      "WithAncestors": {
+                        "en-us": ""
+                      },
+                      "ZoneSwitch": {
+                        "en-us": ""
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "29f1a49c-aad2-46b7-adcc-4de99b5a4e54"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 184094,
+              "Version": 25,
+              "Guid": "7e8e2c29-d170-4738-b99d-5bcfdcfdafb3",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Type-Filter Export Config"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.EntityTypeFilter, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 680,\r\n  \"Left\": 340\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              },
+              "Metadata": [
+                {
+                  "Id": 184095,
+                  "Version": 2,
+                  "Guid": "a2fac7d0-825a-45e3-a39b-6cfd19840d17",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.EntityTypeFilter",
+                    "Name": "ToSic.Eav.DataSources.EntityTypeFilter"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "TypeName": {
+                        "en-us": "d7f2e4fa-5306-41bb-a3cd-d9529c838879"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "7e8e2c29-d170-4738-b99d-5bcfdcfdafb3"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 184097,
+              "Version": 1,
+              "Guid": "503a3137-d447-49db-acd7-581536da1cad",
+              "Type": {
+                "Id": "5e958dc6-2922-4d68-835c-7b9711538b12",
+                "Name": "NoteDecorator"
+              },
+              "Attributes": {
+                "String": {
+                  "Note": {
+                    "en-us": "<p>The test data guid \"d7f2e4fa-5306-41bb-a3cd-d9529c838879\" is the export-decorator used in the system-queries app.</p>"
+                  },
+                  "NoteType": {
+                    "en-us": "note"
+                  },
+                  "Title": {
+                    "en-us": "The test data guid \"d7f2e4fa-5..."
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              }
+            },
+            {
+              "Id": 184098,
+              "Version": 21,
+              "Guid": "0f5703bc-6e2f-4e02-b864-191aaf76d1d2",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Metadata Targets"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "afaf73d9-775c-4932-aebd-23e898b1643e"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 300,\r\n  \"Left\": 580\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              }
+            },
+            {
+              "Id": 184099,
+              "Version": 19,
+              "Guid": "ac245cea-8418-4a29-8ef7-76062b006c49",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Parents - Decorators for this Config"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "915217e5-7957-4303-a19c-a15505f2ad1d"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 380,\r\n  \"Left\": 100\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              },
+              "Metadata": [
+                {
+                  "Id": 184100,
+                  "Version": 1,
+                  "Guid": "f2afd28f-4115-4fe2-b3e5-c0fae23390dc",
+                  "Type": {
+                    "Id": "a72cb2f4-52bb-41e6-9281-10e69aeb0310",
+                    "Name": "ParentsDataSourceConfig"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "ContentTypeName": {
+                        "en-us": "32698880-1c2e-41ab-bcfc-420091d3263f"
+                      },
+                      "FieldName": {
+                        "en-us": "Configuration"
+                      },
+                      "FilterDuplicates": {
+                        "en-us": "true"
+                      },
+                      "Title": {
+                        "en-us": "Get Parent Items"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "ac245cea-8418-4a29-8ef7-76062b006c49"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 184103,
+              "Version": 12,
+              "Guid": "1cdab8ab-f4ff-4965-a8bc-acdbbfafd015",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Filter desired Config"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "ToSic.Eav.DataSources.ValueFilter, ToSic.Eav.DataSources"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 520,\r\n  \"Left\": 600\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              },
+              "Metadata": [
+                {
+                  "Id": 184104,
+                  "Version": 3,
+                  "Guid": "df250d6f-11db-45ee-afd9-85cc34352688",
+                  "Type": {
+                    "Id": "|Config ToSic.Eav.DataSources.ValueFilter",
+                    "Name": "ToSic.Eav.DataSources.ValueFilter"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "Attribute": {
+                        "en-us": "EntityGuid"
+                      },
+                      "Languages": {
+                        "en-us": ""
+                      },
+                      "Operator": {
+                        "en-us": "=="
+                      },
+                      "Take": {
+                        "en-us": ""
+                      },
+                      "Value": {
+                        "en-us": "[Params:ConfigurationGuid]"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "1cdab8ab-f4ff-4965-a8bc-acdbbfafd015"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": 184105,
+              "Version": 1,
+              "Guid": "aa4ebca9-5bf0-4f73-accc-9c0ae788698a",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              }
+            },
+            {
+              "Id": 184121,
+              "Version": 3,
+              "Guid": "dd5fafd6-7b3e-4fe5-874e-330381df561d",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "Serialization Configuration"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "2952e680-4aaa-4a12-adf7-325cb2854358"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 120,\r\n  \"Left\": 380\r\n}"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3d492956-301c-4ad9-afce-085b41661035"
+              },
+              "Metadata": [
+                {
+                  "Id": 184122,
+                  "Version": 2,
+                  "Guid": "29c21925-dc7c-454a-8b46-c6287aafcf64",
+                  "Type": {
+                    "Id": "5c84cd3f-f853-40b3-81cf-dee6a07dc411",
+                    "Name": "DsSerializationConfiguration"
+                  },
+                  "Attributes": {
+                    "String": {
+                      "IncludeAppId": {
+                        "en-us": ""
+                      },
+                      "IncludeCreated": {
+                        "en-us": ""
+                      },
+                      "IncludeGuid": {
+                        "en-us": ""
+                      },
+                      "IncludeId": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadata": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataFor": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataForId": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataForType": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataGuid": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataId": {
+                        "en-us": ""
+                      },
+                      "IncludeMetadataTitle": {
+                        "en-us": ""
+                      },
+                      "IncludeModified": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipGuid": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipId": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationships": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipsAsCsv": {
+                        "en-us": ""
+                      },
+                      "IncludeRelationshipTitle": {
+                        "en-us": ""
+                      },
+                      "IncludeTitle": {
+                        "en-us": ""
+                      },
+                      "IncludeTypeAs": {
+                        "en-us": "flat"
+                      },
+                      "IncludeTypeId": {
+                        "en-us": "false"
+                      },
+                      "IncludeTypeName": {
+                        "en-us": "true"
+                      },
+                      "Notes": {
+                        "en-us": ""
+                      },
+                      "RemoveEmptyStringValues": {
+                        "en-us": ""
+                      },
+                      "RemoveFalseValues": {
+                        "en-us": ""
+                      },
+                      "RemoveNullValues": {
+                        "en-us": ""
+                      },
+                      "RemoveZeroValues": {
+                        "en-us": ""
+                      },
+                      "Title": {
+                        "en-us": "Serialization Configuration"
+                      },
+                      "TypePropertyNames": {
+                        "en-us": "Type"
+                      }
+                    }
+                  },
+                  "Owner": "dnn:userid=41",
+                  "For": {
+                    "Target": "Entity",
+                    "TargetType": 4,
+                    "Guid": "dd5fafd6-7b3e-4fe5-874e-330381df561d"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": 185367,
+          "Version": 43,
+          "Guid": "4570a596-5020-4111-b494-3e510f778c6e",
+          "Type": {
+            "Id": "DataPipeline",
+            "Name": "DataPipeline"
+          },
+          "Attributes": {
+            "String": {
+              "Description": {
+                "*": "Retrieve data from the backend - basically any other DataSource."
+              },
+              "Name": {
+                "*": "System.SysData"
+              },
+              "Params": {
+                "*": "SysDataSource=[QueryString:SysDataSource]\nSysDataStream=[QueryString:SysDataStream||Default]"
+              },
+              "StreamsOut": {
+                "*": "*,Header"
+              },
+              "StreamWiring": {
+                "*": "9ca272fb-3778-4ade-bc11-9687ab5d3995:Default>Out:*"
+              },
+              "TestParameters": {
+                "*": "[QueryString:SysDataSource_Metadata]=fba0d40d-f6af-4593-9ccb-54cfd73d8217\n[Params:SysDataSource_Scopes]=f134e3c1-f09f-4fbc-85be-de43a64c6eed\n[QueryString:SysDataSource]=ToSic.Eav.DataSources.System.Attributes, ToSic.Eav.DataSources\n[Params:SysDataSource_Never]=398d0b9f-044f-48f7-83ef-307872f7ed93\n[Params:SysDataStream_xx]=Default\n[QueryString:ContentTypeName]=Test"
+              },
+              "VisualDesignerData": {
+                "*": "{\"ShowDataSourceDetails\":true}"
+              }
+            },
+            "Boolean": {
+              "AllowEdit": {
+                "*": true
+              },
+              "HiddenInQueryPicker": {
+                "*": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 185369,
+              "Version": 20,
+              "Guid": "9ca272fb-3778-4ade-bc11-9687ab5d3995",
+              "Type": {
+                "Id": "DataPipelinePart",
+                "Name": "DataPipelinePart"
+              },
+              "Attributes": {
+                "String": {
+                  "Description": {
+                    "*": ""
+                  },
+                  "Name": {
+                    "*": "System Data"
+                  },
+                  "PartAssemblyAndType": {
+                    "*": "37cf83f7-5e57-4c4a-9798-a7e1440f99b3"
+                  },
+                  "VisualDesignerData": {
+                    "*": "{\r\n  \"Top\": 240,\r\n  \"Left\": 440\r\n}"
+                  }
+                }
+              },
+              "Owner": "unknown",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "4570a596-5020-4111-b494-3e510f778c6e"
+              }
+            },
+            {
+              "Id": 185370,
+              "Version": 1,
+              "Guid": "d1d0e574-0f40-431f-9255-3b0e3c77317e",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1fac6138-39c7-4ab6-9c54-9cf3e4ffd5ed"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "4570a596-5020-4111-b494-3e510f778c6e"
+              }
+            },
+            {
+              "Id": 185371,
+              "Version": 1,
+              "Guid": "c9c3cb1e-b4bf-4a30-a578-06b2d95e2d1d",
+              "Type": {
+                "Id": "PermissionConfiguration",
+                "Name": "PermissionConfiguration"
+              },
+              "Attributes": {
+                "String": {
+                  "Condition": {
+                    "en-us": "SecurityAccessLevel.Admin"
+                  },
+                  "Grant": {
+                    "en-us": "r"
+                  },
+                  "Identity": {
+                    "en-us": ""
+                  },
+                  "PermissionType": {
+                    "en-us": ""
+                  },
+                  "Title": {
+                    "en-us": "Allow admins - but internal security checks will restrict it more"
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "4570a596-5020-4111-b494-3e510f778c6e"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

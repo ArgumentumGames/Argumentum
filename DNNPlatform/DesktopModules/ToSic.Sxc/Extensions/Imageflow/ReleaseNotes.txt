@@ -1,0 +1,14 @@
+<h2>Imageflow Extension for DNN</h2>
+<p><strong>Version:</strong> 01.12.01</p>
+
+<h3>Changelog</h3>
+<ul>
+  <li>Updated Imageflow dependencies to version <code>0.14.0-rc01</code>.</li>
+  <li>Requires DNN version <strong>9.11.00</strong> or higher.</li>
+  <li>Fully compatible with DNN version <strong>10.00.00</strong>.</li>
+</ul>
+
+<h3>Notes</h3>
+<ul>
+  <li>During installation, the extension will automatically unregister the older <code>ImageResizer</code> HTTP module in <code>web.config</code>.</li>
+</ul>

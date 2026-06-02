@@ -1,13 +1,13 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Blocks;
+@using ToSic.Sxc.Services;
 
 
 <div class="app-accordion4-wrapper" @Edit.Attribute("quick-edit-config", new { modules = new {  enable = true }})>
   @foreach (var accord in AsList(Data)) {
     var initiallyExpanded = Convert.ToBool(accord.InitiallyExpanded, fallback: false);
     var hasIcon = Text.Has(accord.Icon); 
-    var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
+    var render = GetService<ToSic.Sxc.Services.IRenderService>();
 
     <div class='card' @Edit.TagToolbar(accord)>
       <a class='card-header d-flex justify-content-between text-black' data-accordion-parent="@accord.EntityId">
