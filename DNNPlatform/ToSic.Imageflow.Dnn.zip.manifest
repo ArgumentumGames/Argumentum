@@ -1,10 +1,6 @@
 ﻿<dotnetnuke type="ResourceFile" version="5.0">
   <files>
     <file>
-      <path>bin/runtimes/win-x86/native/</path>
-      <name>imageflow.dll.pending</name>
-    </file>
-    <file>
       <path>bin/runtimes/win-x64/native/</path>
       <name>imageflow.dll.pending</name>
     </file>
@@ -39,22 +35,6 @@
     <file>
       <path>bin/Imageflow/</path>
       <name>Microsoft.IO.RecyclableMemoryStream.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>System.Buffers.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>System.Memory.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>System.Numerics.Vectors.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>System.Runtime.CompilerServices.Unsafe.dll</name>
     </file>
     <file>
       <path>bin/</path>

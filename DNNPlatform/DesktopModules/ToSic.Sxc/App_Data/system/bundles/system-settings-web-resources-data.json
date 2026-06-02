@@ -1,0 +1,1785 @@
+{
+  "_": {
+    "V": 1
+  },
+  "Bundles": [
+    {
+      "Name": "default",
+      "ContentTypes": [
+        {
+          "ContentType": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource",
+            "Scope": "System.Configuration",
+            "Metadata": [
+              {
+                "Id": 166467,
+                "Version": 1,
+                "Guid": "cad9fa69-b654-414a-9de2-cc59be5664be",
+                "Type": {
+                  "Id": "ContentType",
+                  "Name": "ContentType"
+                },
+                "Attributes": {
+                  "String": {
+                    "Description": {
+                      "en-us": ""
+                    },
+                    "DynamicChildrenField": {
+                      "en-us": ""
+                    },
+                    "EditInstructions": {
+                      "en-us": ""
+                    },
+                    "Label": {
+                      "en-us": "⚙️Web Resource"
+                    },
+                    "ListInstructions": {
+                      "en-us": ""
+                    },
+                    "Notes": {
+                      "en-us": ""
+                    }
+                  },
+                  "Hyperlink": {
+                    "Icon": {
+                      "en-us": ""
+                    },
+                    "Link": {
+                      "en-us": ""
+                    }
+                  }
+                },
+                "Owner": "dnn:userid=41",
+                "For": {
+                  "Target": "ContentType",
+                  "TargetType": 5,
+                  "String": "66f19c62-371e-4ad1-a98b-de0745507be4"
+                }
+              }
+            ],
+            "Attributes": [
+              {
+                "Name": "SettingsIdentifier",
+                "Type": "String",
+                "InputType": "string-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 130637,
+                    "Version": 4,
+                    "Guid": "b460d734-3b44-4f2e-9006-affa1d3a842a",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "*": ""
+                        },
+                        "DefaultValue": {
+                          "*": ""
+                        },
+                        "InputType": {
+                          "*": "string-default"
+                        },
+                        "Name": {
+                          "*": "Settings Identifier"
+                        },
+                        "Notes": {
+                          "*": ""
+                        },
+                        "Placeholder": {
+                          "*": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "*": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": [
+                            "915a2d6e-7092-4552-a367-a68e753777e3"
+                          ]
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "*": true
+                        },
+                        "DisableTranslation": {
+                          "*": false
+                        },
+                        "Required": {
+                          "*": false
+                        },
+                        "VisibleInEditUI": {
+                          "*": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130646,
+                    "Version": 3,
+                    "Guid": "c4fe15aa-1c62-4ba3-918f-14e043cea781",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "*": ""
+                        },
+                        "InputType": {
+                          "*": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130647,
+                    "Version": 3,
+                    "Guid": "c7e54e84-093c-4c7c-9f90-719c536534be",
+                    "Type": {
+                      "Id": "@string-default",
+                      "Name": "@string-default"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "InputFontFamily": {
+                          "*": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "ItemIdentifier",
+                "Type": "String",
+                "InputType": "string-dropdown",
+                "IsTitle": true,
+                "Metadata": [
+                  {
+                    "Id": 130638,
+                    "Version": 8,
+                    "Guid": "885919d3-9278-4278-89c0-b83e5ceaa0bd",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "string-dropdown"
+                        },
+                        "Name": {
+                          "en-us": "Name / Item Identifier"
+                        },
+                        "Notes": {
+                          "en-us": "<p>Select a predefined identifier or create your own with the TT-button. These identifiers are case-insensitive.&nbsp;</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130643,
+                    "Version": 6,
+                    "Guid": "78c62298-7189-45eb-a2cb-de21d26d9ac3",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130644,
+                    "Version": 6,
+                    "Guid": "7fc87496-192e-4d70-8884-74392a3fcee0",
+                    "Type": {
+                      "Id": "@string-dropdown",
+                      "Name": "@string-dropdown"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": "Bootstrap4:Bootstrap4\nBootstrap5:Bootstrap5\nfancybox3:fancybox3\nfancybox4:fancybox4\nFontAwesome5:FontAwesome5\nFontAwesome6:FontAwesome6"
+                        },
+                        "DropdownValuesFormat": {
+                          "en-us": ""
+                        }
+                      },
+                      "Boolean": {
+                        "EnableTextEntry": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "Enabled",
+                "Type": "Boolean",
+                "InputType": "boolean-tristate",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 130656,
+                    "Version": 7,
+                    "Guid": "7f966c33-b4d7-41c8-90a8-ad28395b8d51",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "*": ""
+                        },
+                        "DefaultValue": {
+                          "*": ""
+                        },
+                        "InputType": {
+                          "*": "boolean-tristate"
+                        },
+                        "Name": {
+                          "*": "Enabled"
+                        },
+                        "Notes": {
+                          "*": "<p>Usually it's enabled, but if the skin already includes it, set to false to avoid it being added again.&nbsp;</p>"
+                        },
+                        "Placeholder": {
+                          "*": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "*": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "*": false
+                        },
+                        "DisableTranslation": {
+                          "*": false
+                        },
+                        "Required": {
+                          "*": false
+                        },
+                        "VisibleInEditUI": {
+                          "*": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130657,
+                    "Version": 6,
+                    "Guid": "fc93ad3a-a947-452c-9893-47c5d1c2ed9f",
+                    "Type": {
+                      "Id": "@Boolean",
+                      "Name": "@Boolean"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "TitleFalse": {
+                          "*": "Disable this resource"
+                        },
+                        "TitleIndeterminate": {
+                          "*": "Don't configure / use default setting"
+                        },
+                        "TitleTrue": {
+                          "*": "Enable this resource"
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "Html",
+                "Type": "String",
+                "InputType": "string-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 130639,
+                    "Version": 5,
+                    "Guid": "62a70977-5a94-4c11-ae2d-51b233e4b4f4",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "*": ""
+                        },
+                        "DefaultValue": {
+                          "*": ""
+                        },
+                        "InputType": {
+                          "*": "string-default"
+                        },
+                        "Name": {
+                          "*": "Raw Html Snippets for this Resource (Html)"
+                        },
+                        "Notes": {
+                          "*": "<p>This is the raw HTML to add, incl. JS/CSS tags etc.&nbsp;</p>"
+                        },
+                        "Placeholder": {
+                          "*": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "*": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "*": false
+                        },
+                        "DisableTranslation": {
+                          "*": false
+                        },
+                        "Required": {
+                          "*": false
+                        },
+                        "VisibleInEditUI": {
+                          "*": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130648,
+                    "Version": 4,
+                    "Guid": "70304913-6bde-4f25-bddb-9310f8a677ee",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "*": ""
+                        },
+                        "InputType": {
+                          "*": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130649,
+                    "Version": 4,
+                    "Guid": "e45576ab-6895-4e56-9594-de392ca1e1bf",
+                    "Type": {
+                      "Id": "@string-default",
+                      "Name": "@string-default"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "InputFontFamily": {
+                          "*": "monospace"
+                        }
+                      },
+                      "Number": {
+                        "RowCount": {
+                          "*": 20
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "GroupAdvanced",
+                "Type": "Empty",
+                "InputType": "empty-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 169560,
+                    "Version": 2,
+                    "Guid": "770341e9-6a2a-4349-a2e4-c5f0387b50da",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "empty-default"
+                        },
+                        "Name": {
+                          "en-us": "Advanced Settings"
+                        },
+                        "Notes": {
+                          "en-us": ""
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 169561,
+                    "Version": 1,
+                    "Guid": "f964befb-f612-4a82-b83a-bc75da716427",
+                    "Type": {
+                      "Id": "@empty-default",
+                      "Name": "@empty-default"
+                    },
+                    "Attributes": {
+                      "Boolean": {
+                        "DefaultCollapsed": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "AutoOptimize",
+                "Type": "Boolean",
+                "InputType": "boolean-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 169562,
+                    "Version": 2,
+                    "Guid": "6caf29fa-4e9a-45bf-bd8d-5a48006be1ee",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": "true"
+                        },
+                        "InputType": {
+                          "en-us": "boolean-default"
+                        },
+                        "Name": {
+                          "en-us": "AutoOptimize"
+                        },
+                        "Notes": {
+                          "en-us": ""
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 169563,
+                    "Version": 1,
+                    "Guid": "6d4cbce9-da2c-4ee8-bcab-f9c5dcb814e6",
+                    "Type": {
+                      "Id": "@Boolean",
+                      "Name": "@Boolean"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "TitleFalse": {
+                          "en-us": "Disable automatic optimizations"
+                        },
+                        "TitleIndeterminate": {
+                          "en-us": ""
+                        },
+                        "TitleTrue": {
+                          "en-us": "Automatically optimize, bundle etc."
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              }
+            ]
+          },
+          "Entities": [
+            {
+              "Id": 130645,
+              "Version": 2,
+              "Guid": "915a2d6e-7092-4552-a367-a68e753777e3",
+              "Type": {
+                "Id": "772dfff1-b236-4aa9-8359-5f53c08ff7bf",
+                "Name": "UiFormula"
+              },
+              "Attributes": {
+                "String": {
+                  "Formula": {
+                    "*": "v1(data, context) { return 'WebResources.' + data.ItemIdentifier; }"
+                  },
+                  "Notes": {
+                    "*": ""
+                  },
+                  "Target": {
+                    "*": "Field.Value"
+                  },
+                  "Title": {
+                    "*": "Value"
+                  }
+                },
+                "Boolean": {
+                  "Enabled": {
+                    "*": true
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41"
+            }
+          ]
+        },
+        {
+          "ContentType": {
+            "Id": "9ff20ccf-3ff7-4a76-b749-dd22771df730",
+            "Name": "⚙️WebResources",
+            "Scope": "System.Configuration",
+            "Metadata": [
+              {
+                "Id": 130636,
+                "Version": 4,
+                "Guid": "d7779b22-0193-43f4-b8fe-50132c133d34",
+                "Type": {
+                  "Id": "ContentType",
+                  "Name": "ContentType"
+                },
+                "Attributes": {
+                  "String": {
+                    "Description": {
+                      "*": ""
+                    },
+                    "DynamicChildrenField": {
+                      "*": "Items"
+                    },
+                    "EditInstructions": {
+                      "*": "<p>Web Resources are additional script etc. which are often loaded from a CDN.&nbsp;</p>\n<p>The default configuration will continue to point to the latest CDN versions you need - but you can always override this in your System/Site/App as needed.</p>\n<p>Only Apps which explicitly want to load these resources from the Settings will actually obey this - older and custom apps may have their own list of things they load.&nbsp;</p>"
+                    },
+                    "Label": {
+                      "*": "⚙️WebResources"
+                    },
+                    "ListInstructions": {
+                      "*": ""
+                    },
+                    "Notes": {
+                      "*": ""
+                    }
+                  },
+                  "Hyperlink": {
+                    "Icon": {
+                      "*": ""
+                    },
+                    "Link": {
+                      "*": ""
+                    }
+                  }
+                },
+                "Owner": "dnn:userid=41",
+                "For": {
+                  "Target": "ContentType",
+                  "TargetType": 5,
+                  "String": "9ff20ccf-3ff7-4a76-b749-dd22771df730"
+                }
+              }
+            ],
+            "Attributes": [
+              {
+                "Name": "SettingsIdentifier",
+                "Type": "String",
+                "InputType": "string-default",
+                "IsTitle": true,
+                "Metadata": [
+                  {
+                    "Id": 130628,
+                    "Version": 2,
+                    "Guid": "04c3974c-a33b-425e-bdc6-5670403471b3",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "*": ""
+                        },
+                        "DefaultValue": {
+                          "*": "WebResources"
+                        },
+                        "InputType": {
+                          "*": "string-default"
+                        },
+                        "Name": {
+                          "*": "SettingsIdentifier"
+                        },
+                        "Notes": {
+                          "*": ""
+                        },
+                        "Placeholder": {
+                          "*": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "*": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "*": true
+                        },
+                        "DisableTranslation": {
+                          "*": false
+                        },
+                        "Required": {
+                          "*": false
+                        },
+                        "VisibleInEditUI": {
+                          "*": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130629,
+                    "Version": 1,
+                    "Guid": "70449387-aef3-4fa2-b6b9-fff1da999497",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "*": ""
+                        },
+                        "InputType": {
+                          "*": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130630,
+                    "Version": 1,
+                    "Guid": "8313a56b-a109-4016-a955-8d455cb9e876",
+                    "Type": {
+                      "Id": "@string-default",
+                      "Name": "@string-default"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "InputFontFamily": {
+                          "*": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "CdnSourceNotEnabledWarning",
+                "Type": "Empty",
+                "InputType": "empty-message",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 169950,
+                    "Version": 4,
+                    "Guid": "3a897222-1950-4d38-a0b1-fe5af3f98888",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "empty-message"
+                        },
+                        "Name": {
+                          "en-us": "CdnSourceNotEnabledWarning"
+                        },
+                        "Notes": {
+                          "en-us": "<p><strong>⚠️ Warning ⚠️</strong></p>\n<p>You have configured an alternate CDN source. It appears that the features for this are not enabled, so the settings will not have an effect. See <a href=\"https://r.2sxc.org/cdn\" target=\"_blank\" rel=\"noopener\">CDN docs</a>.</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": [
+                            "69741b0b-6734-49b8-a8b5-46b42908e302"
+                          ]
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": false
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "CdnSourcePublic",
+                "Type": "String",
+                "InputType": "string-dropdown",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 169551,
+                    "Version": 9,
+                    "Guid": "c26bb49e-8607-47bd-add3-12962104a963",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "string-dropdown"
+                        },
+                        "Name": {
+                          "en-us": "CDN Source for Public Resources"
+                        },
+                        "Notes": {
+                          "en-us": "<p>Preferred location where to load public resources from, such as bootstrap, fancybox etc.</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 169552,
+                    "Version": 8,
+                    "Guid": "4d053dd3-3456-41d9-a797-90b9ab0849d7",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 169553,
+                    "Version": 8,
+                    "Guid": "880a956f-d542-4608-8e6a-055858a1e589",
+                    "Type": {
+                      "Id": "@string-dropdown",
+                      "Name": "@string-dropdown"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": ":Not set - use system default (usually Public CDNs)\ncdn:Public CDNs such as Google-Fonts\nhttps\\://cdn.2sxc.org/packages:2sxc CDN (cdn.2sxc.org)\n/cdn/packages:Local - on this website (/cdn)\ncustom:Custom path or site (switch to text-mode to type custom value)"
+                        },
+                        "DropdownValuesFormat": {
+                          "en-us": "value-label"
+                        }
+                      },
+                      "Boolean": {
+                        "EnableTextEntry": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "CdnSourceEdit",
+                "Type": "String",
+                "InputType": "string-dropdown",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 169564,
+                    "Version": 6,
+                    "Guid": "7d01e570-7af5-4ed2-bfe1-0ba58a956a1d",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "string-dropdown"
+                        },
+                        "Name": {
+                          "en-us": "CDN Source for Edit Resources"
+                        },
+                        "Notes": {
+                          "en-us": "<p>These are resources used in the edit dialog, such as icons and fonts.</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 169565,
+                    "Version": 5,
+                    "Guid": "0e2a664d-e946-4585-a1e3-6a2a810d00bd",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 169566,
+                    "Version": 5,
+                    "Guid": "4eac359d-372e-42d1-94c5-3628c9a79fab",
+                    "Type": {
+                      "Id": "@string-dropdown",
+                      "Name": "@string-dropdown"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": ":Not set - use system default (usually Public CDNs)\ncdn:Public CDNs such as Google-Fonts\nhttps\\://cdn.2sxc.org/packages:2sxc CDN (cdn.2sxc.org)\n/cdn/packages:Local - on this website (/cdn)\ncustom:Custom path or site (switch to text-mode to type custom value)"
+                        },
+                        "DropdownValuesFormat": {
+                          "en-us": "value-label"
+                        }
+                      },
+                      "Boolean": {
+                        "EnableTextEntry": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              },
+              {
+                "Name": "Items",
+                "Type": "Entity",
+                "InputType": "entity-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 130635,
+                    "Version": 9,
+                    "Guid": "c3fa7759-f4fb-4266-ac54-89857e301ccb",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "entity-default"
+                        },
+                        "Name": {
+                          "en-us": "Resource Items"
+                        },
+                        "Notes": {
+                          "en-us": ""
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  },
+                  {
+                    "Id": 130641,
+                    "Version": 8,
+                    "Guid": "19b7bfe7-2bb6-4022-a851-a481c81cd492",
+                    "Type": {
+                      "Id": "@Entity",
+                      "Name": "@Entity"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "EntityType": {
+                          "en-us": "⚙️WebResource"
+                        },
+                        "Prefill": {
+                          "en-us": ""
+                        }
+                      },
+                      "Boolean": {
+                        "AllowMultiValue": {
+                          "en-us": true
+                        },
+                        "EnableAddExisting": {
+                          "en-us": true
+                        },
+                        "EnableCreate": {
+                          "en-us": true
+                        },
+                        "EnableDelete": {
+                          "en-us": true
+                        },
+                        "EnableEdit": {
+                          "en-us": true
+                        },
+                        "EnableRemove": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=41"
+                  }
+                ]
+              }
+            ]
+          },
+          "Entities": [
+            {
+              "Id": 169951,
+              "Version": 3,
+              "Guid": "69741b0b-6734-49b8-a8b5-46b42908e302",
+              "Type": {
+                "Id": "772dfff1-b236-4aa9-8359-5f53c08ff7bf",
+                "Name": "UiFormula"
+              },
+              "Attributes": {
+                "String": {
+                  "Formula": {
+                    "en-us": "v2((data, context) => {\n  const hasCdn = data.CdnSourceEdit || data.CdnSourcePublic;\n  if (!hasCdn) return false;\n  // show the warning if any of the features are not enabled\n  const f = context.features;\n  if (!f.isEnabled('CdnSourceEdit') || !f.isEnabled('CdnSourcePublic'))\n    return true;\n  return false;\n});"
+                  },
+                  "Notes": {
+                    "en-us": ""
+                  },
+                  "Target": {
+                    "en-us": "Field.Settings.Visible"
+                  },
+                  "Title": {
+                    "en-us": "Setting Visible"
+                  }
+                },
+                "Boolean": {
+                  "Enabled": {
+                    "en-us": true
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41"
+            }
+          ]
+        }
+      ],
+      "Entities": [
+        {
+          "Id": 130652,
+          "Version": 12,
+          "Guid": "06f4fa58-2e91-4896-a16e-3bbaf9a5f491",
+          "Type": {
+            "Id": "9ff20ccf-3ff7-4a76-b749-dd22771df730",
+            "Name": "⚙️WebResources"
+          },
+          "Attributes": {
+            "String": {
+              "CdnSourceEdit": {
+                "en-us": ""
+              },
+              "CdnSourcePublic": {
+                "en-us": ""
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources"
+              }
+            },
+            "Entity": {
+              "Items": {
+                "*": [
+                  "e6d3d600-ea17-4957-9c56-9bae78329c67",
+                  "72286f65-e38b-42ee-a0da-0c73e55f7ba4",
+                  "4b9ef331-480a-4a38-86f1-a580f8345677",
+                  "3356ad17-91ce-4814-83c1-9f527697391a",
+                  "38e0226d-4c31-4d2e-ab97-8e16483ddf94",
+                  "3e6811a8-87ab-4954-8402-6e2b3d80c6e2"
+                ]
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166554,
+              "Version": 1,
+              "Guid": "3c2edf90-4fe7-42dc-9031-af52dcecc36d",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "06f4fa58-2e91-4896-a16e-3bbaf9a5f491"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 130653,
+          "Version": 6,
+          "Guid": "e6d3d600-ea17-4957-9c56-9bae78329c67",
+          "Type": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource"
+          },
+          "Attributes": {
+            "String": {
+              "Html": {
+                "en-us": "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha256-+IZRbz1B6ee9mUx/ejmonK+ulIP5A5bLDd6v6NHqXnI=\" crossorigin=\"anonymous\">\n\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha256-GRJrh0oydT1CwS36bBeJK/2TggpaUQC6GzTaTQdZm0k=\" crossorigin=\"anonymous\"></script>"
+              },
+              "ItemIdentifier": {
+                "en-us": "Bootstrap4"
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources.Bootstrap4"
+              }
+            },
+            "Boolean": {
+              "AutoOptimize": {
+                "en-us": true
+              },
+              "Enabled": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166555,
+              "Version": 1,
+              "Guid": "136bb934-15a8-418f-9b74-2a76abdd8022",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "e6d3d600-ea17-4957-9c56-9bae78329c67"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 130654,
+          "Version": 9,
+          "Guid": "38e0226d-4c31-4d2e-ab97-8e16483ddf94",
+          "Type": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource"
+          },
+          "Attributes": {
+            "String": {
+              "Html": {
+                "en-us": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js\" integrity=\"sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n"
+              },
+              "ItemIdentifier": {
+                "en-us": "FontAwesome5"
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources.FontAwesome5"
+              }
+            },
+            "Boolean": {
+              "AutoOptimize": {
+                "en-us": true
+              },
+              "Enabled": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 144504,
+              "Version": 1,
+              "Guid": "049f481e-a3aa-4a85-afe7-8c88ccafd38d",
+              "Type": {
+                "Id": "5e958dc6-2922-4d68-835c-7b9711538b12",
+                "Name": "NoteDecorator"
+              },
+              "Attributes": {
+                "String": {
+                  "Note": {
+                    "en-us": "<p>Get updated links from the <a href=\"https://cdnjs.com/libraries/font-awesome/5.15.4\" target=\"_blank\" rel=\"noopener\">CDNJS</a>.</p>"
+                  },
+                  "NoteType": {
+                    "en-us": "note"
+                  },
+                  "Title": {
+                    "en-us": "Get updated links from the CDN..."
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "38e0226d-4c31-4d2e-ab97-8e16483ddf94"
+              }
+            },
+            {
+              "Id": 166556,
+              "Version": 1,
+              "Guid": "b757c81f-6b2a-46a6-be76-30a907586813",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "38e0226d-4c31-4d2e-ab97-8e16483ddf94"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 130655,
+          "Version": 5,
+          "Guid": "4b9ef331-480a-4a38-86f1-a580f8345677",
+          "Type": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource"
+          },
+          "Attributes": {
+            "String": {
+              "Html": {
+                "en-us": "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css\" integrity=\"sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />\n\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js\" integrity=\"sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>"
+              },
+              "ItemIdentifier": {
+                "en-us": "Fancybox3"
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources.Fancybox3"
+              }
+            },
+            "Boolean": {
+              "AutoOptimize": {
+                "en-us": true
+              },
+              "Enabled": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166557,
+              "Version": 1,
+              "Guid": "7db3406c-be34-4953-aa9e-7170ba075e5b",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "4b9ef331-480a-4a38-86f1-a580f8345677"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 130658,
+          "Version": 7,
+          "Guid": "72286f65-e38b-42ee-a0da-0c73e55f7ba4",
+          "Type": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource"
+          },
+          "Attributes": {
+            "String": {
+              "Html": {
+                "en-us": "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" integrity=\"sha256-wLz3iY/cO4e6vKZ4zRmo4+9XDpMcgKOvv/zEU3OMlRo=\" crossorigin=\"anonymous\">\n\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js\" integrity=\"sha256-m81NDyncZVbr7v9E6qCWXwx/cwjuWDlHCMzi9pjMobA=\" crossorigin=\"anonymous\"></script>\n"
+              },
+              "ItemIdentifier": {
+                "en-us": "Bootstrap5"
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources.Bootstrap5"
+              }
+            },
+            "Boolean": {
+              "AutoOptimize": {
+                "en-us": true
+              },
+              "Enabled": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 166558,
+              "Version": 1,
+              "Guid": "c0c72782-77a4-4419-be31-7c5ac4f7bca0",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "72286f65-e38b-42ee-a0da-0c73e55f7ba4"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 131820,
+          "Version": 11,
+          "Guid": "3356ad17-91ce-4814-83c1-9f527697391a",
+          "Type": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource"
+          },
+          "Attributes": {
+            "String": {
+              "Html": {
+                "en-us": "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.31/dist/fancybox.css\" integrity=\"sha256-7gMVmh7i2Xmo99mvvfnSn9dZfunTii7j4yPdmTAMUR0=\" crossorigin=\"anonymous\">\n\n<script src=\"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.31/dist/fancybox.umd.js\" integrity=\"sha256-0af2VbC4vmPsa8OLBAKBmLoyuKq4bBlKK2KOgMWayio=\" crossorigin=\"anonymous\"></script>"
+              },
+              "ItemIdentifier": {
+                "en-us": "fancybox4"
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources.fancybox4"
+              }
+            },
+            "Boolean": {
+              "AutoOptimize": {
+                "en-us": true
+              },
+              "Enabled": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 144503,
+              "Version": 1,
+              "Guid": "04c9dd2c-f931-48b0-a1ad-7473e2526f00",
+              "Type": {
+                "Id": "5e958dc6-2922-4d68-835c-7b9711538b12",
+                "Name": "NoteDecorator"
+              },
+              "Attributes": {
+                "String": {
+                  "Note": {
+                    "en-us": "<p>Best update with exact version links and SRI from here:</p>\n<p><a href=\"https://www.jsdelivr.com/package/npm/@fancyapps/ui?path=dist\" target=\"_blank\" rel=\"noopener\">https://www.jsdelivr.com/package/npm/@fancyapps/ui?path=dist</a>&nbsp;&nbsp;</p>"
+                  },
+                  "NoteType": {
+                    "en-us": "note"
+                  },
+                  "Title": {
+                    "en-us": "Best update with exact version..."
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3356ad17-91ce-4814-83c1-9f527697391a"
+              }
+            },
+            {
+              "Id": 166559,
+              "Version": 1,
+              "Guid": "b5aca58e-d6af-4489-9853-dcaaab66b3cb",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3356ad17-91ce-4814-83c1-9f527697391a"
+              }
+            }
+          ]
+        },
+        {
+          "Id": 144505,
+          "Version": 5,
+          "Guid": "3e6811a8-87ab-4954-8402-6e2b3d80c6e2",
+          "Type": {
+            "Id": "66f19c62-371e-4ad1-a98b-de0745507be4",
+            "Name": "⚙️WebResource"
+          },
+          "Attributes": {
+            "String": {
+              "Html": {
+                "en-us": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js\" integrity=\"sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n"
+              },
+              "ItemIdentifier": {
+                "en-us": "FontAwesome6"
+              },
+              "SettingsIdentifier": {
+                "en-us": "WebResources.FontAwesome6"
+              }
+            },
+            "Boolean": {
+              "AutoOptimize": {
+                "en-us": true
+              },
+              "Enabled": {
+                "en-us": true
+              }
+            }
+          },
+          "Owner": "dnn:userid=41",
+          "Metadata": [
+            {
+              "Id": 144506,
+              "Version": 1,
+              "Guid": "be43a43e-56c9-4660-97a4-a3aadafa370e",
+              "Type": {
+                "Id": "5e958dc6-2922-4d68-835c-7b9711538b12",
+                "Name": "NoteDecorator"
+              },
+              "Attributes": {
+                "String": {
+                  "Note": {
+                    "en-us": "<p>Get updated links from the <a href=\"https://cdnjs.com/libraries/font-awesome/6.1.1\" target=\"_blank\" rel=\"noopener\">CDNJS</a>.</p>"
+                  },
+                  "NoteType": {
+                    "en-us": "note"
+                  },
+                  "Title": {
+                    "en-us": "Get updated links from the CDN..."
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3e6811a8-87ab-4954-8402-6e2b3d80c6e2"
+              }
+            },
+            {
+              "Id": 166560,
+              "Version": 1,
+              "Guid": "ecf47466-931f-4e69-9c56-d8e3a0853d38",
+              "Type": {
+                "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                "Name": "SystemExportDecorator"
+              },
+              "Attributes": {
+                "Entity": {
+                  "Configuration": {
+                    "*": [
+                      "1a29fa3e-69e7-48db-836f-c04ee3991284"
+                    ]
+                  }
+                }
+              },
+              "Owner": "dnn:userid=41",
+              "For": {
+                "Target": "Entity",
+                "TargetType": 4,
+                "Guid": "3e6811a8-87ab-4954-8402-6e2b3d80c6e2"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

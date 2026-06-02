@@ -1,0 +1,5 @@
+2026-06-02T04:37:05 15.00.00 - UpgradeModule - UpgradeModule starting
+2026-06-02T04:37:05 15.00.00 - IsUpgradeComplete - Check upgrade marker file - Check on Start UpgradeModule
+2026-06-02T04:37:05 15.00.00 - Upgrade marker exists: 'D:\Dev\Argumentum\DNNPlatform\desktopmodules\tosic.sxc\Upgrade\Log\15.00.00.resources'
+2026-06-02T04:37:05 15.00.00 - IsUpgradeComplete - Upgrade complete: True
+2026-06-02T04:37:05 15.00.00 - Upgrade already completed for this version (marker exists); skipping

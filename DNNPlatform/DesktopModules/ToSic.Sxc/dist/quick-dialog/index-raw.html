@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- the base tag, required by Angular - from backend -->
+    <base href="@base">
+
+    <!-- This will be pre-filled by the backend -->
+    <meta name="_jsApi" content="@jsapi">
+
+    <!-- optional headers - must be added before 2sxc is loaded -->
+    <!--@customheaders-->
+
+    <script>
+      // send message to the angular-observable to restart the app
+      window.reboot = function () {
+        // if called too early, the bootController doesn't exist yet
+        if (window.bootController) window.bootController.reboot();
+      }
+    </script>
+
+    <meta charset="utf-8">
+    <title>Quick Dialog</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css"></head>
+
+  <body>
+    <!--@custombody-->
+    <!-- Load the $2sxc script - after the custom-body; the @... below will be replaced by the backend for cache-breaking -->
+    <script src="../../js/2sxc.api.min.js?cacheBreak=@sxcver"></script>
+    <app-root></app-root>
+  <script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script></body>
+</html>

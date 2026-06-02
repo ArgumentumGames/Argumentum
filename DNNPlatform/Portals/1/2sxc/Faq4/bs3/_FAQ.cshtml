@@ -1,12 +1,12 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Blocks;
+@using ToSic.Sxc.Services;
 @{
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
   // Merge the settings on Content with the predefined Settings
   var faqSettings = AsDynamic(Content, Settings);
-  var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
+  var render = GetService<ToSic.Sxc.Services.IRenderService>();
 }
 
 <div class="app-faq4-js-@CmsContext.Module.Id position-relative" @Edit.TagToolbar(Content, toolbar: "+contentitems&pos=2?contentType=Question")>

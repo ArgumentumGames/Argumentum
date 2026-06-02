@@ -1,0 +1,124 @@
+2026-06-02T04:28:49  - FinishAbortedUpgrade starting
+2026-06-02T04:28:49  - Will handle 8 versions
+2026-06-02T04:28:49 08.11.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 08.11.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 08.11.00 is False
+2026-06-02T04:28:49 08.11.00 - Upgrade skipped because 00.99.00 install detected (installation of everything until and including 08.11 has been done by 00.99.00.SqlDataProvider)
+2026-06-02T04:28:49 09.00.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 09.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 09.00.00 is False
+2026-06-02T04:28:49 09.00.00 - UpgradeModule starting
+2026-06-02T04:28:49 09.00.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 09.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 09.00.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 09.00.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - done
+2026-06-02T04:28:49 09.00.00 - ----- Upgrade to 09.00.00 started -----
+2026-06-02T04:28:49 09.00.00 - version-list check / switch done
+2026-06-02T04:28:49 09.00.00 - ----- Upgrade to 09.00.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 09.00.00 - UpgradeModule done / returning
+2026-06-02T04:28:49 10.00.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 10.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 10.00.00 is False
+2026-06-02T04:28:49 10.00.00 - UpgradeModule starting
+2026-06-02T04:28:49 10.00.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 10.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 10.00.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 10.00.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - error!
+2026-06-02T04:28:49 10.00.00 - ----- Upgrade to 10.00.00 started -----
+2026-06-02T04:28:49 10.00.00 - version-list check / switch done
+2026-06-02T04:28:49 10.00.00 - ----- Upgrade to 10.00.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 10.00.00 - UpgradeModule done / returning
+2026-06-02T04:28:49 11.00.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 11.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 11.00.00 is False
+2026-06-02T04:28:49 11.00.00 - UpgradeModule starting
+2026-06-02T04:28:49 11.00.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 11.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 11.00.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 11.00.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - error!
+2026-06-02T04:28:49 11.00.00 - ----- Upgrade to 11.00.00 started -----
+2026-06-02T04:28:49 11.00.00 - version-list check / switch done
+2026-06-02T04:28:49 11.00.00 - ----- Upgrade to 11.00.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 11.00.00 - UpgradeModule done / returning
+2026-06-02T04:28:49 12.00.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 12.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 12.00.00 is False
+2026-06-02T04:28:49 12.00.00 - UpgradeModule starting
+2026-06-02T04:28:49 12.00.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 12.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 12.00.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 12.00.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - error!
+2026-06-02T04:28:49 12.00.00 - ----- Upgrade to 12.00.00 started -----
+2026-06-02T04:28:49 12.00.00 - version-list check / switch done
+2026-06-02T04:28:49 12.00.00 - ----- Upgrade to 12.00.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 12.00.00 - UpgradeModule done / returning
+2026-06-02T04:28:49 13.00.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 13.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 13.00.00 is False
+2026-06-02T04:28:49 13.00.00 - UpgradeModule starting
+2026-06-02T04:28:49 13.00.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 13.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 13.00.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 13.00.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - error!
+2026-06-02T04:28:49 13.00.00 - ----- Upgrade to 13.00.00 started -----
+2026-06-02T04:28:49 13.00.00 - version-list check / switch done
+2026-06-02T04:28:49 13.00.00 - ----- Upgrade to 13.00.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 13.00.00 - UpgradeModule done / returning
+2026-06-02T04:28:49 15.00.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 15.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 15.00.00 is False
+2026-06-02T04:28:49 15.00.00 - UpgradeModule starting
+2026-06-02T04:28:49 15.00.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 15.00.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 15.00.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 15.00.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - error!
+2026-06-02T04:28:49 15.00.00 - ----- Upgrade to 15.00.00 started -----
+2026-06-02T04:28:49 15.00.00 - version-list check / switch done
+2026-06-02T04:28:49 15.00.00 - ----- Upgrade to 15.00.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 15.00.00 - UpgradeModule done / returning
+2026-06-02T04:28:49 15.02.00 - IsUpgradeComplete checking - check for FinishAbortedUpgrade
+2026-06-02T04:28:49 15.02.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49  - Status for version 15.02.00 is False
+2026-06-02T04:28:49 15.02.00 - UpgradeModule starting
+2026-06-02T04:28:49 15.02.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2026-06-02T04:28:49 15.02.00 - IsUpgradeComplete: False
+2026-06-02T04:28:49 15.02.00 - version / upgrade-complete test passed
+2026-06-02T04:28:49 15.02.00 - is-upgrade-running test passed
+2026-06-02T04:28:49  - set upgrade running - True
+2026-06-02T04:28:49  - set upgrade running - True - error!
+2026-06-02T04:28:49 15.02.00 - ----- Upgrade to 15.02.00 started -----
+2026-06-02T04:28:49 15.02.00 - version-list check / switch done
+2026-06-02T04:28:49 15.02.00 - ClientResourceManager- seems to be last item in version-list, will clear
+2026-06-02T04:28:49 15.02.00 - ClientResourceManager- done clearing
+2026-06-02T04:28:49 08.11.00 - IsUpgradeComplete checking - static check
+2026-06-02T04:28:49 08.11.00 - IsUpgradeComplete: True
+2026-06-02T04:28:49 15.02.00 - updated upgrade-complete status
+2026-06-02T04:28:49 15.02.00 - ----- Upgrade to 15.02.00 completed -----
+2026-06-02T04:28:49  - set upgrade running - False
+2026-06-02T04:28:49  - set upgrade running - False - done
+2026-06-02T04:28:49 15.02.00 - UpgradeModule done / returning
+2026-06-02T04:28:49  - FinishAbortedUpgrade done

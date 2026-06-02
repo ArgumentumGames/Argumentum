@@ -1,0 +1,34 @@
+2026-06-02T04:37:05 01.00.00 - UpgradeModule - UpgradeModule starting
+2026-06-02T04:37:05 01.00.00 - IsUpgradeComplete - Check upgrade marker file - Check on Start UpgradeModule
+2026-06-02T04:37:05 01.00.00 - Upgrade marker not found: 'D:\Dev\Argumentum\DNNPlatform\desktopmodules\tosic.sxc\Upgrade\Log\01.00.00.resources'
+2026-06-02T04:37:05 01.00.00 - IsUpgradeComplete - Upgrade complete: False
+2026-06-02T04:37:05 01.00.00 - Upgrade status check OK (marker not found yet, so upgrade should run)
+2026-06-02T04:37:05 01.00.00 - Upgrade running check OK (no concurrent upgrade detected)
+2026-06-02T04:37:05  - Upgrade running flag => True
+2026-06-02T04:37:05  - Upgrade running flag => True (done)
+2026-06-02T04:37:05 01.00.00 - ----- Upgrade to 01.00.00 started -----
+2026-06-02T04:37:05 01.00.00 - Old system folder.
+2026-06-02T04:37:05 01.00.00 - Old system 'Upgrade' folder migrated to new location: D:\Dev\Argumentum\DNNPlatform\desktopmodules\tosic.sxc\Upgrade
+2026-06-02T04:37:05 01.00.00 - OBSOLETE.txt created with text:
+This folder is OBSOLETE as of 2sxc v20.
+It will be removed in v23.
+The folder was marked as obsolete on 2026-06-02 06:37:05 for backup purposes, but it is no longer in use.
+
+2026-06-02T04:37:05 01.00.00 - 'js\2sxc.api.min.js' overwrite existing content with text:
+// IMPORTANT: This file is obsolete and will be deleted in a future 2sxc release.
+// You are using '2sxc.api.min.js' from the old, obsolete folder:
+//   'DesktopModules/ToSIC_SexyContent/js/2sxc.api.min.js'
+// Please update your code to use the new path:
+//   'DesktopModules/ToSic.Sxc/js/2sxc.api.min.js'
+// For more info, see: https://docs.2sxc.org/abyss/releases/history/v20/breaking.html
+// This notice was created on 2026-06-02 06:37:05.
+
+(function() {
+    alert('''2sxc.api.min.js'' is obsolete and will be removed soon.\n\nUpdate your code to use:\n''DesktopModules/ToSic.Sxc/js/2sxc.api.min.js''');
+})();
+
+2026-06-02T04:37:05 01.00.00 - UpgradeModule - version-list check / switch done
+2026-06-02T04:37:05 01.00.00 - ----- Upgrade to 01.00.00 completed -----
+2026-06-02T04:37:05  - Upgrade running flag => False
+2026-06-02T04:37:05  - Upgrade running flag => False (done)
+2026-06-02T04:37:05 01.00.00 - UpgradeModule done / returning

@@ -1,0 +1,3 @@
+This folder is OBSOLETE as of 2sxc v20.
+It will be removed in v23.
+The folder was marked as obsolete on 2026-06-02 06:37:05 for backup purposes, but it is no longer in use.
