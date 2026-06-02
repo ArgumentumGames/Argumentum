@@ -4,7 +4,7 @@
 >
 > **Statut.** Procédure de validation — stable indépendamment du contenu. À utiliser après une régénération complète. Sert l'issue **#140** (QA multilingue) et le gate release **#134**.
 >
-> **Date.** 2026‑05‑31, table de couverture §4 rafraîchie 2026‑06‑02 (`master`). Auteur : ai‑01.
+> **Date.** 2026‑05‑31 ; table de couverture §4 rafraîchie 2026‑06‑02 ; §1 corrigé 2026‑06‑02 (chemin → build `Release`, post‑#424 8 langues) (`master`). Auteur : ai‑01.
 
 ---
 
@@ -13,7 +13,7 @@
 Les PDF sont générés ici (un sous‑dossier par langue) :
 
 ```
-Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/<lang>/Documents/density-0/
+Generation/Converters/Argumentum.AssetConverter/bin/Release/net9.0-windows/Target/<lang>/Documents/density-0/
 ```
 
 `<lang>` ∈ `fr en ru pt es ar fa zh` pour les **cartes** (8 langues), et `fr en ru pt` pour les **mind maps**.
@@ -31,7 +31,7 @@ Chaque dossier langue contient **8 PDF** (mêmes noms, suffixe de langue) :
 | `Argumentum_Fallacies_Web_A0_<lang>.pdf` | Poster A0 | entête logo+QR, 12 colonnes |
 | `Argumentum_Fallacies_Web_Thumbnails_A4_<lang>.pdf` | Vignettes | lisibilité 50×50 |
 
-> **Debug vs Release.** Le dossier `Debug/…` contient des PDF **RGB/JPEG** (suffisants pour valider *le contenu et le layout*). La **release imprimeur** est en **CMYK/PNG sans perte** (régénérée en `-c Release` par po‑2023). Les signaux de ce guide se vérifient déjà sur le Debug ; seul le profil couleur diffère.
+> **Release vs Debug — quelle build valider.** La validation release se fait sur **`Release/…`** (CMYK/PNG sans perte, `-c Release`) : c'est la seule build qui contient les **8 langues** et reflète la dernière décision éditoriale (#424 — racines de famille blankées). Au 2026‑06‑02 c'est la build de référence (post‑#424, 8 langues, datée du jour). La build `Debug/…` (RGB/JPEG) convient pour un contrôle rapide *contenu/layout* **seulement si elle est à jour** — ⚠️ sur cette machine elle est partielle (4 langues `fr en ru pt`, antérieure à #424) : **ne pas valider la release dessus**. **Avant validation : confirmer les 8 sous‑dossiers `fr en ru pt es ar fa zh` + la date des PDF (= dernière régén).**
 
 ---
 
