@@ -101,7 +101,165 @@ namespace Argumentum.AssetConverter.GSheetSync
 
 		private async Task RunUploadAsync()
 		{
-			Console.WriteLine("--- Upload: Local CSV → GSheet ---");
+			if (_config.UseCellLevelUpload)
+			{
+				await RunCellLevelUploadAsync();
+			}
+			else
+			{
+				await RunFullSheetUploadAsync();
+			}
+		}
+
+		/// <summary>
+		/// Cell-level upload: downloads GDrive with formulas, diffs against local CSV,
+		/// patches only changed non-formula cells. Preserves formulas on GDrive.
+		/// </summary>
+		private async Task RunCellLevelUploadAsync()
+		{
+			Console.WriteLine("--- Upload: Local CSV → GSheet (cell-level, formula-aware) ---");
+
+			// Step 1: Load local CSV
+			string localPath = ResolveLocalPath(_config.LocalCsvPath);
+
+			if (!File.Exists(localPath))
+			{
+				Console.WriteLine($"  ✗ Local CSV not found: {localPath}");
+				return;
+			}
+
+			var localCsv = await File.ReadAllTextAsync(localPath);
+			Console.WriteLine($"  Local CSV: {localCsv.Split('\n').Length} lines");
+
+			// Step 2: Initialize service and download formula-aware snapshot
+			var (service, sheetTitle) = await InitializeServiceAsync();
+
+			Console.WriteLine("  Downloading formula-aware snapshot...");
+			var snapshot = await service.GetSheetWithFormulasAsync(_config.SpreadsheetId, _config.Gid);
+			Console.WriteLine($"  Downloaded {snapshot.Values.Count} rows ({snapshot.ProtectedCells.Count} formula-protected cells)");
+
+			// Step 3: Compute cell-level diff
+			var cellDiffEngine = new CellLevelDiffEngine(_config.PrimaryKeyColumn);
+			var cellDiff = cellDiffEngine.Compare(snapshot, localCsv);
+
+			Console.WriteLine($"  Cell diff: {cellDiff.PatchesToApply.Count} patches, " +
+			                  $"{cellDiff.ProtectedSkips.Count} formula-protected, " +
+			                  $"{cellDiff.PkUnmatched} PK unmatched");
+
+			// Step 3b: Also run row-level diff for safety checks
+			var currentSheetCsv = service.GridToCsv(snapshot.Values);
+			var rowDiffEngine = new CsvDiffEngine(
+				_config.PrimaryKeyColumn,
+				_config.MaxOverwriteExamplesToShow,
+				_config.CsvDelimiter);
+			var rowDiff = rowDiffEngine.Compare(currentSheetCsv, localCsv);
+
+			// Step 4: Safety check (row-level thresholds)
+			var safetyChecker = new SyncSafetyChecker();
+			var safetyResult = safetyChecker.Evaluate(rowDiff, _config);
+
+			if (safetyResult.Warnings.Count > 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				foreach (var warning in safetyResult.Warnings)
+				{
+					Console.WriteLine($"  ⚠ {warning}");
+				}
+				Console.ResetColor();
+			}
+
+			if (!safetyResult.IsSafe)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("  ✗ Safety check FAILED — upload aborted:");
+				foreach (var error in safetyResult.Errors)
+				{
+					Console.WriteLine($"    ✗ {error}");
+				}
+				Console.ResetColor();
+				return;
+			}
+
+			// Step 5: Write DryRun report to file
+			var reportDir = ResolveLocalPath(_config.SyncReportsPath);
+			Directory.CreateDirectory(reportDir);
+			var reportPath = Path.Combine(reportDir,
+				$"{_config.Name}-{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.md");
+			var reportContent = cellDiff.ToReport();
+			await File.WriteAllTextAsync(reportPath, reportContent);
+			Console.WriteLine($"  DryRun report written: {reportPath}");
+
+			if (cellDiff.PatchesToApply.Count == 0)
+			{
+				Console.WriteLine("  ✓ No patches to apply — local and GDrive are in sync.");
+				return;
+			}
+
+			// Step 6: Dry-run check
+			if (_config.DryRun)
+			{
+				Console.WriteLine("  [DRY RUN] No remote changes made. Set DryRun=false to apply changes.");
+				Console.WriteLine($"  Report: {reportPath}");
+				return;
+			}
+
+			// Step 7: User confirmation
+			if (_config.RequireConfirmation)
+			{
+				Console.Write("  Upload cell-level patches to Google Sheets? (y/N): ");
+				var response = Console.ReadLine()?.Trim().ToLowerInvariant();
+				if (response != "y" && response != "yes")
+				{
+					Console.WriteLine("  Cancelled by user.");
+					return;
+				}
+			}
+
+			// Step 8: Create backup
+			if (_config.CreateBackupBeforeUpload)
+			{
+				Console.WriteLine("  Creating backup tab...");
+				var backupTitle = await service.CreateBackupSheetAsync(
+					_config.SpreadsheetId, sheetTitle);
+				Console.WriteLine($"  ✓ Backup created: '{backupTitle}'");
+			}
+
+			// Step 9: Apply patches
+			Console.WriteLine($"  Applying {cellDiff.PatchesToApply.Count} cell patches...");
+			await service.BatchUpdateCellsAsync(
+				_config.SpreadsheetId, sheetTitle, cellDiff.PatchesToApply);
+			Console.WriteLine($"  ✓ {cellDiff.PatchesToApply.Count} cells patched");
+
+			// Step 10: Verification
+			Console.WriteLine("  Verifying patches...");
+			var mismatches = await service.VerifyCellPatchesAsync(
+				_config.SpreadsheetId, sheetTitle, cellDiff.PatchesToApply);
+
+			if (mismatches.Count > 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine($"  ⚠ {mismatches.Count} verification mismatches:");
+				foreach (var mm in mismatches.Take(10))
+				{
+					Console.WriteLine($"    ⚠ {mm}");
+				}
+				if (mismatches.Count > 10)
+					Console.WriteLine($"    ... (+{mismatches.Count - 10} more)");
+				Console.ResetColor();
+			}
+			else
+			{
+				Console.WriteLine("  ✓ All patches verified — upload successful.");
+			}
+		}
+
+		/// <summary>
+		/// Full-sheet upload (legacy): clears entire sheet and writes local CSV.
+		/// Destroys formulas. Kept for backward compatibility.
+		/// </summary>
+		private async Task RunFullSheetUploadAsync()
+		{
+			Console.WriteLine("--- Upload: Local CSV → GSheet (full-sheet, legacy) ---");
 
 			// Step 1: Load local CSV
 			string localPath = ResolveLocalPath(_config.LocalCsvPath);
@@ -185,11 +343,13 @@ namespace Argumentum.AssetConverter.GSheetSync
 				Console.WriteLine($"  ✓ Backup created: '{backupTitle}'");
 			}
 
-			// Step 8: Upload
-			Console.WriteLine("  Uploading data...");
+			// Step 8: Upload (legacy full-sheet overwrite)
+#pragma warning disable CS0618 // Suppress obsolete warning for backward compat
+			Console.WriteLine("  Uploading data (full-sheet overwrite)...");
 			var uploadGrid = GSheetService.CsvToGrid(localCsv);
 			await service.UpdateSheetDataAsync(
 				_config.SpreadsheetId, sheetTitle, uploadGrid);
+#pragma warning restore CS0618
 			Console.WriteLine($"  ✓ Uploaded {uploadGrid.Count} rows to '{sheetTitle}'");
 
 			// Step 9: Verification

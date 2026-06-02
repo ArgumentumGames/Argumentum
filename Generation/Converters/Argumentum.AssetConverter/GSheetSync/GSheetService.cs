@@ -186,7 +186,11 @@ namespace Argumentum.AssetConverter.GSheetSync
 
 		/// <summary>
 		/// Writes a 2D grid to a sheet tab (clears existing data first, then writes).
+		/// Obsolete: prefer cell-level upload via <see cref="BatchUpdateCellsAsync"/>
+		/// which preserves formulas and avoids destructive full-sheet overwrite.
 		/// </summary>
+		[Obsolete("Use BatchUpdateCellsAsync for formula-aware cell-level updates. " +
+		          "Full-sheet clear+write destroys formulas.")]
 		public async Task UpdateSheetDataAsync(string spreadsheetId, string sheetTitle, IList<IList<object>> grid)
 		{
 			var range = $"'{sheetTitle}'";
