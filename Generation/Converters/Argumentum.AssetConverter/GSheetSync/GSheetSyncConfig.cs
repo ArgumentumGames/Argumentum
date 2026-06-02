@@ -47,5 +47,19 @@ namespace Argumentum.AssetConverter.GSheetSync
 		public bool AbortOnColumnStructureChange { get; set; } = true;
 
 		public int MaxOverwriteExamplesToShow { get; set; } = 5;
+
+		/// <summary>
+		/// When true (default), upload uses cell-level patching via
+		/// <see cref="CellLevelDiffEngine"/> which skips formula-protected
+		/// cells. When false, falls back to full-sheet clear+write via
+		/// the obsolete <see cref="GSheetService.UpdateSheetDataAsync"/>.
+		/// </summary>
+		public bool UseCellLevelUpload { get; set; } = true;
+
+		/// <summary>
+		/// Directory where DryRun markdown reports are written.
+		/// Relative paths resolve from the project output directory.
+		/// </summary>
+		public string SyncReportsPath { get; set; } = "Target/SyncReports";
 	}
 }
