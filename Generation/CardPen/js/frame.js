@@ -64,6 +64,74 @@ function autoFitCardTitles(cardNode) {
 }
 
 
+// ---------------------------------------------------------------------------
+// Auto-shrink du corps de texte (issue #190 — Virtues overflow)
+// Réduit dynamiquement la taille de police des blocs de texte qui débordent
+// verticalement leur conteneur. Cible le bloc .texte (overflow:hidden) et
+// réduit la taille de police de ses enfants de texte (.desc_fr, .exemple_fr,
+// .desc_*, .exemple_*, etc.) jusqu'à ce que scrollHeight ≤ clientHeight.
+// No-op si le texte tient déjà (cas le plus fréquent).
+// Indépendant de la langue et du gabarit : ne touche que ce qui déborde.
+// ---------------------------------------------------------------------------
+
+// Vrai si le conteneur .texte ne déborde pas verticalement.
+// Tolérance de 2px pour les arrondis sub-pixels (aligné sur OverflowDetector.cs).
+function bodyContentFits(texteEl) {
+    return texteEl.scrollHeight <= texteEl.clientHeight + 2;
+}
+
+// Recherche dichotomique de la plus grande taille de police qui tient dans .texte.
+// Agit sur tous les enfants de .texte qui ont une font-size héritée.
+function autoFitBodyText(cardNode, minFontPx) {
+    minFontPx = minFontPx || 7;
+    var texteEl = cardNode.querySelector('.texte');
+    if (!texteEl) return;
+
+    // Si le texte tient déjà, ne rien faire (cas le plus fréquent).
+    if (bodyContentFits(texteEl)) return;
+
+    // Cibler les éléments de texte dans .texte (paragraphes de description + remarque)
+    var textChildren = texteEl.querySelectorAll('.desc_fr, .exemple_fr, .desc_en, .exemple_en, .desc_ru, .exemple_ru, .desc_pt, .exemple_pt, .desc_es, .exemple_es, .desc_ar, .exemple_ar, .desc_fa, .exemple_fa, .desc_zh, .exemple_zh');
+    if (textChildren.length === 0) return;
+
+    // Sauvegarder les tailles naturelles pour pouvoir repartir de zéro (idempotent).
+    var naturalSizes = [];
+    for (var i = 0; i < textChildren.length; i++) {
+        textChildren[i].style.fontSize = '';
+        naturalSizes.push(parseFloat(window.getComputedStyle(textChildren[i]).fontSize));
+    }
+
+    // Vérifier si les tailles naturelles tiennent (peut arriver après le reset).
+    if (bodyContentFits(texteEl)) return;
+
+    // Binary search : réduire uniformément tous les enfants de texte.
+    // On utilise un facteur multiplicatif commun appliqué aux tailles naturelles.
+    var lo = 0.3;   // facteur min (30% de la taille naturelle)
+    var hi = 1.0;   // facteur max (100% = taille naturelle)
+    var best = lo;
+
+    for (var iter = 0; iter < 10; iter++) {
+        var mid = (lo + hi) / 2;
+        for (var j = 0; j < textChildren.length; j++) {
+            var targetPx = Math.max(minFontPx, naturalSizes[j] * mid);
+            textChildren[j].style.fontSize = targetPx + 'px';
+        }
+        if (bodyContentFits(texteEl)) {
+            best = mid;   // tient → viser plus grand
+            lo = mid;
+        } else {
+            hi = mid;     // déborde → réduire
+        }
+    }
+
+    // Appliquer le meilleur facteur trouvé.
+    for (var k = 0; k < textChildren.length; k++) {
+        var finalPx = Math.max(minFontPx, naturalSizes[k] * best);
+        textChildren[k].style.fontSize = finalPx + 'px';
+    }
+}
+
+
 async function generateImages() {
     var zipButton = document.getElementById('zipButton');
     if (zipButton) {
@@ -79,6 +147,7 @@ async function generateImages() {
        for (var n = 0; n < nodes.length; n++) {
            //imaginer(nodes[n],n);
            autoFitCardTitles(nodes[n]);   // Option B (#316) : ajuster les titres débordants avant capture
+           autoFitBodyText(nodes[n]);     // Issue #190 : ajuster le corps de texte si débordement vertical
            await imaginerSync(nodes[n], n);
        }
     if (zipButton) {
