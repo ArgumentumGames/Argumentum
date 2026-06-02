@@ -1,0 +1,23 @@
+You are reviewing multilingual CSV data for cosmetic translation quality. Each row is an entry with Portuguese fields.
+
+## Your task
+
+Review ONLY the Portuguese register harmonization issue. Do NOT rewrite or improve translations generally — fix ONLY the listed issue.
+
+## Defect to fix
+
+### PT register harmonization
+- Some Portuguese text fields mix register levels: singular informal (você/teu), plural informal (vocês), and archaic forms (tu/vosso)
+- **Fix**: Harmonize ALL Portuguese text to use **singular informal** (você/teu) — the most common register in Brazilian Portuguese
+- Replace plural informal and archaic forms with singular informal equivalents
+- Adjust verb conjugations accordingly
+
+## Input data
+
+For each entry, you will see reference fields (French/English) and the Portuguese fields to check.
+
+## Output
+
+Return a JSON array of records to update. Only include records where you actually changed something. For each record, include the primary key and only the fields you corrected.
+
+If a field needs no correction, omit it from the output.

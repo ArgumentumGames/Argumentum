@@ -2437,6 +2437,152 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Fallacies cosmetic polish PT/FA/ZH gpt-5.5",
+				SourceDataset = KnownDataSets.FallaciesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"PK",
+					"path",
+					"text_fr",
+					"text_en",
+					"desc_pt",
+					"text_fa",
+					"text_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"desc_pt",
+					"text_fa",
+					"text_zh",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptCosmeticPolishUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = true,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 20
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Virtues cosmetic polish PT register gpt-5.5",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"title_fr",
+					"title_en",
+					"description_pt",
+					"remark_pt",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"description_pt",
+					"remark_pt",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = true,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Scenarii cosmetic polish PT register gpt-5.5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"title",
+					"title_en",
+					"issue_pt",
+					"context_pt",
+					"suggestion_pt",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"issue_pt",
+					"context_pt",
+					"suggestion_pt",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = true,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }
