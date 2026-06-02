@@ -7,10 +7,10 @@ using Argumentum.AssetConverter.Mindmapper;
 
 namespace Argumentum.AssetConverter
 {
-    public class CustomTypeProvider : IDynamicLinkCustomTypeProvider
+    public class CustomTypeProvider : IDynamicLinqCustomTypeProvider
     {
 
-        public IDynamicLinkCustomTypeProvider DefaultProvider { get; set; }
+        public IDynamicLinqCustomTypeProvider DefaultProvider { get; set; }
 
 
         public HashSet<Type> GetCustomTypes()
