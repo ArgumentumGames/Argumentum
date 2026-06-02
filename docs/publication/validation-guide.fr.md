@@ -126,6 +126,8 @@ Sinogrammes, sens gauche→droite. Vérifie la **forme** :
 
 ## 5. Protocole de validation conseillé
 
+> **Playbook exécutable** : le fichier [`qa-scenario-8langues-release.md`](qa-scenario-8langues-release.md) contient le scénario pas‑à‑pas (~25‑30 min) avec PK ciblés, grille de résultat et actions correctives. Ce qui suit est le protocole général.
+
 1. **Vérifier la couverture CSV d'abord** (avant de regarder un PDF) : relancer l'audit fr‑relatif → 0 gap. Inutile de valider visuellement des cartes dont on sait qu'elles sont vides.
 2. **Régénération complète** des 8 langues en `-c Release` (CMYK/PNG) depuis un `master` à jour.
 3. **Échantillonnage par langue** : pour chaque langue, ouvrir au minimum **Tarot + Virtues + Poker** (les 3 decks principaux). Survoler 100 % des pages pour les drapeaux universels (§2), puis appliquer les contrôles spécifiques (§3).
