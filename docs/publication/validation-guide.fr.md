@@ -4,7 +4,7 @@
 >
 > **Statut.** Procédure de validation — stable indépendamment du contenu. À utiliser après une régénération complète. Sert l'issue **#140** (QA multilingue) et le gate release **#134**.
 >
-> **Date.** 2026‑05‑31 (`master`). Auteur : ai‑01.
+> **Date.** 2026‑05‑31, table de couverture §4 rafraîchie 2026‑06‑02 (`master`). Auteur : ai‑01.
 
 ---
 
@@ -120,7 +120,7 @@ Sinogrammes, sens gauche→droite. Vérifie la **forme** :
 | Rules (deck) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Rules Print&Play | ✅ | ✅ | ✅ | ✅ | ✅ #405 | ✅ #405 | ✅ #405 | ✅ #405 |
 
-**100 % couverture atteinte** (PRs #405, #407, #408 merged 2026‑05‑31 / 2026‑06‑01). Mandat respecté : *100 % + repasse de finition*. Mind maps : `fr/en/ru/pt` uniquement (pas de version es/ar/fa/zh — c'est voulu, cf. catalogue).
+**Couverture i18n = 0 gap fr‑relatif sur les 8 langues** (audit fr‑relatif rejoué le 2026‑06‑02 sur `master`, post‑#405/#407/#408). Provenance : #405 (Rules P&P es/ar/fa/zh), #407 (Virtues blank‑fill), #408 (taxonomie ru/pt). ⚠️ Résidu réel rattrapé : PK 457 (« Déstabilisation ») avait gardé ses 3 labels de hiérarchie RU vides — oubliés par #408 — comblés par propagation de label sœur. La case « taxonomie ru » n'est donc **réellement** ✅ qu'après ce rattrapage. Volet **couverture** de #403 atteint (mandat *100 %*) ; la **qualité** de traduction reste suivie par #192/#299 et les résidus cosmétiques par #411. Mind maps : `fr/en/ru/pt` uniquement (pas de version es/ar/fa/zh — c'est voulu, cf. catalogue).
 
 ---
 
