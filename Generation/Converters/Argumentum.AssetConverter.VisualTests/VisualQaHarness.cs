@@ -42,11 +42,36 @@ namespace Argumentum.AssetConverter.VisualTests
             "Rules", "Virtues", "Fallacies-Web", "Scenarii"
         };
 
-        // Detector thresholds
+        // Detector thresholds — per-CardSet calibration (#412 finding ai-01)
+        // Rules cards have white backgrounds, so blank-ratio is naturally high (~65-95%)
+        // and bottom-saturation is naturally low (~4-18%). Flat thresholds over/under-flag.
+        private static readonly Dictionary<string, CardSetThresholds> Thresholds = new()
+        {
+            ["Rules"] = new() { BlankRatio = 0.92f, BottomSat = 0.12f },
+            ["Virtues"] = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
+            ["Fallacies-Web"] = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
+            ["Scenarii"] = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
+        };
+
+        // Default thresholds for unregistered CardSets
+        private const float DefaultBlankRatioThreshold = 0.65f;
+        private const float DefaultBottomSatThreshold = 0.85f;
+
         private const float WhiteBandThreshold = 0.98f;   // pixels with R>250 AND G>250 AND B>250
-        private const float BlankRatioThreshold = 0.65f;   // >65% white pixels in body → FLAG
-        private const float BottomSatThreshold = 0.85f;    // >85% non-white pixels in bottom 10% → FLAG
         private const float WhitePixelMax = 250f / 255f;   // normalized threshold for "white"
+
+        /// <summary>Per-CardSet threshold pair (blank-ratio, bottom-saturation).</summary>
+        private class CardSetThresholds
+        {
+            public float BlankRatio = DefaultBlankRatioThreshold;
+            public float BottomSat = DefaultBottomSatThreshold;
+        }
+
+        private static float GetBlankRatioThreshold(string cardSet)
+            => Thresholds.TryGetValue(cardSet, out var t) ? t.BlankRatio : DefaultBlankRatioThreshold;
+
+        private static float GetBottomSatThreshold(string cardSet)
+            => Thresholds.TryGetValue(cardSet, out var t) ? t.BottomSat : DefaultBottomSatThreshold;
 
         public VisualQaHarness(ITestOutputHelper output)
         {
@@ -181,7 +206,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 foreach (var imgPath in images)
                 {
                     scanned++;
-                    var blankResult = DetectBlankRatio(imgPath);
+                    var blankResult = DetectBlankRatio(imgPath, "Rules");
                     if (blankResult.Flagged)
                     {
                         flags.Add($"{lang}/Rules/{Path.GetFileName(imgPath)}: " +
@@ -221,7 +246,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 foreach (var imgPath in images)
                 {
                     scanned++;
-                    var satResult = DetectBottomSaturation(imgPath);
+                    var satResult = DetectBottomSaturation(imgPath, "Rules");
                     if (satResult.Flagged)
                     {
                         flags.Add($"{lang}/Rules/{Path.GetFileName(imgPath)}: " +
@@ -258,8 +283,8 @@ namespace Argumentum.AssetConverter.VisualTests
                         var fileName = Path.GetFileName(imgPath);
 
                         var band = DetectWhiteBand(imgPath);
-                        var blank = DetectBlankRatio(imgPath);
-                        var sat = DetectBottomSaturation(imgPath);
+                        var blank = DetectBlankRatio(imgPath, cardSet);
+                        var sat = DetectBottomSaturation(imgPath, cardSet);
 
                         var result = new CardCheckResult
                         {
@@ -323,7 +348,7 @@ namespace Argumentum.AssetConverter.VisualTests
                             r.FileName == card && r.Language == lang);
                         if (match == null) return "—";
                         var val = match.BlankRatioValue;
-                        if (val > BlankRatioThreshold) return $"**{val:P0}**";
+                        if (val > GetBlankRatioThreshold("Rules")) return $"**{val:P0}**";
                         return $"{val:P0}";
                     });
                     _output.WriteLine($"| {card} | {string.Join(" | ", vals)} |");
@@ -342,7 +367,7 @@ namespace Argumentum.AssetConverter.VisualTests
                             r.FileName == card && r.Language == lang);
                         if (match == null) return "—";
                         var val = match.BottomSatValue;
-                        if (val > BottomSatThreshold) return $"**{val:P0}**";
+                        if (val > GetBottomSatThreshold("Rules")) return $"**{val:P0}**";
                         return $"{val:P0}";
                     });
                     _output.WriteLine($"| {card} | {string.Join(" | ", vals)} |");
@@ -441,8 +466,9 @@ namespace Argumentum.AssetConverter.VisualTests
         /// <summary>
         /// Measures the ratio of white pixels in the "body" area of the card
         /// (middle 60%, rows 20%-80%). A high ratio indicates an underfilled card.
+        /// Uses per-CardSet threshold for flagging.
         /// </summary>
-        private static (bool Flagged, float BlankRatio) DetectBlankRatio(string imagePath)
+        private static (bool Flagged, float BlankRatio) DetectBlankRatio(string imagePath, string cardSet)
         {
             try
             {
@@ -469,7 +495,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 }
 
                 float ratio = totalPixels > 0 ? (float)whitePixels / totalPixels : 0f;
-                return (ratio > BlankRatioThreshold, ratio);
+                return (ratio > GetBlankRatioThreshold(cardSet), ratio);
             }
             catch
             {
@@ -480,8 +506,9 @@ namespace Argumentum.AssetConverter.VisualTests
         /// <summary>
         /// Measures the density of non-white pixels in the bottom 10% of the card.
         /// High density indicates text/content extending to the very bottom edge (overflow).
+        /// Uses per-CardSet threshold for flagging.
         /// </summary>
-        private static (bool Flagged, float Saturation) DetectBottomSaturation(string imagePath)
+        private static (bool Flagged, float Saturation) DetectBottomSaturation(string imagePath, string cardSet)
         {
             try
             {
@@ -508,7 +535,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 }
 
                 float saturation = totalPixels > 0 ? (float)nonWhitePixels / totalPixels : 0f;
-                return (saturation > BottomSatThreshold, saturation);
+                return (saturation > GetBottomSatThreshold(cardSet), saturation);
             }
             catch
             {
