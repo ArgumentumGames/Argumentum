@@ -4,7 +4,7 @@
 >
 > **Statut.** Procédure de validation — stable indépendamment du contenu. À utiliser après une régénération complète. Sert l'issue **#140** (QA multilingue) et le gate release **#134**.
 >
-> **Date.** 2026‑05‑31 ; table de couverture §4 rafraîchie 2026‑06‑02 ; §1 corrigé 2026‑06‑02 (chemin → build `Release`, post‑#424 8 langues) (`master`). Auteur : ai‑01.
+> **Date.** 2026‑05‑31 ; table de couverture §4 rafraîchie 2026‑06‑02 ; §1 corrigé 2026‑06‑02 (chemin → build `Release`, post‑#424 8 langues) ; §2bis ajouté 2026‑06‑03 (pré‑validation mécanique harnais #412) (`master`). Auteur : ai‑01.
 
 ---
 
@@ -50,6 +50,40 @@ Avant même de regarder une langue en particulier, ces défauts sautent aux yeux
 | **Texte d'une AUTRE langue** sur la carte (ex. anglais sur une carte russe) | fuite de langue (cf. bug #216) | ❌ bloquant |
 
 > **Méthode rapide.** Ouvre le PDF, fais défiler 100 % des pages en survol (≈ 1 carte/seconde). Les drapeaux ci‑dessus se repèrent sans lire. Pour un échantillon ciblé, regarde **les premières + dernières cartes** de chaque famille (les changements de couleur de famille révèlent les classes CSS manquantes).
+
+---
+
+## 2bis. Pré‑validation mécanique (harnais #412) — ce que la machine a déjà vérifié
+
+> **But.** Avant que tu regardes une seule carte, le harnais mécanique #412 (`VisualQaHarness`, mergé PR #428) passe **toutes** les images générées au crible pixel. Objectif : te garantir qu'**aucune carte n'est absente ou corrompue** sur les 8 langues, pour que ton œil se concentre sur les exceptions (§2/§3) et pas sur l'inventaire.
+
+**Ce qui a été passé** (test `VisualQa_FullGrid_AllCards_AllDetectors`, arbre `Release`, exécuté 2026‑06‑03) :
+- **3905 images** analysées, **8 langues × 4 CardSets** (Fallacies‑Web, Rules, Scenarii, Virtues).
+
+### Inventaire = ✅ PROPRE (le signal qui compte)
+Aucune image **manquante**, **vide (0 octet)** ou **`data:,`** sur l'ensemble. Comptes confirmant la couverture 8 langues complète :
+
+| CardSet | Cartes × langues | Lignes grille |
+|---|---|---:|
+| Fallacies‑Web | 176 × 8 | 1408 ✅ |
+| Rules (Tarot) | 24 × 8 | 192 ✅ |
+| Virtues | 114 × 8 | 912 ✅ |
+| Scenarii | ~167 × 8 | 1365 ✅ |
+
+→ **La masse des cartes est mécaniquement présente et non‑vide.** C'est la preuve d'inventaire sur laquelle s'appuie l'auto‑PASS de masse : tu n'as pas à vérifier carte par carte que le contenu est généré, seulement à traquer les défauts de §2/§3 sur les catégories à risque.
+
+### ⚠ Caveat calibration — ne pas lire le binaire PASS/FLAG comme une liste de défauts
+Le harnais sort un binaire `PASS/FLAG` par carte **et** des **valeurs brutes**. Le **binaire sur‑déclenche** : **2834/3905 (72 %) flaggés**, parce que les seuils (`blank‑ratio` 65 %, `bottom‑saturation` 85 %) sont **globaux, pas par‑CardSet**. Conséquences attendues, **pas des défauts** :
+- **Rules** = texte sur fond blanc → `blank‑ratio` flagge 23/24 cartes par construction (le blanc domine).
+- **Racines de famille Fallacies** (image grande taille, exemple blanké par design #424) → `bottom‑saturation` flagge les 7 racines × 8 langues par construction.
+
+**Donc : « 2834 flaggés » ≠ « 2834 défauts ».** La valeur du harnais est dans les **valeurs relatives** (pivot), pas dans le verdict binaire. Recalibration par‑CardSet recommandée (note de suivi po‑2024) pour qu'un prochain cycle transforme le binaire en vrai filtre d'exceptions.
+
+### Ce que le harnais apporte réellement à ce dossier
+1. **Preuve d'inventaire** (présence / dimensions / non‑vide) → la masse est saine, auto‑PASS justifié.
+2. **Pivot Rules** `blank‑ratio` / `bottom‑saturation` (24 × 8) → chiffre **exactement** le défaut layout **#250** (carte 22 « Installation » 98 % vide ↔ carte 23 saturée, débordement bas 17 % fr/18 % en) → preuve quantifiée alimentant la décision éditoriale #250 (proposition FR sur l'issue, en attente sign‑off).
+
+> **Le harnais ne remplace pas le jugement visuel** (lane ai‑01, non déléguée). Il garantit l'inventaire et chiffre le relatif ; les verdicts « belle/moche/à‑risque » restent à l'œil (§2/§3). Section **Rules du dossier = « pending re‑check »** jusqu'au fix #250.
 
 ---
 
