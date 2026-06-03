@@ -201,7 +201,10 @@ namespace Argumentum.AssetConverter
                 }
                 else
                 {
-                    targetFile.documentImages().Write(targetFile.fileName);
+                    // #29 fix: deterministic dispose of MagickImageCollection after write
+                    // prevents ~1.2 GB peak held until GC finalizer (especially Fallacies Tarot ~277 images)
+                    using var collection = targetFile.documentImages();
+                    collection.Write(targetFile.fileName);
                     Logger.LogSuccess($"Generated pdf document {targetFile.fileName}");
                 }
             }
