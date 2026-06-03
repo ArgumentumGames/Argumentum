@@ -1,0 +1,311 @@
+[
+  {
+    "field": "family_ar",
+    "fr_val": "Honnêteté intellectuelle",
+    "majority": {
+      "val": "أمانة فكرية",
+      "count": 24
+    },
+    "minority": {
+      "val": "النزاهة الفكرية",
+      "count": 3
+    },
+    "gpt_choice": "A",
+    "reasoning": "«أمانة فكرية» conveys the sense of intellectual honesty more directly than «النزاهة الفكرية», which leans toward intellectual integrity. It is also the majority form in the dataset, and using one standardized form across all records is preferable for consistency.",
+    "canonical": "أمانة فكرية",
+    "target_val": "أمانة فكرية",
+    "pks_to_flip": [
+      "152",
+      "177",
+      "178"
+    ],
+    "cells": 3
+  },
+  {
+    "field": "family_ar",
+    "fr_val": "Raisonnement valide",
+    "majority": {
+      "val": "استدلال صحيح",
+      "count": 47
+    },
+    "minority": {
+      "val": "الاستدلال الصحيح",
+      "count": 8
+    },
+    "gpt_choice": "A",
+    "reasoning": "\"استدلال صحيح\" accurately conveys \"Raisonnement valide\" as “valid/correct reasoning” and is the more natural term-like label in Arabic without adding unnecessary definiteness. Using one form consistently is preferable, and A already matches the majority of records.",
+    "canonical": "استدلال صحيح",
+    "target_val": "استدلال صحيح",
+    "pks_to_flip": [
+      "79",
+      "100",
+      "101",
+      "102",
+      "103",
+      "108",
+      "109",
+      "112"
+    ],
+    "cells": 8
+  },
+  {
+    "field": "subfamily_ar",
+    "fr_val": "Déductions correctes",
+    "majority": {
+      "val": "استنتاجات صحيحة",
+      "count": 28
+    },
+    "minority": {
+      "val": "استنباطات صحيحة",
+      "count": 15
+    },
+    "gpt_choice": "A",
+    "reasoning": "\"استنتاجات صحيحة\" conveys the idea of correct deductions/inferences clearly and idiomatically in Arabic, whereas \"استنباطات\" is more technical and less natural in this plural category label. Using one form consistently is preferable, and A is also the more common existing rendering.",
+    "canonical": "استنتاجات صحيحة",
+    "target_val": "استنتاجات صحيحة",
+    "pks_to_flip": [
+      "100",
+      "101",
+      "102",
+      "113",
+      "114",
+      "116",
+      "117",
+      "118",
+      "119",
+      "120",
+      "121",
+      "122",
+      "123",
+      "124",
+      "125"
+    ],
+    "cells": 15
+  },
+  {
+    "field": "subfamily_ar",
+    "fr_val": "Déductions correctes",
+    "majority": {
+      "val": "استنتاجات صحيحة",
+      "count": 28
+    },
+    "minority": {
+      "val": "استنتاجات سليمة",
+      "count": 3
+    },
+    "gpt_choice": "A",
+    "reasoning": "\"استنتاجات صحيحة\" accurately and naturally conveys \"Déductions correctes\" as \"correct deductions\" in Arabic, while \"سليمة\" can suggest soundness or being free from defect but is slightly less direct here. Using one form consistently is preferable, and A is already the majority form.",
+    "canonical": "استنتاجات صحيحة",
+    "target_val": "استنتاجات صحيحة",
+    "pks_to_flip": [
+      "126",
+      "127",
+      "133"
+    ],
+    "cells": 3
+  },
+  {
+    "field": "family_fa",
+    "fr_val": "Raisonnement valide",
+    "majority": {
+      "val": "استنتاج معتبر",
+      "count": 32
+    },
+    "minority": {
+      "val": "استدلال معتبر",
+      "count": 23
+    },
+    "gpt_choice": "B",
+    "reasoning": "«استدلال معتبر» دقیق‌تر و طبیعی‌تر معادل «Raisonnement valide» است، چون در فارسیِ منطقی/آموزشی برای «valid reasoning/valid argument» رایج‌تر از «استنتاج معتبر» است؛ «استنتاج» بیشتر به inference یا نتیجه‌گیری خاص اشاره دارد. برای یکدستی داده‌ها بهتر است همین فرم در همهٔ رکوردها استفاده شود.",
+    "canonical": "استدلال معتبر",
+    "target_val": "استدلال معتبر",
+    "pks_to_flip": [
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99",
+      "104",
+      "105",
+      "106",
+      "107",
+      "110",
+      "111",
+      "115",
+      "128",
+      "129",
+      "130",
+      "131",
+      "132"
+    ],
+    "cells": 32
+  },
+  {
+    "field": "family_fa",
+    "fr_val": "Échange enrichissant",
+    "majority": {
+      "val": "تبادل غنی‌ساز",
+      "count": 39
+    },
+    "minority": {
+      "val": "تبادل پربار",
+      "count": 5
+    },
+    "gpt_choice": "B",
+    "reasoning": "«تبادل پربار» در فارسی طبیعی‌تر و idiomatic‌تر است و مفهوم یک گفت‌وگوی سازنده/غنا‌بخش را به‌خوبی منتقل می‌کند. «تبادل غنی‌ساز» ترجمه‌ای تحت‌اللفظی‌تر و کم‌طبیعی‌تر است، بنابراین بهتر است برای یکدستی همهٔ رکوردها به صورت واحد از «تبادل پربار» استفاده شود.",
+    "canonical": "تبادل پربار",
+    "target_val": "تبادل پربار",
+    "pks_to_flip": [
+      "180",
+      "181",
+      "182",
+      "183",
+      "184",
+      "185",
+      "186",
+      "187",
+      "188",
+      "189",
+      "190",
+      "191",
+      "192",
+      "193",
+      "194",
+      "199",
+      "200",
+      "201",
+      "202",
+      "203",
+      "204",
+      "205",
+      "206",
+      "207",
+      "208",
+      "209",
+      "210",
+      "211",
+      "212",
+      "213",
+      "214",
+      "215",
+      "216",
+      "217",
+      "218",
+      "219",
+      "220",
+      "221",
+      "222"
+    ],
+    "cells": 39
+  },
+  {
+    "field": "subfamily_fa",
+    "fr_val": "Déductions correctes",
+    "majority": {
+      "val": "استنتاج‌های درست",
+      "count": 28
+    },
+    "minority": {
+      "val": "استنتاج‌های صحیح",
+      "count": 18
+    },
+    "gpt_choice": "A",
+    "reasoning": "«استنتاج‌های درست» accurately conveys “Déductions correctes” and is more natural and idiomatic in Persian than the slightly more formal «استنتاج‌های صحیح». Since both forms mean essentially the same thing, using one consistent form across all records is preferable.",
+    "canonical": "استنتاج‌های درست",
+    "target_val": "استنتاج‌های درست",
+    "pks_to_flip": [
+      "100",
+      "101",
+      "102",
+      "113",
+      "114",
+      "116",
+      "117",
+      "118",
+      "119",
+      "120",
+      "121",
+      "122",
+      "123",
+      "124",
+      "125",
+      "126",
+      "127",
+      "133"
+    ],
+    "cells": 18
+  },
+  {
+    "field": "family_zh",
+    "fr_val": "Échange enrichissant",
+    "majority": {
+      "val": "充实性交流",
+      "count": 39
+    },
+    "minority": {
+      "val": "富有成效的交流",
+      "count": 5
+    },
+    "gpt_choice": "B",
+    "reasoning": "“富有成效的交流”比“充实性交流”更自然、通顺，能较好表达法语“Échange enrichissant”中有益、有收获的交流之意；“充实性交流”在中文中较生硬，不太像固定或自然表达。为保持数据一致，建议统一使用一个译法。",
+    "canonical": "富有成效的交流",
+    "target_val": "富有成效的交流",
+    "pks_to_flip": [
+      "180",
+      "181",
+      "182",
+      "183",
+      "184",
+      "185",
+      "186",
+      "187",
+      "188",
+      "189",
+      "190",
+      "191",
+      "192",
+      "193",
+      "194",
+      "199",
+      "200",
+      "201",
+      "202",
+      "203",
+      "204",
+      "205",
+      "206",
+      "207",
+      "208",
+      "209",
+      "210",
+      "211",
+      "212",
+      "213",
+      "214",
+      "215",
+      "216",
+      "217",
+      "218",
+      "219",
+      "220",
+      "221",
+      "222"
+    ],
+    "cells": 39
+  }
+]
