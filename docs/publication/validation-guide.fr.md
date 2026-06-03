@@ -72,18 +72,31 @@ Aucune image **manquante**, **vide (0 octet)** ou **`data:,`** sur l'ensemble. C
 
 → **La masse des cartes est mécaniquement présente et non‑vide.** C'est la preuve d'inventaire sur laquelle s'appuie l'auto‑PASS de masse : tu n'as pas à vérifier carte par carte que le contenu est généré, seulement à traquer les défauts de §2/§3 sur les catégories à risque.
 
-### ⚠ Caveat calibration — ne pas lire le binaire PASS/FLAG comme une liste de défauts
-Le harnais sort un binaire `PASS/FLAG` par carte **et** des **valeurs brutes**. Le **binaire sur‑déclenche** : **2834/3905 (72 %) flaggés**, parce que les seuils (`blank‑ratio` 65 %, `bottom‑saturation` 85 %) sont **globaux, pas par‑CardSet**. Conséquences attendues, **pas des défauts** :
-- **Rules** = texte sur fond blanc → `blank‑ratio` flagge 23/24 cartes par construction (le blanc domine).
-- **Racines de famille Fallacies** (image grande taille, exemple blanké par design #424) → `bottom‑saturation` flagge les 7 racines × 8 langues par construction.
+### ⚠ Caveat calibration — le binaire PASS/FLAG n'est PAS une liste de défauts
+Le harnais sort un binaire `PASS/FLAG` par carte **et** des **valeurs brutes**. Même **après** la recalibration par‑CardSet (#431, mergée `e9600c0a` — seuils Rules `blank‑ratio` 92 % / `bottom‑sat` 12 %, autres par défaut 65 %/25 %), le binaire reste **sur‑déclenché : 3219/3905**. La raison de fond, mise à nu par l'extraction par‑CardSet × détecteur (run recalibré 2026‑06‑03) : **chaque détecteur flagge par *signature de construction*, pas par défaut.**
 
-**Donc : « 2834 flaggés » ≠ « 2834 défauts ».** La valeur du harnais est dans les **valeurs relatives** (pivot), pas dans le verdict binaire. Recalibration par‑CardSet recommandée (note de suivi po‑2024) pour qu'un prochain cycle transforme le binaire en vrai filtre d'exceptions.
+| CardSet | imgs | WhiteBand | BlankRatio | BottomSat | Détecteur discriminant |
+|---|---:|---:|---:|---:|---|
+| Fallacies‑Web (vignettes A0, fond image plein) | 1408 | **0** | 1238 | 1408 | aucun — tout est construction |
+| Virtues (fond couleur famille) | 912 | 37 | **0** | 198 | BottomSat (longueur de texte) |
+| Rules (texte sur blanc) | 192 | 184 | 74 | 13 | BottomSat |
+| Scenarii (poker, fond blanc) | 1393 | 1336 | 1336 | 57 | BottomSat |
+
+Lecture : sur les cartes **fond blanc** (Rules, Scenarii) `WhiteBand` + `blank‑ratio` flaggent ~96 % par construction (le blanc domine) → bruit. Sur les cartes **fond couleur** (Fallacies‑Web, Virtues) `blank‑ratio` est propre (Virtues **0**) mais `bottom‑sat` flagge l'image/le texte en bas. **Donc « 3219 flaggés » ≠ « 3219 défauts ».** Le seul détecteur qui isole de vraies exceptions est **`bottom‑sat`, lu par‑CardSet.**
+
+### 🟢 Headline #188 — pas de régression bande‑blanche sur les cartes concernées
+`WhiteBand` n'est interprétable que sur fond couleur (sur fond blanc il flagge tout). Là où il compte : **Fallacies‑Web = 0**, **Virtues = 37 singletons éparpillés** (1 carte/langue, aucun cluster 8‑langues). Une vraie régression #188 frapperait une carte sur ses 8 langues d'un coup → **ce pattern est absent**. ✅ Pas de régression bande‑blanche sur les cartes que #188 affectait.
+
+### Liste d'exceptions réelles (signal `bottom‑sat`, actionnable)
+- **Rules (13)** : `rules_01` cover 100 %×8 = titre plein‑cadre **par design** (non‑défaut) ; `rules_23` (Parlote) 12‑18 % FR/EN/ES/PT = saturation réelle → **c'est exactement #250 FIX 2** (proposition FR postée, en attente sign‑off) ; `rules_04` pt 13 % = singleton limite.
+- **Scenarii (57)** : réparti **uniformément sur les 8 langues** (7‑8/langue), même jeu de ~7 cartes denses qui saturent à ~43 % dans **toutes** les langues (`histoire`/`mythologie`/`mitologia`/`cultura_pop`/`intimate_relations`…) → défaut **intrinsèque à la carte, indépendant de la langue** = contenu dense, **pas** un artefact de traduction. Candidat trim éditorial OU carte‑dense acceptée (décision à l'œil).
+- **Virtues (198)** : `card_001` cover 100 %×8 = design ; le reste **se concentre en zh/ru/es/pt** (textes longs : zh 52, ru 47, es 43, pt 34 vs fr 6, en 14) à 12‑39 % → débordement par **longueur de traduction**, famille **#316/#353** (auto‑shrink JS RU déjà livré PR #400 ; zh/es/pt analogues à surveiller).
 
 ### Ce que le harnais apporte réellement à ce dossier
 1. **Preuve d'inventaire** (présence / dimensions / non‑vide) → la masse est saine, auto‑PASS justifié.
-2. **Pivot Rules** `blank‑ratio` / `bottom‑saturation` (24 × 8) → chiffre **exactement** le défaut layout **#250** (carte 22 « Installation » 98 % vide ↔ carte 23 saturée, débordement bas 17 % fr/18 % en) → preuve quantifiée alimentant la décision éditoriale #250 (proposition FR sur l'issue, en attente sign‑off).
+2. **Filtre d'exceptions par‑CardSet** (post‑#431) → les 3 vrais foyers ci‑dessus, chiffrés, au lieu d'un binaire non‑discriminant.
 
-> **Le harnais ne remplace pas le jugement visuel** (lane ai‑01, non déléguée). Il garantit l'inventaire et chiffre le relatif ; les verdicts « belle/moche/à‑risque » restent à l'œil (§2/§3). Section **Rules du dossier = « pending re‑check »** jusqu'au fix #250.
+> **Le harnais ne remplace pas le jugement visuel** (lane ai‑01, non déléguée). Il garantit l'inventaire et isole les foyers ; les verdicts « belle/moche/à‑risque » restent à l'œil (§2/§3). Section **Rules du dossier = « pending re‑check »** jusqu'au fix #250 ; **Scenarii cartes denses** = nouveau point d'attention œil ; **Virtues zh/ru/es/pt** = vérifier le débordement bas sur 2‑3 cartes longues.
 
 ---
 
