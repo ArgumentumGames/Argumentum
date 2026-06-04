@@ -105,8 +105,58 @@ seulement insensible à la langue.
 
 ∴ Par composition, le correctif rend les 7 familles dans toutes les langues.
 
-⏳ **Confirmation visuelle autoritaire** = régén Mémo (Face + Back) sur les 8 langues, puis
-inspection des `memo_face_face.png` / `memo_back.png` par langue (lane ai-01). Tenu jusqu'à
-la régén (comme PR #438). 🔒 Pas de merge avant le sign-off visuel #140.
+## ✅ Confirmation visuelle — régén du 2026-06-04 (lane ai-01)
+
+Régén `dotnet run -c Debug` sur une branche combinant les deux correctifs (#438 Rules +
+#439 Mémo), harvest Mémo régénéré pour les 4 langues. Rendus extraits du harvest frais
+(`Memo_harvest_{lang}.json` → dataURL base64 → PNG), source de vérité du rendu.
+
+| Langue | AVANT | APRÈS | Taille PNG (avant → après) | Capture APRÈS |
+|--------|-------|-------|----------------------------|---------------|
+| FR | 7 / 7 | **7 / 7** | 165 KB → 137 KB | `memo_face_fr_AFTER.png` |
+| EN | 2 / 7 | **7 / 7** ✅ | 63 KB → **130 KB** | `memo_face_en_AFTER.png` |
+| PT | 0 / 7 | **7 / 7** ✅ | 16,5 KB → **145 KB** | `memo_face_pt_AFTER.png` |
+| RU | 0 / 7 | **7 / 7** ✅ | 16,5 KB → **146 KB** | `memo_face_ru_AFTER.png` |
+
+Les 4 langues rendent désormais **les 7 familles**, chacune avec son **texte localisé** (et
+non un clone du FR — les tailles PNG diffèrent toutes, signature d'un contenu propre à
+chaque langue). Le bug est **résolu**.
+
+### Guide de vérification (langues non lues) — noms de famille par langue
+
+Pour contrôler RU/PT sans les lire : les 7 pastilles couleur apparaissent dans le **même
+ordre** et la **même couleur** dans les 4 langues. Table de correspondance des en-têtes :
+
+| # | Couleur | FR | EN | PT | RU |
+|---|---------|----|----|----|----|
+| 1 | violet | Insuffisance | Insufficiency | Insuficiência | Недостаток |
+| 2 | rose | Influence | Influence | Influência | Влияние |
+| 3 | turquoise | Erreur mathématique | Mathematical Error | Erro Matemático | Математическая ошибка |
+| 4 | vert | Erreur de raisonnement | Faulty Logics | Lógicas Defeituosas | Ошибка рассуждения |
+| 5 | bleu | Abus de langage | Misleading Language | Abuso da Linguagem | Злоупотребление языком |
+| 6 | jaune | Tricherie | Cheating | Trapaça | Лукавство |
+| 7 | rouge | Obstruction | Obstruction | Obstrução | Обструкция |
+
+### Réserve mineure — RU, 7ᵉ famille (Обструкция) en bas de carte
+
+En RU, la 7ᵉ famille (Обструкция, rouge) tombe en pied de carte (verbosité cyrillique) :
+l'en-tête et le début de description rendent, mais la carte est plus dense qu'en FR/EN/PT.
+Non bloquant pour le correctif i18n (les 7 familles rendent) ; à surveiller si débordement
+au format imprimé.
+
+### Carte Mémo **Back** — observation séparée (pré-existante, hors #435)
+
+Le correctif des 3 sélecteurs du Back s'applique : le Back **rend** désormais la taxonomie
+complète dans les 4 langues (au lieu d'un cadre vide en EN/PT/RU). MAIS le Back **affiche
+les clés de taxonomie** (`{{Famille}}` ×14, `{{Sous-Famille}}` ×3, `{{Soussousfamille}}` ×3
+— aucun champ `desc_*` ni variante `_en/_ru/_pt`), donc il s'affiche **en français dans les
+4 langues** (rendus byte-identiques, 327 KB ; `memo_back_AFTER.png`). Le correctif (espace
+sur le sélecteur) **ne touche aucun champ d'affichage** → ce comportement FR du Back est
+**pré-existant**, pas une régression. **Question éditoriale ouverte pour jsboige** : le Back
+dense (« ARGUMENTUM — L'art de jamais avoir tort ») doit-il rester une référence FR, ou ses
+clés de taxonomie doivent-elles être localisées (tâche contenu/config distincte du bug
+sélecteur) ?
+
+🔒 Pas de merge avant le sign-off visuel #140 (couplé go-live site DNN).
 
 Refs #435.
