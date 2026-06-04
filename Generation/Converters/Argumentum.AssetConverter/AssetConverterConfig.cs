@@ -48,21 +48,21 @@ namespace Argumentum.AssetConverter
 			new DataSetInfo()
 			{
 				Name = KnownDataSets.Rules,
-				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Rules/Argumentum%20Rules%20-%20Cards.csv",
 				DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards.csv",
 				CsvType = typeof(Argumentum.AssetConverter.Entities.Rule)
 			},
 			new DataSetInfo()
 			{
 				Name = KnownDataSets.RulesPrintAndPlay,
-				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv",
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Rules/Argumentum%20Rules%20-%20Cards%20Print%20and%20Play.csv",
 				DebugFilePath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards Print and Play.csv",
 				CsvType = typeof(Argumentum.AssetConverter.Entities.Rule)
 			},
 			new DataSetInfo()
 			{
 				Name = KnownDataSets.Scenarii,
-				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Scenarii/Argumentum%20Scenarii%20-%20Cards.csv",
 				DebugFilePath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv",
 				CsvType = typeof(Argumentum.AssetConverter.Entities.Scenario)
 			},
@@ -70,14 +70,14 @@ namespace Argumentum.AssetConverter
 			{
 				Name = KnownDataSets.FallaciesTaxonomy,
 				CsvType = typeof(Fallacy),
-				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv",
 				DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"
 			},
 			new DataSetInfo()
 			{
 				Name = KnownDataSets.VirtuesTaxonomy,
 				CsvType = typeof(Virtue),
-				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
 				DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Virtues - Taxonomy.csv"
 			}
 		});

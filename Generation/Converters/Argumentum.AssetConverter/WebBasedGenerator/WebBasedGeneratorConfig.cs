@@ -80,7 +80,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Rules,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Rules/Argumentum_Rules_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
 						SkipDataUpdate = false,
 						Dpi = 300
@@ -97,7 +97,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
 						PauseForEdits = false,
 						Dpi = 300
@@ -105,7 +105,7 @@ namespace Argumentum.AssetConverter
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
 						Dpi = 300
 					}
@@ -120,14 +120,14 @@ namespace Argumentum.AssetConverter
 						{
 							"1",
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Virtues_Face_fr.json",
 						Dpi = 300
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
 						Dpi = 300
 					}
@@ -137,7 +137,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Face_fr.json",
 						Dpi = 300
 						// RowsetNb non défini → utilise rscount=1 du template JSON (1 ligne CSV par carte)
@@ -145,7 +145,7 @@ namespace Argumentum.AssetConverter
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
 						RowsetNb = 14,  // Requis car template utilise {{rowset.[0].catégorie}}
 						Dpi = 300
@@ -162,14 +162,14 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_2_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Face_2_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_2_fr.json",
 						Dpi = 300
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
 						Dpi = 300
 					}
@@ -185,14 +185,14 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_3_fr.json",
 						Dpi = 300
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
 						Dpi = 300
 					}
@@ -202,7 +202,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.RulesPrintAndPlay,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Rules/Argumentum_Rules_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Rules\Argumentum_Rules_fr.json",
 						SkipDataUpdate = false,
 						Dpi = 300
@@ -220,14 +220,14 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
 						Dpi = 300
 					},
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.None,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
 						Dpi = 300
 					}
@@ -243,7 +243,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Memo/Argumentum_Memo_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Face_fr.json",
 						Dpi = 300
 					},
@@ -256,7 +256,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Memo/Argumentum_Memo_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Back_fr.json",
 						Dpi = 300
 					}
@@ -266,7 +266,7 @@ namespace Argumentum.AssetConverter
 					FaceCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Face_fr.json",
 						CsvFilterField = "print_and_play",
 						CsvFilterValues = new List<string>(new []
@@ -279,7 +279,7 @@ namespace Argumentum.AssetConverter
 					BackCardSetInfo = new CardSetInfo()
 					{
 						DataSet = KnownDataSets.Scenarii,
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
 						RowsetNb = 14,  // Requis car template utilise {{rowset.[0].catégorie}}
 						Dpi = 300
@@ -296,7 +296,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Face_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Memo/Argumentum_Memo_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Face_fr.json",
 						Dpi = 300
 					},
@@ -309,7 +309,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Memo/Argumentum_Memo_Back_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Memo/Argumentum_Memo_Back_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Memo\Argumentum_Memo_Back_fr.json",
 						Dpi = 300
 					}
@@ -325,7 +325,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json",
 						Dpi = 400
 
@@ -342,7 +342,7 @@ namespace Argumentum.AssetConverter
 							"1",
 							"2"
 						}),
-						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_Web_fr.json",
 						Dpi = 72
 					}

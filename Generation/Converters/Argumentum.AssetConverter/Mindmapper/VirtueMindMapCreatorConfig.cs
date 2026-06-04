@@ -63,14 +63,14 @@ namespace Argumentum.AssetConverter.Mindmapper
                             {
                                 DocumentName    = "Argumentation_Virtues_[LANGUAGE].html",
                                 TemplatePathRelease =
-                                    "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/included.html",
+                                    "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Mindmaps/included.html",
                                 TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\included.html"
                             },
                             new DocumentConfig()
                             {
                                 DocumentName    = "Argumentation_Virtues_[LANGUAGE]_ext.html",
                                 TemplatePathRelease =
-                                    "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Mindmaps/external.html",
+                                    "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/integ/140-regen/Cards/Fallacies/Mindmaps/external.html",
                                 TemplatePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Mindmaps\external.html"
                             },
                         })
