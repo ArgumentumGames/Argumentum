@@ -4,7 +4,7 @@
 >
 > **Statut.** Procédure de validation — stable indépendamment du contenu. À utiliser après une régénération complète. Sert l'issue **#140** (QA multilingue) et le gate release **#134**.
 >
-> **Date.** 2026‑05‑31 ; table de couverture §4 rafraîchie 2026‑06‑02 ; §1 corrigé 2026‑06‑02 (chemin → build `Release`, post‑#424 8 langues) ; §2bis ajouté 2026‑06‑03 (pré‑validation mécanique harnais #412) (`master`). Auteur : ai‑01.
+> **Date.** 2026‑05‑31 ; table de couverture §4 rafraîchie 2026‑06‑02 ; §1 corrigé 2026‑06‑02 (chemin → build `Release`, post‑#424 8 langues) ; §2bis ajouté 2026‑06‑03 (pré‑validation mécanique harnais #412) ; **§2ter ajouté 2026‑06‑04 (statut #250 Rules + #435 Mémo résolus sur branches #438/#439, validés visuellement)** (`master`). Auteur : ai‑01.
 
 ---
 
@@ -96,7 +96,29 @@ Lecture : sur les cartes **fond blanc** (Rules, Scenarii) `WhiteBand` + `blank�
 1. **Preuve d'inventaire** (présence / dimensions / non‑vide) → la masse est saine, auto‑PASS justifié.
 2. **Filtre d'exceptions par‑CardSet** (post‑#431) → les 3 vrais foyers ci‑dessus, chiffrés, au lieu d'un binaire non‑discriminant.
 
-> **Le harnais ne remplace pas le jugement visuel** (lane ai‑01, non déléguée). Il garantit l'inventaire et isole les foyers ; les verdicts « belle/moche/à‑risque » restent à l'œil (§2/§3). Section **Rules du dossier = « pending re‑check »** jusqu'au fix #250 ; **Scenarii cartes denses** = nouveau point d'attention œil ; **Virtues zh/ru/es/pt** = vérifier le débordement bas sur 2‑3 cartes longues.
+> **Le harnais ne remplace pas le jugement visuel** (lane ai‑01, non déléguée). Il garantit l'inventaire et isole les foyers ; les verdicts « belle/moche/à‑risque » restent à l'œil (§2/§3). Section **Rules du dossier = « pending re‑check »** jusqu'au fix #250 (→ **levé**, voir §2ter) ; **Scenarii cartes denses** = nouveau point d'attention œil ; **Virtues zh/ru/es/pt** = vérifier le débordement bas sur 2‑3 cartes longues.
+
+---
+
+## 2ter. Statut #250 (Rules) + #435 (Mémo) — résolus sur branches, validés visuellement (2026‑06‑04)
+
+> **Pourquoi cette section.** Les 7 problèmes signalés sur **#250** (layout Rules) et **#435** (Mémo) — restés ~1 mois sans diagnostic précis ni validation multilingue — sont **traités et validés à l'œil** ce cycle, sur **branches feature tenues** (pas encore mergées). Le §2bis ci‑dessus et les §2/§3/§4 décrivent l'état **`master`/`Release` actuel** (= **pré‑fix**) ; cette section dit ce qui change après merge + régén.
+
+### #250 Rules — refonte éditoriale 24 → 15 cartes ✅ (PR #438, supersede #437)
+La restructuration `Cards/Rules/Argumentum Rules - Cards.csv` **24 → 15 cartes** + remap CSS 15‑cartes traite les **6 problèmes de layout** : décompte coupé, covers vides, couleurs (CSS 1‑18→remap 15), orphelins DBP/Moulin fusionnés, Parlote §3 déplacé. **Validé CardPen/Playwright + régén Debug** (15 cartes Rules_01–15, cover + carte 9 H1 dense DBP + carte 15, **0 px overflow** FR). Miroir 8 langues po‑2023 (`0cee7d64`, déplacements de paragraphes purs, **invariant byte‑identique 7/7** EN/RU/PT/AR/ES/ZH/FA). Dossier : `docs/investigations/2026-06-04-rules-250-validation/`.
+> **Conséquence sur §2bis.** L'inventaire harnais Rules (24 cartes, `rules_23` Parlote saturation, etc.) est **caduc dès le merge #438** : il n'y a plus 24 mais **15** cartes ; `rules_23` n'existe plus (Parlote §3 réabsorbé). La ligne « Rules = pending re‑check jusqu'au fix #250 » est **levée**.
+
+### #435 Mémo — i18n du sélecteur de famille ✅ (PR #439)
+Le Mémo Face ne rendait que FR 7/7, EN 2/7 (cognats), PT/RU 0/7. **Cause = sélecteur `{{#ifCond Famille "==" text_fr}}` non localisé symétriquement** (bug de config, pas de traduction manquante). **Fix = 1 espace `text_fr }}`** → sélecteur FR‑vs‑FR language‑invariant. **Régén Debug : 7/7 familles dans les 4 langues** (EN 2→7, PT 0→7, RU 0→7), texte localisé. Réserve mineure RU (7ᵉ famille Обструкция en pied de carte, cyrillique verbeux — non bloquant, surveiller à l'impression). Dossier + 5 PNG AFTER + table de correspondance des 7 en‑têtes par langue (pour vérifier RU/PT sans les lire) : `docs/investigations/2026-06-04-memo-435-i18n-gap/`.
+> **Note §2bis.** Le Mémo était **absent** du harnais #412 (qui couvre Fallacies‑Web / Rules / Scenarii / Virtues). Après merge #439 + régén, le Mémo rejoint la grille de validation.
+
+### ⚠️ Question éditoriale ouverte (décision jsboige) — Mémo **Back**
+Le Back rend désormais la taxonomie complète dans les 4 langues, MAIS il **affiche les clés de taxonomie** (`{{Famille}}`/`{{Sous-Famille}}`/`{{Soussousfamille}}`, aucun `desc_*`) → **en français dans les 4 langues** (pré‑existant, hors fix sélecteur, pas une régression). À trancher : référence FR assumée, ou localiser les clés (tâche contenu/config distincte) ?
+
+### Séquence pour passer au vert (jeudi, au sign‑off #140)
+1. Merge **#438 puis #439** (auth jsboige si ai‑01 denied).
+2. **Régén `-c Release` sur un `Target` propre** (⚠️ la régén Debug a rafraîchi les harvest JSON mais **pas** les PNG standalone `Images/density-0/` — partir d'un Target propre évite des PNG périmés).
+3. ai‑01 re‑check visuel 8 langues → bascule Rules/Mémo en ✅ dans ce dossier.
 
 ---
 
