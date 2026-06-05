@@ -1,0 +1,62 @@
+[
+  {
+    "PK": "139",
+    "name": "",
+    "original": {
+      "desc_pt": "Vós avaliais cenários reais a partir de uma perspectiva idealizada, ignorando defeitos e motivações.",
+      "example_pt": "Para resolver o desemprego, não há mistério: é preciso trabalhar mais."
+    },
+    "modernized": {
+      "desc_pt": "Vocês avaliam cenários reais a partir de uma perspectiva idealizada, ignorando defeitos e motivações.",
+      "example_pt": "Para resolver o desemprego, não há mistério: é preciso trabalhar mais."
+    }
+  },
+  {
+    "PK": "176",
+    "name": "",
+    "original": {
+      "desc_pt": "Utilizais fórmulas sedutoras e um estilo persuasivo para convencer, sem necessariamente fundamentar o vosso discurso num raciocínio lógico.",
+      "example_pt": "A vossa eloquência está à altura da vossa presença: sois verdadeiramente excepcionais."
+    },
+    "modernized": {
+      "desc_pt": "Utilizam fórmulas sedutoras e um estilo persuasivo para convencer, sem necessariamente fundamentar o seu discurso num raciocínio lógico.",
+      "example_pt": "A sua eloquência está à altura da sua presença: são verdadeiramente excepcionais."
+    }
+  },
+  {
+    "PK": "360",
+    "name": "",
+    "original": {
+      "desc_pt": "Alternais habilmente entre o pró e o contra, confundindo o vosso auditório, que já não sabe qual é o vosso verdadeiro ponto de vista.",
+      "example_pt": "É importante preservar nossas tradições, mas enriquecer a nossa cultura também é crucial."
+    },
+    "modernized": {
+      "desc_pt": "Alternam habilmente entre o pró e o contra, confundindo o seu auditório, que já não sabe qual é o seu verdadeiro ponto de vista.",
+      "example_pt": "É importante preservar nossas tradições, mas enriquecer a nossa cultura também é crucial."
+    }
+  },
+  {
+    "PK": "459",
+    "name": "",
+    "original": {
+      "desc_pt": "Vocês manipulam conscientemente a realidade para fazer alguém duvidar das suas próprias memórias ou percepções.",
+      "example_pt": "Não vos lembrais de que me prometestes vir a esta reunião? Esqueceis-vos frequentemente do que dizeis, isso é preocupante. Talvez devêsseis prestar mais atenção."
+    },
+    "modernized": {
+      "desc_pt": "Vocês manipulam conscientemente a realidade para fazer alguém duvidar das suas próprias memórias ou percepções.",
+      "example_pt": "Vocês não se lembram de que me prometeram vir a esta reunião? Vocês se esquecem frequentemente do que dizem, isso é preocupante. Talvez devessem prestar mais atenção."
+    }
+  },
+  {
+    "PK": "817",
+    "name": "",
+    "original": {
+      "desc_pt": "Vós vedes as coisas em preto ou branco, sem nuances. Se não sois perfeitos, considerais-vos um fracasso total.",
+      "example_pt": "Se eu não tirei A no meu exame, então sou um completo zero nesta matéria."
+    },
+    "modernized": {
+      "desc_pt": "Vocês veem as coisas em preto ou branco, sem nuances. Se não são perfeitos, consideram-se um fracasso total.",
+      "example_pt": "Se eu não tirei A no meu exame, então sou um completo zero nesta matéria."
+    }
+  }
+]
