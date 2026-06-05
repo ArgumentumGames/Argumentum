@@ -113,8 +113,8 @@ La restructuration `Cards/Rules/Argumentum Rules - Cards.csv` **24 → 15 cartes
 Le Mémo Face ne rendait que FR 7/7, EN 2/7 (cognats), PT/RU 0/7. **Cause = sélecteur `{{#ifCond Famille "==" text_fr}}` non localisé symétriquement** (bug de config, pas de traduction manquante). **Fix = 1 espace `text_fr }}`** → sélecteur FR‑vs‑FR language‑invariant. **Régén Debug : 7/7 familles dans les 4 langues** (EN 2→7, PT 0→7, RU 0→7), texte localisé. Réserve mineure RU (7ᵉ famille Обструкция en pied de carte, cyrillique verbeux — non bloquant, surveiller à l'impression). Dossier + 5 PNG AFTER + table de correspondance des 7 en‑têtes par langue (pour vérifier RU/PT sans les lire) : `docs/investigations/2026-06-04-memo-435-i18n-gap/`.
 > **Note §2bis.** Le Mémo était **absent** du harnais #412 (qui couvre Fallacies‑Web / Rules / Scenarii / Virtues). Après merge #439 + régén, le Mémo rejoint la grille de validation.
 
-### ⚠️ Question éditoriale ouverte (décision jsboige) — Mémo **Back**
-Le Back rend désormais la taxonomie complète dans les 4 langues, MAIS il **affiche les clés de taxonomie** (`{{Famille}}`/`{{Sous-Famille}}`/`{{Soussousfamille}}`, aucun `desc_*`) → **en français dans les 4 langues** (pré‑existant, hors fix sélecteur, pas une régression). À trancher : référence FR assumée, ou localiser les clés (tâche contenu/config distincte) ?
+### ✅ Mémo **Back** — localisé (décision jsboige 2026‑06‑05, PR #443)
+Décision : **localiser** EN/RU/PT (pas FR‑assumé). Le sous‑titre figé « L'art de jamais avoir tort » est traduit via `StaticConversions` (`LocalizationConfig`), les labels `{{Famille}}`/`{{Sous‑Famille}}`/`{{Soussousfamille}}` se localisent via les `FrontFieldConversions` existantes. Le sélecteur `ifCond` reste FR‑invariant (garantit le groupement 8/8 familles). PR #443.
 
 ### Séquence pour passer au vert (jeudi, au sign‑off #140)
 1. Merge **#438 puis #439** (auth jsboige si ai‑01 denied).

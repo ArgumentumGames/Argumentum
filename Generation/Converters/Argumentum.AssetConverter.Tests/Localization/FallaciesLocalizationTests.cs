@@ -121,6 +121,35 @@ namespace Argumentum.AssetConverter.Tests.Localization
 				"Sous-Famille must be substituted before Famille to prevent partial overlap");
 		}
 
+
+		[Theory]
+		[InlineData("en")]
+		[InlineData("ru")]
+		[InlineData("pt")]
+		public void Memo_Back_Template_Subtitle_Is_Translated_And_Selector_Stays_FR(string destLang)
+		{
+			// Regression test for #358 / #443 — two bugs caught by ai-01 validation:
+			//  Bug 1: apostrophe U+2019 in source vs U+0027 in template -> subtitle stays FR.
+			//  Bug 2: converting text_fr->text_en in ifCond breaks family grouping (6/8 families vanish).
+			var original = ReadTemplate("Cards/Memo/Argumentum_Memo_Back_fr.json");
+			var loc = GetFallaciesLocalization();
+
+			// Apply FrontFieldConversions (Famille->Family etc.)
+			var translated = ApplyFrontSubstitution(loc, original, destLang);
+
+			// Apply StaticConversions (subtitle translation)
+			translated = loc.DoStaticConversions(translated, destLang);
+
+			// (a) Subtitle must be translated — no more FR "L'art de jamais avoir tort"
+			translated.Should().NotContain("L'art de jamais avoir tort",
+				$"{destLang} Memo Back must have a translated subtitle, not the FR original (#358)");
+
+			// (b) The ifCond selector must stay FR-invariant — text_fr must remain
+			//     so that Famille(FR)==text_fr(FR) still groups all 8 families correctly.
+			translated.Should().Contain("text_fr ",
+				$"{destLang} Memo Back ifCond must keep text_fr (FR-invariant selector for family grouping)");
+		}
+
 		[Fact]
 		public void Rules_Localization_Is_Configured_For_All_Target_Languages()
 		{
