@@ -118,6 +118,32 @@ namespace Argumentum.AssetConverter
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt"), ("es", "tagline_es"), ("ar", "tagline_ar"), ("fa", "tagline_fa"), ("zh", "tagline_zh") }) ),
 					}),
+					// StaticConversions: handle hardcoded FR text in Memo templates that FrontFieldConversions
+					// cannot reach (text not wrapped in {{}}). Safe for Fallacies templates (no-op if absent).
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						// Memo Back/Face subtitle: hardcoded FR subtitle, not a {{variable}} (#358).
+						("L’art de jamais avoir tort", new List<(string Language, string destText)>(new []{
+							("en", "The art of never being wrong"),
+							("ru", "Искусство никогда не ошибаться"),
+							("pt", "A arte de nunca estar errado"),
+							("es", "El arte de nunca estar equivocado"),
+							("ar", "فن أن لا تكون على خطأ"),
+							("fa", "هنر اشتباه نکردن"),
+							("zh", "永远不会错的艺术")
+						}) ),
+						// Memo ifCond: bare text_fr inside {{#ifCond Famille "==" text_fr }} is NOT wrapped in {{}}
+						// so FrontFieldConversions (which wraps with FormatField = "fieldName}}") cannot match it.
+						// The trailing space avoids false positives on {{text_fr}} (already handled).
+						("text_fr ", new List<(string Language, string destText)>(new []{
+							("en", "text_en "),
+							("ru", "text_ru "),
+							("pt", "text_pt "),
+							("es", "text_es "),
+							("ar", "text_ar "),
+							("fa", "text_fa "),
+							("zh", "text_zh ")
+						}) ),
+					}),
 				},
 				new CardSetLocalization()
 				{
