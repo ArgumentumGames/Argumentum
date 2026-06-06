@@ -58,6 +58,21 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			return template;
 		}
 
+		// Mirrors the Back branch of CardSetLocalization.TranslateCardSetInfo (front:false) — at runtime
+		// the Memo Back card is localized through BackFieldConversions, NOT FrontFieldConversions.
+		private static string ApplyBackSubstitution(CardSetLocalization loc, string template, string destLang)
+		{
+			foreach (var fieldConversion in loc.BackFieldConversions)
+			{
+				var sourcePattern = loc.FormatField(fieldConversion.sourceFieldName);
+				var conv = fieldConversion.fieldConversions.FirstOrDefault(c => c.Language == destLang);
+				if (string.IsNullOrEmpty(conv.destFieldName)) continue;
+				var destPattern = loc.FormatField(conv.destFieldName);
+				template = template.Replace(sourcePattern, destPattern);
+			}
+			return template;
+		}
+
 		[Theory]
 		[InlineData("Cards/Fallacies/Argumentum_Fallacies_Face_fr.json", "en")]
 		[InlineData("Cards/Fallacies/Argumentum_Fallacies_Face_fr.json", "ru")]
@@ -148,6 +163,69 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			//     so that Famille(FR)==text_fr(FR) still groups all 8 families correctly.
 			translated.Should().Contain("text_fr ",
 				$"{destLang} Memo Back ifCond must keep text_fr (FR-invariant selector for family grouping)");
+		}
+
+		[Theory]
+		[InlineData("en", "Family", "Subfamily", "Subsubfamily")]
+		[InlineData("ru", "Family_ru", "Subfamily_ru", "Subsubfamily_ru")]
+		[InlineData("pt", "Family_pt", "Subfamily_pt", "Subsubfamily_pt")]
+		public void Memo_Back_Taxonomy_Display_Tokens_Are_Localized_While_Grouping_Selector_Stays_FR(
+			string destLang, string family, string subfamily, string subsubfamily)
+		{
+			// Regression test for the #358/#435/#443 follow-up — the Memo Back card kept its taxonomy
+			// labels in French (Famille / Sous-Famille / Soussousfamille) in EN/RU/PT because the Memo
+			// BackFieldConversions only carried tagline_fr. At runtime the Back is rendered through
+			// BackFieldConversions (TranslateCardSetInfo, front:false), so the taxonomy DISPLAY tokens
+			// must be localized there — while the FR-invariant ifCond family selector (Famille == text_fr)
+			// must stay untouched so the 8 families still group correctly.
+			var original = ReadTemplate("Cards/Memo/Argumentum_Memo_Back_fr.json");
+			var loc = GetFallaciesLocalization();
+
+			var translated = ApplyBackSubstitution(loc, original, destLang);
+			translated = loc.DoStaticConversions(translated, destLang);
+
+			// (a) Display tokens localized to the real CSV columns (casing matters — CsvHelper is case-sensitive).
+			translated.Should().Contain("{{" + family + "}}", $"{destLang} Back must bind family label to CSV column '{family}'");
+			translated.Should().Contain("{{" + subfamily + "}}", $"{destLang} Back must bind subfamily label to CSV column '{subfamily}'");
+			translated.Should().Contain("{{" + subsubfamily + "}}", $"{destLang} Back must bind subsubfamily label to CSV column '{subsubfamily}'");
+
+			// (b) French display tokens must be gone.
+			translated.Should().NotContain("{{Famille}}", $"{destLang} Back family label must no longer be the FR token");
+			translated.Should().NotContain("{{Sous-Famille}}", $"{destLang} Back subfamily label must no longer be the FR token");
+			translated.Should().NotContain("{{Soussousfamille}}", $"{destLang} Back subsubfamily label must no longer be the FR token");
+
+			// (c) The FR-invariant grouping selector must survive: ifCond keeps Famille == text_fr.
+			//     NB: this template is read raw from the .json (no JSON-unescape), so the operator quotes
+			//     appear escaped on disk as \"==\" — assert against that on-disk form.
+			translated.Should().Contain("Famille \\\"==\\\"", $"{destLang} Back ifCond family operand must stay FR (data-driven grouping)");
+			translated.Should().Contain("text_fr ", $"{destLang} Back ifCond must keep text_fr (FR-invariant selector)");
+
+			// (d) The CSS colour class binding ({{Famille_camelCase}}) must stay intact.
+			translated.Should().Contain("Famille_camelCase", $"{destLang} Back CSS colour class binding must be preserved");
+
+			// (e) Subtitle still localized via StaticConversions.
+			translated.Should().NotContain("L'art de jamais avoir tort", $"{destLang} Back subtitle must be translated (#358)");
+		}
+
+		[Fact]
+		public void Memo_Back_Conversions_Include_Taxonomy_Ordered_MostSpecificFirst()
+		{
+			var loc = GetFallaciesLocalization();
+			var names = loc.BackFieldConversions.Select(c => c.sourceFieldName).ToList();
+
+			names.Should().Contain("Soussousfamille", "Memo Back must localize the subsubfamily label (#443 follow-up)");
+			names.Should().Contain("Sous-Famille", "Memo Back must localize the subfamily label (#443 follow-up)");
+			names.Should().Contain("Famille", "Memo Back must localize the family label (#443 follow-up)");
+			names.Should().Contain("tagline_fr", "the original tagline mapping must be preserved");
+
+			var soussousIndex = names.IndexOf("Soussousfamille");
+			var sousIndex = names.IndexOf("Sous-Famille");
+			var familleIndex = names.IndexOf("Famille");
+
+			soussousIndex.Should().BeLessThan(sousIndex,
+				"Soussousfamille must precede Sous-Famille so 'Famille}}' does not clobber 'Sous-Famille}}'");
+			sousIndex.Should().BeLessThan(familleIndex,
+				"Sous-Famille must precede Famille to prevent partial overlap");
 		}
 
 		[Fact]
