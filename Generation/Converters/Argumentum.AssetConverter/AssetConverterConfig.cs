@@ -116,6 +116,14 @@ namespace Argumentum.AssetConverter
 						("example_fr", new List<(string Language, string destFieldName)>(new []{("en", "example_en"), ("ru", "example_ru"), ("pt", "example_pt"), ("es", "example_es"), ("ar", "example_ar"), ("fa", "example_fa"), ("zh", "example_zh") }) ),
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						// Memo Back renders the SAME taxonomy display tokens as the Face ({{Famille}}/{{Sous-Famille}}/{{Soussousfamille}}) — #358/#435/#443 follow-up.
+						// Without these the Back stayed FR in EN/RU/PT (only the subtitle localized via StaticConversions). Order: most specific first
+						// (Soussousfamille > Sous-Famille > Famille) so "Famille}}" does not clobber the longer "Sous-Famille}}".
+						// SAFE for the FR-invariant family selector: FormatField appends "}}" with NO space, so it matches {{Famille}} but NOT the
+						// ifCond operand `Famille "=="` (space before "==") nor {{Famille_camelCase}} (CSS colour class). Grouping stays data-driven (8/8).
+						("Soussousfamille", new List<(string Language, string destFieldName)>(new []{("en", "Subsubfamily"), ("ru", "Subsubfamily_ru"), ("pt", "Subsubfamily_pt"), ("es", "Subsubfamily_es"), ("ar", "Subsubfamily_ar"), ("fa", "Subsubfamily_fa"), ("zh", "Subsubfamily_zh") }) ),
+						("Sous-Famille", new List<(string Language, string destFieldName)>(new []{("en", "Subfamily"), ("ru", "Subfamily_ru"), ("pt", "Subfamily_pt"), ("es", "Subfamily_es"), ("ar", "Subfamily_ar"), ("fa", "Subfamily_fa"), ("zh", "Subfamily_zh") }) ),
+						("Famille", new List<(string Language, string destFieldName)>(new []{("en", "Family"), ("ru", "Family_ru"), ("pt", "Family_pt"), ("es", "Family_es"), ("ar", "Family_ar"), ("fa", "Family_fa"), ("zh", "Family_zh") }) ),
 						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt"), ("es", "tagline_es"), ("ar", "tagline_ar"), ("fa", "tagline_fa"), ("zh", "tagline_zh") }) ),
 					}),
 					// StaticConversions: handle hardcoded FR text in Memo templates that FrontFieldConversions
