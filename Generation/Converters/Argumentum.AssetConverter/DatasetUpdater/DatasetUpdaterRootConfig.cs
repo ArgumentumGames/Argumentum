@@ -2583,6 +2583,55 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Fallacies cosmetic polish PT register gpt-5.5",
+				SourceDataset = KnownDataSets.FallaciesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"text_fr",
+					"text_en",
+					"text_pt",
+					"desc_pt",
+					"example_pt",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"text_pt",
+					"desc_pt",
+					"example_pt",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterAssistant.txt"
+					}
+				},
+				Model = "gpt-5.5",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 300000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = true,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }
