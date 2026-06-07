@@ -135,7 +135,7 @@ Both are patched in DNN 9.13.x+.
 | **2. Stripe Native** | Remove NBrightBuy, implement Stripe Checkout/Products | Eliminates RazorEngine CVE, .NET 8 compatible, modern API | Rewrite e-shop views, Stripe account setup needed | ✅ |
 | **3. Remove Eshop** | Remove NBrightBuy, no replacement | Simplest, eliminates CVE, unblocks upgrade | No e-commerce capability | ✅ |
 
-**Recommendation**: **Option 2 (Stripe Native)** — eliminates the unfixable CVE, future-proofs for DNN 10.x, and Stripe Products API provides equivalent functionality. Option 3 is acceptable if e-commerce is not a current business requirement.
+**Decision jsboige (2026-06-07)**: **Option 2 (Stripe Native)** — validé. L'eshop actuel (OpenStore) sera remplacé par Stripe. Épic créée (#445) pour tracker la mise en œuvre. Le compte revendeur existant dans OpenStore sera évalué dans la conception Stripe (Stripe Connect marketplace ou modèle hors-ligne).
 
 ---
 
@@ -164,26 +164,73 @@ Both are patched in DNN 9.13.x+.
 |------|-------------|--------|------------|
 | SQL migration failure (9.11→9.13) | Low | High | Full DB backup before upgrade, test on LocalDB first |
 | 12 RazorComponent templates break | Medium | Medium | Migration is code-only, no data impact; test each template |
-| OpenStore incompatibility with 9.13.x | Low | Medium | 9.13.x stays on .NET 4.8 — OpenStore should be compatible |
-| .NET 8 migration breaks custom modules | High | High | Phase 2 only — after eshop decision, full test environment |
+| OpenStore incompatibility with 9.13.x | Low | Medium | 9.13.x stays on .NET 4.8 — OpenStore should be compatible; Phase 2 removes it entirely |
+| .NET 8 migration breaks custom modules | High | High | Phase 3 only — after eshop replacement, full test environment |
 | Downtime during upgrade | Medium | Medium | Plan maintenance window, test upgrade on clone first |
+| Stripe integration complexity | Medium | Medium | Epic #445 — scope reseller marketplace vs. simple checkout early |
 
 ---
 
 ## 8. Proposed Execution Order
 
-### Phase 1: Security (Immediate — no blockers)
-1. ✅ Apply web.config hardening (PR #442 — jsboige applies on VPS)
-2. Upgrade DNN 9.11.1 → 9.13.x (fixes CVE-2025-52488 + CVE-2025-64095)
-3. Migrate 12 RazorComponent → Razor14 templates
-4. Verify all 4 Argumentum custom templates still work
-5. Smoke test on LocalDB clone before production
+### Phase 1: Security Upgrade 9.11.1 → 9.13.x (Immediate — no blockers)
 
-### Phase 2: Eshop Decision (jsboige call needed)
-1. Evaluate business need for e-commerce
-2. If yes → implement Stripe Native (eliminates RazorEngine CVE)
-3. If no → remove NBrightBuy (cleanest path to DNN 10.x)
-4. Either way → eliminate RazorEngine dependency
+**Objective**: Patch 2 CRITICAL CVEs. Stay on .NET 4.8 (no eshop blocker). Est. 1-2h downtime.
+
+#### Step 1: Pre-flight (on VPS, ~15 min)
+
+1. **Full DB backup**: `BACKUP DATABASE [ArgumentumGames] TO DISK = N'...'` (SQL Server, not LocalDB on prod)
+2. **Filesystem snapshot**: zip `DNNPlatform/` (or VPS snapshot)
+3. **Verify current state**: `SELECT * FROM {databaseOwner}{objectQualifier}Version` → should show 9.11.1
+4. **Export 2sxc app**: via 2sxc Admin UI → export Argumentum app (safety net)
+
+#### Step 2: DNN Upgrade 9.11.1 → 9.13.x (~30 min)
+
+1. Download DNN 9.13.x install package from dnncommunity.org
+2. **Stop IIS** (or IIS Express if dev)
+3. **Backup `bin/`**, `web.config`, `DotNetNuke.config`
+4. Extract upgrade package over existing install (do NOT delete `App_Data/`, `Portals/`)
+5. **Merge `web.config`**: keep connection string, machineKey (GDrive authoritative), custom modules. DNN upgrade may add new sections.
+6. **Start IIS**
+7. Navigate to site → DNN auto-runs upgrade wizard → SQL migration scripts execute
+8. Verify: `SELECT * FROM {databaseOwner}{objectQualifier}Version` → 9.13.x
+9. **Check 2sxc**: Admin → 2sxc should still show 21.07 (2sxc is independent of DNN version on .NET 4.8)
+
+**Key concern**: `web.config` merge. DNN 9.12+ may add new assembly bindings or security settings. Manual merge required — never accept the default overwrite.
+
+#### Step 3: RazorComponent Migration (~3-5h, can run in parallel)
+
+1. Create backup of `Portals/1/2sxc/` (all apps)
+2. **Migrate `_Parts.cshtml`** first (12 `@helper` → `@functions` with `static` methods, or split into partials)
+3. Migrate each of the 12 templates: `@inherits ToSic.Sxc.Dnn.RazorComponent` → `@inherits Custom.Hybrid.Razor14`
+4. Replace `@helper` calls with the new pattern
+5. **Test each template** in 2sxc preview mode
+6. Verify the 4 Argumentum templates (`_FallacyExplorer_*`, `_RulesExplorer_*`, `_Album List`) are **untouched** (already Razor14)
+
+**2sxc compatibility note**: RazorComponent is deprecated since 2sxc 12. Razor14 is the current stable base. The migration is mechanical (find/replace + helper refactoring).
+
+#### Step 4: Verification Checklist
+
+- [ ] Site loads (homepage, admin panel)
+- [ ] Argumentum app: Fallacy Explorer renders correctly
+- [ ] Argumentum app: Rules Explorer renders correctly
+- [ ] Argumentum app: Album List renders correctly
+- [ ] 2sxc Admin → manages content types, views, data
+- [ ] OpenStore/NBrightBuy: admin accessible (still on .NET 4.8, should work)
+- [ ] No JavaScript console errors on public pages
+- [ ] SQL: no orphaned schema objects
+- [ ] Login works (admin + test user)
+- [ ] SEO URLs still resolve (SiteUrls.config intact)
+
+### Phase 2: Eshop Migration — Stripe Native (jsboige decision: Option 2 ✅)
+
+**Decision made 2026-06-07**: Stripe Native replaces OpenStore/NBrightBuy. Epic #445 tracks implementation.
+
+1. Design Stripe integration (Connect marketplace vs. offline model for existing reseller account)
+2. Implement Stripe Checkout/Products for Argumentum game sales
+3. Remove NBrightBuy + RazorEngine dependency → eliminates CVE-2021-46703
+4. Evaluate manufacturing/distribution partners (EU-based, languages we support)
+5. This phase **unblocks DNN 10.x** (.NET 8) — no more .NET Framework dependency
 
 ### Phase 3: DNN 10.x (After Phase 2)
 1. Upgrade DNN 9.13.x → 10.3.2
@@ -201,10 +248,10 @@ Both are patched in DNN 9.13.x+.
 ## 9. Prerequisites (jsboige action needed)
 
 - [ ] **VPS access** — for production upgrade and backup
-- [ ] **Eshop decision** — Option 1/2/3 (blocks Phase 2+)
+- [x] **Eshop decision** — ~~Option 1/2/3~~ → **Option 2 (Stripe Native)** validé 2026-06-07
 - [ ] **Maintenance window** — for DNN upgrade (est. 1-2h downtime)
 - [ ] **Production DB backup** — before any schema migration
-- [ ] **Stripe account** — if Option 2 chosen (for payment integration)
+- [ ] **Stripe account** — for payment integration (Epic #445)
 
 ---
 
