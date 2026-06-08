@@ -31,7 +31,7 @@ Chaque dossier langue contient **8 PDF** (mêmes noms, suffixe de langue) :
 | `Argumentum_Fallacies_Web_A0_<lang>.pdf` | Poster A0 | entête logo+QR, 12 colonnes |
 | `Argumentum_Fallacies_Web_Thumbnails_A4_<lang>.pdf` | Vignettes | lisibilité 50×50 |
 
-> **Release vs Debug — quelle build valider.** La validation release se fait sur **`Release/…`** (CMYK/PNG sans perte, `-c Release`) : c'est la seule build qui contient les **8 langues** et reflète la dernière décision éditoriale (#424 — racines de famille blankées). Au 2026‑06‑02 c'est la build de référence (post‑#424, 8 langues, datée du jour). La build `Debug/…` (RGB/JPEG) convient pour un contrôle rapide *contenu/layout* **seulement si elle est à jour** — ⚠️ sur cette machine elle est partielle (4 langues `fr en ru pt`, antérieure à #424) : **ne pas valider la release dessus**. **Avant validation : confirmer les 8 sous‑dossiers `fr en ru pt es ar fa zh` + la date des PDF (= dernière régén).**
+> **Release vs Debug — quelle build valider.** La validation release se fait sur **`Release/…`** (CMYK/PNG sans perte, `-c Release`) : c'est la seule build qui contient les **8 langues** et reflète la dernière décision éditoriale (#424 — racines de famille blankées). Au 2026‑06‑02 c'est la build de référence (post‑#424, 8 langues, datée du jour). La build `Debug/…` (RGB/JPEG) convient pour un contrôle rapide *contenu/layout* **seulement si elle est à jour** — ⚠️ sur cette machine elle est partielle (4 langues `fr en ru pt`, antérieure à #424) : **ne pas valider la release dessus**. **Avant validation : confirmer les 8 sous‑dossiers `fr en ru pt es ar fa zh` + la date des PDF (= dernière régén).** ⚠️ **MAJ 2026‑06‑08 : la build `Release/…` locale (datée 02‑06) est ANTÉRIEURE à #443/#446 → Mémo Back stale FR** (cf. §2ter « Caveat build Release locale »). Un `-c Release` final post‑`dc01445f` avec clobber des harvests Mémo est requis avant tout sign‑off/tag.
 
 ---
 
@@ -100,9 +100,9 @@ Lecture : sur les cartes **fond blanc** (Rules, Scenarii) `WhiteBand` + `blank�
 
 ---
 
-## 2ter. Statut #250 (Rules) + #435 (Mémo) — résolus sur branches, validés visuellement (2026‑06‑04)
+## 2ter. Statut #250 (Rules) + #435/#443 (Mémo) — MERGÉS sur master, validés sur full‑regen (maj 2026‑06‑08)
 
-> **Pourquoi cette section.** Les 7 problèmes signalés sur **#250** (layout Rules) et **#435** (Mémo) — restés ~1 mois sans diagnostic précis ni validation multilingue — sont **traités et validés à l'œil** ce cycle, sur **branches feature tenues** (pas encore mergées). Le §2bis ci‑dessus et les §2/§3/§4 décrivent l'état **`master`/`Release` actuel** (= **pré‑fix**) ; cette section dit ce qui change après merge + régén.
+> **Pourquoi cette section.** Les 7 problèmes signalés sur **#250** (layout Rules) et **#435** (Mémo) — restés ~1 mois sans diagnostic précis ni validation multilingue — ont été **traités, mergés et validés à l'œil**. **MAJ 2026‑06‑08 : tout est sur `master` `dc01445f`** — #438 (`3a391996`, Rules 24→15), #439 (`ce63bcd3`, Mémo Face sélecteur), #443 (`81af2279`, Mémo Back StaticConversions), #446 (`2169d7b4`, Mémo Back taxonomie). La régén complète 8 langues confirme l'état mergé (voir bloc « Validation 2026‑06‑08 » plus bas). Le §2bis et les §2/§3/§4 décrivent un état antérieur (pré‑fix) ; cette section dit l'état courant.
 
 ### #250 Rules — refonte éditoriale 24 → 15 cartes ✅ (PR #438, supersede #437)
 La restructuration `Cards/Rules/Argumentum Rules - Cards.csv` **24 → 15 cartes** + remap CSS 15‑cartes traite les **6 problèmes de layout** : décompte coupé, covers vides, couleurs (CSS 1‑18→remap 15), orphelins DBP/Moulin fusionnés, Parlote §3 déplacé. **Validé CardPen/Playwright** (15 cartes Rules_01–15, cover + carte 9 H1 dense DBP + carte 15). Miroir 8 langues po‑2023 (`0cee7d64`, déplacements de paragraphes purs, **invariant byte‑identique 7/7** EN/RU/PT/AR/ES/ZH/FA). Dossier : `docs/investigations/2026-06-04-rules-250-validation/`.
@@ -116,10 +116,19 @@ Le Mémo Face ne rendait que FR 7/7, EN 2/7 (cognats), PT/RU 0/7. **Cause = sél
 ### ✅ Mémo **Back** — localisé (décision jsboige 2026‑06‑05, PR #443)
 Décision : **localiser** EN/RU/PT (pas FR‑assumé). Le sous‑titre figé « L'art de jamais avoir tort » est traduit via `StaticConversions` (`LocalizationConfig`), les labels `{{Famille}}`/`{{Sous‑Famille}}`/`{{Soussousfamille}}` se localisent via les `FrontFieldConversions` existantes. Le sélecteur `ifCond` reste FR‑invariant (garantit le groupement 8/8 familles). PR #443.
 
-### Séquence pour passer au vert (jeudi, au sign‑off #140)
-1. Merge **#438 puis #439** (auth jsboige si ai‑01 denied).
-2. **Régén `-c Release` sur un `Target` propre** (⚠️ la régén Debug a rafraîchi les harvest JSON mais **pas** les PNG standalone `Images/density-0/` — partir d'un Target propre évite des PNG périmés).
-3. ai‑01 re‑check visuel 8 langues → bascule Rules/Mémo en ✅ dans ce dossier.
+### Séquence pour passer au vert — état 2026‑06‑08
+1. ✅ **Merge #438 → #439 → #443 → #446** : faits, tous sur `master` `dc01445f`.
+2. ⏳ **Régén `-c Release` sur un `Target` propre** — **PAS encore faite sur master post‑#446**. ⚠️ Voir « Caveat build Release locale » ci‑dessous : le `-c Release` final doit **clobber explicitement les harvests Mémo** (`rm Target/*/Harvest/*Memo*`) sinon il ré‑génère la Mémo Back stale FR.
+3. ✅ **ai‑01 re‑check visuel 8 langues** : fait sur la **régén complète Debug** (po‑2023, `validation/regen-dc01445f` `e87d33e2`) — Rules/Mémo basculés ✅ (détail bloc suivant).
+
+### ✅ Validation 2026‑06‑08 — full‑regen Debug 6/6 CardSets PASS
+Régén complète 8 langues (po‑2023, master `dc01445f`, build Debug, **harvests Mémo clobbés**) → spot‑check visuel ai‑01 (vision + crops natifs) sur échantillon `validation/regen-dc01445f` (`e87d33e2`).
+- **6/6 CardSets PASS** : Fallacy Tarot, Mémo Face, **Mémo Back**, Rules, Scenarii Poker, Virtues — sur les 4 langues validées (FR/EN/RU/PT), sans régression vs §2/§3.
+- **Mémo Back localisé 8/8** : EN PREJUDICE/OVERINTERPRETATION · RU ПРЕДРАССУДОК/Домыслы · PT PRECONCEITO/SUPERINTERPRETAÇÃO · ES PREJUICIO/SOBREINTERPRETACIÓN · ZH 偏见/过度解读 · AR تحامل (RTL shapé) · FA persan shapé · FR référence. → **#446 confirmé sur livrable mergé**, et **aucune lacune CSV** (AR/ES/FA/ZH localisent = taxonomie traduite 100 %).
+- AR/ES/FA/ZH : rendu + localisation OK ; reste pour ship 8‑langues = **QA contenu ai‑01** (jamais faite) + résidus #411 — seuil qualité, pas couverture.
+
+### ⚠️ Caveat build Release locale (vérifié 2026‑06‑08)
+La build **`Release/…` locale de cette machine est datée du 2026‑06‑02** (harvests Mémo `Memo_harvest_*.json` = 02‑06 18:40 ; TarotCards PDF = 02‑06 19:49) — **antérieure à #443/#446** (mergés vers `dc01445f` le 07‑06). **Vérifié au crop natif** : `Release/…/en/Images/density-0/Memo/memo_back.png` montre sous‑titre **« L'ART DE JAMAIS AVOIR TORT »** + taxonomie **FR** (PRÉJUGÉ · SURINTERPRÉTATION · INSUFFISANCE…) → **stale pré‑#443**. ⇒ **La build Release locale n'est PAS un artefact release valide pour la Mémo** ; ne pas l'utiliser pour valider/tagger. Le `-c Release` final doit être **re‑exécuté sur `dc01445f` avec clobber des harvests Mémo**. Seul artefact Mémo Back frais validé = la régén Debug clobbée ci‑dessus. (Détail méthode stale‑harvest : la régén `dotnet clean` ne vide PAS les `.harvest.json` runtime sous `Target/*/Harvest/` ; clobber explicite obligatoire.)
 
 ---
 
