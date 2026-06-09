@@ -1452,6 +1452,32 @@ var cardpen = {};
                     }
                 });
                 
+                // Memo Back grid grouping (#443) — language-invariant control-break selectors.
+                // Replace the former name-coincidence markers ({{#ifCond Famille "==" text_fr}}),
+                // which broke when FR rename campaigns (#351/#308) desynced text_fr from the level
+                // label and collapsed the 7×3×3 taxonomy grid. These helpers read the
+                // language-invariant FR taxonomy columns (always present in the row regardless of
+                // render language) and carry NO column token in the template, so the localizer
+                // (CardSetLocalization.FormatField appends "}}") cannot corrupt the helper call.
+                // family-root row  = Sous-Famille=='' && Soussousfamille==''
+                // subfamily-header = Sous-Famille!=''  && Soussousfamille==''
+                // leaf node        = Soussousfamille!='' on its first occurrence (control-break)
+                Handlebars.registerHelper('ifFamilyHeader', function (options) {
+                    var sf = (this['Sous-Famille'] == null) ? '' : String(this['Sous-Famille']);
+                    var ssf = (this['Soussousfamille'] == null) ? '' : String(this['Soussousfamille']);
+                    return (sf === '' && ssf === '') ? options.fn(this) : options.inverse(this);
+                });
+                Handlebars.registerHelper('ifSubfamilyHeader', function (options) {
+                    var sf = (this['Sous-Famille'] == null) ? '' : String(this['Sous-Famille']);
+                    var ssf = (this['Soussousfamille'] == null) ? '' : String(this['Soussousfamille']);
+                    return (sf !== '' && ssf === '') ? options.fn(this) : options.inverse(this);
+                });
+                Handlebars.registerHelper('ifLeafFirst', function (rows, index, options) {
+                    var cur = (rows && rows[index] && rows[index]['Soussousfamille'] != null) ? String(rows[index]['Soussousfamille']) : '';
+                    var prev = (index > 0 && rows[index - 1] && rows[index - 1]['Soussousfamille'] != null) ? String(rows[index - 1]['Soussousfamille']) : '';
+                    return (cur !== '' && cur !== prev) ? options.fn(this) : options.inverse(this);
+                });
+
                 // Pour Handlebars, ajouter cardIndex à chaque carte puis compiler
                 for (var c = 0; c < cards.length; c++) {
                     cards[c].cardIndex = c + 1;
