@@ -56,8 +56,11 @@ function autoFitTitle(title, minFontPx) {
 }
 
 // Applique l'auto-shrink à tous les titres d'une carte avant sa capture.
+// Inclut .subtitle (Mémo Back) : avec white-space:nowrap côté template, un
+// sous-titre long (p.ex. RU) déborde horizontalement au lieu de wrapper hors
+// bandeau — et se fait réduire ici. No-op pour les sous-titres qui tiennent.
 function autoFitCardTitles(cardNode) {
-    var titles = cardNode.querySelectorAll('.title');
+    var titles = cardNode.querySelectorAll('.title, .subtitle');
     for (var t = 0; t < titles.length; t++) {
         autoFitTitle(titles[t]);
     }
@@ -132,6 +135,51 @@ function autoFitBodyText(cardNode, minFontPx) {
 }
 
 
+// ---------------------------------------------------------------------------
+// Auto-shrink de la grille taxonomique (Mémo Back — verdict QA 2026-06-10)
+// Une langue aux libellés longs (p.ex. RU) fait déborder la grille
+// .familyContainer verticalement : les dernières familles sortent de la carte.
+// Toute la grille est dimensionnée en em relatifs à .familyContainer : réduire
+// sa font-size rescale uniformément familles, sous-familles et items.
+// No-op si la carte tient déjà (cas Latin courant).
+// ---------------------------------------------------------------------------
+
+// Vrai si le conteneur ne déborde pas verticalement (tolérance 2px, alignée
+// sur bodyContentFits / OverflowDetector.cs).
+function cardContentFits(containerEl) {
+    return containerEl.scrollHeight <= containerEl.clientHeight + 2;
+}
+
+// Recherche dichotomique de la plus grande font-size de .familyContainer qui
+// fait tenir la carte en hauteur.
+function autoFitFamilyGrid(cardNode, minFontPx) {
+    minFontPx = minFontPx || 3;
+    var grid = cardNode.querySelector('.familyContainer');
+    if (!grid) return;
+    var container = cardNode.querySelector('.cardContainer') || cardNode;
+    // Repartir de la taille définie par le template (idempotent si rappelé).
+    grid.style.fontSize = '';
+    var naturalPx = parseFloat(window.getComputedStyle(grid).fontSize);
+    if (!naturalPx || cardContentFits(container)) {
+        return; // Tient déjà : aucun changement (cas le plus fréquent).
+    }
+    var lo = minFontPx;
+    var hi = naturalPx;
+    var best = minFontPx;
+    for (var iter = 0; iter < 10; iter++) {
+        var mid = (lo + hi) / 2;
+        grid.style.fontSize = mid + 'px';
+        if (cardContentFits(container)) {
+            best = mid;   // tient → viser plus grand
+            lo = mid;
+        } else {
+            hi = mid;     // déborde → réduire
+        }
+    }
+    grid.style.fontSize = best + 'px';
+}
+
+
 async function generateImages() {
     var zipButton = document.getElementById('zipButton');
     if (zipButton) {
@@ -148,6 +196,7 @@ async function generateImages() {
            //imaginer(nodes[n],n);
            autoFitCardTitles(nodes[n]);   // Option B (#316) : ajuster les titres débordants avant capture
            autoFitBodyText(nodes[n]);     // Issue #190 : ajuster le corps de texte si débordement vertical
+           autoFitFamilyGrid(nodes[n]);   // QA 2026-06-10 : grille Mémo Back qui déborde verticalement (RU)
            await imaginerSync(nodes[n], n);
        }
     if (zipButton) {
