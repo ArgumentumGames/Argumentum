@@ -15,7 +15,7 @@ namespace Argumentum.AssetConverter.Tests
     {
         private readonly AssetConverterConfig _config;
         private IList<Fallacy> _fallacies;
-        private readonly List<string> _supportedLanguages = new List<string> { "fr", "en", "ru", "pt" };
+        private readonly List<string> _supportedLanguages = new List<string> { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
 
         /// <summary>
         /// Initialise une nouvelle instance de la classe <see cref="TaxonomyValidationTests"/>.
