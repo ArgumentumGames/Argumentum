@@ -30,6 +30,14 @@ namespace Argumentum.AssetConverter.Entities
 
         public string LinkPtFallback => string.IsNullOrEmpty(LinkPt) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkPt;
 
+        public string LinkEsFallback => string.IsNullOrEmpty(LinkEs) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkEs;
+
+        public string LinkArFallback => string.IsNullOrEmpty(LinkAr) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkAr;
+
+        public string LinkFaFallback => string.IsNullOrEmpty(LinkFa) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkFa;
+
+        public string LinkZhFallback => string.IsNullOrEmpty(LinkZh) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkZh;
+
         //public string FileName => $"argumentum_{Path}-{TextFr.ToLower().Replace(" ","_")}";
 
         public string PK { get; set; }

@@ -213,7 +213,7 @@ namespace Argumentum.AssetConverter
 						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.TextEn)), ("ru", nameof(Fallacy.TextRu)), ("pt", nameof(Fallacy.TextPt)), ("es", nameof(Fallacy.TextEs)), ("ar", nameof(Fallacy.TextAr)), ("fa", nameof(Fallacy.TextFa)), ("zh", nameof(Fallacy.TextZh))}) ),
 						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)), ("es", nameof(Fallacy.DescEs)), ("ar", nameof(Fallacy.DescAr)), ("fa", nameof(Fallacy.DescFa)), ("zh", nameof(Fallacy.DescZh))}) ),
 						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)), ("es", nameof(Fallacy.ExampleEs)), ("ar", nameof(Fallacy.ExampleAr)), ("fa", nameof(Fallacy.ExampleFa)), ("zh", nameof(Fallacy.ExampleZh))}) ),
-						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback"), ("ar", nameof(Fallacy.LinkAr)), ("fa", nameof(Fallacy.LinkFa)), ("zh", nameof(Fallacy.LinkZh)) }) ),
+						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback"), ("ar", "LinkArFallback"), ("fa", "LinkFaFallback"), ("zh", "LinkZhFallback") }) ),
 					}),
 				},
 				// Fallacy family hierarchy: FR names → localized names
