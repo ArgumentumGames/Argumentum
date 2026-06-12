@@ -145,7 +145,10 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		{
 			// Regression test for #358 / #443 — two bugs caught by ai-01 validation:
 			//  Bug 1: apostrophe U+2019 in source vs U+0027 in template -> subtitle stays FR.
-			//  Bug 2: converting text_fr->text_en in ifCond breaks family grouping (6/8 families vanish).
+			//  Bug 2: converting text_fr->text_en in the old ifCond selector broke family grouping
+			//         (6/8 families vanish). #449 replaced that selector with language-invariant
+			//         control-break helpers ({{#ifFamilyHeader}}/{{#ifSubfamilyHeader}}); this test
+			//         now asserts those helpers survive translation instead.
 			var original = ReadTemplate("Cards/Memo/Argumentum_Memo_Back_fr.json");
 			var loc = GetFallaciesLocalization();
 
@@ -159,10 +162,12 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			translated.Should().NotContain("L'art de jamais avoir tort",
 				$"{destLang} Memo Back must have a translated subtitle, not the FR original (#358)");
 
-			// (b) The ifCond selector must stay FR-invariant — text_fr must remain
-			//     so that Famille(FR)==text_fr(FR) still groups all 8 families correctly.
-			translated.Should().Contain("text_fr ",
-				$"{destLang} Memo Back ifCond must keep text_fr (FR-invariant selector for family grouping)");
+			// (b) Grouping is language-invariant (control-break helpers from #449) and must survive
+			//     translation untouched, so all 8 families still group correctly in every language.
+			translated.Should().Contain("{{#ifFamilyHeader}}",
+				$"{destLang} Memo Back family grouping helper must survive translation (language-invariant control-break, #449)");
+			translated.Should().Contain("{{#ifSubfamilyHeader}}",
+				$"{destLang} Memo Back subfamily grouping helper must survive translation (language-invariant control-break, #449)");
 		}
 
 		[Theory]
@@ -176,8 +181,9 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			// labels in French (Famille / Sous-Famille / Soussousfamille) in EN/RU/PT because the Memo
 			// BackFieldConversions only carried tagline_fr. At runtime the Back is rendered through
 			// BackFieldConversions (TranslateCardSetInfo, front:false), so the taxonomy DISPLAY tokens
-			// must be localized there — while the FR-invariant ifCond family selector (Famille == text_fr)
-			// must stay untouched so the 8 families still group correctly.
+			// must be localized there — while the language-invariant control-break grouping helpers
+			// (#449: {{#ifFamilyHeader}}/{{#ifSubfamilyHeader}}) must survive translation so the 8
+			// families still group correctly in every language.
 			var original = ReadTemplate("Cards/Memo/Argumentum_Memo_Back_fr.json");
 			var loc = GetFallaciesLocalization();
 
@@ -194,11 +200,11 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			translated.Should().NotContain("{{Sous-Famille}}", $"{destLang} Back subfamily label must no longer be the FR token");
 			translated.Should().NotContain("{{Soussousfamille}}", $"{destLang} Back subsubfamily label must no longer be the FR token");
 
-			// (c) The FR-invariant grouping selector must survive: ifCond keeps Famille == text_fr.
-			//     NB: this template is read raw from the .json (no JSON-unescape), so the operator quotes
-			//     appear escaped on disk as \"==\" — assert against that on-disk form.
-			translated.Should().Contain("Famille \\\"==\\\"", $"{destLang} Back ifCond family operand must stay FR (data-driven grouping)");
-			translated.Should().Contain("text_fr ", $"{destLang} Back ifCond must keep text_fr (FR-invariant selector)");
+			// (c) Grouping is language-invariant: #449 replaced the old ifCond Famille==text_fr selector
+			//     with control-break helpers. They must survive translation so the 8 families still
+			//     group correctly in EN/RU/PT.
+			translated.Should().Contain("{{#ifFamilyHeader}}", $"{destLang} Back family grouping helper must survive translation (language-invariant control-break, #449)");
+			translated.Should().Contain("{{#ifSubfamilyHeader}}", $"{destLang} Back subfamily grouping helper must survive translation (language-invariant control-break, #449)");
 
 			// (d) The CSS colour class binding ({{Famille_camelCase}}) must stay intact.
 			translated.Should().Contain("Famille_camelCase", $"{destLang} Back CSS colour class binding must be preserved");
