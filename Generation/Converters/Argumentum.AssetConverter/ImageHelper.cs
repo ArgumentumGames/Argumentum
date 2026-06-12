@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -84,7 +84,6 @@ namespace Argumentum.AssetConverter
              string imageName, string imageUrl, double sourceDpi)
         {
 	        string toReturn;
-            MagickImage imageFromEmbeddedUrl;
 
 			var imagesFolderName = config.GetImagesDirectory(language);
 
@@ -92,27 +91,18 @@ namespace Argumentum.AssetConverter
 
 			         if (File.Exists(imageFileName))
             {
-				//imageFromEmbeddedUrl = new MagickImage(imageFileName);
-
 				Logger.Log($"Skip existing image: {imageFileName}");
 				toReturn = imageFileName;
 			}
             else
             {
-                if (imageUrl.StartsWith("data:image"))
+                // #29 fix: deterministic dispose of MagickImage after processing
+                using var imageFromEmbeddedUrl = imageUrl switch
                 {
-                    imageFromEmbeddedUrl = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
-                }
-                else if (imageUrl.PathIsUrl())
-                {
-                    // This case might be for other URL types in the future,
-                    // but for now, we assume it's also an embedded URL.
-                    imageFromEmbeddedUrl = ImageHelper.LoadImageFromEmbeddedUrl(imageUrl);
-                }
-                else
-                {
-                    imageFromEmbeddedUrl = ImageHelper.LoadImageFromPath(imageUrl);
-                }
+                    _ when imageUrl.StartsWith("data:image") => ImageHelper.LoadImageFromEmbeddedUrl(imageUrl),
+                    _ when imageUrl.PathIsUrl() => ImageHelper.LoadImageFromEmbeddedUrl(imageUrl),
+                    _ => ImageHelper.LoadImageFromPath(imageUrl)
+                };
                 imageFromEmbeddedUrl.Density = new Density(sourceDpi);
                 if (documentCardSet.SaveOriginalImage)
                 {
