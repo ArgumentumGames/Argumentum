@@ -12,7 +12,7 @@ namespace Argumentum.AssetConverter.VisualTests
     /// <summary>
     /// Issue #412: Mechanical visual QA harness.
     /// Scans generated card images for geometric defects (white-band, blank-ratio,
-    /// bottom-saturation). Outputs a PASS/FLAG grid per card × language.
+    /// bottom-saturation, footer-collision). Outputs a PASS/FLAG grid per card × language.
     ///
     /// These tests are DETECTORS only — they flag geometric anomalies.
     /// Visual VERDICTS (is the card "good" or "bad") remain the exclusive lane
@@ -45,26 +45,39 @@ namespace Argumentum.AssetConverter.VisualTests
         // Detector thresholds — per-CardSet calibration (#412 finding ai-01)
         // Rules cards have white backgrounds, so blank-ratio is naturally high (~65-95%)
         // and bottom-saturation is naturally low (~4-18%). Flat thresholds over/under-flag.
+        //
+        // FooterCollision (#29 overflow recalibration): measures non-white pixel density
+        // in the buffer zone (82%-92% of height) between card body and absolute-positioned
+        // footer. Rules threshold = 0.03 (3%) — even tiny text spillover is a collision.
+        // Cover images (variante 1) have footer elements in display:none → excluded.
         private static readonly Dictionary<string, CardSetThresholds> Thresholds = new()
         {
-            ["Rules"] = new() { BlankRatio = 0.92f, BottomSat = 0.12f },
-            ["Virtues"] = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
+            ["Rules"]         = new() { BlankRatio = 0.92f, BottomSat = 0.12f, FooterCollision = 0.03f },
+            ["Virtues"]       = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
             ["Fallacies-Web"] = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
-            ["Scenarii"] = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
+            ["Scenarii"]      = new() { BlankRatio = 0.65f, BottomSat = 0.25f },
         };
 
         // Default thresholds for unregistered CardSets
         private const float DefaultBlankRatioThreshold = 0.65f;
-        private const float DefaultBottomSatThreshold = 0.85f;
+        private const float DefaultBottomSatThreshold  = 0.85f;
+        private const float DefaultFooterCollisionThreshold = 0.10f;
 
         private const float WhiteBandThreshold = 0.98f;   // pixels with R>250 AND G>250 AND B>250
         private const float WhitePixelMax = 250f / 255f;   // normalized threshold for "white"
 
-        /// <summary>Per-CardSet threshold pair (blank-ratio, bottom-saturation).</summary>
+        // Footer collision detector zones (#29 overflow recalibration)
+        // The footer occupies the bottom ~10% (position:absolute; bottom:1.5em).
+        // The buffer zone (82%-92%) should be mostly white — text pixels here = overflow.
+        private const float FooterCollisionBufferStart = 0.82f;
+        private const float FooterCollisionBufferEnd   = 0.92f;
+
+        /// <summary>Per-CardSet threshold set (blank-ratio, bottom-saturation, footer-collision).</summary>
         private class CardSetThresholds
         {
             public float BlankRatio = DefaultBlankRatioThreshold;
             public float BottomSat = DefaultBottomSatThreshold;
+            public float FooterCollision = DefaultFooterCollisionThreshold;
         }
 
         private static float GetBlankRatioThreshold(string cardSet)
@@ -72,6 +85,9 @@ namespace Argumentum.AssetConverter.VisualTests
 
         private static float GetBottomSatThreshold(string cardSet)
             => Thresholds.TryGetValue(cardSet, out var t) ? t.BottomSat : DefaultBottomSatThreshold;
+
+        private static float GetFooterCollisionThreshold(string cardSet)
+            => Thresholds.TryGetValue(cardSet, out var t) ? t.FooterCollision : DefaultFooterCollisionThreshold;
 
         public VisualQaHarness(ITestOutputHelper output)
         {
@@ -261,6 +277,56 @@ namespace Argumentum.AssetConverter.VisualTests
                 _output.WriteLine($"  FLAG: {f}");
         }
 
+        // --- Detector: footer-collision (body overflowing under absolute footer, #29 recalibration) ---
+
+        [Fact]
+        public void VisualQa_FooterCollision_Rules_NoBodyFooterOverlap()
+        {
+            var root = ResolveTargetRoot();
+            if (root == null) { _output.WriteLine("SKIP"); return; }
+
+            var flags = new List<string>();
+            int scanned = 0;
+            int skippedCovers = 0;
+
+            foreach (var lang in Languages)
+            {
+                var images = GetImages(root, lang, "Rules");
+                foreach (var imgPath in images)
+                {
+                    // Cover images (variante 1) have footer in display:none → footer area = blank
+                    // The detector would report a false +22000px artifact — exclude them
+                    if (IsCoverImage(imgPath))
+                    {
+                        skippedCovers++;
+                        continue;
+                    }
+
+                    scanned++;
+                    var collisionResult = DetectFooterCollision(imgPath, "Rules");
+                    if (collisionResult.Flagged)
+                    {
+                        flags.Add($"{lang}/Rules/{Path.GetFileName(imgPath)}: " +
+                                  $"footer-collision {collisionResult.Density:P1} " +
+                                  $"({collisionResult.NonWhitePixels} px in buffer zone)");
+                    }
+                }
+            }
+
+            _output.WriteLine($"Rules footer-collision: scanned {scanned}, skipped {skippedCovers} covers, flagged {flags.Count}");
+
+            foreach (var f in flags)
+                _output.WriteLine($"  FLAG: {f}");
+
+            if (scanned == 0)
+            {
+                _output.WriteLine("No non-cover Rules images found — skip");
+                return;
+            }
+
+            // Informational: report but don't hard-fail
+        }
+
         // --- Full grid report (all card sets × all detectors × all languages) ---
 
         [Fact]
@@ -281,21 +347,30 @@ namespace Argumentum.AssetConverter.VisualTests
                     {
                         totalImages++;
                         var fileName = Path.GetFileName(imgPath);
+                        var isCover = IsCoverImage(imgPath);
 
                         var band = DetectWhiteBand(imgPath);
                         var blank = DetectBlankRatio(imgPath, cardSet);
                         var sat = DetectBottomSaturation(imgPath, cardSet);
+
+                        // Footer collision: skip covers (display:none footer = artefact)
+                        var footer = isCover
+                            ? (Flagged: false, Density: 0f, NonWhitePixels: 0)
+                            : DetectFooterCollision(imgPath, cardSet);
 
                         var result = new CardCheckResult
                         {
                             Language = lang,
                             CardSet = cardSet,
                             FileName = fileName,
+                            IsCover = isCover,
                             WhiteBand = band.Flagged ? $"FLAG({band.WhiteRatio:P0})" : "PASS",
                             BlankRatio = blank.Flagged ? $"FLAG({blank.BlankRatio:P0})" : "PASS",
                             BottomSat = sat.Flagged ? $"FLAG({sat.Saturation:P0})" : "PASS",
+                            FooterCollision = footer.Flagged ? $"FLAG({footer.Density:P1})" : (isCover ? "COVER" : "PASS"),
                             BlankRatioValue = blank.BlankRatio,
                             BottomSatValue = sat.Saturation,
+                            FooterCollisionValue = footer.Density,
                             WhiteBandRow = band.MaxBandRow,
                         };
                         results.Add(result);
@@ -312,19 +387,19 @@ namespace Argumentum.AssetConverter.VisualTests
             foreach (var group in results.GroupBy(r => r.CardSet).OrderBy(g => g.Key))
             {
                 _output.WriteLine($"## {group.Key}");
-                _output.WriteLine("| Card | Lang | WhiteBand | BlankRatio | BottomSat |");
-                _output.WriteLine("|------|------|-----------|------------|-----------|");
+                _output.WriteLine("| Card | Lang | WhiteBand | BlankRatio | BottomSat | FooterCol |");
+                _output.WriteLine("|------|------|-----------|------------|-----------|-----------|");
 
                 foreach (var r in group.OrderBy(r => r.FileName).ThenBy(r => r.Language))
                 {
-                    _output.WriteLine($"| {r.FileName} | {r.Language} | {r.WhiteBand} | {r.BlankRatio} | {r.BottomSat} |");
+                    _output.WriteLine($"| {r.FileName} | {r.Language} | {r.WhiteBand} | {r.BlankRatio} | {r.BottomSat} | {r.FooterCollision} |");
                 }
                 _output.WriteLine("---");
             }
 
             // Summary
             var flagged = results.Count(r =>
-                r.WhiteBand != "PASS" || r.BlankRatio != "PASS" || r.BottomSat != "PASS");
+                r.WhiteBand != "PASS" || r.BlankRatio != "PASS" || r.BottomSat != "PASS" || r.FooterCollision.StartsWith("FLAG"));
             _output.WriteLine($"## Summary: {flagged}/{totalImages} flagged");
 
             // Rules-specific detail (for #250)
@@ -369,6 +444,26 @@ namespace Argumentum.AssetConverter.VisualTests
                         var val = match.BottomSatValue;
                         if (val > GetBottomSatThreshold("Rules")) return $"**{val:P0}**";
                         return $"{val:P0}";
+                    });
+                    _output.WriteLine($"| {card} | {string.Join(" | ", vals)} |");
+                }
+
+                _output.WriteLine("---");
+                _output.WriteLine("FooterCollision values (higher = body overflowing into footer zone):");
+                _output.WriteLine($"| Card | {string.Join(" | ", Languages)} |");
+                _output.WriteLine($"|------| {string.Join(" | ", Languages.Select(_ => "---"))} |");
+
+                foreach (var card in rulesCards)
+                {
+                    var vals = Languages.Select(lang =>
+                    {
+                        var match = rulesResults.FirstOrDefault(r =>
+                            r.FileName == card && r.Language == lang);
+                        if (match == null) return "—";
+                        if (match.IsCover) return "cover";
+                        var val = match.FooterCollisionValue;
+                        if (val > GetFooterCollisionThreshold("Rules")) return $"**{val:P1}**";
+                        return $"{val:P1}";
                     });
                     _output.WriteLine($"| {card} | {string.Join(" | ", vals)} |");
                 }
@@ -543,18 +638,71 @@ namespace Argumentum.AssetConverter.VisualTests
             }
         }
 
+        /// <summary>
+        /// Detects card body text overflowing into the footer zone (position:absolute footer).
+        /// Scans the "buffer zone" (82%-92% of card height) — the area between where the
+        /// card body should end and where the absolute-positioned footer elements sit.
+        /// Non-white pixels here = text has overflowed under the footer.
+        ///
+        /// This detector catches the specific class of overflow where the card body flows
+        /// under position:absolute footer elements (colorPalette, pageNumber, :before labels).
+        /// The existing BottomSaturation detector measures the bottom 10% which includes
+        /// legitimate footer content — it can't distinguish body overflow from footer content.
+        ///
+        /// Cover images (variante 1) MUST be excluded: their footer elements are display:none,
+        /// making the entire bottom area blank and producing false +22000px artifacts.
+        /// </summary>
+        private static (bool Flagged, float Density, int NonWhitePixels) DetectFooterCollision(
+            string imagePath, string cardSet)
+        {
+            try
+            {
+                using var image = Image.Load<Rgb24>(imagePath);
+                int height = image.Height;
+                int width = image.Width;
+
+                // Buffer zone: between body end and footer start
+                int startRow = (int)(height * FooterCollisionBufferStart);
+                int endRow = (int)(height * FooterCollisionBufferEnd);
+
+                long totalPixels = 0;
+                long nonWhitePixels = 0;
+
+                for (int y = startRow; y < endRow; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        totalPixels++;
+                        var pixel = image[x, y];
+                        if (!(pixel.R > 250 && pixel.G > 250 && pixel.B > 250))
+                            nonWhitePixels++;
+                    }
+                }
+
+                float density = totalPixels > 0 ? (float)nonWhitePixels / totalPixels : 0f;
+                return (density > GetFooterCollisionThreshold(cardSet), density, (int)nonWhitePixels);
+            }
+            catch
+            {
+                return (false, 0f, 0);
+            }
+        }
+
         private class CardCheckResult
         {
             public string Language { get; set; } = "";
             public string CardSet { get; set; } = "";
             public string FileName { get; set; } = "";
+            public bool IsCover { get; set; }
             public string WhiteBand { get; set; } = "PASS";
             public string BlankRatio { get; set; } = "PASS";
             public string BottomSat { get; set; } = "PASS";
+            public string FooterCollision { get; set; } = "PASS";
 
             // Raw values for detailed reporting
             public float BlankRatioValue { get; set; }
             public float BottomSatValue { get; set; }
+            public float FooterCollisionValue { get; set; }
             public int WhiteBandRow { get; set; }
         }
     }
