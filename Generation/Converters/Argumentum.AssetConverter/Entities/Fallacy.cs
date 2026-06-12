@@ -30,6 +30,14 @@ namespace Argumentum.AssetConverter.Entities
 
         public string LinkPtFallback => string.IsNullOrEmpty(LinkPt) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkPt;
 
+        public string LinkEsFallback => string.IsNullOrEmpty(LinkEs) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkEs;
+
+        public string LinkArFallback => string.IsNullOrEmpty(LinkAr) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkAr;
+
+        public string LinkFaFallback => string.IsNullOrEmpty(LinkFa) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkFa;
+
+        public string LinkZhFallback => string.IsNullOrEmpty(LinkZh) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkZh;
+
         //public string FileName => $"argumentum_{Path}-{TextFr.ToLower().Replace(" ","_")}";
 
         public string PK { get; set; }
@@ -119,6 +127,42 @@ namespace Argumentum.AssetConverter.Entities
 
         public string LinkEs { get; set; }
 
+        public string FamilyAr { get; set; }
+        public string SubfamilyAr { get; set; }
+        public string SubsubfamilyAr { get; set; }
+
+        public string TextAr { get; set; }
+
+        public string DescAr { get; set; }
+
+        public string ExampleAr { get; set; }
+
+        public string LinkAr { get; set; }
+
+        public string FamilyFa { get; set; }
+        public string SubfamilyFa { get; set; }
+        public string SubsubfamilyFa { get; set; }
+
+        public string TextFa { get; set; }
+
+        public string DescFa { get; set; }
+
+        public string ExampleFa { get; set; }
+
+        public string LinkFa { get; set; }
+
+        public string FamilyZh { get; set; }
+        public string SubfamilyZh { get; set; }
+        public string SubsubfamilyZh { get; set; }
+
+        public string TextZh { get; set; }
+
+        public string DescZh { get; set; }
+
+        public string ExampleZh { get; set; }
+
+        public string LinkZh { get; set; }
+
         public string PlusLienstransverses { get; set; }
         public string TypeLienTransverse { get; set; }
         public string Shape { get; set; }
@@ -200,6 +244,27 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.DescEs).Name("desc_es").Optional();
             Map(m => m.ExampleEs).Name("example_es").Optional();
             Map(m => m.LinkEs).Name("link_es").Optional();
+            Map(m => m.FamilyAr).Name("Family_ar").Optional();
+            Map(m => m.SubfamilyAr).Name("Subfamily_ar").Optional();
+            Map(m => m.SubsubfamilyAr).Name("Subsubfamily_ar").Optional();
+            Map(m => m.TextAr).Name("text_ar").Optional();
+            Map(m => m.DescAr).Name("desc_ar").Optional();
+            Map(m => m.ExampleAr).Name("example_ar").Optional();
+            Map(m => m.LinkAr).Name("link_ar").Optional();
+            Map(m => m.FamilyFa).Name("Family_fa").Optional();
+            Map(m => m.SubfamilyFa).Name("Subfamily_fa").Optional();
+            Map(m => m.SubsubfamilyFa).Name("Subsubfamily_fa").Optional();
+            Map(m => m.TextFa).Name("text_fa").Optional();
+            Map(m => m.DescFa).Name("desc_fa").Optional();
+            Map(m => m.ExampleFa).Name("example_fa").Optional();
+            Map(m => m.LinkFa).Name("link_fa").Optional();
+            Map(m => m.FamilyZh).Name("Family_zh").Optional();
+            Map(m => m.SubfamilyZh).Name("Subfamily_zh").Optional();
+            Map(m => m.SubsubfamilyZh).Name("Subsubfamily_zh").Optional();
+            Map(m => m.TextZh).Name("text_zh").Optional();
+            Map(m => m.DescZh).Name("desc_zh").Optional();
+            Map(m => m.ExampleZh).Name("example_zh").Optional();
+            Map(m => m.LinkZh).Name("link_zh").Optional();
             Map(m => m.Lxfr145).Name("Lxfr145").Optional();
             Map(m => m.Remarques).Name("Remarques");
             Map(m => m.Latin).Name("Latin").Optional();

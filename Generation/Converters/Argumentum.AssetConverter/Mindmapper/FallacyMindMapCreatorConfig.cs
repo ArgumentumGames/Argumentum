@@ -45,7 +45,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 					{
 						("fr", "en"),
 						("fr", "ru"),
-						("fr", "pt")
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
 					}),
 					ImageFormat = MagickFormat.Png,
 					TargetDensity = 0,

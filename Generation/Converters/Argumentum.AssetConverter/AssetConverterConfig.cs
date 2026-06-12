@@ -210,10 +210,10 @@ namespace Argumentum.AssetConverter
 						nameof(FallacyMindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.TextEn)), ("ru", nameof(Fallacy.TextRu)), ("pt", nameof(Fallacy.TextPt)), ("es", nameof(Fallacy.TextEs))}) ),
-						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)), ("es", nameof(Fallacy.DescEs))}) ),
-						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)), ("es", nameof(Fallacy.ExampleEs))}) ),
-						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback") }) ),
+						(nameof(Fallacy.TextFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.TextEn)), ("ru", nameof(Fallacy.TextRu)), ("pt", nameof(Fallacy.TextPt)), ("es", nameof(Fallacy.TextEs)), ("ar", nameof(Fallacy.TextAr)), ("fa", nameof(Fallacy.TextFa)), ("zh", nameof(Fallacy.TextZh))}) ),
+						(nameof(Fallacy.DescFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.DescEn)), ("ru", nameof(Fallacy.DescRu)), ("pt", nameof(Fallacy.DescPt)), ("es", nameof(Fallacy.DescEs)), ("ar", nameof(Fallacy.DescAr)), ("fa", nameof(Fallacy.DescFa)), ("zh", nameof(Fallacy.DescZh))}) ),
+						(nameof(Fallacy.ExampleFr), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.ExampleEn)), ("ru", nameof(Fallacy.Exampleru)), ("pt", nameof(Fallacy.ExamplePt)), ("es", nameof(Fallacy.ExampleEs)), ("ar", nameof(Fallacy.ExampleAr)), ("fa", nameof(Fallacy.ExampleFa)), ("zh", nameof(Fallacy.ExampleZh))}) ),
+						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback"), ("ar", "LinkArFallback"), ("fa", "LinkFaFallback"), ("zh", "LinkZhFallback") }) ),
 					}),
 				},
 				// Fallacy family hierarchy: FR names → localized names
@@ -226,9 +226,9 @@ namespace Argumentum.AssetConverter
 						nameof(FallacyMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs))}) ),
-						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs))}) ),
-						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs))}) ),
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs)), ("ar", nameof(Fallacy.SubsubfamilyAr)), ("fa", nameof(Fallacy.SubsubfamilyFa)), ("zh", nameof(Fallacy.SubsubfamilyZh))}) ),
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs)), ("ar", nameof(Fallacy.SubfamilyAr)), ("fa", nameof(Fallacy.SubfamilyFa)), ("zh", nameof(Fallacy.SubfamilyZh))}) ),
+						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
 					}),
 				},
 				// Virtue root title translation (data is FR-only, only tree root name changes)
