@@ -75,6 +75,13 @@ namespace Argumentum.AssetConverter
 				Logger.Log("QuestPdfGeneration mode is disabled. Skipping PDF generation.");
 				return;
 			}
+
+			// Issue #28 (b): explicit halt before PDF assembly, even when QuestPdfGeneration is set.
+			if (AssetConverterConfig.StopBeforePdfGeneration)
+			{
+				Logger.Log("StopBeforePdfGeneration is enabled. Images generated; skipping PDF generation.");
+				return;
+			}
 			Logger.Log("QuestPdfGeneration mode is enabled. Entering PDF generation logic.");
 
 			Logger.LogTitle("Generating pdf documents");

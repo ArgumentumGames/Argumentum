@@ -330,6 +330,23 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 		public bool OverwriteExistingDocs { get; set; } = true;
 
+		/// <summary>
+		/// Issue #28 (a): when true, harvested card images are written to distinct
+		/// <c>front\</c> and <c>back\</c> sub-folders under each card-set image folder
+		/// instead of sharing the same directory. Default <c>false</c> keeps the
+		/// historical flat layout (faces suffixed <c>_face</c>, backs by their own name)
+		/// for backward compatibility.
+		/// </summary>
+		public bool SeparateFrontBackFolders { get; set; } = false;
+
+		/// <summary>
+		/// Issue #28 (b): when true, the pipeline stops right after harvesting and
+		/// image generation, before any PDF document is assembled. Lets callers
+		/// produce the card images without paying the cost of PDF assembly, even when
+		/// <see cref="ConverterMode.QuestPdfGeneration"/> is set. Default <c>false</c>.
+		/// </summary>
+		public bool StopBeforePdfGeneration { get; set; } = false;
+
 		public bool OverwriteExistingHtmlMaps { get; set; }
 
 		public bool EnableSVGPrompt { get; set; } = true;
