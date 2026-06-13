@@ -4,6 +4,27 @@
 @{
   var query = App.Query["FallaciesFromCSV"];
   var fallacies = AsList(query);
+
+  // Culture-aware field selection: cascade lang -> en -> fr, mirroring Fallacy.LinkXxxFallback.
+  var lang = (CmsContext.Culture.CurrentCode ?? "fr-fr").Split(new[] { '-' })[0].ToLowerInvariant();
+  var supported = new HashSet<string> { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+  if (!supported.Contains(lang)) { lang = "fr"; }
+
+  var findOutMore = new Dictionary<string, string> {
+    { "fr", "en savoir plus" }, { "en", "find out more" }, { "ru", "узнать больше" },
+    { "pt", "saber mais" }, { "es", "saber más" }, { "ar", "اعرف المزيد" },
+    { "fa", "بیشتر بدانید" }, { "zh", "了解更多" }
+  };
+
+  string loc(dynamic f, string field)
+  {
+    var primary = ((IDictionary<string, object>)f).ContainsKey(field + "_" + lang) ? f[field + "_" + lang] : null;
+    if (!string.IsNullOrEmpty(primary?.ToString())) { return primary.ToString(); }
+    var en = ((IDictionary<string, object>)f).ContainsKey(field + "_en") ? f[field + "_en"] : null;
+    if (!string.IsNullOrEmpty(en?.ToString())) { return en.ToString(); }
+    var fr = ((IDictionary<string, object>)f).ContainsKey(field + "_fr") ? f[field + "_fr"] : null;
+    return fr?.ToString() ?? "";
+  }
 }
 <div @Edit.TagToolbar(Content)>
    <ul>
@@ -12,12 +33,12 @@
     <li>
       <!-- this creates a link to the current tutorial (data220) and product=id -->
       <a href='@Link.To(parameters: "fallacy/" + fallacy.EntityId)'>
-        @fallacy.text_en (#@fallacy.path)
+        @loc(fallacy, "text") (#@fallacy.path)
       </a>
        <br>
         <em>
-          @fallacy.desc_en 
-          (<a href="@fallacy.link_en" target="_blank">find out more</a>)
+          @loc(fallacy, "desc")
+          (<a href="@loc(fallacy, "link")" target="_blank">@findOutMore[lang]</a>)
         </em>
      </li>
   }
@@ -25,4 +46,3 @@
 
 <!-- unimportant stuff, hidden -->
 </div>
-
