@@ -57,16 +57,16 @@ namespace Argumentum.AssetConverter
             throw new NotSupportedException($"The provided image URL is not a valid data URL (base64) or an embedded SVG: {srcUrl}");
         }
 
-        public static string GetImageFileName(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName)
+        public static string GetImageFileName(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName, string imageName, bool isBack = false)
         {
-	      
-	        var cardSetFolderName = GetImageFolder(config, docConfig, language, cardSetName);
+
+	        var cardSetFolderName = GetImageFolder(config, docConfig, language, cardSetName, isBack);
 
 	        var imageFileName = $"{imageName.RemoveInvalidFileNameChars().Replace(" ", "_")}.{docConfig.ImageFormat.ToString().ToLowerInvariant()}";
 	        return Path.Combine(cardSetFolderName, imageFileName);
         }
 
-		public static string GetImageFolder(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName)
+		public static string GetImageFolder(AssetConverterConfig config, DocumentConfig docConfig, string language, string cardSetName, bool isBack = false)
 		{
 			var imagesFolderName = config.GetImagesDirectory(language);
 
@@ -74,10 +74,16 @@ namespace Argumentum.AssetConverter
 			var densityFolderName = docConfig.GetDensityDirectory(imagesFolderName);
 			var cardSetFolderName = Path.Combine(densityFolderName, $@"{cardSetName}\");
 
+			// Issue #28 (a): optionally split front/back images into distinct sub-folders.
+			if (config.SeparateFrontBackFolders)
+			{
+				cardSetFolderName = Path.Combine(cardSetFolderName, isBack ? @"back\" : @"front\");
+			}
+
 			Directory.CreateDirectory(cardSetFolderName);
 
 			return cardSetFolderName;
-			
+
 		}
 
 		public static string LoadAndProcessImageUrl(this DocumentCardSet documentCardSet, string language, bool isBack, AssetConverterConfig config, CardSetDocumentConfig docConfig,
@@ -87,7 +93,7 @@ namespace Argumentum.AssetConverter
 
 			var imagesFolderName = config.GetImagesDirectory(language);
 
-			var imageFileName = GetImageFileName(config, docConfig, language, documentCardSet.CardSetName, imageName);
+			var imageFileName = GetImageFileName(config, docConfig, language, documentCardSet.CardSetName, imageName, isBack);
 
 			         if (File.Exists(imageFileName))
             {
