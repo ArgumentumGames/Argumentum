@@ -13,7 +13,7 @@ The entire pipeline now generates assets in **8 languages**: French, English, Ru
 
 - **CSV data**: 100% translation coverage for Fallacies, Virtues, Scenarii, and Rules across all 8 languages (title, description, example, family hierarchy, links)
 - **PDF generation**: CardSets (Tarot, Poker, A0 posters, Print&Play) produce localized PDFs for all 8 languages via `CardSetLocalizations` field mapping
-- **MindMap SVGs**: FreeMind mind maps generated for all 8 languages with localized node text, family hierarchy, and descriptions
+- **MindMap SVGs**: FreeMind mind maps committed for FR/EN/RU/PT (21 SVGs) with localized node text, family hierarchy, and descriptions; the pipeline is extended (`StaticConversions` + `MindMapLocalization`) for ES/AR/FA/ZH with SVG regeneration pending (#458 Track 1a)
 - **Mémo cards**: Front/back cards with language-invariant grouping selectors and localized taxonomy labels
 - **Rules cards**: Translated rule content for all 8 languages including AR/ES/FA/ZH additions
 - **Entity layer**: Added AR/FA/ZH properties to `Fallacy.cs` (21 properties + 21 CsvHelper mappings) and `Rule.cs` (4 properties)
@@ -44,7 +44,7 @@ Complete restoration of the generation pipeline from the April 2024 Golden Maste
 - **CardPen templates**: Restored `argumentsVertueux` CSS class, fixed Scenarii asset paths to GitHub URLs, auto-shrink overflowing card titles (#316), auto-shrink Virtues body text overflow (#420)
 - **CSV injection**: Restored Golden Master CSV injection (no `Replace("\n", "\\n")` — PapaParse handles newlines correctly)
 - **Configuration**: Removed erroneous `RowsetNb=14` for Scenarii CardSet, restored Virtues CardSet (critical for Print&Play Tarot)
-- **SVG generation**: Replaced XSLT-based SVGs with FreeMind Batik SVGs (20 SVGs, 4 languages × 5 types), automated FreePlane GUI via `SendKeys.SendWait`
+- **SVG generation**: Replaced XSLT-based SVGs with FreeMind Batik SVGs (21 SVGs across FR/EN/RU/PT), automated FreePlane GUI via `SendKeys.SendWait`
 - **Mémo Back cards**: Language-invariant control-break grouping (#449), localized taxonomy labels for all 8 languages (#446), cyrillic font fallbacks + vertical grid auto-fit for RU (#452)
 
 ### Fixed — Data Quality
