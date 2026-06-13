@@ -243,7 +243,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.PKHierarchicalChar,
 			PKHierarchyLevel = 3,
@@ -306,7 +306,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -370,7 +370,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -576,7 +576,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -640,7 +640,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -689,7 +689,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// Wikipedia link lookup - eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -930,7 +930,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -998,7 +998,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -1299,7 +1299,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateEsAssistant.txt"
 				}
 			},
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1342,7 +1342,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateArAssistant.txt"
 				}
 			},
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1385,7 +1385,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateFaAssistant.txt"
 				}
 			},
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1428,7 +1428,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateZhAssistant.txt"
 				}
 			},
-			Model = "gpt-5.4-mini",
+			Model = "gpt-5.5",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
