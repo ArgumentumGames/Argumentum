@@ -22,17 +22,17 @@ Argumentum now generates its entire educational card game in **8 languages**:
 | فارسی | `fa` | Persian (RTL) | ✅ Complete |
 | 中文 | `zh` | CJK | ✅ Complete |
 
-All CSV data (Fallacies, Virtues, Scenarii, Rules) is 100% translated across all 8 languages. The generation pipeline produces localized PDFs, MindMap SVGs, and card images for each language.
+All CSV data (Fallacies, Virtues, Scenarii, Rules) is 100% translated across all 8 languages. The generation pipeline produces localized PDFs and card images for all 8 languages. MindMap SVGs are currently committed for FR/EN/RU/PT; the pipeline is configured for ES/AR/FA/ZH with SVG regeneration pending (see Known Limitations).
 
 ### 🃏 Generated Assets
 
 | Asset Type | Languages | Count |
 |------------|-----------|-------|
-| Tarot Card PDFs | 8 | ~64 |
-| Poker Card PDFs | 8 | ~8 |
-| A0 Poster PDFs | 8 | ~16 |
-| Print&Play PDFs | 8 | ~16 |
-| MindMap SVGs | 8 | ~40 |
+| Tarot PDFs (cards + Virtues + Print&Play A4) | 8 | 24 |
+| Poker PDFs (cards + Print&Play A4) | 8 | 16 |
+| Fallacies Web PDFs (A0 poster + A4 + Thumbnails) | 8 | 24 |
+| **Total PDFs** | 8 | **64** |
+| MindMap SVGs | 4 (FR/EN/RU/PT) | 21 |
 | Card Images (PNG) | 8 | ~9,834 |
 | OWL Ontology | 1 (FR) | 1 (664 KB) |
 
@@ -89,7 +89,7 @@ Automated visual regression testing for generated assets:
 2. **CJK fonts (ZH)**: Requires system-installed CJK fonts for correct rendering in PDFs and card images
 3. **DNN site**: Deployment pending (#131/#132) — release coupled with site update (Decision 2)
 4. **OWLOntology**: Published in French only — multilingual ontology planned for future release
-5. **MindMap SVGs for AR/FA/ZH**: Pipeline configured but SVG regeneration pending (post-merge #454)
+5. **MindMap SVGs for ES/AR/FA/ZH**: Only FR/EN/RU/PT SVGs are committed (21 files). The pipeline is configured for ES/AR/FA/ZH (`StaticConversions` + `MindMapLocalization` in `AssetConverterConfig.cs`), but SVG regeneration is pending — it requires an attended FreePlane GUI run (`SendKeys.SendWait` desktop automation, skipped by the test suite as "requires interactive session"). Tracked as #458 Track 1a.
 
 ---
 
