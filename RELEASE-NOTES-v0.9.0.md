@@ -34,7 +34,7 @@ All CSV data (Fallacies, Virtues, Scenarii, Rules) is 100% translated across all
 | **Total PDFs** | 8 | **64** |
 | MindMap SVGs | 4 (FR/EN/RU/PT) | 21 |
 | Card Images (PNG) | 8 | ~9,834 |
-| OWL Ontology | 1 (FR) | 1 (664 KB) |
+| OWL Ontology | 1 (FR) | 1 (~5.3 MB) |
 
 ### 🛠 Pipeline Recovery
 
@@ -106,7 +106,7 @@ Automated visual regression testing for generated assets:
 | Package | Version | Change |
 |---------|---------|--------|
 | QuestPDF | 2022.12.12 | Pinned (MIT free license, thread-safety boundary) |
-| Magick.NET | 13.5.0 | Stable for SVG conversion |
+| Magick.NET-Q16-AnyCPU | 14.13.1 | Stable for SVG conversion (dependabot-tracked) |
 | Microsoft.Playwright | 1.43.0 | Browser automation |
 | OpenAI .NET SDK | 2.10.0 | New — translation pipeline |
 | System.Linq.Dynamic.Core | 1.7.2 | Security upgrade (GHSA-4cv2-4hjh-77rx) |

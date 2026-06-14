@@ -61,7 +61,7 @@ Complete restoration of the generation pipeline from the April 2024 Golden Maste
 ### Changed
 
 - **DNN platform**: Upgraded 2sxc 15→21.07 with Razor14 migration + IRenderService fix (#418)
-- **Dependencies**: System.Linq.Dynamic.Core 1.3.12→1.7.2 (security), Spectre.Console→0.50.0, QuestPDF pinned to 2022.12.12 (MIT free license), Magick.NET 13.5.0, SkiaSharp.NativeAssets.Win32 2.88.6
+- **Dependencies**: System.Linq.Dynamic.Core 1.3.12→1.7.2 (security), Spectre.Console→0.50.0, QuestPDF pinned to 2022.12.12 (MIT free license), Magick.NET-Q16-AnyCPU 14.13.1 (dependabot-tracked), SkiaSharp.NativeAssets.Win32 2.88.6
 - **Build artifacts**: Stopped tracking 968 MB of regenerable build outputs (#415 Phase 1)
 - **Mémo Back taxonomy**: Grouping selector now language-invariant (CSS class-based, not text-based)
 
