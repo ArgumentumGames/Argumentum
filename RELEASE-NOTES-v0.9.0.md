@@ -43,7 +43,7 @@ After a series of regressions (May–September 2025), the entire .NET generation
 - **HarvestManager**: Playwright-based card image generation restored with correct timeouts and CSV injection
 - **PdfManager**: QuestPDF assembly working with thread-safe serialization
 - **MindMapper**: FreeMind + Batik SVG generation automated (including FreePlane GUI)
-- **Tests**: 155 automated tests (up from 0)
+- **Tests**: 159 automated tests (up from 0; +4 from #465/#28 front/back dissociation)
 
 ### 📊 Data Quality
 

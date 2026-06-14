@@ -23,7 +23,7 @@ validation, il ne la remplace pas et ne lève rien.
 | Images carte (PNG) ~9 834 | RELEASE-NOTES L36 |
 | **MindMap SVGs générés « pour les 8 langues »** | **CHANGELOG L16 / RELEASE-NOTES L25, L35** |
 | Pipeline restauré vs Golden Master avril 2024 | CHANGELOG L38-48 / RELEASE-NOTES L39-46 |
-| 155 tests (depuis 0) | CHANGELOG L70 / RELEASE-NOTES L46 |
+| Tests : docs disent 155, réel = 159 (PR #465/#28 +4) | CHANGELOG L70 / RELEASE-NOTES L46 — **corrigé ce tick → 159** |
 | OWL ontologie : FR seulement | RELEASE-NOTES L37, L91 |
 
 ---
@@ -38,64 +38,46 @@ Ces points sont confirmés par inspection directe des artefacts locaux (régén 
   `Fallacies_Web_Thumbnails_A4`. Les 8 sous-dossiers langue (`ar en es fa fr pt ru zh`) sont tous
   présents et peuplés.
 - ✅ **~9 834 images** (régén validée 12 juin, exit 0, 5,0 Go).
-- ✅ **155 tests pass / 0 fail / 5 skip** (dont 1 skip = test GUI FreePlane « requires interactive
-  session » — pertinent pour le point chaud §3.1).
+- ✅ **159 tests pass / 0 fail / 5 skip** (dont 1 skip = test GUI FreePlane « requires interactive
+  session » — pertinent pour le point chaud §3.1). 155 → 159 via PR #465/#28 (front/back target
+  dissociation, +4 tests `Issue28TargetDissociationTests`), compté par grep `[Fact]/[Theory]` ce tick.
+  PRs #466/#467/#468 sont doc-only / config `Enabled=false` → 0 test runtime.
 - ✅ **Rendu multi-script validé inline** avec toi : Memo Backs FR/RU/AR/ZH + fronts Fallacies
   « Généralisation hâtive » FR/AR/ZH — Latin / Cyrillique / Arabe-RTL / CJK corrects, zéro glyphe
   manquant, zéro débordement, zéro fallback FR (#452 résolu sur pièce).
 
 ---
 
-## 3. ⚠️ À TRANCHER avant tag — 3 écarts trouvés dans les docs #456
+## 3. ⚠️ À TRANCHER avant tag — 1 écart résiduel (§3.3 trivial) ; §3.1/§3.2 RÉSOLUS par PR #460, §3.4 CORRIGÉ ce tick
 
-J'ai relu les 2 docs ligne à ligne contre les artefacts réels. Je **ne** les rubber-stamp pas :
-voici les 3 écarts, du plus matériel au plus trivial.
+> **Mise à jour 2026-06-14 (po-2023).** En relisant les docs sur master `8382a071`, je constate que la
+> PR **#460** (`36124be2` « align v0.9.0 notes with master HEAD reality », merge-bot, post-#456) a
+> **déjà corrigé** les écarts §3.1 et §3.2 que je signalais dans la version initiale de ce brief. Cette
+> section est alignée : il ne reste qu'un écart trivial (placeholders de date, §3.3 — normal avant tag).
+> _Note process : mon brief initial (#462) a été rédigé d'après une lecture pré-#460 et n'avait pas
+> été re-syncé — d'où les 2 écarts fantômes. Gap de review signalé à ai-01._
 
-### 3.1 🔴 MATÉRIEL — « MindMap SVGs pour les 8 langues » est **sur-affirmé**
+### 3.1 ✅ RÉSOLU (PR #460) — MindMap SVGs : docs désormais alignés sur la réalité 4-langues
 
-**Affirmé :** CHANGELOG L16 « FreeMind mind maps generated **for all 8 languages** » ;
-RELEASE-NOTES L35 table « MindMap SVGs | **8** | ~40 ».
+**État courant (vérifié 14/06 sur master `8382a071`) :** CHANGELOG L16, RELEASE-NOTES L25 et L35, et
+Known Limitations L92 disent **tous** « FR/EN/RU/PT (21 SVGs), ES/AR/FA/ZH configurés mais régén
+pending ». **Plus de sur-affirmation, plus de contradiction interne** — l'écart matériel est clos.
 
-**Réel (vérifié dans `Cards/Fallacies/Mindmaps/`) :** seules **4 langues** ont des SVGs commités —
-`fr` (6), `en` (5), `pt` (5), `ru` (5) = **21 SVGs**. **`es`, `ar`, `fa`, `zh` sont ABSENTS** (pas
-de sous-dossier).
+**Réel (inchangé, vérifié dans `Cards/Fallacies/Mindmaps/`) :** 4 langues commitées (21 SVGs),
+`es/ar/fa/zh` absents. Le pipeline est configuré pour les 8 (PR #454), seul le run GUI FreePlane manque.
 
-**Pire que ce que les docs admettent :** RELEASE-NOTES L92 (Known Limitations) reconnaît
-*partiellement* l'écart — « MindMap SVGs for **AR/FA/ZH** : regeneration pending » — mais **omet ES**
-et **contredit sa propre table L35** (« 8 »). Donc un lecteur a deux affirmations opposées dans le
-même fichier.
+**Décision résiduelle pour jsboige (simplifiée) — statu quo vs régén :**
+- **(A) Régénérer** MindMap ES/AR/FA/ZH (Track 1a, run attendu/foreground) → les docs passent de
+  « 4 + pending » à « 8 ». _Si les MindMaps 8-lang sont dans le scope v0.9.0._
+- **(B) Statu quo** (= option B du brief initial, **déjà appliquée par #460**) : les docs restent
+  honnêtes sur 4 langues. _Si les MindMaps 8-lang peuvent attendre post-v0.9.0._
 
-**État technique :** le pipeline EST configuré pour les 8 langues (PR #454 : `StaticConversions` +
-`MindMapLocalization` AR/FA/ZH/ES présents dans `AssetConverterConfig.cs`). Il manque **uniquement le
-RUN de régénération** — qui passe par l'automation **GUI FreePlane** (`SendKeys.SendWait`, desktop
-takeover ; c'est exactement le chemin que le test suite **skip** comme « interactive session »).
+> Avec #460, l'option B est **déjà faite** — jsboige n'a plus qu'à décider si elle veut activer A.
 
-**Ta décision dimanche (2 options) :**
-- **(A) Faire la vérité :** lancer la régén MindMap ES/AR/FA/ZH (Track 1a) — run **attendu/foreground**
-  (pas en tick automatisé, risque de keystrokes parasites). Après ça, l'affirmation « 8 langues »
-  devient exacte. _Recommandé si les MindMaps font partie du livrable v0.9.0._
-- **(B) Aligner les docs :** corriger CHANGELOG L16 + RELEASE-NOTES L25/L35 en « 4 langues
-  (FR/EN/RU/PT) générées, ES/AR/FA/ZH en attente de régén » et retirer la contradiction L92.
-  _Recommandé si les MindMaps 8-lang peuvent attendre post-v0.9.0._
+### 3.2 ✅ RÉSOLU (PR #460) — table « Generated Assets » : comptes réconciliés
 
-> Un patch « option B » (docs alignées) peut être préparé en 5 min si tu choisis B. Je n'ai
-> **rien modifié** d'office — c'est ton arbitrage.
-
-### 3.2 🟡 MINEUR — table « Generated Assets » : comptes par type non réconciliés
-
-RELEASE-NOTES L31-34 donne des comptes par type qui **ne réconcilient pas** avec la structure réelle
-(8 types × 8 langues = 64) :
-
-| Doc dit | Réel |
-|---------|------|
-| Tarot Card PDFs — « ~64 » | `TarotCards` = 8 (le « ~64 » ressemble au **total global mal étiqueté**) |
-| A0 Poster PDFs — « ~16 » | `Fallacies_Web_A0` = 8 |
-| Print&Play PDFs — « ~16 » | Tarot P&P (8) + Poker P&P (8) = **16 ✓** |
-| Poker Card PDFs — « ~8 » | `PokerCards` = 8 ✓ |
-
-**Suggestion :** remplacer la table par le décompte propre **8 types × 8 langues = 64 PDFs** (liste
-des 8 types ci-dessus §2). Cosmétique, mais évite qu'un lecteur additionne ~64+16+16+8 ≈ 104 et se
-demande où sont les PDFs manquants.
+**État courant :** RELEASE-NOTES L31-34 donne désormais **Tarot 24 + Poker 16 + Fallacies Web 24 =
+64** (8 langues × {3 + 2 + 3} types). **Réconcilié** avec la structure réelle (§2). Plus d'ambiguïté.
 
 ### 3.3 ⚪ TRIVIAL — placeholders de date
 
@@ -104,6 +86,17 @@ demande où sont les PDFs manquants.
 
 À remplir **au moment du tag** (post-validation, post-go-live DNN). Normal qu'ils soient en attente —
 juste à ne pas oublier.
+
+### 3.4 ✅ CORRIGÉ ce tick (po-2023) — test count drift (155 → 159)
+
+**Drift détecté :** le CHANGELOG L70 + RELEASE-NOTES L46 disaient **155 tests**, mais le dashboard
+ai-01 rapporte **159** après #465/#28. Vérifié par grep `[Fact]/[Theory]` dans
+`Argumentum.AssetConverter.Tests/` ce tick : `Issue28TargetDissociationTests.cs` = **4 tests** (PR
+#465/#28, sur master `8382a071`). Les PRs #466/#467/#468 sont doc-only / config `Enabled=false` →
+**0 test runtime**. Donc 155 + 4 = **159**. ai-01 avait raison.
+
+**Correctif appliqué ce tick** (même patch que ce brief) : CHANGELOG L70 + RELEASE-NOTES L46 mis à
+**159** (`+4 from #465/#28`). Plus de drift pour la validation dimanche.
 
 ---
 

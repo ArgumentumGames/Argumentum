@@ -67,7 +67,7 @@ Complete restoration of the generation pipeline from the April 2024 Golden Maste
 
 ### Test Coverage
 
-- **155 tests** pass (up from 0 in April 2024)
+- **159 tests** pass (up from 0 in April 2024; +4 from #465/#28 front/back dissociation)
 - Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
 - 1 skip (Freeplane GUI — requires interactive session)
 - 5 skips (visual/infrastructure-dependent)
