@@ -79,6 +79,13 @@ namespace Argumentum.AssetConverter
 				CsvType = typeof(Virtue),
 				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum%20Virtues%20-%20Taxonomy.csv",
 				DebugFilePath = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum Virtues - Taxonomy.csv"
+			},
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnUiStrings,
+				CsvType = typeof(Argumentum.AssetConverter.Entities.DnnUiString),
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/dnn-ui-strings.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\dnn-ui-strings.csv"
 			}
 		});
 

@@ -2632,6 +2632,67 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Translate DNN UI strings FR to all languages (en/ru/pt/es/ar/fa/zh) empty-only multi",
+				SourceDataset = KnownDataSets.DnnUiStrings,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"context",
+					"source_file",
+					"fr",
+					"notes",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\dnn-ui-strings.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnUiStringsTranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnUiStringsTranslateMultiAssistant.txt"
+					}
+				},
+				// FR -> all 7 languages via OpenAI gpt-5.5 (issue #457). OpenRouter key (.keys\openai-key.txt).
+				Model = "gpt-5.5",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 4,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }

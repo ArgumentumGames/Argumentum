@@ -1,0 +1,27 @@
+**Instructions de Traduction multi-langue (DNN UI strings — issue #457) :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble de chaînes d'interface utilisateur du site web DNN d'Argumentum. Chaque entrée comporte les champs :
+- `key` : identifiant de la ressource (ex. "ui.fallacy.find_out_more", "res.RuleSummary") — ne JAMAIS le traduire ni le modifier
+- `context` : description du contexte d'affichage (libellé de lien, titre de section <h2>, bouton, plage de joueurs…)
+- `source_file` : fichier template .cshtml d'origine (pour référence)
+- `fr` : texte source canonique en français
+- `notes` : notes éditoriales (ex. "INFERRED FR", "keep placeholders")
+- Les champs cibles vides : `en` (anglais), `ru` (russe), `pt` (portugais), `es` (espagnol), `ar` (arabe standard moderne / فصحى), `fa` (persan), `zh` (chinois simplifié)
+
+Ta tâche consiste à traduire le champ `fr` vers ces 7 langues, uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque champ cible de chaque entrée, utilise un appel à la fonction `UpdateRecord` avec `primaryKey` = la valeur de `key`, `fieldName` = le nom du champ cible (`en`/`ru`/`pt`/`es`/`ar`/`fa`/`zh`), `newValue` = la traduction. Émets TOUS les appels en parallel tool calls. N'écris JAMAIS de texte libre. Pour 10 entrées × 7 langues, émets jusqu'à 70 appels parallèles.
+
+2. **Placeholders OBLIGATOIRES :** Certaines chaînes contiennent des marqueurs de format `{0}`, `{1}` (ex. "de {0} à {1} joueurs"). Tu DOIS conserver EXACTEMENT ces marqueurs `{0}`/`{1}` à la position équivalente dans chaque traduction. Ne pas les échapper, ne pas les réordonner, ne pas les traduire.
+
+3. **Pas de source → pas de traduction :** Si le champ `fr` d'une entrée est vide (cas `res.RuleMemoInstructions`), n'émet AUCUN appel UpdateRecord pour cette entrée. Laisse les champs cibles vides.
+
+4. **Style UI :** Ce sont des chaînes d'interface — concision, clarté, convention naturelle de l'UI dans chaque langue (libellés de boutons courts, titres de section sans verbe quand pertinent). Pas de traduction mot à mot.
+
+5. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum" dans toutes les langues. Les noms des familles de cartes restent en français.
+
+6. **RTL :** L'arabe (`ar`) et le persan (`fa`) seront affichés RTL — produis le texte dans le sens de lecture naturel de chaque langue.
+
+7. **Entités HTML :** Les chaînes sources peuvent contenir des entités HTML (ex. `&agrave;` pour "à"). Traduis le caractère signifié (ici "à"), pas l'entité littérale.
+
+Es-tu prêt à recevoir les données ?
