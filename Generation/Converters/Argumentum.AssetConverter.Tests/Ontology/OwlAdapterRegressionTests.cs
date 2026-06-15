@@ -18,20 +18,22 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// annotation scanners (<c>GetAnnotationSubjects</c> / <c>GetResourceAnnotations</c> /
     /// <c>GetLiteralAnnotations</c>).
     ///
-    /// ⚠️ These tests surfaced a REAL BUG (not greenwashed). Every fallback reader compares
-    /// <c>a.ValueIRI.Equals(value.URI)</c> / <c>a.SubjectIRI.Equals(subject.URI)</c> where
-    /// <c>.URI</c> is a <b>string</b> and <c>ValueIRI</c>/<c>SubjectIRI</c> are
+    /// ✅ BUG FOUND then FIXED. PR #480 surfaced a real bug (not greenwashed): every fallback
+    /// reader compared <c>a.ValueIRI.Equals(value.URI)</c> / <c>a.SubjectIRI.Equals(subject.URI)</c>
+    /// where <c>.URI</c> is a <b>string</b> and <c>ValueIRI</c>/<c>SubjectIRI</c> are
     /// <c>RDFResource</c>. <c>RDFResource.Equals(string)</c> returns <b>false by type-mismatch</b>,
-    /// so every read returns empty. See <see cref="Diag_RDFResource_Equals_String_Is_False_By_Type_Mismatch"/>.
-    /// This is the root cause behind the production validation module silently reporting
-    /// "no concepts → skip → PASS" on annotation/AIF checks. Reported as [BUG] on the dashboard.
+    /// so every read returned empty — the root cause behind the production validation module
+    /// silently reporting "no concepts → skip → PASS" on annotation/AIF checks. See
+    /// <see cref="Diag_RDFResource_Equals_String_Is_False_By_Type_Mismatch"/>.
     ///
-    /// Tests are split into: (A) characterization of the bug (pinned, documents current behavior),
-    /// (B) the correct comparison semantics (documents the fix), (C) write-path + serialization
-    /// (these DO work). No fix is applied — the file only pins observed behavior so a future fix
-    /// flips the [BUG] tests red→green and the fix author has a regression suite ready.
+    /// This PR applies the fix: drop <c>.URI</c> on the right-hand side of every reader comparison
+    /// (14 sites in <c>OwlAdapter.cs</c>), so readers compare <c>RDFResource.Equals(RDFResource)</c>.
+    /// The section-(A) tests below WERE the [BUG] characterization suite from #480; they are now
+    /// flipped to proper round-trip assertions and serve as the regression suite guarding the fix.
+    /// Section (C) write-path + serialization tests (unchanged) prove the fix did not regress the
+    /// write side.
     ///
-    /// Deterministic, key-free, release-independent. No existing file modified. Baseline additive.
+    /// Deterministic, key-free, release-independent.
     /// </summary>
     public class OwlAdapterRegressionTests
     {
@@ -67,15 +69,16 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (A) [BUG] characterization — readers return empty despite writes succeeding.
-        //     These pin the BROKEN behavior. When OwlAdapter is fixed, these flip to red and
-        //     become proper round-trip assertions (remove the .Be(0) and assert the populated set).
+        // (A) Reader round-trip — was the [BUG] characterization suite in #480 (asserted the
+        //     BROKEN empty/false behavior). Now flipped by the fix in this PR: these verify the
+        //     readers correctly retrieve what the write path declared. Regression suite for the fix.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void BUG_GetConcepts_Returns_Empty_Despite_Declared_Concepts()
+        public void GetConcepts_RoundTrips_Declared_Concepts_After_Fix()
         {
-            // Write 3 concepts; the reader should return 3 but returns 0 (comparison bug).
+            // Write 3 concepts; the reader must return all 3 (was returning 0 before the fix
+            // because the fallback scanner compared RDFResource.Equals(string)).
             var adapter = NewAdapter();
             var scheme = Res("Scheme");
             adapter.DeclareConceptScheme(scheme);
@@ -84,73 +87,85 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             adapter.DeclareConcept(Res("C3"), scheme);
 
             var concepts = adapter.GetConcepts();
-            concepts.Should().BeEmpty(
-                "[BUG] GetConcepts returns empty because the fallback scanner compares RDFResource.Equals(string)");
+            concepts.Should().NotBeEmpty("GetConcepts must retrieve declared concepts (fix: RDFResource.Equals(RDFResource))");
+            concepts.Should().HaveCount(3);
+            concepts.Select(c => c.ToString()).Should().BeEquivalentTo(new[] { Ns + "C1", Ns + "C2", Ns + "C3" });
         }
 
         [Fact]
-        public void BUG_GetResourcesByType_Concept_Returns_Empty()
+        public void GetResourcesByType_RoundTrips_Concepts_And_Schemes_After_Fix()
         {
             // Same root cause, different reader. ValidateOwlOntologyStructure relies on this.
+            // Was returning empty before the fix (RDFResource.Equals(string)).
             var adapter = NewAdapter();
             var scheme = Res("Scheme");
             adapter.DeclareConceptScheme(scheme);
             adapter.DeclareConcept(Res("C1"), scheme);
 
-            adapter.GetResourcesByType(SKOSVocabulary.Concept).Should().BeEmpty("[BUG] RDFResource.Equals(string)");
-            adapter.GetResourcesByType(SKOSVocabulary.ConceptScheme).Should().BeEmpty("[BUG] RDFResource.Equals(string)");
+            adapter.GetResourcesByType(SKOSVocabulary.Concept)
+                .Should().NotBeEmpty("Concept type resolves after the fix")
+                .And.ContainSingle(c => c.ToString() == Ns + "C1");
+            adapter.GetResourcesByType(SKOSVocabulary.ConceptScheme)
+                .Should().NotBeEmpty("ConceptScheme type resolves after the fix")
+                .And.ContainSingle(c => c.ToString() == Ns + "Scheme");
         }
 
         [Fact]
-        public void BUG_GetTopConcepts_Returns_Empty_Despite_Declared()
+        public void GetTopConcepts_RoundTrips_Declared_Top_Concepts_After_Fix()
         {
             var adapter = NewAdapter();
             adapter.DeclareTopConcept(Res("Top1"), Res("Scheme"));
             adapter.DeclareTopConcept(Res("Top2"), Res("Scheme"));
 
-            adapter.GetTopConcepts().Should().BeEmpty("[BUG] GetAnnotationObjects compares RDFResource.Equals(string)");
+            var tops = adapter.GetTopConcepts();
+            tops.Should().NotBeEmpty("GetTopConcepts must retrieve declared top concepts after the fix");
+            tops.Select(c => c.ToString()).Should().BeEquivalentTo(new[] { Ns + "Top1", Ns + "Top2" });
         }
 
         [Fact]
-        public void BUG_HasAnnotation_Returns_False_Despite_Annotation_Present()
+        public void HasAnnotation_Finds_The_Annotation_After_Fix()
         {
             var adapter = NewAdapter();
             var scheme = Res("Scheme");
             adapter.DeclareConceptScheme(scheme);
 
-            // The annotation IS written (see write-path test below), but HasAnnotation can't find it.
+            // The annotation IS written (write-path test confirms it); HasAnnotation must now find it
+            // (was false before the fix: ValueIRI.Equals(value.URI string)).
             adapter.HasAnnotation(scheme, RDFVocabulary.RDF.TYPE, SKOSVocabulary.ConceptScheme)
-                .Should().BeFalse("[BUG] HasAnnotation compares ValueIRI.Equals(value.URI string) → false");
+                .Should().BeTrue("HasAnnotation must match rdf:type=skos:ConceptScheme after the fix");
         }
 
         [Fact]
-        public void BUG_CheckIsNarrowerConcept_Returns_False_Despite_Declared()
+        public void CheckIsNarrowerConcept_Detects_The_Edge_After_Fix()
         {
             var adapter = NewAdapter();
             var parent = Res("Fallacies");
             var child = Res("AdHominem");
             adapter.DeclareNarrowerConcepts(parent, child);
 
-            // CheckIsNarrowerConcept has a try/except fallback that ALSO uses .Equals(string.URI),
-            // so even the fallback fails.
+            // CheckIsNarrowerConcept's try/except fallback ALSO used .Equals(string.URI) and failed;
+            // after the fix the fallback scanner matches correctly.
             adapter.CheckIsNarrowerConcept(child, parent)
-                .Should().BeFalse("[BUG] fallback compares RDFResource.Equals(string) → false");
+                .Should().BeTrue("child IS a narrower of parent after the fix");
+            adapter.CheckIsNarrowerConcept(Res("Unrelated"), parent)
+                .Should().BeFalse("an unrelated concept is NOT a narrower of parent");
         }
 
         [Fact]
-        public void BUG_GetConceptPreferredLabels_Returns_Empty_Despite_Label_Set()
+        public void GetConceptPreferredLabels_RoundTrips_The_Label_After_Fix()
         {
             var adapter = NewAdapter();
             var concept = Res("C");
             adapter.DeclareConcept(concept, Res("Scheme"));
             adapter.AnnotateConceptPreferredLabel(concept, Lit("Ad Hominem"));
 
-            adapter.GetConceptPreferredLabels(concept).Should().BeEmpty(
-                "[BUG] GetLiteralAnnotations compares AnnotationProperty.GetIRI().Equals(property.URI string)");
+            adapter.GetConceptPreferredLabels(concept)
+                .Should().NotBeEmpty("prefLabel must be retrievable after the fix")
+                .And.ContainSingle(l => l.ToString().StartsWith("Ad Hominem"));
         }
 
         [Fact]
-        public void BUG_GetConceptDocumentation_Returns_Empty_Despite_Documented()
+        public void GetConceptDocumentation_RoundTrips_The_Definition_After_Fix()
         {
             var adapter = NewAdapter();
             var concept = Res("C");
@@ -158,18 +173,21 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             adapter.DocumentConcept(concept, SKOSDocumentationTypes.Definition, Lit("A fallacy..."));
 
             adapter.GetConceptDocumentation(concept, SKOSDocumentationTypes.Definition)
-                .Should().BeEmpty("[BUG] same RDFResource.Equals(string) root cause");
+                .Should().NotBeEmpty("definition must be retrievable after the fix")
+                .And.ContainSingle(l => l.ToString().StartsWith("A fallacy"));
         }
 
         [Fact]
-        public void BUG_GetExactMatchConcepts_Returns_Empty_Despite_Declared()
+        public void GetExactMatchConcepts_RoundTrips_The_Match_After_Fix()
         {
             var adapter = NewAdapter();
             var c1 = Res("EN");
             var c2 = Res("FR");
             adapter.DeclareExactMatchConcepts(c1, c2);
 
-            adapter.GetExactMatchConcepts(c1).Should().BeEmpty("[BUG] RDFResource.Equals(string)");
+            adapter.GetExactMatchConcepts(c1)
+                .Should().NotBeEmpty("exactMatch must be retrievable after the fix")
+                .And.ContainSingle(c => c.ToString() == Ns + "FR");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
@@ -190,9 +208,8 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         public void DeclareConcept_Appends_AnnotationAxioms_To_The_Ontology()
         {
             // The WRITE side is correct: DeclareConcept adds real annotation axioms to the
-            // ontology (verifiable by inspecting the underlying graph directly, bypassing the
-            // broken reader). This is why ToFileAsync produces a valid ontology despite the
-            // readers being broken.
+            // ontology (verifiable by inspecting the underlying graph directly). These write-path
+            // tests guard that the reader fix did not regress the graph construction.
             var adapter = NewAdapter();
             var scheme = Res("Scheme");
             var concept = Res("C1");
@@ -254,11 +271,11 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         }
 
         [Fact]
-        public void BUG_CheckHasClass_Returns_False_Despite_Class_Declared()
+        public void CheckHasClass_Finds_The_Declared_Class_After_Fix()
         {
-            // CheckHasClass uses DeclarationAxioms and compares cls.GetIRI().Equals(resource.URI)
-            // where .URI is a System.Uri. RDFResource.Equals(Uri) is false by type-mismatch — the
-            // SAME root cause as the annotation readers. So CheckHasClass is also broken.
+            // CheckHasClass uses DeclarationAxioms and compared cls.GetIRI().Equals(resource.URI)
+            // where .URI is a System.Uri — RDFResource.Equals(Uri) was false by type-mismatch (the
+            // SAME root cause as the annotation readers). After the fix it compares RDFResource.Equals(RDFResource).
             var adapter = NewAdapter();
             var declared = Res("DeclaredClass");
             adapter.DeclareClass(declared);
@@ -267,9 +284,11 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             var onto = adapter.GetOntology();
             onto.DeclarationAxioms.Should().NotBeEmpty("DeclareClass wrote the declaration axiom");
 
-            // ...but CheckHasClass can't find it:
-            adapter.CheckHasClass(declared).Should().BeFalse(
-                "[BUG] cls.GetIRI().Equals(resource.URI) compares RDFResource.Equals(Uri) → false by type-mismatch");
+            // ...and CheckHasClass now finds it:
+            adapter.CheckHasClass(declared).Should().BeTrue(
+                "CheckHasClass must match the declared class after the fix (RDFResource.Equals(RDFResource))");
+            adapter.CheckHasClass(Res("UndeclaredClass")).Should().BeFalse(
+                "an undeclared class is not found");
         }
 
         [Fact]

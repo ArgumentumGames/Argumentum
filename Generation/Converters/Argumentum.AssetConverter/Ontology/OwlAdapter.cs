@@ -282,15 +282,15 @@ namespace Argumentum.AssetConverter.Ontology
         {
             try
             {
-                return SKOSHelper.CheckHasNarrowerConcept(_ontology, parentConcept, concept);
+                if (SKOSHelper.CheckHasNarrowerConcept(_ontology, parentConcept, concept)) return true;
             }
-            catch
-            {
-                return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                    .Any(a => a.AnnotationProperty.GetIRI().Equals(SKOSVocabulary.Narrower.URI)
-                        && a.SubjectIRI.Equals(parentConcept.URI)
-                        && a.ValueIRI != null && a.ValueIRI.Equals(concept.URI));
-            }
+            catch { }
+            // SKOSHelper may return false silently (no exception) — fall back to annotation scanning.
+            // The annotation scanner now uses .ToString() comparison (RDFResource type-mismatch fix).
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Any(a => a.AnnotationProperty.GetIRI().ToString() == SKOSVocabulary.Narrower.ToString()
+                    && a.SubjectIRI.ToString() == parentConcept.ToString()
+                    && a.ValueIRI != null && a.ValueIRI.ToString() == concept.ToString());
         }
 
         public List<RDFPlainLiteral> GetConceptPreferredLabels(RDFResource concept)
@@ -311,27 +311,43 @@ namespace Argumentum.AssetConverter.Ontology
 
         public List<RDFResource> GetExactMatchConcepts(RDFResource concept)
         {
-            try { return SKOSHelper.GetExactMatchConcepts(_ontology, concept); }
-            catch { return GetResourceAnnotations(concept, SKOSVocabulary.ExactMatch); }
+            try
+            {
+                var result = SKOSHelper.GetExactMatchConcepts(_ontology, concept);
+                if (result != null && result.Count > 0) return result;
+            }
+            catch { }
+            // SKOSHelper may return empty silently — fall back to annotation scanning (.ToString() fix).
+            return GetResourceAnnotations(concept, SKOSVocabulary.ExactMatch);
         }
 
         public List<RDFResource> GetCloseMatchConcepts(RDFResource concept)
         {
-            try { return SKOSHelper.GetCloseMatchConcepts(_ontology, concept); }
-            catch { return GetResourceAnnotations(concept, SKOSVocabulary.CloseMatch); }
+            try
+            {
+                var result = SKOSHelper.GetCloseMatchConcepts(_ontology, concept);
+                if (result != null && result.Count > 0) return result;
+            }
+            catch { }
+            return GetResourceAnnotations(concept, SKOSVocabulary.CloseMatch);
         }
 
         public List<RDFResource> GetRelatedMatchConcepts(RDFResource concept)
         {
-            try { return SKOSHelper.GetRelatedMatchConcepts(_ontology, concept); }
-            catch { return GetResourceAnnotations(concept, SKOSVocabulary.RelatedMatch); }
+            try
+            {
+                var result = SKOSHelper.GetRelatedMatchConcepts(_ontology, concept);
+                if (result != null && result.Count > 0) return result;
+            }
+            catch { }
+            return GetResourceAnnotations(concept, SKOSVocabulary.RelatedMatch);
         }
 
         private List<RDFResource> GetAnnotationSubjects(RDFResource typeResource)
         {
             return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                .Where(a => a.AnnotationProperty.GetIRI().Equals(RDFVocabulary.RDF.TYPE.URI)
-                    && a.ValueIRI != null && a.ValueIRI.Equals(typeResource.URI))
+                .Where(a => a.AnnotationProperty.GetIRI().ToString() == RDFVocabulary.RDF.TYPE.ToString()
+                    && a.ValueIRI != null && a.ValueIRI.ToString() == typeResource.ToString())
                 .Select(a => new RDFResource(a.SubjectIRI.ToString()))
                 .ToList();
         }
@@ -339,7 +355,7 @@ namespace Argumentum.AssetConverter.Ontology
         private List<RDFResource> GetAnnotationObjects(RDFResource property)
         {
             return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                .Where(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
+                .Where(a => a.AnnotationProperty.GetIRI().ToString() == property.ToString()
                     && a.ValueIRI != null)
                 .Select(a => new RDFResource(a.ValueIRI.ToString()))
                 .ToList();
@@ -348,8 +364,8 @@ namespace Argumentum.AssetConverter.Ontology
         private List<RDFResource> GetResourceAnnotations(RDFResource subject, RDFResource property)
         {
             return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                .Where(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
-                    && a.SubjectIRI.Equals(subject.URI)
+                .Where(a => a.AnnotationProperty.GetIRI().ToString() == property.ToString()
+                    && a.SubjectIRI.ToString() == subject.ToString()
                     && a.ValueIRI != null)
                 .Select(a => new RDFResource(a.ValueIRI.ToString()))
                 .ToList();
@@ -358,8 +374,8 @@ namespace Argumentum.AssetConverter.Ontology
         private List<RDFPlainLiteral> GetLiteralAnnotations(RDFResource subject, RDFResource property)
         {
             return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                .Where(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
-                    && a.SubjectIRI.Equals(subject.URI)
+                .Where(a => a.AnnotationProperty.GetIRI().ToString() == property.ToString()
+                    && a.SubjectIRI.ToString() == subject.ToString()
                     && a.ValueLiteral != null)
                 .Select(a => {
                     var literal = a.ValueLiteral.GetLiteral();
@@ -370,7 +386,7 @@ namespace Argumentum.AssetConverter.Ontology
 
         public bool CheckHasClass(RDFResource resource)
         {
-            return _ontology.DeclarationAxioms.Any(ax => ax.Entity is OWLClass cls && cls.GetIRI().Equals(resource.URI));
+            return _ontology.DeclarationAxioms.Any(ax => ax.Entity is OWLClass cls && cls.GetIRI().ToString() == resource.ToString());
         }
 
         public OWLOntology GetOntology()
@@ -386,9 +402,9 @@ namespace Argumentum.AssetConverter.Ontology
         public bool HasAnnotation(RDFResource subject, RDFResource property, RDFResource value)
         {
             return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
-                .Any(a => a.AnnotationProperty.GetIRI().Equals(property.URI)
-                    && a.SubjectIRI.Equals(subject.URI)
-                    && a.ValueIRI != null && a.ValueIRI.Equals(value.URI));
+                .Any(a => a.AnnotationProperty.GetIRI().ToString() == property.ToString()
+                    && a.SubjectIRI.ToString() == subject.ToString()
+                    && a.ValueIRI != null && a.ValueIRI.ToString() == value.ToString());
         }
     }
 }
