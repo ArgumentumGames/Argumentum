@@ -1,0 +1,8 @@
+Instructions bien reçues. Je vais traduire les chaînes UI DNN d'Argumentum du français vers les 7 langues cibles (en, ru, pt, es, ar, fa, zh) en respectant :
+- La conservation EXACTE des placeholders `{0}`/`{1}` à la position équivalente
+- Le saut des entrées dont `fr` est vide (aucun UpdateRecord émis)
+- Le style concis naturel de l'UI dans chaque langue
+- "Argumentum" invariant ; familles de cartes en français
+- ar/fa en lecture RTL naturelle ; résolution des entités HTML (`&agrave;` → "à")
+- Un appel `UpdateRecord` (primaryKey = `key`, fieldName = langue cible, newValue = traduction) par champ, tous en parallel tool calls, sans texte libre.
+Prêt à recevoir les données.
