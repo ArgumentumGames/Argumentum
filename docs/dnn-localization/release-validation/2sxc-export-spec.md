@@ -32,7 +32,7 @@ Tant que ces 7 FR ne sont pas confirmés, les 7×7 = 49 traductions dépendantes
 
 > **Déjà localisé, pas d'export requis :** Fallacies Explorer lit le CSV taxonomy via
 > `App.Query["FallaciesFromCSV"]` → le contenu des fallacies est déjà couvert par les CSV cartes 8
-> langues. (Caveat : le template pin `_en` — bug §4, à corriger en code.)
+> langues. (✅ Le template est culture-aware depuis PR #464 — bug §4 résolu, pas d'export requis pour l'Explorer.)
 
 ## 3. Méthode A — UI 2sxc (recommandé, non destructif)
 
