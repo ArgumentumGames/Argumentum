@@ -270,7 +270,10 @@ namespace Argumentum.AssetConverter.Ontology
                 }
             }
             catch { }
-            return GetAnnotationSubjects(SKOSVocabulary.Concept);
+            // Round-trip survivor fallback (see GetResourcesByType): on a loaded ontology rdf:type is
+            // absent, so concepts resolve via their surviving skos:prefLabel subjects.
+            var byType = GetAnnotationSubjects(SKOSVocabulary.Concept);
+            return byType.Count > 0 ? byType : GetAnnotationSubjectsByProperty(SKOSVocabulary.PrefLabel);
         }
 
         public List<RDFResource> GetTopConcepts()
@@ -352,6 +355,24 @@ namespace Argumentum.AssetConverter.Ontology
                 .ToList();
         }
 
+        /// <summary>
+        /// Distinct subjects carrying the given annotation property. Used by the OWL2XML round-trip
+        /// survivor fallback in <see cref="GetResourcesByType"/> / <see cref="GetConcepts"/>: concepts
+        /// are the distinct subjects of skos:prefLabel, the scheme the subject of skos:hasTopConcept.
+        /// Deduped by URI string (not RDFResource.Equals) to avoid the RDFResource equality class of
+        /// bugs — a concept carries prefLabel fr+en, i.e. two assertions yielding one distinct subject.
+        /// </summary>
+        private List<RDFResource> GetAnnotationSubjectsByProperty(RDFResource property)
+        {
+            var propertyUri = property.ToString();
+            return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                .Where(a => a.AnnotationProperty.GetIRI().ToString() == propertyUri)
+                .Select(a => a.SubjectIRI.ToString())
+                .Distinct()
+                .Select(uri => new RDFResource(uri))
+                .ToList();
+        }
+
         private List<RDFResource> GetAnnotationObjects(RDFResource property)
         {
             return _ontology.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
@@ -396,7 +417,27 @@ namespace Argumentum.AssetConverter.Ontology
 
         public List<RDFResource> GetResourcesByType(RDFResource typeResource)
         {
-            return GetAnnotationSubjects(typeResource);
+            var byType = GetAnnotationSubjects(typeResource);
+            if (byType.Count > 0)
+                return byType;
+
+            // OWL2XML round-trip survivor fallback (READ-PATH ONLY — the serializer is not touched).
+            // On a LOADED ontology OWLSharp drops rdf:type from the reloaded annotation stream, so the
+            // type scan above is empty (measured on the real generated ontology: rdf:type==0 and
+            // skos:inScheme==0 among AnnotationAxioms). Locate the entities via the SKOS annotations
+            // that DO survive the round-trip instead:
+            //   - skos:Concept       → distinct subjects of skos:prefLabel (each concept carries fr+en)
+            //   - skos:ConceptScheme → subject of skos:hasTopConcept (the scheme owns the top link)
+            // Verified survivors as OWLAnnotationAssertion after reload: prefLabel(2816),
+            // definition(2816), example(2816), narrower/broader(1407), broadMatch(57), closeMatch(10),
+            // narrowMatch(3), hasTopConcept(1). See OwlE2EGenerationValidationTests (#486).
+            // In-memory ontologies (rdf:type present) take the early-return above and are unaffected.
+            var typeUri = typeResource.ToString();
+            if (typeUri == SKOSVocabulary.Concept.ToString())
+                return GetAnnotationSubjectsByProperty(SKOSVocabulary.PrefLabel);
+            if (typeUri == SKOSVocabulary.ConceptScheme.ToString())
+                return GetAnnotationSubjectsByProperty(SKOSVocabulary.HasTopConcept);
+            return byType;
         }
 
         public bool HasAnnotation(RDFResource subject, RDFResource property, RDFResource value)
