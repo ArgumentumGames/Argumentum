@@ -250,6 +250,9 @@ DNNPlatform/Portals/*/Downloads/*.zip.REMOVED.git-id
 # DNN extension packages (re-downloadable installers)
 DNNPlatform/App_Data/ExtensionPackages/*.resources
 
+# DNN module installers (re-downloadable ToSic 2sxc install zips — keep PlaceHolder.txt)
+DNNPlatform/Install/Module/*.zip
+
 # Large generated SVGs (regenerable via MindMapper pipeline)
 # Note: small source SVGs in Cards/ are kept
 Generation/Converters/Argumentum.AssetConverter/Mindmapper/*.svg
