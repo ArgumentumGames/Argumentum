@@ -604,12 +604,11 @@ public class HarvestManager : IAsyncDisposable
 	                  // Avec rsstyle="bunch" et rscount>=N, CardPen génère ceil(cardIds.Count/rscount) images
 	                  var rscount = cardSetDocument.CardSetDocument.rscount;
 	                  var rsstyle = cardSetDocument.CardSetDocument.rsstyle;
-	                  expectedImageCount = cardIds.Count;
+	                  expectedImageCount = ComputeExpectedImageCount(cardIds.Count, rscount, rsstyle);
 
 	                  if (rscount > 1 && !string.IsNullOrEmpty(rsstyle) &&
 	                      (rsstyle == "bunch" || rsstyle == "cycle" || rsstyle == "random"))
 	                  {
-	                      expectedImageCount = (int)Math.Ceiling((double)cardIds.Count / rscount);
 	                      Log($"[rscount adjustment] rscount={rscount}, rsstyle={rsstyle}, original={cardIds.Count} -> expected={expectedImageCount}");
 	                  }
 	              }
@@ -641,6 +640,26 @@ public class HarvestManager : IAsyncDisposable
 	          }
 	          return toReturn;
 	       }
+
+    /// <summary>
+    /// Computes the number of images CardPen will generate for a card set, given the source row
+    /// count, the rscount (rows grouped per card) and the rsstyle. Mirrors CardPen's client-side
+    /// rowset grouping: with rsstyle "bunch"/"cycle"/"random" and rscount &gt; 1, CardPen groups
+    /// rscount rows onto each card and emits ceil(cardCount/rscount) images; otherwise one image per
+    /// row. This is the formula documented in CLAUDE.md ("Lecons Apprises -- Calcul du nombre
+    /// d'images attendues") and was previously inlined in the Playwright flow with zero unit
+    /// coverage. Pure and deterministic -- extracted (output-neutral) so the CardPen-mirroring
+    /// contract is unit-testable outside the browser. See HarvestManagerExpectedImageCountTests.
+    /// </summary>
+    public static int ComputeExpectedImageCount(int cardCount, int rscount, string rsstyle)
+    {
+        if (rscount > 1 && !string.IsNullOrEmpty(rsstyle) &&
+            (rsstyle == "bunch" || rsstyle == "cycle" || rsstyle == "random"))
+        {
+            return (int)Math.Ceiling((double)cardCount / rscount);
+        }
+        return cardCount;
+    }
 
     /// <summary>
     /// RESTORED from Golden Master (commit 0087f0ec).
