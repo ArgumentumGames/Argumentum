@@ -118,6 +118,11 @@ confirmed *by the export itself*:
 
 ## 4. Bug found during audit — FallacyExplorer not culture-aware
 
+> **✅ STATUS UPDATE (2026-06-16):** This bug was subsequently **FIXED in PR #464** (commit
+> `c9197f15` — "@fix(dnn): make FallacyExplorer culture-aware"). `_FallacyExplorer_Root.cshtml` now
+> resolves `field_{lang}` → `field_en` → `field_fr` via a `loc()` cascade + a localized
+> `findOutMore` dictionary (8 langs). The finding below is preserved as the original Phase-1 record.
+
 `_FallacyExplorer_Root.cshtml` hardcodes English fields and an English label:
 
 ```razor

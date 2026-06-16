@@ -42,20 +42,21 @@ Le track cartes est couvert. Ce dossier couvre le **track site**, qui n'existait
    tard) : parcourir chaque langue avec `validation-checklist.md`.
 4. **Langues non lues** (ar/fa/zh) : s'appuyer sur `non-latin-verification-guide.md` (chaînes
    attendues + contrôles de direction/police).
-5. **Bugs connus à vérifier** : FallacyExplorer pas culture-aware (pin `_en`) — voir §4 de
-   `../PHASE1-content-audit.md`. À corriger en Phase 2/4.
+5. **✅ FallacyExplorer culture-aware (FIXÉ PR #464)** : le template résout `field_{lang}` → `_en`
+   → `_fr` + label localisé (commit `c9197f15`). L'audit §4 (pin `_en`) est résolu ; reste à valider
+   le rendu par langue sur le site.
 
 ## 4. Prérequis / dépendances
 
 - **2sxc export** (étape 1 ci-dessus) — gate réel pour la fiabilité du FR source.
-- **Fix FallacyExplorer culture** (audit §4) — sans lui, l'Explorer affiche `text_en` quelle que soit
-  la langue → invalide toute validation ar/fa/zh/ru/pt/es de l'Explorer. À planifier Phase 2/4.
+- **✅ Fix FallacyExplorer culture (PR #464)** — RÉSOLU. L'Explorer est culture-aware (cascade
+  lang→en→fr + label localisé). Reste à valider le rendu par langue sur le site.
 - **Déploiement staging** — pour une validation représentative du prod (le local IIS suffit pour
   valider le rendu, pas la perf/SSL).
 
 ## 5. Relations avec les autres docs
 
-- `../PHASE1-content-audit.md` — audit de localisation (source des 10 chaînes + bug §4).
+- `../PHASE1-content-audit.md` — audit de localisation (source des 10 chaînes ; bug §4 **résolu PR #464**).
 - `../dnn-ui-strings.csv` — données source (#490, HELD).
 - `../../dnn/UPGRADE-ASSESSMENT.md` — assessment migration DNN 9.13→10.x (track déploiement).
 - `../../release-v0.9.0-validation-brief.md` — validation release **cartes** (l'autre track).

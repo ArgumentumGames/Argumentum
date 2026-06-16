@@ -87,8 +87,9 @@ Pour une validation express d'une langue non lue :
 - Ce guide couvre les **10 chaînes** de `dnn-ui-strings.csv`. Les contenus DB-only (Glossary, FAQ,
   homepage, corps des règles) ne sont **pas encore extraits** (voir `2sxc-export-spec.md`) — ils
   n'ont donc pas encore de chaînes attendues.
-- Le bug FallacyExplorer (§4 du content-audit) fait que l'Explorer affiche de l'anglais en toute
-  langue → ne pas conclure « traduction manquante » sur l'Explorer avant le fix.
+- ✅ Le bug FallacyExplorer (§4 du content-audit) est **FIXÉ (PR #464)** — l'Explorer est
+  culture-aware. Il doit rendre la langue courante ; si l'Explorer affiche de l'anglais, c'est
+  désormais une vraie régression à signaler (plus un état attendu).
 
 ---
 

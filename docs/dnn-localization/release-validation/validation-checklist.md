@@ -41,12 +41,11 @@ Vérifier :
 ### 3.1 Fallacy Explorer (`_FallacyExplorer_Root.cshtml`)
 
 - [ ] La liste des fallacies s'affiche.
-- [ ] **⚠️ BUG CONNU (audit §4)** : le template **pin `text_en`/`desc_en`/`link_en`** quelle que soit
-      la culture + hardcode le label `"find out more"` (EN). → Pour toute langue ≠ EN, l'Explorer
-      affiche actuellement de l'anglais. **C'est un bug à corriger (Phase 2/4), pas un échec de
-      traduction.** Le signaler ; ne pas bloquer la validation des autres features dessus.
-- [ ] Une fois le fix appliqué : le libellé du lien = chaîne localisée (`ui.fallacy.find_out_more`,
-      voir `non-latin-verification-guide.md`).
+- [ ] **✅ FIXÉ (PR #464 / commit `c9197f15`)** : le template est culture-aware — `loc()` cascade
+      `field_{lang}` → `field_en` → `field_fr` + label localisé (dictionnaire 8 langues). L'audit §4
+      (pin `_en` + label EN hardcodé) est résolu.
+- [ ] Vérifier que chaque langue rend son texte propre (pas de fallback EN involontaire) — chaînes
+      attendues dans `non-latin-verification-guide.md`.
 
 ### 3.2 Rules Explorer — liste (`_RulesExplorer_RuleList.cshtml`)
 
@@ -89,7 +88,7 @@ Pour chaque règle, vérifier les 8 sections `res.*` (FR → traduit) :
 ## 5. Issue tracking
 
 Tout écart → issue GitHub (label `dnn`/`i18n`) ou signalement dashboard. Distinguer :
-- **Bug template** (ex. FallacyExplorer §4) → fix code Phase 2/4.
+- **Bug template** (ex. FallacyExplorer §4 — **résolu PR #464**) → fix code Phase 2/4.
 - **FR source faux** (inféré ≠ DB) → corriger CSV + re-run #457.
 - **Traduction faible** → ajuster cellule ciblée.
 
