@@ -68,7 +68,7 @@ namespace Argumentum.AssetConverter
                 // Back page — only render if at least one card on this page has a non-null back
                 if (!_docConfig.NoBack && pageBackImages.Any(b => b != null))
                 {
-                    var backCardsArray = pageBackImages.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray()).ToArray().Flatten();
+                    var backCardsArray = ReorderBacksForRectoVerso(pageBackImages, nbColumns);
                     container.Page(page =>
                     {
                         ComposePage(page, pageSize, pageMarginMm, nbColumns, backCardsArray);
@@ -85,6 +85,24 @@ namespace Argumentum.AssetConverter
                 }
             }
         }
+
+        /// <summary>
+        /// Reorders back images for horizontal recto-verso printing. Each grid ROW of backs is
+        /// reversed so that, when the printed sheet is flipped along its horizontal edge (the way a
+        /// Print &amp; Play sheet is turned to read the back), each back lines up behind its matching
+        /// front. This is a PER-ROW reversal of the back grid — not a full mirror of the flat array —
+        /// because a horizontal flip swaps left/right WITHIN each row while preserving row order
+        /// (row 0 stays row 0). In other words the back at output position (row, col) is the original
+        /// back at (row, nbColumns-1-col).
+        /// Extracted output-neutral from <see cref="Compose"/> (the inline composition
+        /// <c>backs.ToJaggedArray(nbColumns).Select(row =&gt; row.Reverse().ToArray()).ToArray().Flatten()</c>)
+        /// so this fragile alignment contract is unit-testable in isolation, without a QuestPDF render.
+        /// </summary>
+        public static T[] ReorderBacksForRectoVerso<T>(IList<T> backs, int nbColumns)
+            => backs.ToJaggedArray(nbColumns)
+                    .Select(row => row.Reverse().ToArray())
+                    .ToArray()
+                    .Flatten();
 
         private void ComposePage(PageDescriptor page, PageSize pageSize, float pageMarginMm, int nbColumns, IEnumerable<byte[]> images)
         {
