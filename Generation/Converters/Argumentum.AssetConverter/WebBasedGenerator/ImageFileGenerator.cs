@@ -182,38 +182,65 @@ public class ImageFileGenerator
 			return;
 		}
 
-		if (backImages.Count == 0)
+		currentCard.Back = ResolveCardBack(faceKey, backImages, out var hadNoAvailableBack, out var usedFallback);
+		if (hadNoAvailableBack)
 		{
 			Logger.LogWarning($"No back images available for face '{faceKey}'. Adding face only.");
-			targetList.Add(currentCard);
-			return;
+		}
+		else if (usedFallback)
+		{
+			Logger.LogWarning($"No matching back found for face '{faceKey}'. Using first available back.");
+		}
+
+		targetList.Add(currentCard);
+	}
+
+	/// <summary>
+	/// Pure, deterministic face→back matching contract (Golden Master, commit 0087f0ec).
+	/// Given a face key and the available back images (key = normalized back name, value = back
+	/// image path), returns the back image path to pair behind the face, or null when no back is
+	/// available. Branches:
+	/// - No backs at all → null (face only).
+	/// - Exactly one back → that back for every face.
+	/// - Multiple backs → the back whose (lower-cased) key is contained in the (lower-cased) face
+	///   key, choosing the LONGEST matching key first to avoid partial-match collisions; if none
+	///   matches, falls back to the first available back.
+	/// The <paramref name="hadNoAvailableBack"/> / <paramref name="usedFallback"/> out flags let
+	/// the caller emit its existing diagnostic warnings without duplicating the branch logic.
+	/// Extracted output-neutral from <see cref="AssembleCurrentCardImages"/> (#204) — the assembled
+	/// <see cref="CardImages"/> gets the exact same Front/Back pair as before.
+	/// </summary>
+	public static string ResolveCardBack(string faceKey, IReadOnlyDictionary<string, string> backImages,
+		out bool hadNoAvailableBack, out bool usedFallback)
+	{
+		hadNoAvailableBack = false;
+		usedFallback = false;
+
+		if (backImages.Count == 0)
+		{
+			hadNoAvailableBack = true;
+			return null;
 		}
 
 		if (backImages.Count == 1)
 		{
-			currentCard.Back = backImages.Values.First();
+			return backImages.Values.First();
 		}
-		else
+
+		// Golden Master matching: find back whose name is contained in the face key
+		var faceKeyLower = faceKey.ToLowerInvariant();
+		var targetBackName = backImages.Keys
+			.OrderByDescending(bn => bn.Length) // Match longest name first to avoid partial matches
+			.FirstOrDefault(bn => faceKeyLower.Contains(bn.ToLowerInvariant()));
+
+		if (targetBackName != null)
 		{
-			// Golden Master matching: find back whose name is contained in the face key
-			var faceKeyLower = faceKey.ToLowerInvariant();
-			var targetBackName = backImages.Keys
-				.OrderByDescending(bn => bn.Length) // Match longest name first to avoid partial matches
-				.FirstOrDefault(bn => faceKeyLower.Contains(bn.ToLowerInvariant()));
-
-			if (targetBackName != null)
-			{
-				currentCard.Back = backImages[targetBackName];
-			}
-			else
-			{
-				// Fallback: use first back
-				currentCard.Back = backImages.Values.First();
-				Logger.LogWarning($"No matching back found for face '{faceKey}'. Using first available back.");
-			}
+			return backImages[targetBackName];
 		}
 
-		targetList.Add(currentCard);
+		// Fallback: use first back
+		usedFallback = true;
+		return backImages.Values.First();
 	}
 
 
