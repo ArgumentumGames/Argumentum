@@ -47,32 +47,48 @@ namespace Argumentum.AssetConverter
             AnsiConsole.MarkupLine($"[cyan]INFO: Processing {cardsWithBackCount} cards with back, {cardsWithoutBackCount} cards without back for '{baseName}'[/]");
             AnsiConsole.MarkupLine($"[cyan]INFO: Preserving original CardSet order (Rules first, then Memo, Fallacies, etc.)[/]");
 
+            // ✅ #119 image-sequence ordering extracted output-neutral into
+            // OrderImagesForAlternateFaceAndBack so this fragile recto-verso contract
+            // (original CardSet order preserved — Rules first; back-then-front per card) is
+            // unit-testable without a MagickImage render.
+            var orderedPaths = OrderImagesForAlternateFaceAndBack(cardImages);
             var collecBuilderAFB = () =>
             {
-                var allImages = new List<MagickImage>();
-
-                // Parcourir les cartes dans l'ordre original des CardSets
-                foreach (var card in cardImages)
-                {
-                    if (!string.IsNullOrEmpty(card.Back))
-                    {
-                        // Carte avec dos: dos d'abord, face ensuite (pour recto-verso)
-                        allImages.Add(new MagickImage(card.Back));
-                        allImages.Add(new MagickImage(card.Front));
-                    }
-                    else
-                    {
-                        // Carte sans dos (Rules): face uniquement
-                        allImages.Add(new MagickImage(card.Front));
-                    }
-                }
-
-                var collec = new MagickImageCollection(allImages);
+                var collec = new MagickImageCollection(orderedPaths.Select(p => new MagickImage(p)));
                 return collec;
             };
 
             targetFiles.Add((baseName, collecBuilderAFB));
             GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+        }
+
+        /// <summary>
+        /// Produces the ordered image-path sequence for alternate face-and-back recto-verso
+        /// printing (issue #119). The original CardSet order is PRESERVED — so cards without a
+        /// back (Rules) keep their place and appear in sequence with the rest — and for each
+        /// card that HAS a back, the BACK is emitted immediately before its FRONT. That back-
+        /// then-front ordering is what makes each back line up behind its matching front when
+        /// the sheet is printed recto-verso.
+        /// Pure &amp; deterministic — no MagickImage, no I/O. Extracted output-neutral from
+        /// <see cref="GenerateAlternateFaceAndBack"/> (which previously inlined this logic inside
+        /// the collection builder) so this fragile alignment + ordering contract is unit-testable
+        /// in isolation. A regression here (e.g. emitting front-then-back, or dropping the
+        /// back-less cards) silently misaligns every printed sheet.
+        /// </summary>
+        public static IEnumerable<string> OrderImagesForAlternateFaceAndBack(IEnumerable<CardImages> cards)
+        {
+            foreach (var card in cards)
+            {
+                if (!string.IsNullOrEmpty(card.Back))
+                {
+                    yield return card.Back;
+                    yield return card.Front;
+                }
+                else
+                {
+                    yield return card.Front;
+                }
+            }
         }
 
         public void GenerateBackFirstOneDocPerBack(string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
