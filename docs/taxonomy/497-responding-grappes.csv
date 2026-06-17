@@ -1,0 +1,17 @@
+weight,src_grappe_path,src_grappe_name,src_famille,tgt_grappe_path,tgt_grappe_name,tgt_famille,cross_family,leaf_link_examples
+7,2.3,Manipulation mentale,Influence,6.3,Raisonnement biaisé,Tricherie,YES,Cadrage-[PredatesOn]->Effet de cadrage; Appel à la validation subjective-[PredatesOn]->Validation subjective; Ancrage-[PredatesOn]->Effet d'ancrage
+1,7.3,Ad hominem,Obstruction,6.3,Raisonnement biaisé,Tricherie,YES,Appel à la bande-[PredatesOn]->Effet de mode
+1,7.3,Ad hominem,Obstruction,5.2,Comparaison fallacieuse,Abus de langage,YES,Culpabilité par association-[Leverages]->Sophisme d'association
+1,7.1,Refus du débat,Obstruction,5.3,Ambiguïté,Abus de langage,YES,Relativisme abusif-[Leverages]->Réification
+1,6.2,Déplacement des critères,Tricherie,6.2,Déplacement des critères,Tricherie,no,Tourner la page-[Opposes]->Attente irréaliste
+1,6.2,Déplacement des critères,Tricherie,1.1,Généralisation hâtive,Insuffisance,YES,La pendule cassée inverse-[IsRelatedTo]->La pendule arrêtée
+1,5.1,Définition biaisée,Abus de langage,5.1,Définition biaisée,Abus de langage,no,Faux dilemme-[Inverts]->Déni du corrélatif
+1,5.1,Définition biaisée,Abus de langage,3.3,Conclusion mathématique invalide,Erreur mathématique,YES,Faux dilemme-[Mirrors]->Juste milieu
+1,3.3,Conclusion mathématique invalide,Erreur mathématique,5.1,Définition biaisée,Abus de langage,YES,Juste milieu-[Mirrors]->Faux dilemme
+1,2.2,Appel à l'émotion,Influence,1.3,Surinterprétation,Insuffisance,YES,Fâcher l'adversaire-[Allows]->Appel à la colère
+1,2.2,Appel à l'émotion,Influence,1.1,Généralisation hâtive,Insuffisance,YES,Appel à l'ignorance assumée-[PredatesOn]->Ignorance délibérée
+1,1.3,Surinterprétation,Insuffisance,5.3,Ambiguïté,Abus de langage,YES,Tromperie implicite-[Leverages]->Fausse implication
+1,1.3,Surinterprétation,Insuffisance,5.1,Définition biaisée,Abus de langage,YES,Sophisme étymologique-[Denounces]->Langage idiosyncrasique
+1,1.3,Surinterprétation,Insuffisance,4.1,Causalité douteuse,Erreur de raisonnement,YES,Sophisme du sophisme-[Leverages]->Négation de l'antécédent
+1,1.1,Généralisation hâtive,Insuffisance,7.1,Refus du débat,Obstruction,YES,Argument vide-[IsRelatedTo]->Portée limitée
+1,1.1,Généralisation hâtive,Insuffisance,6.2,Déplacement des critères,Tricherie,YES,La pendule arrêtée-[Opposes]->La pendule cassée inverse
