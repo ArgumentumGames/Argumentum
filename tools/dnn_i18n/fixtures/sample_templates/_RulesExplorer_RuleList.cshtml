@@ -1,0 +1,7 @@
+@* Fixture template for #457 round-trip test. Miniature, audit-anchored, NOT production. *@
+@inherits Custom.Hybrid.Razor12
+@foreach (var rule in rules) {
+  <div class="nbPlayers">
+    <h6>de @rule.MinNbPlayers &agrave; @rule.MaxNbPlayers joueurs </h6>
+  </div>
+}
