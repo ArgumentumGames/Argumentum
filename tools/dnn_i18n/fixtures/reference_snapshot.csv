@@ -1,0 +1,11 @@
+key,context,source_file,fr,en,ru,pt,es,ar,fa,zh,notes
+ui.fallacy.find_out_more,FallacyExplorer link label '(find out more)',Portals/1/2sxc/Argumentum/_FallacyExplorer_Root.cshtml,en savoir plus,,,,,,,,"Template hardcodes EN value AND reads text_en/desc_en/link_en regardless of culture (i18n bug, see audit s4)"
+ui.rules.players_range,Rules list/detail player-count line 'de {0} a {1} joueurs',Portals/1/2sxc/Argumentum/_RulesExplorer_RuleList.cshtml;Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,de {0} à {1} joueurs,,,,,,,,Hardcoded FR; keep {0}/{1} placeholders; source uses &agrave; entity
+res.RuleInstallation,Rule detail section heading (<h2>),Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleMaterial,Rule detail section heading (<h2>),Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleMemoCard,Rule detail memo-card heading (<h2>),Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleMemoCardDownload,Memo card download button label,Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleMemoCardFileNamePrefix,Memo card filename prefix in card name,Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleMemoInstructions,"Rule detail memo-card instructions (Html.Raw, multi-sentence)",Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleSummary,Rule detail section heading (<h2>),Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
+res.RuleVariants,Rule detail section heading (<h2>),Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml,,,,,,,,,INFERRED FR; canonical value is DB-only (2sxc App Resources) - verify vs export
