@@ -48,17 +48,15 @@ namespace Argumentum.AssetConverter
             var cardHeightPoints = ((float)_docConfig.CardSets[0].FrontCards.HeigthMM) * MmToPointsFactor;
 
             var totalMarginPoints = 2 * pageMarginMm * MmToPointsFactor;
-            var contentWidthPoints = pageSize.Width - totalMarginPoints;
+            var hasHeader = !string.IsNullOrEmpty(_docConfig.Header);
 
-            // ✅ FIX: Soustraire la hauteur du header de l'espace disponible pour le contenu
-            // Le header utilise pageSize.Height / 10, donc on le soustrait de contentHeightPoints
-            var headerHeightPoints = !string.IsNullOrEmpty(_docConfig.Header) ? pageSize.Height / 10 : 0;
-            var contentHeightPoints = pageSize.Height - totalMarginPoints - headerHeightPoints;
-
-            int nbColumns = _docConfig.NbColumns > 0 ? _docConfig.NbColumns : (int)(contentWidthPoints / cardWidthPoints);
-            var nbRows = (int)(contentHeightPoints / cardHeightPoints);
-            var nbCardsPerPage = nbRows * nbColumns;
-            var nbPages = (int)Math.Ceiling((decimal)_frontImagesData.Count / (decimal)nbCardsPerPage);
+            // ✅ Page-grid geometry (nbColumns/nbRows/nbCardsPerPage/nbPages) extracted output-neutral
+            // into ComputePageGeometry so this fragile layout contract is unit-testable without a render.
+            var geometry = ComputePageGeometry(pageSize.Width, pageSize.Height, cardWidthPoints, cardHeightPoints,
+                                               totalMarginPoints, hasHeader, _docConfig.NbColumns, _frontImagesData.Count);
+            int nbColumns = geometry.NbColumns;
+            var nbCardsPerPage = geometry.NbCardsPerPage;
+            var nbPages = geometry.NbPages;
 
             for (int pageIndex = 0; pageIndex < nbPages; pageIndex++)
             {
@@ -103,6 +101,69 @@ namespace Argumentum.AssetConverter
                     .Select(row => row.Reverse().ToArray())
                     .ToArray()
                     .Flatten();
+
+        /// <summary>
+        /// Page-grid geometry for a Print &amp; Play sheet: how many card columns/rows fit, how many
+        /// cards per page, and how many pages the deck spans.
+        /// </summary>
+        public readonly struct PrintPlayPageGeometry
+        {
+            /// <summary>Grid columns per sheet. The configured value when &gt; 0, else floor(contentWidth / cardWidth).</summary>
+            public readonly int NbColumns;
+            /// <summary>Grid rows per sheet: floor(contentHeight / cardHeight).</summary>
+            public readonly int NbRows;
+            /// <summary>Cards that fit on one sheet: NbRows × NbColumns.</summary>
+            public readonly int NbCardsPerPage;
+            /// <summary>Sheets needed for the whole deck: ceil(frontImageCount / NbCardsPerPage).</summary>
+            public readonly int NbPages;
+
+            public PrintPlayPageGeometry(int nbColumns, int nbRows, int nbCardsPerPage, int nbPages)
+            {
+                NbColumns = nbColumns;
+                NbRows = nbRows;
+                NbCardsPerPage = nbCardsPerPage;
+                NbPages = nbPages;
+            }
+        }
+
+        /// <summary>
+        /// Derives the page-grid geometry from the resolved page/card sizes. Pure &amp; deterministic —
+        /// no QuestPDF dependency, no I/O. Reproduces the exact arithmetic previously inlined in
+        /// <see cref="Compose"/> (output-neutral):
+        /// <list type="bullet">
+        /// <item><description>contentWidth = pageWidth − totalMargin</description></item>
+        /// <item><description>header reserves pageHeight / 10 when <paramref name="hasHeader"/> (matches <see cref="ComposePage"/>'s header height)</description></item>
+        /// <item><description>contentHeight = pageHeight − totalMargin − headerHeight</description></item>
+        /// <item><description>NbColumns = configuredColumns when &gt; 0, else floor(contentWidth / cardWidth) — TRUNCATION, not rounding</description></item>
+        /// <item><description>NbRows = floor(contentHeight / cardHeight)</description></item>
+        /// <item><description>NbCardsPerPage = NbRows × NbColumns</description></item>
+        /// <item><description>NbPages = ceil(frontImageCount / NbCardsPerPage)</description></item>
+        /// </list>
+        /// Degenerate inputs where NbCardsPerPage == 0 (card larger than the content area, or zero
+        /// columns) make NbPages divide by zero — preserved as-is (NOT guarded) to stay output-neutral;
+        /// flagged for a separate behavior-change PR.
+        /// </summary>
+        public static PrintPlayPageGeometry ComputePageGeometry(
+            float pageWidthPoints, float pageHeightPoints,
+            float cardWidthPoints, float cardHeightPoints,
+            float totalMarginPoints,
+            bool hasHeader,
+            int configuredNbColumns,
+            int frontImageCount)
+        {
+            var contentWidthPoints = pageWidthPoints - totalMarginPoints;
+            var headerHeightPoints = hasHeader ? pageHeightPoints / 10 : 0;
+            var contentHeightPoints = pageHeightPoints - totalMarginPoints - headerHeightPoints;
+
+            int nbColumns = configuredNbColumns > 0
+                ? configuredNbColumns
+                : (int)(contentWidthPoints / cardWidthPoints);
+            int nbRows = (int)(contentHeightPoints / cardHeightPoints);
+            int nbCardsPerPage = nbRows * nbColumns;
+            int nbPages = (int)Math.Ceiling((decimal)frontImageCount / (decimal)nbCardsPerPage);
+
+            return new PrintPlayPageGeometry(nbColumns, nbRows, nbCardsPerPage, nbPages);
+        }
 
         private void ComposePage(PageDescriptor page, PageSize pageSize, float pageMarginMm, int nbColumns, IEnumerable<byte[]> images)
         {
