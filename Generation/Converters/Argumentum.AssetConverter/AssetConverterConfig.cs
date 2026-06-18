@@ -34,7 +34,7 @@ namespace Argumentum.AssetConverter
 	    public bool SkipConfigFile { get; set; } = true;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
-	       public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper;
+	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -275,7 +275,9 @@ namespace Argumentum.AssetConverter
 		public VirtueMindMapCreatorConfig VirtueMindMapCreatorConfig { get; set; } = new VirtueMindMapCreatorConfig();
 
 		public string FreeplanePath { get; set; } = "";
-		public string FreeMindPath { get; set; } = @"C:\Program Files (x86)\FreeMind\FreeMind.exe";
+		// FreeMindPath default stays empty (machine-specific — set via ARGUMENTUM_FREEMIND_PATH env var
+		// or config, never hardcoded). See TryFreeMindSvgExportCore env-var fallback.
+		public string FreeMindPath { get; set; } = "";
 
 
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();

@@ -553,10 +553,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private static bool TryFreeMindSvgExportCore(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
 		{
+			// FreeMindPath is machine-specific (absolute Windows path), so the C# default stays "".
+			// It resolves at runtime from (1) config.FreeMindPath, then (2) the ARGUMENTUM_FREEMIND_PATH
+			// env var. This avoids hardcoding a path that would break on machines where FreeMind isn't
+			// installed at that exact location, while still letting an attended run find it.
 			var freemindPath = config.FreeMindPath;
+			if (string.IsNullOrEmpty(freemindPath))
+			{
+				freemindPath = Environment.GetEnvironmentVariable("ARGUMENTUM_FREEMIND_PATH");
+			}
 			if (string.IsNullOrEmpty(freemindPath) || !File.Exists(freemindPath))
 			{
-				Logger.LogWarning($"FreeMind not found at '{freemindPath}'. Skipping GUI export.");
+				Logger.LogWarning($"FreeMind not found (config.FreeMindPath='{config.FreeMindPath}', env ARGUMENTUM_FREEMIND_PATH unset or invalid). Skipping GUI export.");
 				return false;
 			}
 
