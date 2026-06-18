@@ -19,6 +19,9 @@ namespace Argumentum.AssetConverter
 	public static class UtilityExtensions
 	{
 
+		// Shared HttpClient (was `new HttpClient()` per call — #29 H6). Thread-safe for concurrent calls;
+		// avoids socket exhaustion / GC pressure on long runs with repeated downloads. Output-neutral.
+		private static readonly HttpClient _sharedHttpClient = new HttpClient();
 
 
 		public static void ExportDataTable(this CsvWriter writer, DataTable dt)
@@ -214,7 +217,7 @@ namespace Argumentum.AssetConverter
 				try
 				{
 					// Download the file from the specified URL
-					using var client = new HttpClient();
+					var client = _sharedHttpClient;
 
 					var response = await client.GetAsync(urlFile);
 					if (response.IsSuccessStatusCode)

@@ -356,7 +356,6 @@ public class HarvestManager : IAsyncDisposable
 		Log("Entering GenerateHarvestImages.");
 		var currentHarvest = new CardSetHarvest();
 		var page = await GetFreePage(browser);
-		var consoleMessages = new List<string>();
 
 		void Page_Console(object sender, IConsoleMessage msg)
 		{
@@ -408,7 +407,7 @@ public class HarvestManager : IAsyncDisposable
 
 			Log("Diagnostic check passed: #cpOutput iframe is ready.");
 
-			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo, consoleMessages);
+			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
 			currentHarvest.Faces = faces;
 
 			// Issue #190 phase 1: opportunistic overflow detection on Virtues face cards.
@@ -434,7 +433,7 @@ public class HarvestManager : IAsyncDisposable
 
 			if (cardSetDocuments.back != null)
 			{
-				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo, consoleMessages);
+				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
 				currentHarvest.Backs = backs;
 			}
 		}
@@ -448,7 +447,7 @@ public class HarvestManager : IAsyncDisposable
 	}
 
 
-	      public async Task<CardPenHarvest> GenerateImages(IPage page, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo, List<string> consoleMessages)
+	      public async Task<CardPenHarvest> GenerateImages(IPage page, CardSetPayload cardSetDocument, CardSetInfo cardSetInfo)
 	      {
 	          var toReturn = new CardPenHarvest();
 	          if (cardSetDocument?.CardSetDocument == null)

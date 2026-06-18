@@ -16,6 +16,10 @@ namespace Argumentum.AssetConverter
         private readonly List<byte[]> _frontImagesData;
         private readonly List<byte[]> _backImagesData;
 
+        // Header bytes read once and cached (was File.ReadAllBytes per page in ComposePage — #29 H5).
+        // Identical bytes, just no re-read; output-neutral.
+        private readonly Lazy<byte[]> _headerImageData;
+
         private const float InchToCentimetre = 2.54f;
         private const float InchToPoints = 72;
         private float MmToPointsFactor = 0.1f / InchToCentimetre * InchToPoints;
@@ -25,6 +29,15 @@ namespace Argumentum.AssetConverter
             _docConfig = docConfig;
             _frontImagesData = frontImagesData;
             _backImagesData = backImagesData;
+            _headerImageData = new Lazy<byte[]>(LoadHeaderImageData);
+        }
+
+        private byte[] LoadHeaderImageData()
+        {
+            if (string.IsNullOrEmpty(_docConfig.Header))
+                return null;
+            var imagePath = Path.Combine(Environment.CurrentDirectory, _docConfig.Header);
+            return File.Exists(imagePath) ? File.ReadAllBytes(imagePath) : null;
         }
 
         public DocumentMetadata GetMetadata() => new DocumentMetadata()
@@ -172,14 +185,9 @@ namespace Argumentum.AssetConverter
             page.PageColor(Colors.White);
             page.DefaultTextStyle(x => x.FontSize(20));
 
-            if (!string.IsNullOrEmpty(_docConfig.Header))
+            if (_headerImageData.Value != null)
             {
-                var imagePath = Path.Combine(Environment.CurrentDirectory, _docConfig.Header);
-                if(File.Exists(imagePath))
-                {
-                    var imageData = File.ReadAllBytes(imagePath);
-                    page.Header().AlignCenter().Height(pageSize.Height / 10).Padding(pageSize.Width / 150).Image(imageData, ImageScaling.FitHeight);
-                }
+                page.Header().AlignCenter().Height(pageSize.Height / 10).Padding(pageSize.Width / 150).Image(_headerImageData.Value, ImageScaling.FitHeight);
             }
 
             page.Content()
