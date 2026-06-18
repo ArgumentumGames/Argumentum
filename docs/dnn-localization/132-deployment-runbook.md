@@ -8,6 +8,14 @@
 upgrade, no go-live on production without jsboige's explicit go. This is the **go-live procedure**,
 distinct from the sandbox-upgrade procedure ([#522](131-step1-sandbox-upgrade-runbook.md)).
 
+> ⚠️ **TARGET SUPERSEDED — 10.1.2 → 10.3.2.** jsboige interactive decision #2 (issue #458, 2026-06-18)
+> chose the **full upgrade to 10.3.2-latest + 2sxc 15→≥21 + template audit**. The **10.1.2 target below is
+> superseded**; read [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md)
+> as the source of truth. **Specifically §4 of this doc ("no 2sxc migration for 10.1.2") NO LONGER HOLDS**
+> — 10.3.2 crosses the 2sxc cliff, so 2sxc content migration + the 2sxc upgrade are real steps (see the
+> revision doc §4: a new Phase 1.5 + expanded Phase 3/4). The 6-phase go-live procedure, the rollback
+> contract, and the runtime finding (.NET 4.8) here remain valid; only the target + 2sxc scope changed.
+>
 > **Migration strategy (jsboige, issue #132 body):** recover the production database → restore to
 > dev/staging → analyze schema & data → migration plan (dev↔prod delta) → test on the backup →
 > go-live. This runbook follows that 6-step shape and flags every section that can only be completed

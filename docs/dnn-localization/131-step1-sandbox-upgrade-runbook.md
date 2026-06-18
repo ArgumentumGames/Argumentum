@@ -6,6 +6,12 @@
 **Base:** master `87a02c19`
 **Status:** **SANDBOX-PREP (research/runbook)** — execution GATED on jsboige's target decision (10.1.2 vs 10.3.2, see #520). **No prod deploy, no live sandbox mutation** until jsboige says go.
 
+> ⚠️ **TARGET SUPERSEDED — jsboige decided 10.3.2 (decision #2, issue #458, 2026-06-18).** The 10.1.2
+> target below is superseded; read
+> [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md) as the source of
+> truth. This sandbox procedure is **reusable for the 10.3.2 path** (the 4-step staircase + pre-flight +
+> risk-register structure hold); the delta is the 2sxc upgrade + template audit the revision doc §4 adds.
+
 **Depends on (all merged):**
 - [131-upgrade-sandbox-plan-v2.md](131-upgrade-sandbox-plan-v2.md) (#511) — the 4-step staircase + 2sxc compat matrix.
 - [131-step0-runtime-verification.md](131-step0-runtime-verification.md) (#514) — Step 0 result: DNN 10.3.2 runtime **VERIFIED .NET Framework 4.8** (no .NET 8 jump; OpenStore blocker dissolved).
