@@ -16,11 +16,13 @@
 > - **CVE-2025-52488** is first patched in **10.0.1**.
 > - The **9.13.x line closes NEITHER** (0 of 2), not 1 of 2 as this doc's §2/§1-consequence state.
 >
-> **For all security/target decisions, read [#520](131-cve-correction-and-target-refinement.md)
-> (target = 10.1.2) as the source of truth, and [132-deployment-runbook.md](132-deployment-runbook.md)
-> (#527) for the go-live procedure.** This v2 doc is retained for its runtime-finding (§3: DNN 10 =
-> .NET Framework 4.8) and 2sxc-compatibility matrix (§5-6), which remain valid. The §2 CVE table and
-> the "9.13.x closes 1 CVE" framing are retracted per #520.
+> **For CVE facts, read [#520](131-cve-correction-and-target-refinement.md) (corrected patch versions).
+> For the upgrade TARGET, read
+> [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md) — jsboige
+> decision #2 (issue #458, 2026-06-18) chose **10.3.2 full upgrade**, superseding the 10.1.2 target #520
+> recommended.** This v2 doc is retained for its runtime-finding (§3: DNN 10 = .NET Framework 4.8) and
+> **2sxc-compatibility matrix (§5-6), which is now central** (the 10.3.2 path crosses the cliff it maps).
+> The §2 CVE table and the "9.13.x closes 1 CVE" framing are retracted per #520.
 
 This document **EXTENDS** (does not duplicate) two prior analyses:
 - [`131-upgrade-9.13-sandbox-plan.md`](./131-upgrade-9.13-sandbox-plan.md) — the #479 9.11.1→9.13.x security-palier plan (CVE table, disk blocker, sandbox sketch).
