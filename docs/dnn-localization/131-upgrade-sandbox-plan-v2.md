@@ -6,6 +6,22 @@
 **Base:** master `fc8313b3` (clean, in sync with origin)
 **Status:** **SANDBOX/RESEARCH document. No production deploy. No CSV touch. Awaits jsboige go/no-go per step.**
 
+> ⚠️ **ERRATA — CVE TABLE BELOW IS SUPERSEDED.** The CVE reconciliation in §2 (and the §1 title
+> staircase, §7 Step 1) states that **9.13.x closes CVE-2025-64095**. That is **incorrect** and was
+> corrected in the follow-up corrigendum
+> [131-cve-correction-and-target-refinement.md](131-cve-correction-and-target-refinement.md) (#520),
+> grounded in NVD + the official DNN GitHub Security Advisories:
+>
+> - **CVE-2025-64095** is first patched in **10.1.1** (not 9.13.x).
+> - **CVE-2025-52488** is first patched in **10.0.1**.
+> - The **9.13.x line closes NEITHER** (0 of 2), not 1 of 2 as this doc's §2/§1-consequence state.
+>
+> **For all security/target decisions, read [#520](131-cve-correction-and-target-refinement.md)
+> (target = 10.1.2) as the source of truth, and [132-deployment-runbook.md](132-deployment-runbook.md)
+> (#527) for the go-live procedure.** This v2 doc is retained for its runtime-finding (§3: DNN 10 =
+> .NET Framework 4.8) and 2sxc-compatibility matrix (§5-6), which remain valid. The §2 CVE table and
+> the "9.13.x closes 1 CVE" framing are retracted per #520.
+
 This document **EXTENDS** (does not duplicate) two prior analyses:
 - [`131-upgrade-9.13-sandbox-plan.md`](./131-upgrade-9.13-sandbox-plan.md) — the #479 9.11.1→9.13.x security-palier plan (CVE table, disk blocker, sandbox sketch).
 - [`../dnn/UPGRADE-ASSESSMENT.md`](../dnn/UPGRADE-ASSESSMENT.md) — the comprehensive 2026-06-07 assessment (current-state inventory, Option A staircase, dependency CVEs, jsboige = Stripe Native decision).
