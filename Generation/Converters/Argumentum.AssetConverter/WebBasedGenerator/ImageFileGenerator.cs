@@ -121,15 +121,33 @@ public class ImageFileGenerator
 				var backImageUrl = currentHarvestBack.Value;
 				var backImage = configCardSet.LoadAndProcessImageUrl(currentLanguage, true, AssetConverterConfig,
 					configDocument, backName, backImageUrl, currentHarvest.Backs.Dpi);
-				// RESTORED from Golden Master: strip to suffix after last hyphen
-				// This normalizes back names for matching (e.g., "scenarii-01-histoire" → "-histoire")
-				if (backName.Contains('-'))
-				{
-					backName = backName.Substring(backName.LastIndexOf('-'));
-				}
-				backImages[backName] = backImage;
+				// Golden Master: index the back under its normalized key (strip to the suffix after the
+				// last hyphen, keeping the hyphen — e.g. "scenarii-01-histoire" → "-histoire"). This
+				// key is what ResolveCardBack later substring-matches against face keys. The image is
+				// loaded/processed with the FULL lower-cased name above; only the dict key is normalized.
+				backImages[NormalizeBackKey(backName)] = backImage;
 			}
 		}
+	}
+
+	/// <summary>
+	/// Pure, deterministic back-name normalization for the face→back matching contract
+	/// (Golden Master, commit 0087f0ec). Given an already-lower-cased back key, returns the key used
+	/// to index the back-images dictionary: if the name contains a hyphen, strips everything BEFORE
+	/// the last hyphen — keeping that hyphen as a leading prefix (e.g. "scenarii-01-histoire" →
+	/// "-histoire"); otherwise returns the name unchanged. The resulting key is what
+	/// <see cref="ResolveCardBack"/> later substring-matches against face keys, so the leading hyphen
+	/// is part of the contract (a face must contain "-histoire", not the bare "histoire").
+	/// Extracted output-neutral from <c>GenerateBacks</c> (#204) — the image is still loaded with the
+	/// full lower-cased name; only the dictionary key is normalized.
+	/// </summary>
+	public static string NormalizeBackKey(string backName)
+	{
+		if (backName.Contains('-'))
+		{
+			return backName.Substring(backName.LastIndexOf('-'));
+		}
+		return backName;
 	}
 
 
