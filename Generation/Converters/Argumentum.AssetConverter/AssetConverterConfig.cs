@@ -275,6 +275,8 @@ namespace Argumentum.AssetConverter
 		public VirtueMindMapCreatorConfig VirtueMindMapCreatorConfig { get; set; } = new VirtueMindMapCreatorConfig();
 
 		public string FreeplanePath { get; set; } = "";
+		// FreeMindPath default stays empty (machine-specific — set via ARGUMENTUM_FREEMIND_PATH env var
+		// or config, never hardcoded). See TryFreeMindSvgExportCore env-var fallback.
 		public string FreeMindPath { get; set; } = "";
 
 
