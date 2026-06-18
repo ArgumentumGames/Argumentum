@@ -26,7 +26,7 @@ Without these layers, Virtues cannot express *which fallacies a virtue prevents*
 Add to `Argumentum Virtues - Taxonomy.csv` the **same 12 columns** Fallacies uses, verbatim names:
 
 ```
-crossLink_PredatesOn, crossLink_Denounces, crossLink_Levarages, crossLink_Allows,
+crossLink_PredatesOn, crossLink_Denounces, crossLink_Leverages, crossLink_Allows,
 crossLink_Opposes, crossLink_Inverts, crossLink_Mirrors, crossLink_IsRelatedTo,
 AIF_skosDirectRef, AIF_skosExceptionRef, AIF_skosOther, AIF_skosMappingType
 ```
