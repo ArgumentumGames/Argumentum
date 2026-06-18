@@ -34,7 +34,7 @@ namespace Argumentum.AssetConverter
 	    public bool SkipConfigFile { get; set; } = true;
 
 	       [JsonConverter(typeof(JsonStringEnumConverter))]
-	       public ConverterMode Mode { get; set; } = ConverterMode.WebBasedImageGeneration | ConverterMode.QuestPdfGeneration;
+	       public ConverterMode Mode { get; set; } = ConverterMode.Mindmapper;
 
 		public bool ForceDebugParams { get; set; }
 
@@ -275,7 +275,7 @@ namespace Argumentum.AssetConverter
 		public VirtueMindMapCreatorConfig VirtueMindMapCreatorConfig { get; set; } = new VirtueMindMapCreatorConfig();
 
 		public string FreeplanePath { get; set; } = "";
-		public string FreeMindPath { get; set; } = "";
+		public string FreeMindPath { get; set; } = @"C:\Program Files (x86)\FreeMind\FreeMind.exe";
 
 
 		public Dnn2sxcConfig Dnn2sxcConfig { get; set; } = new Dnn2sxcConfig();
