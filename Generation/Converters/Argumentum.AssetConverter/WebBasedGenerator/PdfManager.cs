@@ -91,11 +91,33 @@ namespace Argumentum.AssetConverter
             }
         }
 
+        /// <summary>
+        /// Inserts <paramref name="suffix"/> into <paramref name="baseFileName"/> just before its
+        /// FINAL dot, producing e.g. <c>Cards-1.pdf</c> from <c>Cards.pdf</c> + <c>"-1"</c>, or
+        /// <c>Cards-FacesOnly.pdf</c> from <c>Cards.pdf</c> + <c>"-FacesOnly"</c>. The suffix INCLUDES
+        /// its own leading separator (the call sites pass <c>"-N"</c> / <c>"-FacesOnly"</c>).
+        ///
+        /// Extracted output-neutral from <see cref="GenerateBackFirstOneDocPerBack"/> so the per-back
+        /// and FacesOnly naming contract is unit-testable in isolation. The implementation preserves
+        /// the original <c>baseName.Substring(0, LastIndexOf('.'))</c> / <c>Substring(LastIndexOf('.'))</c>
+        /// split EXACTLY — including its current behavior when there is no dot: <c>LastIndexOf</c>
+        /// returns <c>-1</c>, and <c>Substring(0, -1)</c> throws <see cref="ArgumentOutOfRangeException"/>.
+        /// That throw is the existing contract (call sites always pass an extension-bearing base name);
+        /// this method does NOT silently "fix" it, so a future caller passing a dotless name fails loud
+        /// exactly as before. A regression here (inserting at the FIRST dot, dropping the extension, or
+        /// off-by-one on the per-back counter) silently produces wrongly-named PDFs that overwrite each
+        /// other or land in the wrong slot — caught only by inspecting the output directory.
+        /// </summary>
+        public static string InsertSuffixBeforeExtension(string baseFileName, string suffix)
+        {
+            var indexInsert = baseFileName.LastIndexOf('.');
+            return baseFileName.Substring(0, indexInsert) + suffix + baseFileName.Substring(indexInsert);
+        }
+
         public void GenerateBackFirstOneDocPerBack(string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
         {
             var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();
-            var indexInsert = baseName.LastIndexOf('.');
-            
+
             // BUGFIX CORRIGÉ: Partitionner les cartes avec/sans dos au lieu de filtrer
             var cardsWithBack = cardImages.Where(card => !string.IsNullOrEmpty(card.Back)).ToList();
             var cardsWithoutBack = cardImages.Where(card => string.IsNullOrEmpty(card.Back)).ToList();
@@ -124,8 +146,7 @@ namespace Argumentum.AssetConverter
                     return collec;
                 };
 
-                var newName =
-                    $"{baseName.Substring(0, indexInsert)}-{backIndex + 1}{baseName.Substring(indexInsert)}";
+                var newName = InsertSuffixBeforeExtension(baseName, $"-{backIndex + 1}");
                 targetFiles.Add((newName, collecBuilderBF));
             }
             
@@ -138,7 +159,7 @@ namespace Argumentum.AssetConverter
                     return collec;
                 };
                 
-                var facesOnlyName = $"{baseName.Substring(0, indexInsert)}-FacesOnly{baseName.Substring(indexInsert)}";
+                var facesOnlyName = InsertSuffixBeforeExtension(baseName, "-FacesOnly");
                 targetFiles.Add((facesOnlyName, collecBuilderFacesOnly));
                 AnsiConsole.MarkupLine($"[cyan]INFO: Creating additional 'FacesOnly' PDF for {cardsWithoutBack.Count} cards without back[/]");
             }
