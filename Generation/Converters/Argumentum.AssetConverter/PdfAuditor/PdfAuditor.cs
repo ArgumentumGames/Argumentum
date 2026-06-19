@@ -90,22 +90,46 @@ namespace Argumentum.AssetConverter.PdfAuditor
             var nbRows = (int)(pageSize.Height / cardHeightPoints);
             var nbCardsPerPage = nbRows * nbColumns;
 
-            var pages = images.Chunk(nbCardsPerPage);
-            var orderedPaths = new List<string>();
+            // Pure sequence (backs-row-reversed-then-fronts, page by page), then the File.Exists filter
+            // is applied at the boundary only — so the ordering contract is unit-testable in isolation.
+            return BuildExpectedImageOrder(images, nbCardsPerPage, nbColumns, docConfig.NoBack)
+                .Where(p => !string.IsNullOrEmpty(p) && File.Exists(p))
+                .ToList();
+        }
 
-            foreach (var pageCards in pages)
+        /// <summary>
+        /// Produces the expected image-path sequence the audit compares a rendered recto-verso PDF
+        /// against: for each page-sized chunk of cards, the BACKS come first (per-row reversed, via
+        /// <see cref="PrintAndPlayDocument.ReorderBacksForRectoVerso{T}"/>) then the FRONTS in natural
+        /// order. Pure &amp; deterministic — no file I/O, no PDF render.
+        ///
+        /// Extracted output-neutral from <see cref="GetExpectedImageOrder"/> so the audit's ordering
+        /// contract is unit-testable. The per-row reversal shares the EXACT same method the renderer
+        /// (<see cref="PrintAndPlayDocument.Compose"/>) uses — pinned by
+        /// <c>PrintAndPlayRectoVersoContractTests</c> — so the audit's expected order can never drift
+        /// from the renderer's actual order. Previously this was an inline duplicate
+        /// (<c>ToJaggedArray/Reverse/Flatten</c>) that "must match PdfManager exactly" by convention;
+        /// a change to the renderer's reversal would have silently desynchronized the audit, producing
+        /// false audit failures (or worse, false passes) with no signal beyond the PDF render.
+        /// </summary>
+        /// <param name="images">All card images of the deck, in face order.</param>
+        /// <param name="nbCardsPerPage">Page grid capacity (rows × columns).</param>
+        /// <param name="nbColumns">Grid column count, driving the per-row back reversal.</param>
+        /// <param name="noBack">When true, backs are omitted (faces ship alone).</param>
+        public static IEnumerable<string> BuildExpectedImageOrder(
+            IEnumerable<CardImages> images, int nbCardsPerPage, int nbColumns, bool noBack)
+        {
+            foreach (var pageCards in images.Chunk(nbCardsPerPage))
             {
-                // Back page logic - must match PdfManager exactly
-                if (!docConfig.NoBack)
+                if (!noBack)
                 {
-                    var backCardsArray = pageCards.ToJaggedArray(nbColumns).Select(row => row.Reverse().ToArray()).ToArray().Flatten();
-                    orderedPaths.AddRange(backCardsArray.Select(c => c?.Back));
+                    var backCardsArray = PrintAndPlayDocument.ReorderBacksForRectoVerso(pageCards, nbColumns);
+                    foreach (var back in backCardsArray)
+                        yield return back?.Back;
                 }
-
-                // Front page logic
-                orderedPaths.AddRange(pageCards.Select(c => c.Front));
+                foreach (var card in pageCards)
+                    yield return card.Front;
             }
-            return orderedPaths.Where(p => !string.IsNullOrEmpty(p) && File.Exists(p)).ToList();
         }
 
         private static string ComputeFileHash(string filePath)
