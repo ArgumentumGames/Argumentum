@@ -12,7 +12,9 @@
 
 ## 1. Scope of batch 6b
 
-Phase 2 annotates the **depth-3…7 leaf layer** — the 194 remaining Virtue nodes that carry no annotation yet. This is **batch 6b: the second half of the `Échange enrichissant` family** (segment 7, pks 200–222, 22 nodes: 7 depth-3 + 13 depth-4 + 2 depth-5). It mirrors `Obstruction` (Fallacy family PK 1280) — the family of discussion-obstructing fallacies. **With 6a merged, batch 6b completes the Échange enrichissant family** (40/40 leaves).
+Phase 2 annotates the **depth-3…7 leaf layer** — the 194 remaining Virtue nodes that carry no annotation yet. This is **batch 6b: the second half of the `Échange enrichissant` family** (segment 7, pks 200–222, 22 nodes: 6 depth-3 + 14 depth-4 + 2 depth-5). It mirrors `Obstruction` (Fallacy family PK 1280) — the family of discussion-obstructing fallacies. **With 6a merged, batch 6b completes the Échange enrichissant family** (40/40 leaves).
+
+> **Note on the pk 207 gap:** the range 200–222 spans 23 numbers but this batch has 22 rows. The missing **pk 207** is `Respect de la personne` (path `7.3`), a **depth-2 backbone sub-family** — it was annotated in **Phase 1** (the structural backbone), not a Phase-2 leaf. Phase 2 annotates only depth-≥3 leaves, so the depth-2 node at pk 207 is correctly skipped. The 22 rows here are exactly the depth-3…5 leaves of the family.
 
 | Virtue family | depth-3…7 leaves | status |
 |---|---|---|
@@ -57,30 +59,42 @@ Generation/verify script: `tmp/499_phase2_gen7.py` (ephemeral, not committed —
 
 | Virtue (pk, depth) | → Fam. (PK) | Opposes (PK = fallacy) | Walton scheme | CQ restored |
 |---|---|---|---|---|
-| Respect du sujet (200, d3) | Obstruction (1280) | 1313 Évasion · 1297 Preuve par assertion | Commitment | L'interlocuteur traite-t-il le sujet engagé ? |
-| Principe de clarté (201, d4) | Obstruction (1280) | 1345 Complication exagérée · 1287 Pseudo-explication | Verbal Classification | Les termes rendent-ils la thèse compréhensible ? |
-| Éviter les digressions (202, d4) | Obstruction (1280) | 1313 Évasion · 1345 Complication exagérée | Commitment | La contribution reste-t-elle liée à la question ? |
-| Concentration sur l'essentiel (203, d3) | Obstruction (1280) | 1345 Complication exagérée · 1313 Évasion | Sign | Les éléments retenus sont-ils pertinents ? |
-| Gérer le temps imparti (204, d4) | Obstruction (1280) | 1345 Complication exagérée · 1313 Évasion | Consequences | La priorité permet-elle d'atteindre l'objectif ? |
-| Principe de charité (205, d3) | Obstruction (1280) | 322 Repoussoir · 1361 Procès en incohérence | Commitment | L'argument adverse est-il interprété charitablement ? |
-| Présomption de bonne foi (206, d4) | Obstruction (1280) | 1352 Empoisonnement du puits · 1398 Attaque personnelle | Bias | Y a-t-il des raisons de conclure à la mauvaise foi ? |
-| Évaluation loyale de la position adverse (208, d3) | Obstruction (1280) | 322 Repoussoir · 1398 Attaque personnelle | Commitment | La critique vise-t-elle la position réellement défendue ? |
-| Critique axée sur les arguments (209, d4) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Commitment | La critique porte-t-elle sur les raisons, pas la personne ? |
-| Reconnaissance de la position adverse (210, d4) | Obstruction (1280) | 322 Repoussoir · 1313 Évasion | Commitment | La position attribuée correspond-elle aux engagements ? |
-| Réfutation respectueuse (211, d4) | Obstruction (1280) | 322 Repoussoir · 1361 Procès en incohérence | Commitment | La réfutation répond-elle aux engagements réels ? |
-| Respect de l’origine des idées (212, d3) | Obstruction (1280) | 1371 Sophisme génétique · 942 Fausse attribution | Commitment | L'origine est-elle reconnue sans remplacer l'évaluation ? |
-| Principe de non-disqualification (213, d4) | Obstruction (1280) | 1371 Sophisme génétique · 1352 Empoisonnement du puits | Bias | L'origine suffit-elle à invalider l'argument ? |
-| Valorisation de la provenance (214, d4) | Obstruction (1280) | 942 Fausse attribution · 1371 Sophisme génétique | Witness Testimony | La provenance est-elle attribuée fidèlement ? |
-| Collaboration argumentative (215, d4) | Obstruction (1280) | 1313 Évasion · 1282 Relativisme abusif | Commitment | Construit-on ensemble plutôt que de bloquer ? |
-| Courtoisie dans le désaccord (216, d3) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Commitment | Le désaccord est-il compatible avec le dialogue ? |
-| Éviter les attaques personnelles (217, d4) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Bias | Les traits personnels sont-ils pertinents ? |
-| Communication non violente (218, d5) | Obstruction (1280) | 1398 Attaque personnelle · 420 Jeu de pouvoir | Commitment | La réponse respecte-t-elle l'interlocuteur ? |
-| Équité dans le dialogue (219, d4) | Obstruction (1280) | 420 Jeu de pouvoir · 1313 Évasion | Commitment | Chacun peut-il exprimer ses engagements ? |
-| Ne pas interrompre (220, d5) | Obstruction (1280) | 420 Jeu de pouvoir · 1313 Évasion | Commitment | L'interlocuteur peut-il formuler sa position ? |
-| Ton respectueux (221, d4) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Commitment | Le ton permet-il l'examen rationnel ? |
-| Engagement mutuel (222, d4) | Obstruction (1280) | 1313 Évasion · 1282 Relativisme abusif | Commitment | Les interlocuteurs restent-ils engagés dans la recherche ? |
+| Respect du sujet (200, d3) | Obstruction (1280) | 1313 Évasion · 1297 Preuve par assertion | Commitment | L'interlocuteur traite-t-il effectivement le sujet auquel il s'est engagé ? |
+| Principe de clarté (201, d4) | Obstruction (1280) | 1345 Complication exagérée · 1287 Pseudo-explication | Verbal Classification | Les termes et distinctions employés rendent-ils la thèse clairement compréhensible ? |
+| Éviter les digressions (202, d4) | Obstruction (1280) | 1313 Évasion · 1345 Complication exagérée | Commitment | La contribution reste-t-elle liée à la question principale en discussion ? |
+| Concentration sur l'essentiel (203, d3) | Obstruction (1280) | 1345 Complication exagérée · 1313 Évasion | Sign | Les éléments retenus sont-ils les signes pertinents pour trancher la question centrale ? |
+| Gérer le temps imparti (204, d4) | Obstruction (1280) | 1345 Complication exagérée · 1313 Évasion | Consequences | La priorité donnée aux points essentiels permet-elle d'atteindre utilement l'objectif du débat dans le temps disponible ? |
+| Principe de charité (205, d3) | Obstruction (1280) | 322 Repoussoir · 1361 Procès en incohérence | Commitment | L'argument adverse est-il interprété selon l'engagement le plus cohérent que son auteur peut raisonnablement soutenir ? |
+| Présomption de bonne foi (206, d4) | Obstruction (1280) | 1352 Empoisonnement du puits · 1398 Attaque personnelle | Bias | Existe-t-il des raisons suffisantes de conclure que l'interlocuteur est de mauvaise foi ? |
+| Évaluation loyale de la position adverse (208, d3) | Obstruction (1280) | 322 Repoussoir · 1398 Attaque personnelle | Commitment | La critique vise-t-elle la position réellement défendue par l'interlocuteur ? |
+| Critique axée sur les arguments (209, d4) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Commitment | La critique porte-t-elle sur les raisons avancées plutôt que sur la personne qui les avance ? |
+| Reconnaissance de la position adverse (210, d4) | Obstruction (1280) | 322 Repoussoir · 1313 Évasion | Commitment | La position attribuée à l'interlocuteur correspond-elle fidèlement à ses engagements explicites ? |
+| Réfutation respectueuse (211, d4) | Obstruction (1280) | 322 Repoussoir · 1361 Procès en incohérence | Commitment | La réfutation répond-elle précisément aux engagements réels de l'argument adverse ? |
+| Respect de l’origine des idées (212, d3) | Obstruction (1280) | 1371 Sophisme génétique · 942 Fausse attribution | Commitment | L'origine d'une idée est-elle reconnue sans remplacer l'évaluation de son contenu ? |
+| Principe de non-disqualification (213, d4) | Obstruction (1280) | 1371 Sophisme génétique · 1352 Empoisonnement du puits | Bias | L'origine ou l'affiliation invoquée suffit-elle réellement à invalider l'argument ? |
+| Valorisation de la provenance (214, d4) | Obstruction (1280) | 942 Fausse attribution · 1371 Sophisme génétique | Witness Testimony | La provenance de l'idée est-elle attribuée fidèlement et utilisée de façon pertinente ? |
+| Collaboration argumentative (215, d4) | Obstruction (1280) | 1313 Évasion · 1282 Relativisme abusif | Commitment | Les participants construisent-ils ensemble à partir de leurs engagements communs plutôt que de bloquer l'échange ? |
+| Courtoisie dans le désaccord (216, d3) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Commitment | Le désaccord est-il exprimé de manière compatible avec la poursuite du dialogue ? |
+| Éviter les attaques personnelles (217, d4) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Bias | Les traits personnels invoqués sont-ils pertinents pour évaluer l'argument présenté ? |
+| Communication non violente (218, d5) | Obstruction (1280) | 1398 Attaque personnelle · 420 Jeu de pouvoir | Commitment | La réponse respecte-t-elle l'interlocuteur tout en traitant le fond du désaccord ? |
+| Équité dans le dialogue (219, d4) | Obstruction (1280) | 420 Jeu de pouvoir · 1313 Évasion | Commitment | Chaque participant dispose-t-il d'une possibilité équitable d'exprimer ses engagements ? |
+| Ne pas interrompre (220, d5) | Obstruction (1280) | 420 Jeu de pouvoir · 1313 Évasion | Commitment | L'interlocuteur peut-il formuler complètement sa position avant qu'elle soit évaluée ? |
+| Ton respectueux (221, d4) | Obstruction (1280) | 1398 Attaque personnelle · 1352 Empoisonnement du puits | Commitment | Le ton employé permet-il de poursuivre l'examen rationnel du désaccord ? |
+| Engagement mutuel (222, d4) | Obstruction (1280) | 1313 Évasion · 1282 Relativisme abusif | Commitment | Les interlocuteurs restent-ils engagés dans une recherche commune de vérité ou de solution ? |
 
-**Scheme distribution (Commitment-dominant, even stronger than 6a):** Commitment ×15, Bias ×3, Verbal Classification / Sign / Consequences / Witness Testimony ×1 each. The **Commitment dominance (15/22)** is the respect/civility signature: these virtues (critique axée sur les arguments, réfutation respectueuse, courtoisie, ton respectueux, équité…) are the *good holding of the commitment to fair engagement* — keeping the discussion on the arguments, not the person. The most-opposed fallacies form the **disqualification cluster**: `Attaque personnelle` 1398 (×7), `Évasion` 1313 (×6), `Empoisonnement du puits` 1352 (×6), `Repoussoir` 322 (×4), `Jeu de pouvoir` 420 (×3) — together the family's semantic anchor for 6b: an enriching exchange requires criticism aimed at arguments (not the person), genuine engagement (not evasion/imposition), and charitable interpretation (not strawman/disqualification). Depth reaches d5 (pk 218, pk 220). Combined with 6a (Évasion ×10, Jeu de pouvoir ×4), the full Échange enrichissant family (40 leaves) is anchored on engagement-vs-obstruction — exactly the mirror of `Obstruction` 1280.
+**Scheme distribution (Commitment-dominant, even stronger than 6a):** Commitment ×15, Bias ×3, Verbal Classification / Sign / Consequences / Witness Testimony ×1 each. The **Commitment dominance (15/22)** is the respect/civility signature: these virtues (critique axée sur les arguments, réfutation respectueuse, courtoisie, ton respectueux, équité…) are the *good holding of the commitment to fair engagement* — keeping the discussion on the arguments, not the person.
+
+The most-opposed fallacies (exact tally recomputed from the 44 `crossLink_Opposes` PKs) form the **engagement-vs-disqualification cluster**, anchored on genuine engagement rather than personal attack:
+
+| Rank | Fallacy (PK) | Count |
+|---|---|---|
+| #1 | `Évasion` 1313 | ×9 |
+| #2 | `Attaque personnelle` 1398 | ×7 |
+| #3 | `Empoisonnement du puits` 1352 | ×6 |
+| #4 | `Complication exagérée` 1345 · `Repoussoir` 322 | ×4 each |
+| #5 | `Sophisme génétique` 1371 · `Jeu de pouvoir` 420 | ×3 each |
+
+`Évasion` 1313 is the **true #1 (×9)** — the family's primary semantic anchor for 6b: an enriching exchange requires the interlocutor to genuinely stay engaged with the subject (not evade), then to criticise the argument rather than the person (not `Attaque personnelle` ×7 / `Empoisonnement du puits` ×6), to argue in good faith rather than disqualify by origin (not `Repoussoir` 322 ×4 / `Sophisme génétique` 1371 ×3), and to keep the exchange tractable (not `Complication exagérée` 1345 ×4) or imposed (not `Jeu de pouvoir` 420 ×3). Depth reaches d5 (pk 218, pk 220). Combined with 6a (Évasion ×10, Jeu de pouvoir ×4), the full Échange enrichissant family (40 leaves) is anchored on engagement-vs-obstruction — exactly the mirror of `Obstruction` 1280.
 
 Machine-readable: [`499-scaleup-phase2-echange-b-annotations.csv`](499-scaleup-phase2-echange-b-annotations.csv).
 
