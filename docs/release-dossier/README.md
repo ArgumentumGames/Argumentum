@@ -2,12 +2,18 @@
 
 **Issue:** [#134 — publish new GitHub release with updated game materials](https://github.com/ArgumentumGames/Argumentum/issues/134)
 **Author:** Claude Code @ myia-po-2023 (worker)
-**Date:** 2026-06-17
-**Base:** master `33091a15`
+**Date:** 2026-06-17 (refreshed 2026-06-19)
+**Base:** master `4dd3c6bd`
 **Status:** **DOSSIER / FRAMEWORK (docs, non-gated).** This is the consolidated entry-point + gate
 checklist + artifact inventory jsboige asked the worker to build. **The release itself stays
 GATED** — no tag, no GitHub Release, no regen — until jsboige says go. This dossier *prepares*
 jsboige's validation; it does not replace it.
+
+> **2026-06-19 refresh:** (a) DNN target confirmed **10.3.2** (decision #2, #531 — was "10.1.2 vs
+> 10.3.2 undecided" in §4); (b) the DNN upgrade-arc docs (#543 2sxc migration plan, #545 regen
+> staging, #548 Phase 2 exec+rollback) are now indexed in §2; (c) artifact inventory re-verified
+> against disk (64 PDFs still present, mindmaps es/ar/fa/zh still 0). No structural change — this
+> is a staleness fix, not a rewrite.
 
 > Issue #134's body is **stale** (it lists "4 languages FR/EN/RU/PT" and dependencies #127-#130/#116).
 > The live scope is **8 languages** (FR/EN/RU/PT + AR/ES/FA/ZH, merged via #359/#360/#361) and all
@@ -35,6 +41,9 @@ snippet** (§5).
 | [docs/release-v0.9.0-validation-brief.md](../release-v0.9.0-validation-brief.md) | "Sur pièce" presentation of the changelog claims, with worker-verified facts (64 PDFs = 8 types × 8 langs, ~9 834 images) | ✅ po-2023, 2026-06-13 |
 | [docs/publication/qa-scenario-8langues-release.md](../publication/qa-scenario-8langues-release.md) | Per-PDF-type QA scenario: the 8 doc types × risk + page count, setup instructions | ✅ the per-language verification guide |
 | [docs/dnn-localization/release-validation/](../dnn-localization/release-validation/) | DNN-site validation (non-latin guide, checklist, 2sxc export spec) | ✅ DNN-scoped (separate from the cards release) |
+| [docs/dnn-localization/131-target-revision-10.3.2-full-upgrade.md](../dnn-localization/131-target-revision-10.3.2-full-upgrade.md) (#531) | DNN target = **10.3.2 + 2sxc 21** (decision #2), templates already Razor14 | ✅ the DNN-coupling context |
+| [docs/dnn-localization/131-2sxc-migration-plan.md](../dnn-localization/131-2sxc-migration-plan.md) (#543) | Phase 1.5: 2sxc 15.02→21.07 LTS sequence + 25-app verify | ✅ merged `4dd3c6bd` |
+| [docs/dnn-localization/131-dnn-phase2-exec-rollback.md](../dnn-localization/131-dnn-phase2-exec-rollback.md) (#548) | Phase 2: DNN exec 9.11→10.3.2 + rollback runbook | ✅ merged `4dd3c6bd` |
 | **This dossier** | Consolidated index + **gate checklist** + **README download snippet** | 🆕 net-new |
 
 **Known correction tracked:** the validation-brief flags that CHANGELOG said "155 tests" but the
@@ -92,8 +101,11 @@ the dossier stays gated; this is the contract that says "ready to tag".
 - [ ] **README download section** added (§5 snippet) + tag link.
 - [ ] **Packaging plan** (issue #134): Full / Print&Play / Per-language / MindMaps / Ontology
       bundles — decide bundling tooling (GitHub Release assets vs git-lfs vs external).
-- [ ] **DNN #131 status**: release is "coupled DNN" per jsboige decision — confirm whether the
-      GitHub release gates on the DNN upgrade target (10.1.2 vs 10.3.2) decision.
+- [ ] **DNN #131 status**: release is "coupled DNN" per jsboige decision. DNN target is now
+      **confirmed 10.3.2 + 2sxc 21** (decision #2, [#531](../dnn-localization/131-target-revision-10.3.2-full-upgrade.md));
+      the upgrade procedure is documented ([#543](../dnn-localization/131-2sxc-migration-plan.md) Phase 1.5 2sxc +
+      [#548](../dnn-localization/131-dnn-phase2-exec-rollback.md) Phase 2 DNN). Confirm whether the GitHub release
+      **gates on the DNN upgrade being live** or ships independently (jsboige call).
 
 ## 5. README download-section snippet (ready to paste — issue #134 asks for it)
 
