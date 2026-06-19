@@ -135,13 +135,15 @@ upgrade). Use the **Step 1.5.0 backup** only if you want to reset everything (in
 
 ```
 1. STOP the IIS site (free all file locks).
-2. DB RESTORE:
+2. DB RESTORE (VERIFYONLY FIRST — the rollback contract, #527 §6 / §4.3 here):
+     -- (a) verify the backup is restorable BEFORE overwriting anything:
+     RESTORE VERIFYONLY FROM DISK = '…\<anchor>.bak' WITH CHECKSUM;
+     -- (b) ONLY if (a) is green, kick everyone out and overwrite:
      ALTER DATABASE [DotNetNuke] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
      RESTORE DATABASE [DotNetNuke]
        FROM DISK = '…\<anchor>.bak'
        WITH REPLACE, RECOVERY, CHECKSUM;
-     -- VERIFYONLY first, always (the rollback contract, #527 §6):
-     RESTORE VERIFYONLY FROM DISK = '…\<anchor>.bak' WITH CHECKSUM;
+     -- (c) abort if (a) failed — do NOT run (b) on an unverifiable backup.
 3. WEBROOT RESTORE:
      - delete the upgraded webroot's bin/ + the wizard-touched files
      - restore bin/, web.config, Portals/, DesktopModules/, App_Data/ from the anchor's files backup
