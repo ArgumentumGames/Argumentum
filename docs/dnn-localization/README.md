@@ -31,6 +31,7 @@ Follow these in order. Each is the authoritative doc for one execution phase.
 | [131-step1-sandbox-upgrade-runbook.md](131-step1-sandbox-upgrade-runbook.md) | Sandbox upgrade runbook (was 10.1.2-scoped; exec gated on target decision). |
 | [131-regen-staging-runbook.md](131-regen-staging-runbook.md) | Stages prerequisites for an attended mindmap/PDF regen — **no launch**. |
 | [457-site-content-type-inventory.md](457-site-content-type-inventory.md) | Localization scope map (extends the Phase 1 audit, feeds the extractor). |
+| [457-document-tier-translation-workflow.md](457-document-tier-translation-workflow.md) | **#457 Phase 2–4** for the **document tier** (2 static FR HTML pages): extraction → DatasetUpdater → re-import workflow design. Complements the string-tier toolchain; extractor = critical path. |
 | [PHASE1-content-audit.md](PHASE1-content-audit.md) | Phase 1 content extraction audit (#457). Repo-side, complete. |
 | [506-social-auth-connectors-inventory.md](506-social-auth-connectors-inventory.md) | **#506** social-auth (Facebook/Google/Microsoft/Twitter) inventory + secret-rotation procedure. Repo-grounded; live console checks = jsboige. Recommend folding into #131. |
 
