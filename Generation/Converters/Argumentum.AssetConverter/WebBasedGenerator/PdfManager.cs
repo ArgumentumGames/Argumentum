@@ -92,6 +92,33 @@ namespace Argumentum.AssetConverter
         }
 
         /// <summary>
+        /// Produces the ordered image-path sequence for a SINGLE per-back PDF emitted by
+        /// <see cref="GenerateBackFirstOneDocPerBack"/>: the shared back art FIRST (one slot), then
+        /// every card's FRONT in their original CardSet order. That back-first-then-fronts ordering
+        /// is what lets a print shop lay one back behind a whole family of faces on a recto-verso
+        /// sheet.
+        /// Pure &amp; deterministic — no MagickImage, no I/O. Extracted output-neutral from the
+        /// collection builder inside <see cref="GenerateBackFirstOneDocPerBack"/> (which previously
+        /// inlined <c>new[] { key }.Concat(group.Select(c =&gt; c.Front))</c>) so this fragile
+        /// ordering contract is unit-testable in isolation — symmetric with
+        /// <see cref="OrderImagesForAlternateFaceAndBack"/>, which was already extracted for the
+        /// alternate-face-and-back format. A regression here (emitting fronts-first, dropping the
+        /// back, duplicating it, or reordering the fronts) silently misaligns every printed sheet
+        /// and is caught only by opening the PDF.
+        /// </summary>
+        /// <param name="backPath">The shared back image path for this family (the group key).</param>
+        /// <param name="fronts">The cards sharing this back, in their original CardSet order.</param>
+        public static IEnumerable<string> OrderImagesForBackFirstOneDocPerBack(
+            string backPath, IEnumerable<CardImages> fronts)
+        {
+            yield return backPath;
+            foreach (var card in fronts)
+            {
+                yield return card.Front;
+            }
+        }
+
+        /// <summary>
         /// Inserts <paramref name="suffix"/> into <paramref name="baseFileName"/> just before its
         /// FINAL dot, producing e.g. <c>Cards-1.pdf</c> from <c>Cards.pdf</c> + <c>"-1"</c>, or
         /// <c>Cards-FacesOnly.pdf</c> from <c>Cards.pdf</c> + <c>"-FacesOnly"</c>. The suffix INCLUDES
@@ -133,15 +160,15 @@ namespace Argumentum.AssetConverter
                 var closureBackIndex = backIndex;
                 var collecBuilderBF = () =>
                 {
-                    var allImages = new List<MagickImage>();
-                    
-                    // Ajouter le dos en premier
+                    // ✅ #204 image-sequence ordering extracted output-neutral into
+                    // OrderImagesForBackFirstOneDocPerBack so this fragile back-first-then-fronts
+                    // contract is unit-testable without a MagickImage render. Symmetric with
+                    // OrderImagesForAlternateFaceAndBack (the alternate-face-and-back format).
                     var frontsAndBack = cardsPerBack[closureBackIndex];
-                    allImages.Add(new MagickImage(frontsAndBack.Key));
-                    
-                    // Ajouter toutes les faces avec ce dos
-                    allImages.AddRange(frontsAndBack.Select(card => new MagickImage(card.Front)));
-                    
+                    var orderedPaths = OrderImagesForBackFirstOneDocPerBack(
+                        frontsAndBack.Key, frontsAndBack);
+                    var allImages = orderedPaths.Select(p => new MagickImage(p));
+
                     var collec = new MagickImageCollection(allImages);
                     return collec;
                 };
