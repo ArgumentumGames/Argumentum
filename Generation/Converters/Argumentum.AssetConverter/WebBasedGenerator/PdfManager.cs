@@ -266,12 +266,34 @@ namespace Argumentum.AssetConverter
                 else
                 {
                     // #29 fix: deterministic dispose of MagickImageCollection after write
-                    // prevents ~1.2 GB peak held until GC finalizer (especially Fallacies Tarot ~277 images)
-                    using var collection = targetFile.documentImages();
-                    collection.Write(targetFile.fileName);
+                    // prevents ~1.2 GB peak held until GC finalizer (especially Fallacies Tarot ~277 images).
+                    // The create→write→dispose control flow lives in the pure, unit-testable
+                    // WriteAndDispose helper below — output-neutral (the using-scope is preserved exactly).
+                    WriteAndDispose(targetFile.documentImages, collection => collection.Write(targetFile.fileName));
                     Logger.LogSuccess($"Generated pdf document {targetFile.fileName}");
                 }
             }
+        }
+
+        /// <summary>
+        /// Materializes a disposable resource via <paramref name="factory"/>, runs <paramref name="action"/> on it,
+        /// then disposes it deterministically — even if <paramref name="action"/> throws. Pure &amp; deterministic;
+        /// no I/O of its own (the factory/action supply any side effects).
+        ///
+        /// Extracted output-neutral from <see cref="GeneratePdfsFromImages"/> (the inline
+        /// <c>using var collection = documentImages(); collection.Write(fileName);</c> control flow) so the #29
+        /// memory-safety contract — &quot;a rendered <c>MagickImageCollection</c> is disposed right after its PDF is
+        /// written, not held until the GC finalizer (~1.2 GB peak on the Fallacies Tarot)&quot; — is unit-testable without
+        /// a Magick render. The <c>using</c>-scope of the original code is preserved exactly: the resource lives for
+        /// exactly one action invocation, then is disposed before the next iteration.
+        /// </summary>
+        /// <typeparam name="T">A disposable resource (e.g. <see cref="MagickImageCollection"/>).</typeparam>
+        /// <param name="factory">Builds the resource (e.g. decodes the card images into a collection).</param>
+        /// <param name="action">Consumes it (e.g. writes the PDF). Runs exactly once.</param>
+        public static void WriteAndDispose<T>(Func<T> factory, Action<T> action) where T : IDisposable
+        {
+            using var resource = factory();
+            action(resource);
         }
     }
 }
