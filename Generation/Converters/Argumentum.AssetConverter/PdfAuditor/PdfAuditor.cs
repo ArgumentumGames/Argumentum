@@ -83,18 +83,75 @@ namespace Argumentum.AssetConverter.PdfAuditor
 
         private static List<string> GetExpectedImageOrder(CardSetDocumentConfig docConfig, List<CardImages> images)
         {
-            var pageSize = PageSizes.A4; // Assuming A4 for calculation, needs to be dynamic if possible.
             var cardWidthPoints = ((float)docConfig.CardSets[0].FrontCards.WidthMM) * (0.1f / 2.54f * 72);
             var cardHeightPoints = ((float)docConfig.CardSets[0].FrontCards.HeigthMM) * (0.1f / 2.54f * 72);
-            int nbColumns = docConfig.NbColumns > 0 ? docConfig.NbColumns : (int)(pageSize.Width / cardWidthPoints);
-            var nbRows = (int)(pageSize.Height / cardHeightPoints);
-            var nbCardsPerPage = nbRows * nbColumns;
+
+            // ✅ Page-grid geometry (nbColumns/nbRows/nbCardsPerPage) extracted output-neutral into
+            // ComputeAuditPageGeometry so this fragile layout contract is unit-testable without a render.
+            var geometry = ComputeAuditPageGeometry(cardWidthPoints, cardHeightPoints, docConfig.NbColumns);
+            int nbColumns = geometry.NbColumns;
+            var nbCardsPerPage = geometry.NbCardsPerPage;
 
             // Pure sequence (backs-row-reversed-then-fronts, page by page), then the File.Exists filter
             // is applied at the boundary only — so the ordering contract is unit-testable in isolation.
             return BuildExpectedImageOrder(images, nbCardsPerPage, nbColumns, docConfig.NoBack)
                 .Where(p => !string.IsNullOrEmpty(p) && File.Exists(p))
                 .ToList();
+        }
+
+        /// <summary>
+        /// Page-grid geometry the audit assumes when chunking the deck into page-sized groups for
+        /// <see cref="BuildExpectedImageOrder"/>. Pure &amp; deterministic — no I/O, no PDF render.
+        /// </summary>
+        public readonly struct AuditPageGeometry
+        {
+            /// <summary>Grid columns per sheet. The configured value when &gt; 0, else floor(pageWidth / cardWidth).</summary>
+            public readonly int NbColumns;
+            /// <summary>Grid rows per sheet: floor(pageHeight / cardHeight).</summary>
+            public readonly int NbRows;
+            /// <summary>Cards that fit on one sheet: NbRows × NbColumns.</summary>
+            public readonly int NbCardsPerPage;
+
+            public AuditPageGeometry(int nbColumns, int nbRows, int nbCardsPerPage)
+            {
+                NbColumns = nbColumns;
+                NbRows = nbRows;
+                NbCardsPerPage = nbCardsPerPage;
+            }
+        }
+
+        /// <summary>
+        /// Derives the page-grid geometry the audit uses to chunk the deck into page-sized groups, from
+        /// the resolved card size and configured column count. Pure &amp; deterministic — no I/O, no PDF
+        /// render. Extracted output-neutral from <see cref="GetExpectedImageOrder"/> (the inline
+        /// arithmetic previously inlined there) so the audit's layout contract is unit-testable.
+        /// </summary>
+        /// <remarks>
+        /// <b>KNOWN DIVERGENCE FROM THE RENDERER — latent bug, flagged for a separate behavior-change
+        /// PR, NOT fixed here (output-neutral).</b> The audit computes its geometry against a
+        /// <b>hardcoded <see cref="PageSizes.A4"/></b>, while the renderer
+        /// (<see cref="PrintAndPlayDocument.ComputePageGeometry"/>) resolves the actual
+        /// <c>docConfig.PageSize</c> via reflection. The audit also does NOT subtract the page margin
+        /// (<c>totalMarginPoints</c>) nor the header band (<c>pageHeight / 10</c> when
+        /// <c>docConfig.Header</c> is set) that the renderer subtracts from the content area. As a
+        /// result the audit's <c>NbCardsPerPage</c> is systematically LARGER than the renderer's whenever
+        /// the document is not plain A4-without-header — chunking the deck into pages of the wrong
+        /// capacity and desynchronizing the expected image order from the actual render, which silently
+        /// produces false audit mismatches (or false passes). Pinned as-is here so the current contract
+        /// is observable and the divergence is fixable in isolation; a fix that routes this through
+        /// <see cref="PrintAndPlayDocument.ComputePageGeometry"/> belongs in its own PR.
+        /// </remarks>
+        public static AuditPageGeometry ComputeAuditPageGeometry(
+            float cardWidthPoints, float cardHeightPoints, int configuredNbColumns)
+        {
+            var pageSize = PageSizes.A4; // Assuming A4 for calculation, needs to be dynamic if possible.
+            int nbColumns = configuredNbColumns > 0
+                ? configuredNbColumns
+                : (int)(pageSize.Width / cardWidthPoints);
+            int nbRows = (int)(pageSize.Height / cardHeightPoints);
+            int nbCardsPerPage = nbRows * nbColumns;
+
+            return new AuditPageGeometry(nbColumns, nbRows, nbCardsPerPage);
         }
 
         /// <summary>
