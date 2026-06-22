@@ -161,6 +161,27 @@ Freeplane **refuse d'ouvrir** le `.mm` au format FreeMind du pipeline : *« Le f
 
 Le fallback XSLT (`TryXsltSvgConversion`) existe en code mort. [PR #157](https://github.com/ArgumentumGames/Argumentum/pull/157) l'avait ajouté ; **[PR #184](https://github.com/ArgumentumGames/Argumentum/pull/184) l'a délibérément retiré** (« placeholder », fidélité inférieure aux SVG Batik FreeMind). Décision jsboige confirmée : *« Je ne pense pas que tu puisses faire aussi bien en XSLT que ce que FreeMind fait »*. **Ne pas re-câbler le XSLT** sans GO explicite.
 
+### 3.6 Re-probe 2026-06-22 (po-2024, Freeplane 1.13.2 + session déconnectée)
+
+Reprise du de-risk §3.2 sur **Freeplane 1.13.2** (latest ; po-2023 avait 1.12.x), installé cette session sous `%LOCALAPPDATA%\Programs\Freeplane\` (mandate AMEND 2026-06-22 : *installer les outils manquants plutôt que HOLD*).
+
+**Setup déployé — persistant, prêt pour un prochain run (step 3 du §3.4 partiellement fait) :**
+
+- `auto.properties` (6 booléens §3.2) + `export_to_svg.groovy` posés dans `%APPDATA%\Freeplane\{1.12.x,1.13.x}\`.
+- Probe : `freeplane.exe -S -R"<groovy>" fallacy_map.mm` (sample `.mm` FreeMind minimal, `<map version="1.0.1">`).
+
+**Résultat : INCONCLUSIF.**
+
+| Test | Résultat |
+|------|----------|
+| `freeplane.exe -S -R<groovy>` (GUI, session « Déco ») | ❌ aucun marqueur `.export_done` après 90 s (process encore en vie) |
+| Logs / sortie script | vides (console interne Freeplane, cf. §3.2 ; aucun `.log`) |
+| `freeplaneConsole.exe -N` (headless) | ❌ **hang** — ne termine pas, sortie vide après 12 s (confirme §3.2 « headless casse le rendu ») |
+
+**Lecture (ne surdéclare pas).** Ce probe n'isole **pas** si le bloqueur §3.3 (rejet du format FreeMind) tient sur 1.13.2 — le script n'a pas pu être confirmé exécuté. Il soulève en revanche un **nouveau facteur environnemental** : la session était **« Déco » (RDP déconnectée, SessionId 2)**. Or §3.1 affirme *« RDP peut être déconnectée/inactive, aucun bureau actif requis »*. L'échec sur session *déconnectée* vs le succès §3.2 de po-2023 (session vraisemblablement *connectée*) suggère que `c.export()` peut exiger une session **connectée** (bureau vivant), pas seulement *existante*. Affinement à confirmer : **« déconnecté » ≠ « connecté-inactif »**.
+
+**Conclusion pour [#568](https://github.com/ArgumentumGames/Argumentum/issues/568).** Le path `c.export()` reste **hard/exigeant en environnement** ; la sérialisation native Freeplane (§3.4 step 1) reste le vrai travail, multi-tick + QA visuelle ai-01/jsboige (moteur ≠ Batik). N'a **pas** rétrogradé vers XSLT (§3.5 : interdit). Prochaines tentatives : re-tester sur une session **connectée** (isoler §3.3 vs facteur session) avant d'investir dans la sérialisation native.
+
 ---
 
 ## 4. Références
