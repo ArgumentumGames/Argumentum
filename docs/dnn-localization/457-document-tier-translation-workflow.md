@@ -17,6 +17,51 @@ From the Phase 1 inventory §3, the document-tier content is **2 standalone FR H
 
 Total: ~37,300 chars of FR prose across 2 files. These are **standalone FR content** — translating them is a document/prose task (like Scenarii narrative fields), **not** a key-value dictionary task (like `ui.*`/`res.*`).
 
+> ### ⚠️ VERIFICATION UPDATE (2026-06-22, po-2024) — the §1/§4 structure figures above are PRE-VERIFICATION ESTIMATES and are INCORRECT
+>
+> The table + §4 selector design were written from the inventory's character-budget estimate, **not** from
+> parsing the files. An actual structural probe (`grep` tag counts + content sampling) on 2026-06-22 by
+> po-2024 (taking over this lane from po-2023) shows the real structure differs materially, which changes
+> both the extraction cost and the value of this lane:
+>
+> **`fallacies.html` (81 KB) — verified tag counts:** `2 <h2>` + `2 <h3>` + `8 <li>` (jQuery-UI tab labels:
+> "Manipulations de l'esprit", "Appel aux émotions"…) + **`56 <h4>`** (fallacy NAMES — "Argument d'autorité",
+> "Appel à la pratique courante", "Raison de la majorité"…) + `114 <p>` (almost entirely boilerplate labels
+> "Code Html à copier:" / "PhpBB Html Replacement:" preceding code blocks, **not** fallacy descriptions) +
+> `55 <textarea>` + `55 <form>` (HTML code samples to copy-paste — **code, not prose, skip**).
+>
+> - **It is a developer integration charte** (how to embed the fallacy infographic PNG into a page/phpBB),
+>   NOT a fallacy glossary. Fallacy *definitions* are not in this file (they live in the infographic + the
+>   taxonomy CSV).
+> - **The 56 `<h4>` fallacy names DUPLICATE the taxonomy CSV** (`Cards/Fallacies/...Taxonomy.csv`, already
+>   translated 8-language). Translating them here = **duplicate work** — they should be **joined from the
+>   taxonomy CSV**, not re-translated. Genuine NEW translatable surface = ~4 section/tab titles (h2/h3/li) +
+>   ~3 boilerplate labels (p) ≈ **7 short strings**.
+>
+> **`MariagePourTous.html` (38 KB) — verified tag counts:** `103 <div>` + `102 <a>` + **`0 <p>`, `0 <h2>`,
+> `0 <h3>`, `1 <li>`**. The §4 assumption ("prose, selectors `p, h2, h3`") is **invalid** — there are no
+> `p`/`h2`/`h3` elements. The prose is **bare text between `<div class="fallacieContainer">` blocks**, and
+> each argument line (e.g. "01. Parce que dans le dico, le mariage c'est l'union légale…") appears
+> **duplicated** — once as bare text, once inside a `fallacieContainer` div — interleaved with dictionary
+> definitions and source citations. Correct extraction needs **text-node walking of `<div class="texte">`**
+> and **dedup** of the bare-text/container pair, not a `p`/`h2`/`h3` selector sweep.
+>
+> **Net effect on the lane (honest assessment):**
+>
+> - `fallacies.html` is **low-value + partly duplicate** (7 new strings; 56 h4 joinable from taxonomy CSV;
+>   role = deprecated-looking dev charte — po-2023 flagged it "almost certainly not in v0.9.0 nav").
+> - `MariagePourTous.html` is **1 essay of uncertain scope** with a **non-trivial bare-text dedup**
+>   extraction (no clean selectors).
+> - Combined with the **unanswered scope gate** (§8 Q3: are these 2 pages even served in v0.9.0?), building
+>   the §4 extractor + spending gpt-5.5 translation budget now risks duplicate/possibly-deprecated work.
+>
+> **Recommendation (po-2024, surfaced to ai-01):** **defer the §4 extractor build and any translation**
+> until jsboige resolves §8 Q3 (live-nav scope). If `fallacies.html` is confirmed out-of-scope (likely),
+> only `MariagePourTous.html` remains — a single essay, where a bespoke segment pass is proportionate.
+> The §4 selector design below must be corrected against the verified structure before any build. **This
+> lane is NOT a blocker for v0.9.0** (string tier A/B is complete; fallacy bodies are already 8-lang via
+> the taxonomy CSV); it is a nice-to-have pending a scope decision.
+
 **Out of scope of this doc (covered elsewhere):**
 - String tier (`ui.*`/`res.*`) → [tools/dnn_i18n/README.md](../../tools/dnn_i18n/README.md) + DatasetUpdater config #487.
 - Fallacies Explorer / Rules Explorer → already CSV-driven via 2sxc queries (taxonomy CSVs already localized 8-lang).
