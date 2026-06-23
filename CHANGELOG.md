@@ -13,7 +13,7 @@ The entire pipeline now generates assets in **8 languages**: French, English, Ru
 
 - **CSV data**: 100% translation coverage for Fallacies, Virtues, Scenarii, and Rules across all 8 languages (title, description, example, family hierarchy, links)
 - **PDF generation**: CardSets (Tarot, Poker, A0 posters, Print&Play) produce localized PDFs for all 8 languages via `CardSetLocalizations` field mapping
-- **MindMap SVGs**: FreeMind mind maps committed for FR/EN/RU/PT (21 SVGs) with localized node text, family hierarchy, and descriptions; the pipeline is extended (`StaticConversions` + `MindMapLocalization`) for ES/AR/FA/ZH with SVG regeneration pending (#458 Track 1a)
+- **MindMap SVGs**: FreeMind/Batik mind maps committed for all 8 languages (FR/EN/RU/PT refreshed + ES/AR/FA/ZH added, PR #565) with localized node text, family hierarchy, and descriptions, including RTL (ar/fa) and CJK (zh) rendering via Tahoma-capable fonts
 - **Mémo cards**: Front/back cards with language-invariant grouping selectors and localized taxonomy labels
 - **Rules cards**: Translated rule content for all 8 languages including AR/ES/FA/ZH additions
 - **Entity layer**: Added AR/FA/ZH properties to `Fallacy.cs` (21 properties + 21 CsvHelper mappings) and `Rule.cs` (4 properties)
