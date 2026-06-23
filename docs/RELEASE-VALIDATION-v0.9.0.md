@@ -42,6 +42,8 @@
 
 **Hygiène CSV close ce cycle** : corruption encodage `%C3→A13` systémique dans templates JSON réparée (#579 Fallacies, #581 Memo, #584 4 templates Fallacies live). Audit complet : `docs/investigations/2026-06-23-prod-csv-hygiene-audit.md`.
 
+> **Source des counts** (pointeur, review NanoClaw) : Fallacies 1408 nœuds + Virtues 223 nœuds + Scenarii 167 records proviennent de l'analyse taxonomy consolidée — issues #335 (Fallacies closure), #499 Phase 1 spec (`docs/taxonomy/499-virtues-prod-write-spec.md`, 223 rows × 66 cols ground-truth), et commits Scenarii `7ed970a3`/`2a1b86bf`/`0dc838fb` (167/167 vérifiés cell-by-cell `7206f2f9`). Comptes non re-dérivés ce jour (cf §1 méthode).
+
 ### 3.2 MindMap SVGs — 8 langues (✅ livré, PR #565)
 
 | Langue | SVGs | Note |
@@ -53,7 +55,7 @@
 | **es** | **3** | **nouveau** (#565) |
 | **ar** | **3** | **nouveau, RTL** |
 | **fa** | **3** | **nouveau, RTL** |
-| **zh** | **3** | **nouveau, CJK — 18 MB (glyphes denses)** |
+| **zh** | **3** | **nouveau, CJK — 17.2 MB (18 075 919 bytes, glyphes denses)** |
 
 - Moteur : **FreeMind 1.0.1 + Batik** (haute fidélité, décision #184 — fallback XSLT retiré).
 - Validation technique ai-01 (source-level) : contenu Unicode authentique par langue (0 fallback FR), géométrie d'arbre quasi-identique, `font-family='Tahoma'` arabe-capable, racines correctes (`السفسطة` pour ar). **PASS technique.**
@@ -67,7 +69,7 @@
 
 ### 3.4 OWL Ontologie
 
-- `docs/ontology/argumentum.owl` — **5.4 MB**, SKOS + AIF.
+- `docs/ontology/argumentum.owl` — **5.13 MB (5 378 765 bytes)**, SKOS + AIF.
 - #133 (publication OWL) reste ouvert ; bug round-trip OWLSharp (`rdf:type`/`skos:inScheme` droppés) contourné en scoping readers sur annotations survivantes (`prefLabel`, `DeclarationAxioms`).
 - **#499 Phase 2 OWL** (passe Virtues dans `OwlAdapter` + mapping 12 cols) = **en cours po-2024** (non mergé au moment de ce dossier) → l'OWL inclura les métadonnées relationnelles Virtues une fois Phase 2 mergée. **À mentionner dans release notes.**
 
@@ -97,7 +99,7 @@
 2. **Régén PDF fraîche ?** — le bin/ est vide. Soit go-live sur la régén 12 juin (rapportée), soit run Release coordonné post-#590/#569.
 3. **DNN #131 couplé** — statut migration avant tag, ou dé-coupler la release du DNN ?
 4. **Tag v0.9.0** — pas encore posé (`git tag` vide). À poser après arbitrage ci-dessus.
-5. **CHANGELOG.md** — **à corriger** : ligne 16 dit « ES/AR/FA/ZH regeneration pending » alors que #565 les a livrés (12 SVGs es/ar/fa/zh). Patch proposé ci-dessous (§6).
+5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16). Patch cf §6. **Note** : `docs/RELEASE-NOTES-v0.9.0.md` **n'existe pas** (vérifié sur master `22eb5f34`) — seul `CHANGELOG.md` documente la release.
 6. **#499 Phase 2 OWL** — mentionner dans release notes comme livré post-dossier (po-2024 en cours).
 
 ---
