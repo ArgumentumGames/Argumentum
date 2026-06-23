@@ -173,7 +173,7 @@ namespace Argumentum.AssetConverter
             image.Alpha(AlphaOption.Remove);
             image.Settings.BackgroundColor = MagickColors.White;
             //image.TransformColorSpace(ColorProfile.SRGB, ColorProfile.USWebCoatedSWOP);
-            image.TransformColorSpace( ColorProfile.USWebCoatedSWOP, ColorTransformMode.Quantum);
+            image.TransformColorSpace( ColorProfiles.USWebCoatedSWOP, ColorTransformMode.Quantum);
 
             image.ColorSpace = ColorSpace.CMYK;
             image.Settings.ColorSpace = ColorSpace.CMYK;

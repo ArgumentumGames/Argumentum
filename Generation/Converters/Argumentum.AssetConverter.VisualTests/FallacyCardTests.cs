@@ -58,7 +58,7 @@ namespace Argumentum.AssetConverter.VisualTests
             _output.WriteLine(JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true }));
             _output.WriteLine("--------------------------------------");
 
-            string imageFile = null;
+            string? imageFile = null;
             try
             {
                 // 2. Exécution "in-process"
