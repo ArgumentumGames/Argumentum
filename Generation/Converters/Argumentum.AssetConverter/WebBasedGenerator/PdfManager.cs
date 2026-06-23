@@ -19,10 +19,6 @@ namespace Argumentum.AssetConverter
         {
         }
 
-        private const float InchToCentimetre = 2.54f;
-        private const float InchToPoints = 72;
-        private float MmToPointsFactor = 0.1f / InchToCentimetre * InchToPoints;
-
         internal void GenerateFacesOnly(string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
         {
             var targetFiles = new List<(string fileName, Func<MagickImageCollection> documentImages)>();

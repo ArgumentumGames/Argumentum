@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿#nullable enable annotations
+using Spectre.Console;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

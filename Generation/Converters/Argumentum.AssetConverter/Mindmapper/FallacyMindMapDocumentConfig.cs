@@ -22,7 +22,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
-using System.Xml.Xsl;
 using Color = System.Drawing.Color;
 using Argumentum.AssetConverter.Entities;
 
