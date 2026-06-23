@@ -15,6 +15,8 @@
 
 The `%C3`→`A13` corruption is **Fallacies + Memo specific** (both embed the same French-wiki URL catalog with the same encoding mishap). The three other prod CSVs have **zero** percent-encoding corruption, zero mojibake, zero HTML entities, zero scheme-less URLs, zero real dev-note leaks.
 
+**Class (c) verbatim-dup scan** (§4): 0 misfiled URLs; cross-lang identical confined to short fields (proper nouns / Ibero-Romance cognates / shared wiki links) — **0 long-prose contamination** (rules out #216). **One content-level finding flagged for jsboige**: 9 RU cells in the "Mathematical accuracy" family (pk 71–78) hold untranslated English "Valid results" (§4).
+
 ---
 
 ## 1. The one real defect — Memo JSON `%C3`→`A13` (FIXED)
@@ -71,7 +73,30 @@ The dev-note scan surfaced **59 `todo` matches** across the three CSVs (Scenarii
 
 ---
 
-## 4. Verification
+## 4. Class (c) — verbatim duplicate scan (completes the dispatch DoD)
+
+The dispatch explicitly listed 4 defect classes; §2 covered encoding/dev-notes/entities/mojibake. This section closes class (c): **verbatim duplicates between columns**. Two sub-checks:
+
+**(c1) URL-like value in a non-link column** (the #579 PK-61 pattern — `Simple_name_en` duplicated `link_en`):
+- Scenarii: **0** · Virtues: **0** · Rules: **0**. Clean — no misfiled URLs.
+
+**(c2) Cross-language byte-identical cells** (contamination signal, cf. the #216 FR-leak bug):
+- Scenarii 53 hits, Virtues 154 hits — **but all in SHORT fields**: proper nouns (character names *Sócrates / Hades / Penélope / Scheherazade* shared across PT/ES/ar/fa), Ibero-Romance cognates (Virtues *Argumento válido*, PT==ES), and shared wiki links (legitimate fallback where a language has no native Wikipedia article).
+- **Long-prose contamination test (len ≥ 30, any `description_*`/`remark_*`/`context_*`/`issue_*`/`suggestion_*` byte-identical across languages): 0 in both CSVs.** Long prose diverges across every language → **rules out #216-style contamination.** The cross-lang identity is confined to short fields where it is linguistically legitimate.
+
+### ⚠️ Flagged for jsboige — 9-cell RU "Valid results" gap (content decision, not auto-fixed)
+
+One real content-level finding surfaced by (c2): the **"Mathematical accuracy" family** (pk 71–78) has `subfamily_ru` = English **"Valid results"** (untranslated), while the same field is translated in every other language:
+
+| pk | family_en | subfamily_fr | subfamily_en | **subfamily_ru** | subfamily_es/pt |
+|---|---|---|---|---|---|
+| 71–78 | Mathematical accuracy | Résultats valides | Valid results | **Valid results (English!)** | Resultados válidos |
+
+Plus pk 71 `title_ru` = "Valid results" (English). **9 RU cells total** hold untranslated English. This is an isolated oversight (the rest of `subfamily_ru`/`title_ru` is correctly Cyrillic — e.g. pk 72 `title_ru`="Точные измерения", pk 75="Числовая точность"), **not** mass contamination.
+
+**Not auto-fixed** because the correct Russian term is a content judgment: *Достоверные результаты* / *Правильные результаты* / *Корректные результаты* — needs native/PO judgment (or a gpt-5.5 pass scoped to this family). Flagged here per the dispatch's "flag content-judgment items for jsboige" instruction (same handling as #579's PK 816 EN-slug and PK 39 swap).
+
+## 5. Verification
 
 - Memo fix: `A13` 6→0, `%C3%` 28→34 per file, bytes unchanged, CRLF preserved, `ConvertFrom-Json` VALID, `git diff` surgical (no non-`A13` deletions).
 - CSVs: read-only scan, no writes (no `git diff` on CSVs this PR).
