@@ -10,7 +10,7 @@ namespace Argumentum.AssetConverter.Entities
         /// <summary>
         /// Identifiant unique de la carte
         /// </summary>
-        public string Id { get; set; }
+        public new string Id { get; set; }
 
         /// <summary>
         /// Titre de la fallacy
@@ -36,7 +36,7 @@ namespace Argumentum.AssetConverter.Entities
         /// Retourne l'identifiant unique pour la génération d'images
         /// </summary>
         /// <returns>L'identifiant de la carte</returns>
-        public string GetId()
+        public new string GetId()
         {
             return Id;
         }

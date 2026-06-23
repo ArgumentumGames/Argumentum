@@ -4,7 +4,7 @@ namespace Argumentum.AssetConverter.Entities
 {
     public class Scenario : CsvBase<Scenario, ScenarioClassMap>, ICsvBase
     {
-        public string GetId()
+        public new string GetId()
         {
             return path ?? string.Empty;
         }

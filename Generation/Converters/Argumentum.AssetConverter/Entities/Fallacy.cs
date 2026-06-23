@@ -7,7 +7,7 @@ namespace Argumentum.AssetConverter.Entities
 {
 	public class Fallacy : CsvBase<Fallacy, FallacyClassMap>, IMindMapItem, ICsvBase
 	{
-		public string GetId()
+		public new string GetId()
 		{
 			return Id;
 		}
@@ -20,7 +20,7 @@ namespace Argumentum.AssetConverter.Entities
 	       public string Description => DescFr;
 	       public string Example => ExampleFr;
 	       public string Link => LinkFrFallback;
-	          public string Id { get; set; }
+	          public new string Id { get; set; }
 
 	       public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
 

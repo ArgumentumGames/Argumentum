@@ -4,7 +4,7 @@ namespace Argumentum.AssetConverter.Entities;
 
 public class ArgumentVirtue : CsvBase<ArgumentVirtue, ArgumentVirtueClassMap>, ICsvBase
 {
-	public string GetId()
+	public new string GetId()
 	{
 		return Pk;
 	}
