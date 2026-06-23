@@ -66,6 +66,23 @@ namespace Argumentum.AssetConverter.Entities
         public string DescriptionEs { get; set; }
         public string RemarkEs { get; set; }
         public string LinkEs { get; set; }
+
+        // #499 Phase 1 — 12 relational/AIF columns appended to the Virtues prod CSV (66→78).
+        // crossLink_Opposes is the only one populated (the prevented Fallacy-family PK list);
+        // the other 7 relation types + AIF Exception/Other are structurally empty by design.
+        public string CrossLinkPredatesOn { get; set; }
+        public string CrossLinkDenounces { get; set; }
+        public string CrossLinkLeverages { get; set; }
+        public string CrossLinkAllows { get; set; }
+        public string CrossLinkOpposes { get; set; }
+        public string CrossLinkInverts { get; set; }
+        public string CrossLinkMirrors { get; set; }
+        public string CrossLinkIsRelatedTo { get; set; }
+
+        public string AIFSkosDirectRef { get; set; }
+        public string AIFSkosExceptionRef { get; set; }
+        public string AIFSkosOther { get; set; }
+        public string AIFSkosMappingType { get; set; }
     }
 
     public sealed class VirtueClassMap : ClassMap<Virtue>
@@ -122,6 +139,21 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.DescriptionEs).Name("description_es").Optional();
             Map(m => m.RemarkEs).Name("remark_es").Optional();
             Map(m => m.LinkEs).Name("link_es").Optional();
+
+            // #499 Phase 1 — 12 relational/AIF columns. All Optional(): 9 are structurally
+            // empty by design; 3 are populated for the 222 real Virtue nodes (pk=0 root empty).
+            Map(m => m.CrossLinkPredatesOn).Name("crossLink_PredatesOn").Optional();
+            Map(m => m.CrossLinkDenounces).Name("crossLink_Denounces").Optional();
+            Map(m => m.CrossLinkLeverages).Name("crossLink_Leverages").Optional();
+            Map(m => m.CrossLinkAllows).Name("crossLink_Allows").Optional();
+            Map(m => m.CrossLinkOpposes).Name("crossLink_Opposes").Optional();
+            Map(m => m.CrossLinkInverts).Name("crossLink_Inverts").Optional();
+            Map(m => m.CrossLinkMirrors).Name("crossLink_Mirrors").Optional();
+            Map(m => m.CrossLinkIsRelatedTo).Name("crossLink_IsRelatedTo").Optional();
+            Map(m => m.AIFSkosDirectRef).Name("AIF_skosDirectRef").Optional();
+            Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef").Optional();
+            Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
+            Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
         }
     }
 }
