@@ -1,0 +1,121 @@
+# #499 — Virtues prod-write SPEC (draft, non-prod, gated on jsboige content nod)
+
+**Issue:** [#499 — Virtues parity with Fallacies relational + AIF layers](https://github.com/ArgumentumGames/Argumentum/issues/499)
+**Author:** Claude Code @ myia-po-2024 (worker)
+**Date:** 2026-06-23
+**Base:** master `0129733d` (post-merge #578 closure dossier)
+**Status:** **DRAFT EXECUTION SPEC** — not the write itself. This turns the #578 closure's single gated bullet ("add 12 columns + populate 223 nodes") into a concrete, verified, executable plan, so the prod-write can happen on the **next tick after jsboige's content nod** rather than spending a tick designing it.
+
+**Gate:** jsboige content validation (paradigm fidelity, depth-leaf granularity, the 152/34→887 dual-facet mapping) — per ai-01 dispatch `msg-...231250`. **No prod CSV write without that nod.** This document touches only `docs/taxonomy/`.
+
+---
+
+## 1. Verified ground truth (re-checked this tick — corrects #578's "223/223")
+
+The #578 closure dossier reported "223/223 Virtue PKs annotated = 100%". Precise re-count:
+
+| Measure | Value | Source |
+|---|---|---|
+| Virtues prod CSV rows | **223** | `Import-Csv` of `Argumentum Virtues - Taxonomy.csv` |
+| Virtues prod distinct `pk` | **223** (incl. `pk=0`) | HashSet count |
+| Annotation CSVs | 12 | `docs/taxonomy/499-*.csv` |
+| Total annotation rows | **222** | sum across 12 CSVs |
+| **Distinct `virtue_pk` annotated** | **222** | HashSet across 12 CSVs |
+| PKs duplicated across CSVs | **0** | no `virtue_pk` appears in >1 CSV |
+| PK in annotations but NOT in prod | **0** | set difference |
+| PK in prod but NOT annotated | **1 = `pk=0`** | `text_fr` empty — the **taxonomy root marker**, not a Virtue node |
+
+**True coverage: 222 / 222 real Virtue nodes = 100%.** `pk=0` is the root (empty title, not annotatable) — correctly left out. The #578 "223/223" counted the root as a node; substance is correct, the headline number was off by the root.
+
+**BOM audit:** 10 of 12 annotation CSVs carry a UTF-8 BOM (all 10 phase-2 files); the pilot (#503, normalized in #578) and phase-1 do not. CsvHelper / `StreamReader(UTF8)` strip BOM transparently on read, so this is **not a merge blocker**, but it is an inconsistency worth noting (a naive byte-compare or a strict reader would trip).
+
+## 2. Target schema — append 12 columns to Virtues prod
+
+Virtues prod currently has **66 columns** (descriptive + 8-language i18n, ending at `link_fa` col 66). It has **zero** relational/AIF columns. Fallacies prod (the mirror truth source) carries these at columns 82–95. Append the **same 12 columns** to Virtues, after `link_fa`:
+
+```
+crossLink_PredatesOn, crossLink_Denounces, crossLink_Leverages, crossLink_Allows,
+crossLink_Opposes, crossLink_Inverts, crossLink_Mirrors, crossLink_IsRelatedTo,
+AIF_skosDirectRef, AIF_skosExceptionRef, AIF_skosOther, AIF_skosMappingType
+```
+
+(Verbatim Fallacies names — matches pilot §2 "no invention". `+liens transverses` / `type lien transverse` are Fallacies internal label/metadata columns, not part of the 12-col relational set, so not mirrored.)
+
+## 3. Source → target mapping
+
+Annotation CSV schema (10 cols): `virtue_pk, virtue_title, prevented_family_pk, prevented_family_name, crossLink_Opposes, opposed_fallacies_readable, AIF_skosDirectRef, AIF_skosMappingType, link_type, justification`
+
+| Annotation col (source) | Prod col (target) | Notes |
+|---|---|---|
+| `virtue_pk` | *(merge key → `pk`)* | join `virtue_pk == pk` |
+| `crossLink_Opposes` | **`crossLink_Opposes`** | semicolon-list of opposed Fallacy PKs (e.g. `698;1297`) |
+| `AIF_skosDirectRef` | **`AIF_skosDirectRef`** | Walton scheme label (e.g. `Argument from Rule`) |
+| `AIF_skosMappingType` | **`AIF_skosMappingType`** | the restored critical question (FR prose) |
+| `virtue_title` | *(not mapped)* | display-only in annotations; prod `text_fr` already holds it |
+| `prevented_family_pk`, `prevented_family_name` | *(not mapped)* | review metadata; stays in `docs/taxonomy/` |
+| `opposed_fallacies_readable` | *(not mapped)* | human-readable form of `crossLink_Opposes` |
+| `link_type` | *(not mapped)* | always `crossLink_Opposes` — implicit |
+| `justification` | *(not mapped)* | review audit trail; stays in `docs/taxonomy/` |
+
+## 4. Columns that stay EMPTY in prod (and why)
+
+| Prod column | Value | Reason |
+|---|---|---|
+| `crossLink_PredatesOn` | empty | Virtue→Fallacy relation is solely **Opposes** (the inverse-paradigm antidote). The other 7 relation types are Fallacy↔Fallacy internal semantics. |
+| `crossLink_Denounces` | empty | (same) |
+| `crossLink_Leverages` | empty | (same) |
+| `crossLink_Allows` | empty | (same) |
+| `crossLink_Inverts` | empty | (same) |
+| `crossLink_Mirrors` | empty | (same) |
+| `crossLink_IsRelatedTo` | empty | (same) |
+| `AIF_skosExceptionRef` | empty | Virtues are the **good holding** of a scheme, not an exception to it. The "violated scheme" concept is a Fallacy attribute. |
+| `AIF_skosOther` | empty | not generated by the pilot/phase-2 method |
+
+So the write **populates 3 of the 12 columns** (`crossLink_Opposes`, `AIF_skosDirectRef`, `AIF_skosMappingType`) for 222 rows; the other 9 are structurally empty by design (not gaps). This is correct parity: a Virtue's only cross-taxon link is "Opposes" its prevented Fallacy family.
+
+## 5. Merge plan (deterministic, no dedup)
+
+1. Load the 12 annotation CSVs; collect 222 rows keyed by `virtue_pk` (0 duplicates confirmed → no conflict resolution needed).
+2. Load Virtues prod (223 rows). For each prod row where `pk` matches a `virtue_pk` (222 rows), fill the 3 target columns. `pk=0` stays empty (root).
+3. Append the 12-column header block after `link_fa` (col 66); existing 66 columns and all other rows untouched.
+4. Write back with **UTF-8 no-BOM** and **original line endings preserved** (see §6).
+
+Net effect: 223 rows × (66 + 12) = 78 columns; 222 rows have 3 filled relational cells; `pk=0` + the 9 structural-empties are blank.
+
+## 6. Encoding & write hygiene (lesson from #579)
+
+The #579 `%C3→A13` fix proved that bulk CSV rewrites can silently corrupt percent-encoding and line endings. For the prod-write:
+
+- **Read** Virtues prod with `[System.IO.File]::ReadAllText(path, Encoding.UTF8)` (or CsvHelper) — preserves bytes exactly.
+- **Write** with `[System.IO.File]::WriteAllText(path, content, UTF8Encoding($false))` — UTF-8 **no BOM**.
+- **Line endings:** preserve the file's existing convention (verify CRLF vs LF on the Virtues CSV before writing; do not convert). `git diff --stat` after write must show **only the intended row changes**, not a mass reformat (the #579 proof: 23 ins/23 del = surgical, not 1408-line churn).
+- **Cell quoting:** CsvHelper auto-quotes cells containing commas/newlines/quotes — do not hand-format. The `AIF_skosMappingType` (FR prose with commas) and `justification`-derived text **must** be quoted.
+- **PK integrity:** after write, re-`Import-Csv` and assert `rows == 223`, `cols == 78`, and the 222 `pk` values still join.
+
+## 7. Validation plan (post-write, before merge)
+
+1. **Validator #518** on the resulting prod Virtues CSV (or a cross-link export of it) → expect 0 HARD, 0 WARN (the annotation set is already 12/12 CLEAN per #578; the write is a pure column-relocation, no content change).
+2. **Round-trip parse:** `Import-Csv` succeeds, 223 rows, 78 cols, `pk` set unchanged (223 incl. root).
+3. **OWL export** (`OwlAdapter` currently handles **Fallacies only** — this is the downstream gap, §8): once Virtues carries `AIF_skos*`, decide whether `OwlAdapter` gains a Virtues pass. That is a **separate code change**, not part of the CSV write.
+4. **Cell-by-cell spot-check** (8 langs not affected — only the 3 new FR/Latin-script columns change; CJK languages untouched).
+
+## 8. Downstream (separate gated steps, NOT this write)
+
+1. **OWL propagation** — `OwlAdapter` does not yet emit Virtue nodes. Adding the 12 columns to the CSV is necessary but not sufficient; the adapter needs a Virtues pass. Separate PR, gated same as this write.
+2. **EPITA consumer** — currently 9 hard-coded virtues; rewire to read the relational layer. Separate, post-OWL.
+
+## 9. Execution checklist (run on GO)
+
+```
+[ ] jsboige content nod received (paradigm + 152/34→887 mapping validated)
+[ ] branch: chore/499-virtues-prod-write-relational-columns
+[ ] write merge script (§5) targeting Cards/Fallacies/Argumentum Virtues - Taxonomy.csv
+[ ] run; verify §6 hygiene (git diff --stat surgical, UTF-8 no-BOM, LE preserved)
+[ ] §7 validation: validator #518 0/0, Import-Csv 223×78, pk set intact
+[ ] PR + ai-01 review
+[ ] then: OWL adapter Virtues pass (§8.1, separate PR)
+```
+
+---
+
+*Draft execution spec. Worker records the verified merge plan so the gated prod-write is a one-tick execution, not a design exercise. No production data changed (docs/taxonomy/ only). Ground-truth re-count corrects #578's "223/223" → 222/222 real nodes (pk=0 root excluded).*
