@@ -24,6 +24,13 @@ public class MappingProfile : Profile
 			.ForMember(dest => dest.FamilleCamelCase, opt => opt.MapFrom(src => src.FamilyFrCamelcase))
 			.ForMember(dest => dest.Carte, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Card) ? (int?)null : int.Parse(src.Card)))
 			.ForMember(dest => dest.DecimalPath, opt => opt.MapFrom(src =>  Decimal.Parse(src.DecimalPathPadded).ToString(CultureInfo.InvariantCulture)))
-			.ReverseMap();
+			// Belt-and-suspenders for GHSA-rvv3-g6hj-g44x (DoS via uncontrolled recursion). This map is
+			// flat and acyclic — only scalar ForMember projections — so the vulnerable recursion path is
+			// never taken on AutoMapper 14.0.0 (the last free MIT version). MaxDepth(1) makes that bound
+			// explicit on both directions, mirroring the vendor's MaxDepth-default fix, so the NU1903
+			// audit suppression in the .csproj is defensible rather than blind.
+			.MaxDepth(1)
+			.ReverseMap()
+			.MaxDepth(1);
 	}
 }

@@ -39,7 +39,18 @@
     <PackageReference Include="Utf8Json" Version="1.3.7" />
     <PackageReference Include="xunit.extensibility.core" Version="2.8.1" />
   </ItemGroup>
- 
+
+  <!-- NU1903: AutoMapper 14.0.0 carries GHSA-rvv3-g6hj-g44x (DoS via uncontrolled recursion). We stay on
+       14.0.0 — the LAST free MIT version; 15.0.0+ is the commercial dual-licensed line — to keep this OSS
+       repo MIT-pure (decision jsboige 2026-06-23). The vuln is NOT reachable here: the only AutoMapper
+       Profile is a flat, acyclic map (Entities/MappingProfile.cs) with an explicit MaxDepth(1) guard, so
+       the vulnerable recursion path is never taken. No free patched version exists (14.x gets no fix), so
+       this single advisory is suppressed with justification rather than "fixed" by adopting a commercial
+       dependency. Targeted suppression (this advisory only), not a blanket NoWarn. -->
+  <ItemGroup>
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-rvv3-g6hj-g44x" />
+  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Data\Target\" />
     <Folder Include="Published\v1.3\" />
