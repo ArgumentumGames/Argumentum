@@ -181,7 +181,7 @@ The original Option B recommended stopping at 9.13.x "to fix both CVEs without t
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
-| SQL migration failure (9.11→9.13) | Low | High | Full DB backup before upgrade, test on LocalDB first |
+| SQL migration failure (9.11→10.3.2) | Low-Med | High | Full DB backup before upgrade, test on LocalDB first; the 9.x→10.x jump is bigger than a minor |
 | 12 RazorComponent templates break | Medium | Medium | Migration is code-only, no data impact; test each template |
 | OpenStore incompatibility with 9.13.x | Low | Medium | 9.13.x stays on .NET 4.8 — OpenStore should be compatible; Phase 2 removes it entirely |
 | ~~.NET 8 migration breaks custom modules~~ | ~~High~~ | ~~High~~ | **N/A — retracted:** DNN 10.x is .NET Framework 4.8 (§4), no .NET-8 runtime jump. Custom modules (.NET Framework) continue to run. |
@@ -192,9 +192,9 @@ The original Option B recommended stopping at 9.13.x "to fix both CVEs without t
 
 ## 8. Proposed Execution Order
 
-### Phase 1: Security Upgrade 9.11.1 → 9.13.x (Immediate — no blockers)
+### Phase 1: Security Upgrade 9.11.1 → 10.1.2 (security floor) or 10.3.2 (actée #458)
 
-**Objective**: Patch 2 CRITICAL CVEs. Stay on .NET 4.8 (no eshop blocker). Est. 1-2h downtime.
+**Objective**: Patch BOTH critical CVEs (requires reaching 10.x — 9.13.x closes zero, see §3 correction). Stay on .NET Framework 4.8 (no eshop blocker). Est. 1-2h downtime. **Target: 10.3.2 + 2sxc 21 (actée decision #458)**; 10.1.2 is the minimum security floor if a smaller jump is preferred.
 
 #### Step 1: Pre-flight (on VPS, ~15 min)
 
@@ -203,16 +203,16 @@ The original Option B recommended stopping at 9.13.x "to fix both CVEs without t
 3. **Verify current state**: `SELECT * FROM {databaseOwner}{objectQualifier}Version` → should show 9.11.1
 4. **Export 2sxc app**: via 2sxc Admin UI → export Argumentum app (safety net)
 
-#### Step 2: DNN Upgrade 9.11.1 → 9.13.x (~30 min)
+#### Step 2: DNN Upgrade 9.11.1 → 10.3.2 (~30-45 min)
 
-1. Download DNN 9.13.x install package from dnncommunity.org
+1. Download DNN 10.3.2 install package from dnncommunity.org
 2. **Stop IIS** (or IIS Express if dev)
 3. **Backup `bin/`**, `web.config`, `DotNetNuke.config`
 4. Extract upgrade package over existing install (do NOT delete `App_Data/`, `Portals/`)
 5. **Merge `web.config`**: keep connection string, machineKey (GDrive authoritative), custom modules. DNN upgrade may add new sections.
 6. **Start IIS**
 7. Navigate to site → DNN auto-runs upgrade wizard → SQL migration scripts execute
-8. Verify: `SELECT * FROM {databaseOwner}{objectQualifier}Version` → 9.13.x
+8. Verify: `SELECT * FROM {databaseOwner}{objectQualifier}Version` → 10.3.2 (actée target)
 9. **Check 2sxc**: Admin → 2sxc should still show 21.07 (2sxc is independent of DNN version on .NET 4.8)
 
 **Key concern**: `web.config` merge. DNN 9.12+ may add new assembly bindings or security settings. Manual merge required — never accept the default overwrite.
@@ -272,6 +272,37 @@ The original Option B recommended stopping at 9.13.x "to fix both CVEs without t
 - [ ] **Maintenance window** — for DNN upgrade (est. 1-2h downtime)
 - [ ] **Production DB backup** — before any schema migration
 - [ ] **Stripe account** — for payment integration (Epic #445)
+
+## 10. v0.9.0 release coupling recommendation (2026-06-24)
+
+**Question (dispatch ai-01 / dossier release #591 point #3):** should the v0.9.0 tag wait for the DNN #131 upgrade, or de-couple (tag assets-only)?
+
+**Recommendation: DE-COUPLE. Tag v0.9.0 assets-only NOW; DNN upgrade as a separate post-release milestone.**
+
+Rationale:
+1. **Assets are complete & verified.** 8-language CSV + MindMap SVGs (#565) + PDFs (reported 12-Jun regen 64/64) + OWL 5.13 MB are the release payload — none depend on the DNN site.
+2. **DNN upgrade is a VPS-side operational task**, not a code deliverable. It needs jsboige on the production server (full DB backup, IIS stop, `web.config` merge, maintenance window — §9 prerequisites). It cannot be automated by the worker cluster. Coupling the tag to it makes the release hostage to an ops calendar.
+3. **The DNN site is currently functional** (DNN 9.11.1 + 2sxc 21.07, 4 Argumentum templates on Razor14). The 2 critical CVEs are a **security-debt** concern, not a blocker for shipping the game assets. The site can be upgraded in a maintenance window post-release.
+4. **Decision #458 target (10.3.2 + 2sxc 21) is compatible** — 2sxc 21.07 is already installed (the only rework that *could* be needed is the 12 RazorComponent templates below).
+
+**If jsboige prefers coupling** (release = assets + site on 10.3.2), the gating work is:
+- DNN upgrade on VPS (§8 Phase 1, ~1-2h ops) — jsboige only.
+- The 12 RazorComponent template migration (below) — worker can prepare, but must be tested live on the upgraded site.
+
+### 12 RazorComponent template migration — effort estimate
+
+Per §2: 12 generic Bootstrap-3 templates (Content/News5 apps), **none in the Argumentum app** (the 4 Argumentum templates are already Razor14). Blocking dependency: `Content/bs3/_Parts.cshtml` (12 `@helper` methods) must migrate first.
+
+| Sub-task | Effort | Notes |
+|----------|--------|-------|
+| `_Parts.cshtml`: 12 `@helper` → `@functions` (static) or partials | ~1h | Mechanical, but each `@helper` signature must be preserved |
+| 12 templates: `@inherits` swap + `@helper` call refactor | ~2-3h | Find/replace + verify each call-site |
+| Test each of 12 in 2sxc preview | ~1-2h | Live 2sxc on upgraded site |
+| **Total** | **~4-6h** | Code-only, no data impact; the original 3-5h estimate (§2) was tight |
+
+**Risk level: Medium.** Pure code migration (no DB/data), but the `_Parts.cshtml` `@helper`→`@functions` refactor is the one non-trivial step (helpers become static methods with explicit args). If a template isn't used in production, it can be skipped (verify usage first).
+
+**Conclusion:** the 12-template migration is a **self-contained ~4-6h workstream**, independent of the v0.9.0 assets. It can ship after the release tag without blocking it. Recommend tagging v0.9.0 assets-only and running the DNN upgrade + template migration as a post-release ops milestone (tracked in #131/#132).
 
 ---
 
