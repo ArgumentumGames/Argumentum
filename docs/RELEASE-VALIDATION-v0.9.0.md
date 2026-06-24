@@ -58,7 +58,9 @@
 | **zh** | **3** | **nouveau, CJK — 17.2 MB (18 075 919 bytes, glyphes denses)** |
 
 - Moteur : **FreeMind 1.0.1 + Batik** (haute fidélité, décision #184 — fallback XSLT retiré).
+- **Reproductibilité byte-proven** (régên 8-lang 2026-06-24, RDP jsboige, exit 0) : `Fallacies_zh.svg` committed = fresh = 5 451 309 B (`cmp` IDENTICAL byte-for-byte). La baseline #565 se reproduit fidèlement → le moteur FreeMind/Batik est **stable, pas flaky** (mitige le risque §7 « régén non reproduite » pour le volet MindMap).
 - Validation technique ai-01 (source-level) : contenu Unicode authentique par langue (0 fallback FR), géométrie d'arbre quasi-identique, `font-family='Tahoma'` arabe-capable, racines correctes (`السفسطة` pour ar). **PASS technique.**
+- ⚠️ **Gap structurel mineur (non-bloquant v0.9.0)** : les Virtues `.content.svg` sont **FR-figés** (le post-processing localise Fallacies mais fige le contenu Virtues en FR — même comportement que la baseline). Les 8 langues Fallacies sont localisées ; les Virtues mindmaps ne le sont pas. Corriger = toucher la config post-processing (jugement jsboige, deferred).
 - ⚠️ **Validation pixel RTL/CJK = À CONFIRMER jsboige** (eyeball `Fallacies_ar.svg` / `Fallacies_zh.svg`). Le pixel-RTL est figé en coordonnées absolues dans le SVG ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset.
 
 ### 3.3 PDFs — 8 langues (RAPPORTÉ régén 12 juin)
@@ -71,7 +73,7 @@
 
 - `docs/ontology/argumentum.owl` — **5.13 MB (5 378 765 bytes)**, SKOS + AIF.
 - #133 (publication OWL) reste ouvert ; bug round-trip OWLSharp (`rdf:type`/`skos:inScheme` droppés) contourné en scoping readers sur annotations survivantes (`prefLabel`, `DeclarationAxioms`).
-- **#499 Phase 2 OWL** (passe Virtues dans `OwlAdapter` + mapping 12 cols) = **en cours po-2024** (non mergé au moment de ce dossier) → l'OWL inclura les métadonnées relationnelles Virtues une fois Phase 2 mergée. **À mentionner dans release notes.**
+- **#499 Phase 2 OWL** — ✅ **MERGED** (PR #592 → master `8d5d275b`) : `VirtueOwlGeneratorConfig` + `VirtueOwlDocumentConfig` + `aif:goodTenorOf`, mono-corpus, 540/0/5 tests. L'OWL inclut désormais les métadonnées relationnelles Virtues. Documenté dans les release notes de cette PR.
 
 ### 3.5 DNN (#131)
 
@@ -99,8 +101,8 @@
 2. **Régén PDF fraîche ?** — le bin/ est vide. Soit go-live sur la régén 12 juin (rapportée), soit run Release coordonné post-#590/#569.
 3. **DNN #131 couplé** — **po-2023 recommande : DÉ-COUPLER.** Tagger v0.9.0 assets-only maintenant ; upgrade DNN (cible 10.3.2 + 2sxc 21, actée #458) en jalon ops post-release séparé. Justification complète + chiffrement effort migration 12 templates (~4-6h, code-only) : `docs/dnn/UPGRADE-ASSESSMENT.md` §10 (PR #593). Résumé : assets complets & vérifiés ; upgrade DNN = tâche ops VPS (jsboige only, pas automatable) ; site actuel fonctionnel (9.11.1 + 2sxc 21.07) ; les 2 CVE critiques = dette sécu, pas bloqueur de livraison des assets.
 4. **Tag v0.9.0** — pas encore posé (`git tag` vide). À poser après arbitrage ci-dessus.
-5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16). Patch cf §6. **Note** : `docs/RELEASE-NOTES-v0.9.0.md` **n'existe pas** (vérifié sur master `22eb5f34`) — seul `CHANGELOG.md` documente la release.
-6. **#499 Phase 2 OWL** — mentionner dans release notes comme livré post-dossier (po-2024 en cours).
+5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16, patch cf §6). **`docs/RELEASE-NOTES-v0.9.0.md` créé dans cette PR** (n'existait pas sur master `22eb5f34`) — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
+6. **#499 Phase 2 OWL** — ✅ **livré** (PR #592 merged `8d5d275b`) **avant** ce dossier. Mentionné dans release notes. Conservé pour traçabilité — plus une décision ouverte, un fait acquis.
 
 ---
 
