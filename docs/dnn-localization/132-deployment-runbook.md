@@ -1,20 +1,30 @@
-# #132 — Production Deployment Runbook (DNN 9.11.1 → 10.1.2 go-live)
+# #132 — Production Deployment Runbook (DNN 9.11.1 → 10.3.2 go-live)
 
 **Issue:** [#132 — Production deployment](https://github.com/ArgumentumGames/Argumentum/issues/132)
 **Author:** Claude Code @ myia-po-2023 (worker)
-**Date:** 2026-06-18
-**Base:** master `132ffea3`
+**Date:** 2026-06-18 (refreshed 2026-06-24 — target retarget 10.1.2 → 10.3.2)
+**Base:** master `fa231121`
 **Status:** RUNBOOK / PLAN (docs, non-gated). **Execution stays GATED** — no backup, no restore, no
 upgrade, no go-live on production without jsboige's explicit go. This is the **go-live procedure**,
 distinct from the sandbox-upgrade procedure ([#522](131-step1-sandbox-upgrade-runbook.md)).
 
-> ⚠️ **TARGET SUPERSEDED — 10.1.2 → 10.3.2.** jsboige interactive decision #2 (issue #458, 2026-06-18)
-> chose the **full upgrade to 10.3.2-latest + 2sxc 15→≥21 + template audit**. The **10.1.2 target below is
-> superseded**; read [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md)
-> as the source of truth. **Specifically §4 of this doc ("no 2sxc migration for 10.1.2") NO LONGER HOLDS**
-> — 10.3.2 crosses the 2sxc cliff, so 2sxc content migration + the 2sxc upgrade are real steps (see the
-> revision doc §4: a new Phase 1.5 + expanded Phase 3/4). The 6-phase go-live procedure, the rollback
-> contract, and the runtime finding (.NET 4.8) here remain valid; only the target + 2sxc scope changed.
+> ## ⚠️ Target retarget — 10.1.2 → 10.3.2 (refreshed 2026-06-24)
+>
+> jsboige interactive decision **#2** (issue #458, 2026-06-18) chose the **full upgrade to
+> 10.3.2-latest + 2sxc 15→≥21 + template audit**. **This runbook now reflects that decision.** The
+> earlier draft framed **10.1.2** as the primary target and 10.3.2 as a speculative alternative —
+> that framing is **retracted** (it was written before the #458 decision landed in the body).
+>
+> **What changed in this refresh:**
+> - The **target is 10.3.2** throughout (§1, §5, §6).
+> - **§4 "2sxc no-op for 10.1.2" is RETRACTED** — 10.3.2 crosses the 2sxc compatibility cliff at
+>   10.2.0, so the **2sxc 15.02 → 21.07 upgrade + the 12-template audit are real steps** (now §5.5),
+>   not a deferred alternative.
+> - CVE facts corrected against NVD/GHSA (see [131-cve-correction-and-target-refinement.md]
+>   (#520) + the [UPGRADE-ASSESSMENT](../dnn/UPGRADE-ASSESSMENT.md) §3, PR #593): 9.13.x closes
+>   **0** of the 2 critical CVEs; the security floor is 10.1.2; 10.3.2 is above it.
+> - The **6-phase go-live procedure, the rollback contract, the runtime finding (.NET 4.8), and the
+>   honesty boundary (DB-gated sections) remain valid** and unchanged in structure.
 >
 > **Migration strategy (jsboige, issue #132 body):** recover the production database → restore to
 > dev/staging → analyze schema & data → migration plan (dev↔prod delta) → test on the backup →
@@ -25,16 +35,20 @@ distinct from the sandbox-upgrade procedure ([#522](131-step1-sandbox-upgrade-ru
 
 ## 1. Purpose
 
-The deploy runbook for taking the DNN platform from **9.11.1.19 → 10.1.2** on production. It is the
-**go-live** counterpart to the prep arc (#511 plan → #514 runtime → #520 CVE/target → #522 sandbox
-procedure) and closes #132 (Production deployment), which until now had only a validation dossier
-(#492) and **no runbook**.
+The deploy runbook for taking the DNN platform from **9.11.1.19 → 10.3.2** on production, including
+the mandatory **2sxc 15.02 → 21.07** upgrade (crossing the 10.2.0 cliff) and the **12 custom-template
+audit**. It is the **go-live** counterpart to the prep arc (#511 plan → #514 runtime → #520 CVE/target
+→ #522 sandbox procedure) and closes #132 (Production deployment), which until now had only a
+validation dossier (#492) and **no runbook**.
 
-**Why 10.1.2 (not 10.3.2):** per [#520](131-cve-correction-and-target-refinement.md) the 9.13.x
-palier closes **0** of the 2 critical CVEs (CVE-2025-64095 CVSS 10.0, CVE-2025-52488 CVSS 8.6);
-**10.1.2** is the first target closing **both**, and it sits **before** the 2sxc compatibility cliff
-at **10.2.0+** (which would crash 2sxc 15.02 via `DnnJsInclude` and force a 2sxc ≥21 upgrade + template
-audit). The 10.3.2 alternative is documented in §9 for if jsboige chooses to cross the cliff.
+**Why 10.3.2 (actée #458), not 10.1.2:** per [#520](131-cve-correction-and-target-refinement.md) +
+[UPGRADE-ASSESSMENT §3](../dnn/UPGRADE-ASSESSMENT.md) (PR #593), the 9.13.x palier closes **0** of the
+2 critical CVEs (CVE-2025-64095 RCE CVSS **10.0**, patched 10.1.1 ; CVE-2025-52488 NTLM CVSS **8.6**,
+patched 10.0.1) — the security floor is **10.1.2**. jsboige chose **10.3.2** (decision #458): it is
+above the floor, is the latest, and the accepted cost is crossing the **2sxc compatibility cliff at
+10.2.0+** (which crashes 2sxc 15.02 via `DnnJsInclude`). That cost is paid **upfront** here: a 2sxc
+15→21 upgrade + a 12-template audit **before** the DNN upgrade (§5.5). 10.1.2 was the "avoid the cliff"
+option; jsboige chose to cross it deliberately.
 
 ## 2. What this runbook does NOT duplicate
 
@@ -42,39 +56,44 @@ audit). The 10.3.2 alternative is documented in §9 for if jsboige chooses to cr
 |-----|--------|-----------|
 | [131-upgrade-sandbox-plan-v2.md](131-upgrade-sandbox-plan-v2.md) (#511) | Go/no-go plan, 2 reversals (CVE + .NET) | the *why* — referenced, not repeated |
 | [131-step0-runtime-verification.md](131-step0-runtime-verification.md) (#514) | Runtime = .NET Framework 4.8 (VERIFIED) | prerequisite fact |
-| [131-cve-correction-and-target-refinement.md](131-cve-correction-and-target-refinement.md) (#520) | Target = 10.1.2, CVE correction | target rationale |
-| [131-step1-sandbox-upgrade-runbook.md](131-step1-sandbox-upgrade-runbook.md) (#522) | **Sandbox** upgrade procedure (9.11.1.19 → 10.1.2) | the *how* for the staging test (Phase 4) |
-| **This runbook** | **Production go-live** (backup → restore → migrate → go-live → rollback) | 🆕 net-new |
+| [131-cve-correction-and-target-refinement.md](131-cve-correction-and-target-refinement.md) (#520) | CVE correction, target refinement | CVE/target rationale |
+| [131-2sxc-migration-plan.md](131-2sxc-migration-plan.md) | **2sxc 15.02 → 21.07** migration (the cliff de-risk) | the *how* for §5.5 |
+| [131-step1-sandbox-upgrade-runbook.md](131-step1-sandbox-upgrade-runbook.md) (#522) | **Sandbox** upgrade procedure | the *how* for the staging test (Phase 4) |
+| [../dnn/UPGRADE-ASSESSMENT.md](../dnn/UPGRADE-ASSESSMENT.md) (#593) | CVE patch levels + .NET 4.8 + coupling reco | corrected target + floor |
+| **This runbook** | **Production go-live** (backup → restore → 2sxc upgrade → migrate → go-live → rollback) | 🆕 net-new |
 
 ## 3. Known production topology (repo/memory-grounded)
 
 | Component | Value | Grounding |
 |-----------|-------|-----------|
 | DNN Platform | **9.11.1.19** | VERIFIED (#514, `DotNetNuke.dll` FileVersion) |
-| Runtime | .NET Framework **4.8** | VERIFIED (`web.config targetFramework="4.8"`) |
+| Runtime | .NET Framework **4.8** | VERIFIED (`web.config targetFramework="4.8"`; DNN 10.x nupkg = `lib/net48/`, #593) |
 | DB backend | **SQL Server** (`System.Data.SqlClient`) | repo `web.config` (connectionString sanitized to `Data Source=REPLACE` — real value prod-only) |
-| 2sxc | **15.02**, **26 apps** installed (only `Argumentum` custom) | VERIFIED (#525, `Portals/1/2sxc/`) |
-| Eshop | **NBrightBuy/OpenStore** + `OS_Stripe.dll` + `Stripe.net.dll` | repo `DNNPlatform/bin/`, `DesktopModules/NBright/OS_Stripe` |
-| Custom-template migration risk | `_FallacyExplorer_Root.cshtml` (legacy `RazorComponent`) | issue #131 body |
+| 2sxc | **15.02**, **26 apps** installed (only `Argumentum` custom) | VERIFIED (#525, `Portals/1/2sxc/`) — **prod**; the §5.5 upgrade raises this to 21.07 |
+| Eshop | **NBrightBuy/OpenStore** + `OS_Stripe.dll` + `Stripe.net.dll` | repo `DNNPlatform/bin/`; **runs on 10.x** (.NET 4.8, #593 — blocker dissolved) |
+| Custom-template migration risk | 12 Razor templates incl. `_FallacyExplorer_Root.cshtml` (legacy `RazorComponent`) | issue #131 body; ~4-6h code-only (UPGRADE-ASSESSMENT §10) |
 | Host | VPS **myia-web1**, IIS | RAPPORTÉ (memory — Phase A booted IIS Express :8090 2026-06-02) |
 
 > **§3 honesty note:** the real production connection string, DB name, DB size, and row counts are
 > **not in the repo** (the export sanitizes them). Everything in §3 that is not marked VERIFIED is
 > RAPPORTÉ and must be confirmed against the prod export at Phase 2.
 
-## 4. The 2sxc-migration simplification (key grounded insight)
+## 4. The 2sxc-migration scope (RETRACTED no-op, now IN scope)
 
-**For target 10.1.2, no 2sxc entity migration is required.** 2sxc 15.02 survives a DNN upgrade to
-10.1.2 because 10.1.2 is **before** the 10.2.0 cliff. The DNN upgrade wizard migrates DNN's own SQL
-schema; 2sxc's content (`ToSic_EAV_*` + app tables) is untouched and remains valid on 2sxc 15.02.
+> **RETRACTION (2026-06-24):** the earlier draft of this section claimed *“for target 10.1.2, no 2sxc
+> entity migration is required — 10.1.2 is before the cliff.”* That was correct **only for 10.1.2**,
+> the rejected option. For the actée target **10.3.2**, the opposite holds.
 
-- ✅ **In scope for 10.1.2:** DNN platform schema migration (wizard-handled) + **data preservation**
-  (all 26 apps' content rows, all portal/page settings, all users).
-- ❌ **NOT in scope for 10.1.2:** 2sxc content-type/entity/metadata migration (that is a 2sxc-version
-  upgrade task, only triggered if jsboige later targets 10.3.2 — see §9).
-- ⚠️ **Still verify** post-upgrade that 2sxc 15.02 still serves the `Argumentum` app templates (the
-  `_FallacyExplorer_Root.cshtml` legacy RazorComponent must still bind). This is a smoke-test item
-  (Phase 5), not a migration step.
+**For target 10.3.2, the 2sxc 15.02 → 21.07 upgrade IS required** because 10.3.2 is **past** the
+10.2.0 cliff. A DNN upgrade wizard to 10.3.2 with 2sxc 15.02 still installed will crash IIS via the
+`DnnJsInclude` incompatibility. The mitigations are real steps, done **in this order**, on staging
+first (Phase 4) then prod (Phase 5):
+
+- ✅ **In scope for 10.3.2:** DNN platform schema migration (wizard-handled) + **2sxc upgrade 15.02 → 21.07** + **12 custom-template audit** (`_FallacyExplorer_Root.cshtml` `RazorComponent` → `Custom.Hybrid.Razor14`, `_Parts.cshtml` `@helper` → `@functions`) + **data preservation** (all 26 apps' content rows, portal/page settings, users).
+- ⚠️ **Still verify** post-upgrade that 2sxc 21.07 serves the migrated `Argumentum` app templates. This is a smoke-test item (Phase 5/6), not a separate migration.
+
+The detailed 2sxc migration procedure lives in [131-2sxc-migration-plan.md](131-2sxc-migration.md);
+this runbook sequences it as §5.5 and does not repeat its internals.
 
 ## 5. Phase-by-phase go-live procedure
 
@@ -88,8 +107,8 @@ jsboige has signed off (execution is GATED throughout).
 - [ ] Inventory the deployable artifacts: the 602 MB git-tracked export (RAPPORTÉ issue #131) +
       `DNNPlatform/bin/` (DotNetNuke 9.11.1.19, OS_Stripe, Stripe.net).
 - [ ] Confirm the sandbox test (Phase 4 below / [Step-1 runbook #522](131-step1-sandbox-upgrade-runbook.md))
-      has **passed** before touching prod.
-- [ ] Snapshot the current prod versions (DNN, 2sxc, OpenStore) into the deploy log.
+      has **passed** — including the §5.5 2sxc upgrade + template audit — before touching prod.
+- [ ] Snapshot the current prod versions (DNN 9.11.1.19, 2sxc 15.02, OpenStore) into the deploy log.
 
 ### Phase 1 — Production backup (files + DB)  — *jsboige step 1*
 
@@ -110,7 +129,8 @@ jsboige has signed off (execution is GATED throughout).
 1. Restore the Phase-1 DB backup to the **staging** SQL instance (not prod).
 2. Restore the files backup to the staging web root.
 3. **Analyze the prod schema & data** — table inventory, 2sxc app content row counts (especially
-   `Argumentum` + `Glossary3`), portal/page settings, user counts.
+   `Argumentum` + `Glossary3`), portal/page settings, user counts. Confirm 2sxc is at 15.02 (the
+   pre-upgrade baseline before §5.5).
 
 > 🚧 **HONESTY BOUNDARY — DB/RDP-gated:** the actual prod schema, the 2sxc content-type/entity/metadata
 > row counts, and the dev↔prod delta **cannot be produced from the repo** (the export is sanitized and
@@ -123,22 +143,40 @@ jsboige has signed off (execution is GATED throughout).
 - [ ] **Schema delta** — diff staging-restored-prod-schema vs the dev sandbox schema. Identify any
       DNN customizations (custom modules, extra columns) that the upgrade wizard must preserve.
 - [ ] **Data-preservation rules** — which tables are user-content (preserve verbatim) vs
-      framework-config (wizard-managed). For 10.1.2 the split is: 2sxc content = preserve; DNN core
-      tables = wizard-managed (no manual edit).
-- [ ] **2sxc scope** — confirm §4: no 2sxc migration for 10.1.2; only smoke-test the app post-upgrade.
-- [ ] **Eshop scope** — confirm OpenStore 4.1.11 + OS_Stripe survive the DNN 10.1.2 upgrade (Phase B
-      eshop decision, #131, is **separate** — Stripe Native #445 is re-opened but not blocking the
-      platform upgrade).
+      framework-config (wizard-managed). Split: 2sxc content = preserve; DNN core tables = wizard-managed
+      (no manual edit).
+- [ ] **2sxc scope** — confirm §4: the 2sxc 15.02 → 21.07 upgrade + 12-template audit ARE in scope
+      (§5.5), sequenced before the DNN 10.3.2 wizard.
+- [ ] **Eshop scope** — confirm OpenStore + OS_Stripe survive the DNN 10.3.2 upgrade (OpenStore runs
+      on 10.x, #593 — the earlier “.NET 8 breaks it” concern is retracted). Stripe Native #445 is
+      re-opened but **not blocking** the platform upgrade (separate decision).
 
 ### Phase 4 — Sandbox test migration  — *jsboige step 5*
 
-Run the [Step-1 sandbox runbook (#522)](131-step1-sandbox-upgrade-runbook.md) on the staging copy
-(**not** the empty sandbox — on the prod-restored data). Validate:
-- [ ] Upgrade wizard completes 9.11.1.19 → 10.1.2, no fatal errors.
+Run the [Step-1 sandbox runbook (#522)](131-step1-sandbox-upgrade-runbook.md) **plus §5.5** on the
+staging copy (**not** the empty sandbox — on the prod-restored data). Validate:
+- [ ] **§5.5.a 2sxc 15.02 → 21.07** completes, no fatal errors (cliff de-risk, done FIRST).
+- [ ] **§5.5.b 12-template audit** — `_FallacyExplorer_Root.cshtml` → `Custom.Hybrid.Razor14`,
+      `_Parts.cshtml` `@helper` → `@functions`; remaining 10 templates re-bind under 2sxc 21.
+- [ ] Upgrade wizard completes 9.11.1.19 → 10.3.2, no fatal errors.
 - [ ] Site boots, homepage renders, language switcher works (FR + en-US baseline).
-- [ ] 2sxc `Argumentum` app templates still bind (`_FallacyExplorer_Root.cshtml`).
+- [ ] 2sxc 21.07 `Argumentum` app templates still bind.
 - [ ] OpenStore + Stripe checkout path loads (no IIS crash from `DnnJsInclude`).
 - [ ] **Go/no-go gate → jsboige.** Only on green do we proceed to Phase 5.
+
+### §5.5 — The cliff crossing (2sxc upgrade + template audit)  — referenced procedure
+
+This is the **net-new work** that 10.3.2 requires and 10.1.2 avoided. It is done on staging (Phase 4)
+then repeated on prod (Phase 5). The internals are in [131-2sxc-migration-plan.md]:
+
+- **(a) 2sxc 15.02 → 21.07 LTS** — install 2sxc 21 **before** the DNN upgrade crosses 10.2.0
+  (else `DnnJsInclude` crashes IIS — the cliff). 2sxc content (`ToSic_EAV_*` + app tables) migrates
+  with the 2sxc installer, not the DNN wizard.
+- **(b) 12-template audit** — migrate the custom Razor templates that 2sxc 21 no longer tolerates:
+  `_FallacyExplorer_Root.cshtml` (`@inherits ToSic.Sxc.Dnn.RazorComponent` → `Custom.Hybrid.Razor14`),
+  `_Parts.cshtml` (`@helper` → `@functions`, the one non-trivial step), + 10 others re-bind. Issue
+  #131 body lists the APIs that survive in 2sxc 21: `App.Query`, `AsList`, `CmsContext`, `Link.To`,
+  `Edit.TagToolbar`. ~4-6h code-only (UPGRADE-ASSESSMENT §10).
 
 ### Phase 5 — Production go-live  — *jsboige step 6*
 
@@ -146,10 +184,12 @@ Run the [Step-1 sandbox runbook (#522)](131-step1-sandbox-upgrade-runbook.md) on
    holding page; admin stays functional).
 2. **Re-backup prod** (Phase 1 again) — captures any data written between the Phase-1 backup and now.
    This second backup is the **true rollback anchor**.
-3. **Apply the upgrade** — same wizard path proven in Phase 4, on prod, to 10.1.2.
-4. **Smoke test on prod** — homepage, language switcher, 2sxc Argumentum app, OpenStore/Stripe path.
-5. **Exit maintenance mode** — only after the smoke test is green.
-6. **Record** final versions + timestamps in the deploy log.
+3. **Apply §5.5 on prod** — 2sxc 15.02 → 21.07 (a) then the 12-template audit (b), same path proven
+   in Phase 4.
+4. **Apply the DNN upgrade** — same wizard path proven in Phase 4, on prod, to 10.3.2.
+5. **Smoke test on prod** — homepage, language switcher, 2sxc 21 Argumentum app, OpenStore/Stripe path.
+6. **Exit maintenance mode** — only after the smoke test is green.
+7. **Record** final versions + timestamps in the deploy log (DNN 10.3.2, 2sxc 21.07, OpenStore).
 
 ### Phase 6 — Rollback strategy (the contract that makes go-live reversible)
 
@@ -158,8 +198,10 @@ Rollback-readiness is **per phase**; if any phase fails, roll back to the last g
 | Failed phase | Rollback action | Anchor |
 |--------------|-----------------|--------|
 | Phase 1 (backup fails) | **Do not proceed** — nothing changed yet | (none needed) |
+| §5.5 on staging (2sxc/template fails) | Discard staging; prod untouched | prod (unchanged) |
 | Phase 4 (sandbox test fails) | Discard staging; prod untouched | prod (unchanged) |
-| Phase 5 wizard fails | `RESTORE DATABASE` from Phase-5 re-backup + restore files backup | Phase-5 re-backup |
+| Phase 5 §5.5 fails (2sxc/template on prod) | `RESTORE DATABASE` from Phase-5 re-backup + restore files backup | Phase-5 re-backup |
+| Phase 5 wizard fails | Same `RESTORE` + files restore; keep maintenance mode | Phase-5 re-backup |
 | Phase 5 smoke-test fails post-wizard | Same `RESTORE` + files restore; keep maintenance mode | Phase-5 re-backup |
 
 **Rollback contract:** the Phase-5 re-backup must exist, be checksum-verified, and be tested by a
@@ -168,11 +210,12 @@ maintenance mode — escalate to jsboige.
 
 ## 6. Go/no-go checklist (jsboige ticks at go-live)
 
-- [ ] Phase 0 pre-flight complete; sandbox test (Phase 4) **passed**.
+- [ ] Phase 0 pre-flight complete; sandbox test (Phase 4) **passed** — including §5.5.
 - [ ] Phase 1 prod backup done, **two copies**, checksum-verified, `RESTORE VERIFYONLY` green.
 - [ ] Phase 2 staging restore + schema analysis done (against **real** prod DB export).
-- [ ] Phase 3 migration plan signed off (schema delta, data-preservation, 2sxc = no-op for 10.1.2).
-- [ ] Phase 4 sandbox test on prod-restored data **passed** (2sxc app + OpenStore smoke green).
+- [ ] Phase 3 migration plan signed off (schema delta, data-preservation, 2sxc upgrade + template
+      audit scoped per §5.5).
+- [ ] Phase 4 sandbox test on prod-restored data **passed** (2sxc 21 app + OpenStore smoke green).
 - [ ] Phase 5 re-backup taken; `RESTORE VERIFYONLY` green; rollback path confirmed.
 - [ ] Maintenance window scheduled; jsboige **go** for go-live.
 
@@ -184,32 +227,29 @@ export (the export in-repo is sanitized — `Data Source=REPLACE`, templates-onl
 - §3 real connection string / DB name / DB size / row counts (RAPPORTÉ, not VERIFIED).
 - §5 Phase 2 actual prod schema + 2sxc content row counts.
 - §5 Phase 3 actual dev↔prod schema delta.
-- §5 Phase 4 sandbox-test outcome on prod-restored data.
+- §5 Phase 4 / §5.5 sandbox-test outcome on prod-restored data.
 
-The **procedure, rollback strategy, topology, and the 2sxc no-op insight (§4)** are repo/memory-grounded
-and hold on their own.
+The **procedure, rollback strategy, topology, and the cliff-crossing sequence (§4/§5.5)** are
+repo/memory-grounded and hold on their own.
 
 ## 8. Gate boundaries
 
 - ❌ Does **not** deploy, back up, restore, or upgrade anything on production (execution GATED jsboige).
 - ❌ Does **not** touch the live DB / RDP / portal (all DB steps are described, not performed).
-- ❌ Does **not** duplicate the sandbox procedure (#522) or the plan (#511) — it references them.
-- ❌ Does **not** decide the eshop (Phase B) or the 10.1.2-vs-10.3.2 target — those are jsboige gates.
+- ❌ Does **not** duplicate the sandbox procedure (#522), the plan (#511), or the 2sxc migration plan
+      ([131-2sxc-migration-plan.md]) — it references them.
+- ❌ Does **not** decide the eshop (Stripe Native #445) or the target — **target = 10.3.2 is actée
+      (#458)**; the eshop is a separate jsboige gate.
 - ❌ Does **not** declare a QA verdict (ai-01 only).
 
-## 9. Alternative target: 10.3.2 (if jsboige crosses the 2sxc cliff)
+## 9. Decision history — why 10.1.2 was considered and rejected
 
-If jsboige chooses **10.3.2** instead of 10.1.2, the runbook gains two gated phases:
-
-- **2sxc upgrade 15.02 → 21.07 LTS** before the DNN upgrade past 10.2.0 (else `DnnJsInclude` crashes
-  IIS — the cliff).
-- **2sxc template audit** — `_FallacyExplorer_Root.cshtml` (`@inherits ToSic.Sxc.Dnn.RazorComponent`)
-  → migrate to `Custom.Hybrid.Razor14` (issue #131 body lists the APIs that survive in 2sxc 21:
-  `App.Query`, `AsList`, `CmsContext`, `Link.To`, `Edit.TagToolbar`).
-- The §4 2sxc-no-op insight **no longer holds** — full 2sxc content-type/entity/metadata migration
-  enters scope (run on the staging-restored prod DB first, Phase 4).
-
-10.1.2 is recommended because it avoids all of §9.
+The earlier draft recommended **10.1.2** because it is the first target closing **both** critical
+CVEs (CVE-2025-64095 patched 10.1.1, CVE-2025-52488 patched 10.0.1) **and** sits **before** the 2sxc
+compatibility cliff at 10.2.0 — i.e. it avoids the entire §5.5 cliff-crossing cost. That tradeoff
+(“security floor, no 2sxc work”) was real. jsboige rejected it in decision **#458** in favour of
+**10.3.2**, deliberately accepting the 2sxc upgrade + template audit to reach the latest version and
+clear the cliff for good. 10.1.2 is documented here for history; **do not execute against 10.1.2.**
 
 ## Sources
 
@@ -219,7 +259,9 @@ If jsboige chooses **10.3.2** instead of 10.1.2, the runbook gains two gated pha
 - [131-upgrade-sandbox-plan-v2.md](131-upgrade-sandbox-plan-v2.md) (#511) ·
   [131-step0-runtime-verification.md](131-step0-runtime-verification.md) (#514) ·
   [131-cve-correction-and-target-refinement.md](131-cve-correction-and-target-refinement.md) (#520) ·
+  [131-2sxc-migration-plan.md](131-2sxc-migration-plan.md) ·
   [131-step1-sandbox-upgrade-runbook.md](131-step1-sandbox-upgrade-runbook.md) (#522) ·
+  [../dnn/UPGRADE-ASSESSMENT.md](../dnn/UPGRADE-ASSESSMENT.md) (#593) ·
   [457-site-content-type-inventory.md](457-site-content-type-inventory.md) (#525 — repo = templates,
   not portal content).
 - Issue #132 body (jsboige 6-step migration strategy) · Issue #131 body (topology, eshop, i18n scope).
