@@ -284,6 +284,8 @@ namespace Argumentum.AssetConverter
 
 public OwlGeneratorConfig OwlGeneratorConfig { get; set; } = new OwlGeneratorConfig();
 
+public VirtueOwlGeneratorConfig VirtueOwlGeneratorConfig { get; set; } = new VirtueOwlGeneratorConfig();
+
 public TaxonomyValidatorConfig TaxonomyValidatorConfig { get; set; } = new TaxonomyValidatorConfig();
 
 public OwlValidatorConfig OwlValidatorConfig { get; set; } = new OwlValidatorConfig();
@@ -512,10 +514,12 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 				if (AsynchronousPipeline)
 				{
 					tasks.Add(Task.Run(() => OwlGeneratorConfig.Apply(this)));
+					tasks.Add(Task.Run(() => VirtueOwlGeneratorConfig.Apply(this)));
 				}
 				else
 				{
 					await OwlGeneratorConfig.Apply(this);
+					await VirtueOwlGeneratorConfig.Apply(this);
 				}
 			}
 

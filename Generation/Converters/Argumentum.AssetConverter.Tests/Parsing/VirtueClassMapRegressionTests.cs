@@ -159,5 +159,73 @@ namespace Argumentum.AssetConverter.Tests.Parsing
             act.Should().Throw<HeaderValidationException>(
                 "title_fr is a non-Optional column; its absence must fail loud, not silently null the property");
         }
+
+        /// <summary>
+        /// #499 Phase 1 — the 12 relational/AIF columns appended to the Virtues prod CSV map to their
+        /// properties when present. The representative row mirrors prod pk=71 (the "Valid results"
+        /// Virtue, Math-accuracy family): crossLink_Opposes is the semicolon list of prevented Fallacy
+        /// PKs, AIF_skosDirectRef the Walton scheme label, AIF_skosMappingType the FR-prose critical
+        /// question (RFC4180-quoted in prod because it contains a comma). The 9 structural-empty
+        /// columns stay null — a Virtue's only cross-taxon link is "Opposes" its prevented family.
+        /// </summary>
+        [Fact]
+        public void Virtue_LoadFromContent_Maps499RelationalAndAifColumns()
+        {
+            var newCols =
+                "crossLink_PredatesOn,crossLink_Denounces,crossLink_Leverages,crossLink_Allows," +
+                "crossLink_Opposes,crossLink_Inverts,crossLink_Mirrors,crossLink_IsRelatedTo," +
+                "AIF_skosDirectRef,AIF_skosExceptionRef,AIF_skosOther,AIF_skosMappingType";
+            // Representative pk=71 row: 3 of 12 populated, 9 empty by design. The FR-prose
+            // AIF_skosMappingType is quoted because it contains a comma (RFC4180, as written in prod).
+            var newRow =
+                ",,,," +                         // PredatesOn, Denounces, Leverages, Allows (empty)
+                "681;690" +                      // crossLink_Opposes (prevented Fallacy PKs)
+                ",,,," +                         // Inverts, Mirrors, IsRelatedTo (empty)
+                "Argument from Sign" +           // AIF_skosDirectRef (Walton scheme label)
+                ",,," +                          // AIF_skosExceptionRef, AIF_skosOther (empty)
+                "\"Les résultats sont-ils correctement calculés, reproductibles et cohérents ?\""; // AIF_skosMappingType
+
+            var csv = VirtueRequiredHeader + "," + newCols + "\n" + VirtueRequiredRow + "," + newRow + "\n";
+
+            var virtues = Virtue.LoadFromContent(csv);
+
+            virtues.Should().ContainSingle();
+            var v = virtues[0];
+            v.CrossLinkOpposes.Should().Be("681;690");
+            v.AIFSkosDirectRef.Should().Be("Argument from Sign");
+            v.AIFSkosMappingType.Should().Be("Les résultats sont-ils correctement calculés, reproductibles et cohérents ?");
+            // 9 structural empties — empty string by design (cell present but empty in prod; the 7
+            // other relation types are Fallacy↔Fallacy internal semantics, AIF Exception/Other are
+            // Fallacy attributes). CsvHelper maps an empty cell to "", not null.
+            v.CrossLinkPredatesOn.Should().BeEmpty();
+            v.CrossLinkDenounces.Should().BeEmpty();
+            v.CrossLinkLeverages.Should().BeEmpty();
+            v.CrossLinkAllows.Should().BeEmpty();
+            v.CrossLinkInverts.Should().BeEmpty();
+            v.CrossLinkMirrors.Should().BeEmpty();
+            v.CrossLinkIsRelatedTo.Should().BeEmpty();
+            v.AIFSkosExceptionRef.Should().BeEmpty();
+            v.AIFSkosOther.Should().BeEmpty();
+        }
+
+        /// <summary>
+        /// The 12 #499 columns are all .Optional() — a header set without them (a pre-#499 CSV, or a
+        /// FR-only harvest header) must load without throwing. Losing an .Optional() flag would make
+        /// HeaderValidated throw when the harvest loads a header missing the relational block.
+        /// </summary>
+        [Fact]
+        public void Virtue_LoadFromContent_499ColumnsAbsent_DoesNotThrow()
+        {
+            // VirtueRequiredHeader has none of the 12 #499 relational/AIF columns.
+            var csv = VirtueRequiredHeader + "\n" + VirtueRequiredRow + "\n";
+
+            var act = () => Virtue.LoadFromContent(csv);
+
+            act.Should().NotThrow();
+            var virtues = Virtue.LoadFromContent(csv);
+            virtues.Should().ContainSingle();
+            virtues[0].CrossLinkOpposes.Should().BeNull("crossLink_Opposes is Optional and absent → null, not throw");
+            virtues[0].AIFSkosMappingType.Should().BeNull();
+        }
     }
 }
