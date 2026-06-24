@@ -97,7 +97,7 @@
 
 1. **Validation pixel RTL/CJK des SVGs** (#3.2) — eyeball ou GO sur verdict source-level ai-01.
 2. **Régén PDF fraîche ?** — le bin/ est vide. Soit go-live sur la régén 12 juin (rapportée), soit run Release coordonné post-#590/#569.
-3. **DNN #131 couplé** — statut migration avant tag, ou dé-coupler la release du DNN ?
+3. **DNN #131 couplé** — **po-2023 recommande : DÉ-COUPLER.** Tagger v0.9.0 assets-only maintenant ; upgrade DNN (cible 10.3.2 + 2sxc 21, actée #458) en jalon ops post-release séparé. Justification complète + chiffrement effort migration 12 templates (~4-6h, code-only) : `docs/dnn/UPGRADE-ASSESSMENT.md` §10 (PR #593). Résumé : assets complets & vérifiés ; upgrade DNN = tâche ops VPS (jsboige only, pas automatable) ; site actuel fonctionnel (9.11.1 + 2sxc 21.07) ; les 2 CVE critiques = dette sécu, pas bloqueur de livraison des assets.
 4. **Tag v0.9.0** — pas encore posé (`git tag` vide). À poser après arbitrage ci-dessus.
 5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16). Patch cf §6. **Note** : `docs/RELEASE-NOTES-v0.9.0.md` **n'existe pas** (vérifié sur master `22eb5f34`) — seul `CHANGELOG.md` documente la release.
 6. **#499 Phase 2 OWL** — mentionner dans release notes comme livré post-dossier (po-2024 en cours).
