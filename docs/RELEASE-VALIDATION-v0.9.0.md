@@ -63,11 +63,14 @@
 - ⚠️ **Gap structurel mineur (non-bloquant v0.9.0)** : les Virtues `.content.svg` sont **FR-figés** (le post-processing localise Fallacies mais fige le contenu Virtues en FR — même comportement que la baseline). Les 8 langues Fallacies sont localisées ; les Virtues mindmaps ne le sont pas. Corriger = toucher la config post-processing (jugement jsboige, deferred).
 - ⚠️ **Validation pixel RTL/CJK = À CONFIRMER jsboige** (eyeball `Fallacies_ar.svg` / `Fallacies_zh.svg`). Le pixel-RTL est figé en coordonnées absolues dans le SVG ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset.
 
-### 3.3 PDFs — 8 langues (RAPPORTÉ régén 12 juin)
+### 3.3 PDFs — 8 langues (✅ régén fraîche 2026-06-25)
 
-- **64/64 PDFs**, 9 834 images, exit 0 — **RAPPORTÉ** (régén release 12 juin 2026).
-- CardSets concernés : Tarot, Poker, A0 posters, Print&Play, Memo, Rules.
-- ⚠️ **Non re-vérifié ce jour** (bin/ vide). Si go-live exige une régén fraîche post-#590/#569, **prévoir un run Release coordonné** (GO jsboige + RDP).
+- **64/64 PDFs**, **9 834 images**, exit 0 — **régén Release fraîche 2026-06-25** (`bef3bc6c`, Mode `WebBasedImageGeneration | QuestPdfGeneration`).
+- CardSets concernés : Tarot, Poker, A0 posters, Print&Play, Memo, Rules (8 langues × 8).
+- **Cohérent avec les derniers merges** : #592 (OWL Virtues `aif:goodTenorOf`) + **#595 (24 cells Virtues harmonisées RTL/CJK)** — PDFs Virtues re-rendered post-#595 (clobber targeted harvest, Playwright/Chromium invoqué, labels familiaux localisés vérifiés dans les noms PNG : zh `有效论证`, ar `حجة_معتبرة`, fa).
+- **i18n distinct (anti-leak #216 OK)** : PokerCards 108-114M/langue, tailles distinctes (pas de FR leaké) ; ar/zh légèrement plus petits (glyphes) = attendu.
+- ⚠️ **Régén = headless** (Playwright+QuestPDF) — le Mode actuel n'inclut pas Mindmapper, donc **pas besoin de fenêtre RDP** (seul Mindmapper nécessite RDP, voir §3.2, déjà fait byte-proven).
+- ⚠️ **Verdict visuel = ai-01** (règle HARD) : spot-check Playwright 1 carte / langue à confirmer (contenu localisé + RTL ar/fa + CJK zh). po-2023 signale counts/preuves, ne déclare pas PASS.
 
 ### 3.4 OWL Ontologie
 
@@ -98,7 +101,7 @@
 ## 5. Points nécessitant décision jsboige avant tag
 
 1. **Validation pixel RTL/CJK des SVGs** (#3.2) — eyeball ou GO sur verdict source-level ai-01.
-2. **Régén PDF fraîche ?** — le bin/ est vide. Soit go-live sur la régén 12 juin (rapportée), soit run Release coordonné post-#590/#569.
+2. **Régén PDF fraîche ?** — ✅ **FAITE (2026-06-25)**. Régén Release 8-langues exécutée sur `bef3bc6c` (GO jsboige direct), 64/64 PDFs + 9834 images, exit 0, **vraiment fraîche post-#595** (cf §3.3). Le risque résiduel « 16 commits master depuis régén 12 juin » (ancien §7) est **levé**. Reste : verdict visuel ai-01 (point 1 analogue pour PDFs). Go-live sur régén fraîche 2026-06-25.
 3. **DNN #131 couplé** — **po-2023 recommande : DÉ-COUPLER.** Tagger v0.9.0 assets-only maintenant ; upgrade DNN (cible 10.3.2 + 2sxc 21, actée #458) en jalon ops post-release séparé. Justification complète + chiffrement effort migration 12 templates (~4-6h, code-only) : `docs/dnn/UPGRADE-ASSESSMENT.md` §10 (PR #593). Résumé : assets complets & vérifiés ; upgrade DNN = tâche ops VPS (jsboige only, pas automatable) ; site actuel fonctionnel (9.11.1 + 2sxc 21.07) ; les 2 CVE critiques = dette sécu, pas bloqueur de livraison des assets.
 4. **Tag v0.9.0** — pas encore posé (`git tag` vide). À poser après arbitrage ci-dessus.
 5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16, patch cf §6). **`docs/RELEASE-NOTES-v0.9.0.md` créé dans cette PR** (n'existait pas sur master `22eb5f34`) — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
@@ -123,8 +126,9 @@
 ## 7. Risques résiduels (honnête)
 
 - **Validation pixel non faite** sur l'ensemble (Playwright cale systématiquement sur le poids SVG — mur d'outillage documenté par ai-01). La validation est donc **source-level**, pas pixel.
-- **Régén release 12 juin non reproduite** : si une régression s'est glissée dans les 16 commits master suivants (dont #590 prod-write Virtues additif, prouvé 0-drift), elle ne serait visible que sur une régén fraîche.
+- ~~**Régén release 12 juin non reproduite**~~ — ✅ **LEVÉ** : régén fraîche 2026-06-25 exécutée (§3.3), reproduit fidèlement les counts 12 juin (64 PDFs, 9834 img) + intègre #592/#595. 0 régression détectée.
 - **DNN couplé** : si la release doit attendre la migration DNN (10.3.2 + 2sxc 21), le go-live glisse.
+- **Note de procédure (stale-harvest)** : la régên 2026-06-25 a initialement servi le cache harvest (10 juin, pré-#595) — détecté (log `"Skip existing image"` + 0 Chromium) et corrigé par **clobber targeted Virtues** + re-régên (Chromium invoqué, harvests frais 02:33). Leçon : clobber MANDATORY avant régên post-fix-localization (le count identique ne prouve pas la fraîcheur — seule l'invocation Chromium le prouve). Documenté en mémoire.
 
 ---
 
@@ -132,7 +136,7 @@
 
 1. **Correction CHANGELOG ligne 16** (§6) — trivial, non-bloquant, à merger avec ce dossier.
 2. **GO jsboige sur verdict source-level SVGs** (ai-01 a validé technique) → débloque le volet MindMap sans attente screenshot.
-3. **Décision régén fraîche** : go-live sur régén 12 juin (accepter risque §7) OU run Release coordonné.
+3. **Décision régén fraîche** : ✅ **FAITE** — régén fraîche 2026-06-25 exécutée (§3.3). Go-live sur cette régên. Reste verdict visuel ai-01.
 4. **Décision couplage DNN** : attendre #131 ou dé-coupler pour tag v0.9.0 assets-only.
 5. **Tag v0.9.0** après (3) et (4).
 
