@@ -182,7 +182,9 @@ Reprise du de-risk §3.2 sur **Freeplane 1.13.2** (latest ; po-2023 avait 1.12.x
 
 **Conclusion pour [#568](https://github.com/ArgumentumGames/Argumentum/issues/568).** Le path `c.export()` reste **hard/exigeant en environnement** ; la sérialisation native Freeplane (§3.4 step 1) reste le vrai travail, multi-tick + QA visuelle ai-01/jsboige (moteur ≠ Batik). N'a **pas** rétrogradé vers XSLT (§3.5 : interdit). Prochaines tentatives : re-tester sur une session **connectée** (isoler §3.3 vs facteur session) avant d'investir dans la sérialisation native.
 
-### 3.7 Re-probe 2026-06-25 (po-2023, session CONNECTÉE) — 🎯 BREAKTHROUGH : le bloqueur §3.3 est RÉFUTÉ
+### 3.7 Re-probe 2026-06-25 (po-2023, session CONNECTÉE) — 🎯 BREAKTHROUGH sur toy-sample… ⚠️ RÉFUTÉ sur cartes production (voir §3.8)
+
+> **⚠️ MISE AU POINT 2026-06-25 (po-2023, bis) — voir §3.8.** Les probes ci-dessous n'ont testé qu'un **toy-sample 4-nœuds (302 B)**. Re-testé ce jour sur les **vraies cartes production** (Virtues 161 KB, Fallacies 1.15 MB), le script `-R` **ne s'exécute jamais** (stall au map-open). La conclusion §3.7.1 (« version-seule suffit ») est **fausse à l'échelle production**. §3.8 détaille et corrige.
 
 Reprise du de-risk recommandé en §3.6 sur **Freeplane 1.12.11** (`freeplane_xml_version = freeplane 1.12.1`), **session RDP connectée** (`rdp-tcp#1`, État « Actif »), `auto.properties` (6 booléens §3.2) posé dans `%APPDATA%\Freeplane\1.12.x\`. Probes avec un `.mm` FreeMind minimal (302 B, 4 nœuds, `<map version="1.0.1">`) + script Groovy instrumenté (marqueurs filesystem), `freeplane.exe -S -R<script> input.mm` (GUI, **sans** `-N`).
 
@@ -207,6 +209,31 @@ Reprise du de-risk recommandé en §3.6 sur **Freeplane 1.12.11** (`freeplane_xm
 - **FreeMind reste le défaut** (`Format == Freemind`) : comportement par défaut inchangé, tests 540/0/5.
 
 **Caveat — validation visuelle OBLIGATOIRE (non faite).** Freeplane n'utilise **pas** le moteur Batik : la fidélité SVG **diffère**. Le SVG probe 5 (4 nœuds, 22,5 KB) est un échantillon prêt pour comparaison côte-à-côte (ai-01/jsboige). Tant que la validation n'est pas faite, FreeMind reste le chemin de référence. Le path Freeplane est **activable par config** (`Format=Freeplane`) sans casser FreeMind — exactement le critère d'acceptation n°4 de [#568](https://github.com/ArgumentumGames/Argumentum/issues/568).
+
+### 3.8 Re-probe 2026-06-25 (po-2023, bis) — ⚠️ RÉFUTATION de §3.7 : le « breakthrough » ne tient PAS sur les cartes production
+
+Test décisif demandé par ai-01 (dispatch v2 2026-06-25) : valider le path `c.export()` sur une **vraie carte production** (le toy-sample 4-nœuds de §3.7 ne suffit pas). Résultat : **le script groovy ne s'exécute JAMAIS** sur les cartes réelles.
+
+**Setup** — cartes **réelles du pipeline** (`Target/fr/Documents/`), version patchée `freeplane 1.12.1` (BOM strippé), `auto.properties` (6 booléens §3.2) posé, script **instrumenté** (`script_started` écrit en **1ʳᵉ ligne**, avant tout appel `c.*` → isole « script lancé » de « export OK »), `freeplane.exe -S -R<script> <map>` (GUI, sans `-N`), timeout 240 s, session RDP connectée.
+
+| Carte | Taille | `script_started` ? | `export_done` / `export_failed` ? | Dernier log |
+|-------|--------|--------------------|-----------------------------------|-------------|
+| `Argumentum_Virtues_MindMap_fr.mm` | 161 KB | ❌ **NONE** (240 s) | ❌ aucun marqueur | `requesting mode: MindMap` puis silence |
+| `Fallacies_fr.mm` | 1.15 MB | ❌ NONE (pattern identique) | ❌ aucun marqueur | `requesting mode: MindMap` puis silence |
+
+**Lecture (décisive).** `script_started` n'apparaissant **jamais**, le script `-R` **ne s'exécute pas** : Freeplane **stalle au map-open** (« requesting mode: MindMap » = dernier log, puis silence total jusqu'au kill à 240 s). Or §3.7 probe 1 avait attribué ce **stall exact** à un **dialogue modal bloquant** (« format inconnu »). Le toy-sample 4-nœuds de §3.7 probes 2-5 (302 B) ouvrait **sans** stall → le script tournait. Les cartes production (même version patchée `freeplane 1.12.1`) déclenchent le stall.
+
+**Hypothèse leading (NON confirmée visuellement — pas de capture du modal).** Freeplane présenterait un **dialogue modal au chargement** (conversion / upgrade / format) sur les cartes FreeMind-body **complexes** du pipeline ; ce dialogue requiert un clic utilisateur → bloque `-S -R` en mode non-supervisé. Le toy-sample trivial ne le déclenche pas. **À confirmer** par capture GUI au moment du stall (un opérateur regarde la fenêtre Freeplane pendant le run).
+
+**Réfutation de §3.7.** La conclusion §3.7.1 (« bloqueur §3.3 réfuté, la version-seule suffit ») est **fausse à l'échelle production** — elle ne s'appuyait que sur un toy-sample 4-nœuds. La version-seule **ne suffit pas** : le corps FreeMind complexe déclenche un stall à l'ouverture qui empêche l'export. **§3.4 step 1 (sérialisation native Freeplane — produire un VRAI map Freeplane, pas un corps FreeMind avec version patchée) reste vraisemblablement REQUISE** pour ouvrir sans modal. Le shortcut « version-only » de #599 était insuffisant.
+
+**Retour à la dépendance foreground.** Le stall au map-open en `-S -R` non-supervisé ramène #599 à la **même dépendance qu'un bureau interactif** que FreeMind : un opérateur doit cliquer le modal. La promesse §3.1 (« RDP peut être déconnectée/inactive, aucun bureau actif requis ») **ne tient pas** pour les cartes production en automation.
+
+**Décision pour [#568](https://github.com/ArgumentumGames/Argumentum/issues/568) / [#599](https://github.com/ArgumentumGames/Argumentum/pull/599).**
+
+- **NE PAS adopter #599 pour la production.** Le path headless n'est PAS validé sur les cartes réelles. FreeMind SendKeys + session persistante OS-niveau ([PR #569](https://github.com/ArgumentumGames/Argumentum/pull/569)) **reste le seul chemin fonctionnel**.
+- Le code #599 reste **opt-in** (`Format=Freeplane`, défaut FreeMind inchangé) — il ne casse rien, mais son adoption est **gated** sur : (a) confirmation visuelle du modal au stall, (b) §3.4 step 1 (sérialisation native) pour ouvrir sans modal.
+- **Correctif de ma propre sur-déclaration.** §3.7 a été écrit sur la foi d'un toy-sample ; §3.8 corrige avec des cartes production. Leçon méthodique : un probe sur échantillon minimal **≠** validation — toujours tester à l'échelle de production avant de déclarer un bloqueur « réfuté ».
 
 ---
 
