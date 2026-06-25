@@ -11,7 +11,7 @@
 
 Établir l'état vérifiable de la release v0.9.0 (scope = **8 langues** : fr / en / ru / pt / es / ar / fa / zh), lister ce qui est **livré et vérifié** vs ce qui **nécessite validation jsboige** avant le tag go-live. Ce dossier est le GATE de publication (#134).
 
-> **Note de méthode** : ce dossier est bâti sur les **assets committés** + le **rapport de régén release mémorisé** (12 juin 2026 : 64/64 PDFs, 9 834 images, exit 0). Le `bin/Target/` local est vide (post-crash / nettoyage Docker) — aucune régén fraîche n'a été lancée pour ce dossier (pas de GO RDP, pas ma lane sans coordination). Les compteurs « régén 12 juin » sont donc **RAPPORTÉS** (mémoire + dashboard), pas **re-vérifiés** ce jour.
+> **Note de méthode** : ce dossier est bâti sur les **assets committés** + une **régén Release fraîche exécutée le 2026-06-25** sur `bef3bc6c` (64/64 PDFs, 9 834 images, exit 0 — voir §3.3). Les compteurs PDFs/images sont donc **re-vérifiés ce jour** (régên fraîche post-#592/#595), sauf le verdict visuel qui reste à ai-01 (§3.3, règle HARD).
 
 ---
 
@@ -92,7 +92,7 @@
 |---------|------|-------|
 | Build solution zéro-warning CS | ✅ | PR #587 (master `6caf5833`) |
 | Build zéro-warning NU (NuGet audit) | ✅ | PR #588 (NU1903 clos MIT-pur) |
-| Tests | **533 pass / 0 fail / 5 skip** | dashboard ai-01, master `22eb5f34` ; skip = GUI/Freeplane (session interactive) |
+| Tests | **540 pass / 0 fail / 5 skip** | test run Release `bef3bc6c` 2026-06-25 (AssetConverter.Tests, 22s) ; skip = GUI/Freeplane (session interactive) ; +7 vs `22eb5f34` = tests OWL Virtues #592 |
 | SkipConfigFile | `true` (C# defaults = source unique) | règle HARD projet |
 | Dépendances stables | QuestPDF 2022.12.12, Magick.NET 13.5.0, Playwright 1.43.0 | — |
 
