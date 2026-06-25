@@ -73,11 +73,22 @@ Category/subcategory labels appear on cards. Current Scenarii PT mixes sentence-
 
 ### Decisions that genuinely need jsboige (not mechanical)
 
-- **S3 regional**: BR-PT (`Paquera`) vs PT-PT (`engate`) — what is the game's Portuguese target audience?
-- **S6 meaning**: "relations au travail" = workplace interpersonal dynamics (`relações no trabalho`) vs labor/employment relations (`Relações de trabalho`)?
-- **S7 number**: match FR plural ("religions" → `Religiões`, recommended) or keep majority singular?
-- **S2 scope**: does category "contes" include "literature" (expand FR) or not (PT → bare `contos`)?
-- **V1–V6 (RTL/CJK)**: recommend native confirmation; majority is a safe interim default if no native available at WE.
+> **Enrichment note (2026-06-25, po-2024)**: the PT rationale below is *factual* (verifiable linguistic facts — register, semantic scope, number — not opinion), to pre-digest the decision. The RTL/CJK cases (V1–V6) remain **native-required**; gpt-5.5 can generate *candidate* suggestions (assist only, `/v1/responses` + `reasoning.effort=low`, per memory `gpt55-responses-api-effort-low`), but a native speaker must confirm — do **not** ratify an LLM pick as authoritative.
+
+**Portuguese (Scenarii) — factual rationale to ratify fast:**
+
+- **S3 regional** (`Paquera` BR 6 vs `engate` PT-PT 3): this is a **dialect/register** split, not a correctness issue. `Paquera` = common Brazilian-Portuguese register (informal, flirting); `engate` = the Portugal-PT equivalent. **Decision = target audience**: if the game targets **Brazil** (largest PT readership) → `Paquera e sedução`; if **Portugal / neutral international PT** → `engate e sedução`. Recommend **BR (`Paquera`)** unless jsboige specifies otherwise (BR-PT is the de-facto default for digital PT content). Apply the same choice globally to every PT register-dependent label.
+- **S6 meaning** (`Relações de trabalho` 6 vs `relações no trabalho` 2): genuine **semantic fork**. FR "relations au travail" is ambiguous in FR too, but the *card content* (workplace social dynamics) disambiguates: `relações **no** trabalho` = "relationships *at* work" (interpersonal, fits the game's social-dynamics theme); `Relações **de** trabalho` = "labor/employment relations" (legal/HR sense). **Recommend `relações no trabalho`** (matches the game's interpersonal-dynamics intent), even though it's the minority — the majority variant is the legal sense, which is off-theme.
+- **S7 number** (`Religião` 7 sing vs `Religiões` 4 plur): **match FR source**. FR "religions" is plural (the category groups multiple religions). **Recommend `Religiões`** (plural) — contradicts the majority but is faithful to the FR taxonomy label. (Low-stakes; either is defensible if jsboige prefers consistency-with-majority over faithfulness-to-FR.)
+- **S2 scope** (`Contos e literatura` 7 vs `contos` 3): a **scope expansion** crept into PT. FR source = "contes" (tales only); PT majority = "Contos e literatura" (tales *and* literature). **Decision = is the category tales-only or tales+literature?** If the FR label is authoritative → PT should retract to `Contos` (3 outliers wrong). If PT's broader scope is preferred → **expand FR** to "Contes et littérature" (1-cell FR edit, outside #192 scope). Recommend **align PT → `Contos`** (FR is the source of truth) unless jsboige wants the broader category.
+
+**RTL/CJK (Virtues V1–V6) — native-required, gpt-5.5 assist optional:**
+
+- **V1** (fa `Raisonnement valide` 32v23), **V4** (zh `Raisonnement concluant` 3-way), **V6** (fa `Raisonnement concluant` 3-way): near-ties where the "majority" is a weak default. A gpt-5.5 candidate pass can surface the *nuance* (e.g. V4 `结论性推理` "conclusive-natured" vs `有结论力的推理` "having-conclusive-force" — a native picks the natural one) but **must be confirmed by a native speaker**. Mark RATIFY as `native` if no native at WE → defer (non-blocking v0.9.0).
+- **V2** (ru calque `Некомплаентная` vs paraphrase `Непотворствующая`): the calque `комплаентная` is an awkward loanword — **recommend flagging for native**, likely paraphrase wins, but n=3 is too small to assert.
+- **V3/V5** (ar/fa `Mise à distance des idéologies`, 3v2): near-synonyms, low-stakes (both readable). Majority is a safe interim default; native optional.
+
+**Net**: PT decisions (S1–S8) are ratifiable from the rationale above (~5 min). RTL/CJK (V1–V6) either defer to native (`native` in RATIFY, non-blocking) or accept majority as interim default. Either way #192 passes 2-4 become actionable.
 
 ---
 
