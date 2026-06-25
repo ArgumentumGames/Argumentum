@@ -55,7 +55,7 @@
 | **es** | **3** | **nouveau** (#565) |
 | **ar** | **3** | **nouveau, RTL** |
 | **fa** | **3** | **nouveau, RTL** |
-| **zh** | **3** | **nouveau, CJK — 17.2 MB (18 075 919 bytes, glyphes denses)** |
+| **zh** | **3** | **nouveau, CJK — 5.45 MB (5 451 309 bytes, `Fallacies_zh.svg` régén 2026-06-25 byte-proven, glyphes denses)** |
 
 - Moteur : **FreeMind 1.0.1 + Batik** (haute fidélité, décision #184 — fallback XSLT retiré).
 - **Reproductibilité byte-proven** (régên 8-lang 2026-06-24, RDP jsboige, exit 0) : `Fallacies_zh.svg` committed = fresh = 5 451 309 B (`cmp` IDENTICAL byte-for-byte). La baseline #565 se reproduit fidèlement → le moteur FreeMind/Batik est **stable, pas flaky** (mitige le risque §7 « régén non reproduite » pour le volet MindMap).

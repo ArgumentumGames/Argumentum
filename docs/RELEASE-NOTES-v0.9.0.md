@@ -19,8 +19,8 @@ Argumentum v0.9.0 étend l'intégralité du pipeline de génération à **8 lang
 - Couche relationnelle/AIF ajoutée aux Virtues : 12 colonnes (66→78), cross-links Virtue↔Fallacy (`crossLink_Opposes`) et références AIF (`AIF_skosDirectRef`, `AIF_skosMappingType`).
 
 **Assets générés (8 langues)**
-- **PDFs** : CardSets (Tarot, Poker, posters A0, Print&Play, Mémo, Rules) localisés pour les 8 langues. (Régén release : 64/64 PDFs, 9 834 images, exit 0 — 12 juin 2026.)
-- **MindMap SVGs** : 8 langues via FreeMind/Batik, incluant RTL (ar/fa) et CJK (zh, 17.2 MB — glyphes denses). Polices arabes-capables (Tahoma).
+- **PDFs** : CardSets (Tarot, Poker, posters A0, Print&Play, Mémo, Rules) localisés pour les 8 langues. (Régén release fraîche : 64/64 PDFs, 9 834 images, exit 0 — **2026-06-25** sur `bef3bc6c`, post-#592 OWL + #595 Virtues, cf dossier §3.3.)
+- **MindMap SVGs** : 8 langues via FreeMind/Batik, incluant RTL (ar/fa) et CJK (zh, 5.45 MB — glyphes denses). Polices arabes-capables (Tahoma).
 - **OWL** : ontologie 5.13 MB, SKOS + AIF.
 
 **Infrastructure pipeline**
