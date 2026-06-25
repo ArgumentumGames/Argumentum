@@ -11,7 +11,7 @@
 1. **What `link_*` actually is**: every `link_<lang>` cell is a **per-language Wikipedia article URL** (`https://<lang>.wikipedia.org/wiki/…`) — quasi-exclusively. It is the "learn more" link on each card, localized to the reader's language.
 2. **The gap is NOT translation and NOT pure human research** — it is **cross-language article resolution**. The gap exists because many fallacies/virtues simply have no dedicated article in the target Wikipedia, or that article isn't Wikidata-linked to the EN one.
 3. **Semi-automatable via the MediaWiki `langlinks` API** (no API key, rate-limited). For every node that has `link_en`, the API can return the equivalent article in `<lang>` *if it exists*. This refines memory `i18n-coverage-gap-is-link-urls` ("human research, not gpt-5.5") → it's **neither LLM nor purely human**; it's an API lookup with human validation of the residue.
-4. **Measured upper-bound of fillable cells**: Virtues **364**, Fallacies **8 110** — but these are *ceilings*, not guarantees (langlinks returns nothing if the target article doesn't exist). Realistic fill is a fraction; the irreducible remainder is a genuine *content gap* in the target Wikipedias (not fixable by us).
+4. **Measured fillable cells (full census, 2026-06-25)**: of the Wikipedia-type candidate pool, **Fallacies 2 739 / 4 823 (57 %)** and **Virtues 180 / 322 (56 %)** are confirmed resolvable via langlinks — **~2 919 cells total**. The earlier 8 110 figure was a *theoretical ceiling* that over-counted (it included 433 non-Wikipedia `link_en` URLs that langlinks cannot resolve); the measured number is the real, decision-grade value. Residual ~5 % needs human spot-validation (RTL/CJK homonym risk). See §5.1.
 5. **Proposal only here** — no CSV write. A bounded follow-up PR (post-release) can run the langlinks enrichment script + human spot-validation. This doc is the methodology + scope so jsboige can decide priority/effort.
 
 ---
@@ -87,6 +87,49 @@ Fallacies nodes **without `link_en` at all**: 75 (not fillable via langlinks —
 
 ---
 
+## 5.1 Measured fill-rate — full census via langlinks (2026-06-25, decision-grade)
+
+The §5 ceilings were theoretical. This section **measures** the real resolvable count by probing every unique candidate article against the MediaWiki `langlinks` API. Only `en.wikipedia.org/wiki/<Title>` URLs qualify (433 non-Wikipedia `link_en` URLs — rationalwiki, logicallyfallacious, etc. — are excluded; they are a curated category preserved as-is).
+
+Script: [`192-link-coverage-langlinks-probe.py`](192-link-coverage-langlinks-probe.py) — read-only, no API key, ~0.3 s throttle, descriptive User-Agent (MediaWiki 403s the default urllib UA). Census run = 0 errors on 741 (Fallacies) + 88 (Virtues) articles.
+
+### Fallacies — 1 408 rows
+
+| `link_<lang>` | candidate cells missing | confirmed resolvable | rate |
+|---|---|---|---|
+| ru | 790 | 366 | 46 % |
+| pt | 803 | 426 | 53 % |
+| es | 800 | 488 | 61 % |
+| ar | 803 | 533 | 66 % |
+| fa | 813 | 434 | 53 % |
+| zh | 814 | 492 | 60 % |
+| **total** | **4 823** | **2 739** | **57 %** |
+
+`link_en` categorization: 900 Wikipedia URLs (resolvable pool) · 433 non-Wikipedia (excluded) · 75 empty.
+
+### Virtues — 223 rows
+
+| `link_<lang>` | candidate cells missing | confirmed resolvable | rate |
+|---|---|---|---|
+| ru | 5 | 4 | 80 % |
+| pt | 9 | 4 | 44 % |
+| es | 44 | 25 | 57 % |
+| ar | 94 | 56 | 60 % |
+| fa | 89 | 46 | 52 % |
+| zh | 81 | 45 | 56 % |
+| **total** | **322** | **180** | **56 %** |
+
+`link_en` categorization: 185 Wikipedia URLs · 9 non-Wikipedia · 29 empty.
+
+### Decision readout
+
+- **Combined measured fillable ≈ 2 919 cells (57 % of the Wikipedia-type candidate pool).** This is the real number — it supersedes the 8 110 ceiling for prioritization.
+- **Per-lang signal**: AR/ZH are the densest (60-66 %) — highest return on a fill pass; RU/PT/FA mid (44-53 %). The gap is not uniform; a fill pass yields more for RTL/CJK than for Cyrillic.
+- **Why it's "57 %, not 100 %"**: the missing 43 % is a genuine *Wikipedia content gap* — those fallacies simply have no article in the target language, or it isn't Wikidata-linked. Unfixable by us. langlinks reports it honestly (no match).
+- **Honesty caveat**: the 2 919 (2 739 Fallacies + 180 Virtues) are *confirmed resolvable*; writing them still needs the §6 method (skip non-empty cells, preserve curated sources, QUOTE_MINIMAL + CRLF) + ~5 % human spot-validation for AR/FA/ZH homonym risk. So **~2 770 cells are realistically auto-fillable** after validation attrition.
+
+---
+
 ## 6. Proposed fill methodology (for the follow-up PR, post-release)
 
 1. **Resolve via `langlinks`**: for each node with `link_en`, query the API for each target `<lang>`; if an equivalent exists, write `https://<lang>.wikipedia.org/wiki/<resolved_title>`.
@@ -95,7 +138,7 @@ Fallacies nodes **without `link_en` at all**: 75 (not fillable via langlinks —
 4. **Human spot-validation**: sample ~5 % of filled cells, verify the resolved article is the *right* concept (not a disambiguation page or a homonym). Critical for AR/FA/ZH where title matching can misfire.
 5. **CSV safety**: cell-level `QUOTE_MINIMAL` + CRLF, UTF-8 no-BOM — same drift-free method as #595. Re-run coverage report → confirm fill rose.
 
-**Effort estimate**: script is bounded (~1 day incl. rate-limit handling + validation harness); execution ~minutes for 8 k cells. Human validation of residue = the real cost (depends on residue size after langlinks).
+**Effort estimate**: script is bounded (~1 day incl. rate-limit handling + validation harness); execution ~minutes for the ~2 919 measured resolvable cells. Human validation of the ~5 % residue = the real cost (~150 cells to eyeball, AR/FA/ZH priority).
 
 ---
 
@@ -125,7 +168,7 @@ Fallacies nodes **without `link_en` at all**: 75 (not fillable via langlinks —
 
 Re-run the measurement anytime from repo root:
 - `python docs/taxonomy/192-coverage-report.py` — per-field × per-lang fill + `link_*` gaps.
-- The domain/cross-lang analysis above is reproducible by extending that script (or a small follow-up); the counts were produced read-only on master `bef3bc6c` (2026-06-25).
+- `python docs/taxonomy/192-link-coverage-langlinks-probe.py` — **the measured fill-rate census** (§5.1). Default = full probe of all candidate articles (Fallacies 741 + Virtues 88); pass `50` for a strided sample, `0 virtues` / `0 fallacies` for one dataset. ~0.3 s throttle, no API key, descriptive User-Agent required (MediaWiki 403s the default urllib UA).
 
 ---
 
