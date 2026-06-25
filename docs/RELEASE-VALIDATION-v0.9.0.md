@@ -1,9 +1,9 @@
 # Argumentum v0.9.0 — Dossier de validation release
 
-**Date** : 2026-06-23
+**Date** : 2026-06-25 (refresh — régén fraîche + relecture cohérence)
 **Statut** : DRAFT — pour revue jsboige (go-live v0.9.0)
 **Branche** : `docs/release-v0.9.0-validation`
-**Master de référence** : `22eb5f34` (build zéro-warning CS+NU, 533/0/5 tests)
+**Master de référence** : `bef3bc6c` (build zéro-warning CS+NU, **540/0/5 tests** — test run Release 2026-06-25)
 
 ---
 
@@ -92,7 +92,7 @@
 |---------|------|-------|
 | Build solution zéro-warning CS | ✅ | PR #587 (master `6caf5833`) |
 | Build zéro-warning NU (NuGet audit) | ✅ | PR #588 (NU1903 clos MIT-pur) |
-| Tests | **540 pass / 0 fail / 5 skip** | test run Release `bef3bc6c` 2026-06-25 (AssetConverter.Tests, 22s) ; skip = GUI/Freeplane (session interactive) ; +7 vs `22eb5f34` = tests OWL Virtues #592 |
+| Tests | **540 pass / 0 fail / 5 skip** | test run Release `bef3bc6c` 2026-06-25 (AssetConverter.Tests, 22s) ; skip = GUI/Freeplane (session interactive) ; +7 vs `22eb5f34` = contract tests OWL Virtues de #592 (+5 `VirtueOwlGenerationContractTests` + +2 `VirtueClassMapRegressionTests`, `8d5d275b`) |
 | SkipConfigFile | `true` (C# defaults = source unique) | règle HARD projet |
 | Dépendances stables | QuestPDF 2022.12.12, Magick.NET 13.5.0, Playwright 1.43.0 | — |
 
