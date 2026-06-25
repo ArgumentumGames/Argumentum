@@ -438,7 +438,120 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
+			// Freeplane headless path (opt-in via Format==Freeplane): no RDP foreground needed.
+			// Falls back to FreeMind SendKeys if the Freeplane export fails or Format==Freemind.
+			if (Format == MindMapFormat.Freeplane && TryFreeplaneSvgExport(sourceMmPath, destinationSvgPath, config))
+				return true;
 			return TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
+		}
+
+		/// <summary>
+		/// Freeplane headless SVG export via the c.export() Groovy script (issue #568).
+		/// Unlike the FreeMind SendKeys path, this needs NO interactive foreground:
+		/// freeplane.exe -S -R&lt;script&gt; runs the export at startupFinished and exits cleanly.
+		/// Requires a graphical session to exist (RDP may be disconnected, but a desktop must be alive).
+		/// NOTE: the rendering engine != Batik — visual fidelity must be validated (ai-01/jsboige)
+		/// before this replaces FreeMind. FreeMind remains the default (Format==Freemind).
+		/// </summary>
+		internal static bool TryFreeplaneSvgExport(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		{
+			try { return TryFreeplaneSvgExportCore(sourceMmPath, destinationSvgPath, config); }
+			catch (Exception ex)
+			{
+				Logger.LogProblem($"Freeplane SVG export failed: {ex.Message}");
+				return false;
+			}
+		}
+
+		private static bool TryFreeplaneSvgExportCore(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config)
+		{
+			// Resolve Freeplane path: config.FreeplanePath -> ARGUMENTUM_FREEPLANE_PATH -> default install.
+			var freeplanePath = config.FreeplanePath;
+			if (string.IsNullOrEmpty(freeplanePath))
+				freeplanePath = Environment.GetEnvironmentVariable("ARGUMENTUM_FREEPLANE_PATH");
+			if (string.IsNullOrEmpty(freeplanePath))
+				freeplanePath = @"C:\Program Files\Freeplane\freeplane.exe";
+			if (string.IsNullOrEmpty(freeplanePath) || !File.Exists(freeplanePath))
+			{
+				Logger.LogWarning($"Freeplane not found (config.FreeplanePath='{config.FreeplanePath}', env ARGUMENTUM_FREEPLANE_PATH unset, default missing). Skipping Freeplane export.");
+				return false;
+			}
+
+			// Ensure the locale-robust groovy export script exists in Freeplane's user scripts dir.
+			EnsureGroovyExportScript(config);
+
+			// The groovy script writes the SVG next to the .mm (replaceFirst .mm -> .svg).
+			var generatedSvgPath = System.IO.Path.ChangeExtension(sourceMmPath, ".svg");
+			var svgTimeBefore = File.Exists(generatedSvgPath) ? File.GetLastWriteTimeUtc(generatedSvgPath) : DateTime.MinValue;
+
+			// EnsureGroovyExportScript writes to %APPDATA%\Freeplane\{1.13.x,1.12.x}\scripts\.
+			// Pick the dir whose script exists (matches the installed Freeplane version's userdir).
+			var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			var scriptPath = new[] { "1.12.x", "1.13.x" }
+				.Select(v => System.IO.Path.Combine(appData, "Freeplane", v, "scripts", "export_to_svg.groovy"))
+				.FirstOrDefault(File.Exists);
+			if (scriptPath == null)
+			{
+				Logger.LogWarning("Freeplane groovy export script not found after EnsureGroovyExportScript.");
+				return false;
+			}
+
+			try
+			{
+				// 1. Clean slate (anti-race: ONE freeplane/javaw at a time).
+				foreach (var fp in Process.GetProcessesByName("freeplane")) { try { fp.Kill(); fp.WaitForExit(5000); } catch { } }
+				foreach (var jp in Process.GetProcessesByName("javaw")) { try { jp.Kill(); jp.WaitForExit(5000); } catch { } }
+				Thread.Sleep(1000);
+
+				// 2. Launch freeplane -S -R<script> <input.mm>. NO -N (nonInteractive forces headless,
+				//    which breaks SVG rendering: HeadlessMapViewController.getMapViewComponent not implemented).
+				Logger.Log($"Launching Freeplane headless export: {System.IO.Path.GetFileName(sourceMmPath)}");
+				var process = Process.Start(new ProcessStartInfo
+				{
+					FileName = freeplanePath,
+					Arguments = $"-S -R\"{scriptPath}\" \"{sourceMmPath}\"",
+					UseShellExecute = false,
+					CreateNoWindow = true
+				});
+				if (process == null) { Logger.LogWarning("Failed to start Freeplane."); return false; }
+
+				// 3. Wait for exit (script runs at startupFinished; -S exits after). Timeout 180s for large
+				//    mindmaps. Early-exit if the SVG appears (script done) even if the process lingers on -S.
+				bool exited = process.WaitForExit(180000);
+				bool svgGenerated = File.Exists(generatedSvgPath)
+					&& File.GetLastWriteTimeUtc(generatedSvgPath) > svgTimeBefore
+					&& new FileInfo(generatedSvgPath).Length > 0;
+				if (!exited && !svgGenerated)
+				{
+					Logger.LogWarning("Freeplane did not exit or produce SVG within 180s — killing.");
+					try { process.Kill(); } catch { }
+				}
+
+				if (svgGenerated)
+					Logger.LogSuccess($"Freeplane SVG exported: {generatedSvgPath} ({new FileInfo(generatedSvgPath).Length / 1024} KB)");
+				else
+					Logger.LogWarning($"Freeplane SVG not detected at '{generatedSvgPath}'");
+
+				// 4. Cleanup residual processes.
+				foreach (var fp in Process.GetProcessesByName("freeplane")) { try { fp.Kill(); } catch { } }
+				foreach (var jp in Process.GetProcessesByName("javaw")) { try { jp.Kill(); } catch { } }
+
+				// 5. Move to destination if different from the generated path.
+				if (svgGenerated && generatedSvgPath != destinationSvgPath)
+				{
+					var destDir = System.IO.Path.GetDirectoryName(destinationSvgPath);
+					if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+						Directory.CreateDirectory(destDir);
+					File.Move(generatedSvgPath, destinationSvgPath, true);
+				}
+
+				return svgGenerated;
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Freeplane SVG export error: {ex.Message}");
+				return false;
+			}
 		}
 
 		/// <summary>
@@ -789,12 +902,22 @@ namespace Argumentum.AssetConverter.Mindmapper
 					Directory.CreateDirectory(scriptsDir);
 
 				var scriptPath = System.IO.Path.Combine(scriptsDir, "export_to_svg.groovy");
-				var groovyScript = @"// Auto-generated by Argumentum pipeline for SVG export
-// Usage: freeplane -Xexport_to_svg input.mm
+				var groovyScript = @"// Auto-generated by Argumentum pipeline for SVG export (locale-robust).
+// Usage: freeplane.exe -S -Rexport_to_svg.groovy input.mm
+// NOTE: do NOT pass -N (nonInteractive) — it forces headless and SVG rendering fails
+// (HeadlessMapViewController.getMapViewComponent: Method not implemented).
+// c.export()'s 3rd arg is a *localized* descriptor name, so we resolve the SVG type by
+// extension rather than hardcoding it: under a FR UI the name is 'Fichier image SVG (SVG) (.svg)',
+// under EN 'Scalable Vector Graphic (SVG) (.svg)'. Verified Freeplane 1.12.11, 2026-06-25.
 def mapFile = node.map.file
 if (mapFile != null) {
-    def svgFile = new File(mapFile.path.replaceFirst('\\.mm$', '.svg'))
-    c.export(node.map, svgFile, 'Scalable Vector Graphic (SVG) (.svg)', true)
+    def svgType = c.getExportTypeDescriptions().find {
+        it.toLowerCase(java.util.Locale.ROOT).endsWith('(.svg)')
+    }
+    if (svgType != null) {
+        def svgFile = new File(mapFile.path.replaceFirst('\\.mm$', '.svg'))
+        c.export(node.map, svgFile, svgType, true)
+    }
 }
 ";
 				File.WriteAllText(scriptPath, groovyScript);

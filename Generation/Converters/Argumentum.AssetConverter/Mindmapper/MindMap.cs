@@ -177,7 +177,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 	public class FreeplaneMap : FreemindMap
 	{
+		// "freeplane 1.12.1" matches Freeplane 1.12.x native xml version
+		// (freeplane_xml_version reported by Freeplane 1.12.11). Verified 2026-06-25:
+		// a FreeMind-structured .mm with this version opens in Freeplane; the older
+		// "1.11.5" was rejected. See docs/investigations/2026-06-21-mindmap-reliability-without-rdp.md §3.6.
 		[XmlAttribute(AttributeName = "version")]
-		public override string Version { get; set; } = "freeplane 1.11.5";
+		public override string Version { get; set; } = "freeplane 1.12.1";
 	}
 }

@@ -298,6 +298,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
+			// Freeplane headless path (opt-in via Format==Freeplane): no RDP foreground needed (issue #568).
+			if (Format == MindMapFormat.Freeplane && FallacyMindMapDocumentConfig.TryFreeplaneSvgExport(sourceMmPath, destinationSvgPath, config))
+				return true;
 			if (FallacyMindMapDocumentConfig.TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
 				return true;
 

@@ -182,6 +182,32 @@ Reprise du de-risk §3.2 sur **Freeplane 1.13.2** (latest ; po-2023 avait 1.12.x
 
 **Conclusion pour [#568](https://github.com/ArgumentumGames/Argumentum/issues/568).** Le path `c.export()` reste **hard/exigeant en environnement** ; la sérialisation native Freeplane (§3.4 step 1) reste le vrai travail, multi-tick + QA visuelle ai-01/jsboige (moteur ≠ Batik). N'a **pas** rétrogradé vers XSLT (§3.5 : interdit). Prochaines tentatives : re-tester sur une session **connectée** (isoler §3.3 vs facteur session) avant d'investir dans la sérialisation native.
 
+### 3.7 Re-probe 2026-06-25 (po-2023, session CONNECTÉE) — 🎯 BREAKTHROUGH : le bloqueur §3.3 est RÉFUTÉ
+
+Reprise du de-risk recommandé en §3.6 sur **Freeplane 1.12.11** (`freeplane_xml_version = freeplane 1.12.1`), **session RDP connectée** (`rdp-tcp#1`, État « Actif »), `auto.properties` (6 booléens §3.2) posé dans `%APPDATA%\Freeplane\1.12.x\`. Probes avec un `.mm` FreeMind minimal (302 B, 4 nœuds, `<map version="1.0.1">`) + script Groovy instrumenté (marqueurs filesystem), `freeplane.exe -S -R<script> input.mm` (GUI, **sans** `-N`).
+
+| Probe | Input `.mm` | Résultat | Lecture |
+|------|-------------|----------|---------|
+| 1 | FreeMind `version="1.0.1"` (original) | ❌ aucun marqueur, process **vivant après 91 s** | dialogue modal « format inconnu » bloque le script (confirme §3.3 **pour cette version**) |
+| 2 | même fichier, `version="freeplane 1.12.1"` | ⚠️ script exécuté (elapsed 0 s), `export_failed` = `MissingMethodException: getChildCount()` | **la map S'EST CHARGÉE** (bug dans le script de probe, pas un rejet de format) |
+| 3 | idem, script corrigé | ✅ `map_loaded`: `root=Fallacies \| children=4` | **H2 confirmée** : la structure FreeMind est acceptée ; la version `1.12.1` suffit |
+| 4 | introspection API | ✅ `c.getExportTypeDescriptions(): List<String>` | API pour résoudre le nom d'export (locale-dépendant) |
+| 5 | export réel, type résolu par extension | ✅✅ **`export_done`**: `type=[Fichier image SVG (SVG) (.svg)] \| svg_bytes=22506`, SVG `<!DOCTYPE svg>` valide | **le path `c.export()` MARCHE headless en session connectée** |
+
+**Conclusions (révision majeure de [#568](https://github.com/ArgumentumGames/Argumentum/issues/568)) :**
+
+1. **Le bloqueur §3.3 (« sérialisation native Freeplane requise ») est RÉFUTÉ.** La structure du corps FreeMind est **acceptée** par Freeplane 1.12.11 ; il suffisait de `<map version="freeplane 1.12.1">` (la `freeplane_xml_version` native). Le patch version-seule de §3.3 (essayé en `1.11.1`/`0.9.0`) échouait parce que **ces versions-là** ne sont pas reconnues — `1.12.1` (la version native courante) l'est. `FreeplaneMap : FreemindMap` qui ne surcharge que la version est donc **suffisant**, à condition de hardcoder la **bonne** version.
+2. **Le vrai bloqueur résiduel = l'appel API d'export.** `c.export(map, file, 'Scalable Vector Graphic (SVG) (.svg)', true)` lève `no export defined for '...'` parce que le 3ᵉ arg est un **descripteur localisé** (FR = `Fichier image SVG (SVG) (.svg)`, EN = `Scalable Vector Graphic (SVG) (.svg)`). Robuste : résoudre via `c.getExportTypeDescriptions().find{ it.endsWith('(.svg)') }`.
+3. **`-S -R<script>` se termine proprement** (process à 0 après le script) en session connectée — pas de zombie, pas de dépendance premier-plan maintenue. Le facteur session (§3.6 : « déconnecté » vs « connecté-inactif ») n'est **pas** isolé ici (tests en connecté uniquement), mais le chemin marche en connecté ; à confirmer en déconnecté-inactif séparément.
+
+**Correctifs code appliqués (commit sur `chore/mindmap-568-freeplane-headless`) :**
+- `FreeplaneMap.Version` : `"freeplane 1.11.5"` → `"freeplane 1.12.1"` ([MindMap.cs](../../Generation/Converters/Argumentum.AssetConverter/Mindmapper/MindMap.cs)).
+- `EnsureGroovyExportScript()` : script Groovy locale-robuste (résout le type `.svg` via `getExportTypeDescriptions()` au lieu du nom localisé hardcodé) ([FallacyMindMapDocumentConfig.cs](../../Generation/Converters/Argumentum.AssetConverter/Mindmapper/FallacyMindMapDocumentConfig.cs)).
+- Nouveau `TryFreeplaneSvgExport` (path `freeplane.exe -S -R<script> input.mm`, timeout 180 s, cleanup anti-race) câblé conditionnellement : `Format == Freeplane` → Freeplane (fallback FreeMind) dans `TryAutomateSvgConversion` (Fallacy + Virtue). `config.FreeplanePath` (déjà déclaré) résolu → `ARGUMENTUM_FREEPLANE_PATH` → défaut `C:\Program Files\Freeplane\freeplane.exe`.
+- **FreeMind reste le défaut** (`Format == Freemind`) : comportement par défaut inchangé, tests 540/0/5.
+
+**Caveat — validation visuelle OBLIGATOIRE (non faite).** Freeplane n'utilise **pas** le moteur Batik : la fidélité SVG **diffère**. Le SVG probe 5 (4 nœuds, 22,5 KB) est un échantillon prêt pour comparaison côte-à-côte (ai-01/jsboige). Tant que la validation n'est pas faite, FreeMind reste le chemin de référence. Le path Freeplane est **activable par config** (`Format=Freeplane`) sans casser FreeMind — exactement le critère d'acceptation n°4 de [#568](https://github.com/ArgumentumGames/Argumentum/issues/568).
+
 ---
 
 ## 4. Références
