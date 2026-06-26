@@ -42,7 +42,7 @@ These landed via PRs while `master` stayed frozen at `bef3bc6c`:
 
 ### B1 — Sandbox `bin/` repair (FIRST — blocks ALL DNN boot) ⛔
 
-This is the characterized blocker from the 2026-06-25 boot attempt ([#596 `issuecomment-4804068740`](https://github.com/ArgumentumGames/Argumentum/pull/596#issuecomment-4804068740)). The sandbox **cannot start** until the `bin/` SDK contamination is cleaned. **Recipe is turnkey**: [sandbox-bootstrap-runbook.md §3](sandbox-bootstrap-runbook.md).
+This is the characterized blocker from the 2026-06-25 boot attempt ([#596 `issuecomment-4804068740`](https://github.com/ArgumentumGames/Argumentum/pull/596#issuecomment-4804068740)). The sandbox **cannot start** until the `bin/` SDK contamination is cleaned. **Recipe is turnkey** ([sandbox-bootstrap-runbook.md §3](sandbox-bootstrap-runbook.md)) — or run it as a script: [`repair-bin-net48.ps1`](repair-bin-net48.ps1) (dry-run by default, `-Apply` to execute: backs up `bin\`, copies the 2 local DLLs, fetches the 5 NuGet 6.0.0, drops them in). Manual run in this RDP session only; `bin/` is git-tracked, revert after.
 
 1. Copy `System.Buffers`/`System.Memory` from `bin/Imageflow/` (clean 4.0.3.0/4.0.1.1).
 2. Fetch the **5 .NET-9 contaminants** at **6.0.x** NuGet (`lib/net462`, last net48 line): `System.Collections.Immutable`, `System.Text.Json`, `System.IO.Pipelines`, `System.Diagnostics.DiagnosticSource`, `System.Text.Encodings.Web`.
