@@ -14,6 +14,7 @@
    - **Layer B (config)** — the Virtues localization table is a stale stub (translates only the tree-root literal `"Vertus"`, 4 langs).
    - **Layer A (entity)** — `Virtue.cs` has no `TitleAr/TitleFa/TitleZh` properties (the ar/fa/zh CSV columns added by #590/#595 are invisible to the mindmap pipeline).
 4. **The fix is bounded** (3 steps, mirrors the Fallacies path) but **gated on jsboige** (post-release). One non-obvious prerequisite: the Virtues `DefaultTitleExpression` must change from `{item.Text}` to `{item.TitleFr}` before a config-only fix can fire — otherwise `Replace("TitleFr", ...)` is a silent no-op.
+5. **For the WE 27/06 arbitrage** (ai-01's options a/b/c): see [§Decision input](#decision-input-for-we-2706--per-option-cost-for-jsboiges-arbitrage) — per-option technical cost. Short version: **(b) ship-as-is + known-limitation note is cheapest** (0 write, already the #591 §3.2 assumption); **(c) exclude-from-packs is dominated by (b)** (it's a Cards/ write that *removes* present content); **(a) fix-at-tag is most expensive** (freeze break + RDP régén). Worker reco = (b), jsboige decides.
 
 ---
 
@@ -75,6 +76,20 @@ So even if Layer B were fixed, the ar/fa/zh CSV columns are **invisible to the m
 - **Regen 8-lang with clobbered harvests** (cf `regen-success-without-clobber-is-stale-trap`: exit 0 + identical count ≠ fresh content — must clobber `ImageHelper.cs:100` skips).
 - Verify `Argumentation_Virtues_zh.content.svg` contains CJK glyphs, not `Échange enrichissant`; `…_ar.content.svg` RTL Arabic, not `Argument valable`.
 - **Add a Virtues mirror of `MindMapLocalizationRegressionTests.cs`** — the existing regression suite covers Fallacies only (its own docstring, l.40-43, lists the 4 prod entries but the test asserts Fallacy expressions). Without a Virtues test, a future regression here is silent.
+
+---
+
+## Decision input for WE 27/06 — per-option cost (for jsboige's arbitrage)
+
+ai-01 raised 3 options for this gap at the coordinator level. Technical cost per option — this investigation's contribution; **jsboige decides**:
+
+**Fact (verified on `bef3bc6c`): mindmap SVGs are committed files**, not package-assembled. They live at `Cards/Fallacies/Mindmaps/{lang}/Argumentum_Virtues_MindMap_<lang>.{content,links}.svg` and ship as-is with the repo (no separate release-packaging/bundling step produces them). Mindmap regeneration runs in `Mindmapper` mode — the **only pipeline mode requiring an interactive RDP window** (FreeMind/Batik via SendKeys; #591 §3.2, #569; memory `regen-success-without-clobber-is-stale-trap`).
+
+- **(a) Fix before tag** — cost = the 3-step fix above **+ a full mindmap régén** (RDP session, clobber Virtues harvests, re-commit 7 non-FR `.content.svg`/`.links.svg`) **+ CJK/RTL eyeball** + the Virtues regression test. **Breaks the release freeze** (Cards/ write) and re-touches the #591 byte-proven baseline (the `Fallacies_zh.svg` 5 451 309 B citation would need re-establishing). Multi-step, RDP-gated, delays the tag. → most expensive.
+- **(b) Ship v0.9.0 with Virtues mindmaps FR-frozen + known-limitation note** — cost = **0 code, 0 Cards/ write**. The committed SVGs already exist (FR-frozen is the *current* state). Add a 1-line known limitation to `RELEASE-NOTES-v0.9.0.md`; apply the 3-step fix in v0.9.1. **This is what #591 §3.2 already assumes** ("non-blocking v0.9.0, deferred"). → cheapest.
+- **(c) Exclude Virtues mindmaps from non-FR packs** — **dominated by (b)**. Because the SVGs are committed files (not assembled by packaging), "excluding" = `git rm`-ing 14 non-FR Virtues SVG files = a Cards/ write (same freeze-break class as (a)) **that removes present content** — an `ar`/`zh` user would get *no* Virtues mindmap rather than an FR-frozen one. Worse outcome at ≥ cost of (b).
+
+**Worker recommendation (jsboige decides)**: **(b)** — ship v0.9.0 as-is (FR-frozen Virtues mindmaps are already committed and non-blocking; the *cards* are localized 8-lang PASS per ai-01's verdict), document the known limitation, fix in v0.9.1 via the 3-step path. **(c) can be dropped** from the decision (technically inferior to (b)). (a) only if jsboige wants the mindmaps localized *at tag* — accept the freeze break + RDP régén.
 
 ---
 
