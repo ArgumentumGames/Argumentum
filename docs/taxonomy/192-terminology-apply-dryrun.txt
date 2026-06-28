@@ -1,0 +1,71 @@
+== Virtues (Cards/Fallacies/Argumentum Virtues - Taxonomy.csv) ==
+  multi-variant groups detected: 6
+  would-change cells: 0
+  pending (flagged for judgment): 6
+== Fallacies (Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv) ==
+  multi-variant groups detected: 0
+  would-change cells: 0
+  pending (flagged for judgment): 0
+== Scenarii (Cards/Scenarii/Argumentum Scenarii - Cards.csv) ==
+  multi-variant groups detected: 8
+  would-change cells: 39
+  pending (flagged for judgment): 2
+
+==============================================================================
+WOULD-CHANGE (auto-applicable, applies ratified majority + overrides):
+==============================================================================
+  [Scenarii] row=45 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=46 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=47 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=48 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=49 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=50 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=54 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=55 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=56 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=57 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=69 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=70 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=74 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=75 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=79 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=80 catégorie.pt  'Relacionamento íntimo' -> 'relação íntima'  (OVERRIDE)
+  [Scenarii] row=12 sous-catégorie.pt  'Idade Média e Tempos Modernos' -> 'Idade Média e era moderna'  (OVERRIDE)
+  [Scenarii] row=28 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=29 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=30 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=31 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=32 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=33 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=34 sous-catégorie.pt  'Religião' -> 'Religiões'  (OVERRIDE)
+  [Scenarii] row=54 sous-catégorie.pt  'Vida a dois' -> 'vida de casal'  (OVERRIDE)
+  [Scenarii] row=55 sous-catégorie.pt  'Vida a dois' -> 'vida de casal'  (OVERRIDE)
+  [Scenarii] row=56 sous-catégorie.pt  'Vida a dois' -> 'vida de casal'  (OVERRIDE)
+  [Scenarii] row=57 sous-catégorie.pt  'Vida a dois' -> 'vida de casal'  (OVERRIDE)
+  [Scenarii] row=63 sous-catégorie.pt  'vida a dois' -> 'vida de casal'  (OVERRIDE)
+  [Scenarii] row=69 sous-catégorie.pt  'Vida a dois' -> 'vida de casal'  (OVERRIDE)
+  [Scenarii] row=95 sous-catégorie.pt  'Relações de trabalho' -> 'relações no trabalho'  (OVERRIDE)
+  [Scenarii] row=96 sous-catégorie.pt  'Relações de trabalho' -> 'relações no trabalho'  (OVERRIDE)
+  [Scenarii] row=97 sous-catégorie.pt  'Relações de trabalho' -> 'relações no trabalho'  (OVERRIDE)
+  [Scenarii] row=98 sous-catégorie.pt  'Relações de trabalho' -> 'relações no trabalho'  (OVERRIDE)
+  [Scenarii] row=99 sous-catégorie.pt  'Relações de trabalho' -> 'relações no trabalho'  (OVERRIDE)
+  [Scenarii] row=102 sous-catégorie.pt  'Relações de trabalho' -> 'relações no trabalho'  (OVERRIDE)
+  [Scenarii] row=103 sous-catégorie.pt  'Gestão e administração' -> 'gestão e administração'  (OVERRIDE)
+  [Scenarii] row=104 sous-catégorie.pt  'Gestão e administração' -> 'gestão e administração'  (OVERRIDE)
+  [Scenarii] row=105 sous-catégorie.pt  'Gestão e administração' -> 'gestão e administração'  (OVERRIDE)
+
+==============================================================================
+PENDING (NOT auto-applied — needs jsboige / native ratification):
+==============================================================================
+  [Virtues] family_fr.fa  FR='Raisonnement valide'  winner='استنتاج معتبر'  -- V1 fa near-tie 58% — native-required (inference vs argument nuance)
+  [Virtues] subsubfamily_fr.ru  FR='Objectif non complaisant'  winner='Некомплаентная объективность'  -- V2 ru calque vs paraphrase, n=3 tiny — native-required
+  [Virtues] subsubfamily_fr.ar  FR='Mise à distance des idéologies'  winner='إبعاد الأيديولوجيات'  -- V3 ar literal vs idiomatic, 3v2 — native-required
+  [Virtues] subsubfamily_fr.zh  FR='Raisonnement concluant'  winner='有结论力的推理'  -- V4 zh 3-way nuance — native-required
+  [Virtues] subsubfamily_fr.fa  FR='Raisonnement concluant'  winner='استدلال نتیجه‌بخش'  -- V6 fa 3-way register 63% — native-required
+  [Virtues] subsubfamily_fr.fa  FR='Mise à distance des idéologies'  winner='فاصله‌گذاری از ایدئولوژی‌ها'  -- V5 fa near-synonym 3v2 — native-required
+  [Scenarii] sous-catégorie.pt  FR='contes'  winner='Contos e literatura'  -- S2 scope: 'contes' vs 'Contos e literatura' — jsboige decides tales-only vs tales+lit
+  [Scenarii] sous-catégorie.pt  FR='drague et séduction'  winner='Paquera e sedução'  -- S3 regional: BR 'Paquera' vs PT-PT 'engate' — target audience decision (jsboige)
+
+------------------------------------------------------------------------------
+SUMMARY: 39 would-change cells, 8 pending groups across 3 datasets.
+Mode: DRY-RUN (0 write under Cards/). Re-run with --apply to write (POST-ratification only).
