@@ -93,6 +93,8 @@ The §5 ceilings were theoretical. This section **measures** the real resolvable
 
 Script: [`192-link-coverage-langlinks-probe.py`](192-link-coverage-langlinks-probe.py) — read-only, no API key, ~0.3 s throttle, descriptive User-Agent (MediaWiki 403s the default urllib UA). Census run = 0 errors on 741 (Fallacies) + 88 (Virtues) articles.
 
+**Reproducibility — re-confirmed 2026-06-27 (po-2024, master `c20d5d2c`).** An independent full re-run of both datasets (same probe, `0 fallacies` then `0 virtues`, 741 + 88 articles) returned **byte-identical** figures: Fallacies 2 739 / 4 823 (57 %), Virtues 180 / 322 (56 %), 0 errors, and the same `link_en` categorization (Fallacies 900 Wikipedia · 433 non-Wikipedia · 75 empty; Virtues 185 · 9 · 29). The per-language rows match cell-for-cell. The §5.1 numbers are therefore stable and decision-grade — not a one-run artefact or a mislabeled sample.
+
 ### Fallacies — 1 408 rows
 
 | `link_<lang>` | candidate cells missing | confirmed resolvable | rate |
