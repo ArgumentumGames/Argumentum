@@ -22,10 +22,6 @@
     </file>
     <file>
       <path />
-      <name>app.config</name>
-    </file>
-    <file>
-      <path />
       <name>GoogleTagManager.config</name>
     </file>
   </files>

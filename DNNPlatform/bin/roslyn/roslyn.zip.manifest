@@ -1,0 +1,128 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>csc.exe</name>
+    </file>
+    <file>
+      <path />
+      <name>csc.exe.config</name>
+    </file>
+    <file>
+      <path />
+      <name>csc.rsp</name>
+    </file>
+    <file>
+      <path />
+      <name>csi.exe</name>
+    </file>
+    <file>
+      <path />
+      <name>csi.exe.config</name>
+    </file>
+    <file>
+      <path />
+      <name>csi.rsp</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.Build.Tasks.CodeAnalysis.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.CodeAnalysis.CSharp.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.CodeAnalysis.CSharp.Scripting.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.CodeAnalysis.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.CodeAnalysis.Scripting.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.CodeAnalysis.VisualBasic.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.CSharp.Core.targets</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.DiaSymReader.Native.amd64.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.DiaSymReader.Native.x86.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.Managed.Core.CurrentVersions.targets</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.Managed.Core.targets</name>
+    </file>
+    <file>
+      <path />
+      <name>Microsoft.VisualBasic.Core.targets</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Buffers.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Collections.Immutable.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Memory.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Numerics.Vectors.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Reflection.Metadata.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Runtime.CompilerServices.Unsafe.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Text.Encoding.CodePages.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>System.Threading.Tasks.Extensions.dll</name>
+    </file>
+    <file>
+      <path />
+      <name>vbc.exe</name>
+    </file>
+    <file>
+      <path />
+      <name>vbc.exe.config</name>
+    </file>
+    <file>
+      <path />
+      <name>vbc.rsp</name>
+    </file>
+    <file>
+      <path />
+      <name>VBCSCompiler.exe</name>
+    </file>
+    <file>
+      <path />
+      <name>VBCSCompiler.exe.config</name>
+    </file>
+  </files>
+</dotnetnuke>

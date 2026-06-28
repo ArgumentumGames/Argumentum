@@ -22,7 +22,7 @@
     </file>
     <file>
       <path>Dnn.AdminLogs/scripts/bundles/</path>
-      <name>adminLogs-bundle.js.map</name>
+      <name>adminLogs-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.ConfigConsole/App_LocalResources/</path>
@@ -106,7 +106,7 @@
     </file>
     <file>
       <path>Dnn.Extensions/scripts/bundles/</path>
-      <name>extensions-bundle.js.map</name>
+      <name>extensions-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Extensions/scripts/bundles/</path>
@@ -130,7 +130,7 @@
     </file>
     <file>
       <path>Dnn.Licensing/css/</path>
-      <name>Licensing.css</name>
+      <name>licensing.css</name>
     </file>
     <file>
       <path>Dnn.Licensing/</path>
@@ -139,10 +139,6 @@
     <file>
       <path>Dnn.Licensing/scripts/bundles/</path>
       <name>licensing-bundle.js</name>
-    </file>
-    <file>
-      <path>Dnn.Licensing/scripts/bundles/</path>
-      <name>licensing.bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.Licensing/scripts/</path>
@@ -166,7 +162,7 @@
     </file>
     <file>
       <path>Dnn.Pages/scripts/bundles/</path>
-      <name>pages.bundle.js.map</name>
+      <name>pages-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Pages/scripts/</path>
@@ -181,10 +177,6 @@
       <name>Prompt.css</name>
     </file>
     <file>
-      <path>Dnn.Prompt/css/</path>
-      <name>Prompt.css.map</name>
-    </file>
-    <file>
       <path>Dnn.Prompt/</path>
       <name>Prompt.html</name>
     </file>
@@ -194,7 +186,7 @@
     </file>
     <file>
       <path>Dnn.Prompt/scripts/bundles/</path>
-      <name>prompt-bundle.js.map</name>
+      <name>prompt-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Prompt/scripts/</path>
@@ -262,7 +254,7 @@
     </file>
     <file>
       <path>Dnn.Roles/scripts/bundles/</path>
-      <name>roles-bundle.js.map</name>
+      <name>roles-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Roles/scripts/bundles/</path>
@@ -293,10 +285,6 @@
       <name>security-settings-bundle.js</name>
     </file>
     <file>
-      <path>Dnn.Security/scripts/bundles/</path>
-      <name>security-settings-bundle.js.map</name>
-    </file>
-    <file>
       <path>Dnn.Security/scripts/</path>
       <name>Security.js</name>
     </file>
@@ -315,10 +303,6 @@
     <file>
       <path>Dnn.Seo/scripts/bundles/</path>
       <name>seo-bundle.js</name>
-    </file>
-    <file>
-      <path>Dnn.Seo/scripts/bundles/</path>
-      <name>seo-bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.Seo/scripts/</path>
@@ -341,10 +325,6 @@
       <name>servers-bundle.js</name>
     </file>
     <file>
-      <path>Dnn.Servers/scripts/bundles/</path>
-      <name>servers-bundle.js.map</name>
-    </file>
-    <file>
       <path>Dnn.Servers/scripts/</path>
       <name>Servers.js</name>
     </file>
@@ -363,10 +343,6 @@
     <file>
       <path>Dnn.SiteGroups/scripts/bundles/</path>
       <name>site-groups-bundle.js</name>
-    </file>
-    <file>
-      <path>Dnn.SiteGroups/scripts/bundles/</path>
-      <name>site-groups.bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.SiteGroups/scripts/</path>
@@ -390,7 +366,7 @@
     </file>
     <file>
       <path>Dnn.SiteImportExport/scripts/bundles/</path>
-      <name>siteimportexport-bundle.js.map</name>
+      <name>siteimportexport-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.SiteImportExport/scripts/</path>
@@ -414,7 +390,7 @@
     </file>
     <file>
       <path>Dnn.SiteSettings/scripts/bundles/</path>
-      <name>site-settings-bundle.js.map</name>
+      <name>site-settings-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.SiteSettings/scripts/</path>
@@ -435,10 +411,6 @@
     <file>
       <path>Dnn.Sites/scripts/bundles/</path>
       <name>sites-bundle.js</name>
-    </file>
-    <file>
-      <path>Dnn.Sites/scripts/bundles/</path>
-      <name>sites-bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.Sites/scripts/exportables/Sites/</path>
@@ -509,6 +481,626 @@
       <name>SqlConsole.html</name>
     </file>
     <file>
+      <path>Dnn.Styles/App_LocalResources/</path>
+      <name>Styles.resx</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/css/</path>
+      <name>Styles.css</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>app-globals-V2Kpy_OQ.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>debounce-Bgh0pHeI.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-autocomplete.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-button_4.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-checkbox_2.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-chevron.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-collapsible.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-color-input_3.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-context-menu.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-dropzone.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-fieldset.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-image-cropper.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-modal.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-monaco-editor.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-permissions-grid.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-progress-bar.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-richtext.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-select.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-sort-icon.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-styles-module.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-styles.cjs.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-textarea.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-treeview-item.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-vertical-overflow-menu.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>dnn-vertical-splitview.cjs.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>index-DF8wf5Ui.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>index.cjs.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>loader.cjs.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>mouseUtilities-DnlYSUQ7.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/cjs/</path>
+      <name>stringUtilities-B05yL9oU.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/collection/clients/</path>
+      <name>styles-client.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/collection/</path>
+      <name>collection-manifest.json</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/collection/components/dnn-styles-module/</path>
+      <name>color-names.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/collection/components/dnn-styles-module/</path>
+      <name>dnn-styles-module.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/collection/components/dnn-styles-module/</path>
+      <name>dnn-styles-module.scss</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/collection/</path>
+      <name>index.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>debounce.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-autocomplete.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-button.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-button2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-checkbox.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-checkbox2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-chevron.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-collapsible.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-collapsible2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-color-input.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-color-input2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-color-picker.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-color-picker2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-context-menu.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-dropzone.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-dropzone2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-fieldset.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-fieldset2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-image-cropper.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-input.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-input2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-modal.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-modal2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-monaco-editor.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-permissions-grid.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-progress-bar.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-richtext.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-searchbox.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-searchbox2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-select.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-sort-icon.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-styles-module.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-styles-module.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-tab.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-tab2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-tabs.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-tabs2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-textarea.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-toggle.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-toggle2.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-treeview-item.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-vertical-overflow-menu.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>dnn-vertical-splitview.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>index.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>index.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>mouseUtilities.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/components/</path>
+      <name>stringUtilities.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>dnn-styles.esm.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>index.esm.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-15427040.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-15d35a14.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-28e74710.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-38bcd870.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-3a0109ed.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-50865072.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-515e73b9.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-55163519.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-70b55d0e.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-94978f26.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-9a5e362b.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-9b35b288.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-9f7dc2cf.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-A8UpYHd0.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-a986bd75.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-bcb04f7e.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-bfdaae37.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-c2b3c368.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-D7CP7b6z.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-dbd2664a.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-dc8587ad.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-DI6iaKDl.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-DMm7UhBf.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-DQuL1Twl.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-f59fc667.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-f64c0d49.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/dnn-styles/</path>
+      <name>p-fd073dbf.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>app-globals-DQuL1Twl.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>debounce-DI6iaKDl.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-autocomplete.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-button_4.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-checkbox_2.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-chevron.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-collapsible.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-color-input_3.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-context-menu.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-dropzone.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-fieldset.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-image-cropper.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-modal.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-monaco-editor.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-permissions-grid.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-progress-bar.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-richtext.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-select.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-sort-icon.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-styles-module.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-styles.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-textarea.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-treeview-item.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-vertical-overflow-menu.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>dnn-vertical-splitview.entry.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>index-A8UpYHd0.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>index.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>loader.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>mouseUtilities-DMm7UhBf.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/esm/</path>
+      <name>stringUtilities-D7CP7b6z.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/</path>
+      <name>index.cjs.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/</path>
+      <name>index.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/clients/</path>
+      <name>styles-client.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/</path>
+      <name>components.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/components/dnn-styles-module/</path>
+      <name>color-names.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/components/dnn-styles-module/</path>
+      <name>dnn-styles-module.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/</path>
+      <name>index.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/</path>
+      <name>stencil-public-runtime.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/dist/types/</path>
+      <name>window.dnn.d.ts</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/scripts/</path>
+      <name>Styles.js</name>
+    </file>
+    <file>
+      <path>Dnn.Styles/</path>
+      <name>Styles.html</name>
+    </file>
+    <file>
       <path>Dnn.TaskScheduler/App_LocalResources/</path>
       <name>TaskScheduler.resx</name>
     </file>
@@ -554,7 +1146,7 @@
     </file>
     <file>
       <path>Dnn.TaskScheduler/scripts/bundles/</path>
-      <name>task-scheduler-bundle.js.map</name>
+      <name>task-scheduler-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.TaskScheduler/scripts/</path>
@@ -575,10 +1167,6 @@
     <file>
       <path>Dnn.Themes/scripts/bundles/</path>
       <name>themes-bundle.js</name>
-    </file>
-    <file>
-      <path>Dnn.Themes/scripts/bundles/</path>
-      <name>themes-bundle.js.map</name>
     </file>
     <file>
       <path>Dnn.Themes/scripts/</path>
@@ -602,7 +1190,7 @@
     </file>
     <file>
       <path>Dnn.Users/scripts/bundles/</path>
-      <name>users-bundle.js.map</name>
+      <name>users-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Users/scripts/exportables/Users/</path>
@@ -610,7 +1198,7 @@
     </file>
     <file>
       <path>Dnn.Users/scripts/exportables/Users/</path>
-      <name>UsersCommon.js.map</name>
+      <name>UsersCommon.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Users/scripts/</path>
@@ -634,7 +1222,7 @@
     </file>
     <file>
       <path>Dnn.Vocabularies/scripts/bundles/</path>
-      <name>vocabulary-bundle.js.map</name>
+      <name>vocabulary-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>Dnn.Vocabularies/scripts/</path>

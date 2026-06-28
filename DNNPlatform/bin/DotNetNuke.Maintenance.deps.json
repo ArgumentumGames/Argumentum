@@ -9,224 +9,600 @@
     ".NETStandard,Version=v2.0/": {
       "DotNetNuke.Maintenance/1.0.0": {
         "dependencies": {
-          "DotNetNuke.Library": "1.0.0",
-          "NETStandard.Library": "2.0.3",
-          "StyleCop.Analyzers": "1.1.118"
+          "DotNetNuke": "1.0.0",
+          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.1.2",
+          "DotNetNuke.Reference": "10.3.2.0",
+          "DotNetNuke.Services.Syndication.Reference": "10.3.2.0"
         },
         "runtime": {
           "DotNetNuke.Maintenance.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/2.1.1": {
+      "AngleSharp/1.4.0": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1"
+          "System.Text.Encoding.CodePages": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.dll": {
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
+          }
+        }
+      },
+      "AngleSharp.Css/1.0.0-beta.159": {
+        "dependencies": {
+          "AngleSharp": "1.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.Css.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "BouncyCastle.Cryptography/2.6.2": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.2.46322"
+          }
+        }
+      },
+      "Dnn.ClientDependency/1.10.0": {
+        "runtime": {
+          "lib/net48/ClientDependency.Core.dll": {
+            "assemblyVersion": "1.10.0.0",
+            "fileVersion": "1.10.0.0"
+          }
+        }
+      },
+      "HtmlSanitizer/9.1.878-beta": {
+        "dependencies": {
+          "AngleSharp": "1.4.0",
+          "AngleSharp.Css": "1.0.0-beta.159",
+          "System.Collections.Immutable": "9.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlSanitizer.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.1.878.0"
+          }
+        }
+      },
+      "Lucene.Net/3.0.3": {
+        "dependencies": {
+          "SharpZipLib": "1.4.2"
+        },
+        "runtime": {
+          "lib/NET40/Lucene.Net.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          }
+        }
+      },
+      "Lucene.Net.Contrib/3.0.3": {
+        "dependencies": {
+          "Lucene.Net": "3.0.3"
+        },
+        "runtime": {
+          "lib/net40/Lucene.Net.Contrib.Analyzers.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.Core.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.FastVectorHighlighter.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.Highlighter.dll": {
+            "assemblyVersion": "2.3.2.1",
+            "fileVersion": "2.3.2.1"
+          },
+          "lib/net40/Lucene.Net.Contrib.Memory.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.Queries.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.Regex.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.SimpleFacetedSearch.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          },
+          "lib/net40/Lucene.Net.Contrib.Snowball.dll": {
+            "assemblyVersion": "2.0.0.1",
+            "fileVersion": "2.0.0.1"
+          },
+          "lib/net40/Lucene.Net.Contrib.SpellChecker.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          }
+        }
+      },
+      "MailKit/4.16.0": {
+        "dependencies": {
+          "MimeKit": "4.16.0",
+          "System.Formats.Asn1": "8.0.1",
+          "System.Threading.Tasks.Extensions": "4.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MailKit.dll": {
+            "assemblyVersion": "4.16.0.0",
+            "fileVersion": "4.16.0.0"
+          }
+        }
+      },
+      "Microsoft.ApplicationBlocks.Data/2.0.0": {
+        "runtime": {
+          "lib/net45/Microsoft.ApplicationBlocks.Data.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Microsoft.AspNet.Razor/3.3.0": {
+        "runtime": {
+          "lib/net45/System.Web.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61130.707"
+          }
+        }
+      },
+      "Microsoft.AspNet.WebPages/3.3.0": {
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "3.3.0",
+          "Microsoft.Web.Infrastructure": "2.0.0"
+        },
+        "runtime": {
+          "lib/net45/System.Web.Helpers.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61130.707"
+          },
+          "lib/net45/System.Web.WebPages.Deployment.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61130.707"
+          },
+          "lib/net45/System.Web.WebPages.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61130.707"
+          },
+          "lib/net45/System.Web.WebPages.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61130.707"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
+        "dependencies": {
+          "System.Threading.Tasks.Extensions": "4.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/8.0.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "System.Threading.Tasks.Extensions": "4.6.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll": {
-            "assemblyVersion": "2.1.1.0",
-            "fileVersion": "2.1.1.18157"
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
           }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.1": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "System.Threading.Tasks.Extensions": "4.6.0"
+        },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "assemblyVersion": "2.1.1.0",
-            "fileVersion": "2.1.1.18157"
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
           }
         }
       },
-      "Microsoft.NETCore.Platforms/1.1.0": {},
-      "NETStandard.Library/2.0.3": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0"
-        }
-      },
-      "StyleCop.Analyzers/1.1.118": {},
-      "CountryListBox/1.0.0": {
+      "Microsoft.Extensions.FileSystemGlobbing/5.0.0": {
         "runtime": {
-          "CountryListBox.dll": {}
-        }
-      },
-      "DotNetNuke.Abstractions/1.0.0": {
-        "runtime": {
-          "DotNetNuke.Abstractions.dll": {}
-        }
-      },
-      "DotNetNuke.DependencyInjection/1.0.0": {
-        "dependencies": {
-          "DotNetNuke.Instrumentation": "1.0.0",
-          "Microsoft.Extensions.DependencyInjection": "2.1.1"
-        },
-        "runtime": {
-          "DotNetNuke.DependencyInjection.dll": {}
-        }
-      },
-      "DotNetNuke.Instrumentation/1.0.0": {
-        "runtime": {
-          "DotNetNuke.Instrumentation.dll": {}
-        }
-      },
-      "DotNetNuke.Library/1.0.0": {
-        "dependencies": {
-          "CountryListBox": "1.0.0",
-          "DotNetNuke.Abstractions": "1.0.0",
-          "DotNetNuke.DependencyInjection": "1.0.0",
-          "DotNetNuke.Instrumentation": "1.0.0",
-          "DotNetNuke.Log4Net": "1.0.0",
-          "DotNetNuke.Syndication": "1.0.0",
-          "DotNetNuke.Web.Client": "1.0.0",
-          "DotNetNuke.WebUtility": "1.0.0"
-        },
-        "runtime": {
-          "DotNetNuke.dll": {}
-        }
-      },
-      "DotNetNuke.Log4Net/1.0.0": {
-        "runtime": {
-          "DotNetNuke.log4net.dll": {}
-        }
-      },
-      "DotNetNuke.Syndication/1.0.0": {
-        "runtime": {
-          "DotNetNuke.Services.Syndication.dll": {}
-        }
-      },
-      "DotNetNuke.Web.Client/1.0.0": {
-        "runtime": {
-          "DotNetNuke.Web.Client.dll": {}
-        }
-      },
-      "DotNetNuke.WebUtility/1.0.0": {
-        "runtime": {
-          "DotNetNuke.WebUtility.dll": {}
-        }
-      },
-      "DotNetNuke.WebControls/2.4.0.598": {
-        "runtime": {
-          "DotNetNuke.WebControls.dll": {
-            "assemblyVersion": "2.4.0.598",
-            "fileVersion": "2.4.0.598"
-          }
-        }
-      },
-      "Newtonsoft.Json/13.0.0.0": {
-        "runtime": {
-          "Newtonsoft.Json.dll": {
-            "assemblyVersion": "13.0.0.0",
-            "fileVersion": "13.0.2.27524"
-          }
-        }
-      },
-      "Lucene.Net/3.0.3.0": {
-        "runtime": {
-          "Lucene.Net.dll": {
-            "assemblyVersion": "3.0.3.0",
-            "fileVersion": "3.0.3.0"
-          }
-        }
-      },
-      "Lucene.Net.Contrib.FastVectorHighlighter/3.0.3.0": {
-        "runtime": {
-          "Lucene.Net.Contrib.FastVectorHighlighter.dll": {
-            "assemblyVersion": "3.0.3.0",
-            "fileVersion": "3.0.3.0"
-          }
-        }
-      },
-      "MimeKit/2.15.0.0": {
-        "runtime": {
-          "MimeKit.dll": {
-            "assemblyVersion": "2.15.0.0",
-            "fileVersion": "2.15.1.0"
-          }
-        }
-      },
-      "MailKit/2.15.0.0": {
-        "runtime": {
-          "MailKit.dll": {
-            "assemblyVersion": "2.15.0.0",
-            "fileVersion": "2.15.0.0"
-          }
-        }
-      },
-      "ICSharpCode.SharpZipLib/1.3.3.11": {
-        "runtime": {
-          "ICSharpCode.SharpZipLib.dll": {
-            "assemblyVersion": "1.3.3.11",
-            "fileVersion": "1.3.3.11"
-          }
-        }
-      },
-      "Microsoft.Extensions.FileSystemGlobbing/5.0.0.0": {
-        "runtime": {
-          "Microsoft.Extensions.FileSystemGlobbing.dll": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.20.51904"
           }
         }
       },
-      "SchwabenCode.QuickIO/2.6.2.0": {
+      "Microsoft.Web.Infrastructure/2.0.0": {
         "runtime": {
-          "SchwabenCode.QuickIO.dll": {
+          "lib/net40/Microsoft.Web.Infrastructure.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.34876.0"
+          }
+        }
+      },
+      "MimeKit/4.16.0": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.6.2",
+          "System.Buffers": "4.6.1",
+          "System.Data.DataSetExtensions": "4.5.0",
+          "System.Memory": "4.6.3",
+          "System.Security.Cryptography.Pkcs": "8.0.1",
+          "System.Text.Encoding.CodePages": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MimeKit.dll": {
+            "assemblyVersion": "4.16.0.0",
+            "fileVersion": "4.16.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
+      "PetaPoco.Compiled/6.0.683": {
+        "dependencies": {
+          "System.Reflection.Emit.ILGeneration": "4.7.0",
+          "System.Reflection.Emit.Lightweight": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/PetaPoco.dll": {
+            "assemblyVersion": "6.0.683.0",
+            "fileVersion": "6.0.683.0"
+          }
+        }
+      },
+      "Portable.BouncyCastle/1.9.0": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.1"
+          }
+        }
+      },
+      "QuickIO.NET/2.6.2": {
+        "runtime": {
+          "lib/net45/SchwabenCode.QuickIO.dll": {
             "assemblyVersion": "2.6.2.0",
             "fileVersion": "2.6.2.0"
           }
         }
       },
-      "PetaPoco/6.0.524.0": {
+      "SharpZipLib/1.4.2": {
+        "dependencies": {
+          "System.Memory": "4.6.3",
+          "System.Threading.Tasks.Extensions": "4.6.0"
+        },
         "runtime": {
-          "PetaPoco.dll": {
-            "assemblyVersion": "6.0.524.0",
-            "fileVersion": "6.0.524.0"
+          "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "1.4.2.13",
+            "fileVersion": "1.4.2.13"
           }
         }
       },
-      "System.Web.WebPages/3.0.0.0": {
+      "System.Buffers/4.6.1": {
         "runtime": {
-          "System.Web.WebPages.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61129.10"
+          "lib/netstandard2.0/System.Buffers.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.600.125.16908"
           }
         }
       },
-      "ClientDependency.Core/1.9.10.0": {
+      "System.Collections.Immutable/9.0.2": {
+        "dependencies": {
+          "System.Memory": "4.6.3",
+          "System.Runtime.CompilerServices.Unsafe": "6.1.2"
+        },
         "runtime": {
-          "ClientDependency.Core.dll": {
-            "assemblyVersion": "1.9.10.0",
-            "fileVersion": "1.9.10.0"
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
-      "System.Buffers/4.0.3.0": {
+      "System.Data.DataSetExtensions/4.5.0": {
         "runtime": {
-          "System.Buffers.dll": {
-            "assemblyVersion": "4.0.3.0",
-            "fileVersion": "4.6.28619.1"
+          "lib/netstandard2.0/System.Data.DataSetExtensions.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
           }
         }
       },
-      "System.Web.Razor/3.0.0.0": {
+      "System.Formats.Asn1/8.0.1": {
+        "dependencies": {
+          "System.Buffers": "4.6.1",
+          "System.Memory": "4.6.3"
+        },
         "runtime": {
-          "System.Web.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61129.10"
+          "lib/netstandard2.0/System.Formats.Asn1.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.724.31311"
           }
         }
       },
-      "Microsoft.Web.Infrastructure/1.0.0.0": {
+      "System.Memory/4.6.3": {
+        "dependencies": {
+          "System.Buffers": "4.6.1",
+          "System.Numerics.Vectors": "4.6.1",
+          "System.Runtime.CompilerServices.Unsafe": "6.1.2"
+        },
         "runtime": {
-          "Microsoft.Web.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.20105.407"
+          "lib/netstandard2.0/System.Memory.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.600.325.20307"
           }
         }
       },
-      "System.Web.WebPages.Deployment/3.0.0.0": {
+      "System.Numerics.Vectors/4.6.1": {
         "runtime": {
-          "System.Web.WebPages.Deployment.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61129.10"
+          "lib/netstandard2.0/System.Numerics.Vectors.dll": {
+            "assemblyVersion": "4.1.3.0",
+            "fileVersion": "4.600.125.16908"
+          }
+        }
+      },
+      "System.Reflection.Emit.ILGeneration/4.7.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Reflection.Emit.ILGeneration.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.700.19.56404"
+          }
+        }
+      },
+      "System.Reflection.Emit.Lightweight/4.7.0": {
+        "dependencies": {
+          "System.Reflection.Emit.ILGeneration": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Reflection.Emit.Lightweight.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.700.19.56404"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.1.2": {
+        "runtime": {
+          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.100.225.20307"
+          }
+        }
+      },
+      "System.Security.Cryptography.Cng/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.Cng.dll": {
+            "assemblyVersion": "4.3.0.0",
+            "fileVersion": "4.700.19.51609"
+          }
+        }
+      },
+      "System.Security.Cryptography.Pkcs/8.0.1": {
+        "dependencies": {
+          "System.Buffers": "4.6.1",
+          "System.Formats.Asn1": "8.0.1",
+          "System.Memory": "4.6.3",
+          "System.Security.Cryptography.Cng": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.Pkcs.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
+          }
+        }
+      },
+      "System.Text.Encoding.CodePages/8.0.0": {
+        "dependencies": {
+          "System.Memory": "4.6.3",
+          "System.Runtime.CompilerServices.Unsafe": "6.1.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "System.Threading.Tasks.Extensions/4.6.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.1.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {
+            "assemblyVersion": "4.2.1.0",
+            "fileVersion": "4.600.24.56208"
+          }
+        }
+      },
+      "CountryListBox/1.0.0": {
+        "runtime": {
+          "CountryListBox.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke/1.0.0": {
+        "dependencies": {
+          "AngleSharp": "1.4.0",
+          "AngleSharp.Css": "1.0.0-beta.159",
+          "BouncyCastle.Cryptography": "2.6.2",
+          "CountryListBox": "1.0.0",
+          "DotNetNuke.Abstractions": "1.0.0",
+          "DotNetNuke.ContentSecurityPolicy": "1.0.0",
+          "DotNetNuke.DependencyInjection": "1.0.0",
+          "DotNetNuke.Instrumentation": "1.0.0",
+          "DotNetNuke.Log4Net": "1.0.0",
+          "DotNetNuke.Services.Syndication": "1.0.0",
+          "DotNetNuke.Web.Client": "1.0.0",
+          "DotNetNuke.Web.Client.ResourceManager": "1.0.0",
+          "DotNetNuke.WebControls": "1.0.0",
+          "DotNetNuke.WebUtility": "1.0.0",
+          "HtmlSanitizer": "9.1.878-beta",
+          "Lucene.Net.Contrib": "3.0.3",
+          "MailKit": "4.16.0",
+          "Microsoft.ApplicationBlocks.Data": "2.0.0",
+          "Microsoft.AspNet.WebPages": "3.3.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.FileSystemGlobbing": "5.0.0",
+          "Microsoft.Web.Infrastructure": "2.0.0",
+          "MimeKit": "4.16.0",
+          "Newtonsoft.Json": "13.0.3",
+          "PetaPoco.Compiled": "6.0.683",
+          "Portable.BouncyCastle": "1.9.0",
+          "QuickIO.NET": "2.6.2",
+          "SharpZipLib": "1.4.2",
+          "System.Collections.Immutable": "9.0.2"
+        },
+        "runtime": {
+          "DotNetNuke.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "DotNetNuke.Abstractions/1.0.0": {
+        "runtime": {
+          "DotNetNuke.Abstractions.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.ContentSecurityPolicy/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.DependencyInjection": "1.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.ContentSecurityPolicy.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.DependencyInjection/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.Instrumentation": "1.0.0",
+          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.1.2"
+        },
+        "runtime": {
+          "DotNetNuke.DependencyInjection.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.Instrumentation/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.Abstractions": "1.0.0",
+          "DotNetNuke.Log4Net": "1.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.Instrumentation.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.Log4Net/1.0.0": {
+        "runtime": {
+          "DotNetNuke.Log4Net.dll": {
+            "assemblyVersion": "3.0.2.0",
+            "fileVersion": "3.0.2.0"
+          }
+        }
+      },
+      "DotNetNuke.Services.Syndication/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.Instrumentation": "1.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.Services.Syndication.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "DotNetNuke.Web.Client/1.0.0": {
+        "dependencies": {
+          "Dnn.ClientDependency": "1.10.0",
+          "DotNetNuke.Abstractions": "1.0.0",
+          "DotNetNuke.Instrumentation": "1.0.0",
+          "DotNetNuke.Web.Client.ResourceManager": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.Web.Client.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.Web.Client.ResourceManager/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.DependencyInjection": "1.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.Web.Client.ResourceManager.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.WebControls/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.Web.Client": "1.0.0",
+          "DotNetNuke.WebUtility": "1.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.WebControls.dll": {
+            "assemblyVersion": "10.2.3.0",
+            "fileVersion": "10.2.3.0"
+          }
+        }
+      },
+      "DotNetNuke.WebUtility/1.0.0": {
+        "dependencies": {
+          "DotNetNuke.Abstractions": "1.0.0",
+          "DotNetNuke.Web.Client": "1.0.0",
+          "DotNetNuke.Web.Client.ResourceManager": "1.0.0"
+        },
+        "runtime": {
+          "DotNetNuke.WebUtility.dll": {
+            "assemblyVersion": "4.2.1.783",
+            "fileVersion": "4.2.1.783"
+          }
+        }
+      },
+      "DotNetNuke.Reference/10.3.2.0": {
+        "runtime": {
+          "DotNetNuke.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
+          }
+        }
+      },
+      "DotNetNuke.Services.Syndication.Reference/10.3.2.0": {
+        "runtime": {
+          "DotNetNuke.Services.Syndication.dll": {
+            "assemblyVersion": "10.3.2.0",
+            "fileVersion": "10.3.2.0"
           }
         }
       }
@@ -238,47 +614,267 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.DependencyInjection/2.1.1": {
+    "AngleSharp/1.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RVdgNWT/73M0eCpreGpWv5NmbHFGQzzW+G7nChK8ej84m+d1nzeWrtqcRYnEpKNx3B8V/Uek4tNP0WCaCNjYnQ==",
-      "path": "microsoft.extensions.dependencyinjection/2.1.1",
-      "hashPath": "microsoft.extensions.dependencyinjection.2.1.1.nupkg.sha512"
+      "sha512": "sha512-6ph8mpaQx0KL0COYRt0kI8MB9gSp1PtKijKMhJU//+aVFgKAJLKDesG/+26JSaVCOrHNgPf12wpfoyRcMYOeXg==",
+      "path": "anglesharp/1.4.0",
+      "hashPath": "anglesharp.1.4.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.1": {
+    "AngleSharp.Css/1.0.0-beta.159": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MgYpU5cwZohUMKKg3sbPhvGG+eAZ/59E9UwPwlrUkyXU+PGzqwZg9yyQNjhxuAWmoNoFReoemeCku50prYSGzA==",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/2.1.1",
-      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.2.1.1.nupkg.sha512"
+      "sha512": "sha512-5JGPxdYJnMs/bVIJ3lMDmqj4coGuTc+sn2Noa6Hl7Kvr6j1U6ej59DOjhnvZrFcgC4Rz6gkppYy4wx6Fc3JHQA==",
+      "path": "anglesharp.css/1.0.0-beta.159",
+      "hashPath": "anglesharp.css.1.0.0-beta.159.nupkg.sha512"
     },
-    "Microsoft.NETCore.Platforms/1.1.0": {
+    "BouncyCastle.Cryptography/2.6.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
-      "path": "microsoft.netcore.platforms/1.1.0",
-      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+      "sha512": "sha512-7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w==",
+      "path": "bouncycastle.cryptography/2.6.2",
+      "hashPath": "bouncycastle.cryptography.2.6.2.nupkg.sha512"
     },
-    "NETStandard.Library/2.0.3": {
+    "Dnn.ClientDependency/1.10.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
-      "path": "netstandard.library/2.0.3",
-      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+      "sha512": "sha512-ryKUnIlnmpltJamkZ507cOF9Y/IW9xb8Tq2dahULt2X+AvIUtBpjVcEttHxj/SDeG9e4b0x21MSX0CjONlz7pQ==",
+      "path": "dnn.clientdependency/1.10.0",
+      "hashPath": "dnn.clientdependency.1.10.0.nupkg.sha512"
     },
-    "StyleCop.Analyzers/1.1.118": {
+    "HtmlSanitizer/9.1.878-beta": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
-      "path": "stylecop.analyzers/1.1.118",
-      "hashPath": "stylecop.analyzers.1.1.118.nupkg.sha512"
+      "sha512": "sha512-EvQgZEQ7YVyPn7fuM9j1R+bmiC08VEMD65Yi6+4QBPwJbumWqt+apfiwgMVmN66/7J4BV+cJrltNIrnDAQdJtw==",
+      "path": "htmlsanitizer/9.1.878-beta",
+      "hashPath": "htmlsanitizer.9.1.878-beta.nupkg.sha512"
+    },
+    "Lucene.Net/3.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A/70q4eDcuuafQeDB9eaiDP9FQG7X29T4VIYRphS7Wk8kAM9gNcfVqYyd0H8BJ1BTpA5C1ORm9RzFn4BiNavrw==",
+      "path": "lucene.net/3.0.3",
+      "hashPath": "lucene.net.3.0.3.nupkg.sha512"
+    },
+    "Lucene.Net.Contrib/3.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4aFMsm5657tIIAXWOh3wYxSfPwWFDjrUomXnE3lxKPOuJDjmvLg3CEuTaPYuLvBMKwRaj/C4EwyPM5/pmIwytw==",
+      "path": "lucene.net.contrib/3.0.3",
+      "hashPath": "lucene.net.contrib.3.0.3.nupkg.sha512"
+    },
+    "MailKit/4.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-trJ82DOpAmo8i1jO1vNE+dGn4mPRyeYfy4swRcAGgMJhPoI1Kohf4OFJJf0+YIj4iUxgxPn8W+ht7e7KiYzSjg==",
+      "path": "mailkit/4.16.0",
+      "hashPath": "mailkit.4.16.0.nupkg.sha512"
+    },
+    "Microsoft.ApplicationBlocks.Data/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xb8f7UjhLC1kDJKtk39Ara0dQ5ytZ4p2cF94KQ4ZBABTnqUcvpmX2QOp63vqY4LUN4rXa8QNg3vUJ9QOkUqA4w==",
+      "path": "microsoft.applicationblocks.data/2.0.0",
+      "hashPath": "microsoft.applicationblocks.data.2.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Razor/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5vJ0UKE/n381qcaKwFHxCwzb/YVuHzrm155iTgQhiv7+xdg2PE+54u+NPqu6C9AeRVOiwbh8/EOZwD16bLvWkg==",
+      "path": "microsoft.aspnet.razor/3.3.0",
+      "hashPath": "microsoft.aspnet.razor.3.3.0.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebPages/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2ATJrA8KNx2EpBWNjwy4P+NjQ06cZWjYsTZ5NqGNIHaU/i3NKmtpoaE90NGmVRaKF5rryGfADnvPQ56f61OuWg==",
+      "path": "microsoft.aspnet.webpages/3.3.0",
+      "hashPath": "microsoft.aspnet.webpages.3.3.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3WA9q9yVqJp222P3x1wYIGDAkpjAku0TMUaaQV22g6L67AI0LdOIrVS7Ht2vJfLHGSPVuqN94vIr15qn+HEkHw==",
+      "path": "microsoft.bcl.asyncinterfaces/8.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V8S3bsm50ig6JSyrbcJJ8bW2b9QLGouz+G1miK3UTaOWmMtFwNNNzUf4AleyDWUmTrWMLNnFSLEQtxmxgNQnNQ==",
+      "path": "microsoft.extensions.dependencyinjection/8.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileSystemGlobbing/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ArliS8lGk8sWRtrWpqI8yUVYJpRruPjCDT+EIjrgkA/AAPRctlAkRISVZ334chAKktTLzD1+PK8F5IZpGedSqA==",
+      "path": "microsoft.extensions.filesystemglobbing/5.0.0",
+      "hashPath": "microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Web.Infrastructure/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NA6F00drSYd4HZk7QcyMRz1EEdZQQpcdnt6DfNiurNcUNsmmRDpz9db2Bc3L3Lgo455BOSwNDuNjbhDLltKGKQ==",
+      "path": "microsoft.web.infrastructure/2.0.0",
+      "hashPath": "microsoft.web.infrastructure.2.0.0.nupkg.sha512"
+    },
+    "MimeKit/4.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X0LFxeM4gPRIhODyY/HYS9b+zRZ7y//v59rFzgS6wLxcPuZThnMtNZHtrr0fjLyRRkg3gqJBtvW36XfUzZ7Djw==",
+      "path": "mimekit/4.16.0",
+      "hashPath": "mimekit.4.16.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
+    "PetaPoco.Compiled/6.0.683": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UgwbUUQ8d6Ki7GcFEhZz0Qmdh42T1V1S87FS/Wm0qFdvCTms3SbSjWFUDRNoOeYloPbpf0otzODZaGFd+YUU1A==",
+      "path": "petapoco.compiled/6.0.683",
+      "hashPath": "petapoco.compiled.6.0.683.nupkg.sha512"
+    },
+    "Portable.BouncyCastle/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
+      "path": "portable.bouncycastle/1.9.0",
+      "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+    },
+    "QuickIO.NET/2.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OrXc0p1QA42AZSws/4ktryv9+S0iAzZrVd1iilDqKICMcf/EaBaTNjXe1tt+LVjaLhgqylTUisARrdZ1FamuBQ==",
+      "path": "quickio.net/2.6.2",
+      "hashPath": "quickio.net.2.6.2.nupkg.sha512"
+    },
+    "SharpZipLib/1.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yjj+3zgz8zgXpiiC3ZdF/iyTBbz2fFvMxZFEBPUcwZjIvXOf37Ylm+K58hqMfIBt5JgU/Z2uoUS67JmTLe973A==",
+      "path": "sharpziplib/1.4.2",
+      "hashPath": "sharpziplib.1.4.2.nupkg.sha512"
+    },
+    "System.Buffers/4.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-N8GXpmiLMtljq7gwvyS+1QvKT/W2J8sNAvx+HVg4NGmsG/H+2k/y9QI23auLJRterrzCiDH+IWAw4V/GPwsMlw==",
+      "path": "system.buffers/4.6.1",
+      "hashPath": "system.buffers.4.6.1.nupkg.sha512"
+    },
+    "System.Collections.Immutable/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QKh9+kczG7TQbQZ6tF2S6bK9B8ewHXEkYmMP2iqefzwJEfEkiflheAX6VEaPLJ6Tq9RoKuQ5R3qPYla6wJ6Opg==",
+      "path": "system.collections.immutable/9.0.2",
+      "hashPath": "system.collections.immutable.9.0.2.nupkg.sha512"
+    },
+    "System.Data.DataSetExtensions/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-221clPs1445HkTBZPL+K9sDBdJRB8UN8rgjO3ztB0CQ26z//fmJXtlsr6whGatscsKGBrhJl5bwJuKSA8mwFOw==",
+      "path": "system.data.datasetextensions/4.5.0",
+      "hashPath": "system.data.datasetextensions.4.5.0.nupkg.sha512"
+    },
+    "System.Formats.Asn1/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XqKba7Mm/koKSjKMfW82olQdmfbI5yqeoLV/tidRp7fbh5rmHAQ5raDI/7SU0swTzv+jgqtUGkzmFxuUg0it1A==",
+      "path": "system.formats.asn1/8.0.1",
+      "hashPath": "system.formats.asn1.8.0.1.nupkg.sha512"
+    },
+    "System.Memory/4.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qdcDOgnFZY40+Q9876JUHnlHu7bosOHX8XISRoH94fwk6hgaeQGSgfZd8srWRZNt5bV9ZW2TljcegDNxsf+96A==",
+      "path": "system.memory/4.6.3",
+      "hashPath": "system.memory.4.6.3.nupkg.sha512"
+    },
+    "System.Numerics.Vectors/4.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sQxefTnhagrhoq2ReR0D/6K0zJcr9Hrd6kikeXsA1I8kOCboTavcUC4r7TSfpKFeE163uMuxZcyfO1mGO3EN8Q==",
+      "path": "system.numerics.vectors/4.6.1",
+      "hashPath": "system.numerics.vectors.4.6.1.nupkg.sha512"
+    },
+    "System.Reflection.Emit.ILGeneration/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AucBYo3DSI0IDxdUjKksBcQJXPHyoPyrCXYURW1WDsLI4M65Ar/goSHjdnHOAY9MiYDNKqDlIgaYm+zL2hA1KA==",
+      "path": "system.reflection.emit.ilgeneration/4.7.0",
+      "hashPath": "system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512"
+    },
+    "System.Reflection.Emit.Lightweight/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a4OLB4IITxAXJeV74MDx49Oq2+PsF6Sml54XAFv+2RyWwtDBcabzoxiiJRhdhx+gaohLh4hEGCLQyBozXoQPqA==",
+      "path": "system.reflection.emit.lightweight/4.7.0",
+      "hashPath": "system.reflection.emit.lightweight.4.7.0.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2hBr6zdbIBTDE3EhK7NSVNdX58uTK6iHW/P/Axmm9sl1xoGSLqDvMtpecn226TNwHByFokYwJmt/aQQNlO5CRw==",
+      "path": "system.runtime.compilerservices.unsafe/6.1.2",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.1.2.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Cng/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jIMXsKn94T9JY7PvPq/tMfqa6GAaHpElRDpmG+SuL+D3+sTw2M8VhnibKnN8Tq+4JqbPJ/f+BwtLeDMEnzAvRg==",
+      "path": "system.security.cryptography.cng/5.0.0",
+      "hashPath": "system.security.cryptography.cng.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Pkcs/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CoCRHFym33aUSf/NtWSVSZa99dkd0Hm7OCZUxORBjRB16LNhIEOf8THPqzIYlvKM0nNDAPTRBa1FxEECrgaxxA==",
+      "path": "system.security.cryptography.pkcs/8.0.1",
+      "hashPath": "system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
+      "path": "system.text.encoding.codepages/8.0.0",
+      "hashPath": "system.text.encoding.codepages.8.0.0.nupkg.sha512"
+    },
+    "System.Threading.Tasks.Extensions/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I5G6Y8jb0xRtGUC9Lahy7FUvlYlnGMMkbuKAQBy8Jb7Y6Yn8OlBEiUOY0PqZ0hy6Ua8poVA1ui1tAIiXNxGdsg==",
+      "path": "system.threading.tasks.extensions/4.6.0",
+      "hashPath": "system.threading.tasks.extensions.4.6.0.nupkg.sha512"
     },
     "CountryListBox/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
+    "DotNetNuke/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "DotNetNuke.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DotNetNuke.ContentSecurityPolicy/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -293,17 +889,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DotNetNuke.Library/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "DotNetNuke.Log4Net/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "DotNetNuke.Syndication/1.0.0": {
+    "DotNetNuke.Services.Syndication/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -313,87 +904,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "DotNetNuke.Web.Client.ResourceManager/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DotNetNuke.WebControls/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "DotNetNuke.WebUtility/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "DotNetNuke.WebControls/2.4.0.598": {
+    "DotNetNuke.Reference/10.3.2.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Newtonsoft.Json/13.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Lucene.Net/3.0.3.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Lucene.Net.Contrib.FastVectorHighlighter/3.0.3.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MimeKit/2.15.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MailKit/2.15.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "ICSharpCode.SharpZipLib/1.3.3.11": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.FileSystemGlobbing/5.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "SchwabenCode.QuickIO/2.6.2.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "PetaPoco/6.0.524.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Web.WebPages/3.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "ClientDependency.Core/1.9.10.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Buffers/4.0.3.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Web.Razor/3.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Web.Infrastructure/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Web.WebPages.Deployment/3.0.0.0": {
+    "DotNetNuke.Services.Syndication.Reference/10.3.2.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

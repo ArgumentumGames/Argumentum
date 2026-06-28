@@ -226,6 +226,10 @@
     </file>
     <file>
       <path>scripts/contrib/</path>
+      <name>purify.min.js</name>
+    </file>
+    <file>
+      <path>scripts/contrib/</path>
       <name>require.js</name>
     </file>
     <file>
@@ -242,7 +246,7 @@
     </file>
     <file>
       <path>scripts/exports/</path>
-      <name>export-bundle.js.map</name>
+      <name>export-bundle.js.LICENSE.txt</name>
     </file>
     <file>
       <path>scripts/</path>

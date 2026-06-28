@@ -186,163 +186,275 @@
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-11b5e0e8.system.entry.js</name>
+      <name>p-00d49d41.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-11b5e0e8.system.entry.js.map</name>
+      <name>p-00d49d41.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-23097f6d.system.js</name>
+      <name>p-178a15f1.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-23097f6d.system.js.map</name>
+      <name>p-178a15f1.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-27d67cdc.js</name>
+      <name>p-218aabab.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-27d67cdc.js.map</name>
+      <name>p-218aabab.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-4a3cf7fe.entry.js</name>
+      <name>p-23542177.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-4a3cf7fe.entry.js.map</name>
+      <name>p-23542177.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-4ee9cacb.system.entry.js</name>
+      <name>p-2368383e.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-4ee9cacb.system.entry.js.map</name>
+      <name>p-2368383e.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-4fb614ed.entry.js</name>
+      <name>p-23c17dfd.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-4fb614ed.entry.js.map</name>
+      <name>p-23c17dfd.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-50ea2036.system.js</name>
+      <name>p-24BjTItc.system.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-50ea2036.system.js.map</name>
+      <name>p-24BjTItc.system.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-52701fbb.system.entry.js</name>
+      <name>p-3c8a53a9.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-52701fbb.system.entry.js.map</name>
+      <name>p-3c8a53a9.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-6a1e7068.system.entry.js</name>
+      <name>p-3d33b782.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-6a1e7068.system.entry.js.map</name>
+      <name>p-3d33b782.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-7f611392.js</name>
+      <name>p-4040cd97.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-7f611392.js.map</name>
+      <name>p-4040cd97.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-933b4c43.system.js</name>
+      <name>p-4ad96360.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-933b4c43.system.js.map</name>
+      <name>p-4ad96360.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-9a4651f2.entry.js</name>
+      <name>p-4efd8aea.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-9a4651f2.entry.js.map</name>
+      <name>p-4efd8aea.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-b6a09d1d.entry.js</name>
+      <name>p-636d40ee.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-b6a09d1d.entry.js.map</name>
+      <name>p-636d40ee.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-bb156888.entry.js</name>
+      <name>p-6d219606.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-bb156888.entry.js.map</name>
+      <name>p-6d219606.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-c15b7d5a.js</name>
+      <name>p-81c0c7e9.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-c15b7d5a.js.map</name>
+      <name>p-81c0c7e9.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-c4d9b92d.system.entry.js</name>
+      <name>p-83d83061.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-c4d9b92d.system.entry.js.map</name>
+      <name>p-83d83061.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-c9ec67c1.system.js</name>
+      <name>p-a4152bf7.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-c9ec67c1.system.js.map</name>
+      <name>p-a4152bf7.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-cfc0cac2.entry.js</name>
+      <name>p-a8d2a575.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-cfc0cac2.entry.js.map</name>
+      <name>p-a8d2a575.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-df562e61.system.js</name>
+      <name>p-b39b72dc.system.entry.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-df562e61.system.js.map</name>
+      <name>p-b39b72dc.system.entry.js.map</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-ffafc033.system.entry.js</name>
+      <name>p-Bb3LSJ_X.system.js</name>
     </file>
     <file>
       <path>Scripts/dnn-resource-manager/</path>
-      <name>p-ffafc033.system.entry.js.map</name>
+      <name>p-Bb3LSJ_X.system.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-BbPAtVJG.system.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-BbPAtVJG.system.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-bfe77b65.entry.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-bfe77b65.entry.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-BI4wPkqK.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-BI4wPkqK.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-BS8m7tnw.system.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-BS8m7tnw.system.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-c02f7451.entry.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-c02f7451.entry.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-c3895ed9.entry.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-c3895ed9.entry.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-D-tW-Yfr.system.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-D-tW-Yfr.system.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-D7CP7b6z.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-D7CP7b6z.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-DI6iaKDl.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-DI6iaKDl.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-DMm7UhBf.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-DMm7UhBf.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-DQuL1Twl.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-DQuL1Twl.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-e714991a.system.entry.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-e714991a.system.entry.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-MeSfNxiM.system.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-MeSfNxiM.system.js.map</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-YWpyar7R.system.js</name>
+    </file>
+    <file>
+      <path>Scripts/dnn-resource-manager/</path>
+      <name>p-YWpyar7R.system.js.map</name>
     </file>
   </files>
 </dotnetnuke>

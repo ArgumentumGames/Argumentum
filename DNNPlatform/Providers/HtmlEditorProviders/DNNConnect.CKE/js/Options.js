@@ -16,7 +16,7 @@
         $(".importButton").button({ icons: { primary: "ui-icon-arrowreturnthick-1-s" } });
         $(".exportButton").button({ icons: { primary: "ui-icon-disk" } });
         $(".DefaultButton").button();
-        $(".Toolbar").buttonset();
+        $(".Toolbar").controlgroup();
 
         EnableSorting();
 
@@ -61,7 +61,9 @@
         $('#ExportDialog').dialog({
             autoOpen: false,
             width: 350,
-            dialogClass: 'dnnFormPopup',
+            classes: {
+                'ui-dialog': 'dnnFormPopup',
+            },
             resizable: false,
             buttons: {
                 "Cancel": function () {
@@ -79,7 +81,9 @@
         $('#ImportDialog').dialog({
             autoOpen: false,
             width: 350,
-            dialogClass: 'dnnFormPopup',
+            classes: {
+                'ui-dialog': 'dnnFormPopup',
+            },
             resizable: false,
             buttons: {
                  "Cancel": function() {
@@ -115,7 +119,7 @@
         }
 
         $("#CKEditor_Options_rBlSetMode input").button();
-        $("#CKEditor_Options_rBlSetMode").buttonset();
+        $("#CKEditor_Options_rBlSetMode").controlgroup();
     }
 
     win.showDialog = function (id) {
@@ -185,7 +189,7 @@
             a.show();
             input.hide();
 
-            a.html(input.val());
+            a.text(input.val());
 
             $(this).hide();
 
@@ -199,7 +203,7 @@
             a.hide();
             input.show();
 
-            input.val(a.html()).focus();
+            input.val(a.text()).focus();
 
             input.next().css('display', 'inline-block');
         });
@@ -216,8 +220,8 @@
             $(this).parent(".groupItem").children(".groupButtons").children("li").each(function (e) {
                 var $item = $(this);
 
-                if ($item.attr('class').indexOf('separator') == -1 &&
-                    $item.attr('class').indexOf('rowBreak') == -1) {
+                if ($item.attr('class').indexOf('separator') === -1 &&
+                    $item.attr('class').indexOf('rowBreak') === -1) {
 
                     $item.children(".ui-icon").remove();
                     $(".availableButtons").children(".separator").before($item);
@@ -233,8 +237,8 @@
         $(".groupButtons .ui-icon-cancel").click(function () {
             var $item = $(this).parent("li");
 
-            if ($item.attr('class').indexOf('separator') == -1 &&
-               $item.attr('class').indexOf('rowBreak') == -1) {
+            if ($item.attr('class').indexOf('separator') === -1 &&
+               $item.attr('class').indexOf('rowBreak') === -1) {
                 $item.children(".ui-icon").remove();
                 $(".availableButtons").children(".separator").before($item);
             } else {

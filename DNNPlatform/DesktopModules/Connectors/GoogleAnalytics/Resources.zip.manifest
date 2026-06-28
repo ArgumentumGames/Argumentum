@@ -20,9 +20,5 @@
       <path />
       <name>connector.htm</name>
     </file>
-    <file>
-      <path />
-      <name>app.config</name>
-    </file>
   </files>
 </dotnetnuke>

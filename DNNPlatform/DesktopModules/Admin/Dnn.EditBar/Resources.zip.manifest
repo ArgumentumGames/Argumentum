@@ -30,6 +30,22 @@
     </file>
     <file>
       <path>css/</path>
+      <name>CompleteState.css</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>CompleteWorkflow.css</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>DiscardState.css</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>DiscardWorkflow.css</name>
+    </file>
+    <file>
+      <path>css/</path>
       <name>editBarContainer.css</name>
     </file>
     <file>
@@ -71,6 +87,10 @@
     <file>
       <path>css/</path>
       <name>theme.css</name>
+    </file>
+    <file>
+      <path>css/</path>
+      <name>WorkflowState.css</name>
     </file>
     <file>
       <path>images/</path>
@@ -278,6 +298,14 @@
     </file>
     <file>
       <path>scripts/</path>
+      <name>CompleteState.js</name>
+    </file>
+    <file>
+      <path>scripts/</path>
+      <name>CompleteWorkflow.js</name>
+    </file>
+    <file>
+      <path>scripts/</path>
       <name>config.js</name>
     </file>
     <file>
@@ -302,11 +330,23 @@
     </file>
     <file>
       <path>scripts/contrib/</path>
+      <name>purify.min.js</name>
+    </file>
+    <file>
+      <path>scripts/contrib/</path>
       <name>require.js</name>
     </file>
     <file>
       <path>scripts/contrib/</path>
       <name>text.js</name>
+    </file>
+    <file>
+      <path>scripts/</path>
+      <name>DiscardState.js</name>
+    </file>
+    <file>
+      <path>scripts/</path>
+      <name>DiscardWorkflow.js</name>
     </file>
     <file>
       <path>scripts/</path>
@@ -343,6 +383,10 @@
     <file>
       <path>scripts/</path>
       <name>util.js</name>
+    </file>
+    <file>
+      <path>scripts/</path>
+      <name>WorkflowState.js</name>
     </file>
   </files>
 </dotnetnuke>
