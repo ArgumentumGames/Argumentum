@@ -24,6 +24,11 @@ Toute mise à jour matérielle d'un document FR doit être répliquée dans le m
 
 Les règles (« livret ») sont livrées sous forme de **cartes Rules** dans le deck Tarot (et le Print&Play A4) — il n'existe pas de document séparé. Voir la section « Règles du jeu » de [cards-catalog.fr.md](cards-catalog.fr.md).
 
+### 3. Article d'annonce de release
+
+- **[news-article-v0.9.0.fr.md](news-article-v0.9.0.fr.md)** — brouillon FR canonique de l'article d'annonce v0.9.0 (module News5 DNN) ; publication gated #134/#131/#132 (issue #135).
+- **[news-article-v0.9.0.en.md](news-article-v0.9.0.en.md)** — miroir anglais.
+
 ## Conventions
 
 - Les documents prennent le code de langue ISO en suffixe : `*.fr.md`, `*.en.md`.
