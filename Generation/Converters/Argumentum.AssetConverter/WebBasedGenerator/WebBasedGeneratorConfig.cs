@@ -34,6 +34,16 @@ namespace Argumentum.AssetConverter
 
 		public int MaxDegreeOfParallelismCardpenTranslations { get; set; } = 2;
 
+		/// <summary>
+		/// Issue #613: when true (default), a card set whose harvest fails (e.g. a large set
+		/// timing out under high parallelism) is logged and skipped so the remaining sets still
+		/// harvest and persist to disk; a single aggregate error is raised at the end of the run
+		/// listing every failed set. A re-run then skips the good harvests (cache) and only
+		/// re-collects the missing ones. When false, the first failure aborts the whole harvest
+		/// (legacy behavior).
+		/// </summary>
+		public bool ContinueOnHarvestSetFailure { get; set; } = true;
+
 		public int MaxDegreeOfParallelismImages { get; set; } = 3;
 
 		public int MaxDegreeOfParallelismImageTranslations { get; set; } = 2;

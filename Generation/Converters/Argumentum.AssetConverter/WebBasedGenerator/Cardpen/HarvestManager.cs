@@ -82,6 +82,11 @@ public class HarvestManager : IAsyncDisposable
 
 		var funcBrowser = new Func<Task<IBrowser>>(GetBrowserAsync);
 
+		// Issue #613: collect per-set failures so one set timing out (e.g. a large set under high
+		// parallelism) does not abort the whole multi-language harvest. All reachable sets are
+		// attempted and persisted; a single aggregate error is raised at the end if any failed.
+		var failedSets = new ConcurrentBag<(string cardSet, string language, string error)>();
+
 		var parallelOptionsCardset = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism? Config.MaxDegreeOfParallelismCardpen : 1 };
 		await Parallel.ForEachAsync(targetCardSets, parallelOptionsCardset, async (configCardSet, token) =>
 		{
@@ -89,9 +94,29 @@ public class HarvestManager : IAsyncDisposable
 			var parallelOptionsCardsetLanguage = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism?  Config.MaxDegreeOfParallelismCardpenTranslations : 1 };
 			await Parallel.ForEachAsync(targetLanguages, parallelOptionsCardsetLanguage, async (currentLanguage, newToken) =>
 			{
-				await ProcessLocalizedHarvest(configCardSet, currentLanguage, harvestDictionary, funcBrowser);
+				try
+				{
+					await ProcessLocalizedHarvest(configCardSet, currentLanguage, harvestDictionary, funcBrowser);
+				}
+				catch (Exception ex) when (Config.ContinueOnHarvestSetFailure)
+				{
+					// Persist the failure and keep harvesting the other sets (issue #613).
+					failedSets.Add((configCardSet.Name, currentLanguage, ex.Message));
+					Logger.Log($"[HARVEST-FAILURE] Card set '{configCardSet.Name}' / '{currentLanguage}' failed and was skipped: {ex.Message}", MessageType.Problem);
+				}
 			});
 		});
+
+		if (!failedSets.IsEmpty)
+		{
+			var summary = string.Join("; ", failedSets.Select(f => $"{f.cardSet}/{f.language}"));
+			Logger.Log($"[HARVEST-PARTIAL] {failedSets.Count} card set(s) failed to harvest and were skipped: {summary}. " +
+				"All successful harvests were persisted to disk — re-run to collect the missing sets (the cache skips the good ones). " +
+				"If large sets time out, set EnableParallelism=false or lower MaxDegreeOfParallelismCardpen (issue #613).", MessageType.Problem);
+			throw new ApplicationException(
+				$"Harvest completed with {failedSets.Count} failed card set(s): {summary}. " +
+				"Successful harvests were persisted; re-run to collect the missing sets (issue #613).");
+		}
 
 		return harvestDictionary;
 	}
