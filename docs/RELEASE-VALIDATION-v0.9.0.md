@@ -1,9 +1,9 @@
 # Argumentum v0.9.0 — Dossier de validation release
 
-**Date** : 2026-06-25 (refresh — régén fraîche + relecture cohérence)
-**Statut** : DRAFT — pour revue jsboige (go-live v0.9.0)
+**Date** : 2026-07-01 (refresh post-régén fraîche 8-lang + verdict visuel PASS ai-01)
+**Statut** : ASSETS VALIDÉS (verdict visuel ai-01 = PASS représentatif) — en attente décision params Release/couplage go-live jsboige
 **Branche** : `docs/release-v0.9.0-validation`
-**Master de référence** : `bef3bc6c` (build zéro-warning CS+NU, **540/0/5 tests** — test run Release 2026-06-25)
+**Master de référence** : `18b4d023` (build zéro-warning CS+NU, **549/0/5 tests**). Régén release 8-lang **2026-07-01** sur `18b4d023` + #614 (`EnableParallelism=false` serial), bundle validé sur GDrive `review-v0.9.0-2026-06-28/`.
 
 ---
 
@@ -11,7 +11,7 @@
 
 Établir l'état vérifiable de la release v0.9.0 (scope = **8 langues** : fr / en / ru / pt / es / ar / fa / zh), lister ce qui est **livré et vérifié** vs ce qui **nécessite validation jsboige** avant le tag go-live. Ce dossier est le GATE de publication (#134).
 
-> **Note de méthode** : ce dossier est bâti sur les **assets committés** + une **régén Release fraîche exécutée le 2026-06-25** sur `bef3bc6c` (64/64 PDFs, 9 834 images, exit 0 — voir §3.3). Les compteurs PDFs/images sont donc **re-vérifiés ce jour** (régên fraîche post-#592/#595), sauf le verdict visuel qui reste à ai-01 (§3.3, règle HARD).
+> **Note de méthode** : ce dossier est bâti sur les **assets committés** + une **régén Release fraîche exécutée le 2026-07-01** sur `18b4d023` + #614 (serial, `EnableParallelism=false`, worktree isolé — 0 échec, 64/64 PDFs, 1229 images/langue × 8 = 9 832, `Generation finished.`, exit 0 — voir §3.3). Les compteurs PDFs/images sont donc **re-vérifiés au 2026-07-01**. **Verdict visuel ai-01 = PASS représentatif** (08:50, spot-check `Fallacies_Web_Thumbnails` p1 sur zh/ar/fa/ru/es couvrant CJK + RTL + cyrillique + latin ; bug #216 tenu, structure complète 8 types × 8 langues) — voir §3.3.
 
 ---
 
@@ -63,14 +63,14 @@
 - ⚠️ **Gap structurel mineur (non-bloquant v0.9.0)** : les Virtues `.content.svg` sont **FR-figés** (le post-processing localise Fallacies mais fige le contenu Virtues en FR — même comportement que la baseline). Les 8 langues Fallacies sont localisées ; les Virtues mindmaps ne le sont pas. Corriger = toucher la config post-processing (jugement jsboige, deferred).
 - ⚠️ **Validation pixel RTL/CJK = À CONFIRMER jsboige** (eyeball `Fallacies_ar.svg` / `Fallacies_zh.svg`). Le pixel-RTL est figé en coordonnées absolues dans le SVG ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset.
 
-### 3.3 PDFs — 8 langues (✅ régén fraîche 2026-06-25)
+### 3.3 PDFs — 8 langues (✅ régén fraîche 2026-07-01 + verdict visuel PASS)
 
-- **64/64 PDFs**, **9 834 images**, exit 0 — **régén Release fraîche 2026-06-25** (`bef3bc6c`, Mode `WebBasedImageGeneration | QuestPdfGeneration`).
-- CardSets concernés : Tarot, Poker, A0 posters, Print&Play, Memo, Rules (8 langues × 8).
-- **Cohérent avec les derniers merges** : #592 (OWL Virtues `aif:goodTenorOf`) + **#595 (24 cells Virtues harmonisées RTL/CJK)** — PDFs Virtues re-rendered post-#595 (clobber targeted harvest, Playwright/Chromium invoqué, labels familiaux localisés vérifiés dans les noms PNG : zh `有效论证`, ar `حجة_معتبرة`, fa).
-- **i18n distinct (anti-leak #216 OK)** : PokerCards 108-114M/langue, tailles distinctes (pas de FR leaké) ; ar/zh légèrement plus petits (glyphes) = attendu.
-- ⚠️ **Régén = headless** (Playwright+QuestPDF) — le Mode actuel n'inclut pas Mindmapper, donc **pas besoin de fenêtre RDP** (seul Mindmapper nécessite RDP, voir §3.2, déjà fait byte-proven).
-- ⚠️ **Verdict visuel = ai-01** (règle HARD) : spot-check Playwright 1 carte / langue à confirmer (contenu localisé + RTL ar/fa + CJK zh). po-2023 signale counts/preuves, ne déclare pas PASS.
+- **64/64 PDFs**, **1229 images/langue × 8 = 9 832 images**, exit 0 — **régén Release fraîche 2026-07-01** (`18b4d023` + #614, Mode `WebBasedImageGeneration | QuestPdfGeneration`, `EnableParallelism=false` serial). 0 échec, 0 HARVEST-FAILURE/timeout/Mismatch. Bundle GDrive `review-v0.9.0-2026-06-28/` (3.6 GB) + manifest sha256×64 (`regen-1032-manifest.txt`).
+- CardSets concernés : Fallacies Web A0/A4/Thumbnails, Tarot, Tarot Virtues, Poker, Print&Play (8 types × 8 langues).
+- **Bug #216 (contamination FR) TENU** : image count invariant **1229/lang ×8** (le multilingue n'a pas cassé la structure) ; spot-check ad-populum FR = contenu FR au harvest.
+- **i18n distinct (anti-leak #216 OK)** : ~450 MB/langue, tailles distinctes (pas de FR leaké) ; ar/fa légèrement plus légers (RTL shaping) = attendu.
+- ✅ **Verdict visuel ai-01 = PASS représentatif** (2026-07-01 08:50) : spot-check `Fallacies_Web_Thumbnails` p1 sur **5 langues couvrant toutes les familles d'écriture** — zh (CJK, 0 tofu), ar (RTL arabe, shaping connecté), fa (RTL persan, lettres پچگژ), ru (cyrillique, auto-shrink titre #316/#353 tenu), es (latin, accents). Bug #216 tenu sur les 5. Reste à ai-01 : couverture Tarot recto-verso (#119) + en/pt latin (risque faible).
+- ⚠️ **Params Debug** (JPEG Q=85, RGB, CardPen local) — cohérent avec validation multilingue historique. Si les assets GitHub #134 veulent du print-final, un run `-c Release` (PNG lossless + CMYK) suivra — verdict content vaut indépendamment des params. **→ décision jsboige** (§5.7).
 
 ### 3.4 OWL Ontologie
 
@@ -92,7 +92,7 @@
 |---------|------|-------|
 | Build solution zéro-warning CS | ✅ | PR #587 (master `6caf5833`) |
 | Build zéro-warning NU (NuGet audit) | ✅ | PR #588 (NU1903 clos MIT-pur) |
-| Tests | **540 pass / 0 fail / 5 skip** | test run Release `bef3bc6c` 2026-06-25 (AssetConverter.Tests, 22s) ; skip = GUI/Freeplane (session interactive) ; +7 vs `22eb5f34` = contract tests OWL Virtues de #592 (+5 `VirtueOwlGenerationContractTests` + +2 `VirtueClassMapRegressionTests`, `8d5d275b`) |
+| Tests | **549 pass / 0 fail / 5 skip** | test run `18b4d023` ; skip = GUI/Freeplane (session interactive) |
 | SkipConfigFile | `true` (C# defaults = source unique) | règle HARD projet |
 | Dépendances stables | QuestPDF 2022.12.12, Magick.NET 13.5.0, Playwright 1.43.0 | — |
 
@@ -100,12 +100,13 @@
 
 ## 5. Points nécessitant décision jsboige avant tag
 
-1. **Validation pixel RTL/CJK des SVGs** (#3.2) — eyeball ou GO sur verdict source-level ai-01.
-2. **Régén PDF fraîche ?** — ✅ **FAITE (2026-06-25)**. Régén Release 8-langues exécutée sur `bef3bc6c` (GO jsboige direct), 64/64 PDFs + 9834 images, exit 0, **vraiment fraîche post-#595** (cf §3.3). Le risque résiduel « 16 commits master depuis régén 12 juin » (ancien §7) est **levé**. Reste : verdict visuel ai-01 (point 1 analogue pour PDFs). Go-live sur régén fraîche 2026-06-25.
-3. **DNN #131 couplé** — **po-2023 recommande : DÉ-COUPLER.** Tagger v0.9.0 assets-only maintenant ; upgrade DNN (cible 10.3.2 + 2sxc 21, actée #458) en jalon ops post-release séparé. Justification complète + chiffrement effort migration 12 templates (~4-6h, code-only) : `docs/dnn/UPGRADE-ASSESSMENT.md` §10 (PR #593). Résumé : assets complets & vérifiés ; upgrade DNN = tâche ops VPS (jsboige only, pas automatable) ; site actuel fonctionnel (9.11.1 + 2sxc 21.07) ; les 2 CVE critiques = dette sécu, pas bloqueur de livraison des assets.
+1. **Validation pixel RTL/CJK des SVGs** (#3.2) — ✅ **VERDICT SOURCE-LEVEL ai-01 = PASS** (technique). Pixel eyeball jsboige optionnel (le pixel-RTL est figé en coordonnées absolues ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset).
+2. **Verdict visuel PDFs** — ✅ **FAIT = PASS représentatif** (ai-01, 2026-07-01 08:50). Régén Release fraîche 2026-07-01 sur `18b4d023`+#614, 64/64 PDFs + 1229 img/lang ×8, exit 0, **vraiment fraîche post-#592/#595/#607** (cf §3.3). Bug #216 tenu, multilingue/RTL/CJK validés. Reste à ai-01 : couverture Tarot recto-verso (#119) + en/pt latin (risque faible, prochain tick). Go-live sur régén fraîche 2026-07-01.
+3. **DNN #131 couplé** — ✅ **MIGRATION FULL-IIS FERMÉE (2026-07-01)** : `dnn.argumentum.myia.io` LIVE full-IIS direct (HTTP 200/85 KB, 0× « Something went wrong », HTTPS SAN 9D80D4CC), DB SQL Express + PortalAlias table clean, stopgap `dnn.myia.io` retiré. **Verdict visuel site = jsboige (RDP)**. Le couplage n'est plus un bloqueur assets — po-2023 recommande toujours de **tagger v0.9.0 assets-only** (DNN prod go-live = ops VPS jsboige, séparé).
 4. **Tag v0.9.0** — pas encore posé (`git tag` vide). À poser après arbitrage ci-dessus.
-5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16, patch cf §6). **`docs/RELEASE-NOTES-v0.9.0.md` créé dans cette PR** (n'existait pas sur master `22eb5f34`) — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
-6. **#499 Phase 2 OWL** — ✅ **livré** (PR #592 merged `8d5d275b`) **avant** ce dossier. Mentionné dans release notes. Conservé pour traçabilité — plus une décision ouverte, un fait acquis.
+5. **CHANGELOG.md** — **✅ corrigé dans cette PR** (ligne 16, patch cf §6). **`docs/RELEASE-NOTES-v0.9.0.md` créé dans cette PR** — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
+6. **#499 Phase 2 OWL** — ✅ **livré** (PR #592 merged `8d5d275b`) **avant** ce dossier. Mentionné dans release notes. Fait acquis.
+7. **Params Release vs Debug** (NOUVEAU, ai-01 08:50) — le bundle validé est **Debug** (JPEG Q=85, RGB, CardPen local). Les assets GitHub #134 print-final veulent-ils un run `-c Release` (PNG lossless + CMYK, ~plus lent) ? Le verdict content d'ai-01 vaut indépendamment des params. **→ décision jsboige**.
 
 ---
 
@@ -125,20 +126,22 @@
 
 ## 7. Risques résiduels (honnête)
 
-- **Validation pixel non faite** sur l'ensemble (Playwright cale systématiquement sur le poids SVG — mur d'outillage documenté par ai-01). La validation est donc **source-level**, pas pixel.
-- ~~**Régén release 12 juin non reproduite**~~ — ✅ **LEVÉ** : régén fraîche 2026-06-25 exécutée (§3.3), reproduit fidèlement les counts 12 juin (64 PDFs, 9834 img) + intègre #592/#595. 0 régression détectée.
-- **DNN couplé** : si la release doit attendre la migration DNN (10.3.2 + 2sxc 21), le go-live glisse.
-- **Note de procédure (stale-harvest)** : la régên 2026-06-25 a initialement servi le cache harvest (10 juin, pré-#595) — détecté (log `"Skip existing image"` + 0 Chromium) et corrigé par **clobber targeted Virtues** + re-régên (Chromium invoqué, harvests frais 02:33). Leçon : clobber MANDATORY avant régên post-fix-localization (le count identique ne prouve pas la fraîcheur — seule l'invocation Chromium le prouve). Documenté en mémoire.
+- **Validation pixel** : spot-check Playwright **FAIT = PASS** par ai-01 (2026-07-01) sur `Fallacies_Web_Thumbnails` p1 × 5 langues (zh/ar/fa/ru/es — CJK + RTL + cyrillique + latin). Couverture complète pixel sur l'ensemble non faite (Playwright cale sur le poids SVG/PDF — mur d'outillage documenté). Validation donc **source-level + spot-check représentatif**, pas pixel exhaustif.
+- ~~**Régén release non reproduite**~~ — ✅ **LEVÉ** : régén fraîche **2026-07-01** exécutée (§3.3, `18b4d023`+#614, serial), 0 échec, image count invariant 1229/lang ×8, verdict visuel PASS. 0 régression.
+- ~~**DNN couplé**~~ — ✅ **LEVÉ** : migration full-IIS **fermée** (2026-07-01), `dnn.argumentum.myia.io` LIVE. Le couplage n'est plus un bloqueur assets (DNN prod go-live = ops VPS jsboige, séparé).
+- **Params Debug vs Release** : le bundle validé est Debug (JPEG/RGB). Si print-final requis → run `-c Release` (décision jsboige §5.7). Non-bloquant pour le verdict content.
+- **Note de procédure (stale-harvest + parallélisme)** : la régên 2026-07-01 a required `EnableParallelism=false` (serial) après diagnostic parallélisme=6 → timeout 300s → `Mismatch` throw (résolu par #614 résilience + serial). Leçon : grands sets (Fallacies 1408) timeoutent sous haute concurrence ; serial = capacité CardPen pleine. Documenté en mémoire.
 
 ---
 
 ## 8. Recommandation po-2023
 
 1. **Correction CHANGELOG ligne 16** (§6) — trivial, non-bloquant, à merger avec ce dossier.
-2. **GO jsboige sur verdict source-level SVGs** (ai-01 a validé technique) → débloque le volet MindMap sans attente screenshot.
-3. **Décision régén fraîche** : ✅ **FAITE** — régén fraîche 2026-06-25 exécutée (§3.3). Go-live sur cette régên. Reste verdict visuel ai-01.
-4. **Décision couplage DNN** : attendre #131 ou dé-coupler pour tag v0.9.0 assets-only.
-5. **Tag v0.9.0** après (3) et (4).
+2. **GO jsboige sur verdict visuel PASS ai-01** (SVGs source-level + PDFs spot-check 5 langues) → assets validés.
+3. **Régén fraîche** : ✅ **FAITE** (2026-07-01, §3.3). Go-live sur cette régén.
+4. **Décision params** : Debug (validé) suffisant pour go-live, ou run Release pour print-final ? (§5.7)
+5. **Décision couplage DNN** : dé-coupler — tagger v0.9.0 assets-only (DNN prod = ops VPS jsboige, migration déjà LIVE en recette).
+6. **Tag v0.9.0** après (4) et (5).
 
 ---
 
