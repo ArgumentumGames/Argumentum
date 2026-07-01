@@ -156,6 +156,8 @@ The original Option B recommended stopping at 9.13.x "to fix both CVEs without t
 
 **Decision jsboige (2026-06-07)**: **Option 2 (Stripe Native)** — validé. L'eshop actuel (OpenStore) sera remplacé par Stripe. Épic créée (#445) pour tracker la mise en œuvre. Le compte revendeur existant dans OpenStore sera évalué dans la conception Stripe (Stripe Connect marketplace ou modèle hors-ligne).
 
+> **Capability scoping (2026-07-01)**: see [`445-eshop-stripe-scoping.md`](445-eshop-stripe-scoping.md) for the detailed map of the five §3 requirements (reseller/Connect, zonal shipping, multi-currency, stock, fulfillment). Conclusion: 4/5 are Stripe-native; the one open fork is Connect-vs-direct+offline (a jsboige call); the genuine build work is stock + fulfillment-webhook dispatch. CVE rationale (RazorEngine CVE-2021-46703) stands independently.
+
 ---
 
 ## 6. i18n Strategy for the DNN Site
