@@ -1,21 +1,38 @@
 <#
 .SYNOPSIS
-  DNN sandbox bin/ repair — replace .NET 9 SDK contaminants with net48-compatible versions.
-
-  Step B1 of docs/dnn/go-live-turnkey-checklist.md. Run interactively in jsboige's
-  RDP/sandbox session (the only place the runtime blocker can be cleared).
+  ⛔ SUPERSEDED — DO NOT RUN. This script encodes the INVERTED "B1" thesis and would
+  RE-BREAK the 2sxc-21 sandbox. Kept only as an anti-pattern record. Superseded 2026-07-01.
 
 .DESCRIPTION
-  The 2026-06-25 boot attempt (PR #596 issuecomment-4804068740) characterized: bin/ root
-  carries .NET 9 SDK contract assemblies (asmVer 9.0.0.0) that EF Core 2.1.1 / DNN net48
-  cannot bind -> HTTP 500 0x80131040 cascade. This script is the bounded recipe from
-  sandbox-bootstrap-runbook.md §3, made executable in one command.
+  ⛔ WARNING — THE THESIS BELOW WAS INVERTED FOR THE 2sxc-21 RUNTIME ⛔
 
-  -DryRun is the DEFAULT: prints the plan + current->target version map, changes nothing.
-  Pass -Apply to execute. Backs up bin/ to bin.contaminated.bak before any change.
+  This script was written on the premise that bin/ root carrying .NET 9 SDK contract
+  assemblies (asmVer 9.0.0.0) was "contamination" to be reverted to 6.0.0.0. For the
+  2sxc 21.07 runtime that premise is BACKWARDS and dangerous:
 
-  bin/ is git-tracked. NEVER commit the result — revert after validation:
-    git checkout -- DNNPlatform/bin DNNPlatform/web.config
+    - 2sxc 21.07 is COMPILED AGAINST .NET 9. It REQUIRES System.Text.Json 9.0.0.0,
+      System.Collections.Immutable 9.0.0.0, Microsoft.Bcl.AsyncInterfaces 8.0.0.0, etc.
+    - Reverting these to 6.0.0.0 breaks JsonOptions type-init (MissingMethodException)
+      -> EVERY 2sxc module renders "Something went really wrong in view.ascx".
+    - This is the "B1-inversion" regression observed 2026-06-28; correcting it (deploying
+      the matched .NET 9 BCL stack from the 2sxc 21.07 Install package) is what made the
+      sandbox render at all.
+
+  THE CORRECT RUNTIME (do this instead of running this script):
+    - Canonical bin/ (330 files, matched BCL .NET 9 stack) lives on branch
+      dnn/sandbox-runtime-1032, commit 4b0297ee (DNNPlatform/bin/).
+    - web.config bindingRedirects stay aligned to 9.0.0.0 / 8.0.0.0 (NOT 6.0.0.0).
+    - Authoritative version matrix: see "reference-dnn-2sxc-net48-bcl-stack" in the
+      per-machine memory (~/.claude/projects/.../memory/), and sandbox-bootstrap-runbook.md.
+
+  This file is intentionally NOT deleted (anti-pattern record + header guard below),
+  but -Apply is refused at runtime. The original recipe text follows for archaeology only:
+
+  [ORIGINAL, SUPERSEDED] The 2026-06-25 boot attempt (PR #596 issuecomment-4804068740)
+  characterized bin/ root as carrying .NET 9 SDK contract assemblies that EF Core 2.1.1 /
+  DNN net48 cannot bind -> HTTP 500 0x80131040 cascade. The "revert to 6.0.0.0" recipe here
+  was the bounded response from sandbox-bootstrap-runbook.md §3. That diagnosis was correct
+  for the EF Core 2.1.1 binding error but INCOMPATIBLE with 2sxc 21.07's .NET 9 dependency.
 
 .PARAMETER BinRoot
   Path to DNNPlatform/bin. Default D:\Dev\Argumentum\DNNPlatform\bin.
@@ -32,6 +49,28 @@ param(
   [switch]$Apply
 )
 $ErrorActionPreference = 'Stop'
+
+# ⛔ SUPERSEDED GUARD (2026-07-01) — this script encodes the INVERTED B1 thesis.
+# See header. -Apply is refused: the 6.0.0.0 revert BREAKS 2sxc 21.07 (JsonOptions
+# type-init -> "Something went really wrong"). The canonical .NET 9 BCL bin/ is on
+# branch dnn/sandbox-runtime-1032 (commit 4b0297ee), redirects stay on 9.0.0.0/8.0.0.0.
+if ($Apply) {
+  Write-Host ""
+  Write-Host "================================================================" -ForegroundColor Red
+  Write-Host " repair-bin-net48.ps1 is SUPERSEDED and INVERTED for 2sxc-21." -ForegroundColor Red
+  Write-Host " -Apply refused. Reverting the 5 DLLs to 6.0.0.0 BREAKS 2sxc 21.07" -ForegroundColor Red
+  Write-Host " (JsonOptions type-init -> 'Something went really wrong in view.ascx')." -ForegroundColor Red
+  Write-Host " Canonical .NET 9 BCL bin/ (330 files) =" -ForegroundColor Yellow
+  Write-Host "   branch dnn/sandbox-runtime-1032, commit 4b0297ee" -ForegroundColor Yellow
+  Write-Host " Authoritative matrix: reference-dnn-2sxc-net48-bcl-stack (memory)." -ForegroundColor Yellow
+  Write-Host "================================================================" -ForegroundColor Red
+  Write-Host " Aborting without changes. See script header for the full correction." -ForegroundColor Red
+  return
+}
+Write-Host ""
+Write-Host "NOTE: this script is SUPERSEDED (inverted B1 thesis) — dry-run plan only," -ForegroundColor DarkYellow
+Write-Host "      -Apply is refused. Running it would re-break 2sxc-21. See header." -ForegroundColor DarkYellow
+
 $DryRun = -not $Apply
 $mode = if ($DryRun) { 'DRY-RUN (no changes — pass -Apply to execute)' } else { 'APPLY' }
 
