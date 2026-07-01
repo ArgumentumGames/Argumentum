@@ -1,0 +1,17 @@
+source_dp,source_label,existing_col,existing_token,verdict,proposed_tokens_for_same_field
+"1,111",Appel à l'ignorance,AIF_skosDirectRef,Ignorance_Inference,CONFIRM,Ignorance_Inference
+"4,116",Pente glissante,AIF_skosDirectRef,RequiredSteps_Conflict,CONFLICT,CausalSlipperySlope_Inference;NegativeConsequences_Inference
+"4,116",Pente glissante,AIF_skosExceptionRef,CausalSlipperySlope_Inference,CONFLICT,RequiredSteps_Conflict
+"4,116",Pente glissante,AIF_skosExceptionRef,FullSlipperySlope_Inference,CONFLICT,RequiredSteps_Conflict
+"4,116",Pente glissante,AIF_skosExceptionRef,PrecedentSlipperySlope_Inference,CONFLICT,RequiredSteps_Conflict
+"5,321",Expression vague,AIF_skosDirectRef,VagueVerbalClassification_Inference,CONFIRM,VagueVerbalClassification_Inference
+"5,3212",Pente glissante sémantique,AIF_skosExceptionRef,VerbalSlipperySlope_Inference,SILENT,(none)
+"6,31121",Effet de simple exposition,AIF_skosExceptionRef,Example_Inference,SILENT,(none)
+"6,31123",Apophénie,AIF_skosExceptionRef,Sign_Inference,CONFLICT,OtherCausalFactorsInvolved_Conflict;SignFromOtherEvents_Conflict
+"6,311234",Preuve anecdotique,AIF_skosExceptionRef,InductiveInference_Scheme,CONFLICT,WeakestLink_Conflict
+"6,312",Biais émotionnels,AIF_skosDirectRef,OppositeConsequences_Conflict,CONFLICT,Bias_Inference
+"6,312",Biais émotionnels,AIF_skosExceptionRef,Preference_Scheme,SILENT,(none)
+"6,31212",Biais d'autocomplaisance,AIF_skosExceptionRef,PositiveConsequences_Inference,SILENT,(none)
+"6,312311",Justification de l’effort,AIF_skosExceptionRef,Waste_Inference,SILENT,(none)
+"6,321",Biais d’attribution,AIF_skosExceptionRef,Example_Inference,CONFLICT,OtherCausalFactorsInvolved_Conflict
+"6,322",Essentialisme,AIF_skosExceptionRef,Preference_Scheme,CONFLICT,BiasedClassification_Conflict

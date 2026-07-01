@@ -122,9 +122,46 @@ rationale, and one row per AIF ref with mappingType). The structured JSON is reg
 from the checkpoint; omitted from the commit to limit repo weight (cf. #415/#621 — repo is already
 2.05 GiB, 100 % historical).
 
+## Stage 2 — dry-run diff against existing AIF (prep for the expert gate)
+
+**Read-only, 0 write.** [`141-aif-stage2-diff.py`](141-aif-stage2-diff.py) diffs the Stage-1 sidecar
+against the AIF values **already on the taxonomy**. The existing AIF footprint is tiny — only
+**12 of 1232 non-card nodes (0.97 %)** carry any pre-existing AIF value (4 `DirectRef` + 10
+`ExceptionRef` → 12 unique) — so the diff is tight and high-signal, and the **other 1220 nodes are
+entirely net-new** (no conflict possible). Across the 16 existing-token rows:
+
+| Verdict | Count | Meaning |
+|---|---:|---|
+| CONFIRM | 2 | gpt-5.5 independently re-derived the **exact** expert token — strong signal the closed-set produces real Walton mappings |
+| CONFLICT | 9 | gpt-5.5 proposed a different token (or field) → **surface for adjudication** |
+| SILENT | 5 | gpt-5.5 stayed silent on a field the existing data fills → gate must not auto-DROP existing values |
+
+**The 2 CONFIRMS** (highest value): `1,111` Appel à l'ignorance → `Ignorance_Inference`, and
+`5,321` Expression vague → `VagueVerbalClassification_Inference`. On both, the generator reproduced
+the expert's exact DirectRef token with no prompt priming — independent corroboration.
+
+**The 9 CONFLICTs** split two ways:
+- **Field-swap + churn (1 node, 4 rows)** — `4,116` Pente glissante: existing assigns
+  `RequiredSteps_Conflict`→DirectRef and the `*SlipperySlope_Inference` trio→ExceptionRef; gpt-5.5
+  inverts that allocation (puts `CausalSlipperySlope_Inference` in DirectRef, `RequiredSteps_Conflict`
+  in ExceptionRef), drops `Full`/`PrecedentSlipperySlope`, adds `NegativeConsequences_Inference`. Same
+  token family, **disagreement on field allocation** — a schema-convention call for the gate.
+- **Token disagreement (5 nodes, 5 rows)** — frank divergence on the best Walton scheme:
+  `6,31123` Apophénie (`Sign_Inference`→`OtherCausalFactorsInvolved`/`SignFromOther`), `6,31234`
+  Preuve anecdotique (`InductiveInference_Scheme`→`WeakestLink_Conflict`), `6,312` Biais émotionnels
+  (`OppositeConsequences_Conflict`→`Bias_Inference`), `6,321` Biais d'attribution
+  (`Example_Inference`→`OtherCausalFactorsInvolved_Conflict`), `6,322` Essentialisme
+  (`Preference_Scheme`→`BiasedClassification_Conflict`).
+
+**Honest read:** Stage-1 candidates are conservative and self-consistent, but where expert AIF
+already exists they **diverge more often than confirm (9 vs 2)** — so the ratification gate must
+treat the 12 existing-AIF nodes as **adjudication, not auto-apply**, and must **preserve existing
+values** on the 5 SILENT fields. The full diff is in
+[`141-aif-stage2-diff.csv`](141-aif-stage2-diff.csv) (16 rows).
+
 ## Next (gated post-release)
 
-- **Stage 2** — dry-run diff against any existing AIF values on the taxonomy.
+- **Stage 2** — ✅ dry-run diff done (above); the gated WRITE is deferred to Stage 3.
 - **Stage 3** — expert/jsboige ratification gate: decide the `relatedMatch`/`exactMatch` schema
   extension, drop the `none`/`noMatch` hedges, prioritize high-confidence (>0.8) candidates, then
   write ratified pairs via the `DatasetUpdater` prompt+config adaptation (#141).
