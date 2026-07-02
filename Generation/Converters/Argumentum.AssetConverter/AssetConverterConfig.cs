@@ -617,7 +617,13 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 				await Task.WhenAll(tasks);
 			}
 
-
+			// #632: Ghostscript CMYK+OutputIntent post-pass. Runs AFTER all other stages
+			// (incl. PDF generation) so it operates on already-written PDFs — can be run
+			// standalone on an existing bundle (Mode=PdfCmykPostProcess) without re-harvest.
+			if (Mode.HasFlag(ConverterMode.PdfCmykPostProcess))
+			{
+				await global::Argumentum.AssetConverter.PdfCmykPostProcess.PdfCmykPostProcessConfig.Apply(this);
+			}
 
 			// Handling for None or unrecognized values
 			if (Mode == ConverterMode.None)

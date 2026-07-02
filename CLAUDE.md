@@ -124,14 +124,17 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 | Aspect | Debug (`dotnet run`) | Release (`-c Release`) |
 |--------|----------------------|------------------------|
 | Print&Play image format | JPEG Q=85 (~71 MB Tarot) | PNG lossless (~222 MB) |
-| CMYK conversion | Disabled (RGB) | Per-image `ConvertToCmyk` runs but is a no-op for PNG (PNG cannot carry CMYK). Print-ready CMYK is applied by the Ghostscript post-process pass (`Mode=PdfCmykPostProcess`, #632) on the final PDFs, not per-image. |
+| Per-image CMYK conversion | Disabled (RGB) | Enabled (but see oxymore below) |
 | CardPen source | Local IIS (`UseLocalCardpen=true`) | GitHub Pages URL |
 | Template paths | `JsonFilePathDebug` | `JsonFilePathRelease` |
 | Harvest output | Debug density directory | Release density directory |
+| **PDF CMYK+OutputIntent post-process** (`PdfCmykPostProcess`, #632) | **OFF** | **ON** (Ghostscript post-pass on final PDFs) |
+
+**⚠️ CMYK oxymore (resolved by #632)**: the per-image `ConvertToCmyk` (`DocumentCardSet.cs`) runs under Release, but the image is then written as **PNG** which cannot carry CMYK — Magick re-encodes to RGB on the write, so the per-image conversion is effectively a no-op for the PNG path. The bundle therefore ships **RGB-300-lossless** (FlateDecode, 0 DeviceCMYK — verified via `pdfimages -list`). The **authoritative CMYK path is the Ghostscript post-process** (`PdfCmykPostProcess`, new flag `ConverterMode.PdfCmykPostProcess = 1<<15`): it converts the final PDF to DeviceCMYK and embeds the SWOP OutputIntent. See `PdfCmykPostProcess/README.md`.
 
 **Override**: Set `ForceReleaseParams = true` in JSON config to use Release params in Debug builds.
 
-**Key files with Debug/Release pairs**: `DocumentCardSet.cs` (CMYK), `PdfManager.cs` (JPEG), `WebBasedGeneratorConfig.cs` (CardPen URL, template paths), `MindMapDocumentConfig.cs` (paths), `HarvestManager.cs` (URLs).
+**Key files with Debug/Release pairs**: `DocumentCardSet.cs` (CMYK), `PdfManager.cs` (JPEG), `WebBasedGeneratorConfig.cs` (CardPen URL, template paths), `MindMapDocumentConfig.cs` (paths), `HarvestManager.cs` (URLs), `PdfCmykPostProcessConfig.cs` (GS post-process enable, #632).
 
 ### Known Fragile Areas
 1. SVG disambiguation in mind map generation
