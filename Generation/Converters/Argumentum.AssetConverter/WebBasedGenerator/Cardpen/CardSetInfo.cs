@@ -148,6 +148,8 @@ namespace Argumentum.AssetConverter
 		// ScenariiPrintAndPlayFull = all 167 scenarii (no filter), vs ScenariiPrintAndPlay = the 27 demo scenarii (print_and_play=1).
 		public static readonly string FallaciesPrintAndPlayLight = "Fallacies-Print&Play-Light";
 		public static readonly string ScenariiPrintAndPlayFull = "Scenarii-Print&Play-Full";
+		// #645 (Virtues subset) — Light P&P includes a compact "virtue families overview": the root + 7 family heads (8 cards, print_and_play=1), vs Virtues = all 113 cards.
+		public static readonly string VirtuesPrintAndPlayLight = "Virtues-Print&Play-Light";
 		public static readonly string FallaciesWeb = "Fallacies-Web";
 		public static readonly string FallaciesWebLight = "Fallacies-Web-Light";
 		public static readonly string FallaciesWebThumbnails = "Fallacies-Web-Thumbnails";
