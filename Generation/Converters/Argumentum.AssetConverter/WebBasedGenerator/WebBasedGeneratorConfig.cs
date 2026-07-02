@@ -242,6 +242,29 @@ namespace Argumentum.AssetConverter
 						Dpi = 300
 					}
 				},
+				// #645 — Light P&P: same proven Fallacies P&P config, but the historical "print_and_play=1" sample (~35 cards) instead of all real cards (carte 1/2 = 176).
+				new CardSetConfig(){
+					Name =KnownCardSets.FallaciesPrintAndPlayLight,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.FallaciesTaxonomy,
+						CsvFilterField = "print_and_play",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1"
+						}),
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
+						Dpi = 300
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.None,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+						Dpi = 300
+					}
+				},
 				new CardSetConfig(){
 					Name =KnownCardSets.Memo,
 					FaceCardSetInfo = new CardSetInfo()
@@ -283,6 +306,26 @@ namespace Argumentum.AssetConverter
 						{
 							"1"
 						}),
+						RowsetNb = 0,
+						Dpi = 300
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.Scenarii,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Back_fr.json",
+						RowsetNb = 14,  // Requis car template utilise {{rowset.[0].catégorie}}
+						Dpi = 300
+					}
+				},
+				// #645 — Standard P&P: same proven Scenarii P&P config, but ALL 167 scenarii (no print_and_play filter) instead of the 27-card demo sample.
+				new CardSetConfig(){
+					Name =KnownCardSets.ScenariiPrintAndPlayFull,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.Scenarii,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum_Scenarii_Face_fr.json",
 						RowsetNb = 0,
 						Dpi = 300
 					},
@@ -627,7 +670,8 @@ namespace Argumentum.AssetConverter
 					{
 						new DocumentCardSet()
 						{
-							CardSetName = KnownCardSets.ScenariiPrintAndPlay,
+							// #645 — Standard P&P Poker = all 167 scenarii (free digital game), was the 27-card demo sample.
+							CardSetName = KnownCardSets.ScenariiPrintAndPlayFull,
 							NbCopies = 1,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
@@ -643,6 +687,123 @@ namespace Argumentum.AssetConverter
 								WidthMM = 63.5m,   // Standard poker: 2.5" = 63.5mm (was 58mm - incorrect)
 							}
 						}
+					}),
+				},
+				// #645 — Print&Play LIGHT variants (historical Feb-2022 sample: print_and_play=1). Standard docs above carry ALL cards (free digital game).
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_TarotCards_Print&Play_Light_A4_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr", "en"),
+						("fr", "ru"),
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
+					}),
+
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+					PageSize = "A4",
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.RulesPrintAndPlay,
+							NbCopies = 1,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							// #645 Light = historical print_and_play=1 sample (~35 fallacy cards)
+							CardSetName = KnownCardSets.FallaciesPrintAndPlayLight,
+							NbCopies = 1,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							CardSetName = KnownCardSets.MemoPrintAndPlay,
+							NbCopies = 1,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+					}),
+				},
+				new CardSetDocumentConfig()
+				{
+					DocumentName = "Argumentum_PokerCards_Print&Play_Light_A4_fr.pdf",
+					Enabled = true,
+					Translations = new List<(string sourceLang, string destLang)>(new []
+					{
+						("fr", "en"),
+						("fr", "ru"),
+						("fr", "pt"),
+						("fr", "es"),
+						("fr", "ar"),
+						("fr", "fa"),
+						("fr", "zh")
+					}),
+
+					DocumentFormat = CardDocumentFormat.PrintAndPlay,
+					PageSize = "A4",
+					CardSets = new List<DocumentCardSet>(new[]
+					{
+						new DocumentCardSet()
+						{
+							// #645 Light = historical print_and_play=1 sample (27 scenarii)
+							CardSetName = KnownCardSets.ScenariiPrintAndPlay,
+							NbCopies = 1,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 88.9m,
+								WidthMM = 63.5m,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 88.9m,
+								WidthMM = 63.5m,
+							}
+						},
 					}),
 				},
 				new CardSetDocumentConfig()
