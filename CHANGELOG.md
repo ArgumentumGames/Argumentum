@@ -67,9 +67,8 @@ Complete restoration of the generation pipeline from the April 2024 Golden Maste
 
 ### Test Coverage
 
-- **549 tests** pass (up from 0 in April 2024; 0 fail, 5 skips)
+- **548 tests pass**, 5 skips (GUI/infrastructure), 1 known-fail (OWLSharp `rdf:type`/`inScheme` round-trip, pre-existing, tracked #133 — does not affect generated assets)
 - Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
-- 5 skips (Freeplane GUI — requires interactive session; visual/infrastructure-dependent)
 
 ### Migration Notes
 

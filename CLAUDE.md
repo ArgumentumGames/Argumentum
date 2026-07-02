@@ -445,7 +445,7 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 ### Test Coverage (July 2026)
 
-- **549 tests** pass, 0 fail, 5 skips (Freeplane GUI + visual/infrastructure-dependent)
+- **548 tests pass**, 5 skips (GUI/infrastructure), 1 known-fail (`OwlE2EGenerationValidationTests.LoadedOntology_RdfTypeAndInScheme_DroppedByOwl2XmlRoundTrip` — OWLSharp round-trip bug, pre-existing, tracked #133 — does not affect generated assets)
 - Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
 - Build is zero-warning (CS compiler warnings + NuGet audit, #587)
 - Issue #212 tracks Playwright visual regression tests for generated PDFs

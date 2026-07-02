@@ -41,7 +41,7 @@ Restauration complète du pipeline depuis l'état Golden Master (avril 2024, `00
 
 ### 🧪 Qualité
 
-- **549 tests** passent (0 fail, 5 skip = GUI/Freeplane session interactive) — montée depuis 0 en avril 2024.
+- **548 tests** passent (5 skips GUI/infrastructure, 1 known-fail = OWLSharp `rdf:type`/`inScheme` round-trip pré-existant, tracké #133 — n'affecte pas les assets générés) — montée depuis 0 en avril 2024.
 - Build Debug + Release verts, GitGuardian clean.
 - Couverture tests : CsvDiffEngine, SyncSafetyChecker, PdfAssembly, MindMap, ClassMap matrix (Fallacies/Virtues/Scenarii), localisation.
 
