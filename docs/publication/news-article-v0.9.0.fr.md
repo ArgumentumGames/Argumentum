@@ -78,9 +78,11 @@ cellule par cellule, et la cohérence des traductions est désormais déterminis
 traduction automatique, scripts corrects pour les langues non latines). Les **vertus argumentatives**
 et les **167 scénarios** (précédemment traduits à 54 %) sont désormais couverts à 100 %.
 
-Les **cartes mentales** (Fallacies + Virtues) ont été régénérées au format SVG FreeMind, et
-l'**ontologie OWL** (avec alignements SKOS et références AIF) documente la structure formelle de la
-taxonomie — un socle pour la recherche en argumentation computationnelle.
+Les **cartes mentales** ont été régénérées au format SVG FreeMind (Fallacies dans les 8 langues ;
+cartes des Vertus en français, leur localisation dans les autres langues étant différée à une
+version ultérieure), et l'**ontologie OWL** (avec alignements SKOS et références AIF) documente la
+structure formelle de la taxonomie en français et en anglais — un socle pour la recherche en
+argumentation computationnelle.
 
 #### 🖨 Print & Play
 
@@ -100,8 +102,8 @@ Les paquets sont hébergés sur la page [Releases GitHub](https://github.com/Arg
 | **Complet** | Tout le matériel (Tarot, Poker, Print & Play, FallaciesWeb A0/A4, Thumbnails) | les 8 |
 | **Print & Play** | PDFs Print & Play A4 uniquement (impression maison, recto-verso) | les 8 |
 | **Par langue** | Matériel complet pour une langue | au choix |
-| **Cartes mentales** | SVG Fallacies + Virtues | `[PLACEHOLDER — 4 ou 8 langues selon décision scope MindMap]` |
-| **Ontologie** | `argumentum.owl` + documentation | FR |
+| **Cartes mentales** | SVG Fallacies + Virtues | les 8 (FR/EN/RU/PT/ES/AR/FA/ZH) |
+| **Ontologie** | `argumentum.owl` + `argumentum_virtues.owl` (SKOS + AIF) | FR · EN |
 
 Détail par format (Tarot, Poker, Print & Play, FallaciesWeb A0/A4/Thumbnails) et instructions
 d'impression : voir le [catalogue des cartes](cards-catalog.fr.md) et le
@@ -122,7 +124,7 @@ d'impression : voir le [catalogue des cartes](cards-catalog.fr.md) et le
 - [ ] **#134** — Tag `v0.9.0` posé + GitHub Release créée (assets uploadés).
 - [ ] **#131** — DNN **10.3.2 + 2sxc 21** live en production (couplage release validé par jsboige).
 - [ ] **#132** — Déploiement prod complet (runbook Phase 5).
-- [ ] Remplacer tous les `[PLACEHOLDER]` : URL release v0.9.0, date, og:image, scope MindMap (4 ou 8), lien communauté.
+- [ ] Remplacer tous les `[PLACEHOLDER]` : URL release v0.9.0, date, og:image, lien communauté.
 - [ ] Charger l'`og:image` dans le media DNN et référencer son URL finale.
 - [ ] Créer le post dans le module **News5** (DNN), coller le corps FR, régler slug + méta.
 - [ ] Ajouter l'URL canonique au sitemap DNN ; déclarer les `hreflang` aux variantes traduites.

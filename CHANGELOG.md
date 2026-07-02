@@ -5,7 +5,7 @@ All notable changes to the Argumentum project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.9.0] — 2026-06-XX
+## [0.9.0] — 2026-07-XX
 
 ### Added — Multilingual Support (8 Languages)
 
@@ -44,7 +44,7 @@ Complete restoration of the generation pipeline from the April 2024 Golden Maste
 - **CardPen templates**: Restored `argumentsVertueux` CSS class, fixed Scenarii asset paths to GitHub URLs, auto-shrink overflowing card titles (#316), auto-shrink Virtues body text overflow (#420)
 - **CSV injection**: Restored Golden Master CSV injection (no `Replace("\n", "\\n")` — PapaParse handles newlines correctly)
 - **Configuration**: Removed erroneous `RowsetNb=14` for Scenarii CardSet, restored Virtues CardSet (critical for Print&Play Tarot)
-- **SVG generation**: Replaced XSLT-based SVGs with FreeMind Batik SVGs (21 SVGs across FR/EN/RU/PT), automated FreePlane GUI via `SendKeys.SendWait`
+- **SVG generation**: Replaced XSLT-based SVGs with FreeMind Batik SVGs across all 8 languages (FR/EN/RU/PT + ES/AR/FA/ZH, PR #565), automated FreePlane GUI via `SendKeys.SendWait`
 - **Mémo Back cards**: Language-invariant control-break grouping (#449), localized taxonomy labels for all 8 languages (#446), cyrillic font fallbacks + vertical grid auto-fit for RU (#452)
 
 ### Fixed — Data Quality
@@ -67,10 +67,9 @@ Complete restoration of the generation pipeline from the April 2024 Golden Maste
 
 ### Test Coverage
 
-- **159 tests** pass (up from 0 in April 2024; +4 from #465/#28 front/back dissociation)
+- **549 tests** pass (up from 0 in April 2024; 0 fail, 5 skips)
 - Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
-- 1 skip (Freeplane GUI — requires interactive session)
-- 5 skips (visual/infrastructure-dependent)
+- 5 skips (Freeplane GUI — requires interactive session; visual/infrastructure-dependent)
 
 ### Migration Notes
 

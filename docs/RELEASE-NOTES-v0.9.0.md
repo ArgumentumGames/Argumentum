@@ -1,6 +1,6 @@
 # Argumentum v0.9.0 — Release Notes (DRAFT)
 
-**Statut** : DRAFT pour validation jsboige (jalon revue finale WE 27/06)
+**Statut** : DRAFT pour validation jsboige (pré-tag juillet 2026)
 **Auteur** : po-2023 (draft), verdict jsboige
 **Scope** : 8 langues (fr / en / ru / pt / es / ar / fa / zh)
 
@@ -19,7 +19,7 @@ Argumentum v0.9.0 étend l'intégralité du pipeline de génération à **8 lang
 - Couche relationnelle/AIF ajoutée aux Virtues : 12 colonnes (66→78), cross-links Virtue↔Fallacy (`crossLink_Opposes`) et références AIF (`AIF_skosDirectRef`, `AIF_skosMappingType`).
 
 **Assets générés (8 langues)**
-- **PDFs** : CardSets (Tarot, Poker, posters A0, Print&Play, Mémo, Rules) localisés pour les 8 langues. (Régén release fraîche : 64/64 PDFs, 9 834 images, exit 0 — **2026-06-25** sur `bef3bc6c`, post-#592 OWL + #595 Virtues, cf dossier §3.3.)
+- **PDFs** : CardSets (Tarot, Poker, posters A0, Print&Play, Mémo, Rules) localisés pour les 8 langues. (Régén release fraîche : 64/64 PDFs, 9 834 images, exit 0 — **2026-07-01** sur `3e2fa0c0`, post-#640 Rules i18n, cf dossier §3.3.)
 - **MindMap SVGs** : 8 langues via FreeMind/Batik, incluant RTL (ar/fa) et CJK (zh, 5.45 MB — glyphes denses). Polices arabes-capables (Tahoma).
 - **OWL** : ontologie 5.13 MB, SKOS + AIF.
 
@@ -41,7 +41,7 @@ Restauration complète du pipeline depuis l'état Golden Master (avril 2024, `00
 
 ### 🧪 Qualité
 
-- **533 tests** passent (0 fail, 5 skip = GUI/Freeplane session interactive) — montée depuis 0 en avril 2024.
+- **549 tests** passent (0 fail, 5 skip = GUI/Freeplane session interactive) — montée depuis 0 en avril 2024.
 - Build Debug + Release verts, GitGuardian clean.
 - Couverture tests : CsvDiffEngine, SyncSafetyChecker, PdfAssembly, MindMap, ClassMap matrix (Fallacies/Virtues/Scenarii), localisation.
 
