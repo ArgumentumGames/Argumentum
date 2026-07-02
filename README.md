@@ -6,7 +6,7 @@ Welcome to Argumentum, a captivating card game that celebrates the intricate art
 
 Argumentum is a dual-deck card game, with gameplay revolving around drawing a small card, followed by players competing to play and identify fallacy large cards from their hand or a common pot.
 
-Discover more about the game (currently in French) on the project's [website](https://www.argumentum.games).
+Discover more about the game on the project's [website](https://www.argumentum.games). The game materials (cards, mind maps, ontology) are generated in **8 languages**: French, English, Russian, Portuguese, Spanish, Arabic, Farsi, and Chinese.
 
 
 ## Repository Structure
@@ -37,13 +37,13 @@ cd Argumentum
 dotnet build "Argumentum Converters.sln"
 
 # 2. Install Playwright browsers (first time only)
-pwsh Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/playwright.ps1 install chromium
+pwsh Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/playwright.ps1 install chromium
 
 # 3. Run the pipeline (generates images + PDFs)
 dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
 ```
 
-Output goes to `Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/Target/`.
+Output goes to `Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/`.
 
 ### Quick Start (End Users — no build required)
 
@@ -152,6 +152,27 @@ That class makes use of the following components:
 - ImageFil eGenerator manages MagickNet image processing to create individual image files
 - PdfManager is responsible for creating pdf documents using QuestPdf
 - MindMapDocumentConfig hols the logic to manipulate Freemind, SVG and Html mindmaps
+
+
+## Download
+
+Pre-built game materials are available on the [releases page](https://github.com/ArgumentumGames/Argumentum/releases).
+
+### Packages (v0.9.0)
+
+| Package | Contents | Languages |
+|---------|----------|-----------|
+| **Full Package** | All materials (Tarot, Poker, Print&Play, FallaciesWeb A0/A4) | FR · EN · RU · PT · ES · AR · FA · ZH |
+| **Print & Play** | Print&Play A4 PDFs only (home printing, recto-verso) | all 8 |
+| **Per Language** | Complete materials for one language | pick one |
+| **Mind Maps** | Fallacies + Virtues SVG mind maps | FR · EN · RU · PT · ES · AR · FA · ZH |
+| **Ontology** | `argumentum.owl` + `argumentum_virtues.owl` (SKOS + AIF) | FR · EN |
+
+### Printing instructions (Print & Play)
+
+- Print **recto-verso** (duplex, flip on long edge) on A4 heavy paper (160–250 g/m²).
+- `TarotCards_Print&Play_A4` = Rules + Memo + Fallacies; `PokerCards_Print&Play_A4` = Scenarii.
+- Cut along the card edges after printing.
 
 
 ## How to contribute

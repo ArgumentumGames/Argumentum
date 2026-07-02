@@ -143,19 +143,19 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 
 ## Multilingual Support
 
-Languages: French (default), English, Russian, Portuguese
+Languages: French (default), English, Russian, Portuguese, Spanish, Arabic, Farsi, Chinese (8 languages)
 
 Localization is handled via `LocalizationConfig` in the main config:
 - `CardSetLocalizations`: Field mappings per language
 - `MindMapLocalization`: Mind map field translations
 
-CSV fields use language suffixes: `Title`, `Title_en`, `Title_ru`, `Title_pt`
+CSV fields use language suffixes: `Title`, `Title_en`, `Title_ru`, `Title_pt`, `Title_es`, `Title_ar`, `Title_fa`, `Title_zh`
 
 ## Output Directories
 
 Generated files go to:
 ```
-Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/Target/
+Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/
 ├── {lang}/
 │   ├── Documents/              # Final PDFs
 │   └── Harvest/                # Cached .harvest.json files
@@ -168,18 +168,18 @@ Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0/Target/
 
 The pipeline worked correctly before May 2025. A series of "vibecodés" commits introduced regressions.
 
-### Critical Regression - `SkipConfigFile` (Commit `d324bd3b`, Aug 2025)
+### `SkipConfigFile` — deliberate `true` (NOT a regression)
 
-**The #1 cause of pipeline failures**: If `SkipConfigFile = true` in `AssetConverterConfig.cs` (line 31), the JSON config is completely ignored, causing the pipeline to use an incomplete default config.
+`SkipConfigFile` is **deliberately `true`** in `AssetConverterConfig.cs` (line 34): the C# property initializers are the single source of truth, and the JSON config file is **ignored** because `List<(string,string)>` tuples (the `Translations` field) are not correctly serialized to JSON — the JSON round-trip would silently drop localization data. The JSON file is still auto-generated on first run for reference, but it is not read.
 
-**ALWAYS verify**: `SkipConfigFile = false`
+Historical note (commit `d324bd3b`, Aug 2025): `SkipConfigFile = true` was *briefly* a regression when the JSON config was the authoritative source. Since then the C# defaults were made complete and authoritative, so `true` is now correct. **Do not "fix" it to `false`** — editing C# defaults is the way to change config.
 
 ### Stable Dependency Versions
 
 | Package | Version | Notes |
 |---------|---------|-------|
 | QuestPDF | 2022.12.12 | MIT free license, thread-safe issues above this |
-| Magick.NET | 13.5.0 | SVG conversion stability |
+| Magick.NET-Q16-AnyCPU | 14.14.0 | Image processing (per-image CMYK conversion is a no-op for PNG output; CMYK for print is applied via Ghostscript post-process on the final PDFs, see #632) |
 | SkiaSharp.NativeAssets.Win32 | 2.88.6 | Required for QuestPDF |
 | Microsoft.Playwright | 1.43.0 | Browser automation |
 
@@ -421,7 +421,7 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 ### Mind Maps & SVGs — April 2026 ✅ COMPLETE
 
-- 20 FreeMind Batik SVGs generated and committed (4 languages × 5 types)
+- FreeMind Batik SVGs generated and committed across all 8 languages (FR/EN/RU/PT + ES/AR/FA/ZH, PR #565)
 - FreeMind GUI automation via `SendKeys.SendWait` — VALIDATED (commit `46d6cd9b`)
 - Issues #127, #128, #129 closed
 - OWL ontology with SKOS — committed (PR #161), issue #130 closed
@@ -446,11 +446,11 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 - **Pending**: OAuth credentials for end-to-end testing
 - **Tests**: 77 pass / 0 fail / 1 skip (includes CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid tests)
 
-### Test Coverage (April 2026)
+### Test Coverage (July 2026)
 
-- **77 tests** pass, 1 skip (Freeplane GUI — requires interactive session)
-- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, Playwright visual tests
-- Issue #204 tracks expansion (target >= 70, now exceeded)
+- **548 tests pass**, 5 skips (GUI/infrastructure), 1 known-fail (`OwlE2EGenerationValidationTests.LoadedOntology_RdfTypeAndInScheme_DroppedByOwl2XmlRoundTrip` — OWLSharp round-trip bug, pre-existing, tracked #133 — does not affect generated assets)
+- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
+- Build is zero-warning (CS compiler warnings + NuGet audit, #587)
 - Issue #212 tracks Playwright visual regression tests for generated PDFs
 
 ### Prochaines étapes
