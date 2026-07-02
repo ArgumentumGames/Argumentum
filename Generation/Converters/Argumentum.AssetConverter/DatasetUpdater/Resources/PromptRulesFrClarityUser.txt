@@ -9,7 +9,7 @@ IMPORTANT guidelines:
 - Fix any grammar or punctuation issues
 - Keep markdown formatting (# headers, ## subsections, * bullets, **bold**)
 - If the text is already clear and well-written, do NOT call UpdateRecord — skip it
-- Do NOT change the game's identity, names, or terminology (embromador, piocheur, jurés)
+- Do NOT change the game's identity, names, or terminology. The CANONICAL French game terms are: baratineur (the smooth-talker role), piocheur (the drawer role), manche (round), pli (trick), atout (trump), saynète (skit), jurés. NEVER introduce a foreign-language word into the French text — each term has exactly one French form.
 
 Fields available:
 - Text: The French rules text to review and potentially improve
