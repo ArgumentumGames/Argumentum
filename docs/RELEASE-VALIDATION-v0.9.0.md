@@ -74,11 +74,13 @@
 - ✅ **Verdict visuel Release ai-01 = PASS** (2026-07-01 20:55, pdftoppm 120dpi + pdfimages/pdfinfo colorspace) : **#119 Rules-first** (Print&Play FR p1 = livret Règles en premier), **recto-verso** propre (faces p1 / 6 dos p2), **#216 pas de fuite FR** (FR/EN/RU/PT dans la bonne langue), **micro-RU PK79 RÉSOLU** (garble `чшск-то` disparu sur harvest frais, confirme diagnostic stale-harvest), rendu 300 PPI net 0 artefact.
 - ⚠️ **Finding 1 — CMYK absent (appel à décision jsboige)** : ai-01 a vérifié le colorspace au niveau image **et** document sur FR Tarot : **198 DeviceRGB / 0 DeviceCMYK / 0 OutputIntent / 0 ICCBased**. Toutes les images = RGB, encoding **FlateDecode lossless** (0 DCTDecode). Le bundle Debug est **identique** (RGB + Flate + 300 PPI). → Le différentiateur `-c Release` est la **losslessness (Flate vs JPEG DCT)**, **PAS le CMYK** : le path CMYK Release (`DocumentCardSet.cs`) ne s'est pas matérialisé. RGB-300-lossless est imprimable (conversion imprimeur), donc non-bloqueur print, mais **si CMYK embarqué est requis pour l'imprimeur → investigation du path Release** (§5.7).
 
-### 3.4 OWL Ontologie
+### 3.4 OWL Ontologie — BILINGUE EN/FR (régén fraîche 2026-07-02 sur `c2a9b761`, #634)
 
-- `docs/ontology/argumentum.owl` — **5.13 MB (5 378 765 bytes)**, SKOS + AIF.
+- `docs/ontology/argumentum.owl` — **5,314,381 B (5.07 MB)**, SKOS + AIF, **1 408 fallacies**, littéraux **bilingues EN/FR** (5 558 EN + 4 861 FR), 2 816 `prefLabel`, 1 408 `broader` (hiérarchie complète). **Régén fraîche 2026-07-02** sur `c2a9b761` (précédent commit `d206e59c` datait du 2026-03-28, stale ~3 mois — était BLOQUEUR TAG ; taille -64 KB vs stale car le contenu EN/FR CSV a évolué).
+- `docs/ontology/argumentum_virtues.owl` — **862,709 B (842 KB), NOUVEAU** (#592) : 223 Virtues, 223 `aif:goodTenorOf`, 7 familles, littéraux bilingues FR/EN (884 FR + 641 EN). Absent du commit `d206e59c` (pré-#592) — désormais committé.
+- ⚠️ **Finding scope (downgrade claims honnête)** : le générateur OWL n'embarque **QUE EN+FR** — les 6 autres langues de la release (RU/PT/ES/AR/FA/ZH) **ne sont PAS** dans l'OWL. L'OWL est une ontologie de référence bilingue (FR canonical + EN secondary), **pas** multilingue 8-langues. Les claims docs « 8 langues » ne s'appliquent **pas** à l'OWL : CSV/PDF/SVG = 8 langues, OWL = EN+FR bilingue (par construction du générateur, `OwlGeneratorConfig` mono-`DefaultLanguage`).
 - #133 (publication OWL) reste ouvert ; bug round-trip OWLSharp (`rdf:type`/`skos:inScheme` droppés) contourné en scoping readers sur annotations survivantes (`prefLabel`, `DeclarationAxioms`).
-- **#499 Phase 2 OWL** — ✅ **MERGED** (PR #592 → master `8d5d275b`) : `VirtueOwlGeneratorConfig` + `VirtueOwlDocumentConfig` + `aif:goodTenorOf`, mono-corpus, 540/0/5 tests. L'OWL inclut désormais les métadonnées relationnelles Virtues. Documenté dans les release notes de cette PR.
+- **#499 Phase 2 OWL** — ✅ **MERGED** (PR #592 → master `8d5d275b`) : `VirtueOwlGeneratorConfig` + `VirtueOwlDocumentConfig` + `aif:goodTenorOf`, mono-corpus. L'OWL inclut désormais les métadonnées relationnelles Virtues (fichier `argumentum_virtues.owl` committé via cette régén #634).
 
 ### 3.5 DNN (#131)
 
