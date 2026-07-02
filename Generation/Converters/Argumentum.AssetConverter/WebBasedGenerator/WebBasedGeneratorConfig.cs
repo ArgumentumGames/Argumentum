@@ -265,6 +265,29 @@ namespace Argumentum.AssetConverter
 						Dpi = 300
 					}
 				},
+				// #645 (Virtues subset) — Light P&P: same proven Virtues config, filtered to the historical "families overview" sample (print_and_play=1 -> root + 7 family heads = 8 cards) instead of all 113 virtue cards.
+				new CardSetConfig(){
+					Name =KnownCardSets.VirtuesPrintAndPlayLight,
+					FaceCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.VirtuesTaxonomy,
+						CsvFilterField = "print_and_play",
+						CsvFilterValues = new List<string>(new []
+						{
+							"1",
+						}),
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Virtues_Face_fr.json",
+						Dpi = 300
+					},
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.None,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+						Dpi = 300
+					}
+				},
 				new CardSetConfig(){
 					Name =KnownCardSets.Memo,
 					FaceCardSetInfo = new CardSetInfo()
@@ -732,6 +755,26 @@ namespace Argumentum.AssetConverter
 							// #645 Light = historical print_and_play=1 sample (~35 fallacy cards)
 							CardSetName = KnownCardSets.FallaciesPrintAndPlayLight,
 							NbCopies = 1,
+							SaveOriginalImage = false,
+							FrontCards = new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							},
+							BackCards =  new DocumentCard()
+							{
+								BorderMM = 0,
+								HeigthMM = 113,
+								WidthMM = 60,
+							}
+						},
+						new DocumentCardSet()
+						{
+							// #645 (Virtues subset) Light = "families overview" (print_and_play=1 -> root + 7 family heads = 8 cards). Mirrors Standard Virtues (ConvertToCmyk, 113x60mm).
+							CardSetName = KnownCardSets.VirtuesPrintAndPlayLight,
+							NbCopies = 1,
+							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
