@@ -143,6 +143,11 @@ namespace Argumentum.AssetConverter
 		public static readonly string ScenariiPrintAndPlay = "Scenarii-Print&Play";
 		public static readonly string RulesPrintAndPlay = "Rules-Print&Play";
 		public static readonly string MemoPrintAndPlay = "Memo-Print&Play";
+		// #645 — Print&Play "Light" (historical sample, print_and_play=1) vs "Standard" (all cards, free digital game).
+		// FallaciesPrintAndPlayLight = the 35 Feb-2022 demo fallacies (filter print_and_play=1), vs FallaciesPrintAndPlay = all 176 real cards.
+		// ScenariiPrintAndPlayFull = all 167 scenarii (no filter), vs ScenariiPrintAndPlay = the 27 demo scenarii (print_and_play=1).
+		public static readonly string FallaciesPrintAndPlayLight = "Fallacies-Print&Play-Light";
+		public static readonly string ScenariiPrintAndPlayFull = "Scenarii-Print&Play-Full";
 		public static readonly string FallaciesWeb = "Fallacies-Web";
 		public static readonly string FallaciesWebLight = "Fallacies-Web-Light";
 		public static readonly string FallaciesWebThumbnails = "Fallacies-Web-Thumbnails";
