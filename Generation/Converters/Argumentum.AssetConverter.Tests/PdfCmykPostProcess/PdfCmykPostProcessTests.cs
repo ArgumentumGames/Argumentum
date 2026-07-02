@@ -110,6 +110,22 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
         }
 
         [Fact]
+        public void BuildPdfxDefPostscript_uses_single_brace_pdfmark_object_names()
+        {
+            var ps = PdfCmykPostProcessor.BuildPdfxDefPostscript(@"C:\profiles\SWOP.icc");
+
+            // Regression pin (#641 review): "{{" in a NON-interpolated C# string segment is a
+            // literal double brace; GS parses {{icc_PDFX}} as a nested procedure and aborts with
+            // a typecheck error on /_objdef (empirically reproduced with GS 10.07.1 → exit 1,
+            // zero OutputIntent written). pdfmark named objects must be single-brace.
+            ps.Should().NotContain("{{");
+            ps.Should().NotContain("}}");
+            ps.Should().Contain("[/_objdef {icc_PDFX} /type /stream /OBJ pdfmark");
+            ps.Should().Contain("/DestOutputProfile {icc_PDFX}");
+            ps.Should().Contain("[{Catalog} <</OutputIntents [ {OutputIntent_PDFX} ]>> /PUT pdfmark");
+        }
+
+        [Fact]
         public void Magick_icc_profile_extracts_nonempty_swop_bytes()
         {
             // The ICC profile used both by the per-image ConvertToCmyk conversion AND by this

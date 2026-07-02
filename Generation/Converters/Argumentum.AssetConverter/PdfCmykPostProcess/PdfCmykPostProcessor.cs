@@ -170,13 +170,17 @@ namespace Argumentum.AssetConverter.PdfCmykPostProcess
             // Normalize to a Postscript-compatible absolute path (forward slashes, escaped backslashes for the (…) literal).
             var psIccPath = iccPath.Replace("\\", "/");
 
+            // Postscript pdfmark named objects use SINGLE braces ({icc_PDFX}). Only the first
+            // segment below is interpolated ($"…"); the plain "…" segments must therefore use
+            // single braces — "{{" in a non-interpolated segment stays a literal double brace,
+            // which Ghostscript parses as a nested procedure and dies with a typecheck error.
             return $"/ICCProfile ({psIccPath}) def\n"
-                + "[/_objdef {{icc_PDFX}} /type /stream /OBJ pdfmark\n"
-                + "[{{icc_PDFX}} <</N 4>> /PUT pdfmark\n"
-                + "[{{icc_PDFX}} ICCProfile (r) file /PUT pdfmark\n"
-                + "[/_objdef {{OutputIntent_PDFX}} /type /dict /OBJ pdfmark\n"
-                + "[{{OutputIntent_PDFX}} <</S /GTS_PDFX /Type /OutputIntent /DestOutputProfile {{icc_PDFX}} /OutputConditionIdentifier (CGATS TR 001) /Info (U.S. Web Coated \\(SWOP\\) v2) /RegistryName (http://www.color.org)>> /PUT pdfmark\n"
-                + "[{{Catalog}} <</OutputIntents [ {{OutputIntent_PDFX}} ]>> /PUT pdfmark\n";
+                + "[/_objdef {icc_PDFX} /type /stream /OBJ pdfmark\n"
+                + "[{icc_PDFX} <</N 4>> /PUT pdfmark\n"
+                + "[{icc_PDFX} ICCProfile (r) file /PUT pdfmark\n"
+                + "[/_objdef {OutputIntent_PDFX} /type /dict /OBJ pdfmark\n"
+                + "[{OutputIntent_PDFX} <</S /GTS_PDFX /Type /OutputIntent /DestOutputProfile {icc_PDFX} /OutputConditionIdentifier (CGATS TR 001) /Info (U.S. Web Coated \\(SWOP\\) v2) /RegistryName (http://www.color.org)>> /PUT pdfmark\n"
+                + "[{Catalog} <</OutputIntents [ {OutputIntent_PDFX} ]>> /PUT pdfmark\n";
         }
 
         /// <summary>Builds the Ghostscript argument list (ai-01 POC-validated, #632).</summary>
