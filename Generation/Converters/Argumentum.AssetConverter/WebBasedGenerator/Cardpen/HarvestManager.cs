@@ -382,13 +382,23 @@ public class HarvestManager : IAsyncDisposable
 		var currentHarvest = new CardSetHarvest();
 		var page = await GetFreePage(browser);
 
+		// #651 deadlock fix: the previous handler logged EVERY browser console message as 5
+		// verbatim Log lines directly on Playwright's event-dispatch thread. Under a full
+		// clean-slate harvest CardPen floods the console during cardpen.write.generate; each
+		// message triggered slow synchronous file I/O (File.AppendAllText under lock) plus
+		// AnsiConsole writes (Spectre.Console is NOT thread-safe → concurrent access from the
+		// harvest thread AND the event thread). This starved/stalled the Playwright transport
+		// so Goto/Evaluate never returned → indefinite 0-CPU freeze with no timeout (reproducible
+		// deadlock, po-2023 3/3 at the Rules harvest). Fix: capture ERROR-level messages only,
+		// into a lock-free queue (no I/O, no AnsiConsole on the event thread), drained on the
+		// main thread after generation. Normal-path console spam is dropped (pure debug noise).
+		var consoleErrors = new System.Collections.Concurrent.ConcurrentQueue<string>();
 		void Page_Console(object sender, IConsoleMessage msg)
 		{
-			Log("--- CONSOLE MESSAGE RECEIVED ---");
-			Log($"Type: {msg.Type}");
-			Log($"Text: {msg.Text}");
-			Log($"Location: {msg.Location}");
-			Log("--- END CONSOLE MESSAGE ---");
+			if (msg.Type == "error")
+			{
+				consoleErrors.Enqueue($"[BROWSER error] {msg.Text} @ {msg.Location}");
+			}
 		}
 		page.Console += Page_Console;
 
@@ -465,6 +475,8 @@ public class HarvestManager : IAsyncDisposable
 		finally
 		{
 			page.Console -= Page_Console;
+			// Drain any captured browser console errors on the main thread (safe I/O + AnsiConsole here).
+			while (consoleErrors.TryDequeue(out var err)) { Logger.Log(err, MessageType.Problem); }
 			ReleasePage(page);
 		}
 
