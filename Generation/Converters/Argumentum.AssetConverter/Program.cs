@@ -370,6 +370,30 @@ namespace Argumentum.AssetConverter
 						Logger.LogSuccess($"Documentation générée avec succès dans {outputDir}");
 						return;
 					}
+					else if (args[0].Equals("--pdf-cmyk", StringComparison.OrdinalIgnoreCase))
+					{
+						// #632 - Standalone Ghostscript CMYK + OutputIntent post-pass on an EXISTING bundle.
+						// Runs ONLY ConverterMode.PdfCmykPostProcess: no harvest, no PDF regeneration - it
+						// discovers the PDFs already under the Target directory and converts them in place.
+						// Forces Release params so the pass is enabled even from a Debug build: the whole
+						// point of this entry point is to apply Release-quality CMYK to a bundle regenerated
+						// on a machine WITHOUT Ghostscript, from the one machine that has GS. Ghostscript must
+						// be resolvable: either on PATH, or prepend the GS bin dir to PATH before launching
+						// (the .NET child process inherits it). If GS cannot be found, the stage skips every
+						// PDF with a warning rather than crashing.
+						Logger.LogTitle("Mode post-traitement CMYK des PDF (#632)");
+						
+						var cmykConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var cmykConfig = AssetConverterConfig.GetConfig(cmykConfigFileName, out var _);
+						
+						// Only the CMYK post-pass - replaces the default harvest+PDF Mode.
+						cmykConfig.Mode = ConverterMode.PdfCmykPostProcess;
+						// Enable the Release-gated CMYK stage regardless of the build configuration.
+						cmykConfig.ForceReleaseParams = true;
+						
+						await cmykConfig.Apply().ConfigureAwait(false);
+						return;
+					}
 				}
 
 				var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
