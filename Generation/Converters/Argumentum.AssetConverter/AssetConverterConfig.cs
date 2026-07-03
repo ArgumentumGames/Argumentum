@@ -238,14 +238,32 @@ namespace Argumentum.AssetConverter
 						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
 					}),
 				},
-				// Virtue root title translation (data is FR-only, only tree root name changes)
+				// Virtue text fields: FR property names → localized property names (#636 §2).
+				// Wired for En/Ru/Pt/Es (data present in CSV + Virtue entity). Ar/Fa/Zh not yet mapped on the Virtue entity → deferred, render FR.
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
-						nameof(VirtueMindMapDocumentConfig.TitleExpression)
+						nameof(VirtueMindMapDocumentConfig.TitleExpression),
+						nameof(VirtueMindMapDocumentConfig.DescriptionExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						("Vertus", new List<(string Language, string destText)>(new []{("en", "Virtues"), ("ru", "Dobrodeteli"), ("pt", "Virtudes"), ("es", "Virtudes") }) )
+						(nameof(Virtue.TitleFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.TitleEn)), ("ru", nameof(Virtue.TitleRu)), ("pt", nameof(Virtue.TitlePt)), ("es", nameof(Virtue.TitleEs))}) ),
+						(nameof(Virtue.DescriptionFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.DescriptionEn)), ("ru", nameof(Virtue.DescriptionRu)), ("pt", nameof(Virtue.DescriptionPt)), ("es", nameof(Virtue.DescriptionEs))}) ),
+					}),
+				},
+				// Virtue family hierarchy: FR names → localized names.
+				// Order: most specific first (Subsubfamily > Subfamily > Family) to avoid partial matches.
+				new DocumentLocalization(){
+					TargetProperties = new List<string>(new []
+					{
+						nameof(VirtueMindMapDocumentConfig.FamilleExpression),
+						nameof(VirtueMindMapDocumentConfig.SousFamilleExpression),
+						nameof(VirtueMindMapDocumentConfig.SoussousFamilleExpression),
+					}),
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						(nameof(Virtue.SubsubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubsubfamilyEn)), ("ru", nameof(Virtue.SubsubfamilyRu)), ("pt", nameof(Virtue.SubsubfamilyPt)), ("es", nameof(Virtue.SubsubfamilyEs))}) ),
+						(nameof(Virtue.SubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubfamilyEn)), ("ru", nameof(Virtue.SubfamilyRu)), ("pt", nameof(Virtue.SubfamilyPt)), ("es", nameof(Virtue.SubfamilyEs))}) ),
+						(nameof(Virtue.FamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.FamilyEn)), ("ru", nameof(Virtue.FamilyRu)), ("pt", nameof(Virtue.FamilyPt)), ("es", nameof(Virtue.FamilyEs))}) ),
 					}),
 				},
 				// Document name: _fr. → _en./_ru./_pt.

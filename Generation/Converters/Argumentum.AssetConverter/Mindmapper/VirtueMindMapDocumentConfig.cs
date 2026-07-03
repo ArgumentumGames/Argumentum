@@ -34,7 +34,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private static readonly System.Diagnostics.StackTrace temp1 = new();
 		private static readonly System.Drawing.Color temp2 = Color.AliceBlue;
 
-		const string DefaultTitleExpression = @"{item.Text}";
+		// #636 §2: reference the raw FR-suffixed property so MindMapLocalization StaticConversions can rewrite it per language (TitleFr→TitleEn/Ru/Pt/Es). FR is a no-op (item.Text => TitleFr).
+		const string DefaultTitleExpression = @"{item.TitleFr}";
 
 		public string TitleExpression { get; set; } = DefaultTitleExpression;
 
@@ -61,7 +62,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public bool AddNodePath { get; set; } = false;
 
 
-		const string DefaultFamilleExpression = @"{item.Family}";
+		const string DefaultFamilleExpression = @"{item.FamilyFr}";
 		public string FamilleExpression { get; set; } = DefaultFamilleExpression;
 
 		[IgnoreDataMember]
@@ -75,7 +76,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		const string DefaultSousFamilleExpression = @"{item.SubFamily}";
+		const string DefaultSousFamilleExpression = @"{item.SubfamilyFr}";
 		public string SousFamilleExpression { get; set; } = DefaultSousFamilleExpression;
 
 		[IgnoreDataMember]
@@ -89,7 +90,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-		const string DefaultSoussousFamilleExpression = @"{item.SubSubFamily}";
+		const string DefaultSoussousFamilleExpression = @"{item.SubsubfamilyFr}";
 		public string SoussousFamilleExpression { get; set; } = DefaultSoussousFamilleExpression;
 
 		[IgnoreDataMember]
@@ -105,7 +106,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string DescriptionExpression { get; set; } =
 @"
 <p>
-    {HttpUtility.HtmlEncode(item.Description)}
+    {HttpUtility.HtmlEncode(item.DescriptionFr)}
 </p>
 ";
 
