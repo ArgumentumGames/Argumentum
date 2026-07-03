@@ -27,7 +27,18 @@ This table records, for each legacy row, the repo record it maps to and the migr
 
 **Partner-edited cells (authentic juliadespb content differing from repo, non-garbage):** 25 across 24 rows. All are preserved verbatim in the archived `Cards (archive 24x5)` tab — nothing was overwritten destructively.
 
-> **Note on NO-MATCH (12 rows):** these are **variant game rules** not present in the repo `Cards/Rules/` CSV (which holds only the base game, Rules_01..15 + RulesPP_01..06). The legacy sheet bundled multiple game variants in one tab — "Le Bingo mixologie argumentative" (row 7), "Le dernier beau parleur" (row 10), "Le moulin à baratin" (row 15), "La parlote coinchée" (row 20), and their sub-rows. **They are preserved verbatim in `Cards (archive 24x5)`** — NO-MATCH means "no repo counterpart to mirror", not data loss. A future scope (out of #642) could promote these variants into the repo if the base-game-only CSV is to be extended.
+> **⚠️ Correction (2026-07-03):** an earlier version of this note (and the PR #656 description) stated the 12 NO-MATCH rows were "variant game rules **not present in the repo**". **That conclusion was WRONG.** Verified against the repo (`Cards/Rules/Argumentum Rules - Cards.csv`), the 4 variants **are present**:
+>
+> - `Rules_07` = "Le Bingo mixologie argumentative"
+> - `Rules_09` = "Le dernier beau parleur"
+> - `Rules_11` = "Le moulin à baratin"
+> - `Rules_13` = "La parlote coinchée"
+>
+> (The base game "L'école des menteurs" = `Rules_01`–`Rules_06`.) The repo holds the **full 15-card set** (Rules_01..15), not "base game only" as the original note claimed.
+>
+> **What the 12 NO-MATCH actually mean:** a **layout-alignment artefact**, not missing content. The legacy GSheet used a **24-fine-row layout** (each rule split into title row + material row + install row…); the repo uses a **condensed 15-card structure** (the #438/#250 editorial restructure merged each rule into a single cell with embedded `\n`). The row-by-row sentence-overlap matcher could not align GSheet title-rows ("# Argumentum ## Le Bingo…") against the merged repo cards (Rules_07 = title + matériel + installation in one cell), so it reported NO-MATCH. The content is intact: the 24→15 restructure lost **0 character** (16 446 FR chars identical before/after, 0 section dropped — verified by ai-01).
+>
+> **Net:** the migration lost no data. The clean sheets mirror the full 15-card repo (including all 4 variants); the legacy tab is archived verbatim. The NO-MATCH count reflects a granularity mismatch between two valid layouts, nothing more.
 
 ## Why row-to-row mapping is lossy
 
