@@ -41,6 +41,38 @@ reproduced by re-running that tool — this is its Phase-2 *interpretation*, not
 The `Published/` .NET build artifacts alone are **~1.2 GB of the 2.05 GiB** and are **100 % regenerable**
 (0 at HEAD — they were committed then removed, but linger in history).
 
+## Affinement (2026-07-03, base `9c19e51a`) — Mindmapper gap + refreshed pack
+
+Re-measured on the current master (`9c19e51a`, was `33b1c0bc` at proposal time). Two findings sharpen
+the plan:
+
+**1. Pack grew, regenerable zones stable.** `size-pack` 2.05 → **2.08 GiB**, 3 → **4 packs**, in-pack
+objects 25 857 → **29 725** (+3 868). The growth is **text/code only** (`other` zone 882.8 → 946.7 MB);
+the regenerable binary zones (Published/, Downloads, .resources) are byte-for-byte unchanged. **Conclusion:
+the bloat source is not recurring** — no new build artifacts were committed; the pack drift is ordinary
+history growth. The strip target is unchanged in nature.
+
+**2. GAP in the proposed `--path` set — 186.7 MB of Mindmapper build binaries missed.** The proposal's
+`git filter-repo --path` prefixes (`.../AssetConverter/Published`, `Cartes/Generation/Converters`) are
+**exact-prefix** matches. They do **not** catch two sibling build-output trees:
+
+| Missed tree | History | Why missed |
+|---|---:|---|
+| `Generation/Converters/Argumentum.AssetConverter/Mindmapper/Published/` | **129.2 MB** | `.../AssetConverter/Mindmapper/Published` ≠ prefix `.../AssetConverter/Published` |
+| `Cartes/Generation/Mindmap/Mindmapper/Published/` | **57.5 MB** | `Cartes/Generation/Mindmap` ≠ prefix `Cartes/Generation/Converters` |
+| **Gap total** | **186.7 MB** | would survive the proposed rewrite |
+
+Top missed blobs: `Mindmapper` osx-x64 (71.6 MB), `Mindmapper.exe` win-x64 (57.5 MB ×2 trees). These are
+**regenerable `dotnet publish` output** — same class as the main `Published/`: the Mindmapper project
+source (`.csproj`, `.sln`, `MindMapConfig.cs`) is committed in history, the binaries are deleted at HEAD
+(0 at HEAD), and `.REMOVED.git-id` sentinel files alongside them confirm the team already un-tracked them
+as build artifacts. **They belong in the strip.** (They were misclassified into the `other` zone by the
+audit's path regex — which is why the proposal's 1.2 GB Published figure under-counted the true build-
+binary weight.)
+
+**Corrected strip target: ~1.8 GB regenerable** (proposal said ~1.557 GB; the +186.7 MB Mindmapper gap
+was the difference). Net: a rewrite that ignores this gap leaves 186.7 MB on the table.
+
 ## The reduction opportunity (costed)
 
 Targeting the **fully-regenerable zones** only (build artifacts, DNN zips, .resources):
@@ -48,11 +80,13 @@ Targeting the **fully-regenerable zones** only (build artifacts, DNN zips, .reso
 | Target | Strippable history | Notes |
 |---|---:|---|
 | `Published/` .NET builds | **~1.2 GB** | `dotnet publish` output; 0 at HEAD |
+| **Mindmapper/Published/ (2 trees)** | **~187 MB** | `dotnet publish` output; 0 at HEAD — **was missed, see affinement** |
 | `DNNPlatform/.../Downloads/*.zip` | **~205 MB** | Print&Play pipeline output; 0 at HEAD |
 | `DNNPlatform/.../{Install,ExtensionPackages}/*.resources` | **~150 MB** | re-downloadable 2sxc/DNN pkgs; 0 at HEAD |
-| **Total regenerable** | **≈ 1.55–1.6 GB** | would take the repo from **2.05 GiB → ~0.45–0.5 GiB** |
+| **Total regenerable** | **≈ 1.8 GB** | would take the repo from **2.08 GiB → ~0.45–0.5 GiB** |
 
 **Out of scope for stripping** (design sources — preserve, or migrate to Git LFS separately):
+
 - `Cards/Packaging/` (96.9 MB), `Generation/Sketch/argumentum.sketch` (45.1 MB) — these are
   **source-of-truth design assets**, not build output. LFS migration is a separate, lower-risk
   decision (does not require history rewrite for future files).
@@ -67,11 +101,15 @@ git clone --no-local https://github.com/ArgumentumGames/Argumentum arg-reduce
 cd arg-reduce
 
 # 2. Strip regenerable build artifacts from ALL history
+#    NOTE (2026-07-03 affinement): the two Mindmapper/Published --path entries are REQUIRED —
+#    the original 3-path set missed 186.7 MB of regenerable dotnet-publish output (see affinement).
 pip install git-filter-repo
 git filter-repo \
   --path DNNPlatform/Portals \
   --path "Generation/Converters/Argumentum.AssetConverter/Published" \
+  --path "Generation/Converters/Argumentum.AssetConverter/Mindmapper/Published" \
   --path "Cartes/Generation/Converters" \
+  --path "Cartes/Generation/Mindmap" \
   --path-glob "*.resources" \
   --invert-paths
 
@@ -88,8 +126,9 @@ git push --force origin master   # ⚠️ coordinated (see risks)
    contributor) is invalidated and must **re-clone**. Worker downtime during the window. The 3
    cluster machines all pull from `origin` — a coordinated re-clone is required or they diverge.
 2. **Open PRs break.** Any PR open at rewrite time will not rebase cleanly (its base commits no
-   longer exist). **8 PRs are currently open** (#627, #603, #596, #597, #599, #600, #601, #627-area).
-   They must be merged or closed **before** the rewrite.
+   longer exist). **3 PRs are currently open** (#596, #661, #662 — down from 8 at proposal time;
+   #627/#603/#597/#599/#600/#601 have since merged or closed). They must be merged or closed
+   **before** the rewrite. *Lower risk than at proposal time.*
 3. **Tag / release integrity.** If `v0.9.0` is tagged on the **old** history, the rewrite invalidates
    it (the tag points at a commit that no longer exists in the new chain). Either (a) tag **after**
    the rewrite, or (b) accept re-tagging. **Strong reason to either rewrite before the v0.9.0 tag, or
