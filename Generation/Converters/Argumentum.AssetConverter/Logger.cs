@@ -61,7 +61,7 @@ public class Logger
 		}
 		catch (Exception ex)
 		{
-			AnsiConsole.MarkupLine($"[bold red]Error during logger initialization: {ex.Message}[/]");
+			AnsiConsole.MarkupLine($"[bold red]Error during logger initialization: {Markup.Escape(ex.Message)}[/]");
 		}
 	}
 
@@ -90,47 +90,57 @@ public class Logger
 		{
 			// Log initialization errors to the console to ensure they are visible
 			// as the file logger itself may be the source of the problem.
-			AnsiConsole.MarkupLine($"[bold red]Failed to write to log file '{LogFile}'. Exception: {ex.Message}[/]");
+			AnsiConsole.MarkupLine($"[bold red]Failed to write to log file '{Markup.Escape(LogFile)}'. Exception: {Markup.Escape(ex.Message)}[/]");
 		}
 
-		switch (messageType)
+		try
 		{
-			case MessageType.Info:
-			case MessageType.Success:
-			case MessageType.Warning:
-				var markup = messageType == MessageType.Info ? "dim" : messageType == MessageType.Warning ? "sandybrown" : "green3";
-				if (LogInfo || messageType != MessageType.Info)
-				{
-					AnsiConsole.MarkupLine($"{Stopwatch.Elapsed}: [{markup}]{Markup.Escape(message)}[/]");
-				}
-				break;
-			case MessageType.Title:
-				AnsiConsole.WriteLine();
-				AnsiConsole.WriteLine();
-				var rule = new Rule($"[bold]{message}[/]");
-				AnsiConsole.Write(rule);
-				AnsiConsole.WriteLine();
-				break;
-			case MessageType.Problem:
-				AnsiConsole.WriteLine();
-				AnsiConsole.MarkupLine($"[bold red]{message}[/]");
-				AnsiConsole.WriteLine();
-				break;
-			case MessageType.Instructions:
-			case MessageType.Explanations:
-				AnsiConsole.WriteLine();
-				var header = messageType.ToString();
-				var color = messageType==MessageType.Instructions ? Color.Yellow : Color.PaleGreen1;
-				AnsiConsole.Write(
-					new Panel(message)
-						.Header(header)
-						.Collapse()
-						.RoundedBorder()
-						.BorderColor(color));
-				AnsiConsole.WriteLine();
-				break;
-			default:
-				throw new ArgumentOutOfRangeException(nameof(messageType), messageType, null);
+			switch (messageType)
+			{
+				case MessageType.Info:
+				case MessageType.Success:
+				case MessageType.Warning:
+					var markup = messageType == MessageType.Info ? "dim" : messageType == MessageType.Warning ? "sandybrown" : "green3";
+					if (LogInfo || messageType != MessageType.Info)
+					{
+						AnsiConsole.MarkupLine($"{Stopwatch.Elapsed}: [{markup}]{Markup.Escape(message)}[/]");
+					}
+					break;
+				case MessageType.Title:
+					AnsiConsole.WriteLine();
+					AnsiConsole.WriteLine();
+					var rule = new Rule($"[bold]{Markup.Escape(message)}[/]");
+					AnsiConsole.Write(rule);
+					AnsiConsole.WriteLine();
+					break;
+				case MessageType.Problem:
+					AnsiConsole.WriteLine();
+					AnsiConsole.MarkupLine($"[bold red]{Markup.Escape(message)}[/]");
+					AnsiConsole.WriteLine();
+					break;
+				case MessageType.Instructions:
+				case MessageType.Explanations:
+					AnsiConsole.WriteLine();
+					var header = messageType.ToString();
+					var color = messageType==MessageType.Instructions ? Color.Yellow : Color.PaleGreen1;
+					AnsiConsole.Write(
+						new Panel(Markup.Escape(message))
+							.Header(header)
+							.Collapse()
+							.RoundedBorder()
+							.BorderColor(color));
+					AnsiConsole.WriteLine();
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(messageType), messageType, null);
+			}
+		}
+		catch (Exception renderEx) when (renderEx is not ArgumentOutOfRangeException)
+		{
+			// Console rendering must never propagate (#630): the #614 per-set resilience calls
+			// Log() from its catch path, so a Spectre StyleParser failure here would kill the
+			// whole run instead of degrading gracefully. Fall back to plain (markup-free) output.
+			AnsiConsole.WriteLine($"{Stopwatch.Elapsed}: [{messageType}] {message} (console render failed: {renderEx.Message})");
 		}
 
 
@@ -193,7 +203,7 @@ public class Logger
 		}
 		catch (Exception logEx)
 		{
-			AnsiConsole.MarkupLine($"[bold red]Failed to write exception to log file '{LogFile}'. Exception: {logEx.Message}[/]");
+			AnsiConsole.MarkupLine($"[bold red]Failed to write exception to log file '{Markup.Escape(LogFile)}'. Exception: {Markup.Escape(logEx.Message)}[/]");
 		}
 	}
 
