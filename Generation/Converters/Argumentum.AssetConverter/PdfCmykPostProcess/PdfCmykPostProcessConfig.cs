@@ -45,8 +45,11 @@ namespace Argumentum.AssetConverter.PdfCmykPostProcess
         /// </summary>
         public string IccProfilePath { get; set; }
 
-        /// <summary>Per-PDF Ghostscript timeout in seconds (default 180).</summary>
-        public int TimeoutSeconds { get; set; } = 180;
+        /// <summary>Per-PDF Ghostscript timeout in seconds (default 900).</summary>
+        // #632 follow-up (2026-07-03): raised 180→900s. Large TarotCards/P&P/Poker PDFs
+        // (200+ pages PNG-lossless, ~123MB) need 250-350s each; 180s timed out on 23/80
+        // during Bundle v3 CMYK conversion. 900s gives comfortable headroom.
+        public int TimeoutSeconds { get; set; } = 900;
 
         /// <summary>
         /// Entry point dispatched from <see cref="AssetConverterConfig.Apply"/> when
