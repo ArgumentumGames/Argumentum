@@ -19,9 +19,10 @@ Argumentum v0.9.0 étend l'intégralité du pipeline de génération à **8 lang
 - Couche relationnelle/AIF ajoutée aux Virtues : 12 colonnes (66→78), cross-links Virtue↔Fallacy (`crossLink_Opposes`) et références AIF (`AIF_skosDirectRef`, `AIF_skosMappingType`).
 
 **Assets générés (8 langues)**
-- **PDFs** : CardSets (Tarot, Poker, posters A0, Print&Play, Mémo, Rules) localisés pour les 8 langues. (Régén release fraîche : 64/64 PDFs, 9 834 images, exit 0 — **2026-07-01** sur `3e2fa0c0`, post-#640 Rules i18n, cf dossier §3.3.)
+- **PDFs** : CardSets (Tarot, Poker, posters A0, Print&Play Standard/Light, Mémo, Rules) localisés pour les 8 langues. **Bundle v3 (2026-07-03) : 80 PDFs (10 types × 8 langues, expansion P&P #648-650)**, post-process Ghostscript CMYK (#632/#652) = 80/80 DeviceCMYK + OutputIntent SWOP (cf dossier v4 §3.3 pour le détail).
 - **MindMap SVGs** : 8 langues via FreeMind/Batik, incluant RTL (ar/fa) et CJK (zh, 5.45 MB — glyphes denses). Polices arabes-capables (Tahoma).
-- **OWL** : ontologie 5.13 MB, SKOS + AIF.
+- **OWL** : ontologie **bilingue EN/FR uniquement** (Fallacies 5.07 MB + Virtues 842 KB, #592/#499 Phase 2), SKOS + AIF. ⚠ **Scope honnête** : l'OWL n'embarque PAS les 6 autres langues de la release (générateur mono-`DefaultLanguage`) — le claim 8 langues s'applique à CSV/PDF/SVG, pas à l'OWL.
+- **Print&Play numérique gratuit** : le jeu numérique est entièrement gratuit — **Light** (colonne `print_and_play` + Virtues overview subset) et **Standard** (toutes les cartes), #645/#648-650.
 
 **Infrastructure pipeline**
 - DatasetUpdater : migration SDK OpenAI .NET v2.10.0, multi-provider, function calling + structured output.
