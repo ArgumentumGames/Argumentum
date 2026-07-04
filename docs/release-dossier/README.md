@@ -1,5 +1,7 @@
 # v0.9.0 Release — Validation Dossier (for jsboige)
 
+> ⚠️ **Superseded (2026-06-19 snapshot).** The counts and facts below predate **bundle v3** (80 PDFs DeviceCMYK + SWOP, Print&Play Standard/Light #648-650, Ghostscript post-process #632/#652, OWL EN+FR only, tests 578 pass). **Current reference: [`docs/RELEASE-VALIDATION-v0.9.0.md`](../RELEASE-VALIDATION-v0.9.0.md) (dossier v4, refreshed 2026-07-04).** This framework dossier stays as the archive of the 17–19 June validation; its body is intentionally not rewritten.
+
 **Issue:** [#134 — publish new GitHub release with updated game materials](https://github.com/ArgumentumGames/Argumentum/issues/134)
 **Author:** Claude Code @ myia-po-2023 (worker)
 **Date:** 2026-06-17 (refreshed 2026-06-19)

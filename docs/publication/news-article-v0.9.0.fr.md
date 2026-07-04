@@ -109,7 +109,7 @@ Détail par format (Tarot, Poker, Print & Play, FallaciesWeb A0/A4/Thumbnails) e
 d'impression : voir le [catalogue des cartes](cards-catalog.fr.md) et le
 [snippet downloads du dossier release](../release-dossier/README.md#5-readme-download-section-snippet-ready-to-paste--issue-134-asks-for-it).
 
-> **64 PDFs au total** = 8 langues × 8 types de documents, parité vérifiée.
+> **80 PDFs au total** = 8 langues × 10 types de documents (incl. Print&Play Standard + Print&Play Light, #648-650), parité vérifiée. Les 80 PDFs convertis en DeviceCMYK + OutputIntent SWOP via le post-process Ghostscript (#632/#652).
 
 #### 💬 Rejoindre la communauté
 
