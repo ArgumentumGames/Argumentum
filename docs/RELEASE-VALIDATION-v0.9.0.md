@@ -1,9 +1,9 @@
 # Argumentum v0.9.0 — Dossier de validation release
 
-**Date** : 2026-07-01 (refresh v3 : régén RELEASE fraîche print-final + verdict visuel Release PASS ai-01)
-**Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + micro-RU résolu) — en attente de 2 décisions jsboige (CMYK + titre PT) puis tag go-live
-**Branche** : `docs/release-v0.9.0-validation-v2`
-**Master de référence** : `3e2fa0c0` (build zéro-warning CS+NU, **549/0/5 tests**, Magick.NET 14.14.0). Régén RELEASE 8-lang **2026-07-01** sur `3e2fa0c0` + #614 (`-c Release` PNG lossless + CMYK, `EnableParallelism=false` serial, CardPen local). **Deux bundles GDrive** : Debug `review-v0.9.0-2026-06-28/` (verdict PASS représentatif) **ET** Release print-final `review-v0.9.0-RELEASE-2026-07-01/` (verdict Release PASS, 64 PDFs + 33 SVGs + manifest).
+**Date** : 2026-07-04 (refresh v4 : bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS)
+**Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + verdict #140 multilingue 8 langues RENDU + verdict #632 colorimétrique CMYK RENDU) — en attente d'arbitrages jsboige (SVG #636, mnémoniques #654, couplage go-live DNN) puis tag
+**Branche** : `docs/release-validation-v090-refresh-80pdfs`
+**Master de référence** : `a41cbda6` (build zéro-warning CS+NU, tests ~566/1/5, Magick.NET 14.14.0). **Refresh v4** : bundle **v3** régénéré 2026-07-03 sur `27442add` = **80 PDFs** (10 types × 8 langues, expansion P&P #648-650) PNG-lossless puis **80/80 convertis CMYK** via post-process Ghostscript (#632/#652). Bundle GDrive `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`).
 
 ---
 
@@ -11,7 +11,7 @@
 
 Établir l'état vérifiable de la release v0.9.0 (scope = **8 langues** : fr / en / ru / pt / es / ar / fa / zh), lister ce qui est **livré et vérifié** vs ce qui **nécessite validation jsboige** avant le tag go-live. Ce dossier est le GATE de publication (#134).
 
-> **Note de méthode** : ce dossier est bâti sur les **assets committés** + **deux régéns fraîches exécutées le 2026-07-01** sur master `3e2fa0c0` + #614 (`ContinueOnHarvestSetFailure=true`, `EnableParallelism=false` serial, worktree isolé). Le run **Debug** (JPEG Q85, CardPen local) a produit 64/64 PDFs, 1229 images/langue × 8, `Generation finished.` — bundle `review-v0.9.0-2026-06-28/`. Le run **Release** (`-c Release`, PNG lossless + CMYK, CardPen local) a produit 64/64 PDFs, `Generation finished.`, 0 échec — bundle `review-v0.9.0-RELEASE-2026-07-01/`. Les compteurs sont **re-vérifiés au 2026-07-01**.
+> **Note de méthode** : ce dossier est bâti sur les **assets committés** + **3 cycles de régén** : (1) Debug 2026-06-28 (JPEG Q85) → bundle `review-v0.9.0-2026-06-28/` ; (2) Release 2026-07-01 (`-c Release` PNG lossless, `3e2fa0c0`+#614) → bundle `review-v0.9.0-RELEASE-2026-07-01/` ; (3) **Bundle v3 2026-07-03** (`27442add`, régén PNG-lossless + post-process Ghostscript CMYK #632/#652) → bundle `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` = **80/80 PDFs CMYK** (expansion P&P #648-650 : 10 types × 8 langues). Les compteurs sont **re-vérifiés au 2026-07-04**.
 >
 > **Verdict visuel ai-01** : (1) **Debug = PASS représentatif** (08:50, spot-check `Fallacies_Web_Thumbnails` p1 zh/ar/fa/ru/es) ; (2) **Release = PASS géométrie/contenu** (20:55, pdftoppm 120dpi + inspection colorspace/encoding) — #119 Rules-first, recto-verso, #216 pas de fuite FR, **micro-RU PK79 garble `чшск-то` RÉSOLU** sur harvest frais, rendu 300 PPI. **2 findings factuels** remontés à jsboige (§3.3 Finding CMYK + §3.6 titre PT), ni l'un ni l'autre bloqueur géométrie/print.
 
@@ -65,14 +65,16 @@
 - ⚠️ **Gap structurel mineur (non-bloquant v0.9.0)** : les Virtues `.content.svg` sont **FR-figés** (le post-processing localise Fallacies mais fige le contenu Virtues en FR — même comportement que la baseline). Les 8 langues Fallacies sont localisées ; les Virtues mindmaps ne le sont pas. Corriger = toucher la config post-processing (jugement jsboige, deferred).
 - ⚠️ **Validation pixel RTL/CJK = À CONFIRMER jsboige** (eyeball `Fallacies_ar.svg` / `Fallacies_zh.svg`). Le pixel-RTL est figé en coordonnées absolues dans le SVG ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset.
 
-### 3.3 PDFs — 8 langues (✅ régén RELEASE fraîche 2026-07-01 + verdict Release PASS)
+### 3.3 PDFs — 8 langues (✅ bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS)
 
-- **64/64 PDFs**, exit 0 — **régén RELEASE fraîche 2026-07-01** (`3e2fa0c0` + #614, Mode `WebBasedImageGeneration | QuestPdfGeneration`, `-c Release` PNG lossless + CMYK, `EnableParallelism=false` serial, CardPen local). 0 échec, 0 HARVEST-FAILURE/timeout/Mismatch. Bundle GDrive **Release** `review-v0.9.0-RELEASE-2026-07-01/` (3.5 GB) + manifest sha256×64 (`regen-1032-RELEASE-manifest.txt`). **Bundle Debug `review-v0.9.0-2026-06-28/` préservé** (comparaison possible).
-- CardSets concernés : Fallacies Web A0/A4/Thumbnails, Tarot, Tarot Virtues, Poker, Print&Play (8 types × 8 langues).
+- **80/80 PDFs CMYK** — bundle **v3** régénéré 2026-07-03 sur `27442add`. Deux phases : (a) régén QuestPDF PNG-lossless = 80 PDFs (10 types × 8 langues, 6.18 GB), exit propre, 0 échec (pivot CardPen local après crash Pages, serial, deadlock #651 résolu) ; (b) **post-process Ghostscript CMYK** (#632, entry-point `--pdf-cmyk` #652) = **80/80 convertis DeviceCMYK + OutputIntent SWOP** (5.30 GB). Preuve : `TarotCards_fr` = DeviceCMYK 195 / DeviceRGB 0 / OutputIntent 3 / ICC SWOP 2 (23 PDFs initialement timeout à 180s, résolus par bump 180→900s #670).
+- **Expansion P&P #648-650** : 64→80 PDFs (+2 doc types = **Print&Play Standard** + **Print&Play Light**, ce dernier = colonne `print_and_play` + Virtues overview). 10 types × 8 langues.
+- CardSets concernés : Fallacies Web A0/A4/Thumbnails, Tarot, Tarot Virtues, Poker, P&P Standard, P&P Light (10 types × 8 langues).
 - **Bug #216 (contamination FR) TENU** : image count invariant (le multilingue n'a pas cassé la structure).
-- **i18n distinct (anti-leak #216 OK)** : 426-444 MB/langue Release, tailles distinctes (pas de FR leaké) ; ar/fa légèrement plus légers (RTL shaping) = attendu.
-- ✅ **Verdict visuel Release ai-01 = PASS** (2026-07-01 20:55, pdftoppm 120dpi + pdfimages/pdfinfo colorspace) : **#119 Rules-first** (Print&Play FR p1 = livret Règles en premier), **recto-verso** propre (faces p1 / 6 dos p2), **#216 pas de fuite FR** (FR/EN/RU/PT dans la bonne langue), **micro-RU PK79 RÉSOLU** (garble `чшск-то` disparu sur harvest frais, confirme diagnostic stale-harvest), rendu 300 PPI net 0 artefact.
-- ⚠️ **Finding 1 — CMYK absent (appel à décision jsboige)** : ai-01 a vérifié le colorspace au niveau image **et** document sur FR Tarot : **198 DeviceRGB / 0 DeviceCMYK / 0 OutputIntent / 0 ICCBased**. Toutes les images = RGB, encoding **FlateDecode lossless** (0 DCTDecode). Le bundle Debug est **identique** (RGB + Flate + 300 PPI). → Le différentiateur `-c Release` est la **losslessness (Flate vs JPEG DCT)**, **PAS le CMYK** : le path CMYK Release (`DocumentCardSet.cs`) ne s'est pas matérialisé. RGB-300-lossless est imprimable (conversion imprimeur), donc non-bloqueur print, mais **si CMYK embarqué est requis pour l'imprimeur → investigation du path Release** (§5.7).
+- ✅ **Verdict contenu #140 = PASS (ai-01, RENDU 2026-07-03)** : 8 langues validées — carte dense p51 rendue EN/ES/RU/AR/FA/ZH (géométrie identique, taxonomie localisée, **RTL AR+FA correct, CJK propre**), covers, **PT #306 fixé** (« A Escola dos Mentirosos »), FR Rules 5 jeux. #119 Rules-first, recto-verso, #216 pas de fuite FR, micro-RU PK79 résolu (confirme diagnostic stale-harvest), rendu 300 PPI.
+- ✅ **Verdict colorimétrique #632 = PASS (ai-01, RENDU 2026-07-03)** : indépendamment vérifié sur fr+ar+zh — images cmyk 4-composantes + GTS_PDFX/OutputIntent présents. Le path CMYK Ghostscript (#632/#652) matérialise ce que le path `DocumentCardSet.cs` ne pouvait pas (PNG détruit le CMYK — oxymore documenté, résolu par le post-process GS).
+- Bundle GDrive **v3** `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`). Bundles précédents (Debug `review-v0.9.0-2026-06-28/`, Release v1 `review-v0.9.0-RELEASE-2026-07-01/`) préservés.
+- ⚠️ **Finding 1 (CMYK) — ✅ RÉSOLU via #632/#652** : le finding original du 2026-07-01 (« 198 DeviceRGB / 0 DeviceCMYK ») est **résolu** par le post-process Ghostscript (ci-dessus). Le bundle v3 = **80/80 DeviceCMYK + OutputIntent SWOP**. Plus d'appel à décision sur le CMYK.
 
 ### 3.4 OWL Ontologie — BILINGUE EN/FR (régén fraîche 2026-07-02 sur `c2a9b761`, #634)
 
@@ -112,12 +114,12 @@
 ## 5. Points nécessitant décision jsboige avant tag
 
 1. **Validation pixel RTL/CJK des SVGs** (#3.2) — ✅ **VERDICT SOURCE-LEVEL ai-01 = PASS** (technique). Pixel eyeball jsboige optionnel (le pixel-RTL est figé en coordonnées absolues ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset).
-2. **Verdict visuel PDFs** — ✅ **FAIT = PASS** (ai-01, 2026-07-01 20:55 verdict Release). Régén RELEASE fraîche 2026-07-01 sur `3e2fa0c0`+#614, 64/64 PDFs PNG lossless + CMYK, exit 0, `Generation finished.`. #119 Rules-first, recto-verso, #216 pas de fuite FR, **micro-RU PK79 résolu**, rendu 300 PPI. Multilingue/RTL/CJK validés. Go-live sur régén Release fraîche 2026-07-01.
+2. **Verdicts visuels PDFs** — ✅ **RENDUS = PASS** (ai-01). (a) Verdict contenu **#140** 8 langues (2026-07-03) : carte dense p51 EN/ES/RU/AR/FA/ZH, RTL/CJK propre, covers, PT #306 fixé, FR Rules 5 jeux. (b) Verdict colorimétrique **#632** (2026-07-03) : DeviceCMYK 4-comp + GTS_PDFX/OutputIntent sur fr+ar+zh. **Bundle v3** = 80/80 PDFs CMYK (Ghostscript #632/#652), 6.5 GB GDrive. #119, recto-verso, #216, micro-RU résolu, 300 PPI. Multilingue/RTL/CJK/CMYK validés.
 3. **DNN #131 couplé** — ✅ **MIGRATION FULL-IIS FERMÉE (2026-07-01)** : `dnn.argumentum.myia.io` LIVE full-IIS direct (HTTP 200/85 KB, 0× « Something went wrong », HTTPS SAN 9D80D4CC), DB SQL Express + PortalAlias table clean, stopgap `dnn.myia.io` retiré. **Verdict visuel site = jsboige (RDP)**. Le couplage n'est plus un bloqueur assets — po-2023 recommande toujours de **tagger v0.9.0 assets-only** (DNN prod go-live = ops VPS jsboige, séparé).
-4. **Tag v0.9.0** — pas encore posé (`git tag` vide). Débloqué côté géométrie/contenu. À poser après les 2 findings ci-dessous (§5.7 + §3.6) + validation visuelle jsboige.
+4. **Tag v0.9.0** — pas encore posé (`git tag` vide). **Techniquement débloqué** : verdicts #140 (contenu) + #632 (CMYK) = PASS, bundle v3 80/80 CMYK livré. Reste les **arbitrages jsboige** : (a) #636 §1 assets SVG Virtues (FreeMind GUI-interactif vs defer post-tag), (b) #654 mnémoniques (scope A/B/global), (c) décision couplage go-live DNN (immédiat vs après portage). Plus le finding titre PT (§3.6).
 5. **CHANGELOG.md** — **✅ corrigé** (ligne 16, patch cf §6, merged via #591). **`docs/RELEASE-NOTES-v0.9.0.md` créé** — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
 6. **#499 Phase 2 OWL** — ✅ **livré** (PR #592 merged `8d5d275b`) **avant** ce dossier. Mentionné dans release notes. Fait acquis.
-7. **Finding CMYK absent (NOUVEAU, ai-01 20:55)** — le bundle Release est **RGB-300-lossless** (FlateDecode), **0 DeviceCMYK/ICC** — le path CMYK `DocumentCardSet.cs` ne s'est pas matérialisé. **→ appel à décision jsboige** : CMYK embarqué requis pour l'imprimeur (→ investigation path Release) ou RGB-300-lossless OK (conversion imprimeur) ? Non-bloqueur print (RGB imprimable).
+7. **~~Finding CMYK absent~~ — ✅ RÉSOLU** (post-process Ghostscript #632/#652). Le finding original du 2026-07-01 (bundle RGB-300-lossless, 0 DeviceCMYK) est **résolu** : le bundle v3 (2026-07-03) = **80/80 DeviceCMYK + OutputIntent SWOP** (§3.3). Plus d'appel à décision sur le CMYK — le verdict #632 = PASS (ai-01). Le path `DocumentCardSet.cs` (oxymore PNG) est remplacé par le post-process GS sur le PDF final.
 8. **Finding titre PT « Roll of the English Channel »** (NOUVEAU, ai-01 20:55, cf §3.6) — homonyme « Manche » (round→géographie), contenu CSV (5 occurrences), PT surface l'anglais cassé. Fix prep po-2024, **PR GATED jsboige**. **→ appel à décision jsboige** : block le tag ou fast-follow post-tag ?
 
 ---
@@ -141,7 +143,7 @@
 - **Validation pixel** : spot-check Playwright **FAIT = PASS** par ai-01 (2026-07-01) sur `Fallacies_Web_Thumbnails` p1 × 5 langues (zh/ar/fa/ru/es — CJK + RTL + cyrillique + latin) + verdict Release (pdftoppm/pdfimages, #119 + recto-verso + micro-RU résolu). Couverture complète pixel sur l'ensemble non faite (Playwright cale sur le poids SVG/PDF — mur d'outillage documenté). Validation donc **source-level + spot-check + colorspace/encoding inspection**, pas pixel exhaustif.
 - ~~**Régén release non reproduite**~~ — ✅ **LEVÉ** : régén **Release** fraîche **2026-07-01** exécutée (§3.3, `3e2fa0c0`+#614, serial `-c Release`), 0 échec, 64/64 PDFs, verdict visuel PASS. 0 régression.
 - ~~**DNN couplé**~~ — ✅ **LEVÉ** : migration full-IIS **fermée** (2026-07-01), `dnn.argumentum.myia.io` LIVE. Le couplage n'est plus un bloqueur assets (DNN prod go-live = ops VPS jsboige, séparé).
-- ~~**Params Debug vs Release**~~ — ✅ **RÉSOLU** : jsboige a validé Release (GO interactif 2026-07-01). Bundle Release `-c Release` (PNG lossless + CMYK visé) produit, verdict PASS. **Caveat honnête** : le CMYK visé ne s'est pas matérialisé (bundle = RGB-300-lossless, §3.3 Finding 1) — appel à décision jsboige si CMYK embarqué requis.
+- ~~**Params Debug vs Release**~~ — ✅ **RÉSOLU** : jsboige a validé Release (GO interactif 2026-07-01). Bundle v3 `-c Release` (PNG lossless) **+ post-process Ghostscript CMYK** (#632/#652) produit, verdict #632 PASS. **Le CMYK visé est désormais matérialisé** : 80/80 DeviceCMYK + OutputIntent SWOP (§3.3).
 - **Finding titre PT cassé** : 1 carte Rules PT affiche « Roll of the English Channel » (homonyme, §3.6). Fix prep po-2024 gated. Non-bloqueur géométrie/print mais décision jsboige (block vs fast-follow).
 - **Note de procédure (stale-harvest + parallélisme + CardPen host)** : la régên Release 2026-07-01 a required `EnableParallelism=false` (serial) après diagnostic parallélisme=6 → timeout 300s → `Mismatch` throw (résolu par #614 résilience + serial). **CardPen Pages = échec structurel** (404 `/Cards/`, #629) → pivot CardPen local (Golden Master, #629 workaround). **Bug Spectre `[HARVEST-FAILURE]`** (#630) court-circuite #614 sur set-failure → 2 bugs tracés post-tag. Documenté en mémoire.
 
@@ -149,11 +151,11 @@
 
 ## 8. Recommandation po-2023
 
-1. **GO jsboige sur verdict Release PASS ai-01** (§3.3 — géométrie #119, recto-verso, #216, micro-RU résolu, 300 PPI) → assets validés côté technique.
-2. **2 findings = 2 calls jsboige** : (a) **CMYK** (§5.7) — RGB-300-lossless suffit ou CMYK embarqué requis (investigation path Release) ? (b) **titre PT** (§3.6) — block le tag ou fast-follow post-tag ?
-3. **Régén fraîche** : ✅ **FAITE** (Release 2026-07-01, §3.3). Go-live sur cette régén (ou Debug bundle préservé).
-4. **Décision couplage DNN** : dé-coupler — tagger v0.9.0 assets-only (DNN prod = ops VPS jsboige, migration déjà LIVE en recette).
-5. **Tag v0.9.0** après (1)+(2)+(4).
+1. **GO jsboige sur verdicts PASS ai-01** (§3.3 — #140 contenu 8 langues + #632 CMYK, géométrie #119, recto-verso, #216, micro-RU résolu, 300 PPI) → assets validés côté technique.
+2. **Arbitrages jsboige restants** : (a) **#636 §1 SVG Virtues** (FreeMind GUI-interactif vs defer post-tag), (b) **#654 mnémoniques** (scope A/B/global), (c) **titre PT** (§3.6 — block vs fast-follow ; note : #640 a résolu le bulk « English Channel » 23 occurrences HIGH, le titre Tarot PT spécifique est possiblement inclus, à confirmer visuellement au tag), (d) **couplage go-live DNN** (immédiat vs après portage i18n #669/#674).
+3. **Régén fraîche** : ✅ **FAITE** (bundle v3 2026-07-03, §3.3, 80/80 CMYK). Go-live sur bundle v3.
+4. **Décision couplage DNN** : dé-coupler — tagger v0.9.0 assets-only (DNN prod = ops VPS jsboige, migration déjà LIVE en recette). Le portage i18n site (#669 mécanisme, #674 refactor Rules) est post-tag.
+5. **Tag v0.9.0** après (1)+(2).
 
 ---
 
