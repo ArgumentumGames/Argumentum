@@ -105,6 +105,23 @@ Representative spread across depth and confidence (all are non-card nodes, `cart
 | Defer (<0.70) | 10/21 (48%) |
 | Verbs exercised | 4/8 (Leverages ×9, IsRelatedTo ×8, Mirrors ×3, Allows ×1) |
 | Fabrication warnings | **0** (closed-set anti-fab held — the #626-validated result) |
+| **Orphan targets** (target not in prod taxonomy) | **0 / 3850 links** (see Target-existence validation below) |
+
+## Target-existence validation (full-scale, code=truth)
+
+The #626 "0 fabrication" claim covers two axes. The closed-set function schema prevents invented verbs/paths by construction; this check independently confirms the **second axis — every model-chosen target decimal_path actually exists in the prod taxonomy**.
+
+**Method**: convert prod comma-form decimal_path to dotted (`2,33422` → `2.3.3.4.2.2`, each digit after the family comma = one segment), then verify every one of #626's 3850 `crossLinks[].target` values is a member of the 1408-node real set.
+
+| Axis | Scope | Result |
+|---|---|---|
+| Invented verbs | full-scale | 0 (closed-set, 8-verb enumeration) |
+| Invented targets (orphans) | full-scale | **0 / 3850 links, 0 / 1232 nodes** |
+| #626 source_dps missing from prod | full-scale | **0 / 1232** |
+
+**Format note (anti-false-finding)**: the conversion is non-obvious — a naïve `dp.replace(",", ".")` turns `1,111` into `1.111` (one segment) and produces a spurious 74% orphan rate. The correct conversion splits each digit after the comma into its own segment (`1,111` → `1.1.1.1`). This was verified against #626's own source_dp encoding (1232/1232 present in prod comma-form) before trusting the target check.
+
+**Implication for Stage-3**: the expert gate can ratify on content merits alone — there are **no structurally-invalid targets to filter out**, and `SkipNonEmpty=true` protects the 22 expert cells. The write-path (#673) is safe to enable once the multi-target adjudication questions above are resolved.
 | Nodes with multi-target adjudication | 5/7 |
 
 **Reading**: the closed-set function-calling design (proposal #673's `UseFunctionCalling=true`) delivers on its promise — **zero invented decimal_paths, zero out-of-set verbs** across the sample. The signal/noise splits ~50/50 at the 0.70 threshold: high-confidence picks (e.g. `4,211`@0.98, `7,32211`@0.95, `1,322`@0.90) are the ratifiable cluster the expert gate would accept; the deep-leaf/low-signal nodes (`4,117`, `6,311227`) correctly self-defer (don't force-fill — the closure-rec's "ratify the net-new high-confidence subset, defer the rest").
