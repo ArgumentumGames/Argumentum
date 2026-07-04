@@ -44,6 +44,23 @@ namespace Argumentum.AssetConverter
 		/// </summary>
 		public bool ContinueOnHarvestSetFailure { get; set; } = true;
 
+		/// <summary>
+		/// Issue #613 (Option C — retry serial): after the parallel harvest loop drains, each
+		/// failed set (collected in the <c>failedSets</c> bag by <c>ContinueOnHarvestSetFailure</c>)
+		/// is re-attempted this many times <b>serially</b> (degree=1, no contention) with a
+		/// backoff between attempts. A large set that timed out under high parallelism often
+		/// succeeds when it has the Playwright/CardPen resources to itself. 0 disables the retry
+		/// pass (failed sets go straight to the aggregate error, #614 behavior). Default 1.
+		/// </summary>
+		public int HarvestSetRetryAttempts { get; set; } = 1;
+
+		/// <summary>
+		/// Backoff in seconds between serial retry attempts of a failed harvest set (issue #613).
+		/// Generous default (30s): the root cause is usually CardPen JS still rendering under
+		/// prior memory/CPU pressure, so an immediate retry would likely re-fail. 0 = no wait.
+		/// </summary>
+		public int HarvestSetRetryBackoffSeconds { get; set; } = 30;
+
 		public int MaxDegreeOfParallelismImages { get; set; } = 3;
 
 		public int MaxDegreeOfParallelismImageTranslations { get; set; } = 2;

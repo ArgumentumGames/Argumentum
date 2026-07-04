@@ -107,6 +107,15 @@ public class HarvestManager : IAsyncDisposable
 			});
 		});
 
+		// Issue #613 (Option C — retry serial): after the parallel loop drains, re-attempt each
+		// failed set serially (degree=1) with backoff. A large set that timed out under high
+		// parallelism often succeeds when it has CardPen/Playwright to itself. Replaces the bag
+		// with whatever still fails after the retry pass. Gated by HarvestSetRetryAttempts (>0).
+		if (Config.HarvestSetRetryAttempts > 0 && !failedSets.IsEmpty)
+		{
+			failedSets = await RetryFailedHarvestSetsAsync(failedSets, targetCardSets, harvestDictionary, funcBrowser);
+		}
+
 		if (!failedSets.IsEmpty)
 		{
 			var summary = string.Join("; ", failedSets.Select(f => $"{f.cardSet}/{f.language}"));
@@ -119,6 +128,99 @@ public class HarvestManager : IAsyncDisposable
 		}
 
 		return harvestDictionary;
+	}
+
+	/// <summary>
+	/// Re-attempts each failed harvest set <b>serially</b> (degree=1) with backoff, after the
+	/// parallel loop has drained (issue #613, Option C). A set that timed out under high
+	/// parallelism frequently succeeds when it has the CardPen/Playwright resources to itself.
+	/// Reuses the exact same <see cref="ProcessLocalizedHarvest"/> call path — which re-renders
+	/// correctly because a failed set never added its key to the dictionary (ContainsKey guard).
+	/// Returns a new bag holding only the sets that STILL fail after their retry attempts.
+	/// </summary>
+	private async Task<ConcurrentBag<(string cardSet, string language, string error)>> RetryFailedHarvestSetsAsync(
+		ConcurrentBag<(string cardSet, string language, string error)> failed,
+		CardSetJob[] targetCardSets,
+		ConcurrentDictionary<(string cardsetName, string language), Func<CardSetHarvest>> harvestDictionary,
+		Func<Task<IBrowser>> funcBrowser)
+	{
+		if (failed.IsEmpty) return failed;
+
+		var attempts = Math.Max(1, Config.HarvestSetRetryAttempts);
+		var backoff = TimeSpan.FromSeconds(Math.Max(0, Config.HarvestSetRetryBackoffSeconds));
+		var residual = new ConcurrentBag<(string cardSet, string language, string error)>();
+		var orderedFailed = failed.OrderBy(f => f.cardSet).ThenBy(f => f.language).ToList();
+
+		Logger.Log($"[HARVEST-RETRY] Retrying {orderedFailed.Count} failed set(s) serially " +
+			$"(attempts={attempts}, backoff={backoff.TotalSeconds}s) — issue #613.");
+
+		foreach (var (cardSet, language, _) in orderedFailed)
+		{
+			var job = targetCardSets.FirstOrDefault(c => c.Name == cardSet);
+			if (job == null)
+			{
+				residual.Add((cardSet, language, "card-set config not found during retry"));
+				continue;
+			}
+
+			var succeeded = await RetryAsync(
+				() => ProcessLocalizedHarvest(job, language, harvestDictionary, funcBrowser),
+				attempts, backoff, $"{cardSet}/{language}");
+
+			if (!succeeded)
+			{
+				residual.Add((cardSet, language, $"still failing after {attempts} serial retry attempt(s)"));
+			}
+		}
+
+		Logger.Log($"[HARVEST-RETRY] Retry pass complete: {orderedFailed.Count - residual.Count} recovered, " +
+			$"{residual.Count} still failing (issue #613).",
+			residual.IsEmpty ? MessageType.Info : MessageType.Problem);
+
+		return residual;
+	}
+
+	/// <summary>
+	/// Pure retry-with-backoff helper (issue #613). Runs <paramref name="action"/> up to
+	/// <paramref name="attempts"/> times, returning <c>true</c> on the first success. On each
+	/// failure except the last, waits <paramref name="backoff"/> before retrying. Returns
+	/// <c>false</c> if every attempt failed (never throws — the last exception is logged and
+	/// swallowed so the caller's aggregate-error path can report the residual set list).
+	/// Extracted as a pure helper so the retry/backoff contract is unit-testable without a
+	/// browser (precedent: <c>ComputeExpectedImageCount</c>).
+	/// </summary>
+	internal static async Task<bool> RetryAsync(Func<Task> action, int attempts, TimeSpan backoff, string label = "")
+	{
+		if (attempts < 1) attempts = 1;
+		Exception lastError = null;
+		for (var attempt = 1; attempt <= attempts; attempt++)
+		{
+			try
+			{
+				await action();
+				if (attempt > 1)
+				{
+					Logger.Log($"[HARVEST-RETRY] '{label}' succeeded on attempt {attempt}/{attempts}.");
+				}
+				return true;
+			}
+			catch (Exception ex)
+			{
+				lastError = ex;
+				if (attempt < attempts)
+				{
+					Logger.Log($"[HARVEST-RETRY] '{label}' attempt {attempt}/{attempts} failed: {ex.Message}. " +
+						$"Backing off {backoff.TotalSeconds}s before retry (issue #613).", MessageType.Problem);
+					if (backoff > TimeSpan.Zero)
+					{
+						await Task.Delay(backoff);
+					}
+				}
+			}
+		}
+		Logger.Log($"[HARVEST-RETRY] '{label}' exhausted {attempts} attempt(s); giving up. " +
+			$"Last error: {lastError?.Message}", MessageType.Problem);
+		return false;
 	}
 
 	public CardSetJob[] GetTargetCardSets()
