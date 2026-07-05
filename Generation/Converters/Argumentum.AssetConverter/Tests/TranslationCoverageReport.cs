@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace Argumentum.AssetConverter.Tests
     /// </summary>
     public class TranslationCoverageReport
     {
+        // HttpClient is intended to be instantiated once and reused (SYSLIB0014: WebClient is
+        // obsolete since .NET 6 — sockets exhaustion + obsolescence). Static field = one instance
+        // for the lifetime of the report generator.
+        private static readonly HttpClient _httpClient = new HttpClient();
+
         private readonly AssetConverterConfig _config;
         private readonly TranslationCoverageConfig _coverageConfig;
         private readonly Dictionary<string, Dictionary<string, Dictionary<string, double>>> _coverageData;
@@ -124,12 +130,9 @@ namespace Argumentum.AssetConverter.Tests
                 List<Fallacy> fallacies;
                 if (taxonomyFilePath.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                 {
-                    // Télécharger le fichier depuis l'URL
-                    using (var client = new System.Net.WebClient())
-                    {
-                        string csvContent = await client.DownloadStringTaskAsync(taxonomyFilePath);
-                        fallacies = ParseCsvContent(csvContent);
-                    }
+                    // Télécharger le fichier depuis l'URL (HttpClient remplace WebClient, obsolète SYSLIB0014)
+                    string csvContent = await _httpClient.GetStringAsync(taxonomyFilePath);
+                    fallacies = ParseCsvContent(csvContent);
                 }
                 else
                 {
