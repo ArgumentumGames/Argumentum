@@ -1,9 +1,9 @@
 # Argumentum v0.9.0 — Dossier de validation release
 
-**Date** : 2026-07-04 (refresh v4 : bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS)
+**Date** : 2026-07-05 (refresh v4.1 : refresh cohérence tag — master `d90ce613`, tests empiriques 578/584, aligné CHANGELOG #689). Refresh v4 (2026-07-04) : bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS.
 **Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + verdict #140 multilingue 8 langues RENDU + verdict #632 colorimétrique CMYK RENDU) — en attente d'arbitrages jsboige (SVG #636, mnémoniques #654, couplage go-live DNN) puis tag
 **Branche** : `docs/release-validation-v090-refresh-80pdfs`
-**Master de référence** : `a41cbda6` (build zéro-warning CS+NU, tests ~566/1/5, Magick.NET 14.14.0). **Refresh v4** : bundle **v3** régénéré 2026-07-03 sur `27442add` = **80 PDFs** (10 types × 8 langues, expansion P&P #648-650) PNG-lossless puis **80/80 convertis CMYK** via post-process Ghostscript (#632/#652). Bundle GDrive `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`).
+**Master de référence** : `d90ce613` (build zéro-warning CS+NU, **tests 578 pass / 1 known-fail #133 / 5 skip / 584 total** [empirique `dotnet test` 2026-07-05, po-2024 #689 + re-vérifié ce tick], Magick.NET 14.14.0). **Refresh v4** : bundle **v3** régénéré 2026-07-03 sur `27442add` = **80 PDFs** (10 types × 8 langues, expansion P&P #648-650) PNG-lossless puis **80/80 convertis CMYK** via post-process Ghostscript (#632/#652). Bundle GDrive `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`).
 
 ---
 
@@ -105,7 +105,7 @@
 |---------|------|-------|
 | Build solution zéro-warning CS | ✅ | PR #587 (master `6caf5833`) |
 | Build zéro-warning NU (NuGet audit) | ✅ | PR #588 (NU1903 clos MIT-pur) |
-| Tests | **549 pass / 0 fail / 5 skip** | test run `3e2fa0c0` ; skip = GUI/Freeplane (session interactive) |
+| Tests | **578 pass / 1 known-fail #133 (OWLSharp round-trip, pre-existing, sans impact assets) / 5 skip / 584 total** | empirique `dotnet test` master `d90ce613` 2026-07-05 (po-2024 #689 + re-vérifié) ; skip = GUI/Freeplane/GSheet (session/creds interactifs) |
 | SkipConfigFile | `true` (C# defaults = source unique) | règle HARD projet |
 | Dépendances stables | QuestPDF 2022.12.12, Magick.NET **14.14.0** (bump 2026-07-01, `dotnet test` GREEN), Playwright 1.43.0 | — |
 
