@@ -18,8 +18,9 @@ Linked: #133/#130 (existing OWL ontology, regenerated to reflect new structures 
 
 The **Fallacious comparison** subfamily (`Subfamily=Fallacious comparison`, Misleading language
 family) has **2 mapped nodes** — pk 833 (d2 subfamily root "Comparaison fallacieuse",
-`BiasedClassification_Conflict` directRef, `skos:broadMatch`) and pk 839 (d3 "Fausse analogie",
-`Analogy_Inference` defeated by `DifferencesUndermineSimilarity_Conflict`, `skos:closeMatch`) —
+`BiasedClassification_Conflict` + `ExceptionSimilarityCase_Conflict` directRefs, `skos:broadMatch`)
+and pk 839 (d3 "Fausse analogie", `Analogy_Inference` defeated by
+`DifferencesUndermineSimilarity_Conflict`, `skos:closeMatch`) —
 across 3 sub-sub clusters: **Faulty comparison** (834-838), **False analogy** (839-843), and
 **Association fallacy** (844-845). **This PR scopes to the False analogy sub-sub**: anchor pk 839 +
 **4 unmapped leaves** (pk 840, 841, 842, 843). The anchor establishes the cluster's pattern —
@@ -48,7 +49,7 @@ From `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv`, family **Misleading 
 
 | pk | text_fr | Subsubfamily | DirectRef | ExceptionRef | MappingType | State |
 |----|---------|--------------|-----------|--------------|-------------|-------|
-| **833** | **Comparaison fallacieuse** (d2) | *(root)* | `BiasedClassification_Conflict` | — | `skos:broadMatch` | **✅ MAPPED (subfamily root)** |
+| **833** | **Comparaison fallacieuse** (d2) | *(root)* | `BiasedClassification_Conflict`, `ExceptionSimilarityCase_Conflict` | — | `skos:broadMatch` | **✅ MAPPED (subfamily root)** |
 | 834 | Comparaison abusive (d3) | Faulty comparison | — | — | — | unmapped (d3 anchor → PR-2) |
 | 835 | Comparaison incomplète | Faulty comparison | — | — | — | unmapped (→ PR-2) |
 | 836 | Classification non exclusive | Faulty comparison | — | — | — | unmapped (→ PR-2) |
