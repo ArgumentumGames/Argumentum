@@ -201,6 +201,72 @@ moves to **PR-2** (Faulty comparison cluster), keeping this PR a single coherent
 
 ---
 
+## 7. Mapping to jsboige's enriched DoD (I-node / RA-node / CA-node decomposition)
+
+The last jsboige comment on #498 enriches the DoD: modeling a fallacy "AIF-style" decomposes the
+argument into **I-nodes** (premises + conclusion), an **RA-node** (the inference principle = the
+Walton scheme, a first-class attackable object), and a **CA-node** (the Conflict Application, typed
+by attack: **undermine** a premise / **undercut** the RA-node / **rebut** the conclusion). This
+section maps the 4 leaves of this cluster to that decomposition. (PR-2 #701 carries the parallel
+section for the Faulty comparison cluster.)
+
+### pk 841 — Analogie étendue → **undercut**
+- **RA-node**: `Analogy_Inference` applied transitively (A~B, A~C ⟹ B~C).
+- **I-nodes**: premise P1 "A~B" (similarity); premise P2 "A~C" (similarity); conclusion C "B~C".
+- **CA-node**: `DifferencesUndermineSimilarity_Conflict`, applied as an **undercut** on the RA-node
+  — the inference (transitivity of similarity) is defective because similarity is not transitive.
+  The conclusion C may still hold; it is the *inference* that is defective. Classic undercut.
+- **CQ that fails**: "is similarity transitive?" — no.
+
+### pk 842 — Argument de la similarité fallacieuse → **undercut**
+- **RA-node**: `Analogy_Inference` (resemblance ⟹ relatedness/causal link).
+- **I-nodes**: premise P "A resembles B"; conclusion C "A and B are linked/related".
+- **CA-node**: `DifferencesUndermineSimilarity_Conflict`, applied as an **undercut** — the
+  resemblance is too superficial to license the inferred link. Again the inference, not the
+  conclusion, is the target.
+- **CQ that fails**: "is the resemblance more than superficial?" — no.
+
+### pk 843 — Fausse équivalence → **undermine**
+- **RA-node**: `Analogy_Inference` (two arguments treated as equivalent).
+- **I-nodes**: premise P "argument X ≡ argument Y (in strength/structure/evidence)"; conclusion C
+  "what holds for X holds for Y".
+- **CA-node**: `DifferencesUndermineSimilarity_Conflict`, applied as an **undermine** on P — the
+  premise "X ≡ Y" is false because X and Y differ in a *relevant* respect. Unlike 841/842, the
+  attack lands on a *premise* (I-node), not the inference itself.
+- **CQ that fails**: "do X and Y differ in a relevant respect?" — yes.
+
+### pk 840 — Pétition de principe analogique → FAIL-LOUD at the **CA-node level**
+- **RA-node**: `Analogy_Inference` (exists — the analogy is the inference).
+- **CA-node**: ⚠ **absent (FAIL-LOUD)** — circularity in analogy would be an **undercut** (the
+  analogy presupposes the disputed assimilation it is meant to establish), but **no native AIF
+  Conflict node captures circularity/question-begging** for analogy. The CA-node cannot be typed
+  without a native conflict token; fabricating one is forbidden (FAIL LOUD, §3 pk 840).
+- This is a different FAIL-LOUD shape from PR-2's pure-comparison leaves (834/835/837): there the
+  **RA-node** was missing (no native comparison scheme); here the **RA-node exists** but the
+  **CA-node** is missing. Both are honest gaps, at different layers of the decomposition.
+
+### Cluster attack-type distribution
+| pk | RA-node | CA-node | Attack type |
+|----|---------|---------|-------------|
+| 840 | `Analogy_Inference` | *(absent — FAIL LOUD)* | would be undercut (circularity) — untyped |
+| 841 | `Analogy_Inference` | `DifferencesUndermineSimilarity_Conflict` | undercut |
+| 842 | `Analogy_Inference` | `DifferencesUndermineSimilarity_Conflict` | undercut |
+| 843 | `Analogy_Inference` | `DifferencesUndermineSimilarity_Conflict` | undermine |
+
+**3 of 4 leaves are undercuts** (the inference is defective, the conclusion may stand) — consistent
+with jsboige's note that "most fallacies live in the undercut." 843 is the lone undermine (the
+premise is false). 840 is the lone FAIL-LOUD (CA missing, not RA).
+
+### Representation note
+As in PR-2, the I-node/RA-node/CA-node decomposition is **recorded here but not serialized** in the
+CSV — it would require new columns (`AIF_attackType`, `AIF_attackedNode`) and is the terminal target
+of jsboige's comment. Recording it in the proposition lets jsboige ratify the attack-typing *before*
+any CSV schema evolution. The two PRs together (PR-1 False analogy + PR-2 Faulty comparison)
+demonstrate the decomposition across both cluster shapes (in-sub-sub anchor + borrowed anchor) and
+both FAIL-LOUD layers (CA-missing vs RA-missing).
+
+---
+
 ## Gate boundaries (HARD — proposition only)
 
 - ❌ No prod CSV write, no DB write, no OWL regen, no `aif:` assertion emitted.
