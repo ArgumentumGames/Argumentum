@@ -164,16 +164,18 @@ def has_latin_mnemonic(cell):
     return bool(cell) and bool(_MNEMONIC_RE.search(cell))
 
 
-def build_conversion_plan(rows):
+def build_conversion_plan(rows, fields=("title",)):
     """Build the per-cell replacement plan for Option B (keep-Latin).
 
     rows: list of dict (DictReader rows), keyed by column name incl. 'pk', 'title_fr',
           'title_ru', ... 'title_fa'. Pass the full Virtues CSV rows.
+    fields: tuple of field prefixes to scan (default title-only). Add 'remark' to also
+          scan remark_<lang> (the ~14 transliterated remark cells — separate scope, opt-in).
 
     Returns a list of OrderedDict entries:
-      {pk, lang, mnemonic, current_title, translit_token, proposed_title}
-    for every transliterated title cell (Option B reverts them to Latin). Ambiguous cells
-    are returned separately via the second return value (list of {pk, lang, current_title,
+      {pk, lang, field, mnemonic, current, translit_token, proposed}
+    for every transliterated cell (Option B reverts them to Latin). Ambiguous cells
+    are returned separately via the second return value (list of {pk, lang, field, current,
     reason}) so the caller can surface them without blocking the clean plan.
     """
     plan = []
@@ -185,39 +187,42 @@ def build_conversion_plan(rows):
             continue
         if pk not in MNEMONIC_PKS:
             continue
-        M = extract_mnemonic_latin(r.get("title_fr", ""))
-        if M is None:
-            # title_fr has no mnemonic for this pk — skip (should not happen for MNEMONIC_PKS).
-            continue
-        for lang in LANGS:
-            cell = r.get(f"title_{lang}", "")
-            if has_latin_mnemonic(cell):
-                continue  # kept-Latin
-            if not cell.strip():
-                # blank cell — not a transliteration, out of scope (blank-fill is another lane)
+        for field in fields:
+            # Canonical Latin mnemonic M is sourced from the FR counterpart of the SAME field.
+            # For `title` that is title_fr (always "Syllogisme <M>"); for `remark`, remark_fr.
+            M = extract_mnemonic_latin(r.get(f"{field}_fr", ""))
+            if M is None:
+                # FR counterpart has no mnemonic for this pk/field — nothing to convert.
                 continue
-            token, is_amb = extract_translit_token(cell, lang)
-            if is_amb:
-                ambiguous.append({
-                    "pk": pk, "lang": lang, "mnemonic": M,
-                    "current_title": cell, "residue": token,
-                    "reason": "empty/multi-token/Latin-leak" if token else "empty-residue",
-                })
-                continue
-            proposed = cell.replace(token, M)
-            # Safety: the replacement must actually change the cell and M must now be present.
-            if proposed == cell or not has_latin_mnemonic(proposed):
-                ambiguous.append({
-                    "pk": pk, "lang": lang, "mnemonic": M,
-                    "current_title": cell, "residue": token,
-                    "reason": "replace-noop-or-missing-after",
-                })
-                continue
-            plan.append(OrderedDict([
-                ("pk", pk), ("lang", lang), ("mnemonic", M),
-                ("current_title", cell), ("translit_token", token),
-                ("proposed_title", proposed),
-            ]))
+            for lang in LANGS:
+                cell = r.get(f"{field}_{lang}", "")
+                if has_latin_mnemonic(cell):
+                    continue  # kept-Latin
+                if not cell.strip():
+                    # blank cell — not a transliteration, out of scope (blank-fill is another lane)
+                    continue
+                token, is_amb = extract_translit_token(cell, lang)
+                if is_amb:
+                    ambiguous.append({
+                        "pk": pk, "lang": lang, "field": field, "mnemonic": M,
+                        "current": cell, "residue": token,
+                        "reason": "empty/multi-token/Latin-leak" if token else "empty-residue",
+                    })
+                    continue
+                proposed = cell.replace(token, M)
+                # Safety: the replacement must actually change the cell and M must now be present.
+                if proposed == cell or not has_latin_mnemonic(proposed):
+                    ambiguous.append({
+                        "pk": pk, "lang": lang, "field": field, "mnemonic": M,
+                        "current": cell, "residue": token,
+                        "reason": "replace-noop-or-missing-after",
+                    })
+                    continue
+                plan.append(OrderedDict([
+                    ("pk", pk), ("lang", lang), ("field", field), ("mnemonic", M),
+                    ("current", cell), ("translit_token", token),
+                    ("proposed", proposed),
+                ]))
     return plan, ambiguous
 
 
@@ -228,29 +233,27 @@ def render_report(plan, ambiguous, csv_path):
     lines.append(f"**Source CSV:** `{csv_path}`\n")
     lines.append(f"**Decision:** keep-Latin (VERIFIED jsboige 2026-07-04, dispatch q9xpks).\n")
     total = len(plan)
+    fields = sorted({e["field"] for e in plan} | {a["field"] for a in ambiguous}) or ["title"]
     by_lang = {lang: sum(1 for e in plan if e["lang"] == lang) for lang in LANGS}
-    lines.append(f"**Cells to convert (title only): {total}** "
-                 f"(RU {by_lang['ru']} / AR {by_lang['ar']} / ZH {by_lang['zh']} / FA {by_lang['fa']})\n")
+    lines.append(f"**Fields scanned:** {', '.join(fields)}\n")
+    lines.append(f"**Cells to convert: {total}** "
+                 f"(RU {by_lang.get('ru',0)} / AR {by_lang.get('ar',0)} / ZH {by_lang.get('zh',0)} / FA {by_lang.get('fa',0)})\n")
     if ambiguous:
         lines.append(f"\n> ⚠️ AMBIGUOUS cells excluded from the plan: {len(ambiguous)} (see bottom).\n")
     lines.append("\n## Plan (before → after)\n")
     for e in plan:
         lines.append(
-            f"- **pk {e['pk']} [{e['lang']}]** `{e['mnemonic']}`: "
-            f"`{e['current_title']}` → `{e['proposed_title']}` "
+            f"- **pk {e['pk']} [{e['lang']}] {e['field']}** `{e['mnemonic']}`: "
+            f"`{e['current']}` → `{e['proposed']}` "
             f"(token `{e['translit_token']}` → `{e['mnemonic']}`)"
         )
     if ambiguous:
         lines.append("\n## ⚠️ Ambiguous cells (excluded — manual review)\n")
         for a in ambiguous:
             lines.append(
-                f"- pk {a['pk']} [{a['lang']}] `{a['mnemonic']}`: "
-                f"`{a['current_title']}` (residue `{a['residue']}`, reason: {a['reason']})"
+                f"- pk {a['pk']} [{a['lang']}] {a['field']} `{a['mnemonic']}`: "
+                f"`{a['current']}` (residue `{a['residue']}`, reason: {a['reason']})"
             )
-    lines.append("\n## Out-of-scope flags\n")
-    lines.append("- **remark cells** also carry transliterated mnemonics (~14 cells; RU 4 / AR 4 "
-                 "/ ZH 2 / FA 4) — NOT in scope per dispatch (title only). Surfaced for jsboige "
-                 "to decide whether #654 extends to remark.\n")
     return "\n".join(lines)
 
 
@@ -295,7 +298,7 @@ def apply_plan(csv_path, plan):
         if pk not in by_pk:
             continue
         for e in by_pk[pk]:
-            idx = col_idx[f"title_{e['lang']}"]
+            idx = col_idx[f"{e['field']}_{e['lang']}"]
             old = row[idx]
             token = e["translit_token"]
             if token not in old:
@@ -331,20 +334,29 @@ def main(argv=None):
                    help="Write the CSV in place (line-by-line targeted replace). GATED post-tag.")
     p.add_argument("--report", default=None,
                    help="Optional path to write a markdown dry-run report.")
+    p.add_argument("--fields", default="title",
+                   help="Comma-separated field prefixes to scan (default 'title'). Add 'remark' "
+                        "to also scan remark_<lang> (~14 transliterated cells, separate scope).")
     args = p.parse_args(argv)
 
     if not os.path.exists(args.csv):
         print(f"ERROR: CSV not found: {args.csv}", file=sys.stderr)
         return 1
 
+    fields = tuple(f.strip() for f in args.fields.split(",") if f.strip())
+
     with open(args.csv, encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
 
-    plan, ambiguous = build_conversion_plan(rows)
+    plan, ambiguous = build_conversion_plan(rows, fields=fields)
 
-    by_lang = {lang: sum(1 for e in plan if e["lang"] == lang) for lang in LANGS}
-    print(f"#654 Option B (keep-Latin) plan: {len(plan)} title cells "
-          f"(RU {by_lang['ru']} / AR {by_lang['ar']} / ZH {by_lang['zh']} / FA {by_lang['fa']})")
+    by_field_lang = {}
+    for e in plan:
+        by_field_lang[(e["field"], e["lang"])] = by_field_lang.get((e["field"], e["lang"]), 0) + 1
+    print(f"#654 Option B (keep-Latin) plan [{','.join(fields)}]: {len(plan)} cells")
+    for field in fields:
+        fld = {lang: by_field_lang.get((field, lang), 0) for lang in LANGS}
+        print(f"  {field}: RU {fld['ru']} / AR {fld['ar']} / ZH {fld['zh']} / FA {fld['fa']}")
     if ambiguous:
         print(f"⚠️ {len(ambiguous)} ambiguous cell(s) excluded — see below.", file=sys.stderr)
 
@@ -365,12 +377,12 @@ def main(argv=None):
 
     # dry-run: always print the plan summary (first 60 entries) for eyeballing
     for e in plan[:60]:
-        print(f"  pk {e['pk']:>3} [{e['lang']}] {e['mnemonic']:<10} "
-              f"`{e['current_title']}` -> `{e['proposed_title']}`")
+        print(f"  pk {e['pk']:>3} [{e['lang']}] {e['field']:<7} {e['mnemonic']:<10} "
+              f"`{e['current']}` -> `{e['proposed']}`")
     if len(plan) > 60:
         print(f"  ... ({len(plan) - 60} more)")
     for a in ambiguous:
-        print(f"  AMBIGUOUS pk {a['pk']} [{a['lang']}]: `{a['current_title']}` "
+        print(f"  AMBIGUOUS pk {a['pk']} [{a['lang']}] {a['field']}: `{a['current']}` "
               f"(residue `{a['residue']}`, {a['reason']})", file=sys.stderr)
     return 2 if ambiguous else 0
 

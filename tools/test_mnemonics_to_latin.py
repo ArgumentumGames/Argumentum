@@ -173,11 +173,11 @@ class TestBuildConversionPlan(unittest.TestCase):
         self.assertEqual(ambig, [])
         # proposed titles carry the Latin mnemonic
         by_lang = {e["lang"]: e for e in plan}
-        self.assertEqual(by_lang["ru"]["proposed_title"], "Силлогизм Camestres")
-        self.assertEqual(by_lang["ar"]["proposed_title"], "قياس Camestres")
-        self.assertEqual(by_lang["fa"]["proposed_title"], "قیاس Camestres")
-        # remark_ru is NOT in the plan (title-only scope)
-        self.assertFalse(any("remark" in e["proposed_title"] for e in plan))
+        self.assertEqual(by_lang["ru"]["proposed"], "Силлогизм Camestres")
+        self.assertEqual(by_lang["ar"]["proposed"], "قياس Camestres")
+        self.assertEqual(by_lang["fa"]["proposed"], "قیاس Camestres")
+        # remark_ru is NOT in the plan (title-only default scope)
+        self.assertFalse(any(e["field"] == "remark" for e in plan))
 
     def test_kept_latin_all_skip(self):
         rows = [_row(106, "Syllogisme Barbara",
@@ -199,8 +199,59 @@ class TestBuildConversionPlan(unittest.TestCase):
         rows = [_row(113, "Syllogisme Festino", title_zh="费斯蒂诺三段论")]
         plan, ambig = M.build_conversion_plan(rows)
         self.assertEqual(len(plan), 1)
-        self.assertEqual(plan[0]["proposed_title"], "Festino三段论")
+        self.assertEqual(plan[0]["proposed"], "Festino三段论")
         self.assertEqual(ambig, [])
+
+
+# ─── 4b. build_conversion_plan with fields=("remark",) — the #654 remark finding ──
+
+class TestBuildConversionPlanRemark(unittest.TestCase):
+    """The remark-scan contract (dispatch ka7vl5 SECONDARY). Remark cells are full prose
+    sentences where the transliterated mnemonic is embedded mid-sentence, so the title
+    pipeline's structural-word stripping yields a multi-token residue -> ambiguous. This is
+    the CORRECT signal: a remark conversion is a token substitution inside a sentence, not an
+    isolated-token swap, and is NOT auto-convertible by the title path. These tests lock that
+    finding so a future change does not silently start 'converting' remark cells unsafely."""
+
+    def test_remark_transliterated_mid_sentence_flagged_ambiguous(self):
+        # remark_<lang> mirrors remark_fr but with the mnemonic transliterated AND followed by
+        # native prose (real shape on master, cf. docs/investigations/2026-07-05-654-remark-dryrun.md).
+        rows = [{
+            "pk": "116", "title_fr": "Syllogisme Darapti", "title_ru": "",
+            "remark_fr": "Darapti relève de la troisième figure: …",
+            "remark_ru": "Дарапти — силлогизм третьей фигуры, ayant la forme: tous P est M, …",
+        }]
+        plan, ambig = M.build_conversion_plan(rows, fields=("remark",))
+        self.assertEqual(plan, [], "remark mid-sentence must NOT be auto-converted")
+        self.assertEqual(len(ambig), 1)
+        self.assertEqual(ambig[0]["field"], "remark")
+        self.assertEqual(ambig[0]["lang"], "ru")
+        self.assertEqual(ambig[0]["mnemonic"], "Darapti")
+
+    def test_remark_kept_latin_skipped(self):
+        # If remark_<lang> already carries the Latin mnemonic, it is skipped (kept-Latin), not
+        # flagged — same rule as title.
+        rows = [{
+            "pk": "118", "title_fr": "Syllogisme Disamis",
+            "remark_fr": "Disamis suit la forme: …",
+            "remark_zh": "Disamis 遵循如下形式：某些 M 是 P …",  # kept-Latin
+        }]
+        plan, ambig = M.build_conversion_plan(rows, fields=("remark",))
+        self.assertEqual(plan, [])
+        self.assertEqual(ambig, [])
+
+    def test_fields_title_remark_scans_both(self):
+        # With both fields, title entries land in the plan (clean) and remark entries in
+        # ambiguous — the title-only path is unaffected by the remark extension.
+        rows = [{
+            "pk": "116", "title_fr": "Syllogisme Darapti",
+            "title_ru": "Силлогизм Дарапти",          # transliterated title -> plan
+            "remark_fr": "Darapti relève de la troisième figure: …",
+            "remark_ru": "Дарапти — силлогisme troisième figure, …",  # mid-sentence -> ambiguous
+        }]
+        plan, ambig = M.build_conversion_plan(rows, fields=("title", "remark"))
+        self.assertTrue(any(e["field"] == "title" and e["lang"] == "ru" for e in plan))
+        self.assertTrue(any(a["field"] == "remark" and a["lang"] == "ru" for a in ambig))
 
 
 # ─── 5. apply_plan (CSV write contract) ──────────────────────────────────────
