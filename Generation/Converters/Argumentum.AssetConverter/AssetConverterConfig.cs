@@ -238,8 +238,9 @@ namespace Argumentum.AssetConverter
 						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
 					}),
 				},
-				// Virtue text fields: FR property names → localized property names (#636 §2).
-				// Wired for En/Ru/Pt/Es (data present in CSV + Virtue entity). Ar/Fa/Zh not yet mapped on the Virtue entity → deferred, render FR.
+				// Virtue text fields: FR property names → localized property names (#636 §2, #665).
+				// Wired for all 8 languages (En/Ru/Pt/Es/Ar/Fa/Zh): data present in CSV (title_/description_*_ar/fa/zh)
+				// and now mapped on the Virtue entity (properties + ClassMap .Optional() bindings, #665).
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
@@ -247,8 +248,8 @@ namespace Argumentum.AssetConverter
 						nameof(VirtueMindMapDocumentConfig.DescriptionExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Virtue.TitleFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.TitleEn)), ("ru", nameof(Virtue.TitleRu)), ("pt", nameof(Virtue.TitlePt)), ("es", nameof(Virtue.TitleEs))}) ),
-						(nameof(Virtue.DescriptionFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.DescriptionEn)), ("ru", nameof(Virtue.DescriptionRu)), ("pt", nameof(Virtue.DescriptionPt)), ("es", nameof(Virtue.DescriptionEs))}) ),
+						(nameof(Virtue.TitleFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.TitleEn)), ("ru", nameof(Virtue.TitleRu)), ("pt", nameof(Virtue.TitlePt)), ("es", nameof(Virtue.TitleEs)), ("ar", nameof(Virtue.TitleAr)), ("fa", nameof(Virtue.TitleFa)), ("zh", nameof(Virtue.TitleZh))}) ),
+						(nameof(Virtue.DescriptionFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.DescriptionEn)), ("ru", nameof(Virtue.DescriptionRu)), ("pt", nameof(Virtue.DescriptionPt)), ("es", nameof(Virtue.DescriptionEs)), ("ar", nameof(Virtue.DescriptionAr)), ("fa", nameof(Virtue.DescriptionFa)), ("zh", nameof(Virtue.DescriptionZh))}) ),
 					}),
 				},
 				// Virtue family hierarchy: FR names → localized names.
@@ -261,9 +262,9 @@ namespace Argumentum.AssetConverter
 						nameof(VirtueMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Virtue.SubsubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubsubfamilyEn)), ("ru", nameof(Virtue.SubsubfamilyRu)), ("pt", nameof(Virtue.SubsubfamilyPt)), ("es", nameof(Virtue.SubsubfamilyEs))}) ),
-						(nameof(Virtue.SubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubfamilyEn)), ("ru", nameof(Virtue.SubfamilyRu)), ("pt", nameof(Virtue.SubfamilyPt)), ("es", nameof(Virtue.SubfamilyEs))}) ),
-						(nameof(Virtue.FamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.FamilyEn)), ("ru", nameof(Virtue.FamilyRu)), ("pt", nameof(Virtue.FamilyPt)), ("es", nameof(Virtue.FamilyEs))}) ),
+						(nameof(Virtue.SubsubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubsubfamilyEn)), ("ru", nameof(Virtue.SubsubfamilyRu)), ("pt", nameof(Virtue.SubsubfamilyPt)), ("es", nameof(Virtue.SubsubfamilyEs)), ("ar", nameof(Virtue.SubsubfamilyAr)), ("fa", nameof(Virtue.SubsubfamilyFa)), ("zh", nameof(Virtue.SubsubfamilyZh))}) ),
+						(nameof(Virtue.SubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubfamilyEn)), ("ru", nameof(Virtue.SubfamilyRu)), ("pt", nameof(Virtue.SubfamilyPt)), ("es", nameof(Virtue.SubfamilyEs)), ("ar", nameof(Virtue.SubfamilyAr)), ("fa", nameof(Virtue.SubfamilyFa)), ("zh", nameof(Virtue.SubfamilyZh))}) ),
+						(nameof(Virtue.FamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.FamilyEn)), ("ru", nameof(Virtue.FamilyRu)), ("pt", nameof(Virtue.FamilyPt)), ("es", nameof(Virtue.FamilyEs)), ("ar", nameof(Virtue.FamilyAr)), ("fa", nameof(Virtue.FamilyFa)), ("zh", nameof(Virtue.FamilyZh))}) ),
 					}),
 				},
 				// Document name: _fr. → _en./_ru./_pt.

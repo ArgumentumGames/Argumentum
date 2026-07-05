@@ -17,22 +17,25 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     ///   only rewrote the tree-root literal <c>"Vertus"</c>.
     ///   <b>Layer A (entity)</b>: <see cref="Virtue"/> exposed no per-language title/family binding for
     ///   the mind-map expressions.
-    /// The characterization suite was an executable GUARDRAIL, expected to FAIL when the fix landed,
-    /// with an explicit instruction to "flip these assertions to the localized expectation (mirroring
-    /// <see cref="MindMapLocalizationRegressionTests"/>) rather than silently deleting them".
     ///
-    /// #636 §2 landed that fix, but PARTIALLY, per jsboige's arbitration (wire the 4 languages whose
-    /// data + entity binding already exist; defer the 3 that need an entity extension):
-    ///   • Layer B — the stub is replaced by two real per-field conversion tables mirroring Fallacies
-    ///     (title/description + family hierarchy), sourced from the FR-suffixed <c>Virtue.*Fr</c>
-    ///     properties, covering <b>en/ru/pt/es</b> only.
-    ///   • Layer A — the Virtue mind-map expressions now reference the raw FR-suffixed props
-    ///     (<c>{item.TitleFr}</c>, <c>{item.FamilyFr}</c>, …) so the StaticConversions can rewrite them.
-    ///   • Ar/Fa/Zh are DEFERRED: <see cref="Virtue"/> still has no Title/Family Ar/Fa/Zh property, so
-    ///     those languages keep rendering FR until the entity is extended (a follow-up chantier).
+    /// #636 §2 landed the fix PARTIALLY (wire the 4 languages whose data + entity binding already
+    /// exist — en/ru/pt/es — and defer the 3 that needed an entity extension — ar/fa/zh). The
+    /// deferral was an executable guardrail with an explicit instruction to "flip these assertions
+    /// to the localized expectation rather than silently deleting them" once the entity grew the
+    /// Ar/Fa/Zh columns.
     ///
-    /// This suite pins that mixed end-state: localized for the 4 wired languages, FR for the 3 deferred
-    /// ones, and the entity boundary that draws the line between them.
+    /// #665 lands that entity extension and completes the wiring for ALL EIGHT languages:
+    ///   • Layer A — <see cref="Virtue"/> now exposes Title/Description/Remark/Link/Family/Subfamily/
+    ///     Subsubfamily × Ar/Fa/Zh, with ClassMap <c>.Optional()</c> bindings to the CSV
+    ///     <c>*_ar/_fa/_zh</c> columns (which were already fully translated, 223/223, native script).
+    ///   • Layer B — the two Virtue per-field conversion tables (title/description + family hierarchy)
+    ///     now carry ar/fa/zh entries alongside en/ru/pt/es, so the StaticConversions rewrite
+    ///     <c>{item.TitleFr}</c> → <c>{item.TitleAr}</c> etc. for every non-FR language.
+    ///
+    /// This suite now pins the completed end-state: localized for all 7 non-FR languages, FR default
+    /// via the FR-suffixed source tokens, and the entity carrying all eight language columns. The
+    /// former deferral tests (ar/fa/zh stay FR; entity lacks Ar/Fa/Zh; tables cover en/ru/pt/es only)
+    /// are flipped in place to their localized counterparts.
     /// </summary>
     public class VirtueMindMapLocalizationTests
     {
@@ -58,10 +61,10 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (1) WIRED LANGUAGES — en/ru/pt/es. After localization the title and description
-        //     expressions reference the per-language Virtue property, and the FR source token is
-        //     fully rewritten. This is the flipped counterpart of the old
-        //     VirtueTitleExpression_RemainsFrozenFRAfterLocalizationForEveryNonFrLang guardrail.
+        // (1) TITLE + DESCRIPTION — all 7 non-FR languages. After localization the title and
+        //     description expressions reference the per-language Virtue property, and the FR source
+        //     token is fully rewritten. ar/fa/zh were flipped here from the #636 §2 deferral guardrail
+        //     once #665 grew their entity columns.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Theory]
@@ -70,27 +73,30 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [InlineData("ru", "TitleRu", "DescriptionRu")]
         [InlineData("pt", "TitlePt", "DescriptionPt")]
         [InlineData("es", "TitleEs", "DescriptionEs")]
-        public void VirtueTitleAndDescription_LocalizeForWiredLanguages_en_ru_pt_es(
+        [InlineData("ar", "TitleAr", "DescriptionAr")]
+        [InlineData("fa", "TitleFa", "DescriptionFa")]
+        [InlineData("zh", "TitleZh", "DescriptionZh")]
+        public void VirtueTitleAndDescription_LocalizeForEveryNonFrLanguage(
             string lang, string expectedTitle, string expectedDescription)
         {
             var config = LocalizedVirtueConfig(lang);
 
             config.TitleExpression.Should().Be($"{{item.{expectedTitle}}}",
                 $"the Virtue title expression must be rewritten from {{item.TitleFr}} to {{item.{expectedTitle}}} " +
-                $"for the wired lang '{lang}' (#636 §2 Layer B table)");
+                $"for lang '{lang}' (#636 §2 / #665 Layer B table)");
             config.TitleExpression.Should().NotContain("TitleFr",
-                $"the FR source token must be fully rewritten for wired lang '{lang}'");
+                $"the FR source token must be fully rewritten for lang '{lang}'");
 
             config.DescriptionExpression.Should().Contain(expectedDescription,
-                $"the Virtue description expression must reference {expectedDescription} for wired lang '{lang}'");
+                $"the Virtue description expression must reference {expectedDescription} for lang '{lang}'");
             config.DescriptionExpression.Should().NotContain("DescriptionFr",
-                $"the FR description token must be fully rewritten for wired lang '{lang}'");
+                $"the FR description token must be fully rewritten for lang '{lang}'");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (2) WIRED LANGUAGES — family hierarchy. Same four languages; pins the most-specific-first
-        //     ordering (Subsubfamily > Subfamily > Family) so no partial-match cross-talk, mirroring
-        //     the Fallacy FamilyHierarchy_LocalizationOrderingPreventsPartialMatchContamination test.
+        // (2) FAMILY HIERARCHY — all 7 non-FR languages; pins the most-specific-first ordering
+        //     (Subsubfamily > Subfamily > Family) so no partial-match cross-talk, mirroring the
+        //     Fallacy FamilyHierarchy_LocalizationOrderingPreventsPartialMatchContamination test.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Theory]
@@ -99,17 +105,20 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [InlineData("ru", "FamilyRu", "SubfamilyRu", "SubsubfamilyRu")]
         [InlineData("pt", "FamilyPt", "SubfamilyPt", "SubsubfamilyPt")]
         [InlineData("es", "FamilyEs", "SubfamilyEs", "SubsubfamilyEs")]
-        public void VirtueFamilyHierarchy_LocalizesForWiredLanguages_en_ru_pt_es(
+        [InlineData("ar", "FamilyAr", "SubfamilyAr", "SubsubfamilyAr")]
+        [InlineData("fa", "FamilyFa", "SubfamilyFa", "SubsubfamilyFa")]
+        [InlineData("zh", "FamilyZh", "SubfamilyZh", "SubsubfamilyZh")]
+        public void VirtueFamilyHierarchy_LocalizesForEveryNonFrLanguage(
             string lang, string expectedFamily, string expectedSubfamily, string expectedSubsubfamily)
         {
             var config = LocalizedVirtueConfig(lang);
 
             config.FamilleExpression.Should().Be($"{{item.{expectedFamily}}}",
-                $"Famille must localize to {expectedFamily} for wired lang '{lang}'");
+                $"Famille must localize to {expectedFamily} for lang '{lang}'");
             config.SousFamilleExpression.Should().Be($"{{item.{expectedSubfamily}}}",
-                $"SousFamille must localize to {expectedSubfamily} for wired lang '{lang}'");
+                $"SousFamille must localize to {expectedSubfamily} for lang '{lang}'");
             config.SoussousFamilleExpression.Should().Be($"{{item.{expectedSubsubfamily}}}",
-                $"Soussousfamille must localize to {expectedSubsubfamily} for wired lang '{lang}'");
+                $"Soussousfamille must localize to {expectedSubsubfamily} for lang '{lang}'");
 
             // The corruption signature of a broken most-specific-first ordering: the middle token
             // ("SubfamilyFr") is a prefix-family of "SubsubfamilyFr". Order guards it; pin its absence.
@@ -117,45 +126,52 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "the Soussousfamille expression must resolve wholly — no leftover intermediate FR token");
             (config.FamilleExpression + config.SousFamilleExpression + config.SoussousFamilleExpression)
                 .Should().NotContain("Fr}",
-                    $"no FR family token may survive localization for wired lang '{lang}'");
+                    $"no FR family token may survive localization for lang '{lang}'");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (3) DEFERRED LANGUAGES — ar/fa/zh. The Virtue conversion tables cover only en/ru/pt/es
-        //     (Layer A entity gap), so every Virtue expression stays FR-frozen for these three.
-        //     This is the intentional deferral boundary; it flips to localized only once the entity
-        //     grows TitleAr/Fa/Zh + Family/… Ar/Fa/Zh properties and the config tables extend.
+        // (3) FORMERLY-DEFERRED LANGUAGES — ar/fa/zh. This is the in-place flip of the old
+        //     VirtueExpressions_StayFrForDeferredLanguages_ar_fa_zh guardrail: with #665 the Virtue
+        //     conversion tables + entity now cover ar/fa/zh, so every Virtue expression localizes and
+        //     no FR-suffixed source token survives.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Theory]
         [InlineData("ar")]
         [InlineData("fa")]
         [InlineData("zh")]
-        public void VirtueExpressions_StayFrForDeferredLanguages_ar_fa_zh(string lang)
+        public void VirtueExpressions_NoLongerFrozenFr_ForFormerlyDeferredLanguages_ar_fa_zh(string lang)
         {
             var config = LocalizedVirtueConfig(lang);
+            var suffix = lang == "ar" ? "Ar" : lang == "fa" ? "Fa" : "Zh";
 
-            config.TitleExpression.Should().Be("{item.TitleFr}",
-                $"Virtue title stays FR for deferred lang '{lang}' — the entity has no Title{lang} property yet");
-            config.FamilleExpression.Should().Be("{item.FamilyFr}",
-                $"Virtue family stays FR for deferred lang '{lang}'");
-            config.SousFamilleExpression.Should().Be("{item.SubfamilyFr}",
-                $"Virtue subfamily stays FR for deferred lang '{lang}'");
-            config.SoussousFamilleExpression.Should().Be("{item.SubsubfamilyFr}",
-                $"Virtue subsubfamily stays FR for deferred lang '{lang}'");
-            config.DescriptionExpression.Should().Contain("DescriptionFr",
-                $"Virtue description stays FR for deferred lang '{lang}'");
+            config.TitleExpression.Should().Be($"{{item.Title{suffix}}}",
+                $"Virtue title now localizes for formerly-deferred lang '{lang}' (#665 entity extension)");
+            config.FamilleExpression.Should().Be($"{{item.Family{suffix}}}",
+                $"Virtue family now localizes for '{lang}'");
+            config.SousFamilleExpression.Should().Be($"{{item.Subfamily{suffix}}}",
+                $"Virtue subfamily now localizes for '{lang}'");
+            config.SoussousFamilleExpression.Should().Be($"{{item.Subsubfamily{suffix}}}",
+                $"Virtue subsubfamily now localizes for '{lang}'");
+            config.DescriptionExpression.Should().Contain($"Description{suffix}",
+                $"Virtue description now localizes for '{lang}'");
+
+            // No FR-suffixed source token may survive for the formerly-deferred languages.
+            (config.TitleExpression + config.DescriptionExpression + config.FamilleExpression
+             + config.SousFamilleExpression + config.SoussousFamilleExpression)
+                .Should().NotContain("Fr}",
+                    $"no FR source token may survive localization for formerly-deferred lang '{lang}'");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (4) CONFIG SHAPE — Layer B is no longer a stale root-literal stub. There are now two
-        //     Virtue-targeting entries (title/description + family hierarchy), each a real per-field
-        //     conversion table sourced from Virtue.*Fr properties, covering en/ru/pt/es. The old
-        //     single "Vertus" root-literal conversion is gone.
+        // (4) CONFIG SHAPE — the two Virtue-targeting entries (title/description + family hierarchy)
+        //     are real per-field conversion tables sourced from Virtue.*Fr properties, and every
+        //     conversion now covers all 7 non-FR languages (en/ru/pt/es/ar/fa/zh). The retired #601
+        //     single "Vertus" root-literal conversion stays gone.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void VirtueLocalizationEntries_MirrorFallacyTables_NotStaleStub()
+        public void VirtueLocalizationEntries_MirrorFallacyTables_CoverAllEightLanguages()
         {
             var mindMapLoc = FreshConfig.LocalizationConfig.MindMapLocalization;
 
@@ -177,14 +193,14 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 nameof(VirtueMindMapDocumentConfig.SoussousFamilleExpression),
             }, "the Virtue family entry mirrors the Fallacy family-hierarchy shape");
 
-            // Every Virtue conversion covers exactly en/ru/pt/es — ar/fa/zh deferred (Layer A gap).
+            // Every Virtue conversion now covers all 7 non-FR languages — ar/fa/zh wired by #665.
             foreach (var entry in new[] { titleEntry, familyEntry })
             {
                 foreach (var (_, textConversions) in entry.StaticConversions)
                 {
                     textConversions.Select(c => c.Language).Should().BeEquivalentTo(
-                        new[] { "en", "ru", "pt", "es" },
-                        "the Virtue tables are wired for en/ru/pt/es only; ar/fa/zh are deferred until the entity grows their columns");
+                        new[] { "en", "ru", "pt", "es", "ar", "fa", "zh" },
+                        "the Virtue tables are wired for all 7 non-FR languages (#665 completed the ar/fa/zh trio)");
                 }
             }
 
@@ -195,34 +211,40 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (5) ENTITY BOUNDARY — documents WHY ar/fa/zh are deferred (Layer A). Virtue maps
-        //     Fr/En/Ru/Pt/Es titles but no Ar/Fa/Zh; the convenience accessor Text still delegates
-        //     to TitleFr. Flips to a wired expectation only when the entity extension chantier lands.
+        // (5) ENTITY BOUNDARY — Virtue now maps all eight languages (Layer A complete). This is the
+        //     in-place flip of VirtueEntity_WiresEnRuPtEs_DefersArFaZh: TitleAr/Fa/Zh now exist, which
+        //     is the concrete reason ar/fa/zh localize. The convenience accessor Text still delegates
+        //     to TitleFr (localization flows through the expression table, not Text).
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void VirtueEntity_WiresEnRuPtEs_DefersArFaZh()
+        public void VirtueEntity_WiresAllEightLanguages()
         {
             var virtueType = typeof(Virtue);
 
-            // Wired languages have their title property (so Layer A is present for en/ru/pt/es).
+            // FR source-of-truth + the four previously-wired languages.
             virtueType.GetProperty("TitleFr").Should().NotBeNull("TitleFr is the FR source-of-truth");
             virtueType.GetProperty("TitleEn").Should().NotBeNull("TitleEn exists (en is wired)");
             virtueType.GetProperty("TitleRu").Should().NotBeNull("TitleRu exists (ru is wired)");
             virtueType.GetProperty("TitlePt").Should().NotBeNull("TitlePt exists (pt is wired)");
             virtueType.GetProperty("TitleEs").Should().NotBeNull("TitleEs exists (es is wired)");
 
-            // Deferred languages have NO title property yet — the concrete reason ar/fa/zh stay FR.
-            virtueType.GetProperty("TitleAr").Should().BeNull(
-                "Virtue exposes no TitleAr property yet — ar mind map localization is deferred");
-            virtueType.GetProperty("TitleFa").Should().BeNull(
-                "Virtue exposes no TitleFa property yet — fa mind map localization is deferred");
-            virtueType.GetProperty("TitleZh").Should().BeNull(
-                "Virtue exposes no TitleZh property yet — zh mind map localization is deferred");
+            // The formerly-deferred trio now has its title property — the concrete reason ar/fa/zh localize.
+            virtueType.GetProperty("TitleAr").Should().NotBeNull(
+                "Virtue now exposes TitleAr — ar mind map localization is wired (#665)");
+            virtueType.GetProperty("TitleFa").Should().NotBeNull(
+                "Virtue now exposes TitleFa — fa mind map localization is wired (#665)");
+            virtueType.GetProperty("TitleZh").Should().NotBeNull(
+                "Virtue now exposes TitleZh — zh mind map localization is wired (#665)");
 
-            // The Text convenience accessor still delegates to the FR title (unchanged by #636 §2 —
-            // the fix works through the {item.TitleFr} expression + config table, not by making Text
-            // language-aware). Kept as a pin so a future Text change is a conscious decision.
+            // Full-family coverage for the formerly-deferred trio (family hierarchy also localizes).
+            virtueType.GetProperty("FamilyAr").Should().NotBeNull("FamilyAr exists (ar family hierarchy wired)");
+            virtueType.GetProperty("SubfamilyFa").Should().NotBeNull("SubfamilyFa exists (fa family hierarchy wired)");
+            virtueType.GetProperty("SubsubfamilyZh").Should().NotBeNull("SubsubfamilyZh exists (zh family hierarchy wired)");
+
+            // The Text convenience accessor still delegates to the FR title — localization flows through
+            // the {item.TitleFr} expression + config table, not by making Text language-aware. Kept as a
+            // pin so a future Text change is a conscious decision.
             var virtue = new Virtue { TitleFr = "Échange enrichissant", TitleEn = "Enriching exchange" };
             virtue.Text.Should().Be("Échange enrichissant",
                 "Virtue.Text delegates to TitleFr; localization flows through the expression table, not Text");
