@@ -144,3 +144,40 @@ the Tests/ nullable cleanup above — bundle both in the same post-tag tech-debt
 
 Relates: dispatch `awhj8g` (TERTIAIRE), #587 (converter zero-warning), #706 (SYSLIB0014 fix +
 SGEN deferral), #654 lane (SYSLIB0014 was the freeze-safe tech-debt lane this tick). Base `34c7702c`.
+
+---
+
+## 6. Drift note (post-#715, re-verified on `9f524464`)
+
+**The 96-warning baseline drifted to 98 after PR #715 merged.** Re-verification on master `9f524464`
+(`dotnet build Tests.csproj --no-incremental`, dispatch `h2utyb` idle-de-secours) found **+2 raw
+warnings**, all attributable to **one new distinct nullable-flow warning introduced by #715**:
+
+| Location | Code | Introduced by | Fix shape |
+|----------|------|---------------|-----------|
+| `MmGeneratorTests.cs:281` | CS8603 (possible-null return) | **#715** (`699580ab`, fix #665 — Virtue ar/fa/zh localization) | `?` the helper's return type |
+
+**Root cause** ([MmGeneratorTests.cs:274-282](Generation/Converters/Argumentum.AssetConverter.Tests/MindmapGeneration/MmGeneratorTests.cs#L274)):
+#715 added a CSV-path-finder helper for the new `#665` native-script test — it walks up 12 parent
+directories looking for `Argumentum Virtues - Taxonomy.csv` and does `return null;` (line 281) if not
+found. The method signature returns a non-nullable `string`, hence CS8603. Confirmed by `git blame`
+(lines 274-282 all = `699580aba`) and by diffing against `34c7702c` (the helper block is absent at
+#710's base — those lines held a `FamilleExpression` assertion).
+
+**Why 1 distinct = +2 raw**: the build log emits each warning ~2× (build-config echoes); #710's "96"
+was a raw-line count too, so the 96→98 comparison is apples-to-apples and the +2 raw is this 1 new
+distinct warning. (Distinct-warning count on `9f524464` = 49; the raw/echo factor is consistent across
+both measurements.)
+
+**Impact on the plan**: negligible — the new warning is **in Slice C's scope** (CS86xx nullable-flow),
+and `MmGeneratorTests.cs` was already in the §1 top-8 (was 6 warnings, now 7 raw). The post-tag Slice C
+file-by-file pass picks this up automatically; no slice re-scoping needed. The fix is straightforward
+and low-risk: the helper legitimately returns null when the CSV isn't found, so `string?` return type
+is the honest annotation.
+
+**Reproducibility**: `dotnet build Argumentum.AssetConverter.Tests.csproj --no-incremental -v minimal`
+on any checkout at `9f524464` reproduces the 98-warning count and the `MmGeneratorTests.cs(281,20):
+warning CS8603` diagnostic.
+
+**No action during freeze** — same gate as §3. This note only keeps the baseline current so the
+post-tag lane runs against an accurate inventory (96→98, +1 distinct in `MmGeneratorTests.cs`).
