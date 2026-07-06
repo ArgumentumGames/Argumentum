@@ -51,8 +51,8 @@ namespace Argumentum.AssetConverter.Tests.Collections
         {
             public int GetHashCodeCalls;
             public int EqualsCalls;
-            public Func<Sample, int> GetHashCode { get; }
-            public Func<Sample, Sample, bool> Equals { get; }
+            public new Func<Sample, int> GetHashCode { get; }
+            public new Func<Sample, Sample, bool> Equals { get; }
 
             public TrackedDelegates()
             {
