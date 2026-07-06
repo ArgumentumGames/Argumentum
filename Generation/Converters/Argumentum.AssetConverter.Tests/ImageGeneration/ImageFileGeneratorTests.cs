@@ -62,7 +62,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         private void CreateFakeImageFile(AssetConverterConfig config, string language, string cardSetName, DocumentConfig docConfig, string imageName)
         {
             var fakeImagePath = ImageHelper.GetImageFileName(config, docConfig, language, cardSetName, imageName);
-            Directory.CreateDirectory(Path.GetDirectoryName(fakeImagePath));
+            Directory.CreateDirectory(Path.GetDirectoryName(fakeImagePath)!);
             // Crée une image PNG valide de 1x1 pixel au lieu d'un fichier vide.
             using (var image = new MagickImage(MagickColors.Transparent, 1, 1))
             {
@@ -163,7 +163,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
             harvestDictionary.TryAdd(("FailingSet", "en"), () => harvest);
             
             // Act
-            ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> result = null;
+            ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> result = null!;
             Action act = () => result = sut.GenerateDocumentImages(harvestDictionary);
 
             // Assert

@@ -38,9 +38,10 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
                 }
             };
             var config = JsonSerializer.Deserialize<AssetConverterConfig>(jsonString, options);
+            config.Should().NotBeNull("the committed Assets/SimpleImageGenerator/test-config.json must deserialize to an AssetConverterConfig");
             
             // Override the output dir to our test-specific one
-            config.BaseTargetDirectoryName = TestOutputDirectory;
+            config!.BaseTargetDirectoryName = TestOutputDirectory;
 
             return config;
         }
