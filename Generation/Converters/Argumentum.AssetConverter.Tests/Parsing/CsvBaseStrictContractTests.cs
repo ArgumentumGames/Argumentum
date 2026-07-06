@@ -44,8 +44,8 @@ namespace Argumentum.AssetConverter.Tests.Parsing
         /// </summary>
         public class ContractEntity : CsvBase<ContractEntity, ContractEntityMap>
         {
-            public string Required { get; set; }
-            public string Optional { get; set; }
+            public string Required { get; set; } = null!;
+            public string Optional { get; set; } = null!;
         }
 
         public sealed class ContractEntityMap : ClassMap<ContractEntity>

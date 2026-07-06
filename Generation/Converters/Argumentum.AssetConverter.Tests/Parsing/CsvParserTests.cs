@@ -14,8 +14,8 @@ namespace Argumentum.AssetConverter.Tests.Parsing
         public class FallacyRecord
         {
             public int Id { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public string Description { get; set; } = string.Empty;
         }
 
         // Dummy parser for testing purposes

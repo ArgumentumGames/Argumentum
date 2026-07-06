@@ -42,7 +42,7 @@ namespace Argumentum.AssetConverter.Tests.Collections
         /// </summary>
         private sealed class Sample
         {
-            public string Id { get; init; }
+            public string Id { get; init; } = null!;
         }
 
         // A real, observable getHashCode/equals pair keyed on Id. If the factory ever swaps the two
