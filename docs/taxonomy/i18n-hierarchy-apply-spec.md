@@ -153,6 +153,37 @@ mechanically derivable from FR (each is a distinct external resource link) and a
 **human-research lane** (memory `[[i18n-coverage-gap-is-link-urls]]`). **This apply does NOT touch
 them.** They remain a separate, deferred coverage item.
 
+## 8. Scenarii + Rules scan — 0 gap (clean negative, dispatch TERTIAIRE)
+
+The same i18n-propagation-gap method was applied to the other two `Cards/` datasets (dispatch
+`h2utyb` TERTIAIRE) to check whether the Fallacies gap is unique. These datasets use **semantic name
+pairs** (not the Fallacies `_fr`/`_en` suffix convention), so the FR↔EN pairs are enumerated
+explicitly. **Result: 0 derivable gap in either dataset.** Fallacies is the only `Cards/` dataset with
+an i18n-propagation hierarchy gap.
+
+**Scenarii** (`Cards/Scenarii/Argumentum Scenarii - Cards.csv`, 167 rows) — 8 FR→EN pairs scanned:
+
+| FR → EN | gap rows | derivable | conflict | novel |
+|---------|---------:|----------:|---------:|------:|
+| catégorie → category | 0 | — | — | — |
+| sous-catégorie → subcategory | 0 | — | — | — |
+| titre → title | 0 | — | — | — |
+| baratineur → smoothTalker | 0 | — | — | — |
+| piocheur → drawer | 0 | — | — | — |
+| contexte → context | 0 | — | — | — |
+| enjeu → issue | 0 | — | — | — |
+| suggestion → suggestion_en | 0 | — | — | — |
+
+Every FR-filled row has its EN counterpart filled (0 gaps across all 8 pairs). This confirms the
+prior coverage finding (memory: Scenarii 100% translated, 8 fields × 4 langs, verified cell-by-cell).
+
+**Rules** (`Cards/Rules/Argumentum Rules - Cards.csv`, 15 rows) — single FR→EN pair: `Text` →
+`Text_en` = **0 gap** (all 15 EN cells filled; consistent with #306 fixing the PT row-1 cover).
+
+**Reproducibility**: `scenarii_rules_gap_scan.py` (scratchpad, read-only, stdlib) re-derives this
+negative result on any checkout at `7ebeda18`. This closes the TERTIAIRE question: the Fallacies
+hierarchy gap is the **only** i18n-propagation gap in `Cards/` — Scenarii and Rules are complete.
+
 ---
 
 ## Gate boundaries (HARD — spec + gated script, NOT executed)
@@ -163,6 +194,6 @@ them.** They remain a separate, deferred coverage item.
   the 144-cell / 0-conflict report.
 - ✅ Fix is mechanical (6-tuple canonical map, 100% consensus, zero ambiguity) — gated post-tag.
 
-Relates: dispatch `h2utyb` (PRIMARY), #712 (Family/Subfamily gap inventory), #716 (Subsubfamily gap
-inventory + count reconcile), #654 (same byte-targeted apply discipline), #587 (CSV hygiene lane),
-#707 §1 (gap flagged). Base `7ebeda18`.
+Relates: dispatch `h2utyb` (PRIMARY + TERTIAIRE), #712 (Family/Subfamily gap inventory), #716
+(Subsubfamily gap inventory + count reconcile), #654 (same byte-targeted apply discipline), #587
+(CSV hygiene lane), #707 §1 (gap flagged). Base `7ebeda18`.
