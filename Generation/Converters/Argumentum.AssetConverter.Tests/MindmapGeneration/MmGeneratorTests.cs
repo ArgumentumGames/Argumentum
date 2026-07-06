@@ -83,7 +83,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
                 var xmlDoc = XDocument.Parse(mmContent);
                 xmlDoc.Should().NotBeNull();
-                xmlDoc.Root.Name.LocalName.Should().Be("map");
+                xmlDoc.Root!.Name.LocalName.Should().Be("map");
 
                 // Validate root node (TitleFunc uses TitleExpression = "{item.TextFr}")
                 xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value.Should().Be("Sophismes");
@@ -135,7 +135,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 var xmlDoc = XDocument.Parse(mmContent);
                 xmlDoc.Root.Should().NotBeNull();
                 xmlDoc.Root.Element("node").Should().NotBeNull("La map doit contenir au moins un noeud racine.");
-                xmlDoc.Root.Element("node").Elements("node").Should().NotBeEmpty("La map doit contenir des noeuds enfants pour les données d'entrée.");
+                xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("La map doit contenir des noeuds enfants pour les données d'entrée.");
             }
             finally
             {
@@ -173,7 +173,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 var xmlDoc = XDocument.Parse(mmContent);
                 xmlDoc.Root.Should().NotBeNull();
                 xmlDoc.Root.Element("node").Should().NotBeNull("the map should contain a root node.");
-                xmlDoc.Root.Element("node").Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
+                xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
 
                 // Verify specific virtue nodes exist
                 mmContent.Should().Contain("Argument pertinent");
@@ -270,7 +270,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         /// Walks up from the test bin directory to locate the committed Virtues taxonomy CSV
         /// (<c>Cards/Fallacies/Argumentum Virtues - Taxonomy.csv</c>, at the repo root in every checkout).
         /// </summary>
-        private static string FindRepoVirtuesCsv()
+        private static string? FindRepoVirtuesCsv()
         {
             var dir = new DirectoryInfo(System.AppContext.BaseDirectory);
             for (int i = 0; i < 12 && dir != null; i++, dir = dir.Parent)
@@ -299,7 +299,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var csvPath = FindRepoVirtuesCsv();
             csvPath.Should().NotBeNull("the committed Virtues taxonomy CSV must be locatable from the test bin dir");
 
-            var virtues = await LoadVirtuesFromPathAsync(csvPath);
+            var virtues = await LoadVirtuesFromPathAsync(csvPath!);
             virtues.Should().NotBeEmpty();
 
             // Apply the production MindMapLocalization for the target language (rewrites the FR-suffixed
