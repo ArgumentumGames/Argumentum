@@ -261,3 +261,262 @@ new columns (`AIF_attackType`, `AIF_attackedNode`). This audit is independent of
 
 Relates: dispatch `awhj8g` (PRIMARY), #498 (chantier), PR-1 #699, PR-2 #701, PR-3 #703, PR-4 #705,
 PR-6 #708, coverage-status #707, #677 (0 fabrication), #133/#130 (existing OWL), #499 (inverse), #458.
+
+---
+
+# Addendum 2026-07-06 — PR-7/8/9 (Ambiguïté family) + chantier count reconciliation
+
+**Scope**: independent code=truth verification of the 3 cluster propositions produced by po-2023
+after the original audit — PR-7 #711 (Amphibologie, 8 rows), PR-8 #713 (Narrative ambiguity /
+insinuation, 4 leaves), PR-9 #714 (Narrative ambiguity / deception, 6 leaves). 18 leaves + 2 anchors
+(846, 876). Same adversarial method as §1-§7 (deterministic read-only extractor, no LLM judgment on
+the data). Also delivers the **SECONDARY** count-reconciliation: one authoritative chantier headline
+number (resolves the §6 FLAG, now compounded by po-2023's PR-8/9 "dual criterion").
+
+**Author**: po-2024 (worker) · **Dispatch**: `ynv05a` (PRIMARY + SECONDARY, ai-01 2026-07-06 01:32)
+**Base**: master `bdba45d8` · **Read-only**: 0 write under `Cards/`, audit addendum only.
+
+---
+
+## A. TL;DR — verdict (PR-7/8/9)
+
+**The 3 Ambiguïté-family propositions are code=truth-clean**, consistent with the original 5. Every
+pk exists, both anchors reproduce byte-exact, all 15 distinct proposed tokens are native (0
+fabrication), all cited `desc_fr` match byte-close (2 cosmetic diffs), and the 3 FAIL-LOUD cases
+(PR-7 847/848/853, syntactic-ambiguity gap) are legitimate. **Count reconciliation: the chantier
+headline is 100 fully-modeled (strict, uniform) — po-2023's "inclusive 101" is non-uniform and should
+be dropped (§H).**
+
+| Check | Result |
+|-------|--------|
+| 20 cited pks present in CSV | ✅ 20/20 |
+| 2 mapped anchors (846, 876) — text/DirectRef/ExceptionRef/MappingType byte-exact | ✅ 2/2 |
+| 15 distinct proposed tokens — native (in existing inventory) | ✅ 15/15 (0 fabrication) |
+| 18 cited `desc_fr` (where docs cite verbatim) — byte-close | ✅ 18/18 (2 cosmetic: apostrophe + 878 casing) |
+| 3 FAIL-LOUD cases (PR-7 847/848/853) — legitimate | ✅ 3/3 (missing syntactic-ambiguity CA genuinely absent) |
+| Native AIF inventory (re-derived on `bdba45d8`) | 54 tokens (35 `*_Inference` + 19 `*_Conflict`) |
+| Chantier count — uniform strict criterion | **100 fully-modeled** (§H) |
+
+---
+
+## B. Anchor verification (the 2 mapped anchors the Ambiguïté propositions lean on)
+
+PR-7 borrows the d2 subfamily root **846** (no in-sub-sub anchor in Amphibologie); PR-8 uses the
+in-sub-sub anchor **876**. Both must match the docs byte-exact (load-bearing — a wrong anchor
+invalidates the cluster pattern). **Both match.**
+
+| pk | doc | text_fr (claim → CSV) | DirectRef | ExceptionRef | MappingType | Verdict |
+|----|-----|-----------------------|-----------|--------------|-------------|---------|
+| 846 | PR-7 | "Ambiguïté" → "Ambiguïté" | `ArbitraryVerbalClassification_Inference` + `OppositeConsequences_Conflict` + `SignFromOtherEvents_Conflict` → exact | (empty) → exact | `skos:broadMatch` → exact | ✅ PASS |
+| 876 | PR-8/9 | "Ambiguïté narrative" → "Ambiguïté narrative" | `ConflictingGoals_Conflict` → exact | (empty) → exact | `skos:broadMatch` → exact | ✅ PASS |
+
+---
+
+## C. Cluster boundaries (`Soussousfamille` FR canonical — code=truth)
+
+| Cluster (doc) | Claimed pk range | CSV `Soussousfamille` (FR, all rows in range) | Verdict |
+|---------------|------------------|-----------------------------------------------|---------|
+| Amphibologie (PR-7) | 847-854 | `Amphibologie` ×8 | ✅ PASS |
+| Narrative ambiguity / insinuation (PR-8) | 877-880 | `Ambiguïté narrative` ×4 | ✅ PASS |
+| Narrative ambiguity / deception (PR-9) | 881-886 | `Ambiguïté narrative` ×6 | ✅ PASS |
+
+The pipeline hierarchy is driven by the FR `Soussousfamille` column (CLAUDE.md); all three clusters
+are boundary-clean on it. **Side-note (not a boundary error)**: pk 882 and 885 carry an empty EN
+`Subsubfamily` column while their FR `Soussousfamille` is correctly filled — this is the
+**#712 i18n-propagation gap** (FR filled / EN empty, 48 rows), already inventoried; pk 882 appears in
+the #712 spot-check. The Ambiguïté family thus intersects the #712 gap; the AIF propositions are
+independent of it (AIF columns are language-agnostic metadata).
+
+---
+
+## D. Native vocabulary — 0 fabrication (#677 discipline, 15 tokens)
+
+The inventory re-derived on `bdba45d8` holds at **54 distinct native tokens** (35 `*_Inference` +
+19 `*_Conflict`). Every one of the 15 distinct tokens proposed across PR-7/8/9 is native:
+
+| Proposed token | Native? | Occurrences | Example pks (where already used) | Used by |
+|----------------|---------|-------------|----------------------------------|---------|
+| `ArbitraryVerbalClassification_Inference` | ✅ | 3 | 177, 799, 846 | PR-7 anchor 846, 851, 852 |
+| `OppositeConsequences_Conflict` | ✅ | 5 | 3, 697, 759, 846, 1090 | PR-7 anchor 846 |
+| `SignFromOtherEvents_Conflict` | ✅ | 3 | 357, 846, 1371 | PR-7 anchor 846 |
+| `VerbalClassification_Inference` | ✅ | 1 | 799 | PR-7 847/848/853 (RA-node) |
+| `Deductive_Inference` | ✅ | 2 | 726, 758 | PR-7 849, 850 |
+| `Logical_Conflict` | ✅ | 1 | 696 | PR-7 849, 850 |
+| `VagueVerbalClassification_Inference` | ✅ | 2 | 800, 856 | PR-7 854 (cross-cluster PR-4) |
+| `ConflictingGoals_Conflict` | ✅ | 3 | 356, 876, 973 | PR-8 anchor 876, 877, 878, 884, 886 |
+| `OpposedCommitment_Conflict` | ✅ | 2 | 777, 1297 | PR-8 879 |
+| `PositionToKnow_Inference` | ✅ | 2 | 70, 888 | PR-8 880, PR-9 882 |
+| `LackOfCompleteKnowledge_Conflict` | ✅ | 1 | 133 | PR-8 880, PR-9 882 |
+| `ExpertOpinion_Inference` | ✅ | 1 | 71 | PR-9 881, 883 |
+| `ExpertiseInconsistency_Conflict` | ✅ | 1 | 71 | PR-9 881, 883 |
+| `PracticalReasoning_Inference` | ✅ | 2 | 70, 697 | PR-9 884 |
+| `Bias_Inference` | ✅ | 2 | 70, 1023 | PR-9 885 |
+
+**Verdict: 0 fabricated tokens (15/15 native).** The #677 discipline holds across all 8 PR. PR-8/9
+expand the demonstrated native palette from 10 (PR-1..6) to 21 distinct tokens (PR-8 adds
+`OpposedCommitment_Conflict`, `LackOfCompleteKnowledge_Conflict`, `PositionToKnow_Inference`,
+`ConflictingGoals_Conflict`; PR-9 adds `ExpertOpinion_Inference`,
+`ExpertiseInconsistency_Conflict`, `PracticalReasoning_Inference`, `Bias_Inference`) — all native,
+no fabrication.
+
+> **Inventory-size note (not a FLAG)**: the original audit (§4) cited 54 tokens as "18 Conflict + 35
+> Inference + 1 edge"; the re-derivation on `bdba45d8` gives 35 Inference + 19 Conflict = 54 (no
+> edge-case remainder under the strict `*_Inference`/`*_Conflict` regex). The +1 Conflict vs the §4
+> narrative count is a counting-method nuance, not a regression — the load-bearing claim (15/15
+> proposed tokens native) is unaffected.
+
+---
+
+## E. Per-leaf verdict (18 leaves)
+
+### PR-7 — Amphibologie (borrow-anchor 846 + 8 rows: 847 d3 anchor + 848-854 leaves)
+
+| pk | text_fr (CSV) | Proposed ExceptionRef | Proposed DirectRef | MappingType | Verdict |
+|----|---------------|----------------------|--------------------|-------------|---------|
+| 847 | Amphibologie | `VerbalClassification_Inference` | *(FAIL-LOUD: syntactic ambiguity, no native CA)* | `skos:closeMatch` | ✅ data-OK; FAIL-LOUD legit (§G) |
+| 848 | Ponctuation ambiguë | `VerbalClassification_Inference` | *(FAIL-LOUD: structural ambiguity)* | `skos:narrowMatch` | ✅ data-OK; FAIL-LOUD legit |
+| 849 | Sophisme de portée modale | `Deductive_Inference` | `Logical_Conflict` | `skos:closeMatch` | ✅ PASS (scheme-divergence honest) |
+| 850 | Glissement du quantificateur | `Deductive_Inference` | `Logical_Conflict` | `skos:narrowMatch` | ✅ PASS |
+| 851 | Accent | *(absent — direct-conflict)* | `ArbitraryVerbalClassification_Inference` | `skos:closeMatch` | ✅ PASS (borrow-root reuse) |
+| 852 | Contraste illicite | *(absent)* | `ArbitraryVerbalClassification_Inference` | `skos:narrowMatch` | ✅ PASS |
+| 853 | Solécisme | `VerbalClassification_Inference` | *(FAIL-LOUD: grammar-induced ambiguity)* | `skos:narrowMatch` | ✅ data-OK; FAIL-LOUD legit |
+| 854 | Barbarisme | *(absent)* | `VagueVerbalClassification_Inference` | `skos:narrowMatch` | ✅ PASS (cross-cluster PR-4) |
+
+`desc_fr` 9/9 byte-close (PR-7 citations use a straight apostrophe `'` vs the CSV's curly `'` — same
+cosmetic variant already noted for 841 in §3; no substantive diff).
+
+### PR-8 — Narrative ambiguity / insinuation (in-sub-sub anchor 876 + 4 leaves)
+
+| pk | text_fr (CSV) | Proposed ExceptionRef | Proposed DirectRef | MappingType | Verdict |
+|----|---------------|----------------------|--------------------|-------------|---------|
+| 877 | Fausse implication | *(absent — direct-conflict)* | `ConflictingGoals_Conflict` | `skos:narrowMatch` | ✅ PASS (anchor reuse) |
+| 878 | Argument par l'insinuation | *(absent)* | `ConflictingGoals_Conflict` | `skos:closeMatch` | ✅ PASS |
+| 879 | Compliment empoisonné | *(absent)* | `OpposedCommitment_Conflict` | `skos:closeMatch` | ✅ PASS (semantic-closer conflict) |
+| 880 | Indiscrétion anonyme | `PositionToKnow_Inference` | `LackOfCompleteKnowledge_Conflict` | `skos:narrowMatch` | ✅ PASS (genuine exception) |
+
+`desc_fr`: 876/877 cited byte-close; **878 cosmetic capitalization diff** (`Choses` in doc vs
+`choses` in CSV — same cosmetic class as the apostrophe variant, no meaning change); 879/880 discuss
+semantics without a verbatim citation, and the semantic readings (879 praise/discredit opposition,
+880 anonymous-source epistemic gap) are faithful to the CSV descs. 0 FAIL-LOUD.
+
+### PR-9 — Narrative ambiguity / deception (anchor 876 recap + 6 leaves)
+
+| pk | text_fr (CSV) | Proposed ExceptionRef | Proposed DirectRef | MappingType | Verdict |
+|----|---------------|----------------------|--------------------|-------------|---------|
+| 881 | Propagande grise | `ExpertOpinion_Inference` | `ExpertiseInconsistency_Conflict` | `skos:narrowMatch` | ✅ PASS (concealment) |
+| 882 | Campagne de murmures | `PositionToKnow_Inference` | `LackOfCompleteKnowledge_Conflict` | `skos:narrowMatch` | ✅ PASS (cross-PR-8 reuse) |
+| 883 | Propagande noire | `ExpertOpinion_Inference` | `ExpertiseInconsistency_Conflict` | `skos:closeMatch` | ✅ PASS (falsification) |
+| 884 | Interrogatoire clandestin | `PracticalReasoning_Inference` | `ConflictingGoals_Conflict` | `skos:narrowMatch` | ✅ PASS (anchor reuse) |
+| 885 | Prêcher le faux pour savoir le vrai | *(absent — direct-conflict)* | `Bias_Inference` | `skos:narrowMatch` | ✅ PASS (scheme-as-defect) |
+| 886 | Polytélie | *(absent)* | `ConflictingGoals_Conflict` | `skos:closeMatch` | ✅ PASS (anchor reuse, literal) |
+
+`desc_fr` 6/6 byte-close (curly apostrophes match between doc and CSV). 0 FAIL-LOUD. The omission-
+vs-commission distinction (881 concealment `narrowMatch` vs 883 falsification `closeMatch`, same
+scheme+conflict pair) is a coherent MappingType grading, not a contradiction.
+
+---
+
+## F. FAIL-LOUD legitimacy (3 cases — all verified legitimate)
+
+PR-7's 3 FAIL-LOUD cases (847/848/853) are all **CA-missing** (RA-node `VerbalClassification_Inference`
+present, no native Conflict node captures syntactic / structural / grammar-induced ambiguity). Each
+is legitimate only if a native syntactic-ambiguity Conflict token genuinely does not exist:
+
+| pk | doc | FAIL-LOUD reason | Hypothetical missing token | In inventory? | Verdict |
+|----|-----|------------------|----------------------------|---------------|---------|
+| 847 | PR-7 | syntactic ambiguity (amphiboly, CA-node missing) | `SyntacticAmbiguity_Conflict` / `Amphiboly_Conflict` / `Ambiguity_Conflict` | ❌ all absent | ✅ legit |
+| 848 | PR-7 | structural ambiguity via punctuation (CA-node missing) | `StructuralAmbiguity_Conflict` | ❌ absent | ✅ legit |
+| 853 | PR-7 | grammar-induced ambiguity / solecism (CA-node missing) | `GrammarAmbiguity_Conflict` | ❌ absent | ✅ legit |
+
+The 3 cases are the **same gap shape** as the §5 CA-missing circularity cases (840, 829): a legitimate
+scheme exists (RA-node present), but no native Conflict node captures the defect. They form a
+**fourth recurring AIF ontology gap — ambiguity** (after circularity PR-1/6, pure-comparison PR-2,
+and the implicature-RA gap PR-8 flags in §7). All hypothetical tokens were checked absent against the
+54-token inventory → the FAIL-LOUDs are honest, not shortcuts.
+
+---
+
+## G. ⚠ SECONDARY — chantier count reconciliation (the one authoritative number)
+
+**The §6 FLAG is now compounded.** po-2023's PR-8/9 docs report a "dual criterion" of 100 strict /
+101 inclusive, but the "inclusive 101" is itself **non-uniform**: it counts pk 840 (PR-1, CA-missing)
+as fully-modeled while excluding pk 829 (PR-6) and pk 847/848/853 (PR-7) — **four leaves of the exact
+same CA-missing shape** (RA present, CA absent). A criterion that includes one CA-missing leaf but
+excludes four others is not a criterion; it is PR-1's original over-count preserved by inertia.
+
+### The two uniform criteria
+
+| Criterion | Definition | Count |
+|-----------|-----------|------:|
+| **Strict (uniform)** | fully-modeled = BOTH scheme (RA) AND conflict (CA) present | **100** |
+| **Inclusive (uniform)** | fully-modeled = RA present (CA-missing also counted) | 105 |
+| ~~po-2023 "inclusive"~~ | PR-1's original convention (840 only) | ~~101~~ — **non-uniform, drop** |
+
+### Reconciliation table (uniform strict criterion, chantier-wide)
+
+| PR | Cluster | Rows | Strict fully-modeled | CA-missing (RA✓/CA✗) | RA-missing (no scheme) |
+|----|---------|-----:|---------------------:|----------------------|------------------------|
+| baseline | — | — | 70 | — | — |
+| PR-1 #699 | False analogy | 4 | 3 | 840 (circularity) | — |
+| PR-2 #701 | Faulty comparison | 5 | 2 | — | 834, 835, 837 (pure comparison) |
+| PR-3 #703 | Association fallacy | 2 | 2 | — | — |
+| PR-4 #705 | Vague definition | 3 | 3 | — | — |
+| PR-6 #708 | Inconsistent definition | 7 | 5 | 829 (circularity) | 832 (vague meta) |
+| PR-7 #711 | Amphibologie | 8 | 5 | 847, 848, 853 (ambiguity) | — |
+| PR-8 #713 | Narrative ambiguity / insinuation | 4 | 4 | — | — |
+| PR-9 #714 | Narrative ambiguity / deception | 6 | 6 | — | — |
+| **total** | **4 subfamilies** | **39** | **100** | **5** | **4** |
+
+**Authoritative headline**: **100 fully-modeled (strict)** out of 109 addressed (70 baseline + 39
+new) = 91.7%. The 9 partial leaves are honestly tracked as two gap families:
+
+- **5 CA-missing** (would-be undercuts, conflict node gap): circularity ×2 (840, 829) + syntactic /
+  structural / grammar ambiguity ×3 (847, 848, 853). These become fully-modeled the moment jsboige
+  ratifies an ontology extension adding a `Circularity_Conflict` (question-begging) node and a
+  syntactic-ambiguity Conflict node → **+5 undercuts, chantier → 105**.
+- **4 RA-missing** (no native scheme): pure comparison ×3 (834, 835, 837) + vague meta-fallacy ×1
+  (832). These need a `Comparison_Inference` scheme or a re-expression as `Example_Inference` /
+  `Sign_Inference` (semantic stretch) → lower-fidelity, deferred.
+
+**Recommendation for jsboige**: commit **100 fully-modeled (strict)** as the single chantier
+headline for the release notes / OWL regen. Drop the "inclusive 101" — it is not a uniform criterion.
+The two gap families (5 CA-missing, 4 RA-missing) are the agenda for the eventual ontology-extension
+decision, which is more useful surfaced as 9 honest gaps than lumped into an inconsistent headline.
+
+**This reconciliation does not block ratification of the 8 propositions** (PR-1..4/6..9, 39 rows) —
+all 39 are data-clean (§1-§5 + §B-§F). It only fixes the headline number so the coverage claim is
+reproducible.
+
+---
+
+## H. Ratification-ready summary (PR-7/8/9 + count)
+
+The 3 Ambiguïté-family propositions are **ratification-ready** (data-clean, 0 fabrication, FAIL-LOUDs
+legitimate). Combined with the original 5, the chantier now covers **4 subfamilies / 39 rows** with
+**100 fully-modeled (strict)** + 9 documented gaps.
+
+**Native AIF tokens added by PR-7/8/9** (all confirmed native, reuse-only):
+- **Inference schemes (RA-nodes)**: `VerbalClassification_Inference`, `Deductive_Inference`,
+  `VagueVerbalClassification_Inference`, `PositionToKnow_Inference`, `ExpertOpinion_Inference`,
+  `PracticalReasoning_Inference`, `Bias_Inference`.
+- **Conflict nodes (CA-nodes)**: `OppositeConsequences_Conflict`, `SignFromOtherEvents_Conflict`,
+  `Logical_Conflict`, `ConflictingGoals_Conflict`, `OpposedCommitment_Conflict`,
+  `LackOfCompleteKnowledge_Conflict`, `ExpertiseInconsistency_Conflict`.
+
+**New FAIL-LOUD gap family (PR-7)**: ambiguity (3 CA-missing leaves) — joins circularity (PR-1/6),
+pure-comparison (PR-2), implicature-RA (PR-8 §7) as the chantier's documented ontology gaps.
+
+---
+
+## Gate boundaries (HARD — read-only audit addendum)
+
+- ❌ No prod CSV write, no DB write, no OWL regen, no `aif:` assertion emitted.
+- ❌ No change to the 3 proposition docs (this addendum comments on them, does not edit).
+- ✅ Audit derived code=truth from the taxonomy CSV via a deterministic read-only script
+  (`498_audit_extract_pr789.py`, scratchpad-only, not committed — reproducible on `bdba45d8`).
+- ✅ Adversarial: count-reconciliation FLAG resolved to one authoritative number (§G), not a
+  rubber-stamp of po-2023's dual-criterion headline.
+
+Relates: dispatch `ynv05a` (PRIMARY + SECONDARY), #498 (chantier), PR-7 #711, PR-8 #713, PR-9 #714,
+PR-1 #699, PR-2 #701, PR-3 #703, PR-4 #705, PR-6 #708, coverage-status #707, family-gap #712,
+#677 (0 fabrication), #133/#130 (existing OWL), #499 (inverse), #458. Base `bdba45d8`.
