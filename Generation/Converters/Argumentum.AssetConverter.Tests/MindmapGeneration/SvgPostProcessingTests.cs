@@ -30,7 +30,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var processedSvgContent = FallacyMindMapDocumentConfig.GetSvgContent(processedSvgDocs.Values.First());
 
             // Assert
-            var snapshotDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "snapshots");
+            var snapshotDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "snapshots");
             var snapshotFile = Path.Combine(snapshotDirectory, "sample_fallacy_map.snapshot.svg");
             
             // Auto-generate snapshot if it doesn't exist (first run)
