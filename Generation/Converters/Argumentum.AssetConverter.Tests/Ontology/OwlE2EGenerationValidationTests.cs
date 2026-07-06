@@ -57,7 +57,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 
         private static OwlAdapter RealOntology => _realOntology.Value;
 
-        private static string ResolveRepoFile(string repoRelativePath)
+        private static string? ResolveRepoFile(string repoRelativePath)
         {
             var relative = repoRelativePath.Replace('/', Path.DirectorySeparatorChar);
             for (var d = AppContext.BaseDirectory; d != null; d = Path.GetDirectoryName(d))

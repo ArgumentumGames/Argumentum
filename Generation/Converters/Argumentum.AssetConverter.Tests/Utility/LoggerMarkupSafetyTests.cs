@@ -55,7 +55,7 @@ namespace Argumentum.AssetConverter.Tests.Utility
             // Exact shape emitted by HarvestManager's #614 resilience path.
             var message = "[HARVEST-FAILURE] Card set 'FallaciesTarot' / 'fr' failed and was skipped: boom";
 
-            string output = null;
+            string output = null!;
             var act = () => { output = CaptureConsole(() => Logger.Log(message, MessageType.Problem)); };
 
             act.Should().NotThrow("a bracketed failure marker must not be parsed as Spectre style markup (#630)");

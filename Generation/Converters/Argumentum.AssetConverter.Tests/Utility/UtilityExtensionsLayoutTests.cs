@@ -139,7 +139,7 @@ namespace Argumentum.AssetConverter.Tests.Utility
             // The implementation guards with IsNullOrWhiteSpace and returns false before parsing.
             // Pinned separately (null is not a valid Theory string argument) so the null path is
             // still covered — a regression that removed the null guard would NullReferenceException.
-            ((string)null).PathIsUrl().Should().BeFalse("null path must not be treated as a URL");
+            ((string)null!).PathIsUrl().Should().BeFalse("null path must not be treated as a URL");
         }
 
         [Fact]
