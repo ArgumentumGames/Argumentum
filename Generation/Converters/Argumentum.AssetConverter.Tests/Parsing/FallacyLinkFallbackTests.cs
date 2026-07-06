@@ -158,7 +158,7 @@ namespace Argumentum.AssetConverter.Tests.Parsing
         // Reflection helpers — let one Theory cover all 6 non-source languages uniformly.
         // ─────────────────────────────────────────────────────────────────────────────
 
-        private static void SetLink(Fallacy f, string propName, string value)
+        private static void SetLink(Fallacy f, string propName, string? value)
             => typeof(Fallacy).GetProperty(propName)!.SetValue(f, value);
 
         private static string GetFallback(Fallacy f, string propName)
