@@ -23,7 +23,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 			table.Columns.Add(PrimaryKey, typeof(string));
 			table.Columns.Add("text_en", typeof(string));
 			table.Columns.Add("desc_en", typeof(string));
-			table.PrimaryKey = new[] { table.Columns[PrimaryKey] };
+			table.PrimaryKey = new[] { table.Columns[PrimaryKey]! };
 			foreach (var row in rows)
 			{
 				var dr = table.NewRow();
@@ -33,7 +33,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 			return table;
 		}
 
-		private static Dictionary<string, object> Record(string pk, string textEn = null, string descEn = null)
+		private static Dictionary<string, object> Record(string pk, string? textEn = null, string? descEn = null)
 		{
 			var dict = new Dictionary<string, object> { [PrimaryKey] = pk };
 			if (textEn != null) dict["text_en"] = textEn;
@@ -69,7 +69,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 			// Simulates the most common Bug 2 scenario: LLM returns PK as JSON number
 			// (e.g. 1 instead of "1"), Json.NET deserializes as double, DataTable column
 			// is string. Without coercion Rows.Find returns null silently.
-			var table = BuildTable(new object[] { "1", "old", null });
+			var table = BuildTable(new object[] { "1", "old", null! });
 			var tables = new Dictionary<string, DataTable> { [""] = table };
 			var records = new List<Dictionary<string, object>>
 			{
@@ -92,7 +92,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 		{
 			// addNewRows=false → record with unknown PK must be dropped, but a warning
 			// should be emitted (was silent before Bug 2 fix).
-			var table = BuildTable(new object[] { "1", "old", null });
+			var table = BuildTable(new object[] { "1", "old", null! });
 			var tables = new Dictionary<string, DataTable> { [""] = table };
 			var records = new List<Dictionary<string, object>>
 			{
@@ -115,7 +115,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 		[Fact]
 		public void UpdateTableFromRecords_WhenAddNewRowsTrue_CreatesRow()
 		{
-			var table = BuildTable(new object[] { "1", "old", null });
+			var table = BuildTable(new object[] { "1", "old", null! });
 			var tables = new Dictionary<string, DataTable> { [""] = table };
 			var records = new List<Dictionary<string, object>>
 			{
@@ -131,7 +131,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 				resultTables: tables);
 
 			table.Rows.Find("2").Should().NotBeNull();
-			table.Rows.Find("2")["text_en"].Should().Be("brand new");
+			table.Rows.Find("2")!["text_en"].Should().Be("brand new");
 		}
 
 		[Fact]
@@ -154,8 +154,8 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 
 			tables.Should().ContainKey("text_en");
 			tables.Should().ContainKey("desc_en");
-			tables["text_en"].Rows.Find("1")["text_en"].Should().Be("new title");
-			tables["desc_en"].Rows.Find("1")["desc_en"].Should().Be("new desc");
+			tables["text_en"].Rows.Find("1")!["text_en"].Should().Be("new title");
+			tables["desc_en"].Rows.Find("1")!["desc_en"].Should().Be("new desc");
 			// Original global table must remain untouched in per-field mode
 			table.Rows[0]["text_en"].Should().Be("old title");
 		}
@@ -165,7 +165,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 		{
 			// Per-field path used to throw NullReferenceException when Rows.Find returned
 			// null. It must now skip the field with a warning instead of crashing.
-			var table = BuildTable(new object[] { "1", "old", null });
+			var table = BuildTable(new object[] { "1", "old", null! });
 			var tables = new Dictionary<string, DataTable> { [""] = table };
 			var records = new List<Dictionary<string, object>>
 			{

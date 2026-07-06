@@ -27,8 +27,13 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
     public class PdfAlternateFaceAndBackContractTests
     {
         // Helper: build a card list from (front, back) tuples; null/empty back = no back.
-        private static List<CardImages> Cards(params (string front, string back)[] specs)
-            => specs.Select(s => new CardImages { Front = s.front, Back = s.back }).ToList();
+        // `back` is nullable here because the contract tests deliberately pass null to exercise
+        // OrderImagesForAlternateFaceAndBack's IsNullOrEmpty guard (a Rules card has no back).
+        // The `s.back!` suppression at the CardImages.Back assignment acknowledges that the prod
+        // entity annotates Back as non-nullable, but prod tolerates a null Back at runtime via the
+        // guard — this is the intentional null-passing idiom #710 §2 flags for test arrange.
+        private static List<CardImages> Cards(params (string front, string? back)[] specs)
+            => specs.Select(s => new CardImages { Front = s.front, Back = s.back! }).ToList();
 
         // ─────────────────────────────────────────────────────────────────────────────
         // (1) Per-card emission — back-then-front when a back exists, front-only otherwise.
