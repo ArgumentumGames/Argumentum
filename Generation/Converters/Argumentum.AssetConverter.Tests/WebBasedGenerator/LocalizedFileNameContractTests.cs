@@ -27,7 +27,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void EmptyOrNull_ReturnedAsIs(string fileName)
+        public void EmptyOrNull_ReturnedAsIs(string? fileName)
         {
             // The first guard returns the input verbatim, so no language substitution is attempted.
             CardSetLocalization.GetLocalizedFileName(fileName, "fr", "en")

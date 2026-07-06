@@ -303,7 +303,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         }
 
         [Fact]
-        public void ToFileAsync_Writes_A_Non_Empty_OWL2XML_File()
+        public async Task ToFileAsync_Writes_A_Non_Empty_OWL2XML_File()
         {
             // Serialization works end-to-end (this is why #133 ships a non-empty ontology despite
             // the readers being broken — the graph is correctly built, only self-retrieval fails).
@@ -316,7 +316,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             var tempPath = Path.Combine(Path.GetTempPath(), $"arg_onto_test_{Guid.NewGuid():N}.owl");
             try
             {
-                adapter.ToFileAsync(OWLSharp.OWLEnums.OWLFormats.OWL2XML, tempPath).Wait();
+                await adapter.ToFileAsync(OWLSharp.OWLEnums.OWLFormats.OWL2XML, tempPath);
                 File.Exists(tempPath).Should().BeTrue();
                 var content = File.ReadAllText(tempPath);
                 content.Should().NotBeNullOrEmpty("the serialized ontology must be non-empty");
