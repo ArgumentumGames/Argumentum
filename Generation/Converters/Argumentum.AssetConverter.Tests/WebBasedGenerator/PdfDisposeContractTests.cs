@@ -64,7 +64,6 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
         public void HappyPath_CreateActionDispose_InOrder_ResourceDisposed()
         {
             var rec = new LifecycleRecorder();
-            var tracker = (DisposableTracker)null!; // captured via the factory's Created list
 
             PdfManager.WriteAndDispose(rec.Factory(7), rec.Action());
 
