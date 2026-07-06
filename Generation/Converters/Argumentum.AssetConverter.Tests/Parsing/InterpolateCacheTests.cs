@@ -15,13 +15,13 @@ namespace Argumentum.AssetConverter.Tests.Parsing
     {
         private class TypeA
         {
-            public string Text { get; set; }
-            public string Family { get; set; }
+            public string Text { get; set; } = string.Empty;
+            public string Family { get; set; } = string.Empty;
         }
 
         private class TypeB
         {
-            public string Text { get; set; }
+            public string Text { get; set; } = string.Empty;
             public int Value { get; set; }
         }
 
