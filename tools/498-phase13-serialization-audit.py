@@ -66,6 +66,28 @@ PHASE_MAP = {
 assert len(PHASE_MAP) == 50, f"expected 50, got {len(PHASE_MAP)}"
 assert Counter(PHASE_MAP.values()) == {"undercut":20, "undermine":27, "rebut":3}  # closure §3
 
+# ── INDEPENDENT VERIFICATION: cross-check PHASE_MAP against the 3 machine-readable
+#    annotation CSVs (the source-of-truth the phase docs reference). This proves the
+#    50-leaf verbatim-from-table extraction above is exact — every pk + attack_type
+#    in PHASE_MAP matches the annotation CSV's fallacy_pk + attack_type columns.
+import glob
+ANNOT_CSVS = sorted(glob.glob("docs/taxonomy/498-scaleup-phase*-annotations.csv"))
+assert len(ANNOT_CSVS) == 3, f"expected 3 annotation CSVs, found {len(ANNOT_CSVS)}: {ANNOT_CSVS}"
+annot_map = {}
+for c in ANNOT_CSVS:
+    import csv as _csv
+    with open(c, encoding="utf-8-sig") as fh:  # utf-8-sig strips the BOM on header
+        for row in _csv.DictReader(fh):
+            pk = row["fallacy_pk"].strip()
+            annot_map[pk] = row["attack_type"].strip()
+assert set(annot_map) == set(PHASE_MAP), (
+    f"annotation-CSV PK set != PHASE_MAP PK set\n"
+    f"  only in annotation CSVs: {set(annot_map) - set(PHASE_MAP)}\n"
+    f"  only in PHASE_MAP:       {set(PHASE_MAP) - set(annot_map)}")
+_mism = {pk for pk in PHASE_MAP if annot_map[pk] != PHASE_MAP[pk]}
+assert not _mism, f"PHASE_MAP vs annotation-CSV attack_type mismatch on PKs: {_mism}"
+ANNOT_VERIFIED = True  # 50/50 match — extraction is byte-faithful to the source CSVs
+
 # ── byte-exact splitters (CSV-aware: doubled quotes + embedded LF) ─────────────
 def split_logical_rows(text):
     rows, cur, in_q = [], [], False
@@ -137,6 +159,8 @@ print("="*72)
 print("#498 PHASE 1-3 SERIALIZATION AUDIT (READ-ONLY, 0 prod write)")
 print("="*72)
 print(f"phase 1-3 map: {len(PHASE_MAP)} leaves  |  distribution: {dict(Counter(PHASE_MAP.values()))}")
+print(f"  └─ ✓ 50/50 match vs the 3 annotation CSVs (machine-readable source): "
+      f"PHASE_MAP extraction is byte-faithful, 0 transcription error" if ANNOT_VERIFIED else "")
 print(f"current CSV:   {len(csv_now)} filled  |  distribution: {dict(Counter(csv_now.values()))}")
 print()
 print(f"NEW fills (empty -> fill, no #753 history): {len(NEW)}  -> {dict(Counter(a for _,a in NEW))}")
