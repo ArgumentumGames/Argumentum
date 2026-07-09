@@ -31,6 +31,7 @@ import csv, io, sys
 from collections import Counter
 
 PATH = "Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv"
+BACKUP = "tmp/Fallacies-backup-pre-phase13.csv"  # saved before --write (for independent verify)
 NODE = {"undercut": "RA-node", "undermine": "I-node", "rebut": "CA-node"}
 WRITE = "--write" in sys.argv
 WITH_OVERRIDES = "--with-overrides" in sys.argv
@@ -196,7 +197,11 @@ print(f"well-formedness: {len(chk)} rows × 104 cols, CRLF({ended_crlf})+BOM({bo
 print(f"delta if written: {len(new_text)-len(text)} bytes")
 print(f"CSV filled total: {total_now} -> {total_after}")
 if WRITE:
+    import os
+    os.makedirs("tmp", exist_ok=True)
+    open(BACKUP, "wb").write(raw)  # save the ORIGINAL bytes (pre-write) for independent verify
     open(PATH, "wb").write((b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8'))
-    print(f">>> WRITTEN ({len(apply_set)} cells filled). GATE was lifted by ai-01 relay of jsboige nod.")
+    print(f">>> WRITTEN ({len(apply_set)} cells filled). Backup saved to {BACKUP} for independent verify.")
+    print(f"    GATE was lifted by ai-01 relay of jsboige nod. Run: python tools/498-phase13-verify.py [--with-overrides]")
 else:
     print(">>> DRY-RUN (pass --write to APPLY; GATED until ai-01 relays jsboige nod. [--with-overrides] for 834/847)")
