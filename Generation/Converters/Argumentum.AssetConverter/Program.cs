@@ -394,6 +394,23 @@ namespace Argumentum.AssetConverter
 						await cmykConfig.Apply().ConfigureAwait(false);
 						return;
 					}
+					else if (args[0].Equals("--generate-owl", StringComparison.OrdinalIgnoreCase))
+					{
+						// Regenerate ONLY the OWL ontologies (Fallacies + Virtues) from the current CSV
+						// datasets: no harvest, no PDF, no mindmap. Writes to <Target>/<lang>/Ontology/.
+						// This is the reproducible way to refresh the committed docs/ontology/argumentum.owl
+						// after taxonomy edits (e.g. the crossLink_* / AIF_attack* relational layers).
+						// Mirrors --pdf-cmyk: a single-stage entry point replacing the default harvest+PDF Mode.
+						Logger.LogTitle("Mode génération OWL (ontologies Fallacies + Virtues)");
+
+						var owlGenConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var owlGenConfig = AssetConverterConfig.GetConfig(owlGenConfigFileName, out var _);
+
+						owlGenConfig.Mode = ConverterMode.OwlGenerator;
+
+						await owlGenConfig.Apply().ConfigureAwait(false);
+						return;
+					}
 				}
 
 				var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");

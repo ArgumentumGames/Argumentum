@@ -198,6 +198,53 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                 "the mappings were inspected and present, not because the concept list was empty");
         }
 
+        // ─────────────────────────────────────────────────────────────────────────────
+        // (5) NEW LAYER — transverse cross-links + AIF attack typing (CSV→OWL wiring added with this
+        //     change). Proves the second-pass emitter in OwlGeneratorConfig.CreateOwlDocument actually
+        //     writes crossLink object-property assertions (predatesOn/denounces/leverages/allows/
+        //     opposes/inverts/mirrors/isRelatedTo) resolved from the crossLink_* CSV columns, plus the
+        //     aifAttackType literal + aifAttackedNode (RA/I/CA-node) resource for each AIF-typed leaf —
+        //     and that, like the SKOS *Match resource-valued annotations in test 3, they SURVIVE the
+        //     OWL2XML round-trip. Regression guard: if the wiring is dropped (or the committed ontology
+        //     is not regenerated after the crosslink/AIF data is applied to the CSV), these counts fall
+        //     to 0. Loads the same committed docs/ontology/argumentum.owl as the tests above.
+        // ─────────────────────────────────────────────────────────────────────────────
+
+        [Fact]
+        public void LoadedOntology_ContainsCrossLinkAndAifAttackAssertions()
+        {
+            int crossLinks =
+                  CountAnnotations("#predatesOn")
+                + CountAnnotations("#denounces")
+                + CountAnnotations("#leverages")
+                + CountAnnotations("#allows")
+                + CountAnnotations("#opposes")
+                + CountAnnotations("#inverts")
+                + CountAnnotations("#mirrors")
+                + CountAnnotations("#isRelatedTo");
+
+            crossLinks.Should().BeGreaterThan(0,
+                "the second-pass emitter writes transverse crossLink object-property annotation assertions " +
+                "resolved from the 8 crossLink_* CSV columns; like the resource-valued SKOS *Match annotations " +
+                "they survive the OWL2XML round-trip. Count 0 = the CSV→OWL crosslink wiring was removed, or the " +
+                "committed ontology was not regenerated after the crosslink data was applied to the taxonomy CSV.");
+
+            CountAnnotations("#isRelatedTo").Should().BeGreaterThan(0,
+                "isRelatedTo is the verb of the manually-seeded transverse links (e.g. PK3 '1.1.1' → '7.1.2.3'), " +
+                "so at minimum the pre-existing seeds must be emitted.");
+
+            int aifAttackType = CountAnnotations("#aifAttackType");
+            int aifAttackedNode = CountAnnotations("#aifAttackedNode");
+
+            aifAttackType.Should().BeGreaterThan(0,
+                "the emitter writes an aifAttackType literal (undercut/undermine/rebut) for every fallacy carrying " +
+                "AIF_attackType (the typed leaves). Count 0 = the AIF-attack wiring was removed or the ontology was " +
+                "not regenerated.");
+            aifAttackedNode.Should().BeGreaterThan(0,
+                "each AIF-typed fallacy also links to its AIF node (RA-node/I-node/CA-node) via aifAttackedNode — " +
+                "the formal ASPIC+/AIF attachment (undercut→RA, undermine→I, rebut→CA).");
+        }
+
         private static object BuildProdValidator(OwlAdapter ontology)
         {
             // OwlOntologyValidationTests is a PUBLIC class in the PRODUCTION project (namespace
