@@ -1,9 +1,11 @@
 # Argumentum v0.9.0 — Dossier de validation release
 
-**Date** : 2026-07-05 (refresh v4.1 : refresh cohérence tag — master `d90ce613`, tests empiriques 578/584, aligné CHANGELOG #689). Refresh v4 (2026-07-04) : bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS.
-**Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + verdict #140 multilingue 8 langues RENDU + verdict #632 colorimétrique CMYK RENDU) — en attente d'arbitrages jsboige (SVG #636, mnémoniques #654, couplage go-live DNN) puis tag
-**Branche** : `docs/release-validation-v090-refresh-80pdfs`
-**Master de référence** : `d90ce613` (build zéro-warning CS+NU, **tests 578 pass / 1 known-fail #133 / 5 skip / 584 total** [empirique `dotnet test` 2026-07-05, po-2024 #689 + re-vérifié ce tick], Magick.NET 14.14.0). **Refresh v4** : bundle **v3** régénéré 2026-07-03 sur `27442add` = **80 PDFs** (10 types × 8 langues, expansion P&P #648-650) PNG-lossless puis **80/80 convertis CMYK** via post-process Ghostscript (#632/#652). Bundle GDrive `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`).
+**Date** : 2026-07-09 (refresh **v5** : intégration colonnes AIF relationnelles #753/#754/#755 + master `81a9e4e6` + tests empiriques 594/600). Refresh v4.1 (2026-07-05) : master `d90ce613`, aligné CHANGELOG #689. Refresh v4 (2026-07-04) : bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS.
+**Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + verdict #140 multilingue 8 langues RENDU + verdict #632 colorimétrique CMYK RENDU) — en attente d'arbitrages jsboige (SVG #636, mnémoniques #654, couplage go-live DNN) puis tag. **Tag toujours non posé** (`git tag` vide au 2026-07-09).
+**Branche** : `docs/release-validation-v5-aif-refresh`
+**Master de référence** : `81a9e4e6` (build zéro-warning CS+NU, **tests 594 pass / 1 known-fail #133 / 5 skip / 600 total** [empirique `dotnet test` 2026-07-09, po-2023 ce tick — +16 tests vs v4.1 (578)], Magick.NET 14.14.0). **Refresh v4** : bundle **v3** régénéré 2026-07-03 sur `27442add` = **80 PDFs** (10 types × 8 langues, expansion P&P #648-650) PNG-lossless puis **80/80 convertis CMYK** via post-process Ghostscript (#632/#652). Bundle GDrive `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`).
+
+> **Delta v5 (post-05/07)** : 4 PRs merged sur master entre `d90ce613` et `81a9e4e6` — **#753** (Fallacies AIF : 2 colonnes relationnelles `AIF_attackType`/`AIF_attackedNode`, 46/1408 remplis), **#754** (mirror Virtues script), **#755** (mirror Virtues exécuté, 222/223 remplis), **#756** (audit sérialisation read-only). Détail inventaire §3.1bis. Aucun impact assets rendus (CSV metadata-only, 0 impact CardPen/harvest/PDF) → verdicts #140/#632 inchangés, bundle v3 reste le bundle de référence.
 
 ---
 
@@ -45,6 +47,21 @@
 **Hygiène CSV close ce cycle** : corruption encodage `%C3→A13` systémique dans templates JSON réparée (#579 Fallacies, #581 Memo, #584 4 templates Fallacies live). Audit complet : `docs/investigations/2026-06-23-prod-csv-hygiene-audit.md`.
 
 > **Source des counts** (pointeur, review NanoClaw) : Fallacies 1408 nœuds + Virtues 223 nœuds + Scenarii 167 records proviennent de l'analyse taxonomy consolidée — issues #335 (Fallacies closure), #499 Phase 1 spec (`docs/taxonomy/499-virtues-prod-write-spec.md`, 223 rows × 66 cols ground-truth), et commits Scenarii `7ed970a3`/`2a1b86bf`/`0dc838fb` (167/167 vérifiés cell-by-cell `7206f2f9`). Comptes non re-dérivés ce jour (cf §1 méthode).
+
+### 3.1bis Colonnes AIF relationnelles — Fallacies + Virtues (✅ livré v5, PRs #753/#754/#755)
+
+**Nouvel artefact de données (delta v5)** : le chantier AIF #498/#499 a sérialisé la décomposition argumentative I/RA/CA dans **2 nouvelles colonnes CSV** (`AIF_attackType` + `AIF_attackedNode`) sur les **deux taxonomies**, avec un **contrat partagé anti-drift**. Metadata-only (couche additive, 0 impact rendu carte / CardPen / harvest / PDF → verdicts #140/#632 inchangés).
+
+| Taxonomie | Colonnes | Coverage | PR | Master commit | Byte-check ai-01 |
+|-----------|----------|----------|----|---------------|-------------------|
+| **Fallacies** (1408 nœuds) | `AIF_attackType` (idx 96) + `AIF_attackedNode` (idx 97) | **46/1408** remplis : 44 undercut/RA + 2 undermine/I, **0 rebut**, 17 fail-loud vides | #753 | `d4fde74d` | ✅ 143 616 checks → 0 mismatch |
+| **Virtues** (223 nœuds) | `AIF_attackType` (idx 79) + `AIF_attackedNode` (idx 80) | **222/223** remplis : 206 undercut/RA + 13 undermine/I + 3 rebut/CA ; 1 root (pk 0) vide | #755 | `3b68393a` | ✅ 17 617 checks → 0 mismatch |
+
+- **Discipline #677 tenue** : 0 fabrication de tokens. Cellules vides = fail-loud si pas de CQ (corpus question) natif (17 Fallacies).
+- **Règle déterministe** (plan #750 v2) : défaut `undercut`/`RA-node` ; override `undermine`/`I-node` si oppose {889,804} ; override `rebut`/`CA-node` si oppose {340}. Distribution Virtues = 206/13/3 (exacte, re-confirmée programmatiquement).
+- **Contrat partagé** : les 2 taxonomies utilisent les mêmes noms d'en-têtes + vocab canonique → mirror anti-drift.
+- **Impact release** : aucun sur les assets rendus (CSV = métadonnée OWL/EPITA, pas consommée par le pipeline de rendu). L'OWL peut être régénéré pour embarquer ces colonnes (post-tag, #133 scope).
+- ⚠️ **#756** (audit sérialisation read-only, `81a9e4e6`) : diagnostic qui **backs l'ASK ai-01** sur la couverture Fill Fallacies. Ne modifie aucune donnée — documente le delta entre 46 modelés et la cible de couverture.
 
 ### 3.2 MindMap SVGs — 8 langues (✅ livré, PR #565)
 
