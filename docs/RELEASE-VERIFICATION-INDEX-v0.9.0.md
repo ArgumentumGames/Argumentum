@@ -12,6 +12,11 @@ débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les a
 > **Comment utiliser cet index** : pour chaque ligne, ouvrir le lien, eyeball-vérifier le point
 > « à vérifier », puis cocher. Les docs stale (framework historique) sont regroupés en §8 avec un
 > avertissement — ils ne sont PAS le tag-gate (le dossier §1 l'est).
+>
+> **🎯 Pour la session GO visuel des ASSETS** (PDFs/SVGs du bundle GDrive, ~45 min) : voir
+> [RELEASE-VISUAL-GO-SESSION-v0.9.0.md](RELEASE-VISUAL-GO-SESSION-v0.9.0.md) — parcours guidé des 6
+> PDFs prioritaires + guide vérif non-latin (AR/FA RTL, ZH CJK, RU) + les 4 arbitrages GO/no-GO.
+> Cet index couvre la review des **docs** ; le parcours couvre la review des **assets** — complémentaires.
 
 ---
 
