@@ -4,7 +4,7 @@
 release** avant de poser le tag v0.9.0 (#134). Un seul point d'entrée → un lien + une ligne
 « à vérifier » par doc.
 
-**Master de référence** : `7590dfb8` (post batch-merges cycle-3 : #672/#673/#675/#676/#680). Tous
+**Master de référence** : `81a9e4e6` (refresh v5 2026-07-09 : intégration colonnes AIF #753/#754/#755 + tests empiriques 594/600). Précédent : `7590dfb8` (cycle-3 : #672/#673/#675/#676/#680). Tous
 les docs listés ci-dessous sont **sur master** (vérifiables maintenant). Le tag est techniquement
 débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les arbitrages jsboige
 (§« Décisions restantes »).
@@ -19,7 +19,7 @@ débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les a
 
 | Doc | À vérifier |
 |-----|------------|
-| [RELEASE-VALIDATION-v0.9.0.md](RELEASE-VALIDATION-v0.9.0.md) | **Dossier de validation v4 (refresh)** — 80 PDFs CMYK, verdicts #140/#632 RENDUS PASS. **2 appels à décision** : (a) SVG Virtues `.content.svg` FR-frozen (#636/#654, non-bloquant géométrie), (b) titre PT « Roll of the English Channel » (§3.6, fix prep po-2024 gated). Confirme si l'un ou l'autre bloque le tag. |
+| [RELEASE-VALIDATION-v0.9.0.md](RELEASE-VALIDATION-v0.9.0.md) | **Dossier de validation v5 (refresh 2026-07-09)** — 80 PDFs CMYK, verdicts #140/#632 RENDUS PASS, **+ §3.1bis : colonnes AIF relationnelles Fallacies+Virtues (#753/#754/#755, metadata-only, 0 impact rendu)**. Master `81a9e4e6`, tests 594/600 empiriques. **2 appels à décision** : (a) SVG Virtues `.content.svg` FR-frozen (#636/#654, non-bloquant géométrie), (b) titre PT « Roll of the English Channel » (§3.6, fix prep po-2024 gated). Confirme si l'un ou l'autre bloque le tag. |
 
 ---
 
