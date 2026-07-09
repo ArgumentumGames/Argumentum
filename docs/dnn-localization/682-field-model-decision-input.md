@@ -1,5 +1,8 @@
 # 2026-07-05 — #682 Rule field-model decision-input + provisioning list (Path A)
 
+> **📋 REVISED 2026-07-09 — see [`682-field-model-revision-2sxc21.md`](682-field-model-revision-2sxc21.md).**
+> The Path A decision + 49 suffixed fields below are **confirmed correct** by the live 2sxc v21 export (#681). The revision corrects 3 deltas the binary scan #687 could not see: (1) schema family `ToSIC_EAV_*` v21 (not `ToSIC_SexyContent_*` 15.02), (2) app=60 not app=31, (3) attribute types **resolved** (all 7 translatable = String/Wysiwyg, no longer gated). The provisioning list (49 fields) is **unchanged**. This doc stays as the original decision record.
+
 **Scope**: decision-input for #682 — the Rule field-model decision (step 2 of the #669 portage plan).
 Produces the recommendation (Path A vs Path B), the rationale, and the **exact field-list to provision
 × 8 languages** so jsboige's DB provisioning becomes a trivial mechanical execution. Triggered by ai-01
