@@ -1,176 +1,246 @@
-# 2026-07-05 — #498 AIF chantier : coverage status & méthode (synthèse pour ratification jsboige)
+# 2026-07-10 — #498 AIF chantier : coverage status & trajectoire (refresh code=truth)
 
-**Objet** : vue d'ensemble du chantier #498 (« exceptions défaisables Walton/AIF ») après 4 PR,
-pour ratification jsboige de la **méthode** + décision sur le **schéma CSV I/RA/CA** (sérialisation
-du DoD enrichi). Synthèse read-only — aucun write prod.
+**Objet** : vue d'ensemble à jour du chantier #498 (« exceptions défaisables Walton/AIF »)
+après la sérialisation des 2 colonnes d'attaque (#753/#760) et 12 cluster-doc PRs. Corrige le
+snapshot précédent (2026-07-05, master `70bd1605`), désormais périmé sur la structure du chantier.
+Synthèse **read-only, dérivée code=truth** — aucun write prod dans ce document (proposition gated).
 
-**Repo reference**: master `70bd1605`. Issue: #498 (reformulated, GO jsboige 2026-06-17 verified).
-DoD enrichi (I-node/RA-node/CA-node) : dernier comment jsboige sur #498.
-
----
-
-## TL;DR
-
-- **Coverage master (code=truth)** : **70/1408 fallacies mappés (5.0%)** sur 8 families.
-- **Chantier #498 (4 PR)** : 14 leaves modélisés, **+11 fully-modeled (DoD)** → 70→81 projected
-  (si toutes merged). 1 subfamily fully addressed (Fallacious comparison), 1 ouverte (Inexact
-  definition).
-- **Méthode** : grappe-à-grappe (1 PR = 1 sub-sub cohérent), 2 cluster shapes (in-sub-sub anchor /
-  borrowed-root anchor), 2 patterns (exception / direct-conflict), fail-loud si pas de token AIF
-  natif. **0 fabrication** (validé programmatisation sur chaque PR).
-- **DoD enrichi (I/RA/CA)** : décomposition enregistrée dans §7 de chaque PR, **pas encore
-  sérialisée** dans le CSV → **décision jsboige** requise sur nouvelles colonnes
-  (`AIF_attackType`, `AIF_attackedNode`).
-- **Trajectoire** : 1408 leaves, ~87 sub-subs. À ~3-4 leaves/PR, chantier long. Recommandation :
-  ratifier méthode + schéma I/RA/CA maintenant, puis exécuter en autonomie.
+**Repo reference** : master `7796c127`. Issue : #498 (reformulée, GO jsboige 2026-06-17 vérifié).
+Schéma I/RA/CA **ratifié + sérialisé** (#707 Option (a) → colonnes créées #753, remplies #760).
 
 ---
 
-## 1. Coverage code=truth (master `70bd1605`)
+## TL;DR — la couverture a **deux couches**, jamais réconciliées
 
-### Per family
+Le chiffre « couverture » dépend de **quelle couche AIF** on mesure. Code=truth master `7796c127` :
 
-| Family | Mapped | Total | % |
-|--------|-------:|------:|---:|
-| Cheating | 14 | 390 | 3.6% |
-| Faulty logics | 11 | 102 | 10.8% |
-| Influence | 8 | 378 | 2.1% |
-| Insufficiency | 11 | 174 | 6.3% |
-| Mathematical error | 7 | 102 | 6.9% |
-| **Misleading language** | **11** | **87** | **12.6%** (highest) |
-| Obstruction | 8 | 126 | 6.3% |
-| *(empty family name)* | 0 | 48 | 0.0% ⚠ |
+| Métrique | Rows | % de 1408 | Sérialisée par |
+|----------|-----:|----------:|----------------|
+| **Couche attaque** (`AIF_attackType`+`AIF_attackedNode`) | **93** | 6.6% | #753 (back-fill §7) + #760 (scaleup phase 1-3) |
+| **Couche skos** (`AIF_skosDirectRef`/`ExceptionRef`/`MappingType`) | **70** | 5.0% | pilote AIF pré-chantier (baseline) |
+| **Union** (au moins un signal AIF) | **145** | 10.3% | — |
+| **Pleinement modélisée** (les 2 couches) | **18** | **1.3%** | intersection |
+
+- Les deux couches **ne se recouvrent qu'à 18 rows**. Il en résulte **52 rows skos-only** (tokens
+  natifs vérifiés, **mais pas de colonne d'attaque**) et **75 rows attack-only** (attaque typée,
+  **mais pas de token skos**). C'est un **écart de back-fill bidirectionnel**, pas une régression.
+- Le snapshot précédent « 70/1408 (5.0%) » **n'était pas faux** : il mesurait la couche **skos**,
+  qui précède les colonnes d'attaque. « 93 » mesure la couche **attaque**. Deux compteurs distincts.
+- **La vraie complétude AIF (les 2 couches) = 18 leaves (1.3%)**. Le reste est mono-couche.
+- **Conséquence stratégique** : les deux plus hauts ROI ne sont **pas** de nouveaux cluster docs
+  ex-nihilo, mais **réconcilier les couches** — voir §5.
+
+---
+
+## 1. Coverage code=truth (master `7796c127`)
+
+### Couche attaque — per family (93 rows)
+
+| Family | Attack-typed | Total | % |
+|--------|-------------:|------:|---:|
+| **Misleading language** | **46** | 87 | **52.9%** (focus historique) |
+| Obstruction | 9 | 126 | 7.1% |
+| Mathematical error | 6 | 102 | 5.9% |
+| Faulty logics | 6 | 102 | 5.9% |
+| Insufficiency | 6 | 174 | 3.4% |
+| Influence | 9 | 378 | 2.4% |
+| Cheating | 9 | 390 | 2.3% |
+| *(empty family name)* | 2 | 48 | 4.2% ⚠ |
 | Fallacy | 0 | 1 | 0.0% |
-| **TOTAL** | **70** | **1408** | **5.0%** |
+| **TOTAL** | **93** | **1408** | **6.6%** |
 
-> ⚠ **Data-quality note** : **48 rows have an empty `Family`** (and 1 empty subfamily). These are
-> likely depth-1/depth-2 root rows or mis-classified leaves — a separate data-hygiene item, not an
-> AIF-mapping gap. Flagged for jsboige; the chantier treats them as out-of-scope until classified.
+> ⚠ **Data-quality note (inchangé)** : **48 rows ont un `Family` vide**. Probables racines
+> depth-1/2 ou leaves mal classées — item d'hygiène de données séparé, hors-scope AIF jusqu'à
+> classification. Flaggé jsboige.
 
-### Per subfamily (Misleading language — chantier focus)
+### Distribution attack-type / attacked-node (93 mapped)
 
-| Subfamily | Mapped | Total | Chantier status |
-|-----------|-------:|------:|-----------------|
-| Ambiguity | 4 | 39 | not started |
-| **Fallacious comparison** | **2** | **13** | **✅ complete (PR-1/2/3)** |
-| Inexact definition | 5 | 34 | 🚧 opened (PR-4 Vague definition) |
+| attack-type | count | → attacked-node (map déterministe #707§4 (a)) |
+|-------------|------:|-----------------------------------------------|
+| undercut | 61 | RA-node (61) |
+| undermine | 29 | I-node (29) |
+| rebut | 3 | CA-node (3) |
 
----
-
-## 2. Chantier progress (4 PR)
-
-| PR | Cluster (subfamily / sub-sub) | Leaves | Fully-modeled (DoD) | DirectRef-loose | FAIL-LOUD | State |
-|----|-------------------------------|-------:|--------------------:|----------------:|----------:|-------|
-| baseline | — | — | 70 | 70 | — | master |
-| **PR-1 #699** | Fallacious comparison / False analogy | 4 | 74 (+4) | 74 (+4) | 1 (840 CA-missing) | merged |
-| **PR-2 #701** | Fallacious comparison / Faulty comparison | 5 | 76 (+2) | 79 (+5) | 3 (834/835/837 RA-missing) | merged |
-| **PR-3 #703** | Fallacious comparison / Association fallacy | 2 | 78 (+2) | 81 (+2) | 0 | OPEN CLEAN |
-| **PR-4 #705** | Inexact definition / Vague definition | 3 | 81 (+3) | 84 (+3) | 0 | OPEN CLEAN |
-| **cumulative** | **2 subfamilies touched** | **14** | **81 (+11)** | **84 (+14)** | **4** | — |
-
-**Fallacious comparison subfamily : ✅ fully addressed** (3/3 sub-subs, 13/13 leaves).
-**Inexact definition subfamily : 🚧 opened** (1/3 sub-subs — next: Arbitrary definition, Inconsistent definition).
-
-### FAIL-LOUD accounting (honest gaps, 0 fabrication)
-
-| PR | pk | Layer missing | Honest reason |
-|----|----|---------------|---------------|
-| PR-1 | 840 | CA-node (Conflict) | no native AIF circularity CQ for analogy |
-| PR-2 | 834/835/837 | RA-node (scheme) | no native `Comparison_Inference` in the 36-scheme vocabulary |
-
-These 4 leaves take a DirectRef (direct-conflict pattern) but document the absent scheme/CQ in
-`AIF_skosOther` rather than fabricating a token. **Two distinct FAIL-LOUD layers** (CA-missing vs
-RA-missing) documented across the chantier.
+Map déterministe **parfaitement respectée** (61/29/3 ↔ RA/I/CA). Les 3 rebut (1282 Relativisme
+abusif, 1313 Évasion, 1361 Procès en incohérence) sont les **premiers rebut de la taxonomie
+Fallacies**, tous famille Obstruction, tous → rebut/CA-node (contre-conclusion structurelle).
 
 ---
 
-## 3. Méthode (validée ai-01 cycle précédent « rigoureuse, 0 fabrication »)
+## 2. Les deux couches AIF — l'état de réconciliation (finding central)
+
+La couche skos (I/RA/CA détaillé : quel CQ Walton, quel scheme) et la couche attaque
+(undermine/undercut/rebut + composant attaqué) ont été sérialisées par **deux efforts distincts**
+et **jamais croisées**. Cross-tab code=truth (1408 rows) :
+
+| | skos ✓ | skos ✗ |
+|---|---:|---:|
+| **attaque ✓** | **18** (pleinement modélisées) | **75** (attack-only) |
+| **attaque ✗** | **52** (skos-only) | 1263 (non mappées) |
+
+### 2a. 52 rows skos-only — back-fill attaque (ROI le + haut, 0 risque fabrication)
+
+Ce sont les rows du **baseline AIF pré-chantier** : elles portent des **tokens natifs vérifiés**
+(`AIF_skosDirectRef` = `*_Conflict`/`*_Inference`, `AIF_skosExceptionRef` = scheme,
+`AIF_skosMappingType` = broad/close/narrowMatch) **mais aucune colonne d'attaque**. Half-done.
+
+| Family | skos-only rows |
+|--------|---------------:|
+| Cheating | 13 |
+| Insufficiency | 10 |
+| Misleading language | 9 |
+| Faulty logics | 8 |
+| Mathematical error | 6 |
+| Influence | 3 |
+| Obstruction | 3 |
+| **total** | **52** |
+
+Dériver `AIF_attackType`/`AIF_attackedNode` est une **étape de modélisation bornée par row** : le
+`DirectRef` révèle souvent le composant attaqué (un `*_Conflict` visant le scheme → undercut/RA-node ;
+visant une prémisse → undermine/I-node ; visant la conclusion → rebut/CA-node). **Aucune fabrication
+de token** (les tokens existent déjà, vérifiés). C'est le candidat de réconciliation le plus tractable.
+
+### 2b. 75 rows attack-only — deepen skos (risque #677, fail-loud)
+
+Attaque typée (#760 scaleup + leaves de cluster docs), **pas de token skos en prod**.
+
+| Family | attack-only rows |
+|--------|-----------------:|
+| Misleading language | 44 |
+| Cheating | 8 |
+| Insufficiency | 5 |
+| Mathematical error | 5 |
+| Influence | 4 |
+| Obstruction | 4 |
+| Faulty logics | 3 |
+| *(empty)* | 2 |
+| **total** | **75** |
+
+Nuance importante : les **44 Misleading language** sont les leaves des cluster docs mergés
+(PR-5…PR-12 : Equivoque, Amphibologie, Narrative ambiguity, définitions). Leur skos est **déjà
+proposé + ratifié dans les docs**, en attente de **sérialisation profonde** (write gated distinct).
+Les **31 non-ML** (scaleup #760) nécessitent une **modélisation skos** avec discipline #677 (fail-loud
+si aucun CQ/scheme natif — jamais fabriquer). ROI moyen, risque plus élevé que 2a.
+
+---
+
+## 3. Chantier progress — ledger des PR mergées (code=truth git log)
+
+### Sérialisation (writes prod, gated byte-check ai-01)
+
+| PR | Commit | Effet |
+|----|--------|-------|
+| **#753** | `d4fde74d` | Crée 2 colonnes + sérialise §7 I/RA/CA (attack-type) des cluster docs → 46 attack-typed |
+| **#760** | `5551000b` | Sérialise scaleup phase 1-3 (47 leaves, MODE 2 override) → 46→93 |
+| **#763** | `053257c7` | Ontologie : câblage AIF attack (OWL consomme les colonnes) + crosslinks 59% |
+| #755 (miroir) | — | #499 Virtues AIF mirror back-fill (222 rows, chantier jumeau) |
+
+### Cluster docs (propositions, gated — aucun write prod, modélisation I/RA/CA détaillée)
+
+| PR | Cluster (Misleading language sauf noté) | Leaves |
+|----|------------------------------------------|-------:|
+| #699/#701/#703 | Fallacious comparison (analogy/faulty/association) | 11 |
+| #705/#708 | Vague + Inconsistent definition | 10 |
+| #711 | Amphibologie (borrow-root) | 8 |
+| #713/#714 | Narrative ambiguity (insinuation + deception) | 10 |
+| #717/#718/#720 | Equivoque (lexical / residual / reification) | 11 |
+| #723 | Acception arbitraire (breadth-defects) | 3 |
+| #707/#709/#716 | coverage synthesis + audits adversariaux | — |
+
+**En attente (gated review ai-01, NON merged)** :
+- **#766** — Relativisme abusif (Obstruction, **1er cluster rebut dédié**). En code=truth, Relativisme
+  abusif affiche encore **4 unmapped** ci-dessous car #766 n'est pas mergé (le doc = proposition).
+
+---
+
+## 4. Méthode (ratifiée ai-01 « rigoureuse, 0 fabrication » + jsboige GO)
 
 ### Cluster selection
 1. **Unit of work = 1 sub-sub** (`Soussousfamille`), code=truth depuis la CSV.
-2. **Préférer les sub-subs avec in-sub-sub anchor mappé** (cluster shape PR-1/PR-4) — pattern le
-   plus propre. Sinon, **borrow-root shape** (PR-2/PR-3) : emprunter l'anchor d2/d3 parent.
+2. **Préférer sub-subs avec anchor in-sub-sub mappé** (cluster shape le + propre). Sinon
+   **borrow-root** (emprunter l'anchor d2/d3 parent).
 3. **Taille cible** : 2-5 leaves/PR (au-delà, découper par depth ou mécanisme).
 
-### Modeling (2 patterns)
-- **Exception pattern** (PR-1 anchor 839) : scheme légitime nommé en `ExceptionRef`, CQ violé en
-  `DirectRef`. La fallacy *defeated* un scheme légitime.
-- **Direct-conflict pattern** (PR-2/PR-3/PR-4 anchors 833/800) : scheme en `DirectRef` seul, pas
-  d'`ExceptionRef`. La fallacy *est* un scheme défectueux.
+### Modeling (3 shapes)
+- **Exception pattern** : scheme légitime en `ExceptionRef`, CQ violé en `DirectRef`. La fallacy
+  *défait* un scheme légitime.
+- **Direct-conflict pattern** : scheme en `DirectRef` seul. La fallacy *est* un scheme défectueux.
+- **Rebut cluster = attack-columns-only** (établi #766) : un rebut relativiste nu est un conflit
+  *structurel* de contre-conclusion, **pas** un conflit de CQ Walton. Sérialisé
+  `attackType=rebut` + `attackedNode=CA-node` seuls ; `DirectRef` vide ; `ExceptionRef` = le
+  scheme natif rebuté **ssi** un s'applique honnêtement. Fail-loud sur le token CA (pas de
+  `*Conflict` fabriqué).
 
-### Leaves
-- **Réutiliser le scheme+CQ de l'anchor** où la leaf est une spécialisation honnête ; varier seulement
-  `MappingType` (`narrowMatch` = plus spécifique, `broadMatch` = plus large, `closeMatch` = variante
-  directe).
-- **FAIL-LOUD** si aucun token AIF natif ne capture le défaitur (CQ ou scheme) — **jamais fabriquer**
-  de `*_Conflict` ou `*_Inference`. Documenter le gap dans `AIF_skosOther`.
-- **Honest scheme-divergence** : si une leaf dans sub-sub X cible en fait un scheme d'une autre
-  famille (ex. 836/838 classification leaves en sub-sub comparison), dire et utiliser le bon scheme.
-
-### Vocabulaire natif (discipline #677)
-- Restriction aux **26 Conflict nodes + 36 Inference schemes** confirmés par l'usage existant (70
-  mapped rows). Aucun token inventé.
-- Validation programmatisation sur chaque PR (grep des tokens backticked vs whitelist native).
+### Discipline vocabulaire natif (#677)
+- Tokens natifs **en usage** (code=truth) : **42 `DirectRef` distincts** + **50 `ExceptionRef`
+  distincts** sur les 70 rows skos-modélisées. Restreint au vocabulaire AIF/Walton confirmé.
+- **FAIL-LOUD** si aucun token natif ne capture le défaiteur — **jamais fabriquer** de `*_Conflict`
+  ou `*_Inference`. Documenter le gap dans `AIF_skosOther`.
+- Validation programmatique sur chaque PR (grep tokens backticked vs whitelist native).
 
 ---
 
-## 4. DoD enrichi jsboige (I-node / RA-node / CA-node) — statut sérialisation
+## 5. Trajectoire & priorisation (refresh)
 
-Le dernier comment jsboige sur #498 enrichit le DoD : modéliser AIF-style = décomposer l'argument
-en **I-nodes** (prémisses + conclusion) + **RA-node** (scheme, inférence attaquable) + **CA-node**
-(conflict, typé undermine/undercut/rebut).
+Le finding §2 change la priorisation : **réconcilier les couches** avant d'ouvrir de nouveaux
+clusters ex-nihilo. Ordre ROI décroissant (toutes exécutions = **writes prod gated**, GO requis) :
 
-### Statut chantier
-- **§7 ajoutée à chaque PR** (PR-1 à PR-4) : mappe chaque leaf à la décomposition + attack-type.
-- **Distribution attack-types observée** : majorité d'**undercuts** (cohérent jsboige « most
-  fallacies live in the undercut »), quelques undermines, 0 rebut jusqu'ici.
+### Priorité 1 — Réconciliation-A : back-fill attaque des 52 skos-only
+- **52 rows**, tokens natifs déjà vérifiés → **0 risque fabrication**, modélisation bornée par row.
+- Découpable par family (Cheating 13, Insufficiency 10, ML 9, Faulty logics 8, Math 6…).
+- Passe la complétude « 2 couches » de 18 → potentiellement 70. Le meilleur ratio effort/couverture.
 
-### ⚠ Pas encore sérialisé — décision jsboige requise
-La décomposition I/RA/CA est **enregistrée dans les docs de proposition**, pas dans le CSV. La
-sérialiser nécessite de **nouvelles colonnes** :
+### Priorité 2 — Réconciliation-B : deep-serialize skos des 44 ML attack-only
+- skos **déjà proposé + ratifié** dans les cluster docs mergés (PR-5…12) → sérialisation d'un
+  contenu vetté, pas de re-modélisation.
 
-| Colonne proposée | Contenu | Exemple |
-|------------------|---------|---------|
-| `AIF_attackType` | `undermine` / `undercut` / `rebut` / *(vide si FAIL-LOUD)* | `undercut` |
-| `AIF_attackedNode` | `I-node` / `RA-node` / `CA-node` (le composant attaqué) | `RA-node` |
+### Priorité 3 — Nouveaux cluster docs (sub-subs à anchor mappé + leaves non-mappées)
+Reste **53 sub-subs** candidats (anchor attack-typé + leaves non mappées). Les petits propres
+d'abord ; les gros (Influence/Cheating) à découper par mécanisme.
 
-**Décision jsboige** :
-- (a) **Ratifier les 2 nouvelles colonnes** → les 4 PR (back-fill §7 dans le CSV) + PRs suivantes
-  les remplissent dès le départ.
-- (b) **Différer** la sérialisation → les PR continuent à enregistrer I/RA/CA en prose (§7), CSV
-  inchangé, décision reportée post-chantier.
-- (c) **Schéma alternatif** (ex. colonne unique `AIF_decomposition` JSON) → à spécifier.
+**Petits clusters propres restants (2-6 unmapped + anchor)** :
 
-Reco chantier : **(a)** — sérialiser tôt évite un back-fill massif tardif et donne au consommateur
-(EPITA harness) la donnée structurée dès le début.
+| unmapped | family / sub-sub | anchor (attack) | note |
+|---------:|------------------|-----------------|------|
+| 6 | Obstruction / Complication exagérée | 1345 undercut | **prochain propre** |
+| 5 | Mathematical error / Opération inappropriée | 690 undercut | propre |
+| 4 | Obstruction / Relativisme abusif | 1282 rebut | **couvert par #766 (pending)** |
+| 2 | Misleading language / Amphibologie | undercut ×6 | résiduel (cluster doc #711) |
+| 2 | Misleading language / Définition inconsistante | undercut ×5 | résiduel (cluster doc #708) |
+| 2 | Misleading language / Fausse analogie | undercut/undermine | résiduel FAIL-LOUD (840) |
+| 2 | Misleading language / Comparaison abusive | undercut/undermine | résiduel FAIL-LOUD (834/835/837) |
 
----
+**Gros clusters (à découper par mécanisme)** — top par volume non-mappé :
+Biais naturels (149), Influence non verbale (83), Biais culturels (67), Jeu de pouvoir (57),
+Conditionnement (56), Poésie (51), Mensonge (48), Langage persuasif (39), Biais théoriques (37),
+**Evasion (31, anchor rebut 1313)**, **Sophisme génétique (26, anchor undermine 1371)**…
 
-## 5. Trajectoire & recommandation
-
-- **1408 leaves, ~87 sub-subs** (estimation ; à confirmer par scan depth). À ~3-4 leaves/PR →
-  chantier long (~30-40 PR pour couvrir les sub-subs à anchor mappé).
-- **Priorité** : sub-subs avec anchor mappé d'abord (cluster shape propre, productivité max), puis
-  borrow-root shapes. Families **Misleading language** (12.6%) et **Faulty logics** (10.8%) = meilleur
-  ratio anchor/leaves.
-- **Prochaines cibles worker-able** (post-batch ai-01 sur #703/#705) :
-  - Inexact definition / Arbitrary definition (3 mapped anchors + 19 unmapped — gros, à découper).
-  - Inexact definition / Inconsistent definition (0/7, borrow-root).
-  - Ambiguity / Narrative ambiguity (1/8), Semantic ambiguity (2/19), Syntactic ambiguity (0/8).
-
-### Recommandation pour jsboige
-1. **Ratifier la méthode** (§3) — déjà validée ai-01, confirmation jsboige clôt le gate méthodologique.
-2. **Décider le schéma I/RA/CA** (§4 — reco : (a) sérialiser tôt).
-3. **Priorisation families** : confirmer Misleading language + Faulty logics en focus, ou rediriger.
+### Nucléi Obstruction rebut (contexte #766)
+Après Relativisme abusif (#766), les autres rebut Obstruction : **Évasion** (1313) et **Procès en
+inconsistance** (1361, 9 unmapped) — même shape attack-columns-only, contexte déjà établi.
 
 ---
 
-## 6. Gate boundaries (HARD — synthèse read-only)
+## 6. Recommandation
 
-- ❌ No prod CSV write, no DB write, no OWL regen.
-- ✅ Synthèse dérivée code=truth (CSV scan master `70bd1605`) + chantier PRs (#699/#701 merged,
-  #703/#705 OPEN).
-- ✅ Aucun token AIF fabriqué dans la synthèse (référence uniquement les tokens natifs existants).
+1. **Réconciliation d'abord** (§5 P1/P2) : le finding §2 montre que 52+44 rows sont *half-done*.
+   Les compléter porte la complétude 2-couches de 1.3% → ~7-8% pour un effort borné et vetté,
+   **avant** d'ouvrir de nouveaux fronts.
+2. **Nouveaux clusters** en parallèle sur les petits propres restants (Complication exagérée,
+   Opération inappropriée) + nucléi Obstruction rebut.
+3. Toute exécution reste **write prod gated** (GO jsboige/ai-01, byte-check comme #753/#760).
 
-Relates: #498 (chantier), PR-1 #699, PR-2 #701, PR-3 #703, PR-4 #705, #133/#130 (OWL), #499
-(inverse: virtue = good tenor), #677 (0 fabrication discipline), #192 (terminology), #458.
+---
+
+## 7. Gate boundaries (HARD — synthèse read-only)
+
+- ❌ No prod CSV write, no DB write, no OWL regen dans **ce** document.
+- ✅ Tous les chiffres dérivés **code=truth** (CSV scan master `7796c127`, 2026-07-10) + git log
+  (PR mergées) + dashboard (PRs pending).
+- ✅ Aucun token AIF fabriqué (référence uniquement les tokens natifs en usage).
+- ✅ VERIFIED : couches 93/70/18/145, distribution 61/29/3, gap-sets 52/75, per-family — tout scan.
+  RAPPORTÉ : effets des PR (git log). PENDING : #766 (non mergé).
+
+Relates : #498 (chantier), #753/#760/#763 (sérialisation), #766 (Relativisme abusif rebut, pending),
+#707 (schéma ratifié), #709/#716 (audits), #677 (0 fabrication), #499 (miroir Virtues), #141 (OWL AIF),
+#133/#130 (OWL), #192 (terminology).
