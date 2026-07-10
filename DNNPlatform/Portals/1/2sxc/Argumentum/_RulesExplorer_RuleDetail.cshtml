@@ -24,6 +24,31 @@
         height = 100
     };
 
+    // Culture-aware field selection for the Rule content-type.
+    // Mirrors FallacyExplorer (PR #490): cascade lang -> en -> fr on suffixed fields.
+    // ADDS a 4th fallback on the generic (unsuffixed) field: the Rule content-type
+    // currently exposes generic fields (Summary, Material, ...) holding the FR
+    // canonical value, with no language dimensions wired yet. Without the generic
+    // fallback, Loc() would return "" until the DB gains suffixed fields — breaking
+    // the current FR rendering. The generic fallback preserves FR during the
+    // DB-migration transition (gated on the 2sxc portal export, jsboige).
+    // See investigation PR #669 (RulesExplorer FR-only = cause of audit #662).
+    var lang = (CmsContext.Culture.CurrentCode ?? "fr-fr").Split(new[] { '-' })[0].ToLowerInvariant();
+    var supported = new HashSet<string> { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+    if (!supported.Contains(lang)) { lang = "fr"; }
+
+    string Loc(dynamic entity, string field)
+    {
+        var dict = (IDictionary<string, object>)entity;
+        string pick(string key) => dict.ContainsKey(key) ? entity[key]?.ToString() ?? "" : "";
+        var primary = pick(field + "_" + lang);
+        if (!string.IsNullOrEmpty(primary)) return primary;
+        if (lang != "en") { var en = pick(field + "_en"); if (!string.IsNullOrEmpty(en)) return en; }
+        var fr = pick(field + "_fr");
+        if (!string.IsNullOrEmpty(fr)) return fr;
+        return pick(field);  // generic fallback — current FR canonical value
+    }
+
 }
 
 <link rel="stylesheet" href="@App.Path/src/styles/argumentum.css" data-enableoptimizations="150" />
@@ -31,28 +56,28 @@
 <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
     <div class="col-md-4 position-relative">
         <h1>
-            @ruleEntity.EntityTitle
+            @Loc(ruleEntity, "EntityTitle")
         </h1>
         <h5>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h5>
         <h2>@Resources.RuleSummary</h2>
-        @Html.Raw(ruleEntity.Summary)
+        @Html.Raw(Loc(ruleEntity, "Summary"))
     </div>
     <div class="col-md-8  position-relative">
         <h2>@Resources.RuleMaterial</h2>
-        @Html.Raw(ruleEntity.Material)
+        @Html.Raw(Loc(ruleEntity, "Material"))
         <h2>@Resources.RuleInstallation</h2>
-        @Html.Raw(ruleEntity.Installation)
+        @Html.Raw(Loc(ruleEntity, "Installation"))
     </div>
     <div class="col-md-12  position-relative">
-        @Html.Raw(ruleEntity.Content)
-        @if (ruleEntity.Variants != "")
+        @Html.Raw(Loc(ruleEntity, "Content"))
+        @if (!string.IsNullOrEmpty(Loc(ruleEntity, "Variants")))
         {
             <h2>@Resources.RuleVariants</h2>
-            @Html.Raw(ruleEntity.Variants)
+            @Html.Raw(Loc(ruleEntity, "Variants"))
         }
 
     </div>
-    @if (!string.IsNullOrEmpty(ruleEntity.Memo))
+    @if (!string.IsNullOrEmpty(Loc(ruleEntity, "Memo")))
     {
 <div class="col-md-12">
     <h2>@Resources.RuleMemoCard</h2>
@@ -64,11 +89,11 @@
                     <bleed>
                         <cut>
                             <safe>
-                                <div class="cardName">@Resources.RuleMemoCardFileNamePrefix - @ruleEntity.EntityTitle</div>
+                                <div class="cardName">@Resources.RuleMemoCardFileNamePrefix - @Loc(ruleEntity, "EntityTitle")</div>
                                 <div>
-                                    <p><em>@ruleEntity.EntityTitle</em></p>
+                                    <p><em>@Loc(ruleEntity, "EntityTitle")</em></p>
                                     <p><a class="@qrDomId" href='@qrLink' target="_blank"></a></p>
-                                    @Html.Raw(ruleEntity.Memo)
+                                    @Html.Raw(Loc(ruleEntity, "Memo"))
                                 </div>
 
                                 <div class="colorPalette">
