@@ -19,7 +19,7 @@
 | Templates Razor14 migration (#596) | 12 templates source-level migrated | ❌ no (repo) | ✅ done — runtime verify only (B3) |
 | CVE + target docs (#593) | 9.13.x closes 0 CVE; target = 10.3.2 | ❌ no | ✅ done |
 | Full doc arc + checklists | README index, sandbox smoke (#131-step2), prod smoke (#603), deployment (#132) | ❌ no | ✅ done |
-| **Sandbox `bin/` repair** | 5 .NET-9 contaminants → net48 re-deploy | ✅ **RDP** | ⛔ characterized, recipe ready (B1) |
+| **Sandbox `bin/` repair** | ~~5 .NET-9 → 6.0.0 re-deploy~~ (B1 inverted) → **9.0.0.0 BCL from 2sxc 21.07 pkg** | ✅ **RDP** | ✅ DONE 2026-06-28 (B1 recipe below ⛔ SUPERSEDED) |
 | Sandbox upgrade 9.11.1→10.3.2 + 2sxc 15.02→21.07 | wizard + cliff cross | ✅ **RDP** | ⛔ gated (B2) |
 | Browser-verify 12 templates (#596 runtime un-gate) | assign + screenshot | ✅ **RDP** | ⛔ gated (B3) |
 | Prod go-live 10.3.2 | wizard on prod + Phase-5 smoke | ✅ **RDP (prod)** | ⛔ gated (B4) |
@@ -40,7 +40,24 @@ These landed via PRs while `master` stayed frozen at `bef3bc6c`:
 
 > Run in order. Each step references the authoritative doc (don't re-derive here). The whole of [B] is one focused session if B1 goes smoothly.
 
-### B1 — Sandbox `bin/` repair (FIRST — blocks ALL DNN boot) ⛔
+### B1 — Sandbox `bin/` repair — ⛔ SUPERSEDED (2026-07-10); DONE 2026-06-28 via the corrected BCL stack
+
+> **This B1 block encodes the INVERTED "revert to 6.0.0.0" thesis and is kept as a record only.** The
+> 2026-06-25 boot characterization (".NET 9 SDK contamination") was correct about the *EF Core 2.1.1 binding
+> error* but **backwards for the 2sxc 21.07 runtime**: 2sxc 21.07 is compiled against .NET 9 and **requires**
+> `System.Text.Json` 9.0.0.0 / `System.Collections.Immutable` 9.0.0.0 / `Microsoft.Bcl.AsyncInterfaces`
+> 8.0.0.0. Reverting to 6.0.0.0 breaks `JsonOptions` type-init → every 2sxc module *"Something went really
+> wrong in view.ascx"* (looks like a DB bug, isn't).
+>
+> **What actually worked (2026-06-28):** deploy the matched BCL stack from the **2sxc 21.07 Install package**
+> and align redirects **to 9.0.0.0/8.0.0.0** (NOT 6.0.0.0). Canonical snapshot
+> `tmp/dnn-backups/bin_post_2sxc_realign` (330 files); authoritative matrix =
+> `reference-dnn-2sxc-net48-bcl-stack` + [README §0.5](../dnn-localization/README.md). The runnable form of
+> the inverted recipe, [`repair-bin-net48.ps1`](repair-bin-net48.ps1), was deprecated in **#624** (`-Apply`
+> refuses). See also the ⛔ SUPERSEDED callout on [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md).
+>
+> The numbered steps below are the **original (inverted) recipe — do NOT execute as written**; step 3's
+> `→ 6.0.0.0` is the specific wrong target.
 
 This is the characterized blocker from the 2026-06-25 boot attempt ([#596 `issuecomment-4804068740`](https://github.com/ArgumentumGames/Argumentum/pull/596#issuecomment-4804068740)). The sandbox **cannot start** until the `bin/` SDK contamination is cleaned. **Recipe is turnkey** ([sandbox-bootstrap-runbook.md §3](sandbox-bootstrap-runbook.md)) — or run it as a script: [`repair-bin-net48.ps1`](repair-bin-net48.ps1) (dry-run by default, `-Apply` to execute: backs up `bin\`, copies the 2 local DLLs, fetches the 5 NuGet 6.0.0, drops them in). Manual run in this RDP session only; `bin/` is git-tracked, revert after.
 

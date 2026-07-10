@@ -23,10 +23,14 @@
 | **Canonical working `bin/`** | ✅ | `tmp/dnn-backups/bin_post_2sxc_realign` (330 files). Runtime branch: `dnn/sandbox-runtime-1032`. |
 | **Prod go-live** | ⏸ **PENDING (ops, jsboige VPS)** | Migration is complete; remaining = **visual site verdict (jsboige/ai-01)** + prod go-live (ops VPS task). NOT blocking v0.9.0 assets (reco: de-couple). |
 
-> ⚠️ **2 stale-doc flags** (not yet fixed): (1) `docs/dnn/repair-bin-net48.ps1` and the `131-step1` runbook
-> still encode the **old 6.0.0.0** BCL versions from the inverted B1 thesis — they need the 9.0.0.0/8.0.0.0
-> correction above. (2) `132-deployment-runbook.md` title still says "10.1.2" (§3). Reading them? apply the
-> corrections; re-running them verbatim would reintroduce the B1 inversion.
+> ✅ **Stale-doc flags resolved / corrected (this PR, 2026-07-10):** the 2 docs that still encoded the
+> inverted B1 thesis — [`docs/dnn/sandbox-bootstrap-runbook.md`](../dnn/sandbox-bootstrap-runbook.md) §2/§3
+> and [`docs/dnn/go-live-turnkey-checklist.md`](../dnn/go-live-turnkey-checklist.md) B1 — now carry a
+> ⛔ SUPERSEDED callout (correct fix = deploy the 9.0.0.0 BCL stack from the 2sxc 21.07 Install pkg, stated
+> inline). The executable [`repair-bin-net48.ps1`](../dnn/repair-bin-net48.ps1) was **already deprecated in
+> #624** (2026-07-01, `-Apply` refuses) — an earlier flag mis-named it stale. The `132-deployment-runbook.md`
+> title was **already retargeted to 10.3.2** (2026-06-24) — not stale either. (`131-step1-sandbox-upgrade-runbook.md`
+> carries no BCL versions — DNN-version-scoped, has its own TARGET-SUPERSEDED header.)
 
 ---
 
