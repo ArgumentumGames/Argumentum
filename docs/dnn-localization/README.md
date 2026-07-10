@@ -7,6 +7,29 @@
 
 ---
 
+## §0.5 — Execution status (2026-07-10 refresh: the upgrade is DONE)
+
+> **The plan below was EXECUTED, not just written.** This section records what's actually live, so readers
+> don't treat the spine as a TODO. The detailed runbooks (§1) remain the source of truth for *how*; this
+> records *that it ran*.
+
+| Milestone | Status | Evidence |
+|-----------|--------|----------|
+| **Phase 1.5 — 2sxc upgrade** | ✅ **DONE** | DB already at **2sxc 21.07.00** at upgrade time (memory "15.02" was stale). |
+| **Phase 2 — DNN exec** | ✅ **DONE** | Sandbox wizard automated (`wiz_runupgrade.ps1`, 9.11.1→9.13.10→10.2.0→**10.3.2** on IIS Express :8090, 2026-06-28). `dbo.[Version]` top row = **10.3.2**. |
+| **Phase 4 — sandbox smoke** | ✅ **DONE (technical GREEN)** | Homepage 200/86 KB, `/Argumentum` + `/Règles` render 2sxc content, 0 JsonOptions/conn-string errors, no IIS crash (cliff clear). **Visual PASS = jsboige (pending)**. |
+| **Full-IIS migration** | ✅ **DONE (2026-07-01)** | `dnn.argumentum.myia.io` LIVE full-IIS direct (HTTP 200/85 KB, 0× "Something went wrong"). Stopgap `dnn.myia.io` retired + PortalAlias 1010 dropped. HTTPS SAN 9D80D4CC (exp 2026-09-27). **ACME bypass active** (`.well-known/acme-challenge/web.config`, functional for win-acme renew 2026-08-23). |
+| **B1 inversion fix** | ✅ **DONE** | `repair-bin-net48.ps1` had reverted BCL DLLs to 6.0.0.0 (treating .NET 8/9 as "contamination" — **wrong for 2sxc-21**); fixed by deploying the matched BCL stack (Json 9.0.0.0/SCI 9.0.0.0/Bcl 8.0.0.0) from the 2sxc 21.07 Install pkg. See `[[reference-dnn-2sxc-net48-bcl-stack]]`. |
+| **Canonical working `bin/`** | ✅ | `tmp/dnn-backups/bin_post_2sxc_realign` (330 files). Runtime branch: `dnn/sandbox-runtime-1032`. |
+| **Prod go-live** | ⏸ **PENDING (ops, jsboige VPS)** | Migration is complete; remaining = **visual site verdict (jsboige/ai-01)** + prod go-live (ops VPS task). NOT blocking v0.9.0 assets (reco: de-couple). |
+
+> ⚠️ **2 stale-doc flags** (not yet fixed): (1) `docs/dnn/repair-bin-net48.ps1` and the `131-step1` runbook
+> still encode the **old 6.0.0.0** BCL versions from the inverted B1 thesis — they need the 9.0.0.0/8.0.0.0
+> correction above. (2) `132-deployment-runbook.md` title still says "10.1.2" (§3). Reading them? apply the
+> corrections; re-running them verbatim would reintroduce the B1 inversion.
+
+---
+
 ## §1 — Read this first (the spine)
 
 Follow these in order. Each is the authoritative doc for one execution phase.
@@ -49,10 +72,11 @@ Follow these in order. Each is the authoritative doc for one execution phase.
 
 ## §4 — jsboige gates still pending (block prod go-live)
 
-These are **business / content decisions only jsboige can make**. Doc execution stops here until resolved.
+These are **business / content decisions only jsboige can make**. (The **upgrade itself is done** — see §0.5; these are the residual gates.)
 
 1. **#445 — Stripe vs OpenStore** (keep OpenStore vs Stripe managed). Business decision. See [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md) § "unblocked items".
-2. **#525 — "Materiel" typo fix** (DB / 2sxc content). Gated to the DNN upgrade session (jsboige decision #7).
+2. **#525 — "Materiel" typo fix** (DB / 2sxc content). **= `res.RuleMaterial` Δ1** flagged in [490-res-rule-reconciliation.md](490-res-rule-reconciliation.md) (DB `Materiel` typo → `Matériel`). jsboige arbitration. Part of the 4 DNN res.Rule* deltas (Material typo · MemoCard case · FileNamePrefix brand · RuleContent view-bug).
+3. **Visual site verdict** (jsboige/ai-01) + **prod go-live** (ops VPS). The last non-calendaire gate.
 
 ---
 
@@ -64,6 +88,6 @@ The `release-validation/` subfolder has its **own** [README](release-validation/
 
 ## §6 — Hard constraints (apply to every doc here)
 
-- **DNN = sandbox / research / doc only.** NO deploy, NO content mutation, NO live sandbox upgrade without **explicit jsboige GO**.
+- **The upgrade is EXECUTED** (§0.5) but **prod content mutation still requires jsboige GO** — no DB write, no 2sxc content change, no live-site edit without explicit authorization. The runbooks here were the *plan*; re-running them now is only for a re-deploy / rollback.
 - **NEVER touch** `dnn-ui-strings.csv` (merged via #490; gpt-5.5 only).
-- Doc execution is **gated step-by-step** on jsboige go/no-go.
+- **Worker signals, does not declare PASS** — visual site verdict = jsboige/ai-01. DNN prod go-live = jsboige ops task.
