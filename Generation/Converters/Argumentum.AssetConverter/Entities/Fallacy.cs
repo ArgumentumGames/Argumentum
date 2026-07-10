@@ -178,6 +178,21 @@ namespace Argumentum.AssetConverter.Entities
 
         public string AIFSkosMappingType { get; set; }
 
+        // Transverse relational layer (8 typed cross-links). Cell value = ';'-joined
+        // dotted target path(s) resolved against the taxonomy hierarchy.
+        public string CrossLinkPredatesOn { get; set; }
+        public string CrossLinkDenounces { get; set; }
+        public string CrossLinkLeverages { get; set; }
+        public string CrossLinkAllows { get; set; }
+        public string CrossLinkOpposes { get; set; }
+        public string CrossLinkInverts { get; set; }
+        public string CrossLinkMirrors { get; set; }
+        public string CrossLinkIsRelatedTo { get; set; }
+
+        // AIF/ASPIC+ attack typing (#498/#707§4): undercut→RA-node, undermine→I-node, rebut→CA-node.
+        public string AIFAttackType { get; set; }
+        public string AIFAttackedNode { get; set; }
+
 
 		public int? PrintAndPlay { get; set; }
 
@@ -281,6 +296,16 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef").Optional();
             Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
             Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
+            Map(m => m.CrossLinkPredatesOn).Name("crossLink_PredatesOn").Optional();
+            Map(m => m.CrossLinkDenounces).Name("crossLink_Denounces").Optional();
+            Map(m => m.CrossLinkLeverages).Name("crossLink_Leverages").Optional();
+            Map(m => m.CrossLinkAllows).Name("crossLink_Allows").Optional();
+            Map(m => m.CrossLinkOpposes).Name("crossLink_Opposes").Optional();
+            Map(m => m.CrossLinkInverts).Name("crossLink_Inverts").Optional();
+            Map(m => m.CrossLinkMirrors).Name("crossLink_Mirrors").Optional();
+            Map(m => m.CrossLinkIsRelatedTo).Name("crossLink_IsRelatedTo").Optional();
+            Map(m => m.AIFAttackType).Name("AIF_attackType").Optional();
+            Map(m => m.AIFAttackedNode).Name("AIF_attackedNode").Optional();
             Map(m => m.PrintAndPlay).Name("print_and_play").Optional();
             Map(m => m.DécimalPathPadded).Name("decimal_path_padded");
             Map(m => m.DepthMax4).Name("depth_max4");
