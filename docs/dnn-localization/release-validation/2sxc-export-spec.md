@@ -34,8 +34,8 @@ Tant que ces 7 FR ne sont pas confirmés, les 7×7 = 49 traductions dépendantes
 |---|------------------|-----------------|-----|----------|--------------------|
 | 1 | **App Resources** (dictionnaire valeurs FR) | app=60 → eid=10340 | Vérifier les `res.*` FR | **P0** | ✅ **DONE** — 9 `res.Rule*` VERIFIED (#772), FR=!inféré |
 | 2 | **Rules content** (Summary/Material/Installation/Content/Variants/Memo) | app=60 `Game Rule` (id=377) | FR canonique des corps de règles | P1 | ✅ **DONE** — 5 entités (pas 24-30), export #774 `12-...` |
-| 3 | **Glossary entries** | App `Glossary3` | ≈50 entrées glossaire | P2 | ❌ **NOT FOUND** — `Glossary3` absent ; candidats app=60 : Fallacy/Scenario/Comment. Mapping à clarifier. |
-| 4 | **FAQ entries** | App `Faq4` | FAQ | P2 | ❌ **NOT FOUND** — `Faq4` absent (cf manifest `findings.glossary3Faq4`). |
+| 3 | **Glossary entries** | App `Glossary3` | ≈50 entrées glossaire | P2 | ✅ **RESOLVED — no 2sxc export needed.** `Glossary3` n'existe pas comme content-type app=60 (export #774 `10-...` liste 13 types, aucun glossary). Le glossaire des fallacies **EST la taxonomy Fallacies** (content-type `Fallacy` id=376), servie via le **CSV cartes 8 langues** + `App.Query["FallaciesFromCSV"]` (déjà localisé, cf note ci-dessous). Aucune extraction 2sxc requise. |
+| 4 | **FAQ entries** | App `Faq4` | FAQ | P2 | ⚠ **DEFERRED jsboige — no app=60 Faq content-type.** `Faq4` absent des 13 types app=60. Cross-app : `Question` (app=18/38) non confirmé comme la FAQ Argumentum (manifest `findings.glossary3Faq4`). **Action jsboige** : confirmer si une section FAQ existe sur le site (et dans quelle app 2sxc) avant tout export. Si pas de FAQ → ligne sans objet. |
 | 5 | **Homepage/About/landing** | App `Content` + modules | ≈10 pages | P2 | ⏸ non couvert par l'export #774 (scope résolu P0/P1) |
 | 6 | **Nav labels** | DNN tabs | Labels menu | P3 | ⏸ non couvert |
 | 7 | **SEO meta** (titres/descriptions) | DNN page settings | ≈40 pages | P3 | ⏸ non couvert |
@@ -43,6 +43,10 @@ Tant que ces 7 FR ne sont pas confirmés, les 7×7 = 49 traductions dépendantes
 > **Déjà localisé, pas d'export requis :** Fallacies Explorer lit le CSV taxonomy via
 > `App.Query["FallaciesFromCSV"]` → le contenu des fallacies est déjà couvert par les CSV cartes 8
 > langues. (✅ Le template est culture-aware depuis PR #464 — bug §4 résolu, pas d'export requis pour l'Explorer.)
+>
+> **Résolution §2 #3 (2026-07-12) :** c'est aussi pourquoi `Glossary3` n'existe pas — le « glossaire »
+> des fallacies **est** la taxonomy Fallacies (content-type id=376), pas une entité 2sxc séparée. La
+> localisation du glossaire = la localisation des CSV cartes (déjà 8 langues), pas un export 2sxc.
 
 ## 3. Méthode A — UI 2sxc (recommandé, non destructif)
 
