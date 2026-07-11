@@ -1,6 +1,6 @@
 # #498 — AIF two-layer reconciliation, P1 (skos-only → attack columns)
 
-**Worker** po-2024 · **Date** 2026-07-10 · **Base** master `e748735b` · **Statut** proposition **gated** (0 write prod CSV dans ce PR) · **Track** GO ai-01 `msg-20260710T180845-5i1v03` (réconciliation P1), couvert par le pilote GO #498 (jsboige 2026-06-17).
+**Worker** po-2024 · **Date** 2026-07-10 (addendum §2bis audit 2026-07-11) · **Base** master `e748735b` · **Statut** proposition **gated** (0 write prod CSV dans ce PR) · **Track** GO ai-01 `msg-20260710T180845-5i1v03` (réconciliation P1), couvert par le pilote GO #498 (jsboige 2026-06-17).
 
 > Scope de ce PR : **docs + apply-script (dry-run)**. Aucune cellule du CSV de production n'est modifiée dans le diff. La sérialisation prod suit le flow #753/#760 (gate ai-01), après revue de cette proposition.
 
@@ -16,6 +16,7 @@ Ce PR livre :
 2. **La méthode de dérivation** rigoureuse : l'`attackType` de chaque ligne skos-only se dérive de **sa propre** signature skos, ancrée sur les **18 lignes fully-modeled** (les seules qui portent skos **et** attack — ground truth « cette signature → ce type »). `attackedNode` suit déterministiquement (#707§4 (a)) (§2).
 3. **Tranche 1 — 14 lignes PRECEDENT** (token exact d'un précédent fully-modeled + contrôle sémantique) : proposition ready-to-serialize, distribution **11 undermine / 2 undercut / 1 rebut** (§3–§4).
 4. **Le reste (38) scopé** : 2 PREC-TIE (votes de tokens divergents) + 36 SUFFIX-ONLY (aucun précédent de token ; le « prior de suffixe » par défaut vers *undermine* est **démontrablement non fiable**) → modélisation Walton **au cas par cas**, pas d'auto-dérivation (§5).
+5. **Audit des 18 précédents ground-truth** (addendum 2026-07-11) : la méthode ne vaut que si les 18 anchors sont eux-mêmes correctement typés. Audit main-Walton → **16/18 CLEAN, 2/18 SOFT (défendables), 0 erreur franche, node-map 18/18 propre** ; l'ancrage est **validé** et l'audit **durcit** la méthode (§2bis).
 
 Compléter la tranche 1 porte le fully-modeled **18 → 32** lignes (1.3% → 2.3%). Le reste demande un vrai travail de modélisation, tranché en sous-lots.
 
@@ -52,6 +53,35 @@ Les **18 lignes fully-modeled** (skos **et** attack) sont le seul ground truth �
 | undercut | `RA-node` | inférence (la règle ne s'applique pas) |
 | undermine | `I-node` | prémisse (acceptabilité contestée) |
 | rebut | `CA-node` | conclusion (contre-conclusion opposée) |
+
+---
+
+## 2bis. Audit des 18 précédents ground-truth (validation de l'ancrage) — addendum 2026-07-11
+
+Toute la méthode §2 repose sur une hypothèse tacite : **les 18 anchors sont eux-mêmes correctement typés.** Si un anchor est mal typé, l'erreur se propage dans chaque dérivation (#769) puis, à terme, en prod. Cet addendum audite les 18 à la main (sémantique Walton : que défait le CQ — prémisse → undermine, inférence → undercut, conclusion → rebut) et croise le résultat au code=truth.
+
+Machine-readable : [`498-audit-18-anchors.csv`](498-audit-18-anchors.csv) (10 colonnes, BOM+CRLF, colonnes factuelles lues du CSV master, `verdict`+`note` = revue authored). Reproductible : [`tools/498-audit-anchors.py`](../../tools/498-audit-anchors.py) (read-only ; re-dérive le set depuis prod, vérifie le node-map, croise la CSV d'audit).
+
+**Résultat : ancrage validé.**
+
+| contrôle | résultat |
+|---|---|
+| census des couches (code=truth) | fully-modeled **18** / attack-only 75 / skos-only 52 — concorde #768 exactement |
+| node-map #707§4a (undercut→RA / undermine→I / rebut→CA) | **18/18 propre, 0 violation** |
+| cohérence skos↔attackType (Walton, main) | **16 CLEAN** (textbook ou clairement défendable) · **2 SOFT** (défendables mais discutables) · **0 erreur franche** |
+
+**Les 2 SOFT** — pas des erreurs, mais des choix de modélisation à signaler :
+
+- **pk1313 Évasion** [rebut/CA] — l'évasion n'attaque ni une prémisse ni une inférence précise ; elle est modélisée comme un **conflit global au niveau du dialogue** (`Dialogue_Scheme`). Choix résiduel, uniforme pour la famille « saboter le débat » ; défendable mais pas un rebut-contre-conclusion canonique. **C'est l'anchor de pk1281** (tranche 1) — la même logique de nucleus rebut s'y applique, donc la softness est cohérente, pas transférée à tort.
+- **pk1361 Procès en incohérence** [rebut/CA] — relever les incohérences (`InconsistentCommitment_Inference`) → contre-conclusion « ta position est intenable » → rebut. **Vrai jugement** rebut vs undercut/undermine. **C'est l'anchor sur lequel s'appuie 777→rebut** (§5) : sa softness confirme qu'il faut **trancher 777 par lecture de `desc_fr` + co-token**, pas mécaniquement.
+
+**Trois trouvailles qui *durcissent* la méthode** (au-delà de la simple validation) :
+
+1. **Le suffixe `_Conflict`/`_Inference` ne détermine PAS l'attackType — preuve in-set.** pk804 Acception arbitraire porte `PropertyNotExistant_Conflict` et est typé **undercut** (la définition arbitraire corrompt le *warrant*, pas une prémisse), alors que d'autres tokens `_Conflict` (177, 953, 1297…) sont undermine. C'est le contre-exemple **dans les 18** qui démontre l'affirmation §2/§5 « le prior de suffixe est non fiable » — jusqu'ici argumentée seulement via 677/705.
+2. **Slippery-slope penche undercut — ancre in-set.** pk858 Pente glissante sémantique (`VerbalSlipperySlope_Inference`) est typé **undercut** (la chaîne « un concept mène nécessairement à un autre » est une inférence contestée). Ceci **ancre** le contre-exemple 677/705 « Pente glissante » du §1/§5 (jusqu'ici purement sémantique-CQ) sur un précédent réel.
+3. **`CircumstantialAdHominem_Inference` n'est pas décisif.** Il apparaît dans **1361 (rebut)** *et* **1371 (undermine)** ; c'est le **co-token** (InconsistentCommitment vs SignFromOtherEvents) + la `desc_fr` qui tranchent. Règle de tie-break pour 777/633 : ne jamais voter sur un token partagé isolé.
+
+Bilan : l'audit ne contredit pas §2, il le **confirme et l'outille**. Les 14 dérivations de la tranche 1 s'appuient toutes sur des anchors **CLEAN** (953, 177, 357, 322, 300, 750, 804, 340, 1371, 1313) — la seule dépendance à un anchor SOFT est **pk1281←pk1313**, cohérente (même famille, même nucleus rebut).
 
 ---
 
