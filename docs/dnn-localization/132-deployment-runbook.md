@@ -8,6 +8,34 @@
 upgrade, no go-live on production without jsboige's explicit go. This is the **go-live procedure**,
 distinct from the sandbox-upgrade procedure ([#522](131-step1-sandbox-upgrade-runbook.md)).
 
+> ## 🟢 POST-EXECUTION REALITY (refreshed 2026-07-12) — sandbox + full-IIS delivered; prod VPS go-live remains
+>
+> Since this runbook was written (Jun 2026), the migration has been **executed and delivered up to full-IIS**:
+> - **DNN 10.3.2 + 2sxc 21.07 LIVE** in full-IIS direct at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0×
+>   "Something went wrong", HTTPS SAN 9D80D4CC exp 2026-09-27). Stopgap `dnn.myia.io` retiré, PortalAlias 1010
+>   droppé. ACME bypass **active in live** (renew win-acme 2026-08-23).
+> - The 4-step staircase (9.11.1 → 9.13.10 → 10.2.0 → 10.3.2) + the §5.5 cliff crossing were run on IIS Express
+>   :8090 (Phase B, 2026-06-28, jsboige GO). B2.5 smoke GREEN: homepage 200/86 KB, /Argumentum + /Règles render
+>   2sxc content, 0 JsonOptions/conn-string errors. Runtime branch `dnn/sandbox-runtime-1032` (bin/ 330 files).
+>
+> **What this means for the runbook below:** the **6-phase structure, the rollback contract (§6), the runtime
+> finding (.NET 4.8), and the honesty boundary (§7) remain the authoritative procedure for the one step still
+> gated — **prod go-live on the VPS myia-web1** (jsboige ops task). The sandbox phases below are now a
+> **proven replay** rather than a first-time plan.
+>
+> **ONE critical lesson this runbook predates — read before §5.5 (the cliff crossing):**
+> - **2sxc-21 BCL-stack alignment (the "B1-inversion").** The earlier `repair-bin-net48.ps1` reverted BCL/SDK
+>   DLLs to 6.0.0.0, treating .NET 8/9 versions as "contamination." **That thesis was INVERTED for 2sxc 21**:
+>   2sxc 21.07 is compiled against Json 9.0.0.0 / SCI 9.0.0.0 / Bcl 8.0.0.0. Reverting → `JsonOptions` type-init
+>   `MissingMethodException` → every 2sxc module "Something went really wrong in view.ascx". Fixed by deploying
+>   the matched BCL stack from the **2sxc 21.07 Install package** + aligning redirects. See
+>   [`682-field-model-revision-2sxc21.md`](682-field-model-revision-2sxc21.md) + MEMORY
+>   `reference-dnn-2sxc-net48-bcl-stack` for the authoritative version matrix. **§5.5(a) must include this
+>   BCL-stack step** — it is not optional on the prod path.
+>
+> **Remaining gated frontier:** prod VPS go-live (Phase 5 on myia-web1) + visual site verdict (jsboige/ai-01).
+> This is a jsboige ops task, **de-coupled from the v0.9.0 print release** (worker reco).
+
 > ## ⚠️ Target retarget — 10.1.2 → 10.3.2 (refreshed 2026-06-24)
 >
 > jsboige interactive decision **#2** (issue #458, 2026-06-18) chose the **full upgrade to
@@ -170,8 +198,16 @@ This is the **net-new work** that 10.3.2 requires and 10.1.2 avoided. It is done
 then repeated on prod (Phase 5). The internals are in [131-2sxc-migration-plan.md]:
 
 - **(a) 2sxc 15.02 → 21.07 LTS** — install 2sxc 21 **before** the DNN upgrade crosses 10.2.0
-  (else `DnnJsInclude` crashes IIS — the cliff). 2sxc content (`ToSic_EAV_*` + app tables) migrates
+  (else `DnnJsInclude` crashes IIS — the cliff). 2sxc content (`ToSIC_EAV_*` + app tables) migrates
   with the 2sxc installer, not the DNN wizard.
+  - **⚠️ MANDATORY sub-step (learned Phase B, the "B1-inversion"):** after installing 2sxc 21, **align the
+    BCL/SDK DLL stack** in `bin/` to what 2sxc 21.07 is compiled against — `System.Text.Json` **9.0.0.0**,
+    `System.Composition`/SCI **9.0.0.0**, `Microsoft.Extensions.*`/Bcl **8.0.0.0** — taken from the **2sxc 21.07
+    Install package**. Do **NOT** let an earlier `repair-bin-net48.ps1`-style script revert these to 6.0.0.0
+    (that was the inverted "decontamination" thesis — it breaks 2sxc 21 with `JsonOptions` type-init
+    `MissingMethodException` → every module "Something went really wrong in view.ascx"). Align the
+    `<assemblyBinding>` redirects to match. Authoritative version matrix: MEMORY
+    `reference-dnn-2sxc-net48-bcl-stack` + [`682-field-model-revision-2sxc21.md`](682-field-model-revision-2sxc21.md).
 - **(b) 12-template audit** — migrate the custom Razor templates that 2sxc 21 no longer tolerates:
   `_FallacyExplorer_Root.cshtml` (`@inherits ToSic.Sxc.Dnn.RazorComponent` → `Custom.Hybrid.Razor14`),
   `_Parts.cshtml` (`@helper` → `@functions`, the one non-trivial step), + 10 others re-bind. Issue

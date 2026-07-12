@@ -9,6 +9,29 @@ run itself is a one-command affair — but it **launches nothing**. Per ai-01 di
 SECONDAIRE lane: "stager prérequis régén (sans lancer)". The **actual regen is GATED jsboige** (scope arbitration
 4-vs-8 lang + Windows foreground-lock → run = jsboige RDP / ai-01 Opus, not the worker).
 
+> ## 🔄 REFRESH (2026-07-12) — scope resolved, prereqs largely proven, see #782 for the live harness
+>
+> Two things this runbook **deferred as open** are now **closed**:
+> - **§5 "scope DEFERRED — 4-lang vs 8-lang"** → **RESOLVED: 8 languages shipped** (PR #565, 41 SVGs across
+>   8/8 langs via `git ls-tree`; byte-proven regen `Fallacies_zh.svg` 2026-06-24). When the print-bundle regen
+>   fires (post-GO-visuel jsboige), clobber **all 8** (`fr en ru pt es ar fa zh`) — scope option B is the live one.
+> - **Foreground-lock blocker (§2)** → **mitigated**, not eliminated: PR #569 added the OS persistent-session
+>   recipe (`tscon <session> /dest:console`) to keep the desktop foreground alive unattended. Freeplane headless
+>   is tracked (#568, open). The foreground-lock is a **fire-time condition**, not a code gap.
+>
+> **Two operational advances this doc predates** (honor at fire-time):
+> - **Playwright/CardPen deadlock = RESOLVED (#651)** — console-flood sync I/O moved to a transport queue. The
+>   stall-watcher is reliable **provided it measures chromium **child** CPU, not parent-only** (parent-only
+>   false-kills legitimate heavy renders like Fallacies).
+> - **`dotnet run` build-server deadlock** — can silently hang after cross-worktree builds; mitigation =
+>   `dotnet build-server shutdown` + explicit `dotnet build` + `dotnet run --no-build`.
+>
+> **This runbook remains valid for its staging structure** (FreeMind env var §2, Mode-isolation §3, harvest
+> clobber §4, pre-flight §7). The **live, refreshed fire-time harness** — re-anchored to master `c1ed77d2` with
+> the post-07-04 lessons — is
+> [`../investigations/2026-07-11-regen-readiness-refresh-c1ed77d2.md`](../investigations/2026-07-11-regen-readiness-refresh-c1ed77d2.md)
+> (PR #782 merged). Read that doc as the authoritative pre-regen gate; this runbook is its predecessor.
+
 > **Scope-neutrality (HARD):** two scope options are on the table and **jsboige has not published the choice**
 > (ai-01: "4 cycles sans publication"). This doc describes prereqs that are **identical for both scopes** and
 > explicitly defers the one scope-dependent step (which language directories to clobber/regen) to the decision.

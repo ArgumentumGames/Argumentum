@@ -6,6 +6,31 @@
 **Base:** master `87a02c19`
 **Status:** **SANDBOX-PREP (research/runbook)** — execution GATED on jsboige's target decision (10.1.2 vs 10.3.2, see #520). **No prod deploy, no live sandbox mutation** until jsboige says go.
 
+> ## ✅ POST-EXECUTION REALITY (refreshed 2026-07-12) — this prep doc's purpose was fulfilled
+>
+> The sandbox upgrade this runbook **prepared for** has been **executed and delivered**: DNN **10.3.2** + 2sxc
+> **21.07** are live (full-IIS, `dnn.argumentum.myia.io`, HTTP 200/~85 KB, HTTPS SAN exp 2026-09-27). The
+> 4-step staircase (9.11.1 → 9.13.10 → 10.2.0 → **10.3.2**) was completed on IIS Express :8090 (Phase B,
+> 2026-06-28, jsboige GO), wizard automated via `wiz_runupgrade.ps1`, `dbo.[Version]` top row = 10.3.2.
+> ACME bypass is **active in live** (`.well-known/acme-challenge/web.config`, renew win-acme 2026-08-23).
+>
+> **This doc is now a HISTORICAL prep record.** Read it for the staircase structure, pre-flight §3, and
+> risk-register §5 reasoning. The **current source of truth** for state is:
+> - [`131-dnn-phase2-exec-rollback.md`](131-dnn-phase2-exec-rollback.md) — the actual Phase B execution + rollback.
+> - `MEMORY.md` §DNN — live state (runtime branch `dnn/sandbox-runtime-1032`, bin/ 330 files, B2.5 smoke GREEN).
+> - [`../dnn/UPGRADE-ASSESSMENT.md`](../dnn/UPGRADE-ASSESSMENT.md) (#593) — corrected CVE + .NET 4.8 floor.
+>
+> **Two staleness items in the body below, now resolved** (do not act on them as written):
+> - **§2 "2sxc 15.02"** — was STALE memory; 2sxc was **already 21.07.00** at Phase A boot. The 15.02 figure was
+>   a pre-export inference, corrected by the live manifest (`13-app60-resources.json`).
+> - **§5 "2sxc stays 15.02 → templates untouched" (10.1.2 path)** — moot; target is 10.3.2, the cliff was crossed,
+>   and the 12-template audit + 2sxc-21 **BCL-stack alignment** were real work (see `132-deployment` §5.5 + the
+>   B1-inversion lesson: 2sxc-21 REQUIRES .NET 8/9 BCL Json 9.0.0.0/SCI 9.0.0.0/Bcl 8.0.0.0 — NOT the 6.0.0.0
+>   reversion the early `repair-bin-net48.ps1` encoded; that thesis was inverted).
+>
+> **Remaining gated work** = prod go-live on the VPS (jsboige ops task), described in
+> [`132-deployment-runbook.md`](132-deployment-runbook.md).
+
 > ⚠️ **TARGET SUPERSEDED — jsboige decided 10.3.2 (decision #2, issue #458, 2026-06-18).** The 10.1.2
 > target below is superseded; read
 > [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md) as the source of
