@@ -32,7 +32,7 @@ Argumentum v0.9.0 extends the entire generation pipeline to **8 languages** — 
 ### 🧪 Quality
 
 - Build Debug + Release green, **zero-warning** (CS compiler + NuGet audit). AutoMapper MIT-pure (14.0.0 + `MaxDepth(1)`).
-- Test suite: ~566 pass / 5 skip (GUI/infrastructure) / 1 known-fail (OWLSharp `rdf:type`/`inScheme` round-trip, pre-existing, tracked #133 — does not affect generated assets). *(Count from dashboard baseline; will be confirmed empirically at tag.)*
+- Test suite: **596 pass / 0 fail / 5 skip** (GUI/infrastructure, 601 total — confirmed empirically on master `ebfd85d3`). The last known-fail (#133, OWLSharp XML round-trip) was cleared in #793: `skos:inScheme` now survives the round-trip (1408 assertions); the residual `rdf:type` reload-drop is asserted-as-expected and worked around by the survivor-fallback read path — does not affect generated assets.
 - Coverage: CsvDiffEngine, SyncSafetyChecker, PdfAssembly, MindMap, localisation regression tests.
 
 ### 📦 Technical notes
@@ -44,7 +44,7 @@ Argumentum v0.9.0 extends the entire generation pipeline to **8 languages** — 
 ### ⚠️ Known limitations
 
 - **SVG mind maps (#636):** if not regenerated in an RDP/foreground session before tag, the committed SVGs may be stale in some languages. Tracked separately; does not block the print/PDF deliverables.
-- **OWL ontology round-trip (#133):** a pre-existing OWLSharp bug drops `rdf:type`/`inScheme` on XML round-trip; the generated ontology is otherwise complete (SKOS + AIF).
+- **OWL ontology round-trip (#133):** a pre-existing OWLSharp bug drops `rdf:type` (only) on XML round-trip reload — `skos:inScheme` survives (1408 assertions). The drop is asserted-as-expected and worked around by the survivor-fallback read path (#793, test now green); the generated ontology is otherwise complete (SKOS + AIF).
 - **DNN site CVEs:** the DNN site (DNN 9.11.1 + 2sxc 21.07) carries two open CVEs; the DNN 10.3.2 upgrade is scoped as a separate ops milestone post-release. Not a v0.9.0 blocker.
 
 ---
@@ -70,12 +70,12 @@ Argumentum v0.9.0 étend l'intégralité du pipeline à **8 langues** : Françai
 ### 🧪 Qualité
 
 - Build Debug + Release verts, **zéro-warning** (CS + audit NuGet). AutoMapper MIT pur (14.0.0 + `MaxDepth(1)`).
-- Suite de tests : ~566 pass / 5 skip / 1 known-fail OWLSharp #133 (pré-existant, sans impact sur les assets). *(Compteur issu du dashboard baseline ; confirmé empiriquement au tag.)*
+- Suite de tests : **596 pass / 0 fail / 5 skip** (GUI/infrastructure, 601 total — confirmé empiriquement sur master `ebfd85d3`). Le dernier known-fail (#133, round-trip XML OWLSharp) a été levé en #793 : `skos:inScheme` survit maintenant au round-trip (1408 assertions) ; le résidu `rdf:type` (droppé au reload) est asserté-comme-attendu et contourné par le read-path survivor-fallback — sans impact sur les assets.
 
 ### ⚠️ Limitations connues
 
 - **SVG mind maps (#636) :** potentiellement stale dans certaines langues si non régénérés en session RDP/foreground avant le tag. Suit séparément ; ne bloque pas les livrables print/PDF.
-- **Round-trip OWL (#133) :** bug OWLSharp pré-existant (perte `rdf:type`/`inScheme` au round-trip XML) ; l'ontologie générée reste complète (SKOS + AIF).
+- **Round-trip OWL (#133) :** bug OWLSharp pré-existant (perte `rdf:type` uniquement au reload du round-trip XML — `skos:inScheme` survit, 1408). La perte est assertée-comme-attendue et contournée par le read-path survivor-fallback (#793, test désormais vert) ; l'ontologie générée reste complète (SKOS + AIF).
 - **CVEs site DNN :** le site (DNN 9.11.1 + 2sxc 21.07) porte deux CVE ouvertes ; l'upgrade DNN 10.3.2 est un jalon ops séparé post-release. Non-bloquant pour v0.9.0.
 
 ---
