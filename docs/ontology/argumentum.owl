@@ -85983,6 +85983,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedScope</IRI>
@@ -85991,6 +86011,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedScope</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToIgnorance</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToIgnorance</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -86173,6 +86213,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#bromide</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialJustification</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialJustification</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#counterfactualAssumption</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToFiction</IRI>
@@ -86211,6 +86271,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#counterfactualAssumption</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToFiction</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonPractice</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonPractice</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -86376,6 +86446,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#rationalization</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pIDOOMA</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#prejudice</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#prejudice</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromAuthority</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromAuthority</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -86741,6 +86831,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToWealth</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToPoverty</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overinterpretation</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overinterpretation</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
@@ -88003,6 +88103,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#tacticOfNeedling</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToFear</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToFear</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fearUncertaintyAndDoubt</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#moralPanic</IRI>
@@ -88111,6 +88221,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToWilledIgnorance</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#willedIgnorance</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalManipulation</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalManipulation</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
@@ -88766,6 +88886,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#takingControl</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#socialConditioning</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#commitment</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#commitment</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -90164,6 +90294,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#samplingBias</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
@@ -90368,6 +90508,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#neymansBias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#secundumQuid</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#secundumQuid</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfAccident</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#converseAccidentFallacy</IRI>
@@ -90453,6 +90603,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overwhelmingException</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illicitTransference</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illicitTransference</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToRecapitulationTheory</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
@@ -90511,6 +90671,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ecologicalFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#greedyReductionism</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#interpretationFallacy</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#interpretationFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfoundedRelationship</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfoundedRelationship</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -90768,6 +90948,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#brokenWindowFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slipperySlope</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slipperySlope</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#paradeOfHorribles</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
@@ -90884,6 +91074,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#questionableCausality</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#questionableCausality</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#beggingTheQuestion</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
@@ -90956,6 +91166,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slipperySlope</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slipperySlope</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slipperySlope</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
@@ -91038,6 +91258,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#panglossEffect</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#storkEffect</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#storkEffect</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#causalReductionism</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#denyingTheCommonCause</IRI>
@@ -91086,6 +91316,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#denyingTheCommonCause</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#postHocErgoPropterHoc</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spuriousComposition</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spuriousComposition</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
@@ -91428,6 +91668,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#wrongEntailment</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#wrongEntailment</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyConclusion</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyConclusion</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#irrelevantPremises</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
@@ -91578,6 +91838,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistency</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistency</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incompatiblePremises</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#internalContradiction</IRI>
@@ -91756,6 +92026,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidEnthymeme</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#allows" />
@@ -91858,6 +92148,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfCorrelatives</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfCorrelatives</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#denyingTheCorrelative</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseDilemma</IRI>
@@ -91906,6 +92206,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#goldenMeanFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseDilemma</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseDilemma</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseDilemma</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -92109,6 +92419,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyComparison</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
@@ -92166,6 +92486,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -92254,6 +92584,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
@@ -92361,6 +92701,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueness</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueness</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -92564,6 +92914,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseImplication</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
@@ -92746,6 +93106,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polytely</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
@@ -93459,6 +93829,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#movingTheGoalposts</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#movingTheGoalposts</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
@@ -93913,6 +94293,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToIdentity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sunkCostFallacy</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sunkCostFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToClosure</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
@@ -93946,6 +94336,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#thatWasYearsAgo</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
@@ -94173,6 +94573,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#generationEffect</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mereexposureEffect</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mereexposureEffect</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#availabilityHeuristic</IRI>
@@ -94293,6 +94703,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#apophenia</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#apophenia</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#allows" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation</IRI>
@@ -94361,6 +94781,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -94368,6 +94798,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attentionalBias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalBiases</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalBiases</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#valenceEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning</IRI>
@@ -94376,6 +94816,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#valenceEffect</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#negativityBias</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#negativityBias</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -94436,6 +94886,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#gratitudeTrap</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selfservingBias</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selfservingBias</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -94778,6 +95238,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#statusQuoBias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#effortJustification</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#effortJustification</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#processingDifficultyEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#iKEAEffect</IRI>
@@ -94968,6 +95438,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentialism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attributionBias</IRI>
+    <Literal>undercut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attributionBias</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#actor–observerAsymmetry</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ultimateAttributionError</IRI>
@@ -95151,6 +95631,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentialism</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attributionBias</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentialism</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentialism</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -95833,6 +96323,26 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#elGrecoFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#obstruction</IRI>
+    <Literal>rebut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#obstruction</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#CA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#refusingDebate</IRI>
+    <Literal>rebut</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#refusingDebate</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#CA-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#abusiveRelativism</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#reification</IRI>
@@ -96351,6 +96861,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cheating</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#usingABadCounterargument</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#adHominem</IRI>
+    <Literal>undermine</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#adHominem</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
