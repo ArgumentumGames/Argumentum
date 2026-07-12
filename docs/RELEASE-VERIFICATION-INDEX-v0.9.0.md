@@ -4,7 +4,7 @@
 release** avant de poser le tag v0.9.0 (#134). Un seul point d'entrée → un lien + une ligne
 « à vérifier » par doc.
 
-**Master de référence** : `81a9e4e6` (refresh v5 2026-07-09 : intégration colonnes AIF #753/#754/#755 + tests empiriques 595/600, aligné #789). Précédent : `7590dfb8` (cycle-3 : #672/#673/#675/#676/#680). Tous
+**Master de référence** : `84a529bf` (refresh v5.1 2026-07-12 : tests empiriques **596/601 (0 rouge, round-trip #133 corrigé #793)**). Précédent : `81a9e4e6` (v5 2026-07-09 : intégration colonnes AIF #753/#754/#755). Tous
 les docs listés ci-dessous sont **sur master** (vérifiables maintenant). Le tag est techniquement
 débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les arbitrages jsboige
 (§« Décisions restantes »).
@@ -24,7 +24,7 @@ débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les a
 
 | Doc | À vérifier |
 |-----|------------|
-| [RELEASE-VALIDATION-v0.9.0.md](RELEASE-VALIDATION-v0.9.0.md) | **Dossier de validation v5 (refresh 2026-07-09)** — 80 PDFs CMYK, verdicts #140/#632 RENDUS PASS, **+ §3.1bis : colonnes AIF relationnelles Fallacies+Virtues (#753/#754/#755, metadata-only, 0 impact rendu)**. Master `81a9e4e6`, tests 594/600 empiriques. **2 appels à décision** : (a) SVG Virtues `.content.svg` FR-frozen (#636/#654, non-bloquant géométrie), (b) titre PT « Roll of the English Channel » (§3.6, fix prep po-2024 gated). Confirme si l'un ou l'autre bloque le tag. |
+| [RELEASE-VALIDATION-v0.9.0.md](RELEASE-VALIDATION-v0.9.0.md) | **Dossier de validation v5 (refresh 2026-07-12)** — 80 PDFs CMYK, verdicts #140/#632 RENDUS PASS, **+ §3.1bis : colonnes AIF relationnelles Fallacies+Virtues (#753/#754/#755, metadata-only, 0 impact rendu)**. Master `84a529bf`, tests **596/601 (0 rouge, round-trip #133 corrigé #793)** empiriques. **2 appels à décision** : (a) SVG Virtues `.content.svg` FR-frozen (#636/#654, non-bloquant géométrie), (b) titre PT « Roll of the English Channel » (§3.6, fix prep po-2024 gated). Confirme si l'un ou l'autre bloque le tag. |
 
 ---
 
@@ -32,7 +32,7 @@ débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les a
 
 | Doc | À vérifier |
 |-----|------------|
-| [RELEASE-NOTES-v0.9.0-DRAFT-consolidated.md](RELEASE-NOTES-v0.9.0-DRAFT-consolidated.md) | **Corps paste-ready consolidé (#659, EN)** — 80 PDFs, CMYK #632/#652, P&P Standard/Light #645/#648-650, Rules i18n #633→#640, harvest deadlock #651, logger #630/#655, Scenarii #653, GSheet #642. **Action** : le compteur tests « ~566 pass / 5 skip / 1 known-fail » doit être re-confirmé empiriquement (`dotnet test`) avant de coller. |
+| [RELEASE-NOTES-v0.9.0-DRAFT-consolidated.md](RELEASE-NOTES-v0.9.0-DRAFT-consolidated.md) | **Corps paste-ready consolidé (#659, EN)** — 80 PDFs, CMYK #632/#652, P&P Standard/Light #645/#648-650, Rules i18n #633→#640, harvest deadlock #651, logger #630/#655, Scenarii #653, GSheet #642. ⚠️ Le compteur tests dans ce draft (~566 pass / 1 known-fail) est **stale** — la valeur empirique courante est **596 pass / 0 fail / 5 skip** (#793 a clos le known-fail #133). Le draft lui-même est owned po-2024 (lane release-notes) ; l'action de mise à jour du compteur dans le corps est à porter par po-2024. |
 | [RELEASE-NOTES-v0.9.0.md](RELEASE-NOTES-v0.9.0.md) | Draft po-2023 (FR) — dit encore « 64 PDFs », pas de CMYK. Conservé pour contexte historique. **Ne PAS coller** dans la GitHub Release ; utiliser le consolidé ci-dessus. |
 | [CHANGELOG.md](../CHANGELOG.md) | ⚠️ **GAP — à mettre à jour avant tag** : l'entrée v0.9.0 **ne mentionne pas** CMYK post-process (#632/#652), bundle v3 80 PDFs, P&P Standard/Light (#645/#648-650), stage Ghostscript, harvest deadlock (#651), logger (#630/#655). Prédate tout le travail bundle-v3. |
 
