@@ -116,7 +116,7 @@ Ces verdicts sont **rendus par ai-01** (technique) — jsboige peut s'y fier san
 - ✅ **Colorimétrie CMYK #632** (2026-07-03) : 80/80 DeviceCMYK + OutputIntent SWOP, vérifié sur fr+ar+zh.
 - ✅ **Géométrie #119** : Rules-first, recto-verso aligné.
 - ✅ **#216** : pas de fuite FR (multilingue intact).
-- ✅ **Tests** : 594 pass / 1 known-fail #133 (OWL round-trip, sans impact assets) / 5 skip. Build zéro-warning.
+- ✅ **Tests** : 595 pass / 1 known-fail #133 (OWL round-trip, sans impact assets) / 5 skip. Build zéro-warning. (600 total, #789)
 
 ---
 

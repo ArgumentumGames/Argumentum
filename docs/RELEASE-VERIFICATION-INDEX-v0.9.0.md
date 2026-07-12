@@ -4,7 +4,7 @@
 release** avant de poser le tag v0.9.0 (#134). Un seul point d'entrée → un lien + une ligne
 « à vérifier » par doc.
 
-**Master de référence** : `81a9e4e6` (refresh v5 2026-07-09 : intégration colonnes AIF #753/#754/#755 + tests empiriques 594/600). Précédent : `7590dfb8` (cycle-3 : #672/#673/#675/#676/#680). Tous
+**Master de référence** : `81a9e4e6` (refresh v5 2026-07-09 : intégration colonnes AIF #753/#754/#755 + tests empiriques 595/600, aligné #789). Précédent : `7590dfb8` (cycle-3 : #672/#673/#675/#676/#680). Tous
 les docs listés ci-dessous sont **sur master** (vérifiables maintenant). Le tag est techniquement
 débloqué (verdicts #140 contenu + #632 CMYK = PASS rendus) — il attend les arbitrages jsboige
 (§« Décisions restantes »).
