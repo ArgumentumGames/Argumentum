@@ -1,9 +1,39 @@
 # DNN 10.3.2 Go-Live — Turnkey Session Checklist (jsboige's RDP window)
 
-**Date**: 2026-06-26 · **Author**: po-2023 (dispatched by ai-01, secondary track — release COUPLÉE au site, jsboige input 26/06)
+**Date**: 2026-06-26 (refreshed 2026-07-12 — POST-EXECUTION) · **Author**: po-2023 (dispatched by ai-01, secondary track)
 **Status**: **Turnkey navigator.** Organizes the entire #131 arc by **what an RDP session is needed for**, not by technical phase (the [dnn-localization README](../dnn-localization/README.md) already does phase-order). The shortest path from "open RDP" to "site live on 10.3.2". Read-only doc, no code.
 **Purpose**: jsboige coupled v0.9.0 to the DNN go-live (#131/#132). Most of the arc is already done by agents without touching the runtime; a bounded set **requires jsboige's interactive RDP/sandbox session**. This is the checklist that says — when you open that window, here is the exact turnkey sequence and nothing redundant.
 **Related**: [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md), [go-live-smoke-test.md](go-live-smoke-test.md), [../dnn-localization/README.md](../dnn-localization/README.md) (arc index), #596 (Razor14), #597 (auth), #131/#132.
+
+> ## 🟢 POST-EXECUTION REALITY (refreshed 2026-07-12) — B1-B3 DELIVERED; only prod VPS go-live (B4) remains
+>
+> Since this checklist was written (2026-06-26), the sandbox-side work it organizes has been **executed and delivered**:
+> - **B1 (bin/ repair), B2 (sandbox upgrade + 2sxc 21), B3 (12 Razor14 templates)** — all **DONE**. DNN **10.3.2 + 2sxc
+>   21.07** are live in **full-IIS** at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0× "Something went wrong", HTTPS SAN
+>   9D80D4CC exp 2026-09-27). Stopgap `dnn.myia.io` retiré, PortalAlias 1010 droppé. ACME bypass **active in live**
+>   (renew win-acme 2026-08-23). Runtime branch `dnn/sandbox-runtime-1032` (bin/ 330 files). B2.5 smoke GREEN.
+>
+> So the turnkey sequence below is now a **proven replay** — B1-B3 are historical record, **only B4 (prod VPS go-live
+> on myia-web1) is the remaining gated frontier.**
+>
+> ### ⛔ CRITICAL CORRECTION to B1 below — the B1-inversion (do NOT follow B1 as written)
+>
+> B1's step 2-3 instruct: *"fetch the 5 .NET-9 contaminants at 6.0.x"* + *"align binding redirects → 6.0.0.0."* **This
+> is the INVERTED thesis — it was proven WRONG during execution.** Reverting BCL/SDK DLLs to 6.0.0.0 breaks 2sxc 21:
+> 2sxc 21.07 is compiled against `System.Text.Json` **9.0.0.0** / `System.Composition`-SCI **9.0.0.0** /
+> `Microsoft.Extensions.*`-Bcl **8.0.0.0**. Reverting → `JsonOptions` type-init `MissingMethodException` → every 2sxc
+> module renders *"Something went really wrong in view.ascx"*.
+>
+> **The correct B1 action (what actually worked):** deploy the matched BCL stack from the **2sxc 21.07 Install
+> package** (Json 9.0.0.0 / SCI 9.0.0.0 / Bcl 8.0.0.0) + align `<assemblyBinding>` redirects to those versions.
+> Canonical working bin = `tmp/dnn-backups/bin_post_2sxc_realign` (330 files). Authoritative version matrix: MEMORY
+> `reference-dnn-2sxc-net48-bcl-stack` + [`../dnn-localization/682-field-model-revision-2sxc21.md`](../dnn-localization/682-field-model-revision-2sxc21.md).
+> The same correction is applied to [`132-deployment-runbook.md`](../dnn-localization/132-deployment-runbook.md) §5.5(a).
+> **Read B1 below as historical-prep-with-a-known-error; the correction supersedes it.**
+>
+> ### Release de-coupling
+> The 26/06 framing "release COUPLÉE au site" is **revised**: the DNN prod go-live (B4) is a **jsboige ops VPS task,
+> de-coupled from the v0.9.0 print release** (worker reco, ai-01 concur). The tag v0.9.0 does not block on B4.
 
 ---
 
