@@ -1,9 +1,22 @@
 # DNN 10.3.2 Go-Live — Smoke-Test Checklist
 
-**Date**: 2026-06-26 · **Author**: po-2023 (dispatched by ai-01 v3, secondary track)
+**Date**: 2026-06-26 (refreshed 2026-07-12 — POST-EXECUTION context) · **Author**: po-2023 (dispatched by ai-01 v3, secondary track)
 **Status**: Actionable checklist — **complements** the [#132 production deployment runbook](../dnn-localization/132-deployment-runbook.md) (PR #594), does NOT duplicate it. Read-only doc, no code.
 **Purpose**: The #132 runbook covers the upgrade wizard + rollback contract. This doc is the **detailed smoke test** run immediately after the wizard completes (Phase 5, step 5 of #132) before exiting maintenance mode — the gate that says "10.3.2 is live and serving".
 **Related**: #132 (deployment runbook), #131 (upgrade arc), #596 (12 Razor14 templates), #597 (4 social-auth connectors), [UPGRADE-ASSESSMENT.md](UPGRADE-ASSESSMENT.md) §5 (eshop), [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md).
+
+> ## 🟢 POST-EXECUTION CONTEXT (refreshed 2026-07-12)
+>
+> The smoke checklist below remains **valid and actionable** for the one step still gated — **prod VPS go-live on
+> myia-web1** (jsboige ops task). What has changed since this doc was written:
+> - The **sandbox-side** smoke (sections A/B on IIS Express :8090) is **already green**: DNN 10.3.2 + 2sxc 21.07 live
+>   in full-IIS at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0× "Something went wrong", B2.5 smoke GREEN). So this
+>   checklist is now the **prod replay** of a proven sandbox run, not a first-time gate.
+> - **A2/A3/A5** red-flag `0x80131040` (binding) and `DnnJsInclude` crash are **already resolved** on the live site —
+>   they are retained as regression-watch signals, not open blockers.
+> - Section **B** (12 Razor14 templates) source-migrated in #596; runtime binding validated on the sandbox.
+> - **Release de-coupling**: the v0.9.0 print tag does NOT block on this prod go-live (worker reco, ai-01 concur) —
+>   B4 is a separate jsboige ops task.
 
 ---
 
