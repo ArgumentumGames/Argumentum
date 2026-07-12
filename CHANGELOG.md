@@ -5,7 +5,7 @@ All notable changes to the Argumentum project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.9.0] — 2026-07-XX
+## [0.9.0] — 2026-07-XX (tag pending jsboige visual GO, week of 2026-07-13)
 
 ### Added — Multilingual Support (8 Languages)
 
@@ -49,7 +49,19 @@ The v0.9.0 release bundle is **print-ready**: 80 PDFs (10 document types × 8 la
 - **Fallacies OWL** (`docs/ontology/argumentum.owl`, 5.07 MB): SKOS + AIF, 1408 fallacies, bilingual literals (EN 5558 + FR 4861), 2816 `prefLabel`, 1408 `broader` (full hierarchy). Freshly regenerated 2026-07-02 (#634 — previous commit `d206e59c` was ~3 months stale)
 - **Virtues OWL** (#592/#499 Phase 2, `docs/ontology/argumentum_virtues.owl`, 842 KB): 223 Virtues, 223 `aif:goodTenorOf` assertions, 7 families, bilingual literals (FR 884 + EN 641). Relational prod-write Phase 1 (#499, 66 → 78 columns, 12 additive)
 - **Scope note (honest)**: the OWL generator is bilingual (FR canonical + EN secondary) — it does **not** carry the 6 other release languages (RU/PT/ES/AR/FA/ZH). The 8-language claim applies to CSV/PDF/SVG, **not** to OWL
+- **Three relational layers now serialized in `argumentum.owl`** (#787, freshly regenerated from master `95b4210b`): (1) **skos Walton** — 70 native scheme mappings (`AIF_skos*Ref`, #753); (2) **crossLink** — 1985 inter-fallacy relational verbs across 8 predicates (#763); (3) **AIF attack** — 145 attack-typed fallacies with deterministic ASPIC+ node mapping (#498, see below). The committed OWL had drifted to 93 AIF assertions before the P1 reconciliation regen; #787 realigns it to the 145 prod value
 - #133 (OWL publication) remains open; the OWLSharp `rdf:type`/`skos:inScheme` round-trip bug is worked around by scoping readers on surviving annotations
+
+### Added — AIF Argumentation Layer (#498 Fallacies, #499 Virtues)
+
+A two-layer reconciliation of the taxonomy against the **ASPIC+ / AIF (Argument Interchange Format)** framework, giving each fallacy and virtue a formal attack semantics. Contract columns added in #753 (`AIF_attackType`, `AIF_attackedNode`, plus the `AIF_skos*Ref` mapping columns).
+
+- **Fallacies attack layer (#498)** — **145 / 1408 fallacies** now carry a typed AIF attack (10.3%), with a **deterministic node map** (ASPIC+ Option (a), #707 §4): `undercut → RA-node` (attacks the inference/rule, 87), `undermine → I-node` (attacks the premise, 53), `rebut → CA-node` (attacks the conclusion, 5). Rebut is a structural tail case (~3%), localized to appeal-to-consequences — relational fallacies (personal attack, genetic fallacy) are modelled as undermine/undercut, not rebut, because they reject without an independent counter-conclusion
+- **P1 skos-only reconciliation complete** (#498 P1, 93 → 145): the 52 fallacies that carried a skos signature but no attackType were back-filled across 7 tranches (tranche-1 #769/#771, 1b #773/#776, 1c #775/#779, 1d #778, 1e #780, 1f #781, 1g #784/#785; batched write 1d+1e+1f #783). Tiering by confidence: 14 PRECEDENT (exact-token precedent in-set) + 2 PREC-TIE (competing precedents, tie broken by majority + desc) + 36 SUFFIX-ONLY (skos token present, no typed precedent). **0 residual** skos-only rows; **0 token fabricated** — every attackType derived from the row's own skos signature + `desc_fr`, never inherited from the anchor (anchor audit #770: 16 CLEAN / 2 SOFT / 0 error; 0/19 anchors align with their sub-sub-leaves, proving inheritance would be fabrication)
+- **crossLink relational layer (#763)** — **8 inter-fallacy relational verbs** (`predatesOn`, `denounces`, `leverages`, `allows`, `opposes`, `inverts`, `mirrors`, `isRelatedTo`) filling **1081 cells across 844 fallacies (59.9%)**, emitted as OWL object properties with symmetric-flag handling. Mirrors (#721) and isRelatedTo are the densest predicates
+- **Virtues mirror (#499)** — **222 / 223 Virtues** carry an AIF attack type (Option A "resisted attack" ratified by ai-01 under jsboige delegation): 206 `undercut/RA-node`, 13 `undermine/I-node`, 3 `rebut/CA-node`. Prod-write Phase 1 (#755, script #754) extended the Virtues schema 66 → 78 columns (12 additive attack-shaped columns)
+- **Anchor audit (#770)** and **tiering methodology** documented in `docs/taxonomy/498-reconciliation-p1-closure.md`; the same-token divergence principle (desc-driven, token non-decisif) is validated by two documented cases (pk808/pk33, pk888/pk2)
+- **Layer C** (~1263 leaves without any skos signature) is **out of scope for v0.9.0** — a generative Walton-mapping pass is a change of nature (generation vs back-fill) requiring its own gated pilot; escalated to jsboige for a post-tag decision
 
 ### Fixed — Pipeline Recovery (Oct 2025 — Jun 2026)
 
@@ -96,8 +108,8 @@ Late-cycle hardening of the harvest and rendering pipeline, post-recovery:
 
 ### Test Coverage
 
-- **578 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-07-04, .NET 9 — 584 total), 5 skips (GUI/infrastructure), 1 known-fail (OWLSharp `rdf:type`/`inScheme` round-trip, pre-existing, tracked #133 — does not affect generated assets)
-- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, HarvestManager `RetryAsync` contract (#678), Playwright visual tests
+- **595 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-07-11, .NET 9 — 600 total: 595 pass / 1 fail / 5 skip), 5 skips (GUI/infrastructure), 1 known-fail (OWLSharp `rdf:type`/`inScheme` round-trip, pre-existing, tracked #133 — does not affect generated assets). Zero-warning build (CS compiler + NuGet audit, #587)
+- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, HarvestManager `RetryAsync` contract (#678), Virtues mindmap wrapper localization (#738), Playwright visual tests
 
 ### Migration Notes
 
