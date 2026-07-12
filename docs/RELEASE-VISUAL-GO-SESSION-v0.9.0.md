@@ -116,7 +116,7 @@ Ces verdicts sont **rendus par ai-01** (technique) — jsboige peut s'y fier san
 - ✅ **Colorimétrie CMYK #632** (2026-07-03) : 80/80 DeviceCMYK + OutputIntent SWOP, vérifié sur fr+ar+zh.
 - ✅ **Géométrie #119** : Rules-first, recto-verso aligné.
 - ✅ **#216** : pas de fuite FR (multilingue intact).
-- ✅ **Tests** : 595 pass / 1 known-fail #133 (OWL round-trip, sans impact assets) / 5 skip. Build zéro-warning. (600 total, #789)
+- ✅ **Tests** : **596 pass / 0 fail / 5 skip / 601 total**. Build zéro-warning. **0 rouge** depuis #793 : le test OWL2XML round-trip #133 n'est plus un known-fail (assertion `inScheme` corrigée — inScheme SURVIT au round-trip, empirique 1408 ; seul `rdf:type` reste droppé, asserté-comme-attendu, contourné). (master `84a529bf`)
 
 ---
 
