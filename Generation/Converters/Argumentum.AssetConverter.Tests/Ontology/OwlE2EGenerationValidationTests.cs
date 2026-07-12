@@ -17,7 +17,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// IN-MEMORY path).
     ///
     /// HISTORY (the bug this file originally pinned, now fixed): OWLSharp's OWL2XML serializer/reader
-    /// drops <c>rdf:type</c> from the reloaded annotation stream (rdf:type==0, skos:inScheme==0 among
+    /// drops <c>rdf:type</c> from the reloaded annotation stream (rdf:type==0 among
     /// <c>AnnotationAxioms</c> after reload). The OwlAdapter readers located concepts/schemes by
     /// scanning <c>AnnotationAxioms</c> for <c>rdf:type</c>, so on any LOADED file they returned empty →
     /// <c>ValidateMultilingualAnnotations</c> / <c>ValidateAIFMappings</c> hit their
@@ -79,15 +79,20 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (1) The serializer drop is REAL and UNFIXED BY DESIGN (read-path-only fix).
-        //     rdf:type==0 and skos:inScheme==0 among the reloaded AnnotationAxioms — OWLSharp's
-        //     OWL2XML round-trip drops/absorbs both. This stays true after the fix: the readers no
-        //     longer depend on them, but the drop itself is not patched (out of scope: write/serialize).
-        //     Contrast: prefLabel (literal-valued) survives — the loss is predicate-selective.
+        // (1) The serializer drop is PARTIAL — rdf:type is dropped, skos:inScheme now SURVIVES.
+        //     OWLSharp's OWL2XML round-trip still drops rdf:type (rdf:type==0 among the reloaded
+        //     AnnotationAxioms), but as of the committed argumentum.owl (145 AIF-typed, regenerated
+        //     2026-07-12 #787) skos:inScheme SURVIVES the round-trip (1408 assertions, one per concept).
+        //     Earlier this test asserted both were dropped; that was true of the in-memory build path
+        //     but is OBSOLETE for the committed file. The read-path fix (test 2) is unaffected — it
+        //     keys on prefLabel/hasTopConcept, which survive regardless. The rdf:type drop stays real
+        //     and is left in place (out of scope: write/serialize); only the obsolete inScheme==0
+        //     assertion is corrected here. (Anti-greenwashing: inScheme==1408 was verified empirically
+        //     by a temporary probe on the reloaded AnnotationAxioms, not by grepping the raw file.)
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void LoadedOntology_RdfTypeAndInScheme_DroppedByOwl2XmlRoundTrip()
+        public void LoadedOntology_RdfTypeDropped_InSchemeSurvives_Owl2XmlRoundTrip()
         {
             int rdfType = CountAnnotations("/rdf-syntax-ns#type");
             int inScheme = CountAnnotations("skos/core#inScheme");
@@ -99,9 +104,11 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                 "drop is REAL and left in place by the read-path fix — the readers now locate concepts via " +
                 "surviving prefLabel annotations instead (see test 2), so the drop is benign, not patched.");
 
-            inScheme.Should().Be(0,
-                "skos:inScheme is also absent from the reloaded AnnotationAxioms (absorbed elsewhere by the " +
-                "reader) — a read-path fix cannot rely on it either; the fix uses prefLabel + hasTopConcept.");
+            inScheme.Should().BeGreaterThan(0,
+                "skos:inScheme SURVIVES the OWL2XML round-trip on the committed argumentum.owl (1408 assertions, " +
+                "one per concept) — empirically verified on the reloaded AnnotationAxioms. The earlier assertion " +
+                "(inScheme==0) was true of the in-memory build path but OBSOLETE for the committed file. " +
+                "Either way the read-path fix keys on prefLabel+hasTopConcept, so this correction is hygiene only.");
 
             prefLabel.Should().BeGreaterThan(0,
                 "contrast: prefLabel (literal-valued) DOES survive the round-trip — the serialization loss is " +
