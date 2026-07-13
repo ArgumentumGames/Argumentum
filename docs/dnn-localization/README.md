@@ -7,7 +7,7 @@
 
 ---
 
-## §0.5 — Execution status (2026-07-10 refresh: the upgrade is DONE)
+## §0.5 — Execution status (refresh 2026-07-12: the upgrade is DONE, B1-doc sweep extended)
 
 > **The plan below was EXECUTED, not just written.** This section records what's actually live, so readers
 > don't treat the spine as a TODO. The detailed runbooks (§1) remain the source of truth for *how*; this
@@ -23,14 +23,19 @@
 | **Canonical working `bin/`** | ✅ | `tmp/dnn-backups/bin_post_2sxc_realign` (330 files). Runtime branch: `dnn/sandbox-runtime-1032`. |
 | **Prod go-live** | ⏸ **PENDING (ops, jsboige VPS)** | Migration is complete; remaining = **visual site verdict (jsboige/ai-01)** + prod go-live (ops VPS task). NOT blocking v0.9.0 assets (reco: de-couple). |
 
-> ✅ **Stale-doc flags resolved / corrected (this PR, 2026-07-10):** the 2 docs that still encoded the
-> inverted B1 thesis — [`docs/dnn/sandbox-bootstrap-runbook.md`](../dnn/sandbox-bootstrap-runbook.md) §2/§3
-> and [`docs/dnn/go-live-turnkey-checklist.md`](../dnn/go-live-turnkey-checklist.md) B1 — now carry a
-> ⛔ SUPERSEDED callout (correct fix = deploy the 9.0.0.0 BCL stack from the 2sxc 21.07 Install pkg, stated
-> inline). The executable [`repair-bin-net48.ps1`](../dnn/repair-bin-net48.ps1) was **already deprecated in
-> #624** (2026-07-01, `-Apply` refuses) — an earlier flag mis-named it stale. The `132-deployment-runbook.md`
-> title was **already retargeted to 10.3.2** (2026-06-24) — not stale either. (`131-step1-sandbox-upgrade-runbook.md`
-> carries no BCL versions — DNN-version-scoped, has its own TARGET-SUPERSEDED header.)
+> ✅ **B1-inversion correction — sweep complete across 3 docs (refresh 2026-07-12):** the inverted B1
+> thesis (revert BCL DLLs to 6.0.0.0 treating .NET 8/9 as "contamination" — **wrong for 2sxc-21**) was
+> encoded in 3 docs; all now carry the correct fix inline (deploy the matched BCL stack — Json 9.0.0.0 /
+> SCI 9.0.0.0 / Bcl 8.0.0.0 — from the 2sxc 21.07 Install pkg):
+>
+> - [`docs/dnn/sandbox-bootstrap-runbook.md`](../dnn/sandbox-bootstrap-runbook.md) §2/§3 — ⛔ SUPERSEDED callout (#765).
+> - [`docs/dnn/go-live-turnkey-checklist.md`](../dnn/go-live-turnkey-checklist.md) B1 — ⛔ CRITICAL CORRECTION (#765, extended #794).
+> - [`132-deployment-runbook.md`](132-deployment-runbook.md) §5.5(a) — B1-inversion lesson added as a MANDATORY sub-step (#792).
+>
+> The executable [`repair-bin-net48.ps1`](../dnn/repair-bin-net48.ps1) was **deprecated in #624** (2026-07-01,
+> `-Apply` refuses). The `132-deployment-runbook.md` title was retargeted to 10.3.2 (2026-06-24).
+> (`131-step1-sandbox-upgrade-runbook.md` carries no BCL versions — DNN-version-scoped, own TARGET-SUPERSEDED header.)
+> See `[[reference-dnn-2sxc-net48-bcl-stack]]` for the authoritative version matrix.
 
 ---
 
@@ -57,6 +62,9 @@ Follow these in order. Each is the authoritative doc for one execution phase.
 | [131-upgrade-sandbox-plan-v2.md](131-upgrade-sandbox-plan-v2.md) | The merged "v2" sandbox plan + go/no-go matrix. Reference for the palier logic. |
 | [131-step1-sandbox-upgrade-runbook.md](131-step1-sandbox-upgrade-runbook.md) | Sandbox upgrade runbook (was 10.1.2-scoped; exec gated on target decision). |
 | [131-regen-staging-runbook.md](131-regen-staging-runbook.md) | Stages prerequisites for an attended mindmap/PDF regen — **no launch**. |
+| [682-field-model-decision-input.md](682-field-model-decision-input.md) | **#682** Rule content-type field-model decision → **Path A** (lang-suffixed + `loc()` cascade). Ratified. Feeds #674 runtime + #684 translation. |
+| [682-field-model-revision-2sxc21.md](682-field-model-revision-2sxc21.md) | **#682** revision against 2sxc v21 export (#681) — confirms Path A, 3 deltas corrected. |
+| [682-path-a-provisioning-manifest.md](682-path-a-provisioning-manifest.md) | **#682** provisioning manifest: **49 new suffixed fields** (7 translatable × 7 non-FR langs) for jsboige to provision via 2sxc content-type editor. GATED ops. |
 | [457-site-content-type-inventory.md](457-site-content-type-inventory.md) | Localization scope map (extends the Phase 1 audit, feeds the extractor). |
 | [457-document-tier-translation-workflow.md](457-document-tier-translation-workflow.md) | **#457 Phase 2–4** for the **document tier** (2 static FR HTML pages): extraction → DatasetUpdater → re-import workflow design. Complements the string-tier toolchain; extractor = critical path. |
 | [PHASE1-content-audit.md](PHASE1-content-audit.md) | Phase 1 content extraction audit (#457). Repo-side, complete. |
@@ -80,7 +88,10 @@ These are **business / content decisions only jsboige can make**. (The **upgrade
 
 1. **#445 — Stripe vs OpenStore** (keep OpenStore vs Stripe managed). Business decision. See [131-target-revision-10.3.2-full-upgrade.md](131-target-revision-10.3.2-full-upgrade.md) § "unblocked items".
 2. **#525 — "Materiel" typo fix** (DB / 2sxc content). **= `res.RuleMaterial` Δ1** flagged in [490-res-rule-reconciliation.md](490-res-rule-reconciliation.md) (DB `Materiel` typo → `Matériel`). jsboige arbitration. Part of the 4 DNN res.Rule* deltas (Material typo · MemoCard case · FileNamePrefix brand · RuleContent view-bug).
-3. **Visual site verdict** (jsboige/ai-01) + **prod go-live** (ops VPS). The last non-calendaire gate.
+3. **#682 — Rule field-model provisioning** (2sxc content-type editor). Provision the **49 lang-suffixed fields** listed in [682-path-a-provisioning-manifest.md](682-path-a-provisioning-manifest.md) (Path A, ratified). DB-side ops, gated jsboige. Unblocks #674 runtime validation + #684 translation population.
+4. **#683 — DNN content-language enablement + URL routing + switcher** (jsboige). The i18n portage prerequisite that makes the 49 provisioned fields render per-culture. Gates #684 re-import.
+5. **#684 — Rule prose translation + re-import** (7 langs × ~30 entities). Prep DONE (PR #767, 0 prod write); the **re-import to 2sxc is GATED** on #682 provisioning + #683 enablement + jsboige GO. See [457-document-tier-translation-workflow.md](457-document-tier-translation-workflow.md).
+6. **Visual site verdict** (jsboige/ai-01) + **prod go-live** (ops VPS). The last non-calendaire gate.
 
 ---
 
