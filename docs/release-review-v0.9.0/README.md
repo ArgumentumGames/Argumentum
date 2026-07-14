@@ -12,7 +12,9 @@ Le jeu est décliné en **8 langues** : 🇫🇷 FR (référence) · 🇬🇧 EN
 
 Les cartes prêtes à imprimer sont en **assets de la pre-release GitHub** :
 
-> 👉 **[Pre-release « v0.9.0 — Visual Review »](RELEASE_URL_PLACEHOLDER)** *(lien mis à jour à la publication)*
+> 👉 **[Pre-release « v0.9.0 — Visual Review »](https://github.com/ArgumentumGames/Argumentum/releases/tag/v0.9.0-review)**
+>
+> 💬 **Issue de suivi (auto-suffisante, à commenter)** : **[#802 Relecture visuelle v0.9.0](https://github.com/ArgumentumGames/Argumentum/issues/802)**
 
 Pour la première passe, on met en ligne les **`Argumentum_TarotCards_<langue>.pdf`** (les 8 langues) — elles
 couvrent tous les cas délicats (densité, écritures non-latines, covers, cartes de règles). Les autres decks
@@ -86,8 +88,8 @@ correct dans une écriture qu'on ne lit pas). Repères :
 
 ## 5. Comment nous remonter vos retours
 
-- **Idéal** : commentez directement sur l'**issue GitHub de suivi** (lien dans la pre-release / donné par
-  jsboige). Une case à cocher par langue + un espace pour vos remarques : voir [`CHECKLIST.md`](CHECKLIST.md).
+- **Idéal** : commentez directement sur l'**[issue GitHub de suivi #802](https://github.com/ArgumentumGames/Argumentum/issues/802)**.
+  Une case à cocher par langue + un espace pour vos remarques : voir [`CHECKLIST.md`](CHECKLIST.md).
 - **Sinon** : envoyez vos remarques à jsboige (WhatsApp), on les reporte pour vous.
 
 **Format utile pour une remarque** : *langue + fichier + page + ce qui cloche* (une phrase suffit).
