@@ -1,5 +1,20 @@
 # 2026-07-11 — Régén-readiness REFRESH vs `c1ed77d2` (delta over the 07-04 checklist)
 
+> ## 🔄 MICRO-REFRESH (2026-07-13) — 2 staleness corrected post-`c1ed77d2`
+>
+> The harness below was anchored to `c1ed77d2` (07-11). Two figures it states drifted on master `b736a808` (07-12)
+> and are corrected inline below:
+>
+> - **AIF fully-modeled fallacies**: `121` → **`145`** (#785 wrote tranche 1g Tricherie 137→145; #787 regen'd
+>   `argumentum.owl` 93→145). See §1 table row + §2c.
+> - **Test baseline**: `595 pass / 1 known-fail #133 / 600` → **`596 pass / 0 fail / 5 skip / 601 total`**
+>   (#793 corrected the OWL2XML round-trip assertion `inScheme.Be(0)`→`BeGreaterThan(0)` — inScheme SURVIVES the
+>   round-trip, empirique 1408; residuel `rdf:type` droppé asserté-comme-attendu). See §2b.
+>
+> Neither changes the regen-readiness verdict: master `b736a808` is regen-ready (the 07-12 merges were docs-only
+> + the #785 CSV write is the AIF enrichment the regen already expects). The 8-lang clobber scope, ConverterMode
+> flags, and fire-time prerequisites below are unchanged.
+
 **Scope**: a **freshness refresh** of the regen-readiness harness
 ([`2026-07-04-regen-readiness-checklist-8lang.md`](2026-07-04-regen-readiness-checklist-8lang.md)),
 re-anchored to master **`c1ed77d2`**. The 07-04 checklist remains the **operational harness**
@@ -24,7 +39,7 @@ post-GO-visuel sem. 13/07"). Worker: po-2023 (heavy-regen lane).
 
 | Merge | Impact on regen | Lane |
 |-------|-----------------|------|
-| **AIF #498 tranches 1a/1b/1c** (#771/#776/#779 + propositions) | **CONTENT INPUT CHANGED** — 6 new columns in `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (`AIF_skosDirectRef`, `AIF_skosExceptionRef`, `AIF_skosOther`, `AIF_skosMappingType`, `AIF_attackType`, `AIF_attackedNode`); 121 fallacies now fully-modeled. The regen harvests this richer CSV → cards + OWL carry the AIF wiring. **Verified on master** (header grep). | po-2024 (Cards/) |
+| **AIF #498 tranches 1a/1b/1c** (#771/#776/#779 + propositions) | **CONTENT INPUT CHANGED** — 6 new columns in `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (`AIF_skosDirectRef`, `AIF_skosExceptionRef`, `AIF_skosOther`, `AIF_skosMappingType`, `AIF_attackType`, `AIF_attackedNode`); **145 fallacies fully-modeled** (was 121 at `c1ed77d2`; #785 tranche 1g Tricherie 137→145, 12/07). The regen harvests this richer CSV → cards + OWL carry the AIF wiring. **Verified on master** (header grep). | po-2024 (Cards/) |
 | **DNN i18n #767/#772/#774/#777** | **No pipeline impact** — docs-only (`docs/dnn-localization/`) + DNN-side artifacts. The AssetConverter does not read these. | po-2023 (docs) |
 | **AIF Ontology Integration #763** | OWL crosslinks 59% + AIF wiring already in the committed `docs/ontology/argumentum.owl`. The regen **re-produces** OWL from the CSV (now AIF-enriched). | ai-01 |
 | **Playwright deadlock #651 (RESOLVED)** | **Code-path fix** — see §4. Stall-watcher now measures chromium child CPU. | ai-01 |
@@ -59,18 +74,21 @@ scratch). The XSLT-proscription check (#184) still applies — reject any non-Ba
 The RDP-foreground prerequisite (07-04 §5) remains a **fire-time condition** for the GUI automation,
 but there is no longer a coverage gap to close first.
 
-### 2b. Test baseline — 578 → **595 pass**
+### 2b. Test baseline — 578 → **596 pass / 0 fail** (post-#793)
 
-The 07-04 doc §9 cites `578 pass / 1 fail / 5 skip / 584 total`. **Current (REPORTED ai-01
-2026-07-11): `595 pass / 1 fail (#133 OWLSharp round-trip) / 5 skip / 600 total`**, build zero-warning
-(CS + NuGet audit). The 1 known-fail is pre-existing/tracked (#133), not a regen blocker. **Re-confirm
-empirically at fire-time** (test counts are `dotnet test` empirical, never a copied figure
+The 07-04 doc §9 cites `578 pass / 1 fail / 5 skip / 584 total`. **Current (empirique `dotnet test`
+master `b736a808`, 2026-07-12): `596 pass / 0 fail / 5 skip / 601 total`**, build zero-warning
+(CS + NuGet audit). The #133 OWLSharp round-trip known-fail was **cleared by #793** (assertion
+`inScheme.Be(0)`→`BeGreaterThan(0)` — inScheme SURVIVES the round-trip, empirique 1408; residuel
+`rdf:type` droppé asserté-comme-attendu, contourné). Was `595 pass / 1 known-fail / 600` at `c1ed77d2`.
+**Re-confirm empirically at fire-time** (test counts are `dotnet test` empirical, never a copied figure
 [[test-counter-empirical]]).
 
 ### 2c. AIF columns — **new regen input (not in 07-04 doc)**
 
 See §1. The 07-04 doc's TL;DR ("80 PDFs, ~4500 images, 20 mind-map SVGs, OWL 5 MB") does not mention
-AIF. The CSV now carries 6 AIF columns + 121 fully-modeled fallacies. **No action** — the pipeline
+AIF. The CSV now carries 6 AIF columns + **145 fully-modeled fallacies** (was 121 at `c1ed77d2`; #785
+tranche 1g). **No action** — the pipeline
 reads the CSV as-is — but release notes should reflect that the OWL + cards are AIF-enriched since
 the 07-04 bundle.
 
