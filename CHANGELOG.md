@@ -50,7 +50,7 @@ The v0.9.0 release bundle is **print-ready**: 80 PDFs (10 document types × 8 la
 - **Virtues OWL** (#592/#499 Phase 2, `docs/ontology/argumentum_virtues.owl`, 842 KB): 223 Virtues, 223 `aif:goodTenorOf` assertions, 7 families, bilingual literals (FR 884 + EN 641). Relational prod-write Phase 1 (#499, 66 → 78 columns, 12 additive)
 - **Scope note (honest)**: the OWL generator is bilingual (FR canonical + EN secondary) — it does **not** carry the 6 other release languages (RU/PT/ES/AR/FA/ZH). The 8-language claim applies to CSV/PDF/SVG, **not** to OWL
 - **Three relational layers now serialized in `argumentum.owl`** (#787, freshly regenerated from master `95b4210b`): (1) **skos Walton** — 70 native scheme mappings (`AIF_skos*Ref`, #753); (2) **crossLink** — 1985 inter-fallacy relational verbs across 8 predicates (#763); (3) **AIF attack** — 145 attack-typed fallacies with deterministic ASPIC+ node mapping (#498, see below). The committed OWL had drifted to 93 AIF assertions before the P1 reconciliation regen; #787 realigns it to the 145 prod value
-- #133 (OWL publication) remains open; the OWLSharp `rdf:type`/`skos:inScheme` round-trip bug is worked around by scoping readers on surviving annotations
+- #133 (OWL publication) certified **publication-safe** (#793, 2026-07-12): `skos:inScheme` survives the OWLSharp XML round-trip (1408 assertions); only `rdf:type` drops on reload, which is asserted-as-expected and worked around by the survivor-fallback read path — the generated ontology is otherwise complete (SKOS + AIF)
 
 ### Added — AIF Argumentation Layer (#498 Fallacies, #499 Virtues)
 
@@ -108,7 +108,7 @@ Late-cycle hardening of the harvest and rendering pipeline, post-recovery:
 
 ### Test Coverage
 
-- **595 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-07-11, .NET 9 — 600 total: 595 pass / 1 fail / 5 skip), 5 skips (GUI/infrastructure), 1 known-fail (OWLSharp `rdf:type`/`inScheme` round-trip, pre-existing, tracked #133 — does not affect generated assets). Zero-warning build (CS compiler + NuGet audit, #587)
+- **596 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-07-14, .NET 9 — 601 total: 596 pass / 0 fail / 5 skip), 5 skips (GUI/infrastructure). The last known-fail (#133, OWLSharp XML round-trip) was cleared in #793: `skos:inScheme` now survives the round-trip (1408 assertions); the residual `rdf:type` reload-drop is asserted-as-expected and worked around by the survivor-fallback read path — does not affect generated assets. Zero-warning build (CS compiler + NuGet audit, #587)
 - Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, HarvestManager `RetryAsync` contract (#678), Virtues mindmap wrapper localization (#738), Playwright visual tests
 
 ### Migration Notes
