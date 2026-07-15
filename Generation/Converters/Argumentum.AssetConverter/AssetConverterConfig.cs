@@ -246,10 +246,12 @@ namespace Argumentum.AssetConverter
 					{
 						nameof(VirtueMindMapDocumentConfig.TitleExpression),
 						nameof(VirtueMindMapDocumentConfig.DescriptionExpression),
+						nameof(VirtueMindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						(nameof(Virtue.TitleFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.TitleEn)), ("ru", nameof(Virtue.TitleRu)), ("pt", nameof(Virtue.TitlePt)), ("es", nameof(Virtue.TitleEs)), ("ar", nameof(Virtue.TitleAr)), ("fa", nameof(Virtue.TitleFa)), ("zh", nameof(Virtue.TitleZh))}) ),
 						(nameof(Virtue.DescriptionFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.DescriptionEn)), ("ru", nameof(Virtue.DescriptionRu)), ("pt", nameof(Virtue.DescriptionPt)), ("es", nameof(Virtue.DescriptionEs)), ("ar", nameof(Virtue.DescriptionAr)), ("fa", nameof(Virtue.DescriptionFa)), ("zh", nameof(Virtue.DescriptionZh))}) ),
+						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback"), ("ar", "LinkArFallback"), ("fa", "LinkFaFallback"), ("zh", "LinkZhFallback") }) ),
 					}),
 				},
 				// Virtue family hierarchy: FR names → localized names.
