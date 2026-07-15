@@ -161,7 +161,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		public string LinkExpression { get; set; } = @"{item.Link}";
+		public string LinkExpression { get; set; } = @"{item.LinkFrFallback}";
 
 
 		[IgnoreDataMember]

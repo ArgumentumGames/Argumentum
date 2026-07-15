@@ -12,7 +12,22 @@ namespace Argumentum.AssetConverter.Entities
         public string Text => TitleFr;
         public string Description => DescriptionFr;
         public string Example => string.Empty; // No example in source for Virtues
-        public string Link => LinkFr;
+        public string Link => LinkFrFallback;
+
+        // #804 — per-language mind-map link cascade, mirroring Fallacy.cs. The mind-map
+        // links-overlay (WrapNodeByLink) resolves the URL via LinkExpression, which the
+        // AssetConverterConfig token-swap rewrites per dest-lang (LinkFrFallback ->
+        // LinkEnFallback / LinkRuFallback / ...). Without this cascade the Virtues links.svg
+        // always resolved to LinkFr (161 fr.wikipedia refs per non-FR lang). French is the
+        // source; En is 2-deep (Fr<->En), the others are 3-deep (target -> En -> Fr).
+        public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
+        public string LinkEnFallback => string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn;
+        public string LinkRuFallback => string.IsNullOrEmpty(LinkRu) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkRu;
+        public string LinkPtFallback => string.IsNullOrEmpty(LinkPt) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkPt;
+        public string LinkEsFallback => string.IsNullOrEmpty(LinkEs) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkEs;
+        public string LinkArFallback => string.IsNullOrEmpty(LinkAr) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkAr;
+        public string LinkFaFallback => string.IsNullOrEmpty(LinkFa) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkFa;
+        public string LinkZhFallback => string.IsNullOrEmpty(LinkZh) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkZh;
         public int? Carte => int.TryParse(Card, out int c) ? c : null;
         public string PK { get => Pk; set => Pk = value; }
         public string DecimalPath { get; set; }
