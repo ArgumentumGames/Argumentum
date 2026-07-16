@@ -1113,7 +1113,10 @@ if (mapFile != null) {
 				}
 			}
 
-			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath });
+			// Pass the real mind-map items through so node attributes get injected.
+			// (Regression fix #820: the item-less overload below silently dropped them,
+			// leaving Fallacy content.svg with 0 class="node" — no click-to-define overlay.)
+			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath }, mindMapItems);
 
 			foreach (var svgDoc in processedDocs)
 			{
@@ -1132,7 +1135,13 @@ if (mapFile != null) {
 			}
 		}
 
-		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths)
+		// Test-compatibility overload: no items supplied means no node injection is performed
+		// (used by SvgPostProcessingTests' approved-snapshot test, which only exercises the
+		// viewBox/width/height rewrite, not the item->node matching).
+		internal Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths)
+			=> ProcessSvgFilesAsync(sourceSvgPaths, new List<IMindMapItem>());
+
+		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths, IList<IMindMapItem> mindMapItems)
 		{
 			var processedDocs = new Dictionary<string, XDocument>();
 
@@ -1140,7 +1149,6 @@ if (mapFile != null) {
 			{
 				foreach (var svgFreemindMap in SVGMaps)
 				{
-					var mindMapItems = new List<IMindMapItem>(); // Note: This is a simplification for the test
 					var svgSavedFilePath = Path.ChangeExtension(svgFilePath, svgFreemindMap.DocumentName);
 
 					XDocument svgDoc = XDocument.Load(svgFilePath);
@@ -1168,6 +1176,52 @@ if (mapFile != null) {
 				}
 			}
 			return processedDocs;
+		}
+
+		/// <summary>
+		/// #820 — Restore Fallacies mind-map click-to-define interactivity by injecting localized
+		/// node attributes (class="node" + family/subfamily/subsubfamily/description/example/link/
+		/// depth/familyclass) directly into an EXISTING, text-bearing <c>*.content.svg</c>, then
+		/// regenerating its HTML wrappers (integrated + external) from the injected SVG.
+		///
+		/// Deliberately standalone: it does NOT run FreeMind and does NOT read the canonical
+		/// <c>Fallacies_&lt;lang&gt;.svg</c> (text-as-path → 0 matchable text) nor the links.svg.
+		/// Running the normal Mindmapper pipeline would instead re-derive content.svg FROM the
+		/// text-as-path canonical and destroy every node title. This method injects in place.
+		///
+		/// The map config MUST already be localized (DoReflectionTranslate) for
+		/// <paramref name="language"/> so the Desc/Example/Link/Famille expressions resolve to the
+		/// target-language Fallacy columns. Returns the count of class="node" elements after injection.
+		/// </summary>
+		public async Task<int> RegenerateInteractiveContentSvgAsync(
+			IList<IMindMapItem> items, string contentSvgPath, AssetConverterConfig config, string language)
+		{
+			var contentMap = SVGMaps.FirstOrDefault(m => m.Enabled && m.SetSVGNodeAttributes);
+			if (contentMap == null)
+				throw new InvalidOperationException($"No SetSVGNodeAttributes SVGMap found on {DocumentName}.");
+			if (!File.Exists(contentSvgPath))
+				throw new FileNotFoundException($"Text-bearing content.svg not found: {contentSvgPath}");
+
+			XNamespace svgNamespace = "http://www.w3.org/2000/svg";
+			XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+			// The committed content.svg carry a UTF-8 BOM but declare encoding="utf-16" (a latent
+			// mislabel tracked as #804): XDocument.Load honours the declaration and fails without a
+			// UTF-16 BOM. Read as text (BOM auto-detected -> UTF-8) and Parse, which ignores the
+			// declaration on an already-decoded string. The declaration is preserved as-is on write.
+			var svgText = File.ReadAllText(contentSvgPath);
+			var svgDoc = XDocument.Parse(svgText);
+			UpdateSvgWithItems(contentMap, items, svgDoc, svgNamespace, xlinkNamespace);
+			File.WriteAllText(contentSvgPath, GetSvgContent(svgDoc), Encoding.UTF8);
+
+			var nodeCount = svgDoc.Descendants(svgNamespace + "g")
+				.Count(g => (string)g.Attribute("class") == "node");
+
+			// Regenerate the integrated (included.html) + external HTML wrappers from the node-bearing SVG.
+			await GenerateHtmlSvgWrappers(contentMap, config, contentSvgPath,
+				() => Task.FromResult(GetSvgContent(svgDoc)), language);
+
+			return nodeCount;
 		}
 
 		//private void AdjustSvgViewBox(XDocument svgDoc)
