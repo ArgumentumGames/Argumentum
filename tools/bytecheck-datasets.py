@@ -7,8 +7,13 @@ count of populated vs empty per lang column. Read-only, no write.
 """
 import csv, sys, collections, os
 
-# (label, path, lang-fields-to-audit)
+# (label, path)
+# Production render CSVs. The two Taxonomy files (Fallacies, Virtues) are the
+# core game datasets and were NOT in the original tick-24 sweep — added here so
+# the encoding inventory is complete across every CSV that renders a card.
 TARGETS = [
+    ("Fallacies Taxonomy", r"Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"),
+    ("Virtues Taxonomy", r"Cards\Fallacies\Argumentum Virtues - Taxonomy.csv"),
     ("Rules", r"Cards\Rules\Argumentum Rules - Cards.csv"),
     ("Rules PnP", r"Cards\Rules\Argumentum Rules - Cards Print and Play.csv"),
     ("Scenarii", r"Cards\Scenarii\Argumentum Scenarii - Cards.csv"),
@@ -28,11 +33,31 @@ FR_LATIN_MARKERS = set("àâäçéèêëîïôùûÿœæÀÂÄÇÉÈÊËÎÏÔÙ
 
 
 def detect_encoding(path):
+    """Return (bom, eol) reading the WHOLE file.
+
+    tick-24 bug: sampling only the first 64 bytes falsely reported LF whenever
+    the header row ran past byte 64 before its first line break (all 5 render
+    CSVs — the first CRLF sits at byte 82-1235). We now read the whole file and
+    separate the *row terminator* (CRLF vs LF) from bare LF that lives INSIDE
+    quoted multi-line cells (Markdown content in Rules/Fallacies). A CSV whose
+    rows end in CRLF but whose cells contain LF is CRLF-terminated and normal —
+    PapaParse and CsvHelper both parse it. `eol` reports the row terminator; the
+    in-cell LF count is surfaced separately by main() where relevant.
+    """
     with open(path, "rb") as f:
-        raw = f.read(64)
+        raw = f.read()
     bom = "BOM" if raw[:3] == b"\xef\xbb\xbf" else "no-BOM"
-    crlf = "CRLF" if b"\r\n" in raw else "LF"
-    return bom, crlf
+    crlf = raw.count(b"\r\n")
+    bare_lf = raw.count(b"\n") - crlf  # \n not preceded by \r (in-cell newlines)
+    if crlf and not bare_lf:
+        eol = "CRLF"
+    elif crlf and bare_lf:
+        eol = "CRLF"  # row terminator is CRLF; bare LF are in-cell (see report)
+    elif bare_lf and not crlf:
+        eol = "LF"
+    else:
+        eol = "none"
+    return bom, eol
 
 
 def script_coverage(text):
