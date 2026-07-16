@@ -33,5 +33,6 @@
     "cardClass": "",
     "rscount": 14,
     "rsstyle": "bunch",
-    "cindices": ""
+    "cindices": "",
+    "_csv_note": "STALE — overridden at runtime by DataSet='Scenarii' (see Cards\\Scenarii\\Argumentum Scenarii - Cards.csv). Embedded `csv` is a snapshot from template creation (PR #813 audit, #812 fix). CardPen reads `csv`/`mustache`/`css`; this key is ignored."
 }
