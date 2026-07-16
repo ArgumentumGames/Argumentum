@@ -7,6 +7,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Argumentum.AssetConverter.Entities;
+using Argumentum.AssetConverter.Mindmapper;
 using Utf8Json;
 
 namespace Argumentum.AssetConverter
@@ -409,6 +411,65 @@ namespace Argumentum.AssetConverter
 						owlGenConfig.Mode = ConverterMode.OwlGenerator;
 
 						await owlGenConfig.Apply().ConfigureAwait(false);
+						return;
+					}
+					else if (args[0].Equals("--regen-fallacy-mindmap-nodes", StringComparison.OrdinalIgnoreCase))
+					{
+						// #820 - Restore Fallacies mind-map click-to-define interactivity for all 8 languages.
+						// Injects localized node attributes (class="node" + description/example/link/family/...) directly
+						// into the EXISTING text-bearing Cards/Fallacies/Mindmaps/<lang>/Fallacies_<lang>.content.svg and
+						// regenerates the integrated + external HTML from it. Standalone on purpose: no FreeMind, and it
+						// NEVER runs the normal Mindmapper pipeline (which would re-derive content.svg from the
+						// text-as-path canonical .svg and lose every node title). Run in Debug so the local included.html
+						// template + FR-source CSV resolve. See #820 (root cause: items dropped + text-as-path source).
+						Logger.LogTitle("Mode regen interactivite mindmaps Fallacies (#820)");
+
+						var regenConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var regenConfig = AssetConverterConfig.GetConfig(regenConfigFileName, out var _);
+						regenConfig.OverwriteExistingHtmlMaps = true; // force HTML wrappers to be rewritten from the injected SVG
+
+						// Locate the repo root (holds Cards/Fallacies/Mindmaps) from the assembly location - CWD-independent.
+						var repoRoot = AppContext.BaseDirectory;
+						while (repoRoot != null && !Directory.Exists(Path.Combine(repoRoot, "Cards", "Fallacies", "Mindmaps")))
+						{
+							repoRoot = Directory.GetParent(repoRoot)?.FullName;
+						}
+						if (repoRoot == null)
+						{
+							throw new DirectoryNotFoundException("Could not locate repo root (Cards/Fallacies/Mindmaps).");
+						}
+
+						// Load the Fallacy taxonomy once (each item carries all language columns).
+						var fallacyDataSet = regenConfig.DataSets.First(d => d.Name == KnownDataSets.FallaciesTaxonomy);
+						var fallacyItems = (await Fallacy.LoadAsync(fallacyDataSet, regenConfig.UseDebugParams))
+							.Cast<IMindMapItem>().ToList();
+						Logger.Log($"Loaded {fallacyItems.Count} Fallacy items for node injection.");
+
+						// The main (non-cards) Fallacies map carries the content.svg map with SetSVGNodeAttributes.
+						var mapTemplate = regenConfig.FallacyMindMapCreatorConfig.DocumentConfigs
+							.First(d => d.SVGMaps.Any(m => m.SetSVGNodeAttributes));
+
+						var regenLanguages = new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+						foreach (var lang in regenLanguages)
+						{
+							var contentSvgPath = Path.Combine(repoRoot, "Cards", "Fallacies", "Mindmaps", lang, $"Fallacies_{lang}.content.svg");
+							if (!File.Exists(contentSvgPath))
+							{
+								Logger.LogWarning($"[{lang}] content.svg missing, skipped: {contentSvgPath}");
+								continue;
+							}
+
+							// Localize a fresh clone of the map for this language (rewrites Desc/Example/Link/Famille expressions).
+							var localizedMap = mapTemplate.CloneMindMap();
+							foreach (var documentLocalization in regenConfig.LocalizationConfig.MindMapLocalization)
+							{
+								documentLocalization.DoReflectionTranslate(localizedMap, lang);
+							}
+
+							var nodeCount = await localizedMap.RegenerateInteractiveContentSvgAsync(fallacyItems, contentSvgPath, regenConfig, lang);
+							Logger.LogSuccess($"[{lang}] injected {nodeCount} class=\"node\" -> {contentSvgPath}");
+						}
+
 						return;
 					}
 				}
