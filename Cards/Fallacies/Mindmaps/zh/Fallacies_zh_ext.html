@@ -73,56 +73,127 @@
         /* Couleurs */
         /* -------------------------------------------------------------------------------- */
 
-        card.insuffisance {
+        /* Défaut (fallback couleur restauré depuis golden master eb83d113). */
+        card {
             --color-background: #811da3;
             --color-text-1: #601362;
             --color-text-2: #8f5991;
             --color-text-3: #a173a2;
         }
 
-        card.influence {
+        /* Fallacies — 8 familles (casse EXACTE de l'attribut familyclass runtime). */
+        card.Insuffisance {
+            --color-background: #811da3;
+            --color-text-1: #601362;
+            --color-text-2: #8f5991;
+            --color-text-3: #a173a2;
+        }
+
+        card.Influence {
             --color-background: #ff66eb;
             --color-text-1: #b3009b;
             --color-text-2: #cc00b1;
             --color-text-3: #e566d4;
         }
 
-        card.erreurMathématique {
+        card.Erreurmathématique {
             --color-background: #08af93;
             --color-text-1: #14555b;
             --color-text-2: #5a888c;
             --color-text-3: #749a9e;
         }
 
-        card.erreurDeRaisonnement {
+        card.Erreurderaisonnement {
             --color-background: #8dc801;
             --color-text-1: #476205;
             --color-text-2: #7e9150;
             --color-text-3: #92a26b;
         }
 
-        card.abusDeLangage {
+        card.Abusdelangage {
             --color-background: #0054a4;
             --color-text-1: #0c2861;
             --color-text-2: #546890;
             --color-text-3: #6f80a1;
         }
 
-        card.tricherie {
+        card.Tricherie {
             --color-background: #ffc307ff;
             --color-text-1: #9e7800ff;
             --color-text-2: #c49500ff;
             --color-text-3: #d6b755ff;
         }
 
-        card.obstruction {
+        card.Obstruction {
             --color-background: #dc0f0a;
             --color-text-1: #960a07;
             --color-text-2: #b55351;
             --color-text-3: #c16e6c;
         }
 
+        card.Argumentfallacieux {
+            --color-background: #555555;
+            --color-text-1: #2a2a2a;
+            --color-text-2: #6e6e6e;
+            --color-text-3: #888888;
+        }
 
+        /* Virtues — 8 familles (casse exacte de l'attribut familyclass runtime). */
+        card.Raisonnementvalide {
+            --color-background: #8dc801;
+            --color-text-1: #476205;
+            --color-text-2: #7e9150;
+            --color-text-3: #92a26b;
+        }
+
+        card.Échangeenrichissant {
+            --color-background: #dc0f0a;
+            --color-text-1: #960a07;
+            --color-text-2: #b55351;
+            --color-text-3: #c16e6c;
+        }
+
+        card.Argumentpertinent {
+            --color-background: #811da3;
+            --color-text-1: #601362;
+            --color-text-2: #8f5991;
+            --color-text-3: #a173a2;
+        }
+
+        card.Honnêtetéintellectuelle {
+            --color-background: #ffc307ff;
+            --color-text-1: #9e7800ff;
+            --color-text-2: #c49500ff;
+            --color-text-3: #d6b755ff;
+        }
+
+        card.Présentationintègre {
+            --color-background: #ff66eb;
+            --color-text-1: #b3009b;
+            --color-text-2: #cc00b1;
+            --color-text-3: #e566d4;
+        }
+
+        card.Rigueurmathématique {
+            --color-background: #08af93;
+            --color-text-1: #14555b;
+            --color-text-2: #5a888c;
+            --color-text-3: #749a9e;
+        }
+
+        card.Langageexact {
+            --color-background: #0054a4;
+            --color-text-1: #0c2861;
+            --color-text-2: #546890;
+            --color-text-3: #6f80a1;
+        }
+
+        card.Argumentvalable {
+            --color-background: #555555;
+            --color-text-1: #2a2a2a;
+            --color-text-2: #6e6e6e;
+            --color-text-3: #888888;
+        }
 
         card .famille {
             color: var(--color-text-1);
@@ -141,15 +212,16 @@
         /* -------------------------------------------------------------------------------- */
 
         card {
-            position: fixed;
-            z-index: 100;
-            font-size: 80%;
-            font-family: 'Bebas Neue', sans-serif;
             background-color: white;
-            width: 50vw;
-            height: 50vh;
             display: flex;
             flex-direction: column;
+            font-family: 'Bebas Neue', sans-serif;
+            left: 50%;
+            position: fixed;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            z-index: 100;
         }
 
         bleed {
@@ -160,9 +232,7 @@
 
         safe {
             background-color: #fff;
-            position: static;
-            /* Different Safe Padding */
-            /*padding: 1.2vh 2.5vh 1.5vh 2.5vh;*/
+            position: relative;
         }
 
         .cardName {
@@ -460,41 +530,6 @@
                     }
                 };
 
-                const recalculateOverlayPosition = (targetNode) => {
-                    if (targetNode) {
-                        const rect = targetNode.getBoundingClientRect();
-                        const cardHeight = overlay.offsetHeight;
-                        const cardWidth = overlay.offsetWidth;
-
-                        const cardLeft = rect.left + rect.width / 2 - cardWidth / 2;
-                        const cardTop = rect.top + rect.height;
-
-                        // Calculate the maximum left position to ensure the card stays within the horizontal viewport
-                        const maxLeft = window.innerWidth - cardWidth;
-                        const cardLeftPosition = Math.max(0, Math.min(maxLeft, cardLeft));
-
-                        // Calculate the maximum top position to ensure the card stays within the vertical viewport
-                        const maxTop = window.innerHeight - cardHeight;
-                        const cardTopPosition = Math.max(0, Math.min(maxTop, cardTop));
-
-                        overlay.style.left = cardLeftPosition + 'px';
-                        overlay.style.top = cardTopPosition + 'px';
-                    }
-                };
-
-
-                const resizeOverlay = () => {
-
-                    overlay.style.maxWidth = '100vw';
-                    overlay.style.maxHeight = '100vh';
-
-                    // Recalculate the overlay position when resizing
-                    if (isNodeActive) {
-                        const activeNode = document.querySelector('.node.active');
-                        recalculateOverlayPosition(activeNode);
-                    }
-                };
-
                 const showOverlay = (e) => {
                     isNodeActive = true;
 
@@ -533,7 +568,6 @@
                     }
 
                     targetNode.classList.add('active');
-                    recalculateOverlayPosition(targetNode);
                 };
 
 
@@ -560,12 +594,6 @@
                         hideOverlay();
                     }
                 });
-
-                // Trigger the initial resize
-                resizeOverlay();
-
-                window.addEventListener('resize', resizeOverlay);
-                window.addEventListener('orientationchange', resizeOverlay);
 
                         //Zoom
 
