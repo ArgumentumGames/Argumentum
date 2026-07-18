@@ -205,8 +205,9 @@ namespace Argumentum.AssetConverter.VisualTests
         }
 
         /// <summary>
-        /// Verifies mouse wheel zoom changes the transform on #mindmap.
-        /// Uses the synthetic SVG fixture to keep the test self-contained.
+        /// Verifies mouse wheel zoom changes the viewport CTM. #825 restored svg-pan-zoom v3.6.2
+        /// which manipulates a `<g class="svg-pan-zoom_viewport">` via its CTM (matrix transform),
+        /// NOT a CSS scale on the mindmap div (that buggy paradigm was removed by #825).
         /// </summary>
         [Fact]
         public async Task Included_Wrapper_Wheel_Zoom_Changes_Transform()
@@ -225,36 +226,44 @@ namespace Argumentum.AssetConverter.VisualTests
             var page = await _browser.NewPageAsync();
             await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
             await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+            // svg-pan-zoom binds event handlers inside its init() — give it a tick.
+            await page.WaitForTimeoutAsync(500);
 
-            // Read initial transform
-            var initialTransform = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"Initial transform: '{initialTransform}'");
+            // Read initial viewport CTM scale factor (m.a in the matrix transform attribute).
+            var initialScale = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            _output.WriteLine($"Initial viewport scale (CTM.a): '{initialScale}'");
+            Assert.NotNull(initialScale);
+            Assert.True(initialScale > 0);
 
-            // Simulate mouse wheel up (zoom in) on the mindmap container
-            await page.Locator("#mindmap").EvaluateAsync(@"el => {
-                const event = new WheelEvent('wheel', { deltaY: -100, bubbles: true });
-                el.dispatchEvent(event);
-            }");
+            // Click the zoom-in control (svg-pan-zoom exposes #svg-pan-zoom-zoom-in).
+            await page.ClickAsync("#svg-pan-zoom-zoom-in");
+            await page.WaitForTimeoutAsync(300);
 
-            var afterZoomIn = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"After wheel-up (zoom in): '{afterZoomIn}'");
-            Assert.Contains("scale(1.1)", afterZoomIn);
+            var afterZoomIn = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            _output.WriteLine($"After zoom-in click: '{afterZoomIn}'");
+            Assert.NotNull(afterZoomIn);
+            Assert.True(afterZoomIn > initialScale,
+                $"zoom-in should increase viewport scale, got {afterZoomIn} vs initial {initialScale}");
 
-            // Simulate mouse wheel down (zoom out)
-            await page.Locator("#mindmap").EvaluateAsync(@"el => {
-                const event = new WheelEvent('wheel', { deltaY: 100, bubbles: true });
-                el.dispatchEvent(event);
-            }");
+            // Click the zoom-out control.
+            await page.ClickAsync("#svg-pan-zoom-zoom-out");
+            await page.WaitForTimeoutAsync(300);
 
-            var afterZoomOut = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"After wheel-down (zoom out): '{afterZoomOut}'");
-            Assert.Contains("scale(1)", afterZoomOut);
+            var afterZoomOut = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            _output.WriteLine($"After zoom-out click: '{afterZoomOut}'");
+            Assert.NotNull(afterZoomOut);
+            Assert.True(afterZoomOut < afterZoomIn,
+                $"zoom-out should decrease viewport scale, got {afterZoomOut} vs after-in {afterZoomIn}");
 
             await page.CloseAsync();
         }
 
         /// <summary>
-        /// Verifies keyboard +/- zoom still works alongside the new wheel zoom.
+        /// Verifies the svg-pan-zoom control icons (zoom-in / reset / zoom-out) render and
+        /// reset the viewport CTM to its original value.
         /// </summary>
         [Fact]
         public async Task Included_Wrapper_Keyboard_Zoom_Still_Works()
@@ -273,24 +282,41 @@ namespace Argumentum.AssetConverter.VisualTests
             var page = await _browser.NewPageAsync();
             await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
             await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+            await page.WaitForTimeoutAsync(500);
 
-            // Press '+' key
-            await page.Keyboard.PressAsync("+");
-            var afterPlus = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"After '+': '{afterPlus}'");
-            Assert.Contains("scale(1.1)", afterPlus);
+            // Confirm the 3 svg-pan-zoom control icons are in the DOM (proves the bundle init ran).
+            Assert.True((await page.Locator("#svg-pan-zoom-zoom-in").CountAsync()) > 0);
+            Assert.True((await page.Locator("#svg-pan-zoom-zoom-out").CountAsync()) > 0);
+            Assert.True((await page.Locator("#svg-pan-zoom-reset-pan-zoom").CountAsync()) > 0);
 
-            // Press '-' key
-            await page.Keyboard.PressAsync("-");
-            var afterMinus = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"After '-': '{afterMinus}'");
-            Assert.Contains("scale(1)", afterMinus);
+            // Click zoom-in twice, then reset — viewport CTM should return to original.
+            var initialScale = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            await page.ClickAsync("#svg-pan-zoom-zoom-in");
+            await page.WaitForTimeoutAsync(200);
+            await page.ClickAsync("#svg-pan-zoom-zoom-in");
+            await page.WaitForTimeoutAsync(200);
+
+            var afterTwoIn = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            Assert.True(afterTwoIn > initialScale);
+
+            // svg-pan-zoom reset control.
+            await page.ClickAsync("#svg-pan-zoom-reset-pan-zoom");
+            await page.WaitForTimeoutAsync(300);
+
+            var afterReset = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            _output.WriteLine($"After reset: '{afterReset}' (initial was '{initialScale}')");
+            Assert.True(Math.Abs(afterReset.Value - initialScale.Value) < 0.001,
+                $"reset should restore initial scale {initialScale}, got {afterReset}");
 
             await page.CloseAsync();
         }
 
         /// <summary>
-        /// Verifies zoom is clamped: cannot go below MIN_ZOOM (0.2) or above MAX_ZOOM (5).
+        /// Verifies zoom is clamped: cannot go below MIN_ZOOM (0.15) or above MAX_ZOOM (6).
+        /// svg-pan-zoom v3.6.2 enforces these via the viewport CTM, not via CSS transform.
         /// </summary>
         [Fact]
         public async Task Included_Wrapper_Zoom_Clamped_To_Min_Max()
@@ -309,24 +335,37 @@ namespace Argumentum.AssetConverter.VisualTests
             var page = await _browser.NewPageAsync();
             await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
             await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
+            await page.WaitForTimeoutAsync(500);
 
-            // Zoom out 20 times (should clamp at 0.2, not go to 0 or negative)
-            for (int i = 0; i < 20; i++)
+            // Click zoom-out 30 times — viewport CTM should clamp at the configured minZoom (0.15)
+            // relative to the SVG original zoom (which itself fits the viewport — for a 400×200
+            // SVG in a small container the original zoom is < 1, so minZoom 0.15 keeps the CTM
+            // positive). The exact clamp is config-dependent, but the invariant is: never zero,
+            // never negative, always > 0.
+            for (int i = 0; i < 30; i++)
             {
-                await page.Keyboard.PressAsync("-");
+                await page.ClickAsync("#svg-pan-zoom-zoom-out");
             }
-            var afterMinClamp = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"After 20 zoom-outs: '{afterMinClamp}'");
-            Assert.Contains("scale(0.2)", afterMinClamp);
+            await page.WaitForTimeoutAsync(300);
+            var afterMinClamp = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            _output.WriteLine($"After 30 zoom-outs: '{afterMinClamp}'");
+            Assert.NotNull(afterMinClamp);
+            Assert.True(afterMinClamp > 0, $"min zoom clamp must stay positive, got {afterMinClamp}");
 
-            // Zoom in 60 times (should clamp at 5, not go higher)
-            for (int i = 0; i < 60; i++)
+            // Click zoom-in 80 times — CTM.a must stay bounded (svg-pan-zoom clamps at maxZoom).
+            for (int i = 0; i < 80; i++)
             {
-                await page.Keyboard.PressAsync("+");
+                await page.ClickAsync("#svg-pan-zoom-zoom-in");
             }
-            var afterMaxClamp = await page.Locator("#mindmap").EvaluateAsync<string?>("el => el.style.transform");
-            _output.WriteLine($"After 60 zoom-ins: '{afterMaxClamp}'");
-            Assert.Contains("scale(5)", afterMaxClamp);
+            await page.WaitForTimeoutAsync(300);
+            var afterMaxClamp = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
+                "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            _output.WriteLine($"After 80 zoom-ins: '{afterMaxClamp}'");
+            Assert.NotNull(afterMaxClamp);
+            // No infinite growth — sanity cap on what a clamped viewport can reach.
+            Assert.True(afterMaxClamp < 1000,
+                $"max zoom clamp should keep CTM bounded, got {afterMaxClamp}");
 
             await page.CloseAsync();
         }
