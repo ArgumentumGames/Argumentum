@@ -472,6 +472,83 @@ namespace Argumentum.AssetConverter
 
 						return;
 					}
+					else if (args[0].Equals("--regen-virtue-mindmap-html", StringComparison.OrdinalIgnoreCase))
+					{
+						// #826 follow-up: ai-01 verdict PASS for Fallacies (16 HTML wrappers regenerated from the
+						// svg-pan-zoom-restored templates), HOLD on Virtues because the same regen pass did NOT cover
+						// Argumentum_Virtues_MindMap_<lang>.content.svg -> HTML. Root cause: --regen-fallacy-mindmap-nodes
+						// only calls FallacyMindMapCreatorConfig; VirtueMindMapCreatorConfig uses the same corrected
+						// templates (lines 68-77) but was not re-run in the fix cycle. Templates are good; only the
+						// wrappers need rewriting.
+						//
+						// This handler mirrors --regen-fallacy-mindmap-nodes structurally BUT skips the SVG
+						// node-attribute injection (Virtues content.svg is already correct; only the .html wrappers
+						// need the svg-pan-zoom-bundled template). Run in Debug so the local
+						// Cards/Fallacies/Mindmaps/{included,external}.html (already patched in the same branch) resolve
+						// via the local repo path.
+						Logger.LogTitle("Mode regen wrappers HTML mindmaps Virtues (#826 follow-up)");
+
+						var regenConfigVirtueFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var regenConfigVirtue = AssetConverterConfig.GetConfig(regenConfigVirtueFileName, out var _);
+
+						// Locate the repo root (holds Cards/Fallacies/Mindmaps) from the assembly location.
+						var repoRootVirtue = AppContext.BaseDirectory;
+						while (repoRootVirtue != null && !Directory.Exists(Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps")))
+						{
+							repoRootVirtue = Directory.GetParent(repoRootVirtue)?.FullName;
+						}
+						if (repoRootVirtue == null)
+						{
+							throw new DirectoryNotFoundException("Could not locate repo root (Cards/Fallacies/Mindmaps).");
+						}
+
+						// Load both templates (local repo paths, already svg-pan-zoom-restored by #826 fix).
+						var includedTemplatePath = Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps", "included.html");
+						var externalTemplatePath = Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps", "external.html");
+						if (!File.Exists(includedTemplatePath) || !File.Exists(externalTemplatePath))
+						{
+							throw new FileNotFoundException($"Templates missing: {includedTemplatePath} or {externalTemplatePath}");
+						}
+						var includedTemplate = await File.ReadAllTextAsync(includedTemplatePath);
+						var externalTemplate = await File.ReadAllTextAsync(externalTemplatePath);
+
+						// Sanity: templates must already carry the svg-pan-zoom bundle (#826 fix). Abort loudly if not
+						// — better to fail than to regenerate bugged HTML silently.
+						if (!includedTemplate.Contains("svg-pan-zoom v3.6.2") || !externalTemplate.Contains("svg-pan-zoom v3.6.2"))
+						{
+							throw new InvalidOperationException("Templates do not carry svg-pan-zoom v3.6.2 bundle; abort before regenerating bugged HTML. Apply the template fix first.");
+						}
+
+						var regenLanguagesVirtue = new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+						foreach (var lang in regenLanguagesVirtue)
+						{
+							var langDir = Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps", lang);
+							var contentSvgPath = Path.Combine(langDir, $"Argumentum_Virtues_MindMap_{lang}.content.svg");
+							var extSvgRelative = $"Argumentum_Virtues_MindMap_{lang}.content.svg";
+
+							if (!File.Exists(contentSvgPath))
+							{
+								Logger.LogWarning($"[{lang}] content.svg missing, skipped: {contentSvgPath}");
+								continue;
+							}
+
+							var contentSvg = await File.ReadAllTextAsync(contentSvgPath);
+
+							// Included (inline SVG) wrapper.
+							var includedHtml = MindMapHtmlWrapper.FormatWrapper(includedTemplate, extSvgRelative, contentSvg);
+							var includedOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}.html");
+							await File.WriteAllTextAsync(includedOutPath, includedHtml, System.Text.Encoding.UTF8);
+
+							// External (<object data="...">) wrapper.
+							var externalHtml = MindMapHtmlWrapper.FormatWrapper(externalTemplate, extSvgRelative, contentSvg);
+							var externalOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}_ext.html");
+							await File.WriteAllTextAsync(externalOutPath, externalHtml, System.Text.Encoding.UTF8);
+
+							Logger.LogSuccess($"[{lang}] regenerated 2 wrappers (included + external) for Argumentation_Virtues_{lang}");
+						}
+
+						return;
+					}
 				}
 
 				var configFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
