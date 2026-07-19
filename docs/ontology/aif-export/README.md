@@ -94,13 +94,40 @@ The CSV has no PK→IRI column, so a 1:1 row↔individual mapping cannot be esta
 
 ---
 
+## Virtues companion export (V-A + V-B)
+
+The companion script `tools/aif-virtues-export.py` extends the AIF export to the Virtues Taxonomy. **The Virtues carry a DOUBLE AIF modelling** of the same 222-virtue population — two complementary views, never merged:
+
+| View | Source | Predicate | Edges | Semantics |
+|---|---|---|---:|---|
+| **V-A** attack-graph | Virtues CSV | `AIF_attackType` + `AIF_attackedNode` | 222 | how the virtue ATTACKS a bad reasoning (counter-argument, bipartite: virtue → node-TYPE RA/I/CA) |
+| **V-B** good-tenor | `argumentum_virtues.owl` | `aif#goodTenorOf` | 222 | how the virtue EMBODIES a canonical AIF argument SCHEME (Rule/Commitment/Bias/Sign/…) |
+
+**Not redundant, not contradictory.** A virtue can attack a bad reasoning (V-A) by embodying a good argument scheme (V-B). V-A and V-B point to the **same vocabulary of 14 canonical AIF schemes** (`Argument from Rule`, `Commitment`, `Bias`, `Sign`, `Verbal Classification`, `Cause to Effect`, `Witness Testimony`, `Position to Know`, `Values`, `Analogy`, `Expert Opinion`, `Example`, `Consequences`, `Danger`) but via different predicates.
+
+### Contrast with Fallacies (#828)
+
+Fallacies carry **only** the CSV attack-graph (V-A) — there is no `goodTenorOf` in `argumentum.owl`. The Virtues are the **dual**: they carry BOTH views. **Do NOT fuse `Fallacies-attacks` + `Virtues-attacks` into one homogeneous graph** — Virtues-attacks encode counter-arguments to fallacies, a different semantics from Fallacies-attacking-nodes.
+
+### Artefacts (Virtues)
+
+| File | Rows | Content |
+|---|---:|---|
+| `aif-virtues-attack-edges.csv` | 222 | V-A bipartite attack-edges (PK-keyed). `skos_exception_ref` holds the FR critical-question the virtue poses. |
+| `aif-virtues-good-tenor.csv` | 222 | V-B virtue→scheme edges (camelCase IRI → `Argument from X`). |
+| `aif-virtues-canonical-concepts.csv` | 14 | AIF schemes referenced via skos (= the V-B scheme set). |
+| `aif-virtues-schemes.csv` | 14 | Scheme distribution (Rule 50, Commitment 40, Bias 27, …). |
+
+V-A axiom: 222/222 respected (undercut→RA 206, undermine→I 13, rebut→CA 3, 0 violations). 222/222 virtues carry a skos ref.
+
 ## Re-run
 
 ```bash
-python tools/aif-attack-graph-export.py
+python tools/aif-attack-graph-export.py   # Fallacies (5 CSVs)
+python tools/aif-virtues-export.py        # Virtues  (4 CSVs)
 ```
 
-Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s. Overwrites the 5 CSVs in this directory. 0 write to the source CSV/OWL.
+Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s each. Overwrites the CSVs in this directory. 0 write to the source CSV/OWL.
 
 ---
 
