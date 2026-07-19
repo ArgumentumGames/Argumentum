@@ -120,6 +120,17 @@ Fallacies carry **only** the CSV attack-graph (V-A) — there is no `goodTenorOf
 
 V-A axiom: 222/222 respected (undercut→RA 206, undermine→I 13, rebut→CA 3, 0 violations). 222/222 virtues carry a skos ref.
 
+### Cross-family coherence (Fallacies ↔ Virtues) — empirical note
+
+The two families reference **disjoint AIF vocabularies** (intersection = 0):
+
+| Family | Naming convention | Distinct concepts | Example |
+|---|---|---:|---|
+| Fallacies (#828) | `<Topic>_<Type>` suffix (`_Inference` / `_Conflict` / `_Scheme`) | 60 | `CauseToEffect_Inference`, `Bias_Inference`, `Commitment_Conflict` |
+| Virtues (#829) | `Argument from <Topic>` readable form | 14 | `Argument from Cause to Effect`, `Argument from Bias`, `Argument from Commitment` |
+
+Both conventions **co-exist as declared classes** in the source AIF ontology (`Ontology/Resources/AIF.owl`: 125 `_Type` forms + 15 `Argument from X` forms). A lexical alignment is *inferrable* in several cases (e.g. `Bias_Inference` ↔ `Argument from Bias`, `CauseToEffect_Inference` ↔ `Argument from Cause to Effect`) but **no materialised mapping table exists** in the source data. This export therefore does **not** unify the two vocabularies — a consumer that needs a unified AIF concept space must build that mapping explicitly (a modelling decision, not an export). Documented to prevent the false assumption that Fallacies-concepts and Virtues-concepts are pre-aligned.
+
 ## Re-run
 
 ```bash
