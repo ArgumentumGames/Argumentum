@@ -70,6 +70,8 @@ Same AIF attack graph, extracted from `argumentum.owl` AnnotationAssertions (`ai
 
 `source_fragment --[relation]--> target_fragment`. These are the OWL's generic semantic relations between fallacy individuals. **NOT AIF attack-edges** — a different, complementary graph.
 
+> **Count reconciliation note.** This file holds **1734 distinct** directed edges (exact `(s,p,o)` triples deduplicated). The ontology README §2 Layer 2 reports **1985** — that count is the **raw emitted assertions** (pre-dedup): the OWL serializer (OWLSharp) emits 243 exact-duplicate triples (a serializer idempotency quirk, not a data issue). Raw parse = 1977 ≈ README 1985 (the -8 delta is one schema self-definition counted per verb, 8 verbs). Symmetric verbs (`mirrors`, `isRelatedTo`, `inverts`, `opposes`) are emitted bidirectionally as two distinct triples `(A,p,B)` + `(B,p,A)` — both are kept here (they are not duplicates). A consumer should use this deduplicated file; the raw count matches the README.
+
 | Relation | Count | Semantics (loose) |
 |---|---:|---|
 | `isRelatedTo` | 606 | generic relatedness (bidirectional in source) |
