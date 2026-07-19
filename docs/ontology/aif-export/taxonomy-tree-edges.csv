@@ -1,0 +1,1409 @@
+parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
+,0,0,1,Argument fallacieux,,
+,1,1,1,Insuffisance,,
+1,"1,1",2,2,Insuffisance,Argument bâclé,
+1,"1,11",3,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,111",4,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1111",5,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11111",6,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11112",7,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11113",8,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1112",9,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11121",10,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1113",11,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11131",12,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11132",13,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1114",14,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1115",15,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1116",16,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11161",17,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11162",18,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,11163",19,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,112",20,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1121",21,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,113",22,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1131",23,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1132",24,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1133",25,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,114",26,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1141",27,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1142",28,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1143",29,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1144",30,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1145",31,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,1146",32,2,Insuffisance,Argument bâclé,Argument vide
+1,"1,12",33,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,121",34,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1211",35,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1212",36,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1213",37,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,12131",38,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,12132",39,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1214",40,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1215",41,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1216",42,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,122",43,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1221",44,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,12211",45,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1222",46,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1223",47,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1224",48,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,12241",49,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1225",50,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,123",51,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1231",52,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,1232",53,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,12321",54,2,Insuffisance,Argument bâclé,Justification triviale
+1,"1,13",55,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,131",56,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,1311",57,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,1312",58,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,13121",59,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,131211",60,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,132",61,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,133",62,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,1331",63,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,13311",64,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,1332",65,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,134",66,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,1341",67,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,135",68,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,1351",69,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
+1,"1,2",70,2,Insuffisance,Préjugé,
+1,"1,21",71,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,211",72,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2111",73,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21111",74,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2112",75,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2113",76,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2114",77,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,212",78,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2121",79,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21211",80,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21212",81,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21213",82,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2122",83,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,213",84,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2131",85,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21311",86,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21312",87,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,213121",88,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,213122",89,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,213123",90,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2132",91,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21321",92,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,2133",93,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21331",94,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,213311",95,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,22",96,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,221",97,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,222",98,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2221",99,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2222",100,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2223",101,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2224",102,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2225",103,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,223",104,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2231",105,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2232",106,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2233",107,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,224",108,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2241",109,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2242",110,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,2243",111,2,Insuffisance,Préjugé,Sophisme naturaliste
+1,"1,23",112,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,231",113,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2311",114,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,232",115,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2321",116,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,233",117,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2331",118,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,23311",119,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,23312",120,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2332",121,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,23321",122,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,23322",123,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,234",124,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2341",125,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,23411",126,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,235",127,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2351",128,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2352",129,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,236",130,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,2361",131,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,237",132,2,Insuffisance,Préjugé,Sophisme moraliste
+1,"1,3",133,2,Insuffisance,Surinterprétation,
+1,"1,31",134,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,311",135,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3111",136,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3112",137,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3113",138,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3114",139,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3115",140,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,312",141,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3121",142,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3122",143,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3123",144,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,313",145,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3131",146,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,31311",147,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,313111",148,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3132",149,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,3133",150,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,31331",151,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,314",152,2,Insuffisance,Surinterprétation,Sophisme ludique
+1,"1,32",153,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,321",154,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,3211",155,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,322",156,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,3221",157,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,323",158,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,3231",159,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,3232",160,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,32321",161,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,3233",162,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,32331",163,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,32332",164,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons
+1,"1,33",165,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,331",166,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,332",167,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,3321",168,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,333",169,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,3331",170,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,33311",171,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,334",172,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,3341",173,2,Insuffisance,Surinterprétation,Manque de parcimonie
+1,"1,3342",174,2,Insuffisance,Surinterprétation,Manque de parcimonie
+,2,175,1,Influence,,
+2,"2,1",176,2,Influence,Procédé rhétorique,
+2,"2,11",177,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,111",178,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1111",179,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11111",180,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1112",181,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1113",182,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,112",183,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,113",184,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,114",185,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1141",186,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1142",187,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1143",188,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1144",189,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115",190,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1151",191,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11511",192,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11512",193,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115121",194,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115122",195,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115123",196,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115124",197,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1151241",198,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115125",199,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1151251",200,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115126",201,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11513",202,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1152",203,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11521",204,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11522",205,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11523",206,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11524",207,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115241",208,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,115242",209,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1152421",210,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1156",211,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,116",212,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1161",213,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11611",214,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1162",215,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,11621",216,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1163",217,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,1164",218,2,Influence,Procédé rhétorique,Langage persuasif
+2,"2,12",219,2,Influence,Procédé rhétorique,Humour
+2,"2,121",220,2,Influence,Procédé rhétorique,Humour
+2,"2,1211",221,2,Influence,Procédé rhétorique,Humour
+2,"2,1212",222,2,Influence,Procédé rhétorique,Humour
+2,"2,12121",223,2,Influence,Procédé rhétorique,Humour
+2,"2,12122",224,2,Influence,Procédé rhétorique,Humour
+2,"2,12123",225,2,Influence,Procédé rhétorique,Humour
+2,"2,12124",226,2,Influence,Procédé rhétorique,Humour
+2,"2,1213",227,2,Influence,Procédé rhétorique,Humour
+2,"2,12131",228,2,Influence,Procédé rhétorique,Humour
+2,"2,12132",229,2,Influence,Procédé rhétorique,Humour
+2,"2,121321",230,2,Influence,Procédé rhétorique,Humour
+2,"2,122",231,2,Influence,Procédé rhétorique,Humour
+2,"2,1221",232,2,Influence,Procédé rhétorique,Humour
+2,"2,1222",233,2,Influence,Procédé rhétorique,Humour
+2,"2,12221",234,2,Influence,Procédé rhétorique,Humour
+2,"2,12222",235,2,Influence,Procédé rhétorique,Humour
+2,"2,122221",236,2,Influence,Procédé rhétorique,Humour
+2,"2,122222",237,2,Influence,Procédé rhétorique,Humour
+2,"2,1223",238,2,Influence,Procédé rhétorique,Humour
+2,"2,12231",239,2,Influence,Procédé rhétorique,Humour
+2,"2,12232",240,2,Influence,Procédé rhétorique,Humour
+2,"2,122321",241,2,Influence,Procédé rhétorique,Humour
+2,"2,122322",242,2,Influence,Procédé rhétorique,Humour
+2,"2,122323",243,2,Influence,Procédé rhétorique,Humour
+2,"2,123",244,2,Influence,Procédé rhétorique,Humour
+2,"2,1231",245,2,Influence,Procédé rhétorique,Humour
+2,"2,1232",246,2,Influence,Procédé rhétorique,Humour
+2,"2,13",247,2,Influence,Procédé rhétorique,Poésie
+2,"2,131",248,2,Influence,Procédé rhétorique,Poésie
+2,"2,1311",249,2,Influence,Procédé rhétorique,Poésie
+2,"2,1312",250,2,Influence,Procédé rhétorique,Poésie
+2,"2,1313",251,2,Influence,Procédé rhétorique,Poésie
+2,"2,1314",252,2,Influence,Procédé rhétorique,Poésie
+2,"2,1315",253,2,Influence,Procédé rhétorique,Poésie
+2,"2,13151",254,2,Influence,Procédé rhétorique,Poésie
+2,"2,132",255,2,Influence,Procédé rhétorique,Poésie
+2,"2,1321",256,2,Influence,Procédé rhétorique,Poésie
+2,"2,13211",257,2,Influence,Procédé rhétorique,Poésie
+2,"2,13212",258,2,Influence,Procédé rhétorique,Poésie
+2,"2,1322",259,2,Influence,Procédé rhétorique,Poésie
+2,"2,13221",260,2,Influence,Procédé rhétorique,Poésie
+2,"2,13222",261,2,Influence,Procédé rhétorique,Poésie
+2,"2,1323",262,2,Influence,Procédé rhétorique,Poésie
+2,"2,13231",263,2,Influence,Procédé rhétorique,Poésie
+2,"2,1324",264,2,Influence,Procédé rhétorique,Poésie
+2,"2,13241",265,2,Influence,Procédé rhétorique,Poésie
+2,"2,13242",266,2,Influence,Procédé rhétorique,Poésie
+2,"2,1325",267,2,Influence,Procédé rhétorique,Poésie
+2,"2,133",268,2,Influence,Procédé rhétorique,Poésie
+2,"2,1331",269,2,Influence,Procédé rhétorique,Poésie
+2,"2,1332",270,2,Influence,Procédé rhétorique,Poésie
+2,"2,1333",271,2,Influence,Procédé rhétorique,Poésie
+2,"2,1334",272,2,Influence,Procédé rhétorique,Poésie
+2,"2,134",273,2,Influence,Procédé rhétorique,Poésie
+2,"2,1341",274,2,Influence,Procédé rhétorique,Poésie
+2,"2,1342",275,2,Influence,Procédé rhétorique,Poésie
+2,"2,1343",276,2,Influence,Procédé rhétorique,Poésie
+2,"2,1344",277,2,Influence,Procédé rhétorique,Poésie
+2,"2,1345",278,2,Influence,Procédé rhétorique,Poésie
+2,"2,1346",279,2,Influence,Procédé rhétorique,Poésie
+2,"2,1347",280,2,Influence,Procédé rhétorique,Poésie
+2,"2,1348",281,2,Influence,Procédé rhétorique,Poésie
+2,"2,135",282,2,Influence,Procédé rhétorique,Poésie
+2,"2,1351",283,2,Influence,Procédé rhétorique,Poésie
+2,"2,1352",284,2,Influence,Procédé rhétorique,Poésie
+2,"2,1353",285,2,Influence,Procédé rhétorique,Poésie
+2,"2,1354",286,2,Influence,Procédé rhétorique,Poésie
+2,"2,1355",287,2,Influence,Procédé rhétorique,Poésie
+2,"2,1356",288,2,Influence,Procédé rhétorique,Poésie
+2,"2,13561",289,2,Influence,Procédé rhétorique,Poésie
+2,"2,136",290,2,Influence,Procédé rhétorique,Poésie
+2,"2,1361",291,2,Influence,Procédé rhétorique,Poésie
+2,"2,1362",292,2,Influence,Procédé rhétorique,Poésie
+2,"2,1363",293,2,Influence,Procédé rhétorique,Poésie
+2,"2,1364",294,2,Influence,Procédé rhétorique,Poésie
+2,"2,1365",295,2,Influence,Procédé rhétorique,Poésie
+2,"2,13651",296,2,Influence,Procédé rhétorique,Poésie
+2,"2,1367",297,2,Influence,Procédé rhétorique,Poésie
+2,"2,13671",298,2,Influence,Procédé rhétorique,Poésie
+2,"2,2",299,2,Influence,Appel à l'émotion,
+2,"2,21",300,2,Influence,Appel à l'émotion,Connivence
+2,"2,211",301,2,Influence,Appel à l'émotion,Connivence
+2,"2,2111",302,2,Influence,Appel à l'émotion,Connivence
+2,"2,212",303,2,Influence,Appel à l'émotion,Connivence
+2,"2,2121",304,2,Influence,Appel à l'émotion,Connivence
+2,"2,2122",305,2,Influence,Appel à l'émotion,Connivence
+2,"2,21221",306,2,Influence,Appel à l'émotion,Connivence
+2,"2,21222",307,2,Influence,Appel à l'émotion,Connivence
+2,"2,2123",308,2,Influence,Appel à l'émotion,Connivence
+2,"2,21231",309,2,Influence,Appel à l'émotion,Connivence
+2,"2,21232",310,2,Influence,Appel à l'émotion,Connivence
+2,"2,21233",311,2,Influence,Appel à l'émotion,Connivence
+2,"2,2124",312,2,Influence,Appel à l'émotion,Connivence
+2,"2,213",313,2,Influence,Appel à l'émotion,Connivence
+2,"2,2131",314,2,Influence,Appel à l'émotion,Connivence
+2,"2,2132",315,2,Influence,Appel à l'émotion,Connivence
+2,"2,21321",316,2,Influence,Appel à l'émotion,Connivence
+2,"2,213211",317,2,Influence,Appel à l'émotion,Connivence
+2,"2,2133",318,2,Influence,Appel à l'émotion,Connivence
+2,"2,214",319,2,Influence,Appel à l'émotion,Connivence
+2,"2,2141",320,2,Influence,Appel à l'émotion,Connivence
+2,"2,2142",321,2,Influence,Appel à l'émotion,Connivence
+2,"2,22",322,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,221",323,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2211",324,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,22111",325,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2212",326,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2213",327,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,22131",328,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,222",329,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2221",330,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2222",331,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,223",332,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2231",333,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2232",334,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2233",335,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2234",336,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,224",337,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2241",338,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,2242",339,2,Influence,Appel à l'émotion,Repoussoir
+2,"2,23",340,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,231",341,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2311",342,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2312",343,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2313",344,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2314",345,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2315",346,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,232",347,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2321",348,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,23211",349,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,23212",350,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,233",351,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2331",352,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2332",353,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2333",354,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,234",355,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,3",356,2,Influence,Manipulation mentale,
+2,"2,31",357,2,Influence,Manipulation mentale,Conditionnement
+2,"2,311",358,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3111",359,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31111",360,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31112",361,2,Influence,Manipulation mentale,Conditionnement
+2,"2,311121",362,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31113",363,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31114",364,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31115",365,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31116",366,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31117",367,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31118",368,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3112",369,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31121",370,2,Influence,Manipulation mentale,Conditionnement
+2,"2,311211",371,2,Influence,Manipulation mentale,Conditionnement
+2,"2,311212",372,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31122",373,2,Influence,Manipulation mentale,Conditionnement
+2,"2,311221",374,2,Influence,Manipulation mentale,Conditionnement
+2,"2,311222",375,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3114",376,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31141",377,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31142",378,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31143",379,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31144",380,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31145",381,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31146",382,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3115",383,2,Influence,Manipulation mentale,Conditionnement
+2,"2,312",384,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3121",385,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31211",386,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3122",387,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31221",388,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3123",389,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31231",390,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3124",391,2,Influence,Manipulation mentale,Conditionnement
+2,"2,313",392,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3131",393,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31311",394,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31312",395,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31313",396,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31314",397,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3132",398,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31321",399,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31322",400,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31323",401,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31324",402,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31325",403,2,Influence,Manipulation mentale,Conditionnement
+2,"2,314",404,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3141",405,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3143",406,2,Influence,Manipulation mentale,Conditionnement
+2,"2,315",407,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3151",408,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31511",409,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3152",410,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3153",411,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3154",412,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3155",413,2,Influence,Manipulation mentale,Conditionnement
+2,"2,316",414,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3161",415,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3162",416,2,Influence,Manipulation mentale,Conditionnement
+2,"2,31621",417,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3163",418,2,Influence,Manipulation mentale,Conditionnement
+2,"2,3164",419,2,Influence,Manipulation mentale,Conditionnement
+2,"2,32",420,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,321",421,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3211",422,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32111",423,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,321111",424,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,321112",425,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32112",426,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32113",427,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32114",428,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3212",429,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3213",430,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322",431,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221",432,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32211",433,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322111",434,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221111",435,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221113",436,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322112",437,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322113",438,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322114",439,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221141",440,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32212",441,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322121",442,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221211",443,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322122",444,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322123",445,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221231",446,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322124",447,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322125",448,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3221251",449,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322126",450,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,322127",451,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3222",452,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3223",453,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3224",454,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3225",455,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323",456,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3231",457,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32311",458,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323111",459,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323112",460,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32312",461,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323121",462,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323122",463,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323123",464,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32313",465,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32314",466,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323141",467,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3231411",468,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323142",469,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323143",470,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32315",471,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3232",472,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32321",473,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32322",474,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323221",475,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323222",476,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323223",477,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323224",478,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32323",479,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323231",480,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323232",481,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3232321",482,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3232322",483,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323233",484,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3233",485,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32331",486,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323311",487,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,323312",488,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32332",489,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32333",490,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32334",491,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3234",492,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32341",493,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32342",494,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3235",495,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3236",496,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,324",497,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3241",498,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32411",499,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,324111",500,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32412",501,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32413",502,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32414",503,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32415",504,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,3242",505,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32421",506,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,324211",507,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32422",508,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32423",509,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,32424",510,2,Influence,Manipulation mentale,Jeu de pouvoir
+2,"2,33",511,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,331",512,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3311",513,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3312",514,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33121",515,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33122",516,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33123",517,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,332",518,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,333",519,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3331",520,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334",1406,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3341",521,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33411",522,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3342",523,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33421",524,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334211",525,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3342111",526,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3342112",527,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3342113",528,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334212",529,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334213",530,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334214",531,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334215",532,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334216",533,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334217",534,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33422",535,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334221",536,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334222",537,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334223",538,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334224",539,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334225",540,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334226",541,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334227",542,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33423",543,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334231",544,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334232",545,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334233",546,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334234",547,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334235",548,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334236",549,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334237",550,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334238",551,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334239",552,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33424",553,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334241",554,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334242",555,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334243",556,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334244",557,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334245",558,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334246",559,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334247",560,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334248",561,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33425",562,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334251",563,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3342511",564,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334252",565,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334253",566,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334254",567,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334255",568,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334256",569,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334257",570,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33426",571,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334261",572,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334262",573,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334263",574,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334264",575,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334265",576,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334266",577,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334267",578,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334268",579,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33427",580,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334271",581,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334272",582,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334273",583,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334274",584,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,334275",585,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3343",586,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3344",587,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33441",588,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33442",589,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,335",590,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3351",591,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,3352",592,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,336",593,2,Influence,Manipulation mentale,Influence non verbale
+,3,594,1,Erreur mathématique,,
+3,"3,1",595,2,Erreur mathématique,Généralisation abusive,
+3,"3,11",596,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,111",597,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1111",598,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,11111",599,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,11112",600,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1112",601,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,112",602,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1121",603,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1122",604,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,11221",605,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1123",606,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,11231",607,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,113",608,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1131",609,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,11311",610,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1132",611,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1133",612,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,1134",613,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
+3,"3,12",614,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,121",615,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,1211",616,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,122",617,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,123",618,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,1231",619,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,124",620,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,13",621,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,131",622,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,1311",623,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,1312",624,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,132",625,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,1321",626,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,13211",627,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,13212",628,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,13213",629,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,13214",630,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,1322",631,2,Erreur mathématique,Généralisation abusive,Transfert illicite
+3,"3,2",632,2,Erreur mathématique,Mauvaise interprétation,
+3,"3,21",633,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,211",634,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,212",635,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,213",636,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,214",637,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,2141",638,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,2142",639,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,2143",640,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,2144",641,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,215",642,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,2151",643,2,Erreur mathématique,Mauvaise interprétation,Relation infondée
+3,"3,22",644,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,221",645,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2211",646,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,222",647,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2221",648,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2222",649,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2223",650,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2224",651,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,223",652,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2231",653,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2232",654,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2233",655,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,2234",656,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,224",657,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées
+3,"3,23",658,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,231",659,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,2311",660,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,232",661,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,2321",662,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,23211",663,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,2322",664,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,23221",665,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur
+3,"3,3",666,2,Erreur mathématique,Résultat invalide,
+3,"3,31",667,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,311",668,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3111",669,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,312",670,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3121",671,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,31211",672,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3122",673,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,31221",674,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3124",675,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,313",676,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3131",677,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3132",678,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3133",679,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,3134",680,2,Erreur mathématique,Résultat invalide,Imprécision
+3,"3,32",681,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,321",682,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,322",683,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,3221",684,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,3222",685,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,3223",686,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,3224",687,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,3225",688,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,323",689,2,Erreur mathématique,Résultat invalide,Erreur de calcul
+3,"3,33",690,2,Erreur mathématique,Résultat invalide,Opération inappropriée
+3,"3,331",691,2,Erreur mathématique,Résultat invalide,Opération inappropriée
+3,"3,3311",692,2,Erreur mathématique,Résultat invalide,Opération inappropriée
+3,"3,3312",693,2,Erreur mathématique,Résultat invalide,Opération inappropriée
+3,"3,332",694,2,Erreur mathématique,Résultat invalide,Opération inappropriée
+3,"3,333",695,2,Erreur mathématique,Résultat invalide,Opération inappropriée
+,4,696,1,Erreur de raisonnement,,
+4,"4,1",697,2,Erreur de raisonnement,Causalité douteuse,
+4,"4,11",698,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,111",699,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,1111",700,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,112",701,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,113",702,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,114",703,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,115",704,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,116",705,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,117",706,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe
+4,"4,12",707,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,121",708,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,1211",709,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,122",710,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,1221",711,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,124",712,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,125",713,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,1251",714,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,1252",715,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,12521",716,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,126",717,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,127",718,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité
+4,"4,13",719,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,131",720,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,1311",721,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,13111",722,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,13112",723,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,132",724,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,134",725,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
+4,"4,2",726,2,Erreur de raisonnement,Mauvaise composition,
+4,"4,21",727,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,211",728,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,2111",729,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,212",730,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,2121",731,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,213",732,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,2131",733,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,2132",734,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
+4,"4,22",735,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,221",736,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2211",737,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2213",738,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2214",739,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,222",740,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2221",741,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2222",742,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,22221",743,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2223",744,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2224",745,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2225",746,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2226",747,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,2227",748,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,223",749,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
+4,"4,23",750,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,231",751,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,2311",752,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,232",753,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,233",754,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,234",755,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,2341",756,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,235",757,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
+4,"4,3",758,2,Erreur de raisonnement,Mauvaise déduction,
+4,"4,31",759,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,311",760,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,3111",761,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,3112",762,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,31121",763,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,311211",764,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,3113",765,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,3114",766,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,31141",767,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,312",768,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,3121",769,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,313",770,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,314",771,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,3141",772,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,315",773,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,316",774,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,317",775,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,318",776,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
+4,"4,32",777,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,321",778,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,3211",779,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,322",780,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,3221",781,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,3222",782,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,323",783,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
+4,"4,33",784,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,331",785,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3311",786,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,33111",787,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3312",788,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,33121",789,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,33122",790,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,332",791,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3321",792,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3322",793,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3323",794,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,333",795,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3331",796,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,3332",797,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+,5,798,1,Abus de langage,,
+5,"5,1",799,2,Abus de langage,Définition inexacte,
+5,"5,11",800,2,Abus de langage,Définition inexacte,Acception vague
+5,"5,111",801,2,Abus de langage,Définition inexacte,Acception vague
+5,"5,112",802,2,Abus de langage,Définition inexacte,Acception vague
+5,"5,113",803,2,Abus de langage,Définition inexacte,Acception vague
+5,"5,12",804,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,121",805,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1211",806,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1212",807,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,122",808,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1221",809,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1222",810,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12221",811,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12222",812,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1223",813,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1224",814,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12241",815,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12242",816,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12243",817,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1225",818,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,123",819,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1231",820,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,1232",821,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12321",822,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12322",823,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,123224",824,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,12323",825,2,Abus de langage,Définition inexacte,Acception arbitraire
+5,"5,13",826,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,131",827,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,1311",828,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,132",829,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,1321",830,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,1322",831,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,133",832,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,2",833,2,Abus de langage,Comparaison fallacieuse,
+5,"5,21",834,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
+5,"5,211",835,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
+5,"5,212",836,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
+5,"5,213",837,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
+5,"5,214",838,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
+5,"5,22",839,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
+5,"5,221",840,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
+5,"5,222",841,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
+5,"5,223",842,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
+5,"5,224",843,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
+5,"5,23",844,2,Abus de langage,Comparaison fallacieuse,Sophisme d'association
+5,"5,231",845,2,Abus de langage,Comparaison fallacieuse,Sophisme d'association
+5,"5,3",846,2,Abus de langage,Ambiguïté,
+5,"5,31",847,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,311",848,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,312",849,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,3121",850,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,313",851,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,3131",852,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,314",853,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,315",854,2,Abus de langage,Ambiguïté,Amphibologie
+5,"5,32",855,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,321",856,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3211",857,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3212",858,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32121",859,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,322",860,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3221",861,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3222",862,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32221",863,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3223",864,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,323",865,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3231",866,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32311",867,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,3232",868,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32321",869,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,323211",870,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,323212",871,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32322",872,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,323221",873,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32323",874,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32324",875,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,33",876,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,331",877,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,3311",878,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,33111",879,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,33112",880,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,332",881,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,3321",882,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,333",883,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,3331",884,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,3332",885,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+5,"5,334",886,2,Abus de langage,Ambiguïté,Ambiguïté narrative
+,6,887,1,Tricherie,,
+6,"6,1",888,2,Tricherie,Arranger les faits,
+6,"6,11",889,2,Tricherie,Arranger les faits,Mensonge
+6,"6,111",890,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1111",891,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11111",892,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11112",893,2,Tricherie,Arranger les faits,Mensonge
+6,"6,111121",894,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11113",895,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1112",896,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1113",897,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11131",898,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11132",899,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11133",900,2,Tricherie,Arranger les faits,Mensonge
+6,"6,111331",901,2,Tricherie,Arranger les faits,Mensonge
+6,"6,111332",902,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1114",903,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1115",904,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1116",905,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1117",906,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11171",907,2,Tricherie,Arranger les faits,Mensonge
+6,"6,112",908,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1121",909,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11211",910,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11212",911,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11213",912,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11214",913,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11215",914,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11216",915,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1122",916,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11221",917,2,Tricherie,Arranger les faits,Mensonge
+6,"6,112211",918,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11222",919,2,Tricherie,Arranger les faits,Mensonge
+6,"6,112221",920,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1122211",921,2,Tricherie,Arranger les faits,Mensonge
+6,"6,112222",922,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11223",923,2,Tricherie,Arranger les faits,Mensonge
+6,"6,112231",924,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1123",925,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11231",926,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11232",927,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11233",928,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1124",929,2,Tricherie,Arranger les faits,Mensonge
+6,"6,113",930,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1131",931,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1132",932,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1133",933,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11331",934,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1134",935,2,Tricherie,Arranger les faits,Mensonge
+6,"6,11341",936,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1135",937,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1136",938,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1137",939,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1138",940,2,Tricherie,Arranger les faits,Mensonge
+6,"6,1139",941,2,Tricherie,Arranger les faits,Mensonge
+6,"6,12",942,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,121",943,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1211",944,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1212",945,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1213",946,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1214",947,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,122",948,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1221",949,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1222",950,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,123",951,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,1231",952,2,Tricherie,Arranger les faits,Fausse attribution
+6,"6,13",953,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,131",954,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,1311",955,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13111",956,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,131111",957,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13113",958,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,131131",959,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,131132",960,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13114",961,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,1312",962,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13121",963,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13122",964,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13123",965,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13124",966,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,1313",967,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13131",968,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,13132",969,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,1314",970,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,132",971,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,133",972,2,Tricherie,Arranger les faits,Attention sélective
+6,"6,2",973,2,Tricherie,Changement de cap,
+6,"6,21",974,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,211",975,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2111",976,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,21111",977,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,211111",978,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,21112",979,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2112",980,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2113",981,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2114",982,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2115",983,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,212",984,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2121",985,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2122",986,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,213",987,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2131",988,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,214",989,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,2141",990,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,215",991,2,Tricherie,Changement de cap,Exigence renforcée
+6,"6,22",992,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,221",993,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2211",994,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,22111",995,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2212",996,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,222",997,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2221",998,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2222",999,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2223",1000,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,223",1407,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,224",1001,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2241",1002,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2242",1003,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,225",1004,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2251",1005,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2252",1006,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2253",1007,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,226",1008,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2261",1009,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,2262",1010,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,23",1011,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,231",1012,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,232",1013,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,2321",1014,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,233",1015,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,2331",1016,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,2332",1017,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,2333",1018,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,2334",1019,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,234",1020,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,2341",1021,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,235",1022,2,Tricherie,Changement de cap,Exigence relâchée
+6,"6,3",1023,2,Tricherie,Pensée biaisée,
+6,"6,31",1024,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311",1025,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111",1026,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31111",1027,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311111",1028,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111111",1029,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111112",1030,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111113",1031,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311112",1032,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311113",1033,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111131",1034,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111132",1035,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311114",1036,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311115",1037,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112",1038,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311121",1039,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111211",1040,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112111",1041,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112112",1042,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111212",1043,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112121",1044,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311121211",1045,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111213",1046,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111214",1047,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311122",1048,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111221",1049,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112211",1050,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112212",1051,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112213",1052,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111224",1053,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111225",1054,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31112251",1055,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111226",1056,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31113",1057,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311131",1058,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311132",1059,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311133",1060,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311134",1061,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311135",1062,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3111351",1063,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311136",1064,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3112",1065,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31121",1066,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311211",1067,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311212",1068,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311213",1069,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311214",1070,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311215",1071,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311216",1072,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3112161",1073,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311217",1074,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31122",1075,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311221",1076,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311222",1077,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311223",1078,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311224",1079,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311225",1080,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311226",1081,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311227",1082,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31123",1083,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311231",1084,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311232",1085,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311233",1086,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311234",1087,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,311235",1088,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3112351",1089,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312",1090,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121",1091,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31211",1092,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312111",1093,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121111",1094,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121112",1095,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121113",1096,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31211131",1097,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312112",1098,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121121",1099,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31211211",1100,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31211212",1101,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121122",1102,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121123",1103,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31212",1104,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312121",1105,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121211",1106,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121212",1107,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121213",1108,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312122",1109,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121221",1110,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121222",1111,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121223",1112,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121224",1113,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312123",1114,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121231",1115,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121232",1116,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121233",1117,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3121234",1118,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122",1119,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31221",1120,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312211",1121,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312212",1122,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312213",1123,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312214",1124,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312215",1125,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31222",1126,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312221",1127,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312222",1128,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312223",1129,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122231",1130,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122232",1131,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122233",1132,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312224",1133,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122241",1134,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122242",1135,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122243",1136,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312225",1137,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31223",1138,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312231",1139,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122311",1140,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122312",1141,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312232",1142,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312233",1143,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312234",1144,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3122341",1145,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123",1146,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31231",1147,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312311",1148,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123111",1149,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123112",1150,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123113",1151,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123114",1152,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312312",1153,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123121",1154,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123122",1155,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123123",1156,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31231231",1157,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312313",1158,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123131",1159,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123132",1160,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123133",1161,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123134",1162,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312314",1163,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31232",1164,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312321",1165,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123211",1166,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123212",1167,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123213",1168,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312322",1169,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123221",1170,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,3123222",1171,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,312323",1172,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,31233",1173,2,Tricherie,Pensée biaisée,Biais naturels
+6,"6,32",1174,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321",1175,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3211",1176,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32111",1177,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321111",1178,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321112",1179,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321113",1180,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32112",1181,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32113",1182,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32114",1183,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3212",1184,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32121",1185,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321211",1186,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321212",1187,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32122",1188,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321221",1189,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321222",1190,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32123",1191,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321231",1192,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3213",1193,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32131",1194,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,321311",1195,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32132",1196,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32133",1197,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322",1198,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3221",1199,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32211",1200,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32212",1201,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3222",1202,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32221",1203,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322211",1204,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322212",1205,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3222121",1206,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3222122",1207,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322213",1208,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322214",1209,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322215",1210,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3222151",1211,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322216",1212,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3222161",1213,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322217",1214,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32222",1215,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322221",1216,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32223",1217,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32224",1218,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322241",1219,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322242",1220,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322243",1221,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322244",1222,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322245",1223,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,322246",1224,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3223",1225,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,323",1226,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3231",1227,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32311",1228,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32312",1229,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32313",1230,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32314",1231,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,323141",1232,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32315",1233,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32316",1234,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32317",1235,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32318",1236,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,3232",1237,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32321",1238,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32322",1239,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32323",1240,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,32324",1241,2,Tricherie,Pensée biaisée,Biais culturels
+6,"6,33",1242,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,331",1243,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3311",1244,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33111",1245,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,331111",1246,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3312",1247,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3313",1248,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33131",1249,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,331311",1250,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33132",1251,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,331321",1252,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,331322",1253,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,331323",1254,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3314",1255,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3315",1256,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3316",1257,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33161",1258,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,332",1259,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3321",1260,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33211",1261,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3323",1262,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3325",1263,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33251",1264,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33252",1265,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3326",1266,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33261",1267,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,333",1268,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3331",1269,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33311",1270,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33312",1271,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,333121",1272,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33313",1273,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,33314",1274,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3332",1275,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3333",1276,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3334",1277,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3335",1278,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3336",1279,2,Tricherie,Pensée biaisée,Biais théoriques
+,7,1280,1,Obstruction,,
+7,"7,1",1281,2,Obstruction,Refus du débat,
+7,"7,11",1282,2,Obstruction,Refus du débat,Relativisme abusif
+7,"7,111",1283,2,Obstruction,Refus du débat,Relativisme abusif
+7,"7,1111",1284,2,Obstruction,Refus du débat,Relativisme abusif
+7,"7,1112",1285,2,Obstruction,Refus du débat,Relativisme abusif
+7,"7,112",1286,2,Obstruction,Refus du débat,Relativisme abusif
+7,"7,12",1287,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,121",1288,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,1211",1289,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,1212",1290,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,122",1291,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,1221",1292,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,12211",1293,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,123",1294,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,124",1295,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,125",1296,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,13",1297,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,131",1298,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,132",1299,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,1321",1300,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,133",1301,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,1331",1302,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,1332",1303,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,134",1304,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,135",1305,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,1351",1306,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,13511",1307,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,135111",1308,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,1352",1309,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,136",1310,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,137",1311,2,Obstruction,Refus du débat,Preuve par assertion
+7,"7,2",1312,2,Obstruction,Saboter le débat,
+7,"7,21",1313,2,Obstruction,Saboter le débat,Evasion
+7,"7,211",1314,2,Obstruction,Saboter le débat,Evasion
+7,"7,2111",1315,2,Obstruction,Saboter le débat,Evasion
+7,"7,21111",1316,2,Obstruction,Saboter le débat,Evasion
+7,"7,21112",1317,2,Obstruction,Saboter le débat,Evasion
+7,"7,211121",1318,2,Obstruction,Saboter le débat,Evasion
+7,"7,21113",1319,2,Obstruction,Saboter le débat,Evasion
+7,"7,21114",1320,2,Obstruction,Saboter le débat,Evasion
+7,"7,2112",1321,2,Obstruction,Saboter le débat,Evasion
+7,"7,21121",1322,2,Obstruction,Saboter le débat,Evasion
+7,"7,211211",1323,2,Obstruction,Saboter le débat,Evasion
+7,"7,211212",1324,2,Obstruction,Saboter le débat,Evasion
+7,"7,21122",1325,2,Obstruction,Saboter le débat,Evasion
+7,"7,21123",1326,2,Obstruction,Saboter le débat,Evasion
+7,"7,212",1327,2,Obstruction,Saboter le débat,Evasion
+7,"7,2121",1328,2,Obstruction,Saboter le débat,Evasion
+7,"7,21211",1329,2,Obstruction,Saboter le débat,Evasion
+7,"7,2122",1330,2,Obstruction,Saboter le débat,Evasion
+7,"7,2123",1331,2,Obstruction,Saboter le débat,Evasion
+7,"7,2124",1332,2,Obstruction,Saboter le débat,Evasion
+7,"7,21241",1333,2,Obstruction,Saboter le débat,Evasion
+7,"7,213",1334,2,Obstruction,Saboter le débat,Evasion
+7,"7,2131",1335,2,Obstruction,Saboter le débat,Evasion
+7,"7,21311",1336,2,Obstruction,Saboter le débat,Evasion
+7,"7,21312",1337,2,Obstruction,Saboter le débat,Evasion
+7,"7,2132",1338,2,Obstruction,Saboter le débat,Evasion
+7,"7,21321",1339,2,Obstruction,Saboter le débat,Evasion
+7,"7,213211",1340,2,Obstruction,Saboter le débat,Evasion
+7,"7,21322",1341,2,Obstruction,Saboter le débat,Evasion
+7,"7,2133",1342,2,Obstruction,Saboter le débat,Evasion
+7,"7,21331",1343,2,Obstruction,Saboter le débat,Evasion
+7,"7,21332",1344,2,Obstruction,Saboter le débat,Evasion
+7,"7,22",1345,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,221",1346,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,2211",1347,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,22111",1348,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,2212",1349,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,222",1350,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,223",1351,2,Obstruction,Saboter le débat,Complication exagérée
+7,"7,23",1352,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,231",1353,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,232",1354,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,233",1355,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,2331",1356,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,234",1357,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,2341",1358,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,2342",1359,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,3",1360,2,Obstruction,Ad hominem,
+7,"7,31",1361,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,311",1362,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,3111",1363,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,3112",1364,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,312",1365,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,3121",1366,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,3122",1367,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,313",1368,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,3131",1369,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,3132",1370,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,32",1371,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,321",1372,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3211",1373,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3212",1374,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3213",1375,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3214",1376,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3215",1377,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3216",1378,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3217",1379,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,32171",1380,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,322",1381,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3221",1382,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,32211",1383,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3222",1384,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3223",1385,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,323",1386,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3231",1387,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3232",1388,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3233",1389,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3234",1390,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3235",1391,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,324",1392,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3241",1393,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3242",1394,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3243",1395,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3244",1396,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,3245",1397,2,Obstruction,Ad hominem,Sophisme génétique
+7,"7,33",1398,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,331",1399,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,332",1400,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,333",1401,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,334",1402,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,335",1403,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,3351",1404,2,Obstruction,Ad hominem,Attaque personnelle
+7,"7,3352",1405,2,Obstruction,Ad hominem,Attaque personnelle
