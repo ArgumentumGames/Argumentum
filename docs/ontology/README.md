@@ -89,6 +89,10 @@ Coverage: 145 / 1408 fallacies (10.3 %) — the fully-reconciled skos-only subse
 
 See [`argumentum-owl-validation-2026-07-12.md`](argumentum-owl-validation-2026-07-12.md) for the layer-by-layer validation report.
 
+### Consumable CSV exports (Layer 3, for downstream consumers)
+
+The AIF attack-graph (Layer 3 above) is also exported as **consumable CSV** in [`aif-export/`](aif-export/README.md) — bipartite typed attack-edges (Fallacies 145 + Virtues 222), OWL good-tenor edges (Virtues 222 → 14 schemes), canonical concepts, the taxonomy tree, and inter-fallacy semantic relations. Reproducible via `python tools/aif-attack-graph-export.py` + `python tools/aif-virtues-export.py` (read-only on sources). Consumers: CoursIA ICT #7289 / uplift #5721, Layer C v1.0 #790.
+
 ---
 
 ## 4. Regeneration
