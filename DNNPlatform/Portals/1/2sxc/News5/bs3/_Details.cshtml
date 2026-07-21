@@ -1,4 +1,4 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 
 @Html.Partial("./shared/_Assets.cshtml", new { scripts = true} )
@@ -7,7 +7,7 @@
   var parts = CreateInstance("./shared/_Parts.cshtml");
   var page = GetService<ToSic.Sxc.Web.IPageService>(); // Service to set titles etc. on the page
   var article = AsList(Data).FirstOrDefault();
-  var filteredCategory = Request.QueryString["category"];
+  var filteredCategory = CmsContext.Page.Parameters["category"];
   var categoryParams = Text.Has(filteredCategory)
       ? "category=" + filteredCategory
       : "";

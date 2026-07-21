@@ -1,4 +1,4 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @* This adds all link/script tags *@
 @RenderPage("../shared/_Assets.cshtml", new { parts = "styles,scripts,height"})
@@ -9,7 +9,7 @@
 }
 
 <div class="co-container-outer">
-	<div class="co-container-inner co-navigation co-navigation-@(Dnn.Module.ModuleID) co-navigation-icon co-navigation-text">
+	<div class="co-container-inner co-navigation co-navigation-@(CmsContext.Module.Id) co-navigation-icon co-navigation-text">
     <div class="row">
       @foreach (var link in AsList(Data))
       {
