@@ -1,0 +1,223 @@
+virtue_iri_fragment,argument_scheme
+adequateComparison,Argument from Analogy
+appropriateAnalogy,Argument from Analogy
+appropriateStyle,Argument from Analogy
+correctAnalogicalReasoning,Argument from Analogy
+figuresSupportingClarity,Argument from Analogy
+justifiedComparisons,Argument from Analogy
+legitimateTransfer,Argument from Analogy
+avoidingPersonalAttacks,Argument from Bias
+balancedConsideration,Argument from Bias
+benevolentNeutrality,Argument from Bias
+considerationOfOnesIdeologicalBiases,Argument from Bias
+correctCriticalReasoning,Argument from Bias
+distancingFromIdeologies,Argument from Bias
+emotionalNeutrality,Argument from Bias
+identificationOfOnesBiases,Argument from Bias
+impartialSources,Argument from Bias
+interculturalAwareness,Argument from Bias
+neutralVocabulary,Argument from Bias
+nonpartisanInterpretation,Argument from Bias
+nuancedConsiderations,Argument from Bias
+objectivityEffort,Argument from Bias
+presumptionOfGoodFaith,Argument from Bias
+principleOfNondisqualification,Argument from Bias
+recognitionOfPersonalBiases,Argument from Bias
+recognitionOfPersonalCulturalBiases,Argument from Bias
+respectForThePerson,Argument from Bias
+searchForTruth,Argument from Bias
+showingEmpathy,Argument from Bias
+sourcesFreeOfSocioeconomicBias,Argument from Bias
+takingConflictsOfInterestIntoAccount,Argument from Bias
+takingTheOpponent’sIdeologicalBiasesIntoAccount,Argument from Bias
+unbiasedReasoning,Argument from Bias
+understandingOthersCulturalBiases,Argument from Bias
+understandingOthers’PersonalBiases,Argument from Bias
+correctAbductiveReasoning,Argument from Cause to Effect
+correctOrientationOfCausality,Argument from Cause to Effect
+exclusionOfAlternativeCauses,Argument from Cause to Effect
+hanlonsRazor,Argument from Cause to Effect
+independenceOfEvents,Argument from Cause to Effect
+occamsRazor,Argument from Cause to Effect
+parsimoniousRepresentation,Argument from Cause to Effect
+plausibleHypothesis,Argument from Cause to Effect
+preciseIdentificationOfCausality,Argument from Cause to Effect
+scientificApproach,Argument from Cause to Effect
+sufficientExplanations,Argument from Cause to Effect
+absenceOfInternalContradictions,Argument from Commitment
+activeListening,Argument from Commitment
+appropriateStance,Argument from Commitment
+argumentativeCollaboration,Argument from Commitment
+argumentfocusedCriticism,Argument from Commitment
+authenticCommunication,Argument from Commitment
+availabilityForDialogue,Argument from Commitment
+avoidingDigressions,Argument from Commitment
+awarenessOfTheLimitsOfAnArgument,Argument from Commitment
+burdenOfProof,Argument from Commitment
+clarityOfIssues,Argument from Commitment
+clearPositioning,Argument from Commitment
+correctDeductions,Argument from Commitment
+courtesyInDisagreement,Argument from Commitment
+doNotInterrupt,Argument from Commitment
+effectiveParticipation,Argument from Commitment
+enlightenedSelfdeprecation,Argument from Commitment
+establishedObjective,Argument from Commitment
+explicitJustifications,Argument from Commitment
+fairnessInDialogue,Argument from Commitment
+faithfulAcknowledgmentOfTheOpposingPosition,Argument from Commitment
+fruitfulExchange,Argument from Commitment
+mutualCommitment,Argument from Commitment
+nonviolentCommunication,Argument from Commitment
+opennessToChange,Argument from Commitment
+positiveContribution,Argument from Commitment
+premiseConsistency,Argument from Commitment
+principleOfCharity,Argument from Commitment
+principleOfFallibility,Argument from Commitment
+questForConsensus,Argument from Commitment
+reasonableEvaluationOfTheOpposingPosition,Argument from Commitment
+recognitionOfOnesErrors,Argument from Commitment
+refutablePremises,Argument from Commitment
+respectForTheOriginOfIdeas,Argument from Commitment
+respectfulLanguage,Argument from Commitment
+respectfulRefutationOfOpposingArguments,Argument from Commitment
+respectfulTone,Argument from Commitment
+stayingOnTopic,Argument from Commitment
+transparency,Argument from Commitment
+validReasoning,Argument from Commitment
+dramaticRestraint,Argument from Consequences
+noBlackmailThroughConsequences,Argument from Consequences
+takingAllottedTimeIntoAccount,Argument from Consequences
+identifyingWarningSigns,Argument from Danger
+inductiveArgument,Argument from Example
+justifiedGeneralizations,Argument from Example
+providingExamples,Argument from Example
+representativeSampling,Argument from Example
+appropriateTechnicalTerminology,Argument from Expert Opinion
+competentAuthority,Argument from Expert Opinion
+domainExpert,Argument from Expert Opinion
+providingCitations,Argument from Expert Opinion
+scientificPublication,Argument from Expert Opinion
+validatedConclusion,Argument from Expert Opinion
+citingSources,Argument from Position to Know
+confirmedInformation,Argument from Position to Know
+credibleSources,Argument from Position to Know
+discursiveAdaptation,Argument from Position to Know
+independentSources,Argument from Position to Know
+reliablePremises,Argument from Position to Know
+reputableJournal,Argument from Position to Know
+wellregardedNewspaper,Argument from Position to Know
+appropriateLevelOfProof,Argument from Rule
+bamalipSyllogism,Argument from Rule
+barbaraSyllogism,Argument from Rule
+barocoSyllogism,Argument from Rule
+bocardoSyllogism,Argument from Rule
+camenesSyllogism,Argument from Rule
+camestresSyllogism,Argument from Rule
+celarentSyllogism,Argument from Rule
+cesareSyllogism,Argument from Rule
+coherentDemonstration,Argument from Rule
+conclusiveReasoning,Argument from Rule
+correctAnalyticalReasoning,Argument from Rule
+daraptiSyllogism,Argument from Rule
+dariiSyllogism,Argument from Rule
+datisiSyllogism,Argument from Rule
+deductiveArgument,Argument from Rule
+dimatisSyllogism,Argument from Rule
+disamisSyllogism,Argument from Rule
+felaptonSyllogism,Argument from Rule
+ferioSyllogism,Argument from Rule
+ferisonSyllogism,Argument from Rule
+fesapoSyllogism,Argument from Rule
+festinoSyllogism,Argument from Rule
+finitesampleAnalysis,Argument from Rule
+fourthfigureSyllogism,Argument from Rule
+fresisonSyllogism,Argument from Rule
+independenceOfPremisesFromTheConclusion,Argument from Rule
+inference:ConjunctionElimination,Argument from Rule
+inference:ConjunctionIntroduction,Argument from Rule
+inference:DoubleNegation,Argument from Rule
+inference:ModusPonens,Argument from Rule
+inference:ModusTollens,Argument from Rule
+inference:ReductioAdAbsurdum,Argument from Rule
+inference:Resolution,Argument from Rule
+inference:UnitResolution,Argument from Rule
+noncomplacentObjective,Argument from Rule
+perfectmodeSyllogism,Argument from Rule
+properUseOfModalities,Argument from Rule
+realisticDemands,Argument from Rule
+resolutionPrinciple,Argument from Rule
+rigorousConstructionOfStatements,Argument from Rule
+simpleInference,Argument from Rule
+stepwiseReasoning,Argument from Rule
+syllogismOfTheSecondFigure,Argument from Rule
+takingExceptionsIntoAccount,Argument from Rule
+thirdfigureSyllogism,Argument from Rule
+validFormalLogic,Argument from Rule
+validOperations,Argument from Rule
+validSyllogism,Argument from Rule
+wellformedPropositionalStatements,Argument from Rule
+acceptableInformalLogic,Argument from Sign
+acceptanceOfUncertainty,Argument from Sign
+adequateInterpretationOfData,Argument from Sign
+clearPresentationOfData,Argument from Sign
+correctSyntheticReasoning,Argument from Sign
+empiricalEvidence,Argument from Sign
+establishedCorrelations,Argument from Sign
+exactCalculations,Argument from Sign
+fairInterpretation,Argument from Sign
+focusingOnTheEssentials,Argument from Sign
+geometricAccuracy,Argument from Sign
+groundedArgument,Argument from Sign
+masteredProbabilities,Argument from Sign
+mathematicalAccuracy,Argument from Sign
+methodicalEstimation,Argument from Sign
+numericalAccuracy,Argument from Sign
+preciseMeasurements,Argument from Sign
+probabilisticDeductiveReasoning,Argument from Sign
+realArgument,Argument from Sign
+recognitionOfAnObjectiveReality,Argument from Sign
+relevantArgument,Argument from Sign
+relevantAssociation,Argument from Sign
+suspensionOfJudgment,Argument from Sign
+tangibleEvidence,Argument from Sign
+validResults,Argument from Sign
+verifiedFacts,Argument from Sign
+acceptableRhetoric,Argument from Values
+contextappropriateHumor,Argument from Values
+emotionalBalance,Argument from Values
+inclusiveHumor,Argument from Values
+respectfulHumor,Argument from Values
+searchForCompromise,Argument from Values
+tastefulHumour,Argument from Values
+universality,Argument from Values
+acceptableDefinitions,Argument from Verbal Classification
+appropriateComplexity,Argument from Verbal Classification
+appropriateVocabulary,Argument from Verbal Classification
+clearMeanings,Argument from Verbal Classification
+clearSyntax,Argument from Verbal Classification
+conciseLanguage,Argument from Verbal Classification
+conformingDefinition,Argument from Verbal Classification
+consistentDefinition,Argument from Verbal Classification
+correctGrammar,Argument from Verbal Classification
+correctPunctuation,Argument from Verbal Classification
+eloquenceInTheServiceOfTruth,Argument from Verbal Classification
+eloquentRhetoric,Argument from Verbal Classification
+justifiedTechnicalTerminology,Argument from Verbal Classification
+linguisticClarity,Argument from Verbal Classification
+measuredUseOfJargon,Argument from Verbal Classification
+preciseLanguage,Argument from Verbal Classification
+principleOfClarity,Argument from Verbal Classification
+rigorousLanguage,Argument from Verbal Classification
+topologicalAccuracy,Argument from Verbal Classification
+unambiguousExpressions,Argument from Verbal Classification
+wellformedQuantifiedStatements,Argument from Verbal Classification
+clearNarration,Argument from Witness Testimony
+fairAttribution,Argument from Witness Testimony
+fidelityToFacts,Argument from Witness Testimony
+fullDisclosure,Argument from Witness Testimony
+honestPresentation,Argument from Witness Testimony
+intellectualHonesty,Argument from Witness Testimony
+sufficientLevelOfProof,Argument from Witness Testimony
+truthOfFacts,Argument from Witness Testimony
+uncontroversialTestimony,Argument from Witness Testimony
+valuingTheProvenanceOfIdeas,Argument from Witness Testimony

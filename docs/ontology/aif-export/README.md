@@ -70,6 +70,8 @@ Same AIF attack graph, extracted from `argumentum.owl` AnnotationAssertions (`ai
 
 `source_fragment --[relation]--> target_fragment`. These are the OWL's generic semantic relations between fallacy individuals. **NOT AIF attack-edges** — a different, complementary graph.
 
+> **Count reconciliation note.** This file holds **1734 distinct** directed edges (exact `(s,p,o)` triples deduplicated). The ontology README §2 Layer 2 reports **1985** — that count is the **raw emitted assertions** (pre-dedup): the OWL serializer (OWLSharp) emits 243 exact-duplicate triples (a serializer idempotency quirk, not a data issue). Raw parse = 1977 ≈ README 1985 (the -8 delta is one schema self-definition counted per verb, 8 verbs). Symmetric verbs (`mirrors`, `isRelatedTo`, `inverts`, `opposes`) are emitted bidirectionally as two distinct triples `(A,p,B)` + `(B,p,A)` — both are kept here (they are not duplicates). A consumer should use this deduplicated file; the raw count matches the README.
+
 | Relation | Count | Semantics (loose) |
 |---|---:|---|
 | `isRelatedTo` | 606 | generic relatedness (bidirectional in source) |
@@ -94,13 +96,51 @@ The CSV has no PK→IRI column, so a 1:1 row↔individual mapping cannot be esta
 
 ---
 
+## Virtues companion export (V-A + V-B)
+
+The companion script `tools/aif-virtues-export.py` extends the AIF export to the Virtues Taxonomy. **The Virtues carry a DOUBLE AIF modelling** of the same 222-virtue population — two complementary views, never merged:
+
+| View | Source | Predicate | Edges | Semantics |
+|---|---|---|---:|---|
+| **V-A** attack-graph | Virtues CSV | `AIF_attackType` + `AIF_attackedNode` | 222 | how the virtue ATTACKS a bad reasoning (counter-argument, bipartite: virtue → node-TYPE RA/I/CA) |
+| **V-B** good-tenor | `argumentum_virtues.owl` | `aif#goodTenorOf` | 222 | how the virtue EMBODIES a canonical AIF argument SCHEME (Rule/Commitment/Bias/Sign/…) |
+
+**Not redundant, not contradictory.** A virtue can attack a bad reasoning (V-A) by embodying a good argument scheme (V-B). V-A and V-B point to the **same vocabulary of 14 canonical AIF schemes** (`Argument from Rule`, `Commitment`, `Bias`, `Sign`, `Verbal Classification`, `Cause to Effect`, `Witness Testimony`, `Position to Know`, `Values`, `Analogy`, `Expert Opinion`, `Example`, `Consequences`, `Danger`) but via different predicates.
+
+### Contrast with Fallacies (#828)
+
+Fallacies carry **only** the CSV attack-graph (V-A) — there is no `goodTenorOf` in `argumentum.owl`. The Virtues are the **dual**: they carry BOTH views. **Do NOT fuse `Fallacies-attacks` + `Virtues-attacks` into one homogeneous graph** — Virtues-attacks encode counter-arguments to fallacies, a different semantics from Fallacies-attacking-nodes.
+
+### Artefacts (Virtues)
+
+| File | Rows | Content |
+|---|---:|---|
+| `aif-virtues-attack-edges.csv` | 222 | V-A bipartite attack-edges (PK-keyed). `skos_exception_ref` holds the FR critical-question the virtue poses. |
+| `aif-virtues-good-tenor.csv` | 222 | V-B virtue→scheme edges (camelCase IRI → `Argument from X`). |
+| `aif-virtues-canonical-concepts.csv` | 14 | AIF schemes referenced via skos (= the V-B scheme set). |
+| `aif-virtues-schemes.csv` | 14 | Scheme distribution (Rule 50, Commitment 40, Bias 27, …). |
+
+V-A axiom: 222/222 respected (undercut→RA 206, undermine→I 13, rebut→CA 3, 0 violations). 222/222 virtues carry a skos ref.
+
+### Cross-family coherence (Fallacies ↔ Virtues) — empirical note
+
+The two families reference **disjoint AIF vocabularies** (intersection = 0):
+
+| Family | Naming convention | Distinct concepts | Example |
+|---|---|---:|---|
+| Fallacies (#828) | `<Topic>_<Type>` suffix (`_Inference` / `_Conflict` / `_Scheme`) | 60 | `CauseToEffect_Inference`, `Bias_Inference`, `Commitment_Conflict` |
+| Virtues (#829) | `Argument from <Topic>` readable form | 14 | `Argument from Cause to Effect`, `Argument from Bias`, `Argument from Commitment` |
+
+Both conventions **co-exist as declared classes** in the source AIF ontology (`Ontology/Resources/AIF.owl`: 125 `_Type` forms + 15 `Argument from X` forms). A lexical alignment is *inferrable* in several cases (e.g. `Bias_Inference` ↔ `Argument from Bias`, `CauseToEffect_Inference` ↔ `Argument from Cause to Effect`) but **no materialised mapping table exists** in the source data. This export therefore does **not** unify the two vocabularies — a consumer that needs a unified AIF concept space must build that mapping explicitly (a modelling decision, not an export). Documented to prevent the false assumption that Fallacies-concepts and Virtues-concepts are pre-aligned.
+
 ## Re-run
 
 ```bash
-python tools/aif-attack-graph-export.py
+python tools/aif-attack-graph-export.py   # Fallacies (5 CSVs)
+python tools/aif-virtues-export.py        # Virtues  (4 CSVs)
 ```
 
-Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s. Overwrites the 5 CSVs in this directory. 0 write to the source CSV/OWL.
+Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s each. Overwrites the CSVs in this directory. 0 write to the source CSV/OWL.
 
 ---
 
