@@ -33,5 +33,6 @@
     "cardClass": "Famille_camelCase",
     "rscount": 1,
     "rsstyle": "bunch",
-    "cindices": ""
+    "cindices": "",
+    "_csv_note": "STALE — overridden at runtime by DataSet='FallaciesTaxonomy' (see Cards\\Fallacies\\Argumentum Fallacies - Taxonomy.csv). Embedded `csv` is a snapshot from template creation (PR #813 audit, #812 fix). CardPen reads `csv`/`mustache`/`css`; this key is ignored."
 }
