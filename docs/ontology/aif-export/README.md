@@ -133,6 +133,21 @@ The two families reference **disjoint AIF vocabularies** (intersection = 0):
 
 Both conventions **co-exist as declared classes** in the source AIF ontology (`Ontology/Resources/AIF.owl`: 125 `_Type` forms + 15 `Argument from X` forms). A lexical alignment is *inferrable* in several cases (e.g. `Bias_Inference` ↔ `Argument from Bias`, `CauseToEffect_Inference` ↔ `Argument from Cause to Effect`) but **no materialised mapping table exists** in the source data. This export therefore does **not** unify the two vocabularies — a consumer that needs a unified AIF concept space must build that mapping explicitly (a modelling decision, not an export). Documented to prevent the false assumption that Fallacies-concepts and Virtues-concepts are pre-aligned.
 
+## Consumption contract for spectral / graph analysis (#7289 Phase-B)
+
+The AIF attack graph exported here is **directed and typed**. A consumer building a spectral or graph-Laplacian analysis on it (e.g. CoursIA ICT #7289 strate-6 Phase-B) must preserve that structure, or it will collapse the very signal such an analysis is meant to surface. This is the nit raised in the review of the CoursIA notebook #7341.
+
+- **Directed, not symmetric.** Each attack-edge is `attacker_pk --[attack_type]--> attacked_node_type` (bipartite: a fallacy → an abstract AIF node-TYPE, see the honest verdict above). The adjacency is **not reciprocal**. Building a standard symmetric Laplacian `L_sym = D^{-1/2}(D - A)D^{-1/2}` on an undirected projection treats the attacker and the node-type it attacks as interchangeable, which they are not — direction *is* the semantics.
+- **Typed edges carry distinct modes.** `undercut` (attacks the rule/inference, RA-node), `undermine` (attacks the premise, I-node), and `rebut` (attacks the conclusion, CA-node) are **three different argumentative operations**. Collapsing them into a single unweighted adjacency collapses the mode-of-attack signal — the dimension a strate-6 spectral analysis most wants to surface. Do not binarise the typed edges.
+- **Complementary graphs have different symmetries.** `aif-relations-graph.csv` (inter-fallacy `mirrors`/`isRelatedTo`/…) IS emitted bidirectionally for the symmetric verbs (two distinct triples `(A,p,B)` + `(B,p,A)`) and is the right input for a *relational* spectral pass. The **attack** graph (`aif-attack-edges.csv`) is the **typed directed** one. Pick the graph that matches the question; do not merge them into one homogeneous adjacency.
+- **Recommended approaches** (a consumer modelling choice — **not** exported here, the CSVs are unchanged):
+  - a **directed Laplacian** (Chung's), or a **magnetic / hermitian Laplacian** (encodes edge direction as a complex phase, preserving asymmetry in the spectrum), or
+  - **type-weighted / multi-channel edges** (one weight — or one channel — per `attack_type`), so the three modes remain separable.
+
+**Failure mode to avoid:** feeding the raw typed bipartite attack graph into an off-the-shelf undirected spectral clustering without first deciding how direction and type are preserved. A naive symmetrisation silently erases both. This contract exists to make that assumption explicit.
+
+---
+
 ## Re-run
 
 ```bash
