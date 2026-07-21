@@ -1,17 +1,108 @@
 weight,src_grappe_path,src_grappe_name,src_famille,tgt_grappe_path,tgt_grappe_name,tgt_famille,cross_family,leaf_link_examples
+137,2.3,Manipulation mentale,Influence,2.3,Manipulation mentale,Influence,no,Équivoque antithétique-[Leverages]->Distanciation; Équivoque antithétique-[Mirrors]->Questions en désordre; Questions en désordre-[Mirrors]->Distanciation
+134,6.3,Raisonnement biaisé,Tricherie,6.3,Raisonnement biaisé,Tricherie,no,Biais d’attention-[Leverages]->Biais émotionnels; Effet de modalité-[IsRelatedTo]->Modèle des niveaux de traitement; Effet de suffixe-[Leverages]->Rappel en série
+49,6.1,Présentation trompeuse des faits,Tricherie,6.1,Présentation trompeuse des faits,Tricherie,no,Déformation-[IsRelatedTo]->Prémisse fausse; Minimisation-[Inverts]->Exagération; Minimisation-[IsRelatedTo]->Amplification et minimisation
+36,2.1,Technique rhétorique,Influence,2.1,Technique rhétorique,Influence,no,Question piège-[Leverages]->Pétition de principe; Question multiple-[Mirrors]->Question piège; Pensée cliché-[Mirrors]->Appel au slogan
+28,1.1,Généralisation hâtive,Insuffisance,1.1,Généralisation hâtive,Insuffisance,no,A priorisme-[Mirrors]->Tabou; A priorisme-[IsRelatedTo]->Syndrome du vrai croyant; Syndrome du vrai croyant-[Leverages]->A priorisme
+26,7.3,Ad hominem,Obstruction,7.3,Ad hominem,Obstruction,no,Whataboutisme-[Mirrors]->Critique de l'incohérence passée; Critique de l'incohérence passée-[Mirrors]->Whataboutisme; Extension-[Leverages]->Tirer de fausses conclusions
+26,2.1,Technique rhétorique,Influence,5,Abus de langage,?,YES,Question rhétorique-[Leverages]->Abus de langage; Jargon scientifique-[Leverages]->Abus de langage; Fedspeak-[Leverages]->Abus de langage
+26,1.2,Préjugé,Insuffisance,1.2,Préjugé,Insuffisance,no,Argument de pouvoir-[Mirrors]->Appel au respect; Argument d'obéissance aveugle-[Mirrors]->Autorité invincible; Appel à l'assurance-[Mirrors]->Appel à la loyauté
+24,3.1,Généralisation abusive,Erreur mathématique,3.1,Généralisation abusive,Erreur mathématique,no,Échantillon non représentatif-[Leverages]->Biais de sélection; Appel aux petits nombres-[Leverages]->Insensibilité à la taille de l'échantillon; Appel à la coïncidence-[Inverts]->Généralisation hâtive
+22,4.2,Composition fautive,Erreur de raisonnement,4.2,Composition fautive,Erreur de raisonnement,no,Transposition impropre-[Leverages]->L'un n'empêche pas l'autre; Transposition impropre-[Mirrors]->Commutation des conditionnelles; Commutation des conditionnelles-[Mirrors]->Transposition impropre
+22,2.2,Appel à l'émotion,Influence,2.2,Appel à l'émotion,Influence,no,Appel au désir-[Mirrors]->Appel à la pitié; Appel aux généralités flatteuses-[IsRelatedTo]->Discours démagogique; Démagogie-[Mirrors]->Appel au pain et aux jeux
+20,1.3,Surinterprétation,Insuffisance,1.3,Surinterprétation,Insuffisance,no,Sophisme quantitatif-[Leverages]->Effet du lampadaire; Effet du lampadaire-[Mirrors]->Sophisme quantitatif; Sophisme de l'historien-[Mirrors]->Déterminisme rétrospectif
+19,6.2,Déplacement des critères,Tricherie,6.2,Déplacement des critères,Tricherie,no,Justification infinie-[Mirrors]->Solution parfaite; Piège kafkaïen-[Mirrors]->Refus de légitimer; Assertion ambiguë-[Mirrors]->Langue de bois
+17,3.2,Interprétation quantitative erronée,Erreur mathématique,3.2,Interprétation quantitative erronée,Erreur mathématique,no,Confusion entre antériorité et causalité-[Leverages]->Confusion entre corrélation et causalité; Pêche aux données-[Allows]->Corrélation illusoire; Comparaisons multiples-[Allows]->Statistiques de l'occulte
+16,6.1,Présentation trompeuse des faits,Tricherie,2,Influence,?,YES,Mensonge poli-[Leverages]->Influence; Pour la bonne cause-[Leverages]->Influence; Fake news-[Leverages]->Influence
+16,5.3,Ambiguïté,Abus de langage,5.3,Ambiguïté,Abus de langage,no,Accent-[Mirrors]->Ponctuation ambiguë; Solécisme-[Mirrors]->Ponctuation ambiguë; Barbarisme-[Mirrors]->Solécisme
+15,5.1,Définition biaisée,Abus de langage,5.1,Définition biaisée,Abus de langage,no,Défaut d'élucidation-[Allows]->Indéfinissabilité; Concept essentiellement contesté-[Leverages]->Indéfinissabilité; Définition trop large-[Inverts]->Définition trop restrictive
+15,4.3,Déduction invalide,Erreur de raisonnement,4.3,Déduction invalide,Erreur de raisonnement,no,Rationalisation-[Leverages]->Donner de mauvaises raisons; Tirer une mauvaise conclusion-[IsRelatedTo]->Donner de mauvaises raisons; Acte de foi-[IsRelatedTo]->Substitut de preuve
+14,7.2,Sabotage du débat,Obstruction,7.2,Sabotage du débat,Obstruction,no,Digression-[IsRelatedTo]->Interrompre et détourner le débat; Interrompre et détourner le débat-[Leverages]->Digression; Changement de terrain-[Leverages]->Digression
+14,6.3,Raisonnement biaisé,Tricherie,2,Influence,?,YES,Effet de cadrage-[Allows]->Influence; Biais de distinction-[Leverages]->Influence; Effet d'ancrage-[Allows]->Influence
+12,6.3,Raisonnement biaisé,Tricherie,1,Insuffisance,?,YES,Effet du lampadaire-[Allows]->Insuffisance; Effet dur-facile-[Allows]->Insuffisance; Preuve anecdotique-[IsRelatedTo]->Insuffisance
+10,6.2,Déplacement des critères,Tricherie,5,Abus de langage,?,YES,Confondre une explication et une excuse-[Leverages]->Abus de langage; Mots compliqués-[Denounces]->Abus de langage; Ne pas se mouiller-[Leverages]->Abus de langage
+10,4.3,Déduction invalide,Erreur de raisonnement,1,Insuffisance,?,YES,Prémisses non pertinentes-[IsRelatedTo]->Insuffisance; Hypothèse farfelue-[Leverages]->Insuffisance; Familiarité étonnante-[IsRelatedTo]->Insuffisance
+9,7.1,Refus du débat,Obstruction,7.1,Refus du débat,Obstruction,no,Truthiness-[Mirrors]->Droit à mon opinion; Droit à mon opinion-[Mirrors]->Truthiness; Impossibilité de test-[Mirrors]->Argument autocollant
+9,6.1,Présentation trompeuse des faits,Tricherie,1,Insuffisance,?,YES,Homme de paille-[IsRelatedTo]->Insuffisance; Information obsolète-[IsRelatedTo]->Insuffisance; Mensonge par omission-[Leverages]->Insuffisance
+9,4.1,Causalité douteuse,Erreur de raisonnement,4.1,Causalité douteuse,Erreur de raisonnement,no,Question piège-[IsRelatedTo]->Soutien infondé; Pétition de principe analogique-[Leverages]->Argument circulaire; Soutien infondé-[Mirrors]->Question piège
+9,2.3,Manipulation mentale,Influence,7,Obstruction,?,YES,Questions en désordre-[Allows]->Obstruction; Appel à l'effet Stroop-[Allows]->Obstruction; Lance à incendie du mensonge-[Leverages]->Obstruction
+8,5.2,Comparaison fallacieuse,Abus de langage,5.2,Comparaison fallacieuse,Abus de langage,no,Comparaison incomplète-[Mirrors]->Comparaison incohérente; Classification non exclusive-[Allows]->Comparaison incohérente; Classification non exclusive-[Mirrors]->Distinction sans différence
+8,4.1,Causalité douteuse,Erreur de raisonnement,1,Insuffisance,?,YES,Cercle cartésien-[IsRelatedTo]->Insuffisance; Conclusion excessive-[IsRelatedTo]->Insuffisance; Soutien infondé-[IsRelatedTo]->Insuffisance
+8,3.1,Généralisation abusive,Erreur mathématique,1,Insuffisance,?,YES,Appel aux petits nombres-[IsRelatedTo]->Insuffisance; Appel à la coïncidence-[IsRelatedTo]->Insuffisance; Biais de représentativité-[IsRelatedTo]->Insuffisance
+8,1.2,Préjugé,Insuffisance,2,Influence,?,YES,Argument d'autorité personnelle-[IsRelatedTo]->Influence; Appel à l'assurance-[Leverages]->Influence; Appel à la célébrité-[Leverages]->Influence
+7,7.1,Refus du débat,Obstruction,1,Insuffisance,?,YES,Truthiness-[IsRelatedTo]->Insuffisance; Droit à mon opinion-[Leverages]->Insuffisance; Réfutation lapidaire-[IsRelatedTo]->Insuffisance
 7,2.3,Manipulation mentale,Influence,6.3,Raisonnement biaisé,Tricherie,YES,Cadrage-[PredatesOn]->Effet de cadrage; Appel à la validation subjective-[PredatesOn]->Validation subjective; Ancrage-[PredatesOn]->Effet d'ancrage
+6,7.2,Sabotage du débat,Obstruction,2,Influence,?,YES,Stratégie du chat mort-[Leverages]->Influence; Piège de gratitude-[IsRelatedTo]->Influence; Raison de la majorité-[Leverages]->Influence
+6,6.2,Déplacement des critères,Tricherie,1,Insuffisance,?,YES,Prouver la non-existence-[Leverages]->Insuffisance; Où est le mal ?-[Leverages]->Insuffisance; Argumentum a silentio-[IsRelatedTo]->Insuffisance
+6,5.1,Définition biaisée,Abus de langage,2,Influence,?,YES,Priorité au court terme-[Leverages]->Influence; Polarisation-[IsRelatedTo]->Influence; Définition persuasive-[Leverages]->Influence
+6,2.2,Appel à l'émotion,Influence,1,Insuffisance,?,YES,Appel à la conviction-[IsRelatedTo]->Insuffisance; Effet de halo-[IsRelatedTo]->Insuffisance; Appel à la pseudo-profondeur-[IsRelatedTo]->Insuffisance
+6,2.1,Technique rhétorique,Influence,7,Obstruction,?,YES,Question multiple-[Leverages]->Obstruction; Effet vitriol-[Allows]->Obstruction; Prolepse-[Allows]->Obstruction
+6,1.1,Généralisation hâtive,Insuffisance,4,Erreur de raisonnement,?,YES,Pensée magique-[IsRelatedTo]->Erreur de raisonnement; Preuve par l'absurde fallacieuse-[IsRelatedTo]->Erreur de raisonnement; Le marteau d'or-[IsRelatedTo]->Erreur de raisonnement
+5,2.3,Manipulation mentale,Influence,5,Abus de langage,?,YES,Distanciation-[Leverages]->Abus de langage; Lecture à chaud-[Leverages]->Abus de langage; Ruse de l'arc-en-ciel-[Leverages]->Abus de langage
+4,6.3,Raisonnement biaisé,Tricherie,5,Abus de langage,?,YES,Effet de la rime comme raison-[Leverages]->Abus de langage; Pseudo-philosophie-[Leverages]->Abus de langage; Argument par la physique quantique-[Leverages]->Abus de langage
+4,6.2,Déplacement des critères,Tricherie,7,Obstruction,?,YES,Justification infinie-[Leverages]->Obstruction; Changement de terrain-[IsRelatedTo]->Obstruction; Refus de légitimer-[Leverages]->Obstruction
+4,6.2,Déplacement des critères,Tricherie,2,Influence,?,YES,Mots compliqués-[Leverages]->Influence; La fourchette de Morton-[Leverages]->Influence; Appel à l'identité-[Leverages]->Influence
+4,5.1,Définition biaisée,Abus de langage,4,Erreur de raisonnement,?,YES,Conditions conflictuelles-[IsRelatedTo]->Erreur de raisonnement; Concept volé-[IsRelatedTo]->Erreur de raisonnement; Définition circulaire-[IsRelatedTo]->Erreur de raisonnement
+4,4.2,Composition fautive,Erreur de raisonnement,1,Insuffisance,?,YES,Affirmation du conséquent-[IsRelatedTo]->Insuffisance; Preuve par l'exemple-[IsRelatedTo]->Insuffisance; Sophisme existentiel-[Leverages]->Insuffisance
+4,3.3,Conclusion mathématique invalide,Erreur mathématique,4,Erreur de raisonnement,?,YES,Sophisme de la vitre cassée-[IsRelatedTo]->Erreur de raisonnement; Appel au paradoxe-[IsRelatedTo]->Erreur de raisonnement; Paradoxe de Russell-[IsRelatedTo]->Erreur de raisonnement
+4,2.3,Manipulation mentale,Influence,1,Insuffisance,?,YES,Sophisme de la motte castrale-[IsRelatedTo]->Insuffisance; Effet d'assoupissement-[Leverages]->Insuffisance; Exploiter le biais de négativité-[Leverages]->Insuffisance
+4,2.1,Technique rhétorique,Influence,1,Insuffisance,?,YES,Pensée cliché-[IsRelatedTo]->Insuffisance; Référencement pléthorique-[IsRelatedTo]->Insuffisance; Amphigouri-[Allows]->Insuffisance
+3,7.3,Ad hominem,Obstruction,2,Influence,?,YES,Argument du pathos-[Leverages]->Influence; Diabolisation-[Leverages]->Influence; Appel à la bande-[Leverages]->Influence
+3,7.2,Sabotage du débat,Obstruction,5,Abus de langage,?,YES,Restriction mentale-[Leverages]->Abus de langage; Mise en cause d’une mauvaise traduction-[Leverages]->Abus de langage; Se contenter de poser des questions-[Leverages]->Abus de langage
+3,6.3,Raisonnement biaisé,Tricherie,4,Erreur de raisonnement,?,YES,Sophisme d'une masse fixe de travail-[IsRelatedTo]->Erreur de raisonnement; Généralisation abusive-[IsRelatedTo]->Erreur de raisonnement; Hypocrisie morale-[Leverages]->Erreur de raisonnement
+3,6.3,Raisonnement biaisé,Tricherie,3,Erreur mathématique,?,YES,Biais d'économie de temps-[Leverages]->Erreur mathématique; Insensibilité à la taille de l'échantillon-[IsRelatedTo]->Erreur mathématique; Sophisme de planification-[IsRelatedTo]->Erreur mathématique
+3,1.1,Généralisation hâtive,Insuffisance,2,Influence,?,YES,Bromure-[IsRelatedTo]->Influence; Renforcement communautaire-[IsRelatedTo]->Influence; Effet Gold-[Leverages]->Influence
+2,7.3,Ad hominem,Obstruction,1,Insuffisance,?,YES,Diabolisation-[IsRelatedTo]->Insuffisance; Appel à la bande-[IsRelatedTo]->Insuffisance
+2,7.2,Sabotage du débat,Obstruction,1,Insuffisance,?,YES,Raison de la majorité-[IsRelatedTo]->Insuffisance; Justification infinie-[Leverages]->Insuffisance
+2,7.1,Refus du débat,Obstruction,5,Abus de langage,?,YES,Défaut de clarification-[Leverages]->Abus de langage; Langage idiosyncratique-[IsRelatedTo]->Abus de langage
+2,7.1,Refus du débat,Obstruction,2,Influence,?,YES,"Lavage de cerveau-[Leverages]->Influence; Plus c’est gros, plus ça passe-[Leverages]->Influence"
+2,5.3,Ambiguïté,Abus de langage,6,Tricherie,?,YES,Propagande grise-[IsRelatedTo]->Tricherie; Prêcher le faux pour savoir le vrai-[IsRelatedTo]->Tricherie
+2,5.3,Ambiguïté,Abus de langage,1,Insuffisance,?,YES,Fausse précision-[IsRelatedTo]->Insuffisance; Sophisme de la motte castrale-[Leverages]->Insuffisance
+2,3.3,Conclusion mathématique invalide,Erreur mathématique,3.3,Conclusion mathématique invalide,Erreur mathématique,no,Double compte-[IsRelatedTo]->Erreur numérique; Division par zéro-[Allows]->Pseudo démonstration d'égalité entre nombres
+2,3.3,Conclusion mathématique invalide,Erreur mathématique,1,Insuffisance,?,YES,Appel à l’abus censeur-[IsRelatedTo]->Insuffisance; Pseudo-science-[Leverages]->Insuffisance
+2,3.2,Interprétation quantitative erronée,Erreur mathématique,1,Insuffisance,?,YES,Sophisme du chausse-pied-[Leverages]->Insuffisance; Appel à la probabilité-[IsRelatedTo]->Insuffisance
+2,2.2,Appel à l'émotion,Influence,7,Obstruction,?,YES,Appel au pain et aux jeux-[Allows]->Obstruction; Appel au ton-[Leverages]->Obstruction
+2,1.3,Surinterprétation,Insuffisance,2,Influence,?,YES,Pompe à intuitions-[Leverages]->Influence; Tromperie implicite-[IsRelatedTo]->Influence
+2,1.2,Préjugé,Insuffisance,4,Erreur de raisonnement,?,YES,Appel à la Lune-[IsRelatedTo]->Erreur de raisonnement; Argument téléologique-[IsRelatedTo]->Erreur de raisonnement
 1,7.3,Ad hominem,Obstruction,6.3,Raisonnement biaisé,Tricherie,YES,Appel à la bande-[PredatesOn]->Effet de mode
 1,7.3,Ad hominem,Obstruction,5.2,Comparaison fallacieuse,Abus de langage,YES,Culpabilité par association-[Leverages]->Sophisme d'association
+1,7.2,Sabotage du débat,Obstruction,6,Tricherie,?,YES,Répondre par de mauvais arguments-[IsRelatedTo]->Tricherie
+1,7.2,Sabotage du débat,Obstruction,4,Erreur de raisonnement,?,YES,Sophisme de la double faute-[IsRelatedTo]->Erreur de raisonnement
+1,7.1,Refus du débat,Obstruction,6,Tricherie,?,YES,Appel à la censure-[IsRelatedTo]->Tricherie
 1,7.1,Refus du débat,Obstruction,5.3,Ambiguïté,Abus de langage,YES,Relativisme abusif-[Leverages]->Réification
-1,6.2,Déplacement des critères,Tricherie,6.2,Déplacement des critères,Tricherie,no,Tourner la page-[Opposes]->Attente irréaliste
+1,6.3,Raisonnement biaisé,Tricherie,7,Obstruction,?,YES,Sophisme de préjudice-[Allows]->Obstruction
+1,6.2,Déplacement des critères,Tricherie,4,Erreur de raisonnement,?,YES,Trivialisme-[IsRelatedTo]->Erreur de raisonnement
 1,6.2,Déplacement des critères,Tricherie,1.1,Généralisation hâtive,Insuffisance,YES,La pendule cassée inverse-[IsRelatedTo]->La pendule arrêtée
-1,5.1,Définition biaisée,Abus de langage,5.1,Définition biaisée,Abus de langage,no,Faux dilemme-[Inverts]->Déni du corrélatif
+1,6.1,Présentation trompeuse des faits,Tricherie,7,Obstruction,?,YES,Étouffer l’affaire-[Leverages]->Obstruction
+1,5.3,Ambiguïté,Abus de langage,4,Erreur de raisonnement,?,YES,Glissement du quantificateur-[IsRelatedTo]->Erreur de raisonnement
+1,5.3,Ambiguïté,Abus de langage,3,Erreur mathématique,?,YES,Fausse précision-[Leverages]->Erreur mathématique
+1,5.3,Ambiguïté,Abus de langage,2,Influence,?,YES,Propagande grise-[Leverages]->Influence
+1,5.2,Comparaison fallacieuse,Abus de langage,1,Insuffisance,?,YES,Comparaison incomplète-[Leverages]->Insuffisance
 1,5.1,Définition biaisée,Abus de langage,3.3,Conclusion mathématique invalide,Erreur mathématique,YES,Faux dilemme-[Mirrors]->Juste milieu
+1,4.3,Déduction invalide,Erreur de raisonnement,6,Tricherie,?,YES,Gish gallop-[IsRelatedTo]->Tricherie
+1,4.2,Composition fautive,Erreur de raisonnement,5,Abus de langage,?,YES,Suppression du quantificateur-[IsRelatedTo]->Abus de langage
+1,4.1,Causalité douteuse,Erreur de raisonnement,5,Abus de langage,?,YES,Question piège-[Leverages]->Abus de langage
+1,4.1,Causalité douteuse,Erreur de raisonnement,3,Erreur mathématique,?,YES,Sophisme du joueur-[IsRelatedTo]->Erreur mathématique
+1,3.3,Conclusion mathématique invalide,Erreur mathématique,7,Obstruction,?,YES,Appel au paradoxe-[Allows]->Obstruction
 1,3.3,Conclusion mathématique invalide,Erreur mathématique,5.1,Définition biaisée,Abus de langage,YES,Juste milieu-[Mirrors]->Faux dilemme
+1,3.3,Conclusion mathématique invalide,Erreur mathématique,2,Influence,?,YES,Statistiques manipulées-[Leverages]->Influence
+1,3.2,Interprétation quantitative erronée,Erreur mathématique,7,Obstruction,?,YES,Justification infinie-[Leverages]->Obstruction
+1,3.2,Interprétation quantitative erronée,Erreur mathématique,5,Abus de langage,?,YES,Argument de la barbe-[Leverages]->Abus de langage
+1,3.2,Interprétation quantitative erronée,Erreur mathématique,4,Erreur de raisonnement,?,YES,Hypothèse de l'homoncule-[IsRelatedTo]->Erreur de raisonnement
+1,2.3,Manipulation mentale,Influence,6,Tricherie,?,YES,Effet gaslighting-[Leverages]->Tricherie
+1,2.3,Manipulation mentale,Influence,4,Erreur de raisonnement,?,YES,Sophisme des coûts irrécupérables-[Leverages]->Erreur de raisonnement
+1,2.2,Appel à l'émotion,Influence,6,Tricherie,?,YES,Corruption-[IsRelatedTo]->Tricherie
+1,2.2,Appel à l'émotion,Influence,5,Abus de langage,?,YES,Appel à la pseudo-profondeur-[Leverages]->Abus de langage
 1,2.2,Appel à l'émotion,Influence,1.3,Surinterprétation,Insuffisance,YES,Fâcher l'adversaire-[Allows]->Appel à la colère
 1,2.2,Appel à l'émotion,Influence,1.1,Généralisation hâtive,Insuffisance,YES,Appel à l'ignorance assumée-[PredatesOn]->Ignorance délibérée
+1,2.1,Technique rhétorique,Influence,4,Erreur de raisonnement,?,YES,Antilogie-[Leverages]->Erreur de raisonnement
+1,1.3,Surinterprétation,Insuffisance,6,Tricherie,?,YES,Piège kafkaïen-[IsRelatedTo]->Tricherie
 1,1.3,Surinterprétation,Insuffisance,5.3,Ambiguïté,Abus de langage,YES,Tromperie implicite-[Leverages]->Fausse implication
 1,1.3,Surinterprétation,Insuffisance,5.1,Définition biaisée,Abus de langage,YES,Sophisme étymologique-[Denounces]->Langage idiosyncrasique
+1,1.3,Surinterprétation,Insuffisance,5,Abus de langage,?,YES,Sophisme étymologique-[Leverages]->Abus de langage
 1,1.3,Surinterprétation,Insuffisance,4.1,Causalité douteuse,Erreur de raisonnement,YES,Sophisme du sophisme-[Leverages]->Négation de l'antécédent
+1,1.2,Préjugé,Insuffisance,6,Tricherie,?,YES,Référence à une autorité douteuse-[Leverages]->Tricherie
 1,1.1,Généralisation hâtive,Insuffisance,7.1,Refus du débat,Obstruction,YES,Argument vide-[IsRelatedTo]->Portée limitée
+1,1.1,Généralisation hâtive,Insuffisance,7,Obstruction,?,YES,Tabou-[Leverages]->Obstruction
 1,1.1,Généralisation hâtive,Insuffisance,6.2,Déplacement des critères,Tricherie,YES,La pendule arrêtée-[Opposes]->La pendule cassée inverse
+1,1.1,Généralisation hâtive,Insuffisance,5,Abus de langage,?,YES,Sophisme du vrai Écossais-[Leverages]->Abus de langage
