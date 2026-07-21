@@ -3936,15 +3936,36 @@
                     fit: 0,
                     controlIconsEnabled: true,
                     minZoom: 0.15,
-                    maxZoom: 6,
+                    maxZoom: 15,
                     center: 0,
                     //contain: 1,
                     customEventsHandler: eventsHandler
                 });
 
-                //panZoomInstance.resize();
-                //panZoomInstance.fit();
-                //panZoomInstance.center();
+                // === ZOOM INITIAL LISIBLE : centrer sur la racine (restauration #829) ===
+                // Carte trop grande : le fit initial montre toute la taxo illisible. On zoome
+                // pour afficher ~2600 unites-utilisateur de hauteur autour de la racine
+                // (node id=0) => racine + familles lisibles. Additif : RESET/zoom-out revient
+                // au fit complet (comportement svg-pan-zoom inchange).
+                requestAnimationFrame(function () {
+                    try {
+                        var root = document.querySelector('#mindmap svg g.node[id="0"]');
+                        var s0 = panZoomInstance.getSizes();
+                        var targetAbs = s0.height / 2600;
+                        if (targetAbs < s0.realZoom) targetAbs = s0.realZoom;
+                        panZoomInstance.zoom(targetAbs / s0.realZoom);
+                        var s = panZoomInstance.getSizes();
+                        var cx = s.viewBox.x + s.viewBox.width / 2, cy = s.viewBox.y + s.viewBox.height / 2;
+                        if (root) {
+                            var m = (root.getAttribute('transform') || '').match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)/);
+                            var tx = m ? parseFloat(m[1]) : cx, ty = m ? parseFloat(m[2]) : cy;
+                            var bb = null; try { bb = root.getBBox(); } catch (e) {}
+                            cx = tx + (bb ? bb.x + bb.width / 2 : 0);
+                            cy = ty + (bb ? bb.y + bb.height / 2 : 0);
+                        }
+                        panZoomInstance.pan({ x: s.width / 2 - cx * s.realZoom, y: s.height / 2 - cy * s.realZoom });
+                    } catch (e) { console.error('initial focus error', e); }
+                });
 
                 // Conservez ici votre logique d'affichage de la modale
             } else {
