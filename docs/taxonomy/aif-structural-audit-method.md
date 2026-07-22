@@ -27,19 +27,59 @@ adjustments get proposed?** The answer is *yes, partly* — and this document
 frames how to do it **fairly to the tree**, without letting an automated lens
 flatten five years of deliberate nuance.
 
-## 2. Two axes of arbitrariness (jsboige's framing)
+## 2. Three axes of arbitrariness (jsboige's framing)
 
-The taxonomy carries **two distinct kinds of arbitrariness**, and only one is
-revisable:
+The taxonomy carries **three distinct kinds of arbitrariness**, and only one is
+freely revisable:
 
 | Axis | What | Status |
 |------|------|--------|
 | **A — the groupings** | The tree structure jsboige built: consolidating clusters, moving grappes, integrating large blocks (codex of cognitive biases, the mental-manipulation / psychological-games grappe). Built with, in his own words, *"as much rigour as I could, i.e. relatively little if I'm honest."* One explicit criterion, kept since the card game: **balancing the tree** — necessarily arbitrary, essentially pedagogical. | **Revisable** |
 | **B — the base material** | The fallacies *themselves* are heterogeneous objects. Some carry Latin names and 2000 years of scholastic history (*petitio principii*); others are decades-old coinages for modern phenomena (*whataboutisme*, ~30 yrs). The tree is simultaneously **a classification of argument structures AND a museum of the history of how humans named their bad arguments.** No protocol makes these commensurable. | **Irreducible** |
+| **C — the cross-linguistic tradition** | The taxonomy is authored primarily in **French**, with **English the richest** reference source; the other six languages are unevenly populated. But the divergence runs deeper than coverage: **traditions consecrated different visions across cultures, so the branches are not always aligned** — a grouping natural in one language has no clean counterpart in another. The tree is therefore a **French-anchored *projection* of a family of partially-divergent language-specific trees**, not a culture-neutral structure. | **Partly irreducible** (tradition-bound; but *which projection to privilege* is a real editorial arbitration) |
 
-**The AIF attack-type is a lens orthogonal to axis A.** A leaf can be correctly
-placed (pedagogically) under a node *and* have a different attack-mechanism than
-its siblings. **"Misgrouped under the AIF lens" ≠ "misplaced in the taxonomy."**
+**The AIF attack-type is a lens orthogonal to axes A *and* C** — it names a
+*pragmatic move*, invariant both to how a node is grouped and to which language
+named it. A leaf can be correctly placed (pedagogically) under a node *and* have a
+different attack-mechanism than its siblings: **"misgrouped under the AIF lens" ≠
+"misplaced in the taxonomy."** But that same invariance makes AIF a
+**cross-linguistic solvent**: two non-aligned consecrated labels (FR vs EN) can be
+tested for *"same fallacy?"* by comparing attack-type + scheme — so the lens does
+not merely *audit* axis A, it can **diagnose** axis C.
+
+### 2.1 The internal-node labelling constraint (straddles A and C)
+
+A self-imposed rule with a hard external teeth: **internal (grouping) nodes must be
+labelled with a consecrated term that carries an external reference** — one may not
+coin a neologism for a node just to make the tree balance. Leaves are specific
+named fallacies; internal nodes must borrow an *existing* term. Two consequences,
+both arbitrations jsboige has already had to make:
+
+- **Distorted labels** — the nearest consecrated term's scope doesn't exactly match
+  the intended cluster → the term is **stretched or narrowed**, giving the node a
+  slightly shifted meaning to align the schema.
+- **Grouping gated by lexical availability** — where no consecrated term exists for
+  a natural grouping, either the grouping isn't made, or a term is **borrowed from
+  the one language/tradition that has it**, importing that tradition's framing.
+
+This mostly lives on **axis A** (a structural/pedagogical rule), but it is
+**genuinely arbitrary** (the term must exist and be referenced) and it **surfaces
+axis C**: whether a consecrated label is even *available* is language-dependent, so
+the tree's shape is partly dictated by which culture happened to name a given
+meta-concept. **Refinement for the audit:** a distorted/compromise-labelled node
+that is *mechanism-homogeneous* is **vindicated** (the stretch was sound); one that
+is *mechanism-heterogeneous* is a candidate where the labelling constraint may have
+**forced a bad merge** — but check axis C first (below) before billing it as a
+grouping defect.
+
+### 2.2 The evidential base is uneven and decaying
+
+External anchors split by stability: **Wikipedia links are stable; fallacy-dictionary
+links are decaying** (several already dead, repointed to archive.org). The
+Wikipedia-anchored nodes are the trustworthy skeleton; dictionary-only nodes are at
+evidential risk. The audit should therefore carry **reference reachability** as
+per-node metadata — a fail-loud leaf whose only anchor is a dead dictionary link is
+a *different* diagnosis than one with a live Wikipedia anchor.
 
 ## 3. Preliminary read (ai-01 impression — to be replaced by measurement)
 
@@ -69,7 +109,7 @@ audit below:
 The point of the audit is to **replace impression with a per-node number**, and to
 be **fair to the tree** by separating tree-tension from material-resistance.
 
-For each parent node, compute two independent layers:
+For each parent node, compute three independent layers:
 
 - **(a) Attack-type heterogeneity** — distribution of `undercut`/`undermine`/`rebut`
   across the node's leaves (a homogeneity ratio or Shannon entropy). **High (a) =
@@ -78,23 +118,34 @@ For each parent node, compute two independent layers:
   scheme token** (the material resisted mechanistic modelling). This is an
   *imperfect proxy* for **material resistance** (axis B intruding). The chantier
   already records this per leaf (`native token` vs `fail-loud`, e.g. #839).
+- **(c) Cross-linguistic divergence** — do the node's leaves' cross-language
+  reference sets and labels **align**, or does the node's membership/shape shift
+  with the source language? Plus a flag: is the node's own label a
+  *distorted/compromise* consecrated term (§2.1)? **High (c) = the heterogeneity may
+  be a tradition-divergence artifact** (axis C), not a grouping defect. Weakest of
+  the three proxies today — reference-set overlap + label-distortion flag are the
+  first-pass signals; refine with human read.
 
 **Decision rule:**
 
-| (a) attack-type heterogeneity | (b) fail-loud rate | Reading | Action |
-|---|---|---|---|
-| high | low | Genuine **tree tension** — the grouping mixes mechanisms and the material is tractable | Arbitrage worth it (jsboige) |
-| any | high | **Material resistance** — axis B, the atoms are just refractory here | Leave the pedagogy alone; annotate the seam, don't regroup |
-| low | low | Node is mechanism-coherent | No action — evidence the grouping tracks mechanism |
+| (a) heterogeneity | (b) fail-loud | (c) ling. divergence | Reading | Action |
+|---|---|---|---|---|
+| high | low | low | Genuine **tree tension** — grouping mixes mechanisms, material tractable, traditions aligned | Arbitrage worth it (jsboige) |
+| high | low | **high** | **Tradition divergence** (axis C) — a cross-cultural **bridge node** whose heterogeneity does legitimate work | Annotate as a bridge; **don't flatten** — the misalignment is the tradition's, not jsboige's |
+| any | high | any | **Material resistance** (axis B) — the atoms are refractory here | Leave the pedagogy alone; annotate the seam, don't regroup |
+| low | low | any | Node is mechanism-coherent | No action — the grouping tracks mechanism |
 
 This makes the audit **only bill jsboige for what is genuinely his** (grouping
-choices), never for the irreducible messiness of the source material.
+choices), never for the irreducible messiness of the source material (axis B) or
+the divergence of traditions the tree must bridge (axis C).
 
-**Live specimen already on the table:** *tu quoque* (ancient, Latin) and
-*whataboutisme* (modern) — the **same pragmatic move at two eras** — surfaced as
-the `rebut`/CA vs `undermine`/I modelling tension in #845. The ancient/modern seam
-(axis B) reads *directly* in a modelling tension, which is exactly why layer (b) is
-needed to avoid misreading it as an axis-A defect.
+**Live specimen already on the table:** *tu quoque* (ancient, Latin, scholastic) and
+*whataboutisme* (modern, anglophone, Cold-War) — the **same pragmatic move at two
+eras *and* two traditions** — surfaced as the `rebut`/CA vs `undermine`/I modelling
+tension in #845. It is a **joint axis-B *and* axis-C seam**: the ancient/modern
+divide (B) and the Latin-scholastic / Cold-War-anglophone divide (C) both read
+*directly* in a modelling tension — exactly why layers (b) and (c) are needed to
+avoid misreading it as an axis-A grouping defect.
 
 ## 5. Governance principle (decision record)
 
@@ -118,9 +169,12 @@ needed to avoid misreading it as an axis-A defect.
 - **Down-payment ("acompte") available now:** a preliminary homogeneity read on
   the already-annotated material (145 fully-modeled + the merged clusters) — a
   first per-family homogeneity rate + the visible heterogeneous nodes — enough for
-  jsboige to sanity-check the "changes at the margin" impression on data.
+  jsboige to sanity-check the "changes at the margin" impression on data. Layers (a)
+  and (b) are computable today; **layer (c)** needs two cheap additions to the
+  chantier: **reference-reachability metadata** (Wikipedia-stable vs
+  dictionary/archive.org) and a **label-distortion flag** on internal nodes.
 - Read-only, staged, feeds the post-tag batch ratification. Companion to #497
   (crosslinks), #498 (AIF modelling), #790 (Layer-C pilot design).
 
-**Tracking issue:** the two-layer audit + acompte are tracked as a dedicated
+**Tracking issue:** the three-layer audit + acompte are tracked as a dedicated
 GitHub issue (extends #498). See #458 (coordination roadmap) for the pointer.
