@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# pre-commit hook: block accidental commit of real secrets in DNNPlatform/web.config
+#
+# Context (#131 Phase D security hardening):
+#   - DNNPlatform/web.config is git-tracked but carries PLACEHOLDERS on master
+#     (Data Source=REPLACE, validationKey="REPLACE", decryptionKey="REPLACE").
+#   - At runtime, DNN expands these placeholders to real credentials (SQL password,
+#     machineKey). The expanded file then shows as modified ("M") in git status,
+#     creating a permanent risk of accidentally committing the real password/machineKey.
+#
+# This hook is defense-in-depth: if web.config is staged and contains a REAL
+# (non-placeholder) password or machineKey, the commit is REJECTED.
+# It does NOT touch the template itself (master stays intact — load-bearing per #442).
+
+set -euo pipefail
+
+target="DNNPlatform/web.config"
+
+# Only check if web.config is staged.
+if ! git diff --cached --name-only -- "$target" | grep -q .; then
+    exit 0
+fi
+
+content=$(git show ":$target" 2>/dev/null || true)
+
+# Patterns that indicate a REAL secret (not the REPLACE placeholder).
+# Match: Password=<something that is not REPLACE/empty>, validationKey="<hex>", decryptionKey="<hex>"
+real_password=$(printf '%s' "$content" | grep -oiE 'Password=[^;"<> ]+' | grep -viE 'Password=REPLACE|Password=<<|Password=\$\{' || true)
+real_validation=$(printf '%s' "$content" | grep -oiE 'validationKey="[A-F0-9]{16,}"' || true)
+real_decryption=$(printf '%s' "$content" | grep -oiE 'decryptionKey="[A-F0-9]{16,}"' || true)
+
+if [ -n "$real_password" ] || [ -n "$real_validation" ] || [ -n "$real_decryption" ]; then
+    echo "============================================================" >&2
+    echo "  COMMIT BLOCKED: real secret detected in $target" >&2
+    echo "============================================================" >&2
+    echo "" >&2
+    echo "DNNPlatform/web.config is tracked as a PLACEHOLDER template on master." >&2
+    echo "It must keep 'Data Source=REPLACE' and 'validationKey=\"REPLACE\"' placeholders." >&2
+    echo "The runtime expands these to real credentials locally — never commit those." >&2
+    echo "" >&2
+    [ -n "$real_password" ]   && echo "  - Real SQL password pattern found" >&2
+    [ -n "$real_validation" ] && echo "  - Real machineKey validationKey found" >&2
+    [ -n "$real_decryption" ] && echo "  - Real machineKey decryptionKey found" >&2
+    echo "" >&2
+    echo "If this is intentional (e.g. adding a new placeholder pattern), review with" >&2
+    echo "a coordinator (ai-01) before overriding. To bypass ONCE (dangerous):" >&2
+    echo "    git commit --no-verify" >&2
+    exit 1
+fi
+
+exit 0
