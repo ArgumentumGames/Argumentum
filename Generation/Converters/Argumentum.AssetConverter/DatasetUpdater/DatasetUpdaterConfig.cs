@@ -34,6 +34,20 @@ public class DatasetUpdaterConfig
 
 	public string? BaseUrl { get; set; }
 
+	/// <summary>
+	/// When true, route translation calls through the OpenAI Responses API (/v1/responses) instead
+	/// of Chat Completions. Required for reasoning models (gpt-5.x), which return empty Content on
+	/// Chat Completions (budget burnt on hidden reasoning) but produce usable output on
+	/// /v1/responses with <see cref="ReasoningEffort"/> capped. Default false.
+	/// </summary>
+	public bool UseResponsesApi { get; set; }
+
+	/// <summary>
+	/// Reasoning effort for the Responses API ("minimal"|"low"|"medium"|"high"). Recommended "low"
+	/// for gpt-5.x translation tasks. Only effective when <see cref="UseResponsesApi"/> is true.
+	/// </summary>
+	public string ReasoningEffort { get; set; }
+
 	public int? MaxOutputTokens { get; set; }
 
 	public int MaxTokensPerMinute { get; set; } = 70000;
@@ -477,6 +491,8 @@ public class DatasetUpdaterConfig
 					BaseUrl = BaseUrl,
 					MaxOutputTokens = MaxOutputTokens,
 					Model = Model,
+					UseResponsesApi = UseResponsesApi,
+					ReasoningEffort = ReasoningEffort,
 					SystemPrompt = systemPrompt,
 					DialogPrompts = DialogPrompts,
 					UserPrompt = chunk,
