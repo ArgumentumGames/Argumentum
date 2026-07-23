@@ -256,3 +256,17 @@ DNNPlatform/Install/Module/*.zip
 # Large generated SVGs (regenerable via MindMapper pipeline)
 # Note: small source SVGs in Cards/ are kept
 Generation/Converters/Argumentum.AssetConverter/Mindmapper/*.svg
+
+# #141 AIF full-scale candidate sidecar — regenerable derived data
+# (python docs/taxonomy/141-aif-fullscale.py --finalize regenerates from checkpoint,
+#  no API calls). 1.3 MB; per 141-aif-fullscale-report.md it is a tmp/regenerable
+#  artifact, not source. Referenced by 7 committed docs/scripts that document the
+#  regen path. Aligns #415 (reduce .git weight) — keep local, never commit.
+docs/taxonomy/141-aif-candidates-fullscale.json
+
+# Python bytecode / cache — never commit (standard hygiene). The repo ships Python
+# tooling in tools/, docs/taxonomy/, docs/investigations/scripts/; __pycache__ is
+# machine-specific and churns. Catches the untracked docs/taxonomy/__pycache__/ etc.
+__pycache__/
+*.py[cod]
+*$py.class
