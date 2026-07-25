@@ -34,4 +34,13 @@ jobs:
         run: dotnet build "Argumentum Converters.sln" --no-restore -c ${{ matrix.configuration }}
 
       - name: Test
-        run: dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj" --no-build -c ${{ matrix.configuration }} --verbosity normal
+        # #909: the Test step was a silent no-op — Argumentum.AssetConverter.Tests.csproj was NOT in
+        # Argumentum Converters.sln, so the Build step never built it, and `--no-build` then found no
+        # assembly and exited 0 having run zero tests. Two fixes, both needed:
+        #  (1) Tests.csproj is now in the .sln (Restore/Build cover it, and the #587 NuGet audit now
+        #      scans test deps too — FluentAssertions, Playwright, xunit).
+        #  (2) `--no-build` dropped so the step is self-sufficient: if Tests is ever not built upstream,
+        #      `dotnet test` builds it (loud failure on error) instead of silently no-op'ing.
+        # Browser tests (HtmlToPngConverterTests, PdfAssemblerTests) self-install chromium in-test via
+        # Microsoft.Playwright.Program.Main("install","chromium"); no separate install step needed.
+        run: dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj" -c ${{ matrix.configuration }} --verbosity normal
