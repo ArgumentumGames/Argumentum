@@ -85,6 +85,51 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             return pngPaths;
         }
 
+        [Fact]
+        // Regression guard for #906 (UglyToad.PdfPig 1.7.0-custom-5 → official PdfPig 0.1.14 swap):
+        // PdfAuditor's PdfPig read path — PdfDocument.Open → GetPages → GetImages → RawBytes — must
+        // still execute against a real, generated PDF on the official package. A compile-only check
+        // would miss a runtime API divergence (e.g. GetImages renamed/removed); this generates a real
+        // PDF with embedded card images and runs the auditor end-to-end.
+        public async Task AuditPdf_WithGeneratedPdf_ShouldReadEmbeddedImagesViaPdfPig()
+        {
+            // ARRANGE — generate a real PDF with embedded PNG images (same path as the assembly test)
+            var generatedPngPaths = await GeneratePngsFromHtmlFiles();
+            var outputPdfPath = Path.Combine(_testOutputDir, "audited.pdf");
+            var cardImages = generatedPngPaths.Select(p => new CardImages { Front = p }).ToList();
+
+            var docConfig = new CardSetDocumentConfig
+            {
+                DocumentFormat = CardDocumentFormat.PrintAndPlay,
+                PageSize = "A4",
+                NbColumns = 3,
+                NoBack = true,
+                CardSets = new List<DocumentCardSet>
+                {
+                    new DocumentCardSet
+                    {
+                        FrontCards = new DocumentCard { WidthMM = 63, HeigthMM = 88 }
+                    }
+                }
+            };
+
+            new PdfManager().GeneratePrintAndPlay(outputPdfPath, docConfig, cardImages, true);
+            File.Exists(outputPdfPath).Should().BeTrue("the PDF must exist before auditing");
+
+            // ACT — run PdfAuditor (exercises GetPages/GetImages/RawBytes on official PdfPig 0.1.14)
+            var result = global::Argumentum.AssetConverter.PdfAuditor.PdfAuditor.AuditPdf(outputPdfPath, docConfig, cardImages);
+
+            // ASSERT — the PdfPig read path ran without an API-divergence exception, and GetImages
+            // returned the embedded card images (so RawBytes hashing was actually exercised). A clean
+            // PASS or a count mismatch are both acceptable — both prove images were read; an
+            // "unexpected error" or "found 0" would signal PdfPig 0.1.14 divergence and fail the swap.
+            var messages = string.Join("\n", result.Messages);
+            messages.Should().NotContain("unexpected error occurred during PDF audit",
+                "PdfPig 0.1.14 must support the GetImages/RawBytes path PdfAuditor relies on");
+            messages.Should().NotContain("found 0 images",
+                "PdfPig GetImages must surface the embedded card images so RawBytes is exercised");
+        }
+
         public void Dispose()
         {
             if (Directory.Exists(_testOutputDir))
