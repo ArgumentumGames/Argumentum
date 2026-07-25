@@ -1,0 +1,56 @@
+**Instructions de Traduction (DNN Rule prose — issue #684, variante EN) :**
+<!-- DRAFT — prepared ahead of the #681 (2sxc App export) artefact. Field names below follow the
+     lang-suffixed model recommended by #669 §2c/step 2 (mirroring #490). If #682 decides EAV,
+     adjust fieldName targets accordingly. The 6 prose fields (Summary/Material/Installation/
+     Content/Variants/Memo) are the 2sxc Rule content-type fields per #669 §2c. -->
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entités de prose
+de règle du site DNN d'Argumentum. Chaque entrée comporte les champs sources (français canonique) :
+- `pk` : identifiant de l'entité — ne JAMAIS le traduire ni le modifier
+- `Summary` : résumé court de la règle (1-2 phrases, HTML possible)
+- `Material` : matériel / composants nécessaires (prose, listes HTML possibles)
+- `Installation` : instructions d'installation / mise en place (prose, HTML)
+- `Content` : corps principal de la règle (prose riche, HTML)
+- `Variants` : variantes de jeu optionnelles (prose, HTML)
+- `Memo` : note / rappel (prose court)
+
+Et les champs cibles (à remplir, anglais) : `Summary_en`, `Material_en`, `Installation_en`,
+`Content_en`, `Variants_en`, `Memo_en`.
+
+Ta tâche consiste à traduire chaque champ source FR vers l'anglais, **uniquement pour les
+champs cibles vides**.
+
+1. **Function calling :** Pour chaque champ cible vide de chaque entrée, utilise un appel à la
+   fonction `UpdateRecord` avec `primaryKey` = la valeur de `pk`, `fieldName` = le nom du champ
+   cible (`Summary_en`/`Material_en`/`Installation_en`/`Content_en`/`Variants_en`/`Memo_en`),
+   `newValue` = la traduction. Émets TOUS les appels en parallel tool calls. N'écris JAMAIS de
+   texte libre. Pour N entrées × 6 champs, émets jusqu'à 6×N appels parallèles.
+
+2. **HTML préservé :** Le contenu source est du HTML riche (`<strong>`, `<em>`, `<a href>`,
+   `<ul>`/`<ol>`/`<li>`, `<p>`). Tu DOIS conserver la structure HTML à l'identique dans la
+   traduction : ne pas dropper de balise, ne pas déséquilibrer, ne pas traduire à l'intérieur des
+   noms de balise ni des attributs. Traduis uniquement le texte significatif entre les balises.
+
+3. **Placeholders OBLIGATOIRES :** Certains contenus contiennent des marqueurs de format `{0}`,
+   `{1}` (ex. plages de joueurs, décomptes). Tu DOIS conserver EXACTEMENT ces marqueurs à la
+   position équivalente dans chaque traduction. Ne pas les échapper, réordonner, ni traduire.
+
+4. **Pas de source → pas de traduction :** Si un champ source FR est vide, n'émet AUCUN appel
+   UpdateRecord pour le champ cible correspondant. Laisse le champ cible vide.
+
+5. **Style prose :** C'est de la prose de règle pédagogique — clarté, précision, ton naturel en
+   anglais. Pas de traduction mot à mot ; privilégier l'idée rendue dans un anglais idiomatique.
+   Le registre est celui d'un manuel de jeu (accessible mais rigoureux).
+
+6. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum" dans toutes les langues. Les
+   noms des familles de cartes et des sophismes nommés (proper nouns) restent dans leur forme
+   consacrée. Les plages de joueurs et décomptes suivent les conventions numériques anglaises.
+
+7. **Entités HTML :** Le contenu source peut contenir des entités HTML (ex. `&agrave;` pour "à",
+   `&eacute;` pour "é"). Traduis le caractère signifié, pas l'entité littérale.
+
+8. **Zéro contamination FR :** La traduction anglaise ne doit contenir AUCUN lexème français en
+   tête de cellule, AUCUNE phrase non traduite. Si un terme est un proper noun légitime
+   (Sherlock, Ergo sum…), sa présence est attendue — mais aucune prose française ne doit subsister.
+
+Es-tu prêt à recevoir les données ?
