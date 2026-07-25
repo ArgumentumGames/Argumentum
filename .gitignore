@@ -270,3 +270,9 @@ docs/taxonomy/141-aif-candidates-fullscale.json
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Root tmp/ scratch dir — local regenerable working files (AIF #141/#498 datasets,
+#  run logs, audit samples). ~1.3 MB; regenerable from committed scripts (e.g.
+#  docs/taxonomy/141-aif-fullscale.py, tools/498-*.py). Machine-specific scratch,
+#  never source — root-anchored (/tmp/) so a legit nested tmp/ elsewhere is unaffected.
+/tmp/
