@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="AutoMapper" Version="15.1.3" />
     <PackageReference Include="OpenAI" Version="2.10.0" />
     <PackageReference Include="CsvHelper" Version="31.0.4" />
     <PackageReference Include="dotNetRdf" Version="3.3.2" />
