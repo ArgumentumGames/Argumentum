@@ -19,11 +19,16 @@ and the full transitive closure are MIT / Apache-2.0 / MS-PL / BSD-3. No GPL, AG
 commercial dependency ships in the release binary. The AutoMapper RPL-1.5 exposure is already
 mitigated (pinned to 14.0.0, last MIT, #588/#902).
 
-**Two non-release items flagged for awareness** (§7), neither in the shipped binary:
-1. **FluentAssertions 8.5.0** (test project) — commercial Xceed license since v8.0 (2025-02). Test-only.
-2. **UglyToad.PdfPig 1.7.0-custom-5** (AssetConverter direct) — custom build, not on nuget.org, license undeclared in catalog. Real PdfPig is Apache-2.0; the `-custom-5` provenance needs confirmation.
+> **Update (post-audit, 2026-07-25):** the one direct dep that originally declared no license —
+> `UglyToad.PdfPig 1.7.0-custom-5` — has been **swapped to the official `PdfPig` 0.1.14
+> (Apache-2.0)** via #908 (issue #906), so **24/24 direct deps are now permissive**. The original
+> finding is retained in §7.2 as the audit record; the §1/§3 tables reflect the post-swap state.
 
-If both flags resolve permissively, the license gate is **PASS**.
+**One non-release item remains flagged** (§7.1), not in the shipped binary:
+1. **FluentAssertions 8.5.0** (test project) — commercial Xceed license since v8.0 (2025-02).
+   Test-only, not distributed. Separate jsboige arbitration (accept / downgrade 7.2.0 / migrate).
+
+The license gate for the **shipping binary is PASS**.
 
 ---
 
@@ -54,7 +59,7 @@ If both flags resolve permissively, the license gate is **PASS**.
 | System.Drawing.Primitives | 4.3.0 | file-url → **MIT** (MS .NET license) | True |
 | System.Linq.Dynamic.Core | 1.7.2 | Apache-2.0 | False |
 | System.Management | 8.0.0 | MIT | False |
-| UglyToad.PdfPig | 1.7.0-custom-5 | **(none — custom build, FLAG §7.2)** | False |
+| PdfPig | 0.1.14 | **Apache-2.0** ✅ (official; swapped from `UglyToad.PdfPig 1.7.0-custom-5` via #908, §7.2) | False |
 | Utf8Json | 1.3.7 | (none in catalog) → **MIT** (known, §6) | False |
 | xunit.extensibility.core | 2.8.1 | Apache-2.0 | False |
 
@@ -69,7 +74,7 @@ If both flags resolve permissively, the license gate is **PASS**.
 | Tests | Scriban | 7.2.2 | MIT | |
 | Tests | xunit | 2.9.2 | MIT/Apache-2.0 | |
 | Tests | xunit.runner.visualstudio | 2.8.2 | MIT (MS) | |
-| VisualTests | PdfPig | 0.1.14 | **Apache-2.0** (real PdfPig) | contrast with UglyToad custom, §7.2 |
+| VisualTests | PdfPig | 0.1.14 | **Apache-2.0** (real PdfPig) | now matches AssetConverter post-swap #908 |
 | VisualTests | Verify.ImageSharp | 4.4.1 | MIT | |
 | VisualTests | Verify.Xunit | 30.7.3 | MIT | |
 | CsvValidator | CsvHelper | 33.1.0 | MS-PL OR Apache-2.0 | note: differs from AssetConverter's 31.0.4 |
@@ -96,7 +101,7 @@ Full closure enumerated via `--include-transitive`. All permissive. The non-Micr
 | Sprache | 2.3.1 | MIT | |
 | VDS.Common | 2.0.0 | MIT | dotNetRdf |
 | Magick.NET.Core | 14.15.0 | Apache-2.0 | Magick.NET |
-| UglyToad.PdfPig.{Core,Fonts,Tokenization,Tokens} | 1.7.0-custom-5 | (none — custom, §7.2) | UglyToad.PdfPig |
+| PdfPig.{Core,Fonts,Tokenization,Tokens} | 0.1.14 | Apache-2.0 | PdfPig (post-swap #908; pre-swap `UglyToad.PdfPig.*` 1.7.0-custom-5 carried none, §7.2) |
 | xunit.abstractions | 2.0.3 | Apache-2.0 | |
 
 The Microsoft / `System.*` / `runtime.*` / `Humanizer.Core.*` (×50 locale satellites) transitives
@@ -155,22 +160,31 @@ Recommendation (for ai-01 synthesis, not a verdict): **downgrade or migrate** if
 an unambiguous permissive posture; **accept** if test-only usage is judged fine. Either way it does
 not block the v0.9.0 release of the pipeline binary.
 
-### 7.2 UglyToad.PdfPig 1.7.0-custom-5 — custom build, license undeclared
-The AssetConverter references `UglyToad.PdfPig 1.7.0-custom-5` — a **custom version not on nuget.org**
-(the `-custom-5` suffix). The catalog has no license expression/URL. The real PdfPig package
-(`PdfPig`, used in VisualTests at 0.1.14) is **Apache-2.0**, but a custom build's license depends on
-who built it and whether they changed terms.
+### 7.2 UglyToad.PdfPig 1.7.0-custom-5 — RESOLVED (swapped to official PdfPig via #908)
 
-For jsboige: confirm the provenance of `1.7.0-custom-5` — which feed, who published it, and that it
-inherits PdfPig's Apache-2.0. If it is a private fork of Apache-2.0 PdfPig, it remains Apache-2.0.
-If provenance is uncertain, prefer the upstream `PdfPig` package (Apache-2.0, on nuget.org).
+> **Update (2026-07-25): RESOLVED.** ai-01 hardened the provenance check (owner `grinay` — single
+> account unrelated to upstream; invented `1.7.0` version above every real release; `dotnet pack`
+> placeholder `<description>Package Description</description>`; no `projectUrl`; the official *package
+> ID* is `PdfPig` while only the *namespace* is `UglyToad.PdfPig` — the confusable-IDs trap). The swap
+> to official `PdfPig 0.1.14` (Apache-2.0, declared as an SPDX expression in the nuspec) shipped in
+> #908 (issue #906). The §1/§3 tables now reflect the post-swap state. This section is retained as the
+> audit record of the finding.
+
+**Original finding (pre-swap, audit base `a9400a6e`).** The AssetConverter referenced
+`UglyToad.PdfPig 1.7.0-custom-5` — a **custom version not on nuget.org** (the `-custom-5` suffix).
+The catalog had no license expression/URL. The real PdfPig package (`PdfPig`, used in VisualTests at
+0.1.14) is **Apache-2.0**, but a custom build's license depends on who built it and whether they
+changed terms. This was the one item that prevented the headline from reading as a clean PASS —
+fixed by swap rather than caveat, as the remediation was small (one file, two `using` lines).
 
 ## 8. Conclusion — gate status
 
-- **Shipping binary (`Argumentum.AssetConverter`):** all direct + transitive deps permissive.
-  AutoMapper/Magick/QuestPDF license-pins verified against nuspec. **License gate: PASS** (subject
-  to §7.2 PdfPig-custom provenance confirmation).
-- **Test tooling:** FluentAssertions 8.5.0 commercial — awareness item, does not ship.
+- **Shipping binary (`Argumentum.AssetConverter`):** **24/24 direct deps permissive** (MIT /
+  Apache-2.0 / MS-PL / BSD-3), full transitive closure permissive.
+  AutoMapper/Magick/QuestPDF license-pins verified against nuspec. PdfPig-custom gap closed via #908.
+  **License gate: PASS.**
+- **Test tooling:** FluentAssertions 8.5.0 commercial — awareness item, does not ship; separate
+  jsboige arbitration (§7.1).
 - **No GPL / AGPL / RPL / SSPL / proprietary** in the shipping dependency graph.
 
 This is a result, not a gap: the audit proves the gate is met, which is what we need to show at
