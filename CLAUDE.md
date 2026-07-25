@@ -178,10 +178,13 @@ Historical note (commit `d324bd3b`, Aug 2025): `SkipConfigFile = true` was *brie
 
 | Package | Version | Notes |
 |---------|---------|-------|
-| QuestPDF | 2022.12.12 | MIT free license, thread-safe issues above this |
-| Magick.NET-Q16-AnyCPU | 14.14.0 | Image processing (per-image CMYK conversion is a no-op for PNG output; CMYK for print is applied via Ghostscript post-process on the final PDFs, see #632) |
+| QuestPDF | 2022.12.12 | **Licence-pinned** — MIT free license; also thread-safe issues above this |
+| Magick.NET-Q16-AnyCPU | 14.15.0 | Image processing (per-image CMYK conversion is a no-op for PNG output; CMYK for print is applied via Ghostscript post-process on the final PDFs, see #632). Bumped from 14.14.0 via #871 (2026-07-25): 14.15.0 is the declared first-patched version for 5 advisories (4 medium + 1 low) that had accumulated against 14.14.0 — licence unchanged (Apache-2.0) |
+| AutoMapper | 14.0.0 | **Licence-pinned — do NOT bump.** 14.0.0 is the last MIT release; 15.0.0+ is RPL-1.5 / commercial dual-licensed (Lucky Penny), `requireLicenseAcceptance: true`. Decision jsboige 2026-06-23, implemented in #588 (`6caf5833`): stay MIT-pure + targeted `NuGetAuditSuppress` for GHSA-rvv3-g6hj-g44x + `MaxDepth(1)` guard in `Entities/MappingProfile.cs` (the only Profile is flat and acyclic, so the vulnerable recursion path is unreachable). No patched 14.x exists. Dependabot re-proposes 15.x periodically — close it (see #887) |
 | SkiaSharp.NativeAssets.Win32 | 2.88.6 | Required for QuestPDF |
 | Microsoft.Playwright | 1.43.0 | Browser automation |
+
+> **NuGet audit warnings surface on `restore`, not on incremental `build`.** An incremental `dotnet build` can report 0 warnings while `dotnet restore --force` reports dozens of `NU1901`/`NU1902` advisories. To check the zero-warning invariant (#587) honestly, force a restore. Advisory sets drift over time against a pinned version, so this can go red without any code change.
 
 ### Applied Corrections (Oct-Dec 2025)
 
