@@ -20,6 +20,38 @@
 
 **Why this matters** (threat model): a leaked `machineKey` lets an attacker forge DNN authentication cookies + tamper ViewState → **unauthenticated account impersonation / privilege escalation** on any DNN site using the same key. The prod site (`dnn.argumentum.myia.io`) is the target if it runs the exposed key.
 
+### 0.1 That conditional is now RESOLVED — prod does **not** run the exposed key (2026-07-25)
+
+The clause above ("*…if it runs the exposed key*") was left open when this runbook was written. It is now closed on
+evidence. `myia-web1` classified the **live prod** `web.config` (classification only — lengths + algorithm names,
+**zero values transmitted**, per the secret-safe policy at the top of this file) and the result is categorical:
+
+| attribute | **exposed** key (sandbox, `4b0297ee`) | **prod web1** key (measured) |
+|-----------|---------------------------------------|------------------------------|
+| `validationKey` length | **128 hex chars** | **40 chars** |
+| `decryptionKey` length | **64 hex chars** | **48 chars** |
+| `validation` | **HMACSHA256** | **SHA1** |
+| `decryption` | **AES** | **3DES** |
+
+**All four attributes differ.** These are not two instances sharing a key — they are keys of two different
+generations. The 40/48 + 3DES/SHA1 shape is the **legacy ASP.NET machineKey format** (validationKey 40 hex = 20
+bytes for SHA1; decryptionKey 48 hex = 24 bytes for 3DES); the sandbox used the modern AES/HMACSHA256 shape.
+Prod cannot be running the exposed key: it has neither its length nor its algorithms.
+
+**Consequence — prod is OUT OF SCOPE of this compromise remediation.** No emergency rotation, no maintenance
+window, no session invalidation on `argumentum.games`. The jsboige GO of 2026-07-24 covered the **sandbox**
+(the po-2023 box, whose key was genuinely leaked live); extending a sandbox-scoped GO to an outward-facing,
+hard-to-reverse prod action would have been unjustified — and, as measured, factually unnecessary.
+
+> **Separate item, deliberately NOT merged into the above:** SHA1 and 3DES are legacy algorithms. That is a
+> **hardening** observation, not an incident response. It belongs in a normal maintenance window with explicit
+> jsboige sign-off — **not** in a compromise-remediation action, and not while he is unreachable. Tracked as
+> backlog, not executed.
+
+**Method note worth keeping:** this was settled *without any secret crossing a wire*. Comparing lengths and
+algorithm names was sufficient to prove non-identity. When you need to answer "is this the same key?", compare
+fingerprints — never values.
+
 ---
 
 ## A. Rotation (server-side — the ONLY real fix) — do FIRST
