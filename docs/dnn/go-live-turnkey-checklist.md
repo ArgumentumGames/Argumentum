@@ -11,7 +11,28 @@
 > - **B1 (bin/ repair), B2 (sandbox upgrade + 2sxc 21), B3 (12 Razor14 templates)** — all **DONE**. DNN **10.3.2 + 2sxc
 >   21.07** are live in **full-IIS** at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0× "Something went wrong", HTTPS SAN
 >   9D80D4CC exp 2026-09-27). Stopgap `dnn.myia.io` retiré, PortalAlias 1010 droppé. ACME bypass **active in live**
->   (renew win-acme 2026-08-23). Runtime branch `dnn/sandbox-runtime-1032` (bin/ 330 files). B2.5 smoke GREEN.
+>   (renew win-acme 2026-08-23) — mechanism now **tracked** at
+>   [`DNNPlatform/.well-known/acme-challenge/web.config`](../../DNNPlatform/.well-known/acme-challenge/web.config), see
+>   note below. Runtime branch `dnn/sandbox-runtime-1032` **deleted 2026-07-25** (B1 bleed-stop, machineKey scrub —
+>   [runbook](machinekey-rotation-scrub-runbook.md)); canonical realigned bin/ = `tmp/dnn-backups/bin_post_2sxc_realign`
+>   (local, po-2023) + analysis captured in [`dnn10-migration-readiness.md`](dnn10-migration-readiness.md). B2.5 smoke GREEN.
+>
+> ### 🔐 ACME / win-acme HTTP-01 bypass — how it works (renewal due 2026-08-23)
+>
+> DNN's `web.config` routes **every** request through the ASP.NET pipeline, so win-acme's HTTP-01 challenge files
+> (extensionless, served from `/.well-known/acme-challenge/`) return 404 and **renewal fails**. The fix is a scoped
+> child `web.config` in that directory which (a) clears inherited handlers and serves the folder with
+> `StaticFileModule` only, and (b) maps the **extensionless** MIME type to `text/plain`:
+>
+> ```xml
+> <handlers><clear /><add name="ACME_StaticFile" path="*" verb="*" modules="StaticFileModule"
+>                          resourceType="File" requireAccess="Read" /></handlers>
+> <staticContent><mimeMap fileExtension="." mimeType="text/plain" /></staticContent>
+> ```
+>
+> This file is **load-bearing for certificate renewal** and is inert unless that directory is served. It previously
+> existed only on the deleted runtime branch (commit `78cd1aab`) — it is now tracked on master so a box rebuild or
+> redeploy cannot silently break the 2026-08-23 renewal.
 >
 > So the turnkey sequence below is now a **proven replay** — B1-B3 are historical record, **only B4 (prod VPS go-live
 > on myia-web1) is the remaining gated frontier.**

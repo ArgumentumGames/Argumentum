@@ -65,6 +65,19 @@ Restart-WebAppPool -Name "<DNN-app-pool-name>"
 ## B. Scrub the repository (repo hygiene, AFTER rotation A)
 
 > **Load-bearing warning**: branch `dnn/sandbox-runtime-1032` is the **migration reference** for po-2023 (bin/ 330 files, clean net48 runtime). Before **any** delete (B1), ensure its migration analysis is captured durably → see `dnn10-migration-readiness.md` (item 2 of the dispatch). **Do NOT delete before that capture + before rotation (A) is confirmed live.**
+>
+> **⚠ Second load-bearing item — found at execution time (2026-07-25), missed by the warning above.** The branch
+> carried **two** unique commits, not one:
+>
+> | Commit | Content | Disposition before B1 |
+> |--------|---------|----------------------|
+> | `4b0297ee` | sandbox runtime snapshot 10.3.2 + 2sxc 21.07 (3338 files) — **carries the exposed machineKey** | must NOT be preserved (that is the point of the scrub); analysis captured in `dnn10-migration-readiness.md`, canonical bin/ kept locally |
+> | `78cd1aab` | `DNNPlatform/.well-known/acme-challenge/web.config` (12 lines, **zero secrets**) — the win-acme HTTP-01 bypass, **load-bearing for cert renewal due 2026-08-23** | **cherry-picked to master before deletion** + mechanism documented in `go-live-turnkey-checklist.md` |
+>
+> **Generalisation**: `git log --oneline origin/master..<branch>` before any branch delete — enumerate **every** unique
+> commit and give each an explicit disposition (preserved / deliberately discarded). A branch created for one purpose
+> accumulates unrelated operational commits; "the branch is no longer needed for X" does not license discarding Y.
+> (Project rule «Consolider ≠ Archiver»: no delete without proof of preservation.)
 
 ### B.1 Bleed-stop (quick, recommended) — delete the exposed remote ref
 
