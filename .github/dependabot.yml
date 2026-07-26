@@ -7,7 +7,7 @@
 # filtered. Ceiling ~26 PR/week instead of several hundred ungrouped.
 #
 # Policy summary:
-#   1. nuget (our .NET pipeline)         -> group + ignore AutoMapper majors (license barrier #588/#887)
+#   1. nuget (our .NET pipeline)         -> group + ignore the load-bearing pins (see `ignore` below)
 #   2. npm vendored DNNPlatform trees     -> group + ignore majors (unvalidated in CI, #901)
 #   3. npm our trees (CardPen, pdf-val)   -> group + ignore majors
 #
@@ -22,6 +22,12 @@
 #
 # Escape hatch: if a CVE is ever fixable ONLY by a major on a vendored tree, drop the `ignore`
 # for that one directory here — do not merge the major bypassing this policy.
+#
+# Why the nuget `ignore` list is NOT "all majors": grouping is all-or-nothing, so one unmergeable
+# package holds the whole group hostage (#941 bundled 24 updates around 3 bad ones). The list names
+# only packages whose pin is an ALREADY-RECORDED decision — licence (#588, #905) or a documented
+# runtime coupling (CLAUDE.md "Stable Dependency Versions"). Everything else keeps flowing and gets
+# triaged on its merits. To add an entry, cite the decision; do not add one to silence a red build.
 
 version: 2
 enable-beta-ecosystems: false
@@ -42,6 +48,29 @@ updates:
       # (Lucky Penny, requireLicenseAcceptance). Pinned by decision jsboige 2026-06-23 (#588).
       # A dependabot major bump would re-propose the commercial line; ignore it at the source.
       - dependency-name: "AutoMapper"
+        update-types: ["version-update:semver-major"]
+      # QuestPDF 2022.12.12 is the last release carrying the SPDX expression `MIT`.
+      # MEASURED on the NuGet catalog (2026-07-26): 2022.12.12 -> licenseExpression "MIT";
+      # 2026.7.1 -> NO licenseExpression at all, licenseUrl = aka.ms/deprecateLicenseUrl,
+      # i.e. the embedded `<license type="file">` form. That is the exact mechanism #905
+      # flagged as invisible to expression-only scanners (same shape as FluentAssertions 8.x).
+      # The #905 release gate reads "24/24 permissive" off those expressions, so a QuestPDF
+      # bump silently removes the evidence the gate is built on. ALL update types ignored,
+      # not just majors: the pin is a licence pin, and QuestPDF uses calendar versioning.
+      # (CLAUDE.md also pins it for the thread-safety behaviour the global PDF lock assumes.)
+      - dependency-name: "QuestPDF"
+      # SkiaSharp is QuestPDF's native rendering backend and is pinned in CLAUDE.md as
+      # "Required for QuestPDF". With QuestPDF frozen at 2022.12.12, a major Skia bump
+      # (2.88.6 -> 4.150.1 was proposed in #941) moves one half of a matched pair.
+      # Minor/patch stay allowed.
+      - dependency-name: "SkiaSharp.NativeAssets.Win32"
+        update-types: ["version-update:semver-major"]
+      # Playwright 1.43.0 is pinned in CLAUDE.md. Since #911 the CI Test step actually
+      # launches real Chromium (HtmlToPngConverterTests, PdfAssemblerTests self-install the
+      # browser); 1.43.0 also carries the mirror-fallback chain that survives the
+      # playwright.azureedge.net 400s observed in CI. A major bump is a deliberate,
+      # tested operation, not a grouped drive-by.
+      - dependency-name: "Microsoft.Playwright"
         update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
