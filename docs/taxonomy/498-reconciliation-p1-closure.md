@@ -94,7 +94,7 @@ The reconciliation rests on the anchor audit (#770, merged):
 | — `undermine / I-node` | 53 |
 | — `rebut / CA-node` | 5 |
 | skos-only residual | **0** |
-| crossLink relations (#763) | 1985 (59.9% of leaves) |
+| crossLink relations (#763) | 1985 emitted, carried by 844 leaves (**59.9%** of 1408) |
 | skos Walton mappings | 70 |
 
 The attack layer now covers **all 52 rows that previously had skos without attackType**. The remaining ~1263 untyped leaves are **Layer C** (no skos at all) — see §7.
