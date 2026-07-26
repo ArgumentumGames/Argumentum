@@ -70,6 +70,23 @@ def read_template_csv(path):
     csd = doc.get("CardSetDocument") or doc
     return csd.get("csv")
 
+def read_template_csv_note(path):
+    """Return the '_csv_note' sibling marker if present, else None.
+
+    Code=truth (HarvestManager.cs:342-363): for any Face (DataSet != None and
+    SkipDataUpdate != true) the embedded 'csv' is overridden at render by the
+    DataSet source CSV, so the embedded copy is stale-by-design. The _csv_note
+    marker (subtractive, ignored by CardPen which reads 'csv'/'mustache'/'css')
+    acknowledges that staleness — its presence downgrades the audit risk to NONE.
+    See issue #812 + PRs #813 (audit) / #815 (markers landed on master)."""
+    try:
+        with open(path, encoding="utf-8-sig") as f:
+            doc = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+    csd = doc.get("CardSetDocument") or doc
+    return csd.get("_csv_note")
+
 def read_source_csv(path):
     """Read raw CSV file content as text (preserve encoding BOM + CRLF)."""
     try:
@@ -230,6 +247,16 @@ def main():
                     "risk": "REVIEW",
                     "note": "template sans clé 'csv' (non-CardPen ?)",
                     "reason": "no csv key"})
+                continue
+            csv_note = read_template_csv_note(tmpl_path)
+            if csv_note:
+                counts["risk-NONE"] += 1
+                findings.append({**base,
+                    "risk": "NONE",
+                    "reason": "ignored via _csv_note marker (STALE acknowledged, overridden at runtime by DataSet)",
+                    "note": f"_csv_note present — render truth = DataSet CSV (HarvestManager.cs:363); embedded csv is dead at render",
+                    "csv_note": csv_note,
+                })
                 continue
             summary = diff_samples(src_text, tmpl_csv)
             src_stats = stats_for_csv(src_text)
