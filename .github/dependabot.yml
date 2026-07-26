@@ -1,7 +1,10 @@
 # Dependabot configuration for ArgumentumGames/Argumentum
 #
 # Authored by po-2024 (tick 113), dispatched by ai-01 (`3zhzkb`).
-# OPEN AS A PR — NOT merged. Deliberate jsboige arbitration on scope (see PR body).
+# Merged in #910. Scope arbitrated by jsboige 2026-07-26 (interactive): option A —
+# "surveiller, groupé + ignore-major" on the 26 vendored 2sxc/DNN npm trees. They stay
+# under dependabot surveillance (security patches/minors keep arriving); only majors are
+# filtered. Ceiling ~26 PR/week instead of several hundred ungrouped.
 #
 # Policy summary:
 #   1. nuget (our .NET pipeline)         -> group + ignore AutoMapper majors (license barrier #588/#887)
@@ -13,8 +16,12 @@
 # module trees, e.g. loader-utils x5). `groups` turns N-per-dir into 1-per-dir.
 #
 # Why ignore-major on npm vendored: a major bump edits package.json in a tree that nothing
-# in CI builds or consumes (#901 - webpack-dev-server 5->6 in Bootstrap 4 Instant). Patch/minor
-# are lockfile-only and are merged per precedent #120.
+# in CI builds or consumes (#901 - webpack-dev-server 5->6 in Bootstrap 4 Instant; that PR was
+# closed out-of-policy under this very rule). Patch/minor are lockfile-only and are merged
+# per precedent #120.
+#
+# Escape hatch: if a CVE is ever fixable ONLY by a major on a vendored tree, drop the `ignore`
+# for that one directory here — do not merge the major bypassing this policy.
 
 version: 2
 enable-beta-ecosystems: false
