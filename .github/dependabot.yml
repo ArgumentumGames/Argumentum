@@ -28,6 +28,11 @@
 # only packages whose pin is an ALREADY-RECORDED decision — licence (#588, #905) or a documented
 # runtime coupling (CLAUDE.md "Stable Dependency Versions"). Everything else keeps flowing and gets
 # triaged on its merits. To add an entry, cite the decision; do not add one to silence a red build.
+#
+# The `labels:` below reference nuget / npm / vendored, which did NOT exist in the repo until
+# 2026-07-27 — dependabot posted a "labels could not be found" comment on every PR it opened
+# (#941, #945 and the 26 npm ones). The labels now exist; do not delete them without also
+# editing this file, or the noise comes back on every future PR.
 
 version: 2
 enable-beta-ecosystems: false
@@ -62,7 +67,10 @@ updates:
       # SkiaSharp is QuestPDF's native rendering backend and is pinned in CLAUDE.md as
       # "Required for QuestPDF". With QuestPDF frozen at 2022.12.12, a major Skia bump
       # (2.88.6 -> 4.150.1 was proposed in #941) moves one half of a matched pair.
-      # Minor/patch stay allowed.
+      # Minor/patch stay allowed -- DELIBERATELY. #945 delivered 2.88.6 -> 2.88.9, a patch
+      # inside the 2.88.x line QuestPDF 2022.12.12 links against; that is the pin working as
+      # intended, not a leak. Do not widen this entry to all update types by analogy with
+      # Playwright below: the two cases differ in the package's versioning, not in our intent.
       - dependency-name: "SkiaSharp.NativeAssets.Win32"
         update-types: ["version-update:semver-major"]
       # Playwright 1.43.0 is pinned in CLAUDE.md. Since #911 the CI Test step actually
@@ -70,8 +78,39 @@ updates:
       # browser); 1.43.0 also carries the mirror-fallback chain that survives the
       # playwright.azureedge.net 400s observed in CI. A major bump is a deliberate,
       # tested operation, not a grouped drive-by.
+      #
+      # ALL update types, and the reason is MEASURED, not stylistic: this entry used to read
+      # `update-types: ["version-update:semver-major"]`, which is a NO-OP for this package.
+      # Microsoft.Playwright has never left the 1.x line (1.0 -> 1.61 as of 2026-07), so a
+      # semver-major update cannot fire, ever. #945 duly proposed 1.43.0 -> 1.61.0 as a MINOR
+      # and the filter let it through -- the pin was decorative. Found by po-2024's review on
+      # #945 and confirmed firsthand against the PR's package delta.
+      # Lesson worth keeping: an ignore entry is only as strong as the package's versioning
+      # scheme. "Ignore majors" protects nothing on a project that never bumps its major.
       - dependency-name: "Microsoft.Playwright"
+      # OWLSharp / OWLSharp.Extensions 4.x -> 5.x breaks the build, MEASURED on #945:
+      # 10 compile errors, all in Ontology/OwlAdapter.cs, all of the shape
+      #   CS1503: cannot convert from 'RDFSharp.Model.RDFResource'
+      #                           to 'OWLSharp.Ontology.OWLNamedIndividual'
+      # SKOSHelper (from `using OWLSharp.Extensions.SKOS`) changed its signatures in 5.0.0.
+      # The five call sites are wrapped in try/catch with annotation-scan fallbacks, but those
+      # guard RUNTIME, not COMPILE -- the build never reaches the 638 tests.
+      #
+      # This entry is NOT "silencing a red build" (the bar at the top of this file forbids
+      # that): OWLSharp was deliberately left unpinned in #942/#943 as "a major to test on its
+      # merits after the tag". #945 ran that test. The result is "needs an API migration",
+      # recorded as issue #946 with its DoD (regenerate the OWL and match 1408 concepts /
+      # 59.9% crosslinks / 5.07 MB; keep the fallbacks; drop this ignore in the same PR).
+      # The pin is the corollary of that scheduled work, not a substitute for it.
+      - dependency-name: "OWLSharp"
         update-types: ["version-update:semver-major"]
+      - dependency-name: "OWLSharp.Extensions"
+        update-types: ["version-update:semver-major"]
+      # NOT pinned, on purpose: dotNetRdf. The #945 review first attributed the OwlAdapter
+      # break to dotNetRdf 3.3.2 -> 3.5.2; re-measured, that is wrong. dotNetRdf supplies
+      # VDS.RDF (parsing, used elsewhere in the same file), its bump is a MINOR, and
+      # RDFSharp.RDFResource is the type our code PASSES, not the one that moved. Pinning it
+      # would have been an over-pin bought on a mis-attribution.
     commit-message:
       prefix: "chore(deps)"
       include: "scope"
