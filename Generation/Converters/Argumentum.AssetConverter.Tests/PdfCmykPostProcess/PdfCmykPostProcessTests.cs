@@ -34,8 +34,14 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
         [Fact]
         public void GetEnabled_is_release_only_by_default()
         {
+            // Force the build mode explicitly instead of relying on the compiled #if DEBUG flag
+            // (AssetConverterConfig.isInDebugMode). The CI Test matrix runs BOTH Debug and Release
+            // configurations (#909), so a test that depends on the assembly being Debug-built would
+            // pass in one matrix leg and fail in the other. Forcing ForceDebugParams/ForceReleaseParams
+            // makes the assertion deterministic under both — the contract under test is the DEFAULT
+            // pair (EnabledDebug=false, EnabledRelease=true), not which way the test host compiled.
             var config = new PdfCmykPostProcessConfig();
-            var debugConfig = new AssetConverterConfig(); // isInDebugMode=true under Debug tests
+            var debugConfig = new AssetConverterConfig { ForceDebugParams = true };
             var releaseConfig = new AssetConverterConfig { ForceReleaseParams = true };
 
             // Default pair: EnabledDebug=false, EnabledRelease=true → OFF in Debug, ON in Release.
