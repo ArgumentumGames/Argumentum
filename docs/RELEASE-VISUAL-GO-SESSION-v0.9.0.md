@@ -83,6 +83,11 @@ correct dans une écriture qu'on ne lit pas). Référence rapide :
 
 ## §4 — Known-issues à NE PAS signaler comme régressions
 
+> ⚠️ **Deux lignes de ce tableau sont périmées** (SVG Virtues FR-seulement, titre « English Channel »).
+> Elles sont laissées telles quelles — c'est un compte-rendu de session — mais **lire l'[Addendum de
+> vérification post-session](#addendum--vérification-post-session-2026-07-28) avant de s'en servir**,
+> en particulier pour la relecture T&A (#802).
+
 | Symptôme | Cause | Action |
 |----------|-------|--------|
 | Tofu □ sur CJK/AR dans votre viewer | **font du viewer**, pas l'asset | ouvrir dans Acrobat/Sumatra ; ne pas signaler |
@@ -104,6 +109,37 @@ scope/couplage. Reco po-2023 en italique (cf [dossier §8](RELEASE-VALIDATION-v0
 | **(b)** | **Mnémoniques Virtues** (#654) — 20 rows mnémoniques Latin (pks 106-127) | (A) no-op · (B) keep-Latin scope title-only · global (53 cells Latin) | *B keep-Latin — acté jsboige, script #695 `--apply` gated post-tag* |
 | **(c)** | **Titre PT « Roll of the English Channel »** (§3.6) — confirmer visuellement si toujours présent (cf §4) | (i) **block le tag** (attendre fix PT) · (ii) **fast-follow post-tag** | *(ii) fast-follow — 1 carte/1 langue, non-bloqueur print* |
 | **(d)** | **Couplage go-live DNN** — tagger v0.9.0 assets-only maintenant, ou aligner au go-live DNN multilingue | (i) tag immédiat (assets-only) · (ii) attendre portage i18n site (#669/#674) + go-live DNN | *(i) tag assets-only — DNN prod go-live = ops VPS jsboige, séparé ; migration full-IIS déjà LIVE en recette* |
+
+---
+
+## Addendum — vérification post-session (2026-07-28)
+
+*Ajouté par ai-01 après re-mesure sur master `edf7962b`. **Aucune ligne ci-dessus n'a été modifiée** :
+un compte-rendu de session se complète, il ne se réécrit pas. Cet addendum dit seulement ce qui,
+depuis, s'avère faux ou résolu.*
+
+**(a) « SVG Virtues `.content.svg` FR seulement (pas i18n) » — la prémisse était déjà fausse le jour
+de la session.** Les `.content.svg` Virtues existent en **8/8 langues**, committés le **2026-07-06** par
+`204adc47` (fr/en/ru/pt + es) et `9f524464` (ar/fa/zh) — soit **8 jours avant** la session du 14/07.
+Le contenu est réellement localisé, vérifié fichier par fichier : libellés distincts en FR/EN/PT/ES
+(« Argument valable » / « Valid argument » / « Argumento válido » / « Argumento válido »… avec des
+tailles de 422 à 450 ko qui diffèrent par langue), et scripts natifs en masse ailleurs — RU 40 066
+glyphes cyrilliques, AR 23 980, FA 25 576, ZH 10 189 sinogrammes. **Conséquence** : l'arbitrage (a) de
+§5 portait sur un manque déjà comblé, et la ligne correspondante de §4 ne doit pas être présentée à
+T&A comme une *known-limitation* — un relecteur y lirait une limite qui n'existe pas, ou pire,
+ne regarderait pas les SVG localisés.
+
+**(c) « Titre PT “Roll of the English Channel” » — résolu.** La chaîne `English Channel` est **absente
+de tout `Cards/`** ; le cover EN porte « The school of liars » depuis **#803** (`7e72f3e5`), dont le
+titre de commit porte explicitement `#134 v0.9.0 BLOCK`. Le PT était déjà corrigé par #306
+(« A Escola dos Mentirosos »), comme §6 le note d'ailleurs — §4 et §6 se contredisaient sur ce point.
+
+**Ce que cela change pour le tag.** Les conditions énoncées dans
+[#458#issuecomment-4969793720](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-4969793720)
+étaient : *(c) cover fix mergé + (a) Virtues SVG 8-lang + review humaine T&A PASS + go-live DNN prêt +
+régén 8-lang finale + verdict QA ai-01*. **(a) et (c) sont acquises** — aucune des deux n'était marquée
+comme telle nulle part, ce qui faisait paraître le gate plus lourd qu'il ne l'est. Restent **quatre**
+conditions : T&A (#802), go-live DNN, régénération 8 langues finale, verdict QA ai-01 final.
 
 ---
 
