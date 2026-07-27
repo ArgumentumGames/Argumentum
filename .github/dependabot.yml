@@ -54,6 +54,16 @@ updates:
       # A dependabot major bump would re-propose the commercial line; ignore it at the source.
       - dependency-name: "AutoMapper"
         update-types: ["version-update:semver-major"]
+      # FluentAssertions 7.2.2 is the LAST Apache-2.0 release; 8.0+ flips to a commercial
+      # Xceed licence (the exact invisible-to-expression-scanner shape #905 flagged, same as
+      # QuestPDF below). #949 proposed 8.10.0 and would have shipped the commercial line inside
+      # a grouped bump. Pinned by ai-01's #949 disposition (licence-purity, same basis as the
+      # AutoMapper pin #588 and the PdfPig swap #908). semver-major only: 7.2.x Apache patches
+      # keep flowing; only the 7->8 commercial jump is blocked. The 8.5.0 -> 7.2.2 downgrade
+      # ships in the same PR as this entry (ai-01: "la séquence importe" -- pinning before
+      # downgrading would freeze the commercial version).
+      - dependency-name: "FluentAssertions"
+        update-types: ["version-update:semver-major"]
       # QuestPDF 2022.12.12 is the last release carrying the SPDX expression `MIT`.
       # MEASURED on the NuGet catalog (2026-07-26): 2022.12.12 -> licenseExpression "MIT";
       # 2026.7.1 -> NO licenseExpression at all, licenseUrl = aka.ms/deprecateLicenseUrl,
