@@ -24,9 +24,11 @@ mitigated (pinned to 14.0.0, last MIT, #588/#902).
 > (Apache-2.0)** via #908 (issue #906), so **24/24 direct deps are now permissive**. The original
 > finding is retained in §7.2 as the audit record; the §1/§3 tables reflect the post-swap state.
 
-**One non-release item remains flagged** (§7.1), not in the shipped binary:
-1. **FluentAssertions 8.5.0** (test project) — commercial Xceed license since v8.0 (2025-02).
-   Test-only, not distributed. Separate jsboige arbitration (accept / downgrade 7.2.0 / migrate).
+> **Update (2026-07-27): the last flagged item is closed too.** The one non-release flag —
+> `FluentAssertions 8.5.0`, commercial Xceed — was arbitrated by jsboige (**downgrade to the last
+> Apache-2.0 release**) and **implemented on master** in #955 (`6d0bfda9`): 7.2.2 + a semver-major
+> `ignore` in the same PR. §7.1 is retained as the audit record. **Zero flagged items remain**,
+> shipping or otherwise.
 
 The license gate for the **shipping binary is PASS**.
 
@@ -68,7 +70,7 @@ The license gate for the **shipping binary is PASS**.
 | Project | Package | Version | License | Notes |
 |---------|---------|---------|---------|-------|
 | Tests | coverlet.collector | 6.0.2 | MIT | |
-| Tests | FluentAssertions | 8.5.0 | **commercial (Xceed) — FLAG §7.1** | test-only, not shipped |
+| Tests | FluentAssertions | 7.2.2 | Apache-2.0 | downgraded from 8.5.0 commercial via #955 — see §7.1 |
 | Tests | Microsoft.NET.Test.Sdk | 17.12.0 | MIT (MS) | |
 | Tests | Microsoft.Playwright | 1.43.0 | MIT | |
 | Tests | Scriban | 7.2.2 | MIT | |
@@ -123,7 +125,9 @@ All three nuspec values match the #902 documentation. No divergence.
 imply a non-permissive license. All of these are permissive:
 OpenAI, CsvHelper, SkiaSharp.NativeAssets.Win32, Spectre.Console, Spectre.Console.Json,
 System.ComponentModel.TypeConverter, System.Drawing.Primitives, NetTopologySuite, Google n/a.
-Plus **FluentAssertions 8.5.0** (this one IS commercial — see §7.1).
+(**FluentAssertions** used to be listed here as the one commercial exception; since #955 master
+carries 7.2.2, whose nuspec carries **no `requireLicenseAcceptance` element at all** — NuGet's
+default is `false` — against `true` on 8.5.0. Measured 2026-07-27; see §7.1.)
 
 ## 6. `type="file"` licenses (the SPDX angle-matter)
 
@@ -143,17 +147,38 @@ Catalog-gap (no expression, resolved by known license): `Utf8Json 1.3.7` (MIT, n
 
 ## 7. To arbitrate (flagged)
 
-### 7.1 FluentAssertions 8.5.0 — commercial (Xceed), test-only
+### 7.1 FluentAssertions 8.5.0 — RESOLVED (downgraded to 7.2.2 Apache-2.0 via #955)
+
+> **Update (2026-07-27): RESOLVED.** jsboige arbitrated **downgrade** (of the three options below).
+> Implemented on master in #955 (`6d0bfda9`): `8.5.0 → 7.2.2` in `Tests.csproj` **plus** a
+> semver-major `ignore` entry in `dependabot.yml` **in the same PR** — pinning before downgrading
+> would have frozen the commercial version. 7.2.x Apache patches keep flowing; only the 7→8 jump is
+> blocked. Baseline held at 638/0/5 in **both** matrix legs, 0 warnings, no assertion weakened.
+>
+> **Correction of this section's own figure:** it named **7.2.0** as "last Apache-2.0". Measured on
+> the restored nuspecs 2026-07-27, the last Apache-2.0 release is **7.2.2** — that is what shipped.
+>
+> | version | `<license>` | `<licenseUrl>` | `<authors>` |
+> |---|---|---|---|
+> | **7.2.2** | `type="expression"` → `Apache-2.0` | `licenses.nuget.org/Apache-2.0` | Dennis Doomen, Jonas Nyrup |
+> | 8.5.0 | `type="file"` → `LICENSE` | `aka.ms/deprecateLicenseUrl` | Dennis Doomen, Jonas Nyrup, **Xceed** |
+>
+> The commercial takeover is legible in the **authorship line**, not only in the licence: `Xceed`
+> joins `<authors>` at 8.x. A scanner reading only SPDX expressions sees *nothing* on 8.5.0 — the
+> field is simply absent — which is the same blind spot §6 documents for QuestPDF.
+
+**Original finding (pre-downgrade, audit base `a9400a6e`).**
 FluentAssertions moved to a **commercial / proprietary license under Xceed** as of v8.0.0
 (2025-02). The nuspec confirms the pattern: `licenseExpression` absent, `type="file"` license URL,
 `requireLicenseAcceptance=true` — the exact `type="file"` angle-matter that hides from SPDX-only
 scanners. **It is referenced only by `Argumentum.AssetConverter.Tests`** — it does not ship in the
 release binary or the pipeline output.
 
-Options for jsboige:
+Options for jsboige (**arbitrated: downgrade** — retained as the record of what was weighed):
 - **Accept** — it is test-only, not distributed; the commercial term binds redistribution/use of
   FluentAssertions itself, not our test results. Many teams accept this for internal test runners.
-- **Downgrade** to 7.2.0 (last Apache-2.0 release) — restores a permissive license.
+- **Downgrade** to the last Apache-2.0 release — restores a permissive license. ✅ **CHOSEN**
+  (measured target: 7.2.2, not the 7.2.0 originally written here).
 - **Migrate** to an alternative (Shouldly, plain xunit asserts).
 
 Recommendation (for ai-01 synthesis, not a verdict): **downgrade or migrate** if the project wants
@@ -183,8 +208,12 @@ fixed by swap rather than caveat, as the remediation was small (one file, two `u
   Apache-2.0 / MS-PL / BSD-3), full transitive closure permissive.
   AutoMapper/Magick/QuestPDF license-pins verified against nuspec. PdfPig-custom gap closed via #908.
   **License gate: PASS.**
-- **Test tooling:** FluentAssertions 8.5.0 commercial — awareness item, does not ship; separate
-  jsboige arbitration (§7.1).
+- **Test tooling:** **also clean since 2026-07-27.** FluentAssertions was the single commercial
+  item; jsboige arbitrated downgrade and #955 (`6d0bfda9`) landed 7.2.2 (Apache-2.0) with a
+  semver-major pin. Across the surface this audit covers — the 24 direct deps of the shipping
+  binary plus their transitive closure (§1/§2), and the direct deps of the test project (§3) —
+  **no commercial or copyleft dependency remains**. The gate no longer carries an "awareness
+  item" caveat (§7.1); §7 now holds two RESOLVED records and nothing open.
 - **No GPL / AGPL / RPL / SSPL / proprietary** in the shipping dependency graph.
 
 This is a result, not a gap: the audit proves the gate is met, which is what we need to show at
