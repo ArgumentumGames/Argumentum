@@ -105,6 +105,16 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 		//       backoff (fast path, no accidental stall);
 		//   (b) backoff > 0 with 3 attempts (2 inter-attempt delays) → elapsed >= 2*backoff.
 		//   The margin is generous to stay robust on a loaded CI box.
+		//
+		//   (b) asserts a LOWER bound only, deliberately. An upper bound on wall-clock is not
+		//   the contract of a backoff — "the delay was applied" is. It used to also assert
+		//   elapsed <= 2*backoff + 2000ms, which made the test flaky the moment CI began
+		//   running tests for real (#911): measured 2026-07-26, this test took 3 s and failed
+		//   the 2 240 ms bound on PRs #928/#935 while 24 sibling runs passed — 26 dependabot
+		//   runs firing inside 5 minutes contend for the runner, and the diffs in question
+		//   touched only vendored npm lockfiles, so no production code could be implicated.
+		//   Do not restore an upper bound here: a bigger number only moves the load level at
+		//   which it lies. The lower bound still fails hard if the backoff is skipped.
 		// ─────────────────────────────────────────────────────────────────────────────
 		[Fact]
 		public async Task BackoffZero_DoesNotDelay()
@@ -143,8 +153,8 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 			// 3 attempts => 2 inter-attempt delays => >= 2 * backoff.
 			sw.Elapsed.Should().BeGreaterThanOrEqualTo(TimeSpan.FromMilliseconds(2 * 120 - 30),
 				"two inter-attempt delays of {0} must be applied", backoff);
-			// Generous upper bound to stay robust on a loaded box.
-			sw.Elapsed.Should().BeLessThanOrEqualTo(TimeSpan.FromMilliseconds(2 * 120 + 2000));
+			// No upper bound: see the note above (a) / (b). Runner contention is not a defect
+			// of RetryAsync, and an upper bound cannot distinguish the two.
 		}
 
 		// ─────────────────────────────────────────────────────────────────────────────
