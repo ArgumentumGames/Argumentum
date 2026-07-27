@@ -58,7 +58,12 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
             offEverywhere.GetEnabled(releaseConfig).Should().BeFalse("EnabledRelease=false overrides build mode");
 
             var onInDebug = new PdfCmykPostProcessConfig { EnabledDebug = true };
-            var debugConfig = new AssetConverterConfig();
+            // Force Debug build mode explicitly (see GetEnabled_is_release_only_by_default above):
+            // a bare `new AssetConverterConfig()` resolves to Release under a Release-built assembly,
+            // so GetEnabled returns EnabledRelease (default true) and the assertion passes vacuously —
+            // never exercising the EnabledDebug path the test name promises. ForceDebugParams makes
+            // the assertion actually assert on the Debug/EnabledDebug contract under both matrix legs.
+            var debugConfig = new AssetConverterConfig { ForceDebugParams = true };
             onInDebug.GetEnabled(debugConfig).Should().BeTrue("EnabledDebug=true enables it in Debug");
         }
 
