@@ -43,4 +43,11 @@ jobs:
         #      `dotnet test` builds it (loud failure on error) instead of silently no-op'ing.
         # Browser tests (HtmlToPngConverterTests, PdfAssemblerTests) self-install chromium in-test via
         # Microsoft.Playwright.Program.Main("install","chromium"); no separate install step needed.
+        #
+        # VisualTests (Argumentum.AssetConverter.VisualTests.csproj) is DELIBERATELY EXCLUDED from CI:
+        # it is a local QA harness that runs AFTER the pipeline, against a populated Target/ (9 000+ PNGs,
+        # 5.30 GB) that a fresh CI runner does not have. Adding it would fail every run (no Target/), and
+        # filtering it with continue-on-error would fabricate a green check over tests that ran zero
+        # assertions — the #909 vert-pour-mauvaise-raison, in a separate project. Its cold-start guards
+        # fail loudly (Assert.Fail) so the harness is never mistaken for coverage when run locally.
         run: dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj" -c ${{ matrix.configuration }} --verbosity normal
