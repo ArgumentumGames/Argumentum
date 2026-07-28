@@ -86,15 +86,17 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 | en | 5 | préservés |
 | ru | 5 | préservés |
 | pt | 5 | refresh contenu (#565) |
-| **es** | **3** | **nouveau** (#565) |
-| **ar** | **3** | **nouveau, RTL** |
-| **fa** | **3** | **nouveau, RTL** |
-| **zh** | **3** | **nouveau, CJK — 5.45 MB (5 451 309 bytes, `Fallacies_zh.svg` régén 2026-06-25 byte-proven, glyphes denses)** |
+| **es** | **5** | **nouveau** (#565) |
+| **ar** | **5** | **nouveau, RTL** |
+| **fa** | **5** | **nouveau, RTL** |
+| **zh** | **5** | **nouveau, CJK — 5.45 MB (5 451 309 bytes, `Fallacies_zh.svg` régén 2026-06-25 byte-proven, glyphes denses)** |
+
+> *(Rectification 2026-07-28)* : les counts es/ar/fa/zh ci-dessus étaient notés **3** — c'est **5** chacun, mesurés `git ls-files "Cards/Fallacies/Mindmaps/{lang}/*.svg" | wc -l` sur master `3094d42c` (fr 6 / en 5 / ru 5 / pt 5 / es 5 / ar 5 / fa 5 / zh 5). Les 3 notés dataient de la baseline initiale #565 (content + links + un fragment) ; les 2 supplémentaires (`.content.svg` + `.links.svg` par langue) sont entrés avec les Virtues native-script (#665/#715/#724/#686).
 
 - Moteur : **FreeMind 1.0.1 + Batik** (haute fidélité, décision #184 — fallback XSLT retiré).
 - **Reproductibilité byte-proven** (régên 8-lang 2026-06-24, RDP jsboige, exit 0) : `Fallacies_zh.svg` committed = fresh = 5 451 309 B (`cmp` IDENTICAL byte-for-byte). La baseline #565 se reproduit fidèlement → le moteur FreeMind/Batik est **stable, pas flaky** (mitige le risque §7 « régén non reproduite » pour le volet MindMap).
 - Validation technique ai-01 (source-level) : contenu Unicode authentique par langue (0 fallback FR), géométrie d'arbre quasi-identique, `font-family='Tahoma'` arabe-capable, racines correctes (`السفسطة` pour ar). **PASS technique.**
-- ⚠️ **Gap structurel mineur (non-bloquant v0.9.0)** : les Virtues `.content.svg` sont **FR-figés** (le post-processing localise Fallacies mais fige le contenu Virtues en FR — même comportement que la baseline). Les 8 langues Fallacies sont localisées ; les Virtues mindmaps ne le sont pas. Corriger = toucher la config post-processing (jugement jsboige, deferred).
+- ~~⚠️ **Gap structurel mineur (non-bloquant v0.9.0)** : les Virtues `.content.svg` sont **FR-figés**~~ — ✅ **RÉSOLU** (rectification 2026-07-28) : les `Argumentum_Virtues_MindMap_{lang}.content.svg` sont **native-script 8/8 langues**, committés sous `Cards/Fallacies/Mindmaps/{lang}/` via #665/#715/#724/#686 (commit `9f524464`). Preuve distincte — tailles par langue toutes différentes, mesurées `git cat-file -s` sur master `3094d42c` : fr 431 931 / en 418 954 / ru 485 254 / pt 446 948 / es 432 142 / ar 461 859 / fa 461 654 / zh 1 148 677 B ; un clone FR-figé ferait ~431 931 partout (zh 1,15 Mo = glyphes CJK denses, manifestement natif). C'est la **prémisse jumelle** de #636 (CLOSED 2026-07-06), fausse pour la même raison. *(Diagnostic historique : le wrapper HTML `Argumentation_Virtues_{lang}.html` reste stale pré-#665, mais c'est un artefact de sortie, pas les `.content.svg` — voir `docs/investigations/2026-07-28-release-validation-v0.9.0-audit.md` défaut 1.)*
 - ⚠️ **Validation pixel RTL/CJK = À CONFIRMER jsboige** (eyeball `Fallacies_ar.svg` / `Fallacies_zh.svg`). Le pixel-RTL est figé en coordonnées absolues dans le SVG ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset.
 
 ### 3.3 PDFs — 8 langues (✅ bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS)
@@ -141,12 +143,12 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 - CVE : 9.13.x ferme **0** CVE ; cible minimale pour les 2 CVE = 10.1.2 (pragmatique 10.3.2 avant falaise 2sxc @10.2.0).
 - ⚠️ **Couplé à la release** (décision #4) → statut DNN = **gate de publication**. Audit prep non-destructif po-2023 (idle lane) — pas d'upgrade destructif sans GO jsboige.
 
-### 3.6 Finding — Titre Rules PT mistranslé (⚠️ appel à décision jsboige)
+### 3.6 Finding — Titre Rules PT « Roll of the English Channel » (✅ n'a jamais pu atteindre une carte — résolu)
 
-- **Symptôme** (ai-01, 2026-07-01 20:55) : PT Tarot page 4 affiche le titre **« Roll of the English Channel »** (anglais + faux) au-dessus d'un corps PT correct.
-- **Root cause** : homonyme « Manche » (un *round* de jeu → La Manche géographie). **Contenu CSV source** (pas lane harvest) : 5 occurrences dans les 2 Rules CSV ; « Round Sequence » (correct) = 0×. EN/RU rendent correctement, **PT surface l'anglais cassé**.
-- **Statut** : fix prep dispatché à po-2024 (traduction PT native + clean orphelins EN/RU), **PR GATED jsboige**. Non-bloqueur géométrie/print (1 titre, 1 carte, 1 langue).
-- **→ appel à décision jsboige** : block le tag v0.9.0 (attendre le fix PT) ou fast-follow post-tag ?
+- **Symptôme rapporté** (ai-01, 2026-07-01 20:55) : PT Tarot page 4 afficherait le titre **« Roll of the English Channel »** (anglais + faux) au-dessus d'un corps PT correct.
+- **Root cause d'origine** : homonyme « Manche » (un *round* de jeu → La Manche géographie), « Round Sequence » (correct) = 0×.
+- **Statut — ✅ RÉSOLU (rectification 2026-07-28)** : `git grep "English Channel" -- Cards/` rend **0 occurrence** sur master `3094d42c`. Le défaut **n'a jamais pu atteindre une carte** : la source de rendu (`Argumentum Rules - Cards.csv`, #640 `2079f0cc`) ne l'a jamais portée. La trace résiduelle résidait dans une **clé `csv` embarquée** dans les templates JSON — mais cette clé est **ignorée** à l'exécution : `HarvestManager.cs` l'écrase par le contenu CSV réel (`cardSetDocumentWrapper.CardSetDocument.csv = csvContent`). La correction #803 (`7e72f3e5`) a nettoyé cette clé ignorée par hygiène, sans rien changer au rendu. La mistraduction observée sur le bundle de revue provenait d'un **harvest stale** (carte rendue avant le fix), pas d'un défaut vivant dans les CSV de production. **Non-bloqueur géométrie/print ; plus d'appel à décision.**
+- **⚠️ Distinction PT ligne 1 (#306) — défaut distinct, lui aussi RÉSOLU** : le cover Rules PT ligne 1 (« Liars 'School » → « A Escola dos Mentirosos », contamination EN) est un défaut *séparé* de l'homonyme « English Channel », corrigé par **#306** (native PT validé po-2023). Ne pas confondre les deux : #306 = 1 cellule de contamination EN ; « English Channel » = clé CSV ignorée. Les deux sont clos.
 
 ---
 
@@ -156,9 +158,9 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 |---------|------|-------|
 | Build solution zéro-warning CS | ✅ | PR #587 (master `6caf5833`) |
 | Build zéro-warning NU (NuGet audit) | ✅ | PR #588 (NU1903 clos MIT-pur) |
-| Tests | **596 pass / 0 fail / 5 skip / 601 total** | empirique `dotnet test` master `84a529bf` 2026-07-12 (po-2023, post-fix round-trip #793) ; skip = GUI/Freeplane/GSheet (session/creds interactifs). **0 rouge** : #133 round-trip corrigé (inScheme survit, résidu rdf:type asserté-comme-attendu) |
+| Tests | **638 pass / 0 fail / 5 skip / 643 total** | *(rectification 2026-07-28)* en **CI**, legs Debug **et** Release (run `30280070312`, ligne `Total tests:` lue dans le log, pas la couleur du check) — l'ancienne valeur *596/601* (empirique local `84a529bf` 2026-07-12) datait d'avant **#911**, qui a rendu l'étape Test signifiante (elle exécutait le build sans lancer les tests). skip = GUI/Freeplane/GSheet (session/creds interactifs). **0 rouge** : #133 round-trip corrigé (inScheme survit, résidu rdf:type asserté-comme-attendu) |
 | SkipConfigFile | `true` (C# defaults = source unique) | règle HARD projet |
-| Dépendances stables | QuestPDF 2022.12.12, Magick.NET **14.14.0** (bump 2026-07-01, `dotnet test` GREEN), Playwright 1.43.0 | — |
+| Dépendances stables | QuestPDF 2022.12.12, Magick.NET **14.15.0** *(rectification 2026-07-28 : était noté 14.14.0 — 14.15.0 entré via #871 `6f1a6e1a`, 2026-07-25, première version patchée pour 5 advisories ; licence Apache-2.0 inchangée)*, AutoMapper 14.0.0 (MIT-pinned, #588), Playwright 1.43.0, PdfPig **0.1.14** *(officiel, remplaçant le custom build via #908)* | — |
 
 ---
 
@@ -167,11 +169,11 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 1. **Validation pixel RTL/CJK des SVGs** (#3.2) — ✅ **VERDICT SOURCE-LEVEL ai-01 = PASS** (technique). Pixel eyeball jsboige optionnel (le pixel-RTL est figé en coordonnées absolues ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset).
 2. **Verdicts visuels PDFs** — ✅ **RENDUS = PASS** (ai-01). (a) Verdict contenu **#140** 8 langues (2026-07-03) : carte dense p51 EN/ES/RU/AR/FA/ZH, RTL/CJK propre, covers, PT #306 fixé, FR Rules 5 jeux. (b) Verdict colorimétrique **#632** (2026-07-03) : DeviceCMYK 4-comp + GTS_PDFX/OutputIntent sur fr+ar+zh. **Bundle v3** = 80/80 PDFs CMYK (Ghostscript #632/#652), 6.5 GB GDrive. #119, recto-verso, #216, micro-RU résolu, 300 PPI. Multilingue/RTL/CJK/CMYK validés.
 3. **DNN #131 couplé** — ✅ **MIGRATION FULL-IIS FERMÉE (2026-07-01)** : `dnn.argumentum.myia.io` LIVE full-IIS direct (HTTP 200/85 KB, 0× « Something went wrong », HTTPS SAN 9D80D4CC), DB SQL Express + PortalAlias table clean, stopgap `dnn.myia.io` retiré. **Verdict visuel site = jsboige (RDP)**. Le couplage n'est plus un bloqueur assets — po-2023 recommande toujours de **tagger v0.9.0 assets-only** (DNN prod go-live = ops VPS jsboige, séparé).
-4. **Tag v0.9.0** — pas encore posé (`git tag` vide). **Techniquement débloqué** : verdicts #140 (contenu) + #632 (CMYK) = PASS, bundle v3 80/80 CMYK livré. Reste les **arbitrages jsboige** : (a) #636 §1 assets SVG Virtues (FreeMind GUI-interactif vs defer post-tag), (b) #654 mnémoniques (scope A/B/global), (c) décision couplage go-live DNN (immédiat vs après portage). Plus le finding titre PT (§3.6).
+4. **Tag v0.9.0** — pas encore posé (`git tag` vide). **Techniquement débloqué** : verdicts #140 (contenu) + #632 (CMYK) = PASS, bundle v3 80/80 CMYK livré. Reste les **arbitrages jsboige** : ~~(a) #636 §1 assets SVG Virtues~~ — ✅ **#636 CLOSED 2026-07-06** (prémisse Virtues FR-figés fausse, cf §3.2 rectification), (b) #654 mnémoniques (scope A/B/global), (c) décision couplage go-live DNN (immédiat vs après portage). *(Le finding titre PT §3.6 est résolu — n'a jamais atteint une carte.)*
 5. **CHANGELOG.md** — **✅ corrigé** (ligne 16, patch cf §6, merged via #591). **`docs/RELEASE-NOTES-v0.9.0.md` créé** — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
 6. **#499 Phase 2 OWL** — ✅ **livré** (PR #592 merged `8d5d275b`) **avant** ce dossier. Mentionné dans release notes. Fait acquis.
 7. **~~Finding CMYK absent~~ — ✅ RÉSOLU** (post-process Ghostscript #632/#652). Le finding original du 2026-07-01 (bundle RGB-300-lossless, 0 DeviceCMYK) est **résolu** : le bundle v3 (2026-07-03) = **80/80 DeviceCMYK + OutputIntent SWOP** (§3.3). Plus d'appel à décision sur le CMYK — le verdict #632 = PASS (ai-01). Le path `DocumentCardSet.cs` (oxymore PNG) est remplacé par le post-process GS sur le PDF final.
-8. **Finding titre PT « Roll of the English Channel »** (NOUVEAU, ai-01 20:55, cf §3.6) — homonyme « Manche » (round→géographie), contenu CSV (5 occurrences), PT surface l'anglais cassé. Fix prep po-2024, **PR GATED jsboige**. **→ appel à décision jsboige** : block le tag ou fast-follow post-tag ?
+8. ~~**Finding titre PT « Roll of the English Channel »**~~ — ✅ **RÉSOLU** (rectification 2026-07-28, cf §3.6) : la clé « English Channel » résidait dans une clé `csv` embarquée **ignorée** à l'exécution (écrasée par `HarvestManager.cs`). Le défaut **n'a jamais pu atteindre une carte** — `git grep` rend 0 dans `Cards/`. Plus d'appel à décision. *(Distinction : le cover PT ligne 1 « Liars 'School » est un défaut séparé, clos par #306.)*
 
 ---
 
@@ -195,7 +197,7 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 - ~~**Régén release non reproduite**~~ — ✅ **LEVÉ** : régén **Release** fraîche **2026-07-01** exécutée (§3.3, `3e2fa0c0`+#614, serial `-c Release`), 0 échec, 64/64 PDFs, verdict visuel PASS. 0 régression.
 - ~~**DNN couplé**~~ — ✅ **LEVÉ** : migration full-IIS **fermée** (2026-07-01), `dnn.argumentum.myia.io` LIVE. Le couplage n'est plus un bloqueur assets (DNN prod go-live = ops VPS jsboige, séparé).
 - ~~**Params Debug vs Release**~~ — ✅ **RÉSOLU** : jsboige a validé Release (GO interactif 2026-07-01). Bundle v3 `-c Release` (PNG lossless) **+ post-process Ghostscript CMYK** (#632/#652) produit, verdict #632 PASS. **Le CMYK visé est désormais matérialisé** : 80/80 DeviceCMYK + OutputIntent SWOP (§3.3).
-- **Finding titre PT cassé** : 1 carte Rules PT affiche « Roll of the English Channel » (homonyme, §3.6). Fix prep po-2024 gated. Non-bloqueur géométrie/print mais décision jsboige (block vs fast-follow).
+- ~~**Finding titre PT cassé**~~ : ~~1 carte Rules PT affiche « Roll of the English Channel »~~ — ✅ **RÉSOLU** (§3.6) : clé ignorée à l'exécution, n'a jamais atteint une carte. Plus un risque résiduel.
 - **Note de procédure (stale-harvest + parallélisme + CardPen host)** : la régên Release 2026-07-01 a required `EnableParallelism=false` (serial) après diagnostic parallélisme=6 → timeout 300s → `Mismatch` throw (résolu par #614 résilience + serial). **CardPen Pages = échec structurel** (404 `/Cards/`, #629) → pivot CardPen local (Golden Master, #629 workaround). **Bug Spectre `[HARVEST-FAILURE]`** (#630) court-circuite #614 sur set-failure → 2 bugs tracés post-tag. Documenté en mémoire.
 
 ---
@@ -203,7 +205,7 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 ## 8. Recommandation po-2023
 
 1. **GO jsboige sur verdicts PASS ai-01** (§3.3 — #140 contenu 8 langues + #632 CMYK, géométrie #119, recto-verso, #216, micro-RU résolu, 300 PPI) → assets validés côté technique.
-2. **Arbitrages jsboige restants** : (a) **#636 §1 SVG Virtues** (FreeMind GUI-interactif vs defer post-tag), (b) **#654 mnémoniques** (scope A/B/global), (c) **titre PT** (§3.6 — block vs fast-follow ; note : #640 a résolu le bulk « English Channel » 23 occurrences HIGH, le titre Tarot PT spécifique est possiblement inclus, à confirmer visuellement au tag), (d) **couplage go-live DNN** (immédiat vs après portage i18n #669/#674).
+2. **Arbitrages jsboige restants** : ~~(a) **#636 §1 SVG Virtues**~~ — ✅ **CLOSED 2026-07-06** (prémisse FR-figés fausse, §3.2) ; (b) **#654 mnémoniques** (scope A/B/global) ; ~~(c) **titre PT**~~ — ✅ **RÉSOLU** (§3.6 : clé ignorée, n'a jamais atteint une carte ; #306 distinct aussi clos) ; (d) **couplage go-live DNN** (immédiat vs après portage i18n #669/#674).
 3. **Régén fraîche** : ✅ **FAITE** (bundle v3 2026-07-03, §3.3, 80/80 CMYK). Go-live sur bundle v3.
 4. **Décision couplage DNN** : dé-coupler — tagger v0.9.0 assets-only (DNN prod = ops VPS jsboige, migration déjà LIVE en recette). Le portage i18n site (#669 mécanisme, #674 refactor Rules) est post-tag.
 5. **Tag v0.9.0** après (1)+(2).
