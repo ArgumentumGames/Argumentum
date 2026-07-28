@@ -114,10 +114,7 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             var root = ResolveTargetRoot();
             if (root == null)
-            {
-                _output.WriteLine("SKIP: Target/ not found — run pipeline first");
-                return;
-            }
+                Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var missing = new List<string>();
             foreach (var lang in Languages)
@@ -141,10 +138,7 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             var root = ResolveTargetRoot();
             if (root == null)
-            {
-                _output.WriteLine("SKIP: Target/ not found");
-                return;
-            }
+                Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var inventory = new List<string>();
             foreach (var lang in Languages)
@@ -169,7 +163,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_WhiteBand_NoFullWidthBandInCovers()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -211,7 +205,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_BlankRatio_Rules_NotExcessivelyEmpty()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -237,10 +231,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 _output.WriteLine($"  FLAG: {f}");
 
             if (scanned == 0)
-            {
-                _output.WriteLine("No Rules images found — skip");
-                return;
-            }
+                Assert.Fail("Scanned 0 Rules images in Target/ — test verified nothing (check harvest output / CardSet filter)");
 
             // Informational: report but don't hard-fail (this is the data ai-01 needs for #250)
         }
@@ -251,7 +242,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_BottomSaturation_Rules_NotOverflowing()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -283,7 +274,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_FooterCollision_Rules_NoBodyFooterOverlap()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -319,10 +310,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 _output.WriteLine($"  FLAG: {f}");
 
             if (scanned == 0)
-            {
-                _output.WriteLine("No non-cover Rules images found — skip");
-                return;
-            }
+                Assert.Fail("Scanned 0 non-cover Rules images in Target/ — test verified nothing (check harvest output / CardSet filter)");
 
             // Informational: report but don't hard-fail
         }
@@ -333,7 +321,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_FullGrid_AllCards_AllDetectors()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var results = new List<CardCheckResult>();
             int totalImages = 0;
