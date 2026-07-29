@@ -15,7 +15,7 @@ namespace Argumentum.AssetConverter.VisualTests
     /// (TarotCards/PokerCards) or uses font encodings without ToUnicode mappings
     /// (FallaciesWeb). Structural checks catch the same regressions (empty cards,
     /// broken generation) more reliably.
-    /// Tests pass silently if Target/ doesn't exist (CI cold-start).
+    /// Fails LOUD if Target/ doesn't exist (#957 residu ii) — was a silent faux-vert (pass-on-nothing).
     /// </summary>
     public class PdfContentTests : IDisposable
     {
@@ -38,14 +38,15 @@ namespace Argumentum.AssetConverter.VisualTests
         private static string GetPdfDir(string lang) =>
             Path.Combine(TargetRoot, lang, "Documents", "density-0");
 
-        private bool EnsureTarget()
+        private void EnsureTarget()
         {
+            // #957 residu ii: cold-start faux-vert. A missing Target/ must FAIL LOUD, not pass silently —
+            // these tests verify generated PDFs and assert nothing without them. Assert.Fail is a subtraction
+            // (removes the silent `return;`), not a counterweight: no [Fact(Skip)] (static, would kill the
+            // tests where they work), no continue-on-error. VisualTests is NOT run by CI (build.yml targets
+            // only Argumentum.AssetConverter.Tests.csproj), so this fails locally, not in the release gate.
             if (!Directory.Exists(TargetRoot))
-            {
-                _output.WriteLine("Skipped: Target/ not found — run pipeline first");
-                return false;
-            }
-            return true;
+                Assert.Fail("PdfContentTests require a generated Target/ — run the pipeline first (bin/Debug/net9.0-windows/Target not found). This test verified nothing.");
         }
 
         // --- File size sanity checks ---
@@ -57,11 +58,11 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void All_Pdfs_Have_Minimum_Size(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var dir = GetPdfDir(lang);
-            if (!Directory.Exists(dir)) return;
+            if (!Directory.Exists(dir)) Assert.Fail($"Language directory not found: {dir} — test verified nothing (Target/ exists but this language produced no Documents/density-0/; check pipeline output).");
             var pdfs = Directory.GetFiles(dir, "*.pdf");
-            if (pdfs.Length == 0) return;
+            if (pdfs.Length == 0) Assert.Fail($"No PDFs found for {lang} in Target/ — test verified nothing (check pipeline output).");
 
             var failures = new List<string>();
             foreach (var pdf in pdfs)
@@ -80,7 +81,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [Fact]
         public void A0_Pdf_Sizes_Are_Consistent_Across_Languages()
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
 
             var sizes = new Dictionary<string, long>();
             foreach (var lang in Languages)
@@ -90,7 +91,7 @@ namespace Argumentum.AssetConverter.VisualTests
                     sizes[lang] = new FileInfo(pdfs[0]).Length;
             }
 
-            if (sizes.Count < 2) return;
+            if (sizes.Count < 2) Assert.Fail($"Only {sizes.Count} language(s) with A0 PDFs found in Target/ — test verified nothing (expected >= 2 languages to compare; check pipeline output for missing languages).");
 
             var avgSize = sizes.Values.Average();
             var minSize = sizes.Values.Min();
@@ -117,13 +118,13 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void FallaciesWeb_A4_Has_Reasonable_Page_Count(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var dir = GetPdfDir(lang);
-            if (!Directory.Exists(dir)) return;
+            if (!Directory.Exists(dir)) Assert.Fail($"Language directory not found: {dir} — test verified nothing (Target/ exists but this language produced no Documents/density-0/; check pipeline output).");
             var pdfs = Directory.GetFiles(dir, "*_Fallacies_Web_A4_*.pdf")
                 .Where(p => !Path.GetFileName(p).Contains("Thumbnails"))
                 .ToArray();
-            if (pdfs.Length == 0) return;
+            if (pdfs.Length == 0) Assert.Fail($"No PDFs found for {lang} in Target/ — test verified nothing (check pipeline output).");
 
             foreach (var pdf in pdfs)
             {
@@ -145,16 +146,16 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void TarotCards_Has_Multiple_Pages(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var dir = GetPdfDir(lang);
-            if (!Directory.Exists(dir)) return;
+            if (!Directory.Exists(dir)) Assert.Fail($"Language directory not found: {dir} — test verified nothing (Target/ exists but this language produced no Documents/density-0/; check pipeline output).");
             // Main TarotCards PDF (not split, not FacesOnly, not Virtues)
             var pdf = Directory.GetFiles(dir, "Argumentum_TarotCards_*.pdf")
                 .FirstOrDefault(p => !Path.GetFileName(p).Contains("-")
                     && !Path.GetFileName(p).Contains("Virtues")
                     && !Path.GetFileName(p).Contains("FacesOnly")
                     && !Path.GetFileName(p).Contains("Print"));
-            if (pdf == null) return;
+            if (pdf == null) Assert.Fail($"No matching PDF found for {lang} in Target/ — test verified nothing (Target/ exists but the expected CardSet PDF is missing; check pipeline output).");
 
             using var doc = PdfDocument.Open(pdf);
             var pages = doc.NumberOfPages;
@@ -172,14 +173,14 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void PokerCards_Has_Multiple_Pages(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var dir = GetPdfDir(lang);
-            if (!Directory.Exists(dir)) return;
+            if (!Directory.Exists(dir)) Assert.Fail($"Language directory not found: {dir} — test verified nothing (Target/ exists but this language produced no Documents/density-0/; check pipeline output).");
             // Main PokerCards PDF (not split, not Print&Play)
             var pdf = Directory.GetFiles(dir, "Argumentum_PokerCards_*.pdf")
                 .FirstOrDefault(p => !Path.GetFileName(p).Contains("-")
                     && !Path.GetFileName(p).Contains("Print"));
-            if (pdf == null) return;
+            if (pdf == null) Assert.Fail($"No matching PDF found for {lang} in Target/ — test verified nothing (Target/ exists but the expected CardSet PDF is missing; check pipeline output).");
 
             using var doc = PdfDocument.Open(pdf);
             var pages = doc.NumberOfPages;
@@ -197,9 +198,9 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void Each_Language_Has_Multiple_Pdf_Types(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var dir = GetPdfDir(lang);
-            if (!Directory.Exists(dir)) return;
+            if (!Directory.Exists(dir)) Assert.Fail($"Language directory not found: {dir} — test verified nothing (Target/ exists but this language produced no Documents/density-0/; check pipeline output).");
             var pdfs = Directory.GetFiles(dir, "*.pdf");
 
             // Each language should have at least: A0, A4, Thumbnails, Print&Play,
