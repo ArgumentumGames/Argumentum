@@ -215,9 +215,94 @@ fixed by swap rather than caveat, as the remediation was small (one file, two `u
   **no commercial or copyleft dependency remains**. The gate no longer carries an "awareness
   item" caveat (§7.1); §7 now holds two RESOLVED records and nothing open.
 - **No GPL / AGPL / RPL / SSPL / proprietary** in the shipping dependency graph.
+- **Vendored CardPen libraries** (§9, added 2026-07-29): a **separate, non-binary surface** — the
+  card-rendering toolchain CardPen loads at harvest time. **Does not affect the shipping-binary
+  gate** (CardPen is generation tooling, not the shipped `.dll`). Catalogued to lift the
+  dependabot/scanner blind spot (#942): 12/13 permissive; one copyleft-adjacent item
+  (`unidecode.js` data tables, Perl license) and one aged engine (`marked` ~0.3.x) flagged for
+  visibility. Neither ships in the binary.
 
 This is a result, not a gap: the audit proves the gate is met, which is what we need to show at
 public release.
+
+## 9. Vendored CardPen libraries — the non-npm blind spot (#942)
+
+> **Scope.** CardPen (`Generation/CardPen/`) loads **vendored copies** of JS libraries from
+> `lib/*.js` at runtime — these render the cards during harvesting. They are **not** npm packages:
+> they are absent from `package.json` / the lockfile, so **dependabot, the license scanner, and no
+> automated tool sees them**. This section makes them visible. It is a **read-only inventory**;
+> CardPen itself was not modified (0 CardPen change, per #942 DoD).
+>
+> **Does this affect the shipping-binary gate (§1–§8)? No.** CardPen is generation tooling, not
+> the shipped `Argumentum.AssetConverter` binary. By the #905 method — *distinguish what ships
+> from what is merely present* — these libs are present-in-toolchain, not shipped-in-binary. They
+> are recorded here for **visibility**, not to reopen the binary gate.
+
+### 9.1 The 13 vendored `lib/*.js` files
+
+Header provenance extracted directly from each file (code = truth). "License in file" means the
+license text/URL is present in the file itself; "known upstream" means the file carries no
+license header and the license is the library's well-known upstream.
+
+| File | Bytes | Library & provenance | Version | License (source) |
+|------|------|----------------------|---------|------------------|
+| `codemirror.js` | 355 726 | CodeMirror — Marijn Haverbeke, `codemirror.net` | **5.25.2** (in-file) | **MIT** (in file, `codemirror.net/LICENSE`) |
+| `handlebars.min.js` | 75 312 | Handlebars — Yehuda Katz, `handlebarsjs.com` | **4.0.10** (in-file) | **MIT** (full text in file) |
+| `jszip.min.js` | 101 939 | JSZip — Stuart Knightley, `stuartk.com/jszip` | **3.1.3** (in-file) | **MIT OR GPL-3.0** (dual, in file) — MIT elected |
+| `papaparse.min.js` | 14 568 | PapaParse — Matt Holt, `github.com/mholt/PapaParse` | **4.1.2** (in-file) | MIT (known upstream; no license text in file) |
+| `underscore-min.js` | 16 410 | Underscore.js — Jeremy Ashkenas, `underscorejs.org` | **1.8.3** (in-file) | **MIT** (in file) |
+| `mustache.min.js` | 9 528 | mustache.js — `janl/mustache.js` | **2.3.0** (in-file) | MIT (known upstream; no license text in file) |
+| `marked.js` | 28 574 | marked — Christopher Jeffrey, `chjj/marked` | ~0.3.x era (2011–2014 copyright; no embedded version) | **MIT** (in file, "MIT Licensed") |
+| `dom-to-image.min.js` | 8 864 | dom-to-image — `tsayen/dom-to-image` | build **04-04-2017** (in-file) | MIT (known upstream; no license text in file) |
+| `dom-to-image-more.js` | 47 320 | dom-to-image-**more** fork — `1904labs/dom-to-image-more` | not embedded | MIT (fork of MIT original; no license text in file) |
+| `FileSaver.min.js` | 2 446 | FileSaver.js — Eli Grey, `eligrey.com/FileSaver.js` | not embedded | MIT (known upstream; `@source` points to eligrey repo) |
+| `bind.min.js` | 5 333 | bind.js — Remy Sharp, `github.com/remy/bind` | not embedded | **MIT** (declared in non-min source `bind.js`: `rem.mit-license.org`) |
+| `bind.js` | 19 058 | **non-minified source** of `bind.min.js` — **NOT loaded** (dead file) | — | MIT (declared) |
+| `unidecode.js` | 908 687 | node-unidecode — F-G Ribreau; **data tables converted from Perl `Text::Unidecode`** | data **1.000.000** (in-file) | ⚠️ **data tables: Perl license** (in file) — see §9.2 |
+
+**Load map** (which file actually pulls each lib):
+
+- `index.html` loads: `bind.min.js`, `codemirror.js`, `FileSaver.min.js`, `handlebars.min.js`,
+  `jszip.min.js`, `marked.js`, `mustache.min.js`, `papaparse.min.js`, `underscore-min.js`,
+  `unidecode.js`.
+- `js/main.js:1218-1219` **emits** both `dom-to-image.min.js` **and** `dom-to-image-more.js` as
+  `<script>` tags into the generated card HTML (both variants shipped into output).
+- `bind.js` (non-min) is present but **never referenced** — vendored source duplicate of
+  `bind.min.js`.
+
+### 9.2 Flagged items (visibility, not binary-gate)
+
+1. **`unidecode.js` — copyleft-adjacent.** The file declares (lines 546–549): *"the tables used
+   (in data) are converted from the tables provided in the perl library Text::Unidecode … and are
+   distributed under the perl license"* (`@author Francois-Guillaume Ribreau` = node-unidecode).
+   The **Perl license** = Artistic-1.0-Perl OR GPL-1.0+ (the "same terms as Perl" dual). This is
+   the **only non-permissive-MIT-family item** in the vendored set. It does **not** ship in the
+   binary (CardPen tooling). The JS-wrapper license is not stated in the file; if binary
+   shippability is ever in question (it is not), one `npm view unidecode license` resolves the
+   wrapper. **Flagged for ai-01/jsboige awareness; no action required for v0.9.0.**
+
+2. **`marked.js` — aged, the real card-rendering engine.** The vendored `marked` is a **~0.3.x
+   release (2011–2014 copyright window, pre-fork `chjj/marked`)** — the version that actually
+   renders card markdown across all 8 languages. This is **disjoint from** the npm `marked ^16.2.1`
+   devDependency (which serves only `npm run build` doc generation, per #915/#942). Dependabot
+   cannot see the vendored copy. The 0.3.x line predates many security fixes; **no known CVE is
+   asserted here** (out of scope for an inventory), but the version-age is the security-visibility
+   angle-mot #942 was opened to surface. Follow-up candidate, not v0.9.0-blocking.
+
+3. **`jszip.min.js` — dual MIT/GPL-3.0.** Elects MIT (the dual license permits either). No issue;
+   recorded for completeness.
+
+### 9.3 DoD — #942 (vendored-surface part)
+
+- [x] Inventory of CardPen vendored `lib/*.js` (version + licence + provenance) — §9.1.
+- [x] `dependency-license-inventory.md` updated with the non-npm surface — this section.
+- [ ] (separate, ai-01's) disposition of the 22 grouped dependabot PRs — post-tag, one line per
+  lot not per PR. Out of po-2024's lane.
+
+> **Note on CardPen's own `LICENSE.txt`:** CardPen carries a **GPL-3.0** license file (upstream
+> CardPen). That governs the CardPen source itself, not the bundled `lib/*.js` (each retains its
+> own license). CardPen is generation tooling, not the shipping binary; this is informational for
+> the §9 surface record and does not affect §8.
 
 ---
 
