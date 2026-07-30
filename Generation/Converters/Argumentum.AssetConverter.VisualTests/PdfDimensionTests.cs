@@ -11,7 +11,7 @@ namespace Argumentum.AssetConverter.VisualTests
     /// <summary>
     /// Stage 1 of #212: PDF dimension and page count regression tests.
     /// Validates that generated PDFs have correct page sizes and reasonable page counts.
-    /// Tests pass silently if Target/ doesn't exist (CI cold-start).
+    /// Fails LOUD if Target/ doesn't exist (#957 residu ii) — was a silent faux-vert (pass-on-nothing).
     /// </summary>
     public class PdfDimensionTests : IDisposable
     {
@@ -52,14 +52,15 @@ namespace Argumentum.AssetConverter.VisualTests
             return doc.NumberOfPages;
         }
 
-        private bool EnsureTarget()
+        private void EnsureTarget()
         {
+            // #957 residu ii: cold-start faux-vert. A missing Target/ must FAIL LOUD, not pass silently —
+            // these tests verify generated PDFs and assert nothing without them. Assert.Fail is a subtraction
+            // (removes the silent `return;`), not a counterweight: no [Fact(Skip)] (static, would kill the
+            // tests where they work), no continue-on-error. VisualTests is NOT run by CI (build.yml targets
+            // only Argumentum.AssetConverter.Tests.csproj), so this fails locally, not in the release gate.
             if (!Directory.Exists(TargetRoot))
-            {
-                _output.WriteLine("Skipped: Target/ not found — run pipeline first");
-                return false;
-            }
-            return true;
+                Assert.Fail("PdfDimensionTests require a generated Target/ — run the pipeline first (bin/Debug/net9.0-windows/Target not found). This test verified nothing.");
         }
 
         // --- A0 Format Tests ---
@@ -71,9 +72,9 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void A0_Pdf_Has_Correct_Dimensions(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var pdfs = GetPdfs(lang, "*_A0_*.pdf").ToList();
-            if (pdfs.Count == 0) { _output.WriteLine($"No A0 PDFs for {lang}"); return; }
+            if (pdfs.Count == 0) Assert.Fail($"No A0 PDFs for {lang} in Target/ — test verified nothing (check pipeline output).");
 
             foreach (var pdf in pdfs)
             {
@@ -91,9 +92,9 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void A0_Pdf_Has_Exactly_One_Page(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var pdfs = GetPdfs(lang, "*_A0_*.pdf").ToList();
-            if (pdfs.Count == 0) return;
+            if (pdfs.Count == 0) Assert.Fail($"No matching PDFs found for {lang} in Target/ — test verified nothing (Target/ exists but this CardSet pattern produced no files; check pipeline output).");
 
             foreach (var pdf in pdfs)
                 Assert.Equal(1, GetPageCount(pdf));
@@ -108,9 +109,9 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void A4_Pdf_Has_Correct_Dimensions(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var pdfs = GetPdfs(lang, "*_A4_*.pdf").ToList();
-            if (pdfs.Count == 0) { _output.WriteLine($"No A4 PDFs for {lang}"); return; }
+            if (pdfs.Count == 0) Assert.Fail($"No A4 PDFs for {lang} in Target/ — test verified nothing (check pipeline output).");
 
             foreach (var pdf in pdfs)
             {
@@ -128,9 +129,9 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void A4_Pdf_Has_At_Least_One_Page(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var pdfs = GetPdfs(lang, "*_A4_*.pdf").ToList();
-            if (pdfs.Count == 0) return;
+            if (pdfs.Count == 0) Assert.Fail($"No matching PDFs found for {lang} in Target/ — test verified nothing (Target/ exists but this CardSet pattern produced no files; check pipeline output).");
 
             foreach (var pdf in pdfs)
                 Assert.True(GetPageCount(pdf) >= 1, $"{Path.GetFileName(pdf)} has 0 pages");
@@ -145,9 +146,9 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void PrintAndPlay_Pdf_Is_A4_Format(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var pdfs = GetPdfs(lang, "*_Print&Play_*.pdf").ToList();
-            if (pdfs.Count == 0) return;
+            if (pdfs.Count == 0) Assert.Fail($"No matching PDFs found for {lang} in Target/ — test verified nothing (Target/ exists but this CardSet pattern produced no files; check pipeline output).");
 
             foreach (var pdf in pdfs)
             {
@@ -167,11 +168,11 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public void All_Pdfs_Have_NonZero_Pages(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             var dir = GetPdfDir(lang);
-            if (!Directory.Exists(dir)) return;
+            if (!Directory.Exists(dir)) Assert.Fail($"Language directory not found: {dir} — test verified nothing (Target/ exists but this language produced no Documents/density-0/; check pipeline output).");
             var pdfs = Directory.GetFiles(dir, "*.pdf");
-            if (pdfs.Length == 0) return;
+            if (pdfs.Length == 0) Assert.Fail($"No PDFs at all for {lang} in {dir} — test verified nothing.");
 
             foreach (var pdf in pdfs)
                 Assert.True(GetPageCount(pdf) > 0, $"{Path.GetFileName(pdf)} has 0 pages");
@@ -182,7 +183,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [Fact]
         public void All_Languages_Have_FallaciesWeb_A0()
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             foreach (var lang in Languages)
             {
                 var pdfs = GetPdfs(lang, "*_Fallacies_Web_A0_*.pdf").ToList();
@@ -194,7 +195,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [Fact]
         public void All_Languages_Have_FallaciesWeb_A4()
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             foreach (var lang in Languages)
             {
                 var pdfs = GetPdfs(lang, "*_Fallacies_Web_A4_*.pdf").ToList();
@@ -205,7 +206,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [Fact]
         public void All_Languages_Have_TarotCards()
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             foreach (var lang in Languages)
             {
                 var pdfs = GetPdfs(lang, "*_TarotCards_*.pdf")
@@ -219,7 +220,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [Fact]
         public void All_Languages_Have_PokerCards()
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             foreach (var lang in Languages)
             {
                 var pdfs = GetPdfs(lang, "*_PokerCards_*.pdf").ToList();
@@ -231,7 +232,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [Fact]
         public void All_Languages_Have_PrintAndPlay()
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
             foreach (var lang in Languages)
             {
                 var pdfs = GetPdfs(lang, "*_Print&Play_*.pdf").ToList();
