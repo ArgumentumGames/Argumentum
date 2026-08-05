@@ -376,18 +376,22 @@ L'échappement transforme les vrais newlines en chaînes littérales "\\n", cass
 
 ### Classes CSS Familles (Virtues/Fallacies)
 
-Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste complète pour Virtues:
+La classe racine de la carte est **la valeur de la colonne CSV** désignée par `cardClass` dans le template — `family_fr_camelcase` pour Virtues, `Famille_camelCase` pour Fallacies. Chaque valeur doit avoir sa règle `card.<valeur>` dans la clé `css` du template JSON (⚠️ pas dans `mustache`, qui ne contient que le HTML).
 
-| Classe CSS | Famille | Couleur |
-|------------|---------|---------|
-| `argumentsVertueux` | Arguments vertueux (racine) | Gris #555555 |
-| `argumentPertinent` | Argument pertinent | Violet #811da3 |
-| `présentationIntègre` | Présentation intègre | Rose #ff66eb |
-| `exactitudeMathématique` | Exactitude mathématique | Turquoise #08af93 |
-| `raisonnementValide` | Raisonnement valide | Vert #8dc801 |
-| `langageRigoureux` | Langage rigoureux | Bleu #0054a4 |
-| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | Jaune #ffc307 |
-| `débatRespectueux` | Débat respectueux | Rouge #dc0f0a |
+Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy.csv` + la clé `css` du template** (master `f6e15d7d`, 2026-08-06) :
+
+| Classe CSS (= `family_fr_camelcase`) | Famille (`family_fr`) | Couleur | Alias hérité encore déclaré |
+|------------|---------|---------|---------|
+| `argumentValable` | Argument valable (racine) | Gris #555555 | `argumentsVertueux` |
+| `argumentPertinent` | Argument pertinent | Violet #811da3 | — |
+| `présentationIntègre` | Présentation intègre | Rose #ff66eb | — |
+| `rigueurMathématique` | Rigueur mathématique | Turquoise #08af93 | `exactitudeMathématique` |
+| `raisonnementValide` | Raisonnement valide | Vert #8dc801 | — |
+| `langageExact` | Langage exact | Bleu #0054a4 | `langageRigoureux` |
+| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | Jaune #ffc307ff | — |
+| `échangeEnrichissant` | Échange enrichissant | Rouge #dc0f0a | `débatRespectueux` |
+
+**Renommage additif** — un renommage de famille a déjà eu lieu, et le template en garde le motif : l'ancien nom et le nouveau cohabitent **dans le même bloc**, séparés par une virgule (`card.langageRigoureux, card.langageExact { … }`). Pour renommer une famille : ajouter le nouveau nom au bloc existant **d'abord**, renommer le CSV **ensuite**. L'ordre inverse produit des cartes sans couleur de famille entre les deux merges.
 
 **Symptôme si classe manquante**: Carte avec fond blanc au lieu de la couleur de famille.
 
