@@ -1,7 +1,7 @@
 [
 	{
 		"path": "4.3.3.1.2.1.1",
-		"family_fr": "Raisonnement valide",
+		"family_fr": "Inférence maîtrisée",
 		"subfamily_fr": "Déductions correctes",
 		"subsubfamily_fr": "Raisonnement concluant",
 		"title_fr": "Syllogisme Barbara",
@@ -21,7 +21,7 @@
 	},
 	{
 		"path": "4.1.2",
-		"family_fr": "Raisonnement valide",
+		"family_fr": "Inférence maîtrisée",
 		"subfamily_fr": "Identification précise des causalités",
 		"subsubfamily_fr": "Causalité correctement orientée",
 		"title_fr": "Causalité correctement orientée",
