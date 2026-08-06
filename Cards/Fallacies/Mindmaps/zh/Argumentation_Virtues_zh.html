@@ -3662,6 +3662,22 @@
             if (overlay.classList.contains('hidden')) {
                 overlay.classList.remove('hidden');
             }
+            // #995 (b) - la carte est dimensionnee en px (card { width: 300px }) alors que
+            // sa typographie l'est en vh (.famille: 5.6vh). Sur un ecran de 1000 px de haut
+            // le libelle est donc compose a 56 px dans une boite de 244 px : le mot le plus
+            // long bave hors de la carte (scrollWidth 479, overflow: visible). 11 libelles
+            // sur 11 debordent, Sophismes autant que Vertus. On reduit jusqu'a ce que ca
+            // tienne ; la regle CSS reste la taille nominale. Mesure APRES retrait de
+            // .hidden : sur un element display:none, clientWidth vaut 0.
+            [title, famille, sous_famille, description, example].forEach(el => {
+                if (!el) return;
+                el.style.fontSize = '';
+                if (!el.clientWidth) return;
+                let px = parseFloat(getComputedStyle(el).fontSize);
+                while (px > 12 && el.scrollWidth > el.clientWidth) {
+                    el.style.fontSize = (--px) + 'px';
+                }
+            });
 
             targetNode.classList.add('active');
         };
