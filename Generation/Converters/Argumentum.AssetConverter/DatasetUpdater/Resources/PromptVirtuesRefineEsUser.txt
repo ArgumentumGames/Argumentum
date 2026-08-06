@@ -27,15 +27,23 @@ Priorité décroissante :
 
 # Mapping canonique des familles
 
-- `Arguments vertueux` → `Argumentos virtuosos`
-- `Argument valable` → `Argumento válido`
+- `Argument valable` (racine) → `Argumento válido`
 - `Argument pertinent` → `Argumento pertinente`
 - `Présentation intègre` → `Presentación íntegra`
-- `Exactitude mathématique` → `Exactitud matemática`
-- `Raisonnement valide` → `Razonamiento válido`
-- `Langage rigoureux` → `Lenguaje riguroso`
+- `Sens quantitatif` → `Razonamiento cuantitativo`
+- `Inférence maîtrisée` → `Dominio de la inferencia`
+- `Justesse lexicale` → `Precisión léxica`
 - `Honnêteté intellectuelle` → `Honestidad intelectual`
-- `Débat respectueux` → `Debate respetuoso`
+- `Échange enrichissant` → `Intercambio enriquecedor`
+
+Noms FR **historiques**, retirés de la taxonomie : s'ils apparaissent dans une source ancienne, traduire vers le libellé **courant** ci-dessus — jamais vers l'ancienne cible.
+- `Arguments vertueux` → `Argumento válido`
+- `Exactitude mathématique` → `Razonamiento cuantitativo`
+- `Rigueur mathématique` → `Razonamiento cuantitativo`
+- `Raisonnement valide` → `Dominio de la inferencia`
+- `Langage rigoureux` → `Precisión léxica`
+- `Langage exact` → `Precisión léxica`
+- `Débat respectueux` → `Intercambio enriquecedor`
 
 Pour les sous-familles non listées, utilise la traduction la plus fréquente dans les entrées existantes.
 
