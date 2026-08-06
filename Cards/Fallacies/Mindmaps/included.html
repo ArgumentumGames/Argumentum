@@ -546,6 +546,10 @@
             Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
             description.innerHTML = targetNode.getAttribute('description');
             example.innerHTML = targetNode.getAttribute('example');
+            // #995 — ne pas reserver de surface pour une case vide. Les vertus n'ont pas
+            // d'exemple : l'attribut vaut "<p><i></i></p>", ce qui laissait un bandeau
+            // blanc sur les 1772 fiches Vertus (8 langues) et sur 47 noeuds Sophismes.
+            [description, example].forEach(el => { el.style.display = el.textContent.trim() === '' ? 'none' : ''; });
             externalLink.href = targetNode.getAttribute('link');
             niveau.textContent = targetNode.getAttribute('depth');
 
