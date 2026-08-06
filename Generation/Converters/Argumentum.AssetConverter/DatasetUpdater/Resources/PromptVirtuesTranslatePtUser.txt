@@ -14,18 +14,23 @@ Ta tâche consiste à traduire en **portugais européen (pt-PT)** les champs sou
 2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées — si "argumentPertinent" a été traduit "argumentoPertinente" dans une entrée, réutilise cette traduction pour toutes les entrées de cette famille.
 
 **Mapping de familles canoniques :** Les noms de familles doivent rester rigoureusement cohérents entre toutes les entrées de cette famille. Utilise les traductions suivantes :
-- `Arguments vertueux` (racine) → `Argumentos virtuosos`
-- `Argument valable` → `Argumento válido`
+- `Argument valable` (racine) → `Argumento válido`
 - `Argument pertinent` → `Argumento pertinente`
 - `Présentation intègre` → `Apresentação íntegra`
-- `Exactitude mathématique` → `Rigor matemático`
-- `Raisonnement valide` → `Raciocínio válido`
-- `Langage rigoureux` → `Linguagem rigorosa`
+- `Sens quantitatif` → `Raciocínio quantitativo`
+- `Inférence maîtrisée` → `Domínio da inferência`
+- `Justesse lexicale` → `Precisão lexical`
 - `Honnêteté intellectuelle` → `Honestidade intelectual`
-- `Débat respectueux` → `Debate respeitoso`
-- `Langage exact` → `Linguagem rigorosa`
-- `Rigueur mathématique` → `Rigor matemático`
 - `Échange enrichissant` → `Troca enriquecedora`
+
+Noms FR **historiques**, retirés de la taxonomie : s'ils apparaissent dans une source ancienne, traduire vers le libellé **courant** ci-dessus — jamais vers l'ancienne cible.
+- `Arguments vertueux` → `Argumento válido`
+- `Exactitude mathématique` → `Raciocínio quantitativo`
+- `Rigueur mathématique` → `Raciocínio quantitativo`
+- `Raisonnement valide` → `Domínio da inferência`
+- `Langage rigoureux` → `Precisão lexical`
+- `Langage exact` → `Precisão lexical`
+- `Débat respectueux` → `Troca enriquecedora`
 
 Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rigueur : une fois traduit pour la première entrée d'une sous-famille, réutilise mot pour mot pour toutes les autres entrées de cette sous-famille.
 
