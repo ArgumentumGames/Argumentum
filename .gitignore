@@ -139,6 +139,12 @@ yarn-error.log*
 
 # Bin DNN (exception pour inclure ce dossier)
 !/DNNPlatform/bin/
+# #972: the directory re-include above does NOT override the *.dll/*.pdb/*.exe rules
+# (L19-21) for the files *inside* it — git only re-includes the directory entry, not its
+# ignored children. Re-include the assemblies explicitly so `git add` no longer needs -f.
+!/DNNPlatform/bin/*.dll
+!/DNNPlatform/bin/*.pdb
+!/DNNPlatform/bin/*.exe
 
 # Fichiers de configuration locaux
 /Chatgpt-plugin/azure-function/local.settings.json
