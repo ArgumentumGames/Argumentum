@@ -73,6 +73,18 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("en", "Fallacies_en.content.svg")]
         [InlineData("ru", "Fallacies_ru.content.svg")]
         [InlineData("pt", "Fallacies_pt.content.svg")]
+        // #830: the Virtues mindmaps share the Fallacies wrapper templates (included/external.html),
+        // and #983 regenerates them across all 8 languages. The pre-regen golden master MUST cover
+        // the family being regenerated — including RTL (ar/fa) and CJK (zh) — otherwise the harness
+        // stays green on what we never regenerate (the false-green signature of a silent EnsureTarget).
+        [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
+        [InlineData("en", "Argumentum_Virtues_MindMap_en.content.svg")]
+        [InlineData("ru", "Argumentum_Virtues_MindMap_ru.content.svg")]
+        [InlineData("pt", "Argumentum_Virtues_MindMap_pt.content.svg")]
+        [InlineData("es", "Argumentum_Virtues_MindMap_es.content.svg")]
+        [InlineData("ar", "Argumentum_Virtues_MindMap_ar.content.svg")]
+        [InlineData("fa", "Argumentum_Virtues_MindMap_fa.content.svg")]
+        [InlineData("zh", "Argumentum_Virtues_MindMap_zh.content.svg")]
         public async Task Included_Wrapper_Renders_Inline_Svg_With_Content(string lang, string svgFileName)
         {
             var svgPath = GetSvgPath(lang, svgFileName);
@@ -173,6 +185,16 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("en", "Fallacies_en.content.svg")]
         [InlineData("ru", "Fallacies_ru.content.svg")]
         [InlineData("pt", "Fallacies_pt.content.svg")]
+        // #830/#983: Virtues wrappers reference their content.svg via <object data>. Cover all 8
+        // languages so the external-object path is validated on the family being regenerated.
+        [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
+        [InlineData("en", "Argumentum_Virtues_MindMap_en.content.svg")]
+        [InlineData("ru", "Argumentum_Virtues_MindMap_ru.content.svg")]
+        [InlineData("pt", "Argumentum_Virtues_MindMap_pt.content.svg")]
+        [InlineData("es", "Argumentum_Virtues_MindMap_es.content.svg")]
+        [InlineData("ar", "Argumentum_Virtues_MindMap_ar.content.svg")]
+        [InlineData("fa", "Argumentum_Virtues_MindMap_fa.content.svg")]
+        [InlineData("zh", "Argumentum_Virtues_MindMap_zh.content.svg")]
         public async Task External_Wrapper_References_Svg_Via_Object_Tag(string lang, string svgFileName)
         {
             var svgPath = GetSvgPath(lang, svgFileName);
