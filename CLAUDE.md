@@ -65,8 +65,8 @@ CSV Data → [Harvesting] → PNG Images → [PDF Assembly] → Print-ready PDFs
 
 3. **Mind Maps** (`MindMapCreator`)
    - Generates `.mm` files (Freemind format)
-   - Converts to SVG via Freeplane external process
-   - **WARNING**: SVG post-processing uses fragile heuristics ("disambiguation") dependent on Freeplane's output structure
+   - Converts to SVG via **FreeMind GUI** (`FreeMind.exe` driven by `SendKeys` automation, resolved from `ARGUMENTUM_FREEMIND_PATH` env var). A `MindMapFormat.Freeplane` path exists in code but is non-default; the validated production path (PR #565, 20 SVGs × 8 langs) is FreeMind — `MindMapFormat.Freemind` is the default (`FallacyMindMapDocumentConfig.cs:32`). If `FreeMind.exe` is not found, `TryFreeMindSvgExportCore` logs a warning and skips GUI export → falls back to XSLT (dead, #184) → DoD SHA-diff fails **silently**
+   - **WARNING**: SVG post-processing uses fragile heuristics ("disambiguation") dependent on FreeMind's output structure
 
 ### CardPen (Custom Fork)
 
