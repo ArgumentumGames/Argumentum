@@ -50,4 +50,6 @@ jobs:
         # filtering it with continue-on-error would fabricate a green check over tests that ran zero
         # assertions — the #909 vert-pour-mauvaise-raison, in a separate project. Its cold-start guards
         # fail loudly (Assert.Fail) so the harness is never mistaken for coverage when run locally.
+        # Relocated, not abandoned: it is a release gate run on the regeneration machine before tag, with
+        # the pass/fail/skip count recorded in the release dossier. Procedure: docs/quality/visual-tests-release-gate.md (#1048).
         run: dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj" -c ${{ matrix.configuration }} --verbosity normal
