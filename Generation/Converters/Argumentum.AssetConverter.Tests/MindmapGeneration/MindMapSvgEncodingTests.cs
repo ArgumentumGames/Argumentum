@@ -24,8 +24,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 	/// </summary>
 	public class MindMapSvgEncodingTests
 	{
-		private static readonly string RepoRoot =
-			Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", ".."));
+		private static readonly string RepoRoot = TestRepoRoot.Find();
 
 		/// <summary>A representative committed file that still carries the legacy mislabel
 			/// (declared utf-16, physically UTF-8 BOM) — real artefact, not a synthetic fixture.</summary>
