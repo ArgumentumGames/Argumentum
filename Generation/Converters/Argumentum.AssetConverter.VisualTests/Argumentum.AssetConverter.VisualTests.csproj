@@ -30,6 +30,16 @@
     <ProjectReference Include="..\Argumentum.AssetConverter\Argumentum.AssetConverter.csproj" />
   </ItemGroup>
 
+  <!-- TestRepoRoot: linked compile (ai-01 arbitrage 2', msg 3y8vuy). The helper lives in
+       Tests/TestRepoRoot.cs and is compiled INTO this assembly, so it is internal here too.
+       Not a ProjectReference (no build edge between the two suites, which #1054 separated
+       into different execution regimes), not a duplicate (single source on disk — a walk-up
+       fix benefits both suites). The file declares namespace Argumentum.AssetConverter.Tests,
+       hence the `using Argumentum.AssetConverter.Tests;` in the consumers below. -->
+  <ItemGroup>
+    <Compile Include="..\Argumentum.AssetConverter.Tests\TestRepoRoot.cs" Link="TestRepoRoot.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <Content Include="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
