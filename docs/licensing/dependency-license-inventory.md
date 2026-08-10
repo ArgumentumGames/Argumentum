@@ -38,6 +38,8 @@ The license gate for the **shipping binary is PASS**.
 
 24 top-level packages. All permissive.
 
+> ⚠️ **Colonne `Version` périmée sur 16 des 24 lignes** (mesuré sur master `ece9af30`) — voir **#1051**. #970 a monté 23 paquets sans mettre ce tableau à jour. Les conclusions de licence restent valides et **les deux épinglages porteurs tiennent** (`AutoMapper 14.0.0` dernier MIT, `QuestPDF 2022.12.12` dernier MIT, vérifiés sur le `.csproj`) : c'est un défaut d'exactitude du registre, pas de conformité. Ne pas recopier les versions sans revérifier la licence **de la version citée**.
+
 | Package | Version | License (nuspec) | reqAccept |
 |---------|---------|------------------|-----------|
 | AutoMapper | 14.0.0 | **MIT** ✅ (last MIT; 15.x = RPL-1.5 — pinned, #588) | False |
@@ -79,7 +81,6 @@ The license gate for the **shipping binary is PASS**.
 | VisualTests | PdfPig | 0.1.14 | **Apache-2.0** (real PdfPig) | now matches AssetConverter post-swap #908 |
 | VisualTests | Verify.ImageSharp | 4.4.1 | MIT | |
 | VisualTests | Verify.Xunit | 30.7.3 | MIT | |
-| CsvValidator | CsvHelper | 33.1.0 | MS-PL OR Apache-2.0 | note: differs from AssetConverter's 31.0.4 |
 
 ## 3. Transitive dependencies (notable, non-trivial)
 
