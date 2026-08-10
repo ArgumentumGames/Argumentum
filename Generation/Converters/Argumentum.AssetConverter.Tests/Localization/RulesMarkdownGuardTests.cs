@@ -67,16 +67,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			("ordered list N.",       new Regex(@"^[^\S\n]*\d+\.[^\S\n]+", RegexOptions.Multiline | RegexOptions.Compiled)),
 		};
 
-		private static string FindRepoRoot()
-		{
-			var dir = new DirectoryInfo(AppContext.BaseDirectory);
-			while (dir != null && !Directory.Exists(Path.Combine(dir.FullName, "Cards", "Fallacies")))
-			{
-				dir = dir.Parent;
-			}
-			return dir?.FullName
-				?? throw new DirectoryNotFoundException("Could not locate repository root (Cards/Fallacies not found).");
-		}
+		private static string FindRepoRoot() => TestRepoRoot.Find();
 
 		/// <summary>
 		/// Scans one cell; returns the names of the forbidden constructions it contains
