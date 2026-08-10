@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter.Tests;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,9 +21,9 @@ namespace Argumentum.AssetConverter.VisualTests
     public class PdfContentTests : IDisposable
     {
         private readonly ITestOutputHelper _output;
-        private static readonly string TargetRoot = Path.GetFullPath(Path.Combine(
-            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target"));
+        private static readonly string TargetRoot = Path.Combine(
+            TestRepoRoot.Find(),
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target");
 
         private static readonly string[] Languages = { "fr", "en", "ru", "pt" };
 

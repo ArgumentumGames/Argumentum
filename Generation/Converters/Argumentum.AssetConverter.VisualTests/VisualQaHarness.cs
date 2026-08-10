@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter.Tests;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,13 +25,13 @@ namespace Argumentum.AssetConverter.VisualTests
     {
         private readonly ITestOutputHelper _output;
 
-        private static readonly string TargetRoot = Path.GetFullPath(Path.Combine(
-            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target"));
+        private static readonly string TargetRoot = Path.Combine(
+            TestRepoRoot.Find(),
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target");
 
-        private static readonly string ReleaseTargetRoot = Path.GetFullPath(Path.Combine(
-            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Release", "net9.0-windows", "Target"));
+        private static readonly string ReleaseTargetRoot = Path.Combine(
+            TestRepoRoot.Find(),
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Release", "net9.0-windows", "Target");
 
         /// <summary>8 languages (post-i18n expansion).</summary>
         private static readonly string[] Languages =

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Argumentum.AssetConverter.Mindmapper;
+using Argumentum.AssetConverter.Tests;
 using Microsoft.Playwright;
 using Xunit;
 using Xunit.Abstractions;
@@ -27,8 +28,7 @@ namespace Argumentum.AssetConverter.VisualTests
         private IBrowser _browser = null!;
         private string _tempDir = null!;
 
-        private static readonly string RepoRoot =
-            Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", ".."));
+        private static readonly string RepoRoot = TestRepoRoot.Find();
 
         private static readonly string IncludedTemplatePath =
             Path.Combine(RepoRoot, "Cards", "Fallacies", "Mindmaps", "included.html");
