@@ -1529,21 +1529,11 @@ if (mapFile != null) {
 
 		internal static string GetSvgContent(XDocument svgDoc)
 		{
-			StringBuilder sb = new();
-			XmlWriterSettings settings = new()
-			{
-				Indent = true,
-				IndentChars = "\t", // use tab for indentation
-				NewLineChars = Environment.NewLine,
-				NewLineHandling = NewLineHandling.Replace
-			};
-
-			using (XmlWriter writer = XmlWriter.Create(sb, settings))
-			{
-				svgDoc.Save(writer);
-			}
-			string svgContent = sb.ToString();
-			return svgContent;
+			// #804 — delegate to MindMapSvgWriter so the emitted XML declaration says UTF-8
+			// (matching the physical byte encoding of the written file) instead of the UTF-16
+			// default that a bare XmlWriter-on-StringBuilder would produce. The 32 on-disk
+			// *.content.svg / *.links.svg realign on the next regeneration (post-tag).
+			return MindMapSvgWriter.WriteToString(svgDoc);
 		}
 
 
