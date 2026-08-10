@@ -134,6 +134,13 @@ yarn-error.log*
 
 # Exclusions spécifiques au projet Argumentum (reprises de l'ancien .gitignore)
 /DNNPlatform/App_Data/Search
+# #972 / #1049: DNNPlatform/ is a LIVE webroot (préprod dnn.argumentum.myia.io, IIS id:52)
+# checked out inside a git repo that workers branch in every 2h. web.config ships deployed at
+# 10.3.2 (local override ~97 KB) but was tracked at the 9.11.1 baseline (~79 KB) — a
+# tracked-and-divergent file that any `git reset/checkout/pull` silently overwrote, killing the
+# site (incident 2026-08-10 01:13:18). Untracked: the live file is now local-only;
+# web.config.example is the sanitized committed template.
+/DNNPlatform/web.config
 /Cartes/Generation/Converters/Argumentum.AssetConverter/Data
 /Cartes/Generation/Converters/Mindmapper/Data
 
