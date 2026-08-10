@@ -4005,6 +4005,38 @@
                     } catch (e) { console.error('initial focus error', e); }
                 });
 
+                // === RÉACTIVITÉ AU REDIMENSIONNEMENT (restauration #1037) ===
+                // #827 avait retiré les listeners resize/orientationchange (légitime pour la
+                // fiche repassée au CSS), mais a emporté celui dont svg-pan-zoom a besoin : la
+                // bibliothèque ne s'abonne pas à window.resize elle-même. Sans lui, le viewport
+                // reste figé sur la géométrie du chargement (racine hors écran sur téléphone ou
+                // après rotation). On rappelle resize() PUIS on recentre sur la racine AU NIVEAU
+                // DE ZOOM COURANT — jamais fit() (cela ré-introduirait la régression #831 de
+                // zoom initial illisible). L'utilisateur garde son échelle et retrouve son repère.
+                var recenterRoot = function () {
+                    try {
+                        var root = document.querySelector('#mindmap svg g.node[id="0"]');
+                        var s = panZoomInstance.getSizes();
+                        var cx = s.viewBox.x + s.viewBox.width / 2, cy = s.viewBox.y + s.viewBox.height / 2;
+                        if (root) {
+                            var m = (root.getAttribute('transform') || '').match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)/);
+                            var tx = m ? parseFloat(m[1]) : cx, ty = m ? parseFloat(m[2]) : cy;
+                            var bb = null; try { bb = root.getBBox(); } catch (e) {}
+                            cx = tx + (bb ? bb.x + bb.width / 2 : 0);
+                            cy = ty + (bb ? bb.y + bb.height / 2 : 0);
+                        }
+                        panZoomInstance.pan({ x: s.width / 2 - cx * s.realZoom, y: s.height / 2 - cy * s.realZoom });
+                    } catch (e) { console.error('resize recenter error', e); }
+                };
+                window.addEventListener('resize', function () {
+                    panZoomInstance.resize();
+                    requestAnimationFrame(recenterRoot);
+                });
+                window.addEventListener('orientationchange', function () {
+                    panZoomInstance.resize();
+                    requestAnimationFrame(recenterRoot);
+                });
+
                 // Conservez ici votre logique d'affichage de la modale
             } else {
                 console.error('SVG not found within #mindmap');
