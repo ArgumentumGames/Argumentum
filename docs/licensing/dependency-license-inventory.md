@@ -296,8 +296,13 @@ license header and the license is the library's well-known upstream.
 
 - [x] Inventory of CardPen vendored `lib/*.js` (version + licence + provenance) — §9.1.
 - [x] `dependency-license-inventory.md` updated with the non-npm surface — this section.
-- [ ] (separate, ai-01's) disposition of the 22 grouped dependabot PRs — post-tag, one line per
-  lot not per PR. Out of po-2024's lane.
+- [x] Disposition of the dependabot lot — post-tag, one line per lot not per PR. Dispatched to
+  po-2024 by ai-01 cycle 63 (superseding the earlier "out of lane" note): classification posted on
+  [#942](https://github.com/ArgumentumGames/Argumentum/issues/942#issuecomment-5237884422) — Lot A
+  (npm CardPen, merge groupé post-tag), Lot B (DNN `Portals/**`, fermeture motivée + `ignore`
+  dependabot.yml *or* délégation chantier 2sxc po-2023 — jsboige tranche), Lot C (nuget pipeline,
+  re-merge du reste sain post-#943, OWLSharp 5 sorti du groupe pour triage #133). Count dérivé :
+  40 PRs ouvertes aujourd'hui (vs 22 à l'ouverture). 0 PR touchée (gel respecté).
 
 > **Note on CardPen's own `LICENSE.txt`:** CardPen carries a **GPL-3.0** license file (upstream
 > CardPen). That governs the CardPen source itself, not the bundled `lib/*.js` (each retains its
