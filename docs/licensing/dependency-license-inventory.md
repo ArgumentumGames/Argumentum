@@ -36,51 +36,51 @@ The license gate for the **shipping binary is PASS**.
 
 ## 1. Direct dependencies — `Argumentum.AssetConverter` (the shipping pipeline)
 
-24 top-level packages. All permissive.
-
-> ⚠️ **Colonne `Version` périmée sur 16 des 24 lignes** (mesuré sur master `ece9af30`) — voir **#1051**. #970 a monté 23 paquets sans mettre ce tableau à jour. Les conclusions de licence restent valides et **les deux épinglages porteurs tiennent** (`AutoMapper 14.0.0` dernier MIT, `QuestPDF 2022.12.12` dernier MIT, vérifiés sur le `.csproj`) : c'est un défaut d'exactitude du registre, pas de conformité. Ne pas recopier les versions sans revérifier la licence **de la version citée**.
+24 top-level packages. All permissive. Versions re-verified against `Argumentum.AssetConverter.csproj` on master `adc1ff04` (#1051); every license re-checked on the **cited version** via the NuGet flat-container `.nuspec` — **no license changed** in the #970 bumps (16 versions moved), and the two load-bearing pins (`AutoMapper 14.0.0` last MIT, `QuestPDF 2022.12.12` last MIT) hold.
 
 | Package | Version | License (nuspec) | reqAccept |
 |---------|---------|------------------|-----------|
 | AutoMapper | 14.0.0 | **MIT** ✅ (last MIT; 15.x = RPL-1.5 — pinned, #588) | False |
-| OpenAI | 2.10.0 | MIT | True |
-| CsvHelper | 31.0.4 | MS-PL OR Apache-2.0 | True |
-| dotNetRdf | 3.3.2 | MIT | False |
-| Google.Apis.Sheets.v4 | 1.68.0.3525 | Apache-2.0 | False |
-| ExtendedXmlSerializer | 3.7.18 | file-url → **MIT** (see §6) | False |
+| OpenAI | 2.12.0 | MIT | True |
+| CsvHelper | 33.1.0 | MS-PL OR Apache-2.0 | True |
+| dotNetRdf | 3.5.2 | MIT | False |
+| Google.Apis.Sheets.v4 | 1.75.0.4178 | Apache-2.0 | False |
+| ExtendedXmlSerializer | 3.10.0 | file → **MIT** (see §6; `licenseUrl` now MS deprecation stub, not a usable fallback) | False |
 | Humanizer | 2.14.1 | MIT | False |
-| Magick.NET-Q16-AnyCPU | 14.15.0 | **Apache-2.0** ✅ (#902) | False |
+| Magick.NET-Q16-AnyCPU | 14.16.0 | **Apache-2.0** ✅ (#902) | False |
 | Microsoft.Playwright | 1.43.0 | MIT | False |
-| Newtonsoft.Json | 13.0.3 | MIT | False |
+| Newtonsoft.Json | 13.0.4 | MIT | False |
 | OWLSharp | 4.23.0 | Apache-2.0 | False |
-| OWLSharp.Extensions | 4.22.0 | Apache-2.0 | False |
+| OWLSharp.Extensions | 4.23.0 | Apache-2.0 | False |
 | QuestPDF | 2022.12.12 | **MIT** ✅ (>2022.12.12 = commercial — pinned) | False |
-| SkiaSharp.NativeAssets.Win32 | 2.88.6 | file-url → **MIT** (MS .NET license, §6) | True |
-| SharpToken | 2.0.2 | file-url → **MIT** (see §6) | False |
-| Spectre.Console | 0.50.0 | MIT | True |
-| Spectre.Console.Json | 0.50.0 | MIT | True |
+| SkiaSharp.NativeAssets.Win32 | 2.88.9 | **MIT** ✅ (expression in nuspec at 2.88.9 — §6 file-url caveat obsolete, license now explicit) | True |
+| SharpToken | 2.0.6 | file → **MIT** (see §6; `licenseUrl` now MS deprecation stub, not a usable fallback) | False |
+| Spectre.Console | 0.57.2 | MIT | True |
+| Spectre.Console.Json | 0.57.2 | MIT | True |
 | System.ComponentModel.TypeConverter | 4.3.0 | file-url → **MIT** (MS .NET license) | True |
 | System.Drawing.Primitives | 4.3.0 | file-url → **MIT** (MS .NET license) | True |
-| System.Linq.Dynamic.Core | 1.7.2 | Apache-2.0 | False |
-| System.Management | 8.0.0 | MIT | False |
-| PdfPig | 0.1.14 | **Apache-2.0** ✅ (official; swapped from `UglyToad.PdfPig 1.7.0-custom-5` via #908, §7.2) | False |
+| System.Linq.Dynamic.Core | 1.7.3 | Apache-2.0 | False |
+| System.Management | 10.0.10 | MIT | False |
+| PdfPig | 0.1.15 | **Apache-2.0** ✅ (official; swapped from `UglyToad.PdfPig 1.7.0-custom-5` via #908, §7.2) | False |
 | Utf8Json | 1.3.7 | (none in catalog) → **MIT** (known, §6) | False |
-| xunit.extensibility.core | 2.8.1 | Apache-2.0 | False |
+| xunit.extensibility.core | 2.9.3 | Apache-2.0 | False |
 
 ## 2. Direct dependencies — other solution projects
 
+Versions re-verified against the `Tests`/`VisualTests` `.csproj` on master `adc1ff04` (#1051). **No license changed** in the #970 version bumps; three pre-existing license **mislabels** were corrected (Scriban, xunit.runner.visualstudio, Verify.ImageSharp — the nuspec carried these licenses at the *old* versions too, the doc was wrong before, not changed by the bump).
+
 | Project | Package | Version | License | Notes |
 |---------|---------|---------|---------|-------|
-| Tests | coverlet.collector | 6.0.2 | MIT | |
+| Tests | coverlet.collector | 10.0.1 | MIT | |
 | Tests | FluentAssertions | 7.2.2 | Apache-2.0 | downgraded from 8.5.0 commercial via #955 — see §7.1 |
-| Tests | Microsoft.NET.Test.Sdk | 17.12.0 | MIT (MS) | |
+| Tests | Microsoft.NET.Test.Sdk | 18.8.1 | MIT (MS) | |
 | Tests | Microsoft.Playwright | 1.43.0 | MIT | |
-| Tests | Scriban | 7.2.2 | MIT | |
-| Tests | xunit | 2.9.2 | MIT/Apache-2.0 | |
-| Tests | xunit.runner.visualstudio | 2.8.2 | MIT (MS) | |
-| VisualTests | PdfPig | 0.1.14 | **Apache-2.0** (real PdfPig) | now matches AssetConverter post-swap #908 |
-| VisualTests | Verify.ImageSharp | 4.4.1 | MIT | |
-| VisualTests | Verify.Xunit | 30.7.3 | MIT | |
+| Tests | Scriban | 7.2.6 | **BSD-2-Clause** ✏️ (was wrongly "MIT"; nuspec = BSD-2-Clause at 7.2.2 too — pre-existing mislabel, corrected) | permissive |
+| Tests | xunit | 2.9.3 | Apache-2.0 | |
+| Tests | xunit.runner.visualstudio | 3.1.5 | **Apache-2.0** ✏️ (was wrongly "MIT (MS)"; nuspec = Apache-2.0 at 2.8.2 too — pre-existing mislabel, corrected) | |
+| VisualTests | PdfPig | 0.1.15 | **Apache-2.0** (real PdfPig) | matches AssetConverter post-swap #908 |
+| VisualTests | Verify.ImageSharp | 5.0.1 | ⚠️ **AGPL-3.0-only** ✏️ (was wrongly "MIT"; nuspec = AGPL-3.0-only at 4.4.1 too — pre-existing mislabel, surfaced by #1051) | **test-only** (VisualTests.csproj, not in shipping binary) — flagged for ai-01/jsboige; see #1051 |
+| VisualTests | Verify.Xunit | 31.12.5 | MIT | |
 
 ## 3. Transitive dependencies (notable, non-trivial)
 
@@ -103,8 +103,8 @@ Full closure enumerated via `--include-transitive`. All permissive. The non-Micr
 | SkiaSharp / SkiaSharp.HarfBuzz | 2.88.6 | MIT | |
 | Sprache | 2.3.1 | MIT | |
 | VDS.Common | 2.0.0 | MIT | dotNetRdf |
-| Magick.NET.Core | 14.15.0 | Apache-2.0 | Magick.NET |
-| PdfPig.{Core,Fonts,Tokenization,Tokens} | 0.1.14 | Apache-2.0 | PdfPig (post-swap #908; pre-swap `UglyToad.PdfPig.*` 1.7.0-custom-5 carried none, §7.2) |
+| Magick.NET.Core | 14.16.0 | Apache-2.0 | Magick.NET |
+| PdfPig.{Core,Fonts,Tokenization,Tokens} | 0.1.15 | Apache-2.0 | PdfPig (post-swap #908; pre-swap `UglyToad.PdfPig.*` 1.7.0-custom-5 carried none, §7.2) |
 | xunit.abstractions | 2.0.3 | Apache-2.0 | |
 
 The Microsoft / `System.*` / `runtime.*` / `Humanizer.Core.*` (×50 locale satellites) transitives
@@ -115,7 +115,7 @@ are all MIT (MS .NET license) — not enumerated individually, ~120 packages, al
 | Package | Pinned at | License | Next-version risk | nuspec vs doc |
 |---------|-----------|---------|-------------------|---------------|
 | **AutoMapper** | 14.0.0 | MIT | 15.0.0+ → **RPL-1.5 / commercial** (Lucky Penny, `requireLicenseAcceptance`) | nuspec = MIT ✅ (matches #902) |
-| **Magick.NET-Q16-AnyCPU** | 14.15.0 | Apache-2.0 | none (Apache stable) | nuspec = Apache-2.0 ✅ |
+| **Magick.NET-Q16-AnyCPU** | 14.16.0 | Apache-2.0 | none (Apache stable) | nuspec = Apache-2.0 ✅ |
 | **QuestPDF** | 2022.12.12 | MIT | >2022.12.12 → **commercial** (community-license) | nuspec = MIT ✅ |
 
 All three nuspec values match the #902 documentation. No divergence.
@@ -137,9 +137,9 @@ read only expressions. Resolved manually:
 
 | Package | file-url resolves to | Verdict |
 |---------|---------------------|---------|
-| ExtendedXmlSerializer 3.7.18 | MIT ( ExtendedXmlSerializer) | permissive |
-| SharpToken 2.0.2 | MIT (MattW) | permissive |
-| SkiaSharp.NativeAssets.Win32 2.88.6 | MS .NET license (linkid=868514) = MIT | permissive |
+| ExtendedXmlSerializer 3.10.0 | `type=file` LICENSE → MIT; `licenseUrl` now `aka.ms/deprecateLicenseUrl` stub (not a usable fallback) | permissive |
+| SharpToken 2.0.6 | `type=file` LICENSE → MIT; `licenseUrl` now `aka.ms/deprecateLicenseUrl` stub (not a usable fallback) | permissive |
+| SkiaSharp.NativeAssets.Win32 2.88.9 | nuspec now declares `MIT` as an SPDX **expression** directly (§6 file-url indirection no longer needed at 2.88.9) | permissive |
 | System.ComponentModel.TypeConverter 4.3.0 | MS .NET license (linkid=329770) = MIT | permissive |
 | System.Drawing.Primitives 4.3.0 | MS .NET license (linkid=329770) = MIT | permissive |
 
