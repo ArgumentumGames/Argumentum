@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,6 +39,31 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             "panZoomInstance.resize()"
         };
 
+        // Capability #11 of issue #830 (added by #1040): the external-path artifacts load the SVG
+        // through an <object>, and svg-pan-zoom init (plus click-to-card) lived inside that
+        // object's 'load' listener. These substrings together prove the init function is NAMED and
+        // reached on at least one of two converging paths -- the immediate call OR the 'load'
+        // subscription -- rather than only subscribed (and silently skipped when the object had
+        // already finished loading before DOMContentLoaded fired).
+        //
+        // CRITICAL: a readyState === 'complete' check ALONE is insufficient. The <object>'s
+        // contentDocument can report readyState 'complete' while its documentElement is still
+        // <html> (the SVG resource not yet parsed) -- at which point svg-pan-zoom resolves the
+        // svg to a <html> element, createSVGMatrix is undefined, and init throws. The guard must
+        // ALSO confirm documentElement is the <svg> root. That is the tagName check below.
+        private static readonly string[] RequiredRaceGuard =
+        {
+            "var initSvgViewer = function () {",
+            "__svgDoc.readyState === 'complete'",
+            "__svgDoc.documentElement.tagName.toLowerCase() === 'svg'",
+            "initSvgViewer();",
+            "svgObject.addEventListener('load', initSvgViewer)"
+        };
+
+        // The legacy racy pattern that #1040 replaces: an anonymous 'load' handler subscribed with
+        // no readyState guard. Present-but-never-executed is precisely the failure mode this guards.
+        private const string LegacyRacyLoadSubscription = "svgObject.addEventListener('load', function () {";
+
         [Fact]
         public void AllCommittedMindmapHtmlFiles_WireResizeAndOrientationChange_ToPanZoomResize()
         {
@@ -64,6 +90,63 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
             missing.Should().BeEmpty(
                 "capability #10 (#830 / #1037): resize + orientationchange must call panZoomInstance.resize() in every shipped mindmap artifact");
+        }
+
+        /// <summary>
+        /// Capability #11 of issue #830 (added by #1040). The 16 <c>_ext</c> wrappers load their
+        /// SVG through an <c>&lt;object&gt;</c> element; svg-pan-zoom init and click-to-card both
+        /// lived inside that object's <c>'load'</c> listener, which was itself subscribed inside
+        /// <c>DOMContentLoaded</c>. When the object finished loading before <c>DOMContentLoaded</c>
+        /// fired (warm cache, fast local serve) the <c>'load'</c> event was already gone and
+        /// NOTHING executed: no zoom, no pan, no click-to-card, no console error -- the viewer was
+        /// simply absent. Presence of the code is not execution; this test pins the fix.
+        /// </summary>
+        /// <remarks>
+        /// <para>External path only (the <c>external.html</c> template + the 16 <c>_ext</c> wrappers).
+        /// The embedded path (<c>included.html</c> + the 16 inline-SVG wrappers) inlines the SVG
+        /// and has no <c>&lt;object&gt;</c> load race, so it is deliberately out of scope here.</para>
+        /// <para>The guard asserts BOTH <c>readyState === 'complete'</c> AND
+        /// <c>documentElement.tagName === 'svg'</c>. A readyState check alone is insufficient: the
+        /// object's contentDocument can report 'complete' while its documentElement is still
+        /// <c>&lt;html&gt;</c> (SVG resource not yet parsed), at which point svg-pan-zoom resolves
+        /// the svg to a <c>&lt;html&gt;</c> node, <c>createSVGMatrix</c> is undefined, and init
+        /// throws <c>createSVGMatrix is not a function</c>. The tagName check is what closes that.</para>
+        /// <para>The behavioral complement (3 consecutive cold/hot loads, identical results) lives
+        /// in the Playwright suite <c>MindmapWrapperTests.cs</c>.</para>
+        /// </remarks>
+        [Fact]
+        public void ExternalMindmapWrappers_GuardObjectLoadRace_SoInitExecutes()
+        {
+            // external.html template + 16 _ext wrappers (8 langs × {Fallacies,Virtues}).
+            var externalFiles = Directory.EnumerateFiles(MindmapsRoot, "*.html", SearchOption.AllDirectories)
+                .OrderBy(f => f)
+                .Where(f => Path.GetFileName(f).Equals("external.html", StringComparison.OrdinalIgnoreCase)
+                            || Path.GetFileName(f).EndsWith("_ext.html", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            externalFiles.Count.Should().Be(17,
+                "external.html template + 16 _ext wrappers (8 langs × {Fallacies,Virtues})");
+
+            var missing = new List<string>();
+            var legacy = new List<string>();
+            foreach (var file in externalFiles)
+            {
+                var content = File.ReadAllText(file);
+                foreach (var needle in RequiredRaceGuard)
+                {
+                    if (!content.Contains(needle))
+                        missing.Add($"{Path.GetFileName(file)}: missing '{needle}'");
+                }
+                // The racy anonymous 'load' subscription must be gone -- a file can carry all the
+                // init code and still never run it, which is exactly the regression this prevents.
+                if (content.Contains(LegacyRacyLoadSubscription))
+                    legacy.Add($"{Path.GetFileName(file)}: still uses the racy anonymous 'load' subscription");
+            }
+
+            missing.Should().BeEmpty(
+                "capability #11 (#830 / #1040): every external-path artifact must name its init and guard the <object> load race with a readyState + documentElement-is-svg check so init actually executes (readyState alone is insufficient -- the svg root may not be parsed yet)");
+            legacy.Should().BeEmpty(
+                "capability #11 (#830 / #1040): the racy anonymous 'load' subscription must be replaced by the named initSvgViewer + readyState/documentElement guard");
         }
     }
 }
