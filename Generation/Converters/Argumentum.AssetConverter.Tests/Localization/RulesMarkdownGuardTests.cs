@@ -28,13 +28,30 @@ namespace Argumentum.AssetConverter.Tests.Localization
 	/// language columns (<c>Text</c>/<c>Text_en/_ru/_pt/_es/_ar/_fa/_zh</c>), and its failure
 	/// message points back to the #965 verdict so the decision does not expire in silence.
 	///
+	/// The guard iterates over BOTH Rules DataSets — the main CSV (120 cells) AND the Print &amp;
+	/// Play CSV (48 cells) — because both feed the same <c>{{markdown}}</c> helper. The markdown
+	/// surface is bounded to these 168 cells: <c>{{markdown}}</c> is used only by Rules templates.
+	///
 	/// Compatible with the pre-tag freeze: touches neither CardPen nor any CSV — only the test
-	/// project. Validated empirically at 0 forbidden construction across 15 rows × 8 languages
-	/// (120 cells) on master <c>c9415d6a</c>.
+	/// project. Validated empirically at 0 forbidden construction across 168 cells (15+6 rows × 8
+	/// languages) on master <c>d10952f4</c>.
 	/// </summary>
 	public class RulesMarkdownGuardTests
 	{
-		private const string RulesCsvRelPath = "Cards/Rules/Argumentum Rules - Cards.csv";
+		// The two Rules DataSets (AssetConverterConfig.cs:50-59 — KnownDataSets.Rules and
+		// KnownDataSets.RulesPrintAndPlay). BOTH feed the {{markdown}} helper, therefore the same
+		// vendored marked.js 0.3.x. A table written into the PnP CSV would render noop at the same
+		// rate as in the main CSV, and a guard over only one would stay green — exactly the #965
+		// decision expiring in silence. The markdown surface is BOUNDED to these 168 cells:
+		// {{markdown}} is used only by Rules templates (ai-01 grep, cycle 64 — 2 live + 5 archived
+		// under Cards/Rules/Archive/); no Fallacies/Virtues/Scenarii/Memo template touches it.
+		//   - main: 15 rows × 8 langs = 120 cells
+		//   - PnP:   6 rows × 8 langs =  48 cells
+		private static readonly (string Name, string RelPath)[] RulesCsvs =
+		{
+			("Argumentum Rules - Cards",                "Cards/Rules/Argumentum Rules - Cards.csv"),
+			("Argumentum Rules - Cards Print and Play", "Cards/Rules/Argumentum Rules - Cards Print and Play.csv"),
+		};
 
 		private const string Verdict965Reference =
 			"This violates the #965 verdict (ai-01: STAY on vendored marked.js 0.3.x for the Rules " +
@@ -49,8 +66,9 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			{ "Text", "Text_en", "Text_ru", "Text_pt", "Text_es", "Text_ar", "Text_fa", "Text_zh" };
 
 		// Forbidden markdown constructions — each renders incorrectly or injects raw on marked.js
-		// 0.3.x. Validated empirically at 0 occurrence on master c9415d6a (120 cells). See #965.
-		// Patterns are line-aware (Multiline) where the construction is block-level.
+		// 0.3.x. Validated empirically at 0 occurrence on master d10952f4 across BOTH Rules DataSets
+		// (168 cells: 120 main + 48 P&P). See #965. Patterns are line-aware (Multiline) where the
+		// construction is block-level.
 		private static readonly (string Name, Regex Pattern)[] ForbiddenConstructions =
 		{
 			("fenced code block ```", new Regex(@"```", RegexOptions.Compiled)),
@@ -98,8 +116,10 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// Reads the 8 Rules language columns cell-by-cell from the CSV (CsvHelper handles the
 		/// quoted multi-line cells). Returns a map of (row index, column name) -> cell text for
 		/// non-blank cells. Access is by header index to stay robust to PrepareHeaderForMatch.
+		/// The 8-column assertion is carried PER CSV — a DataSet whose header silently dropped a
+		/// language column would otherwise make the guard green for the wrong reason (anti-#909).
 		/// </summary>
-		private static List<(long Row, string Column, string Content)> ReadRulesLanguageCells(string csvPath)
+		private static List<(long Row, string Column, string Content)> ReadRulesLanguageCells(string csvPath, string csvName)
 		{
 			var cells = new List<(long, string, string)>();
 			var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -122,7 +142,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 						columnIndex[col] = idx;
 				}
 				columnIndex.Should().HaveCount(RulesLanguageColumns.Length,
-					"the Rules CSV must expose all 8 language columns: {0}", string.Join(", ", RulesLanguageColumns));
+					"the Rules CSV '{0}' must expose all 8 language columns: {1}", csvName, string.Join(", ", RulesLanguageColumns));
 
 				while (csv.Read())
 				{
@@ -139,27 +159,36 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		}
 
 		[Fact]
-		public void Rules_Csv_Uses_Only_Validated_Markdown_Constructions_Across_8_Languages()
+		public void Rules_Csvs_Use_Only_Validated_Markdown_Constructions_Across_Both_Datasets()
 		{
 			// The #965 stay decision is self-defending through this test. If it ever fails, do NOT
 			// silence it: either bring the content back into the validated domain, or reopen #965.
-			var path = Path.Combine(FindRepoRoot(), RulesCsvRelPath);
-			File.Exists(path).Should().BeTrue($"Rules CSV must exist at {RulesCsvRelPath}");
-
-			var cells = ReadRulesLanguageCells(path);
-			cells.Should().NotBeEmpty("the Rules CSV must carry localized body text in all 8 languages");
-
+			// Both Rules DataSets feed the {{markdown}} helper (same marked.js 0.3.x), so BOTH must
+			// stay within the validated domain — a guard over only one would expire in silence.
+			var repoRoot = FindRepoRoot();
 			var offenders = new List<string>();
-			foreach (var (row, column, content) in cells)
+
+			foreach (var (name, relPath) in RulesCsvs)
 			{
-				var hits = FindForbiddenMarkdown(content);
-				if (hits.Count > 0)
-					offenders.Add($"CSV row {row}, column '{column}': {string.Join(", ", hits)}");
+				var path = Path.Combine(repoRoot, relPath);
+				File.Exists(path).Should().BeTrue($"the Rules DataSet CSV '{name}' must exist at {relPath}");
+
+				var cells = ReadRulesLanguageCells(path, name);
+				cells.Should().NotBeEmpty(
+					"the Rules CSV '{0}' must carry localized body text in all 8 languages", name);
+
+				foreach (var (row, column, content) in cells)
+				{
+					var hits = FindForbiddenMarkdown(content);
+					if (hits.Count > 0)
+						offenders.Add($"[{name}] CSV row {row}, column '{column}': {string.Join(", ", hits)}");
+				}
 			}
 
 			offenders.Should().BeEmpty(
-				"Rules content must stay within the 3 validated markdown constructions (#965 verdict). " +
-				$"Found {offenders.Count} offender(s):\n{string.Join("\n", offenders)}\n\n{Verdict965Reference}");
+				"Rules content must stay within the 3 validated markdown constructions (#965 verdict), " +
+				$"across BOTH Rules DataSets (168 cells). Found {offenders.Count} offender(s):\n" +
+				$"{string.Join("\n", offenders)}\n\n{Verdict965Reference}");
 		}
 
 		[Theory]
