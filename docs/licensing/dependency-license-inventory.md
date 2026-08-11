@@ -84,7 +84,11 @@ Versions re-verified against the `Tests`/`VisualTests` `.csproj` on master `adc1
 
 ## 3. Transitive dependencies (notable, non-trivial)
 
-Full closure enumerated via `--include-transitive`. All permissive. The non-Microsoft transitives:
+Re-enumerated via `dotnet list package --include-transitive` (3 csproj union) against master
+`ded70c81` — the §3 spot-check in #1053 caught only `Magick.NET.Core` and `PdfPig.*`; this full
+re-enumeration (the hole #1053 explicitly deferred) surfaces 3 more version drifts and 5 transitives
+previously unlisted. **No license changed** in any of the drifts; all transitives remain permissive
+(MIT / Apache-2.0 / BSD-3). The non-Microsoft transitives:
 
 | Package | Version | License | Pulled by |
 |---------|---------|---------|-----------|
@@ -92,8 +96,8 @@ Full closure enumerated via `--include-transitive`. All permissive. The non-Micr
 | LightInject | 6.6.1 | MIT | OWLSharp |
 | HarfBuzzSharp (+ NativeAssets) | 7.3.0 | MIT | SkiaSharp |
 | J2N | 2.1.0 | MIT | Lucene.Net |
-| AngleSharp | 1.1.2 | MIT | |
-| HtmlAgilityPack | 1.11.67 | MIT | |
+| AngleSharp | 1.4.0 | MIT | (drift 1.1.2→1.4.0; license re-verified on 1.4.0 nuspec, unchanged) |
+| HtmlAgilityPack | 1.12.4 | MIT | (drift 1.11.67→1.12.4; license re-verified on 1.12.4 nuspec, unchanged) |
 | NReco.LambdaParser | 1.0.12 | MIT | System.Linq.Dynamic.Core |
 | NetTopologySuite | 2.6.0 | BSD-3-Clause (permissive) | |
 | ProjNET | 2.1.0 | MIT | |
@@ -102,13 +106,26 @@ Full closure enumerated via `--include-transitive`. All permissive. The non-Micr
 | **SharpZipLib** | 1.4.2 | **MIT** ✅ (confirmed — 1.x relicensed from old GPL) | |
 | SkiaSharp / SkiaSharp.HarfBuzz | 2.88.6 | MIT | |
 | Sprache | 2.3.1 | MIT | |
-| VDS.Common | 2.0.0 | MIT | dotNetRdf |
+| VDS.Common | 3.0.1 | MIT | dotNetRdf (drift 2.0.0→3.0.1; license re-verified on 3.0.1 nuspec, unchanged) |
 | Magick.NET.Core | 14.16.0 | Apache-2.0 | Magick.NET |
 | PdfPig.{Core,Fonts,Tokenization,Tokens} | 0.1.15 | Apache-2.0 | PdfPig (post-swap #908; pre-swap `UglyToad.PdfPig.*` 1.7.0-custom-5 carried none, §7.2) |
+| Utf8Json | 1.3.7 | MIT (repo `neuecc/Utf8Json`; nuspec is pre-SPDX with **no** `<license>` expression — the §6 angle, license read from the GitHub LICENSE, not the manifest) | present in the shipping `Argumentum.AssetConverter` closure (parent not surfaced by `--include-transitive`) |
 | xunit.abstractions | 2.0.3 | Apache-2.0 | |
 
 The Microsoft / `System.*` / `runtime.*` / `Humanizer.Core.*` (×50 locale satellites) transitives
 are all MIT (MS .NET license) — not enumerated individually, ~120 packages, all permissive.
+
+**Verify chain (test-only — `Argumentum.AssetConverter.VisualTests.csproj` only, NOT in the
+shipping binary).** Surfaced by this re-enumeration; all MIT. Listed for completeness because the
+binary gate (§8) does not cover them, and `Verify.ImageSharp` (§7.3 / the AGPL licence gate in
+`docs/quality/visual-tests-release-gate.md`) sits in this same test-only sub-graph:
+
+| Package | Version | License | Pulled by |
+|---------|---------|---------|-----------|
+| Argon | 0.33.5 | MIT | Verify (VisualTests) |
+| DiffEngine | 19.1.2 | MIT | Verify (VisualTests) |
+| EmptyFiles | 8.17.2 | MIT | Verify (VisualTests) |
+| SimpleInfoName | 3.2.0 | MIT | Verify (VisualTests) |
 
 ## 4. The three license-pinned dependencies (cross-check, #902 doc)
 
