@@ -21,6 +21,8 @@
 | Mindmap/PDF/OWL **other 7 languages** | n/a | ❌ **no** | #1058 touched col 20 (EN) only |
 | **Virtues** (any artefact) | n/a | ❌ **no** | #1058 touched the Fallacies taxonomy, not Virtues |
 
+> **⚠️ How to read the "Regen before tag?" column.** "❌ no" here means **"not impacted *by #1058*"** — i.e. the 48 filled EN `Family` cells do not feed this artefact. It does **not** mean "this artefact needs no regeneration before the tag." The mindmap and OWL may still need regen for reasons **orthogonal** to #1058 (other data changes, other fixes); that is a separate question this manifest does not answer. Read the column as a #1058-impact filter, not a regen runbook verdict.
+
 **Bottom line for po-2023's regen runbook:** regenerate the **EN Fallacies card PNGs** then the **EN PDFs**. Mindmap EN and OWL are out of scope for #1058.
 
 ---
