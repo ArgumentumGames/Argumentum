@@ -128,7 +128,12 @@ namespace Argumentum.AssetConverter.VisualTests
             if (missing.Count > 0)
             {
                 _output.WriteLine($"WARN: Missing language dirs: {string.Join(", ", missing)}");
-                // Not a hard fail — some languages may not have been generated yet
+                // Partial generation is legitimate (some languages may not have been generated yet),
+                // so a few missing dirs stay a soft WARN. But a Target/ that exists with ALL
+                // language directories absent is a broken/empty Target/ — the verified-nothing
+                // hole (#1046). The root-null guard above only catches "Target/ absent", not this.
+                if (missing.Count == Languages.Length)
+                    Assert.Fail($"Target/ exists but 0/{Languages.Length} language directories found — test verified nothing (Target/ broken or wrong root)");
             }
 
             _output.WriteLine($"Found {Languages.Length - missing.Count}/{Languages.Length} language directories");
@@ -193,6 +198,13 @@ namespace Argumentum.AssetConverter.VisualTests
 
             foreach (var f in flags)
                 _output.WriteLine($"  FLAG: {f}");
+
+            // Fail-loud guard (#1046 Lot A): without this, if IsCoverImage() matches nothing
+            // (renamed cover files), scanned stays 0 and the test is unconditionally green —
+            // the verified-nothing hole. Below, the all-flagged check is also short-circuited
+            // by its own `scanned > 0` term, so it cannot catch the empty case on its own.
+            if (scanned == 0)
+                Assert.Fail("Scanned 0 cover images in Target/ — test verified nothing (check harvest output / IsCoverImage filter / CardSet naming)");
 
             // This is informational — not a hard fail (thresholds may need tuning)
             // But if ALL covers are flagged, something is wrong
@@ -267,6 +279,12 @@ namespace Argumentum.AssetConverter.VisualTests
 
             foreach (var f in flags)
                 _output.WriteLine($"  FLAG: {f}");
+
+            // Fail-loud guard (#1046 Lot A): mirrors the sibling BlankRatio test (l.234).
+            // Without this, a Target/ present but with an empty Rules subtree scans 0 images
+            // and the test passes green having verified nothing — the verified-nothing hole.
+            if (scanned == 0)
+                Assert.Fail("Scanned 0 Rules images in Target/ — test verified nothing (check harvest output / CardSet filter)");
         }
 
         // --- Detector: footer-collision (body overflowing under absolute footer, #29 recalibration) ---
@@ -458,8 +476,11 @@ namespace Argumentum.AssetConverter.VisualTests
                 }
             }
 
+            // Fail-loud guard (#1046 Lot A): a populated Target/ with 0 images across every
+            // language × cardset means GetImages() matched no path — the grid printed above
+            // asserted nothing. Previously this was a WriteLine "skip", i.e. a silent green.
             if (totalImages == 0)
-                _output.WriteLine("No images found in any language — skip");
+                Assert.Fail("Scanned 0 images across all languages/cardsets in Target/ — test verified nothing (check harvest output / GetImages path filter)");
         }
 
         // --- Helper methods ---
