@@ -127,6 +127,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# MCP server config (root) — may contain OAuth client_id / client_secret in clear
+# (e.g. google-workspace MCP). User-local, never commit. See PR #1074.
+.mcp.json
+
 # Fichiers de configuration spécifiques à l'utilisateur
 *.user
 *.userosscache
