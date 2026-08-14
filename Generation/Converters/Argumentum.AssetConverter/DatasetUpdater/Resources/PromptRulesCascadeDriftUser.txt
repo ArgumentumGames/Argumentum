@@ -16,7 +16,7 @@ Le champ français `Text` (règles du jeu) vient d'être affiné en clarté (pas
    - **Sémantique** : la traduction colle à un ancien sens FR (mécanique de jeu décrite différemment)
    - **Markdown perdu** : la mise en forme (`#`, `##`, `*`, `**`) ne suit plus le FR refondu
    - **Terminologie** : dérive sur les termes canoniques du jeu. Chaque terme a UNE seule forme par langue — JAMAIS de mot étranger dans une colonne (ex. "embromador" n'apparaît QUE dans la colonne PT, jamais en FR/EN/ES). Glossaire verrouillé :
-     - piocheur (FR) = drawer (EN) = Ведущий (RU) = comprador (PT) = repartidor (ES)
+     - piocheur (FR) = card-drawer (EN) = Ведущий (RU) = distribuidor (PT) = quien roba (ES)
      - baratineur (FR) = smooth talker (EN) = Болтун (RU) = embromador (PT) = embaucador (ES)
      - manche (FR) = round (EN) = раунд (RU) = rodada (PT) = ronda (ES)
      - pli (FR) = trick (EN) = взятка (RU) = vaza (PT) = baza (ES)

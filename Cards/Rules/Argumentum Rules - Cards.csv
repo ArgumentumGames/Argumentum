@@ -129,7 +129,7 @@ Choose the length of the game. It consists of a succession of rounds lasting abo
 
 Make 2 draw piles of scenario cards and place them in the middle of the table. Deal each player 5 fallacy cards, which they keep to themselves. The remaining cards form the reserve.
 
-Each player takes a small unique object (coin, bean, etc.) for voting. The first drawer is the player who first remembers a deceptive argument.","
+Each player takes a small unique object (coin, bean, etc.) for voting. The first card-drawer is the player who first remembers a deceptive argument.","
 
 
 ## Начало игры
@@ -153,7 +153,7 @@ Escolham a duração da partida. Esta é composta por uma sucessão de rodadas d
 
 Formem 2 pilhas de compra de cartas de cenário e coloquem-nas no centro da mesa. Distribuam a cada jogador 5 cartas de argumentos falaciosos, que ele mantém em segredo. As restantes cartas constituem a reserva.
 
-Cada jogador municia-se de um pequeno objeto único (moeda, feijão…) para a votação. O primeiro comprador é o jogador que primeiro se lembrar de um argumento enganador.",,"## الإعداد
+Cada jogador municia-se de um pequeno objeto único (moeda, feijão…) para a votação. O primeiro distribuidor é o jogador que primeiro se lembrar de um argumento enganador.",,"## الإعداد
 
 بحسب عدد اللاعبين ومستوى الصعوبة المرغوب فيه، تُشكَّل رزمة سحب بطاقات الحجج المغلوطة بإضافة المستويات المشار إليها في أسفل يمين البطاقات تصاعديًا. ويلزم لذلك حدًّا أدنى قدره 7 × عدد اللاعبين.
 
@@ -204,21 +204,21 @@ Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggesti
 
 Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut écourter la saynète quand il le souhaite.","## Round sequence
 
-### 1. The drawer
+### 1. The card-drawer
 
-The drawer takes a scenario card from one of the two available piles and reads it aloud, except for the last sentence in italics at the bottom of the card.
+The card-drawer takes a scenario card from one of the two available piles and reads it aloud, except for the last sentence in italics at the bottom of the card.
 
 ### 2. The smooth talker
 
 The smooth talker is responsible for steering the scenario's argumentation in order to illustrate one of their fallacy cards. Their goal is to get a majority of the other players to guess this card.
 
-The role of smooth talker is assigned to the first player who places, face down, the fallacy card they intend to play. Otherwise, the player to the drawer's left is designated smooth talker and places their card.
+The role of smooth talker is assigned to the first player who places, face down, the fallacy card they intend to play. Otherwise, the player to the card-drawer's left is designated smooth talker and places their card.
 
 ### 3. The skit
 
-The drawer opens the debate however they wish. They may use the suggested opening line in italics at the bottom of the scenario card. The smooth talker and the drawer then have up to one minute to improvise a discussion during which the smooth talker tries to use the type of argument indicated by the card they chose.
+The card-drawer opens the debate however they wish. They may use the suggested opening line in italics at the bottom of the scenario card. The smooth talker and the card-drawer then have up to one minute to improvise a discussion during which the smooth talker tries to use the type of argument indicated by the card they chose.
 
-The smooth talker presents their arguments and the drawer responds without trying to dominate the scene. The smooth talker may shorten the skit whenever they wish.","## Ход раунда
+The smooth talker presents their arguments and the card-drawer responds without trying to dominate the scene. The smooth talker may shorten the skit whenever they wish.","## Ход раунда
 ### 1. Ведущий
 
 Ведущий вытягивает карту сценария из одной из колод и читает вслух все за исключением последней фразы внизу карты.
@@ -236,21 +236,21 @@ The smooth talker presents their arguments and the drawer responds without tryin
 
 Болтун демонстрирует свои аргументы, и ведущий отвечает ему, не стремясь доминировать на сцене. Болтун может остановить сценку, когда пожелает.","## Decorrer da rodada
 
-### 1. O comprador
+### 1. O distribuidor
 
-O comprador tira uma carta de cenário de um dos dois montes disponíveis e lê-a em voz alta, com exceção da última frase em itálico no rodapé da carta.
+O distribuidor tira uma carta de cenário de um dos dois montes disponíveis e lê-a em voz alta, com exceção da última frase em itálico no rodapé da carta.
 
 ### 2. O embromador
 
 O embromador é responsável por conduzir a argumentação do cenário para ilustrar uma das suas cartas de argumento falacioso. O seu objetivo é fazer com que a maioria dos restantes jogadores adivinhe essa carta.
 
-O papel de embromador é atribuído ao primeiro jogador que coloca, virada para baixo, a carta de argumento falacioso que pretende jogar. Se ninguém o fizer, o jogador à esquerda do comprador é designado embromador e coloca a sua carta.
+O papel de embromador é atribuído ao primeiro jogador que coloca, virada para baixo, a carta de argumento falacioso que pretende jogar. Se ninguém o fizer, o jogador à esquerda do distribuidor é designado embromador e coloca a sua carta.
 
 ### 3. A esquete
 
-O comprador inicia o debate como entender. Pode usar a sugestão de primeira fala em itálico no rodapé da carta de cenário. O embromador e o comprador dispõem então de um minuto, no máximo, para improvisar uma discussão durante a qual o embromador tenta usar o tipo de argumento indicado pela carta que escolheu.
+O distribuidor inicia o debate como entender. Pode usar a sugestão de primeira fala em itálico no rodapé da carta de cenário. O embromador e o distribuidor dispõem então de um minuto, no máximo, para improvisar uma discussão durante a qual o embromador tenta usar o tipo de argumento indicado pela carta que escolheu.
 
-O embromador expõe os seus argumentos e o comprador dá-lhe a deixa sem tentar dominar a cena. O embromador pode encurtar a esquete quando quiser.",,"## سير الجولة
+O embromador expõe os seus argumentos e o distribuidor dá-lhe a deixa sem tentar dominar a cena. O embromador pode encurtar a esquete quando quiser.",,"## سير الجولة
 
 ### 1.       الساحب
 
@@ -330,7 +330,7 @@ Il garde alors sa carte, qui vaut 1 point, et la pose face visible devant lui.
 
 En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l’emporte (✅🎭➜🎭🏆). À défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l’a trouvée, le baratineur l’emporte (❌👇🎭➜🎭🏆).","### 4. The jury
 
-All players except the smooth talker make up the jury, including the drawer. At the end of the skit, each juror chooses, from among their own cards, the one that comes closest to the argumentation they heard and places it face down with the smooth talker's card. With 3 or 4 players, jurors choose 2 cards.
+All players except the smooth talker make up the jury, including the card-drawer. At the end of the skit, each juror chooses, from among their own cards, the one that comes closest to the argumentation they heard and places it face down with the smooth talker's card. With 3 or 4 players, jurors choose 2 cards.
 
 The smooth talker collects the cards, shuffles them and reveals them in the middle of the table. The jurors examine the revealed cards; one juror may read them aloud. Each juror raises a finger to signal that they are ready to vote.
 
@@ -357,7 +357,7 @@ In the event of a tie (🥈👇👇≟🥈👇👇), the smooth talker wins (✅
 
 В случае равного количества голосов (🥈👇👇≟🥈👇👇) побеждает болтун (✅🎭➜🎭🏆), в противном случае (❌🎭), победителями объявляются те, кто угадал карту болтуна (✅👇 🎭 ➜👇🏆). Если никто не угадал карту, то выигрывает болтун. ","### 4. O júri
 
-Todos os jogadores, exceto o embromador, constituem o júri, incluindo o comprador. No fim do esquete, cada jurado escolhe, de entre as suas próprias cartas, aquela que mais se aproxima da argumentação ouvida e coloca-a virada para baixo juntamente com a do embromador. Com 3 ou 4 jogadores, os jurados escolhem 2 cartas.
+Todos os jogadores, exceto o embromador, constituem o júri, incluindo o distribuidor. No fim do esquete, cada jurado escolhe, de entre as suas próprias cartas, aquela que mais se aproxima da argumentação ouvida e coloca-a virada para baixo juntamente com a do embromador. Com 3 ou 4 jogadores, os jurados escolhem 2 cartas.
 
 O embromador recolhe as cartas, baralha-as e revela-as no meio da mesa. Os jurados tomam conhecimento das cartas reveladas; um jurado pode lê-las em voz alta. Cada jurado levanta o dedo para indicar que está pronto para votar.
 
@@ -448,14 +448,14 @@ Once the winner has been designated, players draw a certain number of cards from
 * Jury members who received votes draw one additional card. (✅🧲👇➜✅ 1🎴)
 * Jurors who found the smooth talker's card draw one additional card. (✅👇🎭➜✅ 1🎴)
 * Played cards are returned to the reserve.
-* The winner's left-hand neighbor becomes the drawer for the next round.
+* The winner's left-hand neighbor becomes the card-drawer for the next round.
 
 ## Variants:
 
 * If the smooth talker's card is identified by the entire jury, they do not win the round; everyone draws one card from the reserve, except the smooth talker.
-* During the skit, any member of the jury may use a card from their hand to intervene in the role of the drawer. If their intervention illustrates their card well, they draw another and will be designated as the next drawer; otherwise, they lose their card and the game resumes its course.
-* The drawer has the right to designate the round's smooth talker directly.
-* If the drawer wins, they also win the smooth talker's card.
+* During the skit, any member of the jury may use a card from their hand to intervene in the role of the card-drawer. If their intervention illustrates their card well, they draw another and will be designated as the next card-drawer; otherwise, they lose their card and the game resumes its course.
+* The card-drawer has the right to designate the round's smooth talker directly.
+* If the card-drawer wins, they also win the smooth talker's card.
 * The smooth talker may place several cards. As many winners as there are cards with the greatest number of votes are declared; the smooth talker may thus win all or some of their cards.
 * The winner of the game must embody the smooth talker in a final scenario in which they must bring into play all the cards they won during the game.","### 6 Колоды 
 
@@ -486,14 +486,14 @@ Uma vez declarado o vencedor, os jogadores compram da reserva um certo número d
 * Os membros do júri que tenham recebido votos compram mais uma carta. (✅🧲👇➜✅ 1🎴)
 * Os jurados que tenham encontrado a carta do embromador compram mais uma carta. (✅👇🎭➜✅ 1🎴)
 * As cartas jogadas são devolvidas à reserva.
-* O vizinho à esquerda do vencedor torna-se o comprador da rodada seguinte.
+* O vizinho à esquerda do vencedor torna-se o distribuidor da rodada seguinte.
 
 ## Variantes:
 
 * Se a carta do embromador for indicada por todo o júri, ele não vence a rodada; cada jogador compra uma carta da reserva, à exceção do embromador.
-* Durante a esquete, qualquer membro do júri pode usar uma carta da sua mão para intervir no papel do comprador. Se a sua intervenção ilustrar bem a sua carta, compra outra carta e será designado como próximo comprador; caso contrário, perde a sua carta e a partida prossegue normalmente.
-* O comprador tem o direito de designar diretamente o embromador da rodada.
-* Se o comprador ganhar, ganha também a carta do embromador.
+* Durante a esquete, qualquer membro do júri pode usar uma carta da sua mão para intervir no papel do distribuidor. Se a sua intervenção ilustrar bem a sua carta, compra outra carta e será designado como próximo distribuidor; caso contrário, perde a sua carta e a partida prossegue normalmente.
+* O distribuidor tem o direito de designar diretamente o embromador da rodada.
+* Se o distribuidor ganhar, ganha também a carta do embromador.
 * O embromador pode jogar várias cartas. São declarados tantos vencedores quantas as cartas que tenham obtido o maior número de votos; o embromador pode assim ganhar todas ou parte das suas cartas.
 * O vencedor da partida deve assumir o papel de embromador num cenário final em que tem de pôr em jogo todas as cartas que ganhou ao longo da partida.",,"### 6.       السحوبات
 
@@ -894,7 +894,7 @@ Depending on the number of players and the desired difficulty level, build the d
 
 Shuffle the fallacious argument cards, then the scenario cards. Create 2 draw piles of scenario cards and place them in the middle of the table. Deal 5 fallacious argument cards to each player, which they keep to themselves. The remaining cards form the draw pile.
 
-The first drawer is the player who was most recently influenced by an appeal to emotion.","## Последний оратор
+The first card-drawer is the player who was most recently influenced by an appeal to emotion.","## Последний оратор
 
 *Правила игры: от 1 до 8 игроков*
 
@@ -937,7 +937,7 @@ Consoante o número de jogadores e o nível de dificuldade pretendido, forme a p
 
 Baralhe as cartas de argumento falacioso e, em seguida, as cartas de cenário. Forme 2 montes de cartas de cenário e coloque-os no centro da mesa. Distribua a cada jogador 5 cartas de argumento falacioso, que mantém na mão. As restantes cartas constituem o monte.
 
-O primeiro comprador é quem mais recentemente se deixou influenciar por um apelo à emoção.",,"## آخر متكلم بارع
+O primeiro distribuidor é quem mais recentemente se deixou influenciar por um apelo à emoção.",,"## آخر متكلم بارع
 
 *قواعد اللعبة: من 1 إلى 8 لاعبين*
 
@@ -1044,19 +1044,19 @@ Si un joueur parvient à se débarrasser de toutes ses cartes, il gagne la parti
 
 Sinon, la partie s'arrête au bout du nombre de manches initialement prévu. Le vainqueur est celui qui a le moins de cartes en main.","## Round sequence
 
-### 1. The drawer
+### 1. The card-drawer
 
-The drawer draws a Scenario card from the two available draw piles and reads it aloud, except for the final italicized sentence at the bottom of the card.
+The card-drawer draws a Scenario card from the two available draw piles and reads it aloud, except for the final italicized sentence at the bottom of the card.
 
 ### 2. The round of arguments
 
-Starting with the player to the drawer's left, each player must offer an argument responding to the scenario's prompt. If a player recognizes one of their cards in a given argument, they give that card to the player who used it and remove it from the round.
+Starting with the player to the card-drawer's left, each player must offer an argument responding to the scenario's prompt. If a player recognizes one of their cards in a given argument, they give that card to the player who used it and remove it from the round.
 
 If a player cannot find a new argument within 10 seconds, they draw a new card and are excluded from the round.
 
 ### 3. End of the round
 
-The round ends when only one person remains in play. The player to the drawer's left becomes the new drawer and draws the scenario for the next round.
+The round ends when only one person remains in play. The player to the card-drawer's left becomes the new card-drawer and draws the scenario for the next round.
 
 ## End of game and count
 
@@ -1085,19 +1085,19 @@ Otherwise the game stops at the end of the number of rounds initially planned. T
 Если игроку удается избавиться от всех своих карт, он выигрывает игру.
 В противном случае игра останавливается, когда сыграно запланированное число раундов. Победитель - тот, у кого меньше всего карт.","## Decorrer da rodada
 
-### 1. O comprador
+### 1. O distribuidor
 
-O comprador tira uma carta de cenário de uma das duas pilhas de compra disponíveis e lê-a em voz alta, exceto a última frase em itálico no fundo da carta.
+O distribuidor tira uma carta de cenário de uma das duas pilhas de compra disponíveis e lê-a em voz alta, exceto a última frase em itálico no fundo da carta.
 
 ### 2. A ronda dos argumentos
 
-Começando pelo vizinho à esquerda do comprador, cada jogador deve apresentar um argumento que responda à injunção do cenário. Se um jogador reconhecer uma das suas cartas num argumento apresentado, entrega essa carta ao jogador que a utilizou e afasta-a da rodada.
+Começando pelo vizinho à esquerda do distribuidor, cada jogador deve apresentar um argumento que responda à injunção do cenário. Se um jogador reconhecer uma das suas cartas num argumento apresentado, entrega essa carta ao jogador que a utilizou e afasta-a da rodada.
 
 Se um jogador não encontrar um novo argumento ao fim de 10 segundos, compra uma nova carta e fica excluído da rodada.
 
 ### 3. Fim da rodada
 
-A rodada termina quando resta apenas uma pessoa em jogo. O vizinho à esquerda do comprador torna-se o novo comprador e tira o cenário da rodada seguinte.
+A rodada termina quando resta apenas uma pessoa em jogo. O vizinho à esquerda do distribuidor torna-se o novo distribuidor e tira o cenário da rodada seguinte.
 
 ## Fim da partida e contagem
 
@@ -1230,7 +1230,7 @@ Depending on the number of players and the desired difficulty level, build the f
 
 Shuffle the fallacious argument cards, as well as the scenario cards. Form 2 scenario card decks and 1 fallacious argument deck, then place them in the middle of the table.
 
-The first drawer is the player who most recently conceded an argument through sheer weariness.","## Мели, Емеля
+The first card-drawer is the player who most recently conceded an argument through sheer weariness.","## Мели, Емеля
 
 *Правила игры: от 2 до 8 игроков*
 
@@ -1274,7 +1274,7 @@ Consoante o número de jogadores e o nível de dificuldade pretendido, constitua
 
 Baralhem as cartas de argumento falacioso, bem como as cartas de cenário. Formem 2 pilhas de compra de cartas de cenário e 1 pilha de compra de argumentos falaciosos, depois coloquem-nas no centro da mesa.
 
-O primeiro comprador é o jogador que mais recentemente cedeu a um argumento por desgaste.",,"## طاحونة الثرثرة
+O primeiro distribuidor é o jogador que mais recentemente cedeu a um argumento por desgaste.",,"## طاحونة الثرثرة
 
 *قواعد اللعبة: من 2 إلى 8 لاعبين*
 
@@ -1384,20 +1384,20 @@ Le premier joueur à atteindre 20 points remporte la partie.
 
 * À chaque carte piochée, après l’argument du baratineur, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l’assemblée vote pour déterminer si elle est meilleure que les précédentes. L’auteur de la meilleure proposition retenue remporte la carte.","## Round sequence
 
-### 1. The drawer
+### 1. The card-drawer
 
-The drawer draws a scenario card from the two available decks and reads it aloud, except for the last sentence in italics at the bottom of the card.
+The card-drawer draws a scenario card from the two available decks and reads it aloud, except for the last sentence in italics at the bottom of the card.
 
 ### 2. The speed race
 
-The player to the drawer's left is the smooth talker.
+The player to the card-drawer's left is the smooth talker.
 Set a 3-minute timer.
 
 The smooth talker starts drawing fallacious argument cards. For each card, they must propose an argument that illustrates the card in order to enact the scenario. If they succeed, they win the card; otherwise, they may pass, up to a limit of 3 jokers per round, then draw the next one.
 
 ### 3. End of the round
 
-The round ends when the allotted time runs out. The smooth talker scores as many points as the number of cards they won during the round. They become the drawer for the next round.
+The round ends when the allotted time runs out. The smooth talker scores as many points as the number of cards they won during the round. They become the card-drawer for the next round.
 
 ## End of the game
 
@@ -1432,20 +1432,20 @@ The first player to reach 20 points wins the game.
 * По каждой вытащенной карте сценария, вслед за болтуном, другие игроки могут предложить свою иллюстрацию карты. Все участники голосованием выбирают лучший ответ. 
 ","## Decorrer da rodada
 
-### 1. O comprador
+### 1. O distribuidor
 
-O comprador tira uma carta de cenário de entre as duas pilhas de compra disponíveis e lê-a em voz alta, exceto a última frase em itálico no fundo da carta.
+O distribuidor tira uma carta de cenário de entre as duas pilhas de compra disponíveis e lê-a em voz alta, exceto a última frase em itálico no fundo da carta.
 
 ### 2. A corrida contra o tempo
 
-O vizinho à esquerda do comprador é o embromador.
+O vizinho à esquerda do distribuidor é o embromador.
 Preparem um temporizador de 3 minutos.
 
 O embromador começa a tirar cartas de argumento falacioso. Para cada carta, deve propor um argumento que ilustre a carta, de modo a encenar o cenário. Se conseguir, ganha a carta; caso contrário, pode passar, até ao limite de 3 jokers por rodada, e depois tirar a seguinte.
 
 ### 3. Fim da rodada
 
-A rodada termina quando o tempo se esgota. O embromador marca tantos pontos quantas as cartas que ganhou durante a rodada. Passa a ser o comprador da rodada seguinte.
+A rodada termina quando o tempo se esgota. O embromador marca tantos pontos quantas as cartas que ganhou durante a rodada. Passa a ser o distribuidor da rodada seguinte.
 
 ## Fim da partida
 
@@ -1604,7 +1604,7 @@ Select 28 fallacious argument cards for the game, 4 per color.
 
 Shuffle the fallacious argument cards and the scenario cards separately. Form 2 scenario card decks and place them in the middle of the table.
 
-The first drawer is the player who lied most recently.","## Косноязычное красноречие
+The first card-drawer is the player who lied most recently.","## Косноязычное красноречие
 
 *Правила игры: 4 игрока*
 
@@ -1648,7 +1648,7 @@ Selecionem 28 cartas de argumento falacioso para a partida, ou seja, 4 por cor.
 
 Baralhem separadamente as cartas de argumento falacioso e as cartas de cenário. Formem 2 pilhas de compra de cartas de cenário e coloquem-nas no meio da mesa.
 
-O primeiro comprador é o jogador que mentiu mais recentemente.",,"## الثرثرة المتعثرة
+O primeiro distribuidor é o jogador que mentiu mais recentemente.",,"## الثرثرة المتعثرة
 
 *قواعد اللعبة: 4 لاعبين*
 
@@ -1751,15 +1751,15 @@ La mise aux enchères des atouts commence à 80, puis les enchères montent de 1
 
 Quand plus personne ne surenchérit, les deux couleurs d’atout sont désignées pour la manche et la phase de jeu peut commencer.","## Start of the round
 
-### 1. The drawer
+### 1. The card-drawer
 
-The drawer draws a scenario card from the two available decks and reads it aloud, except for the last sentence in italics at the bottom of the card.
+The card-drawer draws a scenario card from the two available decks and reads it aloud, except for the last sentence in italics at the bottom of the card.
 
 They then shuffle the 28 fallacious argument cards and deal them to the 4 players.
 
 ### 2. Trump bidding
 
-Starting with the player to the drawer's left, players choose whether or not to raise the bid in order to designate the 2 trump colors for the round. Trump cards make it possible to beat other types of cards and are also worth more points during the round scoring.
+Starting with the player to the card-drawer's left, players choose whether or not to raise the bid in order to designate the 2 trump colors for the round. Trump cards make it possible to beat other types of cards and are also worth more points during the round scoring.
 
 Trump bidding starts at 80, then bids increase by 10.
 
@@ -1777,15 +1777,15 @@ When no one raises any further, the two trump colors are designated for the roun
 Начиная с игрока слева от ведущего, игроки решают, назначить ли две масти козырей. Козырные карты позволяют побить другие карты и приносят больше баллов при подсчете. Базовая ставка - 80, увеличивается за один раз на 10 единиц. В любой момент один из игроков команды может сказать: ""продано!"" и прекратить аукцион, при этом ставка удваивается. Когда игроки перестали повышать ставки, назначаются две козырных масти на раунд, и игра может начаться. 
 ","## Início da rodada
 
-### 1. O comprador
+### 1. O distribuidor
 
-O comprador retira uma carta de cenário de uma das duas pilhas de compra disponíveis e lê-a em voz alta, excetuando a última frase em itálico no fundo da carta.
+O distribuidor retira uma carta de cenário de uma das duas pilhas de compra disponíveis e lê-a em voz alta, excetuando a última frase em itálico no fundo da carta.
 
 Em seguida, baralha as 28 cartas de argumento falacioso e distribui-as pelos 4 jogadores.
 
 ### 2. As licitações de trunfo
 
-Começando pelo vizinho à esquerda do comprador, os jogadores escolhem se aumentam ou não a licitação, de modo a designar os 2 naipes de trunfo da rodada. As cartas de trunfo permitem ganhar a outros tipos de cartas e também valem mais pontos na contagem da rodada.
+Começando pelo vizinho à esquerda do distribuidor, os jogadores escolhem se aumentam ou não a licitação, de modo a designar os 2 naipes de trunfo da rodada. As cartas de trunfo permitem ganhar a outros tipos de cartas e também valem mais pontos na contagem da rodada.
 
 O leilão dos trunfos começa em 80 e depois as licitações sobem de 10 em 10.
 
@@ -1886,7 +1886,7 @@ L’équipe qui l’emporte est la première à dépasser 1000 points.","### 3. 
 
 For 7 turns, each player confronts 1 fallacious argument card with the scenario.
 
-Starting with the player to the drawer's left, each player must propose a card and formulate an illustrative argument responding to the scenario's injunction.
+Starting with the player to the card-drawer's left, each player must propose a card and formulate an illustrative argument responding to the scenario's injunction.
 
 If no trump card is played, the card with the highest depth level wins the trick.
 
@@ -1954,7 +1954,7 @@ The winning team is the first to exceed 1000 points.","### 3. Ходы игры
 
 Durante 7 turnos, cada jogador confronta 1 carta de argumento falacioso com o cenário.
 
-Começando pelo vizinho à esquerda do comprador, cada jogador deve propor uma carta e formular um argumento ilustrativo que responda à injunção do cenário.
+Começando pelo vizinho à esquerda do distribuidor, cada jogador deve propor uma carta e formular um argumento ilustrativo que responda à injunção do cenário.
 
 Se não for jogada nenhuma carta de trunfo, a carta com o nível de profundidade mais elevado ganha a vaza.
 
