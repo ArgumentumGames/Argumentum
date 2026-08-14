@@ -128,7 +128,20 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 | CardPen source | Local IIS (`UseLocalCardpen=true`) | GitHub Pages URL |
 | Template paths | `JsonFilePathDebug` | `JsonFilePathRelease` |
 | Harvest output | Debug density directory | Release density directory |
-| **PDF CMYK+OutputIntent post-process** (`PdfCmykPostProcess`, #632) | **OFF** | **ON** (Ghostscript post-pass on final PDFs) |
+| **PDF CMYK+OutputIntent post-process** (`PdfCmykPostProcess`, #632) | **OFF** | **OFF too** — not driven by build config, see below |
+
+**⚠️ The CMYK post-process is NOT reached by `-c Release`.** It sits behind **two gates in series**, and only the inner one is a Debug/Release pair:
+
+1. **Outer gate — the `Mode` flag.** The stage runs only `if (Mode.HasFlag(ConverterMode.PdfCmykPostProcess))` (`AssetConverterConfig.cs:644`). The default `Mode` is `WebBasedImageGeneration | QuestPdfGeneration` (`AssetConverterConfig.cs:37`) — the flag is **absent**, and no code path derives `Mode` from the build configuration. The only place it is set is the standalone `--pdf-cmyk` entry point (`Program.cs:391`).
+2. **Inner gate — `EnabledDebug=false` / `EnabledRelease=true`** in `PdfCmykPostProcessConfig`. This is the pair the `PdfCmykPostProcess/README.md` describes as "OFF in Debug, ON in Release" — true, but *conditional on gate 1 already being open*.
+
+⇒ A plain `dotnet run -c Release` regeneration ships **RGB-300-lossless**, never CMYK. To get the printer bundle, run the dedicated pass **on the PDFs already generated** (it discovers them under `Target/`, converts in place, no re-harvest and no PDF regeneration — so a CMYK bundle never requires re-running the pipeline):
+
+```bash
+dotnet run -c Release --project Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj -- --pdf-cmyk
+```
+
+Ghostscript must be resolvable on `PATH`; if it is not, the stage skips every PDF **with a warning rather than crashing** — a silent-RGB failure mode, so check the log, not just the exit code.
 
 **⚠️ CMYK oxymore (resolved by #632)**: the per-image `ConvertToCmyk` (`DocumentCardSet.cs`) runs under Release, but the image is then written as **PNG** which cannot carry CMYK — Magick re-encodes to RGB on the write, so the per-image conversion is effectively a no-op for the PNG path. The bundle therefore ships **RGB-300-lossless** (FlateDecode, 0 DeviceCMYK — verified via `pdfimages -list`). The **authoritative CMYK path is the Ghostscript post-process** (`PdfCmykPostProcess`, new flag `ConverterMode.PdfCmykPostProcess = 1<<15`): it converts the final PDF to DeviceCMYK and embeds the SWOP OutputIntent. See `PdfCmykPostProcess/README.md`.
 
