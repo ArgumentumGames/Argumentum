@@ -25,14 +25,14 @@ Argumentum s'appuie sur une classification de ces arguments fallacieux, rangés 
 
 ## Game material
 
-*   1 deck of fallacy cards organized in 7 color classes, order and families.
-*   1 deck of scenario cards organized in 7 families identifiable on their back
+*   1 deck of fallacy cards organized into 7 color classes, each divided into 3 orders, then into 3 families.
+*   1 deck of scenario cards organized into 7 themes identifiable by their backs
 *   5 memo cards
 *   Game rules
 
 ## Game summary
 
-Players will take turns trying to get a majority of other players to guess a spurious argument card during an improvisational skit based on a randomly drawn scenario. While having fun, players learn to recognize, decode and therefore deconstruct fallacious arguments.
+Players will take turns trying to get a majority of other players to guess a fallacy card during an improvisational skit based on a randomly drawn scenario. While having fun, players learn to recognize, decode and therefore deconstruct fallacious arguments.
 
 Argumentum is based on a classification of fallacious arguments, arranged in orders and families that are indicated at the top of the cards. For example, flattery is a subcategory of the appeal to emotions. Memo cards summarize this classification.","*Правила игры: от 4 до 8 игроков*
 
@@ -103,7 +103,7 @@ Argumentum 基于对这些谬误论证的分类：它们按阶层和家族排列
 
 ## اجزا
 
-* ۱ دسته کارت استدلال مغالطه‌آمیز که در ۷ ردهٔ رنگی سازمان‌دهی شده‌اند؛ هر رده به ۳ رتبه و سپس به ۳ خانواده تقسیم می‌شود.
+* ۱ دسته کارت استدلال مغالطه‌آمیز که در ۷ ردهٔ رنگی سازمان‌دهی شده‌اند؛ هر رده به ۳ راسته و سپس به ۳ خانواده تقسیم می‌شود.
 * ۱ دسته کارت سناریو که در ۷ موضوع سازمان‌دهی شده‌اند و از پشت کارت قابل شناسایی‌اند
 * ۵ کارت یادآور
 * قواعد بازی
@@ -112,7 +112,7 @@ Argumentum 基于对这些谬误论证的分类：它们按阶层和家族排列
 
 بازیکنان به نوبت تلاش می‌کنند کاری کنند که اکثریتِ بازیکنان دیگر، یک کارت استدلال مغالطه‌آمیز را در جریان یک نمایش کوتاه بداهه، بر اساس سناریویی که به‌طور تصادفی کشیده شده، حدس بزنند. بازیکنان در عین سرگرم شدن، یاد می‌گیرند استدلال‌های مغالطه‌آمیز را بشناسند، رمزگشایی کنند و در نتیجه واسازی کنند.
 
-Argumentum بر پایهٔ طبقه‌بندی این استدلال‌های مغالطه‌آمیز بنا شده است؛ این استدلال‌ها در رتبه‌ها و خانواده‌هایی مرتب شده‌اند که در بالای کارت نشان داده می‌شوند. برای مثال، چاپلوسی زیررده‌ای از توسل به احساسات است. کارت‌های یادآور این طبقه‌بندی را خلاصه می‌کنند."
+Argumentum بر پایهٔ طبقه‌بندی این استدلال‌های مغالطه‌آمیز بنا شده است؛ این استدلال‌ها در راسته‌ها و خانواده‌هایی مرتب شده‌اند که در بالای کارت نشان داده می‌شوند. برای مثال، چاپلوسی زیررده‌ای از توسل به احساسات است. کارت‌های یادآور این طبقه‌بندی را خلاصه می‌کنند."
 RulesPP_03,"## Installation
 
 Selon le nombre de joueurs et le niveau de difficulté voulu, on constitue la pioche des cartes d’argument fallacieux en ajoutant les niveaux indiqués en bas à droite des cartes par ordre croissant. Il en faut au minimum 7  x  le nombre de joueurs.
@@ -127,7 +127,7 @@ Depending on the number of players and the desired level of difficulty, the deck
 
 Choose the duration of the game. This includes a succession of rounds of about 7 minutes. At the end of the defined time, finish the current round and the player who has the most points wins the game.
 
-Fallacy cards are shuffled, as well as scenario cards. Two piles of scenario cards are made up and placed in the middle of the table. Each player is dealt 5 fallacy cards which they keep for themselves. The rest of the cards make up the draw pile.
+Fallacy cards are shuffled, as well as scenario cards. Two piles of scenario cards are made up and placed in the middle of the table. Each player is dealt 5 fallacy cards which they keep for themselves. The rest of the cards make up the reserve.
 
 The first reader is drawn at random. Each player has a small unique object (coin, bean...) for voting.","## Подготовка
 
@@ -161,7 +161,7 @@ Se elige la duración de la partida. Esta comprende una sucesión de rondas de u
 
 Se barajan las cartas de argumentos falaces, así como las cartas de escenario. Se forman 2 mazos de robo de cartas de escenario y se colocan en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumento falaz, que mantiene en secreto. El resto de las cartas forma la reserva. 
 
-El primer jugador en robar se elige al azar. Cada jugador toma un pequeño objeto único (moneda, frijol…) para la votación.","## 设置
+El primer lector se elige al azar. Cada jugador toma un pequeño objeto único (moneda, frijol…) para la votación.","## 设置
 
 根据玩家人数和希望的难度等级，按卡牌右下角标示的等级从低到高加入卡牌，组成谬误论证卡抽牌堆。至少需要 7 x 玩家人数 张卡。
 
@@ -206,7 +206,7 @@ The role of the Smooth talker is assigned to the first player who lays, face dow
 
 ### 3.       The skit
 
-The Reader starts the debate as he wishes. He can use the suggestion in italics at the bottom of the scenario map. The smooth talker and the reader then have a maximum of one minute to improvise a discussion during which the smooth talker will try to use the type of argument indicated by the card he has chosen.","## Ход раунда
+The Reader starts the debate as he wishes. He can use the suggested opening line in italics at the bottom of the scenario card. The smooth talker and the reader then have a maximum of one minute to improvise a discussion during which the smooth talker will try to use the type of argument indicated by the card he has chosen.","## Ход раунда
 
 ### 1.       Берущий карту
 
@@ -214,7 +214,7 @@ The Reader starts the debate as he wishes. He can use the suggestion in italics 
 
 ### 2.       Софист
 
-Софист отвечает за ведение аргументации в сценарии так, чтобы проиллюстрировать одну из своих карт софизма. Его цель — сделать так, чтобы большинство других игроков угадали эту карту, но при этом не все её раскрыли.
+Софист отвечает за ведение аргументации в сценарии так, чтобы проиллюстрировать одну из своих карт софизма. Его цель — сделать так, чтобы большинство других игроков угадали эту карту, но при этом не все её угадали.
 
 Роль Софиста получает первый игрок, который кладёт взакрытую карту софизма, которую собирается разыграть. Если такого игрока нет, Софистом назначается игрок слева от Берущего карту, и он кладёт свою карту.
 
@@ -240,15 +240,15 @@ O leitor inicia o debate como entender. Pode retomar a sugestão de primeira fal
 
 يسحب الساحب بطاقة سيناريو من بين الرزمتين المتاحتين ويقرؤها بصوت عالٍ، باستثناء الجملة الأخيرة المكتوبة بالمائل في أسفل البطاقة.
 
-### 2.       المتحذلق
+### 2.       المغالِط
 
-سيتولى المتحذلق قيادة الحجاج في السيناريو، لتجسيد إحدى بطاقاته الخاصة بالحجج المغالِطة. وسيكون هدفه أن يجعل أغلبية اللاعبين الآخرين يخمّنون هذه البطاقة، من دون أن يكتشفها الجميع.
+سيتولى المغالِط قيادة الحجاج في السيناريو، لتجسيد إحدى بطاقاته الخاصة بالحجج المغالِطة. وسيكون هدفه أن يجعل أغلبية اللاعبين الآخرين يخمّنون هذه البطاقة، من دون أن يكتشفها الجميع.
 
-يُمنح دور المتحذلق لأول لاعب يضع، مقلوبةً، بطاقة الحجة المغالِطة التي ينوي لعبها. وإلا، يُعيَّن اللاعب الجالس على يسار الساحب متحذلقًا ويضع بطاقته.
+يُمنح دور المغالِط لأول لاعب يضع، مقلوبةً، بطاقة الحجة المغالِطة التي ينوي لعبها. وإلا، يُعيَّن اللاعب الجالس على يسار الساحب مغالِطًا ويضع بطاقته.
 
 ### 3.       المشهد القصير
 
-يفتتح الساحب النقاش كما يشاء. ويمكنه أن يستعمل الاقتراح الخاص بأول جملة حوارية، المكتوب بالمائل في أسفل بطاقة السيناريو. ثم يكون لدى المتحذلق والساحب دقيقة واحدة كحد أقصى لارتجال نقاش يحاول خلاله المتحذلق استخدام نوع الحجة المشار إليه في البطاقة التي اختارها. ","## Desarrollo de la ronda
+يفتتح الساحب النقاش كما يشاء. ويمكنه أن يستعمل الاقتراح الخاص بأول جملة حوارية، المكتوب بالمائل في أسفل بطاقة السيناريو. ثم يكون لدى المغالِط والساحب دقيقة واحدة كحد أقصى لارتجال نقاش يحاول خلاله المغالِط استخدام نوع الحجة المشار إليه في البطاقة التي اختارها. ","## Desarrollo de la ronda
 
 ### 1.       El lector
 
@@ -282,15 +282,15 @@ El lector inicia el debate como quiera. Puede retomar la sugerencia de primera r
 
 کارت‌کش از میان دو دسته‌کارت موجود، یک کارت سناریو می‌کشد و آن را با صدای بلند می‌خواند، به‌جز آخرین جملهٔ ایتالیک‌شده در پایین کارت.
 
-### 2.       لاف‌زن
+### 2.       چرب‌زبان
 
-لاف‌زن وظیفه دارد استدلال سناریو را پیش ببرد تا یکی از کارت‌های استدلال مغالطه‌آمیز خود را به نمایش بگذارد. هدف او این است که اکثریت بازیکنان دیگر آن کارت را حدس بزنند، اما نه اینکه همه آن را کشف کنند.
+چرب‌زبان وظیفه دارد استدلال سناریو را پیش ببرد تا یکی از کارت‌های استدلال مغالطه‌آمیز خود را به نمایش بگذارد. هدف او این است که اکثریت بازیکنان دیگر آن کارت را حدس بزنند، اما نه اینکه همه آن را کشف کنند.
 
-نقش لاف‌زن به نخستین بازیکنی داده می‌شود که کارت استدلال مغالطه‌آمیزی را که قصد بازی کردنش را دارد، رو به پایین می‌گذارد. در غیر این صورت، بازیکنِ سمت چپ کارت‌کش به‌عنوان لاف‌زن تعیین می‌شود و کارت خود را می‌گذارد.
+نقش چرب‌زبان به نخستین بازیکنی داده می‌شود که کارت استدلال مغالطه‌آمیزی را که قصد بازی کردنش را دارد، رو به پایین می‌گذارد. در غیر این صورت، بازیکنِ سمت چپ کارت‌کش به‌عنوان چرب‌زبان تعیین می‌شود و کارت خود را می‌گذارد.
 
 ### 3.       نمایش کوتاه
 
-کارت‌کش بحث را هر طور که بخواهد آغاز می‌کند. او می‌تواند از پیشنهادِ نخستین دیالوگِ ایتالیک‌شده در پایین کارت سناریو استفاده کند. سپس لاف‌زن و کارت‌کش حداکثر یک دقیقه فرصت دارند تا گفت‌وگویی بداهه انجام دهند که در جریان آن، لاف‌زن می‌کوشد نوع استدلالی را که کارتِ انتخابی‌اش نشان می‌دهد به کار ببرد. "
+کارت‌کش بحث را هر طور که بخواهد آغاز می‌کند. او می‌تواند از پیشنهادِ نخستین دیالوگِ ایتالیک‌شده در پایین کارت سناریو استفاده کند. سپس چرب‌زبان و کارت‌کش حداکثر یک دقیقه فرصت دارند تا گفت‌وگویی بداهه انجام دهند که در جریان آن، چرب‌زبان می‌کوشد نوع استدلالی را که کارتِ انتخابی‌اش نشان می‌دهد به کار ببرد. "
 RulesPP_05,"Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut choisir d’écourter la saynète quand il le souhaite.
 
 ### 4.       Le jury
@@ -303,7 +303,7 @@ Les membres du jury prennent connaissance des cartes révélées, un joueur peut
 
 Si la carte du baratineur est désignée par l’ensemble du jury, chacun pioche une carte dans la réserve à l’exception du baratineur.
 
-Sinon, le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, baratineur ou membre du jury. ","The smooth talker presents his arguments and the reader gives him the reply. The smooth talker can choose to shorten the skit at any time.
+Sinon, le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre de vote, baratineur ou membre du jury. ","The Smooth Talker presents his arguments, and the Reader responds without trying to dominate the scene. The smooth talker can choose to shorten the skit at any time.
 
 ### 4.       The jury
 
@@ -313,7 +313,7 @@ The members of the jury take note of the revealed cards, one of them can read th
 
 ### 5.       The points count
 
-If the smooth talker's card is designated by the whole jury, each draw a card except the smooth talker. His left neighbor becomes the next reader.
+If the Smooth Talker's card is designated by the whole jury, everyone except the Smooth Talker draws a card from the reserve.
 
 Otherwise, the winner of the round is the one whose card has obtained the most votes, either as a smooth talker or as a member of the jury. ","Софист излагает свои аргументы, а Берущий карту отвечает ему, не пытаясь перетянуть сцену на себя. Софист может в любой момент решить сократить Сценку.
 
@@ -327,7 +327,7 @@ Otherwise, the winner of the round is the one whose card has obtained the most v
 
 Если на карту Софиста указало всё жюри, каждый, кроме Софиста, берёт одну карту из резерва.
 
-В противном случае победителем раунда становится тот, чья карта получила наибольшее число голосов, будь то Софист или член жюри.","O embromador expõe os seus argumentos e o leitor dá-lhe a deixa sem procurar dominar a cena. O embromador pode optar por encurtar a esquete quando quiser.
+В противном случае победителем раунда становится тот, чья карта получила наибольшее число голосов, будь то Софист или член жюри.","O embromador expõe os seus argumentos e o leitor responde a ele sem tentar dominar a cena. O embromador pode optar por encurtar a esquete quando quiser.
 
 ### 4.       O júri
 
@@ -339,19 +339,19 @@ Os membros do júri tomam conhecimento das cartas reveladas; um jogador pode lê
 
 Se a carta do embromador for indicada por todo o júri, cada um compra uma carta da reserva, exceto o embromador.
 
-Caso contrário, o vencedor da rodada é aquele cuja carta obteve o maior número de votos, seja o embromador ou um membro do júri.",,"يعرض المتحذلق حججه، ويردّ عليه الساحب من دون أن يسعى إلى الهيمنة على المشهد. ويمكن للمتحذلق أن يختار اختصار المشهد القصير متى شاء.
+Caso contrário, o vencedor da rodada é aquele cuja carta obteve o maior número de votos, seja o embromador ou um membro do júri.",,"يعرض المغالِط حججه، ويردّ عليه الساحب من دون أن يسعى إلى الهيمنة على المشهد. ويمكن للمغالِط أن يختار اختصار المشهد القصير متى شاء.
 
 ### 4.       هيئة التحكيم
 
-يشكّل جميع اللاعبين، باستثناء المتحذلق ولكن بما في ذلك الساحب، هيئة التحكيم. في نهاية المشهد القصير، يختار كل عضو من أعضاء هيئة التحكيم من بين بطاقاته الخاصة البطاقة الأقرب إلى الحجاج الذي سمعه، ويضعها مقلوبةً مع بطاقة المتحذلق. يجمع المتحذلق البطاقات، ويخلطها، ثم يكشفها في وسط الطاولة.
+يشكّل جميع اللاعبين، باستثناء المغالِط ولكن بما في ذلك الساحب، هيئة التحكيم. في نهاية المشهد القصير، يختار كل عضو من أعضاء هيئة التحكيم من بين بطاقاته الخاصة البطاقة الأقرب إلى الحجاج الذي سمعه، ويضعها مقلوبةً مع بطاقة المغالِط. يجمع المغالِط البطاقات، ويخلطها، ثم يكشفها في وسط الطاولة.
 
-يطّلع أعضاء هيئة التحكيم على البطاقات المكشوفة، ويمكن لأحد اللاعبين قراءتها بصوت عالٍ. وعندما تكون هيئة التحكيم جاهزة، ومن دون تشاور، يشير كل عضو فيها في الوقت نفسه إلى البطاقة التي يعتقد أن المتحذلق لعبها، وذلك بوضع غرضه الصغير الفريد عليها.
+يطّلع أعضاء هيئة التحكيم على البطاقات المكشوفة، ويمكن لأحد اللاعبين قراءتها بصوت عالٍ. وعندما تكون هيئة التحكيم جاهزة، ومن دون تشاور، يشير كل عضو فيها في الوقت نفسه إلى البطاقة التي يعتقد أن المغالِط لعبها، وذلك بوضع غرضه الصغير الفريد عليها.
 
 ### 5.       احتساب النقاط
 
-إذا أشار جميع أعضاء هيئة التحكيم إلى بطاقة المتحذلق، يسحب كل لاعب بطاقة من الاحتياطي باستثناء المتحذلق.
+إذا أشار جميع أعضاء هيئة التحكيم إلى بطاقة المغالِط، يسحب كل لاعب بطاقة من الاحتياطي باستثناء المغالِط.
 
-وإلا، فإن الفائز بالجولة هو صاحب البطاقة التي حصلت على أكبر عدد من الأصوات، سواء كان المتحذلق أو أحد أعضاء هيئة التحكيم. ","El embaucador expone sus argumentos y el lector le da la réplica sin intentar dominar la escena. El embaucador puede optar por acortar la escena cuando quiera.
+وإلا، فإن الفائز بالجولة هو صاحب البطاقة التي حصلت على أكبر عدد من الأصوات، سواء كان المغالِط أو أحد أعضاء هيئة التحكيم. ","El embaucador expone sus argumentos y el lector le da la réplica sin intentar dominar la escena. El embaucador puede optar por acortar la escena cuando quiera.
 
 ### 4.       El jurado
 
@@ -373,21 +373,21 @@ En caso contrario, el vencedor de la ronda es aquel cuya carta haya obtenido el 
 
 ### 5.       结算
 
-如果诡辩者的牌被全体评审团成员指出，则除诡辩者外，每人从牌库中抽一张牌。
+如果诡辩者的牌被全体评审团成员指出，则除诡辩者外，每人从储备区抽一张牌。
 
-否则，本回合的胜利者是其牌获得最多票数的人，可以是诡辩者，也可以是评审团成员。 ","لاف‌زن استدلال‌های خود را مطرح می‌کند و کارت‌کش در پاسخ به او نقش مقابل را بازی می‌کند، بی‌آنکه بکوشد صحنه را در دست بگیرد. لاف‌زن می‌تواند هر زمان که بخواهد نمایش کوتاه را کوتاه کند.
+否则，本回合的胜利者是其牌获得最多票数的人，可以是诡辩者，也可以是评审团成员。 ","چرب‌زبان استدلال‌های خود را مطرح می‌کند و کارت‌کش در پاسخ به او نقش مقابل را بازی می‌کند، بی‌آنکه بکوشد صحنه را در دست بگیرد. چرب‌زبان می‌تواند هر زمان که بخواهد نمایش کوتاه را کوتاه کند.
 
 ### 4.       هیئت داوران
 
-همهٔ بازیکنان، به‌جز لاف‌زن اما با احتساب کارت‌کش، هیئت داوران را تشکیل می‌دهند. در پایان نمایش کوتاه، هر عضو هیئت داوران از میان کارت‌های خود، کارتی را که بیشترین شباهت را به استدلال شنیده‌شده دارد انتخاب می‌کند و آن را همراه با کارت لاف‌زن رو به پایین می‌گذارد. لاف‌زن کارت‌ها را جمع می‌کند، بر می‌زند و در وسط میز آشکار می‌کند.
+همهٔ بازیکنان، به‌جز چرب‌زبان اما با احتساب کارت‌کش، هیئت داوران را تشکیل می‌دهند. در پایان نمایش کوتاه، هر عضو هیئت داوران از میان کارت‌های خود، کارتی را که بیشترین شباهت را به استدلال شنیده‌شده دارد انتخاب می‌کند و آن را همراه با کارت چرب‌زبان رو به پایین می‌گذارد. چرب‌زبان کارت‌ها را جمع می‌کند، بر می‌زند و در وسط میز آشکار می‌کند.
 
-اعضای هیئت داوران کارت‌های آشکارشده را بررسی می‌کنند؛ یکی از بازیکنان می‌تواند آن‌ها را با صدای بلند بخواند. وقتی هیئت داوران آماده شد، بدون مشورت، هر یک از اعضا هم‌زمان کارتی را که فکر می‌کند لاف‌زن بازی کرده است نشان می‌دهد، با گذاشتن شیء کوچک و منحصربه‌فرد خود روی آن.
+اعضای هیئت داوران کارت‌های آشکارشده را بررسی می‌کنند؛ یکی از بازیکنان می‌تواند آن‌ها را با صدای بلند بخواند. وقتی هیئت داوران آماده شد، بدون مشورت، هر یک از اعضا هم‌زمان کارتی را که فکر می‌کند چرب‌زبان بازی کرده است نشان می‌دهد، با گذاشتن شیء کوچک و منحصربه‌فرد خود روی آن.
 
 ### 5.       شمارش
 
-اگر کارت لاف‌زن توسط همهٔ اعضای هیئت داوران نشان داده شود، همه به‌جز لاف‌زن یک کارت از ذخیره می‌کشند.
+اگر کارت چرب‌زبان توسط همهٔ اعضای هیئت داوران نشان داده شود، همه به‌جز چرب‌زبان یک کارت از ذخیره می‌کشند.
 
-در غیر این صورت، برندهٔ دور کسی است که کارت او بیشترین تعداد رأی را گرفته باشد، چه لاف‌زن باشد و چه یکی از اعضای هیئت داوران. "
+در غیر این صورت، برندهٔ دور کسی است که کارت او بیشترین تعداد رأی را گرفته باشد، چه چرب‌زبان باشد و چه یکی از اعضای هیئت داوران. "
 RulesPP_06,"Il garde alors sa carte qui vaut 1 point et la pose, face visible devant lui. Il ne pioche pas de nouvelle carte.
 
 En cas d’égalité, les joueurs concernés qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs. Si aucun des joueurs concernés ne l'a trouvé, c'est le baratineur qui l’emporte.
@@ -400,15 +400,15 @@ Le voisin de gauche du vainqueur devient le piocheur de la manche suivante.
 
 * au cour de la saynète, n'importe quel membre du jury peut utiliser une carte de son jeu pour intervenir dans le rôle du piocheur. Si son intervention illustre bien sa carte, il en repioche une et sera désigné le prochain piocheur, sinon, il perd sa carte et la partie reprend son cour.
 * Le piocheur a droit de désigner directement le baratineur de la manche.
-* Le vainqueur de la partie doit incarner le baratineur d’un ultime scenario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He scores 3 points. He does not draw a new card. In the event of a tie, the players who have found the card of the smooth talker are declared winners, and failing that the smooth talker wins.
+* Le vainqueur de la partie doit incarner le baratineur d’un ultime scenario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.","He then keeps his card, worth 1 point, and places it face up in front of him. He does not draw a new card. In the event of a tie, the tied players who found the Smooth Talker's card are declared winners, and failing that the smooth talker wins.
 
-With the exception of the winner, each player earns 1 point if their card has been chosen by at least one member of the jury and another point if they have found the smooth talker's card. The other players, including the smooth talker if he has not won the round, draw a card. Played cards are returned to the deck.
+With the exception of the winner, jury members who received votes or found the Smooth Talker's card draw 2 cards from the reserve. The other players, including the Smooth Talker if he has not won the round, draw 1 card from the reserve. Played cards are returned to the reserve.
 
 The winner's left-hand neighbour becomes the reader for the next round.
 
 ## Variants :
 
-*        During the sketch, any member of the jury can use a card from his game to intervene in the role of the picker. If his intervention illustrates his card well, he picks up one and will be designated the next picker, otherwise, he loses his card and the game resumes its court.
+*        During the sketch, any member of the jury can use a card from their hand to intervene in the role of the Reader. If his intervention illustrates his card well, he draws another card and will be designated the next Reader, otherwise, he loses his card and play resumes.
 *        The Reader has the right to directly designate the smooth talker for the round.        
 *        The winner of the game has to play the smooth talker for a final scenario where he has to play all the cards he won during the game.","В этом случае он оставляет себе свою карту, которая приносит 1 очко, и кладёт её перед собой лицевой стороной вверх. Новую карту он не берёт.
 
@@ -426,7 +426,7 @@ The winner's left-hand neighbour becomes the reader for the next round.
 
 Em caso de empate, os jogadores envolvidos que tenham encontrado a carta do embromador são todos declarados vencedores. Se nenhum dos jogadores envolvidos a tiver encontrado, é o embromador que vence.
 
-Com exceção do vencedor, os membros do júri que tenham recebido votos ou que tenham encontrado a carta do embromador compram 2 cartas na reserva. Os outros jogadores, incluindo o embromador se não tiver ganho a rodada, compram aí 1 carta. As cartas jogadas são devolvidas à reserva.
+Com exceção do vencedor, os membros do júri que tenham recebido votos ou que tenham encontrado a carta do embromador compram 2 cartas da reserva. Os outros jogadores, incluindo o embromador se não tiver ganho a rodada, compram 1 carta da reserva. As cartas jogadas são devolvidas à reserva.
 
 O vizinho à esquerda do vencedor torna-se o leitor da rodada seguinte.
 
@@ -436,17 +436,17 @@ O vizinho à esquerda do vencedor torna-se o leitor da rodada seguinte.
 * O leitor tem o direito de designar diretamente o embromador da rodada.
 * O vencedor da partida deve encarnar o embromador de um último cenário em que deve pôr em jogo todas as cartas que ganhou durante a partida.",,"عندئذٍ يحتفظ ببطاقته التي تساوي نقطة واحدة ويضعها مكشوفةً أمامه. ولا يسحب بطاقة جديدة.
 
-في حال التعادل، يُعلَن جميع اللاعبين المعنيين الذين وجدوا بطاقة المتحذلق فائزين. وإذا لم يجدها أيٌّ من اللاعبين المعنيين، فإن المتحذلق هو الفائز.
+في حال التعادل، يُعلَن جميع اللاعبين المعنيين الذين وجدوا بطاقة المغالِط فائزين. وإذا لم يجدها أيٌّ من اللاعبين المعنيين، فإن المغالِط هو الفائز.
 
-باستثناء الفائز، يسحب أعضاء هيئة التحكيم الذين حصلوا على أصوات أو وجدوا بطاقة المتحذلق بطاقتين من الاحتياطي. أما اللاعبون الآخرون، بمن فيهم المتحذلق إذا لم يفز بالجولة، فيسحبون منه بطاقة واحدة. وتُعاد البطاقات الملعوبة إلى الاحتياطي.
+باستثناء الفائز، يسحب أعضاء هيئة التحكيم الذين حصلوا على أصوات أو وجدوا بطاقة المغالِط بطاقتين من الاحتياطي. أما اللاعبون الآخرون، بمن فيهم المغالِط إذا لم يفز بالجولة، فيسحبون منه بطاقة واحدة. وتُعاد البطاقات الملعوبة إلى الاحتياطي.
 
 يصبح الجار الأيسر للفائز هو الساحب في الجولة التالية.
 
 ## تنويعات:
 
 * أثناء المشهد القصير، يمكن لأي عضو في هيئة التحكيم أن يستخدم بطاقة من يده للتدخل في دور الساحب. إذا كان تدخله يجسّد بطاقته جيدًا، يسحب بطاقة بديلة ويُعيَّن الساحب التالي؛ وإلا يفقد بطاقته وتُستأنف اللعبة من حيث توقفت.
-* يحق للساحب أن يعيّن متحذلق الجولة مباشرةً.
-* يجب على الفائز باللعبة أن يؤدي دور المتحذلق في سيناريو أخير يضع فيه جميع البطاقات التي فاز بها خلال اللعبة موضع اللعب.","Entonces conserva su carta, que vale 1 punto, y la coloca boca arriba delante de él. No roba una carta nueva.
+* يحق للساحب أن يعيّن المغالِط في الجولة مباشرةً.
+* يجب على الفائز باللعبة أن يؤدي دور المغالِط في سيناريو أخير يضع فيه جميع البطاقات التي فاز بها خلال اللعبة موضع اللعب.","Entonces conserva su carta, que vale 1 punto, y la coloca boca arriba delante de él. No roba una carta nueva.
 
 En caso de empate, todos los jugadores implicados que hayan encontrado la carta del embaucador son declarados vencedores. Si ninguno de los jugadores implicados la ha encontrado, gana el embaucador.
 
@@ -472,14 +472,14 @@ El vecino de la izquierda del vencedor se convierte en el lector de la siguiente
 * 抽牌者有权直接指定本回合的诡辩者。
 * 整局游戏的胜利者必须在最后一个情景中扮演诡辩者，并在其中使用自己在游戏过程中赢得的所有牌。","سپس کارت خود را که ۱ امتیاز دارد نگه می‌دارد و آن را رو به بالا جلوی خود می‌گذارد. او کارت جدیدی نمی‌کشد.
 
-در صورت تساوی، همهٔ بازیکنان مربوطه که کارت لاف‌زن را پیدا کرده‌اند برنده اعلام می‌شوند. اگر هیچ‌یک از بازیکنان مربوطه آن را پیدا نکرده باشد، لاف‌زن برنده می‌شود.
+در صورت تساوی، همهٔ بازیکنان مربوطه که کارت چرب‌زبان را پیدا کرده‌اند برنده اعلام می‌شوند. اگر هیچ‌یک از بازیکنان مربوطه آن را پیدا نکرده باشد، چرب‌زبان برنده می‌شود.
 
-به‌جز برنده، اعضای هیئت داوران که رأی گرفته‌اند یا کارت لاف‌زن را پیدا کرده‌اند، ۲ کارت از ذخیره می‌کشند. بازیکنان دیگر، از جمله لاف‌زن اگر دور را نبرده باشد، ۱ کارت از ذخیره می‌کشند. کارت‌های بازی‌شده به ذخیره برگردانده می‌شوند.
+به‌جز برنده، اعضای هیئت داوران که رأی گرفته‌اند یا کارت چرب‌زبان را پیدا کرده‌اند، ۲ کارت از ذخیره می‌کشند. بازیکنان دیگر، از جمله چرب‌زبان اگر دور را نبرده باشد، ۱ کارت از ذخیره می‌کشند. کارت‌های بازی‌شده به ذخیره برگردانده می‌شوند.
 
 همسایهٔ سمت چپ برنده، کارت‌کشِ دور بعدی می‌شود.
 
 ## گونه‌ها:
 
 * در جریان نمایش کوتاه، هر عضو هیئت داوران می‌تواند از یک کارتِ دست خود استفاده کند تا در نقش کارت‌کش وارد صحنه شود. اگر مداخلهٔ او کارت خودش را خوب نشان دهد، یک کارت جایگزین می‌کشد و به‌عنوان کارت‌کش بعدی تعیین می‌شود؛ در غیر این صورت، کارت خود را از دست می‌دهد و بازی به روند خود ادامه می‌دهد.
-* کارت‌کش حق دارد لاف‌زنِ دور را مستقیماً تعیین کند.
-* برندهٔ بازی باید در یک سناریوی نهایی نقش لاف‌زن را بازی کند؛ سناریویی که در آن باید همهٔ کارت‌هایی را که در طول بازی برده است وارد بازی کند."
+* کارت‌کش حق دارد چرب‌زبانِ دور را مستقیماً تعیین کند.
+* برندهٔ بازی باید در یک سناریوی نهایی نقش چرب‌زبان را بازی کند؛ سناریویی که در آن باید همهٔ کارت‌هایی را که در طول بازی برده است وارد بازی کند."
