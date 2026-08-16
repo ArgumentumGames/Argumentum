@@ -18,14 +18,14 @@ Le champ français `Text` (règles du jeu) vient d'être affiné en clarté (pas
    - **Terminologie** : dérive sur les termes canoniques du jeu. Chaque terme a UNE seule forme par langue — JAMAIS de mot étranger dans une colonne (ex. "embromador" n'apparaît QUE dans la colonne PT, jamais en FR/EN/ES). Glossaire verrouillé :
      - piocheur (FR) = Reader (EN) = Берущий карту (RU) = leitor (PT) = lector (ES) = الساحب (AR) = کارت‌کش (FA) = 抽牌者 (ZH)
      - baratineur (FR) = Smooth Talker (EN) = Софист (RU) = embromador (PT) = embaucador (ES) = المغالِط (AR) = چرب‌زبان (FA) = 诡辩者 (ZH)
-     - manche (FR) = round (EN) = раунд (RU) = rodada (PT) = ronda (ES) = جولة (AR) = دور (FA) = 轮次 (ZH)
-     - pli (FR) = trick (EN) = взятка (RU) = vaza (PT) = baza (ES)
-     - atout (FR) = trump (EN) = козырь (RU) = trunfo (PT) = triunfo (ES)
-     - pioche (FR) = draw pile (EN) = колода (RU) = monte (PT) = mazo (ES) = كومة السحب (AR) = دستهٔ کارت (FA) = 牌堆 (ZH)
-     - réserve (FR) = supply (EN) = запас (RU) = reserva (PT) = reserva (ES) = مخزون البطاقات (AR) = ذخیره (FA) = 备用牌堆 (ZH)
+     - manche (FR) = round (EN) = раунд (RU) = rodada (PT) = ronda (ES) = جولة (AR) = دور (FA) = 回合 (ZH)
+     - pli (FR) = trick (EN) = взятка (RU) = vaza (PT) = baza (ES) = لَفّة (AR) = دست (FA) = 墩 (ZH)
+     - atout (FR) = trump (EN) = козырь (RU) = trunfo (PT) = triunfo (ES) = حكم (AR) = حکم (FA) = 王牌 (ZH)
+     - pioche (FR) = draw pile (EN) = колода (RU) = monte (PT) = mazo (ES) = رزمة السحب (AR) = دستهٔ کارت (FA) = 牌堆 (ZH)
+     - réserve (FR) = reserve (EN) = запас (RU) = reserva (PT) = reserva (ES) = الرصيد (AR) = ذخیره (FA) = 备用牌堆 (ZH)
      - défausse (FR) = discard pile (EN) = сброс (RU) = descarte (PT) = descarte (ES) = كومة الاستبعاد (AR) = دورریز (FA) = 弃牌堆 (ZH)
-     - jury (FR) = jury (EN) = жюри (RU) = júri (PT) = jurado (ES) = لجنة التحكيم (AR) = هیئت داوران (FA) = 评审团 (ZH)
-     - saynète (FR) = skit (EN) = сценка (RU) = esquete (PT) = escena improvisada (ES) = المشهد التمثيلي (AR) = نمایش کوتاه (FA) = 即兴短剧 (ZH)
+     - jury (FR) = jury (EN) = жюри (RU) = júri (PT) = jurado (ES) = هيئة المحلّفين (AR) = هیئت داوران (FA) = 评审团 (ZH)
+     - saynète (FR) = skit (EN) = сценка (RU) = esquete (PT) = escena (ES) = المشهد التمثيلي (AR) = نمایش کوتاه (FA) = 即兴短剧 (ZH)
      - arguments fallacieux (FR) = fallacy cards (EN) = софизмы (RU) = argumentos falaciosos (PT) = argumentos falaces (ES) = الحجج المغلوطة (AR) = استدلال مغالطه‌آمیز (FA) = 谬误论证 (ZH)
    - **Style** : tournure lourde alors que le FR a été simplifié
 
