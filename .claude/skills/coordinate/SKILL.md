@@ -38,12 +38,21 @@ Repo GitHub : `ArgumentumGames/Argumentum`. Le compte `gh` actif sur ai-01 = **`
    roosync_messages(action: "inbox", status: "unread", limit: 10)
    ```
    → ACKs et notifications des workers (si timeout, retry × 2 puis skip — bug intermittent connu).
-4. **État GitHub** :
+4. **État GitHub** — ⚠️ **toujours un `--limit` explicite et large** : les défauts CLI (`gh pr list` = 30, `gh issue list` = 30) tronquent **silencieusement**, et le dépôt porte en permanence ~46 PRs dependabot gelées (`DNNPlatform/Portals/**`, cf #942/#910) qui **saturent la première page**. Sans `--limit`, le scan rend « 0 PR non-dependabot » alors qu'il y en a.
    ```bash
-   gh pr list --state open --json number,title,author,headRefName,statusCheckRollup,mergeStateStatus
-   gh issue list --state open --limit 40 --json number,title,labels
+   # PRs : exclure dependabot DANS la requête, pas après
+   gh pr list --state open --limit 200 \
+     --json number,title,author,headRefName,statusCheckRollup,mergeStateStatus \
+     --jq '.[]|select(.author.login!="app/dependabot")'
+   gh pr list --state open --limit 200 --json number --jq 'length'   # total, pour vérifier la non-troncature
+
+   # Issues : le tri est created-desc ⇒ un --limit trop court coupe les PLUS ANCIENNES,
+   # c'est-à-dire précisément #131/#133/#134/#135/#136 (release + go-live) et #458.
+   gh issue list --state open --limit 300 --json number,title,labels
+
    git fetch origin && git log --oneline -5
    ```
+   **Contrôle de non-troncature** : si `length` est exactement égal au `--limit`, la liste est probablement coupée — relance avec un `--limit` plus grand avant de conclure quoi que ce soit sur une absence.
 5. **Roadmap durable** : `gh issue view 458` (issue de tracking coordination — tracks, owners, décisions jsboige enregistrées). Elle **survit à la condensation du dashboard** ; mets-la à jour quand la structure évolue.
 
 ## Phase 2 — Lire AVANT d'agir (règle HARD, aucune exception)
@@ -71,7 +80,11 @@ Avant tout merge / comment / dispatch / review :
 
 **Critères (TOUS vrais)** :
 
-- [ ] PR créé par `myia-po-2023` ou `myia-po-2024` (`gh pr view N --json author`)
+- [ ] **Provenance worker établie — ⛔ PAS via `author`.** Les deux workers poussent avec le **token partagé `jsboige`** : `author.login` vaut `jsboige` sur *toutes* les PRs du cluster, donc un critère « auteur = `myia-po-2023` » est **structurellement toujours faux** et rejetterait toute PR mergeable. La provenance se lit dans le **corps de la PR** (signature `po-2023` / `po-2024`) et se recoupe avec le **dispatch correspondant** sur le dashboard :
+      ```bash
+      gh pr view N --json body,headRefName --jq '.body' | grep -oiE 'po-20(23|24)' | head -1
+      ```
+      Seul `app/dependabot` s'exclut par `author` (c'est une app, pas le token partagé).
 - [ ] CI GREEN (`statusCheckRollup` : build + tests pass — Argumentum vise 155+/0/5)
 - [ ] Aucun reviewer `CHANGES_REQUESTED` non-adressé (reviews ET comments inline)
 - [ ] Diff sans secrets : `gh pr diff N | grep -iE "(api.?key|token|secret|password|BEGIN.*PRIVATE|sk-[a-zA-Z0-9])"`
@@ -109,12 +122,19 @@ Note le hash de tête (`$NEW_MASTER`) pour le dispatch. Si des tests doivent re-
 
 **Principe** : ne pas hoarder. Le cron est lent (6h, week-end autonome) → chaque worker doit avoir **assez de travail pour ne jamais staller avant ton retour**. Dispatch = **deep-queue** (primaire + secondaire + tertiaire) **+ tâche idle de secours**.
 
-Vérifie chaque lane :
-```bash
-gh pr list --author "po-2023" --state open
-gh pr list --author "po-2024" --state open
+Vérifie chaque lane. ⛔ **Ne mesure PAS la liveness d'une lane avec `gh pr list --author "po-20XX"`** : le token GitHub est partagé, ce filtre rend **toujours `0`**, donc « worker sans PR » y est un artefact permanent — et re-dispatcher là-dessus **double-démarre** une campagne (coûteuse en crédits sur les lanes traduction). La liveness se mesure **là où le travail atterrit**, c'est-à-dire sur le dashboard (cf [[feedback_explicit_dashboard_comm]]) :
+
 ```
-Si un worker a 0 PR ouverte ou a vidé sa queue → re-dispatcher immédiatement.
+roosync_dashboard(action: "list")     # qui a posté, où, quand — y compris les lanes sœurs
+roosync_dashboard(action: "read", type: "workspace", section: "all")
+```
+```bash
+# recoupement git, par signature de corps (pas par --author) :
+gh pr list --state open --limit 200 --json number,title,body,headRefName \
+  --jq '.[]|select(.body|test("po-2024";"i"))|"#\(.number) \(.title)"'
+```
+
+Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboard récent, ni dispatch en cours non-ACKé**. Si un dispatch est en vol et non ACKé → **ping**, jamais re-dispatch. Et l'absence de post ≠ mort : certaines lanes ont une cadence cron longue (po-2023 lane IIS = 12 h, cf [[feedback_po2023_iis_cron_12h]]).
 
 ### Tasking par worker
 
@@ -186,7 +206,7 @@ Si la session est interactive, **termine par 2-4 phrases factuelles** : ce qui a
 
 **Ne JAMAIS citer d'Epic/track en dur dans ce skill** (ils changent à chaque cycle). Source unique = GitHub Issues + l'issue de tracking #458. Toujours requêter avant d'agir :
 ```bash
-gh issue list --state open --search "Epic in:title" --json number,title,labels
+gh issue list --state open --limit 300 --search "Epic in:title" --json number,title,labels
 gh issue view N --json title,body,comments,state
 gh pr list --state merged --limit 10   # avancement récent
 ```
