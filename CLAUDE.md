@@ -391,20 +391,24 @@ L'échappement transforme les vrais newlines en chaînes littérales "\\n", cass
 
 La classe racine de la carte est **la valeur de la colonne CSV** désignée par `cardClass` dans le template — `family_fr_camelcase` pour Virtues, `Famille_camelCase` pour Fallacies. Chaque valeur doit avoir sa règle `card.<valeur>` dans la clé `css` du template JSON (⚠️ pas dans `mustache`, qui ne contient que le HTML).
 
-Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy.csv` + la clé `css` du template** (master `f6e15d7d`, 2026-08-06) :
+Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy.csv` + la clé `css` du template** (master `c99fc4b3`, 2026-08-17) — 8 familles, 223 nœuds :
 
-| Classe CSS (= `family_fr_camelcase`) | Famille (`family_fr`) | Couleur | Alias hérité encore déclaré |
-|------------|---------|---------|---------|
-| `argumentValable` | Argument valable (racine) | Gris #555555 | `argumentsVertueux` |
-| `argumentPertinent` | Argument pertinent | Violet #811da3 | — |
-| `présentationIntègre` | Présentation intègre | Rose #ff66eb | — |
-| `rigueurMathématique` | Rigueur mathématique | Turquoise #08af93 | `exactitudeMathématique` |
-| `raisonnementValide` | Raisonnement valide | Vert #8dc801 | — |
-| `langageExact` | Langage exact | Bleu #0054a4 | `langageRigoureux` |
-| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | Jaune #ffc307ff | — |
-| `échangeEnrichissant` | Échange enrichissant | Rouge #dc0f0a | `débatRespectueux` |
+| Classe CSS (= `family_fr_camelcase`) | Famille (`family_fr`) | Nœuds | Couleur | Alias hérités encore déclarés |
+|------------|---------|---:|---------|---------|
+| `argumentValable` | Argument valable (racine) | 1 | Gris #555555 | `argumentsVertueux` |
+| `argumentPertinent` | Argument pertinent | 33 | Violet #811da3 | — |
+| `présentationIntègre` | Présentation intègre | 25 | Rose #ff66eb | — |
+| `sensQuantitatif` | Sens quantitatif | 20 | Turquoise #08af93 | `rigueurMathématique`, `exactitudeMathématique` |
+| `inférenceMaîtrisée` | Inférence maîtrisée | 55 | Vert #8dc801 | `raisonnementValide` |
+| `justesseLexicale` | Justesse lexicale | 18 | Bleu #0054a4 | `langageExact`, `langageRigoureux` |
+| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | 27 | Jaune #ffc307ff | — |
+| `échangeEnrichissant` | Échange enrichissant | 44 | Rouge #dc0f0a | `débatRespectueux` |
 
-**Renommage additif** — un renommage de famille a déjà eu lieu, et le template en garde le motif : l'ancien nom et le nouveau cohabitent **dans le même bloc**, séparés par une virgule (`card.langageRigoureux, card.langageExact { … }`). Pour renommer une famille : ajouter le nouveau nom au bloc existant **d'abord**, renommer le CSV **ensuite**. L'ordre inverse produit des cartes sans couleur de famille entre les deux merges.
+> ⚠️ **Trois familles ont été renommées les 6-7 août 2026** (#981/#982a → `6d22f79a`, #998 → `5631bf3c`, #1002 → `19b9c9d1`) : `Raisonnement valide` → **`Inférence maîtrisée`**, `Rigueur mathématique` → **`Sens quantitatif`**, `Langage exact` → **`Justesse lexicale`**. Les anciens noms **survivent partout dans les artefacts figés** — bodies d'issues, rapports, commentaires. Une recherche sur un ancien nom rend **0 résultat** dans le CSV, ce qui se lit à tort comme « rien à faire » : c'est une panne d'instrument, pas une absence. **Toujours re-mesurer le libellé courant contre le CSV avant d'agir sur une famille.** (Le dossier #985 a ainsi coûté un cycle : son tableau porte encore l'ancien nom *et* des comptes de cartes périmés.)
+
+**Renommage additif** — les renommages ci-dessus ont été faits selon ce motif, et le template le conserve : tous les noms successifs cohabitent **dans le même bloc**, séparés par des virgules (`card.exactitudeMathématique, card.rigueurMathématique, card.sensQuantitatif { … }` — trois générations). Pour renommer une famille : ajouter le nouveau nom au bloc existant **d'abord**, renommer le CSV **ensuite**. L'ordre inverse produit des cartes sans couleur de famille entre les deux merges.
+
+**Second référentiel à synchroniser** — les glossaires en dur des prompts `DatasetUpdater/Resources/` portent aussi les noms de familles : un renommage CSV non répercuté y est **ré-injecté à la passe de traduction suivante**. Les 8 `PromptVirtues*User.txt` sont additifs (ancien + nouveau) et donc corrects ; vérifier ce point à chaque renommage.
 
 **Symptôme si classe manquante**: Carte avec fond blanc au lieu de la couleur de famille.
 
