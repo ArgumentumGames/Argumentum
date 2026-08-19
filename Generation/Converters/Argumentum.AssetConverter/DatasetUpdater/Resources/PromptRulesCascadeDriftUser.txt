@@ -23,7 +23,6 @@ Le champ français `Text` (règles du jeu) vient d'être affiné en clarté (pas
      - atout (FR) = trump (EN) = козырь (RU) = trunfo (PT) = triunfo (ES) = حكم (AR) = حکم (FA) = 王牌 (ZH)
      - pioche (FR) = draw pile (EN) = колода (RU) = monte (PT) = mazo (ES) = رزمة السحب (AR) = دستهٔ کارت (FA) = 牌堆 (ZH)
      - réserve (FR) = reserve (EN) = запас (RU) = reserva (PT) = reserva (ES) = الرصيد (AR) = ذخیره (FA) = 备用牌堆 (ZH)
-     - défausse (FR) = discard pile (EN) = сброс (RU) = descarte (PT) = descarte (ES) = كومة الاستبعاد (AR) = دورریز (FA) = 弃牌堆 (ZH)
      - jury (FR) = jury (EN) = жюри (RU) = júri (PT) = jurado (ES) = هيئة المحلّفين (AR) = هیئت داوران (FA) = 评审团 (ZH)
      - saynète (FR) = skit (EN) = сценка (RU) = esquete (PT) = escena (ES) = المشهد التمثيلي (AR) = نمایش کوتاه (FA) = 即兴短剧 (ZH)
      - arguments fallacieux (FR) = fallacy cards (EN) = софизмы (RU) = argumentos falaciosos (PT) = argumentos falaces (ES) = الحجج المغلوطة (AR) = استدلال مغالطه‌آمیز (FA) = 谬误论证 (ZH)
