@@ -1,0 +1,4 @@
+# Approved test snapshots must materialize with CRLF in the working tree on every
+# platform and every core.autocrlf setting: the compared-against output comes from
+# System.Xml serialization whose default NewLineChars is CRLF everywhere.
+*.snapshot.svg text eol=crlf

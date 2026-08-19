@@ -29,17 +29,15 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var processedSvgDocs = await config.ProcessSvgFilesAsync(new[] { testFilePath });
             var processedSvgContent = FallacyMindMapDocumentConfig.GetSvgContent(processedSvgDocs.Values.First());
 
-            // Assert
+            // Assert — the approved snapshot is committed and copied to output (csproj snapshots\** rule);
+            // a missing snapshot must fail the test, never be regenerated here (#1046 HIGH #2).
             var snapshotDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "snapshots");
             var snapshotFile = Path.Combine(snapshotDirectory, "sample_fallacy_map.snapshot.svg");
-            
-            // Auto-generate snapshot if it doesn't exist (first run)
-            if (!File.Exists(snapshotFile))
-            {
-                Directory.CreateDirectory(snapshotDirectory);
-                await File.WriteAllTextAsync(snapshotFile, processedSvgContent);
-                _output.WriteLine($"Snapshot generated at: {snapshotFile}");
-            }
+
+            Assert.True(File.Exists(snapshotFile),
+                $"Approved snapshot not found at {snapshotFile} — the csproj snapshots copy rule or the committed snapshot is missing.");
+            Assert.False(string.IsNullOrWhiteSpace(await File.ReadAllTextAsync(snapshotFile)),
+                "Approved snapshot is empty or whitespace — degenerate snapshot, regenerate from a real run output.");
 
             var expected = await File.ReadAllTextAsync(snapshotFile);
             Assert.Equal(expected, processedSvgContent);
