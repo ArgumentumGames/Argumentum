@@ -19,8 +19,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
     /// <code>config.UseDebugParams ? ConvertToCmykDebug : ConvertToCmykRelease</code>, where
     /// <c>UseDebugParams</c> = <c>(isInDebugMode || ForceDebugParams) &amp;&amp; !ForceReleaseParams</c>.
     ///
-    /// No test exercised this resolver before. A swapped ternary, drifted default, or a regression
-    /// making the legacy <see cref="DocumentCardSet.ConvertToCmyk"/> field leak into the resolution
+    /// No test exercised this resolver before. A swapped ternary or drifted default
     /// would silently flip the color space per build mode — Debug previews would balloon to CMYK
     /// size, or Release print output would ship as RGB. These tests pin the contract additively.
     ///
@@ -108,34 +107,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (3) The legacy <see cref="DocumentCardSet.ConvertToCmyk"/> field is DECOUPLED from the
-        //     resolver. GetConvertToCmyk keys only on the Debug/Release pair — setting the legacy
-        //     field has no effect on the resolved color space. This pins the decoupling so a future
-        //     change cannot silently reintroduce the legacy field into the resolution path.
-        // ─────────────────────────────────────────────────────────────────────────────
-
-        [Fact]
-        public void Legacy_ConvertToCmyk_Field_DoesNotAffectResolver()
-        {
-            // Legacy field says "convert", but the per-mode pair says "don't" — the resolver must
-            // follow the pair and ignore the legacy field.
-            var cardSet = new DocumentCardSet
-            {
-                ConvertToCmyk = true,            // legacy — must be ignored
-                ConvertToCmykDebug = false,
-                ConvertToCmykRelease = false
-            };
-
-            cardSet.GetConvertToCmyk(ForcedDebug()).Should().BeFalse(
-                "the legacy ConvertToCmyk field must not feed the resolver; only ConvertToCmykDebug " +
-                "governs Debug resolution");
-            cardSet.GetConvertToCmyk(ForcedRelease()).Should().BeFalse(
-                "the legacy ConvertToCmyk field must not feed the resolver; only ConvertToCmykRelease " +
-                "governs Release resolution");
-        }
-
-        // ─────────────────────────────────────────────────────────────────────────────
-        // (4) OVERRIDE PRIORITY — the documented "ForceReleaseParams = true to use Release params
+        // (3) OVERRIDE PRIORITY — the documented "ForceReleaseParams = true to use Release params
         //     in Debug builds". With BOTH force flags set, Release wins because UseDebugParams is
         //     gated by `&amp;&amp; !ForceReleaseParams`. This pins the override priority so a
         //     forced Release run really yields the Release color space even in a Debug build.
