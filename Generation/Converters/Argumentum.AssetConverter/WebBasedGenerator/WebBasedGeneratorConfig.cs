@@ -466,7 +466,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -485,7 +484,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Memo,
 							NbCopies = 7,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -504,7 +502,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Fallacies,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -541,7 +538,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Virtues,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -578,7 +574,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Scenarii,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -654,7 +649,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Virtues,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -788,10 +782,9 @@ namespace Argumentum.AssetConverter
 						},
 						new DocumentCardSet()
 						{
-							// #645 (Virtues subset) Light = "families overview" (print_and_play=1 -> root + 7 family heads = 8 cards). Mirrors Standard Virtues (ConvertToCmyk, 113x60mm).
+							// #645 (Virtues subset) Light = "families overview" (print_and_play=1 -> root + 7 family heads = 8 cards). Mirrors Standard Virtues (113x60mm).
 							CardSetName = KnownCardSets.VirtuesPrintAndPlayLight,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -890,7 +883,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesWeb,
 							NbCopies = 1,
-							ConvertToCmyk = false,
 							SaveOriginalImage = true,
 							FrontCards = new DocumentCard()
 							{
@@ -933,7 +925,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesWeb,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = true,
 							FrontCards = new DocumentCard()
 							{
@@ -973,7 +964,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesWebThumbnails,
 							NbCopies = 1,
-							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -1000,7 +990,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -1019,7 +1008,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Fallacies2,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -1051,7 +1039,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -1070,7 +1057,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Fallacies3,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{

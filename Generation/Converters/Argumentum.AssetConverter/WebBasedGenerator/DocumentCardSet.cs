@@ -15,8 +15,6 @@ namespace Argumentum.AssetConverter
 
         public bool SaveOriginalImage { get; set; } = true;
 
-        public bool ConvertToCmyk { get; set; } = true;
-
         /// <summary>CMYK conversion for Debug builds (preview-friendly, smaller files).</summary>
         public bool ConvertToCmykDebug { get; set; } = false;
 
