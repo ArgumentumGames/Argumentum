@@ -171,10 +171,18 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
             
             result.Should().NotBeNull();
             _output.WriteLine($"Result dictionary contains {result.Count} entries.");
+            // Guard (#1046 MED #9): First() on an empty dictionary would throw an unasserted
+            // InvalidOperationException, and BeEmpty alone cannot distinguish "the failing
+            // URL was skipped gracefully" from "the generator produced nothing at all".
+            // ContainSingle pins the entry the arrange step fed in, so the empty list below
+            // means exactly one thing: the failure was handled, nothing else was produced.
+            result.Should().ContainSingle(
+                "the failing document must still produce exactly one result entry");
             var imageList = result.First().Value;
             _output.WriteLine($"The resulting image list for the first entry contains {imageList.Count} item(s).");
-            
-            imageList.Should().BeEmpty();
+
+            imageList.Should().BeEmpty(
+                "the failing URL must be skipped, not crash — and no other image should have been produced");
         }
 
         public void Dispose()
