@@ -30,6 +30,11 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         {
             // ARRANGE
 
+            // Guard (#1046 MED #7): HaveCount below is tautological (the generator iterates
+            // _htmlTestFiles), so an empty assets folder degrades the whole test to 0 == 0.
+            _htmlTestFiles.Should().NotBeEmpty(
+                "the PdfAssembly test assets must contain HTML fixtures — otherwise this test degenerates to 0 == 0");
+
             // 1. Générer les images PNG à partir du HTML
             var generatedPngPaths = await GeneratePngsFromHtmlFiles();
             generatedPngPaths.Should().HaveCount(_htmlTestFiles.Count, "A PNG should be generated for each HTML file.");
@@ -124,6 +129,10 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             // PASS or a count mismatch are both acceptable — both prove images were read; an
             // "unexpected error" or "found 0" would signal PdfPig 0.1.14 divergence and fail the swap.
             var messages = string.Join("\n", result.Messages);
+            // Guard (#1046 MED #8): NotContain-only assertions pass vacuously on an empty
+            // message list — assert the audit actually produced diagnostics first.
+            messages.Should().NotBeEmpty(
+                "the audit must produce diagnostics — empty messages would make the NotContain checks below vacuous");
             messages.Should().NotContain("unexpected error occurred during PDF audit",
                 "PdfPig 0.1.14 must support the GetImages/RawBytes path PdfAuditor relies on");
             messages.Should().NotContain("found 0 images",

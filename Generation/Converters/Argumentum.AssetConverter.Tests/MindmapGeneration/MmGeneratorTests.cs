@@ -59,6 +59,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         {
             // Arrange
             var fallacies = await GetTestDataAsync("simple-fallacies.csv");
+            // Guard (#1046 MED #6): the loader suppresses CsvHelper missing-field errors
+            // (HeaderValidFound/MissingFieldFound = null), so a broken fixture parses as
+            // 0 records and skips the per-node loop below while surviving assertions
+            // (File.Exists, root name) still hold on an empty mindmap.
+            fallacies.Should().NotBeEmpty(
+                "the CSV fixture must load records — a 0-record parse skips every per-node check");
             var generator = new FallacyMindMapDocumentConfig
             {
                 DocumentName = "test-fallacies.mm",
