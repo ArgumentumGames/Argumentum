@@ -19,16 +19,18 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 	///
 	/// The legacy read-path (<c>File.ReadAllText</c> + <c>XDocument.Parse</c>, see
 	/// <c>FallacyMindMapDocumentConfig.RegenerateInteractiveContentSvgAsync</c>) is encoding-agnostic
-	/// and must keep parsing the current utf-16-declared files until they are regenerated — this
-	/// guards against a read-side regression while the artefacts are still stale.
+	/// and must keep parsing utf-16-declared input (stale or externally supplied SVGs) — this
+	/// guards against a read-side regression; the committed artefacts realigned to utf-8 with
+	/// the 2026-08-20 regeneration (PR #1120), closing #804 on disk.
 	/// </summary>
 	public class MindMapSvgEncodingTests
 	{
 		private static readonly string RepoRoot = TestRepoRoot.Find();
 
-		/// <summary>A representative committed file that still carries the legacy mislabel
-			/// (declared utf-16, physically UTF-8 BOM) — real artefact, not a synthetic fixture.</summary>
-		private static readonly string LegacyUtf16DeclaredSvgPath =
+		/// <summary>The canonical committed content.svg — the real artefact this class pins
+			/// (UTF-8 BOM with matching declaration since the 2026-08-20 regeneration; it carried
+			/// the legacy utf-16 mislabel before that, see #804).</summary>
+		private static readonly string CommittedSvgPath =
 			Path.Combine(RepoRoot, "Cards", "Fallacies", "Mindmaps", "fr", "Fallacies_fr.content.svg");
 
 		[Fact]
@@ -69,22 +71,35 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 		}
 
 		[Fact]
-		public void Legacy_Utf16Declared_Committed_Svg_Still_Parses_Via_TextReadPath()
+		public void Regenerated_Committed_Svg_Declares_Utf8_And_Parses_Via_TextReadPath()
 		{
-			// Regression guard for the read-side workaround in RegenerateInteractiveContentSvgAsync:
-			// the 32 committed files still declare utf-16 (pre-regen). File.ReadAllText auto-detects
-			// the BOM -> UTF-8, then XDocument.Parse ignores the declaration on a decoded string.
-			// This must keep working until the artefacts are regenerated post-tag.
-			File.Exists(LegacyUtf16DeclaredSvgPath).Should().BeTrue(
-				"the committed Fallacies_fr.content.svg is the canonical legacy mislabelled fixture");
+			// The 32 committed files were regenerated on 2026-08-20 (final corpus, PR #1120):
+			// they now carry the #804-aligned form — UTF-8 BOM bytes with a matching utf-8
+			// declaration. Pin that the regeneration did not reintroduce the mislabel.
+			File.Exists(CommittedSvgPath).Should().BeTrue(
+				"the committed Fallacies_fr.content.svg is the canonical artefact fixture");
 
-			var svgText = File.ReadAllText(LegacyUtf16DeclaredSvgPath);
-			svgText.Should().Contain("encoding=\"utf-16\"",
-				"pre-condition: this fixture is still the stale (pre-regen) form; update the assertion if it was regenerated");
+			var svgText = File.ReadAllText(CommittedSvgPath);
+			svgText.Should().Contain("encoding=\"utf-8\"",
+				"post-regen form: declaration must match the UTF-8 BOM bytes written by MindMapSvgWriter callers");
+			svgText.Should().NotContain("encoding=\"utf-16\"");
 
-			// The exact line used by the generator must not throw on the legacy declaration
+			// The exact line used by the generator must not throw
 			var act = () => XDocument.Parse(svgText);
-			act.Should().NotThrow("the read-path workaround must tolerate the committed utf-16 declaration");
+			act.Should().NotThrow("the read-path must keep parsing the committed artefact");
+		}
+
+		[Fact]
+		public void Legacy_Utf16Declared_Synthetic_Svg_Still_Parses_Via_TextReadPath()
+		{
+			// Read-path robustness guard for RegenerateInteractiveContentSvgAsync, kept after the
+			// committed artefacts realigned: File.ReadAllText auto-detects the BOM -> UTF-8, then
+			// XDocument.Parse ignores the declaration on a decoded string. A stale or externally
+			// supplied utf-16-declared SVG must therefore never break the read path.
+			var svgText = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\"/>";
+
+			var act = () => XDocument.Parse(svgText);
+			act.Should().NotThrow("the read-path workaround must tolerate a utf-16 declaration on a decoded string");
 		}
 	}
 }
