@@ -126,15 +126,17 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute le système de validation continue
         /// </summary>
         /// <param name="config">La configuration de l'application</param>
-        /// <returns>Une tâche représentant l'opération asynchrone</returns>
-        public async Task Apply(AssetConverterConfig config)
+        /// <returns>True si la validation initiale a réussi, sinon false.</returns>
+        public async Task<bool> Apply(AssetConverterConfig config)
         {
             Logger.LogTitle("Système de validation continue");
 
             var validationSystem = new ContinuousValidationSystem(config);
 
             // Exécuter la validation initiale
-            await validationSystem.ExecuteAllValidations();
+            // #1046 Lot B (Surface1 #10): the aggregate bool was discarded and the success line
+            // logged unconditionally — a failing initial run still printed "initialisé" as a success.
+            bool success = await validationSystem.ExecuteAllValidations();
 
             // Si le mode interactif est activé, démarrer la surveillance des fichiers
             if (ValidateOnChanges)
@@ -148,7 +150,15 @@ namespace Argumentum.AssetConverter.Tests
                 validationSystem.ScheduleValidation(ValidationInterval);
             }
 
-            Logger.LogSuccess("Système de validation continue initialisé");
+            if (success)
+            {
+                Logger.LogSuccess("Système de validation continue initialisé");
+            }
+            else
+            {
+                Logger.LogProblem("Système de validation continue initialisé AVEC ÉCHEC de la validation initiale");
+            }
+            return success;
         }
     }
 }

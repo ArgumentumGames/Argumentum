@@ -144,12 +144,31 @@ namespace Argumentum.AssetConverter.Tests
                 }
             }
 
+            // #1046 Lot B (Surface1 #13): un inventaire vide rendait la boucle ci-dessous
+            // vacuous — "aucune erreur détectée" alors qu'aucune image n'avait pu être vérifiée.
+            if (_cardFilesByLanguage.Count == 0)
+            {
+                errorCount++;
+                Logger.LogProblem("Validation de la qualité des images : aucun répertoire de cartes trouvé — inventaire vide, rien n'a pu être vérifié");
+                _reportBuilder.AppendLine($"<tr><td colspan='7' class='error'>Aucun fichier d'image trouvé dans les répertoires configurés — la validation de qualité n'a rien pu vérifier</td></tr>");
+            }
+
             // Vérifier la qualité de chaque image
             foreach (var entry in _cardFilesByLanguage)
             {
                 string[] parts = entry.Key.Split('_');
                 string cardSetType = parts[0];
                 string language = parts[1];
+
+                if (entry.Value.Count == 0)
+                {
+                    // #1046 Lot B (Surface1 #13): une entrée vide (répertoire existant sans image)
+                    // était ignorée sans erreur — le jeu/langue disparaissait du rapport.
+                    errorCount++;
+                    Logger.LogProblem($"Validation de la qualité des images : aucun fichier pour {entry.Key}");
+                    _reportBuilder.AppendLine($"<tr><td>{cardSetType}</td><td>{language}</td><td colspan='4'>Aucun fichier</td><td class='error'>Erreur</td></tr>");
+                    continue;
+                }
 
                 var expectedDimensions = _validatorConfig.ExpectedDimensions.ContainsKey(cardSetType)
                     ? _validatorConfig.ExpectedDimensions[cardSetType]
@@ -513,7 +532,15 @@ namespace Argumentum.AssetConverter.Tests
                 {
                     cardId = match.Value;
                 }
-                
+
+                // #1046 Lot B (Surface1 #14): deux fichiers dont le nom partage le même premier
+                // groupe de chiffres écrasaient silencieusement la même clé — une carte disparaissait
+                // de la comparaison multilingue sans trace. Le remplacement demeure (comportement
+                // établi), mais la collision est désormais signalée.
+                if (result.ContainsKey(cardId))
+                {
+                    Logger.LogWarning($"Doublon d'identifiant de carte '{cardId}' : '{Path.GetFileName(result[cardId])}' écrasé par '{fileName}' dans la comparaison multilingue");
+                }
                 result[cardId] = filePath;
             }
             

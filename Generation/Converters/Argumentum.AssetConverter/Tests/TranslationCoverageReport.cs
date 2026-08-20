@@ -81,7 +81,10 @@ namespace Argumentum.AssetConverter.Tests
                 Logger.LogSuccess($"Données de taxonomie chargées: {fallacies.Count} entrées");
 
                 // Analyser la couverture des traductions
-                AnalyzeCoverage(fallacies);
+                if (!AnalyzeCoverage(fallacies))
+                {
+                    return false;
+                }
 
                 // Calculer les pourcentages de couverture globale
                 CalculateOverallCoverage();
@@ -178,13 +181,21 @@ namespace Argumentum.AssetConverter.Tests
             }
             
             // Parcourir les lignes de données
+            int droppedRows = 0;
             for (int i = 1; i < lines.Length; i++)
             {
                 var line = lines[i].Trim();
                 if (string.IsNullOrEmpty(line)) continue;
-                
+
                 var values = line.Split(',');
-                if (values.Length < headers.Length) continue;
+                // #1046 Lot B (Surface1 #19): ce parseur naïf ne gère pas les guillemets —
+                // une ligne dont un champ contient une virgule est écartée silencieusement.
+                // Compter les lignes écartées pour que la perte soit visible dans le rapport.
+                if (values.Length < headers.Length)
+                {
+                    droppedRows++;
+                    continue;
+                }
                 
                 var fallacy = new Fallacy();
                 
@@ -227,7 +238,12 @@ namespace Argumentum.AssetConverter.Tests
                 
                 fallacies.Add(fallacy);
             }
-            
+
+            if (droppedRows > 0)
+            {
+                Logger.LogWarning($"{droppedRows} lignes CSV écartées par le parseur naïf (virgules non quotées) — la couverture mesurée porte sur {fallacies.Count} lignes seulement.");
+            }
+
             return fallacies;
         }
 
@@ -335,9 +351,18 @@ namespace Argumentum.AssetConverter.Tests
         /// Analyse la couverture des traductions pour chaque langue et type de champ.
         /// </summary>
         /// <param name="fallacies">La liste des fallacies à analyser.</param>
-        private void AnalyzeCoverage(List<Fallacy> fallacies)
+        /// <returns>True si l'analyse a porté sur une configuration non vide, sinon false.</returns>
+        private bool AnalyzeCoverage(List<Fallacy> fallacies)
         {
             Logger.Log("Analyse de la couverture des traductions...");
+
+            // #1046 Lot B (Surface1 #15): sans cette garde, une config sans langue cible ni type
+            // de champ rendait les boucles ci-dessous vides — l'analyse "réussissait" sur rien.
+            if (!_coverageConfig.Languages.Any(l => l != "fr") || _coverageConfig.FieldTypes.Count == 0)
+            {
+                Logger.LogProblem("Analyse de la couverture: aucune langue cible ou type de champ configuré — l'analyse serait vide.");
+                return false;
+            }
 
             // Regrouper les fallacies par famille
             var fallaciesByFamily = fallacies.GroupBy(f => f.Famille).ToDictionary(g => g.Key, g => g.ToList());
@@ -383,6 +408,7 @@ namespace Argumentum.AssetConverter.Tests
             }
 
             Logger.LogSuccess("Analyse de la couverture terminée");
+            return true;
         }
 
         /// <summary>
@@ -454,8 +480,8 @@ namespace Argumentum.AssetConverter.Tests
         /// Exporte le rapport de couverture des traductions au format HTML.
         /// </summary>
         /// <param name="outputPath">Le chemin du fichier HTML de sortie.</param>
-        /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ExportReportToHtml(string outputPath)
+        /// <returns>True si l'export a réussi, sinon false.</returns>
+        public async Task<bool> ExportReportToHtml(string outputPath)
         {
             try
             {
@@ -702,11 +728,14 @@ namespace Argumentum.AssetConverter.Tests
                 await File.WriteAllTextAsync(outputPath, sb.ToString());
 
                 Logger.LogSuccess($"Rapport HTML exporté avec succès: {outputPath}");
-                return;
+                return true;
             }
             catch (Exception ex)
             {
+                // #1046 Lot B (Surface1 #18): the exception was swallowed — the caller logged
+                // "généré avec succès" even when the HTML export had just failed.
                 Logger.LogProblem($"Erreur lors de l'exportation du rapport HTML: {ex.Message}");
+                return false;
             }
         }
 
@@ -714,8 +743,8 @@ namespace Argumentum.AssetConverter.Tests
         /// Exporte le rapport de couverture des traductions au format CSV.
         /// </summary>
         /// <param name="outputPath">Le chemin du fichier CSV de sortie.</param>
-        /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task ExportReportToCsv(string outputPath)
+        /// <returns>True si l'export a réussi, sinon false.</returns>
+        public async Task<bool> ExportReportToCsv(string outputPath)
         {
             try
             {
@@ -750,11 +779,13 @@ namespace Argumentum.AssetConverter.Tests
                 await File.WriteAllTextAsync(outputPath, sb.ToString());
 
                 Logger.LogSuccess($"Rapport CSV exporté avec succès: {outputPath}");
-                return;
+                return true;
             }
             catch (Exception ex)
             {
+                // #1046 Lot B (Surface1 #18): swallowed exception — see ExportReportToHtml.
                 Logger.LogProblem($"Erreur lors de l'exportation du rapport CSV: {ex.Message}");
+                return false;
             }
         }
 
@@ -763,8 +794,8 @@ namespace Argumentum.AssetConverter.Tests
         /// </summary>
         /// <param name="historyDirectory">Le répertoire pour stocker l'historique.</param>
         /// <param name="maxHistoryReports">Le nombre maximum de rapports d'historique à conserver.</param>
-        /// <returns>Une tâche représentant l'opération asynchrone.</returns>
-        public async Task TrackProgressOverTime(string historyDirectory, int maxHistoryReports)
+        /// <returns>True si le suivi a réussi, sinon false.</returns>
+        public async Task<bool> TrackProgressOverTime(string historyDirectory, int maxHistoryReports)
         {
             try
             {
@@ -830,11 +861,13 @@ namespace Argumentum.AssetConverter.Tests
                 await GenerateProgressChart(historyDirectory, history);
 
                 Logger.LogSuccess("Suivi de la progression terminé");
-                return;
+                return true;
             }
             catch (Exception ex)
             {
+                // #1046 Lot B (Surface1 #18): swallowed exception — see ExportReportToHtml.
                 Logger.LogProblem($"Erreur lors du suivi de la progression: {ex.Message}");
+                return false;
             }
         }
 
