@@ -123,6 +123,15 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var once = MindMapHtmlWrapper.FormatWrapper(template, "a.svg", "<svg/>");
             var twice = MindMapHtmlWrapper.FormatWrapper(once, "b.svg", "<svg id=\"other\"/>");
 
+            // #1046 Lot C (LOW #21): Be(once) alone is self-referential — a no-op FormatWrapper
+            // (returns its input unchanged) satisfies it. Positive controls first: the first
+            // call must actually inject both values and consume both placeholders.
+            once.Should().Contain("a.svg", "the first call must inject the svg path");
+            once.Should().Contain("<svg/>", "the first call must inject the svg content");
+            once.Should().NotContain("[SVGPATH]");
+            once.Should().NotContain("[SVGCONTENT]");
+            once.Should().NotBe(template, "a no-op FormatWrapper must not satisfy the idempotence contract");
+
             // Guardrail: once the placeholders are gone, re-running the helper must not mutate
             // the content. Documents the expectation and catches regressions where someone adds
             // a third placeholder without updating the contract.

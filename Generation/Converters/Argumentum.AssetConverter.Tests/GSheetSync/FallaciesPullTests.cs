@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Argumentum.AssetConverter.GSheetSync;
 using CsvHelper;
 using CsvHelper.Configuration;
+using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -96,8 +97,11 @@ namespace Argumentum.AssetConverter.Tests.GSheetSync
 
             if (pkColLocal < 0 || pkColGdrive < 0)
             {
-                _output.WriteLine("WARNING: pk column not found in one of the sources!");
-                return;
+                // #1046 Lot C (LOW #12): the bare `return` silently abandoned the rest of the
+                // comparison — if this manual script is ever un-skipped, a missing pk column
+                // must fail loud instead of ending as an unconditional pass.
+                (pkColLocal >= 0 && pkColGdrive >= 0).Should().BeTrue(
+                    $"pk column not found (Local={pkColLocal}, GDrive={pkColGdrive}) — comparison cannot proceed");
             }
 
             // Build PK lookup
