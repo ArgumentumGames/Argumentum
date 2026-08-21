@@ -59,8 +59,12 @@ function autoFitTitle(title, minFontPx) {
 // Inclut .subtitle (Mémo Back) : avec white-space:nowrap côté template, un
 // sous-titre long (p.ex. RU) déborde horizontalement au lieu de wrapper hors
 // bandeau — et se fait réduire ici. No-op pour les sous-titres qui tiennent.
+// Inclut .footer (Fallacies/Rules Back, #1127) : même forme — la tagline du
+// dos, nowrap pour tenir sur une ligne, se fait réduire si elle déborde.
+// No-op pour les footers courts (FR/EN courants) et les .footer numériques
+// ({{depth_max4}} Face) qui ne débordent jamais.
 function autoFitCardTitles(cardNode) {
-    var titles = cardNode.querySelectorAll('.title, .subtitle');
+    var titles = cardNode.querySelectorAll('.title, .subtitle, .footer');
     for (var t = 0; t < titles.length; t++) {
         autoFitTitle(titles[t]);
     }
