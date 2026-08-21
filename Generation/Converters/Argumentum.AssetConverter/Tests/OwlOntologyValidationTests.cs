@@ -169,6 +169,11 @@ namespace Argumentum.AssetConverter.Tests
             var concepts = _ontology.GetResourcesByType(SKOSVocabulary.Concept);
             if (concepts.Count == 0)
             {
+                // #1046 Lot B (MED #11) — audité, laissé tel quel volontairement : ce early-return
+                // sur ontologie vide serait un succès vide, MAIS OwlValidatorLivePathTests épingle
+                // déjà l'ontologie de référence (le test échoue si l'OWL ne se charge pas), ce qui
+                // rend cette branche inatteignable en pratique. Ne pas la durcir sans d'abord
+                // relier ce validateur au chemin live.
                 Logger.Log("No concepts to validate annotations — skipping");
                 return true;
             }

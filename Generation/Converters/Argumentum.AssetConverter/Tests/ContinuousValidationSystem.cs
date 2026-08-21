@@ -91,6 +91,14 @@ namespace Argumentum.AssetConverter.Tests
                 InitializeHtmlReport();
                 
                 // Exécuter les validations configurées
+                // #1046 Lot B (Surface1 #16): avec les trois Validate* à false, les trois résultats
+                // restaient true par construction — "Tous les tests ont réussi" sans rien exécuter.
+                if (!_validationConfig.ValidateTaxonomy && !_validationConfig.ValidateOwl && !_validationConfig.ValidateCards)
+                {
+                    Logger.LogProblem("Aucune validation n'est activée (ValidateTaxonomy/ValidateOwl/ValidateCards tous false) — aucun test n'a été exécuté, le système ne peut pas déclarer un succès.");
+                    return false;
+                }
+
                 bool taxonomyResult = true;
                 bool owlResult = true;
                 bool cardResult = true;
@@ -271,6 +279,9 @@ namespace Argumentum.AssetConverter.Tests
             }
             catch (Exception ex)
             {
+                // #1046 Lot B (Surface1 #17): l'exception était avalée sans comptage — un crash
+                // de la génération de rapport laissait les statistiques et notifications au vert.
+                _totalErrors++;
                 Logger.LogProblem($"Erreur lors de la génération du rapport de validation: {ex.Message}");
             }
         }

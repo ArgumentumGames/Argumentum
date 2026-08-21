@@ -101,8 +101,8 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute les validations configurées
         /// </summary>
         /// <param name="config">La configuration de l'application</param>
-        /// <returns>Une tâche représentant l'opération asynchrone</returns>
-        public async Task Apply(AssetConverterConfig config)
+        /// <returns>True si toutes les validations exécutées ont réussi, sinon false.</returns>
+        public async Task<bool> Apply(AssetConverterConfig config)
         {
             Logger.LogTitle("Validation des cartes générées");
 
@@ -132,7 +132,18 @@ namespace Argumentum.AssetConverter.Tests
                 }
             }
 
-            Logger.LogSuccess("Validation des cartes générées terminée");
+            // #1046 Lot B (Surface1 #7): the success line was logged unconditionally while the
+            // validation bool was discarded — a failing run printed "terminée" as a success.
+            bool success = validator._totalErrors == 0;
+            if (success)
+            {
+                Logger.LogSuccess("Validation des cartes générées terminée");
+            }
+            else
+            {
+                Logger.LogProblem($"Validation des cartes générées terminée AVEC ÉCHEC ({validator._totalErrors} erreurs)");
+            }
+            return success;
         }
     }
 }
