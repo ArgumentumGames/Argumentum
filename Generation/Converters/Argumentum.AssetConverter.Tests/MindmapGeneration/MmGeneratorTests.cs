@@ -196,6 +196,11 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         {
             // Arrange - generate a real .mm from test data
             var fallacies = await GetTestDataAsync("simple-fallacies.csv");
+            // #1046 Lot C (LOW #22): without this guard a 0-record parse yields a root-only
+            // mindmap whose XSLT output still contains "<svg" and "Sophismes" — the test
+            // would pass without having exercised any real node.
+            fallacies.Should().NotBeEmpty(
+                "the CSV fixture must load records — otherwise the XSLT assertions hold on a root-only mindmap");
             var generator = new FallacyMindMapDocumentConfig
             {
                 DocumentName = "xslt-pipeline-test.mm",
