@@ -25,8 +25,19 @@ namespace Argumentum.AssetConverter
 {
     public class AssetConverterConfig
     {
-
-
+		/// <summary>
+		/// #1132 — conversion statique du marqueur de langue posé sur les conteneurs de 1er niveau
+		/// des gabarits de cartes (`class="… argu-lang-fr"`), réécrit en `argu-lang-&lt;langue&gt;`.
+		/// Elle est répétée dans les 4 groupes de <see cref="LocalizationConfig.CardSetLocalizations"/>
+		/// (Fallacies+Memo, Rules, Virtues, Scenarii) : un groupe ne voit que ses propres conversions.
+		/// Propriété et non champ, pour que chaque groupe reçoive sa propre liste plutôt qu'une
+		/// instance partagée que l'un d'eux pourrait muter au détriment des autres.
+		/// </summary>
+		private static (string sourceText, List<(string Language, string destText)> textConversions) ARGU_LANG_MARKER =>
+			("argu-lang-fr", new List<(string Language, string destText)>(new []{
+				("en", "argu-lang-en"), ("ru", "argu-lang-ru"), ("pt", "argu-lang-pt"), ("es", "argu-lang-es"),
+				("ar", "argu-lang-ar"), ("fa", "argu-lang-fa"), ("zh", "argu-lang-zh")
+			}));
 
 		//Debug Switch to configure default values
 	// NOTE: SkipConfigFile=true car les tuples List<(string,string)> ne sont pas correctement sérialisés en JSON
@@ -146,6 +157,16 @@ namespace Argumentum.AssetConverter
 							("fa", "هنر اشتباه نکردن"),
 							("zh", "永远不会错的艺术")
 						}) ),
+						// #1132 — marqueur de langue porté par les conteneurs de 1er niveau du mustache.
+						// Les gabarits déclarent `class="… argu-lang-fr"` ; cette conversion le réécrit en
+						// argu-lang-<langue>, ce qui active les règles .argu-lang-ar/fa/zh de la feuille
+						// (police unique + letter-spacing neutre pour les écritures cursives).
+						// Pourquoi ici et pas via FrontFieldConversions : celui-ci ne remplace que le motif
+						// `<nom>}}` (FormatFieldToken), donc les JETONS mustache — jamais un attribut class.
+						// C'est précisément l'erreur que corrige #1132 : les sélecteurs .desc_ar/.exemple_ar
+						// livrés attendaient une traduction des noms de classe qui n'a jamais lieu.
+						// Portée nulle sur en/ru/pt/es : aucune règle CSS ne cible leur marqueur.
+						ARGU_LANG_MARKER,
 					}),
 				},
 				new CardSetLocalization()
@@ -158,6 +179,11 @@ namespace Argumentum.AssetConverter
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt"), ("es", "Text_es"), ("ar", "Text_ar"), ("fa", "Text_fa"), ("zh", "Text_zh") }) ),
+					}),
+					// #1132 — cf ARGU_LANG_MARKER. Rules porte le marqueur sur 4 conteneurs (variantHeader,
+					// texte, colorPalette, pageNumber), en guillemets simples dans ce gabarit.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						ARGU_LANG_MARKER,
 					}),
 				},
 				new CardSetLocalization()
@@ -176,6 +202,10 @@ namespace Argumentum.AssetConverter
 						("family_fr", new List<(string Language, string destFieldName)>(new []{("en", "family_en"), ("ru", "family_ru"), ("pt", "family_pt"), ("es", "family_es"), ("ar", "family_ar"), ("fa", "family_fa"), ("zh", "family_zh") }) ),
 						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt"), ("es", "subfamily_es"), ("ar", "subfamily_ar"), ("fa", "subfamily_fa"), ("zh", "subfamily_zh") }) ),
 						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt"), ("es", "subsubfamily_es"), ("ar", "subsubfamily_ar"), ("fa", "subsubfamily_fa"), ("zh", "subsubfamily_zh") }) ),
+					}),
+					// #1132 — cf ARGU_LANG_MARKER.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						ARGU_LANG_MARKER,
 					}),
 				},
 				new CardSetLocalization()
@@ -201,7 +231,11 @@ namespace Argumentum.AssetConverter
 					{
 						"{{rowset.[0].catégorie}}.jpg",
 						"{{rowset.[0].catégorie}}.png"
-					})
+					}),
+					// #1132 — cf ARGU_LANG_MARKER.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						ARGU_LANG_MARKER,
+					}),
 				}
 			}),
 			MindMapLocalization = new List<DocumentLocalization>(new[]
