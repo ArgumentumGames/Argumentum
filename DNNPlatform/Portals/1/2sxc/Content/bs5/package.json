@@ -7,6 +7,6 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.3.8"
   }
 }
