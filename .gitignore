@@ -63,6 +63,9 @@ msbuild.wrn
 !.vscode/extensions.json
 *.code-workspace
 
+# QA artefacts visuels (Playwright screenshots, hors CardPen) — non versionnés
+/qa*.png
+
 # Fichiers de ReSharper
 _ReSharper*/
 *.[Rr]e[Ss]harper

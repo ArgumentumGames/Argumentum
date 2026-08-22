@@ -247,5 +247,102 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			textConv.fieldConversions.Should().Contain(c => c.Language == "ru" && c.destFieldName == "Text_ru");
 			textConv.fieldConversions.Should().Contain(c => c.Language == "pt" && c.destFieldName == "Text_pt");
 		}
+
+		// #1132: lang="fr" anchor on the cardContainer wrapper (Memo Back is the first template
+		// to carry it) is rewritten to the render language via StaticConversions. FR is a no-op
+		// (the source "fr" sticks), so the source template stays valid as the FR render.
+		[Theory]
+		[InlineData("fr", "lang=\"fr\"")]
+		[InlineData("en", "lang=\"en\"")]
+		[InlineData("ru", "lang=\"ru\"")]
+		[InlineData("pt", "lang=\"pt\"")]
+		[InlineData("es", "lang=\"es\"")]
+		[InlineData("ar", "lang=\"ar\"")]
+		[InlineData("fa", "lang=\"fa\"")]
+		[InlineData("zh", "lang=\"zh\"")]
+		public void Memo_Back_LangAnchor_Substitutes_ByLanguage(string destLang, string expectedFragment)
+		{
+			// ReadTemplate returns the raw JSON file; the mustache key is a JSON string with
+			// backslash-escaped quotes. The pipeline's runtime path works on the un-escaped
+			// mustache string (the C# property on the deserialised CardSetDocument), so we
+			// extract it before applying FieldConversions + StaticConversions.
+			var d = System.Text.Json.JsonDocument.Parse(ReadTemplate("Cards/Memo/Argumentum_Memo_Back_fr.json"));
+			var mustache = d.RootElement.GetProperty("mustache").GetString()!;
+			var loc = GetFallaciesLocalization();
+
+			// CardPen-enclosing path mirrors TranslateCardSetInfo: StaticConversions runs after
+			// field conversions. ApplyFieldConversions is the no-mock pure path (memo Back has
+			// tagline + taxonomy back conversions).
+			var translated = CardSetLocalization.ApplyFieldConversions(
+				mustache, loc.BackFieldConversions, loc.ExceptionPatterns, destLang);
+			translated = loc.DoStaticConversions(translated, destLang);
+
+			translated.Should().Contain(expectedFragment,
+				$"{destLang} Memo Back must carry lang anchor in the rendered mustache so the [lang=] CSS selector activates (#1132)");
+			// For FR, the StaticConversions source list has no "fr" entry — the source "fr" sticks
+			// (deliberate, see comment on the StaticConversion). For all other languages the
+			// conversion must fire and the source "fr" must be gone.
+			if (destLang != "fr")
+			{
+				translated.Should().NotContain("lang=\"fr\"",
+					$"{destLang} Memo Back must NOT retain the source lang=\"fr\" once a non-FR conversion fires (#1132)");
+			}
+		}
+
+		// #1132: the worst case is .header .subtitle at letter-spacing 0.2em on Memo Back. The
+		// CSS rule must neutralise it under [lang="ar"] / [lang="fa"] so cursive ligatures survive.
+		[Fact]
+		public void Memo_Back_Css_Contains_RtlLetterSpacingNeutralisation()
+		{
+			var original = ReadTemplate("Cards/Memo/Argumentum_Memo_Back_fr.json");
+			// We re-parse because ReadTemplate returns the raw JSON text; the css key holds the
+			// CSS string and is what CardPen loads. Use a tolerant parse to handle the control-char
+			// glitch if it ever returns.
+			var d = System.Text.Json.JsonDocument.Parse(original);
+			var css = d.RootElement.GetProperty("css").GetString()!;
+
+			css.Should().Contain("[lang=\"ar\"] .header .subtitle",
+				"Memo Back CSS must neutralise letter-spacing on .header .subtitle for ar (#1132 — 0.2em default tears cursive ligatures)");
+			css.Should().Contain("[lang=\"fa\"] .header .subtitle",
+				"Memo Back CSS must neutralise letter-spacing on .header .subtitle for fa (#1132)");
+			css.Should().Contain("letter-spacing: normal",
+				"the neutralised selectors must set letter-spacing back to normal so cursive ligatures survive");
+		}
+
+		// #1132: templates that don't carry lang="fr" must remain no-op under the StaticConversion,
+		// otherwise we'd be rewriting FR-to-FR in a template that never had the anchor and break
+		// content we can't see. (e.g. Fallacies_Face_fr.json — the anchor is added in a follow-up
+		// edit, but until then the StaticConversion must be inert on it.)
+		[Fact]
+		public void LangAnchor_All_Fallacies_Memo_Templates_Carry_The_Anchor()
+		{
+			// #1132: every template that ships the inert RTL/CJK block must also carry the
+			// lang="fr" anchor so StaticConversions can rewrite it per render language. This
+			// is the inverse of the original "no-op" guard: now that all 11 templates carry
+			// the anchor, the no-op test would always pass trivially — we instead assert the
+			// surface is complete, so adding a new RTL-blocked template without the anchor
+			// fails this test before it ships silently broken.
+			var paths = new[]
+			{
+				"Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+				"Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
+				"Cards/Fallacies/Argumentum_Fallacies_Face_2_fr.json",
+				"Cards/Fallacies/Argumentum_Fallacies_Face_3_fr.json",
+				"Cards/Fallacies/Argumentum_Fallacies_Face_Web_fr.json",
+				"Cards/Fallacies/Argumentum_Virtues_Face_fr.json",
+				"Cards/Memo/Argumentum_Memo_Back_fr.json",
+				"Cards/Memo/Argumentum_Memo_Face_fr.json",
+				"Cards/Rules/Argumentum_Rules_fr.json",
+				"Cards/Scenarii/Argumentum_Scenarii_Back_fr.json",
+				"Cards/Scenarii/Argumentum_Scenarii_Face_fr.json",
+			};
+			foreach (var rel in paths)
+			{
+				var d = System.Text.Json.JsonDocument.Parse(ReadTemplate(rel));
+				var mustache = d.RootElement.GetProperty("mustache").GetString()!;
+				mustache.Should().Contain("lang=\"fr\"",
+					$"{rel} ships the inert RTL/CJK block and must carry the lang= anchor (#1132)");
+			}
+		}
 	}
 }

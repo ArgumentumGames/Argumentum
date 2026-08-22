@@ -146,6 +146,19 @@ namespace Argumentum.AssetConverter
 							("fa", "هنر اشتباه نکردن"),
 							("zh", "永远不会错的艺术")
 						}) ),
+						// #1132: lang="fr" anchor on the cardContainer wrapper (set in templates that ship
+						// with the inert RTL/CJK block) is rewritten to the render language. Templates
+						// without lang="fr" are no-op (template.Replace returns the string unchanged).
+						// FR is omitted so the source "fr" sticks when the CardSet is rendered for FR.
+						("lang=\"fr\"", new List<(string Language, string destText)>(new []{
+							("en", "lang=\"en\""),
+							("ru", "lang=\"ru\""),
+							("pt", "lang=\"pt\""),
+							("es", "lang=\"es\""),
+							("ar", "lang=\"ar\""),
+							("fa", "lang=\"fa\""),
+							("zh", "lang=\"zh\"")
+						}) ),
 					}),
 				},
 				new CardSetLocalization()
@@ -158,6 +171,18 @@ namespace Argumentum.AssetConverter
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt"), ("es", "Text_es"), ("ar", "Text_ar"), ("fa", "Text_fa"), ("zh", "Text_zh") }) ),
+					}),
+					// #1132: lang="fr" anchor rewrite — see Fallacies/Memo block above.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("lang=\"fr\"", new List<(string Language, string destText)>(new []{
+							("en", "lang=\"en\""),
+							("ru", "lang=\"ru\""),
+							("pt", "lang=\"pt\""),
+							("es", "lang=\"es\""),
+							("ar", "lang=\"ar\""),
+							("fa", "lang=\"fa\""),
+							("zh", "lang=\"zh\"")
+						}) ),
 					}),
 				},
 				new CardSetLocalization()
@@ -176,6 +201,18 @@ namespace Argumentum.AssetConverter
 						("family_fr", new List<(string Language, string destFieldName)>(new []{("en", "family_en"), ("ru", "family_ru"), ("pt", "family_pt"), ("es", "family_es"), ("ar", "family_ar"), ("fa", "family_fa"), ("zh", "family_zh") }) ),
 						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt"), ("es", "subfamily_es"), ("ar", "subfamily_ar"), ("fa", "subfamily_fa"), ("zh", "subfamily_zh") }) ),
 						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt"), ("es", "subsubfamily_es"), ("ar", "subsubfamily_ar"), ("fa", "subsubfamily_fa"), ("zh", "subsubfamily_zh") }) ),
+					}),
+					// #1132: lang="fr" anchor rewrite.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("lang=\"fr\"", new List<(string Language, string destText)>(new []{
+							("en", "lang=\"en\""),
+							("ru", "lang=\"ru\""),
+							("pt", "lang=\"pt\""),
+							("es", "lang=\"es\""),
+							("ar", "lang=\"ar\""),
+							("fa", "lang=\"fa\""),
+							("zh", "lang=\"zh\"")
+						}) ),
 					}),
 				},
 				new CardSetLocalization()
@@ -196,6 +233,18 @@ namespace Argumentum.AssetConverter
 					}),
 					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt"), ("es", "category_es"), ("ar", "category_ar"), ("fa", "category_fa"), ("zh", "category_zh") }) ),
+					}),
+					// #1132: lang="fr" anchor rewrite — applied to both Front and Back paths.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						("lang=\"fr\"", new List<(string Language, string destText)>(new []{
+							("en", "lang=\"en\""),
+							("ru", "lang=\"ru\""),
+							("pt", "lang=\"pt\""),
+							("es", "lang=\"es\""),
+							("ar", "lang=\"ar\""),
+							("fa", "lang=\"fa\""),
+							("zh", "lang=\"zh\"")
+						}) ),
 					}),
 					ExceptionPatterns = new List<string>(new []
 					{
