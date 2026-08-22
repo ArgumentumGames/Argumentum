@@ -203,19 +203,38 @@ dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum
 dotnet run -c Release --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
 ```
 
-> ### Why `-c Release` is not optional for a release regen
+> ### Why `-c Release` is necessary but **NOT sufficient** — two sources, only one obeys the build
 >
-> `WebBasedGeneratorConfig` resolves the CardPen source from the build configuration:
+> ⚠️ **Corrects an earlier version of this section (2026-08-22), which claimed the build configuration selects
+> the CardPen source. It does not.** A regen has **two independent** inputs and they resolve differently:
 >
-> | build | CardPen + CSV source | consequence |
-> |---|---|---|
-> | **Debug** | local IIS, `UseLocalCardpen = true` → `http://argumentum.myia.io` | that host serves **po-2023's checkout**, not this machine's tree and not `master` — the run silently renders *someone else's* templates |
-> | **Release** | GitHub Pages + `raw.githubusercontent.com/…/master` | renders exactly what is merged on `master` |
+> | input | resolved by | Debug | Release |
+> |---|---|---|---|
+> | **Templates + CSV** (`Cards/**/*.json`) | build config — `useDebug` picks `JsonFilePathDebug` vs `JsonFilePathRelease` (`CardSetInfo.cs:37`) | local tree, `..\..\Cards\…` | `raw.githubusercontent.com/…/master/…` ✅ |
+> | **CardPen engine** (`index.html`, `js/frame.js`, `js/main.js`, `lib/`) | **`UseLocalCardpen` alone** — `CardpenUrl => UseLocalCardpen ? LocalCardpenUrl : ReleaseCardpenUrl` (`WebBasedGeneratorConfig.cs:90`) | `argumentum.myia.io` | **`argumentum.myia.io` too** ⚠️ |
 >
-> ⇒ a regen meant to publish "the latest version" **must** be `-c Release`, and every fix it should contain **must be
-> merged to `master` first** — an unmerged local fix is invisible to a Release pass (memory
-> `project_release_regen_pulls_master`). Output then lands in `bin/Release/net9.0-windows/Target/`, which is also the
-> tree §4 must clobber (`CONFIG=Release`).
+> `UseLocalCardpen` is a hard `bool = true` (`WebBasedGeneratorConfig.cs:84`). **Nothing derives it from the build
+> configuration** — all three of its references were checked, none consults `UseDebugParams`. So `-c Release` gives you
+> `master` **templates** rendered by an engine served from **po-2023's IIS checkout, of unknown vintage**.
+>
+> **This is not theoretical — it bit the 2026-08-22 regen.** #1130 (#1127 fix) landed in *two* files: the template
+> `Argumentum_Fallacies_Back_fr.json` **and** `Generation/CardPen/js/frame.js`. The Release pass took the template
+> (new `.footer-tagline` class, `white-space:nowrap`, 8 tagline columns) and the *old* engine (no `.footer-tagline` in
+> `autoFitCardTitles`) ⇒ `nowrap` **without** the auto-shrink: the ru/ar/fa/zh tagline **overflows** instead of
+> shrinking, plausibly worse than the clipping #1127 was raised to fix. Every text check passes; only the render is wrong.
+>
+> **Gate — verify the engine is fresh, before every regen:**
+> ```bash
+> diff <(curl -s https://argumentum.myia.io/js/frame.js) Generation/CardPen/js/frame.js \
+>   || { echo "FATAL: served CardPen engine != master. Pull the IIS checkout first. STOP." >&2; exit 1; }
+> ```
+> `https://argumentumgames.github.io/Argumentum/js/frame.js` is deployed from `master` by `static.yml` on push and can
+> be used as the reference when the local tree is not on `master`.
+>
+> ⇒ a regen meant to publish "the latest version" **must** be `-c Release`, every fix it should contain **must be
+> merged to `master` first** (an unmerged local fix is invisible to a Release pass — memory
+> `project_release_regen_pulls_master`), **and the served engine must match `master`**. Output then lands in
+> `bin/Release/net9.0-windows/Target/`, which is also the tree §4 must clobber (`CONFIG=Release`).
 >
 > Release also switches Print&Play images from JPEG Q=85 to lossless PNG (~222 MB Tarot). That is the intended print
 > quality — do not "optimise" it away. ⚠️ Release does **not** produce a CMYK bundle: that is a separate gated pass
@@ -235,6 +254,9 @@ dotnet run -c Release --project "Generation/Converters/Argumentum.AssetConverter
       clobber reporting `deleted 0` is a failed pre-flight, not a clean cache.
 - [ ] `CONFIG` in §4 matches the build configuration of the §6 regen command (`-c Release` ⇒ `CONFIG=Release`).
 - [ ] Every fix the regen must contain is **merged to `master`** (a Release pass reads `master`, not the local tree).
+- [ ] **Served CardPen engine matches `master`** — `curl -s https://argumentum.myia.io/js/frame.js | sha256sum` equals
+      `sha256sum Generation/CardPen/js/frame.js` (§6). `-c Release` does **not** cover this: the engine is selected by
+      `UseLocalCardpen`, never by the build config. A fresh template on a stale engine renders a *silently* wrong card.
 - [ ] `dotnet clean` + `dotnet build -c $CONFIG` green (§4).
 - [ ] Mindmap pass isolated first (§3) — prove foreground-lock before the long PDF pass.
 

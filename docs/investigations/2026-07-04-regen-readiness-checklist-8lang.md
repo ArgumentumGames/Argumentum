@@ -128,17 +128,41 @@ deliberately kills all `javaw`).
 - **`dotnet clean` ≠ clean regen** — `dotnet clean` only clears build artifacts, NOT harvest cache
   (lesson [[feedback-stale-harvest-regen]]). You MUST clobber harvests explicitly.
 
-**Clobber commands** (from existing scripts):
-- `prepare-environment.ps1:41-49` deletes `*.harvest.json`; `:51-55` clears `Harvest\`.
-- `cleanup-output.ps1:5` deletes both `*.pdf` and `*.harvest.json`.
+⚠️ **This section contradicted itself for six weeks.** It states the real filename at the top —
+`<CardSetName>_harvest_<lang>.json`, sourced from `CardSetConfig.cs:26-29` — and then handed out a recipe globbing
+`*.harvest.json`, **which matches nothing**. Both the recipe and the two scripts it cited were no-ops that exited 0.
+Corrected 2026-08-22 (#1133 + follow-up); `prepare-environment.ps1` and `cleanup-output.ps1` now assert on their own
+effect and exit non-zero when they delete nothing.
 
-**Pre-regen clobber recipe**:
+**Clobber commands** (existing scripts, both fixed):
+- `prepare-environment.ps1 -Config Release` — checks the CardPen engine is fresh, then clobbers harvests/PDFs/images
+  under `bin/<Config>/net9.0-windows/Target`, and **fails if the deletion count is zero**.
+- `cleanup-output.ps1 -Config Release` — same clobber without the engine check.
+
+**Pre-regen clobber recipe** (if you do it by hand):
 ```powershell
-# From the exe dir (bin/.../net9.0-windows/)
-Get-ChildItem -Recurse -Filter *.harvest.json Target | Remove-Item -Force
-# Optionally clear whole Harvest dirs:
-Get-ChildItem -Recurse -Directory -Filter Harvest Target | Remove-Item -Recurse -Force
+# CONFIG must match the regen command: `-c Release` => Release
+$Config = "Release"
+$target = "Generation/Converters/Argumentum.AssetConverter/bin/$Config/net9.0-windows/Target"
+$before = @(Get-ChildItem -Path $target -Recurse -Filter "*_harvest_*.json").Count
+Get-ChildItem -Path $target -Recurse -Filter "*_harvest_*.json" | Remove-Item -Force
+$after  = @(Get-ChildItem -Path $target -Recurse -Filter "*_harvest_*.json").Count
+if ($before -gt 0 -and $after -eq $before) { throw "FATAL: $before harvests, 0 deleted — wrong filter or wrong Config." }
+"harvests $before -> $after"
 ```
+
+> **Clobbering the cache is not enough — the renderer periment too.** `UseLocalCardpen` is a hard `bool = true`
+> (`WebBasedGeneratorConfig.cs:84`) and is **never** derived from the build configuration, so *both* Debug and Release
+> load the CardPen engine from `argumentum.myia.io` (po-2023's IIS checkout) while Release loads *templates* from
+> `raw.githubusercontent.com/…/master`. On 2026-08-22 that split shipped #1130's new template against its old
+> `frame.js`: `white-space:nowrap` without the matching auto-shrink ⇒ the ru/ar/fa/zh tagline overflows. Verify before
+> every regen — the reference must be **remote** (`argumentumgames.github.io`, deployed from `master`), never the local
+> tree, because on the IIS host "served" and "local" are the same files and the check could never fail:
+> ```powershell
+> $served = (Invoke-WebRequest "https://argumentum.myia.io/js/frame.js" -UseBasicParsing).Content
+> $master = (Invoke-WebRequest "https://argumentumgames.github.io/Argumentum/js/frame.js" -UseBasicParsing).Content
+> if ($served -ne $master) { throw "FATAL: served CardPen engine is stale vs master. git pull the IIS checkout." }
+> ```
 
 ---
 
