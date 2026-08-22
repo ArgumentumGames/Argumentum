@@ -110,25 +110,58 @@ For the mindmap regen pass, isolate to Mindmapper only:
 ## 4. Harvest cache clobber — the anti-stale contract (MANDATORY before any regen)
 
 **Recurring failure mode** (memory `feedback-stale-harvest-regen`, occurred 2026-06-07 and 2026-06-08 on Mémo Back):
-`dotnet clean` only clears `bin/`/`obj/`. Harvest caches (`.harvest.json` + images) live under
+`dotnet clean` only clears `bin/`/`obj/`. Harvest caches (harvest JSON + images) live under
 `Target/{lang}/Harvest/` and `Target/{lang}/Images/` and are **NOT cleaned by MSBuild**. A "clean build + full regen"
 silently reuses stale renders — the fix is in the binary but never executes for cached CardSets.
 
-**Staging action (run time, scope-DEFERRED — replace `<langs>` per §5):**
+> ### ⚠️ This block was itself a no-op until 2026-08-22 — twice over
+>
+> The command published here from the creation of this runbook until `#1133` deleted **nothing**, for two
+> independent reasons, and reported success either way:
+>
+> | # | Bug | Measured on 2026-08-22 |
+> |---|---|---|
+> | 1 | Pattern was `*.harvest.json`; the files are named **`*_harvest_<lang>.json`** | `*.harvest.json` → **0 files**; `*_harvest_*.json` → **212 files** |
+> | 2 | Path hardcoded `bin/**Debug**/`, but a `-c Release` pass reads and writes `bin/**Release**/` | 132 of the 212 live under `bin/Release/`, untouched by a Debug clobber |
+>
+> A regen following this runbook to the letter therefore reused cached renders — **precisely the failure this
+> section exists to prevent**. The lesson is the general one: *a guard that cannot fail loudly is not a guard.*
+> Hence the mandatory verification step below — never delete-and-assume, always **count before and after**.
+
+**Staging action (run time — replace `<langs>` per §5, and `<config>` with the build configuration you will regen with):**
 ```bash
-# 1. Clobber the harvests for the target languages (scope-dependent — see §5)
+CONFIG=<config>   # Debug | Release — MUST match the regen command in §6 (`-c Release` ⇒ Release)
+ROOT="Generation/Converters/Argumentum.AssetConverter/bin/$CONFIG/net9.0-windows/Target"
+
+# 0. COUNT FIRST — this is what makes a silent no-op impossible
+before_h=$(find "$ROOT" -name "*_harvest_*.json" 2>/dev/null | wc -l)
+before_p=$(find "$ROOT" -name "*.png" 2>/dev/null | wc -l)
+echo "before: $before_h harvests, $before_p png"
+
+# 1. Clobber the harvests + rendered images for the target languages (scope — see §5)
 for lang in <langs>; do
-  find "Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/$lang/Harvest/" \
-    -name "*.harvest.json" -delete 2>/dev/null
-  find "Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/$lang/Images/" \
-    -name "*.png" -delete 2>/dev/null
+  find "$ROOT/$lang/Harvest/" -name "*_harvest_*.json" -delete 2>/dev/null
+  find "$ROOT/$lang/Images/"  -name "*.png"            -delete 2>/dev/null
 done
 
-# 2. THEN clean + rebuild + regen
+# 2. ASSERT — a clobber that deleted nothing is a bug, not a clean cache
+after_h=$(find "$ROOT" -name "*_harvest_*.json" 2>/dev/null | wc -l)
+echo "after: $after_h harvests (deleted $((before_h - after_h)))"
+if [ "$before_h" -gt 0 ] && [ "$after_h" -eq "$before_h" ]; then
+  echo "FATAL: clobber deleted 0 of $before_h harvests — wrong pattern or wrong CONFIG. STOP." >&2
+  exit 1
+fi
+
+# 3. THEN clean + rebuild + regen
 dotnet clean "Argumentum Converters.sln"
-dotnet build "Argumentum Converters.sln"
+dotnet build "Argumentum Converters.sln" -c "$CONFIG"
 # (regen command — gated, §6)
 ```
+
+> **Archive directories are not caches.** `bin/Release/net9.0-windows/Target_stale_<date>_preserved/` holds
+> deliberately-kept past runs (44 harvest files as of 2026-08-22). The pipeline only reads `Target/`, so leave them
+> alone — but note that a `find` rooted at `bin/` rather than `bin/**/Target` will count them and make the
+> before/after arithmetic above disagree with itself.
 
 > ⚠️ **Path gotcha (memory):** the target directory is `net9.0-windows` (NOT `net9.0`). Mindmap SVGs, however, are
 > committed to `Cards/Fallacies/Mindmaps/{lang}/` and `Cards/Virtues/Mindmaps/{lang}/` — **not** under
@@ -167,8 +200,26 @@ dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum
 
 # PDF pass (after mindmap pass green):
 # Mode = WebBasedImageGeneration | QuestPdfGeneration (default)
-dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
+dotnet run -c Release --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
 ```
+
+> ### Why `-c Release` is not optional for a release regen
+>
+> `WebBasedGeneratorConfig` resolves the CardPen source from the build configuration:
+>
+> | build | CardPen + CSV source | consequence |
+> |---|---|---|
+> | **Debug** | local IIS, `UseLocalCardpen = true` → `http://argumentum.myia.io` | that host serves **po-2023's checkout**, not this machine's tree and not `master` — the run silently renders *someone else's* templates |
+> | **Release** | GitHub Pages + `raw.githubusercontent.com/…/master` | renders exactly what is merged on `master` |
+>
+> ⇒ a regen meant to publish "the latest version" **must** be `-c Release`, and every fix it should contain **must be
+> merged to `master` first** — an unmerged local fix is invisible to a Release pass (memory
+> `project_release_regen_pulls_master`). Output then lands in `bin/Release/net9.0-windows/Target/`, which is also the
+> tree §4 must clobber (`CONFIG=Release`).
+>
+> Release also switches Print&Play images from JPEG Q=85 to lossless PNG (~222 MB Tarot). That is the intended print
+> quality — do not "optimise" it away. ⚠️ Release does **not** produce a CMYK bundle: that is a separate gated pass
+> (`-- --pdf-cmyk`, see repo `CLAUDE.md`), and it converts already-generated PDFs in place.
 
 **This runbook does not run these.** Execution is GATED jsboige (scope + attended host).
 
@@ -180,8 +231,11 @@ dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum
 - [ ] `ARGUMENTUM_FREEMIND_PATH` set for the session (§2).
 - [ ] Attended desktop session active (foreground-lock — §2 blocker).
 - [ ] **jsboige scope decision published** (§5 — 4-lang vs 8-lang).
-- [ ] Harvest cache clobbered for the chosen language set (§4).
-- [ ] `dotnet clean` + `dotnet build` green (§4).
+- [ ] Harvest cache clobbered for the chosen language set (§4) — **and the deleted count printed and non-zero**. A
+      clobber reporting `deleted 0` is a failed pre-flight, not a clean cache.
+- [ ] `CONFIG` in §4 matches the build configuration of the §6 regen command (`-c Release` ⇒ `CONFIG=Release`).
+- [ ] Every fix the regen must contain is **merged to `master`** (a Release pass reads `master`, not the local tree).
+- [ ] `dotnet clean` + `dotnet build -c $CONFIG` green (§4).
 - [ ] Mindmap pass isolated first (§3) — prove foreground-lock before the long PDF pass.
 
 All seven must be green before the regen. The first six are staged-by-this-doc; the seventh (scope decision) is the
