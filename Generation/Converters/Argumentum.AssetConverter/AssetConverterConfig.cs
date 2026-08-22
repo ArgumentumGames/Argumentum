@@ -39,6 +39,17 @@ namespace Argumentum.AssetConverter
 				("ar", "argu-lang-ar"), ("fa", "argu-lang-fa"), ("zh", "argu-lang-zh")
 			}));
 
+		// #1132 — l'attribut lang, porté par les mêmes conteneurs que le marqueur ci-dessus.
+		// Il ne sert pas au CSS livré ici (les règles sont ancrées sur la classe) : il renseigne
+		// le NAVIGATEUR, qui s'en sert pour choisir ses fontes de repli, façonner les écritures
+		// cursives et couper les mots — et les lecteurs d'écran, pour changer de voix. Idée reprise
+		// de la PR #1138 de po-2024, qui l'avait vue avant moi.
+		private static (string sourceText, List<(string Language, string destText)> textConversions) LANG_ATTRIBUTE =>
+			("lang=\"fr\"", new List<(string Language, string destText)>(new []{
+				("en", "lang=\"en\""), ("ru", "lang=\"ru\""), ("pt", "lang=\"pt\""), ("es", "lang=\"es\""),
+				("ar", "lang=\"ar\""), ("fa", "lang=\"fa\""), ("zh", "lang=\"zh\"")
+			}));
+
 		//Debug Switch to configure default values
 	// NOTE: SkipConfigFile=true car les tuples List<(string,string)> ne sont pas correctement sérialisés en JSON
 	// Les Translations deviennent des {} vides après sérialisation/désérialisation
@@ -167,6 +178,7 @@ namespace Argumentum.AssetConverter
 						// livrés attendaient une traduction des noms de classe qui n'a jamais lieu.
 						// Portée nulle sur en/ru/pt/es : aucune règle CSS ne cible leur marqueur.
 						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
 					}),
 				},
 				new CardSetLocalization()
@@ -184,6 +196,7 @@ namespace Argumentum.AssetConverter
 					// texte, colorPalette, pageNumber), en guillemets simples dans ce gabarit.
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
 					}),
 				},
 				new CardSetLocalization()
@@ -206,6 +219,7 @@ namespace Argumentum.AssetConverter
 					// #1132 — cf ARGU_LANG_MARKER.
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
 					}),
 				},
 				new CardSetLocalization()
@@ -235,6 +249,7 @@ namespace Argumentum.AssetConverter
 					// #1132 — cf ARGU_LANG_MARKER.
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
 					}),
 				}
 			}),

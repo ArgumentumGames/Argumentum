@@ -139,6 +139,92 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			}
 		}
 
+		/// <summary>Element names actually used by the markup (a template's own vocabulary).</summary>
+		private static HashSet<string> ElementNamesIn(string markup) =>
+			Regex.Matches(markup, @"<(?<n>[A-Za-z][A-Za-z0-9_-]*)")
+				.Select(m => m.Groups["n"].Value)
+				.ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+		/// <summary>
+		/// Components of a language-scoped selector that resolve to nothing in the given markup.
+		/// <para>Deliberately agnostic to <i>how</i> the rule is scoped — by class
+		/// (<c>.argu-lang-ar</c>) or by attribute (<c>[lang="ar"]</c>) — because the defect this
+		/// guards against is orthogonal to the anchoring mechanism: a compound selector whose
+		/// descendant part was never confronted with the DOM. The classic instance is a dropped
+		/// leading dot: <c>[lang="ar"] famille</c> reads as the element <c>&lt;famille&gt;</c>, which
+		/// does not exist — <c>famille</c> is a <i>class</i>. The whole compound then matches nothing,
+		/// silently, and the anchor being correct does not save it.</para>
+		/// </summary>
+		internal static IReadOnlyList<string> UnresolvedSelectorComponents(string css, string markup)
+		{
+			var stripped = Regex.Replace(css, @"/\*.*?\*/", " ", RegexOptions.Singleline);
+			var classes = ClassNamesIn(markup);
+			var elements = ElementNamesIn(markup);
+			var unresolved = new List<string>();
+
+			foreach (Match rule in Regex.Matches(stripped, @"(?<sel>[^{}]+)\{[^{}]*\}", RegexOptions.Singleline))
+			foreach (var fragment in rule.Groups["sel"].Value.Split(','))
+			{
+				var frag = fragment.Trim();
+				if (!Regex.IsMatch(frag, @"\.argu-lang-(?:ar|fa|zh)\b|\[lang\s*=\s*[""']?(?:ar|fa|zh)"))
+					continue;
+
+				foreach (var raw in frag.Split((char[])null!, StringSplitOptions.RemoveEmptyEntries))
+				{
+					var part = raw.Trim();
+					if (part.Length == 0 || part == "*" || part is ">" or "+" or "~") continue;
+					if (part.StartsWith("[", StringComparison.Ordinal)) continue;          // the lang anchor
+					if (part.StartsWith(":", StringComparison.Ordinal)) continue;          // pseudo-class
+					if (part.StartsWith(".argu-lang-", StringComparison.Ordinal)) continue; // the class anchor
+
+					var name = part.Split(':')[0].TrimEnd('>', '+', '~');
+					var resolves = name.StartsWith(".", StringComparison.Ordinal)
+						? classes.Contains(name.Substring(1))
+						: elements.Contains(name);
+
+					if (!resolves) unresolved.Add($"{frag}  ->  '{part}'");
+				}
+			}
+			return unresolved;
+		}
+
+		/// <summary>
+		/// Every component of every language-scoped selector must resolve against the translated
+		/// markup — whatever anchoring style the rule uses.
+		/// </summary>
+		[Theory]
+		[MemberData(nameof(TemplatesByScriptLanguage))]
+		public void Every_component_of_a_language_scoped_selector_resolves_in_the_markup(
+			string relPath, string cardSet, string lang)
+		{
+			var doc = LoadTemplate(relPath);
+			var translated = Translate(LocalizationFor(cardSet), doc.mustache ?? "", lang);
+
+			UnresolvedSelectorComponents(doc.css ?? "", translated).Should().BeEmpty(
+				$"every part of a language-scoped selector in {relPath} must match something once the "
+				+ $"template is translated to '{lang}'. A single unresolvable component kills the whole "
+				+ $"compound, and the script falls back to whatever font the host happens to have (#1132).");
+		}
+
+		/// <summary>
+		/// The guard above has nothing to check on a stylesheet that scopes by a single wildcard —
+		/// which is by design, a shape with no enumeration cannot get the enumeration wrong. These two
+		/// cases prove the guard is nonetheless not vacuous: it reports a dropped leading dot, and it
+		/// stays silent on the same rule written correctly.
+		/// </summary>
+		[Fact]
+		public void The_guard_reports_a_dropped_leading_dot()
+		{
+			const string markup = @"<div class=""cardContainer"" lang=""ar""><div class=""famille"">x</div></div>";
+
+			UnresolvedSelectorComponents(@"[lang=""ar""] famille { font-family: 'Vazirmatn'; }", markup)
+				.Should().ContainSingle().Which.Should().Contain("'famille'",
+					"'famille' is a class here, so a dotless selector reads it as an element name and matches nothing");
+
+			UnresolvedSelectorComponents(@"[lang=""ar""] .famille { font-family: 'Vazirmatn'; }", markup)
+				.Should().BeEmpty("the same rule with its dot resolves");
+		}
+
 		[Theory]
 		[MemberData(nameof(TemplatePaths))]
 		public void No_css_rule_targets_a_language_that_must_stay_unchanged(string relPath)
@@ -210,6 +296,36 @@ namespace Argumentum.AssetConverter.Tests.Localization
 				+ $"CardSet's StaticConversions, the marker stays FR and every rule below it is inert");
 			translated.Should().NotContain("argu-lang-fr",
 				"no container may keep the FR marker after translation");
+		}
+
+		public static IEnumerable<object[]> TemplatesByTranslatedLanguage() =>
+			from t in Templates
+			from l in ScriptLanguages.Concat(LatinCyrillicLanguages)
+			select new object[] { t.RelPath, t.CardSet, l };
+
+		/// <summary>
+		/// The <c>lang</c> attribute must follow the render language on every template and every
+		/// language — not only the ones with script-specific CSS. Nothing in this repository's CSS
+		/// reads it; the browser does, to pick fallback fonts, shape cursive scripts and hyphenate,
+		/// and so do screen readers. A card rendered in Arabic while announcing <c>lang="fr"</c> is
+		/// telling the renderer something false about its own content.
+		/// </summary>
+		[Theory]
+		[MemberData(nameof(TemplatesByTranslatedLanguage))]
+		public void Lang_attribute_follows_the_render_language(string relPath, string cardSet, string lang)
+		{
+			var doc = LoadTemplate(relPath);
+			doc.mustache.Should().Contain("lang=\"fr\"",
+				$"{relPath} must anchor its containers with a lang attribute");
+
+			var translated = Translate(LocalizationFor(cardSet), doc.mustache!, lang);
+
+			translated.Should().Contain($"lang=\"{lang}\"",
+				$"the static conversion must rewrite the lang attribute for '{lang}'");
+			translated.Should().NotContain("lang=\"fr\"",
+				$"no container may still declare French while rendering '{lang}'");
+			translated.Should().NotContain("lang='fr'",
+				"the single-quoted spelling would escape the conversion, which matches the double-quoted one");
 		}
 	}
 }
