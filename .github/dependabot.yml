@@ -64,6 +64,31 @@ updates:
       # downgrading would freeze the commercial version).
       - dependency-name: "FluentAssertions"
         update-types: ["version-update:semver-major"]
+      # SixLabors.ImageSharp 3.1.x is the last line that BUILDS without a purchased licence key.
+      # MEASURED on #1097 (run 32002605172, `build (Release)`, 2026-08-17) -- 4.1.0 fails the build
+      # outright, it does not merely change a licence field:
+      #   SixLabors.ImageSharp.targets(28,5): error : No Six Labors license found. Set
+      #   $(SixLaborsLicenseKey), set $(SixLaborsLicenseFile), or add a 'sixlabors.lic' file
+      #   SixLabors.ImageSharp.targets(28,5): error : Please obtain a license from
+      #   https://sixlabors.com/pricing/
+      # Third instance of the AutoMapper (#588) / FluentAssertions (#949) class: a dependency that
+      # flips to commercial at a major. This one is the LOUDEST of the three -- it breaks CI instead
+      # of silently shipping a commercial line -- which is why it is the only one we found by reading
+      # a red build rather than a nuspec. Do not read that as "just fix the build": the red IS the
+      # licence, and the fix on offer is a purchase.
+      # semver-major only: 3.1.x patches keep flowing. Consumers are test/tooling-only
+      # (VisualTests.csproj, Tools/PdfPreviewExtractor) and ship in no binary, but that is
+      # irrelevant here -- the gate is at BUILD time, so a test-only reference is enough to red
+      # the pipeline. Note SixLabors.ImageSharp.Drawing 2.1.7 rides the same licence regime; it has
+      # no major proposed yet, so it gets no entry until one is (do not add speculative pins).
+      #
+      # Why this entry exists at all, given #1097 was already red: grouping is all-or-nothing (see
+      # the header note on #941). #1097 bundled FIVE bumps -- Microsoft.NET.Test.Sdk 18.9.0,
+      # xunit.runner.visualstudio 4.0.0, OpenAI 2.13.0, System.Management 10.0.11 -- and ImageSharp
+      # held the other four hostage for five days. Ignoring ImageSharp at the source lets dependabot
+      # regenerate the group WITHOUT it, so those four can be judged on their merits.
+      - dependency-name: "SixLabors.ImageSharp"
+        update-types: ["version-update:semver-major"]
       # QuestPDF 2022.12.12 is the last release carrying the SPDX expression `MIT`.
       # MEASURED on the NuGet catalog (2026-07-26): 2022.12.12 -> licenseExpression "MIT";
       # 2026.7.1 -> NO licenseExpression at all, licenseUrl = aka.ms/deprecateLicenseUrl,
