@@ -133,7 +133,13 @@ namespace Argumentum.AssetConverter
 						// Memo + MemoPrintAndPlay share FallaciesTaxonomy dataset and reuse the same {{text_fr}}, {{desc_fr}}, {{Famille}}, {{Sous-Famille}}, {{Soussousfamille}} placeholders.
 						// Without entries here, MEMO pages on non-FR PDFs render FR content (#358).
 						KnownCardSets.Memo,
-						KnownCardSets.MemoPrintAndPlay
+						KnownCardSets.MemoPrintAndPlay,
+						// #1141 — FallaciesPrintAndPlayLight reuses the SAME Face/Back templates as
+						// FallaciesPrintAndPlay (Argumentum_Fallacies_Face_fr.json + _Back_fr.json,
+						// verified token-by-token: {{text_fr}}/{{desc_fr}}/{{example_fr}}/{{Famille}}/
+						// {{Sous-Famille}}/{{Soussousfamille}} + {{tagline_fr}} on the back). Orphan since
+						// #645, its 7 non-FR renders shipped French content silently.
+						KnownCardSets.FallaciesPrintAndPlayLight
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						// Order: most specific first (Soussousfamille > Sous-Famille > Famille) to avoid partial-string collisions.
@@ -207,6 +213,12 @@ namespace Argumentum.AssetConverter
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Virtues,
+						// #1141 — VirtuesPrintAndPlayLight reuses the SAME Face template as Virtues
+						// (Argumentum_Virtues_Face_fr.json, verified token-by-token: {{title_fr}}/
+						// {{description_fr}}/{{remark_fr}}/{{family_fr}}/{{subfamily_fr}}/
+						// {{subsubfamily_fr}}) and the FALLACIES back ({{tagline_fr}} — covered by the
+						// BackFieldConversions added below). Orphan since #645.
+						KnownCardSets.VirtuesPrintAndPlayLight,
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("title_fr", new List<(string Language, string destFieldName)>(new []{("en", "title_en"), ("ru", "title_ru"), ("pt", "title_pt"), ("es", "title_es"), ("ar", "title_ar"), ("fa", "title_fa"), ("zh", "title_zh") }) ),
@@ -215,6 +227,14 @@ namespace Argumentum.AssetConverter
 						("family_fr", new List<(string Language, string destFieldName)>(new []{("en", "family_en"), ("ru", "family_ru"), ("pt", "family_pt"), ("es", "family_es"), ("ar", "family_ar"), ("fa", "family_fa"), ("zh", "family_zh") }) ),
 						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt"), ("es", "subfamily_es"), ("ar", "subfamily_ar"), ("fa", "subfamily_fa"), ("zh", "subfamily_zh") }) ),
 						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt"), ("es", "subsubfamily_es"), ("ar", "subsubfamily_ar"), ("fa", "subsubfamily_fa"), ("zh", "subsubfamily_zh") }) ),
+					}),
+					// #1141 — the Virtues deck reuses the FALLACIES back (WebBasedGeneratorConfig,
+					// Argumentum_Fallacies_Back_fr.json, mustache {{tagline_fr}}). Without this block
+					// the tagline conversion of #1130 exists only in the Fallacies group, so every
+					// non-FR Virtues back rendered the FRENCH tagline (measured: 3 SHA/8 languages,
+					// fr/en/es/pt/ru byte-identical to the FR back). Copied verbatim from group #1.
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt"), ("es", "tagline_es"), ("ar", "tagline_ar"), ("fa", "tagline_fa"), ("zh", "tagline_zh") }) ),
 					}),
 					// #1132 — cf ARGU_LANG_MARKER.
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
@@ -227,7 +247,14 @@ namespace Argumentum.AssetConverter
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Scenarii,
-						KnownCardSets.ScenariiPrintAndPlay
+						KnownCardSets.ScenariiPrintAndPlay,
+						// #1141 — ScenariiPrintAndPlayFull reuses the SAME Face/Back templates as
+						// ScenariiPrintAndPlay (Argumentum_Scenarii_Face_fr.json + _Back_fr.json,
+						// verified token-by-token: {{catégorie}}/{{titre}}/{{contexte}}/{{enjeu}}/
+						// {{piocheur}}/{{baratineur}}/{{suggestion}} + back {{rowset.[0].catégorie}}
+						// covered by ExceptionPatterns). Orphan since #645: PokerCards_Print&Play_A4
+						// shipped 100% French in 7 non-FR languages.
+						KnownCardSets.ScenariiPrintAndPlayFull
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt"), ("es", "category_es"), ("ar", "category_ar"), ("fa", "category_fa"), ("zh", "category_zh") }) ),
