@@ -63,10 +63,11 @@ namespace Argumentum.AssetConverter.VisualTests
         /// <summary>
         /// Inline-SVG variant driven by the real committed Batik SVGs. Verifies the embedded
         /// <c>&lt;svg&gt;</c> is present in the DOM and carries non-empty geometric content
-        /// (groups, paths, text). Does NOT assert on <c>.node</c> markers — the current Batik
-        /// SVGs are visual-only and intentionally carry no semantic node class (a tracked gap,
-        /// not a regression). The interactive overlay path is covered in a separate test below
-        /// with a synthetic SVG that mimics the expected marker convention.
+        /// (groups, paths, text). Does NOT assert on <c>.node</c> markers here — the semantic
+        /// <c>.node</c> markers DO exist on the committed .content.svg (1400+ for Fallacies_fr,
+        /// 223 for Virtues_fr; verified 2026-08-23), and the behavioural instrument
+        /// <c>MindmapWrapperCapabilitiesTests</c> covers the interactive click path on the REAL
+        /// SVGs. This test keeps the synthetic-SVG variant for the minimal interactive harness.
         /// </summary>
         [Theory]
         [InlineData("fr", "Fallacies_fr.content.svg")]
