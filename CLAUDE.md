@@ -65,7 +65,7 @@ CSV Data → [Harvesting] → PNG Images → [PDF Assembly] → Print-ready PDFs
 
 3. **Mind Maps** (`MindMapCreator`)
    - Generates `.mm` files (Freemind format)
-   - Converts to SVG via **FreeMind GUI** (`FreeMind.exe` driven by `SendKeys` automation, resolved from `ARGUMENTUM_FREEMIND_PATH` env var). A `MindMapFormat.Freeplane` path exists in code but is non-default; the validated production path (PR #565, 20 SVGs × 8 langs) is FreeMind — `MindMapFormat.Freemind` is the default (`FallacyMindMapDocumentConfig.cs:32`). If `FreeMind.exe` is not found, `TryFreeMindSvgExportCore` logs a warning and skips GUI export → falls back to XSLT (dead, #184) → DoD SHA-diff fails **silently**
+   - Converts to SVG via **FreeMind GUI** (`FreeMind.exe` driven by `SendKeys` automation, resolved from `ARGUMENTUM_FREEMIND_PATH` env var). A `MindMapFormat.Freeplane` path exists in code but is non-default; the validated production path (PR #565) is FreeMind — `MindMapFormat.Freemind` is the default (`FallacyMindMapDocumentConfig.cs:32`). ⚠️ **Inventory (measured 23/08, #830 QA): the committed tree holds 41 SVG total (5/lang + 6 for `fr` — the `cards` variant is FR-only by config, `FallacyMindMapCreatorConfig.cs:106`) + 32 HTML wrappers (2 mindmaps × {main, `_ext`} × 8), NOT "20 per language"** — the historical "20 SVGs" was the file count of commit `55c6774e`, not a per-language total. If `FreeMind.exe` is not found, `TryFreeMindSvgExportCore` logs a warning and skips GUI export → falls back to XSLT (dead, #184) → DoD SHA-diff fails **silently**
    - **WARNING**: SVG post-processing uses fragile heuristics ("disambiguation") dependent on FreeMind's output structure
 
 ### CardPen (Custom Fork)
