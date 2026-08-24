@@ -26,8 +26,9 @@ namespace Argumentum.AssetConverter.VisualTests
     /// <para>
     /// This new implementation (#1067 design α, accepted by jsboige 2026-08-12) drops the
     /// live-harvest: the test now reads a **real Fallacies face card** produced by the last
-    /// pipeline regeneration, found via <see cref="TestRepoRoot.Find"/> + the conventional
-    /// <c>Target/fr/Images/</c> layout. The control is a real artefact of the pipeline, the
+    /// pipeline regeneration, found via <see cref="TestRepoRoot.Find"/> + the converter's build
+    /// output layout <c>bin/{Debug|Release}/net9.0-windows/Target/fr/Images/</c>. The control is
+    /// a real artefact of the pipeline, the
     /// dependency surface is one filesystem path, and the test fails loudly if
     /// <c>Target/</c> has not been populated by a recent regeneration (issue #957 — *Target
     /// empty but test passes*).
@@ -55,19 +56,49 @@ namespace Argumentum.AssetConverter.VisualTests
             // 1. Locate the repository root via the shared TestRepoRoot helper.
             var repoRoot = TestRepoRoot.Find();
 
-            // 2. Conventional pipeline output layout: <repoRoot>/Target/fr/Images/.
-            // GetImagesDirectory is CWD-relative (Environment.CurrentDirectory), but VisualTests
-            // can run with CWD != repoRoot, so we anchor on TestRepoRoot.Find() instead.
-            var imagesDir = Path.Combine(repoRoot, "Target", "fr", "Images");
+            // 2. Actual pipeline output layout. The converter writes under its own build output
+            // directory, NOT under the repository root: <repoRoot>/Generation/Converters/
+            // Argumentum.AssetConverter/bin/{Debug|Release}/net9.0-windows/Target/{lang}/Images/.
+            // #1072 anchored on '<repoRoot>/Target' — a layout asserted as "conventional" but
+            // never measured against a populated tree; it exists on no machine, so this test was
+            // red by construction from that merge (measured on ai-01, which carries both a
+            // populated Debug and Release Target). Same root as PdfDimensionTests.cs:20-22.
+            // Both configurations are probed because regenerations run in Release (CMYK bundle)
+            // while local iterations run in Debug — the most recently written one wins.
+            var converterBin = Path.Combine(
+                repoRoot, "Generation", "Converters", "Argumentum.AssetConverter", "bin");
 
-            if (!Directory.Exists(imagesDir))
+            var probed = new[] { "Release", "Debug" }
+                .Select(cfg => Path.Combine(converterBin, cfg, "net9.0-windows", "Target", "fr", "Images"))
+                .ToList();
+
+            // The face cards do not sit at the top level of Images/: the harvester writes them
+            // under <Images>/density-{n}/<CardSet>/. #1072 enumerated Images/ with
+            // SearchOption.TopDirectoryOnly, which can only ever see the density-* directories
+            // themselves — never a PNG. We target the Fallacies CardSet explicitly rather than
+            // sweeping AllDirectories, because the sibling sets (Fallacies-Web, -Print&Play,
+            // Memo, Rules) differ between configurations and would make "the alphabetically
+            // first card" non-deterministic across machines.
+            var imagesDir = probed
+                .Where(Directory.Exists)
+                .SelectMany(img => Directory.EnumerateDirectories(img, "density-*"))
+                .Select(density => Path.Combine(density, "Fallacies"))
+                .Where(Directory.Exists)
+                .OrderByDescending(Directory.GetLastWriteTimeUtc)
+                .FirstOrDefault();
+
+            if (imagesDir is null)
             {
                 Assert.Fail(
-                    $"Target image directory not found at '{imagesDir}'. " +
-                    "Run the pipeline at least once with `dotnet run --project Argumentum.AssetConverter` " +
-                    "to populate Target/fr/Images/ before this test can run. " +
+                    "No populated 'density-*/Fallacies' directory found. Probed Images roots:" +
+                    string.Concat(probed.Select(p => $"{Environment.NewLine}  - {p}")) +
+                    $"{Environment.NewLine}Run the pipeline at least once with " +
+                    "`dotnet run --project Argumentum.AssetConverter` to populate " +
+                    "Target/fr/Images/density-0/Fallacies/ before this test can run. " +
                     "See issue #957 — this is a fail-loud by design.");
             }
+
+            _output.WriteLine($"Using CardSet directory: {imagesDir}");
 
             // 3. Pick a representative Fallacies face card. We pick the first PNG whose name
             // ends in '_face.png' (the convention used by the harvesting pipeline), excluding
