@@ -166,14 +166,23 @@ CSV fields use language suffixes: `Title`, `Title_en`, `Title_ru`, `Title_pt`, `
 
 ## Output Directories
 
-Generated files go to:
+Generated files go to the **converter's build output**, not the repository root (`<repoRoot>/Target/` does not exist — a test anchored there is red on every machine, cf. #1072):
+
 ```
-Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/
-├── {lang}/
-│   ├── Documents/              # Final PDFs
-│   └── Harvest/                # Cached .harvest.json files
-└── Images/                     # Generated card PNGs
+Generation/Converters/Argumentum.AssetConverter/bin/{Debug|Release}/net9.0-windows/Target/
+└── {lang}/                             # ar en es fa fr pt ru zh
+    ├── Documents/                      # Final PDFs
+    ├── Harvest/                        # Cached .harvest.json files
+    └── Images/
+        ├── density-{n}/                # n = density index (0 in practice)
+        │   ├── Fallacies/              # 176 × …_face.png + card_001.png (the single shared back)
+        │   ├── Fallacies-Web/
+        │   ├── Fallacies-Print&Play/
+        │   ├── Memo/  Rules/  …        # one directory per CardSet
+        └── original/                   # pre-resize source PNGs (Fallacies-Web)
 ```
+
+Two consequences that have each already cost a defect: **`Images/` is under `{lang}/`**, and the card PNGs are **two levels below it** (`density-{n}/<CardSet>/`) — enumerating `Images/` with `TopDirectoryOnly` can only ever see the `density-*` directories, never a PNG. Debug and Release hold **independent** trees: a regeneration run in Release (the CMYK/print path) leaves the Debug tree stale, so anything reading artefacts must pick by modification time rather than assume a configuration.
 
 ## Historical Context & Known Issues
 
