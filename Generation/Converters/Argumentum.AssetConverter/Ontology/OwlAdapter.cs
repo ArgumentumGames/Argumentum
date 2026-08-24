@@ -254,6 +254,15 @@ namespace Argumentum.AssetConverter.Ontology
             return _ontology.ToFileAsync(format, filePath);
         }
 
+        // #946 — OWLSharp 5.0: SKOSHelper signatures take OWLNamedIndividual instead of RDFResource.
+        // This adapter's public surface stays RDFResource (the generator-side contract), so the
+        // conversion happens at this boundary — same round-trip idiom as the OWLClass cast below.
+        private static OWLNamedIndividual ToIndividual(RDFResource resource)
+            => new OWLNamedIndividual(new RDFResource(resource.ToString()));
+
+        private static List<RDFResource> ToResources(List<OWLNamedIndividual> individuals)
+            => individuals.Select(i => new RDFResource(i.GetIRI().ToString())).ToList();
+
         public List<RDFResource> GetConcepts()
         {
             // Try SKOSHelper first, fall back to raw annotation scan
@@ -265,8 +274,8 @@ namespace Argumentum.AssetConverter.Ontology
                     .ToList();
                 foreach (var scheme in schemes)
                 {
-                    var concepts = SKOSHelper.GetConceptsInScheme(_ontology, scheme);
-                    if (concepts.Count > 0) return concepts;
+                    var concepts = SKOSHelper.GetConceptsInScheme(_ontology, ToIndividual(scheme));
+                    if (concepts.Count > 0) return ToResources(concepts);
                 }
             }
             catch { }
@@ -285,7 +294,7 @@ namespace Argumentum.AssetConverter.Ontology
         {
             try
             {
-                if (SKOSHelper.CheckHasNarrowerConcept(_ontology, parentConcept, concept)) return true;
+                if (SKOSHelper.CheckHasNarrowerConcept(_ontology, ToIndividual(parentConcept), ToIndividual(concept))) return true;
             }
             catch { }
             // SKOSHelper may return false silently (no exception) — fall back to annotation scanning.
@@ -316,8 +325,8 @@ namespace Argumentum.AssetConverter.Ontology
         {
             try
             {
-                var result = SKOSHelper.GetExactMatchConcepts(_ontology, concept);
-                if (result != null && result.Count > 0) return result;
+                var result = SKOSHelper.GetExactMatchConcepts(_ontology, ToIndividual(concept));
+                if (result != null && result.Count > 0) return ToResources(result);
             }
             catch { }
             // SKOSHelper may return empty silently — fall back to annotation scanning (.ToString() fix).
@@ -328,8 +337,8 @@ namespace Argumentum.AssetConverter.Ontology
         {
             try
             {
-                var result = SKOSHelper.GetCloseMatchConcepts(_ontology, concept);
-                if (result != null && result.Count > 0) return result;
+                var result = SKOSHelper.GetCloseMatchConcepts(_ontology, ToIndividual(concept));
+                if (result != null && result.Count > 0) return ToResources(result);
             }
             catch { }
             return GetResourceAnnotations(concept, SKOSVocabulary.CloseMatch);
@@ -339,8 +348,8 @@ namespace Argumentum.AssetConverter.Ontology
         {
             try
             {
-                var result = SKOSHelper.GetRelatedMatchConcepts(_ontology, concept);
-                if (result != null && result.Count > 0) return result;
+                var result = SKOSHelper.GetRelatedMatchConcepts(_ontology, ToIndividual(concept));
+                if (result != null && result.Count > 0) return ToResources(result);
             }
             catch { }
             return GetResourceAnnotations(concept, SKOSVocabulary.RelatedMatch);
