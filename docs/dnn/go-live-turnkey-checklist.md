@@ -1,6 +1,6 @@
 # DNN 10.3.2 Go-Live — Turnkey Session Checklist (jsboige's RDP window)
 
-**Date**: 2026-06-26 (refreshed 2026-07-12 — POST-EXECUTION) · **Author**: po-2023 (dispatched by ai-01, secondary track)
+**Date**: 2026-06-26 (refreshed 2026-07-12 — POST-EXECUTION; **2026-08-24 — PRE-FLIGHT SNAPSHOT appended**) · **Author**: po-2023 (dispatched by ai-01, secondary track)
 **Status**: **Turnkey navigator.** Organizes the entire #131 arc by **what an RDP session is needed for**, not by technical phase (the [dnn-localization README](../dnn-localization/README.md) already does phase-order). The shortest path from "open RDP" to "site live on 10.3.2". Read-only doc, no code.
 **Purpose**: jsboige coupled v0.9.0 to the DNN go-live (#131/#132). Most of the arc is already done by agents without touching the runtime; a bounded set **requires jsboige's interactive RDP/sandbox session**. This is the checklist that says — when you open that window, here is the exact turnkey sequence and nothing redundant.
 **Related**: [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md), [go-live-smoke-test.md](go-live-smoke-test.md), [../dnn-localization/README.md](../dnn-localization/README.md) (arc index), #596 (Razor14), #597 (auth), #131/#132.
@@ -9,8 +9,8 @@
 >
 > Since this checklist was written (2026-06-26), the sandbox-side work it organizes has been **executed and delivered**:
 > - **B1 (bin/ repair), B2 (sandbox upgrade + 2sxc 21), B3 (12 Razor14 templates)** — all **DONE**. DNN **10.3.2 + 2sxc
->   21.07** are live in **full-IIS** at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0× "Something went wrong", HTTPS SAN
->   9D80D4CC exp 2026-09-27). Stopgap `dnn.myia.io` retiré, PortalAlias 1010 droppé. ACME bypass **active in live**
+>   21.07** are live in **full-IIS** at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0× "Something went wrong"; HTTPS
+>   cert as of 2026-08-24: `585269A2`, exp 2026-10-06 — supersedes the earlier `9D80D4CC` exp 2026-09-27). Stopgap `dnn.myia.io` retiré, PortalAlias 1010 droppé. ACME bypass **active in live**
 >   (renew win-acme 2026-08-23) — mechanism now **tracked** at
 >   [`DNNPlatform/.well-known/acme-challenge/web.config`](../../DNNPlatform/.well-known/acme-challenge/web.config), see
 >   note below. Runtime branch `dnn/sandbox-runtime-1032` **deleted 2026-07-25** (B1 bleed-stop, machineKey scrub —
@@ -36,6 +36,30 @@
 >
 > So the turnkey sequence below is now a **proven replay** — B1-B3 are historical record, **only B4 (prod VPS go-live
 > on myia-web1) is the remaining gated frontier.**
+
+> ## 🟢 PRE-FLIGHT SNAPSHOT (2026-08-24, read-only — reference site `dnn.argumentum.myia.io`)
+>
+> Measured the day the assets bundle was validated, while B4 awaits the owner GO. All read-only; no prod mutation.
+>
+> | Check | Measured | Verdict |
+> |---|---|---|
+> | HTTP `/` | 200 · 83 KB · 0.74 s · **0 × "Something went wrong"** | ✅ |
+> | HTTP `/Règles` | 200 · 49 KB · 1.9 s | ✅ |
+> | **Skin served** | **2shinebs5 ×4, Xcillion ×0** on `/` and `/Règles` | ✅ **2c runtime RESOLVED** |
+> | DB version | `dbo.[Version]` top = **10.3.2** | ✅ |
+> | EventLog `PAGE_LOAD_EXCEPTION` | 21 (19/08) → 37 (20/08) → 42 (21/08) → **0/day since 21/08 06:29 (3 clean days)** | ✅ DoD criterion met on current state |
+> | Cert (machine `WebHosting`) | `585269A2` · 53 SANs incl. `argumentum.myia.io` + `dnn.argumentum.myia.io` · expires **2026-10-06 (J-43)** | ⚠️ see below |
+> | ACME bypass file | present in webroot, tracked (383 B) | ✅ |
+> | Webroot git | HEAD `a8628761` (2 behind master, both non-DNN commits) · ~4 800 dirty files = live runtime mutations | ⚠️ garde #972 mandatory on any git op |
+>
+> **Skin 2c closure**: the 20/08 surgical INSERT (`DefaultPortalSkin`, `CultureCode=NULL`) was not reflected at
+> runtime then (stale `PortalSettings` cache; the pending recycle-vs-re-save decision). It is now: a natural app-pool
+> recycle has since occurred and the correct skin is served. The (a)/(b) decision is moot. Exception history matches —
+> `PAGE_LOAD_EXCEPTION` stopped 21/08 06:29, consistent with the skin fix family (#1129/#1131).
+>
+> **⚠️ B4 cert gap**: the current cert covers only `*.myia.io` hostnames — **no `argumentum.games` SAN**. The
+> go-live domain needs its own cert story on web1 (per tracking: prod cert exp 2026-11-04; ACME ops window to
+> avoid 2026-10-05 → 2026-11-04). B4 planning should sequence the argumentum.games cert **before** traffic switch.
 >
 > ### ⛔ CRITICAL CORRECTION to B1 below — the B1-inversion (do NOT follow B1 as written)
 >
