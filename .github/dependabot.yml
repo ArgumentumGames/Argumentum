@@ -123,24 +123,6 @@ updates:
       # Lesson worth keeping: an ignore entry is only as strong as the package's versioning
       # scheme. "Ignore majors" protects nothing on a project that never bumps its major.
       - dependency-name: "Microsoft.Playwright"
-      # OWLSharp / OWLSharp.Extensions 4.x -> 5.x breaks the build, MEASURED on #945:
-      # 10 compile errors, all in Ontology/OwlAdapter.cs, all of the shape
-      #   CS1503: cannot convert from 'RDFSharp.Model.RDFResource'
-      #                           to 'OWLSharp.Ontology.OWLNamedIndividual'
-      # SKOSHelper (from `using OWLSharp.Extensions.SKOS`) changed its signatures in 5.0.0.
-      # The five call sites are wrapped in try/catch with annotation-scan fallbacks, but those
-      # guard RUNTIME, not COMPILE -- the build never reaches the 638 tests.
-      #
-      # This entry is NOT "silencing a red build" (the bar at the top of this file forbids
-      # that): OWLSharp was deliberately left unpinned in #942/#943 as "a major to test on its
-      # merits after the tag". #945 ran that test. The result is "needs an API migration",
-      # recorded as issue #946 with its DoD (regenerate the OWL and match 1408 concepts /
-      # 59.9% crosslinks / 5.07 MB; keep the fallbacks; drop this ignore in the same PR).
-      # The pin is the corollary of that scheduled work, not a substitute for it.
-      - dependency-name: "OWLSharp"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "OWLSharp.Extensions"
-        update-types: ["version-update:semver-major"]
       # Humanizer 2.14.1 -> 3.0.10 changes the OWL IRI fragments we PUBLISH. MEASURED on #949
       # (run 89854763158, `build (Release)`): 643 tests, 636 passed, 2 failed, both of them the
       # GetId contract tests, and nothing else --
