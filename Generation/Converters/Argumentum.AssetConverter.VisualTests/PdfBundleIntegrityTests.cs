@@ -265,33 +265,26 @@ namespace Argumentum.AssetConverter.VisualTests
         private const int ExpectedIdenticalPagesPerLanguagePair = 0;
 
         /// <summary>
-        /// #1176 documented exception: LEGITIMATELY shared BACK pages, exact-count asserted.
-        /// The PokerCards (Scenarii deck) back design is the CATEGORY card — same illustration
-        /// in every language, only the label text varies. When two languages' category labels
-        /// render to the same bytes (the template uppercases the label), their backs are
-        /// honestly identical. Measured on the v0.9.0-review assets (sha256-pinned vs the
-        /// release API, 25 DPI raster, 25/08) and cross-derived from the source CSV
-        /// (Cards/Scenarii/Argumentum Scenarii - Cards.csv: 7 categories with counts
-        /// 36/30/27/25/18/17/14 — exactly the 7 back designs measured in the PDFs):
-        /// - en+fr: 'Pop culture' / 'pop culture' → 18 identical back pages (223..257), 0 faces;
-        /// - es+pt: 'Política' / 'política' → 14 identical back pages (259..285), 0 faces;
-        /// - every other pair of the 15 measured: 0 (all labels differ).
-        /// The exact count makes this a drift tripwire: a category rename in the CSV moves the
-        /// observed count and the test fails asking for the table to be re-derived — in BOTH
-        /// directions (more sharing than documented is as much a finding as less).
+        /// #1176 legitimately shared BACK pages, COMPUTED from the source CSV — no hardcoded
+        /// page list or count. A page that renders identical bytes in two languages is
+        /// admissible only if every source string it renders coincides between those languages
+        /// (#1176 constraint (a)). For the PokerCards (Scenarii deck) back, the only
+        /// language-dependent string is the CATEGORY label; when two languages' labels render
+        /// to the same bytes (the template uppercases the label), their backs are honestly
+        /// identical. The expected count per pair is derived at test time from
+        /// Cards/Scenarii/Argumentum Scenarii - Cards.csv: for each category whose normalized
+        /// label coincides between a pair, that category's card count is added. The deck is not
+        /// strictly sorted by category, so only the COUNT is asserted (order-independent); it
+        /// is the drift tripwire in both directions — a category rename moves the count and the
+        /// test fails asking for a re-derivation, in both directions.
         /// Scoped to docKey "PokerCards" ONLY: the Print&amp;Play variant is an imposition of
         /// the same deck but its sheets mix face images (always language-distinct), so any
         /// identical page there is a defect — it fails loud and names the page.
         /// </summary>
-        private static readonly Dictionary<string, Dictionary<string, int>> ExpectedSharedBackPages =
-            new(StringComparer.OrdinalIgnoreCase)
-            {
-                ["PokerCards"] = new(StringComparer.OrdinalIgnoreCase)
-                {
-                    ["en+fr"] = 18,
-                    ["es+pt"] = 14,
-                },
-            };
+        private const string PokerCardsDocKey = "PokerCards";
+
+        private static readonly Lazy<Dictionary<string, int>> LazyComputedSharedBacks =
+            new(ComputeExpectedSharedBacks);
 
         /// <summary>
         /// #1176 guard: no document may render IDENTICAL content in two languages. A full
@@ -308,7 +301,7 @@ namespace Argumentum.AssetConverter.VisualTests
         ///   odd pages; grid documents get a nominal parity label);
         /// - names every colliding page + language set in the failure (no boolean verdict);
         /// - tolerates ONLY the documented category-label back sharing
-        ///   (ExpectedSharedBackPages), verified as an EXACT count — never a blanket
+        ///   (ComputeExpectedSharedBacks), verified as an EXACT count — never a blanket
         ///   backs-are-fine pass.
         /// Expected-failure baseline: on the 24/08 bundle this test MUST fail naming
         /// PokerCards_Print&amp;Play_A4 pages 1..38 identical across {en, es, fr, ru}
@@ -388,7 +381,11 @@ namespace Argumentum.AssetConverter.VisualTests
                 int compared = 0, skippedNoImages = 0;
                 var docFailures = new List<string>();
                 var sharedBackPages = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase);
-                var backExceptions = ExpectedSharedBackPages.TryGetValue(docKey, out var table) ? table : null;
+                // Computed predicate: a back page is admissible only if the source string it
+                // renders (the category label) coincides between the languages — derived from
+                // the CSV at test time, never a hardcoded page whitelist. Only the base
+                // PokerCards (Scenarii deck) admits any genuine sharing (#1176).
+                var backExceptions = docKey == PokerCardsDocKey ? LazyComputedSharedBacks.Value : null;
 
                 for (int i = 0; i < minPages; i++)
                 {
@@ -439,7 +436,7 @@ namespace Argumentum.AssetConverter.VisualTests
                         }
                         var observed = sharedBackPages.TryGetValue(setKey, out var pages) ? pages.Count : 0;
                         if (observed != expected)
-                            docFailures.Add($"{docKey}: shared back pages across {setKey.Replace("+", ", ")}: observed {observed}, documented {expected} (pages: {(pages != null ? string.Join(",", pages) : "none")}) — if a category label changed in Cards/Scenarii, re-derive ExpectedSharedBackPages (#1176)");
+                            docFailures.Add($"{docKey}: shared back pages across {setKey.Replace("+", ", ")}: observed {observed}, computed {expected} (pages: {(pages != null ? string.Join(",", pages) : "none")}) — if a category label changed in Cards/Scenarii, the computed predicate re-derives the count (#1176)");
                     }
                 }
 
@@ -458,7 +455,7 @@ namespace Argumentum.AssetConverter.VisualTests
             {
                 var shown = failures.Take(60).ToList();
                 var more = failures.Count > 60 ? $"\n  … (+{failures.Count - 60} more)" : "";
-                Assert.Fail($"Identical rendered content across languages (expected {ExpectedIdenticalPagesPerLanguagePair} identical FACE page per language pair; backs: 0 except the documented category-label table ExpectedSharedBackPages — a shared page means one language is not localized, #1176/#1177):\n  {string.Join("\n  ", shown)}{more}");
+                Assert.Fail($"Identical rendered content across languages (expected {ExpectedIdenticalPagesPerLanguagePair} identical FACE page per language pair; backs: 0 except a category label that coincides between the pair per the computed predicate ComputeExpectedSharedBacks — a shared page otherwise means one language is not localized, #1176/#1177):\n  {string.Join("\n  ", shown)}{more}");
             }
 
             _output.WriteLine($"PASS: {byDocLang.Count(kv => kv.Value.Count >= 2)} document type(s) compared across languages, 0 identical pages, {totalDocumentedSharedBacks} documented shared backs.");
@@ -489,6 +486,128 @@ namespace Argumentum.AssetConverter.VisualTests
         /// parity label is nominal there.</summary>
         private static string DocRoleLabel(string docKey) =>
             docKey.Contains("Fallacies_Web", StringComparison.OrdinalIgnoreCase) ? " — grid doc, parity label nominal" : "";
+
+        /// <summary>Maps each deck language to its Scenarii CSV category column. The base
+        /// Scenarii deck's FR column is the accented 'catégorie', the EN column is the plain
+        /// 'category', and the other six use the per-language 'category_{lang}' suffix.</summary>
+        private static readonly (string Lang, string Col)[] SharedBackCategoryColumns =
+        {
+            ("fr", "catégorie"), ("en", "category"), ("ru", "category_ru"), ("pt", "category_pt"),
+            ("es", "category_es"), ("ar", "category_ar"), ("fa", "category_fa"), ("zh", "category_zh"),
+        };
+
+        /// <summary>
+        /// #1176 computed predicate (constraint (a)): derive the expected shared-back count per
+        /// language pair from the source CSV instead of a hardcoded page list or count. A back
+        /// page that renders identical bytes in two languages is legitimate only if the source
+        /// string it renders — the category label — coincides between those languages (after the
+        /// template's normalization). For each category whose normalized label coincides between
+        /// a pair, that category's card count is added. The deck is not strictly sorted by
+        /// category, so only the COUNT is asserted (order-independent): it is the drift tripwire
+        /// in both directions. Throws FileNotFoundException if the CSV is absent — the predicate
+        /// has no source, and that must fail loud, never pass silently.
+        /// </summary>
+        private static Dictionary<string, int> ComputeExpectedSharedBacks()
+        {
+            var csvPath = Path.Combine(TestRepoRoot.Find(), "Cards", "Scenarii", "Argumentum Scenarii - Cards.csv");
+            if (!File.Exists(csvPath))
+                throw new FileNotFoundException(
+                    "PdfBundleIntegrityTests: the Scenarii CSV is required to compute which back pages may be legitimately shared across languages (#1176) — not found at " + csvPath,
+                    csvPath);
+
+            var records = ParseSimpleCsv(csvPath);
+            if (records.Count == 0) return new(StringComparer.OrdinalIgnoreCase);
+
+            var header = records[0];
+            var colIdx = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            for (int i = 0; i < header.Count; i++) colIdx[header[i]] = i;
+
+            if (!colIdx.ContainsKey("category"))
+                throw new InvalidDataException("Scenarii CSV is missing the 'category' (English) column used as the category identity for shared-back derivation.");
+
+            int enCol = colIdx["category"];
+            var catCount = new Dictionary<string, int>(StringComparer.Ordinal);
+            var catLabels = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+
+            foreach (var row in records.Skip(1))
+            {
+                if (enCol >= row.Count) continue;
+                var cat = row[enCol].Trim();
+                if (cat.Length == 0) continue;
+                catCount.TryGetValue(cat, out var c);
+                catCount[cat] = c + 1;
+                if (!catLabels.TryGetValue(cat, out var labs))
+                    catLabels[cat] = labs = new(StringComparer.Ordinal);
+                foreach (var (lang, col) in SharedBackCategoryColumns)
+                {
+                    if (colIdx.TryGetValue(col, out var ci) && ci < row.Count)
+                    {
+                        var v = row[ci].Trim();
+                        if (v.Length > 0) labs[lang] = v;
+                    }
+                }
+            }
+
+            var langs = SharedBackCategoryColumns.Select(x => x.Lang).ToArray();
+            var result = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            for (int a = 0; a < langs.Length; a++)
+                for (int b = a + 1; b < langs.Length; b++)
+                {
+                    int total = 0;
+                    foreach (var cat in catLabels.Keys)
+                    {
+                        var labs = catLabels[cat];
+                        if (labs.TryGetValue(langs[a], out var va) && labs.TryGetValue(langs[b], out var vb)
+                            && NormalizeLabel(va) == NormalizeLabel(vb))
+                            total += catCount[cat];
+                    }
+                    if (total > 0)
+                    {
+                        var key = string.Join("+", new[] { langs[a], langs[b] }.OrderBy(l => l, StringComparer.Ordinal));
+                        result[key] = total;
+                    }
+                }
+            return result;
+        }
+
+        /// <summary>The template normalizes the category label (uppercases it) before rendering,
+        /// so the coincidence predicate compares labels the same way the render does.</summary>
+        private static string NormalizeLabel(string label) => label.Trim().ToUpperInvariant();
+
+        /// <summary>Minimal RFC 4180 CSV reader (double-quote escaping, quoted newlines) — enough
+        /// to read the Scenarii category columns without pulling CsvHelper's configuration into
+        /// the VisualTests suite.</summary>
+        private static List<List<string>> ParseSimpleCsv(string path)
+        {
+            var rows = new List<List<string>>();
+            var cur = new List<string>();
+            var field = new System.Text.StringBuilder();
+            bool inQuotes = false;
+            using (var reader = new StreamReader(path))
+            {
+                int ch;
+                while ((ch = reader.Read()) >= 0)
+                {
+                    char c = (char)ch;
+                    if (inQuotes)
+                    {
+                        if (c == '"')
+                        {
+                            if (reader.Peek() == '"') { field.Append('"'); reader.Read(); }
+                            else inQuotes = false;
+                        }
+                        else field.Append(c);
+                    }
+                    else if (c == '"') inQuotes = true;
+                    else if (c == ',') { cur.Add(field.ToString()); field.Clear(); }
+                    else if (c == '\r') { /* swallow */ }
+                    else if (c == '\n') { cur.Add(field.ToString()); field.Clear(); rows.Add(cur); cur = new(); }
+                    else field.Append(c);
+                }
+            }
+            if (field.Length > 0 || cur.Count > 0) { cur.Add(field.ToString()); rows.Add(cur); }
+            return rows;
+        }
 
         /// <summary>Per-page rendered-content key: the ordered MD5 of each image XObject's
         /// raw stream on that page. Pure-image QuestPDF documents make this the content of
