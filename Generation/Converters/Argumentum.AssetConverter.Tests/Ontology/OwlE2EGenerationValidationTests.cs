@@ -1,8 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
+using CsvHelper;
+using CsvHelper.Configuration;
 using Argumentum.AssetConverter.Ontology;
 using FluentAssertions;
 using OWLSharp.Ontology;
@@ -206,50 +211,190 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (5) NEW LAYER — transverse cross-links + AIF attack typing (CSV→OWL wiring added with this
-        //     change). Proves the second-pass emitter in OwlGeneratorConfig.CreateOwlDocument actually
-        //     writes crossLink object-property assertions (predatesOn/denounces/leverages/allows/
-        //     opposes/inverts/mirrors/isRelatedTo) resolved from the crossLink_* CSV columns, plus the
-        //     aifAttackType literal + aifAttackedNode (RA/I/CA-node) resource for each AIF-typed leaf —
-        //     and that, like the SKOS *Match resource-valued annotations in test 3, they SURVIVE the
-        //     OWL2XML round-trip. Regression guard: if the wiring is dropped (or the committed ontology
-        //     is not regenerated after the crosslink/AIF data is applied to the CSV), these counts fall
-        //     to 0. Loads the same committed docs/ontology/argumentum.owl as the tests above.
+        // (5) TRANSVERSE CROSS-LINKS + AIF ATTACK TYPING — counts asserted EXACTLY against the corpus.
+        //     Proves the second-pass emitter in OwlGeneratorConfig.CreateOwlDocument writes the
+        //     crossLink assertions (predatesOn/denounces/leverages/allows/opposes/inverts/mirrors/
+        //     isRelatedTo) resolved from the crossLink_* CSV columns, plus the aifAttackType literal and
+        //     the aifAttackedNode (RA/I/CA-node) resource for each AIF-typed leaf — and that, like the
+        //     SKOS *Match resource-valued annotations of test 3, they SURVIVE the OWL2XML round-trip.
+        //
+        //     ⚠ STRENGTHENED 2026-08-25. This test previously asserted BeGreaterThan(0) on every count,
+        //     and its own comment claimed it guarded against "these counts fall to 0". It did — and
+        //     nothing else: a decay from 1230 links to 3 passed green, as did an AIF layer collapsing
+        //     from 145 typed nodes to 1. A threshold of 0 is not a guard, it is a liveness check.
+        //
+        //     The expectation is now DERIVED from Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv at
+        //     test time, reproducing the emitter's own semantics (split on ';', trim, skip unresolvable
+        //     paths, skip self-links), times 2 for the four Symmetric verbs which are emitted in both
+        //     directions. Measured on the committed pair: 1230 corpus links → 1977 assertions
+        //     (predatesOn 13, denounces 2, leverages 402, allows 66 at ×1; opposes 25→50, inverts 41→82,
+        //     mirrors 360→720, isRelatedTo 321→642 at ×2), AIF 145/145. Every ratio is exactly 1.00 or
+        //     2.00, which is what makes the predicate derivable rather than tabulated.
+        //
+        //     Two DISTINCT failure modes are asserted separately so the message names the right cause:
+        //       • count mismatch  → the CSV moved without a --generate-owl regeneration (stale artefact)
+        //       • raw ≠ resolvable → a crossLink cell points at a path that does not exist, or at itself
+        //                            (corpus defect; the emitter drops it silently, so nothing else sees it)
+        //     Loads the same committed docs/ontology/argumentum.owl as the tests above.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void LoadedOntology_ContainsCrossLinkAndAifAttackAssertions()
+        public void LoadedOntology_CrossLinkAndAifCounts_MatchTheCorpusExactly()
         {
-            int crossLinks =
-                  CountAnnotations("#predatesOn")
-                + CountAnnotations("#denounces")
-                + CountAnnotations("#leverages")
-                + CountAnnotations("#allows")
-                + CountAnnotations("#opposes")
-                + CountAnnotations("#inverts")
-                + CountAnnotations("#mirrors")
-                + CountAnnotations("#isRelatedTo");
+            var corpus = Corpus;
 
-            crossLinks.Should().BeGreaterThan(0,
-                "the second-pass emitter writes transverse crossLink object-property annotation assertions " +
-                "resolved from the 8 crossLink_* CSV columns; like the resource-valued SKOS *Match annotations " +
-                "they survive the OWL2XML round-trip. Count 0 = the CSV→OWL crosslink wiring was removed, or the " +
-                "committed ontology was not regenerated after the crosslink data was applied to the taxonomy CSV.");
+            foreach (var (verb, _) in CrossLinkVerbs)
+            {
+                corpus.Resolvable[verb].Should().Be(corpus.Raw[verb],
+                    "every target listed in crossLink_{0} must resolve to an existing taxonomy path and must not " +
+                    "point at its own node — the emitter silently drops both. {1} dangling target(s) found. " +
+                    "A dangling link is a CORPUS defect, not a stale-ontology symptom, which is why it is " +
+                    "asserted BEFORE the count below: a dangling target lowers Resolvable, so the count would " +
+                    "otherwise diverge first and blame a stale ontology for a corpus defect.",
+                    Capitalize(verb), corpus.Raw[verb] - corpus.Resolvable[verb]);
+            }
 
-            CountAnnotations("#isRelatedTo").Should().BeGreaterThan(0,
-                "isRelatedTo is the verb of the manually-seeded transverse links (e.g. PK3 '1.1.1' → '7.1.2.3'), " +
-                "so at minimum the pre-existing seeds must be emitted.");
+            foreach (var (verb, symmetric) in CrossLinkVerbs)
+            {
+                var expected = corpus.Resolvable[verb] * (symmetric ? 2 : 1);
 
-            int aifAttackType = CountAnnotations("#aifAttackType");
-            int aifAttackedNode = CountAnnotations("#aifAttackedNode");
+                CountAnnotations("#" + verb).Should().Be(expected,
+                    "the emitter writes one '{0}' assertion per resolvable target of crossLink_{1}{2}. " +
+                    "Corpus says {3} resolvable target(s) => {4} assertion(s) expected. A mismatch means the " +
+                    "taxonomy CSV was edited without regenerating docs/ontology/argumentum.owl (--generate-owl), " +
+                    "or the CSV->OWL wiring changed. The count is EXACT on purpose: a >0 threshold stays green " +
+                    "while 1230 links decay to 3.",
+                    verb, Capitalize(verb),
+                    symmetric ? " plus a second assertion in the reverse direction (Symmetric=true)" : " (Symmetric=false)",
+                    corpus.Resolvable[verb], expected);
+            }
 
-            aifAttackType.Should().BeGreaterThan(0,
-                "the emitter writes an aifAttackType literal (undercut/undermine/rebut) for every fallacy carrying " +
-                "AIF_attackType (the typed leaves). Count 0 = the AIF-attack wiring was removed or the ontology was " +
-                "not regenerated.");
-            aifAttackedNode.Should().BeGreaterThan(0,
-                "each AIF-typed fallacy also links to its AIF node (RA-node/I-node/CA-node) via aifAttackedNode — " +
-                "the formal ASPIC+/AIF attachment (undercut→RA, undermine→I, rebut→CA).");
+            CountAnnotations("#aifAttackType").Should().Be(corpus.AifAttackType,
+                "one aifAttackType literal (undercut/undermine/rebut) per fallacy carrying AIF_attackType.");
+
+            CountAnnotations("#aifAttackedNode").Should().Be(corpus.AifAttackedNode,
+                "each AIF-typed fallacy links to its AIF node (RA-node/I-node/CA-node) via aifAttackedNode — " +
+                "the formal ASPIC+/AIF attachment (undercut->RA, undermine->I, rebut->CA).");
+        }
+
+        // ── Corpus-derived expectations ─────────────────────────────────────────────────
+
+        /// <summary>
+        /// Mirrors the emitter table in <c>OwlGeneratorConfig.CreateOwlDocument</c> (<c>crossLinkVerbs</c>).
+        /// Flipping a Symmetric flag there without flipping it here is a deliberate red: the expected
+        /// assertion count doubles or halves and the failure message says which verb moved.
+        /// </summary>
+        private static readonly (string Verb, bool Symmetric)[] CrossLinkVerbs =
+        {
+            ("predatesOn",  false),
+            ("denounces",   false),
+            ("leverages",   false),
+            ("allows",      false),
+            ("opposes",     true),
+            ("inverts",     true),
+            ("mirrors",     true),
+            ("isRelatedTo", true),
+        };
+
+        private sealed class CorpusCounts
+        {
+            public Dictionary<string, int> Raw { get; } = new Dictionary<string, int>();
+            public Dictionary<string, int> Resolvable { get; } = new Dictionary<string, int>();
+            public int AifAttackType { get; set; }
+            public int AifAttackedNode { get; set; }
+        }
+
+        private static readonly Lazy<CorpusCounts> _corpus = new Lazy<CorpusCounts>(ReadCorpusCounts);
+
+        private static CorpusCounts Corpus => _corpus.Value;
+
+        private static string Capitalize(string verb) => char.ToUpperInvariant(verb[0]) + verb.Substring(1);
+
+        /// <summary>
+        /// Recomputes from the taxonomy CSV exactly what the emitter would write: same split on ';',
+        /// same trim, same skip of unresolvable paths and self-links. Divergence between this and the
+        /// emitter is itself worth a red.
+        /// </summary>
+        private static CorpusCounts ReadCorpusCounts()
+        {
+            var csvPath = ResolveRepoFile("Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv");
+            if (csvPath == null)
+            {
+                throw new FileNotFoundException(
+                    "Taxonomy CSV not found walking up from " + AppContext.BaseDirectory +
+                    ". It is the source the committed ontology is generated from, and the only way to know how " +
+                    "many crossLink assertions the OWL should carry. Failing loud rather than skipping.");
+            }
+
+            var rows = new List<string[]>();
+            string[] header;
+            using (var reader = new StreamReader(csvPath, new UTF8Encoding(true)))
+            using (var csv = new CsvReader(reader,
+                       new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true }))
+            {
+                csv.Read();
+                csv.ReadHeader();
+                header = csv.HeaderRecord ?? Array.Empty<string>();
+                while (csv.Read())
+                {
+                    var row = new string[csv.Parser.Count];
+                    for (var i = 0; i < csv.Parser.Count; i++)
+                    {
+                        row[i] = csv.GetField(i) ?? string.Empty;
+                    }
+                    rows.Add(row);
+                }
+            }
+
+            int Col(string name)
+            {
+                var i = Array.FindIndex(header, h => string.Equals(h, name, StringComparison.Ordinal));
+                if (i < 0)
+                {
+                    throw new InvalidOperationException(
+                        "Column '" + name + "' absent from the taxonomy CSV. Renaming a column without updating " +
+                        "the CsvHelper ClassMap breaks the pipeline silently; this test refuses to guess.");
+                }
+                return i;
+            }
+
+            var pathCol = Col("path");
+            var knownPaths = new HashSet<string>(
+                rows.Where(r => pathCol < r.Length).Select(r => r[pathCol].Trim()),
+                StringComparer.Ordinal);
+
+            var counts = new CorpusCounts();
+            foreach (var (verb, _) in CrossLinkVerbs)
+            {
+                var col = Col("crossLink_" + Capitalize(verb));
+                var raw = 0;
+                var resolvable = 0;
+                foreach (var row in rows)
+                {
+                    if (col >= row.Length || string.IsNullOrWhiteSpace(row[col]))
+                    {
+                        continue;
+                    }
+                    var self = pathCol < row.Length ? row[pathCol].Trim() : string.Empty;
+                    foreach (var target in row[col].Split(';').Select(x => x.Trim()).Where(x => x.Length > 0))
+                    {
+                        raw++;
+                        if (knownPaths.Contains(target) && !string.Equals(target, self, StringComparison.Ordinal))
+                        {
+                            resolvable++;
+                        }
+                    }
+                }
+                counts.Raw[verb] = raw;
+                counts.Resolvable[verb] = resolvable;
+            }
+
+            var attackTypeCol = Col("AIF_attackType");
+            var attackedNodeCol = Col("AIF_attackedNode");
+            counts.AifAttackType = rows.Count(r => attackTypeCol < r.Length && !string.IsNullOrWhiteSpace(r[attackTypeCol]));
+            counts.AifAttackedNode = rows.Count(r => attackedNodeCol < r.Length && !string.IsNullOrWhiteSpace(r[attackedNodeCol]));
+
+            return counts;
         }
 
         private static object BuildProdValidator(OwlAdapter ontology)
