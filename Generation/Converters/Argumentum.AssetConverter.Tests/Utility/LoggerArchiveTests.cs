@@ -29,43 +29,28 @@ namespace Argumentum.AssetConverter.Tests.Utility
             const string sentinel = "generation log of the previous run";
             File.WriteAllText(liveLog, sentinel);
 
-            var originalLogFile = Logger.LogFile;
-            Logger.LogFile = liveLog;
-            try
-            {
-                Logger.ArchivePreviousLog();
+            // #1192: the log to archive is passed EXPLICITLY. Swapping the process-wide
+            // Logger.LogFile raced with concurrent Log() calls from other xUnit collections —
+            // green in isolation, red in the full suite. No global state is touched here.
+            Logger.ArchivePreviousLog(liveLog);
 
-                // The DoD property: the previous run's log SURVIVES a later pass, content intact.
-                // Logger.LogFile is a process-wide static — concurrent tests may append to or
-                // recreate the live file inside this window, so only the archive is asserted.
-                var archives = Directory.GetFiles(_tempDir, "file_logger-*.log");
-                archives.Should().ContainSingle("exactly one timestamped archive must exist");
-                File.ReadAllText(archives.Single()).Should().StartWith(sentinel,
-                    "the archived content must be preserved");
-            }
-            finally
-            {
-                Logger.LogFile = originalLogFile;
-            }
+            // The DoD property: the previous run's log SURVIVES a later pass, content intact.
+            var archives = Directory.GetFiles(_tempDir, "file_logger-*.log");
+            archives.Should().ContainSingle("exactly one timestamped archive must exist");
+            File.ReadAllText(archives.Single()).Should().StartWith(sentinel,
+                "the archived content must be preserved");
         }
 
         [Fact]
         public void ArchivePreviousLog_NoLiveLog_ShouldBeNoOp()
         {
-            var originalLogFile = Logger.LogFile;
-            Logger.LogFile = Path.Combine(_tempDir, "file_logger.log"); // does not exist
-            try
-            {
-                Action act = () => Logger.ArchivePreviousLog();
+            var absentLog = Path.Combine(_tempDir, "file_logger.log"); // does not exist
 
-                act.Should().NotThrow();
-                Directory.GetFiles(_tempDir, "file_logger-*.log").Should().BeEmpty(
-                    "no archive must be created from nothing");
-            }
-            finally
-            {
-                Logger.LogFile = originalLogFile;
-            }
+            Action act = () => Logger.ArchivePreviousLog(absentLog);
+
+            act.Should().NotThrow();
+            Directory.GetFiles(_tempDir, "file_logger-*.log").Should().BeEmpty(
+                "no archive must be created from nothing");
         }
 
         public void Dispose()

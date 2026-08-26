@@ -70,14 +70,22 @@ public class Logger
 	/// so a later run (e.g. the CMYK pass over the same tree) cannot overwrite the previous run's log.
 	/// No-op when no live log exists. A new live log is created lazily by the next <see cref="Log"/> call.
 	/// </summary>
-	public static void ArchivePreviousLog()
+	/// <param name="logFile">
+	/// Log to archive. Defaults to <see cref="LogFile"/>. Passing an explicit path lets a caller
+	/// (notably a test) archive a file WITHOUT mutating the process-wide <see cref="LogFile"/> —
+	/// that mutation raced with any concurrent <see cref="Log"/> from another xUnit collection and
+	/// made the #1179 guard red in the full suite while green in isolation.
+	/// </param>
+	public static void ArchivePreviousLog(string logFile = null)
 	{
-		if (!File.Exists(LogFile))
+		logFile ??= LogFile;
+
+		if (!File.Exists(logFile))
 		{
 			return;
 		}
 
-		var directory = Path.GetDirectoryName(LogFile);
+		var directory = Path.GetDirectoryName(logFile);
 		var timestamp = DateTime.Now.ToString("yyyyMMdd-HHmmss");
 		var archivePath = Path.Combine(directory, $"file_logger-{timestamp}.log");
 		var counter = 1;
@@ -86,7 +94,7 @@ public class Logger
 			archivePath = Path.Combine(directory, $"file_logger-{timestamp}-{counter++}.log");
 		}
 
-		File.Move(LogFile, archivePath);
+		File.Move(logFile, archivePath);
 		AnsiConsole.MarkupLine($"[dim]Previous generation log archived to '{Markup.Escape(archivePath)}'[/]");
 	}
 
