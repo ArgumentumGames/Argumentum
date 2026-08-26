@@ -106,9 +106,12 @@ namespace Argumentum.AssetConverter.Entities
         public string RemarkZh { get; set; }
         public string LinkZh { get; set; }
 
-        // #499 Phase 1 — 12 relational/AIF columns appended to the Virtues prod CSV (66→78).
-        // crossLink_Opposes is the only one populated (the prevented Fallacy-family PK list);
-        // the other 7 relation types + AIF Exception/Other are structurally empty by design.
+        // #499 Phase 1 — 12 relational/AIF columns appended to the Virtues prod CSV (66→78),
+        // then #989 split the FR-prose critical questions out of AIF_skosMappingType into
+        // AIF_criticalQuestion (81→82), leaving AIF_skosMappingType free for skos:*Match tokens
+        // (empty on the Virtues side until real SKOS mappings exist).
+        // crossLink_Opposes is the only relation column populated (the prevented Fallacy-family
+        // PK list); the other 7 relation types + AIF Exception/Other are structurally empty by design.
         public string CrossLinkPredatesOn { get; set; }
         public string CrossLinkDenounces { get; set; }
         public string CrossLinkLeverages { get; set; }
@@ -121,6 +124,7 @@ namespace Argumentum.AssetConverter.Entities
         public string AIFSkosDirectRef { get; set; }
         public string AIFSkosExceptionRef { get; set; }
         public string AIFSkosOther { get; set; }
+        public string AIFCriticalQuestion { get; set; }
         public string AIFSkosMappingType { get; set; }
     }
 
@@ -203,8 +207,11 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.RemarkZh).Name("remark_zh").Optional();
             Map(m => m.LinkZh).Name("link_zh").Optional();
 
-            // #499 Phase 1 — 12 relational/AIF columns. All Optional(): 9 are structurally
-            // empty by design; 3 are populated for the 222 real Virtue nodes (pk=0 root empty).
+            // #499 Phase 1 — 12 relational/AIF columns (all Optional(); 9 structurally empty by
+            // design, 3 populated for the 222 real Virtue nodes, pk=0 root empty). #989 added
+            // AIF_criticalQuestion (the FR-prose Walton question, formerly mis-housed in
+            // AIF_skosMappingType) and emptied AIF_skosMappingType (now skos:*Match-only, like
+            // the Fallacies taxonomy).
             Map(m => m.CrossLinkPredatesOn).Name("crossLink_PredatesOn").Optional();
             Map(m => m.CrossLinkDenounces).Name("crossLink_Denounces").Optional();
             Map(m => m.CrossLinkLeverages).Name("crossLink_Leverages").Optional();
@@ -216,6 +223,7 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.AIFSkosDirectRef).Name("AIF_skosDirectRef").Optional();
             Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef").Optional();
             Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
+            Map(m => m.AIFCriticalQuestion).Name("AIF_criticalQuestion").Optional();
             Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
         }
     }

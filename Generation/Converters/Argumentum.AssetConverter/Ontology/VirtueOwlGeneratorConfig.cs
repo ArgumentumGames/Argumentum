@@ -18,7 +18,7 @@ namespace Argumentum.AssetConverter.Ontology
     /// a concept scheme with the 7-family hierarchy (skos:narrower), one concept per Virtue node,
     /// and a custom AIF link <c>aif:goodTenorOf</c> to the Walton argumentation scheme
     /// declared in <see cref="Virtue.AIFSkosDirectRef"/> (the critical question prose in
-    /// <see cref="Virtue.AIFSkosMappingType"/> is carried as an rdfs:comment annotation).
+    /// <see cref="Virtue.AIFCriticalQuestion"/> is carried as an rdfs:comment annotation).
     ///
     /// Cross-corpus Virtue↔Fallacy links (crossLink_Opposes PK→URI resolution) are deferred to
     /// Phase 3: resolving Fallacy PKs requires loading the Fallacies corpus (new architecture,
@@ -127,8 +127,9 @@ namespace Argumentum.AssetConverter.Ontology
 
 	        // AIF object property: a Virtue is the "good tenor of" a Walton argumentation scheme
 	        // (i.e. the correct practice / answer to the scheme's critical questions). The Fallacies
-	        // switch over skos:*Match tokens cannot fire here: the Virtue AIF_skosMappingType column
-	        // holds the FR-prose critical question, not a skos enum token (design adaptation 1).
+	        // switch over skos:*Match tokens cannot fire here: since #989 the Virtue critical
+	        // questions live in AIF_criticalQuestion and the Virtue AIF_skosMappingType column is
+	        // empty (no SKOS mapping is defined for Virtues yet — design adaptation 1).
 	        var aifGoodTenorOfUri = $"{ExternalReferenceOntologyNamespaceURI}goodTenorOf";
 	        var goodTenorOfProperty = new RDFResource(aifGoodTenorOfUri);
 	        ontology.DeclareObjectProperty(goodTenorOfProperty);
@@ -179,11 +180,13 @@ namespace Argumentum.AssetConverter.Ontology
 	                    ontology.AnnotateConceptWithResource(virtueConcept, goodTenorOfProperty, schemeConcept);
 	                }
 
-	                // The critical-question prose (AIF_skosMappingType) is not a skos token here;
-	                // carry it as a free-text rdfs:comment so it stays consumable and lossless.
-	                if (!string.IsNullOrEmpty(virtue.AIFSkosMappingType))
+	                // The critical-question prose lives in AIF_criticalQuestion since #989 (it was
+	                // mis-housed in AIF_skosMappingType, which is now skos:*Match-only and empty on
+	                // the Virtues side); carry the prose as a free-text rdfs:comment so it stays
+	                // consumable and lossless.
+	                if (!string.IsNullOrEmpty(virtue.AIFCriticalQuestion))
 	                {
-	                    ontology.AnnotateConcept(virtueConcept, RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(virtue.AIFSkosMappingType, "fr"));
+	                    ontology.AnnotateConcept(virtueConcept, RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(virtue.AIFCriticalQuestion, "fr"));
 	                }
 	            }
 	        }
