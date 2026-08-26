@@ -54,15 +54,40 @@ public class Logger
 				Directory.CreateDirectory(logDirectory);
 			}
 
-			if (File.Exists(LogFile))
-			{
-				File.Delete(LogFile);
-			}
+			// #1179: never delete the previous run's log. The old File.Delete destroyed the generation
+			// log the moment a follow-up pass (e.g. --pdf-cmyk) started in the same tree, making the
+			// originating exception unrecoverable — that cost a full investigation cycle on #1177.
+			ArchivePreviousLog();
 		}
 		catch (Exception ex)
 		{
 			AnsiConsole.MarkupLine($"[bold red]Error during logger initialization: {Markup.Escape(ex.Message)}[/]");
 		}
+	}
+
+	/// <summary>
+	/// Moves the current <c>file_logger.log</c> to a timestamped sibling (<c>file_logger-yyyyMMdd-HHmmss.log</c>)
+	/// so a later run (e.g. the CMYK pass over the same tree) cannot overwrite the previous run's log.
+	/// No-op when no live log exists. A new live log is created lazily by the next <see cref="Log"/> call.
+	/// </summary>
+	public static void ArchivePreviousLog()
+	{
+		if (!File.Exists(LogFile))
+		{
+			return;
+		}
+
+		var directory = Path.GetDirectoryName(LogFile);
+		var timestamp = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+		var archivePath = Path.Combine(directory, $"file_logger-{timestamp}.log");
+		var counter = 1;
+		while (File.Exists(archivePath))
+		{
+			archivePath = Path.Combine(directory, $"file_logger-{timestamp}-{counter++}.log");
+		}
+
+		File.Move(LogFile, archivePath);
+		AnsiConsole.MarkupLine($"[dim]Previous generation log archived to '{Markup.Escape(archivePath)}'[/]");
 	}
 
 	public static Stopwatch Stopwatch;
