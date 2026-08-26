@@ -55,6 +55,21 @@ Repo GitHub : `ArgumentumGames/Argumentum`. Le compte `gh` actif sur ai-01 = **`
    **Contrôle de non-troncature** : si `length` est exactement égal au `--limit`, la liste est probablement coupée — relance avec un `--limit` plus grand avant de conclure quoi que ce soit sur une absence.
 5. **Roadmap durable** : `gh issue view 458` (issue de tracking coordination — tracks, owners, décisions jsboige enregistrées). Elle **survit à la condensation du dashboard** ; mets-la à jour quand la structure évolue.
 
+## Phase 1bis — Triage des demandes humaines GitHub (AVANT toute autre lecture)
+
+Les commentaires d'issues sont redevenus un **canal vivant** (jsboige, 2026-08-26 : *« On a commencé à mettre des commentaires dans les issues, il faudra en tenir compte dans les prochains crons »*). Ne **jamais** relire le backlog pour les trouver — un cycle complet de lecture coûte des dizaines de milliers de tokens pour ~2 demandes/mois.
+
+```bash
+scripts/triage/human-requests.sh              # 3 filets, ~1 appel API
+scripts/triage/human-requests.sh --self-test  # si ça échoue, l'organe est aveugle — le dire
+```
+
+Puis classer chaque prise **M** (mesure) / **F** (fix) / **D** (décision) / **V** (verdict) et dispatcher M+F aux workers **avec citation verbatim**, le worker répondant lui-même sur GitHub. ai-01 ne rédige plus que D et V.
+
+⚠️ `author.login` **ne discrimine pas** humain/agent : les workers poussent sous le token partagé `jsboige`. Et **Adeline n'a pas de compte** — ses demandes passent par jsboige.
+
+📖 Politique complète, mesures et angles morts : [`triage-github.md`](triage-github.md).
+
 ## Phase 2 — Lire AVANT d'agir (règle HARD, aucune exception)
 
 Avant tout merge / comment / dispatch / review :
