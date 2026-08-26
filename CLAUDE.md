@@ -154,6 +154,10 @@ Ghostscript must be resolvable on `PATH`; if it is not, the stage skips every PD
 2. Manual PDF layout calculations in `PrintAndPlayDocument.cs`
 3. CardPen Handlebars/Markdown rendering when data contains special characters
 
+### Regeneration runs — launch shell and path length (#1179, second bite of #1121)
+
+Pipeline runs must launch from the **short junction `D:\A1114`** (→ `.prep-1114-worktree`), and only from **PowerShell or cmd**. Launched from **Git-Bash/MSYS2, the junction is resolved at process spawn**: the child's working directory becomes the full worktree path (~30 chars longer), and image writes whose path crosses the ImageMagick native buffer (MAX_PATH = 260) fail as `MagickCoderErrorException: WriteBlob Failed`. Two "identical" invocations therefore do NOT have the same effective path length — the shell is part of the repro. `ImageHelper.EnsurePathWithinLimit` now fails the run at 250 chars (before the native failure), naming the path and its length. Related hardening (#1179): a document×language couple producing zero images fails the run instead of silently skipping PDF generation (the #1177 defect), and the logger archives the previous run's `file_logger.log` to `file_logger-<timestamp>.log` instead of deleting it — the CMYK pass no longer erases the generation log.
+
 ## Multilingual Support
 
 Languages: French (default), English, Russian, Portuguese, Spanish, Arabic, Farsi, Chinese (8 languages)

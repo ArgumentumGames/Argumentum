@@ -14,6 +14,25 @@ namespace Argumentum.AssetConverter
 
         private static Regex urlExtractorRegex = new Regex(@$"^data:[a-z]+\/(?:[a-z]+);base64,(?<{base64ContentGroupName}>.*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
+        /// <summary>
+        /// #1179/#1121: ImageMagick's native path buffer is MAX_PATH (260) — a longer path fails
+        /// deep inside the encoder as MagickCoderErrorException "WriteBlob Failed", after the work
+        /// is done, and historically got swallowed into a silent PDF skip. Signal well before,
+        /// naming the path and its length.
+        /// </summary>
+        public const int MaxSafeImagePathLength = 250;
+
+        public static void EnsurePathWithinLimit(string path)
+        {
+            if (path.Length > MaxSafeImagePathLength)
+            {
+                throw new InvalidOperationException(
+                    $"Image path is {path.Length} chars (> {MaxSafeImagePathLength}): {path}. "
+                    + "This exceeds the safe limit before the native MAX_PATH(260) ImageMagick write would fail (#1177/#1121). "
+                    + "Run from the short junction (D:\\A1114); note that Git-Bash/MSYS2 resolves the junction at spawn and adds ~30 chars.");
+            }
+        }
+
 
 
         public static MagickImage LoadImageFromPath(string sourceFile)
@@ -95,6 +114,8 @@ namespace Argumentum.AssetConverter
 
 			var imageFileName = GetImageFileName(config, docConfig, language, documentCardSet.CardSetName, imageName, isBack);
 
+			EnsurePathWithinLimit(imageFileName);
+
 			         if (File.Exists(imageFileName))
             {
 				Logger.Log($"Skip existing image: {imageFileName}");
@@ -124,6 +145,7 @@ namespace Argumentum.AssetConverter
                     }
                     var imageOriginalFileName = $"{imageName}.png";
                     imageOriginalFileName = Path.Combine(cardSetOriginalFolderName, imageOriginalFileName);
+                    EnsurePathWithinLimit(imageOriginalFileName);
                     if (!File.Exists(imageOriginalFileName))
                     {
                         imageFromEmbeddedUrl.Write(imageOriginalFileName);

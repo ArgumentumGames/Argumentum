@@ -144,8 +144,13 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         }
 
         [Fact]
-        public void GenerateDocumentImages_WhenFileCreationIsSkipped_ShouldStillRun()
+        public void GenerateDocumentImages_WhenImageGenerationThrows_ShouldFailLoud()
         {
+            // #1179: this test previously asserted the OPPOSITE (NotThrow + empty image list) — that
+            // graceful swallow is exactly the #1177 defect chain: hard image-generation failure (e.g.
+            // Magick WriteBlob MAX_PATH) → empty image list → silent PDF skip → stale PDF kept in place
+            // with a fresh CMYK mtime. A couple that cannot produce its images must now FAIL the run,
+            // naming the couple.
             // Arrange
             var docConfig = new CardSetDocumentConfig { DocumentName = "TestDoc", Enabled = true, NoBack = false, CardSets = new List<DocumentCardSet> { new DocumentCardSet { CardSetName = "FailingSet" } } };
             var config = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
@@ -156,33 +161,19 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
             };
 
             var harvest = new CardSetHarvest();
-            // Pour ce test, on veut toujours simuler un échec, donc on garde une URL invalide.
+            // Simule une panne dure de génération d'image (même classe que WriteBlob Failed) :
             harvest.Faces.Images.TryAdd("card1", "http://url-that-would-fail");
 
             var harvestDictionary = new ConcurrentDictionary<(string, string), Func<CardSetHarvest>>();
             harvestDictionary.TryAdd(("FailingSet", "en"), () => harvest);
-            
+
             // Act
-            ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> result = null!;
-            Action act = () => result = sut.GenerateDocumentImages(harvestDictionary);
+            Action act = () => sut.GenerateDocumentImages(harvestDictionary);
 
-            // Assert
-            act.Should().NotThrow("because the process should handle errors gracefully.");
-            
-            result.Should().NotBeNull();
-            _output.WriteLine($"Result dictionary contains {result.Count} entries.");
-            // Guard (#1046 MED #9): First() on an empty dictionary would throw an unasserted
-            // InvalidOperationException, and BeEmpty alone cannot distinguish "the failing
-            // URL was skipped gracefully" from "the generator produced nothing at all".
-            // ContainSingle pins the entry the arrange step fed in, so the empty list below
-            // means exactly one thing: the failure was handled, nothing else was produced.
-            result.Should().ContainSingle(
-                "the failing document must still produce exactly one result entry");
-            var imageList = result.First().Value;
-            _output.WriteLine($"The resulting image list for the first entry contains {imageList.Count} item(s).");
-
-            imageList.Should().BeEmpty(
-                "the failing URL must be skipped, not crash — and no other image should have been produced");
+            // Assert — le run échoue et NOMME le couple mort
+            act.Should().Throw<InvalidOperationException>()
+                .Which.Message.Should().Contain("TestDoc/en")
+                .And.Contain("1 document×language couple");
         }
 
         public void Dispose()
