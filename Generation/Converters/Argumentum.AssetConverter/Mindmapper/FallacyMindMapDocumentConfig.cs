@@ -879,21 +879,30 @@ if (mapFile != null) {
 
 		private void CreateMindMapNodes(FreemindMap freemindMap, IList<IMindMapItem> mindMapItems, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
 		{
-			var linkedItems = new HashSet<IMindMapItem>();
+			// #1181: transverse cross-links resolved from the corpus columns (crossLink_*), same
+			// semantics as the OWL emitter. The previous Identity text-matching branch predated the
+			// corpus vocabulary and was never enabled — the shipped maps carried 0 arrows.
+			var itemsByPath = CrossLinks != CrossLink.None
+				? CrossLinkResolver.ItemsByPath(mindMapItems)
+				: null;
 
 			foreach (var item in mindMapItems)
 			{
-				linkedItems.Add(item);
 				if (string.IsNullOrEmpty(item.PK)) continue;
 
 				var localPath = item.Path;
 
 				List<(CrossLink crossLinkType, List<IMindMapItem> targets)> crossLinks = new();
 
-				if (this.CrossLinks.HasFlag(CrossLink.Identity))
+				if (itemsByPath != null && item is Fallacy fallacy)
 				{
-					var identityItems = mindMapItems.Where(f => f.Text == item.Text && !linkedItems.Contains(f)).ToList();
-					crossLinks.Add((CrossLink.Identity, identityItems));
+					var byVerb = CrossLinkResolver.Resolve(fallacy, itemsByPath, CrossLinks)
+						.GroupBy(link => link.Verb)
+						.OrderBy(g => g.Key);
+					foreach (var verbGroup in byVerb)
+					{
+						crossLinks.Add((verbGroup.Key, verbGroup.Select(link => link.Target).ToList()));
+					}
 				}
 
 				var itemNode = CreateNode(item, config, language, crossLinks.ToArray());
@@ -919,6 +928,28 @@ if (mapFile != null) {
 		}
 
 		
+
+		/// <summary>
+		/// #1181: one stable color per crossLink verb. Deliberately dark/muted variants, distinct from
+		/// the 7 bright family colors used for node borders, so an arrow reads as a link, not a family.
+		/// Shared with the Virtue mindmap config (same enum, same rendering block).
+		/// </summary>
+		private static readonly Dictionary<CrossLink, string> CrossLinkColors = new Dictionary<CrossLink, string>()
+		{
+			{ CrossLink.PredatesOn, "#a35d00" },
+			{ CrossLink.Denounces, "#ff6d00" },
+			{ CrossLink.Leverages, "#005f5f" },
+			{ CrossLink.Allows, "#5b6e00" },
+			{ CrossLink.Opposes, "#8b0000" },
+			{ CrossLink.Inverts, "#4b0082" },
+			{ CrossLink.Mirrors, "#37474f" },
+			{ CrossLink.IsRelatedTo, "#795548" },
+		};
+
+		public static string GetCrossLinkColor(CrossLink verb) =>
+			CrossLinkColors.TryGetValue(verb, out var color)
+				? color
+				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned color");
 
 		private Node CreateNode(IMindMapItem item, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<IMindMapItem> targets)[] crossLinks)
 		{
@@ -948,21 +979,7 @@ if (mapFile != null) {
 					crossLinkNode.StartInclination = "892;0;";
 					crossLinkNode.EndInclination = "892;0;";
 					crossLinkNode.Destination = target.Id;
-
-					switch (crossLink.crossLinkType)
-					{
-						case CrossLink.Identity:
-							crossLinkNode.Color = "#dbffd6 ";
-							break;
-						case CrossLink.AppealTo:
-							crossLinkNode.Color = "#ccffff";
-							break;
-						case CrossLink.Opposite:
-							crossLinkNode.Color = "#ffcfcc";
-							break;
-						default:
-							throw new ArgumentOutOfRangeException($"cross link type {crossLink.crossLinkType} unsupported");
-					}
+					crossLinkNode.Color = GetCrossLinkColor(crossLink.crossLinkType);
 					itemNode.Arrowlinks.Add(crossLinkNode);
 
 				}

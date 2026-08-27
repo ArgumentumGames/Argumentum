@@ -40,6 +40,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 				{
 					Enabled = true,
 					DocumentName = "Fallacies_fr.mm",
+					// #1181: draw the transverse cross-links (8 corpus verbs) on every language map
+					CrossLinks = CrossLink.All,
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					Translations = new List<(string sourceLang, string destLang)>(new[]
 					{
@@ -104,6 +106,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				{
 					Enabled = true,
 					DocumentName = "Argumentum_Fallacies_MindMap_cards_fr.mm",
+					CrossLinks = CrossLink.All,
 					Format = MindMapFormat.Freemind,
 					DataSet = KnownDataSets.FallaciesTaxonomy,
 					InsertCardsThumbnails = true,
