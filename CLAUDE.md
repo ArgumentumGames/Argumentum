@@ -444,17 +444,24 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 
 **Mise à jour cycle 56+59 (mai 2026)** : Bug #216 corrigé avril 2026, pipeline régen post-merges #301/#302 auditée cycle 56 (Stratégie D recommandée : spot-check 5 cartes pixel diff ~15 min avant décision régen complète A ou aucune C). Tableau ci-dessus reste snapshot 17 mars 2026 (pré-fix).
 
-### État actuel par CardSet (FR - COMPLET)
+### État actuel par CardSet — **mesuré 2026-08-28 sur l'arbre Release** (régén du 22/08), identique sur **les 8 langues**
 
-| CardSet | Images | PDFs | Status |
-|---------|--------|------|--------|
-| Fallacies Tarot FR | 177 | ✅ | TarotCards_fr-1/2.pdf |
-| FallaciesWeb FR | 176 | ✅ | A0 (99MB), A4 (98MB), Thumbnails |
-| Virtues Tarot FR | 113 | ✅ | TarotCards_Virtues_fr-FacesOnly.pdf |
-| Scenarii Poker FR | 97 | ✅ | PokerCards_fr-1.pdf (12MB) |
-| Rules Tarot FR | 24 | ✅ | Dans TarotCards |
-| Memo Tarot FR | 1 | ✅ | Dans TarotCards |
-| Print&Play A4 | 34 | ✅ | Poker + Tarot Print&Play |
+⚠️ Les trois chiffres barrés ci-dessous étaient périmés dans ce fichier et auraient produit des devis d'impression faux (#1187). Un devis se chiffre **à la carte** : ne pas citer ce tableau sans re-mesurer.
+
+| CardSet | Faces | Dos | Images | PDFs |
+|---------|------:|----:|-------:|------|
+| Fallacies Tarot | 176 | 1 | 177 | TarotCards_{lang}-1/2.pdf |
+| FallaciesWeb | 176 | — | 176 | A0, A4, Thumbnails |
+| Rules Tarot | **15** ~~24~~ | — | 15 | dans TarotCards — réduit par #438 |
+| Memo Tarot | 1 | 1 | 2 | dans TarotCards |
+| Scenarii Poker | **167** ~~97~~ | **7** | 174 | PokerCards_{lang}-1.pdf |
+| Virtues Tarot | **131** ~~113~~ | 1 | 132 | TarotCards_Virtues_{lang}-FacesOnly.pdf |
+
+**Totaux fabrication** (#1187, une boîte par langue) : deck **Tarot = 192 cartes** (176 + 15 + 1) · deck **Scenarii = 167 cartes** · boîte **sans** Virtues = **359 cartes**, **avec** = **490**.
+
+⚠️ **Le deck Scenarii a 7 dos distincts**, un par catégorie (`histoire`, `mythologie`, `politique`, `pop_culture`, `relation_intime`, `vie_personnelle`, `vie_professionnelle`) — contrairement au Tarot qui partage **un** dos. C'est une contrainte de façonnage, pas un détail d'asset.
+
+⚠️ **L'arbre Debug est périmé** (Rules 24 = pré-#438, Virtues 1) : Debug et Release sont indépendants — mesurer sur celui dont la date correspond, jamais « le premier trouvé ».
 
 ### Mind Maps & SVGs — April 2026 ✅ COMPLETE
 
