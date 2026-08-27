@@ -237,6 +237,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public string ThumbnailsCardSetName { get; set; }
 
+		/// <summary>
+		/// #1197: hard bound on the longest edge (px) of the PNG the .mm references. FreeMind
+		/// decodes the source at its real resolution in a 32-bit JVM — the CardSet's Dpi only
+		/// drives the capture scale, the written PNG is WidthMM x 300 dpi (590x590 here).
+		/// </summary>
+		public int ThumbnailsMaxEdge { get; set; } = MindMapThumbnailVariant.DefaultMaxEdge;
+
 		public string ThumbnailsFileNamePattern { get; set; } = "_{item.Path}..";
 
 
@@ -1058,6 +1065,30 @@ if (mapFile != null) {
 			}
 		}
 
+		/// <summary>
+		/// Resolves the thumbnail path embedded in the .mm for <paramref name="item"/>, relative to
+		/// the document directory. #1197: routes at a bounded variant — FreeMind decodes the
+		/// referenced PNG at its real source resolution, so the .mm must never reference the
+		/// print-resolution originals (590x590 -&gt; 32-bit JVM OOM at export time).
+		/// </summary>
+		public string ResolveThumbnailPathForItem(AssetConverterConfig assetConverterConfig, string language, IMindMapItem item)
+		{
+			var cardSetDirectory = ImageHelper.GetImageFolder(assetConverterConfig, this, language, ThumbnailsCardSetName);
+			var imageFileName = MatchThumbnailsName(cardSetDirectory, item);
+			if (string.IsNullOrEmpty(imageFileName))
+			{
+				Logger.LogProblem($"No thumbnail for item {TitleFunc(item)} in directory {cardSetDirectory}");
+				return imageFileName;
+			}
+
+			imageFileName = MindMapThumbnailVariant.EnsureBoundedVariant(
+				imageFileName,
+				MindMapThumbnailVariant.GetVariantDirectory(cardSetDirectory),
+				ThumbnailsMaxEdge);
+			var targetDirectory = assetConverterConfig.GetDocumentDirectory(language);
+			return imageFileName.GetRelativePathFrom(targetDirectory);
+		}
+
 		private void AddCardIcon(IMindMapItem item, Node node, AssetConverterConfig assetConverterConfig, string language)
 		{
 			node.Icons.Add(new Icon() { BUILTIN = $"full-{item.Carte}" });
@@ -1067,21 +1098,7 @@ if (mapFile != null) {
 				var cardSetConfig = assetConverterConfig.WebBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
 				if (cardSetConfig != null)
 				{
-					this.ThumbnailsPathFunc = objItem =>
-					{
-						var cardSetDirectory = ImageHelper.GetImageFolder(assetConverterConfig, this, language, ThumbnailsCardSetName);
-						var imageFileName = MatchThumbnailsName(cardSetDirectory, item);
-						if (string.IsNullOrEmpty(imageFileName))
-						{
-							Logger.LogProblem($"No thumbnail for item {TitleFunc(item)} in directory {cardSetDirectory}");
-						}
-						else
-						{
-							var targetDirectory = assetConverterConfig.GetDocumentDirectory(language);
-							imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
-						}
-						return imageFileName;
-					};
+					this.ThumbnailsPathFunc = objItem => ResolveThumbnailPathForItem(assetConverterConfig, language, item);
 				}
 
 				var cardDoc = new XmlDocument();
