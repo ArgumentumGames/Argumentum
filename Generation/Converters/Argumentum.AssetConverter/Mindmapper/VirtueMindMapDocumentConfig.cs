@@ -315,22 +315,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private void CreateMindMapNodes(FreemindMap freemindMap, IList<IMindMapItem> mindMapItems, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
 		{
-			var linkedItems = new HashSet<IMindMapItem>();
-
+			// #1181: the Identity text-matching branch (previous enum generation, never enabled) was
+			// removed with the corpus-verb alignment — the Virtues taxonomy carries no crossLink_*
+			// columns, so CrossLinks stays None here and the list below stays empty.
 			foreach (var item in mindMapItems)
 			{
-				linkedItems.Add(item);
 				if (string.IsNullOrEmpty(item.PK)) continue;
 
 				var localPath = item.Path;
 
 				List<(CrossLink crossLinkType, List<IMindMapItem> targets)> crossLinks = new();
-
-				if (this.CrossLinks.HasFlag(CrossLink.Identity))
-				{
-					var identityItems = mindMapItems.Where(f => f.Text == item.Text && !linkedItems.Contains(f)).ToList();
-					crossLinks.Add((CrossLink.Identity, identityItems));
-				}
 
 				var itemNode = CreateNode(item, config, language, crossLinks.ToArray());
 				nodesByPath[localPath] = itemNode;
@@ -384,21 +378,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					crossLinkNode.StartInclination = "892;0;";
 					crossLinkNode.EndInclination = "892;0;";
 					crossLinkNode.Destination = target.Id;
-
-					switch (crossLink.crossLinkType)
-					{
-						case CrossLink.Identity:
-							crossLinkNode.Color = "#dbffd6 ";
-							break;
-						case CrossLink.AppealTo:
-							crossLinkNode.Color = "#ccffff";
-							break;
-						case CrossLink.Opposite:
-							crossLinkNode.Color = "#ffcfcc";
-							break;
-						default:
-							throw new ArgumentOutOfRangeException($"cross link type {crossLink.crossLinkType} unsupported");
-					}
+					crossLinkNode.Color = FallacyMindMapDocumentConfig.GetCrossLinkColor(crossLink.crossLinkType);
 					itemNode.Arrowlinks.Add(crossLinkNode);
 
 				}
