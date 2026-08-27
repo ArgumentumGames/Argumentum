@@ -147,6 +147,92 @@ namespace Argumentum.AssetConverter.VisualTests
             _output.WriteLine($"PASS: {Languages.Length} languages, every Memo back trait clears the palette band by >= {MinClearancePx}px.");
         }
 
+        /// <summary>Pre-bundle validation lane: the SAME predicates on the harvested Memo
+        /// back PNGs (Target/{lang}/Images/**/memo_back.png) — the exact pixels the tarot
+        /// page embeds. This is how a template fix gets validated minutes after a scoped
+        /// harvest (#1190 DoD: "regenerate the Memo back only, not the bundle") instead of
+        /// waiting for a full bundle pass. Opt-in via {ImageRootEnvVar}: an explicit root
+        /// must exist and EVERY language must be found there — fail loud, never green for
+        /// lack of data. Without the env var the lane runs against Target Memo images when
+        /// present and reports "not applicable" when absent — a visible note, and the
+        /// bundle-page Fact above remains the shipped-artifact guard.</summary>
+        [Fact]
+        public void Memo_Back_Separator_Trait_Clears_Palette_Band_On_Harvested_Images()
+        {
+            const string imageRootEnvVar = "ARGUMENTUM_MEMO_BACK_IMAGE_ROOT";
+            var explicitRoot = Environment.GetEnvironmentVariable(imageRootEnvVar);
+            string? root;
+            bool explicitRequest = false;
+            if (!string.IsNullOrWhiteSpace(explicitRoot))
+            {
+                if (!Directory.Exists(explicitRoot))
+                    Assert.Fail($"{imageRootEnvVar} is set to '{explicitRoot}' which does not exist — an explicitly requested image root must fail loud, never pass green.");
+                root = explicitRoot;
+                explicitRequest = true;
+            }
+            else
+            {
+                root = ExistingTargetRootOrNull();
+            }
+
+            var failures = new List<string>();
+            var table = new List<string> { "| lang | image | trait y | palette y | clearance (px) |", "|---|---|---|---|---|" };
+            int measured = 0;
+            foreach (var lang in Languages)
+            {
+                var file = root == null ? null : FindMemoBackImage(root, lang);
+                if (file == null)
+                {
+                    if (explicitRequest)
+                        failures.Add($"{lang}: no memo_back.png under {Path.Combine(root!, lang)} — an explicitly requested lane must find every language, never pass for lack of data.");
+                    else
+                        _output.WriteLine($"NOTE {lang}: no harvested memo_back.png — lane not applicable for this language.");
+                    continue;
+                }
+                using var image = new MagickImage(file);
+                var failure = MeasureCard(image, out var band, out var traits);
+                if (failure != null)
+                {
+                    failures.Add($"{lang}: {failure}");
+                    continue;
+                }
+                var last = traits.OrderBy(t => t.MaxY).Last();
+                int clearance = band.MinY - last.MaxY;
+                table.Add($"| {lang} | {Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(file)))} | {last.MinY}-{last.MaxY} | {band.MinY}-{band.MaxY} | {clearance} |");
+                measured++;
+                if (clearance < MinClearancePx)
+                    failures.Add($"{lang}: separator trait [{last.MinY}-{last.MaxY}] vs palette band [{band.MinY}-{band.MaxY}] — clearance {clearance}px < {MinClearancePx}px minimum (#1190 D2, harvested image).");
+            }
+
+            foreach (var row in table) _output.WriteLine(row);
+            if (failures.Count > 0)
+                Assert.Fail($"Harvested Memo back gutter violations (#1190 D2):\n  {string.Join("\n  ", failures)}");
+            if (measured == 0)
+                _output.WriteLine($"NOTE: lane not applicable — no harvested Memo back images found (set {imageRootEnvVar} to validate a specific harvest, or run the pipeline). This Fact asserted nothing; the bundle-page guard is the shipped-artifact one.");
+            else
+                _output.WriteLine($"PASS: {measured} harvested Memo back(s) clear the palette band by >= {MinClearancePx}px.");
+        }
+
+        /// <summary>The tarot-density Memo CardSet folder is plain "Memo" (the P&P variant
+        /// has its own folder); prefer it when both exist.</summary>
+        private static string? FindMemoBackImage(string root, string lang)
+        {
+            var candidates = Directory.EnumerateFiles(Path.Combine(root, lang), "memo_back.png", SearchOption.AllDirectories).ToList();
+            return candidates.FirstOrDefault(c => c.Contains($"{Path.DirectorySeparatorChar}Memo{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase))
+                ?? candidates.FirstOrDefault();
+        }
+
+        private static string? ExistingTargetRootOrNull()
+        {
+            var repoRoot = TestRepoRoot.Find();
+            foreach (var build in new[] { "Release", "Debug" })
+            {
+                var target = Path.Combine(repoRoot, "Generation", "Converters", "Argumentum.AssetConverter", "bin", build, "net9.0-windows", "Target");
+                if (Directory.Exists(target)) return target;
+            }
+            return null;
+        }
+
         private readonly record struct PageMeasure(int Page, int TraitMinY, int TraitMaxY, int PaletteMinY, int PaletteMaxY, string? Failure);
 
         /// <summary>Locates the first Memo back page — the page whose BOTH predicates fire
@@ -156,33 +242,38 @@ namespace Argumentum.AssetConverter.VisualTests
         /// hairlines). Then returns the measured intervals.</summary>
         private PageMeasure MeasureMemoBackPage(string pdf)
         {
-            int? pageHit = null;
-            (int MinY, int MaxY)? paletteBand = null;
-            List<(int MinY, int MaxY)>? traits = null;
             var misses = new List<(int Page, string Why)>();
             foreach (var page in CandidateMemoBackPages)
             {
                 using var card = ExtractPageCardImage(pdf, page);
-                var (w, h) = ((int)card.Width, (int)card.Height);
-                if (w < 600 || h < 1100)
-                { misses.Add((page, $"raster too small ({w}x{h}) — not a 300dpi tarot card page")); continue; }
-                var rgb = RgbBytesOrThrow(card, w, h);
-                var inventory = DominantSaturatedColors(rgb, w, h);
-                if (!DetectPaletteBand(rgb, w, h, inventory, out var band, out var whyNot))
-                { misses.Add((page, whyNot)); continue; }
-                var pageTraits = DetectTraitIntervals(rgb, w, h, inventory);
-                if (pageTraits.Count < MinTraitsOnMemoBack)
-                { misses.Add((page, $"palette found but only {pageTraits.Count} full-width hairline(s) (need >= {MinTraitsOnMemoBack}) — not the 7-family Memo back signature")); continue; }
-                pageHit = page;
-                paletteBand = band;
-                traits = pageTraits;
-                break;
+                var failure = MeasureCard(card, out var band, out var traits);
+                if (failure != null)
+                { misses.Add((page, failure)); continue; }
+                var last = traits.OrderBy(t => t.MaxY).Last();
+                return new PageMeasure(page, last.MinY, last.MaxY, band.MinY, band.MaxY, null);
             }
-            if (pageHit == null || paletteBand == null || traits == null)
-                return new PageMeasure(0, 0, 0, 0, 0,
-                    $"no Memo back page found among pages {string.Join("/", CandidateMemoBackPages)} (signature hit on none: {string.Join("; ", misses.Select(m => $"p{m.Page}: {m.Why}"))}) — either pagination moved beyond the scan window or the Memo back no longer renders its 7-family table; both must fail loud, not pass.");
-            var last = traits.OrderBy(t => t.MaxY).Last();
-            return new PageMeasure(pageHit.Value, last.MinY, last.MaxY, paletteBand.Value.MinY, paletteBand.Value.MaxY, null);
+            return new PageMeasure(0, 0, 0, 0, 0,
+                $"no Memo back page found among pages {string.Join("/", CandidateMemoBackPages)} (signature hit on none: {string.Join("; ", misses.Select(m => $"p{m.Page}: {m.Why}"))}) — either pagination moved beyond the scan window or the Memo back no longer renders its 7-family table; both must fail loud, not pass.");
+        }
+
+        /// <summary>Shared core: measures one Memo back render (embedded PDF image or
+        /// harvested PNG — same pixels, the tarot page embeds the harvest). Returns null on
+        /// success, else a failure naming the degenerate predicate.</summary>
+        private static string? MeasureCard(MagickImage card, out (int MinY, int MaxY) paletteBand, out List<(int MinY, int MaxY)> traits)
+        {
+            paletteBand = default;
+            traits = new List<(int, int)>();
+            var (w, h) = ((int)card.Width, (int)card.Height);
+            if (w < 600 || h < 1100)
+                return $"raster too small ({w}x{h}) — not a 300dpi tarot card render";
+            var rgb = RgbBytesOrThrow(card, w, h);
+            var inventory = DominantSaturatedColors(rgb, w, h);
+            if (!DetectPaletteBand(rgb, w, h, inventory, out paletteBand, out var whyNot))
+                return whyNot;
+            traits = DetectTraitIntervals(rgb, w, h, inventory);
+            if (traits.Count < MinTraitsOnMemoBack)
+                return $"palette found but only {traits.Count} full-width hairline(s) (need >= {MinTraitsOnMemoBack}) — not the 7-family Memo back signature";
+            return null;
         }
 
         /// <summary>The Memo back draws one border-bottom per family row — 7 rows, of which
