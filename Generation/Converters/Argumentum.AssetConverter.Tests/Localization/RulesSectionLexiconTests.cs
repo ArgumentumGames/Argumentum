@@ -68,17 +68,15 @@ namespace Argumentum.AssetConverter.Tests.Localization
 
 		/// <summary>
 		/// The exact set of (language column, section) pairs whose label floats across the four
-		/// parallel cards, measured on master <c>5022ad71</c> — nine of them, tracked by #1199.
-		/// fr / pt / es are clean and MUST stay absent from this set.
+		/// parallel cards, measured on master <c>5022ad71</c> — nine originally, tracked by #1199.
+		/// fr / pt / es are clean and MUST stay absent from this set. en/S2, en/S3, ru/S3 and
+		/// fa/S3 were repaired (2026-08-27) and removed; the remaining five need native-speaker
+		/// arbitration (ar/fa/zh section vocabulary), gated on the #988 instrument.
 		/// </summary>
 		private static readonly string[] KnownFloatingSections =
 		{
-			"Text_en/S2",   // Components (07, 13) vs Material (09, 11)
-			"Text_en/S3",   // Game overview / Summary of the game / Game summary
-			"Text_ru/S3",   // 2 terms
 			"Text_ar/S2",   // 3 terms
 			"Text_fa/S2",   // 3 terms
-			"Text_fa/S3",   // 2 terms — an ezafe present on 3 cards, absent on the 4th
 			"Text_fa/S4",   // 3 terms
 			"Text_zh/S3",   // 2 terms
 			"Text_zh/S4",   // 2 terms
