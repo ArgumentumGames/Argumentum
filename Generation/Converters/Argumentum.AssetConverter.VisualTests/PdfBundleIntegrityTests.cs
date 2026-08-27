@@ -624,10 +624,53 @@ namespace Argumentum.AssetConverter.VisualTests
         private static string NormalizeLabel(string label) =>
             FoldScriptVariants(label.Trim().ToUpperInvariant());
 
-        /// <summary>Folds Persian letter variants onto their Arabic look-alikes (same glyph in
-        /// the deck's template font): yeh U+06CC→U+064A, keheh U+06A9→U+0643.</summary>
-        private static string FoldScriptVariants(string s) =>
-            s.Replace('ی', 'ي').Replace('ک', 'ك');
+        /// <summary>Folds Persian letter variants onto the glyphs the deck's template font
+        /// actually draws. Measured on the template's exact font stack ('Vazirmatn','Noto
+        /// Naskh Arabic',sans-serif): Persian yeh U+06CC and Arabic yeh U+064A render
+        /// identically in initial and medial position (0 differing pixels), but the Persian
+        /// yeh loses its two underdots in final/isolated form (120 differing pixels, bbox at
+        /// word-end). The fold is therefore positional: a ی/ک is folded only when followed by
+        /// a connecting letter — never at end of string, before whitespace, or before a ZWNJ
+        /// (U+200C), the three contexts that produce a final or isolated form (#1185).</summary>
+        private static string FoldScriptVariants(string s)
+        {
+            var chars = s.ToCharArray();
+            var sb = new System.Text.StringBuilder(chars.Length);
+            for (int i = 0; i < chars.Length; i++)
+            {
+                char c = chars[i];
+                if ((c == 'ی' || c == 'ک')
+                    && i + 1 < chars.Length
+                    && !char.IsWhiteSpace(chars[i + 1])
+                    && chars[i + 1] != '\u200C')
+                {
+                    c = (c == 'ی') ? 'ي' : 'ك';
+                }
+                sb.Append(c);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>#1185 DoD: the fold itself must be positional. The History pair differs
+        /// only in a MEDIAL yeh (Arabic U+064A vs Persian U+06CC) and must coincide — that is
+        /// the measured incentive for folding at all (byte-identical backs on the release).
+        /// The second pair differs in a FINAL yeh, where the Persian form keeps its
+        /// underdots rendered (120 differing pixels measured); an unconditional fold would
+        /// exempt a real final-yeh recopy — a false green, the defect mode of #1112/#497 —
+        /// instead of flagging it. Without the negative assertion the fix is assumed, not
+        /// tested (#1046).</summary>
+        [Theory]
+        [InlineData("تاريخ", "تاریخ", true)]   // medial yeh folds → coincide
+        [InlineData("تاریخ", "تاريخ", true)]
+        [InlineData("زندگی", "زندگي", false)]  // final yeh must NOT fold → distinct
+        [InlineData("زندگي", "زندگی", false)]
+        public void FoldScriptVariants_is_positional(string a, string b, bool coincide)
+        {
+            var na = NormalizeLabel(a);
+            var nb = NormalizeLabel(b);
+            if (coincide) Assert.Equal(na, nb);
+            else Assert.NotEqual(na, nb);
+        }
 
         /// <summary>Minimal RFC 4180 CSV reader (double-quote escaping, quoted newlines) — enough
         /// to read the Scenarii category columns without pulling CsvHelper's configuration into
