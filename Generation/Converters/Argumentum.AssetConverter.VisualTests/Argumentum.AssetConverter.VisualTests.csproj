@@ -38,6 +38,13 @@
        hence the `using Argumentum.AssetConverter.Tests;` in the consumers below. -->
   <ItemGroup>
     <Compile Include="..\Argumentum.AssetConverter.Tests\TestRepoRoot.cs" Link="TestRepoRoot.cs" />
+    <!-- #1187 PDF card-count organ : mêmes règles que TestRepoRoot ci-dessus (source unique sur
+         disque, compilée dans cet assembly — pas de ProjectReference entre les deux suites #1054,
+         pas de duplicata). L'organe pur vit dans Tests/PdfAssembly/, le comparateur bundle
+         (PdfCardCountIntegrityTests.cs, ce projet) le consomme via ce link. -->
+    <Compile Include="..\Argumentum.AssetConverter.Tests\HarvestCardIdsCsv.cs" Link="HarvestCardIdsCsv.cs" />
+    <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfCardCountIntegrity.cs" Link="PdfAssembly\PdfCardCountIntegrity.cs" />
+    <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfDeckCountDerivation.cs" Link="PdfAssembly\PdfDeckCountDerivation.cs" />
   </ItemGroup>
 
   <ItemGroup>

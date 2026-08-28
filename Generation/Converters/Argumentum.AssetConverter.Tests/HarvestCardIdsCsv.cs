@@ -53,6 +53,33 @@ namespace Argumentum.AssetConverter.Tests
 		public HashSet<string> LoadColumnSet(string columnName, string? filterField = null, IReadOnlyList<string>? filterValues = null)
 			=> new HashSet<string>(LoadFromFile(_path, columnName, filterField, filterValues), StringComparer.Ordinal);
 
+		/// <summary>
+		/// Reads the bound file's header record (raw column names, in file order). Used by the
+		/// #1187 PDF-level card-count derivation to count data rows through the same
+		/// encoding-tolerant reader as <see cref="LoadColumn"/> without having to name a column
+		/// (any column's row count is the row count; the first header column is as good as any).
+		/// </summary>
+		public IReadOnlyList<string> ReadHeader()
+		{
+			if (!File.Exists(_path))
+				throw new InvalidOperationException($"HarvestCardIdsCsv: CSV not found at '{_path}'.");
+			var content = DecodeCsvBytes(File.ReadAllBytes(_path), out _);
+			if (string.IsNullOrWhiteSpace(content))
+				throw new InvalidOperationException($"HarvestCardIdsCsv: source '{_path}' is empty (0 bytes / whitespace only).");
+			using var reader = new StringReader(content);
+			var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+			{
+				PrepareHeaderForMatch = args => NormalizeHeader(args.Header),
+				MissingFieldFound = null,
+				BadDataFound = null,
+				HeaderValidated = null,
+			};
+			using var csv = new CsvReader(reader, config);
+			if (!csv.Read() || !csv.ReadHeader() || csv.HeaderRecord is null)
+				throw new InvalidOperationException($"HarvestCardIdsCsv: source '{_path}' has no readable header row.");
+			return csv.HeaderRecord.ToList();
+		}
+
 		// ─────────────────────────────────────────────────────────────────────────
 		// Static pure API (no I/O) — directly testable on in-memory content.
 		// ─────────────────────────────────────────────────────────────────────────
