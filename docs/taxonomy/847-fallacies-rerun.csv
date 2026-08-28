@@ -1,0 +1,93 @@
+# 847 release re-run 2026-08-28 — see 847-virtues-two-layer.md. MEASURE not verdict.
+level,node,n_leaves,undercut,undermine,rebut,entropy_norm_a,homogeneity_ratio,native_scheme_n,fail_loud_rate_b,a_high,b_high,decision_rule_tag,n_gate
+d1,Abus de langage,57,47,10,0,0.67,0.825,7,0.877,True,True,B+A,supported
+d1,Erreur de raisonnement,14,12,2,0,0.592,0.857,9,0.357,True,False,A-candidate,supported
+d1,Erreur mathématique,12,8,4,0,0.918,0.667,6,0.5,True,True,B+A,supported
+d1,Influence,12,1,11,0,0.414,0.917,7,0.417,False,False,coherent,supported
+d1,Insuffisance,16,10,6,0,0.954,0.625,8,0.5,True,True,B+A,supported
+d1,Obstruction,12,1,6,5,0.836,0.5,4,0.667,True,True,B+A,supported
+d1,Tricherie,22,8,14,0,0.946,0.636,9,0.591,True,True,B+A,supported
+d2,Ad hominem,4,0,3,1,0.811,0.75,4,0.0,True,False,A-candidate,thin
+d2,Ambiguïté,31,28,3,0,0.459,0.903,3,0.903,False,True,B,supported
+d2,Appel à l’émotion,4,0,4,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d2,Argument bâclé,7,5,2,0,0.863,0.714,4,0.429,True,False,A-candidate,indicative
+d2,Arranger les faits,4,0,4,0,0.0,1.0,1,0.75,False,True,B,thin
+d2,Causalité douteuse,5,4,1,0,0.722,0.8,4,0.2,True,False,A-candidate,indicative
+d2,Changement de cap,5,4,1,0,0.722,0.8,1,0.8,True,True,B+A,indicative
+d2,Comparaison fallacieuse,10,7,3,0,0.881,0.7,1,0.9,True,True,B+A,supported
+d2,Définition inexacte,16,12,4,0,0.811,0.75,3,0.812,True,True,B+A,supported
+d2,Généralisation abusive,4,3,1,0,0.811,0.75,2,0.5,True,True,B+A,thin
+d2,Manipulation mentale,5,1,4,0,0.722,0.8,2,0.6,True,True,B+A,indicative
+d2,Mauvaise composition,4,4,0,0,0.0,1.0,3,0.25,False,False,coherent,thin
+d2,Mauvaise déduction,4,3,1,0,0.811,0.75,2,0.5,True,True,B+A,thin
+d2,Mauvaise interprétation,4,3,1,0,0.811,0.75,3,0.25,True,False,A-candidate,thin
+d2,Pensée biaisée,13,4,9,0,0.89,0.692,7,0.462,True,False,A-candidate,supported
+d2,Procédé rhétorique,3,0,3,0,0.0,1.0,1,0.667,False,True,B,thin
+d2,Préjugé,4,3,1,0,0.811,0.75,2,0.5,True,True,B+A,thin
+d2,Refus du débat,4,0,2,2,1.0,0.5,0,1.0,True,True,B+A,thin
+d2,Résultat invalide,4,2,2,0,1.0,0.5,1,0.75,True,True,B+A,thin
+d2,Saboter le débat,3,1,1,1,1.0,0.333,0,1.0,True,True,B+A,thin
+d2,Surinterprétation,4,2,2,0,1.0,0.5,2,0.5,True,True,B+A,thin
+d3,Acception arbitraire,6,4,2,0,0.918,0.667,1,0.833,True,True,B+A,indicative
+d3,Acception vague,4,3,1,0,0.811,0.75,1,0.75,True,True,B+A,thin
+d3,Ambiguïté narrative,11,10,1,0,0.439,0.909,0,1.0,False,True,B,supported
+d3,Amphibologie,6,6,0,0,0.0,1.0,0,1.0,False,True,B,indicative
+d3,Appel aux conséquences,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Argument des mauvaises raisons,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Argument d’autorité,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Argument vide,2,1,1,0,1.0,0.5,2,0.0,True,False,A-candidate,thin
+d3,Attaque personnelle,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Attention sélective,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Beurre et argent du beurre,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Biais culturels,3,1,2,0,0.918,0.667,1,0.667,True,True,B+A,thin
+d3,Biais naturels,8,3,5,0,0.954,0.625,5,0.375,True,False,A-candidate,supported
+d3,Biais théoriques,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Comparaison abusive,3,2,1,0,0.918,0.667,0,1.0,True,True,B+A,thin
+d3,Complication exagérée,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Conclusion hâtive,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Conditionnement,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Connivence,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Définition inconsistante,5,5,0,0,0.0,1.0,0,1.0,False,True,B,indicative
+d3,Effet cigogne,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Empoisonner le puits,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Equivoque,13,12,1,0,0.391,0.923,2,0.846,False,True,B,supported
+d3,Erreur de calcul,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Erreur de logique propositionnelle,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Erreur de modalité,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Erreur de quantification,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Evasion,1,0,0,1,0.0,1.0,0,1.0,False,True,B,thin
+d3,Exigence relâchée,2,2,0,0,0.0,1.0,1,0.5,False,True,B,thin
+d3,Exigence renforcée,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Fausse analogie,4,3,1,0,0.811,0.75,1,0.75,True,True,B+A,thin
+d3,Fausse attribution,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Humour,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Imprécision,2,1,1,0,1.0,0.5,1,0.5,True,True,B+A,thin
+d3,Inconsistance,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Infini trompeur,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Influence non verbale,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Inversion de causalité,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Jeu de pouvoir,2,1,1,0,1.0,0.5,1,0.5,True,True,B+A,thin
+d3,Justification triviale,3,3,0,0,0.0,1.0,2,0.333,False,False,coherent,thin
+d3,Langage persuasif,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Manque de parcimonie,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Mensonge,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Opération inappropriée,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Poésie,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Preuve par assertion,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Probabilités faussées,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Procès en inconsistance,1,0,0,1,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Pétition de principe,2,1,1,0,1.0,0.5,1,0.5,True,True,B+A,thin
+d3,Relation infondée,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Relativisme abusif,1,0,0,1,0.0,1.0,0,1.0,False,True,B,thin
+d3,Repoussoir,2,0,2,0,0.0,1.0,2,0.0,False,False,coherent,thin
+d3,Sauvetage ad hoc,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Sophisme de l’accident,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Sophisme d’Explication,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Sophisme d’association,2,2,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Sophisme génétique,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Sophisme ludique,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Sophisme moraliste,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Sophisme naturaliste,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Syllogisme invalide,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Transfert illicite,1,1,0,0,0.0,1.0,0,1.0,False,True,B,thin
+d3,Échantillon biaisé,1,0,1,0,0.0,1.0,0,1.0,False,True,B,thin
