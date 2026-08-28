@@ -27,7 +27,9 @@ namespace Argumentum.AssetConverter.Tests
 	/// <c>sous-catégorie</c>, <c>print_and_play</c> all match regardless of accent form.</para>
 	/// <para><b>No silent failure</b>: a missing target column, a missing filter column, or an
 	/// empty/header-only file throws <see cref="InvalidOperationException"/> naming the column, the
-	/// source path, and the number of data rows actually read.</para>
+	/// source path, the number of data rows actually read, and the <i>detected encoding</i> (so a
+	/// silent Latin-1 fallback that swallows a non-UTF-8 source is visible from the failure alone —
+	/// the reviewer concern raised against PR #1212 T2).</para>
 	/// </remarks>
 	public sealed class HarvestCardIdsCsv
 	{
@@ -80,43 +82,74 @@ namespace Argumentum.AssetConverter.Tests
 		{
 			if (!File.Exists(path))
 				throw new InvalidOperationException($"HarvestCardIdsCsv: CSV not found at '{path}'.");
-			var content = DecodeCsvBytes(File.ReadAllBytes(path));
-			return Extract(content, columnName, filterField, filterValues, path);
+			var content = DecodeCsvBytes(File.ReadAllBytes(path), out var detectedEncoding);
+			return Extract(content, columnName, filterField, filterValues, path, detectedEncoding);
 		}
 
-		private static string DecodeCsvBytes(byte[] bytes)
+		/// <summary>
+		/// Decodes the raw CSV bytes and reports the encoding that was used (via <paramref name="detectedEncoding"/>).
+		/// Callers can log <c>detectedEncoding</c> to surface silent encoding choices — particularly the
+		/// Latin-1 fallback, which by design swallows a non-UTF-8 source without raising so that an accented
+		/// character never degrades to a replacement glyph (production pattern, mirrored from
+		/// <see cref="CsvBase{T,TMap}.LoadFromContent"/>). The detection order is:
+		/// <list type="number">
+		///   <item>UTF-8 BOM (0xEF 0xBB 0xBF)</item>
+		///   <item>UTF-16 LE BOM (0xFF 0xFE)</item>
+		///   <item>UTF-16 BE BOM (0xFE 0xFF)</item>
+		///   <item>strict UTF-8 (throws on invalid bytes)</item>
+		///   <item>Latin-1 fallback (ISO-8859-1, never throws)</item>
+		/// </list>
+		/// </summary>
+		private static string DecodeCsvBytes(byte[] bytes, out string detectedEncoding)
 		{
 			if (bytes == null || bytes.Length == 0)
+			{
+				detectedEncoding = "<empty>";
 				return string.Empty;
+			}
 
 			// Byte-Order-Mark detection first (UTF-8, UTF-16 LE, UTF-16 BE).
 			if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
+			{
+				detectedEncoding = "UTF-8 BOM";
 				return Encoding.UTF8.GetString(bytes, 3, bytes.Length - 3);
+			}
 			if (bytes.Length >= 2 && bytes[0] == 0xFF && bytes[1] == 0xFE)
+			{
+				detectedEncoding = "UTF-16 LE BOM";
 				return Encoding.Unicode.GetString(bytes, 2, bytes.Length - 2);
+			}
 			if (bytes.Length >= 2 && bytes[0] == 0xFE && bytes[1] == 0xFF)
+			{
+				detectedEncoding = "UTF-16 BE BOM";
 				return Encoding.BigEndianUnicode.GetString(bytes, 2, bytes.Length - 2);
+			}
 
 			// No BOM: accept the file as strict UTF-8; if that fails, fall back to Latin-1 so an
 			// accented source never silently degrades to replacement characters.
 			try
 			{
+				detectedEncoding = "UTF-8 (no BOM, strict)";
 				return new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true).GetString(bytes);
 			}
 			catch (DecoderFallbackException)
 			{
+				detectedEncoding = "Latin-1 (ISO-8859-1 fallback)";
 				return Encoding.Latin1.GetString(bytes);
 			}
 		}
 
 		private static IReadOnlyList<string> Extract(string csvContent, string columnName,
-			string? filterField, IReadOnlyList<string>? filterValues, string? sourcePath)
+			string? filterField, IReadOnlyList<string>? filterValues, string? sourcePath, string? detectedEncoding = null)
 		{
+			// Surface the encoding choice via the exception messages so a misread (Latin-1 fallback
+			// silently kicking in) is detectable from the failure alone, without needing the trace log.
+			var encodingTag = string.IsNullOrEmpty(detectedEncoding) ? "" : $" [decoded as {detectedEncoding}]";
 			if (columnName is null) throw new ArgumentNullException(nameof(columnName));
 
 			if (string.IsNullOrWhiteSpace(csvContent))
 				throw new InvalidOperationException(
-					$"HarvestCardIdsCsv: source '{sourcePath ?? "<content>"}' is empty (0 bytes / whitespace only).");
+					$"HarvestCardIdsCsv: source '{sourcePath ?? "<content>"}' is empty (0 bytes / whitespace only).{encodingTag}");
 
 			var target = NormalizeHeader(columnName);
 			var filter = filterField is null ? null : NormalizeHeader(filterField);
@@ -137,17 +170,17 @@ namespace Argumentum.AssetConverter.Tests
 
 			if (rows.Count == 0)
 				throw new InvalidOperationException(
-					$"HarvestCardIdsCsv: source '{sourcePath ?? "<content>"}' has 0 data rows (empty or header-only). " +
+					$"HarvestCardIdsCsv: source '{sourcePath ?? "<content>"}' has 0 data rows (empty or header-only).{encodingTag} " +
 					$"Headers read: {FormatHeader(header)}.");
 
 			if (!normalizedHeader.Contains(target))
 				throw new InvalidOperationException(
-					$"HarvestCardIdsCsv: column '{columnName}' not found in '{sourcePath ?? "<content>"}'. " +
+					$"HarvestCardIdsCsv: column '{columnName}' not found in '{sourcePath ?? "<content>"}'.{encodingTag} " +
 					$"{rows.Count} data row(s) read; headers present: {FormatHeader(header)}.");
 
 			if (filter != null && !normalizedHeader.Contains(filter))
 				throw new InvalidOperationException(
-					$"HarvestCardIdsCsv: filter column '{filterField}' not found in '{sourcePath ?? "<content>"}'. " +
+					$"HarvestCardIdsCsv: filter column '{filterField}' not found in '{sourcePath ?? "<content>"}'.{encodingTag} " +
 					$"{rows.Count} data row(s) read; headers present: {FormatHeader(header)}.");
 
 			var allowedFilter = filterValues is null
