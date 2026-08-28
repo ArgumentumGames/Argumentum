@@ -123,5 +123,77 @@ namespace Argumentum.AssetConverter.Tests
 				"(=176). Range de soupçon 170-180 — hors de cette fourchette, un nœud a été ajouté/retiré ou le " +
 				"filtre a dérivé et il faut régénérer + re-valider les PDFs.");
 		}
+
+		// ─────────────────────────────────────────────────────────────────────────
+		// (6) L'étiquette d'encodage atteint réellement le message d'échec (#1213 / review T2.2).
+		//     Le repli Latin-1 de DecodeCsvBytes est SILENCIEUX par conception : il ne lève pas, pour
+		//     qu'un accent ne dégénère jamais en caractère de remplacement. Le prix est qu'une source
+		//     mal encodée se lit « avec succès » et fausse les comptes sans rien dire. #1213 y répond
+		//     en suffixant les InvalidOperationException par « [decoded as …] ».
+		//
+		//     Un diagnostic que rien n'exerce se perd au premier refactor : ce Fact est l'organe qui le
+		//     tient. Il est gardé DANS LES DEUX SENS — il échoue si l'étiquette disparaît (régression),
+		//     et il échoue aussi si elle est figée sur « Latin-1 » (étiquette décorative, qui mentirait
+		//     sur une source propre et serait pire que pas d'étiquette du tout puisqu'elle inspire
+		//     confiance).
+		//
+		//     Les deux fichiers sont écrits en octets bruts et ne diffèrent QUE par l'encodage de
+		//     « été » : Latin-1 (0xE9) contre UTF-8 (0xC3 0xA9) précédé du BOM. L'encodage est donc la
+		//     seule variable de l'expérience. Les octets sont choisis, pas devinés : 0xE9 seul est
+		//     invalide en UTF-8 (il réclame deux octets de continuation, « t » = 0x74 n'en est pas un),
+		//     donc le repli est réellement emprunté et non simplement supposé.
+		// ─────────────────────────────────────────────────────────────────────────
+		[Fact]
+		public void Failure_Message_Names_The_Encoding_Actually_Used_Both_Directions()
+		{
+			var dir = Path.Combine(Path.GetTempPath(), "argumentum-1213-" + Guid.NewGuid().ToString("N"));
+			Directory.CreateDirectory(dir);
+			try
+			{
+				// (a) Source NON-UTF-8 — « été,1 » en Latin-1 ⇒ UTF-8 strict échoue, le repli est pris.
+				var latin1 = Path.Combine(dir, "latin1.csv");
+				File.WriteAllBytes(latin1, new byte[]
+				{
+					0x74, 0x69, 0x74, 0x72, 0x65, 0x2C, 0x76, 0x61, 0x6C, 0x0D, 0x0A, // titre,val + CRLF
+					0xE9, 0x74, 0xE9, 0x2C, 0x31, 0x0D, 0x0A,                         // été,1 (Latin-1) + CRLF
+				});
+
+				var latin1Failure = Assert.Throws<InvalidOperationException>(
+					() => new HarvestCardIdsCsv(latin1).LoadColumn("colonne-absente"));
+
+				latin1Failure.Message.Should().Contain("Latin-1",
+					"le repli Latin-1 est silencieux par conception — s'il n'est pas nommé dans l'échec, une " +
+					"source mal encodée devient indiscernable d'une source propre, et c'est exactement le " +
+					"reproche de la review T2.2 sur #1212. Message obtenu : " + latin1Failure.Message);
+				latin1Failure.Message.Should().Contain("colonne-absente",
+					"l'étiquette d'encodage s'AJOUTE au diagnostic existant, elle ne le remplace pas : la " +
+					"colonne manquante doit rester nommée. Message obtenu : " + latin1Failure.Message);
+
+				// (b) Contrôle inverse — même contenu, encodé proprement en UTF-8 avec BOM. Sans ce
+				//     second sens, une étiquette figée en dur sur « Latin-1 » passerait (a) sans rien
+				//     mesurer.
+				var utf8 = Path.Combine(dir, "utf8bom.csv");
+				File.WriteAllBytes(utf8, new byte[]
+				{
+					0xEF, 0xBB, 0xBF,                                                 // BOM UTF-8
+					0x74, 0x69, 0x74, 0x72, 0x65, 0x2C, 0x76, 0x61, 0x6C, 0x0D, 0x0A, // titre,val + CRLF
+					0xC3, 0xA9, 0x74, 0xC3, 0xA9, 0x2C, 0x31, 0x0D, 0x0A,             // été,1 (UTF-8) + CRLF
+				});
+
+				var utf8Failure = Assert.Throws<InvalidOperationException>(
+					() => new HarvestCardIdsCsv(utf8).LoadColumn("colonne-absente"));
+
+				utf8Failure.Message.Should().Contain("UTF-8 BOM",
+					"une source à BOM UTF-8 doit être annoncée comme telle, sans quoi l'étiquette ne " +
+					"distingue rien. Message obtenu : " + utf8Failure.Message);
+				utf8Failure.Message.Should().NotContain("Latin-1",
+					"une source propre étiquetée « Latin-1 » signalerait une étiquette décorative : elle " +
+					"inspirerait une confiance qu'elle ne mesure pas. Message obtenu : " + utf8Failure.Message);
+			}
+			finally
+			{
+				try { Directory.Delete(dir, recursive: true); } catch (IOException) { }
+			}
+		}
 	}
 }
