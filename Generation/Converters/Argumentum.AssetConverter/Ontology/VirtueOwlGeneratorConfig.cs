@@ -134,6 +134,32 @@ namespace Argumentum.AssetConverter.Ontology
 	        var goodTenorOfProperty = new RDFResource(aifGoodTenorOfUri);
 	        ontology.DeclareObjectProperty(goodTenorOfProperty);
 
+	        // ── #989 branch B — AIF attack typing with derivation provenance ──
+	        // The Virtues' AIF_attackType/AIF_attackedNode values were back-filled by a deterministic
+	        // 3-branch script (plan #750 v2, tools/499-virtues-aif-columns-apply.py, PR #754/#755):
+	        // 206/222 carry the default. Publishing them bare would suggest line-by-line argumentative
+	        // judgment, so every emitted assertion carries a provenance marker. The marker is
+	        // RE-DERIVED at emission (see DeriveAttackTypeProvenance): a stored pair equal to what
+	        // the ratified rule would produce is "script-derived"; any deviation is "human-reviewed"
+	        // — a future real revision (#989 branch A) flips the markers with no schema change.
+	        var aifAttackTypeProp = new RDFResource($"{OntologyNamespace}aifAttackType");
+	        var aifAttackedNodeProp = new RDFResource($"{OntologyNamespace}aifAttackedNode");
+	        ontology.DeclareObjectProperty(aifAttackedNodeProp);
+	        var aifAttackTypeProvenanceProp = new RDFResource($"{OntologyNamespace}aifAttackTypeProvenance");
+	        ontology.Annotate(RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(DerivationDeclaration, "en"));
+
+	        var aifNodeResources = new Dictionary<string, RDFResource>();
+	        RDFResource AifNode(string nodeName)
+	        {
+	            if (!aifNodeResources.TryGetValue(nodeName, out var res))
+	            {
+	                res = new RDFResource($"{ExternalReferenceOntologyNamespaceURI}{nodeName}");
+	                ontology.DeclareClass(res);
+	                aifNodeResources[nodeName] = res;
+	            }
+	            return res;
+	        }
+
 	        // Scheme declaration
 	        var schemeName = GetId(virtues.First().TitleEn);
 	        RDFResource mainScheme = new RDFResource($"{OntologyNamespace}{schemeName}Scheme");
@@ -184,10 +210,24 @@ namespace Argumentum.AssetConverter.Ontology
 	                // mis-housed in AIF_skosMappingType, which is now skos:*Match-only and empty on
 	                // the Virtues side); carry the prose as a free-text rdfs:comment so it stays
 	                // consumable and lossless.
-	                if (!string.IsNullOrEmpty(virtue.AIFCriticalQuestion))
-	                {
-	                    ontology.AnnotateConcept(virtueConcept, RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(virtue.AIFCriticalQuestion, "fr"));
-	                }
+                if (!string.IsNullOrEmpty(virtue.AIFCriticalQuestion))
+                {
+                    ontology.AnnotateConcept(virtueConcept, RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(virtue.AIFCriticalQuestion, "fr"));
+                }
+	            }
+
+	            // #989 branch B — AIF attack typing + derivation provenance (mirrors the Fallacies
+	            // emission shape in OwlDocumentConfig.CreateOwlDocument). The root Virtue (pk 0, no
+	            // scheme) has empty AIF_attackType by design and emits nothing here.
+	            if (!string.IsNullOrWhiteSpace(virtue.AIFAttackType))
+	            {
+	                var storedType = virtue.AIFAttackType.Trim();
+	                var storedNode = virtue.AIFAttackedNode?.Trim() ?? "";
+	                ontology.AnnotateConcept(virtueConcept, aifAttackTypeProp, new RDFPlainLiteral(storedType));
+	                if (!string.IsNullOrWhiteSpace(storedNode))
+	                    ontology.AnnotateConceptWithResource(virtueConcept, aifAttackedNodeProp, AifNode(storedNode));
+	                ontology.AnnotateConcept(virtueConcept, aifAttackTypeProvenanceProp,
+	                    new RDFPlainLiteral(DeriveAttackTypeProvenance(virtue)));
 	            }
 	        }
 
@@ -195,6 +235,51 @@ namespace Argumentum.AssetConverter.Ontology
 	        await ontology.ToFileAsync(OWLEnums.OWLFormats.OWL2XML, fileName);
 	        Logger.LogSuccess($"Virtue Owl document {fileName} successfully saved");
 	    }
+
+	    /// <summary>
+	    /// #989 branch B — re-derives the ratified 3-branch back-fill rule (plan #750 v2,
+	    /// tools/499-virtues-aif-columns-apply.py) and classifies the STORED pair:
+	    /// equal to the rule output ⇒ "script-derived"; any deviation ⇒ "human-reviewed".
+	    /// Public static so the organ test can drive it on fabricated witnesses (sensitivity
+	    /// proof: the marker is computed, not a constant).
+	    /// </summary>
+	    public static string DeriveAttackTypeProvenance(Virtue virtue)
+	    {
+	        var opposes = (virtue.CrossLinkOpposes ?? "")
+	            .Split(';', StringSplitOptions.RemoveEmptyEntries)
+	            .Select(x => x.Trim())
+	            .ToHashSet();
+	        var (ruleType, ruleNode) =
+	            opposes.Overlaps(UndermineOverrideFallacies) ? ("undermine", "I-node")
+	            : opposes.Overlaps(RebutOverrideFallacies) ? ("rebut", "CA-node")
+	            : ("undercut", "RA-node");
+	        var storedType = (virtue.AIFAttackType ?? "").Trim();
+	        var storedNode = (virtue.AIFAttackedNode ?? "").Trim();
+	        return storedType == ruleType && storedNode == ruleNode
+	            ? "script-derived"
+	            : "human-reviewed";
+	    }
+
+	    /// <summary>Plan #750 v2 override sets (ratified; fallacy PKs the virtue may oppose).</summary>
+	    public static readonly string[] UndermineOverrideFallacies = { "889", "804" };
+
+	    public static readonly string[] RebutOverrideFallacies = { "340" };
+
+	    /// <summary>
+	    /// The derivation declaration carried as an ontology-level rdfs:comment — the whole point
+	    /// of #989 branch B: a reader who has never seen the issue can tell a derived value from a
+	    /// reviewed one. The perfect 1:1 type↔node coupling on the Virtues side (undercut↔RA ×206,
+	    /// undermine↔I ×13, rebut↔CA ×3) is the script fingerprint — on the human-curated Fallacies
+	    /// side the same columns diverge; any real revision here would break that 1:1 pattern.
+	    /// </summary>
+	    public const string DerivationDeclaration =
+	        "aifAttackType/aifAttackedNode on these virtues were back-filled by a deterministic " +
+	        "3-branch rule (plan #750 v2, tools/499-virtues-aif-columns-apply.py): default -> " +
+	        "undercut/RA-node; opposition to fallacy 889 or 804 -> undermine/I-node; opposition to " +
+	        "fallacy 340 -> rebut/CA-node (206/13/3 of 222). Each assertion carries " +
+	        "aifAttackTypeProvenance: 'script-derived' when the stored pair equals the rule output " +
+	        "(re-derived at emission), 'human-reviewed' when it deviates (#989). The exact 1:1 " +
+	        "type<->node coupling is the script fingerprint; a hand-revised corpus breaks it.";
 
 	    private RDFResource GetVirtueConcept(Virtue targetVirtue,
 	     OwlAdapter ontology, RDFResource mainScheme)
