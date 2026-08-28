@@ -69,17 +69,14 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// <summary>
 		/// The exact set of (language column, section) pairs whose label floats across the four
 		/// parallel cards, measured on master <c>5022ad71</c> — nine originally, tracked by #1199.
-		/// fr / pt / es are clean and MUST stay absent from this set. en/S2, en/S3, ru/S3 and
-		/// fa/S3 were repaired (2026-08-27) and removed; the remaining five need native-speaker
-		/// arbitration (ar/fa/zh section vocabulary), gated on the #988 instrument.
+		/// fr / pt / es were clean throughout. en/S2, en/S3, ru/S3 and fa/S3 were repaired
+		/// (2026-08-27, PR #1203); the last five — ar/S2, fa/S2, fa/S4, zh/S3, zh/S4 — were
+		/// arbitrated by gpt-5.5 as a native-speaker proxy (2026-08-28). The set is now EMPTY:
+		/// that is the end state of #1199, not a budget. Keep it empty — a new entry here means
+		/// the navigation lexicon drifted again and must be repaired, not re-budgeted.
 		/// </summary>
 		private static readonly string[] KnownFloatingSections =
 		{
-			"Text_ar/S2",   // 3 terms
-			"Text_fa/S2",   // 3 terms
-			"Text_fa/S4",   // 3 terms
-			"Text_zh/S3",   // 2 terms
-			"Text_zh/S4",   // 2 terms
 		};
 
 		/// <summary>
