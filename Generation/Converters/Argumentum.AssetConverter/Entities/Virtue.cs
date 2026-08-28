@@ -129,6 +129,13 @@ namespace Argumentum.AssetConverter.Entities
         public string AIFSkosOther { get; set; }
         public string AIFCriticalQuestion { get; set; }
         public string AIFSkosMappingType { get; set; }
+
+        // #989 branch B — the deterministic attack typing back-filled on the Virtues CSV by
+        // tools/499-virtues-aif-columns-apply.py (plan #750 v2). These columns pre-existed on
+        // the CSV (idx 78/79) but were never loaded by C#: the Virtues OWL pass needs them to
+        // emit the AIF attack layer with its derivation provenance.
+        public string AIFAttackType { get; set; }
+        public string AIFAttackedNode { get; set; }
     }
 
     public sealed class VirtueClassMap : ClassMap<Virtue>
@@ -228,6 +235,8 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
             Map(m => m.AIFCriticalQuestion).Name("AIF_criticalQuestion").Optional();
             Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
+            Map(m => m.AIFAttackType).Name("AIF_attackType").Optional();
+            Map(m => m.AIFAttackedNode).Name("AIF_attackedNode").Optional();
         }
     }
 }
