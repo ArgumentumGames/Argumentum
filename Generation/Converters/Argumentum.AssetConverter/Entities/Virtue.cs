@@ -110,8 +110,11 @@ namespace Argumentum.AssetConverter.Entities
         // then #989 split the FR-prose critical questions out of AIF_skosMappingType into
         // AIF_criticalQuestion (81→82), leaving AIF_skosMappingType free for skos:*Match tokens
         // (empty on the Virtues side until real SKOS mappings exist).
-        // crossLink_Opposes is the only relation column populated (the prevented Fallacy-family
-        // PK list); the other 7 relation types + AIF Exception/Other are structurally empty by design.
+        // Two relation families coexist: crossLink_Opposes is INTER-deck (the prevented
+        // Fallacy-family PK list), while #988 populated the virtues' OWN intra-deck network —
+        // Leverages / IsRelatedTo / Allows hold taxonomic PATHS of other virtues ("4.3.3.1",
+        // the format CrossLinkResolver resolves). PredatesOn / Denounces / Inverts / Mirrors
+        // and AIF Exception/Other remain empty by design.
         public string CrossLinkPredatesOn { get; set; }
         public string CrossLinkDenounces { get; set; }
         public string CrossLinkLeverages { get; set; }
