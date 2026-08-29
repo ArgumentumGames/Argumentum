@@ -96,6 +96,8 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
             args.Should().Contain("-dColorImageFilter=/FlateEncode");
             args.Should().Contain("-dGrayImageFilter=/FlateEncode");
             args.Should().Contain("-dDownsampleColorImages=false");
+            args.Should().Contain("-dDownsampleGrayImages=false");
+            args.Should().Contain("-dDownsampleMonoImages=false");
             args.Should().Contain("--permit-file-read=\"C:\\icc\\USWebCoatedSWOP.icc\"");
             args.Should().Contain("-o \"C:\\out\\doc-cmyk.pdf\"");
             args.Should().Contain("\"C:\\tmp\\PDFX_def.ps\"");
