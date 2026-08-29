@@ -125,7 +125,7 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 |--------|----------------------|------------------------|
 | Print&Play image format | JPEG Q=85 (~71 MB Tarot) | PNG lossless (~222 MB) |
 | Per-image CMYK conversion | Disabled (RGB) | Enabled (but see oxymore below) |
-| CardPen source | Local IIS (`UseLocalCardpen=true`) | GitHub Pages URL |
+| CardPen source | Local IIS (`UseLocalCardpen=true` — default for BOTH modes) | same local IIS — ⚠️ flipping to `false` (GitHub Pages) breaks regen, see #629 note below |
 | Template paths | `JsonFilePathDebug` | `JsonFilePathRelease` |
 | Harvest output | Debug density directory | Release density directory |
 | **PDF CMYK+OutputIntent post-process** (`PdfCmykPostProcess`, #632) | **OFF** | **OFF too** — not driven by build config, see below |
@@ -157,6 +157,10 @@ Ghostscript must be resolvable on `PATH`; if it is not, the stage skips every PD
 ### Regeneration runs — launch shell and path length (#1179, second bite of #1121)
 
 Pipeline runs must launch from the **short junction `D:\A1114`** (→ `.prep-1114-worktree`), and only from **PowerShell or cmd**. Launched from **Git-Bash/MSYS2, the junction is resolved at process spawn**: the child's working directory becomes the full worktree path (~30 chars longer), and image writes whose path crosses the ImageMagick native buffer (MAX_PATH = 260) fail as `MagickCoderErrorException: WriteBlob Failed`. Two "identical" invocations therefore do NOT have the same effective path length — the shell is part of the repro. `ImageHelper.EnsurePathWithinLimit` now fails the run at 250 chars (before the native failure), naming the path and its length. Related hardening (#1179): a document×language couple producing zero images fails the run instead of silently skipping PDF generation (the #1177 defect), and the logger archives the previous run's `file_logger.log` to `file_logger-<timestamp>.log` instead of deleting it — the CMYK pass no longer erases the generation log.
+
+### Local CardPen is mandatory for every regen, Debug AND Release (#629, option 3)
+
+`UseLocalCardpen` (`WebBasedGeneratorConfig.cs:84`) is a **single flag defaulting to `true` for both build modes** — it is NOT a Debug/Release pair (the table row above says so explicitly). Keep it `true`. GitHub Pages publishes **only the CardPen site**, not the repo's `/Cards/` tree: a Release run with `UseLocalCardpen=false` resolves Scenarii/asset URLs to `argumentumgames.github.io/Cards/` → **HTTP 404 → 0 images → 0 PDF** (silent set failure, discovered 2026-07-01). The workaround — keep the default `true` — was validated 01/07 (64 PDFs complete) and has been in force on every regen since (22/08, 28/08). The durable fix (Option 1: absolute raw-master URLs, PR #666) is HOLD post-tag.
 
 ## Multilingual Support
 
