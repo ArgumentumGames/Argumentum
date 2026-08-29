@@ -180,7 +180,12 @@ def main():
     print(f"  BOM preserved: {bom} | CRLF preserved: {ended_crlf}")
 
     if WRITE:
-        open(PATH, "wb").write((b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8'))
+        import os
+        payload = (b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8')  # encode FIRST
+        tmp = PATH + ".tmp"
+        with open(tmp, "wb") as fh:
+            fh.write(payload)
+        os.replace(tmp, PATH)   # atomic — target intact if encode/write raised (write-safety #498)
         print(">>> WRITTEN")
     else:
         print(">>> DRY-RUN (pass --write to commit)")

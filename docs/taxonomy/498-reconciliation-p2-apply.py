@@ -83,6 +83,18 @@ def split_fields(row):
     segs.append(''.join(cur))
     return segs
 
+# ── hardened atomic write (ai-01 precondition to any --write, dispatch dba2s0) ──
+# The pre-hardening motif `open(PATH, "wb").write(payload.encode())` TRUNCATES at
+# open(): Python evaluates the receiver open(...) before the argument, so a raising
+# encode() leaves the target EMPTY (this exact motif zeroed MEMORY.md on 2026-08-27).
+# Contract: `payload` is fully-encoded bytes BEFORE this call; truncation only ever
+# hits a .tmp sibling, promoted by atomic os.replace AFTER success.
+def hardened_write(path, payload):
+    tmp = str(path) + ".tmp"
+    with open(tmp, "wb") as fh:
+        fh.write(payload)
+    os.replace(tmp, path)   # atomic — never reached if anything above raised
+
 # ── load-bearing: the annotation CSV (human-reviewed source) IS the map ────────
 P2_MAP = {}   # pk -> {col: value}
 with open(ANNOT, encoding="utf-8-sig") as fh:
@@ -197,9 +209,11 @@ print(f"layers: skos {sk_before} -> {sk_after} | attack {at_before} (unchanged) 
 print(f"attack-only after: {at_after - bo_after} (was {at_before - bo_before}; "
       f"non-ML remainder = 29 for a future P3 tranche, fresh modeling)")
 if WRITE:
-    os.makedirs("tmp", exist_ok=True)
-    open(BACKUP, "wb").write(raw)
-    open(PATH, "wb").write((b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8'))
+    payload = (b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8')  # encode FIRST
+    os.makedirs(os.path.dirname(BACKUP) or ".", exist_ok=True)
+    with open(BACKUP, "wb") as fh:      # explicit close — never rely on refcount/GC
+        fh.write(raw)
+    hardened_write(PATH, payload)
     print(f">>> WRITTEN (46 rows x skos cells filled). Backup saved to {BACKUP}.")
     print(f"    GATE: this write requires the distinct owner GO (dispatch 4kx29h scoped repo")
     print(f"    writes to docs/taxonomy/ — prod CSV write is a SEPARATE gate).")

@@ -214,7 +214,11 @@ if WRITE:
     import os
     os.makedirs("tmp", exist_ok=True)
     open(BACKUP, "wb").write(raw)
-    open(TAX, "wb").write((b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8'))
+    payload = (b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8')  # encode FIRST
+    tmp = TAX + ".tmp"
+    with open(tmp, "wb") as fh:
+        fh.write(payload)
+    os.replace(tmp, TAX)    # atomic — target intact if encode/write raised (write-safety #498)
     print(f">>> WRITTEN ({len(filled_cells)} cells). Backup: {BACKUP} for independent verify.")
 else:
     print(">>> DRY-RUN (pass --write to APPLY).")

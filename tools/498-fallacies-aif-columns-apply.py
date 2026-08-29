@@ -136,7 +136,12 @@ def main():
     print(f"new cols at idx 95/96; shape shifted to 97; delta={len(new_text)-len(text)} bytes; all 1409 rows 104 cols")
 
     if WRITE:
-        open(PATH, "wb").write((b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8'))
+        import os
+        payload = (b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8')  # encode FIRST
+        tmp = PATH + ".tmp"
+        with open(tmp, "wb") as fh:
+            fh.write(payload)
+        os.replace(tmp, PATH)   # atomic — target intact if encode/write raised (write-safety #498)
         print(">>> WRITTEN")
     else:
         print(">>> DRY-RUN (pass --write to commit)")
