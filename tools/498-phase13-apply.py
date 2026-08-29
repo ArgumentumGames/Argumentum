@@ -200,7 +200,11 @@ if WRITE:
     import os
     os.makedirs("tmp", exist_ok=True)
     open(BACKUP, "wb").write(raw)  # save the ORIGINAL bytes (pre-write) for independent verify
-    open(PATH, "wb").write((b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8'))
+    payload = (b'\xef\xbb\xbf' if bom else b'') + new_text.encode('utf-8')  # encode FIRST
+    tmp = PATH + ".tmp"
+    with open(tmp, "wb") as fh:
+        fh.write(payload)
+    os.replace(tmp, PATH)   # atomic — target intact if encode/write raised (write-safety #498)
     print(f">>> WRITTEN ({len(apply_set)} cells filled). Backup saved to {BACKUP} for independent verify.")
     print(f"    GATE was lifted by ai-01 relay of jsboige nod. Run: python tools/498-phase13-verify.py [--with-overrides]")
 else:

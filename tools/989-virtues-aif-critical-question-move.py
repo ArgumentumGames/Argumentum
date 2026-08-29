@@ -129,8 +129,12 @@ print(f"verify OK: 82 cols, {NEW_COL} filled={len(filled)}/223, AIF_skosMappingT
       f"all other segments byte-identical, quoting preserved")
 
 if WRITE:
-    out = b'\xef\xbb\xbf' + new_text.encode("utf-8")
-    open(PATH, "wb").write(out)
+    import os
+    out = b'\xef\xbb\xbf' + new_text.encode("utf-8")   # encode FIRST — never inside open()
+    tmp = PATH + ".tmp"
+    with open(tmp, "wb") as fh:
+        fh.write(out)
+    os.replace(tmp, PATH)   # atomic — target intact if anything above raised (write-safety #498)
     print(f"WRITTEN: {PATH} ({len(out)} bytes)")
     recheck = open(PATH, "rb").read()[3:].decode("utf-8")
     verify(recheck)
