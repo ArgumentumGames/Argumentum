@@ -2,3 +2,9 @@
 # platform and every core.autocrlf setting: the compared-against output comes from
 # System.Xml serialization whose default NewLineChars is CRLF everywhere.
 *.snapshot.svg text eol=crlf
+
+# Shell scripts must materialize with LF on every platform: the cluster's Windows
+# machines run core.autocrlf=true, and bash rejects a CRLF shebang with
+# `CR: command not found` - a .sh versioned without this rule is delivered broken
+# to the next clone. Applies to the triage organs under scripts/.
+*.sh text eol=lf
