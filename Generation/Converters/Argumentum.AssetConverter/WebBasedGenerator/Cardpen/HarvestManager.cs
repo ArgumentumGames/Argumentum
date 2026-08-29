@@ -672,25 +672,8 @@ public class HarvestManager : IAsyncDisposable
 	              await zipButtonLocator.WaitForAsync(new() { State = WaitForSelectorState.Visible, Timeout = 300000 });
 	              Log("Image generation process completed successfully.");
 
-	              // ✅ FIX: Capturer le DPI depuis CardPen après la génération
-	              // Le DPI utilisé pour générer les images est stocké dans cardpen.form.data.dpi
-	              try
-	              {
-	                  var capturedDpi = await iframe.EvaluateAsync<int>("() => { const d = cardpen.form.get().data; return d && d.dpi ? parseInt(d.dpi, 10) : 0; }");
-	                  Log($"[DPI] Captured DPI from CardPen: {capturedDpi}");
-	                  if (capturedDpi > 0)
-	                  {
-	                      toReturn.Dpi = capturedDpi;
-	                  }
-	                  else
-	                  {
-	                      // Fallback: utiliser le DPI de la configuration si CardPen ne retourne rien
-	                  }
-	              }
-	              catch (Exception dpiEx)
-	              {
-	                  Log($"[DPI] Warning: Could not capture DPI from CardPen: {dpiEx.Message}");
-	              }
+	              // DPI propagation from C# config — replaces the dead CardPen probe (#1214).
+	              toReturn.Dpi = cardSetInfo?.Dpi ?? 0;
 
 	              var objIFrame = page.FrameLocator("#cpOutput");
 	              List<string> cardIds;
