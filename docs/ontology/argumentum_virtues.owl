@@ -708,6 +708,2226 @@
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#mutualCommitment" />
   </Declaration>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#relevantArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#relevantArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#groundedArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#groundedArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#realArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#realArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#deductiveArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#deductiveArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inductiveArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Example" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inductiveArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#tangibleEvidence" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#tangibleEvidence" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearObjective" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearObjective" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#providingExamples" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Example" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#providingExamples" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#providingCitations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Expert Opinion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#providingCitations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#citingSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#citingSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#unbiasedReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#unbiasedReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#reliablePremises" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#reliablePremises" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#credibleSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#credibleSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#reputableJournal" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#reputableJournal" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#scientificPublication" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Expert Opinion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#scientificPublication" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#competentAuthority" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Expert Opinion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#competentAuthority" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#domainExpert" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Expert Opinion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#domainExpert" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#uncontroversialTestimony" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#uncontroversialTestimony" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validatedConclusion" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Expert Opinion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validatedConclusion" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#confirmedInformation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#confirmedInformation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#verifiedFacts" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#verifiedFacts" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#empiricalEvidence" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#empiricalEvidence" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#plausibleHypothesis" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#plausibleHypothesis" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#independentSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#independentSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#impartialSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#impartialSources" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateComplexity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateComplexity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#parsimoniousRepresentation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#parsimoniousRepresentation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#occamsRazor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#occamsRazor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#hanlonsRazor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#hanlonsRazor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#honestPresentation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#honestPresentation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#acceptableRhetoric" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#acceptableRhetoric" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#eloquentRhetoric" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#eloquentRhetoric" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#discursiveAdaptation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#discursiveAdaptation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateVocabulary" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateVocabulary" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#measuredUseOfJargon" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#measuredUseOfJargon" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#justifiedTechnicalTerminology" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#justifiedTechnicalTerminology" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#neutralVocabulary" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#neutralVocabulary" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulLanguage" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulLanguage" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#tastefulHumour" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#tastefulHumour" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulHumor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulHumor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inclusiveHumor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inclusiveHumor" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateStyle" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateStyle" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#eloquenceInTheServiceOfTruth" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#eloquenceInTheServiceOfTruth" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#figuresSupportingClarity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#figuresSupportingClarity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#emotionalBalance" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#emotionalBalance" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#emotionalNeutrality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#emotionalNeutrality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#dramaticRestraint" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Consequences" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#dramaticRestraint" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#CA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Consequences" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#CA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#authenticCommunication" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#authenticCommunication" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#transparency" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#transparency" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#benevolentNeutrality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#benevolentNeutrality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateStance" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateStance" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#quantitativeReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#quantitativeReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#justifiedGeneralizations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Example" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#justifiedGeneralizations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#representativeSampling" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Example" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#representativeSampling" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingExceptionsIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingExceptionsIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#legitimateTransfer" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#legitimateTransfer" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#adequateInterpretationOfData" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#adequateInterpretationOfData" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#establishedCorrelations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#establishedCorrelations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#methodicalEstimation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#methodicalEstimation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#masteredProbabilities" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#masteredProbabilities" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#independenceOfEvents" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#independenceOfEvents" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#bayesianReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#bayesianReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#finiteSupport" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#finiteSupport" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validResults" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validResults" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#preciseMeasurements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#preciseMeasurements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearPresentationOfData" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearPresentationOfData" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#exactCalculations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#exactCalculations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#numericalAccuracy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#numericalAccuracy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#geometricAccuracy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#geometricAccuracy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#topologicalAccuracy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#topologicalAccuracy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validOperations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validOperations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inferentialMastery" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inferentialMastery" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#preciseIdentificationOfCausality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#preciseIdentificationOfCausality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#independenceOfPremisesFromTheConclusion" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#independenceOfPremisesFromTheConclusion" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctOrientationOfCausality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctOrientationOfCausality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#exclusionOfAlternativeCauses" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#exclusionOfAlternativeCauses" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#properUseOfModalities" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#properUseOfModalities" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctDeductions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctDeductions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#stepwiseReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#stepwiseReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#coherentDemonstration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#coherentDemonstration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#premiseConsistency" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#premiseConsistency" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#absenceOfInternalContradictions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#absenceOfInternalContradictions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#conclusiveReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#conclusiveReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#formalValidity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#formalValidity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#simpleInference" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#simpleInference" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ModusPonens" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ModusPonens" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ModusTollens" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ModusTollens" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ConjunctionIntroduction" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ConjunctionIntroduction" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ConjunctionElimination" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ConjunctionElimination" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:DoubleNegation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:DoubleNegation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ReductioAdAbsurdum" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:ReductioAdAbsurdum" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:UnitResolution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:UnitResolution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:Resolution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#inference:Resolution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#validSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#barbaraSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#barbaraSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#celarentSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#celarentSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#dariiSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#dariiSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#ferioSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#ferioSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#syllogismOfTheSecondFigure" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#syllogismOfTheSecondFigure" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#cesareSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#cesareSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#camestresSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#camestresSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#festinoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#festinoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#barocoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#barocoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#daraptiSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#daraptiSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#felaptonSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#felaptonSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#disamisSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#disamisSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#datisiSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#datisiSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#bocardoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#bocardoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#ferisonSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#ferisonSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#dimatisSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#dimatisSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fesapoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fesapoSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fresisonSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fresisonSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#bamalipSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#bamalipSyllogism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#acceptableInformalLogic" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#acceptableInformalLogic" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctAnalyticalReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctAnalyticalReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctSyntheticReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctSyntheticReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctCriticalReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctCriticalReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctAbductiveReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctAbductiveReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctAnalogicalReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctAnalogicalReasoning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#lexicalPrecision" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#lexicalPrecision" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearDefinitions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearDefinitions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearMeanings" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearMeanings" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#preciseLanguage" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#preciseLanguage" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#conciseLanguage" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#conciseLanguage" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#conformingDefinition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#conformingDefinition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateTechnicalTerminology" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Expert Opinion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateTechnicalTerminology" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#consistentDefinition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#consistentDefinition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#justifiedComparisons" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#justifiedComparisons" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#adequateComparison" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#adequateComparison" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateAnalogy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Analogy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateAnalogy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#relevantAssociation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#relevantAssociation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#linguisticClarity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#linguisticClarity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearSyntax" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearSyntax" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctGrammar" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctGrammar" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctPunctuation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#correctPunctuation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#unambiguousExpressions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#unambiguousExpressions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearNarration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearNarration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#intellectualHonesty" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#intellectualHonesty" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fidelityToFacts" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fidelityToFacts" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#truthOfFacts" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#truthOfFacts" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairAttribution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairAttribution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#balancedConsideration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#balancedConsideration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nuancedConsiderations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nuancedConsiderations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fullDisclosure" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fullDisclosure" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#realisticDemands" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#realisticDemands" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#burdenOfProof" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#burdenOfProof" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateLevelOfProof" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateLevelOfProof" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearPositioning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#clearPositioning" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Danger" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#CA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingConflictsOfInterestIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingConflictsOfInterestIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#objectivityEffort" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#objectivityEffort" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#universalism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#universalism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#understandingOthersPersonalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#understandingOthersPersonalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#interculturalAwareness" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#interculturalAwareness" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalCulturalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalCulturalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#understandingOthersCulturalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#understandingOthersCulturalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#distancingFromIdeologies" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#distancingFromIdeologies" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#considerationOfOnesIdeologicalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#considerationOfOnesIdeologicalBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingTheOpponentsIdeologicalBiasesIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingTheOpponentsIdeologicalBiasesIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#acceptanceOfUncertainty" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#acceptanceOfUncertainty" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#scientificApproach" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#scientificApproach" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enrichingExchange" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enrichingExchange" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#positiveContribution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#positiveContribution" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfAnObjectiveReality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfAnObjectiveReality" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sufficientExplanations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Cause to Effect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sufficientExplanations" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#explicitJustifications" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#explicitJustifications" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sufficientLevelOfProof" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sufficientLevelOfProof" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#refutablePremises" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#refutablePremises" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#availabilityForDialogue" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#availabilityForDialogue" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#searchForTruth" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#searchForTruth" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#questForConsensus" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#questForConsensus" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#suspensionOfJudgment" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#suspensionOfJudgment" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#activeListening" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#activeListening" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#showingEmpathy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#showingEmpathy" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfFallibility" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfFallibility" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#identificationOfOnesBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#identificationOfOnesBiases" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfOnesErrors" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#recognitionOfOnesErrors" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#awarenessOfTheLimitsOfAnArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#awarenessOfTheLimitsOfAnArgument" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#opennessToChange" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#opennessToChange" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#resolutionPrinciple" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#resolutionPrinciple" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#searchForCompromise" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#searchForCompromise" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#effectiveParticipation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#effectiveParticipation" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#stayingOnTopic" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#stayingOnTopic" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfClarity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfClarity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#avoidingDigressions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#avoidingDigressions" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#focusOnTheEssentials" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Sign" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#focusOnTheEssentials" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingAllottedTimeIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Consequences" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#takingAllottedTimeIntoAccount" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfCharity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfCharity" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#presumptionOfGoodFaith" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#presumptionOfGoodFaith" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectForThePerson" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectForThePerson" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairEvaluationOfTheOpposingPosition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairEvaluationOfTheOpposingPosition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#faithfulAcknowledgmentOfTheOpposingPosition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#faithfulAcknowledgmentOfTheOpposingPosition" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulRefutationOfOpposingArguments" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulRefutationOfOpposingArguments" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectForTheOriginOfIdeas" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectForTheOriginOfIdeas" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#valuingTheProvenanceOfIdeas" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Witness Testimony" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#valuingTheProvenanceOfIdeas" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentativeCollaboration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentativeCollaboration" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#courtesyInDisagreement" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#courtesyInDisagreement" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#avoidingPersonalAttacks" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#avoidingPersonalAttacks" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonviolentCommunication" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonviolentCommunication" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairnessInDialogue" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fairnessInDialogue" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#doNotInterrupt" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#doNotInterrupt" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulTone" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulTone" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#mutualCommitment" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#mutualCommitment" />
+    <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
+  </ObjectPropertyAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>

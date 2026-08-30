@@ -204,6 +204,8 @@ namespace Argumentum.AssetConverter.Ontology
 	                    var schemeUri = $"{ExternalReferenceOntologyNamespaceURI}{schemeMapping}";
 	                    var schemeConcept = new RDFResource(schemeUri);
 	                    ontology.AnnotateConceptWithResource(virtueConcept, goodTenorOfProperty, schemeConcept);
+	                    // #133 : la meme arete en assertion (cf OwlAdapter.DeclareObjectAssertion).
+	                    ontology.DeclareObjectAssertion(virtueConcept, goodTenorOfProperty, schemeConcept);
 	                }
 
 	                // The critical-question prose lives in AIF_criticalQuestion since #989 (it was
@@ -225,7 +227,11 @@ namespace Argumentum.AssetConverter.Ontology
 	                var storedNode = virtue.AIFAttackedNode?.Trim() ?? "";
 	                ontology.AnnotateConcept(virtueConcept, aifAttackTypeProp, new RDFPlainLiteral(storedType));
 	                if (!string.IsNullOrWhiteSpace(storedNode))
+	                {
 	                    ontology.AnnotateConceptWithResource(virtueConcept, aifAttackedNodeProp, AifNode(storedNode));
+	                    // #133 : idem, pour que l'arete d'attaque soit raisonnable et pas seulement lisible.
+	                    ontology.DeclareObjectAssertion(virtueConcept, aifAttackedNodeProp, AifNode(storedNode));
+	                }
 	                ontology.AnnotateConcept(virtueConcept, aifAttackTypeProvenanceProp,
 	                    new RDFPlainLiteral(DeriveAttackTypeProvenance(virtue)));
 	            }

@@ -288,8 +288,13 @@ namespace Argumentum.AssetConverter.Ontology
 	                    if (targetFallacy == fallacy) continue;
 	                    var targetConcept = concepts[targetFallacy];
 	                    ontology.AnnotateConceptWithResource(sourceConcept, crossLinkProps[v.Predicate], targetConcept);
+	                    // #133 : la meme arete en assertion, pour qu'un raisonneur la voie (cf OwlAdapter.DeclareObjectAssertion).
+	                    ontology.DeclareObjectAssertion(sourceConcept, crossLinkProps[v.Predicate], targetConcept);
 	                    if (v.Symmetric)
+	                    {
 	                        ontology.AnnotateConceptWithResource(targetConcept, crossLinkProps[v.Predicate], sourceConcept);
+	                        ontology.DeclareObjectAssertion(targetConcept, crossLinkProps[v.Predicate], sourceConcept);
+	                    }
 	                }
 	            }
 
@@ -298,6 +303,9 @@ namespace Argumentum.AssetConverter.Ontology
 	                ontology.AnnotateConcept(sourceConcept, aifAttackTypeProp, new RDFPlainLiteral(fallacy.AIFAttackType.Trim()));
 	                if (!string.IsNullOrWhiteSpace(fallacy.AIFAttackedNode))
 	                    ontology.AnnotateConceptWithResource(sourceConcept, aifAttackedNodeProp, AifNode(fallacy.AIFAttackedNode.Trim()));
+	                    // #133 : idem pour l'arete d'attaque AIF -- c'est elle que le critere
+	                    // "delta d'inference non vide" de CoursIA#13567 exige de pouvoir raisonner.
+	                    ontology.DeclareObjectAssertion(sourceConcept, aifAttackedNodeProp, AifNode(fallacy.AIFAttackedNode.Trim()));
 	            }
 	        }
 
