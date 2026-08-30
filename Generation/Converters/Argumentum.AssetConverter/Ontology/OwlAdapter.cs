@@ -238,6 +238,27 @@ namespace Argumentum.AssetConverter.Ontology
             _ontology.AnnotationAxioms.Add(new OWLAnnotationAssertion(new OWLAnnotationProperty(property), subject, value));
         }
 
+        // #133 - Projection ObjectProperty des aretes du graphe argumentatif.
+        //
+        // POURQUOI ELLE EXISTE, A COTE de AnnotateConceptWithResource et non a sa place :
+        // les crosslinks transverses et le typage d'attaque AIF etaient emis UNIQUEMENT comme
+        // OWLAnnotationAssertion. C'est correct pour un thesaurus SKOS, mais les annotations
+        // sont hors de la semantique logique d'OWL : un raisonneur (HermiT, Pellet, owlrl) ne
+        // les voit pas. Mesure sur l'artefact publie du 21/08 : 1989 aretes crosslink presentes,
+        // et ObjectPropertyAssertion = 0. Le graphe etait donc interrogeable en SPARQL mais
+        // strictement non raisonnable : tout delta d'inference sur ces aretes etait vide par
+        // construction, quel que soit le raisonneur.
+        //
+        // On EMET LES DEUX. Retirer l'annotation casserait la lecture SKOS du thesaurus ; n'emettre
+        // que l'annotation prive l'ontologie de toute consequence inferable. Les deux formes
+        // portent la meme information a deux niveaux de contrat differents.
+        public void DeclareObjectAssertion(RDFResource subject, RDFResource property, RDFResource value)
+        {
+            _ontology.AssertionAxioms.Add(new OWLObjectPropertyAssertion(
+                new OWLObjectProperty(property), ToIndividual(subject), ToIndividual(value)));
+        }
+
+
         public void DocumentConcept(RDFResource concept, SKOSDocumentationTypes documentationType, RDFPlainLiteral value)
         {
             var property = documentationType switch

@@ -43,6 +43,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// skip-false-passing (4). Deterministic, key-free, release-independent; loads one real file (lazy,
     /// shared across the class).
     /// </summary>
+    [Collection(PublishedOntologyCollection.Name)]
     public class OwlE2EGenerationValidationTests
     {
         private const string RelativeOntologyPath = "docs/ontology/argumentum.owl";
