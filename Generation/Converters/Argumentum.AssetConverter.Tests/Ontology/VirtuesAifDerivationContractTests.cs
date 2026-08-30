@@ -28,6 +28,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 	/// (7)   the ontology-level declaration comment survives the OWL2XML round-trip, so a reader
 	///       who has never seen #989 can tell a derived value from a reviewed one.
 	/// </summary>
+	[Collection(PublishedOntologyCollection.Name)]
 	public class VirtuesAifDerivationContractTests
 	{
 		private static string RepoRoot => TestRepoRoot.Find();

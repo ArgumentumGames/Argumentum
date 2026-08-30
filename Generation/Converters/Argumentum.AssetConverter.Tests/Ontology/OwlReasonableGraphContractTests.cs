@@ -37,6 +37,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// docs/ontology/. Ne pas relacher le seuil : le rouge dit que le graphe publie a cesse d'etre
     /// raisonnable, pas que l'attente est trop stricte.
     /// </summary>
+    [Collection(PublishedOntologyCollection.Name)]
     public class OwlReasonableGraphContractTests
     {
         private static string RepoRoot => TestRepoRoot.Find();
