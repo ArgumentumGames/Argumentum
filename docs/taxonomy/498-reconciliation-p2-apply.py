@@ -154,12 +154,23 @@ assert not has_skos, f"ABORT: target PKs already carry skos (would overwrite): {
 # ── apply: cell-fill byte-exact (only the 46 rows x the 4 skos columns) ────────
 new_rows = [rows[0]]
 shapes = Counter()
+
+def csv_quote(v):
+    # P2_MAP values arrive UNquoted (csv.reader strips the field quote-pair); a
+    # value containing a delimiter must be re-quoted on write or ",".join(s)
+    # splits the row (fail-loud: NCOL check). Matches the prod convention for
+    # multi-token cells ("A, B"). Needed since the 5 arbitration skosOther
+    # notes (834/847/805-807) carry commas (ai-01 msg-20260829T222753-seo82u).
+    if any(ch in v for ch in ',"\r\n'):
+        return '"' + v.replace('"', '""') + '"'
+    return v
+
 for rtext in rows[1:]:
     s = split_fields(rtext); pk = s[PKI].strip()
     if pk in P2_MAP:
         for c in TARGET_COLS:
             if P2_MAP[pk][c]:
-                s[IDX[c]] = P2_MAP[pk][c]
+                s[IDX[c]] = csv_quote(P2_MAP[pk][c])
         d, e = P2_MAP[pk]["AIF_skosDirectRef"], P2_MAP[pk]["AIF_skosExceptionRef"]
         shapes["full" if d and e else ("direct-conflict" if d else "exception")] += 1
     new_rows.append(",".join(s))

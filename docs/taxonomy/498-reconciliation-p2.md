@@ -67,9 +67,9 @@ Ce PR livre la **tranche P2-A = les 46 lignes attack-only de la famille « Abus 
 
 **Couche après write** : skos **70 → 116**, fully-modeled **70 → 116**, attack **145 inchangé**, attack-only **75 → 29** (= les 29 non-ML, familles sans doc vetté pour ce PK → re-modélisation fraîche, tranche P3).
 
-**2 lignes FAIL-LOUD partielles** (sérialisées telles que proposées) : **834** (DirectRef-only, doc FAIL-LOUD sur le scheme) et **847** (ExceptionRef-only, doc FAIL-LOUD sur la CQ syntaxique) — **MED**, à revoir par ai-01 (§3).
+**2 lignes FAIL-LOUD partielles** (sérialisées telles que proposées) : **834** (DirectRef-only, doc FAIL-LOUD sur le scheme) et **847** (ExceptionRef-only, doc FAIL-LOUD sur la CQ syntaxique) — **MED**, ~~à revoir par ai-01~~ **arbitrées 2026-08-30 : RATIFIÉES, `AIF_skosOther` rempli** (§2 Arbitrage).
 
-**1 flag sémantique** : 805-807 placent `PropertyNotExistant_Conflict` en **ExceptionRef** (cf. §3).
+**1 flag sémantique** : 805-807 placent `PropertyNotExistant_Conflict` en **ExceptionRef** (cf. §3) — ~~à confirmer~~ **arbitré 2026-08-30 : VERBATIM sans swap + note de divergence dans `AIF_skosOther`** (§2 Arbitrage).
 
 ---
 
@@ -95,14 +95,20 @@ Contenu extrait des docs cluster (PR-1..PR-12), lignes `Proposal:` par feuille. 
 
 **1 flag sémantique — `PropertyNotExistant_Conflict` en ExceptionRef (805-807)** : contrairement au pattern standard (ExceptionRef = scheme légitime), le doc `arbitrary-definition` propose `PropertyNotExistant_Conflict` comme ExceptionRef. Sémantique : « la propriété invoquée n'existe pas » est **lui-même un déclencheur de défaut** — la définition arbitraire est une exception à la classification verbale déclenchée par la non-existence de la propriété. Token natif (0 fabrication) mais **sémantique non-standard à faire confirmer par ai-01**.
 
+### ⚖️ Arbitrage rendu (ai-01, 2026-08-30, `msg-20260829T222753-seo82u`) — les 3 flags clos
+
+- **Flags 1-2 (834, 847) : RATIFIÉ — `AIF_skosOther` REMPLI.** Raison d'ai-01 : une ligne FAIL-LOUD dont le `AIF_skosOther` est vide ne se distingue plus d'une ligne ordinaire à référence manquante — or la note **est** la sérialisation du gap (voie #677). Les chaînes exactes des proposals des docs sont transcrites dans les annotations (5 cellules au total, §Arbitration ci-dessous).
+- **Flag 3 (805-807) : VERBATIM, PAS DE SWAP + note de divergence.** La prémisse mécanique « hazard d'ordre de colonnes » est **réfutée par la mesure d'ai-01** : les 23 docs `498-aif-*.md` portant une table utilisent tous l'ordre `|DirectRef|ExceptionRef|` — l'inversion est dans le **contenu** de la proposal, pas dans sa mise en table. Décision : sérialiser verbatim (le choix **réversible** — normaliser détruirait l'information que le doc disait autre chose), et inscrire la divergence dans le `AIF_skosOther` des 3 lignes pour qu'elle porte sa propre alerte au lieu de dépendre d'un message : *orientation inversée vs ancre 804 et miroir 838 (même tranche), verbatim conservé, à trancher au GO propriétaire*.
+- Les 5 cellules `AIF_skosOther` (834, 847, 805×3) sont portées par `498-reconciliation-p2-annotations.csv` ; l'apply-script les re-quote à l'écriture (valeurs à virgules, convention prod des cellules multi-tokens). Dry-run inchangé sur tous les autres gates (0 mismatch, 1409×104, whitelist 60, skos 70→116).
+
 ---
 
 ## 3. Distribution + flags
 
 - **shapes** : 25 direct-conflict / 19 full / 2 exception. La famille ML n'est PAS uniforme (contrairement à une lecture rapide du census qui classe tout l'Abus de langage en « direct-conflict »). Les docs vettés distinguent réellement les cas.
 - **attack layer déjà en prod** : 44 undercut/RA + **2 undermine/I** (838 Distinction sans différence, 843 Fausse équivalence) — cohérent, ce ne sont pas des anomalies.
-- **2 MED load-bearing** : 834, 847 (variantes partielles, FAIL-LOUD doc) — à revoir en priorité par ai-01.
-- **1 flag sémantique** : 805-807 `PropertyNotExistant_Conflict` en ExceptionRef (§2) — à confirmer.
+- **2 MED load-bearing** : 834, 847 (variantes partielles, FAIL-LOUD doc) — **arbitrées 2026-08-30 (ai-01) : RATIFIÉES, `AIF_skosOther` rempli** (§2 Arbitrage).
+- **1 flag sémantique** : 805-807 `PropertyNotExistant_Conflict` en ExceptionRef (§2) — **arbitré 2026-08-30 : VERBATIM sans swap + note de divergence** (§2 Arbitrage).
 - **✓ 0 fabrication token** (#677) — whitelist native 60, 0 novel (vérifié par le générateur d'annotations ET re-vérifié par l'apply-script).
 
 ---
