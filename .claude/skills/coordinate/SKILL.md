@@ -215,7 +215,23 @@ CronCreate(cron: "37 */6 * * *", prompt: "/coordinate", recurring: true)
 
 Si la session est interactive, **termine par 2-4 phrases factuelles** : ce qui a été mergé, quelles lanes ont été dispatchées (workers + issues), état des tracks #458, prochain tick cron.
 
-**Arbitrages en attente** (pattern « présentation des décisions ») : si des points bloquent et **requièrent une vraie décision jsboige**, liste-les explicitement avec leur contexte (1-2 lignes chacun), pour qu'il tranche — surtout le **dossier de validation release** (jsboige valide les docs le WE **si po-2023 les présente proprement en fin de session**). Vérifie que cette présentation est bien prévue côté po-2023 ; sinon, dispatche-la.
+**Arbitrages en attente** — critère de suffisance : un arbitrage doit être **tranchable sur ta description seule, sans ouvrir l'issue**. C'est la barre, pas un nombre de lignes.
+
+> Correction jsboige, 2026-08-30 (verbatim) : *« tu n'es pas assez précis. C'est souvent le cas quand tu me présente les choses […] je dois pouvoir arbitrer sur tes descriptions, elles sont trop expéditives ».* Le contre-exemple : « 5 cartes : 1092/1120/362 — réécrire, reclasser ou retirer ». Des branches nommées, donc formellement conforme — et pourtant indécidable, **et faux** : ces PK étaient corrigés depuis trois semaines (PR #1032).
+
+Chaque dossier porté à l'arbitrage doit donc porter :
+
+| Élément | Pourquoi |
+|---|---|
+| **L'objet cité** — le texte fautif, pas son numéro | un PK nu ne dit rien ; c'est le contenu qui se tranche |
+| **Le défaut en une phrase** | ce qui cloche, pas la catégorie du défaut |
+| **Les branches avec leur conséquence concrète** | ce que chacune change dans le corpus |
+| **Le coût si GO** | cellules, langues, régénération ou non |
+| **La nature de la décision** (éditorial / sémantique / hygiène / convention) | des lignes homogènes cachent que **une seule** est un vrai choix de fond |
+
+⚠️ **Re-mesurer l'état au moment de présenter**, jamais recopier une note de cycle antérieure : une liste d'arbitrages est un état du corpus, pas du bookkeeping. Une liste expéditive est justement le terrain où une donnée périmée ne se voit pas. Recommandation **en première position**, et le dire.
+
+Surtout le **dossier de validation release** (jsboige valide les docs le WE **si po-2023 les présente proprement en fin de session**). Vérifie que cette présentation est bien prévue côté po-2023 ; sinon, dispatche-la.
 
 ## Issues, Epics et tracks — source de vérité = GitHub
 
