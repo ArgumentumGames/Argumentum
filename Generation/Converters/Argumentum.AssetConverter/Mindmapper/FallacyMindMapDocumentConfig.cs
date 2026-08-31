@@ -937,20 +937,46 @@ if (mapFile != null) {
 		
 
 		/// <summary>
-		/// #1181: one stable color per crossLink verb. Deliberately dark/muted variants, distinct from
-		/// the 7 bright family colors used for node borders, so an arrow reads as a link, not a family.
+		/// One stable color per crossLink verb. The register is PASTEL - owner instruction,
+		/// 2026-08-31: "les couleurs des crosslinks sont trop fortes, je les avais choisi plus
+		/// legeres, pastel, dans la premiere iteration. Ca a du se perdre quelque part."
+		///
+		/// It had indeed been lost. The original engine (quoted verbatim in the body of #1181)
+		/// carried three pastel verbs on the pre-realignment enum:
+		///     Identity -> #dbffd6      AppealTo -> #ccffff      Opposite -> #ffcfcc
+		/// The 3 -> 8 verb realignment of #1181 replaced the whole table with dark/muted variants
+		/// and dropped the register with it. Those three owner-chosen values are restored here on
+		/// the verbs that inherit their meaning (Identity -> Mirrors, AppealTo -> Leverages,
+		/// Opposite -> Opposes); the five new verbs are derived in the same idiom - very light,
+		/// low saturation, one hue each, channels drawn from the same {cc..ff} range.
+		///
+		/// TWO CONSTRAINTS bind this table, and both are measured, not assumed:
+		///
+		/// 1. An arrow must read as a link, not as a family. The 7 family colors used for node
+		///    borders are bright and saturated; the pastel register stays clear of them by
+		///    construction - the same separation the dark register bought, obtained by going
+		///    lighter than the families instead of darker.
+		///
+		/// 2. Every color must stay COUNTABLE by CrossLinkArrowCountTests, i.e. distinct from
+		///    every other stroke color a Batik export can emit. Verified 2026-08-31 against the
+		///    union of the 41 shipped SVGs: 29 distinct stroke colors present, of which 6 light
+		///    (#ff66eb, #ffe082, #d0fe65, #61f8dd, #ffb0f5, #d75cfa). None of the 8 values below
+		///    appears in that union, and the 8 are mutually distinct. Re-run that check before
+		///    touching this table - a collision does not fail loudly, it silently inflates the
+		///    arrow count of one verb with another shape's strokes.
+		///
 		/// Shared with the Virtue mindmap config (same enum, same rendering block).
 		/// </summary>
 		private static readonly Dictionary<CrossLink, string> CrossLinkColors = new Dictionary<CrossLink, string>()
 		{
-			{ CrossLink.PredatesOn, "#a35d00" },
-			{ CrossLink.Denounces, "#ff6d00" },
-			{ CrossLink.Leverages, "#005f5f" },
-			{ CrossLink.Allows, "#5b6e00" },
-			{ CrossLink.Opposes, "#8b0000" },
-			{ CrossLink.Inverts, "#4b0082" },
-			{ CrossLink.Mirrors, "#37474f" },
-			{ CrossLink.IsRelatedTo, "#795548" },
+			{ CrossLink.PredatesOn, "#ffe0cc" },
+			{ CrossLink.Denounces, "#fff4c2" },
+			{ CrossLink.Leverages, "#ccffff" },   // owner original, ex-AppealTo
+			{ CrossLink.Allows, "#cce0ff" },
+			{ CrossLink.Opposes, "#ffcfcc" },     // owner original, ex-Opposite
+			{ CrossLink.Inverts, "#e8ccff" },
+			{ CrossLink.Mirrors, "#dbffd6" },     // owner original, ex-Identity
+			{ CrossLink.IsRelatedTo, "#e0dad4" },
 		};
 
 		public static string GetCrossLinkColor(CrossLink verb) =>
