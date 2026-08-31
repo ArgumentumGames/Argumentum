@@ -189,7 +189,9 @@ namespace Argumentum.AssetConverter
 				},
 				new CardSetLocalization()
 				{
-					// Rules: template uses {{markdown Text}} and CSV exposes Text/Text_en/Text_ru/Text_pt.
+					// Rules: template uses {{markdown Text}} and the CSV exposes all 8 language columns
+					// (Text + Text_en/_ru/_pt/_es/_ar/_fa/_zh) — mapped below, so the markdown render is
+					// exercised in every language, Rules-only among CardSets (#965 correction of a 4-column note).
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Rules,
