@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Argumentum.AssetConverter.Entities;
@@ -10,21 +11,23 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests.Ontology
 {
 	/// <summary>
-	/// #989 branch B organ — the Virtues AIF attack layer is PUBLISHED WITH ITS DERIVATION.
-	/// The Virtues' AIF_attackType/AIF_attackedNode values were back-filled by a deterministic
-	/// 3-branch script (plan #750 v2, 206/222 default), not by line-by-line editorial judgment;
-	/// the issue DoD requires that derivation to be DECLARED in the published ontology. These
-	/// tests pin that:
+	/// #989 architecture B organ — the Virtues AIF attack layer is PUBLISHED WITH ITS DERIVATION.
+	/// The Virtues' AIF_attackType/AIF_attackedNode values were written by the architecture-B rule
+	/// (ai-01 arbitration 2026-08-31, msg-20260831T172136-w5x7gm): strict majority of the opposed
+	/// fallacies' measured attack types, exact tie ⇒ declared gap (empty cells + AIF_skosOther
+	/// note) — 142 mapped / 80 declared gaps, not line-by-line editorial judgment. The issue DoD
+	/// requires that derivation to be DECLARED in the published ontology. These tests pin that:
 	///
-	/// (1-4) the provenance marker is COMPUTED — re-deriving the ratified rule classifies a
-	///       rule-consistent pair as "script-derived" and any deviation as "human-reviewed"
-	///       (pure contract, fabricated witnesses; a constant marker would fail here);
+	/// (1-4) the provenance marker is COMPUTED — re-deriving the script's fingerprint classifies
+	///       a signature-consistent pair as "script-derived" and any deviation (uncoupled pair,
+	///       gap note on a valued row) as "human-reviewed" (pure contract, fabricated witnesses;
+	///       a constant marker would fail here);
 	/// (5)   the committed argumentum_virtues.owl carries an aifAttackTypeProvenance annotation
 	///       on EVERY aifAttackType assertion — 0 unmarked;
 	/// (6)   the committed counts match the corpus exactly, with the expected split derived from
-	///       the CSV at test time by an INDEPENDENT in-test implementation of the rule (like
-	///       CrossLinkArrowCountTests derives from the CSV: editing the CSV without regenerating
-	///       docs/ontology/argumentum_virtues.owl goes RED);
+	///       the CSV at test time by an INDEPENDENT in-test implementation of the fingerprint
+	///       (like CrossLinkArrowCountTests derives from the CSV: editing the CSV without
+	///       regenerating docs/ontology/argumentum_virtues.owl goes RED);
 	/// (7)   the ontology-level declaration comment survives the OWL2XML round-trip, so a reader
 	///       who has never seen #989 can tell a derived value from a reviewed one.
 	/// </summary>
@@ -41,57 +44,61 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 		private static OwlAdapter VirtuesOntology => _virtuesOntology.Value;
 
 		// ─────────────────────────────────────────────────────────────────────────────
-		// (1-3) DeriveAttackTypeProvenance — sensitivity proofs on fabricated witnesses.
+		// (1-4) DeriveAttackTypeProvenance — sensitivity proofs on fabricated witnesses.
 		// ─────────────────────────────────────────────────────────────────────────────
 
 		[Fact]
-		public void Provenance_RuleConsistentPair_IsScriptDerived()
+		public void Provenance_FingerprintConsistentPair_IsScriptDerived()
 		{
 			var witness = new Virtue
 			{
 				AIFAttackType = "undercut",
 				AIFAttackedNode = "RA-node",
-				CrossLinkOpposes = "520;1000"
+				CrossLinkOpposes = "520;1000",
+				AIFSkosOther = ""
 			};
 			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(witness).Should().Be("script-derived",
-				"a stored pair equal to the rule output (default branch: no override fallacy opposed) " +
-				"carries the derivation marker — the corpus value WAS produced by the script.");
+				"a stored pair carrying the script fingerprint (deterministic type-node coupling, no gap " +
+				"note on a valued row) carries the derivation marker — the corpus value WAS produced by " +
+				"the architecture-B script.");
 		}
 
 		[Fact]
-		public void Provenance_DeviatingPair_IsHumanReviewed()
+		public void Provenance_UncoupledPair_IsHumanReviewed()
 		{
 			var witness = new Virtue
 			{
-				AIFAttackType = "rebut",
-				AIFAttackedNode = "CA-node",
-				CrossLinkOpposes = "" // rule says undercut/RA-node here
+				AIFAttackType = "undercut",
+				AIFAttackedNode = "I-node", // the coupling is undercut->RA-node
+				CrossLinkOpposes = "520;1000"
 			};
 			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(witness).Should().Be("human-reviewed",
-				"a stored pair that deviates from the rule output proves a judgment REPLACED the derived " +
-				"value — the marker must flip, which is exactly what a future #989 branch-A revision does.");
+				"a stored pair that breaks the deterministic type-node coupling proves a judgment REPLACED " +
+				"the derived value — the marker must flip, which is exactly what a hand revision does.");
 		}
 
 		[Fact]
-		public void Provenance_OverridePrecedence_UndermineBeatsRebut()
+		public void Provenance_ValuedRowCarryingGapNote_IsHumanReviewed()
 		{
-			var both = new Virtue { AIFAttackType = "undermine", AIFAttackedNode = "I-node", CrossLinkOpposes = "889;340" };
-			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(both).Should().Be("script-derived",
-				"a virtue opposing both 889 (undermine set) and 340 (rebut set) gets undermine/I-node — " +
-				"the script checks the undermine branch FIRST (elif chain); the marker re-derivation must " +
-				"mirror that precedence exactly.");
-			var rebutOnly = new Virtue { AIFAttackType = "rebut", AIFAttackedNode = "CA-node", CrossLinkOpposes = "340" };
-			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(rebutOnly).Should().Be("script-derived",
-				"opposing 340 alone selects the rebut branch.");
+			var witness = new Virtue
+			{
+				AIFAttackType = "undermine",
+				AIFAttackedNode = "I-node",
+				CrossLinkOpposes = "520;1000",
+				AIFSkosOther = "Declared gap (#989 architecture B ...): tie, no strict majority"
+			};
+			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(witness).Should().Be("human-reviewed",
+				"gap separation is half the fingerprint: the script writes EITHER a coupled pair OR a gap " +
+				"note, never both — a valued row carrying the note is a post-script hand edit.");
 		}
 
 		[Fact]
-		public void Provenance_SeparatorIsSemicolonSpaceSeparatedDoesNotFire()
+		public void Provenance_UnknownType_IsHumanReviewed()
 		{
-			var witness = new Virtue { AIFAttackType = "undercut", AIFAttackedNode = "RA-node", CrossLinkOpposes = "889, 340" };
-			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(witness).Should().Be("script-derived",
-				"crossLink columns are ';'-separated path/PK lists; a comma-separated cell must not be " +
-				"parsed as two PKs (the corpus never uses commas there).");
+			var witness = new Virtue { AIFAttackType = "dismantle", AIFAttackedNode = "RA-node", CrossLinkOpposes = "520" };
+			VirtueOwlDocumentConfig.DeriveAttackTypeProvenance(witness).Should().Be("human-reviewed",
+				"the three-valued vocabulary (undercut/undermine/rebut) is part of the ratified contract; " +
+				"a fourth token cannot be a script output.");
 		}
 
 		// ─────────────────────────────────────────────────────────────────────────────
@@ -101,11 +108,12 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 		[Fact]
 		public void DerivationDeclaration_NamesRuleMarkersAndFingerprint()
 		{
-			foreach (var token in new[] { "script-derived", "human-reviewed", "undercut", "889", "340", "1:1" })
+			foreach (var token in new[] { "script-derived", "human-reviewed", "architecture B", "strict majority",
+				"declared gap", "undercut", "RA-node", "142" })
 			{
 				VirtueOwlDocumentConfig.DerivationDeclaration.Should().Contain(token,
-					"the declaration is the whole point of branch B: rule, markers and the 1:1 script " +
-					"fingerprint must be legible to a reader who has never opened #989.");
+					"the declaration is the whole point of the architecture-B write: rule, markers and the " +
+					"script fingerprint must be legible to a reader who has never opened #989.");
 			}
 		}
 
@@ -124,30 +132,49 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 			return (attackType, scriptDerived, provenance - scriptDerived);
 		}
 
-		/// <summary>INDEPENDENT re-implementation of the plan #750 v2 rule (do NOT call the
-		/// generator's version — the organ derives its expectation separately, like
-		/// CrossLinkArrowCountTests derives from the CSV).</summary>
+		/// <summary>INDEPENDENT re-derivation of the #989 architecture B fingerprint (do NOT call
+		/// the generator's version — the organ derives its expectation separately, like
+		/// CrossLinkArrowCountTests derives from the CSV). Signature-level, deliberately: a valued
+		/// row must carry the deterministic type→node coupling and never a gap note; a perimeter
+		/// row left empty must carry the declared-gap note. The majority rule itself is NOT
+		/// re-derivable from the Virtues CSV alone (it needs the Fallacies corpus — generator
+		/// Phase 3); the resulting counts are pinned by VirtueAifCensusTests.</summary>
 		private static (int filled, int ruleConsistent) CorpusExpectation()
 		{
 			var csv = new HarvestCardIdsCsv(VirtuesCsv);
 			var types = csv.LoadColumn("AIF_attackType");
 			var nodes = csv.LoadColumn("AIF_attackedNode");
 			var opposes = csv.LoadColumn("crossLink_Opposes");
-			types.Count.Should().Be(nodes.Count).And.Be(opposes.Count,
-				"the three columns are read from the same file by header name; a count mismatch means the " +
+			var others = csv.LoadColumn("AIF_skosOther");
+			types.Count.Should().Be(nodes.Count).And.Be(opposes.Count).And.Be(others.Count,
+				"the four columns are read from the same file by header name; a count mismatch means the " +
 				"header was edited, which the #497 HARD rules forbid.");
+
+			var expectedNodeByType = new Dictionary<string, string>
+			{
+				["undermine"] = "I-node",
+				["undercut"] = "RA-node",
+				["rebut"] = "CA-node",
+			};
 
 			int filled = 0, consistent = 0;
 			for (var i = 0; i < types.Count; i++)
 			{
 				var t = types[i].Trim();
-				if (t.Length == 0) continue; // root Virtue (pk 0, no scheme) — empty by design
+				var hasNote = others[i].Trim().Length > 0;
+				if (t.Length == 0)
+				{
+					// The root (pk 0) opposes nothing and stays empty; a PERIMETER row left empty
+					// must be a DECLARED gap — an undeclared empty cell is non-treatment.
+					(opposes[i].Trim().Length == 0 || hasNote).Should().BeTrue(
+						"row {0} has a non-empty crossLink_Opposes but no attack type and no AIF_skosOther " +
+						"note — an undeclared empty is exactly the ambiguity #989 architecture B forbids",
+						i);
+					continue;
+				}
 				filled++;
-				var opp = opposes[i].Split(';', StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToHashSet();
-				var (rt, rn) = opp.Contains("889") || opp.Contains("804") ? ("undermine", "I-node")
-					: opp.Contains("340") ? ("rebut", "CA-node")
-					: ("undercut", "RA-node");
-				if (t == rt && nodes[i].Trim() == rn) consistent++;
+				var expectedNode = expectedNodeByType.TryGetValue(t, out var en) ? en : null;
+				if (nodes[i].Trim() == expectedNode && !hasNote) consistent++;
 			}
 			return (filled, consistent);
 		}
@@ -181,17 +208,21 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 			var (filled, consistent) = CorpusExpectation();
 			var (attackType, scriptDerived, humanReviewed) = CountCommitted();
 
-			filled.Should().BeGreaterThanOrEqualTo(220);
+			filled.Should().BeGreaterThanOrEqualTo(142,
+				"142 rows hold a strict-majority value after the #989 architecture B write (undermine 74 / " +
+				"undercut 63 / rebut 5, against 80 declared gaps); the floor only rises when a future revision " +
+				"dissolves ties with newly measured fallacy values — a fall means rows lost their derived values.");
 			consistent.Should().Be(filled,
-				"current corpus state: ALL 222 filled pairs are rule-consistent (the 1:1 script fingerprint). " +
-				"If this fails, the corpus gained a genuinely revised line — then the split below shifts with " +
-				"it and the ontology must be regenerated; the assertion failing FIRST on the corpus side is " +
-				"by design (distinguish a corpus change from a stale ontology).");
+				"current corpus state: ALL valued pairs carry the script fingerprint (deterministic type→node " +
+				"coupling and no gap note on a valued row). If this fails, the corpus gained a genuinely " +
+				"revised line — then the split below shifts with it and the ontology must be regenerated; the " +
+				"assertion failing FIRST on the corpus side is by design (distinguish a corpus change from a " +
+				"stale ontology).");
 
 			scriptDerived.Should().Be(consistent,
-				"the emitter re-derives the ratified rule per row: rule-consistent pair => 'script-derived'.");
+				"the emitter re-derives the fingerprint per row: consistent pair => 'script-derived'.");
 			humanReviewed.Should().Be(filled - consistent,
-				"deviating pair => 'human-reviewed' (0 today; any future branch-A revision lands here).");
+				"deviating pair => 'human-reviewed' (0 today; any future human revision lands here).");
 		}
 
 		// ─────────────────────────────────────────────────────────────────────────────
@@ -207,9 +238,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 		{
 			var published = File.ReadAllText(Path.Combine(RepoRoot, "docs", "ontology", "argumentum_virtues.owl"));
 
-			published.Should().Contain("rdf-schema#comment").And.Contain("3-branch rule").And.Contain("script-derived",
+			published.Should().Contain("rdf-schema#comment").And.Contain("architecture B").And.Contain("script-derived",
 				"the derivation declaration is an ontology-level rdfs:comment in the published " +
-				"argumentum_virtues.owl: rule, markers and 1:1 fingerprint legible to a reader who has " +
+				"argumentum_virtues.owl: rule, markers and fingerprint legible to a reader who has " +
 				"never opened #989 (the second DoD disjunct: 'la dérivation est déclarée').");
 		}
 	}
