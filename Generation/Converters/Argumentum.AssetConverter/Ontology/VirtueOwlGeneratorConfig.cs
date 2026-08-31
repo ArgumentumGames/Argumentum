@@ -134,14 +134,15 @@ namespace Argumentum.AssetConverter.Ontology
 	        var goodTenorOfProperty = new RDFResource(aifGoodTenorOfUri);
 	        ontology.DeclareObjectProperty(goodTenorOfProperty);
 
-	        // ── #989 branch B — AIF attack typing with derivation provenance ──
-	        // The Virtues' AIF_attackType/AIF_attackedNode values were back-filled by a deterministic
-	        // 3-branch script (plan #750 v2, tools/499-virtues-aif-columns-apply.py, PR #754/#755):
-	        // 206/222 carry the default. Publishing them bare would suggest line-by-line argumentative
-	        // judgment, so every emitted assertion carries a provenance marker. The marker is
-	        // RE-DERIVED at emission (see DeriveAttackTypeProvenance): a stored pair equal to what
-	        // the ratified rule would produce is "script-derived"; any deviation is "human-reviewed"
-	        // — a future real revision (#989 branch A) flips the markers with no schema change.
+	        // ── #989 architecture B — AIF attack typing with derivation provenance ──
+	        // The Virtues' AIF_attackType/AIF_attackedNode values were written by the architecture-B
+	        // rule (ai-01 arbitration 2026-08-31): strict majority of the opposed fallacies' measured
+	        // attack types, exact tie ⇒ declared gap (empty cells + AIF_skosOther note; the gap rows
+	        // emit nothing here, like the root). Publishing the valued rows bare would suggest
+	        // line-by-line argumentative judgment, so every emitted assertion carries a provenance
+	        // marker. The marker is RE-DERIVED at emission (see DeriveAttackTypeProvenance): a
+	        // stored pair carrying the script's fingerprint is "script-derived"; any deviation is
+	        // "human-reviewed" — a future real revision flips the markers with no schema change.
 	        var aifAttackTypeProp = new RDFResource($"{OntologyNamespace}aifAttackType");
 	        var aifAttackedNodeProp = new RDFResource($"{OntologyNamespace}aifAttackedNode");
 	        ontology.DeclareObjectProperty(aifAttackedNodeProp);
@@ -243,49 +244,57 @@ namespace Argumentum.AssetConverter.Ontology
 	    }
 
 	    /// <summary>
-	    /// #989 branch B — re-derives the ratified 3-branch back-fill rule (plan #750 v2,
-	    /// tools/499-virtues-aif-columns-apply.py) and classifies the STORED pair:
-	    /// equal to the rule output ⇒ "script-derived"; any deviation ⇒ "human-reviewed".
+	    /// #989 architecture B — classifies the STORED pair against the script's fingerprint.
+	    /// The corpus was written by the architecture-B rule (ai-01 arbitration 2026-08-31,
+	    /// msg-20260831T172136-w5x7gm): strict majority of the opposed fallacies' measured
+	    /// AIF_attackType values, exact tie ⇒ declared gap (empty cells + AIF_skosOther note).
+	    /// The script's outputs share a verifiable signature WITHOUT loading the Fallacies
+	    /// corpus: a deterministic type→node coupling (undercut→RA-node, undermine→I-node,
+	    /// rebut→CA-node) and gap separation (a valued row never carries the gap note). That
+	    /// signature is what this marker re-derives: signature-consistent ⇒ "script-derived",
+	    /// any deviation ⇒ "human-reviewed". Re-deriving the majority itself would require the
+	    /// cross-corpus pk→AIF_attackType map (generator Phase 3, deliberately not crossed here).
 	    /// Public static so the organ test can drive it on fabricated witnesses (sensitivity
 	    /// proof: the marker is computed, not a constant).
 	    /// </summary>
 	    public static string DeriveAttackTypeProvenance(Virtue virtue)
 	    {
-	        var opposes = (virtue.CrossLinkOpposes ?? "")
-	            .Split(';', StringSplitOptions.RemoveEmptyEntries)
-	            .Select(x => x.Trim())
-	            .ToHashSet();
-	        var (ruleType, ruleNode) =
-	            opposes.Overlaps(UndermineOverrideFallacies) ? ("undermine", "I-node")
-	            : opposes.Overlaps(RebutOverrideFallacies) ? ("rebut", "CA-node")
-	            : ("undercut", "RA-node");
 	        var storedType = (virtue.AIFAttackType ?? "").Trim();
 	        var storedNode = (virtue.AIFAttackedNode ?? "").Trim();
-	        return storedType == ruleType && storedNode == ruleNode
-	            ? "script-derived"
-	            : "human-reviewed";
+	        var hasGapNote = !string.IsNullOrWhiteSpace(virtue.AIFSkosOther);
+	        if (storedType.Length == 0 || hasGapNote)
+	        {
+	            // No derived value to mark (the emitter never calls the marker for an empty
+	            // type), or a valued row carrying a gap declaration — not a script output shape.
+	            return "human-reviewed";
+	        }
+	        var expectedNode = storedType switch
+	        {
+	            "undercut" => "RA-node",
+	            "undermine" => "I-node",
+	            "rebut" => "CA-node",
+	            _ => null,
+	        };
+	        return storedNode == expectedNode ? "script-derived" : "human-reviewed";
 	    }
-
-	    /// <summary>Plan #750 v2 override sets (ratified; fallacy PKs the virtue may oppose).</summary>
-	    public static readonly string[] UndermineOverrideFallacies = { "889", "804" };
-
-	    public static readonly string[] RebutOverrideFallacies = { "340" };
 
 	    /// <summary>
 	    /// The derivation declaration carried as an ontology-level rdfs:comment — the whole point
-	    /// of #989 branch B: a reader who has never seen the issue can tell a derived value from a
-	    /// reviewed one. The perfect 1:1 type↔node coupling on the Virtues side (undercut↔RA ×206,
-	    /// undermine↔I ×13, rebut↔CA ×3) is the script fingerprint — on the human-curated Fallacies
-	    /// side the same columns diverge; any real revision here would break that 1:1 pattern.
+	    /// of #989: a reader who has never seen the issue can tell a derived value from a
+	    /// reviewed one.
 	    /// </summary>
 	    public const string DerivationDeclaration =
-	        "aifAttackType/aifAttackedNode on these virtues were back-filled by a deterministic " +
-	        "3-branch rule (plan #750 v2, tools/499-virtues-aif-columns-apply.py): default -> " +
-	        "undercut/RA-node; opposition to fallacy 889 or 804 -> undermine/I-node; opposition to " +
-	        "fallacy 340 -> rebut/CA-node (206/13/3 of 222). Each assertion carries " +
-	        "aifAttackTypeProvenance: 'script-derived' when the stored pair equals the rule output " +
-	        "(re-derived at emission), 'human-reviewed' when it deviates (#989). The exact 1:1 " +
-	        "type<->node coupling is the script fingerprint; a hand-revised corpus breaks it.";
+	        "aifAttackType/aifAttackedNode on these virtues were written by the #989 architecture B " +
+	        "rule (ai-01 arbitration 2026-08-31): each virtue carries the strict majority of the " +
+	        "measured AIF_attackType values of the fallacies it opposes (crossLink_Opposes); an exact " +
+	        "tie is a declared gap — the cells stay empty and the reason is serialized in AIF_skosOther " +
+	        "(142 mapped: undermine 74, undercut 63, rebut 5; 80 declared gaps). Each assertion carries " +
+	        "aifAttackTypeProvenance, re-derived at emission: 'script-derived' when the stored pair " +
+	        "shows the script fingerprint (deterministic type-node coupling — undercut/RA-node, " +
+	        "undermine/I-node, rebut/CA-node — and no gap note on a valued row), 'human-reviewed' when " +
+	        "it deviates. Re-deriving the majority per row would require the Fallacies corpus " +
+	        "(pk to AIF_attackType), deliberately deferred with the generator's Phase 3 cross-corpus " +
+	        "architecture; until then the marker verifies the script's signature, not its rule (#989).";
 
 	    private RDFResource GetVirtueConcept(Virtue targetVirtue,
 	     OwlAdapter ontology, RDFResource mainScheme)
