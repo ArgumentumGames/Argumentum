@@ -19196,6 +19196,11 @@
 			<polygon points=" 4366 1122 4376 1117 4376 1127 4366 1122" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3134 10683 3144 10678 3144 10688 3134 10683" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4053 1300 C4945 1300 245 14344 1137 14344" clip-path="url(#clipPath1)" />
+			<polygon points=" 4053 1300 4063 1295 4063 1305 4053 1300" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1137 14344 1127 14349 1127 14339 1137 14344" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(121,85,72)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(121,85,72)">
 			<path fill="none" d="M4255 1432 C5147 1432 5218 1214 4326 1214" clip-path="url(#clipPath1)" />
 			<polygon points=" 4255 1432 4265 1427 4265 1437 4255 1432" clip-path="url(#clipPath1)" stroke="none" />
@@ -19266,15 +19271,30 @@
 			<polygon points=" 4481 1614 4491 1609 4491 1619 4481 1614" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3134 10683 3144 10678 3144 10688 3134 10683" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4147 1731 C5039 1731 -210 13413 682 13413" clip-path="url(#clipPath1)" />
+			<polygon points=" 4147 1731 4157 1726 4157 1736 4147 1731" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 682 13413 672 13418 672 13408 682 13413" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M4354 1754 C5246 1754 5212 1708 4320 1708" clip-path="url(#clipPath1)" />
 			<polygon points=" 4354 1754 4364 1749 4364 1759 4354 1754" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4320 1708 4330 1703 4330 1713 4320 1708" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4320 1708 C5212 1708 301 16330 1193 16330" clip-path="url(#clipPath1)" />
+			<polygon points=" 4320 1708 4330 1703 4330 1713 4320 1708" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1193 16330 1183 16335 1183 16325 1193 16330" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(121,85,72)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(121,85,72)">
 			<path fill="none" d="M4320 1708 C5212 1708 5246 1754 4354 1754" clip-path="url(#clipPath1)" />
 			<polygon points=" 4320 1708 4330 1703 4330 1713 4320 1708" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4354 1754 4364 1749 4364 1759 4354 1754" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4354 1754 C5246 1754 544 15421 1436 15421" clip-path="url(#clipPath1)" />
+			<polygon points=" 4354 1754 4364 1749 4364 1759 4354 1754" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1436 15421 1426 15426 1426 15416 1436 15421" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(121,85,72)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(121,85,72)">
 			<path fill="none" d="M4132 1823 C5024 1823 1426 5203 2318 5203" clip-path="url(#clipPath1)" />
@@ -19315,6 +19335,11 @@
 			<path fill="none" d="M4467 1936 C5359 1936 1426 5203 2318 5203" clip-path="url(#clipPath1)" />
 			<polygon points=" 4467 1936 4477 1931 4477 1941 4467 1936" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 2318 5203 2308 5208 2308 5198 2318 5203" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M4359 1984 C5251 1984 154 6976 1046 6976" clip-path="url(#clipPath1)" />
+			<polygon points=" 4359 1984 4369 1979 4369 1989 4359 1984" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1046 6976 1036 6981 1036 6971 1046 6976" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4359 1984 C5251 1984 1360 7776 2252 7776" clip-path="url(#clipPath1)" />
@@ -19491,6 +19516,11 @@
 			<polygon points=" 4070 3529 4080 3524 4080 3534 4070 3529" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4078 3321 4088 3316 4088 3326 4078 3321" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4078 3321 C4970 3321 90 13787 982 13787" clip-path="url(#clipPath1)" />
+			<polygon points=" 4078 3321 4088 3316 4088 3326 4078 3321" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 982 13787 972 13792 972 13782 982 13787" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M4078 3321 C4970 3321 4962 3529 4070 3529" clip-path="url(#clipPath1)" />
 			<polygon points=" 4078 3321 4088 3316 4088 3326 4078 3321" clip-path="url(#clipPath1)" stroke="none" />
@@ -19546,10 +19576,20 @@
 			<polygon points=" 4380 3807 4390 3802 4390 3812 4380 3807" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4440 3853 4450 3848 4450 3858 4440 3853" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4440 3853 C5332 3853 112 13937 1004 13937" clip-path="url(#clipPath1)" />
+			<polygon points=" 4440 3853 4450 3848 4450 3858 4440 3853" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1004 13937 994 13942 994 13932 1004 13937" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4400 3945 C5292 3945 4026 10683 3134 10683" clip-path="url(#clipPath1)" />
 			<polygon points=" 4400 3945 4410 3940 4410 3950 4400 3945" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3134 10683 3144 10678 3144 10688 3134 10683" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4340 4037 C5232 4037 -9 15978 883 15978" clip-path="url(#clipPath1)" />
+			<polygon points=" 4340 4037 4350 4032 4350 4042 4340 4037" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 883 15978 873 15983 873 15973 883 15978" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M4550 4037 C5442 4037 5438 3991 4546 3991" clip-path="url(#clipPath1)" />
@@ -19675,6 +19715,16 @@
 			<path fill="none" d="M4342 4581 C5234 4581 5219 4629 4327 4629" clip-path="url(#clipPath1)" />
 			<polygon points=" 4342 4581 4352 4576 4352 4586 4342 4581" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4327 4629 4337 4624 4337 4634 4327 4629" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4562 4675 C5454 4675 261 14383 1153 14383" clip-path="url(#clipPath1)" />
+			<polygon points=" 4562 4675 4572 4670 4572 4680 4562 4675" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1153 14383 1143 14388 1143 14378 1153 14383" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4269 4746 C5161 4746 424 14308 1316 14308" clip-path="url(#clipPath1)" />
+			<polygon points=" 4269 4746 4279 4741 4279 4751 4269 4746" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1316 14308 1306 14313 1306 14303 1316 14308" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M4431 4769 C5323 4769 5316 4723 4424 4723" clip-path="url(#clipPath1)" />
@@ -20056,6 +20106,11 @@
 			<polygon points=" 3879 5846 3889 5841 3889 5851 3879 5846" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3926 4999 3936 4994 3936 5004 3926 4999" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M3926 4999 C4818 4999 570 7266 1462 7266" clip-path="url(#clipPath1)" />
+			<polygon points=" 3926 4999 3936 4994 3936 5004 3926 4999" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1462 7266 1452 7271 1452 7261 1462 7266" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M4135 5137 C5027 5137 5059 5045 4167 5045" clip-path="url(#clipPath1)" />
 			<polygon points=" 4135 5137 4145 5132 4145 5142 4135 5137" clip-path="url(#clipPath1)" stroke="none" />
@@ -20205,6 +20260,11 @@
 			<path fill="none" d="M4046 5869 C4938 5869 4987 5915 4095 5915" clip-path="url(#clipPath1)" />
 			<polygon points=" 4046 5869 4056 5864 4056 5874 4046 5869" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4095 5915 4105 5910 4105 5920 4095 5915" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M4095 5915 C4987 5915 102 6933 994 6933" clip-path="url(#clipPath1)" />
+			<polygon points=" 4095 5915 4105 5910 4105 5920 4095 5915" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 994 6933 984 6938 984 6928 994 6933" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4095 5915 C4987 5915 1360 7776 2252 7776" clip-path="url(#clipPath1)" />
@@ -20446,6 +20506,11 @@
 			<polygon points=" 3861 8179 3871 8174 3871 8184 3861 8179" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3914 8087 3924 8082 3924 8092 3914 8087" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M3852 8225 C4744 8225 485 8468 1377 8468" clip-path="url(#clipPath1)" />
+			<polygon points=" 3852 8225 3862 8220 3862 8230 3852 8225" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1377 8468 1367 8473 1367 8463 1377 8468" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4012 8223 C4904 8223 1360 7776 2252 7776" clip-path="url(#clipPath1)" />
 			<polygon points=" 4012 8223 4022 8218 4022 8228 4012 8223" clip-path="url(#clipPath1)" stroke="none" />
@@ -20460,6 +20525,11 @@
 			<path fill="none" d="M3985 8269 C4877 8269 4043 18295 3151 18295" clip-path="url(#clipPath1)" />
 			<polygon points=" 3985 8269 3995 8264 3995 8274 3985 8269" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3151 18295 3161 18290 3161 18300 3151 18295" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M3998 8317 C4890 8317 561 17893 1453 17893" clip-path="url(#clipPath1)" />
+			<polygon points=" 3998 8317 4008 8312 4008 8322 3998 8317" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1453 17893 1443 17898 1443 17888 1453 17893" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M3854 8488 C4746 8488 4763 8818 3871 8818" clip-path="url(#clipPath1)" />
@@ -20646,6 +20716,11 @@
 			<polygon points=" 4139 10005 4149 10000 4149 10010 4139 10005" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4136 9925 4146 9920 4146 9930 4136 9925" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M4126 9965 C5018 9965 261 8706 1153 8706" clip-path="url(#clipPath1)" />
+			<polygon points=" 4126 9965 4136 9960 4136 9970 4126 9965" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1153 8706 1143 8711 1143 8701 1153 8706" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4126 9965 C5018 9965 4992 10085 4100 10085" clip-path="url(#clipPath1)" />
 			<polygon points=" 4126 9965 4136 9960 4136 9970 4126 9965" clip-path="url(#clipPath1)" stroke="none" />
@@ -20655,6 +20730,11 @@
 			<path fill="none" d="M4126 9965 C5018 9965 1360 7776 2252 7776" clip-path="url(#clipPath1)" />
 			<polygon points=" 4126 9965 4136 9960 4136 9970 4126 9965" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 2252 7776 2242 7781 2242 7771 2252 7776" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M4139 10005 C5031 10005 313 8666 1205 8666" clip-path="url(#clipPath1)" />
+			<polygon points=" 4139 10005 4149 10000 4149 10010 4139 10005" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1205 8666 1195 8671 1195 8661 1205 8666" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4139 10005 C5031 10005 1360 7776 2252 7776" clip-path="url(#clipPath1)" />
@@ -20685,6 +20765,11 @@
 			<path fill="none" d="M4099 10125 C4991 10125 5071 10165 4179 10165" clip-path="url(#clipPath1)" />
 			<polygon points=" 4099 10125 4109 10120 4109 10130 4099 10125" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4179 10165 4189 10160 4189 10170 4179 10165" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4179 10165 C5071 10165 98 13713 990 13713" clip-path="url(#clipPath1)" />
+			<polygon points=" 4179 10165 4189 10160 4189 10170 4179 10165" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 990 13713 980 13718 980 13708 990 13713" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
 			<path fill="none" d="M4047 10259 C4939 10259 11 16128 903 16128" clip-path="url(#clipPath1)" />
@@ -20901,6 +20986,11 @@
 			<polygon points=" 4068 11416 4078 11411 4078 11421 4068 11416" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4041 11370 4051 11365 4051 11375 4041 11370" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4041 11370 C4933 11370 6 13452 898 13452" clip-path="url(#clipPath1)" />
+			<polygon points=" 4041 11370 4051 11365 4051 11375 4041 11370" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 898 13452 888 13457 888 13447 898 13452" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(121,85,72)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(121,85,72)">
 			<path fill="none" d="M4041 11370 C4933 11370 4960 11416 4068 11416" clip-path="url(#clipPath1)" />
 			<polygon points=" 4041 11370 4051 11365 4051 11375 4041 11370" clip-path="url(#clipPath1)" stroke="none" />
@@ -21050,6 +21140,11 @@
 			<path fill="none" d="M4349 12276 C5241 12276 5244 12239 4352 12239" clip-path="url(#clipPath1)" />
 			<polygon points=" 4349 12276 4359 12271 4359 12281 4349 12276" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4352 12239 4362 12234 4362 12244 4352 12239" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M4321 12389 C5213 12389 78 14644 970 14644" clip-path="url(#clipPath1)" />
+			<polygon points=" 4321 12389 4331 12384 4331 12394 4321 12389" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 970 14644 960 14649 960 14639 970 14644" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M4163 12568 C5055 12568 5038 12430 4146 12430" clip-path="url(#clipPath1)" />
@@ -21801,6 +21896,11 @@
 			<polygon points=" 1396 16963 1386 16968 1386 16958 1396 16963" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 2377 2405 2367 2410 2367 2400 2377 2405" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M2091 1481 C1199 1481 205 15162 1097 15162" clip-path="url(#clipPath1)" />
+			<polygon points=" 2091 1481 2081 1486 2081 1476 2091 1481" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1097 15162 1087 15167 1087 15157 1097 15162" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(0,95,95)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,95,95)">
 			<path fill="none" d="M1634 1076 C742 1076 758 1369 1650 1369" clip-path="url(#clipPath1)" />
 			<polygon points=" 1634 1076 1624 1081 1624 1071 1634 1076" clip-path="url(#clipPath1)" stroke="none" />
@@ -21820,6 +21920,11 @@
 			<path fill="none" d="M1157 1033 C265 1033 276 1073 1168 1073" clip-path="url(#clipPath1)" />
 			<polygon points=" 1157 1033 1147 1038 1147 1028 1157 1033" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 1168 1073 1158 1078 1158 1068 1168 1073" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M1168 1073 C276 1073 171 14233 1063 14233" clip-path="url(#clipPath1)" />
+			<polygon points=" 1168 1073 1158 1078 1158 1068 1168 1073" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1063 14233 1053 14238 1053 14228 1063 14233" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(121,85,72)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(121,85,72)">
 			<path fill="none" d="M1650 1369 C758 1369 731 1208 1623 1208" clip-path="url(#clipPath1)" />
@@ -21926,6 +22031,11 @@
 			<polygon points=" 1631 1580 1621 1585 1621 1575 1631 1580" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 1619 1626 1609 1631 1609 1621 1619 1626" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M1501 1578 C609 1578 696 17063 1588 17063" clip-path="url(#clipPath1)" />
+			<polygon points=" 1501 1578 1491 1583 1491 1573 1501 1578" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1588 17063 1578 17068 1578 17058 1588 17063" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M1230 1924 C338 1924 444 1821 1336 1821" clip-path="url(#clipPath1)" />
 			<polygon points=" 1230 1924 1220 1929 1220 1919 1230 1924" clip-path="url(#clipPath1)" stroke="none" />
@@ -21961,6 +22071,11 @@
 			<polygon points=" 1589 2294 1579 2299 1579 2289 1589 2294" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 1482 1970 1472 1975 1472 1965 1482 1970" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M1412 2062 C520 2062 504 16963 1396 16963" clip-path="url(#clipPath1)" />
+			<polygon points=" 1412 2062 1402 2067 1402 2057 1412 2062" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1396 16963 1386 16968 1386 16958 1396 16963" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(91,110,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(91,110,0)">
 			<path fill="none" d="M1557 2177 C665 2177 697 2294 1589 2294" clip-path="url(#clipPath1)" />
 			<polygon points=" 1557 2177 1547 2182 1547 2172 1557 2177" clip-path="url(#clipPath1)" stroke="none" />
@@ -21995,6 +22110,11 @@
 			<path fill="none" d="M1347 2246 C455 2246 381 2200 1273 2200" clip-path="url(#clipPath1)" />
 			<polygon points=" 1347 2246 1337 2251 1337 2241 1347 2246" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 1273 2200 1263 2205 1263 2195 1273 2200" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(163,93,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(163,93,0)">
+			<path fill="none" d="M1589 2294 C697 2294 242 14270 1134 14270" clip-path="url(#clipPath1)" />
+			<polygon points=" 1589 2294 1579 2299 1579 2289 1589 2294" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1134 14270 1124 14275 1124 14265 1134 14270" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(121,85,72)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(121,85,72)">
 			<path fill="none" d="M1203 2434 C311 2434 257 2388 1149 2388" clip-path="url(#clipPath1)" />
@@ -22070,6 +22190,11 @@
 			<path fill="none" d="M973 2894 C81 2894 4043 18295 3151 18295" clip-path="url(#clipPath1)" />
 			<polygon points=" 973 2894 963 2899 963 2889 973 2894" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3151 18295 3161 18290 3161 18300 3151 18295" clip-path="url(#clipPath1)" stroke="none" />
+		</g>
+		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(255,109,0)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,109,0)">
+			<path fill="none" d="M1676 2944 C784 2944 518 8238 1410 8238" clip-path="url(#clipPath1)" />
+			<polygon points=" 1676 2944 1666 2949 1666 2939 1676 2944" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1410 8238 1400 8243 1400 8233 1410 8238" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-7,-227)" fill="rgb(55,71,79)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(55,71,79)">
 			<path fill="none" d="M1121 7059 C229 7059 525 3036 1417 3036" clip-path="url(#clipPath1)" />

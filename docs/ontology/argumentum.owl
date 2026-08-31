@@ -2679,10 +2679,25 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#incongruity" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflicted" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflict" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#incongruity_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfCorrelatives" />
@@ -2748,6 +2763,9 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#conflictingConditions" />
   </Declaration>
   <Declaration>
@@ -2758,6 +2776,9 @@
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#definistFallacy" />
@@ -2781,10 +2802,22 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonexclusiveClassification" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonexclusiveClassification_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inconsistentComparison" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflicted" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflict" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy" />
@@ -2805,16 +2838,31 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#conflation" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#conflation_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ambiguity" />
@@ -2832,7 +2880,13 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#accent" />
@@ -2931,16 +2985,31 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#blindItem" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#blindItem_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#baitingForTruth" />
@@ -5140,6 +5209,41 @@
     </ObjectUnionOf>
   </EquivalentClasses>
   <SubClassOf>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflicted" />
+    <ObjectExactCardinality cardinality="1">
+      <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#PropertyNotExistant_Conflict" />
+    </ObjectExactCardinality>
+  </SubClassOf>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflict" />
+    <ObjectIntersectionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflicted" />
+    </ObjectIntersectionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#incongruity_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PropertyNotExistant_Conflict_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <SubClassOf>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Dilemma_Inference_Conflicted" />
     <ObjectExactCardinality cardinality="1">
       <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
@@ -5154,10 +5258,52 @@
     </ObjectIntersectionOf>
   </EquivalentClasses>
   <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Logical_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison_Conflict" />
     <ObjectUnionOf>
       <Class IRI="http://www.arg.dundee.ac.uk/aif#BiasedClassification_Conflict" />
       <Class IRI="http://www.arg.dundee.ac.uk/aif#ExceptionSimilarityCase_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonexclusiveClassification_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#BiasedClassification_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <SubClassOf>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflicted" />
+    <ObjectExactCardinality cardinality="1">
+      <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
+    </ObjectExactCardinality>
+  </SubClassOf>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflict" />
+    <ObjectIntersectionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflicted" />
+    </ObjectIntersectionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#PropertyNotExistant_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflict" />
     </ObjectUnionOf>
   </EquivalentClasses>
   <SubClassOf>
@@ -5182,11 +5328,60 @@
     </ObjectUnionOf>
   </EquivalentClasses>
   <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#DifferencesUndermineSimilarity_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Analogy_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#DifferencesUndermineSimilarity_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Analogy_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#DifferencesUndermineSimilarity_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Analogy_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#BiasedClassification_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#conflation_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ExceptionSimilarityCase_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ArbitraryVerbalClassification_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ambiguity_Conflict" />
     <ObjectUnionOf>
       <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
       <Class IRI="http://www.arg.dundee.ac.uk/aif#OppositeConsequences_Conflict" />
       <Class IRI="http://www.arg.dundee.ac.uk/aif#SignFromOtherEvents_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Logical_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Logical_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict" />
     </ObjectUnionOf>
   </EquivalentClasses>
   <SubClassOf>
@@ -5202,6 +5397,41 @@
       <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
       <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalSlipperySlope_Inference_Conflicted" />
     </ObjectIntersectionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#blindItem_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#LackOfCompleteKnowledge_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PositionToKnow_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ExpertiseInconsistency_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ExpertOpinion_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#LackOfCompleteKnowledge_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PositionToKnow_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ExpertiseInconsistency_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ExpertOpinion_Inference_Conflict" />
+    </ObjectUnionOf>
+  </EquivalentClasses>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation_Conflict" />
+    <ObjectUnionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PracticalReasoning_Inference_Conflict" />
+    </ObjectUnionOf>
   </EquivalentClasses>
   <EquivalentClasses>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts_Conflict" />
@@ -5547,6 +5777,11 @@
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
@@ -5662,6 +5897,16 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonSense" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#psychologistsFallacy" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#psychologistsFallacy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning" />
@@ -5670,6 +5915,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -5735,6 +5985,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#amazingFamiliarity" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#noTrueScotsman" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#noTrueScotsman" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -6037,6 +6292,11 @@
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#appealToNovelty" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#appealToNovelty" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#appealToNovelty" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#argumentFromForm" />
@@ -6137,6 +6397,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#quantitativeFallacy" />
@@ -6150,6 +6415,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#intuitionPump" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#influence" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hindsightBias" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hindsightBias" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -6372,6 +6642,16 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#failingThePrincipleOfCharity" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#animism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#animisticFallacy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#apophenia" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#apophenia" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#pareidolia" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#clusteringIllusion" />
@@ -6440,6 +6720,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#beggingTheQuestion" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#persuasiveDefinition" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#persuasiveDefinition" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -6710,6 +6995,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotiveConjugation" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#judgementalLanguage" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotiveConjugation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#emotiveConjugation" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -7072,6 +7362,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#litotes" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#metonymy" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#metonymy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#synecdoche" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage" />
@@ -7110,6 +7405,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#insufficiency" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#appealToConfidence" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#haloEffect" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#haloEffect" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -7487,6 +7787,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#antitheticalEquivocation" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#distancingLanguage" />
@@ -7495,6 +7800,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#motteAndBailey" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#motteandbaileyFallacy" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -7550,6 +7860,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sleeperEffect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -7917,6 +8232,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusions" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#experimenterEffect" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#experimenterEffect" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#experimenterEffect" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#cleverHansEffect" />
@@ -8200,6 +8520,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#footInTheMouth" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#touching" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#gratitudeTrap" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#gratitudeTrap" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -9502,6 +9827,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#haptics" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
@@ -9530,6 +9860,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#insufficiency" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -9782,6 +10117,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#overgeneralization" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#stereotype" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#stereotype" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#overwhelmingException" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#overgeneralization" />
@@ -9877,6 +10217,11 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#correlationCausationFallacy" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#regressionFallacy" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#regressiveFallacy" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#allows" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#postdesignation" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation" />
@@ -9930,6 +10275,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#shoehorning" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#occultStats" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -10085,6 +10435,11 @@
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#vagueness" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
+  </ObjectPropertyAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#falsePrecision" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#falsePrecision" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -61941,6 +62296,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#failureToElucidate</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#undefinability</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -61996,6 +62356,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#undefinability</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentiallyContestedConcept</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -62049,6 +62414,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentiallyContestedConcept</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentiallyContestedConcept</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -62172,6 +62542,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#arbitraryDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -62227,6 +62602,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -62280,6 +62660,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -63359,6 +63744,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflictingConditions</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -63414,6 +63804,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflictingConditions</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#Logical_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#stolenConceptFallacy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -63467,6 +63862,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#stolenConceptFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflictingConditions</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#stolenConceptFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#InconsistentCommitment_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -63579,6 +63979,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#circularReasoning</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#definistFallacy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -63632,6 +64037,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#definistFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#circularReasoning</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#definistFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -63799,6 +64209,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyComparison</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ExceptionSimilarityCase_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incompleteComparison</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -63909,6 +64324,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyComparison</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonexclusiveClassification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonexclusiveClassification_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentComparison</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64017,6 +64437,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyComparison</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#distinctionWithoutADifference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64194,6 +64619,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64249,6 +64679,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64302,6 +64737,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64364,6 +64804,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64422,6 +64867,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64549,6 +64999,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguousPunctuation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64659,6 +65114,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64712,6 +65172,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64769,6 +65234,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#accent</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illicitContrast</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64822,6 +65292,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illicitContrast</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#accent</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illicitContrast</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64944,6 +65419,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#barbarism</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -65002,6 +65482,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -65119,6 +65604,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueness</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falsePrecision</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticSlipperySlope</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -65234,6 +65724,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticSlipperySlope</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentOfTheBeard</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#VerbalSlipperySlope_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -65287,6 +65782,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -65404,6 +65904,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#homonym</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#heterosemy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -65457,6 +65962,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#heterosemy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#homonym</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#heterosemy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -65514,6 +66024,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#jingleJangleFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemyBySemanticChange</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -65567,6 +66082,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemyBySemanticChange</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemyBySemanticChange</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -65629,6 +66149,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemyBySemanticChange</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#metonymy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#typeTokenFallacy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -65682,6 +66207,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#typeTokenFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#metonymy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#typeTokenFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#Example_Inference</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66139,6 +66669,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#idolaFori</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#motteandbaileyFallacy</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66249,6 +66784,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseImplication</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66302,6 +66842,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseImplication</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66359,6 +66904,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#OpposedCommitment_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blindItem</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66412,6 +66962,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blindItem</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blindItem</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blindItem_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66474,6 +67029,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66527,6 +67087,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66589,6 +67154,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66642,6 +67212,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66699,6 +67274,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#baitingForTruth</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#Bias_Inference</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polytely</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66752,6 +67332,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polytely</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polytely</IRI>
+    <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -96828,6 +97413,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anecdotalEvidence</IRI>
     <Literal>undercut</Literal>
@@ -96953,6 +97543,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonSense</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologistsFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologistsFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning</IRI>
@@ -96961,6 +97561,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mindProjectionFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalReasoning</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -97031,6 +97636,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#amazingFamiliarity</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#noTrueScotsman</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#noTrueScotsman</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -97353,6 +97963,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToNovelty</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToNovelty</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToNovelty</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromForm</IRI>
@@ -97463,6 +98078,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#streetlightEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantitativeFallacy</IRI>
@@ -97476,6 +98096,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#intuitionPump</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hindsightBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hindsightBias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -97708,6 +98333,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#failingThePrincipleOfCharity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#animism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#animisticFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#apophenia</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#apophenia</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pareidolia</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#clusteringIllusion</IRI>
@@ -97781,6 +98416,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#beggingTheQuestion</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#persuasiveDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#persuasiveDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
@@ -98051,6 +98691,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotiveConjugation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#judgementalLanguage</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotiveConjugation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotiveConjugation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -98423,6 +99068,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#litotes</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#metonymy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#metonymy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#synecdoche</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
@@ -98466,6 +99116,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToConfidence</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#haloEffect</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#haloEffect</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -98868,6 +99523,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#antitheticalEquivocation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#distancingLanguage</IRI>
@@ -98876,6 +99536,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#motteAndBailey</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#motteandbaileyFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -98931,6 +99596,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sleeperEffect</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryTruthEffect</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -99298,6 +99968,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusions</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#experimenterEffect</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#experimenterEffect</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#experimenterEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cleverHansEffect</IRI>
@@ -99591,6 +100266,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#mirrors" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#footInTheMouth</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#touching</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#gratitudeTrap</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#gratitudeTrap</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
@@ -100898,6 +101578,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#haptics</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
     <Literal>undercut</Literal>
@@ -100936,6 +101621,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -101193,6 +101883,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overgeneralization</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#stereotype</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#stereotype</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overwhelmingException</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overgeneralization</IRI>
@@ -101303,6 +101998,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#correlationCausationFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#regressionFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#regressiveFallacy</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#allows" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#postdesignation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation</IRI>
@@ -101356,6 +102056,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#shoehorning</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#occultStats</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#predatesOn" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illusoryCorrelation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -101526,6 +102231,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueness</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#denounces" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falsePrecision</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falsePrecision</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
