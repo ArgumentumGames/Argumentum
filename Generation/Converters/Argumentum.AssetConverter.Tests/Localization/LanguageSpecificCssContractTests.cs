@@ -143,7 +143,17 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		private static HashSet<string> ElementNamesIn(string markup) =>
 			Regex.Matches(markup, @"<(?<n>[A-Za-z][A-Za-z0-9_-]*)")
 				.Select(m => m.Groups["n"].Value)
+				.Concat(markup.Contains("{{markdown", StringComparison.Ordinal)
+					? MarkdownElements : Enumerable.Empty<string>())
 				.ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+		/// <summary>
+		/// Elements a <c>{{markdown …}}</c> token emits at render time (marked.js). They never appear
+		/// in the mustache source, so a selector legitimately targeting one — the Rules brand counter
+		/// targets the <c>h1</c> that <c># Argumentum</c> produces — would otherwise read as dead.
+		/// </summary>
+		private static readonly string[] MarkdownElements =
+			{ "h1", "h2", "h3", "h4", "h5", "h6", "p", "ul", "ol", "li", "strong", "em", "a", "blockquote", "code", "pre", "hr", "br", "img", "table", "thead", "tbody", "tr", "th", "td", "del", "s" };
 
 		/// <summary>
 		/// Components of a language-scoped selector that resolve to nothing in the given markup.
