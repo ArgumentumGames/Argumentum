@@ -25,6 +25,16 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// language, each variant (original / links / content / cards) — must carry EXACTLY the corpus
     /// count. The Virtues maps carry none (the Virtues taxonomy has no crossLink columns) and are
     /// deliberately not asserted here.
+    ///
+    /// #1238 §2 — the same invariant guards the 8 INLINE WRAPPERS (Fallacies_{lang}.html). The
+    /// wrapper inlines the content.svg verbatim (MindMapHtmlWrapper.FormatWrapper does a raw
+    /// [SVGCONTENT] substitution), so a wrapper regenerated before a cross-link or palette change
+    /// silently freezes the stale map — and still renders "a" mindmap, which is why the staleness
+    /// is invisible without this organ (#725 class: the early-skip in MindMapHtmlWrapper
+    /// regeneration). The _ext wrappers are deliberately NOT asserted: they reference the SVG
+    /// through &lt;object data=...&gt;, so they carry 0 inline stroke by construction — asserting
+    /// them would be red forever, and skipping them is not a hole (the referenced SVG is itself
+    /// asserted above).
     /// </summary>
     public class CrossLinkArrowCountTests
     {
@@ -63,6 +73,43 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             }
         }
 
+        /// <summary>
+        /// #1238 §2 — the 8 inline wrappers must carry the corpus count, exactly like the SVGs they
+        /// embed. RED AT OPENING BY DESIGN on a stale wrapper set (master's wrappers predate the
+        /// cross-link pass: 0 verb-colored strokes against 1255 corpus links); the red falls when
+        /// the consolidated FreeMind pass rewrites the wrappers. Do NOT weaken the assertion to
+        /// make it green — that would turn the organ against its object.
+        /// </summary>
+        [Fact]
+        public void ShippedInlineWrappers_CarryExactlyTheCorpusCrossLinkCount()
+        {
+            var expected = CountResolvableCorpusLinks();
+            expected.Should().BeGreaterThan(0,
+                "the taxonomy must declare at least one resolvable crossLink_* target, otherwise this organ " +
+                "degenerates to 0 == 0 (the #1046 no-op guard)");
+
+            var mindmapsRoot = Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies", "Mindmaps");
+            foreach (var language in Languages)
+            {
+                var wrapperPath = Path.Combine(mindmapsRoot, language, $"Fallacies_{language}.html");
+                File.Exists(wrapperPath).Should().BeTrue(
+                    $"the inline wrapper 'Fallacies_{language}.html' must exist — a missing file must fail the " +
+                    "organ, not slip past it (same discipline as the SVG inventory)");
+                var arrowCount = CountArrows(wrapperPath);
+                arrowCount.Should().Be(expected,
+                    "the inline wrapper embeds the content.svg verbatim (raw [SVGCONTENT] substitution in " +
+                    "MindMapHtmlWrapper.FormatWrapper), so it must carry exactly the corpus cross-link count " +
+                    "like the SVG it embeds — cross-links are keyed by taxonomy path (language-independent). " +
+                    "Corpus says {1}. A LOWER count means the wrapper froze a stale map (the #725 early-skip " +
+                    "class: the page still renders, wrong or empty of cross-links — invisible without this " +
+                    "organ); a HIGHER count means duplicate or spurious arrows. NOTE: the count is taken over " +
+                    "the EIGHT verb colors only — the wrapper's tree edges carry family colors (~3,300 bare " +
+                    "stroke=\"rgb( occurrences on fr at the time of writing), which a bare 'stroke=' needle " +
+                    "would conflate with real cross-link arrows.",
+                    Path.GetFileName(wrapperPath), expected);
+            }
+        }
+
         private static IEnumerable<string> EnumerateFallaciesSvgs()
         {
             var mindmapsRoot = Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies", "Mindmaps");
@@ -91,7 +138,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
         /// <summary>
         /// Counts the cross-link connectors FreeMind/Batik draws in its SVG export, one stroked
-        /// path per arrowlink, colored by verb. FreeMind exports via the Batik Graphics2D
+        /// path per arrowlink, colored by verb. Works on any artifact embedding that markup
+        /// verbatim — the .svg exports and the inline wrappers (#1238). FreeMind exports via the Batik Graphics2D
         /// generator, which never emits semantic marker-end references — it flattens every shape
         /// (including arrowheads) into generic paths carrying a stroke color. The verb palette
         /// (FallacyMindMapDocumentConfig.CrossLinkColors) is therefore the only stable signature:
