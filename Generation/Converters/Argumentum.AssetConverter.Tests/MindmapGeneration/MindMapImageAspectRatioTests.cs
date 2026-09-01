@@ -10,7 +10,7 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 {
 	/// <summary>
-	/// #1251 organ: every &lt;image&gt; of every shipped mindmap carries preserveAspectRatio="none",
+	/// #1253 organ: every &lt;image&gt; of every shipped mindmap carries preserveAspectRatio="none",
 	/// so the declared display box is applied to the embedded PNG with NO aspect negotiation at all.
 	/// The shipped artefacts are geometrically correct today only because the declared box ratio
 	/// equals the embedded source ratio EXACTLY — measured 2026-09-01 on the 41 committed SVGs:
