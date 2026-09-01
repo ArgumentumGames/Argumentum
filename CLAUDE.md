@@ -162,6 +162,21 @@ Pipeline runs must launch from the **short junction `D:\A1114`** (→ `.prep-111
 
 `UseLocalCardpen` (`WebBasedGeneratorConfig.cs:84`) is a **single flag defaulting to `true` for both build modes** — it is NOT a Debug/Release pair (the table row above says so explicitly). Keep it `true`. GitHub Pages publishes **only the CardPen site**, not the repo's `/Cards/` tree: a Release run with `UseLocalCardpen=false` resolves Scenarii/asset URLs to `argumentumgames.github.io/Cards/` → **HTTP 404 → 0 images → 0 PDF** (silent set failure, discovered 2026-07-01). The workaround — keep the default `true` — was validated 01/07 (64 PDFs complete) and has been in force on every regen since (22/08, 28/08). The durable fix (Option 1: absolute raw-master URLs, PR #666) is HOLD post-tag.
 
+### A branch fix to a card template is NOT verifiable by a Release render (#1225/#1228)
+
+`JsonFilePathRelease` is an **absolute URL pinned to `master`** — e.g. Rules resolves to `https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json` (`WebBasedGeneratorConfig.cs:110`). `CardSetInfo.GetJsonFilePath` picks it whenever `UseDebugParams` is false, so **a Release run downloads the template from master and never reads the worktree**. A template fix living on a feature branch is therefore invisible to a Release render, no matter which branch is checked out.
+
+The failure mode is silent and looks like non-determinism: the render is byte-identical across runs (same code, same master template), the fix "does not take", and a cache-clobber changes nothing. Discovered 2026-09-01 after three identical deliveries on #1228 — the discriminator is already in the log, two lines per CardSet:
+
+```
+[CardSetInfo] JsonFilePathDebug='…', JsonFilePathRelease='…'
+[CardSetInfo] UseDebugParams=<bool>, Selected path: '<path>'
+```
+
+**Validate template fixes in Debug** (local path → worktree), or merge first and validate after. Demanding a Release proof before merge asks for the fix to be on master before it is on master.
+
+Corollary for reviewers: the CSS cascade itself can be measured without the pipeline — extract the `css` and `mustache` keys from the template JSON, apply the language-class rewrite the pipeline performs (`ARGU_LANG_MARKER`, `AssetConverterConfig.cs`), reconstruct the markdown render, and read `getComputedStyle` in a browser. That verdict is independent of which template the pipeline happens to load.
+
 ## Multilingual Support
 
 Languages: French (default), English, Russian, Portuguese, Spanish, Arabic, Farsi, Chinese (8 languages)
