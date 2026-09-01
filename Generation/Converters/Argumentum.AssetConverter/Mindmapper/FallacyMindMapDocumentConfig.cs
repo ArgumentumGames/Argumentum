@@ -969,6 +969,10 @@ if (mapFile != null) {
 		/// </summary>
 		private static readonly Dictionary<CrossLink, string> CrossLinkColors = new Dictionary<CrossLink, string>()
 		{
+			// #1248 dual palette: this is the DEFAULT (subtle) register, baked into the .mm and
+			// therefore present on every export (original .svg, content.svg, cards, wrappers).
+			// The links.svg study variant additionally rewrites these to CrossLinkColorsStudy
+			// in post-processing (see RecolorCrossLinksToStudy).
 			{ CrossLink.PredatesOn, "#ffe0cc" },
 			{ CrossLink.Denounces, "#fff4c2" },
 			{ CrossLink.Leverages, "#ccffff" },   // owner original, ex-AppealTo
@@ -979,10 +983,76 @@ if (mapFile != null) {
 			{ CrossLink.IsRelatedTo, "#e0dad4" },
 		};
 
+		/// <summary>
+		/// #1248 study register — same hues as <see cref="CrossLinkColors"/> with luminance lowered
+		/// so every verb contrasts >= 0.24 against white (the subtle register sits at 0.05-0.14:
+		/// discreet on the default view, unreadable as the object of study). Applied only to the
+		/// links.svg variant via <see cref="SVGFreemindMap.HighContrastCrossLinks"/>. Must stay
+		/// collision-free against every stroke color a Batik export can emit, same discipline as
+		/// the default table (checked 2026-09-01 against the union of the 41 shipped SVGs).
+		/// </summary>
+		private static readonly Dictionary<CrossLink, string> CrossLinkColorsStudy = new Dictionary<CrossLink, string>()
+		{
+			{ CrossLink.PredatesOn, "#e6b46e" },
+			{ CrossLink.Denounces, "#d2c850" },
+			{ CrossLink.Leverages, "#82d2dc" },
+			{ CrossLink.Allows, "#82aae6" },
+			{ CrossLink.Opposes, "#e68c8c" },
+			{ CrossLink.Inverts, "#c88ce6" },
+			{ CrossLink.Mirrors, "#a0dc8c" },
+			{ CrossLink.IsRelatedTo, "#b4afa5" },
+		};
+
 		public static string GetCrossLinkColor(CrossLink verb) =>
 			CrossLinkColors.TryGetValue(verb, out var color)
 				? color
 				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned color");
+
+		public static string GetStudyCrossLinkColor(CrossLink verb) =>
+			CrossLinkColorsStudy.TryGetValue(verb, out var color)
+				? color
+				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned study color");
+
+		private static string HexToRgb(string hex) =>
+			$"{Convert.ToInt32(hex.Substring(1, 2), 16)},{Convert.ToInt32(hex.Substring(3, 2), 16)},{Convert.ToInt32(hex.Substring(5, 2), 16)}";
+
+		/// <summary>
+		/// #1248: rewrites the serialized SVG's cross-link strokes from the default (subtle)
+		/// register to the study register. Both registers are cross-link-only colors
+		/// (collision-checked), so every rgb() hit is a cross-link stroke. String-level on the
+		/// final serialized content because the palette is baked into the .mm at generation
+		/// time — a single source export serves both registers.
+		/// </summary>
+		public static string RecolorCrossLinksToStudy(string svgContent)
+		{
+			var replaced = 0;
+			foreach (var verb in CrossLinkColors.Keys)
+			{
+				var from = $"rgb({HexToRgb(CrossLinkColors[verb])})";
+				var to = $"rgb({HexToRgb(CrossLinkColorsStudy[verb])})";
+				var count = 0;
+				var index = 0;
+				while ((index = svgContent.IndexOf(from, index, StringComparison.Ordinal)) >= 0)
+				{
+					count++;
+					index += from.Length;
+				}
+				if (count > 0)
+				{
+					svgContent = svgContent.Replace(from, to);
+					replaced += count;
+				}
+			}
+
+			if (replaced == 0)
+			{
+				Logger.LogProblem(
+					"HighContrastCrossLinks requested but no default-palette cross-link stroke found in the SVG - " +
+					"either the map carries no cross-link or the serialized colors no longer match CrossLinkColors.");
+			}
+
+			return svgContent;
+		}
 
 		private Node CreateNode(IMindMapItem item, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<IMindMapItem> targets)[] crossLinks)
 		{
@@ -1230,7 +1300,15 @@ if (mapFile != null) {
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
 					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
-					File.WriteAllText(svgSavedFilePath, GetSvgContent(svgDoc), Encoding.UTF8);
+
+					var svgContent = GetSvgContent(svgDoc);
+					if (svgFreemindMap.HighContrastCrossLinks)
+					{
+						// #1248: recolor the serialized string only — the XDocument keeps the default
+						// register so wrapper generation (which re-serializes content.svg) is unaffected
+						svgContent = RecolorCrossLinksToStudy(svgContent);
+					}
+					File.WriteAllText(svgSavedFilePath, svgContent, Encoding.UTF8);
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
 					processedDocs.Add(svgSavedFilePath, svgDoc);
 				}

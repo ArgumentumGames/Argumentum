@@ -67,7 +67,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 							SvgViewBox = "0 0 8500 20000",
 							WrapNodeByLink = true,
 							SetSVGNodeAttributes = false,
-							RemoveImages = true
+							RemoveImages = true,
+							// #1248: this tall variant is the study view of the cross-link layer
+							HighContrastCrossLinks = true
 						},
 						new SVGFreemindMap()
 						{
