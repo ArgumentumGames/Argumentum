@@ -97,7 +97,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                     "organ, not slip past it (same discipline as the SVG inventory)");
                 var arrowCount = CountArrows(wrapperPath);
                 arrowCount.Should().Be(expected,
-                    "the inline wrapper embeds the content.svg verbatim (raw [SVGCONTENT] substitution in " +
+                    "the inline wrapper '{0}' embeds the content.svg verbatim (raw [SVGCONTENT] substitution in " +
                     "MindMapHtmlWrapper.FormatWrapper), so it must carry exactly the corpus cross-link count " +
                     "like the SVG it embeds — cross-links are keyed by taxonomy path (language-independent). " +
                     "Corpus says {1}. A LOWER count means the wrapper froze a stale map (the #725 early-skip " +
