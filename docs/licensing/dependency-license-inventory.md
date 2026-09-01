@@ -46,7 +46,7 @@ The license gate for the **shipping binary is PASS**.
 | dotNetRdf | 3.5.2 | MIT | False |
 | Google.Apis.Sheets.v4 | 1.75.0.4178 | Apache-2.0 | False |
 | ExtendedXmlSerializer | 3.10.0 | file → **MIT** (see §6; `licenseUrl` now MS deprecation stub, not a usable fallback) | False |
-| Humanizer | 2.14.1 | MIT | False |
+| Humanizer | 3.0.10 | MIT (licence unchanged by the 2.14.1 → 3.0.10 #951 migration) | False |
 | Magick.NET-Q16-AnyCPU | 14.16.0 | **Apache-2.0** ✅ (#902) | False |
 | Microsoft.Playwright | 1.43.0 | MIT | False |
 | Newtonsoft.Json | 13.0.4 | MIT | False |

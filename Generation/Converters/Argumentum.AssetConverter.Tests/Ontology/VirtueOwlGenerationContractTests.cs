@@ -38,12 +38,13 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         {
             // Mirrors the proven OwlDocumentConfig.GetId contract (byte-identical transform), asserted
             // on the exact same input strings so a divergence between the two configs is caught.
-            // Camelize preserves punctuation; the trailing Replace chain strips apostrophes/hyphens/commas;
-            // accented characters are preserved (Humanizer does not ASCII-fold).
+            // Camelize preserves punctuation; the trailing Replace chain strips apostrophes/hyphens/commas/spaces;
+            // accented characters are preserved (Humanizer does not ASCII-fold) — v3 (#951) keeps the
+            // accented segment-start letter lowercase, hence "appelàLautorité".
             VirtueOwlDocumentConfig.GetId("A-B").Should().Be("aB", "hyphens are stripped.");
             VirtueOwlDocumentConfig.GetId("A, B").Should().Be("aB", "commas are stripped.");
-            VirtueOwlDocumentConfig.GetId("Appel à l'autorité").Should().Be("appelÀLautorité",
-                "apostrophes stripped, accents preserved, segment starts uppercased by Camelize.");
+            VirtueOwlDocumentConfig.GetId("Appel à l'autorité").Should().Be("appelàLautorité",
+                "apostrophes and spaces stripped, accents preserved (lowercase 'à' under Humanizer v3).");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────

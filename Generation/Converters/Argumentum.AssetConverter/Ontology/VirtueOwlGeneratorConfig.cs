@@ -65,7 +65,9 @@ namespace Argumentum.AssetConverter.Ontology
 
 	    public static string GetId(string text)
 	    {
-			return text.Camelize().Replace("'","").Replace("-","").Replace(",","");
+			// Space strip mirrors OwlDocumentConfig.GetId — Humanizer 3.x Camelize keeps raw spaces
+			// around punctuation, which would produce invalid IRI fragments (#951).
+			return text.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
 	    public string OntologyNamespace { get; set; } = "";

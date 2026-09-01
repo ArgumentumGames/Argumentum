@@ -79,7 +79,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#credibleSources" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#reputableJournal" />
@@ -118,7 +118,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#impartialSources" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation" />
@@ -127,7 +127,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#appropriateComplexity" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#parsimoniousRepresentation" />
@@ -169,13 +169,13 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#tastefulHumour" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#respectfulHumor" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#inclusiveHumor" />
@@ -292,10 +292,10 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#properUseOfModalities" />
@@ -352,7 +352,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#validSyllogism" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#barbaraSyllogism" />
@@ -382,7 +382,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#barocoSyllogism" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#daraptiSyllogism" />
@@ -403,7 +403,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#ferisonSyllogism" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism" />
@@ -529,7 +529,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#clearPositioning" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns" />
@@ -667,7 +667,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#fairEvaluationOfTheOpposingPosition" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#faithfulAcknowledgmentOfTheOpposingPosition" />
@@ -679,7 +679,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#respectForTheOriginOfIdeas" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification" />
+    <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_virtues.owl#valuingTheProvenanceOfIdeas" />
@@ -800,7 +800,7 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Position to Know" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -900,12 +900,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -925,12 +925,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -1045,12 +1045,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Values" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -1065,12 +1065,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -1390,22 +1390,22 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -1570,12 +1570,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -1670,12 +1670,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -1740,12 +1740,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -2080,12 +2080,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Rule" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -2410,12 +2410,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Commitment" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -2440,12 +2440,12 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#Argument from Bias" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -3430,62 +3430,62 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="FR">Source bien évaluée</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="EN">Well-evaluated source</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="FR">Évaluation critique de la fiabilité d’une source pour appuyer un argument.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="EN">Critical assessment of the reliability of a source used to support an argument.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Reliability#In_journalism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Fiabilit%C3%A9_des_sources#M%C3%A9thodes_d'%C3%A9valuation_de_la_fiabilit%C3%A9_des_sources</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#credibleSources</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#credibleSources</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Position to Know</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="FR">La fiabilité, la compétence et les limites de la source ont-elles été évaluées de manière critique ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -3525,13 +3525,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#reputableJournal</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#reputableJournal</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -3585,13 +3585,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#scientificPublication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#scientificPublication</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -3645,13 +3645,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#competentAuthority</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#competentAuthority</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -3765,13 +3765,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#uncontroversialTestimony</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#uncontroversialTestimony</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellevaluatedSource</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -4295,77 +4295,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="FR">Sources sans biais social</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="EN">Sources free of socio-economic bias</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="FR">Sources exemptes de biais socio-économiques, afin de préserver la fiabilité de l’argument.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="EN">Sources free from socio-economic biases, in order to preserve the reliability of the argument.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Impartiality</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Source_impartiale</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Bias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal xml:lang="FR">La source est-elle exempte de biais socio-économiques susceptibles de fausser l'information ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioeconomicBias</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -4505,77 +4505,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="FR">Interprétation non partisane</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="EN">Non-partisan interpretation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="FR">Approche objective qui analyse les informations et arguments sans biais partisan.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="EN">Objective approach favoring analysis free of partisan bias in the treatment of information and arguments.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Objectivity_(philosophy)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(philosophie)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Bias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="FR">L'interprétation examine-t-elle les informations sans biais partisan déterminant ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonpartisanInterpretation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -5495,77 +5495,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="FR">Humour adapté au contexte</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="EN">Context-appropriate humor</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="FR">Humour adapté à la maturité, aux connaissances et aux sensibilités culturelles de l’auditoire.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="EN">Use of humor adapted to the audience's maturity, knowledge, and cultural sensitivities.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Humour</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Humour</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#tastefulHumour</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#tastefulHumour</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Values</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal xml:lang="FR">L'humour est-il adapté au contexte et aux sensibilités légitimes de l'auditoire ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextappropriateHumor</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#contextAppropriateHumor</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -5645,77 +5645,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="FR">Autodérision éclairée</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="EN">Enlightened self-deprecation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="FR">Art de l’autodérision, manifestant l’humilité et favorisant une dynamique constructive du débat.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="EN">The art of self-deprecation as a manifestation of humility that contributes to a constructive debate dynamic.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Self-deprecation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Autod%C3%A9rision</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectfulHumor</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectfulHumor</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Commitment</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal xml:lang="FR">L'autodérision favorise-t-elle une discussion ouverte plutôt qu'une stratégie de domination ou de connivence ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfdeprecation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enlightenedSelfDeprecation</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -8335,152 +8335,152 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="FR">Énoncés propositionnels</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="EN">Well-formed propositional statements</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="FR">Formulation claire d’énoncés en logique propositionnelle, à partir des unités de base du raisonnement logique.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="EN">Formulation of clear statements in propositional logic, including the basic units of elementary logical reasoning.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Proposition_(mathematics)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Proposition_(logique)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Rule</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal xml:lang="FR">Les énoncés propositionnels sont-ils formulés de façon claire et logique ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedPropositionalStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="FR">Énoncés quantifiés</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="EN">Well-formed quantified statements</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="FR">Usage rigoureux des quantificateurs pour préciser la portée des énoncés dans l’argumentation.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="EN">Rigorous use of quantifiers to specify the scope of statements in argumentation.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Quantifier_(logic)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Quantificateur</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Verbal Classification</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal xml:lang="FR">La portée des quantificateurs est-elle correctement déterminée ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellformedQuantifiedStatements</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedQuantifiedStatements</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -9775,77 +9775,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="FR">Syllogisme de mode parfait</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="EN">Perfect-mode syllogism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="FR">Syllogisme qui respecte les règles des formes A, E, I ou O : chacun des trois termes apparaît deux fois, comme sujet ou comme prédicat.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="EN">Syllogism that follows the rules of the A, E, I, or O forms: each of the three terms appears twice, as either subject or predicate.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Syllogism#Perfect_syllogisms</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Syllogisme#Les_syllogismes_de_mode_parfait</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Rule</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal xml:lang="FR">La règle syllogistique est-elle correctement appliquée aux trois termes et aux quantificateurs ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -9890,13 +9890,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#barbaraSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#barbaraSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -9965,13 +9965,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#celarentSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#celarentSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10040,13 +10040,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#dariiSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#dariiSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10110,13 +10110,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#ferioSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#ferioSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectmodeSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#perfectModeSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10520,77 +10520,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="FR">Syllogisme de 3e figure</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="EN">Third-figure syllogism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="FR">Raisonnement syllogistique où le terme moyen est sujet dans les deux prémisses, produisant généralement une conclusion particulière.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="EN">Syllogistic reasoning in which the middle term is the subject in both premises, generally producing a particular conclusion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Syllogism#Third_figure</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Syllogisme#La_troisi%C3%A8me_figure_(le_syllogisme_espieuvre)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Rule</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal xml:lang="FR">Le terme moyen sujet dans les deux prémisses permet-il seulement la conclusion particulière requise ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -10635,13 +10635,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#daraptiSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#daraptiSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10710,13 +10710,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#felaptonSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#felaptonSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10785,13 +10785,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#disamisSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#disamisSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10860,13 +10860,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#datisiSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#datisiSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -10935,13 +10935,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#bocardoSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#bocardoSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -11010,13 +11010,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#ferisonSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#ferisonSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#thirdFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -11045,77 +11045,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="FR">Syllogisme de quatrième figure</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="EN">Fourth-figure syllogism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="FR">Syllogisme où le terme moyen est prédicat dans la majeure et sujet dans la mineure, ce qui exige une analyse attentive de la conclusion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="EN">A syllogism in which the middle term is the predicate in the major premise and the subject in the minor premise, requiring careful analysis to validate the conclusion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Syllogism#Fourth_figure_syllogism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Syllogisme#Syllogisme_de_quatri%C3%A8me_figure</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Rule</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal xml:lang="FR">La position du terme moyen en quatrième figure permet-elle la conclusion avec la bonne quantité et la bonne qualité ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -11160,13 +11160,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -11235,13 +11235,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#dimatisSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#dimatisSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -11310,13 +11310,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fesapoSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fesapoSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -11385,13 +11385,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fresisonSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fresisonSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -11460,13 +11460,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#bamalipSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#bamalipSyllogism</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthfigureSyllogism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -13940,77 +13940,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="FR">Objectif non complaisant</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="EN">Non-complacent objective</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="FR">Fixez-vous le même niveau d’exigence qu’à votre adversaire, avec des critères clairs, mesurables et bien définis.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="EN">The objective set for oneself should meet the same level of rigor as that set for one's opponent, with measurable, clear and well-defined criteria.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/SMART_criteria</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Objectif_SMART</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Rule</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal xml:lang="FR">Les mêmes critères d'évaluation sont-ils appliqués à soi-même et à l'adversaire ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -14050,13 +14050,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noncomplacentObjective</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
@@ -16920,77 +16920,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="FR">Critique axée sur les arguments</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="EN">Argument-focused criticism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="FR">Formuler des critiques respectueuses qui portent sur le fond des arguments plutôt que sur les personnes.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="EN">Formulating respectful criticism that addresses arguments on their merits rather than targeting people.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Constructive_criticism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Critique#Critique_constructive</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairEvaluationOfTheOpposingPosition</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairEvaluationOfTheOpposingPosition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Commitment</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal xml:lang="FR">La critique porte-t-elle sur les raisons avancées plutôt que sur la personne qui les avance ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentfocusedCriticism</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#argumentFocusedCriticism</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -17180,77 +17180,77 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="FR">Principe de non-disqualification</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="EN">Principle of non-disqualification</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="FR">Éviter de disqualifier d’emblée un interlocuteur ou ses arguments en raison de son origine ou de ses affiliations.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="EN">Avoiding a priori disqualification of one's interlocutor or their arguments on the basis of origin or affiliations.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="EN">https://www.gatesnotes.com/Development/Critical-thinking</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="FR">https://www.gatesnotes.com/Development/Critical-thinking</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectForTheOriginOfIdeas</IRI>
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectForTheOriginOfIdeas</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.arg.dundee.ac.uk/aif#goodTenorOf" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Argument from Bias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal xml:lang="FR">L'origine ou l'affiliation invoquée suffit-elle réellement à invalider l'argument ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_virtues.owl#aifAttackTypeProvenance" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNondisqualification</IRI>
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfNonDisqualification</IRI>
     <Literal>script-derived</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>

@@ -11,7 +11,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// The OWL generator turns each fallacy's display name into the fragment identifier of its concept
     /// IRI (e.g. <c>https://www.argumentum.games/...#AdHominem</c>). That transform is
     /// <see cref="OwlDocumentConfig.GetId"/>: Humanizer <c>Camelize()</c> (PascalCase join) then strip
-    /// apostrophes, hyphens and commas — characters forbidden in IRI fragments. A bug here produces
+    /// apostrophes, hyphens, commas and spaces — characters forbidden in IRI fragments. A bug here produces
     /// duplicate or invalid concept IRIs, which silently corrupts the generated ontology (collision,
     /// or a fragment that breaks IRI resolution). It is pure &amp; deterministic — no I/O, no config
     /// state — yet had ZERO isolated coverage (the E2E ontology tests exercise it only indirectly).
@@ -22,7 +22,8 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         // ─────────────────────────────────────────────────────────────────────────────
         // (1) Camelize — Humanizer Camelize() produces camelCase (first segment lowercased, subsequent
         //     segments kept/uppercased-on-first-letter) and joins the words into a single token. The
-        //     exact outputs below were captured from the real Humanizer 2.14.1 transform.
+        //     exact outputs below were captured from the real Humanizer 3.0.10 transform (migrated
+        //     from 2.14.1 by #951; all four ASCII cases are byte-identical across the two majors).
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Theory]
@@ -73,20 +74,23 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // (5) End-to-end on a realistic French fallacy name — the canonical use case. NOTE: Humanizer
-        //     Camelize() PRESERVES accented characters (it does not ASCII-fold), so "à" survives and is
-        //     uppercased to "À" at the segment start. This is the OBSERVED contract — the fragment is
-        //     apostrophe/hyphen/comma/space-free but may contain accented letters. Pinned exactly so a
-        //     future Humanizer upgrade (or an added ASCII-fold) that changes accent handling is caught.
+        // (5) End-to-end on a realistic French fallacy name — the canonical use case. Humanizer
+        //     Camelize() PRESERVES accented characters (it does not ASCII-fold), so "à" survives.
+        //     MEASURED delta of the #951 migration (2.14.1 → 3.0.10): v3 LOWERCASES the accented
+        //     letter at a segment start (2.14.1 uppercased it — "appelÀLautorité") and keeps a raw
+        //     space before it, which the GetId space-strip removes. This is the OBSERVED contract —
+        //     the fragment is apostrophe/hyphen/comma/space-free but may contain accented letters.
+        //     Pinned exactly so a future Humanizer upgrade (or an added ASCII-fold) that changes
+        //     accent handling is caught.
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
         public void FrenchFallacyName_ProducesFragment_AccentsPreserved()
         {
-            // "Appel à l'autorité" → Camelize "appel À l'autorité" → apostrophe stripped → "appelÀLautorité".
-            OwlDocumentConfig.GetId("Appel à l'autorité").Should().Be("appelÀLautorité",
-                "Camelize joins the words camelCase, preserves the accented 'à' (uppercased to 'À' at the " +
-                "segment start), and the trailing Replace chain strips only apostrophes/hyphens/commas.");
+            // "Appel à l'autorité" → v3 Camelize "appel àLautorité" → apostrophe+space stripped → "appelàLautorité".
+            OwlDocumentConfig.GetId("Appel à l'autorité").Should().Be("appelàLautorité",
+                "Camelize joins the words camelCase, preserves the accented 'à' (kept lowercase by v3 at the " +
+                "segment start), and the trailing Replace chain strips apostrophes/hyphens/commas/spaces.");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
