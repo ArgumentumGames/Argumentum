@@ -100,16 +100,22 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         /// which is exactly why Denounces cannot be #000000, it would merge with the default).
         /// The rgb() strings are derived from GetCrossLinkColor so the organ tracks the palette
         /// table automatically.
+        /// #1248 dual palette: the links.svg study variant renders the cross-links in the
+        /// high-contrast study register (GetStudyCrossLinkColor) instead of the subtle default —
+        /// every other variant (original .svg, content.svg, cards) carries the default register.
         /// </summary>
         private static int CountArrows(string svgPath)
         {
+            var studyPalette = Path.GetFileName(svgPath).EndsWith(".links.svg", StringComparison.Ordinal);
             var svg = File.ReadAllText(svgPath);
             var count = 0;
             foreach (var (verb, _) in CrossLinkVerbs)
             {
                 var pascal = char.ToUpperInvariant(verb[0]) + verb.Substring(1);
-                var hex = Argumentum.AssetConverter.Mindmapper.FallacyMindMapDocumentConfig
-                    .GetCrossLinkColor(System.Enum.Parse<Argumentum.AssetConverter.Mindmapper.CrossLink>(pascal));
+                var crossLinkEnum = System.Enum.Parse<Argumentum.AssetConverter.Mindmapper.CrossLink>(pascal);
+                var hex = studyPalette
+                    ? Argumentum.AssetConverter.Mindmapper.FallacyMindMapDocumentConfig.GetStudyCrossLinkColor(crossLinkEnum)
+                    : Argumentum.AssetConverter.Mindmapper.FallacyMindMapDocumentConfig.GetCrossLinkColor(crossLinkEnum);
                 var rgb = string.Join(",",
                     Convert.ToInt32(hex.Substring(1, 2), 16),
                     Convert.ToInt32(hex.Substring(3, 2), 16),

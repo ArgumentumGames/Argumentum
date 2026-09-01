@@ -937,26 +937,122 @@ if (mapFile != null) {
 		
 
 		/// <summary>
-		/// #1181: one stable color per crossLink verb. Deliberately dark/muted variants, distinct from
-		/// the 7 bright family colors used for node borders, so an arrow reads as a link, not a family.
+		/// One stable color per crossLink verb. The register is PASTEL - owner instruction,
+		/// 2026-08-31: "les couleurs des crosslinks sont trop fortes, je les avais choisi plus
+		/// legeres, pastel, dans la premiere iteration. Ca a du se perdre quelque part."
+		///
+		/// It had indeed been lost. The original engine (quoted verbatim in the body of #1181)
+		/// carried three pastel verbs on the pre-realignment enum:
+		///     Identity -> #dbffd6      AppealTo -> #ccffff      Opposite -> #ffcfcc
+		/// The 3 -> 8 verb realignment of #1181 replaced the whole table with dark/muted variants
+		/// and dropped the register with it. Those three owner-chosen values are restored here on
+		/// the verbs that inherit their meaning (Identity -> Mirrors, AppealTo -> Leverages,
+		/// Opposite -> Opposes); the five new verbs are derived in the same idiom - very light,
+		/// low saturation, one hue each, channels drawn from the same {cc..ff} range.
+		///
+		/// TWO CONSTRAINTS bind this table, and both are measured, not assumed:
+		///
+		/// 1. An arrow must read as a link, not as a family. The 7 family colors used for node
+		///    borders are bright and saturated; the pastel register stays clear of them by
+		///    construction - the same separation the dark register bought, obtained by going
+		///    lighter than the families instead of darker.
+		///
+		/// 2. Every color must stay COUNTABLE by CrossLinkArrowCountTests, i.e. distinct from
+		///    every other stroke color a Batik export can emit. Verified 2026-08-31 against the
+		///    union of the 41 shipped SVGs: 29 distinct stroke colors present, of which 6 light
+		///    (#ff66eb, #ffe082, #d0fe65, #61f8dd, #ffb0f5, #d75cfa). None of the 8 values below
+		///    appears in that union, and the 8 are mutually distinct. Re-run that check before
+		///    touching this table - a collision does not fail loudly, it silently inflates the
+		///    arrow count of one verb with another shape's strokes.
+		///
 		/// Shared with the Virtue mindmap config (same enum, same rendering block).
 		/// </summary>
 		private static readonly Dictionary<CrossLink, string> CrossLinkColors = new Dictionary<CrossLink, string>()
 		{
-			{ CrossLink.PredatesOn, "#a35d00" },
-			{ CrossLink.Denounces, "#ff6d00" },
-			{ CrossLink.Leverages, "#005f5f" },
-			{ CrossLink.Allows, "#5b6e00" },
-			{ CrossLink.Opposes, "#8b0000" },
-			{ CrossLink.Inverts, "#4b0082" },
-			{ CrossLink.Mirrors, "#37474f" },
-			{ CrossLink.IsRelatedTo, "#795548" },
+			// #1248 dual palette: this is the DEFAULT (subtle) register, baked into the .mm and
+			// therefore present on every export (original .svg, content.svg, cards, wrappers).
+			// The links.svg study variant additionally rewrites these to CrossLinkColorsStudy
+			// in post-processing (see RecolorCrossLinksToStudy).
+			{ CrossLink.PredatesOn, "#ffe0cc" },
+			{ CrossLink.Denounces, "#fff4c2" },
+			{ CrossLink.Leverages, "#ccffff" },   // owner original, ex-AppealTo
+			{ CrossLink.Allows, "#cce0ff" },
+			{ CrossLink.Opposes, "#ffcfcc" },     // owner original, ex-Opposite
+			{ CrossLink.Inverts, "#e8ccff" },
+			{ CrossLink.Mirrors, "#dbffd6" },     // owner original, ex-Identity
+			{ CrossLink.IsRelatedTo, "#e0dad4" },
+		};
+
+		/// <summary>
+		/// #1248 study register — same hues as <see cref="CrossLinkColors"/> with luminance lowered
+		/// so every verb contrasts >= 0.24 against white (the subtle register sits at 0.05-0.14:
+		/// discreet on the default view, unreadable as the object of study). Applied only to the
+		/// links.svg variant via <see cref="SVGFreemindMap.HighContrastCrossLinks"/>. Must stay
+		/// collision-free against every stroke color a Batik export can emit, same discipline as
+		/// the default table (checked 2026-09-01 against the union of the 41 shipped SVGs).
+		/// </summary>
+		private static readonly Dictionary<CrossLink, string> CrossLinkColorsStudy = new Dictionary<CrossLink, string>()
+		{
+			{ CrossLink.PredatesOn, "#e6b46e" },
+			{ CrossLink.Denounces, "#d2c850" },
+			{ CrossLink.Leverages, "#82d2dc" },
+			{ CrossLink.Allows, "#82aae6" },
+			{ CrossLink.Opposes, "#e68c8c" },
+			{ CrossLink.Inverts, "#c88ce6" },
+			{ CrossLink.Mirrors, "#a0dc8c" },
+			{ CrossLink.IsRelatedTo, "#b4afa5" },
 		};
 
 		public static string GetCrossLinkColor(CrossLink verb) =>
 			CrossLinkColors.TryGetValue(verb, out var color)
 				? color
 				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned color");
+
+		public static string GetStudyCrossLinkColor(CrossLink verb) =>
+			CrossLinkColorsStudy.TryGetValue(verb, out var color)
+				? color
+				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned study color");
+
+		private static string HexToRgb(string hex) =>
+			$"{Convert.ToInt32(hex.Substring(1, 2), 16)},{Convert.ToInt32(hex.Substring(3, 2), 16)},{Convert.ToInt32(hex.Substring(5, 2), 16)}";
+
+		/// <summary>
+		/// #1248: rewrites the serialized SVG's cross-link strokes from the default (subtle)
+		/// register to the study register. Both registers are cross-link-only colors
+		/// (collision-checked), so every rgb() hit is a cross-link stroke. String-level on the
+		/// final serialized content because the palette is baked into the .mm at generation
+		/// time — a single source export serves both registers.
+		/// </summary>
+		public static string RecolorCrossLinksToStudy(string svgContent)
+		{
+			var replaced = 0;
+			foreach (var verb in CrossLinkColors.Keys)
+			{
+				var from = $"rgb({HexToRgb(CrossLinkColors[verb])})";
+				var to = $"rgb({HexToRgb(CrossLinkColorsStudy[verb])})";
+				var count = 0;
+				var index = 0;
+				while ((index = svgContent.IndexOf(from, index, StringComparison.Ordinal)) >= 0)
+				{
+					count++;
+					index += from.Length;
+				}
+				if (count > 0)
+				{
+					svgContent = svgContent.Replace(from, to);
+					replaced += count;
+				}
+			}
+
+			if (replaced == 0)
+			{
+				Logger.LogProblem(
+					"HighContrastCrossLinks requested but no default-palette cross-link stroke found in the SVG - " +
+					"either the map carries no cross-link or the serialized colors no longer match CrossLinkColors.");
+			}
+
+			return svgContent;
+		}
 
 		private Node CreateNode(IMindMapItem item, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<IMindMapItem> targets)[] crossLinks)
 		{
@@ -1204,7 +1300,15 @@ if (mapFile != null) {
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
 					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
-					File.WriteAllText(svgSavedFilePath, GetSvgContent(svgDoc), Encoding.UTF8);
+
+					var svgContent = GetSvgContent(svgDoc);
+					if (svgFreemindMap.HighContrastCrossLinks)
+					{
+						// #1248: recolor the serialized string only — the XDocument keeps the default
+						// register so wrapper generation (which re-serializes content.svg) is unaffected
+						svgContent = RecolorCrossLinksToStudy(svgContent);
+					}
+					File.WriteAllText(svgSavedFilePath, svgContent, Encoding.UTF8);
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
 					processedDocs.Add(svgSavedFilePath, svgDoc);
 				}
