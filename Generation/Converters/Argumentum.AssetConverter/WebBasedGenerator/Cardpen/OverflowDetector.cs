@@ -52,7 +52,7 @@ public static class OverflowDetector
         // Single-pass JS: walks every <card> in the iframe, measures the declared selectors
         // with both box-model (offsetHeight/Width) and content-size (scrollHeight/Width).
         // Returns a JSON-serializable payload that we hydrate to strongly-typed results.
-        const string js = @"(args) => {
+        const string js = @"(element, args) => {
             const selectors = args.selectors;
             const tolerance = args.tolerance;
             const cards = Array.from(document.querySelectorAll('card'));
