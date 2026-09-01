@@ -204,7 +204,11 @@ namespace Argumentum.AssetConverter.Ontology
 
 	                foreach (var schemeMapping in schemeMappings)
 	                {
-	                    var schemeUri = $"{ExternalReferenceOntologyNamespaceURI}{schemeMapping}";
+	                    // GetId, not the raw cell: AIF_skosDirectRef holds plain-English Walton scheme
+                    // names ("Argument from Analogy") whose spaces are invalid in an IRI fragment.
+                    // Same transform as every other fragment we mint (#951 follow-up; AifNode is
+                    // deliberately NOT routed through it — I-node/RA-node are canonical AIF names).
+                    var schemeUri = $"{ExternalReferenceOntologyNamespaceURI}{VirtueOwlDocumentConfig.GetId(schemeMapping)}";
 	                    var schemeConcept = new RDFResource(schemeUri);
 	                    ontology.AnnotateConceptWithResource(virtueConcept, goodTenorOfProperty, schemeConcept);
 	                    // #133 : la meme arete en assertion (cf OwlAdapter.DeclareObjectAssertion).
