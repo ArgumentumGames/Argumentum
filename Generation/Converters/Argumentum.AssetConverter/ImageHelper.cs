@@ -202,6 +202,29 @@ namespace Argumentum.AssetConverter
 
         }
 
+        /// <summary>
+        /// Resizes a harvested card to its document geometry <b>without deforming it</b>: the source
+        /// aspect ratio is preserved, the image is scaled to cover the target box, and the excess —
+        /// the gabarit's bleed — is cropped away, centred.
+        /// </summary>
+        /// <remarks>
+        /// <para>Issue #1250. Until 2026-09 this method set <c>IgnoreAspectRatio = true</c> and
+        /// stretched the harvest straight onto <c>WidthMM x HeigthMM</c>. Because CardPen renders each
+        /// card at its gabarit size <i>plus</i> a bleed (5 mm on the Fallacies face, 3 mm on its back,
+        /// 5 mm on Scenarii, 0 on others), the source ratio never matched the target and the bleed was
+        /// squashed into the card instead of being trimmed off. Measured drift on the shipped tree:
+        /// +15.1 % vertical stretch on the Fallacies face, +12.8 % Rules, +9.0 % Memo, +4.0 % Scenarii
+        /// — and, inside one deck, the back stretched differently from the face. Every card shipped
+        /// since April 2024 carried it; nobody saw it because the CardPen preview everyone looked at is
+        /// correct, and the deformation happens one stage later, here.</para>
+        /// <para>Cover-and-crop is what a bleed is for, so the fix restores the intended meaning rather
+        /// than adding a correction on top: scale until both target dimensions are covered, then crop
+        /// the overhang. Every shipped gabarit trims to exactly 1.7273 (tarot) or 1.4000 (poker), so
+        /// after cropping the drift against the retargeted 70 x 120 mm tarot is 0.76 % and against
+        /// 63.5 x 88.9 mm poker is nil.</para>
+        /// <para><paramref name="bordermm"/> keeps its original meaning — a white margin inside the
+        /// card, the image being fitted into the reduced box. It is 0 on every shipped document.</para>
+        /// </remarks>
         public static void ResizeInMM(this MagickImage image, decimal widthmm, decimal lengthmm, decimal bordermm)
         {
             if (image.Density.Units == DensityUnit.Undefined)
@@ -209,23 +232,21 @@ namespace Argumentum.AssetConverter
                 image.Density = new Density(300, DensityUnit.PixelsPerInch);
             }
             image.Density = image.Density.ChangeUnits(DensityUnit.PixelsPerCentimeter);
-            
-            var targetGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
-            targetGeometry.IgnoreAspectRatio = true;
 
-            IMagickGeometry extentGeometry = null ;
-            if (bordermm>0)
+            var cardGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
+
+            IMagickGeometry extentGeometry = null;
+            var innerGeometry = cardGeometry;
+            if (bordermm > 0)
             {
-                extentGeometry = targetGeometry;
-                widthmm = widthmm - (2 * bordermm);
-                lengthmm = lengthmm - (2 * bordermm);
-                targetGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
-                targetGeometry.IgnoreAspectRatio = true;
+                extentGeometry = cardGeometry;
+                var innerWidthMM = widthmm - (2 * bordermm);
+                var innerLengthMM = lengthmm - (2 * bordermm);
+                innerGeometry = image.Density.ToGeometry((double)(innerWidthMM / 10), (double)innerLengthMM / 10);
             }
 
-            //image.Resize(targetGeometry);
-            
-            image.AdaptiveResize(targetGeometry);
+            CoverAndCrop(image, innerGeometry);
+
             if (extentGeometry != null)
             {
                 image.BorderColor = MagickColors.White;
@@ -233,7 +254,39 @@ namespace Argumentum.AssetConverter
                 image.MatteColor = MagickColors.White;
                 image.Extent(extentGeometry, Gravity.Center, MagickColors.White);
             }
+        }
 
+        /// <summary>
+        /// Scales <paramref name="image"/> so it covers <paramref name="target"/> with its own aspect
+        /// ratio intact, then crops the overhang from the centre. The result is exactly
+        /// <paramref name="target"/>, and no pixel has been stretched.
+        /// </summary>
+        internal static void CoverAndCrop(MagickImage image, IMagickGeometry target)
+        {
+            if (image.Width == 0 || image.Height == 0 || target.Width == 0 || target.Height == 0)
+            {
+                return;
+            }
+
+            var scale = Math.Max(
+                (double)target.Width / image.Width,
+                (double)target.Height / image.Height);
+
+            var coverWidth = (uint)Math.Max(target.Width, Math.Round(image.Width * scale));
+            var coverHeight = (uint)Math.Max(target.Height, Math.Round(image.Height * scale));
+
+            if (coverWidth != image.Width || coverHeight != image.Height)
+            {
+                // Proportional by construction; IgnoreAspectRatio only pins the exact pixel count so
+                // rounding cannot leave the cover one pixel short of the crop box.
+                image.AdaptiveResize(new MagickGeometry(coverWidth, coverHeight) { IgnoreAspectRatio = true });
+            }
+
+            if (image.Width != target.Width || image.Height != target.Height)
+            {
+                image.Crop(new MagickGeometry(target.Width, target.Height), Gravity.Center);
+                image.ResetPage();
+            }
         }
 
         internal static void Modulate(MagickImage image, double modulation)
