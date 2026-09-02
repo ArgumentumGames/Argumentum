@@ -216,7 +216,16 @@
             position: fixed;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
+            /* #1253 - la fiche porte le ratio de la carte de jeu (tarot 69,85 x 120,65 mm).
+               Avant #827 la boite valait 50vw x 50vh ; ce commit a retire `height` et fige la
+               largeur a 300px, alors que la typographie interne reste en vh (.famille: 5.6vh) :
+               la hauteur suivait donc le viewport sans aucune borne. Mesure avant correctif,
+               viewport 1280x1400 : 300 x 2135 px, ratio 7,12 - soit 152 % de la hauteur d'ecran.
+               Une hauteur en vh + un ratio fixe redonnent une boite bornee et coherente avec
+               une typographie elle aussi en vh. */
+            height: 80vh;
+            aspect-ratio: 69.85 / 120.65;
+            overflow: hidden;
             z-index: 100;
         }
 
@@ -3862,6 +3871,22 @@
                     el.style.fontSize = (--px) + 'px';
                 }
             });
+
+            // #1253 - passe verticale, symetrique de la passe horizontale ci-dessus. La boite
+            // porte desormais un ratio fixe, donc le contenu peut deborder en hauteur la ou il
+            // s'etalait librement avant. On reduit uniformement jusqu'a ce qu'il tienne.
+            // Plancher 10px ; garde a 200 tours pour qu'un cas pathologique ne fige pas l'onglet.
+            const fitEls = [title, famille, sous_famille, Soussousfamille, description, example]
+                .filter(el => el && el.clientHeight);
+            let vGuard = 0;
+            while (overlay.scrollHeight > overlay.clientHeight && vGuard++ < 200) {
+                let shrunk = false;
+                for (const el of fitEls) {
+                    const px = parseFloat(getComputedStyle(el).fontSize);
+                    if (px > 10) { el.style.fontSize = (px - 1) + 'px'; shrunk = true; }
+                }
+                if (!shrunk) break;
+            }
 
             targetNode.classList.add('active');
         };
