@@ -470,14 +470,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -488,14 +488,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -506,14 +506,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						}
 					}),
@@ -542,14 +542,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						}
 					}),
@@ -617,14 +617,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -635,14 +635,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -653,14 +653,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -671,14 +671,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 					}),
@@ -751,14 +751,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -770,14 +770,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -789,14 +789,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -807,14 +807,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 					}),
@@ -994,14 +994,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -1012,14 +1012,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						}
 					}),
@@ -1043,14 +1043,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -1061,14 +1061,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 					}),
