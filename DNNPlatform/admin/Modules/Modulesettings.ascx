@@ -23,6 +23,10 @@
         <div class="msmsContent dnnClear">
             <h2 id="dnnPanel-ModuleGeneralDetails" class="dnnFormSectionHead"><a href="" class="dnnSectionExpanded"><%=LocalizeString("GeneralDetails")%></a></h2>
             <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:label id="plModuleId" runat="server" controlname="ltModuleId" />
+                    <span><asp:Literal ID="ltModuleId" runat="server"></asp:Literal></span>
+                </div>
                 <div class="dnnFormItem" id="cultureRow" runat="server">
                     <dnn:label id="cultureLabel" runat="server" controlname="cultureLanguageLabel" />
                     <dnnweb:dnnlanguagelabel id="cultureLanguageLabel" runat="server" />
@@ -76,11 +80,11 @@
                 </div>
                 <div class="dnnFormItem">
                     <dnn:label id="plStartDate" runat="server" controlname="txtStartDate" />
-                    <dnnweb:dnndatetimepicker id="startDatePicker" runat="server" ViewStateMode="Disabled" />
+                    <asp:TextBox id="startDatePicker" runat="server" TextMode="Date" ViewStateMode="Disabled" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:label id="plEndDate" runat="server" controlname="txtEndDate" />
-                    <dnnweb:dnndatetimepicker id="endDatePicker" runat="server" ViewStateMode="Disabled" />
+                    <asp:TextBox id="endDatePicker" runat="server" TextMode="Date" ViewStateMode="Disabled" />
                     
                 </div>
 				<div class="dnnFormItem">
@@ -194,28 +198,6 @@
                 <div class="dnnFormItem">
                     <dnn:label id="plDisplaySyndicate" runat="server" controlname="chkDisplaySyndicate" />
                     <asp:CheckBox ID="chkDisplaySyndicate" runat="server" />
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:label id="plWebSlice" runat="server" controlname="chkWebSlice" />
-                    <asp:CheckBox ID="chkWebSlice" runat="server" AutoPostBack="true" />
-                </div>
-                <div class="dnnFormItem" id="webSliceTitle" runat="server" ViewStateMode="Disabled">
-                    <dnn:label id="plWebSliceTitle" runat="server" controlname="txtWebSliceTitle" />
-                    <asp:TextBox ID="txtWebSliceTitle" runat="server" />
-                </div>
-                <div class="dnnFormItem" id="webSliceExpiry" runat="server" ViewStateMode="Disabled">
-                    <dnn:label id="plWebSliceExpiry" runat="server" controlname="txtWebSliceExpiry" />
-                    <dnnweb:dnndatepicker ID="diWebSliceExpiry" runat="server"/>
-                    <asp:CompareValidator ID="valWebSliceExpiry" ControlToValidate="diWebSliceExpiry"
-                        Operator="DataTypeCheck" Type="Date" runat="server" Display="Dynamic" resourcekey="valWebSliceExpiry.ErrorMessage"
-                        CssClass="dnnFormMessage dnnFormError" />
-                </div>
-                <div class="dnnFormItem" id="webSliceTTL" runat="server" ViewStateMode="Disabled">
-                    <dnn:label id="plWebSliceTTL" runat="server" controlname="txtWebSliceTTL" />
-                    <asp:TextBox ID="txtWebSliceTTL" runat="server" />
-                    <asp:CompareValidator ID="valWebSliceTTL" ControlToValidate="txtWebSliceTTL" Operator="DataTypeCheck"
-                        Type="Integer" runat="server" Display="Dynamic" resourcekey="valWebSliceTTL.ErrorMessage"
-                        CssClass="dnnFormMessage dnnFormError" />
                 </div>
                 <div class="dnnFormItem dnnContainerPreview">
                     <dnn:label id="plModuleContainer" runat="server" controlname="ctlModuleContainer" />
