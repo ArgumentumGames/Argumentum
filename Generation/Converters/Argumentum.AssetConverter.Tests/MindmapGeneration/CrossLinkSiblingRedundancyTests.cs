@@ -32,11 +32,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     ///    co-parentage is the precondition that makes the relation stateable, not what makes
     ///    it redundant ⇒ OUT OF SCOPE, never flagged, whatever their sibling share.
     ///
-    /// Expected state on this branch (corrected PR-A): Mirrors siblings = 0 (358 removed),
-    /// Inverts siblings = 41 (RESTORED — the first iteration wrongly removed them), and
-    /// IsRelatedTo siblings = 171 — RED BY DESIGN until the #1247 tertiary pass of this single
-    /// delivery lineage removes them (same pattern as the hub organ staying red until its
-    /// final tranche). End state of the lineage: 0 for every resemblance verb.
+    /// Expected state on this branch (final corpus of the #1247 delivery lineage): Mirrors
+    /// siblings = 0 (358 removed), Inverts siblings = 41 (RESTORED — the first PR-A iteration
+    /// wrongly removed them), IsRelatedTo siblings = 0 (171 removed by the tertiary pass).
+    /// Until the tertiary pass landed, this fact was RED BY DESIGN on IsRelatedTo (same pattern
+    /// as the hub organ staying red until its final tranche); the lineage's end state is 0 for
+    /// every resemblance verb.
     ///
     /// Inverse control (mandatory, #1112): a fabricated corpus carrying sibling links under a
     /// resemblance verb AND under direction/polarity verbs must flag ONLY the resemblance
