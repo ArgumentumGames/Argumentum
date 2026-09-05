@@ -65,7 +65,18 @@ CSV Data → [Harvesting] → PNG Images → [PDF Assembly] → Print-ready PDFs
 
 3. **Mind Maps** (`MindMapCreator`)
    - Generates `.mm` files (Freemind format)
-   - Converts to SVG via **FreeMind GUI** (`FreeMind.exe` driven by `SendKeys` automation, resolved from `ARGUMENTUM_FREEMIND_PATH` env var). A `MindMapFormat.Freeplane` path exists in code but is non-default; the validated production path (PR #565) is FreeMind — `MindMapFormat.Freemind` is the default (`FallacyMindMapDocumentConfig.cs:32`). ⚠️ **Inventory (measured 23/08, #830 QA): the committed tree holds 41 SVG total (5/lang + 6 for `fr` — the `cards` variant is FR-only by config, `FallacyMindMapCreatorConfig.cs:106`) + 32 HTML wrappers (2 mindmaps × {main, `_ext`} × 8), NOT "20 per language"** — the historical "20 SVGs" was the file count of commit `55c6774e`, not a per-language total. If `FreeMind.exe` is not found, `TryFreeMindSvgExportCore` logs a warning and skips GUI export → falls back to XSLT (dead, #184) → DoD SHA-diff fails **silently**
+   - Converts to SVG via **FreeMind GUI** (`FreeMind.exe` driven by `SendKeys` automation, resolved from `ARGUMENTUM_FREEMIND_PATH` env var). A `MindMapFormat.Freeplane` path exists in code but is non-default; the validated production path (PR #565) is FreeMind — `MindMapFormat.Freemind` is the default (`FallacyMindMapDocumentConfig.cs:32`). ⚠️ **Inventory (re-measured 05/09 on master `ceb572c8`, after #1269/#1285): the committed tree holds 43 SVG + 34 HTML wrappers + 2 root templates, NOT "20 per language"** — the historical "20 SVGs" was the file count of commit `55c6774e`, not a per-language total.
+
+   | | Per language (×7) | `fr` | Total |
+   |---|---|---|---|
+   | Fallacies SVG | 3 — `Fallacies_<lang>{,.content,.links}.svg` | 3 | 24 |
+   | Virtues SVG | 2 — `Argumentum_Virtues_MindMap_<lang>{.content,.links}.svg` | 2 | 16 |
+   | Fallacies **cards** SVG | 0 — FR-only by config (`FallacyMindMapCreatorConfig.cs:106`) | 3 | 3 |
+   | HTML wrappers | 4 — {Fallacies, Virtues} × {main, `_ext`} | 6 | 34 |
+
+   Two asymmetries make a naive count go red: **Virtues ships a pair, Fallacies a triplet** (Virtues has no base `.svg`, only `.content`/`.links`), and the FR-only `cards` variant carries a **full triplet since #1269** (it was a lone file before — the viewer was the fix). The 2 root templates (`external.html`, `included.html`) sit at `Mindmaps/` root, **outside** the `<lang>/` directories: a pathspec written `Mindmaps/**/*.html` **excludes them** (34), one written `Mindmaps/*.html` includes them (36) — git glob matches `/`. Do not hardcode any of these numbers in a test: `MindmapWrapperGoldenMasterTests` **derives** the expectation from the creator configs and keeps only an anti-collapse floor.
+
+   If `FreeMind.exe` is not found, `TryFreeMindSvgExportCore` logs a warning and skips GUI export → falls back to XSLT (dead, #184) → DoD SHA-diff fails **silently**
    - **WARNING**: SVG post-processing uses fragile heuristics ("disambiguation") dependent on FreeMind's output structure
 
 ### CardPen (Custom Fork)
