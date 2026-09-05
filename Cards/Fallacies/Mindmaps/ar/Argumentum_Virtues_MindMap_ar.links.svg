@@ -1325,7 +1325,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Argumentation" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1517,2596)">
-				<text x="68" xml:space="preserve" y="104" clip-path="url(#clipPath3)" stroke="none">حجة معتبرة</text>
+				<text text-rendering="geometricPrecision" x="68" xml:space="preserve" y="104" clip-path="url(#clipPath3)" stroke="none">حجة معتبرة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(1806,4121)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="10">
@@ -1341,7 +1341,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Constructive_dialogue" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1856,4728)">
-				<text x="56" xml:space="preserve" y="63" clip-path="url(#clipPath6)" stroke="none">تبادل مُثرٍ</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="63" clip-path="url(#clipPath6)" stroke="none">تبادل مُثرٍ</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2069,4854)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="5">
@@ -1357,7 +1357,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Respect_for_personhood" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2119,5101)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath10)" stroke="none">احترام الشخص</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath10)" stroke="none">احترام الشخص</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2402,5130)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1372,7 +1372,7 @@
 		</g>
 		<a xlink:href="https://www.agoracademie.com/respect-mutuel-et-respect-de-l-autre-dans-l-echange-constructif/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2452,5246)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath13)" stroke="none">الكياسة في الاختلاف</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath13)" stroke="none">الكياسة في الاختلاف</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2799,5322)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1380,7 +1380,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(2799,5322)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="26" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">التزام متبادل</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">التزام متبادل</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2799,5276)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1388,7 +1388,7 @@
 		</g>
 		<a xlink:href="https://www.lexpress.fr/actualite/societe/education/neuf-reformes-pour-une-meilleure-ecole_1355387.html" target="_blank">
 			<g font-size="30" transform="translate(2799,5276)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath18)" stroke="none">نبرة محترمة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath18)" stroke="none">نبرة محترمة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2749,5178)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1399,7 +1399,7 @@
 		</g>
 		<a xlink:href="https://www.francetvinfo.fr/societe/education/justice-comment-gerer-les-discussions-en-classe-autour-de-ce-sujet-sensible_2091325.html" target="_blank">
 			<g font-size="30" transform="translate(2799,5230)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">الإنصاف في الحوار</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">الإنصاف في الحوار</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3068,5228)" stroke="rgb(220,15,10)">
@@ -1407,7 +1407,7 @@
 		</g>
 		<a xlink:href="https://www.cairn.info/revue-de-psychotherapie-psychanalytique-de-groupe-2006-1-page-111.htm" target="_blank">
 			<g font-size="30" transform="translate(3068,5228)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath22)" stroke="none">عدم المقاطعة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath22)" stroke="none">عدم المقاطعة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2749,5130)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1418,7 +1418,7 @@
 		</g>
 		<a xlink:href="https://www.lesmotssontdescadeaux.com/2018/02/comment-critiquer-sans-agresser.html" target="_blank">
 			<g font-size="30" transform="translate(2799,5182)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath24)" stroke="none">تجنّب الهجمات الشخصية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath24)" stroke="none">تجنّب الهجمات الشخصية</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3119,5180)" stroke="rgb(220,15,10)">
@@ -1426,7 +1426,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Nonviolent_Communication" target="_blank">
 			<g font-size="30" transform="translate(3119,5180)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath26)" stroke="none">التواصل اللاعنفي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath26)" stroke="none">التواصل اللاعنفي</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2402,4992)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1440,7 +1440,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/احترام" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2452,5081)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath28)" stroke="none">احترام أصل الأفكار</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath28)" stroke="none">احترام أصل الأفكار</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2778,5134)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1448,7 +1448,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(2778,5134)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="26" xml:space="preserve" y="33" clip-path="url(#clipPath30)" stroke="none">تعاون حِجاجي</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath30)" stroke="none">تعاون حِجاجي</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2778,5088)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1456,7 +1456,7 @@
 		</g>
 		<a xlink:href="https://www.jc-counselling.com/single-post/2018/04/14/The-Importance-of-Recognizing-the-Value-of-Every-Contribution" target="_blank">
 			<g font-size="30" transform="translate(2778,5088)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath32)" stroke="none">تثمين مصدر الأفكار</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath32)" stroke="none">تثمين مصدر الأفكار</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2778,5042)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1464,7 +1464,7 @@
 		</g>
 		<a xlink:href="https://www.gatesnotes.com/Development/Critical-thinking" target="_blank">
 			<g font-size="30" transform="translate(2778,5042)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath34)" stroke="none">مبدأ عدم الإسقاط من الاعتبار</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath34)" stroke="none">مبدأ عدم الإسقاط من الاعتبار</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2402,4854)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1478,7 +1478,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/نقد" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2452,4943)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath36)" stroke="none">تقييم معقول للموقف المخالف</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath36)" stroke="none">تقييم معقول للموقف المخالف</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2909,4996)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1486,7 +1486,7 @@
 		</g>
 		<a xlink:href="https://www.developpez.net/forums/d1071995/general-developpement/philosophie-projet/argumentation/critique-adverse-ca-veritable-discussion-possible/" target="_blank">
 			<g font-size="30" transform="translate(2909,4996)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath38)" stroke="none">دحض محترم للحجج المخالفة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath38)" stroke="none">دحض محترم للحجج المخالفة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2909,4950)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1494,7 +1494,7 @@
 		</g>
 		<a xlink:href="https://www.developpez.net/forums/d1071995/general-developpement/philosophie-projet/argumentation/critique-adverse-ca-veritable-discussion-possible/" target="_blank">
 			<g font-size="30" transform="translate(2909,4950)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath40)" stroke="none">اعتراف أمين بالموقف المخالف</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath40)" stroke="none">اعتراف أمين بالموقف المخالف</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2909,4904)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1502,7 +1502,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/نقد" target="_blank">
 			<g font-size="30" transform="translate(2909,4904)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath42)" stroke="none">نقد مرتكز على الحجج</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath42)" stroke="none">نقد مرتكز على الحجج</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2069,4644)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="5">
@@ -1518,7 +1518,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Civil_discourse" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2119,4763)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath44)" stroke="none">مشاركة فعّالة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath44)" stroke="none">مشاركة فعّالة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2370,4795)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1530,7 +1530,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مبدأ_الإحسان" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2420,4845)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath46)" stroke="none">مبدأ الإحسان في التأويل</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath46)" stroke="none">مبدأ الإحسان في التأويل</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2813,4849)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1538,7 +1538,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مبدأ_الإحسان" target="_blank">
 			<g font-size="30" transform="translate(2813,4849)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath48)" stroke="none">افتراض حسن النية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath48)" stroke="none">افتراض حسن النية</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2370,4736)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1550,7 +1550,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/PRIOR_method" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2420,4786)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">التركيز على الأساسيات</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">التركيز على الأساسيات</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2799,4790)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1558,7 +1558,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/METHOD_PRIOR" target="_blank">
 			<g font-size="30" transform="translate(2799,4790)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath52)" stroke="none">مراعاة الوقت المخصّص</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath52)" stroke="none">مراعاة الوقت المخصّص</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2370,4644)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1571,7 +1571,7 @@
 		</g>
 		<a xlink:href="http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2420,4710)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath54)" stroke="none">الالتزام بالموضوع</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath54)" stroke="none">الالتزام بالموضوع</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2739,4740)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1579,7 +1579,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(2739,4740)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="26" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">تجنّب الاستطرادات</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">تجنّب الاستطرادات</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2739,4694)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1587,7 +1587,7 @@
 		</g>
 		<a xlink:href="https://www.opinion-internationale.com/2016/09/26/argumenter-construire-idees-renforcer-arugments-efficace_46817.html" target="_blank">
 			<g font-size="30" transform="translate(2739,4694)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath58)" stroke="none">مبدأ الوضوح</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath58)" stroke="none">مبدأ الوضوح</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2069,4121)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="5">
@@ -1603,7 +1603,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Constructive_discussion" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2119,4398)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath60)" stroke="none">مساهمة إيجابية</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath60)" stroke="none">مساهمة إيجابية</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,4318)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1618,7 +1618,7 @@
 		</g>
 		<a xlink:href="https://www.leadership-toolbox.fr/les-10-attributs-de-latout-leader-numero-2-live-with-an-open-mind/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,4503)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath62)" stroke="none">الانفتاح على الحوار</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath62)" stroke="none">الانفتاح على الحوار</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2746,4552)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1630,7 +1630,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Open-mindedness" target="_blank">
 			<g font-size="30" transform="translate(2796,4625)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath64)" stroke="none">الانفتاح على التغيير</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath64)" stroke="none">الانفتاح على التغيير</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3066,4648)" stroke="rgb(220,15,10)">
@@ -1638,7 +1638,7 @@
 		</g>
 		<a xlink:href="https://www.cairn.info/revue-recherches-en-sciences-de-gestion-2016-1-page-103.htm" target="_blank">
 			<g font-size="30" transform="translate(3066,4648)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath66)" stroke="none">السعي إلى حلّ وسط</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath66)" stroke="none">السعي إلى حلّ وسط</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3066,4602)" stroke="rgb(220,15,10)">
@@ -1646,7 +1646,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Consensus_decision-making" target="_blank">
 			<g font-size="30" transform="translate(3066,4602)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath68)" stroke="none">مبدأ الحسم</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath68)" stroke="none">مبدأ الحسم</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2746,4414)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1659,7 +1659,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تفكير_نقدي" target="_blank">
 			<g font-size="30" transform="translate(2796,4510)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath70)" stroke="none">مبدأ قابلية الخطأ</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath70)" stroke="none">مبدأ قابلية الخطأ</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3033,4556)" stroke="rgb(220,15,10)">
@@ -1667,7 +1667,7 @@
 		</g>
 		<a xlink:href="https://blogs.lse.ac.uk/businessreview/2018/05/22/knowing-your-cognitive-limits-can-improve-your-decision-making/" target="_blank">
 			<g font-size="30" transform="translate(3033,4556)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath72)" stroke="none">تحديد حدود الحُجّة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath72)" stroke="none">تحديد حدود الحُجّة</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3033,4510)" stroke="rgb(220,15,10)">
@@ -1675,7 +1675,7 @@
 		</g>
 		<a xlink:href="https://www.richardcousin.com/post/culture-de-l-erreur-3-les-b%C3%A9n%C3%A9fices-de-l-admission-de-son-erreur#:~:text=Reconna%C3%AEtre%20ses%20erreurs%20permet%20aujourd'hui%20un%20d%C3%A9veloppement%20permanent%20de,fa%C3%A7on%20dont%20les%20gens%20interagissent." target="_blank">
 			<g font-size="30" transform="translate(3033,4510)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath74)" stroke="none">الاعتراف بالأخطاء الذاتية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath74)" stroke="none">الاعتراف بالأخطاء الذاتية</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3033,4464)" stroke="rgb(220,15,10)">
@@ -1683,7 +1683,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Cognitive_bias" target="_blank">
 			<g font-size="30" transform="translate(3033,4464)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath76)" stroke="none">تحديد انحيازاته</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath76)" stroke="none">تحديد انحيازاته</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2746,4366)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1694,7 +1694,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Suspension_of_judgment" target="_blank">
 			<g font-size="30" transform="translate(2796,4418)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath78)" stroke="none">تعليق الحكم</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath78)" stroke="none">تعليق الحكم</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2938,4366)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1705,7 +1705,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Active_listening" target="_blank">
 			<g font-size="30" transform="translate(2988,4416)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath80)" stroke="none">الإصغاء النشط</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath80)" stroke="none">الإصغاء النشط</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3206,4417)" stroke="rgb(220,15,10)">
@@ -1713,7 +1713,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Benevolence" target="_blank">
 			<g font-size="25" transform="translate(3206,4417)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="28" clip-path="url(#clipPath83)" stroke="none">إظهار التعاطف</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="28" clip-path="url(#clipPath83)" stroke="none">إظهار التعاطف</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2746,4318)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1724,7 +1724,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مناظرة" target="_blank">
 			<g font-size="30" transform="translate(2796,4370)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath85)" stroke="none">البحث عن الحقيقة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath85)" stroke="none">البحث عن الحقيقة</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3051,4368)" stroke="rgb(220,15,10)">
@@ -1732,7 +1732,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/توافق_آراء" target="_blank">
 			<g font-size="30" transform="translate(3051,4368)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">السعي إلى التوافق</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">السعي إلى التوافق</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,4180)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1746,7 +1746,7 @@
 		</g>
 		<a xlink:href="https://www.caissedesdepots.fr/agir-ensemble-professionnels/une-explication-suffisante" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,4269)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">تفسيرات كافية</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">تفسيرات كافية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,4322)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1754,7 +1754,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قابلية_التكذيب" target="_blank">
 			<g font-size="30" transform="translate(2712,4322)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath89)" stroke="none">مقدمات قابلة للدحض</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath89)" stroke="none">مقدمات قابلة للدحض</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,4276)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1762,7 +1762,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/عبء_الإثبات_(فلسفة)" target="_blank">
 			<g font-size="30" transform="translate(2712,4276)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath91)" stroke="none">مستوى كافٍ من الدليل</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath91)" stroke="none">مستوى كافٍ من الدليل</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,4230)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1770,7 +1770,7 @@
 		</g>
 		<a xlink:href="https://halshs.archives-ouvertes.fr/halshs-02193571v2/document" target="_blank">
 			<g font-size="30" transform="translate(2712,4230)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath93)" stroke="none">تبريرات صريحة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath93)" stroke="none">تبريرات صريحة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2458,4171)" fill="rgb(249,122,119)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(249,122,119)" font-weight="bold" stroke-width="5">
@@ -1781,7 +1781,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Constructive_discussion" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,4171)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath95)" stroke="none">واقع موضوعي</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath95)" stroke="none">واقع موضوعي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(-50,2559)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="10">
@@ -1797,7 +1797,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Intellectual_honesty" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1215,2937)">
-				<text x="9" xml:space="preserve" y="63" clip-path="url(#clipPath97)" stroke="none">أمانة فكرية</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="63" clip-path="url(#clipPath97)" stroke="none">أمانة فكرية</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(28,2979)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
@@ -1813,7 +1813,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/موضوعية_(فلسفة)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(888,3155)">
-				<text x="8" xml:space="preserve" y="53" clip-path="url(#clipPath99)" stroke="none">جهد موضوعي</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="53" clip-path="url(#clipPath99)" stroke="none">جهد موضوعي</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(28,3163)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1827,7 +1827,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Political_neutrality" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(559,3254)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath101)" stroke="none">إبعاد الأيديولوجيات</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath101)" stroke="none">إبعاد الأيديولوجيات</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(71,3255)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1838,7 +1838,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Probability" target="_blank">
 			<g font-size="30" transform="translate(330,3307)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath26)" stroke="none">تقبّل عدم اليقين</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath26)" stroke="none">تقبّل عدم اليقين</text>
 			</g>
 		</a>
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(121,3305)" stroke="rgb(255,195,7)">
@@ -1846,7 +1846,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Scientific_method" target="_blank">
 			<g font-size="30" transform="translate(121,3305)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath104)" stroke="none">المنهجية العلمية</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath104)" stroke="none">المنهجية العلمية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(78,3259)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1854,7 +1854,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Cognitive_bias" target="_blank">
 			<g font-size="30" transform="translate(78,3259)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath106)" stroke="none">مراعاة التحيزات الأيديولوجية لدى الخصم</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath106)" stroke="none">مراعاة التحيزات الأيديولوجية لدى الخصم</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(114,3213)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1862,7 +1862,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/انحياز_معرفي" target="_blank">
 			<g font-size="30" transform="translate(114,3213)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath108)" stroke="none">مراعاة التحيزات الأيديولوجية الخاصة</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath108)" stroke="none">مراعاة التحيزات الأيديولوجية الخاصة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(100,3071)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1875,7 +1875,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/انفتاح_ثقافي" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(606,3137)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath110)" stroke="none">وعي بين ثقافي</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath110)" stroke="none">وعي بين ثقافي</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(225,3167)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1883,7 +1883,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Intercultural_communication" target="_blank">
 			<g font-size="30" transform="translate(225,3167)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath112)" stroke="none">فهم التحيزات الثقافية لدى الغير</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath112)" stroke="none">فهم التحيزات الثقافية لدى الغير</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(150,3121)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1891,7 +1891,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Cultural_bias" target="_blank">
 			<g font-size="30" transform="translate(150,3121)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath114)" stroke="none">التعرّف إلى التحيزات الثقافية الشخصية</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath114)" stroke="none">التعرّف إلى التحيزات الثقافية الشخصية</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(230,2979)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1904,7 +1904,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Universalism" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(714,3045)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath116)" stroke="none">الكونية</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath116)" stroke="none">الكونية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(280,3075)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1912,7 +1912,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/انحياز_معرفي" target="_blank">
 			<g font-size="30" transform="translate(280,3075)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath118)" stroke="none">فهم التحيزات الشخصية لدى الآخرين</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath118)" stroke="none">فهم التحيزات الشخصية لدى الآخرين</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(334,3029)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1920,7 +1920,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/انحياز_معرفي" target="_blank">
 			<g font-size="30" transform="translate(334,3029)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath40)" stroke="none">التعرّف إلى التحيزات الشخصية</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath40)" stroke="none">التعرّف إلى التحيزات الشخصية</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(-50,2769)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
@@ -1936,7 +1936,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Framing_(social_sciences)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(864,2888)">
-				<text x="8" xml:space="preserve" y="53" clip-path="url(#clipPath120)" stroke="none">وضوح الرهانات</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="53" clip-path="url(#clipPath120)" stroke="none">وضوح الرهانات</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-50,2920)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1948,7 +1948,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سمارت_(إدارة_المشاريع)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(546,2970)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath122)" stroke="none">هدف غير متساهل</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath122)" stroke="none">هدف غير متساهل</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-50,2922)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1959,7 +1959,7 @@
 		</g>
 		<a xlink:href="https://www.ameli.fr/sites/default/files/Documents/911739/document/gestion-risque-methodes-identification-points-vigilance.pdf" target="_blank">
 			<g font-size="30" transform="translate(297,2974)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath124)" stroke="none">تحديد نقاط اليقظة</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath124)" stroke="none">تحديد نقاط اليقظة</text>
 			</g>
 		</a>
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(0,2972)" stroke="rgb(255,195,7)">
@@ -1967,7 +1967,7 @@
 		</g>
 		<a xlink:href="https://www.transparency.org/en/what-is-corruption/definitions" target="_blank">
 			<g font-size="30" transform="translate(0,2972)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath126)" stroke="none">مراعاة تضارب المصالح</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath126)" stroke="none">مراعاة تضارب المصالح</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(592,2911)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -1978,7 +1978,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Intellectual_honesty" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(592,2911)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath128)" stroke="none">تموضع واضح</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath128)" stroke="none">تموضع واضح</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(276,2769)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1991,7 +1991,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/عبء_الإثبات" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(635,2835)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath130)" stroke="none">مطلب واقعي</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath130)" stroke="none">مطلب واقعي</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(326,2865)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1999,7 +1999,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/برهان" target="_blank">
 			<g font-size="30" transform="translate(326,2865)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath132)" stroke="none">مستوى الإثبات المناسب</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath132)" stroke="none">مستوى الإثبات المناسب</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(434,2819)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -2007,7 +2007,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/عبء_الإثبات" target="_blank">
 			<g font-size="30" transform="translate(434,2819)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath134)" stroke="none">عبء الإثبات</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath134)" stroke="none">عبء الإثبات</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(262,2559)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
@@ -2023,7 +2023,7 @@
 		</g>
 		<a xlink:href="https://www.usherbrooke.ca/accueil/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(883,2678)">
-				<text x="9" xml:space="preserve" y="53" clip-path="url(#clipPath136)" stroke="none">الوفاء بالحقائق</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="53" clip-path="url(#clipPath136)" stroke="none">الوفاء بالحقائق</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(262,2677)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -2036,7 +2036,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/موضوعية_(صحافة)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(599,2743)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath138)" stroke="none">مراعاة متوازنة</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath138)" stroke="none">مراعاة متوازنة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(420,2773)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -2044,7 +2044,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Transparency_(behavior)" target="_blank">
 			<g font-size="30" transform="translate(420,2773)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath140)" stroke="none">إفصاح كامل</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath140)" stroke="none">إفصاح كامل</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(312,2727)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -2052,7 +2052,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(312,2727)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath142)" stroke="none">اعتبارات دقيقة الفروق</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath142)" stroke="none">اعتبارات دقيقة الفروق</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(657,2668)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -2063,7 +2063,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/انتحال" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(657,2668)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath144)" stroke="none">إسناد عادل</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath144)" stroke="none">إسناد عادل</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(625,2609)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -2074,7 +2074,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Truth" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(625,2609)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath146)" stroke="none">حقيقة الوقائع</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath146)" stroke="none">حقيقة الوقائع</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(385,1962)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="10">
@@ -2090,7 +2090,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Rigorous_language" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1246,2267)">
-				<text x="8" xml:space="preserve" y="63" clip-path="url(#clipPath148)" stroke="none">دقة لفظية</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="63" clip-path="url(#clipPath148)" stroke="none">دقة لفظية</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(458,2349)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="5">
@@ -2106,7 +2106,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/نحو_(لغة)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(948,2468)">
-				<text x="9" xml:space="preserve" y="53" clip-path="url(#clipPath150)" stroke="none">وضوح لغوي</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="53" clip-path="url(#clipPath150)" stroke="none">وضوح لغوي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(717,2550)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2117,7 +2117,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سرد" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(717,2550)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath152)" stroke="none">سرد واضح</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath152)" stroke="none">سرد واضح</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(626,2491)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2128,7 +2128,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/التباس" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(626,2491)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath154)" stroke="none">تعابير أحادية الدلالة</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath154)" stroke="none">تعابير أحادية الدلالة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(458,2349)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)">
@@ -2141,7 +2141,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syntax" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(693,2415)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath156)" stroke="none">تركيب واضح</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath156)" stroke="none">تركيب واضح</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(508,2445)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2149,7 +2149,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Punctuation" target="_blank">
 			<g font-size="30" transform="translate(508,2445)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath158)" stroke="none">ترقيم صحيح</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath158)" stroke="none">ترقيم صحيح</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(519,2399)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2157,7 +2157,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/نحو" target="_blank">
 			<g font-size="30" transform="translate(519,2399)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath160)" stroke="none">نحو صحيح</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath160)" stroke="none">نحو صحيح</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(621,2172)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="5">
@@ -2173,7 +2173,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Analogy" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(922,2275)">
-				<text x="9" xml:space="preserve" y="53" clip-path="url(#clipPath162)" stroke="none">مقارنات مبررة</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="53" clip-path="url(#clipPath162)" stroke="none">مقارنات مبررة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(682,2340)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2184,7 +2184,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Association_fallacy" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(682,2340)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath164)" stroke="none">اقتران ملائم</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath164)" stroke="none">اقتران ملائم</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(671,2281)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2195,7 +2195,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تمثيل_(منطق)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(671,2281)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath166)" stroke="none">تمثيل مناسب</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath166)" stroke="none">تمثيل مناسب</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(674,2222)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2206,7 +2206,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Analogy" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(674,2222)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath168)" stroke="none">مقارنة ملائمة</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath168)" stroke="none">مقارنة ملائمة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(385,1962)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="5">
@@ -2222,7 +2222,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Argumentation#Language_analysis" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(899,2081)">
-				<text x="8" xml:space="preserve" y="53" clip-path="url(#clipPath170)" stroke="none">تعريفات واضحة</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="53" clip-path="url(#clipPath170)" stroke="none">تعريفات واضحة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(643,2163)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2233,7 +2233,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Definition" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(643,2163)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath172)" stroke="none">تعريف متسق</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath172)" stroke="none">تعريف متسق</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(385,2054)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)">
@@ -2245,7 +2245,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Technical_terminology" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(653,2104)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath174)" stroke="none">تعريف مطابق</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath174)" stroke="none">تعريف مطابق</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(435,2108)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2253,7 +2253,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Technical_terminology" target="_blank">
 			<g font-size="30" transform="translate(435,2108)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath80)" stroke="none">مصطلحات تقنية</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath80)" stroke="none">مصطلحات تقنية</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(412,1962)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)">
@@ -2266,7 +2266,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تعريف" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(645,2028)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">معانٍ واضحة</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">معانٍ واضحة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(462,2058)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2274,7 +2274,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تعريف" target="_blank">
 			<g font-size="30" transform="translate(462,2058)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath178)" stroke="none">لغة موجزة</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath178)" stroke="none">لغة موجزة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(478,2012)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2282,7 +2282,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Argumentation#Language_analysis" target="_blank">
 			<g font-size="30" transform="translate(478,2012)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath180)" stroke="none">لغة دقيقة</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath180)" stroke="none">لغة دقيقة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(1806,2363)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="10">
@@ -2298,7 +2298,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Valid_reasoning" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1856,3248)">
-				<text x="57" xml:space="preserve" y="63" clip-path="url(#clipPath182)" stroke="none">إتقان الاستنتاج</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="63" clip-path="url(#clipPath182)" stroke="none">إتقان الاستنتاج</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2178,2717)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="5">
@@ -2314,7 +2314,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استدلال_استنباطي" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2228,3432)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath184)" stroke="none">استنتاجات صحيحة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath184)" stroke="none">استنتاجات صحيحة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2568,2868)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2327,7 +2327,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/منطق_صوري" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2618,3514)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath186)" stroke="none">استدلال حاسم</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath186)" stroke="none">استدلال حاسم</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2827,3891)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2342,7 +2342,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Reasoning#Validation_of_reasoning" target="_blank">
 			<g font-size="30" transform="translate(2877,4033)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath188)" stroke="none">منطق غير صوري مقبول</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath188)" stroke="none">منطق غير صوري مقبول</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3199,4125)" stroke="rgb(141,200,1)">
@@ -2350,7 +2350,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Analogy" target="_blank">
 			<g font-size="30" transform="translate(3199,4125)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath48)" stroke="none">قياس تمثيلي صحيح</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath48)" stroke="none">قياس تمثيلي صحيح</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3199,4079)" stroke="rgb(141,200,1)">
@@ -2358,7 +2358,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استدلال_اختطافي" target="_blank">
 			<g font-size="30" transform="translate(3199,4079)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath190)" stroke="none">استدلال اختطافي صحيح</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath190)" stroke="none">استدلال اختطافي صحيح</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3199,4033)" stroke="rgb(141,200,1)">
@@ -2366,7 +2366,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تفكير_نقدي" target="_blank">
 			<g font-size="30" transform="translate(3199,4033)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath192)" stroke="none">استدلال نقدي صحيح</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath192)" stroke="none">استدلال نقدي صحيح</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3199,3987)" stroke="rgb(141,200,1)">
@@ -2374,7 +2374,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Synthetic_reasoning" target="_blank">
 			<g font-size="30" transform="translate(3199,3987)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath194)" stroke="none">استدلال تركيبي صحيح</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath194)" stroke="none">استدلال تركيبي صحيح</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3199,3941)" stroke="rgb(141,200,1)">
@@ -2382,7 +2382,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تفكير_تحليلي" target="_blank">
 			<g font-size="30" transform="translate(3199,3941)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath196)" stroke="none">استدلال تحليلي صحيح</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath196)" stroke="none">استدلال تحليلي صحيح</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2827,2868)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2394,7 +2394,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/منطق_صوري" target="_blank">
 			<g font-size="30" transform="translate(2877,3406)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath70)" stroke="none">الصحة الصورية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath70)" stroke="none">الصحة الصورية</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3064,3188)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2408,7 +2408,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="30" transform="translate(3114,3566)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">قياس منطقي صحيح</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">قياس منطقي صحيح</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3333,3706)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2423,7 +2423,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Fourth_figure_syllogism" target="_blank">
 			<g font-size="25" transform="translate(3383,3828)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath200)" stroke="none">قياس من الشكل الرابع</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath200)" stroke="none">قياس من الشكل الرابع</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3621,3904)" stroke="rgb(141,200,1)">
@@ -2431,7 +2431,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogistic_logic" target="_blank">
 			<g font-size="23" transform="translate(3621,3904)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath203)" stroke="none">قياس باماليب</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath203)" stroke="none">قياس باماليب</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3621,3867)" stroke="rgb(141,200,1)">
@@ -2439,7 +2439,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogistic_logic" target="_blank">
 			<g font-size="23" transform="translate(3621,3867)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath205)" stroke="none">قياس فريسيسون</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath205)" stroke="none">قياس فريسيسون</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3621,3830)" stroke="rgb(141,200,1)">
@@ -2447,7 +2447,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogistic_logic" target="_blank">
 			<g font-size="23" transform="translate(3621,3830)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath207)" stroke="none">قياس فيسابو</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath207)" stroke="none">قياس فيسابو</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3621,3793)" stroke="rgb(141,200,1)">
@@ -2455,7 +2455,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism" target="_blank">
 			<g font-size="23" transform="translate(3621,3793)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath209)" stroke="none">قياس ديماتيس</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath209)" stroke="none">قياس ديماتيس</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3621,3756)" stroke="rgb(141,200,1)">
@@ -2463,7 +2463,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism_caménien" target="_blank">
 			<g font-size="23" transform="translate(3621,3756)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath211)" stroke="none">قياس كامينيس</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath211)" stroke="none">قياس كامينيس</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3333,3484)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2479,7 +2479,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="25" transform="translate(3383,3625)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath213)" stroke="none">قياس منطقي من الشكل الثالث</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath213)" stroke="none">قياس منطقي من الشكل الثالث</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3682,3719)" stroke="rgb(141,200,1)">
@@ -2487,7 +2487,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Types_of_syllogisms" target="_blank">
 			<g font-size="23" transform="translate(3682,3719)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath215)" stroke="none">قياس فيريسون</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath215)" stroke="none">قياس فيريسون</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3682,3682)" stroke="rgb(141,200,1)">
@@ -2495,7 +2495,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Types_of_syllogisms" target="_blank">
 			<g font-size="23" transform="translate(3682,3682)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath209)" stroke="none">قياس بوكاردو</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath209)" stroke="none">قياس بوكاردو</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3682,3645)" stroke="rgb(141,200,1)">
@@ -2503,7 +2503,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Datisi" target="_blank">
 			<g font-size="23" transform="translate(3682,3645)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath217)" stroke="none">قياس داتيسي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath217)" stroke="none">قياس داتيسي</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3682,3608)" stroke="rgb(141,200,1)">
@@ -2511,7 +2511,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Standard-form_syllogisms" target="_blank">
 			<g font-size="23" transform="translate(3682,3608)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath219)" stroke="none">قياس ديساميس</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath219)" stroke="none">قياس ديساميس</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3682,3571)" stroke="rgb(141,200,1)">
@@ -2519,7 +2519,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Standard-form_syllogisms" target="_blank">
 			<g font-size="23" transform="translate(3682,3571)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath211)" stroke="none">قياس فيلابتون</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath211)" stroke="none">قياس فيلابتون</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3682,3534)" stroke="rgb(141,200,1)">
@@ -2527,7 +2527,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Standard-form_syllogisms" target="_blank">
 			<g font-size="23" transform="translate(3682,3534)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath221)" stroke="none">قياس دارابتي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath221)" stroke="none">قياس دارابتي</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3333,3336)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2541,7 +2541,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="25" transform="translate(3383,3440)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath223)" stroke="none">قياس منطقي من الشكل الثاني</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath223)" stroke="none">قياس منطقي من الشكل الثاني</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3680,3497)" stroke="rgb(141,200,1)">
@@ -2549,7 +2549,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#The_Baroco_syllogism" target="_blank">
 			<g font-size="23" transform="translate(3680,3497)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath217)" stroke="none">قياس باروكو</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath217)" stroke="none">قياس باروكو</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3680,3460)" stroke="rgb(141,200,1)">
@@ -2557,7 +2557,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#The_Festino_syllogism_(quintessence)" target="_blank">
 			<g font-size="23" transform="translate(3680,3460)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath225)" stroke="none">قياس فستينو</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath225)" stroke="none">قياس فستينو</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3680,3423)" stroke="rgb(141,200,1)">
@@ -2565,7 +2565,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Second_figure" target="_blank">
 			<g font-size="23" transform="translate(3680,3423)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath227)" stroke="none">قياس كامستريس</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath227)" stroke="none">قياس كامستريس</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3680,3386)" stroke="rgb(141,200,1)">
@@ -2573,7 +2573,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="23" transform="translate(3680,3386)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath229)" stroke="none">قياس Cesare المنطقي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath229)" stroke="none">قياس Cesare المنطقي</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3333,3188)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2587,7 +2587,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="25" transform="translate(3383,3292)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath231)" stroke="none">قياس منطقي من النمط الكامل</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath231)" stroke="none">قياس منطقي من النمط الكامل</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3681,3349)" stroke="rgb(141,200,1)">
@@ -2595,7 +2595,7 @@
 		</g>
 		<a xlink:href="https://fr.wikipedia.org/wiki/Syllogisme#Troisi%C3%A8me_figure" target="_blank">
 			<g font-size="23" transform="translate(3681,3349)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath233)" stroke="none">قياس فيريو</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath233)" stroke="none">قياس فيريو</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3681,3312)" stroke="rgb(141,200,1)">
@@ -2603,7 +2603,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogism#Second_figure" target="_blank">
 			<g font-size="23" transform="translate(3681,3312)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath235)" stroke="none">قياس داريي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath235)" stroke="none">قياس داريي</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3681,3275)" stroke="rgb(141,200,1)">
@@ -2611,7 +2611,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="23" transform="translate(3681,3275)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath237)" stroke="none">قياس Celarent المنطقي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath237)" stroke="none">قياس Celarent المنطقي</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3681,3238)" stroke="rgb(141,200,1)">
@@ -2619,7 +2619,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_(منطق)" target="_blank">
 			<g font-size="23" transform="translate(3681,3238)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath239)" stroke="none">قياس Barbara المنطقي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath239)" stroke="none">قياس Barbara المنطقي</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3064,2868)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2637,7 +2637,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استنباط" target="_blank">
 			<g font-size="30" transform="translate(3114,3055)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath241)" stroke="none">استدلال بسيط</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath241)" stroke="none">استدلال بسيط</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,3198)" stroke="rgb(141,200,1)">
@@ -2645,7 +2645,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Scientific_method" target="_blank">
 			<g font-size="25" transform="translate(3319,3198)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath243)" stroke="none">الاستدلال: الحلّ</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath243)" stroke="none">الاستدلال: الحلّ</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,3158)" stroke="rgb(141,200,1)">
@@ -2653,7 +2653,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Synthetic_reasoning" target="_blank">
 			<g font-size="25" transform="translate(3319,3158)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath245)" stroke="none">استدلال: الاستبانة الوحدية</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath245)" stroke="none">استدلال: الاستبانة الوحدية</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,3118)" stroke="rgb(141,200,1)">
@@ -2661,7 +2661,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Reductio_ad_absurdum" target="_blank">
 			<g font-size="25" transform="translate(3319,3118)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath247)" stroke="none">استدلال: الردّ إلى المحال</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath247)" stroke="none">استدلال: الردّ إلى المحال</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,3078)" stroke="rgb(141,200,1)">
@@ -2669,7 +2669,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Double_negation" target="_blank">
 			<g font-size="25" transform="translate(3319,3078)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath249)" stroke="none">استدلال: النفي المزدوج</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath249)" stroke="none">استدلال: النفي المزدوج</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,3038)" stroke="rgb(141,200,1)">
@@ -2677,7 +2677,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Disjunction_(logic)" target="_blank">
 			<g font-size="25" transform="translate(3319,3038)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath251)" stroke="none">استدلال: إزالة الاقتران</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath251)" stroke="none">استدلال: إزالة الاقتران</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,2998)" stroke="rgb(141,200,1)">
@@ -2685,7 +2685,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/اقتران_منطقي" target="_blank">
 			<g font-size="25" transform="translate(3319,2998)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath253)" stroke="none">استدلال: إدخال الاقتران</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath253)" stroke="none">استدلال: إدخال الاقتران</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,2958)" stroke="rgb(141,200,1)">
@@ -2693,7 +2693,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Modus_tollens" target="_blank">
 			<g font-size="25" transform="translate(3319,2958)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath255)" stroke="none">استدلال: نفي التالي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath255)" stroke="none">استدلال: نفي التالي</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3319,2918)" stroke="rgb(141,200,1)">
@@ -2701,7 +2701,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قياس_شرطي_متصل" target="_blank">
 			<g font-size="25" transform="translate(3319,2918)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath257)" stroke="none">استدلال: قياس شرطي متصل</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath257)" stroke="none">استدلال: قياس شرطي متصل</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2568,2776)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2714,7 +2714,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استدلال_استنباطي" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2618,2842)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath259)" stroke="none">برهنة متماسكة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath259)" stroke="none">برهنة متماسكة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2898,2872)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(141,200,1)" font-weight="bold">
@@ -2722,7 +2722,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Coherence_(philosophy)" target="_blank">
 			<g font-size="30" transform="translate(2898,2872)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath261)" stroke="none">غياب التناقضات الداخلية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath261)" stroke="none">غياب التناقضات الداخلية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2898,2826)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(141,200,1)" font-weight="bold">
@@ -2730,7 +2730,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مقدمة_(منطق)" target="_blank">
 			<g font-size="30" transform="translate(2898,2826)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath263)" stroke="none">اتساق المقدمات</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath263)" stroke="none">اتساق المقدمات</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2618,2767)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2741,7 +2741,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Conjectural_reasoning" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2618,2767)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath265)" stroke="none">استدلال معلَّم المراحل</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath265)" stroke="none">استدلال معلَّم المراحل</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2178,2540)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="5">
@@ -2757,7 +2757,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/منطق_صوري" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2228,2643)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath136)" stroke="none">عبارات صارمة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath136)" stroke="none">عبارات صارمة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2560,2708)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2768,7 +2768,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Modal_logic" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2560,2708)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath268)" stroke="none">استخدام ملائم للجهات</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath268)" stroke="none">استخدام ملائم للجهات</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2560,2649)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2779,7 +2779,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سور_(منطق)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2560,2649)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath270)" stroke="none">عبارات مكمّمة محكمة الصياغة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath270)" stroke="none">عبارات مكمّمة محكمة الصياغة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2560,2590)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2790,7 +2790,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/قضية_(منطق)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2560,2590)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath272)" stroke="none">عبارات قضوية محكمة الصياغة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath272)" stroke="none">عبارات قضوية محكمة الصياغة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2178,2363)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="5">
@@ -2806,7 +2806,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سببية" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2228,2466)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath274)" stroke="none">سببيات محددة بوضوح</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath274)" stroke="none">سببيات محددة بوضوح</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2683,2531)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2817,7 +2817,7 @@
 		</g>
 		<a xlink:href="https://sophismes.net/raisonnement-valide/exclusion-des-causes-alternatives" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2683,2531)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath276)" stroke="none">استبعاد الأسباب البديلة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath276)" stroke="none">استبعاد الأسباب البديلة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2683,2472)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2828,7 +2828,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سببية" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2683,2472)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath277)" stroke="none">سببية موجهة توجيهًا صحيحًا</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath277)" stroke="none">سببية موجهة توجيهًا صحيحًا</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2683,2413)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2839,7 +2839,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Valid_reasoning" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2683,2413)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath279)" stroke="none">استقلال المقدمات عن النتيجة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath279)" stroke="none">استقلال المقدمات عن النتيجة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(1806,1720)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="10">
@@ -2855,7 +2855,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Mathematical_method" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1856,2048)">
-				<text x="56" xml:space="preserve" y="63" clip-path="url(#clipPath281)" stroke="none">استدلال كمي</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="63" clip-path="url(#clipPath281)" stroke="none">استدلال كمي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2133,2107)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
@@ -2871,7 +2871,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/منهج_علمي" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2183,2249)">
-				<text x="40" xml:space="preserve" y="53" clip-path="url(#clipPath283)" stroke="none">نتائج صالحة</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="53" clip-path="url(#clipPath283)" stroke="none">نتائج صالحة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2458,2354)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -2882,7 +2882,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/رياضيات" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,2354)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath285)" stroke="none">عمليات صالحة</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath285)" stroke="none">عمليات صالحة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,2166)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2896,7 +2896,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Numerical_precision" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,2255)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath287)" stroke="none">حسابات دقيقة</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath287)" stroke="none">حسابات دقيقة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2705,2308)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2904,7 +2904,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/حساب_(رياضيات)" target="_blank">
 			<g font-size="30" transform="translate(2705,2308)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath289)" stroke="none">دقة طوبولوجية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath289)" stroke="none">دقة طوبولوجية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2705,2262)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2912,7 +2912,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مبرهنة_فيثاغورس" target="_blank">
 			<g font-size="30" transform="translate(2705,2262)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath291)" stroke="none">دقة هندسية</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath291)" stroke="none">دقة هندسية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2705,2216)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2920,7 +2920,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Numerical_precision" target="_blank">
 			<g font-size="30" transform="translate(2705,2216)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath293)" stroke="none">دقة عددية</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath293)" stroke="none">دقة عددية</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,2107)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2932,7 +2932,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/علم_القياس" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,2157)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">قياسات دقيقة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">قياسات دقيقة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,2161)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2940,7 +2940,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/جودة_البيانات" target="_blank">
 			<g font-size="30" transform="translate(2712,2161)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath296)" stroke="none">عرض واضح للبيانات</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath296)" stroke="none">عرض واضح للبيانات</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2133,1897)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
@@ -2956,7 +2956,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تحليل_البيانات" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2183,2016)">
-				<text x="41" xml:space="preserve" y="53" clip-path="url(#clipPath298)" stroke="none">تفسير صارم للبيانات</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="53" clip-path="url(#clipPath298)" stroke="none">تفسير صارم للبيانات</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2589,2098)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -2967,7 +2967,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Finite_probability_space" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2589,2098)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath300)" stroke="none">حامل منتهٍ</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath300)" stroke="none">حامل منتهٍ</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2539,1956)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2980,7 +2980,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/احتمال" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2589,2022)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath302)" stroke="none">احتمالات مضبوطة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath302)" stroke="none">احتمالات مضبوطة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2912,2052)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2988,7 +2988,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مبرهنة_بايز" target="_blank">
 			<g font-size="30" transform="translate(2912,2052)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath289)" stroke="none">الاستدلال البايزي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath289)" stroke="none">الاستدلال البايزي</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2912,2006)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2996,7 +2996,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استقلال_(نظرية_الاحتمال)" target="_blank">
 			<g font-size="30" transform="translate(2912,2006)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath304)" stroke="none">استقلال الأحداث</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath304)" stroke="none">استقلال الأحداث</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2539,1897)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -3008,7 +3008,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/ارتباط_(إحصاء)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2589,1947)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath306)" stroke="none">ارتباطات مثبتة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath306)" stroke="none">ارتباطات مثبتة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2865,1951)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -3016,7 +3016,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تقدير_(إحصاء)" target="_blank">
 			<g font-size="30" transform="translate(2865,1951)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath76)" stroke="none">تقدير منهجي</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath76)" stroke="none">تقدير منهجي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2133,1720)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
@@ -3032,7 +3032,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تعميم_(منطق)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2183,1823)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath99)" stroke="none">تعميمات مبرَّرة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath99)" stroke="none">تعميمات مبرَّرة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2510,1888)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -3043,7 +3043,7 @@
 		</g>
 		<a xlink:href="https://fr.wikipedia.org/wiki/Transfert_(logique)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2510,1888)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath309)" stroke="none">نقل مشروع</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath309)" stroke="none">نقل مشروع</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2510,1829)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -3054,7 +3054,7 @@
 		</g>
 		<a xlink:href="https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation#Exceptions_et_flexibilit%C3%A9" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2510,1829)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath311)" stroke="none">مراعاة الاستثناءات</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath311)" stroke="none">مراعاة الاستثناءات</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2510,1770)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -3065,7 +3065,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/أخذ_العينات_(إحصاء)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2510,1770)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath313)" stroke="none">أخذ عينات تمثيلي</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath313)" stroke="none">أخذ عينات تمثيلي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(1806,937)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="10">
@@ -3081,7 +3081,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Deontology" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1856,1336)">
-				<text x="56" xml:space="preserve" y="63" clip-path="url(#clipPath315)" stroke="none">عرض نزيه</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="63" clip-path="url(#clipPath315)" stroke="none">عرض نزيه</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2113,1543)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="5">
@@ -3097,7 +3097,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Communication" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2163,1646)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath317)" stroke="none">تواصل أصيل</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath317)" stroke="none">تواصل أصيل</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2459,1711)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3108,7 +3108,7 @@
 		</g>
 		<a xlink:href="https://www.communication-sensible.com/post/5-techniques-de-communication-bienveillante-pour-mieux-dialoguer" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2459,1711)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath306)" stroke="none">وضعية مناسبة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath306)" stroke="none">وضعية مناسبة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2459,1652)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3119,7 +3119,7 @@
 		</g>
 		<a xlink:href="https://www.leadership-lavautoir.com/post/comment-adopter-une-position-neutre-en-tant-que-leader" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2459,1652)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath320)" stroke="none">حياد متعاطف</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath320)" stroke="none">حياد متعاطف</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2459,1593)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3130,7 +3130,7 @@
 		</g>
 		<a xlink:href="https://www.village-justice.com/articles/transparence-et-communication-dans-entreprise,35542.html" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2459,1593)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath322)" stroke="none">شفافية</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath322)" stroke="none">شفافية</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2113,1366)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="5">
@@ -3146,7 +3146,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Distancing" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2163,1469)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath324)" stroke="none">توازن عاطفي</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath324)" stroke="none">توازن عاطفي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2469,1534)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3157,7 +3157,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Emotional_blackmail" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2469,1534)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath46)" stroke="none">من دون ابتزاز بالعواقب</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath46)" stroke="none">من دون ابتزاز بالعواقب</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2469,1475)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3168,7 +3168,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/دراما" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2469,1475)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath327)" stroke="none">رصانة درامية</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath327)" stroke="none">رصانة درامية</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2469,1416)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3179,7 +3179,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Collusion" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2469,1416)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath329)" stroke="none">حياد عاطفي</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath329)" stroke="none">حياد عاطفي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2113,937)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="5">
@@ -3195,7 +3195,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2163,1166)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath331)" stroke="none">بلاغة مقبولة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath331)" stroke="none">بلاغة مقبولة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,1307)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3207,7 +3207,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,1357)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath333)" stroke="none">أسلوب ملائم</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath333)" stroke="none">أسلوب ملائم</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2638,1309)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3218,7 +3218,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g font-size="30" transform="translate(2688,1361)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath335)" stroke="none">فصاحة في خدمة الحقيقة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath335)" stroke="none">فصاحة في خدمة الحقيقة</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2989,1359)" stroke="rgb(255,102,235)">
@@ -3226,7 +3226,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/صورة_بيانية" target="_blank">
 			<g font-size="30" transform="translate(2989,1359)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath188)" stroke="none">صور بيانية داعمة للوضوح</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath188)" stroke="none">صور بيانية داعمة للوضوح</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,1167)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3240,7 +3240,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/فكاهة" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,1258)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath338)" stroke="none">فكاهة رفيعة الذوق</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath338)" stroke="none">فكاهة رفيعة الذوق</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2766,1311)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3248,7 +3248,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(2766,1311)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="42" xml:space="preserve" y="33" clip-path="url(#clipPath158)" stroke="none">فكاهة شاملة</text>
+				<text text-rendering="geometricPrecision" x="42" xml:space="preserve" y="33" clip-path="url(#clipPath158)" stroke="none">فكاهة شاملة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2716,1213)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3259,7 +3259,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g font-size="30" transform="translate(2766,1265)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath340)" stroke="none">فكاهة محترمة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath340)" stroke="none">فكاهة محترمة</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2964,1263)" stroke="rgb(255,102,235)">
@@ -3267,7 +3267,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سخرية_ذاتية" target="_blank">
 			<g font-size="30" transform="translate(2964,1263)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath192)" stroke="none">سخرية ذاتية مستنيرة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath192)" stroke="none">سخرية ذاتية مستنيرة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2766,1217)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3275,7 +3275,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/فكاهة" target="_blank">
 			<g font-size="30" transform="translate(2766,1217)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath192)" stroke="none">فكاهة ملائمة للسياق</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath192)" stroke="none">فكاهة ملائمة للسياق</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2408,937)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3289,7 +3289,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2458,1072)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath342)" stroke="none">بلاغة فصيحة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath342)" stroke="none">بلاغة فصيحة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2718,1171)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3297,7 +3297,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g font-size="30" transform="translate(2718,1171)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath344)" stroke="none">لغة محترمة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath344)" stroke="none">لغة محترمة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2668,983)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3310,7 +3310,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g font-size="30" transform="translate(2718,1079)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath304)" stroke="none">مفردات ملائمة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath304)" stroke="none">مفردات ملائمة</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2937,1125)" stroke="rgb(255,102,235)">
@@ -3318,7 +3318,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Impartiality" target="_blank">
 			<g font-size="30" transform="translate(2937,1125)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath93)" stroke="none">مفردات محايدة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath93)" stroke="none">مفردات محايدة</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2937,1079)" stroke="rgb(255,102,235)">
@@ -3326,7 +3326,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Technical_terminology" target="_blank">
 			<g font-size="30" transform="translate(2937,1079)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath126)" stroke="none">مصطلحات تقنية مبررة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath126)" stroke="none">مصطلحات تقنية مبررة</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2937,1033)" stroke="rgb(255,102,235)">
@@ -3334,7 +3334,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/رطانة" target="_blank">
 			<g font-size="30" transform="translate(2937,1033)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath347)" stroke="none">استخدام معتدل للرطانة المتخصصة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath347)" stroke="none">استخدام معتدل للرطانة المتخصصة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2718,987)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3342,7 +3342,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/بلاغة" target="_blank">
 			<g font-size="30" transform="translate(2718,987)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath349)" stroke="none">تكييف خطابي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath349)" stroke="none">تكييف خطابي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(1806,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="10">
@@ -3358,7 +3358,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Argumentation_theory" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1856,450)">
-				<text x="57" xml:space="preserve" y="63" clip-path="url(#clipPath351)" stroke="none">حجة ملائمة</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="63" clip-path="url(#clipPath351)" stroke="none">حجة ملائمة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2118,727)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
@@ -3374,7 +3374,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/تفسير_(فلسفة)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2168,846)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath353)" stroke="none">تفسير عادل</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath353)" stroke="none">تفسير عادل</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2392,845)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3387,7 +3387,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/نصل_أوكام" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2442,911)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath355)" stroke="none">تمثيل مقتصد</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath355)" stroke="none">تمثيل مقتصد</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2692,941)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3395,7 +3395,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Hanlon's_razor" target="_blank">
 			<g font-size="30" transform="translate(2692,941)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath357)" stroke="none">نصل هانلون</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath357)" stroke="none">نصل هانلون</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2692,895)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3403,7 +3403,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/نصل_أوكام" target="_blank">
 			<g font-size="30" transform="translate(2692,895)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath178)" stroke="none">نصل أوكام</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath178)" stroke="none">نصل أوكام</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2442,836)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3414,7 +3414,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/موضوعية_(فلسفة)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2442,836)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath359)" stroke="none">تفسير غير حزبي</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath359)" stroke="none">تفسير غير حزبي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2442,777)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3425,7 +3425,7 @@
 		</g>
 		<a xlink:href="https://www.persee.fr/doc/comm_0588-8018_2005_num_78_1_3769" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2442,777)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath361)" stroke="none">تعقيد ملائم</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath361)" stroke="none">تعقيد ملائم</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2118,285)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
@@ -3441,7 +3441,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2168,521)">
-				<text x="44" xml:space="preserve" y="53" clip-path="url(#clipPath363)" stroke="none">مقدمات موثوقة</text>
+				<text text-rendering="geometricPrecision" x="44" xml:space="preserve" y="53" clip-path="url(#clipPath363)" stroke="none">مقدمات موثوقة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2441,668)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3453,7 +3453,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Impartiality" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2491,718)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">مصادر محايدة</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath87)" stroke="none">مصادر محايدة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2745,722)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3461,7 +3461,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Impartiality" target="_blank">
 			<g font-size="30" transform="translate(2745,722)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath366)" stroke="none">مصادر بلا انحياز اجتماعي اقتصادي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath366)" stroke="none">مصادر بلا انحياز اجتماعي اقتصادي</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2491,659)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3472,7 +3472,7 @@
 		</g>
 		<a xlink:href="https://www.huffpost.com/entry/comment-reconnaitre-une-information-fiable-sur-internet_b_5ac4497ee4b094d3f5c0b93d" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2491,659)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath368)" stroke="none">مصادر مستقلة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath368)" stroke="none">مصادر مستقلة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2441,285)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3487,7 +3487,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Reliability" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2491,468)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath370)" stroke="none">مصادر موثوقة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath370)" stroke="none">مصادر موثوقة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2768,613)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3495,7 +3495,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Hypothesis" target="_blank">
 			<g font-size="30" transform="translate(2768,613)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath304)" stroke="none">فرضية معقولة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath304)" stroke="none">فرضية معقولة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2718,515)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3506,7 +3506,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Journalism" target="_blank">
 			<g font-size="30" transform="translate(2768,567)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath372)" stroke="none">معلومة مؤكدة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath372)" stroke="none">معلومة مؤكدة</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2915,515)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3517,7 +3517,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Fact-checking" target="_blank">
 			<g font-size="30" transform="translate(2965,565)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath374)" stroke="none">وقائع متحقق منها</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath374)" stroke="none">وقائع متحقق منها</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3192,566)" stroke="rgb(134,5,171)">
@@ -3525,7 +3525,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="25" transform="translate(3192,566)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="26" xml:space="preserve" y="28" clip-path="url(#clipPath376)" stroke="none">أدلة تجريبية</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="28" clip-path="url(#clipPath376)" stroke="none">أدلة تجريبية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2768,519)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3533,7 +3533,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Evidence" target="_blank">
 			<g font-size="30" transform="translate(2768,519)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">خلاصة مُصادَق عليها</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">خلاصة مُصادَق عليها</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2718,285)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3547,7 +3547,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Reliability#In_journalism" target="_blank">
 			<g font-size="30" transform="translate(2768,404)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath93)" stroke="none">مصدر مُقيَّم جيدًا</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath93)" stroke="none">مصدر مُقيَّم جيدًا</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2988,473)" stroke="rgb(134,5,171)">
@@ -3555,7 +3555,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Testimony" target="_blank">
 			<g font-size="30" transform="translate(2988,473)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath380)" stroke="none">شهادة غير مثار حولها نزاع</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath380)" stroke="none">شهادة غير مثار حولها نزاع</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2938,377)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3566,7 +3566,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/سلطة_معرفية" target="_blank">
 			<g font-size="30" transform="translate(2988,427)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath382)" stroke="none">سلطة مختصة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath382)" stroke="none">سلطة مختصة</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3181,428)" stroke="rgb(134,5,171)">
@@ -3574,7 +3574,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Authority" target="_blank">
 			<g font-size="25" transform="translate(3181,428)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath384)" stroke="none">خبير في المجال</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath384)" stroke="none">خبير في المجال</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2988,381)" stroke="rgb(134,5,171)">
@@ -3582,7 +3582,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مراجعة_الأقران" target="_blank">
 			<g font-size="30" transform="translate(2988,381)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath386)" stroke="none">منشور علمي</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath386)" stroke="none">منشور علمي</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2988,335)" stroke="rgb(134,5,171)">
@@ -3590,7 +3590,7 @@
 		</g>
 		<a xlink:href="https://fr.wikipedia.org/wiki/Fiabilit%C3%A9#En_journalisme" target="_blank">
 			<g font-size="30" transform="translate(2988,335)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath388)" stroke="none">صحيفة مرموقة</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath388)" stroke="none">صحيفة مرموقة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2118,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
@@ -3606,7 +3606,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/حجاج" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2168,131)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath390)" stroke="none">حجة مؤسَّسة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath390)" stroke="none">حجة مؤسَّسة</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2465,276)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3617,7 +3617,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Objectivity" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2465,276)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath392)" stroke="none">استدلال غير موجَّه</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath392)" stroke="none">استدلال غير موجَّه</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2415,42)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3632,7 +3632,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/برهان_(منطق)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2465,154)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath287)" stroke="none">أدلة ملموسة</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath287)" stroke="none">أدلة ملموسة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,230)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3640,7 +3640,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Citation" target="_blank">
 			<g font-size="30" transform="translate(2712,230)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath134)" stroke="none">ذكر المصادر</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath134)" stroke="none">ذكر المصادر</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,184)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3648,7 +3648,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/موثوقية" target="_blank">
 			<g font-size="30" transform="translate(2712,184)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath80)" stroke="none">تقديم اقتباسات</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath80)" stroke="none">تقديم اقتباسات</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,138)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3656,7 +3656,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مثال" target="_blank">
 			<g font-size="30" transform="translate(2712,138)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath395)" stroke="none">تقديم أمثلة</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath395)" stroke="none">تقديم أمثلة</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2712,92)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3664,7 +3664,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/مناظرة" target="_blank">
 			<g font-size="30" transform="translate(2712,92)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath178)" stroke="none">هدف محدد</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath178)" stroke="none">هدف محدد</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2415,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3677,7 +3677,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Argumentation#Types_of_arguments" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2465,16)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath309)" stroke="none">حجة واقعية</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath309)" stroke="none">حجة واقعية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2685,46)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3685,7 +3685,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استقراء_(منطق)" target="_blank">
 			<g font-size="30" transform="translate(2685,46)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath398)" stroke="none">حجة استقرائية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath398)" stroke="none">حجة استقرائية</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(2685,0)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3693,7 +3693,7 @@
 		</g>
 		<a xlink:href="https://ar.wikipedia.org/wiki/استنباط" target="_blank">
 			<g font-size="30" transform="translate(2685,0)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath400)" stroke="none">حجة استنباطية</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath400)" stroke="none">حجة استنباطية</text>
 			</g>
 		</a>
 	</g>
