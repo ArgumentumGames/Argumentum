@@ -29,6 +29,26 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         private static readonly string MindmapsRoot =
             Path.Combine(RepoRoot, "Cards", "Fallacies", "Mindmaps");
 
+        /// <summary>
+        /// #1285 — expected external-wrapper count, DERIVED from the C# creator configs (the
+        /// source of truth, SkipConfigFile=true), never hardcoded: the external.html template,
+        /// plus one <c>_ext</c> wrapper per enabled document that ships SVG variants, times
+        /// (1 + |Translations|). The FR-only cards document (#1269) legitimately raised 17 → 18;
+        /// a future language or document must not require touching this organ.
+        /// </summary>
+        private static int ExpectedExternalWrapperCount()
+        {
+            var fallacyDocs = new Argumentum.AssetConverter.Mindmapper.FallacyMindMapCreatorConfig().DocumentConfigs
+                .Select(d => (d.Enabled, Langs: 1 + (d.Translations?.Count ?? 0), ShipsSvg: d.SVGMaps.Any(m => m.Enabled)));
+            var virtueDocs = new Argumentum.AssetConverter.Mindmapper.VirtueMindMapCreatorConfig().DocumentConfigs
+                .Select(d => (d.Enabled, Langs: 1 + (d.Translations?.Count ?? 0), ShipsSvg: d.SVGMaps.Any(m => m.Enabled)));
+            return 1 + fallacyDocs.Concat(virtueDocs)
+                .Where(d => d.Enabled && d.ShipsSvg)
+                .Sum(d => d.Langs);
+        }
+
+        private const int AntiCollapseFloor = 17; // 8 Fallacies + 8 Virtues + template, pre-cards baseline
+
         // The three substrings that together prove the wiring is live (not a dead stub):
         // the two listeners AND that they actually call resize().
         private static readonly string[] RequiredWiring =
@@ -123,8 +143,11 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                             || Path.GetFileName(f).EndsWith("_ext.html", StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            externalFiles.Count.Should().Be(17,
-                "external.html template + 16 _ext wrappers (8 langs × {Fallacies,Virtues})");
+            var expectedCount = ExpectedExternalWrapperCount();
+            expectedCount.Should().BeGreaterThanOrEqualTo(AntiCollapseFloor,
+                "anti-collapse floor (#1285): 8 Fallacies + 8 Virtues registries + template is the pre-cards baseline — a lower expectation means documents went missing, not that scope shrank");
+            externalFiles.Count.Should().Be(expectedCount,
+                "external.html template + one _ext wrapper per enabled SVG-bearing document × (1 + |Translations|) — scope derived from the creator configs, never hardcoded (#1285)");
 
             var missing = new List<string>();
             var legacy = new List<string>();
