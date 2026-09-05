@@ -585,6 +585,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 			IntPtr hInputDesktop = TryAttachToInteractiveDesktop();
 			try
 			{
+				// #1274 — fail loud BEFORE any FreeMind launch: with no foreground window on the
+				// interactive desktop (detached/minimized RDP), every export fails silently and the
+				// run exits 0 over stale SVGs. TryAttachToInteractiveDesktop can also no-op silently
+				// (ERROR_BUSY with matching desktop names), so the check belongs here, after it.
+				InteractiveForegroundGuard.EnsureForegroundWindowExists(() => GetForegroundWindow());
+
 				// 1. Clean slate
 				KillAllFreeMind();
 				Thread.Sleep(2000);

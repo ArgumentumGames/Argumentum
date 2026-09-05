@@ -1275,8 +1275,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аргументация" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2814,2975)">
-				<text x="87" xml:space="preserve" y="144" clip-path="url(#clipPath3)" font-family="sans-serif" stroke="none">Обоснованный </text>
-				<text x="87" xml:space="preserve" y="221" clip-path="url(#clipPath3)" font-family="sans-serif" stroke="none">аргумент</text>
+				<text x="87" y="144" clip-path="url(#clipPath3)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Обоснованный </text>
+				<text x="87" y="221" clip-path="url(#clipPath3)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">аргумент</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(3510,4790)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="10">
@@ -1292,8 +1292,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дискуссия" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(3560,5476)">
-				<text x="56" xml:space="preserve" y="65" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">Обогащающий </text>
-				<text x="56" xml:space="preserve" y="142" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">обмен</text>
+				<text x="56" y="65" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Обогащающий </text>
+				<text x="56" y="142" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">обмен</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,5679)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="5">
@@ -1309,7 +1309,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Права_человека" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,5965)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath10)" stroke="none">Уважение к личности</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath10)" stroke="none">Уважение к личности</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4810,6033)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1324,8 +1324,8 @@
 		</g>
 		<a xlink:href="https://www.agoracademie.com/respect-mutuel-et-respect-de-l-autre-dans-l-echange-constructif/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4860,6123)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Вежливость в расхождении </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">мнений</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Вежливость в расхождении </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">мнений</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,6225)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1333,7 +1333,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(5545,6225)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="26" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">Взаимная вовлеченность</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">Взаимная вовлеченность</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,6179)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1341,7 +1341,7 @@
 		</g>
 		<a xlink:href="https://www.lexpress.fr/actualite/societe/education/neuf-reformes-pour-une-meilleure-ecole_1355387.html" target="_blank">
 			<g font-size="30" transform="translate(5545,6179)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath18)" stroke="none">Уважительный тон</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath18)" stroke="none">Уважительный тон</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5495,6081)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1352,7 +1352,7 @@
 		</g>
 		<a xlink:href="https://www.francetvinfo.fr/societe/education/justice-comment-gerer-les-discussions-en-classe-autour-de-ce-sujet-sensible_2091325.html" target="_blank">
 			<g font-size="30" transform="translate(5545,6133)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">Справедливость в диалоге</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath20)" stroke="none">Справедливость в диалоге</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6031,6131)" stroke="rgb(220,15,10)">
@@ -1360,7 +1360,7 @@
 		</g>
 		<a xlink:href="https://www.cairn.info/revue-de-psychotherapie-psychanalytique-de-groupe-2006-1-page-111.htm" target="_blank">
 			<g font-size="30" transform="translate(6031,6131)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath22)" stroke="none">Не перебивать</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath22)" stroke="none">Не перебивать</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5495,6033)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1371,7 +1371,7 @@
 		</g>
 		<a xlink:href="https://www.lesmotssontdescadeaux.com/2018/02/comment-critiquer-sans-agresser.html" target="_blank">
 			<g font-size="30" transform="translate(5545,6085)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath24)" stroke="none">Избегать личных нападок</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath24)" stroke="none">Избегать личных нападок</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6013,6083)" stroke="rgb(220,15,10)">
@@ -1379,7 +1379,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Ненасильственное_общение" target="_blank">
 			<g font-size="30" transform="translate(6013,6083)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath26)" stroke="none">Ненасильственное общение</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath26)" stroke="none">Ненасильственное общение</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4810,5895)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1393,8 +1393,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Уважение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4860,5958)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Уважение к происхождению </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">идей</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Уважение к происхождению </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">идей</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,6037)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1402,7 +1402,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(5545,6037)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="26" xml:space="preserve" y="33" clip-path="url(#clipPath29)" stroke="none">Аргументативное сотрудничество</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath29)" stroke="none">Аргументативное сотрудничество</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,5991)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1410,7 +1410,7 @@
 		</g>
 		<a xlink:href="https://www.jc-counselling.com/single-post/2018/04/14/The-Importance-of-Recognizing-the-Value-of-Every-Contribution" target="_blank">
 			<g font-size="30" transform="translate(5545,5991)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath31)" stroke="none">Оценка происхождения идей</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath31)" stroke="none">Оценка происхождения идей</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,5945)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1418,7 +1418,7 @@
 		</g>
 		<a xlink:href="https://www.gatesnotes.com/Development/Critical-thinking" target="_blank">
 			<g font-size="30" transform="translate(5545,5945)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath33)" stroke="none">Принцип недисквалификации</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath33)" stroke="none">Принцип недисквалификации</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4810,5679)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1432,8 +1432,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Критика#Критическая_критика" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4860,5781)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Разумная оценка позиции </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">оппонента</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Разумная оценка позиции </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">оппонента</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,5860)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1441,8 +1441,8 @@
 		</g>
 		<a xlink:href="https://www.developpez.net/forums/d1071995/general-developpement/philosophie-projet/argumentation/critique-adverse-ca-veritable-discussion-possible/" target="_blank">
 			<g font-size="30" transform="translate(5545,5860)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Уважительное опровержение </text>
-				<text x="54" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">противоположных аргументов</text>
+				<text x="54" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Уважительное опровержение </text>
+				<text x="54" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">противоположных аргументов</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,5814)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1450,7 +1450,7 @@
 		</g>
 		<a xlink:href="https://www.developpez.net/forums/d1071995/general-developpement/philosophie-projet/argumentation/critique-adverse-ca-veritable-discussion-possible/" target="_blank">
 			<g font-size="30" transform="translate(5545,5814)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath39)" stroke="none">Верное признание позиции оппонента</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath39)" stroke="none">Верное признание позиции оппонента</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5545,5729)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1458,8 +1458,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Критика#Критическая_критика" target="_blank">
 			<g font-size="30" transform="translate(5545,5729)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Критика, ориентированная на </text>
-				<text x="54" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">аргументы</text>
+				<text x="54" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Критика, ориентированная на </text>
+				<text x="54" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">аргументы</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,5365)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="5">
@@ -1475,7 +1475,7 @@
 		</g>
 		<a xlink:href="https://www.oups.gouv.fr/actualites/participation-citoyenne/les-attitudes-constructives-en-debat" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,5536)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath41)" stroke="none">Эффективное участие</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath41)" stroke="none">Эффективное участие</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4837,5568)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1487,8 +1487,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Принцип_благожелательности" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4887,5618)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Принцип </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">благожелательности</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Принцип </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">благожелательности</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5572,5648)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1496,7 +1496,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Принцип_благожелательности" target="_blank">
 			<g font-size="30" transform="translate(5572,5648)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath44)" stroke="none">Презумпция добросовестности</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath44)" stroke="none">Презумпция добросовестности</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4837,5457)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1508,8 +1508,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Метод_PRIOR" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4887,5507)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Сосредоточение на </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">существенном</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Сосредоточение на </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">существенном</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5572,5537)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1517,7 +1517,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Метод_PRIOR" target="_blank">
 			<g font-size="30" transform="translate(5572,5537)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath47)" stroke="none">Учитывать отведённое время</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath47)" stroke="none">Учитывать отведённое время</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4837,5365)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1530,7 +1530,7 @@
 		</g>
 		<a xlink:href="http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4887,5431)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">Придерживание темы</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">Придерживание темы</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5408,5461)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1538,7 +1538,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(5408,5461)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="26" xml:space="preserve" y="33" clip-path="url(#clipPath52)" stroke="none">Избегать отступлений</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath52)" stroke="none">Избегать отступлений</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5408,5415)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1546,7 +1546,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аргументация" target="_blank">
 			<g font-size="30" transform="translate(5408,5415)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath54)" stroke="none">Принцип ясности</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath54)" stroke="none">Принцип ясности</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,4790)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)" stroke-width="5">
@@ -1562,7 +1562,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дискуссия" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,5093)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath56)" stroke="none">Позитивный вклад</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath56)" stroke="none">Позитивный вклад</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4754,5039)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1577,7 +1577,7 @@
 		</g>
 		<a xlink:href="https://www.leadership-toolbox.fr/les-10-attributs-de-latout-leader-numero-2-live-with-an-open-mind/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4804,5224)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath58)" stroke="none">Готовность к диалогу</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath58)" stroke="none">Готовность к диалогу</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5272,5273)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1589,7 +1589,7 @@
 		</g>
 		<a xlink:href="https://www.psychologies.com/Culture/Philosophie/L-ouverture-d-esprit-une-vertu" target="_blank">
 			<g font-size="30" transform="translate(5322,5346)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath60)" stroke="none">Открытость к переменам</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath60)" stroke="none">Открытость к переменам</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5774,5369)" stroke="rgb(220,15,10)">
@@ -1597,7 +1597,7 @@
 		</g>
 		<a xlink:href="https://www.cairn.info/revue-recherches-en-sciences-de-gestion-2016-1-page-103.htm" target="_blank">
 			<g font-size="30" transform="translate(5774,5369)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath54)" stroke="none">Поиск компромисса</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath54)" stroke="none">Поиск компромисса</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5774,5323)" stroke="rgb(220,15,10)">
@@ -1605,7 +1605,7 @@
 		</g>
 		<a xlink:href="https://www.un.org/ru/sections/issues-depth/peace-and-security/" target="_blank">
 			<g font-size="30" transform="translate(5774,5323)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath62)" stroke="none">Принцип разрешения</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath62)" stroke="none">Принцип разрешения</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5272,5135)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1618,7 +1618,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Критическое_мышление" target="_blank">
 			<g font-size="30" transform="translate(5322,5231)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath64)" stroke="none">Принцип фаллибилизма</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath64)" stroke="none">Принцип фаллибилизма</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5766,5277)" stroke="rgb(220,15,10)">
@@ -1626,7 +1626,7 @@
 		</g>
 		<a xlink:href="https://blogs.lse.ac.uk/businessreview/2018/05/22/knowing-your-cognitive-limits-can-improve-your-decision-making/" target="_blank">
 			<g font-size="30" transform="translate(5766,5277)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath66)" stroke="none">Осознание границ аргумента</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath66)" stroke="none">Осознание границ аргумента</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5766,5231)" stroke="rgb(220,15,10)">
@@ -1634,7 +1634,7 @@
 		</g>
 		<a xlink:href="https://www.richardcousin.com/post/culture-de-l-erreur-3-les-b%C3%A9n%C3%A9fices-de-l-admission-de-son-erreur#:~:text=Reconna%C3%AEtre%20ses%20erreurs%20permet%20aujourd'hui%20un%20d%C3%A9veloppement%20permanent%20de,fa%C3%A7on%20dont%20les%20gens%20interagissent." target="_blank">
 			<g font-size="30" transform="translate(5766,5231)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath68)" stroke="none">Признание своих ошибок</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath68)" stroke="none">Признание своих ошибок</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5766,5185)" stroke="rgb(220,15,10)">
@@ -1642,7 +1642,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Cognitive_bias" target="_blank">
 			<g font-size="30" transform="translate(5766,5185)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath70)" stroke="none">Выявление собственных предубеждений</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath70)" stroke="none">Выявление собственных предубеждений</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5272,5087)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1653,7 +1653,7 @@
 		</g>
 		<a xlink:href="https://www.psychologies.com/Therapies/Toutes-les-therapies/Psychotherapies/Articles-et-Dossiers/Suspendre-le-jugement" target="_blank">
 			<g font-size="30" transform="translate(5322,5139)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath72)" stroke="none">Воздержание от суждения</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath72)" stroke="none">Воздержание от суждения</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5745,5087)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1664,7 +1664,7 @@
 		</g>
 		<a xlink:href="https://www.commentdevenir.me/l_ecoute_active.html" target="_blank">
 			<g font-size="30" transform="translate(5795,5137)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath74)" stroke="none">Активное слушание</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath74)" stroke="none">Активное слушание</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6148,5138)" stroke="rgb(220,15,10)">
@@ -1672,7 +1672,7 @@
 		</g>
 		<a xlink:href="https://www.pepse-psycho.fr/actualites-et-culture/la-bienveillance-pour-ameliorer-la-qualite-du-dialogue" target="_blank">
 			<g font-size="25" transform="translate(6148,5138)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="54" xml:space="preserve" y="28" clip-path="url(#clipPath77)" stroke="none">Проявлять эмпатию</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="28" clip-path="url(#clipPath77)" stroke="none">Проявлять эмпатию</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5272,5039)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1683,7 +1683,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дебаты" target="_blank">
 			<g font-size="30" transform="translate(5322,5091)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath79)" stroke="none">Поиск истины</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath79)" stroke="none">Поиск истины</text>
 			</g>
 		</a>
 		<g fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5611,5089)" stroke="rgb(220,15,10)">
@@ -1691,7 +1691,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Консенсус" target="_blank">
 			<g font-size="30" transform="translate(5611,5089)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath81)" stroke="none">Стремление к консенсусу</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath81)" stroke="none">Стремление к консенсусу</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4754,4901)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
@@ -1705,7 +1705,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Объяснение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4804,4990)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath83)" stroke="none">Достаточные объяснения</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath83)" stroke="none">Достаточные объяснения</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5389,5043)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1713,7 +1713,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Фальсифицируемость" target="_blank">
 			<g font-size="30" transform="translate(5389,5043)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath85)" stroke="none">Опровержимые посылки</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath85)" stroke="none">Опровержимые посылки</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5389,4997)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1721,7 +1721,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Бремя_доказывания" target="_blank">
 			<g font-size="30" transform="translate(5389,4997)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="34" clip-path="url(#clipPath87)" font-family="sans-serif" stroke="none">Достаточный уровень доказательности</text>
+				<text x="38" y="34" clip-path="url(#clipPath87)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Достаточный уровень доказательности</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5389,4951)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1729,7 +1729,7 @@
 		</g>
 		<a xlink:href="https://halshs.archives-ouvertes.fr/halshs-02193571v2/document" target="_blank">
 			<g font-size="30" transform="translate(5389,4951)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath89)" stroke="none">Явные обоснования</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath89)" stroke="none">Явные обоснования</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4804,4840)" fill="rgb(249,122,119)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(249,122,119)" font-weight="bold" stroke-width="5">
@@ -1740,8 +1740,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Научное_познание" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4804,4840)">
-				<text x="40" xml:space="preserve" y="45" clip-path="url(#clipPath91)" font-family="sans-serif" stroke="none">Признание объективной </text>
-				<text x="40" xml:space="preserve" y="97" clip-path="url(#clipPath91)" font-family="sans-serif" stroke="none">реальности</text>
+				<text x="40" y="45" clip-path="url(#clipPath91)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Признание объективной </text>
+				<text x="40" y="97" clip-path="url(#clipPath91)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">реальности</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(-50,2938)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="10">
@@ -1757,8 +1757,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Интеллектуальная_честность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2129,3406)">
-				<text x="8" xml:space="preserve" y="65" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">Интеллектуальная </text>
-				<text x="8" xml:space="preserve" y="142" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">честность</text>
+				<text x="8" y="65" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Интеллектуальная </text>
+				<text x="8" y="142" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">честность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(-50,3416)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
@@ -1774,8 +1774,8 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Objectivity_(philosophy)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1444,3658)">
-				<text x="8" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Стремление к </text>
-				<text x="8" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">объективности</text>
+				<text x="8" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Стремление к </text>
+				<text x="8" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">объективности</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-50,3717)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1789,7 +1789,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Идеология" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(825,3847)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath97)" stroke="none">Отстранение от идеологий</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath97)" stroke="none">Отстранение от идеологий</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-50,3887)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1800,7 +1800,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Вероятность" target="_blank">
 			<g font-size="30" transform="translate(295,3939)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath99)" stroke="none">Признание неопределенности</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath99)" stroke="none">Признание неопределенности</text>
 			</g>
 		</a>
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(0,3937)" stroke="rgb(255,195,7)">
@@ -1808,7 +1808,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Научный_метод" target="_blank">
 			<g font-size="30" transform="translate(0,3937)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath101)" stroke="none">Научный подход</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath101)" stroke="none">Научный подход</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(145,3852)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1816,8 +1816,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Когнитивные_искажения#Ошибка_атрибуции" target="_blank">
 			<g font-size="30" transform="translate(145,3852)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Учет идеологических предубеждений </text>
-				<text x="6" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">оппонента</text>
+				<text x="6" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Учет идеологических предубеждений </text>
+				<text x="6" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">оппонента</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(145,3767)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1825,8 +1825,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Когнитивное_искажение" target="_blank">
 			<g font-size="30" transform="translate(145,3767)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Учет собственных идеологических </text>
-				<text x="6" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">искажений</text>
+				<text x="6" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Учет собственных идеологических </text>
+				<text x="6" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">искажений</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(29,3547)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1839,8 +1839,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Открытость_культуре" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(759,3626)">
-				<text x="8" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Межкультурная </text>
-				<text x="8" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">осведомлённость</text>
+				<text x="8" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Межкультурная </text>
+				<text x="8" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">осведомлённость</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(79,3682)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1848,8 +1848,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Межкультурная_коммуникация" target="_blank">
 			<g font-size="30" transform="translate(79,3682)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Понимание культурных искажений </text>
-				<text x="6" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">других</text>
+				<text x="6" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Понимание культурных искажений </text>
+				<text x="6" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">других</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(79,3597)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1857,8 +1857,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Культурные_исследования" target="_blank">
 			<g font-size="30" transform="translate(79,3597)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Признание личных культурных </text>
-				<text x="6" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">искажений</text>
+				<text x="6" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Признание личных культурных </text>
+				<text x="6" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">искажений</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(341,3416)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1871,7 +1871,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Universalism" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1071,3502)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath104)" stroke="none">Универсализм</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath104)" stroke="none">Универсализм</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(424,3551)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1879,7 +1879,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Когнитивное_искажение" target="_blank">
 			<g font-size="30" transform="translate(424,3551)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath106)" stroke="none">Понимание личных искажений других</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath106)" stroke="none">Понимание личных искажений других</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(391,3466)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1887,8 +1887,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Когнитивное_искажение" target="_blank">
 			<g font-size="30" transform="translate(391,3466)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Признание личных когнитивных </text>
-				<text x="6" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">искажений</text>
+				<text x="6" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Признание личных когнитивных </text>
+				<text x="6" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">искажений</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(-15,3167)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
@@ -1904,7 +1904,7 @@
 		</g>
 		<a xlink:href="https://www.laligue.be/associations/la-ligue-de-l-enseignement/methode-pedagogique/les-cinq-regles-d-or-de-l-argumentation/n-2-clarte-des-enjeux" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1580,3306)">
-				<text x="8" xml:space="preserve" y="53" clip-path="url(#clipPath108)" stroke="none">Ясность сути дела</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="53" clip-path="url(#clipPath108)" stroke="none">Ясность сути дела</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-15,3357)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1916,7 +1916,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/SMART_(критерии)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(995,3407)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath83)" stroke="none">Непотворствующая цель</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath83)" stroke="none">Непотворствующая цель</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-15,3359)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1927,7 +1927,7 @@
 		</g>
 		<a xlink:href="https://www.ameli.fr/sites/default/files/Documents/911739/document/gestion-risque-methodes-identification-points-vigilance.pdf" target="_blank">
 			<g font-size="30" transform="translate(471,3411)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath33)" stroke="none">Определение точек внимания</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath33)" stroke="none">Определение точек внимания</text>
 			</g>
 		</a>
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(35,3409)" stroke="rgb(255,195,7)">
@@ -1935,7 +1935,7 @@
 		</g>
 		<a xlink:href="https://www.transparency.org/en/what-is-corruption/definitions" target="_blank">
 			<g font-size="30" transform="translate(35,3409)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath112)" stroke="none">Учёт конфликта интересов</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath112)" stroke="none">Учёт конфликта интересов</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(1198,3348)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -1946,7 +1946,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Интеллектуальная_честность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1198,3348)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath114)" stroke="none">Ясная позиция</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath114)" stroke="none">Ясная позиция</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(210,3167)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1959,7 +1959,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Бремя_доказательства" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(940,3253)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath116)" stroke="none">Реалистичность требования</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath116)" stroke="none">Реалистичность требования</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(260,3263)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1967,8 +1967,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Доказательство" target="_blank">
 			<g font-size="30" transform="translate(260,3263)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="34" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">Соответствующий уровень </text>
-				<text x="6" xml:space="preserve" y="73" clip-path="url(#clipPath37)" font-family="sans-serif" stroke="none">доказанности</text>
+				<text x="6" y="34" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Соответствующий уровень </text>
+				<text x="6" y="73" clip-path="url(#clipPath37)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">доказанности</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(521,3217)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -1976,7 +1976,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Бремя_доказательства" target="_blank">
 			<g font-size="30" transform="translate(521,3217)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath118)" stroke="none">Бремя доказательства</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath118)" stroke="none">Бремя доказательства</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(331,2938)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
@@ -1992,7 +1992,7 @@
 		</g>
 		<a xlink:href="https://www.usherbrooke.ca/accueil/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1610,3067)">
-				<text x="8" xml:space="preserve" y="53" clip-path="url(#clipPath120)" stroke="none">Верность фактам</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="53" clip-path="url(#clipPath120)" stroke="none">Верность фактам</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(331,3056)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -2005,8 +2005,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Объективность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(925,3106)">
-				<text x="8" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Сбалансированное </text>
-				<text x="8" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">рассмотрение</text>
+				<text x="8" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Сбалансированное </text>
+				<text x="8" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">рассмотрение</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(581,3161)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -2014,7 +2014,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Прозрачность_(право)" target="_blank">
 			<g font-size="30" transform="translate(581,3161)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath123)" stroke="none">Полное раскрытие</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath123)" stroke="none">Полное раскрытие</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(381,3115)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -2022,7 +2022,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(381,3115)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath125)" stroke="none">Нюансированные соображения</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath125)" stroke="none">Нюансированные соображения</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(925,3047)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -2033,7 +2033,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Плагиат" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(925,3047)">
-				<text x="8" xml:space="preserve" y="45" clip-path="url(#clipPath127)" font-family="sans-serif" stroke="none">Справедливое приписывание</text>
+				<text x="8" y="45" clip-path="url(#clipPath127)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Справедливое приписывание</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(1134,2988)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -2044,7 +2044,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Факт" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1134,2988)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath129)" stroke="none">Истинность фактов</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath129)" stroke="none">Истинность фактов</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(200,2237)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="10">
@@ -2060,8 +2060,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Рассуждение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2129,2556)">
-				<text x="8" xml:space="preserve" y="65" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">Лексическая </text>
-				<text x="8" xml:space="preserve" y="142" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">точность</text>
+				<text x="8" y="65" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Лексическая </text>
+				<text x="8" y="142" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">точность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(536,2728)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="5">
@@ -2077,8 +2077,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Синтаксис" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1444,2815)">
-				<text x="8" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Лингвистическая </text>
-				<text x="8" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">ясность</text>
+				<text x="8" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Лингвистическая </text>
+				<text x="8" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">ясность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(923,2929)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2089,7 +2089,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Рассказ" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(923,2929)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">Ясное повествование</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">Ясное повествование</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(864,2870)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2100,7 +2100,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Неоднозначность_(лингвистика)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(864,2870)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath134)" stroke="none">Однозначные выражения</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath134)" stroke="none">Однозначные выражения</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(536,2728)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)">
@@ -2113,7 +2113,7 @@
 		</g>
 		<a xlink:href="https://www.ladissertation.com/Philosophie/Les-sophismes/Sophismes-Liste-complète-sophismes?fbclid=IwAR21LunKe6jOu7e5AadRavnUgHbxMdkdLs7ZyPMZ-I86WzI727kQzt0jLQU" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1012,2794)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath136)" stroke="none">Ясный синтаксис</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath136)" stroke="none">Ясный синтаксис</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(589,2824)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2121,7 +2121,7 @@
 		</g>
 		<a xlink:href="https://www.btb.termiumplus.gc.ca/tpv2alpha/alpha-fra.html?lang=fra&amp;i=1&amp;index=frss&amp;srchtxt=Ponctuation" target="_blank">
 			<g font-size="30" transform="translate(589,2824)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath138)" stroke="none">Правильная пунктуация</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath138)" stroke="none">Правильная пунктуация</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(586,2778)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2129,7 +2129,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Грамматика" target="_blank">
 			<g font-size="30" transform="translate(586,2778)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath140)" stroke="none">Правильная грамматика</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath140)" stroke="none">Правильная грамматика</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(873,2551)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="5">
@@ -2145,8 +2145,8 @@
 		</g>
 		<a xlink:href="https://philosophie.cegeptr.qc.ca/wp-content/uploads/sites/2/2019/01/FICHE-6-Lanalyse-des-analogies.pdf" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1444,2622)">
-				<text x="8" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Оправданные </text>
-				<text x="8" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">сравнения</text>
+				<text x="8" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Оправданные </text>
+				<text x="8" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">сравнения</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(926,2719)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2157,7 +2157,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Софизм_ассоциации" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(926,2719)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath58)" stroke="none">Уместная ассоциация</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath58)" stroke="none">Уместная ассоциация</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(979,2660)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2168,7 +2168,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аналогия" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(979,2660)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath144)" stroke="none">Уместная аналогия</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath144)" stroke="none">Уместная аналогия</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(923,2601)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2179,7 +2179,7 @@
 		</g>
 		<a xlink:href="https://www.persee.fr/doc/hel_0750-8069_2003_num_25_1_3148" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(923,2601)">
-				<text x="8" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">Адекватное сравнение</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath50)" stroke="none">Адекватное сравнение</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(200,2237)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)" stroke-width="5">
@@ -2195,7 +2195,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аргументация#Анализ_языка" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1535,2408)">
-				<text x="9" xml:space="preserve" y="53" clip-path="url(#clipPath146)" stroke="none">Ясные определения</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="53" clip-path="url(#clipPath146)" stroke="none">Ясные определения</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(850,2490)" fill="rgb(81,168,255)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(81,168,255)" font-weight="bold" stroke-width="5">
@@ -2206,8 +2206,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Определение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(850,2490)">
-				<text x="8" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Последовательное </text>
-				<text x="8" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">определение</text>
+				<text x="8" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Последовательное </text>
+				<text x="8" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">определение</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(200,2329)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)">
@@ -2219,8 +2219,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Терминология" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(866,2379)">
-				<text x="8" xml:space="preserve" y="45" clip-path="url(#clipPath91)" font-family="sans-serif" stroke="none">Соответствующее </text>
-				<text x="8" xml:space="preserve" y="97" clip-path="url(#clipPath91)" font-family="sans-serif" stroke="none">определение</text>
+				<text x="8" y="45" clip-path="url(#clipPath91)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Соответствующее </text>
+				<text x="8" y="97" clip-path="url(#clipPath91)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">определение</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(250,2409)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2228,7 +2228,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Терминология" target="_blank">
 			<g font-size="30" transform="translate(250,2409)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath150)" stroke="none">Уместная техническая терминология</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath150)" stroke="none">Уместная техническая терминология</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(794,2237)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(0,84,164)">
@@ -2241,7 +2241,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Определение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(1125,2303)">
-				<text x="9" xml:space="preserve" y="43" clip-path="url(#clipPath152)" stroke="none">Ясные значения</text>
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath152)" stroke="none">Ясные значения</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(844,2333)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2249,7 +2249,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Определение" target="_blank">
 			<g font-size="30" transform="translate(844,2333)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath154)" stroke="none">Сжатый язык</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath154)" stroke="none">Сжатый язык</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(848,2287)" fill="rgb(0,84,164)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(0,84,164)" font-weight="bold">
@@ -2257,7 +2257,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аргументация#Анализ_языка" target="_blank">
 			<g font-size="30" transform="translate(848,2287)" fill="rgb(0,44,87)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(0,44,87)" font-weight="bold">
-				<text x="6" xml:space="preserve" y="33" clip-path="url(#clipPath156)" stroke="none">Точный язык</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath156)" stroke="none">Точный язык</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(3510,2616)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="10">
@@ -2273,8 +2273,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Правильное_рассуждение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(3560,3671)">
-				<text x="56" xml:space="preserve" y="65" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">Мастерство </text>
-				<text x="56" xml:space="preserve" y="142" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">умозаключения</text>
+				<text x="56" y="65" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Мастерство </text>
+				<text x="56" y="142" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">умозаключения</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,3386)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="5">
@@ -2290,7 +2290,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Правильное_рассуждение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,4101)">
-				<text x="56" xml:space="preserve" y="53" clip-path="url(#clipPath159)" stroke="none">Корректные дедукции</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="53" clip-path="url(#clipPath159)" stroke="none">Корректные дедукции</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4832,3537)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2303,7 +2303,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Формальная_логика" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4882,4183)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath161)" stroke="none">Доказательное рассуждение</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath161)" stroke="none">Доказательное рассуждение</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5485,4560)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2318,7 +2318,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Рассуждение#Валидность_рассуждения" target="_blank">
 			<g font-size="30" transform="translate(5535,4702)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath163)" stroke="none">Приемлемая неформальная логика</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath163)" stroke="none">Приемлемая неформальная логика</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6144,4794)" stroke="rgb(141,200,1)">
@@ -2326,7 +2326,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аналогия" target="_blank">
 			<g font-size="30" transform="translate(6144,4794)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath165)" stroke="none">Корректное аналогическое рассуждение</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath165)" stroke="none">Корректное аналогическое рассуждение</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6144,4748)" stroke="rgb(141,200,1)">
@@ -2334,7 +2334,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Абдукция" target="_blank">
 			<g font-size="30" transform="translate(6144,4748)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath167)" stroke="none">Корректное абдуктивное рассуждение</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath167)" stroke="none">Корректное абдуктивное рассуждение</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6144,4702)" stroke="rgb(141,200,1)">
@@ -2342,7 +2342,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Критическое_мышление" target="_blank">
 			<g font-size="30" transform="translate(6144,4702)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath169)" stroke="none">Корректное критическое рассуждение</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath169)" stroke="none">Корректное критическое рассуждение</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6144,4656)" stroke="rgb(141,200,1)">
@@ -2350,7 +2350,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Синтетическое_мышление" target="_blank">
 			<g font-size="30" transform="translate(6144,4656)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath171)" stroke="none">Корректное синтетическое рассуждение</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath171)" stroke="none">Корректное синтетическое рассуждение</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6144,4610)" stroke="rgb(141,200,1)">
@@ -2358,7 +2358,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аналитическое_мышление" target="_blank">
 			<g font-size="30" transform="translate(6144,4610)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath173)" stroke="none">Корректное аналитическое рассуждение</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath173)" stroke="none">Корректное аналитическое рассуждение</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5485,3537)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2370,7 +2370,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Формальная_логика" target="_blank">
 			<g font-size="30" transform="translate(5535,4075)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath60)" stroke="none">Формальная валидность</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath60)" stroke="none">Формальная валидность</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5937,3857)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2384,7 +2384,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм" target="_blank">
 			<g font-size="30" transform="translate(5987,4235)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath176)" stroke="none">Валидный силлогизм</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath176)" stroke="none">Валидный силлогизм</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6317,4375)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2399,7 +2399,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Силлогизм_четвёртой_фигуры" target="_blank">
 			<g font-size="25" transform="translate(6367,4497)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath178)" stroke="none">Силлогизм четвёртой фигуры</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath178)" stroke="none">Силлогизм четвёртой фигуры</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6778,4573)" stroke="rgb(141,200,1)">
@@ -2407,7 +2407,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм_разрешённого_модуса" target="_blank">
 			<g font-size="23" transform="translate(6778,4573)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath181)" stroke="none">Силлогизм Бамалип</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath181)" stroke="none">Силлогизм Бамалип</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6778,4536)" stroke="rgb(141,200,1)">
@@ -2415,7 +2415,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм_разрешённого_модуса" target="_blank">
 			<g font-size="23" transform="translate(6778,4536)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath183)" stroke="none">Силлогизм Фресисон</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath183)" stroke="none">Силлогизм Фресисон</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6778,4499)" stroke="rgb(141,200,1)">
@@ -2423,7 +2423,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм_разрешённого_модуса" target="_blank">
 			<g font-size="23" transform="translate(6778,4499)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath185)" stroke="none">Силлогизм Фесапо</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath185)" stroke="none">Силлогизм Фесапо</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6778,4462)" stroke="rgb(141,200,1)">
@@ -2431,7 +2431,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм_Димарис" target="_blank">
 			<g font-size="23" transform="translate(6778,4462)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath187)" stroke="none">Силлогизм Диматис</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath187)" stroke="none">Силлогизм Диматис</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6778,4425)" stroke="rgb(141,200,1)">
@@ -2439,7 +2439,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Каменес" target="_blank">
 			<g font-size="23" transform="translate(6778,4425)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath189)" stroke="none">Силлогизм Каменес</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath189)" stroke="none">Силлогизм Каменес</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6317,4153)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2455,7 +2455,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Третья_фигура" target="_blank">
 			<g font-size="25" transform="translate(6367,4294)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath191)" stroke="none">Силлогизм третьей фигуры</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath191)" stroke="none">Силлогизм третьей фигуры</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6752,4388)" stroke="rgb(141,200,1)">
@@ -2463,7 +2463,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Типы_силлогизмов" target="_blank">
 			<g font-size="23" transform="translate(6752,4388)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath193)" stroke="none">Силлогизм Ферисон</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath193)" stroke="none">Силлогизм Ферисон</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6752,4351)" stroke="rgb(141,200,1)">
@@ -2471,7 +2471,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Типы_силлогизмов" target="_blank">
 			<g font-size="23" transform="translate(6752,4351)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath195)" stroke="none">Силлогизм Бокардо</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath195)" stroke="none">Силлогизм Бокардо</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6752,4314)" stroke="rgb(141,200,1)">
@@ -2479,7 +2479,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм_Датиси" target="_blank">
 			<g font-size="23" transform="translate(6752,4314)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath197)" stroke="none">Силлогизм Датиси</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath197)" stroke="none">Силлогизм Датиси</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6752,4277)" stroke="rgb(141,200,1)">
@@ -2487,7 +2487,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Варианты_стандартного_силлогизма" target="_blank">
 			<g font-size="23" transform="translate(6752,4277)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath181)" stroke="none">Силлогизм Дисамис</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath181)" stroke="none">Силлогизм Дисамис</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6752,4240)" stroke="rgb(141,200,1)">
@@ -2495,7 +2495,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Варианты_стандартного_силлогизма" target="_blank">
 			<g font-size="23" transform="translate(6752,4240)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath183)" stroke="none">Силлогизм Фелаптон</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath183)" stroke="none">Силлогизм Фелаптон</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6752,4203)" stroke="rgb(141,200,1)">
@@ -2503,7 +2503,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Варианты_стандартного_силлогизма" target="_blank">
 			<g font-size="23" transform="translate(6752,4203)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath199)" stroke="none">Силлогизм Дарапти</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath199)" stroke="none">Силлогизм Дарапти</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6317,4005)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2517,7 +2517,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм" target="_blank">
 			<g font-size="25" transform="translate(6367,4109)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath201)" stroke="none">Силлогизм второй фигуры</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath201)" stroke="none">Силлогизм второй фигуры</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6740,4166)" stroke="rgb(141,200,1)">
@@ -2525,7 +2525,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Силлогизм_Бароко" target="_blank">
 			<g font-size="23" transform="translate(6740,4166)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath203)" stroke="none">Силлогизм Бароко</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath203)" stroke="none">Силлогизм Бароко</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6740,4129)" stroke="rgb(141,200,1)">
@@ -2533,7 +2533,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Силлогизм_Фестино_(квинтэссенция)" target="_blank">
 			<g font-size="23" transform="translate(6740,4129)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath199)" stroke="none">Силлогизм Фестино</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath199)" stroke="none">Силлогизм Фестино</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6740,4092)" stroke="rgb(141,200,1)">
@@ -2541,7 +2541,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Вторая_фигура" target="_blank">
 			<g font-size="23" transform="translate(6740,4092)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath205)" stroke="none">Силлогизм Каместрес</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath205)" stroke="none">Силлогизм Каместрес</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6740,4055)" stroke="rgb(141,200,1)">
@@ -2549,7 +2549,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Вторая_фигура" target="_blank">
 			<g font-size="23" transform="translate(6740,4055)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath203)" stroke="none">Силлогизм Cesare</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath203)" stroke="none">Силлогизм Cesare</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6317,3857)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2563,7 +2563,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Силлогизмы_совершенного_модуса" target="_blank">
 			<g font-size="25" transform="translate(6367,3961)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath207)" stroke="none">Силлогизм совершенного модуса</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath207)" stroke="none">Силлогизм совершенного модуса</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6824,4018)" stroke="rgb(141,200,1)">
@@ -2571,7 +2571,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Третья_фигура" target="_blank">
 			<g font-size="23" transform="translate(6824,4018)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath209)" stroke="none">Силлогизм Ferio</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath209)" stroke="none">Силлогизм Ferio</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6824,3981)" stroke="rgb(141,200,1)">
@@ -2579,7 +2579,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Вторая_фигура" target="_blank">
 			<g font-size="23" transform="translate(6824,3981)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath211)" stroke="none">Силлогизм Darii</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath211)" stroke="none">Силлогизм Darii</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6824,3944)" stroke="rgb(141,200,1)">
@@ -2587,7 +2587,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Первая_фигура" target="_blank">
 			<g font-size="23" transform="translate(6824,3944)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath213)" stroke="none">Силлогизм Celarent</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath213)" stroke="none">Силлогизм Celarent</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(6824,3907)" stroke="rgb(141,200,1)">
@@ -2595,7 +2595,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Силлогизм#Силлогизмы_совершенного_модуса" target="_blank">
 			<g font-size="23" transform="translate(6824,3907)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="26" clip-path="url(#clipPath215)" stroke="none">Силлогизм Barbara</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath215)" stroke="none">Силлогизм Barbara</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5937,3537)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2613,7 +2613,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Логическая_дедукция" target="_blank">
 			<g font-size="30" transform="translate(5987,3724)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath217)" stroke="none">Простая инференция</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath217)" stroke="none">Простая инференция</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3867)" stroke="rgb(141,200,1)">
@@ -2621,7 +2621,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Метод_научного_познания" target="_blank">
 			<g font-size="25" transform="translate(6365,3867)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath219)" stroke="none">Инференция: резолюция</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath219)" stroke="none">Инференция: резолюция</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3827)" stroke="rgb(141,200,1)">
@@ -2629,7 +2629,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Синтетическое_рассуждение" target="_blank">
 			<g font-size="25" transform="translate(6365,3827)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath221)" stroke="none">Инференция: единичная резолюция</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath221)" stroke="none">Инференция: единичная резолюция</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3787)" stroke="rgb(141,200,1)">
@@ -2637,7 +2637,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Reductio_ad_absurdum" target="_blank">
 			<g font-size="25" transform="translate(6365,3787)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath223)" stroke="none">Инференция: reductio ad absurdum</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath223)" stroke="none">Инференция: reductio ad absurdum</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3747)" stroke="rgb(141,200,1)">
@@ -2645,7 +2645,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Отрицание_(логика)#Двойное_отрицание" target="_blank">
 			<g font-size="25" transform="translate(6365,3747)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath207)" stroke="none">Инференция: двойное отрицание</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath207)" stroke="none">Инференция: двойное отрицание</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3707)" stroke="rgb(141,200,1)">
@@ -2653,7 +2653,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дизъюнкция_(логика)" target="_blank">
 			<g font-size="25" transform="translate(6365,3707)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath226)" stroke="none">Инференция: устранение конъюнкции</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath226)" stroke="none">Инференция: устранение конъюнкции</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3667)" stroke="rgb(141,200,1)">
@@ -2661,7 +2661,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Конъюнкция_(логика)" target="_blank">
 			<g font-size="25" transform="translate(6365,3667)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath228)" stroke="none">Инференция: введение конъюнкции</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath228)" stroke="none">Инференция: введение конъюнкции</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3627)" stroke="rgb(141,200,1)">
@@ -2669,7 +2669,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Modus_tollens" target="_blank">
 			<g font-size="25" transform="translate(6365,3627)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath230)" stroke="none">Инференция: модус толленс</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath230)" stroke="none">Инференция: модус толленс</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6365,3587)" stroke="rgb(141,200,1)">
@@ -2677,7 +2677,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Modus_ponens" target="_blank">
 			<g font-size="25" transform="translate(6365,3587)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath232)" stroke="none">Инференция: модус поненс</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath232)" stroke="none">Инференция: модус поненс</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4832,3445)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)">
@@ -2690,7 +2690,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дедуктивное_рассуждение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4882,3511)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath127)" font-family="sans-serif" stroke="none">Согласованная демонстрация</text>
+				<text x="56" y="45" clip-path="url(#clipPath127)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Согласованная демонстрация</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5567,3541)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(141,200,1)" font-weight="bold">
@@ -2698,7 +2698,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Согласованность_(философия)" target="_blank">
 			<g font-size="30" transform="translate(5567,3541)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath235)" stroke="none">Отсутствие внутренних противоречий</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath235)" stroke="none">Отсутствие внутренних противоречий</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5567,3495)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(141,200,1)" font-weight="bold">
@@ -2706,7 +2706,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Посылка_(логика)" target="_blank">
 			<g font-size="30" transform="translate(5567,3495)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath237)" stroke="none">Согласованность посылок</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath237)" stroke="none">Согласованность посылок</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4882,3436)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2717,7 +2717,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Гипотетико-дедуктивный_метод" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4882,3436)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath239)" stroke="none">Поэтапное рассуждение</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath239)" stroke="none">Поэтапное рассуждение</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,2949)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="5">
@@ -2733,8 +2733,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Правильное_рассуждение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,3150)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Строгое построение </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">высказываний</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Строгое построение </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">высказываний</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,3325)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2745,8 +2745,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Модальность_(логика)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,3325)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Адекватное использование </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">модальностей</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Адекватное использование </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">модальностей</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,3162)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2757,9 +2757,9 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Квантор" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,3162)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath243)" font-family="sans-serif" stroke="none">Хорошо сформированные </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath243)" font-family="sans-serif" stroke="none">квантифицированные </text>
-				<text x="56" xml:space="preserve" y="149" clip-path="url(#clipPath243)" font-family="sans-serif" stroke="none">высказывания</text>
+				<text x="56" y="45" clip-path="url(#clipPath243)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Хорошо сформированные </text>
+				<text x="56" y="97" clip-path="url(#clipPath243)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">квантифицированные </text>
+				<text x="56" y="149" clip-path="url(#clipPath243)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">высказывания</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2999)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2770,9 +2770,9 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Высказывание_(логика)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2999)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath243)" font-family="sans-serif" stroke="none">Хорошо сформированные </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath243)" font-family="sans-serif" stroke="none">пропозициональные </text>
-				<text x="56" xml:space="preserve" y="149" clip-path="url(#clipPath243)" font-family="sans-serif" stroke="none">высказывания</text>
+				<text x="56" y="45" clip-path="url(#clipPath243)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Хорошо сформированные </text>
+				<text x="56" y="97" clip-path="url(#clipPath243)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">пропозициональные </text>
+				<text x="56" y="149" clip-path="url(#clipPath243)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">высказывания</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,2616)" fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(141,200,1)" stroke-width="5">
@@ -2788,8 +2788,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Причинность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,2765)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Точное установление </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">причинности</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Точное установление </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">причинности</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2888)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2800,8 +2800,8 @@
 		</g>
 		<a xlink:href="https://sophismes.net/raisonnement-valide/exclusion-des-causes-alternatives" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2888)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Исключение </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">альтернативных причин</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Исключение </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">альтернативных причин</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2777)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2812,8 +2812,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Причинность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2777)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Правильно ориентированная </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">причинность</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Правильно ориентированная </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">причинность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2666)" fill="rgb(208,254,101)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(208,254,101)" font-weight="bold" stroke-width="5">
@@ -2824,8 +2824,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Правильное_рассуждение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2666)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Независимость посылок от </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">заключения</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Независимость посылок от </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">заключения</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(3510,1973)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="10">
@@ -2841,8 +2841,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Математический_метод" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(3560,2263)">
-				<text x="56" xml:space="preserve" y="65" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">Количественное </text>
-				<text x="56" xml:space="preserve" y="142" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">мышление</text>
+				<text x="56" y="65" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Количественное </text>
+				<text x="56" y="142" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">мышление</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,2360)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
@@ -2858,8 +2858,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Научный_метод" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,2470)">
-				<text x="40" xml:space="preserve" y="55" clip-path="url(#clipPath247)" font-family="sans-serif" stroke="none">Корректные </text>
-				<text x="40" xml:space="preserve" y="119" clip-path="url(#clipPath247)" font-family="sans-serif" stroke="none">результаты</text>
+				<text x="40" y="55" clip-path="url(#clipPath247)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Корректные </text>
+				<text x="40" y="119" clip-path="url(#clipPath247)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">результаты</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4914,2607)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -2870,7 +2870,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Математика" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4914,2607)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath249)" stroke="none">Допустимые операции</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath249)" stroke="none">Допустимые операции</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4864,2419)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2884,7 +2884,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Числовая_точность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4914,2508)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath251)" stroke="none">Точные вычисления</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath251)" stroke="none">Точные вычисления</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5393,2561)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2892,7 +2892,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Вычисление" target="_blank">
 			<g font-size="30" transform="translate(5393,2561)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath253)" stroke="none">Топологическая точность</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath253)" stroke="none">Топологическая точность</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5393,2515)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2900,7 +2900,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Теорема_Пифагора" target="_blank">
 			<g font-size="30" transform="translate(5393,2515)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath255)" stroke="none">Геометрическая корректность</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath255)" stroke="none">Геометрическая корректность</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5393,2469)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2908,7 +2908,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Числовая_точность" target="_blank">
 			<g font-size="30" transform="translate(5393,2469)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath257)" stroke="none">Числовая точность</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath257)" stroke="none">Числовая точность</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4864,2360)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2920,7 +2920,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Метрология" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4914,2410)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath259)" stroke="none">Точные измерения</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath259)" stroke="none">Точные измерения</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5375,2414)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2928,7 +2928,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Качество_данных" target="_blank">
 			<g font-size="30" transform="translate(5375,2414)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath99)" stroke="none">Ясное представление данных</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath99)" stroke="none">Ясное представление данных</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,2150)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
@@ -2944,8 +2944,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Анализ_данных#Интерпретация_данных" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,2237)">
-				<text x="40" xml:space="preserve" y="55" clip-path="url(#clipPath247)" font-family="sans-serif" stroke="none">Строгая </text>
-				<text x="40" xml:space="preserve" y="119" clip-path="url(#clipPath247)" font-family="sans-serif" stroke="none">интерпретация данных</text>
+				<text x="40" y="55" clip-path="url(#clipPath247)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Строгая </text>
+				<text x="40" y="119" clip-path="url(#clipPath247)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">интерпретация данных</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4914,2351)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -2956,7 +2956,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Конечное_вероятностное_пространство" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4914,2351)">
-				<text x="40" xml:space="preserve" y="43" clip-path="url(#clipPath263)" stroke="none">Конечный носитель</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath263)" stroke="none">Конечный носитель</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4864,2209)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2969,7 +2969,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Вероятность#Введение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4914,2275)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath265)" stroke="none">Освоенные вероятности</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath265)" stroke="none">Освоенные вероятности</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5491,2305)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2977,7 +2977,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Теорема_Байеса" target="_blank">
 			<g font-size="30" transform="translate(5491,2305)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath267)" stroke="none">Байесовское рассуждение</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath267)" stroke="none">Байесовское рассуждение</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5491,2259)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -2985,7 +2985,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Независимость_(теория_вероятностей)" target="_blank">
 			<g font-size="30" transform="translate(5491,2259)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">Независимость событий</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">Независимость событий</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4864,2150)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
@@ -2997,7 +2997,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Корреляция_и_зависимость#Причинно-следственная_связь" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4914,2200)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath269)" stroke="none">Доказанные корреляции</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath269)" stroke="none">Доказанные корреляции</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5488,2204)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
@@ -3005,7 +3005,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Статистическая_оценка" target="_blank">
 			<g font-size="30" transform="translate(5488,2204)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath271)" stroke="none">Методическая оценка</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath271)" stroke="none">Методическая оценка</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,1973)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
@@ -3021,8 +3021,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Обобщение_(логика)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,2044)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Обоснованные </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">обобщения</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Обоснованные </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">обобщения</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2141)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -3033,7 +3033,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Трансфер_(логика)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2141)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath274)" stroke="none">Допустимый перенос</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath274)" stroke="none">Допустимый перенос</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2082)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -3044,7 +3044,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Обобщение" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2082)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath276)" stroke="none">Учёт исключений</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath276)" stroke="none">Учёт исключений</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,2023)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
@@ -3055,7 +3055,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Статистическая_выборка" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,2023)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath278)" stroke="none">Репрезентативная выборка</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath278)" stroke="none">Репрезентативная выборка</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(3510,1034)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="10">
@@ -3071,8 +3071,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Деонтология" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(3560,1473)">
-				<text x="56" xml:space="preserve" y="65" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">Честная </text>
-				<text x="56" xml:space="preserve" y="142" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none">презентация</text>
+				<text x="56" y="65" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Честная </text>
+				<text x="56" y="142" clip-path="url(#clipPath6)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">презентация</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,1744)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="5">
@@ -3088,8 +3088,8 @@
 		</g>
 		<a xlink:href="https://www.solen.ca/communication/conseils-et-astuces/7-attitudes-constructives-en-communication/" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,1841)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Аутентичная </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">коммуникация</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Аутентичная </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">коммуникация</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,1964)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3100,7 +3100,7 @@
 		</g>
 		<a xlink:href="https://www.communication-sensible.com/post/5-techniques-de-communication-bienveillante-pour-mieux-dialoguer" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,1964)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath282)" stroke="none">Надлежащая позиция</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath282)" stroke="none">Надлежащая позиция</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,1853)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3111,8 +3111,8 @@
 		</g>
 		<a xlink:href="https://www.leadership-lavautoir.com/post/comment-adopter-une-position-neutre-en-tant-que-leader" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,1853)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Доброжелательная </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">нейтральность</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Доброжелательная </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">нейтральность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,1794)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3123,7 +3123,7 @@
 		</g>
 		<a xlink:href="https://www.village-justice.com/articles/transparence-et-communication-dans-entreprise,35542.html" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,1794)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath284)" stroke="none">Прозрачность</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath284)" stroke="none">Прозрачность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,1463)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="5">
@@ -3139,8 +3139,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дистанцирование" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,1586)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Эмоциональное </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">равновесие</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Эмоциональное </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">равновесие</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,1735)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3151,7 +3151,7 @@
 		</g>
 		<a xlink:href="https://www.psychologies.com/Therapies/Toutes-les-therapies/Therapies-breves/Articles-et-Dossiers/Le-chantage-affectif" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,1735)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath287)" stroke="none">Без шантажа последствиями</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath287)" stroke="none">Без шантажа последствиями</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,1624)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3162,8 +3162,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Драматизация" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,1624)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Сдержанность в </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">драматизации</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Сдержанность в </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">драматизации</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,1513)" fill="rgb(255,176,245)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,176,245)" font-weight="bold" stroke-width="5">
@@ -3174,8 +3174,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Коннивенция" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,1513)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Эмоциональная </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">нейтральность</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Эмоциональная </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">нейтральность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,1034)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="5">
@@ -3191,7 +3191,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,1263)">
-				<text x="57" xml:space="preserve" y="53" clip-path="url(#clipPath289)" stroke="none">Допустимая риторика</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="53" clip-path="url(#clipPath289)" stroke="none">Допустимая риторика</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4823,1404)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3203,7 +3203,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4873,1454)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath291)" stroke="none">Соответствующий стиль</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath291)" stroke="none">Соответствующий стиль</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5389,1406)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3214,7 +3214,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g font-size="30" transform="translate(5439,1458)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath293)" stroke="none">Красноречие на службе истины</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath293)" stroke="none">Красноречие на службе истины</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5976,1456)" stroke="rgb(255,102,235)">
@@ -3222,7 +3222,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Стилистическая_фигура" target="_blank">
 			<g font-size="30" transform="translate(5976,1456)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath295)" stroke="none">Фигуры, поддерживающие ясность</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath295)" stroke="none">Фигуры, поддерживающие ясность</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4823,1264)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3236,7 +3236,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Юмор" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4873,1355)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath297)" stroke="none">Хороший вкус в юморе</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath297)" stroke="none">Хороший вкус в юморе</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5403,1408)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3244,7 +3244,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="30" transform="translate(5403,1408)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="42" xml:space="preserve" y="33" clip-path="url(#clipPath299)" stroke="none">Инклюзивный юмор</text>
+				<text text-rendering="geometricPrecision" x="42" xml:space="preserve" y="33" clip-path="url(#clipPath299)" stroke="none">Инклюзивный юмор</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5353,1310)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3255,7 +3255,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g font-size="30" transform="translate(5403,1362)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath301)" stroke="none">Уважительный юмор</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath301)" stroke="none">Уважительный юмор</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5782,1360)" stroke="rgb(255,102,235)">
@@ -3263,7 +3263,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Самоирония" target="_blank">
 			<g font-size="30" transform="translate(5782,1360)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath303)" stroke="none">Просвещённая самоирония</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath303)" stroke="none">Просвещённая самоирония</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5403,1314)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3271,7 +3271,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Юмор" target="_blank">
 			<g font-size="30" transform="translate(5403,1314)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath305)" stroke="none">Юмор, уместный контексту</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath305)" stroke="none">Юмор, уместный контексту</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4823,1034)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3285,7 +3285,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4873,1169)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath307)" stroke="none">Красноречивая риторика</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath307)" stroke="none">Красноречивая риторика</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5457,1268)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3293,7 +3293,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g font-size="30" transform="translate(5457,1268)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath309)" stroke="none">Уважительный язык</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath309)" stroke="none">Уважительный язык</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5407,1080)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3306,7 +3306,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g font-size="30" transform="translate(5457,1176)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath311)" stroke="none">Уместный словарь</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath311)" stroke="none">Уместный словарь</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5820,1222)" stroke="rgb(255,102,235)">
@@ -3314,7 +3314,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Беспристрастность" target="_blank">
 			<g font-size="30" transform="translate(5820,1222)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath313)" stroke="none">Нейтральная лексика</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath313)" stroke="none">Нейтральная лексика</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5820,1176)" stroke="rgb(255,102,235)">
@@ -3322,7 +3322,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Технический_термин" target="_blank">
 			<g font-size="30" transform="translate(5820,1176)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath39)" stroke="none">Оправданная техническая терминология</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath39)" stroke="none">Оправданная техническая терминология</text>
 			</g>
 		</a>
 		<g fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5820,1130)" stroke="rgb(255,102,235)">
@@ -3330,7 +3330,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Жаргон" target="_blank">
 			<g font-size="30" transform="translate(5820,1130)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath29)" stroke="none">Умеренное использование жаргона</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath29)" stroke="none">Умеренное использование жаргона</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5457,1084)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,102,235)" font-weight="bold">
@@ -3338,7 +3338,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Риторика" target="_blank">
 			<g font-size="30" transform="translate(5457,1084)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath315)" stroke="none">Дискурсивная адаптация</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath315)" stroke="none">Дискурсивная адаптация</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(3510,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="10">
@@ -3354,7 +3354,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Теория_аргументации" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="60" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(3560,501)">
-				<text x="56" xml:space="preserve" y="65" clip-path="url(#clipPath318)" font-family="sans-serif" stroke="none">Уместный аргумент</text>
+				<text x="56" y="65" clip-path="url(#clipPath318)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Уместный аргумент</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,805)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
@@ -3370,8 +3370,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Интерпретация_(философия)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,902)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Справедливая </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">интерпретация</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Справедливая </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">интерпретация</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4880,923)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3384,8 +3384,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Бритва_Оккама" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,973)">
-				<text x="56" xml:space="preserve" y="45" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">Парсимоничное </text>
-				<text x="56" xml:space="preserve" y="97" clip-path="url(#clipPath13)" font-family="sans-serif" stroke="none">представление</text>
+				<text x="56" y="45" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Парсимоничное </text>
+				<text x="56" y="97" clip-path="url(#clipPath13)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">представление</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5615,1028)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3393,7 +3393,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Бритва_Хэнлона" target="_blank">
 			<g font-size="30" transform="translate(5615,1028)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath322)" stroke="none">Бритва Хэнлона</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath322)" stroke="none">Бритва Хэнлона</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5615,982)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3401,7 +3401,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Бритва_Оккама" target="_blank">
 			<g font-size="30" transform="translate(5615,982)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath324)" stroke="none">Бритва Оккама</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath324)" stroke="none">Бритва Оккама</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,914)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3412,7 +3412,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Объективность" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,914)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath116)" stroke="none">Непартийная интерпретация</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath116)" stroke="none">Непартийная интерпретация</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,855)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3423,7 +3423,7 @@
 		</g>
 		<a xlink:href="https://www.persee.fr/doc/comm_0588-8018_2005_num_78_1_3769" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,855)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath327)" stroke="none">Соразмерная сложность</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath327)" stroke="none">Соразмерная сложность</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,337)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
@@ -3439,7 +3439,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,588)">
-				<text x="44" xml:space="preserve" y="53" clip-path="url(#clipPath329)" stroke="none">Надёжные посылки</text>
+				<text text-rendering="geometricPrecision" x="44" xml:space="preserve" y="53" clip-path="url(#clipPath329)" stroke="none">Надёжные посылки</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4762,720)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3451,7 +3451,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Impartiality" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4812,785)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath331)" stroke="none">Беспристрастные источники</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath331)" stroke="none">Беспристрастные источники</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5456,770)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3459,8 +3459,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Беспристрастность" target="_blank">
 			<g font-size="30" transform="translate(5456,770)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="34" clip-path="url(#clipPath333)" font-family="sans-serif" stroke="none">Источники без социально-</text>
-				<text x="38" xml:space="preserve" y="73" clip-path="url(#clipPath333)" font-family="sans-serif" stroke="none">экономической предвзятости</text>
+				<text x="38" y="34" clip-path="url(#clipPath333)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Источники без социально-</text>
+				<text x="38" y="73" clip-path="url(#clipPath333)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">экономической предвзятости</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4812,711)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3471,7 +3471,7 @@
 		</g>
 		<a xlink:href="https://www.huffpost.com/entry/comment-reconnaitre-une-information-fiable-sur-internet_b_5ac4497ee4b094d3f5c0b93d" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4812,711)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath335)" stroke="none">Независимые источники</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath335)" stroke="none">Независимые источники</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4762,337)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3486,7 +3486,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Надёжность_источников" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4812,520)">
-				<text x="57" xml:space="preserve" y="43" clip-path="url(#clipPath269)" stroke="none">Достоверные источники</text>
+				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath269)" stroke="none">Достоверные источники</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5386,665)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3494,7 +3494,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Гипотеза" target="_blank">
 			<g font-size="30" transform="translate(5386,665)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath338)" stroke="none">Правдоподобная гипотеза</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath338)" stroke="none">Правдоподобная гипотеза</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5336,567)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3505,7 +3505,7 @@
 		</g>
 		<a xlink:href="https://www.journalism.org/2018/12/03/many-americans-believe-fake-news-is-sowing-confusion/" target="_blank">
 			<g font-size="30" transform="translate(5386,619)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath340)" stroke="none">Подтверждённая информация</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath340)" stroke="none">Подтверждённая информация</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5853,567)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3516,7 +3516,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Факт-чекинг" target="_blank">
 			<g font-size="30" transform="translate(5903,617)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath257)" stroke="none">Проверенные факты</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath257)" stroke="none">Проверенные факты</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6255,618)" stroke="rgb(134,5,171)">
@@ -3524,7 +3524,7 @@
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="25" transform="translate(6255,618)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="26" xml:space="preserve" y="28" clip-path="url(#clipPath343)" stroke="none">Эмпирические доказательства</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="28" clip-path="url(#clipPath343)" stroke="none">Эмпирические доказательства</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5386,571)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3532,7 +3532,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Научное_доказательство" target="_blank">
 			<g font-size="30" transform="translate(5386,571)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath345)" stroke="none">Подтверждённый вывод</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath345)" stroke="none">Подтверждённый вывод</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5336,337)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3546,7 +3546,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Надёжность_источников#Методы_оценки_надёжности_источников" target="_blank">
 			<g font-size="30" transform="translate(5386,456)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath347)" stroke="none">Хорошо оценённый источник</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath347)" stroke="none">Хорошо оценённый источник</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5885,525)" stroke="rgb(134,5,171)">
@@ -3554,7 +3554,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Свидетельство" target="_blank">
 			<g font-size="30" transform="translate(5885,525)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath349)" stroke="none">Бесспорное свидетельство</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath349)" stroke="none">Бесспорное свидетельство</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5835,429)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3565,7 +3565,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Авторитет" target="_blank">
 			<g font-size="30" transform="translate(5885,479)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath351)" stroke="none">Компетентный авторитет</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath351)" stroke="none">Компетентный авторитет</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6299,480)" stroke="rgb(134,5,171)">
@@ -3573,7 +3573,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Авторитет" target="_blank">
 			<g font-size="25" transform="translate(6299,480)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="28" clip-path="url(#clipPath353)" stroke="none">Эксперт в области</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath353)" stroke="none">Эксперт в области</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5885,433)" stroke="rgb(134,5,171)">
@@ -3581,7 +3581,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Рецензирование" target="_blank">
 			<g font-size="30" transform="translate(5885,433)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath355)" stroke="none">Научная публикация</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath355)" stroke="none">Научная публикация</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5885,387)" stroke="rgb(134,5,171)">
@@ -3589,7 +3589,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Надёжность#В_журналистике" target="_blank">
 			<g font-size="30" transform="translate(5885,387)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text x="38" xml:space="preserve" y="33" clip-path="url(#clipPath357)" stroke="none">Авторитетная газета</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath357)" stroke="none">Авторитетная газета</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4195,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
@@ -3605,8 +3605,8 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аргументация" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4245,125)">
-				<text x="56" xml:space="preserve" y="55" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">Аргумент, основанный </text>
-				<text x="56" xml:space="preserve" y="119" clip-path="url(#clipPath95)" font-family="sans-serif" stroke="none">на фактах</text>
+				<text x="56" y="55" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Аргумент, основанный </text>
+				<text x="56" y="119" clip-path="url(#clipPath95)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">на фактах</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4930,276)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
@@ -3617,8 +3617,8 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Objectivity" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,276)">
-				<text x="40" xml:space="preserve" y="45" clip-path="url(#clipPath91)" font-family="sans-serif" stroke="none">Рассуждение без </text>
-				<text x="40" xml:space="preserve" y="97" clip-path="url(#clipPath91)" font-family="sans-serif" stroke="none">предубеждений</text>
+				<text x="40" y="45" clip-path="url(#clipPath91)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Рассуждение без </text>
+				<text x="40" y="97" clip-path="url(#clipPath91)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">предубеждений</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4880,42)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3633,7 +3633,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Доказательство_(логика)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,154)">
-				<text x="56" xml:space="preserve" y="43" clip-path="url(#clipPath360)" stroke="none">Осязаемые доказательства</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath360)" stroke="none">Осязаемые доказательства</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5565,230)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3641,7 +3641,7 @@
 		</g>
 		<a xlink:href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F33492" target="_blank">
 			<g font-size="30" transform="translate(5565,230)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath362)" stroke="none">Указание источников</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath362)" stroke="none">Указание источников</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5565,184)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3649,7 +3649,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Надёжность" target="_blank">
 			<g font-size="30" transform="translate(5565,184)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath355)" stroke="none">Приведение цитат</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath355)" stroke="none">Приведение цитат</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5565,138)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3657,7 +3657,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Пример" target="_blank">
 			<g font-size="30" transform="translate(5565,138)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath364)" stroke="none">Приведение примеров</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath364)" stroke="none">Приведение примеров</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5565,92)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3665,7 +3665,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дебаты" target="_blank">
 			<g font-size="30" transform="translate(5565,92)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath366)" stroke="none">Установленная цель</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath366)" stroke="none">Установленная цель</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4880,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -3678,7 +3678,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Аргументация" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4930,16)">
-				<text x="41" xml:space="preserve" y="43" clip-path="url(#clipPath368)" stroke="none">Реальный аргумент</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath368)" stroke="none">Реальный аргумент</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5394,46)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3686,7 +3686,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Индукция_(логика)" target="_blank">
 			<g font-size="30" transform="translate(5394,46)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath370)" stroke="none">Индуктивный аргумент</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath370)" stroke="none">Индуктивный аргумент</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5394,0)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3694,7 +3694,7 @@
 		</g>
 		<a xlink:href="https://ru.wikipedia.org/wiki/Дедукция" target="_blank">
 			<g font-size="30" transform="translate(5394,0)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text x="54" xml:space="preserve" y="33" clip-path="url(#clipPath372)" stroke="none">Дедуктивный аргумент</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath372)" stroke="none">Дедуктивный аргумент</text>
 			</g>
 		</a>
 	</g>

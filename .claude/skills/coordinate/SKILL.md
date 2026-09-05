@@ -203,10 +203,10 @@ Argumentum est en **régime cron autonome** (week-end, jsboige en retrait). Les 
 ```
 CronList()
 # si aucun job /coordinate :
-CronCreate(cron: "37 */6 * * *", prompt: "/coordinate", recurring: true)
+CronCreate(cron: "<minute off-:00> */<N> * * *", prompt: "/coordinate", recurring: true)
 ```
 
-- **Cadence = dernière demande explicite jsboige** (cf [[feedback-argumentum-cron-3h]] / [[feedback_schedulewakeup_not_cron]]). La cadence oscille (2h↔3h↔6h) — ne jamais s'accrocher à une valeur périmée. **Courant : 6h** (`37 */6 * * *`).
+- **Cadence = dernière demande explicite jsboige** (cf [[feedback-argumentum-cron-3h]] / [[feedback_schedulewakeup_not_cron]]). Elle oscille — aucune valeur n'est écrite ici parce qu'elle s'y périme : la lire dans le **dashboard** (section État / Décisions actées) ou dans la dernière demande owner, jamais dans ce fichier.
 - **En régime cron, NE PAS empiler de `ScheduleWakeup`** — cela ré-introduirait un cycle court superseded.
 - Minute off-`:00` (jitter, éviter que tout le fleet frappe l'API à la même seconde).
 - **Exception** : si jsboige bascule explicitement en ping-pong serré interactif (≤1h), alors `ScheduleWakeup(delaySeconds: 3540, prompt: "/coordinate", reason: "...")` à chaque fin de turn — mais c'est l'exception, pas le régime courant.

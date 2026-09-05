@@ -22,7 +22,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 	/// the thumbnail CardSet (FallaciesWebThumbnails renders csize:"squareTile", i.e. square) —
 	/// and every card in every mindmap is silently stretched, with no error and no visual alarm in
 	/// the pipeline. That is the mindmap-side twin of the print-side defect of #1250
-	/// (ImageHelper.ResizeInMM sets IgnoreAspectRatio = true).
+	/// (ImageHelper.ResizeInMM used to set IgnoreAspectRatio = true; it now covers and crops, #1250).
 	///
 	/// RED witness: set the .mm markup to width="60" height="113" (a tarot-proportioned box) while
 	/// the thumbnail CardSet still produces square sources — 176 images at box ratio 0.531 against
