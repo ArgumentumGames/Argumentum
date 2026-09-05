@@ -22,6 +22,16 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// du CSV ou de la config fait donc passer CETTE suite rouge AVANT toute régénération — le
     /// coût exact du défaut #1204 était un devis émis sur un chiffre faux.
     ///
+    /// ⚠ <b>#1288 (05/09/2026) — la baseline TarotCards est passée de 381 à 379 pages.</b> Décision
+    /// owner : PK 96 sort du deck (vrai doublon de PK 108) ⇒ Fallacies 176 → <b>175</b> cartes,
+    /// instances 198 → 197, pages 381 → 379. C'est le seul cas où un nombre de ce fichier bouge
+    /// sans être un défaut : l'organe a fait exactement son travail (rouge AVANT régénération),
+    /// et la baseline a été re-dérivée, pas contournée. Conséquence à ne pas perdre de vue :
+    /// <b>la dérivation est désormais EN AVANCE sur le bundle du 20-24/08</b>, qui porte encore
+    /// 381 pages et 176 cartes — ce bundle est périmé pour l'impression tant qu'il n'est pas
+    /// régénéré. Les quatre autres baselines sont inchangées ; TarotCards_P&amp;P_A4 reste à 105
+    /// pages bien que ses instances passent de 318 à 317 (la planche 53 n'était pas pleine).
+    ///
     /// Le comparateur contre les PDF réels (PdfPig) vit dans VisualTests
     /// (<c>PdfCardCountIntegrityTests</c>) : il tourne sur les machines de régénération, pas en CI.
     ///
@@ -102,7 +112,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             // un vérificateur toujours-rouge passerait les trois témoins ci-dessus.
             var failures = PdfCardCountIntegrity.CheckPageCounts(new[]
             {
-                ("Argumentum_TarotCards", "fr", 381, 381, "ok"),
+                ("Argumentum_TarotCards", "fr", 379, 379, "ok"),
                 ("Argumentum_PokerCards", "zh", 334, 334, "ok"),
             });
             failures.Should().BeEmpty();
@@ -115,14 +125,16 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         // ─────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void TarotCards_Derives_381_Pages()
+        public void TarotCards_Derives_379_Pages()
         {
             var plan = DeriveByName("Argumentum_TarotCards_fr.pdf");
             _output.WriteLine(plan.Breakdown);
-            plan.CardInstances.Should().Be(198,
-                "15 Rules sans dos + Memo 1 carte × 7 copies + 176 Fallacies = 198 instances — le ×7 vient de la config Documents, pas d'une croyance");
-            plan.ExpectedPages.Should().Be(381,
-                "baseline MESURÉE (#1176/#1175, bundle v0.9.0-review) : 15 pages Rules sans dos + 2 pages × 183 instances avec dos (7 Memo + 176 Fallacies)");
+            plan.CardInstances.Should().Be(197,
+                "15 Rules sans dos + Memo 1 carte × 7 copies + 175 Fallacies = 197 instances — le ×7 vient de la config Documents, pas d'une croyance ; "
+                + "le 175 (et non 176) vient du retrait de PK 96 du deck, décision owner #1288");
+            plan.ExpectedPages.Should().Be(379,
+                "baseline #1176/#1175 RE-DÉRIVÉE après #1288 : 15 pages Rules sans dos + 2 pages × 182 instances avec dos (7 Memo + 175 Fallacies). "
+                + "Le bundle mesuré du 20-24/08 porte encore 381 — il est périmé, pas contredit");
         }
 
         [Fact]
@@ -174,9 +186,9 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             var memo = plan.CardSets.Single(c => c.CardSetName == KnownCardSets.Memo);
             _output.WriteLine(memo.ToString());
 
-            memo.SourceRows.Should().Be(176, "le Memo lit la taxonomie FILTRÉE carte∈{1,2} — même source que Fallacies");
+            memo.SourceRows.Should().Be(175, "le Memo lit la taxonomie FILTRÉE carte∈{1,2} — même source que Fallacies (175 depuis le retrait de PK 96, #1288)");
             memo.Rscount.Should().Be(200, "rscount du template Argumentum_Memo_Face_fr.json — lu du template, pas codé en dur");
-            memo.Cards.Should().Be(1, "ceil(176/200) = 1 : la formule de groupement du harvest elle-même (CLAUDE.md « Leçons apprises »)");
+            memo.Cards.Should().Be(1, "ceil(175/200) = 1 : la formule de groupement du harvest elle-même (CLAUDE.md « Leçons apprises »)");
             memo.NbCopies.Should().Be(7, "NbCopies=7 dans la config du document TarotCards — la source réelle du « ×7 copies » de la matrice façonniers");
             memo.Instances.Should().Be(7);
         }
@@ -187,10 +199,10 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             // La matrice #1187 portait « Memo 1 (×7 copies) » et des totaux à Memo=1 — deux
             // chiffres pour un objet. L'organe ne tranche pas : il NOMME les deux niveaux
             // (1 carte récoltée, ×7 copies imposées) pour que l'arbitrage owner voie le delta
-            // 198 instances vs 192 cartes uniques (boîte 365 vs 359 si on dédouble aussi Scenarii… non :
-            // 198+167 = 365 instances physiques imprimées, vs 359 cartes uniques).
+            // 197 instances vs 191 cartes uniques (#1288 : deck Fallacies 176 → 175, Tarot 192 → 191) :
+            // 197+167 = 364 instances physiques imprimées, vs 358 cartes uniques.
             var plan = DeriveByName("Argumentum_TarotCards_fr.pdf");
-            plan.Breakdown.Should().Contain("Memo: 176 row(s)")
+            plan.Breakdown.Should().Contain("Memo: 175 row(s)")
                 .And.Contain("rscount 200 → 1 card(s) × 7 copie(s) = 7 instance(s)");
         }
 
