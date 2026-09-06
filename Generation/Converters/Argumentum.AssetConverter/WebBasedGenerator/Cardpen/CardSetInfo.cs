@@ -61,6 +61,14 @@ namespace Argumentum.AssetConverter
 				return null;
 			}
 			var docPayload = await jsonFilePath.GetDocumentPayload();
+			if (docPayload == null)
+			{
+				// #1296: a failed template download used to surface as a NullReferenceException
+				// at the deserialize line below; fail loud, naming the CardSet and the URL.
+				throw new InvalidOperationException(
+					$"Failed to load the CardSet document for DataSet '{DataSet}' from '{jsonFilePath}' " +
+					$"(download failed after retries or returned a non-success status — see warnings above)");
+			}
 			//var strContent = Encoding.UTF8.GetString(docPayload.Content);
 
 			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);
