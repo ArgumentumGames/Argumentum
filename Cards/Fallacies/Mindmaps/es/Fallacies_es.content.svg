@@ -3570,7 +3570,7 @@
 				<path d="M0 0 L0 43 L524 43 L524 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1189">
-				<path d="M0 0 L0 1031 L2543 1031 L2543 0 Z" />
+				<path d="M0 0 L0 1031 L2473 1031 L2473 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1190">
 				<path d="M0 0 L0 395 L1702 395 L1702 0 Z" />
@@ -3642,7 +3642,7 @@
 				<path d="M0 0 L0 143 L498 143 L498 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1213">
-				<path d="M0 0 L0 545 L1858 545 L1858 0 Z" />
+				<path d="M0 0 L0 545 L1788 545 L1788 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1214">
 				<path d="M0 0 L0 56 L385 56 L385 0 Z" />
@@ -3678,10 +3678,10 @@
 				<path d="M0 0 L0 43 L405 43 L405 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1225">
-				<path d="M0 0 L0 223 L1453 223 L1453 0 Z" />
+				<path d="M0 0 L0 223 L1383 223 L1383 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1226">
-				<path d="M0 0 L0 177 L1014 177 L1014 0 Z" />
+				<path d="M0 0 L0 177 L944 177 L944 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1227">
 				<path d="M0 0 L0 137 L578 137 L578 0 Z" />
@@ -5241,10 +5241,10 @@
 				<path d="M0 0 L0 145 L720 145 L720 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1746">
-				<path d="M0 0 L0 649 L1409 649 L1409 0 Z" />
+				<path d="M0 0 L0 649 L1393 649 L1393 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1747">
-				<path d="M0 0 L0 56 L408 56 L408 0 Z" />
+				<path d="M0 0 L0 56 L392 56 L392 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1748">
 				<path d="M0 0 L0 235 L799 235 L799 0 Z" />
@@ -5385,126 +5385,129 @@
 				<path d="M0 0 L0 729 L1754 729 L1754 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1794">
-				<path d="M0 0 L0 189 L1098 189 L1098 0 Z" />
+				<path d="M0 0 L0 56 L408 56 L408 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1795">
-				<path d="M0 0 L0 143 L717 143 L717 0 Z" />
+				<path d="M0 0 L0 189 L1098 189 L1098 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1796">
-				<path d="M0 0 L0 137 L319 137 L319 0 Z" />
+				<path d="M0 0 L0 143 L717 143 L717 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1797">
-				<path d="M0 0 L0 143 L529 143 L529 0 Z" />
+				<path d="M0 0 L0 137 L319 137 L319 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1798">
-				<path d="M0 0 L0 327 L1326 327 L1326 0 Z" />
+				<path d="M0 0 L0 143 L529 143 L529 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1799">
-				<path d="M0 0 L0 43 L489 43 L489 0 Z" />
+				<path d="M0 0 L0 327 L1326 327 L1326 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1800">
-				<path d="M0 0 L0 143 L462 143 L462 0 Z" />
+				<path d="M0 0 L0 43 L489 43 L489 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1801">
-				<path d="M0 0 L0 43 L362 43 L362 0 Z" />
+				<path d="M0 0 L0 143 L462 143 L462 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1802">
-				<path d="M0 0 L0 143 L694 143 L694 0 Z" />
+				<path d="M0 0 L0 43 L362 43 L362 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1803">
-				<path d="M0 0 L0 143 L549 143 L549 0 Z" />
+				<path d="M0 0 L0 143 L694 143 L694 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1804">
-				<path d="M0 0 L0 143 L817 143 L817 0 Z" />
+				<path d="M0 0 L0 143 L549 143 L549 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1805">
-				<path d="M0 0 L0 137 L521 137 L521 0 Z" />
+				<path d="M0 0 L0 143 L817 143 L817 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1806">
-				<path d="M0 0 L0 37 L421 37 L421 0 Z" />
+				<path d="M0 0 L0 137 L521 137 L521 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1807">
-				<path d="M0 0 L0 407 L1015 407 L1015 0 Z" />
+				<path d="M0 0 L0 37 L421 37 L421 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1808">
-				<path d="M0 0 L0 177 L668 177 L668 0 Z" />
+				<path d="M0 0 L0 407 L1015 407 L1015 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1809">
-				<path d="M0 0 L0 137 L272 137 L272 0 Z" />
+				<path d="M0 0 L0 177 L668 177 L668 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1810">
-				<path d="M0 0 L0 37 L172 37 L172 0 Z" />
+				<path d="M0 0 L0 137 L272 137 L272 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1811">
-				<path d="M0 0 L0 1017 L1767 1017 L1767 0 Z" />
+				<path d="M0 0 L0 37 L172 37 L172 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1812">
-				<path d="M0 0 L0 56 L384 56 L384 0 Z" />
+				<path d="M0 0 L0 1017 L1767 1017 L1767 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1813">
-				<path d="M0 0 L0 373 L946 373 L946 0 Z" />
+				<path d="M0 0 L0 56 L384 56 L384 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1814">
-				<path d="M0 0 L0 43 L323 43 L323 0 Z" />
+				<path d="M0 0 L0 373 L946 373 L946 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1815">
-				<path d="M0 0 L0 143 L603 143 L603 0 Z" />
+				<path d="M0 0 L0 43 L323 43 L323 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1816">
-				<path d="M0 0 L0 43 L503 43 L503 0 Z" />
+				<path d="M0 0 L0 143 L603 143 L603 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1817">
-				<path d="M0 0 L0 235 L629 235 L629 0 Z" />
+				<path d="M0 0 L0 43 L503 43 L503 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1818">
-				<path d="M0 0 L0 145 L969 145 L969 0 Z" />
+				<path d="M0 0 L0 235 L629 235 L629 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1819">
-				<path d="M0 0 L0 555 L1363 555 L1363 0 Z" />
+				<path d="M0 0 L0 145 L969 145 L969 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1820">
-				<path d="M0 0 L0 217 L892 217 L892 0 Z" />
+				<path d="M0 0 L0 555 L1363 555 L1363 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1821">
-				<path d="M0 0 L0 137 L368 137 L368 0 Z" />
+				<path d="M0 0 L0 217 L892 217 L892 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1822">
-				<path d="M0 0 L0 37 L268 37 L268 0 Z" />
+				<path d="M0 0 L0 137 L368 137 L368 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1823">
-				<path d="M0 0 L0 143 L497 143 L497 0 Z" />
+				<path d="M0 0 L0 37 L268 37 L268 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1824">
-				<path d="M0 0 L0 43 L397 43 L397 0 Z" />
+				<path d="M0 0 L0 143 L497 143 L497 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1825">
-				<path d="M0 0 L0 143 L449 143 L449 0 Z" />
+				<path d="M0 0 L0 43 L397 43 L397 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1826">
-				<path d="M0 0 L0 43 L349 43 L349 0 Z" />
+				<path d="M0 0 L0 143 L449 143 L449 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1827">
-				<path d="M0 0 L0 177 L940 177 L940 0 Z" />
+				<path d="M0 0 L0 43 L349 43 L349 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1828">
-				<path d="M0 0 L0 43 L401 43 L401 0 Z" />
+				<path d="M0 0 L0 177 L940 177 L940 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1829">
-				<path d="M0 0 L0 143 L885 143 L885 0 Z" />
+				<path d="M0 0 L0 43 L401 43 L401 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1830">
-				<path d="M0 0 L0 137 L548 137 L548 0 Z" />
+				<path d="M0 0 L0 143 L885 143 L885 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1831">
-				<path d="M0 0 L0 37 L448 37 L448 0 Z" />
+				<path d="M0 0 L0 137 L548 137 L548 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1832">
-				<path d="M0 0 L0 217 L864 217 L864 0 Z" />
+				<path d="M0 0 L0 37 L448 37 L448 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1833">
-				<path d="M0 0 L0 137 L200 137 L200 0 Z" />
+				<path d="M0 0 L0 217 L864 217 L864 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1834">
+				<path d="M0 0 L0 137 L200 137 L200 0 Z" />
+			</clipPath>
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1835">
 				<path d="M0 0 L0 37 L100 37 L100 0 Z" />
 			</clipPath>
 			<font horiz-adv-x="75.0" id="font1">
@@ -11781,10 +11784,10 @@
 		<g font-size="30" transform="translate(1646,1663)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" font-weight="bold" id="634" class="node" family="Error matemático" subfamily="Falacia de interpretación" subsubfamily="Relación espuria" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Ves la concomitancia de dos fen&amp;#243;menos como prueba de que uno causa el otro.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Seg&amp;#250;n las estad&amp;#237;sticas, el aumento de las temperaturas globales coincide con el incremento de las ventas de helados; por lo tanto, los helados deben contribuir al calentamiento global.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation" depth="4" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1188)" stroke="none">Falacia de correlación-causalidad</text>
 		</g>
-		<g stroke-linecap="butt" font-size="11" transform="translate(807,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
-			<path fill="none" d="M1828 516 C1816 516 1827 272 1807 272" clip-path="url(#clipPath1189)" />
-			<path fill="none" d="M1828 516 C1816 516 1827 592 1807 592" clip-path="url(#clipPath1189)" />
-			<path fill="none" d="M1828 516 C1816 516 1827 833 1807 833" clip-path="url(#clipPath1189)" />
+		<g stroke-linecap="butt" font-size="11" transform="translate(877,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)" stroke-width="5">
+			<path fill="none" d="M1758 516 C1746 516 1757 272 1737 272" clip-path="url(#clipPath1189)" />
+			<path fill="none" d="M1758 516 C1746 516 1757 592 1737 592" clip-path="url(#clipPath1189)" />
+			<path fill="none" d="M1758 516 C1746 516 1757 833 1737 833" clip-path="url(#clipPath1189)" />
 		</g>
 		<g stroke-linecap="butt" font-size="50" transform="translate(2635,1129)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5">
 			<rect x="0" y="0" clip-path="url(#clipPath245)" width="664" rx="5" ry="5" height="131" stroke="none" />
@@ -11936,10 +11939,10 @@
 		<g font-size="30" transform="translate(1590,1177)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="616" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Accidente" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Para refutar un contraejemplo, modific&amp;#225;is los l&amp;#237;mites de la idea general que sosten&amp;#233;is.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;— Todos los escoceses son pelirrojos. — Angus es escoc&amp;#233;s, pero no es pelirrojo. — Entonces no es un verdadero escoc&amp;#233;s.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/No_true_Scotsman" depth="5" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath403)" stroke="none">Ningún verdadero escocés</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(807,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
-			<path fill="none" d="M1423 272 C1411 272 1422 132 1402 132" clip-path="url(#clipPath1213)" />
-			<path fill="none" d="M1423 272 C1411 272 1422 264 1402 264" clip-path="url(#clipPath1213)" />
-			<path fill="none" d="M1423 272 C1411 272 1422 425 1402 425" clip-path="url(#clipPath1213)" />
+		<g font-size="11" stroke-linecap="butt" transform="translate(877,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
+			<path fill="none" d="M1353 272 C1341 272 1352 132 1332 132" clip-path="url(#clipPath1213)" />
+			<path fill="none" d="M1353 272 C1341 272 1352 264 1332 264" clip-path="url(#clipPath1213)" />
+			<path fill="none" d="M1353 272 C1341 272 1352 425 1332 425" clip-path="url(#clipPath1213)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2230,923)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold">
 			<rect x="0" y="0" clip-path="url(#clipPath1214)" width="384" rx="5" ry="5" height="55" stroke="none" />
@@ -12040,9 +12043,9 @@
 		<g font-size="30" transform="translate(1477,855)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="603" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Ignor&amp;#225;is los hechos que no apoyan vuestra argumentaci&amp;#243;n.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Mam&amp;#225; no ha dicho que no, saqu&amp;#233; buena nota y este caramelo es rosa, mi color favorito: &amp;#161;Por favor, c&amp;#243;mpramelo!&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Cherry_picking" depth="5" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath989)" stroke="none">Selección de cerezas</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(807,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
-			<path fill="none" d="M984 132 C972 132 983 109 963 109" clip-path="url(#clipPath1225)" />
-			<path fill="none" d="M984 132 C972 132 983 172 963 172" clip-path="url(#clipPath1225)" />
+		<g font-size="11" stroke-linecap="butt" transform="translate(877,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
+			<path fill="none" d="M914 132 C902 132 913 109 893 109" clip-path="url(#clipPath1225)" />
+			<path fill="none" d="M914 132 C902 132 913 172 893 172" clip-path="url(#clipPath1225)" />
 		</g>
 		<g font-size="30" transform="translate(1791,769)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1169)" x2="419" y1="42" />
@@ -12056,26 +12059,26 @@
 		<g font-size="30" transform="translate(1369,809)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="601" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Rechaz&amp;#225;is las conclusiones v&amp;#225;lidas de una muestra representativa, consider&amp;#225;ndolas simples coincidencias.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;He comprado varias veces a este proveedor en l&amp;#237;nea y siempre ha sido un &amp;#233;xito. Todos aquellos que se quejan de malas experiencias simplemente no tienen suerte.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Slothful_induction" depth="5" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1121)" stroke="none">Apelación a la coincidencia</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(807,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(877,679)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
 			<path fill="none" d="M548 109 C536 109 547 86 527 86" clip-path="url(#clipPath1226)" />
 			<path fill="none" d="M548 109 C536 109 547 126 527 126" clip-path="url(#clipPath1226)" />
 		</g>
-		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(1355,746)" stroke="rgb(8,175,147)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1091)" x2="416" y1="42" />
+		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(1425,746)" stroke="rgb(8,175,147)">
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath696)" x2="346" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(1355,746)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="598" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Inferir una regla general a partir de una muestra demasiado peque&amp;#241;a.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La encuesta se realiz&amp;#243; a la salida del congreso: el 90 % de las personas encuestadas apoyan la moci&amp;#243;n. Por lo tanto, la opini&amp;#243;n del pa&amp;#237;s ya est&amp;#225; definida.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Hasty_generalization" depth="5" familyclass="Erreurmathématique">
-			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1091)" stroke="none">Generalización apresurada</text>
+		<g font-size="30" transform="translate(1425,746)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="598" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Inferir una regla general a partir de una muestra demasiado peque&amp;#241;a.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La encuesta se realiz&amp;#243; a la salida del congreso: el 90 % de las personas encuestadas apoyan la moci&amp;#243;n. Por lo tanto, la opini&amp;#243;n del pa&amp;#237;s ya est&amp;#225; definida.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Hasty_generalization" depth="5" familyclass="Erreurmathématique">
+			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath696)" stroke="none">Inducción apresurada</text>
 		</g>
-		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(857,769)" stroke="rgb(8,175,147)">
+		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(927,769)" stroke="rgb(8,175,147)">
 			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1228)" x2="478" y1="36" />
 		</g>
-		<g font-size="25" transform="translate(857,769)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="600" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    No ten&amp;#233;is en cuenta el tama&amp;#241;o de la muestra al evaluar la fiabilidad de los datos.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Creo en esta encuesta, aunque solo haya preguntado a 10 personas.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Insensitivity_to_sample_size" depth="6" familyclass="Erreurmathématique">
+		<g font-size="25" transform="translate(927,769)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="600" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    No ten&amp;#233;is en cuenta el tama&amp;#241;o de la muestra al evaluar la fiabilidad de los datos.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Creo en esta encuesta, aunque solo haya preguntado a 10 personas.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Insensitivity_to_sample_size" depth="6" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath1228)" stroke="none">Insensibilidad al tamaño de la muestra</text>
 		</g>
-		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(868,729)" stroke="rgb(8,175,147)">
+		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(938,729)" stroke="rgb(8,175,147)">
 			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1230)" x2="467" y1="36" />
 		</g>
-		<g font-size="25" transform="translate(868,729)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="599" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Formul&amp;#225;is una ley general basada en un pu&amp;#241;ado de ejemplos.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Despu&amp;#233;s de notar que sus dos &amp;#250;ltimas novelas recibieron cr&amp;#237;ticas entusiastas, Marc concluye que todos los futuros libros de este autor tambi&amp;#233;n ser&amp;#225;n obras maestras.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#numbers" depth="6" familyclass="Erreurmathématique">
+		<g font-size="25" transform="translate(938,729)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="599" class="node" family="Error matemático" subfamily="Generalización incorrecta" subsubfamily="Muestra sesgada" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Formul&amp;#225;is una ley general basada en un pu&amp;#241;ado de ejemplos.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Despu&amp;#233;s de notar que sus dos &amp;#250;ltimas novelas recibieron cr&amp;#237;ticas entusiastas, Marc concluye que todos los futuros libros de este autor tambi&amp;#233;n ser&amp;#225;n obras maestras.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#numbers" depth="6" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath1230)" stroke="none">Argumento de los pequeños números</text>
 		</g>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4141,4517)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="10">
@@ -15842,123 +15845,123 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath127)" stroke="none">Argumento del futuro</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4874,2421)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M457 324 C469 324 458 92 478 92" clip-path="url(#clipPath1746)" />
-			<path fill="none" d="M457 324 C469 324 458 230 478 230" clip-path="url(#clipPath1746)" />
-			<path fill="none" d="M457 324 C469 324 458 414 478 414" clip-path="url(#clipPath1746)" />
-			<path fill="none" d="M457 324 C469 324 458 552 478 552" clip-path="url(#clipPath1746)" />
+			<path fill="none" d="M441 324 C453 324 442 92 462 92" clip-path="url(#clipPath1746)" />
+			<path fill="none" d="M441 324 C453 324 442 230 462 230" clip-path="url(#clipPath1746)" />
+			<path fill="none" d="M441 324 C453 324 442 414 462 414" clip-path="url(#clipPath1746)" />
+			<path fill="none" d="M441 324 C453 324 442 552 462 552" clip-path="url(#clipPath1746)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4924,2717)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath1747)" width="407" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1747)" fill="none" width="407" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath1747)" width="391" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1747)" fill="none" width="391" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4924,2717)" id="96" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Considerar que algo es mejor simplemente porque es natural, sin tener en cuenta otros factores importantes.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;El ser humano siempre ha comido carne; por lo tanto, ser vegetariano es antinatural.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Naturalistic_fallacy" depth="3" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath1747)" stroke="none">Falacia naturalista</text>
+			<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath1747)" stroke="none">Falacia naturalista</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(5302,2835)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(5286,2835)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
 			<path fill="none" d="M466 138 C478 138 467 92 487 92" clip-path="url(#clipPath1748)" />
 			<path fill="none" d="M466 138 C478 138 467 138 487 138" clip-path="url(#clipPath1748)" />
 			<path fill="none" d="M466 138 C478 138 467 184 487 184" clip-path="url(#clipPath1748)" />
 		</g>
-		<g font-size="30" transform="translate(5352,2931)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(5336,2931)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath912)" x2="417" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5352,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="108" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Supone que algo es bueno porque es natural, o malo porque no es natural.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Es natural que los hombres, como la mayor&amp;#237;a de los animales, dominen porque son m&amp;#225;s fuertes y m&amp;#225;s violentos.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Appeal_to_nature&#xA;https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm" depth="4" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5336,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="108" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Supone que algo es bueno porque es natural, o malo porque no es natural.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Es natural que los hombres, como la mayor&amp;#237;a de los animales, dominen porque son m&amp;#225;s fuertes y m&amp;#225;s violentos.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Appeal_to_nature&#xA;https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm" depth="4" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath912)" stroke="none">Apelación a la naturaleza</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5789,2977)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5773,2977)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1147)" x2="262" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5789,2977)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="111" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Suponer que el hombre es originalmente bueno y que la civilizaci&amp;#243;n lo corrompe.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;En todas las sociedades primitivas, las personas viven en armon&amp;#237;a con la naturaleza. Por eso me niego a vivir en un apartamento y decid&amp;#237; mudarme a una caba&amp;#241;a en el bosque.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Noble_savage" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5773,2977)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="111" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Suponer que el hombre es originalmente bueno y que la civilizaci&amp;#243;n lo corrompe.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;En todas las sociedades primitivas, las personas viven en armon&amp;#237;a con la naturaleza. Por eso me niego a vivir en un apartamento y decid&amp;#237; mudarme a una caba&amp;#241;a en el bosque.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Noble_savage" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1147)" stroke="none">El Noble Salvaje</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5789,2931)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5773,2931)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1241)" x2="191" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5789,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="110" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Rechazar cualquier avance tecnol&amp;#243;gico, ignorando los beneficios que pueda aportar.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Nunca uso un microondas para cocinar. Los alimentos se vuelven t&amp;#243;xicos debido a las ondas electromagn&amp;#233;ticas, lo cual es bien sabido, al igual que los tel&amp;#233;fonos m&amp;#243;viles.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://es.wikipedia.org/wiki/Tecnofobia" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5773,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="110" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Rechazar cualquier avance tecnol&amp;#243;gico, ignorando los beneficios que pueda aportar.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Nunca uso un microondas para cocinar. Los alimentos se vuelven t&amp;#243;xicos debido a las ondas electromagn&amp;#233;ticas, lo cual es bien sabido, al igual que los tel&amp;#233;fonos m&amp;#243;viles.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://es.wikipedia.org/wiki/Tecnofobia" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1241)" stroke="none">Tecnofobia</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5789,2885)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5773,2885)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath830)" x2="223" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5789,2885)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="109" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Utilizar deshonestamente argumentos ecol&amp;#243;gicos para apoyar una posici&amp;#243;n.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Deber&amp;#237;as comprar este limpiador multisuperficies; est&amp;#225; hecho con 95% de ingredientes naturales, por lo tanto, apoya al medio ambiente.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://es.wikipedia.org/wiki/Ecoimpostura" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5773,2885)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="109" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Utilizar deshonestamente argumentos ecol&amp;#243;gicos para apoyar una posici&amp;#243;n.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Deber&amp;#237;as comprar este limpiador multisuperficies; est&amp;#225; hecho con 95% de ingredientes naturales, por lo tanto, apoya al medio ambiente.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://es.wikipedia.org/wiki/Ecoimpostura" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath830)" stroke="none">Lavado verde</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(5302,2697)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(5286,2697)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
 			<path fill="none" d="M443 138 C455 138 444 92 464 92" clip-path="url(#clipPath1750)" />
 			<path fill="none" d="M443 138 C455 138 444 138 464 138" clip-path="url(#clipPath1750)" />
 			<path fill="none" d="M443 138 C455 138 444 184 464 184" clip-path="url(#clipPath1750)" />
 		</g>
-		<g font-size="30" transform="translate(5352,2793)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(5336,2793)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1751)" x2="394" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5352,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="104" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Consideras una pr&amp;#225;ctica como correcta simplemente porque es tradicional.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La corrida siempre ha existido en Francia; por lo tanto, ser&amp;#237;a una tonter&amp;#237;a prohibir esta pr&amp;#225;ctica en nuestro pa&amp;#237;s.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.csun.edu/%7Edgw61315/fallacies.html#Argumentum%20ad%20antiquitatem" depth="4" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5336,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="104" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Consideras una pr&amp;#225;ctica como correcta simplemente porque es tradicional.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La corrida siempre ha existido en Francia; por lo tanto, ser&amp;#237;a una tonter&amp;#237;a prohibir esta pr&amp;#225;ctica en nuestro pa&amp;#237;s.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.csun.edu/%7Edgw61315/fallacies.html#Argumentum%20ad%20antiquitatem" depth="4" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath1751)" stroke="none">Apelación a la tradición</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5766,2839)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5750,2839)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1045)" x2="467" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5766,2839)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="107" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Valoras un argumento simplemente porque es antiguo.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Como dijo Confucio en el tercer siglo, una manzana al d&amp;#237;a mantiene al doctor en lejan&amp;#237;a.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://rationalwiki.org/wiki/Appeal_to_ancient_wisdom" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5750,2839)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="107" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Valoras un argumento simplemente porque es antiguo.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Como dijo Confucio en el tercer siglo, una manzana al d&amp;#237;a mantiene al doctor en lejan&amp;#237;a.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://rationalwiki.org/wiki/Appeal_to_ancient_wisdom" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1045)" stroke="none">Apelación a la sabiduría antigua</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5766,2793)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5750,2793)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath606)" x2="286" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5766,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="106" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Rechazar ideas porque provienen de fuera del grupo involucrado en el debate.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Este programa educativo del extranjero no puede abordar las necesidades de nuestros m&amp;#233;todos de ense&amp;#241;anza.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Not_invented_here" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5750,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="106" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Rechazar ideas porque provienen de fuera del grupo involucrado en el debate.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Este programa educativo del extranjero no puede abordar las necesidades de nuestros m&amp;#233;todos de ense&amp;#241;anza.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Not_invented_here" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath606)" stroke="none">No inventado aquí</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5766,2747)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5750,2747)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath868)" x2="415" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5766,2747)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="105" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Argumentas que debido a que un evento nunca ha ocurrido antes, no puede suceder en el futuro.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Ning&amp;#250;n edificio de este tipo ha resistido jam&amp;#225;s un terremoto de esta magnitud. Por lo tanto, es imposible que permanezca en pie despu&amp;#233;s de un evento as&amp;#237;.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://rationalwiki.org/wiki/Draft:Appeal_to_precedent" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5750,2747)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="105" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Argumentas que debido a que un evento nunca ha ocurrido antes, no puede suceder en el futuro.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Ning&amp;#250;n edificio de este tipo ha resistido jam&amp;#225;s un terremoto de esta magnitud. Por lo tanto, es imposible que permanezca en pie despu&amp;#233;s de un evento as&amp;#237;.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://rationalwiki.org/wiki/Draft:Appeal_to_precedent" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath868)" stroke="none">Apelación a la precedencia</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(5302,2467)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(5286,2467)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
 			<path fill="none" d="M431 184 C443 184 432 92 452 92" clip-path="url(#clipPath1753)" />
 			<path fill="none" d="M431 184 C443 184 432 138 452 138" clip-path="url(#clipPath1753)" />
 			<path fill="none" d="M431 184 C443 184 432 184 452 184" clip-path="url(#clipPath1753)" />
 			<path fill="none" d="M431 184 C443 184 432 230 452 230" clip-path="url(#clipPath1753)" />
 			<path fill="none" d="M431 184 C443 184 432 276 452 276" clip-path="url(#clipPath1753)" />
 		</g>
-		<g font-size="30" transform="translate(5352,2609)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(5336,2609)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath200)" x2="382" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5352,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="98" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Justificar una posici&amp;#243;n porque es compartida por la mayor&amp;#237;a.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La mayor&amp;#237;a de los ni&amp;#241;os quiere patatas fritas todos los d&amp;#237;as en la cafeter&amp;#237;a, as&amp;#237; que eso es lo que se les deber&amp;#237;a servir.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Argumentum_ad_populum" depth="4" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5336,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="98" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Justificar una posici&amp;#243;n porque es compartida por la mayor&amp;#237;a.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La mayor&amp;#237;a de los ni&amp;#241;os quiere patatas fritas todos los d&amp;#237;as en la cafeter&amp;#237;a, as&amp;#237; que eso es lo que se les deber&amp;#237;a servir.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Argumentum_ad_populum" depth="4" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath200)" stroke="none">Apelación a la mayoría</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5754,2701)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5738,2701)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1119)" x2="310" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5754,2701)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="103" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Como la mayor&amp;#237;a de los miembros del grupo, rechazas en privado una norma pero asumes incorrectamente que la mayor&amp;#237;a la acepta, y por lo tanto sigues adelante con ella.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Nadie en el pueblo ha hablado mal de la estatua horrenda en la plaza central. As&amp;#237; que debe tener su lugar aqu&amp;#237;.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Pluralistic_ignorance" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5738,2701)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="103" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Como la mayor&amp;#237;a de los miembros del grupo, rechazas en privado una norma pero asumes incorrectamente que la mayor&amp;#237;a la acepta, y por lo tanto sigues adelante con ella.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Nadie en el pueblo ha hablado mal de la estatua horrenda en la plaza central. As&amp;#237; que debe tener su lugar aqu&amp;#237;.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Pluralistic_ignorance" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1119)" stroke="none">Ignorancia pluralista</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5754,2655)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5738,2655)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1182)" x2="314" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5754,2655)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="102" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Afirmar que el n&amp;#250;mero de personas que adhieren a la idea que defiendes determina su veracidad.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;En las redes sociales, todo el mundo habla de esta pel&amp;#237;cula, as&amp;#237; que debe ser buena. Voy a comprar un boleto para la pr&amp;#243;xima funci&amp;#243;n.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://infidels.org/library/modern/mathew/logic.html#numerum" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5738,2655)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="102" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Afirmar que el n&amp;#250;mero de personas que adhieren a la idea que defiendes determina su veracidad.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;En las redes sociales, todo el mundo habla de esta pel&amp;#237;cula, as&amp;#237; que debe ser buena. Voy a comprar un boleto para la pr&amp;#243;xima funci&amp;#243;n.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://infidels.org/library/modern/mathew/logic.html#numerum" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1182)" stroke="none">Apelación al número</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5754,2609)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5738,2609)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1111)" x2="254" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5754,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="101" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Ejercer presi&amp;#243;n de grupo para que alguien acepte una idea.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Cada ma&amp;#241;ana, en el espacio abierto, todos los colegas toman caf&amp;#233; juntos; deber&amp;#237;as unirte al ritual para integrarte mejor.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Drinking_the_Kool-Aid" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5738,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="101" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Ejercer presi&amp;#243;n de grupo para que alguien acepte una idea.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Cada ma&amp;#241;ana, en el espacio abierto, todos los colegas toman caf&amp;#233; juntos; deber&amp;#237;as unirte al ritual para integrarte mejor.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Drinking_the_Kool-Aid" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1111)" stroke="none">Presión colegial</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5754,2563)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5738,2563)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath696)" x2="346" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5754,2563)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="100" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Reforzar tu argumento invocando s&amp;#237;mbolos patri&amp;#243;ticos, como si eso fuera suficiente para demostrar su validez.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Los verdaderos patriotas est&amp;#225;n en esta sala celebrando la victoria de nuestros atletas. Eso por s&amp;#237; solo justifica nuestra causa.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Flag-waving" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5738,2563)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="100" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Reforzar tu argumento invocando s&amp;#237;mbolos patri&amp;#243;ticos, como si eso fuera suficiente para demostrar su validez.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Los verdaderos patriotas est&amp;#225;n en esta sala celebrando la victoria de nuestros atletas. Eso por s&amp;#237; solo justifica nuestra causa.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Flag-waving" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath696)" stroke="none">Apelación a la bandera</text>
 		</g>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5754,2517)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5738,2517)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath38)" x2="425" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5754,2517)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="99" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    La validez de tu argumento depende del hecho de que ha sido repetido por muchas personas hasta convertirse en una creencia colectiva.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;&amp;#191;No has o&amp;#237;do hablar de los cocodrilos en las alcantarillas de la ciudad? Se ha mencionado con tanta frecuencia que debe ser cierto.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Three_men_make_a_tiger" depth="5" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5738,2517)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="99" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    La validez de tu argumento depende del hecho de que ha sido repetido por muchas personas hasta convertirse en una creencia colectiva.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;&amp;#191;No has o&amp;#237;do hablar de los cocodrilos en las alcantarillas de la ciudad? Se ha mencionado con tanta frecuencia que debe ser cierto.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Three_men_make_a_tiger" depth="5" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath38)" stroke="none">Tres hombres hacen un tigre</text>
 		</g>
-		<g font-size="30" transform="translate(5352,2471)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(5336,2471)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath226)" x2="355" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(5352,2471)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="97" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Creer que una acci&amp;#243;n es justa porque es habitual o com&amp;#250;n.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Dado que es una costumbre en nuestro pueblo bailar alrededor del fuego en cada solsticio, ir en contra ser&amp;#237;a deshonrar a nuestros antepasados.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.thinklikeacop.org/Military%20Manuals/Attacking%20Faulty%20Reasoning.pdf" depth="4" familyclass="Insuffisance">
+		<g font-size="30" transform="translate(5336,2471)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="97" class="node" family="Insuficiencia" subfamily="Prejuicio" subsubfamily="Falacia naturalista" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Creer que una acci&amp;#243;n es justa porque es habitual o com&amp;#250;n.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Dado que es una costumbre en nuestro pueblo bailar alrededor del fuego en cada solsticio, ir en contra ser&amp;#237;a deshonrar a nuestros antepasados.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.thinklikeacop.org/Military%20Manuals/Attacking%20Faulty%20Reasoning.pdf" depth="4" familyclass="Insuffisance">
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath226)" stroke="none">Falacia del 'deber ser'</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4874,1828)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
@@ -16169,7 +16172,7 @@
 		<g font-size="50" transform="translate(4628,873)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<rect x="0" y="0" clip-path="url(#clipPath1777)" fill="none" width="652" rx="5" ry="5" height="131" />
 		</g>
-		<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4628,873)">
+		<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4628,873)" id="2" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Formula un argumento basado en impresiones o an&amp;#233;cdotas, sin evidencia s&amp;#243;lida.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Ayer pis&amp;#233; una caca de perro mientras saludaba a un transe&amp;#250;nte en la calle. En la ciudad, es mejor evitar dirigirse a desconocidos.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="" depth="2" familyclass="Insuffisance">
 			<text x="44" y="55" clip-path="url(#clipPath1777)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Generalización </text>
 			<text x="44" y="119" clip-path="url(#clipPath1777)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">apresurada</text>
 		</g>
@@ -16300,15 +16303,15 @@
 			<path fill="none" d="M457 364 C469 364 458 655 478 655" clip-path="url(#clipPath1793)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(5301,1206)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath1747)" width="407" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1747)" fill="none" width="407" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath1794)" width="407" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1794)" fill="none" width="407" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5301,1206)" id="33" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Justificación trivial" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Atribu&amp;#237;s a un h&amp;#225;bito, una impresi&amp;#243;n o un ejemplo el valor de una prueba.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Admito que su c&amp;#225;lculo es correcto. Pero su razonamiento es insignificante: este detalle no cambia nada del problema de fondo. — Rechazo de un argumento correcto bas&amp;#225;ndose en la importancia que se le atribuye, no en su validez.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="" depth="3" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="45" xml:space="preserve" y="43" clip-path="url(#clipPath1747)" stroke="none">Justificación trivial</text>
+			<text text-rendering="geometricPrecision" x="45" xml:space="preserve" y="43" clip-path="url(#clipPath1794)" stroke="none">Justificación trivial</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5679,1410)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M410 115 C422 115 411 92 431 92" clip-path="url(#clipPath1794)" />
-			<path fill="none" d="M410 115 C422 115 411 138 431 138" clip-path="url(#clipPath1794)" />
+			<path fill="none" d="M410 115 C422 115 411 92 431 92" clip-path="url(#clipPath1795)" />
+			<path fill="none" d="M410 115 C422 115 411 138 431 138" clip-path="url(#clipPath1795)" />
 		</g>
 		<g font-size="30" transform="translate(5729,1483)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath713)" x2="361" y1="42" />
@@ -16317,7 +16320,7 @@
 			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath713)" stroke="none">Falacia del psicólogo</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6060,1456)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M427 92 C439 92 428 87 448 87" clip-path="url(#clipPath1795)" />
+			<path fill="none" d="M427 92 C439 92 428 87 448 87" clip-path="url(#clipPath1796)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6110,1506)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath489)" x2="378" y1="42" />
@@ -16338,26 +16341,26 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1702)" stroke="none">Falacia de proyección mental</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5679,1180)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M538 184 C550 184 539 92 559 92" clip-path="url(#clipPath1798)" />
-			<path fill="none" d="M538 184 C550 184 539 138 559 138" clip-path="url(#clipPath1798)" />
-			<path fill="none" d="M538 184 C550 184 539 184 559 184" clip-path="url(#clipPath1798)" />
-			<path fill="none" d="M538 184 C550 184 539 230 559 230" clip-path="url(#clipPath1798)" />
-			<path fill="none" d="M538 184 C550 184 539 276 559 276" clip-path="url(#clipPath1798)" />
+			<path fill="none" d="M538 184 C550 184 539 92 559 92" clip-path="url(#clipPath1799)" />
+			<path fill="none" d="M538 184 C550 184 539 138 559 138" clip-path="url(#clipPath1799)" />
+			<path fill="none" d="M538 184 C550 184 539 184 559 184" clip-path="url(#clipPath1799)" />
+			<path fill="none" d="M538 184 C550 184 539 230 559 230" clip-path="url(#clipPath1799)" />
+			<path fill="none" d="M538 184 C550 184 539 276 559 276" clip-path="url(#clipPath1799)" />
 		</g>
 		<g font-size="30" transform="translate(5729,1322)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1799)" x2="489" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1800)" x2="489" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(5729,1322)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="43" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Justificación trivial" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted considera que un comportamiento est&amp;#225; justificado porque es com&amp;#250;nmente adoptado.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Todo el mundo excede los l&amp;#237;mites de velocidad; por lo tanto, no deber&amp;#237;a ser sancionado.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.nizkor.org/features/fallacies/appeal-to-common-practice.html" depth="4" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath1799)" stroke="none">Apelación a la práctica común</text>
+			<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath1800)" stroke="none">Apelación a la práctica común</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6238,1414)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1801)" x2="362" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1802)" x2="362" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(6238,1414)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="50" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Justificación trivial" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Os apoy&amp;#225;is en lo que parece ser sentido com&amp;#250;n para justificar una proposici&amp;#243;n sin pruebas, jugando con el miedo a ser juzgado de otro modo.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Es de sentido com&amp;#250;n no nadar despu&amp;#233;s de comer. &amp;#191;Por qu&amp;#233; perturbar esta regla popular con estudios cient&amp;#237;ficos?&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#commonsense" depth="5" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1801)" stroke="none">Apelar al sentido común</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1802)" stroke="none">Apelar al sentido común</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6188,1318)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M447 92 C459 92 448 87 468 87" clip-path="url(#clipPath1802)" />
+			<path fill="none" d="M447 92 C459 92 448 87 468 87" clip-path="url(#clipPath1803)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6238,1368)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath403)" x2="398" y1="42" />
@@ -16384,7 +16387,7 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath206)" stroke="none">Apelación a la normalidad</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6188,1180)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M325 92 C337 92 326 87 346 87" clip-path="url(#clipPath1804)" />
+			<path fill="none" d="M325 92 C337 92 326 87 346 87" clip-path="url(#clipPath1805)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6238,1230)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath309)" x2="276" y1="42" />
@@ -16393,18 +16396,18 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath309)" stroke="none">Certeza supuesta</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6534,1231)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1806)" x2="421" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1807)" x2="421" y1="36" />
 		</g>
 		<g font-size="25" transform="translate(6534,1231)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="45" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Justificación trivial" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted invoca la existencia de un gran n&amp;#250;mero de personas que, aunque nunca lo hayan expresado, compartir&amp;#237;an su punto de vista.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Solo digo en voz alta lo que muchas personas piensan en silencio.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://rationalwiki.org/wiki/Silent_Majority" depth="6" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1806)" stroke="none">Apelación a la mayoría silenciosa</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1807)" stroke="none">Apelación a la mayoría silenciosa</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5679,870)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M376 224 C388 224 377 92 397 92" clip-path="url(#clipPath1807)" />
-			<path fill="none" d="M376 224 C388 224 377 138 397 138" clip-path="url(#clipPath1807)" />
-			<path fill="none" d="M376 224 C388 224 377 201 397 201" clip-path="url(#clipPath1807)" />
-			<path fill="none" d="M376 224 C388 224 377 264 397 264" clip-path="url(#clipPath1807)" />
-			<path fill="none" d="M376 224 C388 224 377 310 397 310" clip-path="url(#clipPath1807)" />
-			<path fill="none" d="M376 224 C388 224 377 356 397 356" clip-path="url(#clipPath1807)" />
+			<path fill="none" d="M376 224 C388 224 377 92 397 92" clip-path="url(#clipPath1808)" />
+			<path fill="none" d="M376 224 C388 224 377 138 397 138" clip-path="url(#clipPath1808)" />
+			<path fill="none" d="M376 224 C388 224 377 201 397 201" clip-path="url(#clipPath1808)" />
+			<path fill="none" d="M376 224 C388 224 377 264 397 264" clip-path="url(#clipPath1808)" />
+			<path fill="none" d="M376 224 C388 224 377 310 397 310" clip-path="url(#clipPath1808)" />
+			<path fill="none" d="M376 224 C388 224 377 356 397 356" clip-path="url(#clipPath1808)" />
 		</g>
 		<g font-size="30" transform="translate(5729,1052)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1466)" x2="327" y1="42" />
@@ -16431,8 +16434,8 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath426)" stroke="none">El argumento del amigo</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6026,962)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M343 109 C355 109 344 86 364 86" clip-path="url(#clipPath1808)" />
-			<path fill="none" d="M343 109 C355 109 344 126 364 126" clip-path="url(#clipPath1808)" />
+			<path fill="none" d="M343 109 C355 109 344 86 364 86" clip-path="url(#clipPath1809)" />
+			<path fill="none" d="M343 109 C355 109 344 126 364 126" clip-path="url(#clipPath1809)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6076,1029)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath159)" x2="294" y1="42" />
@@ -16447,10 +16450,10 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath367)" stroke="none">La rueda chirriante</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6390,1012)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1810)" x2="172" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1811)" x2="172" y1="36" />
 		</g>
 		<g font-size="25" transform="translate(6390,1012)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="38" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Justificación trivial" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Piensas que si algo es cierto una vez, lo ser&amp;#225; siempre, incluso si es por casualidad.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;El reloj de la estaci&amp;#243;n ha estado parado durante meses, pero a veces marca la hora exacta; eso demuestra que funciona de vez en cuando.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://rationalwiki.org/wiki/Stopped_clock" depth="6" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1810)" stroke="none">El reloj roto</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1811)" stroke="none">El reloj roto</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6076,966)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath75)" x2="368" y1="42" />
@@ -16465,31 +16468,31 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath255)" stroke="none">Argumento por rumores</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5251,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M433 509 C445 509 434 298 454 298" clip-path="url(#clipPath1811)" />
-			<path fill="none" d="M433 509 C445 509 434 552 454 552" clip-path="url(#clipPath1811)" />
-			<path fill="none" d="M433 509 C445 509 434 644 454 644" clip-path="url(#clipPath1811)" />
-			<path fill="none" d="M433 509 C445 509 434 851 454 851" clip-path="url(#clipPath1811)" />
+			<path fill="none" d="M433 509 C445 509 434 298 454 298" clip-path="url(#clipPath1812)" />
+			<path fill="none" d="M433 509 C445 509 434 552 454 552" clip-path="url(#clipPath1812)" />
+			<path fill="none" d="M433 509 C445 509 434 644 454 644" clip-path="url(#clipPath1812)" />
+			<path fill="none" d="M433 509 C445 509 434 851 454 851" clip-path="url(#clipPath1812)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(5301,431)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath1812)" width="383" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1812)" fill="none" width="383" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath1813)" width="383" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1813)" fill="none" width="383" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5301,431)" id="3" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Utiliza afirmaciones que no contribuyen a establecer un argumento convincente.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Es in&amp;#250;til que contin&amp;#250;e mis estudios porque el futuro es incierto.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Argument_from_ignorance" depth="3" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath1812)" stroke="none">Argumento vacío</text>
+			<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath1813)" stroke="none">Argumento vacío</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5655,594)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M372 207 C384 207 373 92 393 92" clip-path="url(#clipPath1813)" />
-			<path fill="none" d="M372 207 C384 207 373 138 393 138" clip-path="url(#clipPath1813)" />
-			<path fill="none" d="M372 207 C384 207 373 184 393 184" clip-path="url(#clipPath1813)" />
-			<path fill="none" d="M372 207 C384 207 373 230 393 230" clip-path="url(#clipPath1813)" />
-			<path fill="none" d="M372 207 C384 207 373 276 393 276" clip-path="url(#clipPath1813)" />
-			<path fill="none" d="M372 207 C384 207 373 322 393 322" clip-path="url(#clipPath1813)" />
+			<path fill="none" d="M372 207 C384 207 373 92 393 92" clip-path="url(#clipPath1814)" />
+			<path fill="none" d="M372 207 C384 207 373 138 393 138" clip-path="url(#clipPath1814)" />
+			<path fill="none" d="M372 207 C384 207 373 184 393 184" clip-path="url(#clipPath1814)" />
+			<path fill="none" d="M372 207 C384 207 373 230 393 230" clip-path="url(#clipPath1814)" />
+			<path fill="none" d="M372 207 C384 207 373 276 393 276" clip-path="url(#clipPath1814)" />
+			<path fill="none" d="M372 207 C384 207 373 322 393 322" clip-path="url(#clipPath1814)" />
 		</g>
 		<g font-size="30" transform="translate(5705,759)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1814)" x2="323" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1815)" x2="323" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(5705,759)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold" id="26" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted basa sus argumentos en expresiones hechas como si constituyeran una prueba s&amp;#243;lida.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Todo trabajo merece un salario y ya es hora de que cosechemos los frutos de nuestros esfuerzos cultivados con paciencia.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#cliche" depth="4" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1814)" stroke="none">Pensamiento cliché</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1815)" stroke="none">Pensamiento cliché</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6048,874)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath20)" x2="131" y1="42" />
@@ -16522,15 +16525,15 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath50)" stroke="none">Revocación de lo abstracto</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6048,644)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1816)" x2="503" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1817)" x2="503" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(6048,644)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="27" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Cuando a su tesis se le opone un contraejemplo, lo invalida invocando el clich&amp;#233; de la excepci&amp;#243;n que confirma la regla.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Es cierto que tuve &amp;#233;xito sin ese t&amp;#237;tulo, pero soy la excepci&amp;#243;n que confirma la regla. Es absolutamente necesario que lo consigas.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#proves_the_rule" depth="5" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1816)" stroke="none">La excepción que confirma la regla</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1817)" stroke="none">La excepción que confirma la regla</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5655,456)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M237 138 C249 138 238 92 258 92" clip-path="url(#clipPath1817)" />
-			<path fill="none" d="M237 138 C249 138 238 138 258 138" clip-path="url(#clipPath1817)" />
-			<path fill="none" d="M237 138 C249 138 238 184 258 184" clip-path="url(#clipPath1817)" />
+			<path fill="none" d="M237 138 C249 138 238 92 258 92" clip-path="url(#clipPath1818)" />
+			<path fill="none" d="M237 138 C249 138 238 138 258 138" clip-path="url(#clipPath1818)" />
+			<path fill="none" d="M237 138 C249 138 238 184 258 184" clip-path="url(#clipPath1818)" />
 		</g>
 		<g font-size="30" transform="translate(5705,552)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath40)" x2="188" y1="42" />
@@ -16557,7 +16560,7 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath938)" stroke="none">Llamada al cielo</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5655,408)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M573 94 C585 94 574 92 594 92" clip-path="url(#clipPath1818)" />
+			<path fill="none" d="M573 94 C585 94 574 92 594 92" clip-path="url(#clipPath1819)" />
 		</g>
 		<g font-size="30" transform="translate(5705,460)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1188)" x2="524" y1="42" />
@@ -16572,12 +16575,12 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath111)" stroke="none">Silogismo del político</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5655,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M452 298 C464 298 453 129 473 129" clip-path="url(#clipPath1819)" />
-			<path fill="none" d="M452 298 C464 298 453 212 473 212" clip-path="url(#clipPath1819)" />
-			<path fill="none" d="M452 298 C464 298 453 275 473 275" clip-path="url(#clipPath1819)" />
-			<path fill="none" d="M452 298 C464 298 453 338 473 338" clip-path="url(#clipPath1819)" />
-			<path fill="none" d="M452 298 C464 298 453 384 473 384" clip-path="url(#clipPath1819)" />
-			<path fill="none" d="M452 298 C464 298 453 467 473 467" clip-path="url(#clipPath1819)" />
+			<path fill="none" d="M452 298 C464 298 453 129 473 129" clip-path="url(#clipPath1820)" />
+			<path fill="none" d="M452 298 C464 298 453 212 473 212" clip-path="url(#clipPath1820)" />
+			<path fill="none" d="M452 298 C464 298 453 275 473 275" clip-path="url(#clipPath1820)" />
+			<path fill="none" d="M452 298 C464 298 453 338 473 338" clip-path="url(#clipPath1820)" />
+			<path fill="none" d="M452 298 C464 298 453 384 473 384" clip-path="url(#clipPath1820)" />
+			<path fill="none" d="M452 298 C464 298 453 467 473 467" clip-path="url(#clipPath1820)" />
 		</g>
 		<g font-size="30" transform="translate(5705,206)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1041)" x2="403" y1="42" />
@@ -16586,9 +16589,9 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1041)" stroke="none">Apelación a la ignorancia</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6078,288)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M460 129 C472 129 461 86 481 86" clip-path="url(#clipPath1820)" />
-			<path fill="none" d="M460 129 C472 129 461 126 481 126" clip-path="url(#clipPath1820)" />
-			<path fill="none" d="M460 129 C472 129 461 166 481 166" clip-path="url(#clipPath1820)" />
+			<path fill="none" d="M460 129 C472 129 461 86 481 86" clip-path="url(#clipPath1821)" />
+			<path fill="none" d="M460 129 C472 129 461 126 481 126" clip-path="url(#clipPath1821)" />
+			<path fill="none" d="M460 129 C472 129 461 166 481 166" clip-path="url(#clipPath1821)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6128,375)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath997)" x2="411" y1="42" />
@@ -16609,32 +16612,32 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1498)" stroke="none">Falacia de Sherlock Holmes</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6559,338)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1822)" x2="268" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1823)" x2="268" y1="36" />
 		</g>
 		<g font-size="25" transform="translate(6559,338)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="17" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Rechazas arbitrariamente una proposici&amp;#243;n sin proporcionar ninguna explicaci&amp;#243;n o prueba.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Lo que afirmas no puede ser verdad porque suena completamente rid&amp;#237;culo.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Argumentum_ad_lapidem" depth="6" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1822)" stroke="none">Refutación lapidaria</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1823)" stroke="none">Refutación lapidaria</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6128,292)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1824)" x2="397" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1825)" x2="397" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(6128,292)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="15" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Ustedes consideran que una idea demasiado compleja para ustedes lo es tambi&amp;#233;n para todo el mundo, lo que justifica sus propias especulaciones.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;La f&amp;#237;sica cu&amp;#225;ntica es tan compleja que nadie puede afirmar realmente que comprende el universo.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#complexity" depth="5" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1824)" stroke="none">Apelación a la complejidad</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1825)" stroke="none">Apelación a la complejidad</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6128,246)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1826)" x2="349" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1827)" x2="349" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(6128,246)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="14" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted considera que una teor&amp;#237;a es v&amp;#225;lida simplemente porque nada la contradice hasta ahora.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Dado que a&amp;#250;n no hemos capturado extraterrestres para probar su existencia, eso demuestra que son tan avanzados que pueden escapar a nuestra detecci&amp;#243;n.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wiktionary.org/wiki/black_swan_fallacy" depth="5" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1826)" stroke="none">Prueba por la ausencia</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1827)" stroke="none">Prueba por la ausencia</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6078,116)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M450 109 C462 109 451 86 471 86" clip-path="url(#clipPath1827)" />
-			<path fill="none" d="M450 109 C462 109 451 126 471 126" clip-path="url(#clipPath1827)" />
+			<path fill="none" d="M450 109 C462 109 451 86 471 86" clip-path="url(#clipPath1828)" />
+			<path fill="none" d="M450 109 C462 109 451 126 471 126" clip-path="url(#clipPath1828)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6128,183)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1828)" x2="401" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1829)" x2="401" y1="42" />
 		</g>
 		<g font-size="30" transform="translate(6128,183)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="11" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted rechaza una hip&amp;#243;tesis o un hecho con el pretexto de que le parecen incomprensibles.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Me niego a aceptar la teor&amp;#237;a del Big Bang, es demasiado compleja para ser verdadera.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://rationalwiki.org/wiki/Argument_from_incredulity" depth="5" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1828)" stroke="none">Argumento de incredulidad</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1829)" stroke="none">Argumento de incredulidad</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6549,206)" stroke="rgb(134,5,171)">
 			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1775)" x2="419" y1="36" />
@@ -16649,7 +16652,7 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1450)" stroke="none">Falacia divina</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6078,70)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M366 92 C378 92 367 87 387 87" clip-path="url(#clipPath1829)" />
+			<path fill="none" d="M366 92 C378 92 367 87 387 87" clip-path="url(#clipPath1830)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6128,120)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath841)" x2="317" y1="42" />
@@ -16658,15 +16661,15 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath841)" stroke="none">Apelación al misterio</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6465,121)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1831)" x2="448" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1832)" x2="448" y1="36" />
 		</g>
 		<g font-size="25" transform="translate(6465,121)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="10" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted apoya una idea poco cre&amp;#237;ble argumentando que la ciencia no lo sabe todo.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;Como la ciencia no puede explicar la desaparici&amp;#243;n de los unicornios, debieron haber existido.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://rationalwiki.org/wiki/Science_doesn%27t_know_everything" depth="6" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1831)" stroke="none">Argumento de la ciencia incompleta</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1832)" stroke="none">Argumento de la ciencia incompleta</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(6078,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M378 129 C390 129 379 86 399 86" clip-path="url(#clipPath1832)" />
-			<path fill="none" d="M378 129 C390 129 379 126 399 126" clip-path="url(#clipPath1832)" />
-			<path fill="none" d="M378 129 C390 129 379 166 399 166" clip-path="url(#clipPath1832)" />
+			<path fill="none" d="M378 129 C390 129 379 86 399 86" clip-path="url(#clipPath1833)" />
+			<path fill="none" d="M378 129 C390 129 379 126 399 126" clip-path="url(#clipPath1833)" />
+			<path fill="none" d="M378 129 C390 129 379 166 399 166" clip-path="url(#clipPath1833)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(6128,37)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath401)" x2="329" y1="42" />
@@ -16675,10 +16678,10 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath401)" stroke="none">Ignorancia deliberada</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6477,80)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1834)" x2="100" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1835)" x2="100" y1="36" />
 		</g>
 		<g font-size="25" transform="translate(6477,80)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" id="8" class="node" family="Insuficiencia" subfamily="Argumento descuidado" subsubfamily="Argumento vacío" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    Usted se niega a discutir ciertos hechos que podr&amp;#237;an invalidar su argumento.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;No necesitamos discutir este problema de sociedad; siempre ha sido as&amp;#237; y as&amp;#237; seguir&amp;#225; siendo.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://es.wikipedia.org/wiki/Tab%C3%BA" depth="6" familyclass="Insuffisance">
-			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1834)" stroke="none">Tabú</text>
+			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1835)" stroke="none">Tabú</text>
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6477,40)" stroke="rgb(134,5,171)">
 			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1346)" x2="415" y1="36" />
@@ -16693,13 +16696,13 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath967)" stroke="none">Ignorancia invencible</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M988 974 C96 974 6293 1166 5401 1166" clip-path="url(#clipPath1)" />
-			<polygon points=" 988 974 978 979 978 969 988 974" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1058 974 C166 974 6293 1166 5401 1166" clip-path="url(#clipPath1)" />
+			<polygon points=" 1058 974 1048 979 1048 969 1058 974" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 5401 1166 5411 1161 5411 1171 5401 1166" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M977 1014 C85 1014 6293 1166 5401 1166" clip-path="url(#clipPath1)" />
-			<polygon points=" 977 1014 967 1019 967 1009 977 1014" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1047 1014 C155 1014 6293 1166 5401 1166" clip-path="url(#clipPath1)" />
+			<polygon points=" 1047 1014 1037 1019 1037 1009 1047 1014" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 5401 1166 5411 1161 5411 1171 5401 1166" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
@@ -17053,44 +17056,44 @@
 			<polygon points=" 6696 2586 6706 2581 6706 2591 6696 2586" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M6425 17693 C7317 17693 6746 2857 5854 2857" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M6425 17693 C7317 17693 6730 2857 5838 2857" clip-path="url(#clipPath1)" />
 			<polygon points=" 6425 17693 6435 17688 6435 17698 6425 17693" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 5854 2857 5864 2852 5864 2862 5854 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 5838 2857 5848 2852 5848 2862 5838 2857" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M6307 19635 C7199 19635 6746 2857 5854 2857" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M6307 19635 C7199 19635 6730 2857 5838 2857" clip-path="url(#clipPath1)" />
 			<polygon points=" 6307 19635 6317 19630 6317 19640 6307 19635" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 5854 2857 5864 2852 5864 2862 5854 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 5838 2857 5848 2852 5848 2862 5838 2857" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
-			<path fill="none" d="M6299 2765 C7191 2765 7080 2903 6188 2903" clip-path="url(#clipPath1)" />
-			<polygon points=" 6299 2765 6309 2760 6309 2770 6299 2765" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 6188 2903 6198 2898 6198 2908 6188 2903" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M6283 2765 C7175 2765 7064 2903 6172 2903" clip-path="url(#clipPath1)" />
+			<polygon points=" 6283 2765 6293 2760 6293 2770 6283 2765" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 6172 2903 6182 2898 6182 2908 6172 2903" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
-			<path fill="none" d="M6220 2811 C7112 2811 7020 2857 6128 2857" clip-path="url(#clipPath1)" />
-			<polygon points=" 6220 2811 6230 2806 6230 2816 6220 2811" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 6128 2857 6138 2852 6138 2862 6128 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M6204 2811 C7096 2811 7004 2857 6112 2857" clip-path="url(#clipPath1)" />
+			<polygon points=" 6204 2811 6214 2806 6214 2816 6204 2811" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 6112 2857 6122 2852 6122 2862 6112 2857" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M6220 2811 C7112 2811 6931 8749 6039 8749" clip-path="url(#clipPath1)" />
-			<polygon points=" 6220 2811 6230 2806 6230 2816 6220 2811" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M6204 2811 C7096 2811 6931 8749 6039 8749" clip-path="url(#clipPath1)" />
+			<polygon points=" 6204 2811 6214 2806 6214 2816 6204 2811" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 6039 8749 6049 8744 6049 8754 6039 8749" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
-			<path fill="none" d="M6128 2857 C7020 2857 6932 13853 6040 13853" clip-path="url(#clipPath1)" />
-			<polygon points=" 6128 2857 6138 2852 6138 2862 6128 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M6112 2857 C7004 2857 6932 13853 6040 13853" clip-path="url(#clipPath1)" />
+			<polygon points=" 6112 2857 6122 2852 6122 2862 6112 2857" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 6040 13853 6050 13848 6050 13858 6040 13853" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
-			<path fill="none" d="M6132 3133 C7024 3133 7072 8703 6180 8703" clip-path="url(#clipPath1)" />
-			<polygon points=" 6132 3133 6142 3128 6142 3138 6132 3133" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M6116 3133 C7008 3133 7072 8703 6180 8703" clip-path="url(#clipPath1)" />
+			<polygon points=" 6116 3133 6126 3128 6126 3138 6116 3133" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 6180 8703 6190 8698 6190 8708 6180 8703" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,224,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,224,255)">
-			<path fill="none" d="M6171 3225 C7063 3225 6992 3179 6100 3179" clip-path="url(#clipPath1)" />
-			<polygon points=" 6171 3225 6181 3220 6181 3230 6171 3225" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 6100 3179 6110 3174 6110 3184 6100 3179" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M6155 3225 C7047 3225 6976 3179 6084 3179" clip-path="url(#clipPath1)" />
+			<polygon points=" 6155 3225 6165 3220 6165 3230 6155 3225" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 6084 3179 6094 3174 6094 3184 6084 3179" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
 			<path fill="none" d="M1267 13845 C375 13845 6718 3321 5826 3321" clip-path="url(#clipPath1)" />
@@ -18108,23 +18111,23 @@
 			<polygon points=" 2008 1310 1998 1315 1998 1305 2008 1310" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(232,204,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(232,204,255)">
-			<path fill="none" d="M1489 1057 C597 1057 583 994 1475 994" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M1489 1057 C597 1057 653 994 1545 994" clip-path="url(#clipPath1)" />
 			<polygon points=" 1489 1057 1479 1062 1479 1052 1489 1057" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 1475 994 1465 999 1465 989 1475 994" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1545 994 1535 999 1535 989 1545 994" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
-			<path fill="none" d="M988 974 C96 974 85 1014 977 1014" clip-path="url(#clipPath1)" />
-			<polygon points=" 988 974 978 979 978 969 988 974" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 977 1014 967 1019 967 1009 977 1014" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1058 974 C166 974 155 1014 1047 1014" clip-path="url(#clipPath1)" />
+			<polygon points=" 1058 974 1048 979 1048 969 1058 974" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1047 1014 1037 1019 1037 1009 1047 1014" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M1318 14291 C426 14291 85 1014 977 1014" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M1318 14291 C426 14291 155 1014 1047 1014" clip-path="url(#clipPath1)" />
 			<polygon points=" 1318 14291 1308 14296 1308 14286 1318 14291" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 977 1014 967 1019 967 1009 977 1014" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1047 1014 1037 1019 1037 1009 1047 1014" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(255,224,204)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,224,204)">
-			<path fill="none" d="M977 1014 C85 1014 426 14291 1318 14291" clip-path="url(#clipPath1)" />
-			<polygon points=" 977 1014 967 1019 967 1009 977 1014" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1047 1014 C155 1014 426 14291 1318 14291" clip-path="url(#clipPath1)" />
+			<polygon points=" 1047 1014 1037 1019 1037 1009 1047 1014" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 1318 14291 1308 14296 1308 14286 1318 14291" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-120,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
