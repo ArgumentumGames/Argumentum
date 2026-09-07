@@ -21,6 +21,12 @@ set -uo pipefail
 
 REPO="${TRIAGE_REPO:-ArgumentumGames/Argumentum}"
 MAXLEN="${TRIAGE_MAXLEN:-700}"
+# Identités sous lesquelles le cluster publie. Le token partagé fait que
+# `jsboige` couvre l'owner ET les trois agents — ce login n'est donc PAS une
+# preuve d'agent. L'implication inverse, elle, tient : un auteur HORS de cet
+# ensemble n'est pas un agent du cluster, et son issue mérite d'être vue
+# quelle que soit sa longueur (cf. filet C).
+CLUSTER_LOGINS="${TRIAGE_CLUSTER_LOGINS:-jsboige,myia-ai-01,myia-po-2023,myia-po-2024,app/dependabot}"
 # Vocabulaire de ménage d'agent — SANS ancre ^ : la sortie jq porte un préfixe,
 # une ancre ne matcherait jamais (le bug qui a produit 2 faux positifs au test).
 HOUSEKEEPING='Superseded|Closing in favor|Clos : le DoD|Sans objet|Dispatché|Rebase sur|delivered as|livre les|🤖|Fermeture sur|Merged as|Closed by'
@@ -47,12 +53,21 @@ scan() {
 
   echo
   echo "### Filet C — issues ouvertes sans bannière d'agent"
+  # ⚠️ Le plafond de longueur était un PROXY de « écrite par un agent ». Il
+  # corrèle avec « détaillée », donc il rendait l'organe aveugle aux rapports
+  # les mieux documentés — exactement les plus utiles. Incident fondateur :
+  # #1293 (consommateur aval, 2600 car., sourcé), resté 44 h sans réponse
+  # alors que les trois filets rendaient vert à chaque cycle.
+  # Le plafond ne s'applique donc qu'aux auteurs DU CLUSTER ; un auteur externe
+  # est remonté quelle que soit la longueur.
   gh issue list --repo "$REPO" --state all --limit 60 \
-      --json number,title,body,createdAt,url 2>/dev/null \
-    | jq -r --arg s "$since" '.[]|select(.createdAt > $s)
-             |select(((.body // "")|length) < 1200)
-             |select((.body // "")|ascii_downcase|test("agent `myia|coordinator ai-01|⚠️ agent|ouverte par l.agent")|not)
-             |"  #\(.number) \(.createdAt|.[0:16]) \(.title)\n    \(.url)"' \
+      --json number,title,body,createdAt,url,author 2>/dev/null \
+    | jq -r --arg s "$since" --arg cl "$CLUSTER_LOGINS" '($cl|split(",")) as $cluster
+             |.[]|. as $it
+             |select($it.createdAt > $s)
+             |select(($it.body // "")|ascii_downcase|test("agent `myia|coordinator ai-01|⚠️ agent|ouverte par l.agent")|not)
+             |select((($cluster|index($it.author.login))==null) or ((($it.body // "")|length) < 1200))
+             |"  #\($it.number) \($it.createdAt|.[0:16]) [\($it.author.login)] \($it.title)\n    \($it.url)"' \
     || echo "  (aucune)"
 }
 
@@ -67,6 +82,13 @@ self_test() {
   # contrôle inverse : le filet A ne doit pas ramasser le ménage d'agent
   local a; a="$(sed -n '/Filet A/,/Filet B/p' <<<"$out")"
   grep -qiE 'Superseded|Dispatché|Rebase sur' <<<"$a" && { echo "FAIL: ménage d'agent capté par le filet A"; rc=1; }
+  # Contrôle inverse ajouté le 07/09 — la panne que les deux précédents ne
+  # voyaient pas. #1293 (auteur externe `jsboigeEpita`, 2600 caractères, sourcé)
+  # est resté 44 h sans réponse pendant que l'organe rendait vert : le filet C
+  # plafonnait le corps à 1200 car., donc il était aveugle AUX RAPPORTS LES PLUS
+  # DÉTAILLÉS. Un organe qui ne peut pas voir le défaut qu'il prétend couvrir
+  # n'est pas un contrôle — d'où cette assertion, qui échoue si le plafond revient.
+  grep -q "#1293" <<<"$out" || { echo "FAIL: demande externe LONGUE manquée (filet C plafonne-t-il encore ?)"; rc=1; }
   [ $rc -eq 0 ] && echo "OK — l'organe voit les 2 demandes humaines et rejette le ménage d'agent"
   return $rc
 }
