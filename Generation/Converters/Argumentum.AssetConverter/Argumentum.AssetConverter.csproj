@@ -20,7 +20,7 @@
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.75.0.4178" />
     <PackageReference Include="ExtendedXmlSerializer" Version="3.10.0" />
     <PackageReference Include="Humanizer" Version="3.0.10" />
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="14.16.0" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="14.17.1" />
     <PackageReference Include="Microsoft.Playwright" Version="1.43.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="OWLSharp" Version="5.0.0" />
