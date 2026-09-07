@@ -4407,10 +4407,10 @@
 				<path d="M0 0 L0 43 L184 43 L184 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1468">
-				<path d="M0 0 L0 649 L897 649 L897 0 Z" />
+				<path d="M0 0 L0 649 L881 649 L881 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1469">
-				<path d="M0 0 L0 56 L242 56 L242 0 Z" />
+				<path d="M0 0 L0 56 L226 56 L226 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1470">
 				<path d="M0 0 L0 235 L514 235 L514 0 Z" />
@@ -17495,154 +17495,154 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3806,2421)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M291 324 C303 324 292 92 312 92" clip-path="url(#clipPath1468)" />
-			<path fill="none" d="M291 324 C303 324 292 230 312 230" clip-path="url(#clipPath1468)" />
-			<path fill="none" d="M291 324 C303 324 292 414 312 414" clip-path="url(#clipPath1468)" />
-			<path fill="none" d="M291 324 C303 324 292 552 312 552" clip-path="url(#clipPath1468)" />
+			<path fill="none" d="M275 324 C287 324 276 92 296 92" clip-path="url(#clipPath1468)" />
+			<path fill="none" d="M275 324 C287 324 276 230 296 230" clip-path="url(#clipPath1468)" />
+			<path fill="none" d="M275 324 C287 324 276 414 296 414" clip-path="url(#clipPath1468)" />
+			<path fill="none" d="M275 324 C287 324 276 552 296 552" clip-path="url(#clipPath1468)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(3856,2717)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath1469)" width="241" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1469)" fill="none" width="241" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath1469)" width="225" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath1469)" fill="none" width="225" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Naturalistic_fallacy" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(3856,2717)">
-				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath1469)" stroke="none">مغالطه طبیعی</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath1469)" stroke="none">مغالطه طبیعی</text>
 			</g>
 		</a>
-		<g font-size="11" stroke-linecap="butt" transform="translate(4068,2835)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(4052,2835)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
 			<path fill="none" d="M261 138 C273 138 262 92 282 92" clip-path="url(#clipPath1470)" />
 			<path fill="none" d="M261 138 C273 138 262 138 282 138" clip-path="url(#clipPath1470)" />
 			<path fill="none" d="M261 138 C273 138 262 184 282 184" clip-path="url(#clipPath1470)" />
 		</g>
-		<g font-size="30" transform="translate(4118,2931)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(4102,2931)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath79)" x2="212" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Appeal_to_nature&#xA;https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm" target="_blank">
-			<g font-size="30" transform="translate(4118,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
+			<g font-size="30" transform="translate(4102,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath79)" stroke="none">توسل به طبیعت</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4350,2977)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4334,2977)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath159)" x2="155" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Noble_savage" target="_blank">
-			<g font-size="30" transform="translate(4350,2977)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4334,2977)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath159)" stroke="none">انسان نجیب</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4350,2931)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4334,2931)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath768)" x2="182" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/%D9%81%D9%86%D8%A7%D9%88%D8%B1%DB%8C%E2%80%8C%D9%87%D8%B1%D8%A7%D8%B3%DB%8C" target="_blank">
-			<g font-size="30" transform="translate(4350,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4334,2931)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath768)" stroke="none">فناوری‌هراسی</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4350,2885)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4334,2885)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath280)" x2="177" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/%D8%B3%D8%A8%D8%B2%D8%B4%D9%88%DB%8C%DB%8C" target="_blank">
-			<g font-size="30" transform="translate(4350,2885)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4334,2885)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath280)" stroke="none">شستشوی سبز</text>
 			</g>
 		</a>
-		<g font-size="11" stroke-linecap="butt" transform="translate(4068,2697)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(4052,2697)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
 			<path fill="none" d="M244 138 C256 138 245 92 265 92" clip-path="url(#clipPath1472)" />
 			<path fill="none" d="M244 138 C256 138 245 138 265 138" clip-path="url(#clipPath1472)" />
 			<path fill="none" d="M244 138 C256 138 245 184 265 184" clip-path="url(#clipPath1472)" />
 		</g>
-		<g font-size="30" transform="translate(4118,2793)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(4102,2793)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath910)" x2="195" y1="42" />
 		</g>
 		<a xlink:href="http://www.csun.edu/%7Edgw61315/fallacies.html#Argumentum%20ad%20antiquitatem" target="_blank">
-			<g font-size="30" transform="translate(4118,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
+			<g font-size="30" transform="translate(4102,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath910)" stroke="none">توسل به سنت</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4333,2839)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4317,2839)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath690)" x2="247" y1="42" />
 		</g>
 		<a xlink:href="http://rationalwiki.org/wiki/Appeal_to_ancient_wisdom" target="_blank">
-			<g font-size="30" transform="translate(4333,2839)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4317,2839)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath690)" stroke="none">توسل به خرد باستانی</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4333,2793)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4317,2793)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath36)" x2="205" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Not_invented_here" target="_blank">
-			<g font-size="30" transform="translate(4333,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4317,2793)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath36)" stroke="none">عدم اختراع اینجا</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4333,2747)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4317,2747)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1302)" x2="194" y1="42" />
 		</g>
 		<a xlink:href="https://rationalwiki.org/wiki/Draft:Appeal_to_precedent" target="_blank">
-			<g font-size="30" transform="translate(4333,2747)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4317,2747)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath1302)" stroke="none">توسل به سابقه</text>
 			</g>
 		</a>
-		<g font-size="11" stroke-linecap="butt" transform="translate(4068,2467)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(4052,2467)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
 			<path fill="none" d="M282 184 C294 184 283 92 303 92" clip-path="url(#clipPath1473)" />
 			<path fill="none" d="M282 184 C294 184 283 138 303 138" clip-path="url(#clipPath1473)" />
 			<path fill="none" d="M282 184 C294 184 283 184 303 184" clip-path="url(#clipPath1473)" />
 			<path fill="none" d="M282 184 C294 184 283 230 303 230" clip-path="url(#clipPath1473)" />
 			<path fill="none" d="M282 184 C294 184 283 276 303 276" clip-path="url(#clipPath1473)" />
 		</g>
-		<g font-size="30" transform="translate(4118,2609)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(4102,2609)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath717)" x2="233" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Argumentum_ad_populum" target="_blank">
-			<g font-size="30" transform="translate(4118,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
+			<g font-size="30" transform="translate(4102,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath717)" stroke="none">مراجعه به اکثریت</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4371,2701)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4355,2701)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath697)" x2="165" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Pluralistic_ignorance" target="_blank">
-			<g font-size="30" transform="translate(4371,2701)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4355,2701)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath697)" stroke="none">نادانی جمعی</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4371,2655)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4355,2655)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath930)" x2="186" y1="42" />
 		</g>
 		<a xlink:href="https://infidels.org/library/modern/mathew/logic.html#numerum" target="_blank">
-			<g font-size="30" transform="translate(4371,2655)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4355,2655)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath930)" stroke="none">مراجعه به عدد</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4371,2609)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4355,2609)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath180)" x2="179" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Drinking_the_Kool-Aid" target="_blank">
-			<g font-size="30" transform="translate(4371,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4355,2609)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath180)" stroke="none">فشار همسالان</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4371,2563)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4355,2563)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath742)" x2="133" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Flag-waving" target="_blank">
-			<g font-size="30" transform="translate(4371,2563)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4355,2563)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath742)" stroke="none">پرچم‌زدن</text>
 			</g>
 		</a>
-		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4371,2517)" stroke="rgb(134,5,171)">
+		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(4355,2517)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath1315)" x2="282" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Three_men_make_a_tiger" target="_blank">
-			<g font-size="30" transform="translate(4371,2517)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
+			<g font-size="30" transform="translate(4355,2517)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath1315)" stroke="none">سه نفر یک ببر می‌سازند</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(4118,2471)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
+		<g font-size="30" transform="translate(4102,2471)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath28)" x2="169" y1="42" />
 		</g>
 		<a xlink:href="http://www.thinklikeacop.org/Military%20Manuals/Attacking%20Faulty%20Reasoning.pdf" target="_blank">
-			<g font-size="30" transform="translate(4118,2471)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
+			<g font-size="30" transform="translate(4102,2471)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath28)" stroke="none">مغالطه عادی</text>
 			</g>
 		</a>
@@ -18923,44 +18923,44 @@
 			<polygon points=" 4892 2586 4902 2581 4902 2591 4892 2586" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(180,175,165)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(180,175,165)">
-			<path fill="none" d="M4846 17693 C5738 17693 5251 2857 4359 2857" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M4846 17693 C5738 17693 5235 2857 4343 2857" clip-path="url(#clipPath1)" />
 			<polygon points=" 4846 17693 4856 17688 4856 17698 4846 17693" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 4359 2857 4369 2852 4369 2862 4359 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 4343 2857 4353 2852 4353 2862 4343 2857" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(180,175,165)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(180,175,165)">
-			<path fill="none" d="M4643 19635 C5535 19635 5251 2857 4359 2857" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M4643 19635 C5535 19635 5235 2857 4343 2857" clip-path="url(#clipPath1)" />
 			<polygon points=" 4643 19635 4653 19630 4653 19640 4643 19635" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 4359 2857 4369 2852 4369 2862 4359 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 4343 2857 4353 2852 4353 2862 4343 2857" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(130,210,220)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(130,210,220)">
-			<path fill="none" d="M4661 2765 C5553 2765 5457 2903 4565 2903" clip-path="url(#clipPath1)" />
-			<polygon points=" 4661 2765 4671 2760 4671 2770 4661 2765" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 4565 2903 4575 2898 4575 2908 4565 2903" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M4645 2765 C5537 2765 5441 2903 4549 2903" clip-path="url(#clipPath1)" />
+			<polygon points=" 4645 2765 4655 2760 4655 2770 4645 2765" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 4549 2903 4559 2898 4559 2908 4549 2903" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(130,210,220)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(130,210,220)">
-			<path fill="none" d="M4512 2811 C5404 2811 5450 2857 4558 2857" clip-path="url(#clipPath1)" />
-			<polygon points=" 4512 2811 4522 2806 4522 2816 4512 2811" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 4558 2857 4568 2852 4568 2862 4558 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M4496 2811 C5388 2811 5434 2857 4542 2857" clip-path="url(#clipPath1)" />
+			<polygon points=" 4496 2811 4506 2806 4506 2816 4496 2811" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 4542 2857 4552 2852 4552 2862 4542 2857" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(180,175,165)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(180,175,165)">
-			<path fill="none" d="M4512 2811 C5404 2811 5574 8749 4682 8749" clip-path="url(#clipPath1)" />
-			<polygon points=" 4512 2811 4522 2806 4522 2816 4512 2811" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M4496 2811 C5388 2811 5574 8749 4682 8749" clip-path="url(#clipPath1)" />
+			<polygon points=" 4496 2811 4506 2806 4506 2816 4496 2811" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4682 8749 4692 8744 4692 8754 4682 8749" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(130,210,220)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(130,210,220)">
-			<path fill="none" d="M4558 2857 C5450 2857 5307 13853 4415 13853" clip-path="url(#clipPath1)" />
-			<polygon points=" 4558 2857 4568 2852 4568 2862 4558 2857" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M4542 2857 C5434 2857 5307 13853 4415 13853" clip-path="url(#clipPath1)" />
+			<polygon points=" 4542 2857 4552 2852 4552 2862 4542 2857" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4415 13853 4425 13848 4425 13858 4415 13853" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(130,210,220)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(130,210,220)">
-			<path fill="none" d="M4535 3133 C5427 3133 5610 8703 4718 8703" clip-path="url(#clipPath1)" />
-			<polygon points=" 4535 3133 4545 3128 4545 3138 4535 3133" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M4519 3133 C5411 3133 5610 8703 4718 8703" clip-path="url(#clipPath1)" />
+			<polygon points=" 4519 3133 4529 3128 4529 3138 4519 3133" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 4718 8703 4728 8698 4728 8708 4718 8703" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(130,170,230)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(130,170,230)">
-			<path fill="none" d="M4513 3225 C5405 3225 5432 3179 4540 3179" clip-path="url(#clipPath1)" />
-			<polygon points=" 4513 3225 4523 3220 4523 3230 4513 3225" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 4540 3179 4550 3174 4550 3184 4540 3179" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M4497 3225 C5389 3225 5416 3179 4524 3179" clip-path="url(#clipPath1)" />
+			<polygon points=" 4497 3225 4507 3220 4507 3230 4497 3225" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 4524 3179 4534 3174 4534 3184 4524 3179" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-8,-227)" fill="rgb(180,175,165)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(180,175,165)">
 			<path fill="none" d="M1072 13787 C180 13787 5246 3321 4354 3321" clip-path="url(#clipPath1)" />
