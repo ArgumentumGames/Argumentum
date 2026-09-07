@@ -566,7 +566,7 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 | Issue | Description | Status |
 | ------- | ----------- | ------ |
 | ~~Fallacies duplicate PKs 520, 1000~~ | Was reported during GSheet sync; **not reproducible on master** — 1408/1408 PKs unique, PK 520 & 1000 appear once each (verified `7206f2f9`, 2026-05-24). Stale warning or GSheet-view artefact | ✅ N/A |
-| ~~Scenarii 54% translated~~ | 167/167 records now 100% covered EN/RU/PT, all 8 fields; substantive fields (context/issue) 0% FR-contaminated, RU 165/167 Cyrillic. Title=FR overlaps (21 EN/11 PT) = legitimate proper nouns (Sherlock, Jeanne d'Arc, Ergo sum…). Verified `7206f2f9`, 2026-05-24 | ✅ DONE |
+| ~~Scenarii 54% translated~~ | 167/167 records now 100% covered EN/RU/PT, all 8 fields; substantive fields (context/issue) 0% FR-contaminated, RU 165/167 Cyrillic. Title=FR overlaps (21 EN/11 PT) = legitimate proper nouns (Sherlock, Ergo sum…). Verified `7206f2f9`, 2026-05-24. ⚠️ « Jeanne d'Arc » retiré de cette liste (mesure 8 langues sur la rangée `1,0201`, master `1ab6d861`, 2026-09-07) : 7/8 localisent (Joan of Arc, Жанна д'Арк, Juana de Arco, جان دارك, 圣女贞德, ژان دارک) — seul `title_pt` portait « Jeanne d'Arc » ; lacune corrigée en « Joana d'Arc », l'ancienne vérif ne balayait que « FR dans une cellule PT » sans mesurer les 6 autres langues | ✅ DONE |
 | ~~Virtues 0% translated~~ | ✅ Resolved via PRs #218, #236, #246, #290, #295 (April-May 2026) — 100% coverage title/description/remark × 4 languages | DONE |
 | PT Rules row 1 EN contamination | Rules cover showed "Liars 'School" instead of "A Escola dos Mentirosos" | ✅ Fix PR #306 cycle 47 (1 cell CSV, native PT validated po-2023) |
 
