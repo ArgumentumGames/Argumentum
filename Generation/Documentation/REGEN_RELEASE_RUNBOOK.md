@@ -46,12 +46,13 @@ Avant toute régén sur un `Target/` déjà peuplé :
 | Contrat | Valeur attendue |
 |---|---|
 | TarotCards_{lang} | **379 pages × 8/8 langues** |
+| Structure TarotCards fr | p.1-15 Rules (15 faces, sans dos) · p.16-29 Memo ×7 (`NbCopies=7`, `WebBasedGeneratorConfig.cs`) · p.30-379 Fallacies ×175 → 15+14+350 = 379 (mesuré 07/09, md5 page par page) |
 | Total PDFs frais | 80 (`Documents/density-0/`, horodatage du run) |
 | Fallacies faces | 175 (PK 96 sorti, #1292) |
 | Deck tarot | 191 cartes (175+15+1) ; boîte 358 sans Virtues / 489 avec |
 | Géométrie tarot | 70×120 mm (#1267) → 413×708 px @150 dpi |
 | Géométrie poker | 63,5×88,9 mm → 375×525 px @150 dpi |
-| Parité recto-verso | pages **paires = faces, impaires = dos** (vérifié produit) |
+| Parité recto-verso | **paires = dos, impaires = faces** (vérifié produit 07/09, md5 page par page) — sur la plage alternée p.16-379 uniquement ; p.1-15 = faces Rules sans dos |
 
 ## Phase F — Passe CMYK détachée
 
@@ -77,7 +78,7 @@ $p = Start-Process -FilePath $exe -ArgumentList "--pdf-cmyk" -WorkingDirectory "
 
 - Rasteriser **AVANT la passe CMYK** (les PDFs sont mutés en place — collision lecture/écriture sinon) :
   `gswin64c -dSAFER --permit-file-read=<pdf> -sDEVICE=png16m -r150 -dFirstPage=N -dLastPage=N -o out.png in.pdf` (page par page, pas de `%d` — piège 6).
-- Échantillon minimal : TarotCards fr 1 face (paire) + 1 dos (impaire), PokerCards fr 1 face, Virtues 1 face. PNG ~150 dpi, pas de PDF (4 Go ne passent pas en pièces jointes).
+- Échantillon minimal : TarotCards fr 1 face Fallacies (impaire, p.31+) + 1 dos partagé (paire, p.30+), PokerCards fr 1 face, Virtues 1 face. PNG ~150 dpi, pas de PDF (4 Go ne passent pas en pièces jointes).
 - Signaler provenance complète : commit de base, horodatage PDFs, RGB/CMYK, dpi, géométries.
 
 ## Index des pièges
@@ -96,4 +97,4 @@ $p = Start-Process -FilePath $exe -ArgumentList "--pdf-cmyk" -WorkingDirectory "
 | 10 | JSON de config édité à la main | Source de vérité = C# (`SkipConfigFile=true` délibéré) | CLAUDE.md |
 
 ---
-*Dernière validation : run E 06/09/2026 @ `2a2e7b32` (deck 175 + #1295) — 379 pages ×8, 80 PDFs, témoins vérifiés.*
+*Dernière validation : run E 06/09/2026 @ `2a2e7b32` (deck 175 + #1295) — 379 pages ×8, 80 PDFs, témoins vérifiés. Parité recto-verso corrigée le 07/09 après mesure page par page : la v1 du tableau inversait faces/dos.*
