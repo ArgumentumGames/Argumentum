@@ -3159,7 +3159,7 @@
 				<path d="M0 0 L0 145 L615 145 L615 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1052">
-				<path d="M0 0 L0 545 L1014 545 L1014 0 Z" />
+				<path d="M0 0 L0 545 L1036 545 L1036 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1053">
 				<path d="M0 0 L0 56 L225 56 L225 0 Z" />
@@ -3189,13 +3189,13 @@
 				<path d="M0 0 L0 143 L464 143 L464 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1062">
-				<path d="M0 0 L0 223 L769 223 L769 0 Z" />
+				<path d="M0 0 L0 223 L791 223 L791 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1063">
 				<path d="M0 0 L0 143 L310 143 L310 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1064">
-				<path d="M0 0 L0 177 L557 177 L557 0 Z" />
+				<path d="M0 0 L0 177 L579 177 L579 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1065">
 				<path d="M0 0 L0 137 L344 137 L344 0 Z" />
@@ -10957,10 +10957,10 @@
 		<g font-size="30" transform="translate(1191,1236)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="616" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="مغالطة الحادث" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    من أجل دحض المثال المضاد، تغير حدود الفكرة العامة التي تدافع عنها.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;- جميع الاسكتلنديين شعرهم أحمر. - أنغوس اسكتلندي ولكنه ليس أحمر الشعر. - إذن هو ليس اسكتلنديًا حقيقيًا.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/No_true_Scotsman" depth="5" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath198)" stroke="none">مغالطة الاسكتلندي الحقيقي</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(1013,738)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
-			<path fill="none" d="M739 272 C727 272 738 132 718 132" clip-path="url(#clipPath1052)" />
-			<path fill="none" d="M739 272 C727 272 738 264 718 264" clip-path="url(#clipPath1052)" />
-			<path fill="none" d="M739 272 C727 272 738 425 718 425" clip-path="url(#clipPath1052)" />
+		<g font-size="11" stroke-linecap="butt" transform="translate(991,738)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
+			<path fill="none" d="M761 272 C749 272 760 132 740 132" clip-path="url(#clipPath1052)" />
+			<path fill="none" d="M761 272 C749 272 760 264 740 264" clip-path="url(#clipPath1052)" />
+			<path fill="none" d="M761 272 C749 272 760 425 740 425" clip-path="url(#clipPath1052)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(1752,982)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(97,248,221)" font-weight="bold">
 			<rect x="0" y="0" clip-path="url(#clipPath1053)" width="224" rx="5" ry="5" height="55" stroke="none" />
@@ -11061,9 +11061,9 @@
 		<g font-size="30" transform="translate(1301,914)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="603" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    تتجاهل الحقائق التي لا تدعم حجتك.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;أمي لم تقل لا، لقد حصلت على علامة جيدة وهذا الحلوى ذات اللون المفضل لدي. رجاءً، اشتري لي هذه الحلوى!&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Cherry_picking" depth="5" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath110)" stroke="none">الانتقاء التحكمي</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(1013,738)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
-			<path fill="none" d="M527 132 C515 132 526 109 506 109" clip-path="url(#clipPath1062)" />
-			<path fill="none" d="M527 132 C515 132 526 172 506 172" clip-path="url(#clipPath1062)" />
+		<g font-size="11" stroke-linecap="butt" transform="translate(991,738)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
+			<path fill="none" d="M549 132 C537 132 548 109 528 109" clip-path="url(#clipPath1062)" />
+			<path fill="none" d="M549 132 C537 132 548 172 528 172" clip-path="url(#clipPath1062)" />
 		</g>
 		<g font-size="30" transform="translate(1540,828)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath611)" x2="192" y1="42" />
@@ -11077,26 +11077,26 @@
 		<g font-size="30" transform="translate(1310,868)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="601" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    ترفض الاستنتاجات الصالحة من عينة تمثيلية، معتبرًا أنها مجرد مصادفات.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;اشتريت عدة مرات من هذا المورد عبر الإنترنت وحققت نجاحًا. جميع أولئك الذين يشكون من تجارب سيئة ليسوا محظوظين ببساطة.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Slothful_induction" depth="5" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath127)" stroke="none">نداء إلى المصادفة</text>
 		</g>
-		<g font-size="11" stroke-linecap="butt" transform="translate(1013,738)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(991,738)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
 			<path fill="none" d="M325 109 C313 109 324 86 304 86" clip-path="url(#clipPath1064)" />
 			<path fill="none" d="M325 109 C313 109 324 126 304 126" clip-path="url(#clipPath1064)" />
 		</g>
-		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(1338,805)" stroke="rgb(8,175,147)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath114)" x2="182" y1="42" />
+		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(1316,805)" stroke="rgb(8,175,147)">
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath301)" x2="204" y1="42" />
 		</g>
-		<g font-size="30" transform="translate(1338,805)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="598" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    تستنتج قاعدة عامة من عينة صغيرة جداً.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;أُجري الاستطلاع عند الخروج من المؤتمر: 90٪ من المستطلَعين يؤيدون المقترح. إذن فقد حُسم رأي البلد.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Hasty_generalization" depth="5" familyclass="Erreurmathématique">
-			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath114)" stroke="none">تعميم متسرع</text>
+		<g font-size="30" transform="translate(1316,805)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="598" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    تستنتج قاعدة عامة من عينة صغيرة جداً.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;أُجري الاستطلاع عند الخروج من المؤتمر: 90٪ من المستطلَعين يؤيدون المقترح. إذن فقد حُسم رأي البلد.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Hasty_generalization" depth="5" familyclass="Erreurmathématique">
+			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath301)" stroke="none">استقراء متسرع</text>
 		</g>
-		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(1074,828)" stroke="rgb(8,175,147)">
+		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(1052,828)" stroke="rgb(8,175,147)">
 			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath1066)" x2="244" y1="36" />
 		</g>
-		<g font-size="25" transform="translate(1074,828)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="600" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    لا تأخذ في الاعتبار حجم العينة عند تقييم موثوقية البيانات.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;أصدق في هذا الاستطلاع، رغم أنه سأل 10 أشخاص فقط.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Insensitivity_to_sample_size" depth="6" familyclass="Erreurmathématique">
+		<g font-size="25" transform="translate(1052,828)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="600" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    لا تأخذ في الاعتبار حجم العينة عند تقييم موثوقية البيانات.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;أصدق في هذا الاستطلاع، رغم أنه سأل 10 أشخاص فقط.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="https://en.wikipedia.org/wiki/Insensitivity_to_sample_size" depth="6" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath1066)" stroke="none">عدم الحساسية لحجم العينة</text>
 		</g>
-		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(1063,788)" stroke="rgb(8,175,147)">
+		<g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(1041,788)" stroke="rgb(8,175,147)">
 			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath395)" x2="255" y1="36" />
 		</g>
-		<g font-size="25" transform="translate(1063,788)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="599" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    تقوم بصياغة قانون عام بناءً على عدد قليل جدًا من الأمثلة.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;بعد أن لاحظ أن آخر روايتين له قد تلقيتا تعليقات إيجابية، استنتج مارك أن جميع الكتب المستقبلية لهذا المؤلف ستكون روائع أيضًا.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#numbers" depth="6" familyclass="Erreurmathématique">
+		<g font-size="25" transform="translate(1041,788)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(4,94,78)" id="599" class="node" family="خطأ رياضي" subfamily="تعميم مُتعجل" subsubfamily="انحياز العينة" description="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    تقوم بصياغة قانون عام بناءً على عدد قليل جدًا من الأمثلة.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" example="&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;i&gt;بعد أن لاحظ أن آخر روايتين له قد تلقيتا تعليقات إيجابية، استنتج مارك أن جميع الكتب المستقبلية لهذا المؤلف ستكون روائع أيضًا.&lt;/i&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;" link="http://www.don-lindsay-archive.org/skeptic/arguments.html#numbers" depth="6" familyclass="Erreurmathématique">
 			<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath395)" stroke="none">الاحتجاج بالأعداد الصغيرة</text>
 		</g>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2810,4517)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)" stroke-width="10">
@@ -15712,13 +15712,13 @@
 			<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath1523)" stroke="none">الاستنكاف المتجذر</text>
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M1157 1033 C265 1033 4546 1166 3654 1166" clip-path="url(#clipPath1)" />
-			<polygon points=" 1157 1033 1147 1038 1147 1028 1157 1033" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1135 1033 C243 1033 4546 1166 3654 1166" clip-path="url(#clipPath1)" />
+			<polygon points=" 1135 1033 1125 1038 1125 1028 1135 1033" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3654 1166 3664 1161 3664 1171 3654 1166" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M1168 1073 C276 1073 4546 1166 3654 1166" clip-path="url(#clipPath1)" />
-			<polygon points=" 1168 1073 1158 1078 1158 1068 1168 1073" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1146 1073 C254 1073 4546 1166 3654 1166" clip-path="url(#clipPath1)" />
+			<polygon points=" 1146 1073 1136 1078 1136 1068 1146 1073" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 3654 1166 3664 1161 3664 1171 3654 1166" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
@@ -17127,23 +17127,23 @@
 			<polygon points=" 1650 1369 1640 1374 1640 1364 1650 1369" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(232,204,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(232,204,255)">
-			<path fill="none" d="M1404 1116 C512 1116 540 1053 1432 1053" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M1404 1116 C512 1116 518 1053 1410 1053" clip-path="url(#clipPath1)" />
 			<polygon points=" 1404 1116 1394 1121 1394 1111 1404 1116" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 1432 1053 1422 1058 1422 1048 1432 1053" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1410 1053 1400 1058 1400 1048 1410 1053" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">
-			<path fill="none" d="M1157 1033 C265 1033 276 1073 1168 1073" clip-path="url(#clipPath1)" />
-			<polygon points=" 1157 1033 1147 1038 1147 1028 1157 1033" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 1168 1073 1158 1078 1158 1068 1168 1073" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1135 1033 C243 1033 254 1073 1146 1073" clip-path="url(#clipPath1)" />
+			<polygon points=" 1135 1033 1125 1038 1125 1028 1135 1033" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1146 1073 1136 1078 1136 1068 1146 1073" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(224,218,212)">
-			<path fill="none" d="M1063 14233 C171 14233 276 1073 1168 1073" clip-path="url(#clipPath1)" />
+			<path fill="none" d="M1063 14233 C171 14233 254 1073 1146 1073" clip-path="url(#clipPath1)" />
 			<polygon points=" 1063 14233 1053 14238 1053 14228 1063 14233" clip-path="url(#clipPath1)" stroke="none" />
-			<polygon points=" 1168 1073 1158 1078 1158 1068 1168 1073" clip-path="url(#clipPath1)" stroke="none" />
+			<polygon points=" 1146 1073 1136 1078 1136 1068 1146 1073" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(255,224,204)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,224,204)">
-			<path fill="none" d="M1168 1073 C276 1073 171 14233 1063 14233" clip-path="url(#clipPath1)" />
-			<polygon points=" 1168 1073 1158 1078 1158 1068 1168 1073" clip-path="url(#clipPath1)" stroke="none" />
+			<path fill="none" d="M1146 1073 C254 1073 171 14233 1063 14233" clip-path="url(#clipPath1)" />
+			<polygon points=" 1146 1073 1136 1078 1136 1068 1146 1073" clip-path="url(#clipPath1)" stroke="none" />
 			<polygon points=" 1063 14233 1053 14238 1053 14228 1063 14233" clip-path="url(#clipPath1)" stroke="none" />
 		</g>
 		<g font-size="11" stroke-linecap="butt" transform="translate(-94,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(204,255,255)">

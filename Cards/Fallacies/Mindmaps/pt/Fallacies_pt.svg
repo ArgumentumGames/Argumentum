@@ -3567,7 +3567,7 @@
       ><path d="M0 0 L0 43 L456 43 L456 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1188"
-      ><path d="M0 0 L0 1031 L2456 1031 L2456 0 Z"
+      ><path d="M0 0 L0 1031 L2442 1031 L2442 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1189"
       ><path d="M0 0 L0 68 L612 68 L612 0 Z"
@@ -3633,7 +3633,7 @@
       ><path d="M0 0 L0 43 L464 43 L464 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1210"
-      ><path d="M0 0 L0 545 L1824 545 L1824 0 Z"
+      ><path d="M0 0 L0 545 L1739 545 L1739 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1211"
       ><path d="M0 0 L0 56 L494 56 L494 0 Z"
@@ -3684,10 +3684,10 @@
       ><path d="M0 0 L0 43 L266 43 L266 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1227"
-      ><path d="M0 0 L0 223 L1310 223 L1310 0 Z"
+      ><path d="M0 0 L0 223 L1225 223 L1225 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1228"
-      ><path d="M0 0 L0 177 L1003 177 L1003 0 Z"
+      ><path d="M0 0 L0 177 L918 177 L918 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1229"
       ><path d="M0 0 L0 137 L587 137 L587 0 Z"
@@ -21662,10 +21662,10 @@ AAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
       /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1187)" stroke="none"
       >Falácia da Correlação-Causa</text
     ></g
-    ><g stroke-linecap="butt" font-size="11" transform="translate(744,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)" stroke-width="5"
-    ><path fill="none" d="M1794 516 C1782 516 1793 272 1773 272" clip-path="url(#clipPath1188)"
-      /><path fill="none" d="M1794 516 C1782 516 1793 592 1773 592" clip-path="url(#clipPath1188)"
-      /><path fill="none" d="M1794 516 C1782 516 1793 833 1773 833" clip-path="url(#clipPath1188)"
+    ><g stroke-linecap="butt" font-size="11" transform="translate(758,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)" stroke-width="5"
+    ><path fill="none" d="M1780 516 C1768 516 1779 272 1759 272" clip-path="url(#clipPath1188)"
+      /><path fill="none" d="M1780 516 C1768 516 1779 592 1759 592" clip-path="url(#clipPath1188)"
+      /><path fill="none" d="M1780 516 C1768 516 1779 833 1759 833" clip-path="url(#clipPath1188)"
     /></g
     ><g stroke-linecap="butt" font-size="50" transform="translate(2538,1181)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" stroke="rgb(97,248,221)" font-weight="bold" stroke-width="5"
     ><rect x="0" y="0" clip-path="url(#clipPath1189)" width="611" rx="5" ry="5" height="67" stroke="none"
@@ -22098,10 +22098,10 @@ AAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
       /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1209)" stroke="none"
       >Sofisma do Verdadeiro Escocês</text
     ></g
-    ><g font-size="11" stroke-linecap="butt" transform="translate(744,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)"
-    ><path fill="none" d="M1280 272 C1268 272 1279 132 1259 132" clip-path="url(#clipPath1210)"
-      /><path fill="none" d="M1280 272 C1268 272 1279 264 1259 264" clip-path="url(#clipPath1210)"
-      /><path fill="none" d="M1280 272 C1268 272 1279 425 1259 425" clip-path="url(#clipPath1210)"
+    ><g font-size="11" stroke-linecap="butt" transform="translate(829,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)"
+    ><path fill="none" d="M1195 272 C1183 272 1194 132 1174 132" clip-path="url(#clipPath1210)"
+      /><path fill="none" d="M1195 272 C1183 272 1194 264 1174 264" clip-path="url(#clipPath1210)"
+      /><path fill="none" d="M1195 272 C1183 272 1194 425 1174 425" clip-path="url(#clipPath1210)"
     /></g
     ><g stroke-linecap="butt" font-size="40" transform="translate(2024,943)" fill="rgb(97,248,221)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" stroke="rgb(97,248,221)" font-weight="bold"
     ><rect x="0" y="0" clip-path="url(#clipPath1211)" width="493" rx="5" ry="5" height="55" stroke="none"
@@ -22370,9 +22370,9 @@ lRPsiSu03cv31m3Vt9jyLy9diMZtzqutAAAAAElFTkSuQmCC" height="16" preserveAspectRati
       /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1226)" stroke="none"
       >Cata de cerejas</text
     ></g
-    ><g font-size="11" stroke-linecap="butt" transform="translate(744,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)"
-    ><path fill="none" d="M973 132 C961 132 972 109 952 109" clip-path="url(#clipPath1227)"
-      /><path fill="none" d="M973 132 C961 132 972 172 952 172" clip-path="url(#clipPath1227)"
+    ><g font-size="11" stroke-linecap="butt" transform="translate(829,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)"
+    ><path fill="none" d="M888 132 C876 132 887 109 867 109" clip-path="url(#clipPath1227)"
+      /><path fill="none" d="M888 132 C876 132 887 172 867 172" clip-path="url(#clipPath1227)"
     /></g
     ><g font-size="30" transform="translate(1717,789)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" stroke="rgb(8,175,147)" font-weight="bold"
     ><line y2="42" fill="none" x1="0" clip-path="url(#clipPath260)" x2="287" y1="42"
@@ -22406,15 +22406,15 @@ AAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
       /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath1177)" stroke="none"
       >Apelo à coincidência</text
     ></g
-    ><g font-size="11" stroke-linecap="butt" transform="translate(744,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)"
+    ><g font-size="11" stroke-linecap="butt" transform="translate(829,699)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(8,175,147)"
     ><path fill="none" d="M557 109 C545 109 556 86 536 86" clip-path="url(#clipPath1228)"
       /><path fill="none" d="M557 109 C545 109 556 126 536 126" clip-path="url(#clipPath1228)"
     /></g
-    ><g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="30" font-family="&apos;Dialog&apos;" transform="translate(1301,766)" stroke="rgb(8,175,147)"
-    ><line y2="42" fill="none" x1="0" clip-path="url(#clipPath952)" x2="396" y1="42"
+    ><g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="30" font-family="&apos;Dialog&apos;" transform="translate(1386,766)" stroke="rgb(8,175,147)"
+    ><line y2="42" fill="none" x1="0" clip-path="url(#clipPath77)" x2="311" y1="42"
     /></g
-    ><g font-size="30" transform="translate(1301,766)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" shape-rendering="crispEdges" stroke="rgb(4,94,78)"
-    ><image x="346" y="13" clip-path="url(#clipPath952)" width="44" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAQCAYAAABtPJ3XAAAE90lEQVR42qWWbWxT
+    ><g font-size="30" transform="translate(1386,766)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" shape-rendering="crispEdges" stroke="rgb(4,94,78)"
+    ><image x="261" y="13" clip-path="url(#clipPath77)" width="44" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAQCAYAAABtPJ3XAAAE90lEQVR42qWWbWxT
 VRjHn3Pf2nu7lq17yQaDjQgMwwCdSELIXN2AIBI1yibBDypE8YsxkMzoBNbKiyZ+
 UT+YCL4giSQUP5GIwTHoNjXGbGNDHOHFlxkGhJV1W9f2vp7jOe1u6SrIOk9y0tNz
 z7n3d/73/zzP5SH3Rmj30x7InPT7/UIoFMJsvGdnVeMT6yqb169d8Oa6+opt9bXF
@@ -22442,13 +22442,13 @@ IieceUsqHlhYYzzm28JrWgxJkswMCjQzALUCafvukNXbc0qU+PBgXHWkC8dMgOFu
 TPmV1gNd7aw0047/D/C/wO8FmrU8+SHz7u41SwV86x1O9D4JnOJi8YqZCYhF00M8
 Rszot1go2b9n7+lfZ/rxg6ZR5aZVvoPBIN/U1JTMWXt3rajisLoJc1w1285h6wLm
 nN/s3td9KXttru0fgIiBcuL7aqwAAAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
-      /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath952)" stroke="none"
-      >Generalização apressada</text
+      /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath77)" stroke="none"
+      >Indução apressada</text
     ></g
-    ><g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="&apos;Dialog&apos;" transform="translate(794,789)" stroke="rgb(8,175,147)"
+    ><g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="&apos;Dialog&apos;" transform="translate(879,789)" stroke="rgb(8,175,147)"
     ><line y2="36" fill="none" x1="0" clip-path="url(#clipPath1230)" x2="487" y1="36"
     /></g
-    ><g font-size="25" transform="translate(794,789)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" shape-rendering="crispEdges" stroke="rgb(4,94,78)"
+    ><g font-size="25" transform="translate(879,789)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" shape-rendering="crispEdges" stroke="rgb(4,94,78)"
     ><image x="453" y="10" clip-path="url(#clipPath1230)" width="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAQCAYAAAAFzx/vAAABUklEQVR42q2UTW7C
 MBCF30DVSmyqbrtC6hF6AJybcJPaNzEnadjTO8AJukKVusCdl9rEmPTHgZEsO/GM
 v3meSYB6C3HUBYUgGGmjgMkmI2C/Zs+1jtnbAwJH6VsrM1hroUMK4J1On92BIh1k
@@ -22461,10 +22461,10 @@ AAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
       /><text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath1230)" stroke="none"
       >Insensibilidade ao tamanho da amostra</text
     ></g
-    ><g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="&apos;Dialog&apos;" transform="translate(939,749)" stroke="rgb(8,175,147)"
+    ><g fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-size="25" font-family="&apos;Dialog&apos;" transform="translate(1024,749)" stroke="rgb(8,175,147)"
     ><line y2="36" fill="none" x1="0" clip-path="url(#clipPath525)" x2="342" y1="36"
     /></g
-    ><g font-size="25" transform="translate(939,749)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" shape-rendering="crispEdges" stroke="rgb(4,94,78)"
+    ><g font-size="25" transform="translate(1024,749)" fill="rgb(4,94,78)" text-rendering="optimizeSpeed" font-family="&apos;Dialog&apos;" shape-rendering="crispEdges" stroke="rgb(4,94,78)"
     ><image x="308" y="10" clip-path="url(#clipPath525)" width="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAQCAYAAAAFzx/vAAABUklEQVR42q2UTW7C
 MBCF30DVSmyqbrtC6hF6AJybcJPaNzEnadjTO8AJukKVusCdl9rEmPTHgZEsO/GM
 v3meSYB6C3HUBYUgGGmjgMkmI2C/Zs+1jtnbAwJH6VsrM1hroUMK4J1On92BIh1k
@@ -33989,13 +33989,13 @@ AAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
       >Ignorância invencível</text
     ></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(224,218,212)"
-    ><path fill="none" d="M1115 994 C223 994 6174 1166 5282 1166" clip-path="url(#clipPath1)"
-      /><polygon points=" 1115 994 1105 999 1105 989 1115 994" clip-path="url(#clipPath1)" stroke="none"
+    ><path fill="none" d="M1200 994 C308 994 6174 1166 5282 1166" clip-path="url(#clipPath1)"
+      /><polygon points=" 1200 994 1190 999 1190 989 1200 994" clip-path="url(#clipPath1)" stroke="none"
       /><polygon points=" 5282 1166 5292 1161 5292 1171 5282 1166" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(224,218,212)"
-    ><path fill="none" d="M970 1034 C78 1034 6174 1166 5282 1166" clip-path="url(#clipPath1)"
-      /><polygon points=" 970 1034 960 1039 960 1029 970 1034" clip-path="url(#clipPath1)" stroke="none"
+    ><path fill="none" d="M1055 1034 C163 1034 6174 1166 5282 1166" clip-path="url(#clipPath1)"
+      /><polygon points=" 1055 1034 1045 1039 1045 1029 1055 1034" clip-path="url(#clipPath1)" stroke="none"
       /><polygon points=" 5282 1166 5292 1161 5292 1171 5282 1166" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(224,218,212)"
@@ -35404,23 +35404,23 @@ AAAASUVORK5CYII=" height="16" preserveAspectRatio="none"
       /><polygon points=" 1909 1330 1899 1335 1899 1325 1909 1330" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(232,204,255)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(232,204,255)"
-    ><path fill="none" d="M1557 1077 C665 1077 585 1014 1477 1014" clip-path="url(#clipPath1)"
+    ><path fill="none" d="M1557 1077 C665 1077 670 1014 1562 1014" clip-path="url(#clipPath1)"
       /><polygon points=" 1557 1077 1547 1082 1547 1072 1557 1077" clip-path="url(#clipPath1)" stroke="none"
-      /><polygon points=" 1477 1014 1467 1019 1467 1009 1477 1014" clip-path="url(#clipPath1)" stroke="none"
+      /><polygon points=" 1562 1014 1552 1019 1552 1009 1562 1014" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(204,255,255)"
-    ><path fill="none" d="M1115 994 C223 994 78 1034 970 1034" clip-path="url(#clipPath1)"
-      /><polygon points=" 1115 994 1105 999 1105 989 1115 994" clip-path="url(#clipPath1)" stroke="none"
-      /><polygon points=" 970 1034 960 1039 960 1029 970 1034" clip-path="url(#clipPath1)" stroke="none"
+    ><path fill="none" d="M1200 994 C308 994 163 1034 1055 1034" clip-path="url(#clipPath1)"
+      /><polygon points=" 1200 994 1190 999 1190 989 1200 994" clip-path="url(#clipPath1)" stroke="none"
+      /><polygon points=" 1055 1034 1045 1039 1045 1029 1055 1034" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(224,218,212)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(224,218,212)"
-    ><path fill="none" d="M1342 14272 C450 14272 78 1034 970 1034" clip-path="url(#clipPath1)"
+    ><path fill="none" d="M1342 14272 C450 14272 163 1034 1055 1034" clip-path="url(#clipPath1)"
       /><polygon points=" 1342 14272 1332 14277 1332 14267 1342 14272" clip-path="url(#clipPath1)" stroke="none"
-      /><polygon points=" 970 1034 960 1039 960 1029 970 1034" clip-path="url(#clipPath1)" stroke="none"
+      /><polygon points=" 1055 1034 1045 1039 1045 1029 1055 1034" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(255,224,204)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(255,224,204)"
-    ><path fill="none" d="M970 1034 C78 1034 450 14272 1342 14272" clip-path="url(#clipPath1)"
-      /><polygon points=" 970 1034 960 1039 960 1029 970 1034" clip-path="url(#clipPath1)" stroke="none"
+    ><path fill="none" d="M1055 1034 C163 1034 450 14272 1342 14272" clip-path="url(#clipPath1)"
+      /><polygon points=" 1055 1034 1045 1039 1045 1029 1055 1034" clip-path="url(#clipPath1)" stroke="none"
       /><polygon points=" 1342 14272 1332 14277 1332 14267 1342 14272" clip-path="url(#clipPath1)" stroke="none"
     /></g
     ><g font-size="11" stroke-linecap="butt" transform="translate(-176,-227)" fill="rgb(204,255,255)" text-rendering="optimizeSpeed" font-family="&apos;Tahoma&apos;" stroke="rgb(204,255,255)"
