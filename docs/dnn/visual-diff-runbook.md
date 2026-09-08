@@ -13,7 +13,7 @@
 
 ## 0. Prérequis & installation
 
-- **Python 3** (développé/testé 3.12) ; **Pillow** pour le moteur de diff
+- **Python 3** (développé/testé 3.14.3) ; **Pillow** pour le moteur de diff
   (développé 12.2.0) ; **Playwright + Chromium** pour la capture uniquement
   (`--self-test`, `unittest` et le mode `report` n'exigent ni réseau ni
   navigateur).
@@ -79,7 +79,8 @@ seront qualifiées au prochain `--mode report`.
 paramètres complets** (`/Acheter-le-jeu/Detail/catid/140/eid/130/...` — le `Detail` nu
 répond 000 des deux côtés). Désactivées par défaut : `Search-Results`, `Amis`, pages
 compte/paiement (`expect_login_redirect`), `Activity-Feed*` (`expected_status_both:
-404`), wrapper mindmap (fichier statique sans marqueurs DNN).
+404`). Le **wrapper mindmap statique est ACTIF par défaut** (cf. §0 — fichier
+statique sans marqueurs DNN, fraîcheur `unknown`, aucune attente déclarée).
 
 Ajouter une route = éditer `routes.json` (jamais le code). Doublons de slug, paires
 incomplètes et **toute config produisant zéro paire** = erreurs explicites.
@@ -164,10 +165,10 @@ ouvrable dans le rapport (PNG bruts, heatmap).
 |---|---|---|
 | `IDENTIQUE-SOUS-SEUIL` | écart fort ≤ 0,05 % (descriptif — cause non établie par l'outil) | consultable ; pas une exemption de revue |
 | `DELTA-CONNU` | écart sous le seuil **et** deltas du registre §5 présents | vérifier que chaque delta a le sens attendu |
-| `DIFF-A-CLASSER` | écart fort > seuil **sans** delta enregistré | **à revérifier** — queue #1180 |
+| `DIFF-A-CLASSER` | écart fort > seuil, **y compris avec des deltas connus** (le registre §5 ne couvre pas cet écart) | **à revérifier** — queue #1180 |
 | `ECART-DIMENSIONS` | dimensions différentes | écart explicite ; dire quel hôte change |
 | `HTTP-ERROR` / `ATTENDU-HTTP` | erreur HTTP (même déclarée attendue) — aucune comparaison pixel | diagnostiquer ; échec global |
-| `ERROR` | capture impossible/suspecte, fraîcheur violée (stale-suspected), empreinte modifiée, erreur de comparaison | la route n'a PAS de verdict |
+| `ERROR` | capture impossible/suspecte, attentes de marqueurs non satisfaites (la fraîcheur reste toujours `unknown`), empreinte modifiée, erreur de comparaison | la route n'a PAS de verdict |
 | `NO-VERDICT` | nondéterminisme même-hôte ou limite mémoire | re-run ; exclusion documentée si récurrent |
 
 ## 5. Registre des deltas connus (D1–D7)
