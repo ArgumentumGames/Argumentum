@@ -1,55 +1,54 @@
-# VisualTests — the release gate that runs outside CI (#1048)
+# VisualTests — release validation outside CI (#1048)
 
-> **Status:** validated (b) by ai-01 with a condition. The VisualTests project (`Argumentum.AssetConverter.VisualTests.csproj`) is **deliberately excluded from CI** — not as abandoned debt, but as a release gate **relocated** to the only machine where it can actually execute. This document is what makes that relocation honest: it records *why* CI cannot run them, *where* they run instead, and *what* is expected of them.
+## Current execution policy
 
-## Why they are not in CI (measured)
+The build workflow compiles `Argumentum.AssetConverter.VisualTests.csproj` but does not execute it. The documented replacement is a local release-validation run on the regeneration machine before the tag. This records the existing coordination policy, not a new owner decision or an approval of the release.
 
-CI (`.github/workflows/build.yml`) compiles the whole solution but runs `dotnet test` **only** on `Argumentum.AssetConverter.Tests.csproj` (build.yml `Test` step). VisualTests is deliberately excluded — see the comment block in `build.yml` for the rationale, summarised here:
+The suite has two kinds of fixtures:
 
-- VisualTests run **after** the pipeline, against a **populated `Target/`** directory: 9 000+ PNGs + generated PDFs, **5.30 GB** (measured). A fresh CI runner has none of this.
-- Adding VisualTests to CI would therefore **fail every run** (no `Target/`) — red noise that hides real signal.
-- Filtering with `continue-on-error` would be worse: a green check over tests that ran **zero** assertions on an empty `Target/` — the #909 *vert-pour-mauvaise-raison* failure mode, relocated to a separate project. Rejected deliberately (#963 / #957).
-- The cold-start guards (`Assert.Fail("…test verified nothing…")`) make the harness **fail loud, never pass silent**, on a missing or incomplete `Target/`. Measured on a worker without a populated `Target/` (58 MB, 0 PDFs): `0 pass / ~37 fail-loud / 0 skip`. They are alive; CI is simply the wrong place for them.
+- **Generated artefacts:** PDF dimensions, content, bundle integrity, snapshots, card images and geometric detectors require a populated converter `Target/`. A fresh checkout does not supply these files. Missing required inputs must fail loudly, not become a successful empty run.
+- **Committed wrappers:** `MindmapWrapperTests` and `MindmapWrapperCapabilitiesTests` use repository fixtures and Chromium. Their execution on a checkout without generated `Target/` was demonstrated in #1048. Whether to run this subset in CI remains an open decision tracked in [#830](https://github.com/ArgumentumGames/Argumentum/issues/830#issuecomment-5591921233). This documentation change does not change any workflow.
 
-## Where they run instead (the relocation)
+Do not apply `continue-on-error` to make missing artefacts look like a passing release gate. Compilation alone does not establish that these assertions passed.
 
-On the **regeneration machine** — the one that produces the 5.30 GB `Target/` — **before tagging a release**. That is the only environment where the assertions have real artefacts to assert against. Concretely, as part of the release-validation dossier (see `docs/release-dossier/`):
+## Run against the intended artefacts
 
-1. After a full pipeline run produces a fresh, populated `Target/` (Debug or Release density directory).
-2. Run locally:
-   ```bash
-   dotnet test "Generation/Converters/Argumentum.AssetConverter.VisualTests/Argumentum.AssetConverter.VisualTests.csproj" --verbosity normal
-   ```
-3. Record the **pass/fail/skip count** in the release-validation dossier (not merely "executed").
+After the grouped regeneration, run the suite locally:
 
-## What is expected of them
+```bash
+dotnet test "Generation/Converters/Argumentum.AssetConverter.VisualTests/Argumentum.AssetConverter.VisualTests.csproj" --verbosity normal --logger trx
+```
 
-A **triplet** recorded in the release dossier:
+Record the actual paths selected by the tests. The converter writes under `Generation/Converters/Argumentum.AssetConverter/bin/{Debug|Release}/net9.0-windows/Target/`, not `<repoRoot>/Target/`. A build configuration alone does not prove which artefacts a test reads. Debug and Release outputs are independent and may have different ages.
 
-> `dotnet test VisualTests` → N pass / N fail / N skip, run on `<machine>` against `Target/` dated `<YYYY-MM-DD>`, density `<N>`.
+The dossier must identify the machine, code revision, generated inputs and run, artefact paths and dates, density, test filter if any, and the actual pass/fail/skip counts. A filtered run is evidence only for that subset, never the full suite.
 
-- **Not** "executed ✓" — a bare "executed" is the same hole as the #909 no-op. The count is what makes it a gate.
-- A non-zero **skip** is acceptable *only* if each skipped test is named and the reason recorded (e.g. GUI/infrastructure dependency, dormant Magick.NET path). An unexplained skip count is treated as a failed gate.
-- A non-zero **fail** blocks the tag until either fixed or triaged as a pre-existing known-fail (the one current known-fail is the OWLSharp round-trip bug tracked under #133, which is in `Tests`, not `VisualTests`).
+Capture the test process's own exit code. In Bash, an unguarded `dotnet test ... | tail` reports the final command's exit code instead. Prefer no pipe, or capture `PIPESTATUS[0]` immediately. Retain the test report and read its counts rather than inferring them from an exit code.
 
-## Licence gate — `Verify.ImageSharp` is AGPL-3.0-only, and this gate wakes it up
+## Release acceptance
 
-`Verify.ImageSharp 5.0.1` (referenced by `Argumentum.AssetConverter.VisualTests.csproj`) declares `<license type="expression">AGPL-3.0-only</license>` — strong copyleft. This was surfaced as a **pre-existing mislabel** (the doc previously read "MIT") by the #1051 licence re-verification; it was true at the prior version too. The correction is recorded in `docs/licensing/dependency-license-inventory.md` §2.
+- Record the real **pass/fail/skip triplet**, not merely “executed”. A crash or timeout without a complete report is an incomplete gate.
+- Name every skipped test and its reason. Unexplained skips leave the gate unqualified.
+- Failures block acceptance until corrected or explicitly dispositioned with their evidence and authority. Historical known-failure lists are not current exemptions.
+- **Never approve baselines automatically.** Explain and measure a snapshot difference before accepting it. Compare PDF pagination with the current `PdfDeckCountContractTests` contract and establish composition separately. An old baseline is not sufficient authority for a new expected value.
+- Detector output does not replace the coordinator's visual examination or the final human sign-off. The release dossier remains tracked in [#134](https://github.com/ArgumentumGames/Argumentum/issues/134).
 
-**State today (measured, #1051): dormant.** The only live `Verify` chain runs through `Verify.Xunit` (**MIT**) — `PdfSnapshotTests` serialises a metadata object to **text**, which produced the 12 committed `.verified.txt` baselines. The `Verify.ImageSharp` converter (PNG comparison) has exactly **one call site**, `FallacyCardTests.cs:108` (`await Verifier.Verify(imageBytes, "png")` in `[Fact] Render_NominalCard`), and **zero `.verified.png` baselines** (`git ls-files`): the AGPL converter has never compared an image. The package is never in CI.
+The artefact checks complement the main suite's generation and assembly tests. Behavioural wrapper checks exercise the delivered viewer. Neither a passing build nor a source-text check substitutes for these executions.
 
-**But this very gate changes that — *if* the test reaches the converter.** Relocating VisualTests to the release door (this document) was expected to mean the first pre-tag run would execute `FallacyCardTests.Render_NominalCard` against a populated `Target/`, and for the **first time** the AGPL converter would compare a rendered card image, producing the first `.verified.png` to approve. **That expectation does not hold as written**: `FallacyCardTests.Render_NominalCard` does not read `Target/` — it performs a **live harvest** (`FallacyCardTests.cs:65-72`, `LoadHarvestsAsync` → Chromium → CardPen GitHub Pages, `UseLocalCardpen:False`), generating its image from a `TestData` CSV over the network. A populated `Target/` therefore does **not** cause this test to run or produce a `.verified.png`; the deadline below is **not armed by a populated `Target/`**. The card it harvests (`chewbacca-defense_face.png`) is test-only — not a pipeline artefact (`git ls-files` 0 hit, absent from a populated `Target/`). Retiring the assertion now *because it is dormant* would delete the only pixel-level check at the exact moment we are deciding to wake it — the failure mode this project rejects everywhere else (#1051 → #1054) — but waking it requires re-pointing the test onto artefacts (design in #1067, option α) **or** confining its `TargetClosedException` (the live-harvest crash that currently disables the host, #1067 root cause). Until one of those lands, the first `.verified.png` is not produced by a pre-tag run.
+## Historical evidence and resolved prerequisites
 
-**The licence decision therefore has a dated deadline, not a deferred one.** The moment to obtain jsboige's licence answer for `Verify.ImageSharp` is the **approval of the first `.verified.png`** — not before (the dependency costs nothing while dormant), and not after (approving the snapshot activates the AGPL dependency inside the release-validation chain). The operator who runs this gate the first time must, before approving that baseline, either (a) have a recorded jsboige decision to accept AGPL-3.0-only on a test-only path, (b) have swapped the converter for a permissive alternative, or (c) hold a commercial licence — and record which.
+Measurements below describe their recorded runs, not the current suite size, runtime or release status. Re-measure before planning execution or quoting coverage.
 
-> **Note (2026-08-12, #1067):** PR #1069 swaps `Verify.ImageSharp 5.0.1` (AGPL-3.0) for a direct `SixLabors.ImageSharp 3.1.12` (Six Labors Split License v1.0, already transitive) reference, to resolve the version-conflict that disabled the 12 `PdfSnapshotTests` baselines (#1067). If #1069 merges, `Verify.ImageSharp` leaves the dependency graph and this entire licence-gate section becomes moot — the AGPL deadline is disarmed by removal, not by approval. Until #1069's status is final, the section above remains the governing text for master. Separately, re-pointing `FallacyCardTests` onto artefacts (#1067 design, option α) is what would actually produce the first `.verified.png`; without it, the deadline above is armed only by that future change, not by a pre-tag run.
+| Date | Evidence recorded in #1048 | Scope |
+|---|---|---|
+| 2026-08-10 | Generated inputs measured at 5.30 GB | One historical output tree, not a fixed requirement |
+| 2026-08-11 | 98 cases, 85 pass, 13 fail, about 1 h 33 | Before subsequent harness corrections |
+| 2026-08-16 | 98 cases, 93 pass, 5 fail, 3 min 11 | Complete run after harness changes; not a release PASS |
+| 2026-08-24 report | 38 pass, 72 fail, 0 skip on checkout without generated artefacts | 12 wrapper declarations passed; 30 artefact-dependent declarations failed loudly |
+| 2026-08-30 | 47 declarations and 118 executable cases reported | Later inventory, not a new execution or current count |
 
-**Honest framing, not a reassuring one.** AGPL-3.0 attaches its obligations to **distribution of the work**. A test-only NuGet package that is never shipped is not distributed merely because the repository is public, so the risk is low — but "low" is not "none", which is why this section states a dated deadline rather than a closed conclusion. This does not block the (b) decision or the tag; it attaches a licence obligation to the first concrete artefact that triggers it.
+- [PR #1069](https://github.com/ArgumentumGames/Argumentum/pull/1069), merged on 2026-08-12, replaced `Verify.ImageSharp 5.0.1` with a direct `SixLabors.ImageSharp 3.1.12` reference. The old conditional AGPL gate for the removed package is no longer applicable. This is removal, not approval of AGPL or a blanket licence clearance. Consult `docs/licensing/dependency-license-inventory.md` for the remaining dependencies.
+- `FallacyCardTests` no longer performs the historical live CardPen harvest. The current source probes `bin/{Release,Debug}/net9.0-windows/Target/fr/Images/density-*/Fallacies`. The incorrect repository-root anchor introduced by #1072 was subsequently corrected.
+- [Audit #1046](https://github.com/ArgumentumGames/Argumentum/issues/1046#issuecomment-5393124594) closed on 2026-08-24. The previously missing zero-scan guards are present in `VisualQaHarness`: each relevant detector fails on zero scanned images, and the full-grid test fails on zero total images. This resolves the documented empty-scan gap, not every possible incomplete-dataset defect.
 
-## Coverage note (why this gate carries real weight)
-
-The VisualTests suite covers properties of the **generated artefacts** that the unit-test project (`Tests.csproj`) does **not** cover: PDF dimensions (A0/A4/Poker/Tarot/Print&Play per language), page counts, minimum file sizes, footer-collision checks, and `Verify` snapshots. `Tests.csproj` covers the **assembly** logic (PdfAssembler, PdfDisposeContract, PrintAndPlayDocument). The two are complementary, not redundant — dropping VisualTests would lose the only release-gate on the dimensions and content of the actually-generated PDFs.
-
-## Known gap (post-tag triage, #1046)
-
-A self-audit of the test suite (#1046, 41 findings) flagged that the VisualTests cold-start guards cover *"`Target/` absent"* but **not uniformly** *"`Target/` present but a subtree is empty"* — 4 of the 6 `VisualQaHarness` detectors would pass green if their specific CardSet subtree produced no files. This is precisely the hole through which a false-green would return the day someone re-enables these tests in CI against a partial `Target/`. Named here rather than buried in the 41 findings, so it is addressed in the post-tag triage. It does **not** change the (b) decision above.
+The four measurement questions in #1048 are separate from final release acceptance and from the still-open decision to automate wrapper tests in CI.

@@ -19,7 +19,7 @@ namespace Argumentum.AssetConverter.VisualTests
     /// Visual VERDICTS (is the card "good" or "bad") remain the exclusive lane
     /// of ai-01 / jsboige (never delegated to automated tests).
     ///
-    /// Tests skip silently if Target/ doesn't exist (CI cold-start, no images).
+    /// Tests fail loudly when required generated artifacts are missing.
     /// </summary>
     public class VisualQaHarness : IDisposable
     {
