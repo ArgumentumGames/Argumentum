@@ -1,0 +1,91 @@
+{
+  "_comment": "Route pairs for dnn-visual-diff. Provenance: production sitemap (sitemap.aspx, 18 URLs, measured 2026-09-08) + #1180/#1066 measurements. Marker semantics: expected_markers compare the observed build markers against what was declared — outcome 'matched' / 'mismatched' / 'none-declared' (an empty dict declares NOTHING). This is NOT a freshness protocol: freshness stays 'unknown' in every case (no independent deployment proof exists client-side); 'mismatched' is an explicit route error. Key syntax: 'field>' / 'field=' / 'field!=' with the operand as value (e.g. {\"tosic_sexycontent>\": \"0\"}).",
+  "hosts": {
+    "prod": "https://www.argumentum.games",
+    "preprod": "https://dnn.argumentum.myia.io"
+  },
+  "pairs": [
+    {
+      "name": "home",
+      "prod_path": "/",
+      "note": "sitemap; cb rewritten to path segment here (measured 301 -> /Argumentum/cb/<n>)",
+      "expected_markers": {"prod": {"tosic_sexycontent>": "0"}, "preprod": {"tosic_sxc>": "0"}},
+      "enabled": true
+    },
+    {
+      "name": "argumentation",
+      "prod_path": "/Argumentation",
+      "expected_markers": {"prod": {"tosic_sexycontent>": "0"}, "preprod": {"tosic_sxc>": "0"}},
+      "enabled": true
+    },
+    {
+      "name": "regles",
+      "prod_path": "/R%C3%A8gles",
+      "note": "accented path — percent-encoded; E2 reference page (strong 0.0039% vs inverse 20.11%, Aug 2026 one-shot measurement)",
+      "expected_markers": {"prod": {"tosic_sexycontent>": "0"}, "preprod": {"tosic_sxc>": "0"}},
+      "enabled": true
+    },
+    {
+      "name": "telechargements",
+      "prod_path": "/T%C3%A9l%C3%A9chargements",
+      "note": "accented path — percent-encoded; carries the 5 download artifacts (all 404 on preprod, #1066)",
+      "expected_markers": {"prod": {"tosic_sexycontent>": "0"}, "preprod": {"tosic_sxc>": "0"}},
+      "enabled": true
+    },
+    {
+      "name": "actus",
+      "prod_path": "/actus",
+      "expected_markers": {"prod": {"tosic_sexycontent>": "0"}, "preprod": {"tosic_sxc>": "0"}},
+      "enabled": true
+    },
+    {
+      "name": "search-results",
+      "prod_path": "/Search-Results",
+      "enabled": false,
+      "note": "sitemap page; disabled by default (results page content depends on query)"
+    },
+    {
+      "name": "amis",
+      "prod_path": "/Amis",
+      "enabled": false,
+      "note": "sitemap page"
+    },
+    {
+      "name": "produit-detail",
+      "prod_path": "/Acheter-le-jeu/Detail/catid/140/eid/130/le-jeu-de-cartes-argumentum",
+      "note": "ONLY rendering form of the product page (bare /Detail answers 000 on both hosts, #1180 E5); renders the no-stock state; 0 2sxc blocks (shop module); payment path untestable until restock (#1188)",
+      "enabled": true
+    },
+    {
+      "name": "achat-checkout",
+      "prod_path": "/Acheter-le-jeu/Checkout",
+      "expect_login_redirect": true,
+      "enabled": false,
+      "note": "expected: identical login-redirect behavior on both hosts is the comparable signal"
+    },
+    {
+      "name": "achat-paiement",
+      "prod_path": "/Acheter-le-jeu/Paiement",
+      "expect_login_redirect": true,
+      "enabled": false
+    },
+    {
+      "name": "mon-compte-commandes",
+      "prod_path": "/Acheter-le-jeu/Mon-Compte/Mes-Commandes",
+      "expect_login_redirect": true,
+      "enabled": false
+    },
+    {
+      "name": "activity-feed",
+      "prod_path": "/Activity-Feed",
+      "expected_status_both": 404,
+      "enabled": false,
+      "note": "404 on production itself (measured #1066) — documented, not a cutover gap; still a global failure (ATTENDU-HTTP) by design"
+    },
+    {
+      "name": "mindmap-fallacies-fr",
+      "prod_path": "/fallacies_fr.html",
+      "note": "static mindmap wrapper at site root (16 canonical URLs exist: {fallacies,virtues}_{8 langs}.html); #1066: 404 on preprod; owner asked (2026-09-08) these point at the canonical deployed URLs; NO expected_markers: freshness stays 'unknown' (static file, no DNN markers)"
+    }
+  ]
+}
