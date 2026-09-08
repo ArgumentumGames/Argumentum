@@ -134,8 +134,11 @@ namespace Argumentum.AssetConverter.VisualTests
         private static readonly string _textStatsJs =
             @"() => {
                 const texts = Array.from(document.querySelectorAll('#mindmap svg text'));
+                // Rendered (screen) heights: getBoundingClientRect applies the svg-pan-zoom viewport
+                // CTM, getBBox alone would return user units and read green even at fit-to-viewport
+                // scale (the exact false negative the #830 capacity-1 refinement closes).
                 const heights = texts
-                    .map(t => { try { return t.getBBox().height; } catch (e) { return 0; } })
+                    .map(t => { try { return t.getBoundingClientRect().height; } catch (e) { return 0; } })
                     .filter(v => v > 0 && v < 500)
                     .sort((a, b) => a - b);
                 if (!heights.length) return [0, 0, 0];
@@ -205,6 +208,17 @@ namespace Argumentum.AssetConverter.VisualTests
                 var (scaleStable, _) = await WaitForViewportSettledAsync(page);
                 Assert.True(scaleStable > 0, $"no positive settled scale for {lang}: {scaleStable}");
 
+                // Readability measurement. Refined criterion (#830, jsboige 2026-08-10): once the
+                // scale has settled, the median RENDERED text height must reach 10px — this is the
+                // member that separates "recentred on the root, taxonomy readable" from "whole map
+                // fits the window, nothing reads" (fit-only settles around 1-4px). Measured BEFORE
+                // the reset click: reset drops the viewport to fit-to-viewport, and measuring after
+                // it would assert readability on exactly the unreadable state.
+                var stats = await page.Locator("#mindmap svg").EvaluateAsync<double[]>(_textStatsJs);
+                var count = stats.Length >= 1 ? stats[0] : 0;
+                var median = stats.Length >= 2 ? stats[1] : 0;
+                var readable = stats.Length >= 3 ? stats[2] : 0;
+
                 // Reference: reset() returns the library's ORIGINAL state. With fit disabled the
                 // original zoom equals the fit-to-viewport scale computed from the SVG viewBox.
                 await page.ClickAsync("#svg-pan-zoom-reset-pan-zoom");
@@ -219,14 +233,12 @@ namespace Argumentum.AssetConverter.VisualTests
                 Assert.True(ratio >= 1.5,
                     $"initial zoom must exceed fit by ≥1.5× (recentring #831), got {ratio:F2} for {lang}");
 
-                // Readability measurement (information + a very permissive floor; the hard gate is
-                // the ratio above. Font availability in headless can shift absolute heights).
-                var stats = await page.Locator("#mindmap svg").EvaluateAsync<double[]>(_textStatsJs);
-                var count = stats.Length >= 1 ? stats[0] : 0;
-                var median = stats.Length >= 2 ? stats[1] : 0;
-                var readable = stats.Length >= 3 ? stats[2] : 0;
                 _output.WriteLine($"[{lang}] scaleStable={scaleStable:F5} fit={scaleFit.Value:F5} " +
-                    $"ratio={ratio:F2} textVisible={count} medianHeight={median:F2} readable(≥9px)={readable}");
+                    $"ratio={ratio:F2} textVisible={count} medianRenderedHeight={median:F2}px readable(≥9px)={readable}");
+                Assert.True(median >= 10.0,
+                    $"settled median rendered text height must be >= 10px for {lang}: {median:F2}px " +
+                    $"(scale {scaleStable:F5}, fit {scaleFit.Value:F5} — if this fails with ratio OK, " +
+                    $"check font rendering before declaring a recentring regression)");
             }
             finally
             {
