@@ -135,7 +135,7 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 | Aspect | Debug (`dotnet run`) | Release (`-c Release`) |
 |--------|----------------------|------------------------|
 | Print&Play image format | JPEG Q=85 (~71 MB Tarot) | PNG lossless (~222 MB) |
-| Per-image CMYK conversion | Disabled (RGB) | Enabled (but see oxymore below) |
+| Per-image CMYK conversion | Disabled (RGB) | **Disabled since #1111** (RGB — round-trip retired, see oxymore below) |
 | CardPen source | Local IIS (`UseLocalCardpen=true` — default for BOTH modes) | same local IIS — ⚠️ flipping to `false` (GitHub Pages) breaks regen, see #629 note below |
 | Template paths | `JsonFilePathDebug` | `JsonFilePathRelease` |
 | Harvest output | Debug density directory | Release density directory |
@@ -154,7 +154,7 @@ dotnet run -c Release --project Generation/Converters/Argumentum.AssetConverter/
 
 Ghostscript must be resolvable on `PATH`; if it is not, the stage skips every PDF **with a warning rather than crashing** — a silent-RGB failure mode, so check the log, not just the exit code.
 
-**⚠️ CMYK oxymore (resolved by #632)**: the per-image `ConvertToCmyk` (`DocumentCardSet.cs`) runs under Release, but the image is then written as **PNG** which cannot carry CMYK — Magick re-encodes to RGB on the write, so the per-image conversion is effectively a no-op for the PNG path. The bundle therefore ships **RGB-300-lossless** (FlateDecode, 0 DeviceCMYK — verified via `pdfimages -list`). The **authoritative CMYK path is the Ghostscript post-process** (`PdfCmykPostProcess`, new flag `ConverterMode.PdfCmykPostProcess = 1<<15`): it converts the final PDF to DeviceCMYK and embeds the SWOP OutputIntent. See `PdfCmykPostProcess/README.md`.
+**⚠️ CMYK oxymore (resolved by #632, round-trip retired by #1111)**: the per-image `ConvertToCmyk` (`DocumentCardSet.cs`) used to run under Release, but the image is then written as **PNG** which cannot carry CMYK — Magick re-encodes to RGB on the write, so the per-image conversion was effectively a no-op for the PNG path that still shifted pixels through the sRGB→CMYK→RGB round-trip. Since #1111, `ConvertToCmykRelease` defaults to **false** and a standard Release run writes RGB PNGs at every stage; the pixel delta vs the GO v0.9.0 bundle is covered by a fresh visual verdict on the next regen. The **authoritative CMYK path is the Ghostscript post-process** (`PdfCmykPostProcess`, new flag `ConverterMode.PdfCmykPostProcess = 1<<15`): it converts the final PDF to DeviceCMYK and embeds the SWOP OutputIntent. See `PdfCmykPostProcess/README.md`.
 
 **Override**: Set `ForceReleaseParams = true` in JSON config to use Release params in Debug builds.
 

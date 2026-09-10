@@ -68,8 +68,9 @@ pipeline.
 
 ## Legacy note
 
-The per-image `ConvertToCmyk` (`DocumentCardSet.ConvertToCmykRelease`) is a **no-op for the PNG
-output path** (CMYK is lost at the PNG write). It is left in place for now (removing it is a
-behavioral change — sRGB→CMYK→RGB round-trip color shift — that needs a visual verdict on the GS
-bundle first). This GS post-process is the authoritative CMYK path. Flipping
-`ConvertToCmykRelease=false` is deferred to a follow-up after the GS bundle is visually validated.
+The per-image `ConvertToCmyk` (`DocumentCardSet.ConvertToCmykRelease`) was a **no-op for the PNG
+output path** (CMYK is lost at the PNG write). Since #1111 its default is `false`: the GS bundle
+was visually validated (PASS, 80/80 DeviceCMYK), so the sRGB→CMYK→RGB round-trip was retired from
+the Release generation path ahead of the next full regen, whose pixel delta is covered by a fresh
+visual verdict. This GS post-process is the authoritative CMYK path. The `ImageHelper.ConvertToCmyk`
+extension itself remains for `BatchImageConverter`.
