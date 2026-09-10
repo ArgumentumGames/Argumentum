@@ -18,8 +18,9 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
     /// but both now default to false.
     ///
     /// These tests pin: (1) a fresh DocumentCardSet resolves to RGB (no per-image conversion) in
-    /// both modes — a drifted default would silently reintroduce the pixel-shifting round-trip the
-    /// GO v0.9.0 bundle predates; (2) the resolver stays a pure passthrough for explicit values.
+    /// both modes — a drifted default would silently reintroduce the retired pixel-shifting
+    /// round-trip (the GO v0.9.0 bundle was produced WITH it; the next bundle is validated
+    /// WITHOUT it); (2) the resolver stays a pure passthrough for explicit values.
     ///
     /// Deterministic across build modes: the <c>ForceDebugParams</c>/<c>ForceReleaseParams</c> flags
     /// drive <c>UseDebugParams</c> directly, so the assertions hold whether the test assembly is

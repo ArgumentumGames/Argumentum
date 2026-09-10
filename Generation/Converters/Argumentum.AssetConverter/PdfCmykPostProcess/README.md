@@ -7,10 +7,11 @@ existing bundle **without re-harvesting**.
 
 ## Why this exists
 
-The per-image `ConvertToCmyk` pixel conversion (`ImageHelper.cs`) runs under `-c Release`, but
-the image is then written as **PNG** (`DocumentConfig.ImageFormat = MagickFormat.Png`), and PNG
-does not carry a CMYK profile — Magick silently re-encodes to RGB on the PNG write. QuestPDF has
-no CMYK support either. So the Release bundle shipped as RGB-300-lossless, with **0 DeviceCMYK**
+The per-image `ConvertToCmyk` pixel conversion (`ImageHelper.cs`) **used to run** under
+`-c Release` (default `ConvertToCmykRelease = true`, flipped to `false` by #1111): the image was
+written as **PNG** (`DocumentConfig.ImageFormat = MagickFormat.Png`), and PNG does not carry a
+CMYK profile — Magick silently re-encodes to RGB on the PNG write. QuestPDF has no CMYK support
+either. So every pre-#1111 Release bundle shipped as RGB-300-lossless, with **0 DeviceCMYK**
 images (verified by ai-01 via `pdfimages -list`, 2026-07-01).
 
 The real CMYK path is therefore a **post-process on the final PDF**, not on the source images.
