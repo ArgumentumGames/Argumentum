@@ -7,7 +7,9 @@ The build workflow compiles `Argumentum.AssetConverter.VisualTests.csproj` but d
 The suite has two kinds of fixtures:
 
 - **Generated artefacts:** PDF dimensions, content, bundle integrity, snapshots, card images and geometric detectors require a populated converter `Target/`. A fresh checkout does not supply these files. Missing required inputs must fail loudly, not become a successful empty run.
-- **Committed wrappers:** `MindmapWrapperTests` and `MindmapWrapperCapabilitiesTests` use repository fixtures and Chromium. Their execution on a checkout without generated `Target/` was demonstrated in #1048. Whether to run this subset in CI remains an open decision tracked in [#830](https://github.com/ArgumentumGames/Argumentum/issues/830#issuecomment-5591921233). This documentation change does not change any workflow.
+- **Committed wrappers:** `MindmapWrapperTests` and `MindmapWrapperCapabilitiesTests` use repository fixtures and Chromium. Their execution on a checkout without generated `Target/` was demonstrated in #1048, and they are now executed by the dedicated workflow `.github/workflows/mindmap-wrapper-behaviour.yml` on every pull request to `master` and every push to `master` — the #830 automation decision, implemented 2026-09-11. That job runs only this subset (`--filter "FullyQualifiedName~MindmapWrapper"`); the suites provision Chromium themselves, and the job carries no `continue-on-error`.
+
+Baseline recorded when the workflow was wired (2026-09-11, master `2ece0eb8`): **38 cases, 0 failed, 0 skipped, 2 m 56 s**. A red run means the committed-wrapper behaviour regressed; a change to that count is a change of instrument and belongs in this document.
 
 Do not apply `continue-on-error` to make missing artefacts look like a passing release gate. Compilation alone does not establish that these assertions passed.
 
@@ -51,4 +53,4 @@ Measurements below describe their recorded runs, not the current suite size, run
 - `FallacyCardTests` no longer performs the historical live CardPen harvest. The current source probes `bin/{Release,Debug}/net9.0-windows/Target/fr/Images/density-*/Fallacies`. The incorrect repository-root anchor introduced by #1072 was subsequently corrected.
 - [Audit #1046](https://github.com/ArgumentumGames/Argumentum/issues/1046#issuecomment-5393124594) closed on 2026-08-24. The previously missing zero-scan guards are present in `VisualQaHarness`: each relevant detector fails on zero scanned images, and the full-grid test fails on zero total images. This resolves the documented empty-scan gap, not every possible incomplete-dataset defect.
 
-The four measurement questions in #1048 are separate from final release acceptance and from the still-open decision to automate wrapper tests in CI.
+The four measurement questions in #1048 are separate from final release acceptance. The decision to automate the committed-wrapper subset in CI was taken in #830 and is implemented by `.github/workflows/mindmap-wrapper-behaviour.yml`; it replaces neither the artefact-dependent release gate above nor the coordinator's visual verdict.

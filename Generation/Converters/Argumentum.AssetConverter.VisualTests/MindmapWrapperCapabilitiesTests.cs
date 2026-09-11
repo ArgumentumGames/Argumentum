@@ -61,8 +61,26 @@ namespace Argumentum.AssetConverter.VisualTests
             _output = output;
         }
 
+        private static bool _chromiumEnsureAttempted;
+
+        /// <summary>
+        /// A CI runner carries no preinstalled browser, so the suite provisions Chromium itself
+        /// once per process — the pattern the Tests suites already use (ImageConversion,
+        /// PdfAssembly). Keeping it here rather than in the workflow leaves the suite runnable on
+        /// any checkout, and keeps a failed download a loud test failure, never a silent skip.
+        /// </summary>
+        private static void EnsureChromium()
+        {
+            if (_chromiumEnsureAttempted) return;
+            _chromiumEnsureAttempted = true;
+            if (Microsoft.Playwright.Program.Main(new[] { "install", "chromium" }) != 0)
+                throw new InvalidOperationException(
+                    "Playwright chromium install failed — the behavioural wrapper suite cannot run.");
+        }
+
         public async Task InitializeAsync()
         {
+            EnsureChromium();
             _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
             _tempDir = Path.Combine(Path.GetTempPath(), "argumentum-mm-caps-" + Guid.NewGuid().ToString("N"));
