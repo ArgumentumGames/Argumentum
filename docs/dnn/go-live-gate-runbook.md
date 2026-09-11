@@ -6,8 +6,9 @@
 > - `[po-2023-EXEC]` — worker execution (repo/PR only, never prod mutation)
 > - `[ai-01-VERDICT]` — visual/live validation gate (only ai-01 declares go-live)
 > **Secret-safe HARD**: this runbook references secrets **by location only**. Zero key value, zero SQL password, zero connection string. It *says* "rotate the key" / "verify the connection string in backup file X before restore"; it never *contains* a secret. GitGuardian must pass.
+> **Recette gate (noted 2026-09-11)**: go-live is ultimately gated by the **three-human recette tracked in #1180** (jsboige + Adeline + Thomas). This runbook's A-F sequence is the operational path; #1180's parcours is the human door. The two stay distinct — an agent verdict or a historical proof never substitutes for the recette, and vice-versa.
 > **Author**: po-2023 (dispatch ai-01 `msg-20260723T024927-zwcvck`, primaire).
-> **Cross-ref**: #131, #132 (deployment, CLOSED), #811 (dependabot assessment §below).
+> **Cross-ref**: #131 (platform arc, OPEN), #132 (deployment, CLOSED), #1180 (recette), #811 (dependabot assessment §below — MERGED 2026-07-25).
 
 ---
 
@@ -18,9 +19,9 @@ These 4 decisions gate the release. None is resolvable by a worker.
 | # | Arbitration | Recommendation | Where |
 |---|-------------|----------------|-------|
 | 1 | **machineKey rotation** (server-side, the ONLY real fix for the public exposure) | **Do FIRST, before any public traffic.** Pre-go-live = near-zero disruption cost. | [`machinekey-rotation-scrub-runbook.md`](machinekey-rotation-scrub-runbook.md) (#854) |
-| 2 | **skin `tabid=138`** — Opt 1 (gate tag, fix in v0.9.1) vs Opt 2 (scope creep now) | **Opt 1** — the HTTP 500 is platform-version-independent and non-blocking for the tag. | [`skin-tabid138-diagnostic-runbook.md`](skin-tabid138-diagnostic-runbook.md) (#851) |
+| 2 | **skin `tabid=138`** — Opt 1 (gate tag, fix in v0.9.1) vs Opt 2 (scope creep now) | **Opt 1** — the HTTP 500 is platform-version-independent and non-blocking for the tag. **✅ RESOLVED 2026-08-24** (skin 2c served — `2shinebs5` ×4, `Xcillion` ×0, turnkey pre-flight snapshot; corroborated 2026-09-11: home `tabid=138` serves 200). The choice is moot at runtime. | [`skin-tabid138-diagnostic-runbook.md`](skin-tabid138-diagnostic-runbook.md) (#851) |
 | 3 | **#681 2sxc App export** — hard-unblocker for DNN i18n | jsboige (content lives in live 2sxc DB; no worker can do it). | #681 (OPEN) |
-| 4 | **T&A return #802** + release dossier validation | Gate for the v0.9.0 tag. | release dossier [ASK] (po-2023) |
+| 4 | **T&A return #802** + release dossier validation | Gate for the release tag — re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06, #999; see [`../release-dossier/DECISION-v2.0.0-jsboige.md`](../release-dossier/DECISION-v2.0.0-jsboige.md)). | release dossier [ASK] (po-2023) |
 
 > **Cluster state (ai-01, 2026-07-23 04:52)**: the autonomous runway is quasi-exhausted — the release + go-live cannot advance without these decisions. The 3 runbooks are pre-armed for copy-paste execution at GO.
 
@@ -47,15 +48,15 @@ The security headers (CSP, HSTS commented, X-Frame-Options, nosniff, Permissions
 
 ### Step D — `[ai-01-VERDICT]` + `[jsboige-DECISION]`: DNN 10.3.2 readiness
 - **Code-side = low-risk & essentially complete** in repo-runtime: see [`dnn10-migration-readiness.md`](dnn10-migration-readiness.md). Telerik migration surface = **ZERO** (0/206 DLLs, `Telerik.Web.UI.dll` absent, 0 `.ascx`); skin objects DNN 10 standard; Razor APIs stable; OpenStore Telerik-free.
-- **Remaining = runtime/ops**: runtime smoke-test at GO + skin `tabid=138` (Arbitration 2, Opt 1 = v0.9.1).
+- **Remaining = runtime/ops**: runtime smoke-test at GO (the skin `tabid=138` item is RESOLVED since 2026-08-24 — Arbitration 2 above).
 
 ### Step E — `[jsboige-DECISION]`: 2sxc / #681 (DNN i18n hard-unblocker)
 - The localization content lives in the **live 2sxc DB**, not the repo. The repo-side inventory (`docs/dnn-localization/457-site-content-type-inventory.md`) covers 5 content-types A-E; only A+B (10 UI-string keys) + C (2 HTML pages) are repo-extractable — the bulk (D+E) is DB-only and needs the portal/2sxc export = **#681 (jsboige)**.
-- Not blocking the v0.9.0 tag (site can launch FR+partial EN); blocks the 8-language site localization.
+- Not blocking the release tag (**v2.0.0** since #999 — site can launch FR+partial EN); blocks the 8-language site localization.
 
 ### Step F — `[ai-01-VERDICT]`: deployment + live verdict (#132, CLOSED as the ops vehicle)
 - Deploy per #132 runbook (ops VPS, jsboige only).
-- **`ai-01-VERDICT`**: live site `dnn.argumentum.myia.io` — homepage 200, `/Argumentum` + `/Règles` render 2sxc content, 0 `JsonOptions`/conn-string error, `tabid=138` (post-fix Opt 1) renders.
+- **`ai-01-VERDICT`**: live site `dnn.argumentum.myia.io` — homepage 200, `/Argumentation` + `/Règles` render 2sxc content, 0 `JsonOptions`/conn-string error, `tabid=138` (home, resolved 2026-08-24) renders.
 - **Only ai-01 declares go-live**; po-2023 prepares/executes repo-side only.
 
 ---
@@ -80,6 +81,7 @@ The security headers (CSP, HSTS commented, X-Frame-Options, nosniff, Permissions
 - Patch bump (semver patch, no API change). **Zero prod runtime path** — the served skin never loads it.
 - **Recommendation: merge** (low-risk hygiene). Not blocking v0.9.0 / go-live.
 - **Not merging as a worker** — verdict merge = ai-01/jsboige (DNN-gated territory). Comment on #811 already posted (2026-07-22).
+- **✅ Outcome (verified 2026-09-11)**: #811 **MERGED 2026-07-25** — the recommendation was executed. Nothing remains here for the go-live sequence.
 
 ---
 

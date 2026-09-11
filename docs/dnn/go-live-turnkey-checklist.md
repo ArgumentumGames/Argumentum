@@ -79,6 +79,27 @@
 > ### Release de-coupling
 > The 26/06 framing "release COUPLÉE au site" is **revised**: the DNN prod go-live (B4) is a **jsboige ops VPS task,
 > de-coupled from the v0.9.0 print release** (worker reco, ai-01 concur). The tag v0.9.0 does not block on B4.
+> **Version note (2026-09-11)**: the release tag has since been re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06,
+> #999 — [`../release-dossier/DECISION-v2.0.0-jsboige.md`](../release-dossier/DECISION-v2.0.0-jsboige.md)); the
+> de-coupling itself is unchanged.
+
+> ## ⚠️ POST-SNAPSHOT EVENTS (2026-08-28 → 2026-09-11) — the snapshot above is historical-of-its-date
+>
+> Per the coordinator's 08/09 doctrine on #1180: positive checks from August are **historical proofs, not a
+> validation of the current state**. Since the 2026-08-24 snapshot:
+> - **28/08**: a deploy rewrote `Default.aspx` to the 9.11.1 variant on the 10.3.2 install → site-wide NRE/500
+>   ([#1244](https://github.com/ArgumentumGames/Argumentum/issues/1244)). The snapshot's "EventLog 0/day since
+>   21/08" row stopped being true that day (305 `DefaultPage.OnInit` NRE on 08/09 before repair).
+> - **08/09 23:43**: repaired — `Default.aspx` 10.x pose (GO jsboige; #1244 `5592291573`); post-pose smoke 6
+>   routes 200/200 (ai-01, #1180 comment).
+> - **09/09 18:30**: jQuery 3.7.1 + jQuery-UI 1.14.1 library folders posed (#1244 `5605297080`) — the two 404s
+>   ai-01 measured on 08/09 23:55 are resolved.
+> - **11/09 re-measure (read-only)**: 5 public pages 200 with freshness proven (3× `tosic.sxc` marker each,
+>   cache-busté); product page 200 in the requalified no-stock state (É5, #1180); jQuery/jQuery-UI 200
+>   byte-exact. **Residuals** (pre-existing, carried by the #1180 recette): 2 content-image 404s
+>   (`Portals/1/Images/github-mark.png`, `Portals/1/adam/News5/…/Open-Store.png`) + 2× 2sxc
+>   `null.setAttribute` console errors.
+> - **Current-state evidence holder = #1180** (É1-É7 + post-pose smokes); regression/repair record = #1244.
 
 ---
 
@@ -95,8 +116,8 @@
 | CVE + target docs (#593) | 9.13.x closes 0 CVE; target = 10.3.2 | ❌ no | ✅ done |
 | Full doc arc + checklists | README index, sandbox smoke (#131-step2), prod smoke (#603), deployment (#132) | ❌ no | ✅ done |
 | **Sandbox `bin/` repair** | ~~5 .NET-9 → 6.0.0 re-deploy~~ (B1 inverted) → **9.0.0.0 BCL from 2sxc 21.07 pkg** | ✅ **RDP** | ✅ DONE 2026-06-28 (B1 recipe below ⛔ SUPERSEDED) |
-| Sandbox upgrade 9.11.1→10.3.2 + 2sxc 15.02→21.07 | wizard + cliff cross | ✅ **RDP** | ⛔ gated (B2) |
-| Browser-verify 12 templates (#596 runtime un-gate) | assign + screenshot | ✅ **RDP** | ⛔ gated (B3) |
+| Sandbox upgrade 9.11.1→10.3.2 + 2sxc 15.02→21.07 | wizard + cliff cross | ✅ **RDP** | ✅ done — 10.3.2 + 2sxc 21.07 live in full-IIS (header above; B2.5 smoke GREEN) |
+| Browser-verify 12 templates (#596 runtime un-gate) | assign + screenshot | ✅ **RDP** | ✅ done — runtime binding validated on the sandbox (header above; content parity re-proven #1180 É4, 2026-08-26: 4 pages, 0 block lost) |
 | Prod go-live 10.3.2 | wizard on prod + Phase-5 smoke | ✅ **RDP (prod)** | ⛔ gated (B4) |
 
 ## [A] Already done without RDP (agent-delivered — verify only, no action)
