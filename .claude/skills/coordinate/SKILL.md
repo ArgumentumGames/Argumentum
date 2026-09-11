@@ -159,7 +159,25 @@ Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboa
 - **po-2024** : backlog — polish traduction (gpt-5.5 **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
 - **Sérialisation forcée** : si deux tâches éditent les mêmes fichiers (ex CSV trad), dispatcher en séquentiel. `git log -- <fichier>` pour repérer les collisions avant un dispatch parallèle.
 
-### Envoi via roosync_messages (deep-queue + idle)
+### Où poser le dispatch — le dashboard/l'issue PORTE, le DM NOTIFIE
+
+⛔ **Un DM `roosync_messages` seul ne constitue pas un dispatch.** Il n'est consommé que si la lane ouvre son inbox — ce que son protocole d'ouverture de session **ne garantit pas**. Le dashboard, lui, est lu à chaque ouverture par construction (la Phase 1 l'impose à tous les rôles).
+
+Incident fondateur 2026-09-11 : le dispatch #1294 — **seul verrou restant de la régénération** — a été confié à un DM (`0mp331`) puis à un ping (`xwwzmb`). Aucun des deux relevé. 2 h 35 après un GO owner **nommant explicitement l'option**, la lane rapportait encore « attente GO owner nommant l'option », et son rapport énumérait ce qu'elle avait lu : dashboard, 6 issues, docs, CI — **aucun DM**.
+
+⚠️ Piège de diagnostic à ne pas répéter : j'en ai d'abord conclu « canal DM mort », à partir de deux faits **tous deux exacts** (dispatch non ACKé + worker déclarant attendre). Le fait qui réfute était dans mon propre inbox — un ACK de cette même lane le matin même. Le canal marchait. **Deux mesures vraies ne valident pas l'histoire qui les relie** : chercher le fait qui réfuterait avant de graver une cause.
+
+**Placement, par ordre de durabilité :**
+
+| Canal | Rôle | Pourquoi |
+|---|---|---|
+| **Issue GitHub** | porte l'ordre qui doit tenir **plusieurs cycles** | survit à la condensation du dashboard ; c'est déjà là que les workers Argumentum livrent |
+| **Dashboard** `[TASK]` + mentions | porte l'ordre du cycle | lu à chaque ouverture de session, par construction |
+| **DM** `roosync_messages` | **notifie** | urgence, pièce jointe, pointeur vers les deux ci-dessus — jamais **seul** porteur d'un ordre |
+
+Le remède n'est pas d'abandonner le DM (ce serait le pendule), ni d'ajouter une cérémonie d'accusé de réception : c'est de **poser l'ordre là où il sera lu**, et de laisser au DM le rôle qu'il remplit bien.
+
+### Gabarit deep-queue + idle — à poser sur le dashboard/l'issue, le DM y renvoyant
 
 ```
 roosync_messages(
@@ -196,7 +214,7 @@ roosync_dashboard(
 )
 ```
 
-Si le status global du pipeline a changé : `roosync_dashboard(action: "write", type: "workspace", content: "<nouveau status>")`. Si l'append timeout (limite MCP) : version courte (le détail est déjà dans les messages roosync envoyés aux workers).
+Si le status global du pipeline a changé : `roosync_dashboard(action: "write", type: "workspace", content: "<nouveau status>")`. Si l'append timeout (limite MCP) : version courte — mais le **détail actionnable doit rester sur un canal lu** (issue GitHub de préférence), jamais reporté sur les seuls DM.
 
 ## Phase 7 — Ré-armer le cron (régime cron, PAS de ScheduleWakeup)
 
