@@ -11,6 +11,8 @@ The suite has two kinds of fixtures:
 
 Baseline recorded when the workflow was wired (2026-09-11, master `2ece0eb8`): **38 cases, 0 failed, 0 skipped, 2 m 56 s**. A red run means the committed-wrapper behaviour regressed; a change to that count is a change of instrument and belongs in this document.
 
+Count changed 38 → **39** on 2026-09-11 (#830): `Cap8_ClickNode_AppliesFamilyClassAndColoursOverlay` instruments capability #8 (family colours — class applied to the overlay at click + computed non-white background, no colour guessed). Measured locally before push: **39 cases, 0 failed, 0 skipped, 1 min 14 s** (warm Chromium; a cold CI runner pays the install, as the wired baseline did).
+
 Do not apply `continue-on-error` to make missing artefacts look like a passing release gate. Compilation alone does not establish that these assertions passed.
 
 ## Run against the intended artefacts

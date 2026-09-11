@@ -20,7 +20,9 @@ namespace Argumentum.AssetConverter.VisualTests
     ///   #3  drag pans the viewport;
     ///   #4  mouse-wheel zooms;
     ///   #6  double-click zooms;
-    ///   #7  clicking a real semantic .node opens the overlay card.
+    ///   #7  clicking a real semantic .node opens the overlay card;
+    ///   #8  the clicked node's family class reaches the overlay card and a family
+    ///       palette colour actually computes (measured, never guessed — see Cap8).
     ///
     /// === THE ZOOM-INITIAL DELAY CAVEAT (the reason this suite exists) ===
     /// svg-pan-zoom initializes in fit-to-viewport, THEN the wrapper's requestAnimationFrame
@@ -428,6 +430,66 @@ namespace Argumentum.AssetConverter.VisualTests
 
                 var hidden = await page.Locator("card").EvaluateAsync<bool>("el => el.classList.contains('hidden')");
                 Assert.False(hidden, "overlay card should become visible after clicking a .node");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        // ---- #8: the family class reaches the overlay card and a palette colour fires ----
+
+        /// <summary>
+        /// The mindmap palette has no single written spec (unlike the CardPen family colours
+        /// documented in CLAUDE.md), so this capability is instrumented WITHOUT guessing any
+        /// colour. What the wrapper contract actually promises on click (included.html):
+        /// the overlay's class attribute is wiped, then the clicked node's `familyclass`
+        /// attribute is added to the overlay `card`, which selects a `card.&lt;family&gt;` rule
+        /// that drives `--color-background` — consumed as a real background by `card .texte`.
+        /// The test asserts that mechanism: class applied + a non-transparent, non-white
+        /// background computing on the card body. A missing family rule still passes through
+        /// the documented fallback colour; a broken class application fails the first assert.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap8_ClickNode_AppliesFamilyClassAndColoursOverlay(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+
+                var root = page.Locator("#mindmap svg g.node[id=\"0\"]");
+                Assert.True(await root.CountAsync() >= 1, $"no root .node for {lang}");
+
+                var familyClass = await root.GetAttributeAsync("familyclass");
+                Assert.False(string.IsNullOrWhiteSpace(familyClass),
+                    $"root .node has no familyclass attribute for {lang}");
+
+                var overlay = page.Locator("card");
+                var startsHidden = await overlay.EvaluateAsync<bool>("el => el.classList.contains('hidden')");
+                Assert.True(startsHidden, "overlay card should start hidden before any click");
+
+                await root.ClickAsync();
+                await page.WaitForTimeoutAsync(150);
+
+                var applied = await overlay.EvaluateAsync<bool>(
+                    "(el, cls) => el.classList.contains(cls)", familyClass);
+                Assert.True(applied,
+                    $"overlay card should carry the clicked node's familyclass '{familyClass}' for {lang}");
+
+                // The colour lives on the card body (.texte consumes var(--color-background)),
+                // not on the <card> element itself — measuring the card would always read
+                // transparent regardless of the palette working.
+                var texte = page.Locator("card .texte");
+                Assert.True(await texte.CountAsync() >= 1, $"no .texte body inside overlay card for {lang}");
+                var bg = await texte.First.EvaluateAsync<string>("el => getComputedStyle(el).backgroundColor");
+                _output.WriteLine($"[{lang}] familyclass '{familyClass}' -> card .texte background '{bg}'");
+                Assert.False(string.IsNullOrEmpty(bg) || bg == "rgba(0, 0, 0, 0)",
+                    $"a palette rule must compute a real background for familyclass '{familyClass}', got '{bg}'");
+                Assert.True(bg != "rgb(255, 255, 255)",
+                    $"family palette must not fall back to white for familyclass '{familyClass}', got '{bg}'");
             }
             finally
             {

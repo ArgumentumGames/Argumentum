@@ -16,6 +16,8 @@
 # No `continue-on-error` anywhere: a red run must mean the wrapper behaviour regressed.
 #
 # Measured baseline (2026-09-11, master 2ece0eb8): 38 cases, 0 failed, 0 skipped, 2 m 56 s.
+# 2026-09-11, #830 Cap8 (family colours) added: 39 cases, 0 failed, 0 skipped (1 min 14 s,
+# warm Chromium). The count-change record lives in docs/quality/visual-tests-release-gate.md.
 name: Mindmap wrapper behaviour
 
 on:
