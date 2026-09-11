@@ -1,0 +1,51 @@
+# #830 — behavioural acceptance for the mindmap HTML wrappers, executed in CI.
+#
+# The filter selects exactly the two COMMITTED-FIXTURE classes of the VisualTests project:
+# MindmapWrapperTests and MindmapWrapperCapabilitiesTests. They render the repository's own
+# wrappers + .content.svg for the 8 languages and assert the viewer behaviour the user
+# actually sees (initial zoom + recentring, root centring, drag-pan, wheel zoom, double-click
+# zoom, click-to-card overlay). #1048 demonstrated they need no generated Target/, so they can
+# run on a fresh checkout — which is the reason they are wired here instead of only in the
+# pre-tag release run.
+#
+# The REST of the VisualTests project is deliberately NOT run here: its fixtures require a
+# populated converter Target/ (5+ GB) that a fresh runner does not have, and per #1048 a
+# missing required input must fail loudly rather than become an empty green. Those remain the
+# local release gate — docs/quality/visual-tests-release-gate.md, dossier in #134.
+#
+# No `continue-on-error` anywhere: a red run must mean the wrapper behaviour regressed.
+#
+# Measured baseline (2026-09-11, master 2ece0eb8): 38 cases, 0 failed, 0 skipped, 2 m 56 s.
+name: Mindmap wrapper behaviour
+
+on:
+  pull_request:
+    branches: ["master"]
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  behaviour:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # Chromium is provisioned in-process by the suites themselves (Microsoft.Playwright
+      # Program.Main "install chromium"), the same pattern the Tests suites use — so this job
+      # needs no browser install step, and the suites stay runnable on any checkout.
+      - name: Behavioural wrapper subset (committed fixtures + Chromium)
+        run: >
+          dotnet test
+          "Generation/Converters/Argumentum.AssetConverter.VisualTests/Argumentum.AssetConverter.VisualTests.csproj"
+          -c Debug
+          --filter "FullyQualifiedName~MindmapWrapper"
+          --logger "console;verbosity=normal"
