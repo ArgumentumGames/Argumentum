@@ -41,7 +41,7 @@ pas `page.Mouse.Wheel`), #6 (dblclick), #8 (couleurs familles).
 | 5 | 3 icônes de contrôle présentes | couvert | inchangé (déjà couvert) |
 | 6 | Double-clic → zoom | **∅** | ✅ `Cap6` |
 | 7 | Clic `.node` réel → overlay | synthétique | ✅ `Cap7` (sur vrai SVG 1400 nœuds) |
-| 8 | Couleurs familles (via `familyclass`) | **∅** | **gap documenté** — pas de palette spec |
+| 8 | Couleurs familles (via `familyclass`) | **∅** | ✅ `Cap8` (11/09/2026) — classe famille appliquée à l'overlay + fond calculé non blanc, **sans deviner de couleur** |
 | 9 | Clamp min/max zoom | partiel | inchangé (déjà couvert) |
 | 10 | resize/orientationchange | couvert (substring) | inchangé |
 | 11 | race object-load _ext | couvert (substring) | inchangé |
@@ -110,6 +110,12 @@ dans `Fallacies_fr.content.svg` (1397-1408 selon la langue), **223** dans chaque
   spécifiée dans un référentiel unique (contrairement aux cartes CardPen dans `CLAUDE.md`). Non
   instrumenté pour éviter un test qui *devine* une couleur. À instrumenter si une spec de palette
   est fixée.
+  **Instrumenté le 11/09/2026 (`Cap8`)** sans attendre de spec : le contrat du wrapper est
+  mécanique — au clic, `familyclass` du nœud est posé sur la `card` overlay (qui sélectionne la
+  règle `card.<famille>`), et `card .texte` consomme `var(--color-background)` en fond réel.
+  `Cap8` asserte classe appliquée + fond calculé non transparent/non blanc, sans attendre de
+  valeur : une règle famille manquante passe par le fallback documenté, une application de
+  classe cassée échoue.
 - **Verdict « 16 wrappers × 10 caps » exhaustif** : l'instrument couvre 5 wrappers représentatifs
   + les #5/#9/#10/#11 existants. Étendre à tous les 16 embarqués (+ 16 _ext) est une passe
   d'itération, pas un changement d'architecture (`[InlineData]` à allonger).
