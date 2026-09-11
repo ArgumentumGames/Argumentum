@@ -8,9 +8,9 @@
 |---|---|
 | §1 inventory table (9.11.1 stock) | §1 — replaced by the measured 10.3.2 table (old values kept as the "périmée" note) |
 | §2 "Live Connect" legacy-name finding | §2/§4 — prediction confirmed; modern path now installed |
-| §3 per-provider console checklist | §6 — merged verbatim |
+| §3 per-provider console checklist | §6 — merged + updated |
 | §4 upgrade-sequence recommendation | Historical (upgrade completed); outcome recorded in §1 |
-| §5 secret-rotation procedure | §5 — merged verbatim |
+| §5 secret-rotation procedure | §5 — merged + updated |
 | §6 open questions for jsboige | §7 — merged + updated |
 | §7 out-of-scope list | Folded into the canonical header (status line) |
 

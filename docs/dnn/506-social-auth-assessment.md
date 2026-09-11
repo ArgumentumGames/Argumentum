@@ -93,9 +93,9 @@ Rotation cadence (recommendation, jsboige to confirm): every 12 months, or immed
 |---|---|
 | #555 §1 (9.11.1 stock inventory table) | Replaced by measured §1 (delta: 4 DLLs now 10.3.2.0 + 2 new providers + `JWTAuth` dir + stale `Install/Provider` artifact) |
 | #555 §2 (Live Connect legacy finding) | Preserved in §2/§4 — prediction confirmed, modern path now installed |
-| #555 §3 (console checklist) | Merged verbatim → §6 |
+| #555 §3 (console checklist) | Merged + updated → §6 |
 | #555 §4 (upgrade-sequence recommendation) | Historical — the upgrade is done; outcome recorded in §1 |
-| #555 §5 (rotation procedure) | Merged verbatim → §5 |
+| #555 §5 (rotation procedure) | Merged + updated → §5 |
 | #555 §6 (open questions) | Merged + updated → §7 |
 | #555 §7 (out-of-scope) | Folded into header (status line) |
 | #597 §1–§6 (this file, previous revision) | §1 re-measured; §2 projected→measured; §3 preserved; §4 updated (2 new rows); §5–§6 preserved |

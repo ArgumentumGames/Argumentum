@@ -3,7 +3,7 @@
 **Date**: 2026-06-26 (refreshed 2026-07-12 — POST-EXECUTION context) · **Author**: po-2023 (dispatched by ai-01 v3, secondary track)
 **Status**: Actionable checklist — **complements** the [#132 production deployment runbook](../dnn-localization/132-deployment-runbook.md) (PR #594), does NOT duplicate it. Read-only doc, no code.
 **Purpose**: The #132 runbook covers the upgrade wizard + rollback contract. This doc is the **detailed smoke test** run immediately after the wizard completes (Phase 5, step 5 of #132) before exiting maintenance mode — the gate that says "10.3.2 is live and serving".
-**Related**: #132 (deployment runbook), #131 (upgrade arc), #596 (12 Razor14 templates), #597 (4 social-auth connectors), [UPGRADE-ASSESSMENT.md](UPGRADE-ASSESSMENT.md) §5 (eshop), [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md).
+**Related**: #132 (deployment runbook), #131 (upgrade arc), #596 (12 Razor14 templates), #597 (4 social-auth connectors — superseded by the [`506-social-auth-assessment.md`](506-social-auth-assessment.md) canonical), [UPGRADE-ASSESSMENT.md](UPGRADE-ASSESSMENT.md) §5 (eshop), [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md).
 
 > ## 🟢 POST-EXECUTION CONTEXT (refreshed 2026-07-12)
 >
@@ -17,6 +17,13 @@
 > - Section **B** (12 Razor14 templates) source-migrated in #596; runtime binding validated on the sandbox.
 > - **Release de-coupling**: the v0.9.0 print tag does NOT block on this prod go-live (worker reco, ai-01 concur) —
 >   B4 is a separate jsboige ops task.
+> - **Refresh 2026-09-11**: the préprod has since passed through the **28/08 deploy regression** (site-wide 500s —
+>   repaired 08/09, [`#1244`](https://github.com/ArgumentumGames/Argumentum/issues/1244)) and the
+>   **jQuery 3.7.1 + jQuery-UI 1.14.1 library pose** (09/09 — the two 404s ai-01 measured on 08/09 are resolved;
+>   11/09 re-measure: 200, byte-exact). The July "sandbox green" statements above are **historical-of-their-date**,
+>   not proof of the current state — the current-state evidence holder is **#1180** (É1-É7 parity measures,
+>   post-pose smokes). Release version note: the tag was re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06, #999).
+>   The three-human recette is #1180's parcours; this checklist is the operator smoke — the two stay distinct.
 
 ---
 
@@ -55,7 +62,7 @@ After the DNN 10.3.2 wizard + 2sxc 21 upgrade + 12-template deploy (all detailed
 
 ## C. Social auth connectors (#597) + eshop path
 
-> The 4 DNN-native auth connectors (Facebook, Google, LiveConnect=Microsoft, Twitter) are at v9.11.1.0 distributed binaries (per #597). They upgrade **with the DNN core package**. Validate each OAuth flow still initiates.
+> **Measured state (2026-09-11, canonical [`506-social-auth-assessment.md`](506-social-auth-assessment.md) §1, consolidated #1324)**: the 4 legacy connector DLLs were upgraded **with the DNN core package to 10.3.2.0** on the live préprod, and **two modern bin-only providers are additionally installed** (`Dnn.ExchangeOnlineAuthProvider`, `Dnn.GoogleMailAuthProvider`, plus `Dnn.AuthServices.Jwt` + `Google.Apis.Auth` 1.69.0). The #597-era "9.11.1.0 stock binaries" premise is outdated — the canonical inventory, CVE notes and secret-rotation procedure now live in the assessment doc. Validate each OAuth flow still initiates.
 
 | # | Connector | Check | Green | Red flag |
 |---|-----------|-------|-------|----------|
@@ -64,16 +71,18 @@ After the DNN 10.3.2 wizard + 2sxc 21 upgrade + 12-template deploy (all detailed
 | C3 | LiveConnect (Microsoft) | "Login with Microsoft" | redirects to MS OAuth | API deprecation (legacy Live API) |
 | C4 | Twitter | "Login with Twitter" | redirects to Twitter OAuth | same |
 | C5 | OpenStore admin | `/DesktopModules/NBright/...` admin | loads on .NET 4.8 (no `DnnJsInclude` crash) | IIS crash = 2sxc cliff (#132 §5.5) |
-| C6 | Stripe checkout path | add item → checkout | OS_Stripe + Stripe.net path loads | RazorEngine/CVE surface (pre-#445 removal) |
+| C6 | Eshop no-stock state **(requalified 2026-08-26, coordinator decision — É5, #1180)** | open the product page `Acheter-le-jeu/Detail/catid/140/eid/130/...` on both hosts | HTTP 200 non-empty, "Pas de stock disponible" present (×5), **zero purchase control rendered** — the shop module renders the page (0 2sxc block: this row covers É4's blind spot on that page) | a *working* AddToCart/select where both hosts currently render none = state change to investigate |
 
-> **#597 caveat**: these connectors have known community-reported fragility ("do not work in DNN CE") — a red here may be pre-existing misconfig, **not** a regression from the 10.3.2 upgrade. Compare against the **pre-upgrade** baseline (snapshot in #132 Phase 0) to distinguish regression from pre-existing.
+> **Caveat (carried over from #597)**: these connectors have known community-reported fragility ("do not work in DNN CE") — a red here may be pre-existing misconfig, **not** a regression from the 10.3.2 upgrade. Compare against the **pre-upgrade** baseline (snapshot in #132 Phase 0) to distinguish regression from pre-existing.
+>
+> **Why C6 is requalified**: the original "add item → checkout" cannot be executed — the sole product is out of stock and DNN renders **no purchase control on either host** (measured 26/08, re-measured 2026-09-11). The payment tunnel is therefore **explicitly NOT covered** by this checklist; the restock re-test is tracked in **#1188**. Do not read a green C6 as payment validation.
 
 ## Sign-off gate
 
 ```
 [ ] Section A: all green (A1-A6)
 [ ] Section B: all 12 templates render (B1-B7)
-[ ] Section C: C5 (OpenStore) + C6 (Stripe) green; C1-C4 either green OR confirmed pre-existing (vs Phase-0 baseline)
+[ ] Section C: C5 (OpenStore) + C6 (eshop no-stock state, requalified — payment NOT covered, restock re-test = #1188) green; C1-C4 either green OR confirmed pre-existing (vs Phase-0 baseline; canonical connector state = the #506 assessment)
 [ ] Rollback anchor (#132 Phase-5 re-backup) verified: RESTORE VERIFYONLY green
 → If all green: exit maintenance mode. Record versions (DNN 10.3.2, 2sxc 21.07, OpenStore) in deploy log.
 → If any RED that is a regression: do NOT exit maintenance → execute #132 §6 rollback.
