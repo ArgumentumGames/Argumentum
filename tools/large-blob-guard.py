@@ -182,11 +182,14 @@ def self_test():
     exact-threshold boundary. Returns process exit code."""
     cases = []
     with tempfile.TemporaryDirectory(prefix="lbg-selftest-") as repo:
-        env_repo_args = ["-c", "user.name=t", "-c", "user.email=t@t"]
         def sgit(*args):
-            return git(*(env_repo_args + list(args)), cwd=repo)
+            return git(*args, cwd=repo)
 
         sgit("init", "-q")
+        # Repo-level identity: CI runners have no global git config, and the
+        # scenario commits go through _commit() → module-level git() without -c.
+        sgit("config", "user.name", "t")
+        sgit("config", "user.email", "t@t")
         sgit("commit", "-q", "--allow-empty", "-m", "base0")
         # base: existing oversized blob at a NON-listed path (must never re-trigger)
         _write("data/keep.bin", 2_500_000, repo)
