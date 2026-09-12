@@ -90,7 +90,7 @@ namespace Argumentum.AssetConverter.Tests
 		// ─────────────────────────────────────────────────────────────────────────
 		// (4) Contrôle-inverse : Fallacies doit rester dans une fourchette saine. Le CardSet
 		//     Fallacies filtre la taxonomie sur « carte » ∈ {1,2} (WebBasedGeneratorConfig.cs:121-126)
-		//     → 176 faces mesurées ce tick. Ce Fact n'épingle PAS un compte exact (il le ferait avec un
+		//     → 175 faces (retrait PK 96, #1288 ; 176 avant). Ce Fact n'épingle PAS un compte exact (il le ferait avec un
 		//     compte figé fragile) : il vérifie >100 ET ∈ [170,180] pour détecter toute dérive grossière.
 		// ─────────────────────────────────────────────────────────────────────────
 		[Fact]
@@ -98,7 +98,7 @@ namespace Argumentum.AssetConverter.Tests
 		{
 			var csv = new HarvestCardIdsCsv(FallaciesCsv);
 			// Compter les LIGNES (pas les valeurs distinctes) : « carte » n'a que 2 valeurs distinctes
-			// {1,2}, mais 176 lignes. LoadColumn conserve les doublons → le Count = nb de cartes.
+			// {1,2}, mais 175 lignes (post-#1288). LoadColumn conserve les doublons → le Count = nb de cartes.
 			var count = csv.LoadColumn("carte", "carte", new[] { "1", "2" }).Count;
 
 			count.Should().BeGreaterThan(100,

@@ -24,7 +24,7 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 	/// brand text inside an ar/fa/zh card falls back to Vazirmatn / Noto Sans SC. Two visible
 	/// consequences:
 	/// <list type="bullet">
-	///   <item>On the shared Fallacies back (×176 per box) the ARGUMENTUM word-mark — an SVG
+	///   <item>On the shared Fallacies back (×175 per box, post-#1288) the ARGUMENTUM word-mark — an SVG
 	///   `<text>` `AR`/`GU`/`MEN`/`TUM` — renders in an Arabic body font.</item>
 	///   <item>On the Rules cover the big «Argumentum» masthead (TrendSlab) renders in an Arabic/
 	///   CJK font and breaks mid-word: «Argumen/tum» (ar/fa), «Argume/ntum» (zh).</item>

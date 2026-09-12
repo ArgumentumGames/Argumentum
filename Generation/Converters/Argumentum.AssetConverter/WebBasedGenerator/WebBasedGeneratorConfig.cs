@@ -259,7 +259,7 @@ namespace Argumentum.AssetConverter
 						Dpi = 300
 					}
 				},
-				// #645 — Light P&P: same proven Fallacies P&P config, but the historical "print_and_play=1" sample (~35 cards) instead of all real cards (carte 1/2 = 176).
+				// #645 — Light P&P: same proven Fallacies P&P config, but the historical "print_and_play=1" sample (~35 cards) instead of all real cards (carte 1/2 = 175, post-#1288).
 				new CardSetConfig(){
 					Name =KnownCardSets.FallaciesPrintAndPlayLight,
 					FaceCardSetInfo = new CardSetInfo()

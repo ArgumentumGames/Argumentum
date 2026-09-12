@@ -70,6 +70,8 @@ Aucune image **manquante**, **vide (0 octet)** ou **`data:,`** sur l'ensemble. C
 | Virtues | 114 × 8 | 912 ✅ |
 | Scenarii | ~167 × 8 | 1365 ✅ |
 
+> **⚠️ Erratum comptes (12/09/2026).** Les lignes Fallacies‑Web (176×8) et Rules (24×8, et le « 192 » du tableau de calibration ci‑dessous) sont la **mesure du run 2026‑06‑03**, conservée comme historique. État du contrat depuis : **Rules = 15** (#438, cf. §2ter qui déclare déjà cette ligne caduque) et **Fallacies = 175** (**#1288**, décision owner du 05/09/2026 : PK 96 sort du deck, vrai doublon de PK 108) — un re‑run du harnais attendrait **175×8 = 1400** et **15×8 = 120**. Source courante : CLAUDE.md « État actuel par CardSet » + `PdfDeckCountContractTests` (CI).
+
 → **La masse des cartes est mécaniquement présente et non‑vide.** C'est la preuve d'inventaire sur laquelle s'appuie l'auto‑PASS de masse : tu n'as pas à vérifier carte par carte que le contenu est généré, seulement à traquer les défauts de §2/§3 sur les catégories à risque.
 
 ### ⚠ Caveat calibration — le binaire PASS/FLAG n'est PAS une liste de défauts
