@@ -13,6 +13,7 @@
 | 1 | **Apply Manifests Δ #490/#682** | [`go-live-turnkey-checklist.md`](go-live-turnkey-checklist.md) | ✅ existant (prêt) |
 | 2 | **Option C connection-string** | [`dnn-hang-option-c-connection-string-prep.md`](dnn-hang-option-c-connection-string-prep.md) | ✅ existant (prêt) |
 | 3 | **Fix skin `tabid=138` (Opt 1)** | [`skin-tabid138-diagnostic-runbook.md`](skin-tabid138-diagnostic-runbook.md) | ⚠ **diagnostic-only** (fix diff deferred au GO, nécessite stack trace live) |
+| 4 | **Redéploiement mindmaps servi (#830)** | [`redeploy-mindmaps-runbook.md`](redeploy-mindmaps-runbook.md) | ✅ existant (prêt) — ops serveur seul, geste additif fichier par fichier, ⛔ `/MIR` |
 
 ---
 
