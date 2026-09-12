@@ -56,7 +56,7 @@ namespace Argumentum.AssetConverter.Tests
 			var px = img.GetPixels();
 			foreach (var (x, r, g, b) in expected)
 			{
-				var p = px[x, 0];
+				var p = px[x, 0]!;
 				p.GetChannel(iR).Should().Be(r, $"pixel opaque #{x} doit être inchangé octet-pour-octet");
 				p.GetChannel(iG).Should().Be(g, $"pixel opaque #{x} doit être inchangé octet-pour-octet");
 				p.GetChannel(iB).Should().Be(b, $"pixel opaque #{x} doit être inchangé octet-pour-octet");
@@ -85,7 +85,7 @@ namespace Argumentum.AssetConverter.Tests
 
 			var c = img.Channels.ToList();
 			uint iR = (uint)c.IndexOf(PixelChannel.Red), iG = (uint)c.IndexOf(PixelChannel.Green), iB = (uint)c.IndexOf(PixelChannel.Blue);
-			var p = img.GetPixels()[2, 0]; // bleu α=128
+			var p = img.GetPixels()[2, 0]!; // bleu α=128
 
 			// Composité vers le blanc : R et G partis de 0 doivent être tirés vers le haut par la
 			// contribution blanche (α=128 ⇒ ~50 %), sans atteindre le blanc pur ; B reste au max
@@ -106,7 +106,7 @@ namespace Argumentum.AssetConverter.Tests
 
 			var c = img.Channels.ToList();
 			uint iR = (uint)c.IndexOf(PixelChannel.Red), iG = (uint)c.IndexOf(PixelChannel.Green), iB = (uint)c.IndexOf(PixelChannel.Blue);
-			var p = img.GetPixels()[3, 0]; // transparent
+			var p = img.GetPixels()[3, 0]!; // transparent
 
 			p.GetChannel(iR).Should().Be(ushort.MaxValue);
 			p.GetChannel(iG).Should().Be(ushort.MaxValue);
