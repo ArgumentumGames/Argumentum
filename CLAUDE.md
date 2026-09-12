@@ -522,10 +522,11 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 - **Pending**: OAuth credentials for end-to-end testing
 - **Tests**: 77 pass / 0 fail / 1 skip (includes CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid tests)
 
-### Test Coverage (July 2026)
+### Test Coverage (refreshed 2026-09-12)
 
-- **578 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-07-05, .NET 9 — 584 total: 578 pass / 1 fail / 5 skip), 5 skips (GUI/infrastructure), 1 known-fail (`OwlE2EGenerationValidationTests.LoadedOntology_RdfTypeAndInScheme_DroppedByOwl2XmlRoundTrip` — OWLSharp round-trip bug, pre-existing, tracked #133 — does not affect generated assets)
-- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
+- **1095 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-09-12, .NET 9 — **1100 total: 1095 pass / 0 fail / 5 skip**, empirique sur `8ebd92fe`), 5 skips (GUI/infrastructure). **0 known-fail** : le round-trip OWL (#133) n'est plus rouge depuis #793 — `skos:inScheme` survit au round-trip (l'ancienne formule « 1 fail `OwlE2E…DroppedByOwl2XmlRoundTrip` » datait d'avant) ; le résidu `rdf:type` reload-drop reste asserté-comme-attendu, sans impact sur les assets.
+- Historique du compteur (l'instrument a changé en route) : 578/584 le 05/07 (local) → 596/601 le 14/07 (local) → 643 total/638 pass/0 fail/5 skip le 27/07 **mesuré en CI, legs Debug+Release** (#911 a rendu l'étape Test signifiante — elle exécutait le build sans lancer les tests ; run `30280070312`) → **1100/1095/0/5 le 12/09** (local). Un compteur de tests dans une doc se **re-mesure**, jamais ne se recopie d'un rapport.
+- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests, `PdfDeckCountContractTests` (#1187/#1288), `CardSetExpectedCardCountContractTests` (#1212)
 - Build is zero-warning (CS compiler warnings + NuGet audit, #587)
 - Issue #212 tracks Playwright visual regression tests for generated PDFs
 
