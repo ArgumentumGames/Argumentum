@@ -8,7 +8,7 @@ Argumentum est un jeu **à double deck** : un deck de grandes cartes (sophismes/
 Côté langues, la configuration (`WebBasedGeneratorConfig.cs`, listes `Translations`) déclare :
 
 - **Cartes** (Tarot, Poker, Print&Play, Web/Poster/Vignettes) → **8 langues** : `fr` (canonique) + `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh`.
-- **Mind maps** → **4 langues** seulement : `fr`, `en`, `ru`, `pt`.
+- **Mind maps** → **8 langues** (recompté 2026‑09‑12 ; l'inventaire du 30/05 en comptait 4) : `fr`, `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh`.
 
 Les données CSV sont remplies pour les 8 langues, mais le rendu des **scripts non latins** — `ar`/`fa` (écriture droite‑à‑gauche) et `zh` (sinogrammes) — **n'a pas encore été validé visuellement** et peut nécessiter des correctifs de police/CSS. Le set de langues effectivement produit pour une release donnée est arbitré au moment de la régénération.
 
@@ -107,12 +107,15 @@ Le **livret de règles** d'Argumentum n'est pas un document séparé : les règl
 
 Au‑delà des PDF générés, le dépôt versionne plusieurs artefacts directement publiables :
 
-### Mind maps (4 langues × 5 fichiers)
+### Mind maps (8 langues ; 5 SVG/langue, 8 en `fr` avec le triplet `cards`)
 
-- `Cards/Fallacies/Mindmaps/{fr,en,ru,pt}/Fallacies_*.svg` (3 vues : `.svg`, `.content.svg`, `.links.svg`)
-- `Cards/Fallacies/Mindmaps/{fr,en,ru,pt}/Argumentum_Virtues_MindMap_*.{content,links}.svg`
+> Recompté le 2026‑09‑12 — l'inventaire du 30/05 annonçait « 4 langues × 5 fichiers » : les mindmaps sont committées en 8 langues depuis #565/#686, et le triplet `cards` FR‑only est arrivé avec #1269/#1285.
+
+- `Cards/Fallacies/Mindmaps/{fr,en,ru,pt,es,ar,fa,zh}/Fallacies_<lang>{,.content,.links}.svg` (3 vues)
+- `Cards/Fallacies/Mindmaps/<lang>/Argumentum_Virtues_MindMap_<lang>.{content,links}.svg` (2 vues — Virtues n'a pas de `.svg` de base)
+- Triplet FR‑only : `Cards/Fallacies/Mindmaps/fr/Argumentum_Fallacies_MindMap_cards_fr{,.content,.links}.svg`
 - Source FreeMind : `Cards/Fallacies/Mindmaps/fallacy_map.mm`
-- Wrappers HTML interactifs : `Cards/Fallacies/Mindmaps/*/Fallacies_*.html`
+- Wrappers HTML interactifs : `Fallacies_<lang>.html` + `_ext`, `Argumentation_Virtues_<lang>.html` + `_ext` (4/langue, 6 en `fr` avec `Fallacies_cards_fr`)
 
 ### Ontologie OWL
 
