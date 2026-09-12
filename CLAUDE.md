@@ -209,7 +209,7 @@ Generation/Converters/Argumentum.AssetConverter/bin/{Debug|Release}/net9.0-windo
     ├── Harvest/                        # Cached .harvest.json files
     └── Images/
         ├── density-{n}/                # n = density index (0 in practice)
-        │   ├── Fallacies/              # 176 × …_face.png + card_001.png (the single shared back)
+        │   ├── Fallacies/              # 176 × …_face.png + card_001.png (the single shared back — per language)
         │   ├── Fallacies-Web/
         │   ├── Fallacies-Print&Play/
         │   ├── Memo/  Rules/  …        # one directory per CardSet
@@ -480,16 +480,18 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 
 | CardSet | Faces | Dos | Images | PDFs |
 |---------|------:|----:|-------:|------|
-| Fallacies Tarot | 176 | 1 | 177 | TarotCards_{lang}-1/2.pdf |
+| Fallacies Tarot | 176 | 1 † | 177 | TarotCards_{lang}-1/2.pdf |
 | FallaciesWeb | 176 | — | 176 | A0, A4, Thumbnails |
 | Rules Tarot | **15** ~~24~~ | — | 15 | dans TarotCards — réduit par #438 |
-| Memo Tarot | 1 | 1 | 2 | dans TarotCards |
+| Memo Tarot | 1 | 1 † | 2 | dans TarotCards |
 | Scenarii Poker | **167** ~~97~~ | **7** | 174 | PokerCards_{lang}-1.pdf |
 | Virtues Tarot | **131** ~~113~~ | 1 | 132 | TarotCards_Virtues_{lang}-FacesOnly.pdf |
 
+† « 1 dos » s'entend **par langue** — les dos du Tarot (famille Fallacies, famille Memo) sont **localisés**, pas partagés entre langues. Mesuré au `sha256` des pixels décodés sur les 8 langues (balayage intégral du bundle v2.0.0, [#134 c. 5643251291](https://github.com/ArgumentumGames/Argumentum/issues/134#issuecomment-5643251291), 2026-09-12) : **0 dos commun aux 8 langues** — chaque dos existe en 8 exemplaires distincts (Fallacies ×175 pages/langue, Memo ×7, 1982×3401 CMYK, 8/8 pixels distincts). Le dos Fallacies porte le **titre du jeu traduit** (bande ~82 % de large à ~5 % du sommet : « L'ART DE NE JAMAIS AVOIR TORT » / « THE ART OF NEVER BEING WRONG » / « EL ARTE DE NUNCA ESTAR EQUIVOCADO » / « A ARTE DE NUNCA ESTAR ERRADO »…). Deux conséquences : un **devis d'impression** compte **un dos par langue** (8 exemplaires de chaque), jamais « un dos partagé sur toute la série » ; et un **contrôle inter-langues** qui attend un dos commun rendra « 0 dos commun » — c'est le comportement correct, pas une anomalie.
+
 **Totaux fabrication** (#1187, une boîte par langue) : deck **Tarot = 192 cartes** (176 + 15 + 1) · deck **Scenarii = 167 cartes** · boîte **sans** Virtues = **359 cartes**, **avec** = **490**.
 
-⚠️ **Le deck Scenarii a 7 dos distincts**, un par catégorie (`histoire`, `mythologie`, `politique`, `pop_culture`, `relation_intime`, `vie_personnelle`, `vie_professionnelle`) — contrairement au Tarot qui partage **un** dos. C'est une contrainte de façonnage, pas un détail d'asset.
+⚠️ **Le deck Scenarii a 7 dos distincts**, un par catégorie (`histoire`, `mythologie`, `politique`, `pop_culture`, `relation_intime`, `vie_personnelle`, `vie_professionnelle`) — contrairement au Tarot qui partage **un dos par langue** (voir † ci-dessus : « un » ne traverse pas les langues). C'est une contrainte de façonnage, pas un détail d'asset.
 
 ⚠️ **L'arbre Debug est périmé** (Rules 24 = pré-#438, Virtues 1) : Debug et Release sont indépendants — mesurer sur celui dont la date correspond, jamais « le premier trouvé ».
 
