@@ -131,6 +131,14 @@ namespace Argumentum.AssetConverter
                     _ => ImageHelper.LoadImageFromPath(imageUrl)
                 };
                 imageFromEmbeddedUrl.Density = new Density(sourceDpi);
+
+                // #134 : domtoimage capture en RGBA ; depuis que #1321 retire le round-trip per-image
+                // (dont le Alpha(Remove) strippait l'alpha par effet de bord), le RGBA survit jusqu'aux
+                // PNG écrits ci-dessous (original/ et density), atteint les PDFs en SMask, et la passe
+                // PDF/X aplatit cette transparence à sa résolution device par défaut (720 dpi).
+                // Composite sur blanc à la source — identité mesurée sur tout pixel α=255.
+                imageFromEmbeddedUrl.StripAlphaOnWhite();
+
                 if (documentCardSet.SaveOriginalImage)
                 {
                     var originalFolderName = Path.Combine(imagesFolderName, $@"original\");
@@ -194,12 +202,31 @@ namespace Argumentum.AssetConverter
 
             image.Alpha(AlphaOption.Remove);
             image.Settings.BackgroundColor = MagickColors.White;
+            // ⚠️ Ne pas réintroduire de strip d'alpha ici : voir StripAlphaOnWhite, câblé en amont
+            // dans LoadAndProcessImageUrl (c'est lui qui détient l'invariant d'opacité des PNG).
             //image.TransformColorSpace(ColorProfile.SRGB, ColorProfile.USWebCoatedSWOP);
             image.TransformColorSpace( ColorProfiles.USWebCoatedSWOP, ColorTransformMode.Quantum);
 
             image.ColorSpace = ColorSpace.CMYK;
             image.Settings.ColorSpace = ColorSpace.CMYK;
 
+        }
+
+        /// <summary>
+        /// Composite le canal alpha sur fond blanc puis le retire. Restaure l'opacité des PNG
+        /// écrits par <c>LoadAndProcessImageUrl</c> SANS le round-trip colorimétrique de #1111 :
+        /// la conversion per-image retirée par #1321 strippait l'alpha par effet de bord de
+        /// <c>Alpha(AlphaOption.Remove)</c>, et sa suppression laisse le RGBA des captures
+        /// domtoimage atteindre les PDFs (SMask), que la passe PDF/X aplatit à sa résolution
+        /// device par défaut — 720 dpi, ×5,76 pixels pour zéro information (#134). La même
+        /// opération de retrait est réintroduite seule, sans transformation de profil.
+        /// Contrôle mesuré 12/09 sur les PNG RGBA du cache harvest (16 fichiers, 6 jeux + ar,
+        /// 29 517 995 pixels α=255) : identité octet-pour-octet, en mémoire et après ré-encodage PNG.
+        /// </summary>
+        public static void StripAlphaOnWhite(this MagickImage image)
+        {
+            image.BackgroundColor = MagickColors.White;
+            image.Alpha(AlphaOption.Remove);
         }
 
         /// <summary>
