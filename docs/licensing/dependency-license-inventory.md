@@ -301,11 +301,18 @@ license header and the license is the library's well-known upstream.
 
 2. **`marked.js` — aged, the real card-rendering engine.** The vendored `marked` is a **~0.3.x
    release (2011–2014 copyright window, pre-fork `chjj/marked`)** — the version that actually
-   renders card markdown across all 8 languages. This is **disjoint from** the npm `marked ^16.2.1`
-   devDependency (which serves only `npm run build` doc generation, per #915/#942). Dependabot
+   renders card markdown across all 8 languages. This is **disjoint from** the npm `marked ^16.4.2`
+   devDependency (which serves only `npm run build` doc generation, per #915/#942 — range bumped
+   16.2.1 → 16.4.2 by #915, `package-lock.json` resolves exactly `16.4.2`; corrected here
+   2026-09-12, this inventory had kept the pre-bump range). Dependabot
    cannot see the vendored copy. The 0.3.x line predates many security fixes; **no known CVE is
    asserted here** (out of scope for an inventory), but the version-age is the security-visibility
    angle-mot #942 was opened to surface. Follow-up candidate, not v0.9.0-blocking.
+   ⚠️ Labelling note (#965): the A/B rendering comparison documented on #965 ran the vendored copy
+   against `marked@18.0.11`, which is **outside the declared `^16.x` range** — the stay-verdict
+   (ai-01, #965 c.2) is unaffected, but that comparison measured "gap vs a modern marked", not
+   "gap vs the devDependency". Pin consignation of the vendored exact version remains post-tag per
+   the verdict's own gate.
 
 3. **`jszip.min.js` — dual MIT/GPL-3.0.** Elects MIT (the dual license permits either). No issue;
    recorded for completeness.
