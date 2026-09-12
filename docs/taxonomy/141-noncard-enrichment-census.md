@@ -28,6 +28,8 @@ The issue's **original enrichment target (scope item 3: descriptions + examples 
 
 Non-card = family / subfamily / subsubfamily headers + order groupings (rows whose card flag is empty). Scenarii and Rules have no family hierarchy nor crossLink/AIF columns → out of #141 scope.
 
+> **Erratum (2026-09-12).** Le tableau ci-dessus est la mesure du 29/06 sur `ba8e4a6c`. Depuis : **Fallacies 176→175 cartes / 1233 non-cards** (décision owner **#1288**, 05/09/2026 — PK 96 sort du deck, vrai doublon de PK 108 ; total 1408 inchangé) et **Virtues 113→131 cartes / 92 non-cards** (cf. CLAUDE.md « État actuel par CardSet », mesuré 28/08). Re-exécuter `141-noncard-census.py` pour re-mesurer.
+
 ### Text enrichment on non-card nodes (original #141 scope item 3) — ✅ DONE
 
 | Dataset | desc/description ×8 langs | example/remark ×8 langs |

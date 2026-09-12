@@ -12,7 +12,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// (<c>CardSetExpectedCardCountContractTests</c>, #1212 : Rules 15, Scenarii 167…), la parité
     /// (<c>PdfBundleIntegrity</c> : profil 8×10, écart médian) et le fail-loud zéro
     /// (<c>EmptyImagesFailLoudTests</c> : le couple document×langue à 0 image). Aucun des trois
-    /// n'épingle les comptes AU NIVEAU PDF : un PDF qui perd 3 cartes sur 192 traverse les trois.
+    /// n'épingle les comptes AU NIVEAU PDF : un PDF qui perd 3 cartes sur 191 traverse les trois.
     /// C'est précisément la dérive de #1204 (Scenarii annoncé 97, réel 167 — devis derrière).
     ///
     /// Ce fichier prouve la dérivation et le vérificateur SANS bundle : les cinq nombres épinglés
@@ -36,7 +36,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// (<c>PdfCardCountIntegrityTests</c>) : il tourne sur les machines de régénération, pas en CI.
     ///
     /// ⚠ Mémo — le maillon que l'organe CSV couvrait d'un Skip honnête est ICI couvert :
-    /// Memo = ceil(176 lignes taxonomy / rscount 200 du template) = 1 carte, × NbCopies=7 dans le
+    /// Memo = ceil(175 lignes taxonomy / rscount 200 du template) = 1 carte, × NbCopies=7 dans le
     /// document TarotCards (config Documents) = 14 pages. La divergence « Memo 1 » (organe CSV,
     /// niveau récolte) vs « ×7 copies » (matrice façonniers) est ainsi TRACÉE dans la dérivation :
     /// les deux chiffres décrivent deux niveaux différents, et l'organe nomme les deux.

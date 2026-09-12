@@ -31,10 +31,10 @@ Les données CSV sont remplies pour les 8 langues, mais le rendu des **scripts n
 
 ### 1. Tarot professionnel — `Argumentum_TarotCards_fr.pdf`
 
-- **Cartes** : Rules (24) + Memo (×7 copies) + Fallacies (taxonomie complète).
+- **Cartes** : Rules (15) + Memo (×7 copies) + Fallacies (taxonomie complète).
 - **Dimensions** : 60×113 mm (format tarot standard, sans marge de découpe).
 - **Profil couleur** : CMYK (épreuve imprimeur).
-- **Volume FR** : ~177 cartes Fallacies + 24 Rules + ~7 Memo ≈ **208 cartes**.
+- **Volume FR** : 175 cartes Fallacies + 15 Rules + 1 Memo (imprimée ×7) = **191 cartes uniques** (recomptes #438 / #1288 du 05/09/2026 — cf. CLAUDE.md « État actuel par CardSet » ; dos localisés par langue).
 - **Usage** : remise à un imprimeur professionnel pour fabrication d'un deck Tarot.
 
 ### 2. Tarot Vertus — `Argumentum_TarotCards_Virtues_fr.pdf`
@@ -83,11 +83,11 @@ Les données CSV sont remplies pour les 8 langues, mais le rendu des **scripts n
 
 ## Règles du jeu (« livret »)
 
-Le **livret de règles** d'Argumentum n'est pas un document séparé : les règles sont imprimées sous forme de **cartes Rules** (24 cartes), intégrées directement dans les decks.
+Le **livret de règles** d'Argumentum n'est pas un document séparé : les règles sont imprimées sous forme de **cartes Rules** (15 cartes depuis la refonte #438), intégrées directement dans les decks.
 
 - **Source** : `Cards/Rules/Argumentum Rules - Cards.csv` (+ `… Print and Play.csv`).
 - **Où** : incluses dans le **Tarot professionnel** (`Argumentum_TarotCards_fr.pdf`, en tête de deck — cf. issue #119) et dans le **Print&Play Tarot A4**.
-- **Volume** : 24 cartes Rules.
+- **Volume** : 15 cartes Rules (refonte 24→15, #438).
 - **Multilingue** : champ source `Text` → `Text_en` / `Text_ru` / `Text_pt` / … (mêmes 8 langues que les cartes).
 
 > Il n'existe pas de livret PDF/LaTeX autonome (« The Liars' School »). Si un livret relié distinct est produit un jour, cette section sera étendue à ce moment‑là.

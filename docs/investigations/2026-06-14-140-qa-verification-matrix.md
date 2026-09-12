@@ -67,8 +67,8 @@ Les CardSets sont **logiques** (contenu source), pas physiques (PDF). Un CardSet
 | 1 | **Rules** | `TarotCards_xx` (cover + deck), `TarotCards_Print&Play_A4_xx` | 15 | Cover (carte `class="1"`) + 14 gameplay. Post-refonte #438 (24→15). |
 | 2 | **Memo Face** | `TarotCards_xx` | 7 | 1 carte par **famille racine** (7 familles, couleurs familiales). Post-#439. |
 | 3 | **Memo Back** | `TarotCards_xx` | 7 | 1 carte par famille racine, chaque carte = **grille de taxonomie** (sous-famille × sous-sous-famille). ⚠ *CardSet à risque stale max* (cf §2). Post-#443/#446. |
-| 4 | **Fallacies** | `TarotCards_xx`, `Fallacies_Web_A4_xx`, `Fallacies_Web_A0_xx`, `Fallacies_Web_Thumbnails_A4_xx`, `TarotCards_Print&Play_A4_xx` | 176 | 8 familles racines (couleurs : gris/violet/rose/turquoise/vert/bleu/jaune/rouge). **A0 = 12 colonnes** × ~15 lignes. |
-| 5 | **Virtues** | `TarotCards_Virtues_xx` | 114 | 8 familles racines (mêmes couleurs que Fallacies). ⚠ *Overflow body #190/#420*. |
+| 4 | **Fallacies** | `TarotCards_xx`, `Fallacies_Web_A4_xx`, `Fallacies_Web_A0_xx`, `Fallacies_Web_Thumbnails_A4_xx`, `TarotCards_Print&Play_A4_xx` | **175** | 8 familles racines (couleurs : gris/violet/rose/turquoise/vert/bleu/jaune/rouge). **A0 = 12 colonnes** × ~15 lignes. Recompte #1288 (05/09/2026, PK 96 retiré — 176 avant). |
+| 5 | **Virtues** | `TarotCards_Virtues_xx` | 131 | 8 familles racines (mêmes couleurs que Fallacies). ⚠ *Overflow body #190/#420*. Recompte mesuré 28/08 (113/114 avant). |
 | 6 | **Scenarii** | `PokerCards_xx`, `PokerCards_Print&Play_A4_xx` | ~167 | Format poker. ⚠ *Paragraphes longs (contexte/enjeu), cartes denses*. |
 
 **Langues (colonnes)** : `fr` `en` `ru` `pt` `es` `ar` `fa` `zh`. FR = baseline canonique.
@@ -131,9 +131,9 @@ Les CardSets sont **logiques** (contenu source), pas physiques (PDF). Un CardSet
 > - Rules : **15 cartes** (cover + 14).
 > - Memo Face / Memo Back : **7 cartes** (1 par famille racine, groupement 8/8 langues invariant via `ifCond` FR).
 > - Memo Back interne : **grille de taxonomie par famille** — compter les cellules sous-famille × sous-sous-famille (exemple dispatch « ~3×3/famille » — **à confirmer au verdict**).
-> - Fallacies : **176 cartes**, **8 familles racines** (couleurs distinctes).
+> - Fallacies : **175 cartes** (#1288, 05/09/2026 — 176 avant), **8 familles racines** (couleurs distinctes).
 > - Fallacies A0 : **12 colonnes** complètes (aucune colonne vide).
-> - Virtues : **114 cartes**, **8 familles racines**.
+> - Virtues : **131 cartes** (recompte mesuré 28/08 — 113/114 avant), **8 familles racines**.
 > - Scenarii : **~167 cartes** format poker.
 
 | CardSet | fr | en | ru | pt | es | ar | fa | zh |

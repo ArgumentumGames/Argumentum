@@ -24,8 +24,9 @@ namespace Argumentum.AssetConverter.VisualTests
     /// ⚠ MÉMO — DÉCLARATION EXPLICITE (demandée par le dispatch #1187 : « Dis explicitement
     /// comment ton organe traite Memo côté PDF — soit tu le couvres, soit tu déclares le trou ») :
     /// cet organe COUVRE Memo au niveau PDF. Memo n'a pas de PDF autonome — il vit DANS
-    /// Argumentum_TarotCards (1 carte = ceil(176 lignes taxonomy / rscount 200) × NbCopies=7 →
-    /// 14 des 381 pages) et dans le P&amp;P (×5 → 5 des 318 instances). Le trou de l'organe CSV
+    /// Argumentum_TarotCards (1 carte = ceil(175 lignes taxonomy / rscount 200) × NbCopies=7 →
+    /// 14 des 379 pages) et dans le P&amp;P (×5 → 5 des 317 instances) — comptes post-#1288
+    /// (176→175 cartes, 381→379 pages, 318→317 instances). Le trou de l'organe CSV
     /// (#1212, Skip honnête « template-internal ») est donc fermé ICI : si le rscount du template
     /// Memo, le filtre carte∈{1,2} ou le NbCopies du document dérive, la dérivation change et ce
     /// test échoue en nommant la ligne Memo de la traçabilité. Pas de silence, pas de trou.
