@@ -1,6 +1,6 @@
 # Runbooks gated-ops — Index (pré-armement au GO jsboige)
 
-> **But** : au GO jsboige, exécution des ops gated = **copier-coller, zéro réflexion**. Cet index consolide les 3 runbooks gated-ops DNN.
+> **But** : au GO jsboige, exécution des ops gated = **copier-coller, zéro réflexion**. Cet index consolide les 4 runbooks gated-ops DNN.
 > **Contrainte** : rien d'exécuté sans GO jsboige explicite. DNN publish écrase `web.config` prod — ne pas publier. Verdict QA visuelle = ai-01.
 > **Auteur** : po-2023 (dispatch ai-01 `msg-20260722T144728-h7msce`).
 
@@ -17,12 +17,14 @@
 
 ---
 
-## Pré-requis commun aux 3 ops
+## Pré-requis commun aux 3 ops DNN (runbooks 1 à 3)
 
 - **Sauvegarde pré-op** horodatée + hashée (`web.config`, `bin/`, DB). Cf `[[reference-dnn-bin-restore-surgical]]` (restore chirurgical, pas rsync brutal).
 - **Backup naming hygiene** : ne JAMAIS restaurer un backup sur la base du nom/date seul — **vérifier la connection string + le count de `dependentAssembly` AVANT** (`[[feedback-dnn-webconfig-bak-trap]]`). `web.config.bak-20260717` = pré-migration IIS, trompeur.
 - **CS verification** : la connection string actuelle est `localhost\SQLEXPRESS` (correcte). Ne pas restaurer un backup LocalDB par erreur (`[[feedback-dnn-webconfig-secret-tracked]]`).
 - **Runtime** : .NET Framework 4.8 (pas .NET 8/9 — les redirects 9.0.0.0 sont BCL 2sxc-21, cf `[[reference-dnn-2sxc-net48-bcl-stack]]`).
+
+> ⚠️ **Le runbook 4 ne relève pas de ces pré-requis.** Le redéploiement mindmaps est une copie de fichiers additive dans le webroot : il ne touche ni `web.config`, ni `bin/`, ni la DB — donc ni connection string ni runtime à vérifier. Ses pré-requis propres (sauvegarde préalable, instantané des **deux sentinelles orphelines**) sont au §3 de [`redeploy-mindmaps-runbook.md`](redeploy-mindmaps-runbook.md).
 
 ---
 
