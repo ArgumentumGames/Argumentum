@@ -5,7 +5,9 @@ All notable changes to the Argumentum project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.9.0] — 2026-07-XX (tag pending jsboige visual GO, week of 2026-07-13)
+## [~~0.9.0~~ → 2.0.0] — 2026-07-XX (tag pending jsboige visual GO, week of 2026-07-13)
+
+> **Version note (2026-09-13, #999)**: the release was re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06); the tag has not been posed under either name yet. The entry below was drafted under the former name and is kept as-is pending the v2.0.0 notes rework (#999 DoD 3, owner-reviewed). Inventory: [`docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md`](docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
 
 ### Added — Multilingual Support (8 Languages)
 

@@ -1,5 +1,7 @@
 # Release Notes — Argumentum v0.9.0
 
+> **Version note (2026-09-13, #999)** — the release tag has been re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06). This document describes the workstream under its former name; the "v0.9.0" mentions are dated traces kept as-is (no retroactive renaming). Full inventory: [`999-inventaire-v0.9.0-2026-09-13.md`](docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 **Release date**: TBD (pending DNN deployment, see #134)
 **Scope**: 8-language support (FR, EN, RU, PT, ES, AR, FA, ZH)
 

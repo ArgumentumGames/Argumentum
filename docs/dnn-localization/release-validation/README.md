@@ -1,5 +1,7 @@
 # DNN Site — Dossier de validation release (Epic #131/#132)
 
+> **Note de version (2026-09-13, #999)** — le tag de release a été re-scopé **v0.9.0 → v2.0.0** (jsboige 2026-08-06). Les mentions « v0.9.0 » de ce dossier sont des **traces datées**, conservées telles quelles (même traitement que les runbooks go-live, notés le 2026-09-11). Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](../../release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 **Auteur :** Claude Code @ myia-po-2023 (worker) — 2026-06-16
 **Objet :** Ossature du dossier que jsboige utilisera pour valider la release du **site web DNN**
 (DNN + 2sxc, 8 langues). C'est l'artefact de validation **site**, distinct du dossier de validation

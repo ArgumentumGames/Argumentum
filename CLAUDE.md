@@ -547,7 +547,7 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 11. #212 — Playwright visual regression tests pour PDFs générés
 12. ~~Virtues i18n — ajouter colonnes _en/_ru/_pt~~ ✅ DONE (April-May 2026, PRs #218/#236/#246/#290/#295) — 100% coverage title/description/remark
 13. ~~Scenarii EN/RU/PT — 76/167 records missing (~46%)~~ ✅ DONE — 167/167 records 100% covered EN/RU/PT (verified cell-by-cell on master `7206f2f9`, 2026-05-24) across all 8 translatable fields; filled via commits `7ed970a3` (EN), `2a1b86bf` (RU), `0dc838fb` (PT) + contamination/BOM fixes
-14. #134 — GitHub Release v0.9.0 (en attente validation docs)
+14. #134 — GitHub Release v2.0.0 (ex-v0.9.0, re-scopé jsboige 2026-08-06, #999 — en attente validation docs)
 15. #133 — Publication OWL
 16. #131/#132 — DNN site + déploiement
 

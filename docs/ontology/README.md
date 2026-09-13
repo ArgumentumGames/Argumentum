@@ -112,7 +112,7 @@ dotnet run --project Generation/Converters/Argumentum.AssetConverter/Argumentum.
 - **Bilingual only** (FR + EN) — see §1 scope note.
 - **Layer C not covered** — ~1263 fallacy leaves without a skos signature are not AIF-typed (generative pass deferred). See the P1 closure report.
 - **OWLSharp round-trip bug** (#133): the `rdf:type` / `skos:inScheme` assertions are dropped by the OWL/XML round-trip. Readers are scoped on the surviving annotations (`prefLabel`, `broader`, the 3 relational layers). This does not affect the generated artefact.
-- **`versionInfo` = 1.0.0** — bump to the v0.9.0 release tag at publication time.
+- **`versionInfo` = 1.0.0** — bump to the release tag at publication time (**v2.0.0**, ex-v0.9.0 — re-scoped 2026-08-06, #999).
 
 ---
 

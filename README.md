@@ -158,7 +158,9 @@ That class makes use of the following components:
 
 Pre-built game materials are available on the [releases page](https://github.com/ArgumentumGames/Argumentum/releases).
 
-### Packages (v0.9.0)
+### Packages (v2.0.0)
+
+> **Version note (2026-09-13, #999)**: this release was first announced as ~~v0.9.0~~ and re-scoped to **v2.0.0** (jsboige 2026-08-06). Full inventory of the remaining `v0.9.0` mentions: [`docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md`](docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
 
 | Package | Contents | Languages |
 |---------|----------|-----------|

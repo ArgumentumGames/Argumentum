@@ -1,5 +1,7 @@
 # Announcement article — Argumentum v0.9.0 (EN mirror draft)
 
+> **Version note (2026-09-13, #999)** — the release announced by this article has been re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06). ⛔ **Do not publish as-is**: the body still says "v0.9.0" and must be reworked alongside the v2.0.0 release notes (#999 DoD 3, jsboige-reviewed). Full inventory: [`999-inventaire-v0.9.0-2026-09-13.md`](../release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 > **Status: DRAFT (#135 prep).** Public-facing announcement article for the v0.9.0 release, to be
 > published on the DNN portal **News5** module. **English mirror** of the FR canonical
 > ([news-article-v0.9.0.fr.md](news-article-v0.9.0.fr.md)). The DNN portal serves FR as primary; EN
