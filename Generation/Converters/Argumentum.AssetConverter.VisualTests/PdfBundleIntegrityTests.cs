@@ -268,38 +268,68 @@ namespace Argumentum.AssetConverter.VisualTests
         /// </summary>
         private const int ExpectedIdenticalPagesPerLanguagePair = 0;
 
-        /// <summary>All PokerCards documents are impositions of the same Scenarii deck —
-        /// the shared-back predicate applies to the whole family, never to one variant.</summary>
+        /// <summary>All PokerCards documents are impositions of the same Scenarii SOURCE deck,
+        /// each rendering its own subset — the shared-back predicate applies to the whole
+        /// family, never to one variant, and it learns each document's subset rather than
+        /// assuming the full deck.</summary>
         private const string ScenariiDeckDocKeyPrefix = "PokerCards";
 
         /// <summary>
-        /// Back-sheet size per Scenarii-deck document: how many card BACKS one back page
-        /// carries. This is an imposition FACT, not an exemption — the base deck renders one
-        /// card per page (334 pages = 167 backs + 167 faces), the Print&amp;Play A4 imposes a
-        /// 3×3 grid (38 pages = 19 back sheets × 9 + 19 face sheets; sheets alternate, back
-        /// sheets on 1-indexed odd pages, back sheet s carrying deck cards [s·k … s·k+k−1]).
-        /// The predicate generalizes over it: a back page is legitimately shared between two
-        /// languages iff EVERY card its sheet carries belongs to a category whose label
-        /// coincides between them. With k=1 that degenerates to per-card coincidence; with
-        /// k=9 only a homogeneous sheet counts — pop culture spans deck indices 111–128, so
-        /// exactly one full sheet (#13) is homogeneous and lands on page 2×13+1 = 27, while
-        /// the 14 politics cards straddle two mixed sheets and the Print&amp;Play expects none
-        /// for es/pt. A Scenarii-deck document with no registered sheet size fails loud
-        /// instead of silently expecting zero (#1176).
+        /// One Scenarii-deck document = the deck SUBSET it renders + its imposition fact. Both
+        /// are load-bearing and neither is a frozen list: the subset fixes WHICH cards are in
+        /// the deck, the back-sheet size fixes HOW MANY ride one back page. The predicate
+        /// re-derives both from the source CSV on every run, so a deck change moves the
+        /// computed expectation by itself — measured on this deck, dropping the first 3 cards
+        /// moves the en+fr page 27→25 and makes an es+pt page 29 appear, at the same
+        /// imposition, with no edit to this file.
+        ///
+        /// The subset is expressed as the SAME CSV filter production applies
+        /// (`WebBasedGeneratorConfig`, CardSet `ScenariiPrintAndPlay`: field `print_and_play`,
+        /// value `1`). Deriving it from the rendered artifact instead would make the guard
+        /// green by construction (#1112 trap). A null filter means the whole deck.
+        ///
+        /// ⚠️ The Scenarii CSV carries TWO print-ish columns — `print_&amp;_play_fevrier_2022`
+        /// and `print_and_play`. Both happen to select 27 rows today, so a count cannot tell
+        /// them apart; only the second is what production reads, and only that name belongs here.
         /// </summary>
-        private static readonly Dictionary<string, int> BackSheetSizes =
+        private sealed record ScenariiDeck(int BackSheetSize, string? FilterField, IReadOnlyList<string> FilterValues);
+
+        /// <summary>
+        /// Deck definition per Scenarii-deck document. An imposition + subset FACT, never an
+        /// exemption: the base deck renders one card per page (k=1; 334 pages = 167 backs +
+        /// 167 faces); the Print&amp;Play A4 imposes a 3×3 grid over ALL 167 cards (38 pages =
+        /// 19 back sheets × 9 + 19 face sheets; sheets alternate, back sheets on 1-indexed odd
+        /// pages, back sheet s carrying deck cards [s·k … s·k+k−1]); the Light A4 imposes that
+        /// same 3×3 grid over the 27-card `print_and_play` sample (6 pages = 3 sheets).
+        ///
+        /// The predicate generalizes over the pair: a back page is legitimately shared between
+        /// two languages iff EVERY card its sheet carries belongs to a category whose label
+        /// coincides between them. With k=1 that degenerates to per-card coincidence; with k=9
+        /// only a homogeneous sheet counts — pop culture spans deck indices 111–128, so exactly
+        /// one full sheet (#13) is homogeneous and lands on page 2×13+1 = 27, while the 14
+        /// politics cards straddle two mixed sheets and the full deck expects none for es/pt.
+        /// For the Light the SAME k=9 yields NO homogeneous sheet at all — its three sheets are
+        /// History+Mythology, Mythology+Intimate, Intimate+Professional — so its expected 0
+        /// shared backs is a derived result, not an unimplemented case.
+        ///
+        /// A Scenarii-deck document with no definition here fails loud instead of silently
+        /// expecting zero (#1176).
+        /// </summary>
+        private static readonly Dictionary<string, ScenariiDeck> ScenariiDecks =
             new(StringComparer.OrdinalIgnoreCase)
             {
-                ["PokerCards"] = 1,
-                ["PokerCards_Print&Play_A4"] = 9,
+                ["PokerCards"] = new(1, null, Array.Empty<string>()),
+                ["PokerCards_Print&Play_A4"] = new(9, null, Array.Empty<string>()),
+                ["PokerCards_Print&Play_Light_A4"] = new(9, "print_and_play", new[] { "1" }),
             };
 
-        private static readonly Dictionary<int, Dictionary<string, List<int>>> SharedBackPagesCache = new();
+        private static readonly Dictionary<string, Dictionary<string, List<int>>> SharedBackPagesCache =
+            new(StringComparer.OrdinalIgnoreCase);
 
-        private static Dictionary<string, List<int>> SharedBackPagesFor(int backSheetSize)
+        private static Dictionary<string, List<int>> SharedBackPagesFor(string docKey, ScenariiDeck deck)
         {
-            if (!SharedBackPagesCache.TryGetValue(backSheetSize, out var cached))
-                SharedBackPagesCache[backSheetSize] = cached = ComputeExpectedSharedBackPages(backSheetSize);
+            if (!SharedBackPagesCache.TryGetValue(docKey, out var cached))
+                SharedBackPagesCache[docKey] = cached = ComputeExpectedSharedBackPages(deck);
             return cached;
         }
 
@@ -318,8 +348,9 @@ namespace Argumentum.AssetConverter.VisualTests
         ///   odd pages; grid documents get a nominal parity label);
         /// - names every colliding page + language set in the failure (no boolean verdict);
         /// - tolerates ONLY the computed category-label back sharing
-        ///   (ComputeExpectedSharedBackPages, parameterized by the document's back-sheet
-        ///   size), verified as EXACT PAGE POSITIONS — never a blanket backs-are-fine pass.
+        ///   (ComputeExpectedSharedBackPages, parameterized by the document's own CSV SUBSET
+        ///   and back-sheet size), verified as EXACT PAGE POSITIONS — never a blanket
+        ///   backs-are-fine pass.
         /// Expected-failure baseline: on the 24/08 bundle this test MUST fail naming
         /// PokerCards_Print&amp;Play_A4 pages 1..38 identical across {en, es, fr, ru}
         /// (#1177 defect). If it runs green on a bundle where that defect is present, it
@@ -395,22 +426,35 @@ namespace Argumentum.AssetConverter.VisualTests
 
                 int minPages = counts.Min();
                 var roleLabel = DocRoleLabel(docKey);
-                int compared = 0, skippedNoImages = 0;
+                // `identicalPages` counts COLLIDING PAGES, which is what the line below reports.
+                // It is deliberately distinct from docFailures.Count, which also carries the
+                // derivation failures (unregistered deck, moved positions) — reporting that as
+                // "identical" is the instrument bug that produced the historical "2 identical"
+                // on a document with no identical page at all.
+                int compared = 0, skippedNoImages = 0, identicalPages = 0;
                 var docFailures = new List<string>();
                 var sharedBackPages = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase);
                 // Computed predicate: a back page is admissible only if every source string
                 // its SHEET renders (the category labels of all cards it carries) coincides
-                // between the languages — derived from the CSV at test time, parameterized by
-                // the document's back-sheet size, never a hardcoded page whitelist. Applies to
-                // the whole Scenarii-deck family; an unregistered variant fails loud (#1176).
+                // between the languages — derived from the CSV at test time from the
+                // document's OWN deck definition (CSV subset + back-sheet size), never a
+                // hardcoded page whitelist and never a frozen card list. Applies to the whole
+                // Scenarii-deck family; an unregistered variant fails loud (#1176).
                 Dictionary<string, List<int>>? expectedSharedBackPages = null;
                 var backSheetSize = 0;
+                var deckSubset = "";
                 if (docKey.StartsWith(ScenariiDeckDocKeyPrefix, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!BackSheetSizes.TryGetValue(docKey, out backSheetSize))
-                        docFailures.Add($"{docKey}: Scenarii-deck document with no registered back-sheet size — register the imposition fact in {nameof(BackSheetSizes)}, never exempt the document (#1176).");
+                    if (!ScenariiDecks.TryGetValue(docKey, out var deck))
+                        docFailures.Add($"{docKey}: Scenarii-deck document with no registered deck definition — register its CSV subset and its imposition fact in {nameof(ScenariiDecks)}, never exempt the document (#1176).");
                     else
-                        expectedSharedBackPages = SharedBackPagesFor(backSheetSize);
+                    {
+                        expectedSharedBackPages = SharedBackPagesFor(docKey, deck);
+                        backSheetSize = deck.BackSheetSize;
+                        deckSubset = deck.FilterField is null
+                            ? "the whole deck"
+                            : $"the rows with {deck.FilterField} in {{{string.Join(",", deck.FilterValues)}}}";
+                    }
                 }
 
                 for (int i = 0; i < minPages; i++)
@@ -438,6 +482,7 @@ namespace Argumentum.AssetConverter.VisualTests
                             }
                             else
                             {
+                                identicalPages++;
                                 docFailures.Add($"{docKey} page {i + 1} ({parity}{roleLabel}): identical rendered content across {string.Join(", ", g.Select(kv => kv.Key))}");
                             }
                         }
@@ -471,13 +516,13 @@ namespace Argumentum.AssetConverter.VisualTests
                         if (missing.Count > 0 || extra.Count > 0)
                             docFailures.Add($"{docKey}: shared back pages across {setKey.Replace("+", ", ")}: computed [{string.Join(",", expectedPages)}], observed [{string.Join(",", observedPages)}]" +
                                 $"{(missing.Count > 0 ? $", expected-but-absent [{string.Join(",", missing)}]" : "")}{(extra.Count > 0 ? $", unexpected [{string.Join(",", extra)}]" : "")}" +
-                                $" — the derivation assumes deck order = CSV row order and back sheet s (cards s×{backSheetSize}…s×{backSheetSize}+{backSheetSize - 1}) on page 2s+1, labels compared as the render compares them (case + script-variant fold). If the deck order, the imposition, or a category label changed, re-derive the predicate — do not tune the page list (#1176).");
+                                $" — the derivation assumes deck order = CSV row order among {deckSubset} and back sheet s (cards s×{backSheetSize}…s×{backSheetSize}+{backSheetSize - 1}) on page 2s+1, labels compared as the render compares them (case + script-variant fold). If the subset, the deck order, the imposition, or a category label changed, re-derive the predicate — do not tune the page list (#1176).");
                     }
                 }
 
                 var sharedBackTotal = sharedBackPages.Values.Sum(p => p.Count);
                 totalDocumentedSharedBacks += sharedBackTotal;
-                _output.WriteLine($"{docKey}: {langs.Count} langs × {compared} pages compared, {docFailures.Count} identical, {sharedBackTotal} documented shared backs ({string.Join("; ", sharedBackPages.Select(kv => $"{kv.Key}: {kv.Value.Count}"))}), {skippedNoImages} skipped (no images)");
+                _output.WriteLine($"{docKey}: {langs.Count} langs × {compared} pages compared, {identicalPages} identical, {sharedBackTotal} documented shared backs ({string.Join("; ", sharedBackPages.Select(kv => $"{kv.Key}: {kv.Value.Count}"))}), {skippedNoImages} skipped (no images), {docFailures.Count} derivation failure(s)");
                 failures.AddRange(docFailures);
             }
 
@@ -490,7 +535,7 @@ namespace Argumentum.AssetConverter.VisualTests
             {
                 var shown = failures.Take(60).ToList();
                 var more = failures.Count > 60 ? $"\n  … (+{failures.Count - 60} more)" : "";
-                Assert.Fail($"Identical rendered content across languages (expected {ExpectedIdenticalPagesPerLanguagePair} identical FACE page per language pair; backs: only a whole back SHEET whose category labels all coincide between the pair, per the computed predicate ComputeExpectedSharedBackPages parameterized by back-sheet size — a shared page otherwise means one language is not localized, #1176/#1177):\n  {string.Join("\n  ", shown)}{more}");
+                Assert.Fail($"Identical rendered content across languages (expected {ExpectedIdenticalPagesPerLanguagePair} identical FACE page per language pair; backs: only a whole back SHEET whose category labels all coincide between the pair, per the predicate ComputeExpectedSharedBackPages derived from the source CSV per document — its own subset + back-sheet size — a shared page otherwise means one language is not localized, #1176/#1177):\n  {string.Join("\n  ", shown)}{more}");
             }
 
             _output.WriteLine($"PASS: {byDocLang.Count(kv => kv.Value.Count >= 2)} document type(s) compared across languages, 0 identical pages, {totalDocumentedSharedBacks} documented shared backs.");
@@ -533,20 +578,26 @@ namespace Argumentum.AssetConverter.VisualTests
 
         /// <summary>
         /// #1176 computed predicate (constraint (a)): derive the expected shared-back PAGE
-        /// POSITIONS per language pair from the source CSV instead of a hardcoded page list.
-        /// The deck is the CSV's rows in order; back sheet s carries deck cards
-        /// [s·k … s·k+k−1] (k = backSheetSize) and renders on 1-indexed page 2s+1. A back
-        /// page is legitimately shared between two languages iff EVERY card its sheet carries
-        /// belongs to a category whose label coincides between them, compared the way the
-        /// render compares them (see NormalizeLabel). With k=1 this is per-card coincidence;
-        /// with k=9 only a homogeneous sheet counts. Asserting POSITIONS (not just counts)
-        /// is the explicit deck-order hypothesis: a reorder or a label change moves the
-        /// computed positions and the exact-position check goes red naming the assumption.
-        /// Throws FileNotFoundException if the CSV is absent — the predicate has no source,
-        /// and that must fail loud, never pass silently.
+        /// POSITIONS per language pair from the SOURCE CSV — never from the rendered artifact,
+        /// which would make the guard green by construction (#1112 trap) — instead of a
+        /// hardcoded page list. The deck is the CSV rows of the DOCUMENT'S OWN SUBSET, in row
+        /// order (the same `print_and_play` filter production applies); back sheet s carries
+        /// deck cards [s·k … s·k+k−1] (k = backSheetSize) and renders on 1-indexed page 2s+1.
+        /// A back page is legitimately shared between two languages iff EVERY card its sheet
+        /// carries belongs to a category whose label coincides between them, compared the way
+        /// the render compares them (see NormalizeLabel). With k=1 this is per-card
+        /// coincidence; with k=9 only a homogeneous sheet counts — which is why the 27-card
+        /// Light sample derives ZERO shared backs where the full deck derives two pages.
+        /// Asserting POSITIONS (not just counts) is the explicit deck-order hypothesis: a
+        /// subset, reorder, imposition or label change moves the computed positions and the
+        /// exact-position check goes red naming the assumption.
+        /// Throws (FileNotFoundException / InvalidDataException) if the CSV or the subset
+        /// column is absent — the predicate has no source, and that must fail loud, never
+        /// pass silently.
         /// </summary>
-        private static Dictionary<string, List<int>> ComputeExpectedSharedBackPages(int backSheetSize)
+        private static Dictionary<string, List<int>> ComputeExpectedSharedBackPages(ScenariiDeck deckDef)
         {
+            int backSheetSize = deckDef.BackSheetSize;
             var csvPath = Path.Combine(TestRepoRoot.Find(), "Cards", "Scenarii", "Argumentum Scenarii - Cards.csv");
             if (!File.Exists(csvPath))
                 throw new FileNotFoundException(
@@ -565,7 +616,23 @@ namespace Argumentum.AssetConverter.VisualTests
                 throw new InvalidDataException("Scenarii CSV is missing the 'category' (English) column used as the category identity for shared-back derivation.");
 
             int enCol = colIdx["category"];
-            // Deck order = CSV row order (asserted by the exact-position check upstream).
+
+            // The document's subset, expressed as the production CSV filter. A column named
+            // here but absent from the CSV is a derivation that cannot be sourced: fail loud,
+            // never quietly fall back to the whole deck (which would silently re-create the
+            // very defect this grain fixes — the Light compared against the full deck).
+            int? filterCol = null;
+            if (deckDef.FilterField is not null)
+            {
+                if (!colIdx.TryGetValue(deckDef.FilterField, out var fc))
+                    throw new InvalidDataException(
+                        $"Scenarii CSV is missing the '{deckDef.FilterField}' column registered as the subset filter for this deck — the predicate would otherwise silently widen to the whole deck (#1176).");
+                filterCol = fc;
+            }
+            var filterValues = new HashSet<string>(deckDef.FilterValues, StringComparer.Ordinal);
+
+            // Deck order = CSV row order WITHIN THE SUBSET (asserted by the exact-position
+            // check upstream).
             var deck = new List<string>();
             var catLabels = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
 
@@ -574,6 +641,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 if (enCol >= row.Count) continue;
                 var cat = row[enCol].Trim();
                 if (cat.Length == 0) continue;
+                if (filterCol is int fci && (fci >= row.Count || !filterValues.Contains(row[fci].Trim()))) continue;
                 deck.Add(cat);
                 if (!catLabels.TryGetValue(cat, out var labs))
                     catLabels[cat] = labs = new(StringComparer.Ordinal);
