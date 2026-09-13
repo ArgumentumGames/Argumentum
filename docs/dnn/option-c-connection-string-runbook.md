@@ -19,7 +19,7 @@
 1. **Cold-start DNN ~61s** — `worker idle-shutdown` (IIS par défaut) + JIT cold du app-domain. **Pas couvert par Option C.**
 2. **Pool staleness mid-window** — la connexion SQL dans le pool meurt silencieusement pendant l'idle worker, le 1er hit post-idle attend un nouveau connect TCP+auth. **Domaine d'Option C.**
 
-→ La solution retenue est **combinée** : Partie A (app-pool, fixe le 61s) + Partie C (conn-string, fixe le pool staleness). Voir `app-pool-idle-hang-runbook.md` (sibling) pour Partie A.
+→ La solution retenue est **combinée** : Partie A (app-pool, fixe le 61s) + Partie C (conn-string, fixe le pool staleness). ⚠️ Le runbook sibling `app-pool-idle-hang-runbook.md` n'a **jamais été committé** (constat 13/09/2026 — balayage de l'objet-DB entière, confirmé à la review de #1345) : les paramètres de la Partie A et son rollback inverse sont résumés au **§7** ci-dessous ; la procédure d'application détaillée n'est pas versionnée.
 
 ---
 
