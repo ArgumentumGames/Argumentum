@@ -142,7 +142,7 @@ non latins, en particulier RTL/CJK). À planifier post-tag, non bloquant pour la
 
 ## Sources
 
-- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — chiffres canoniques (8 langues, 64 PDFs, 4 variantes, ~9834 images, OWL 5.3 Mo).
+- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — chiffres canoniques (8 langues, ~~64 PDFs~~ **80 PDFs** *(corrigé 2026-09-13 : les notes elles-mêmes disent déjà « 80 PDFs (10 types × 8 langues) — pas 64 » ; cette citation était en retard sur sa source)*, 4 variantes, ~9834 images, OWL 5.3 Mo).
 - [docs/release-dossier/README.md](../release-dossier/README.md) — dossier de validation + snippet README downloads (§5) + gate checklist (§4).
 - [cards-catalog.fr.md](cards-catalog.fr.md) — formats et dimensions physiques.
 - Issue [#135](https://github.com/ArgumentumGames/Argumentum/issues/135) — cahier des charges ( corps d'origine stale : « 4 langues » ; scope réel = 8).
