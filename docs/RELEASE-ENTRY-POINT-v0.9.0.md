@@ -5,6 +5,11 @@
 **Pour** : jsboige, Thomas, Adeline, et tout nouvel arrivant sur la release
 **Scope** : 8 langues (fr / en / ru / pt / es / ar / fa / zh)
 
+> **⚠️ MISE À JOUR CHIFFRES — 2026-09-13 (po-2023, dispatch ai-01).** Deux lignes de ce fichier
+> (§2.1 gate b et §2.2 véhicule review) comptent encore « **64 PDFs** », alors que le §1 ci-dessous
+> dit déjà **80 (10 types × 8 langues)**. Corrigé **par datation** (barré, pas supprimé) pour
+> réaligner le fichier sur lui-même. Source : `docs/release-dossier/package-v2.0.0.ps1` (10 types).
+
 > **TL;DR** — v0.9.0 d'Argumentum est **prête sur les assets** (verdict visuel ai-01 = PASS). Le **tag** reste différé jusqu'à 2 validations externes : **(b)** retour Thomas & Adeline (véhicule review live), **(d)** ops DNN complètes (Manifests #490/#682 + connection-string tuning, partiellement appliquée — voir `option-c-connection-string-runbook.md`). Ce fichier est l'**index de démarrage** : il pointe vers chaque livrable vérifié et chaque gate en attente.
 
 ---
@@ -28,7 +33,7 @@
 ### 2.1 Pour jsboige (Product Owner)
 
 **Décisions en attente** (gates bloquant le tag) :
-- **(b)** Retour Thomas & Adeline sur le **véhicule review live** (64 PDFs + 16 mindmaps interactifs en prod IIS). Issue de tracking : **#802**.
+- **(b)** Retour Thomas & Adeline sur le **véhicule review live** (~~64~~ **80** PDFs + 16 mindmaps interactifs en prod IIS). Issue de tracking : **#802**. *(corrigé 2026-09-13 — voir bandeau en tête)*
 - **(d)** Ops DNN complètes — Manifests Δ #490/#682 + tuning connection-string complémentaire. Backup `DNNPlatform/web.config.bak-20260717` disponible.
 
 **Décisions post-tag** (peuvent attendre) :
@@ -44,7 +49,11 @@
 ### 2.2 Pour Thomas & Adeline (Relecteurs T&A)
 
 **Véhicule review** : https://github.com/ArgumentumGames/Argumentum/releases/tag/v0.9.0-review (LIVE)
-- 64 PDFs en lecture directe (HTTP 200 vérifié).
+- ~~64 PDFs en lecture directe (HTTP 200 vérifié).~~ **⚠️ Daté 2026-09-13** : ce compte décrit la
+  pre-release elle-même (64 assets = 8 types × 8 langues — exact pour elle), mais le **paquet de
+  relecture** est le **bundle GDrive de 80 PDF** (derniers : `review-v2.0.0-regen-20260906/` posé le
+  07/09, `review-v2.0.0-regen-20260912/` en dernière régén). *Quel véhicule fait foi pour le round en
+  cours = arbitrage owner porté par ai-01.* La ligne originale est conservée ci-dessus.
 - 16 mindmaps HTML interactifs (8 Fallacies, 8 Vertues, click-to-define).
 - Bundle complet sur GDrive : `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB).
 

@@ -140,7 +140,7 @@ scripts, especially RTL/CJK). Planned post-tag, non-blocking for FR+EN publicati
 
 ## Sources
 
-- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — canonical figures (8 languages, 64 PDFs, 4 variants, ~9834 images, 5.3 MB OWL).
+- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — canonical figures (8 languages, ~~64 PDFs~~ **80 PDFs** *(corrected 2026-09-13: the notes themselves already say "80 PDFs (10 types × 8 languages) — not 64"; this citation lagged behind its source)*, 4 variants, ~9834 images, 5.3 MB OWL).
 - [docs/release-dossier/README.md](../release-dossier/README.md) — validation dossier + README downloads snippet (§5) + gate checklist (§4).
 - [cards-catalog.en.md](cards-catalog.en.md) — formats and physical dimensions.
 - Issue [#135](https://github.com/ArgumentumGames/Argumentum/issues/135) — brief (original body stale: "4 languages"; live scope = 8).

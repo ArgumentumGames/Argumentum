@@ -1,11 +1,21 @@
 # Argumentum v0.9.0 — Relecture visuelle complète (Thomas & Adeline)
 
+> **⚠️ MISE À JOUR CHIFFRES — 2026-09-13 (po-2023, dispatch ai-01).** Le paquet de relecture compte
+> **80 PDF = 8 langues × 10 types**, et non 64 (= 8 × 8). Les occurrences de « 64 » ci-dessous sont
+> **barrées et datées, pas supprimées**. Source du chiffre vivant :
+> `docs/release-dossier/package-v2.0.0.ps1` (10 types, base `2a2e7b32`) et
+> `docs/RELEASE-NOTES-v0.9.0.md` (« 80 PDFs (10 types × 8 langues) — pas 64 », refresh tick 24).
+> Les **2 types ajoutés** sont les Print&Play **Light** : `TarotCards_Print&Play_Light_A4` et
+> `PokerCards_Print&Play_Light_A4` (expansion P&P #648-650). Le reste du parcours (quoi vérifier,
+> arrêts prioritaires, non-latin) reste valable tel quel.
+
 Merci de prêter vos yeux à **l'ensemble des livrables** du jeu avant la publication de la **v0.9.0** 🙏
 Ce dossier est un **parcours guidé** : *où récupérer chaque document, quoi vérifier, ce qui est normal,
 ce qu'il ne faut pas signaler*.
 
 ⚠️ **Important** : il ne s'agit **pas** que des cartes Tarot. Tout le paquet doit être contrôlé avant le tag :
-**8 types de documents × 8 langues (64 PDF) + les 2 mindmaps** (Sophismes + Vertus).
+~~**8 types de documents × 8 langues (64 PDF)**~~ **10 types × 8 langues (80 PDF)** + les 2 mindmaps (Sophismes + Vertus).
+*(corrigé 2026-09-13 — voir bandeau en tête de fichier)*
 
 Langues : 🇫🇷 FR (référence) · 🇬🇧 EN · 🇷🇺 RU · 🇵🇹 PT · 🇪🇸 ES · 🇸🇦 AR · 🇮🇷 FA · 🇨🇳 ZH.
 
@@ -13,13 +23,20 @@ Langues : 🇫🇷 FR (référence) · 🇬🇧 EN · 🇷🇺 RU · 🇵🇹 PT
 
 ## 1. Où récupérer les livrables
 
-### 📄 Les 64 PDF — pre-release GitHub
+### 📄 ~~Les 64 PDF — pre-release GitHub~~ Les **80 PDF**
+
+> ⚠️ **Daté 2026-09-13** : le titre d'origine disait « Les 64 PDF ». La pre-release GitHub porte
+> effectivement **64 assets (8 types × 8 langues)** — ce compte-là est exact — mais le **paquet de
+> relecture** attendu est le **bundle GDrive de 80 PDF** (`review-v2.0.0-regen-20260906/`, posé le
+> 07/09 ; dernière régén : `review-v2.0.0-regen-20260912/`). *Lequel des deux véhicules fait foi pour
+> le round en cours relève d'un arbitrage owner porté par ai-01 — cette notice ne tranche pas.*
+> *(Mesure ai-01 du 13/09, grade **RAPPORTÉ** pour moi.)*
 
 > 👉 **[Pre-release « v0.9.0 — Visual Review »](https://github.com/ArgumentumGames/Argumentum/releases/tag/v0.9.0-review)** → section **Assets** en bas de page.
 >
 > 💬 **Issue de suivi (à commenter)** : **[#802](https://github.com/ArgumentumGames/Argumentum/issues/802)**
 
-Chaque fichier est nommé `Argumentum_<Type>_<langue>.pdf`. **8 types × 8 langues** :
+Chaque fichier est nommé `Argumentum_<Type>_<langue>.pdf`. ~~**8 types × 8 langues**~~ **10 types × 8 langues** :
 
 | # | Type de PDF | Ce que c'est |
 |---|-------------|--------------|
@@ -31,6 +48,8 @@ Chaque fichier est nommé `Argumentum_<Type>_<langue>.pdf`. **8 types × 8 langu
 | 6 | `Fallacies_Web_A0` | **Poster A0** de la taxonomie des sophismes (grand format) |
 | 7 | `Fallacies_Web_A4` | Poster **A4** de la taxonomie |
 | 8 | `Fallacies_Web_Thumbnails_A4` | **Planche de vignettes** A4 |
+| 9 | `TarotCards_Print&Play_Light_A4` | Print&Play **allégé** du Tarot *(ajouté 2026-09-13 — expansion P&P #648-650)* |
+| 10 | `PokerCards_Print&Play_Light_A4` | Print&Play **allégé** des Scénarios *(ajouté 2026-09-13 — expansion P&P #648-650)* |
 
 ### 🧠 Les 2 mindmaps — dans le dépôt (rendu direct dans le navigateur)
 
@@ -50,7 +69,7 @@ Ouvrez le dossier de votre langue puis cliquez les fichiers `.svg` (GitHub les a
 
 ## 2. Comment se répartir le travail
 
-Le paquet est gros (64 PDF). Deux façons de se répartir — au choix :
+Le paquet est gros (~~64~~ **80** PDF). Deux façons de se répartir — au choix :
 
 - **Par langue** : chacun prend les langues qu'il peut juger et regarde **tous les types** pour ces langues.
 - **Par type** : l'un prend les cartes (Tarot/Vertus/Poker/Print&Play), l'autre les posters + mindmaps, sur les 8 langues.
