@@ -513,6 +513,7 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 - **Prompts**: 29 files in `DatasetUpdater/Resources/`
 - **Function calling**: Manual `FunctionToolDef` + JSON schema + `BinaryData.FromString()`
 - **Virtues CSV**: 100% translated (title/description/remark × fr/en/ru/pt), via PRs #218, #236, #246, #290, #295
+- **Re-mesure i18n `es`/`ar`/`fa`/`zh`** — mesurée 2026-09-13 sur master `35acac04`, 5 corpus (Fallacies, Virtues, Scenarii, Rules, Rules PP), 12 774 cellules par langue : **couverture 100 %** sur tous les champs substantiels (les seuls vides sont **structurels**, identiques dans les 8 langues) et **0 contamination FR**. La seule lacune réelle est `link` (6,2–7,5 % Fallacies, 41–69 % Virtues — mais `en` 94,7 %, `ru`/`pt` 7–9 % : lacune **générale**, pas propre aux 4 langues). 6 groupes ont exigé une lecture ligne à ligne (tous des locutions latines, un emprunt accentué, une citation, deux formes espagnoles autonomes), plus une **question éditoriale** ouverte : `Scenarii.es.subcategory` « romance » (faux-ami, `en`/`pt` portent `Romance`). Instrument, tables et relevé nominatif : [`docs/translation/i18n-remesure-es-ar-fa-zh.md`](docs/translation/i18n-remesure-es-ar-fa-zh.md)
 - **Issue #183** DONE — merged via PR #210
 
 ### GSheet ↔ CSV Sync (PR #200 merged)
