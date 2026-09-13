@@ -1,6 +1,9 @@
 # #133 — Impact IRI avant publication OWL : la surface est **déjà instable**
 
 **Auteur** : po-2023 (worker) · **Date** : 2026-09-14 · **Base** : `origin/master` `21a72385`
+**Oracle OWL committé** : `git show origin/master:docs/ontology/argumentum.owl` (`0aff63a3bbb4…`) — **jamais**
+le fichier de travail local ni le blob de `HEAD`, tous deux **en retard de 62 commits** (le checkout local est
+le webroot vivant de préprod).
 **Nature** : **mesure**, lecture seule. Aucune régénération, aucune publication, aucune écriture CSV.
 **Portée** : grain ③ de la deep-queue po-2023 (`#458` c.`5656689863`), **consomme les grains ① et ②**.
 **Ré-orientation** : le dispatch annonçait PK 511 `nonverbalInfluence` → `nonverbalCommunication` comme cas
@@ -38,6 +41,13 @@ L'IRI est **une fonction du libellé anglais**. La question que #133 doit tranch
 - **Cap 0** : le nombre de termes du namespace Argumentum dans l'artefact publié (**1 405**) et l'identité de
   blob établie au grain ① (`af9e8f38…` = sha256 servi, atteignable seulement depuis `5a086dfe`) portent sur
   **le même fichier** — le compte est donc bien celui de l'artefact servi, pas d'une copie locale.
+- **Piège d'oracle, rencontré et levé** : ma première passe comparait l'artefact publié au blob de **`HEAD`**
+  — or ce checkout est le webroot vivant, **62 commits en retard**. J'ai donc re-mesuré contre
+  **`origin/master`**. Les deux blobs **diffèrent** (6 835 266 o / `88062644…` pour `HEAD`, 5 985 122 o /
+  `0aff63a3bbb4…` pour `origin/master`), mais leurs **ensembles de termes sont identiques** — `cmp` sur les
+  deux listes triées rend l'égalité, 1 439 termes de part et d'autre. L'écart entre les deux blobs porte sur
+  les **assertions**, pas sur le vocabulaire déclaré. **Les chiffres du §0 ne dépendent donc pas du choix
+  d'oracle** — mais la vérification était nécessaire, et elle est consignée ici plutôt que supposée.
 
 ---
 
@@ -128,6 +138,7 @@ empiriquement, et l'écart publié↔committé est bien dans le **libellé**, pa
 | **négatif** | la comparaison doit discriminer | `absentmindedness` ≠ `absentMindedness` ✅ |
 | **reproduction de la règle** | `GetId` ré-implémenté doit prédire la colonne committée | **6/6** ✅ — et 0/6 des publiés |
 | **filtre** | le namespace doit être restreint | sans filtre : 192/195 (bruit de préfixes) ; avec : 141/175 (**terme**) ✅ |
+| **oracle** | le résultat ne doit pas dépendre du blob de référence | `cmp` des deux listes de termes (`HEAD` vs `origin/master`) : **identiques**, 1 439 chacun ✅ |
 
 **Transparence sur un faux départ** : ma première extraction, **non filtrée par namespace**, comparait des
 déclarations de préfixes à des IRI complets et rendait « 192 disparus / 195 apparus ». Le chiffre était
@@ -168,5 +179,6 @@ comme une découverte.*
 ---
 
 *master `21a72385` · OWL publié = `DNNPlatform/argumentum_fallacies.owl` (artefact servi, grain ①) ·
-OWL committé = `docs/ontology/argumentum.owl` @ `HEAD` · lecture seule : `grep`, `comm`, lecture de code ·
-⛔ aucune régénération, aucune publication, aucune écriture CSV · verdict visuel : ai-01.*
+OWL committé = `git show origin/master:docs/ontology/argumentum.owl` (`0aff63a3bbb4…`) · lecture seule :
+`grep`, `comm`, `cmp`, lecture de code · ⛔ aucune régénération, aucune publication, aucune écriture CSV ·
+verdict visuel : ai-01.*
