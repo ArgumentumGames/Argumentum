@@ -1,7 +1,31 @@
 # Argumentum v0.9.0 — Dossier de validation release
 
 **Date** : 2026-07-09 (refresh **v5** : intégration colonnes AIF relationnelles #753/#754/#755 + master `81a9e4e6`). Refresh v5.1 (2026-07-12) : master `84a529bf`, **tests 596/601 (0 rouge — round-trip #133 corrigé #793)**. Refresh v4.1 (2026-07-05) : master `d90ce613`, aligné CHANGELOG #689. Refresh v4 (2026-07-04) : bundle v3 80 PDFs CMYK + verdicts #140/#632 RENDUS PASS. Refresh **v5.2** (2026-07-27, ai-01) : §3.4 OWL **re-mesuré** sur master `accfeeab` — taille rectifiée (5 314 381 → **6 030 505 B**, la valeur imprimée ne correspondait à aucun blob committé), commit de référence rectifié (`c2a9b761` #634 → **`6fdf5726`** #787), inventaire des propriétés annotées ajouté (réconcilie #763 / #498 / skos), unités nommées. **Aucun verdict, statut ni arbitrage modifié** — refresh de chiffres uniquement. Refresh **v5.3** (2026-07-27, ai-01) : **en-tête uniquement** — trois faits périmés corrigés (compteur de tests, liste d'arbitrages, état du tag) ; **aucun verdict, aucun contenu de section modifié**. Détail au §0 ci-dessous.
-**Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + verdict #140 multilingue 8 langues RENDU + verdict #632 colorimétrique CMYK RENDU) — en attente d'arbitrages jsboige, puis tag. **La liste des arbitrages n'est pas dupliquée ici** : source unique = [#458](https://github.com/ArgumentumGames/Argumentum/issues/458) § *Arbitrages restants*, tenue à jour à chaque cycle de coordination (elle compte **10** entrées au 2026-07-27, en tête **#951** — les IRI de l'ontologie publiée peuvent-elles changer ?). L'énumération qui figurait ici (« SVG #636, mnémoniques #654, couplage go-live DNN ») avait dérivé : **#636 est CLOSED**. **Tag de release `v0.9.0` : toujours non posé.** En revanche le dépôt **porte un tag `v0.9.0-review`** (commit `6fe0a84b`, 2026-07-14, poussé sur `origin`) — posé au GO visuel ; la formule antérieure « `git tag` vide » est fausse depuis cette date.
+**Statut** : ASSETS VALIDÉS (verdict Release ai-01 = PASS géométrie/contenu + verdict #140 multilingue 8 langues RENDU + verdict #632 colorimétrique CMYK RENDU) — ~~en attente d'arbitrages jsboige, puis tag.~~ **CADUC au 2026-09-13 : les arbitrages D1-D4 sont TRANCHÉS depuis le 2026-08-08** (voir l'encadré de réconciliation ci-dessous). **La liste des arbitrages n'est pas dupliquée ici** : source unique = [#458](https://github.com/ArgumentumGames/Argumentum/issues/458) § *Arbitrages restants*, tenue à jour à chaque cycle de coordination (elle compte **10** entrées au 2026-07-27, en tête **#951** — les IRI de l'ontologie publiée peuvent-elles changer ?). L'énumération qui figurait ici (« SVG #636, mnémoniques #654, couplage go-live DNN ») avait dérivé : **#636 est CLOSED**. **Tag de release `v0.9.0` : toujours non posé.** En revanche le dépôt **porte un tag `v0.9.0-review`** (commit `6fe0a84b`, 2026-07-14, poussé sur `origin`) — posé au GO visuel ; la formule antérieure « `git tag` vide » est fausse depuis cette date.
+
+> ### 🔻 RÉCONCILIATION — 2026-09-13 (po-2023, dispatch ai-01)
+>
+> **Ce dossier se contredisait sur le couplage DNN, et les deux moitiés ne dataient pas du même mois.**
+> Les lignes « **couplée** » (l. 43, 144) et les lignes « **dé-coupler** » (l. 171, §7, §8 pt 4) se
+> neutralisaient ; un lecteur froid ne pouvait pas savoir laquelle était vivante.
+>
+> **La décision owner du 2026-08-08 tranche : « D3 = ON COUPLE »** — le blog de reco « dé-coupler »
+> est **écarté** (réaffirmé le 2026-08-20 : *« celle de DNN n'est pas négociable »*). Les lignes de
+> juillet sont donc **dépréciées par datation** ci-dessous, **pas supprimées** : c'est en les datant
+> qu'on empêche le prochain lecteur de rejouer la même erreur.
+>
+> ⚠️ **Deux faits périmés corrigés au passage, mesurés** :
+> 1. **Le tag `v0.9.0-review` ne pointe plus `6fe0a84b`** (ci-dessus, 2026-07-14). Il a été **repointé
+>    le 2026-08-13** sur **`3f7c95ec`**, et **son jeu d'assets est resté figé à 64** (8 types × 8
+>    langues) — mesuré par ai-01 le 2026-09-13. *La formule ci-dessus est conservée comme datée.*
+> 2. **Le compte « 64 » de la gate checklist n'est plus l'attendu de livraison** : le paquet qui part
+>    à l'impression en porte **80 = 10 types** (`package-v2.0.0.ps1`). Le 64 était le compte validé du
+>    01/07, recopié depuis. **Re-dériver, ne pas recopier.**
+>
+> *Sources* : [issue #458, c.5227104283](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5227104283)
+> (D1-D4 tranchées, 2026-08-08, **VÉRIFIÉ**) · réaffirmation du 20/08 **citée** dans
+> [c.5652005725](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5652005725)
+> (**RAPPORTÉ** — verbatim issu de session interactive).
 **Branche** : `docs/release-validation-v5-aif-refresh`
 **Master de référence** : `fbb5c055` (2026-07-27, build zéro-warning CS+NU, **tests 643 total / 638 pass / 0 fail / 5 skip**, mesurés **en CI dans les deux legs de matrice — Debug *et* Release** [run `30280070312`, ligne `Total tests:` lue dans le log, pas la couleur du check], Magick.NET **14.15.0** [#871]). Le compteur a changé de **601 → 643** non par ajout de fonctionnalité mais parce que **#911 a rendu l'étape Test signifiante** : elle exécutait le build sans lancer les tests (`Tests.csproj` absent du `.sln` scanné) — le chiffre antérieur *596/601* était mesuré localement, pas en CI. Précédent : `84a529bf` (v5.1 2026-07-12, 596/601 empirique local po-2023). **0 rouge** : le test OWL2XML round-trip #133 n'est plus un known-fail depuis #793 — l'assertion `inScheme.Be(0)` (faux-négatif obsolète : inScheme **survit** au round-trip, empirique 1408) a été corrigée en `BeGreaterThan(0)` ; le résidu réel (`rdf:type` dropped au reload, contourné par le survivor-fallback reader) reste asserté-comme-attendu, documenté, pas une régression. Précédent master : `81a9e4e6` (v5 2026-07-09). **Refresh v4** : bundle **v3** régénéré 2026-07-03 sur `27442add` = **80 PDFs** (10 types × 8 langues, expansion P&P #648-650) PNG-lossless puis **80/80 convertis CMYK** via post-process Ghostscript (#632/#652). Bundle GDrive `review-v0.9.0-RELEASE-bundle-v3-2026-07-03/` (6.5 GB : 80 PDFs CMYK + 7 samples + `CMYK_COLOR_PROOF.txt`).
 
@@ -168,8 +192,16 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 
 1. **Validation pixel RTL/CJK des SVGs** (#3.2) — ✅ **VERDICT SOURCE-LEVEL ai-01 = PASS** (technique). Pixel eyeball jsboige optionnel (le pixel-RTL est figé en coordonnées absolues ; un screenshot n'ajouterait que la détection tofu = défaut viewer-font, pas défaut asset).
 2. **Verdicts visuels PDFs** — ✅ **RENDUS = PASS** (ai-01). (a) Verdict contenu **#140** 8 langues (2026-07-03) : carte dense p51 EN/ES/RU/AR/FA/ZH, RTL/CJK propre, covers, PT #306 fixé, FR Rules 5 jeux. (b) Verdict colorimétrique **#632** (2026-07-03) : DeviceCMYK 4-comp + GTS_PDFX/OutputIntent sur fr+ar+zh. **Bundle v3** = 80/80 PDFs CMYK (Ghostscript #632/#652), 6.5 GB GDrive. #119, recto-verso, #216, micro-RU résolu, 300 PPI. Multilingue/RTL/CJK/CMYK validés.
-3. **DNN #131 couplé** — ✅ **MIGRATION FULL-IIS FERMÉE (2026-07-01)** : `dnn.argumentum.myia.io` LIVE full-IIS direct (HTTP 200/85 KB, 0× « Something went wrong », HTTPS SAN 9D80D4CC), DB SQL Express + PortalAlias table clean, stopgap `dnn.myia.io` retiré. **Verdict visuel site = jsboige (RDP)**. Le couplage n'est plus un bloqueur assets — po-2023 recommande toujours de **tagger v0.9.0 assets-only** (DNN prod go-live = ops VPS jsboige, séparé).
-4. **Tag v0.9.0** — pas encore posé (`git tag` vide). **Techniquement débloqué** : verdicts #140 (contenu) + #632 (CMYK) = PASS, bundle v3 80/80 CMYK livré. Reste les **arbitrages jsboige** : ~~(a) #636 §1 assets SVG Virtues~~ — ✅ **#636 CLOSED 2026-07-06** (prémisse Virtues FR-figés fausse, cf §3.2 rectification), (b) #654 mnémoniques (scope A/B/global), (c) décision couplage go-live DNN (immédiat vs après portage). *(Le finding titre PT §3.6 est résolu — n'a jamais atteint une carte.)*
+3. **DNN #131 couplé** — ✅ **MIGRATION FULL-IIS FERMÉE (2026-07-01)** : `dnn.argumentum.myia.io` LIVE full-IIS direct (HTTP 200/85 KB, 0× « Something went wrong », HTTPS SAN 9D80D4CC), DB SQL Express + PortalAlias table clean, stopgap `dnn.myia.io` retiré. **Verdict visuel site = jsboige (RDP)**. ~~Le couplage n'est plus un bloqueur assets — po-2023 recommande toujours de **tagger v0.9.0 assets-only** (DNN prod go-live = ops VPS jsboige, séparé).~~
+   > **⚠️ DÉPRÉCIÉ 2026-09-13 (ligne de juillet).** La reco « tagger assets-only » est **écartée** :
+   > décision owner 2026-08-08, **D3 = ON COUPLE** (§ en-tête). Et **correction de topologie** : le site
+   > `dnn.argumentum.myia.io` décrit ici comme « LIVE » est la **PRÉPROD** (hébergée sur po-2023) — la
+   > **PROD** est `www.argumentum.games` sur le VPS **myia-web1**. La clôture de la migration full-IIS
+   > (2026-07-01) reste un fait **acquis** ; c'est *ce qu'elle ferme* qui était mal nommé.
+4. **Tag v0.9.0** — pas encore posé (`git tag` vide). **Techniquement débloqué** : verdicts #140 (contenu) + #632 (CMYK) = PASS, bundle v3 80/80 CMYK livré. Reste les **arbitrages jsboige** : ~~(a) #636 §1 assets SVG Virtues~~ — ✅ **#636 CLOSED 2026-07-06** (prémisse Virtues FR-figés fausse, cf §3.2 rectification), (b) #654 mnémoniques (scope A/B/global), ~~(c) décision couplage go-live DNN (immédiat vs après portage)~~. *(Le finding titre PT §3.6 est résolu — n'a jamais atteint une carte.)*
+   > **⚠️ DÉPRÉCIÉ 2026-09-13** : **(c) n'est pas un arbitrage restant** — tranché le **2026-08-08**
+   > (**ON COUPLE**). Le tag n'est donc plus en attente d'une **décision** mais d'une **op** : le
+   > cutover prod (web1 VPS). *(Statut de (b) #654 non re-mesuré ici — ne pas le lire comme clos.)*
 5. **CHANGELOG.md** — **✅ corrigé** (ligne 16, patch cf §6, merged via #591). **`docs/RELEASE-NOTES-v0.9.0.md` créé** — la release est documentée par CHANGELOG.md + RELEASE-NOTES.
 6. **#499 Phase 2 OWL** — ✅ **livré** (PR #592 merged `8d5d275b`) **avant** ce dossier. Mentionné dans release notes. Fait acquis.
 7. **~~Finding CMYK absent~~ — ✅ RÉSOLU** (post-process Ghostscript #632/#652). Le finding original du 2026-07-01 (bundle RGB-300-lossless, 0 DeviceCMYK) est **résolu** : le bundle v3 (2026-07-03) = **80/80 DeviceCMYK + OutputIntent SWOP** (§3.3). Plus d'appel à décision sur le CMYK — le verdict #632 = PASS (ai-01). Le path `DocumentCardSet.cs` (oxymore PNG) est remplacé par le post-process GS sur le PDF final.
@@ -196,6 +228,11 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 - **Validation pixel** : spot-check Playwright **FAIT = PASS** par ai-01 (2026-07-01) sur `Fallacies_Web_Thumbnails` p1 × 5 langues (zh/ar/fa/ru/es — CJK + RTL + cyrillique + latin) + verdict Release (pdftoppm/pdfimages, #119 + recto-verso + micro-RU résolu). Couverture complète pixel sur l'ensemble non faite (Playwright cale sur le poids SVG/PDF — mur d'outillage documenté). Validation donc **source-level + spot-check + colorspace/encoding inspection**, pas pixel exhaustif.
 - ~~**Régén release non reproduite**~~ — ✅ **LEVÉ** : régén **Release** fraîche **2026-07-01** exécutée (§3.3, `3e2fa0c0`+#614, serial `-c Release`), 0 échec, 64/64 PDFs, verdict visuel PASS. 0 régression.
 - ~~**DNN couplé**~~ — ✅ **LEVÉ** : migration full-IIS **fermée** (2026-07-01), `dnn.argumentum.myia.io` LIVE. Le couplage n'est plus un bloqueur assets (DNN prod go-live = ops VPS jsboige, séparé).
+  > **⚠️ DÉPRÉCIÉ 2026-09-13 (ligne de juillet — la plus trompeuse des trois).** « LEVÉ » était juste
+  > au sens où la *migration* était finie ; **faux au sens où le lecteur l'entend** : le couplage
+  > n'est **pas** levé, il est **la porte du tag** (D3 = ON COUPLE, owner 2026-08-08). Une ligne
+  > barrée qui dit « LEVÉ » sur un risque qu'on a *décidé de garder* est un contresens actif —
+  > elle a été lue le 13/09 comme « le couplage n'est plus un sujet ».
 - ~~**Params Debug vs Release**~~ — ✅ **RÉSOLU** : jsboige a validé Release (GO interactif 2026-07-01). Bundle v3 `-c Release` (PNG lossless) **+ post-process Ghostscript CMYK** (#632/#652) produit, verdict #632 PASS. **Le CMYK visé est désormais matérialisé** : 80/80 DeviceCMYK + OutputIntent SWOP (§3.3).
 - ~~**Finding titre PT cassé**~~ : ~~1 carte Rules PT affiche « Roll of the English Channel »~~ — ✅ **RÉSOLU** (§3.6) : clé ignorée à l'exécution, n'a jamais atteint une carte. Plus un risque résiduel.
 - **Note de procédure (stale-harvest + parallélisme + CardPen host)** : la régên Release 2026-07-01 a required `EnableParallelism=false` (serial) après diagnostic parallélisme=6 → timeout 300s → `Mismatch` throw (résolu par #614 résilience + serial). **CardPen Pages = échec structurel** (404 `/Cards/`, #629) → pivot CardPen local (Golden Master, #629 workaround). **Bug Spectre `[HARVEST-FAILURE]`** (#630) court-circuite #614 sur set-failure → 2 bugs tracés post-tag. Documenté en mémoire.
@@ -205,9 +242,18 @@ Ce dossier est le **gate** de #134 : c'est le document qu'on ouvre pour décider
 ## 8. Recommandation po-2023
 
 1. **GO jsboige sur verdicts PASS ai-01** (§3.3 — #140 contenu 8 langues + #632 CMYK, géométrie #119, recto-verso, #216, micro-RU résolu, 300 PPI) → assets validés côté technique.
-2. **Arbitrages jsboige restants** : ~~(a) **#636 §1 SVG Virtues**~~ — ✅ **CLOSED 2026-07-06** (prémisse FR-figés fausse, §3.2) ; (b) **#654 mnémoniques** (scope A/B/global) ; ~~(c) **titre PT**~~ — ✅ **RÉSOLU** (§3.6 : clé ignorée, n'a jamais atteint une carte ; #306 distinct aussi clos) ; (d) **couplage go-live DNN** (immédiat vs après portage i18n #669/#674).
+2. **Arbitrages jsboige restants** : ~~(a) **#636 §1 SVG Virtues**~~ — ✅ **CLOSED 2026-07-06** (prémisse FR-figés fausse, §3.2) ; (b) **#654 mnémoniques** (scope A/B/global) ; ~~(c) **titre PT**~~ — ✅ **RÉSOLU** (§3.6 : clé ignorée, n'a jamais atteint une carte ; #306 distinct aussi clos) ; ~~(d) **couplage go-live DNN** (immédiat vs après portage i18n #669/#674)~~.
+   > **⚠️ DÉPRÉCIÉ 2026-09-13** : (d) est **tranché** depuis le **2026-08-08** — **ON COUPLE**, la
+   > release v2.0.0 **gate** sur le go-live. **Cette liste ne portait plus aucun arbitrage ouvert.**
+   > La seule porte restante du tag est le **cutover prod** (web1 VPS), qui est une **op**, pas une
+   > décision.
 3. **Régén fraîche** : ✅ **FAITE** (bundle v3 2026-07-03, §3.3, 80/80 CMYK). Go-live sur bundle v3.
-4. **Décision couplage DNN** : dé-coupler — tagger v0.9.0 assets-only (DNN prod = ops VPS jsboige, migration déjà LIVE en recette). Le portage i18n site (#669 mécanisme, #674 refactor Rules) est post-tag.
+4. ~~**Décision couplage DNN** : dé-coupler — tagger v0.9.0 assets-only (DNN prod = ops VPS jsboige, migration déjà LIVE en recette). Le portage i18n site (#669 mécanisme, #674 refactor Rules) est post-tag.~~
+   > **⚠️ DÉPRÉCIÉ 2026-09-13 (reco de juillet).** **C'est cette ligne — la reco du §8, la plus
+   > « vivante » du dossier — que l'owner a explicitement écartée.** Décision du **2026-08-08** :
+   > **D3 = ON COUPLE** ⇒ le tag **suit** le cutover prod, il ne le précède pas. Séquence réelle :
+   > préprod validée → **cutover prod (web1 VPS)** → tag `v2.0.0`. La suite i18n (#669/#674) reste
+   > post-tag, comme la ligne l'annonçait — c'est la **relation au gate** qui s'inverse.
 5. **Tag v0.9.0** après (1)+(2).
 
 ---
