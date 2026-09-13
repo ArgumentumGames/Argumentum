@@ -4,6 +4,14 @@
 **Author:** po-2024 — grain **primaire** du dispatch ai-01 `msg-20260913T105836-kmhyzw`.
 **Base:** master `35acac04` (2026-09-13). Mesure rejouable : parseur CSV, re-dérivée de la SOURCE.
 
+> **Erratum daté — 2026-09-13 (po-2024, post-merge #1354).** Le 6ᵉ groupe résiduel `Scenarii.subcategory`
+> était présenté ci-dessous comme un **faux-ami à trancher par l'owner**, et l'ASK dashboard a circulé avec
+> « **25 rangées** ». Les deux sont faux, re-mesurés sur la SOURCE ce jour : le groupe compte **11 rangées**,
+> la catégorie est **`relation intime`** (et non un contexte « langues romanes »), et **les 8 langues
+> localisent** (`Romance` fr/en/pt · `romance` es · `Романтика` ru · `رومانسية` ar · `عاشقانه` fa ·
+> `浪漫爱情` zh). ⇒ **Aucun faux-ami, aucune question éditoriale : le groupe est tranché par la mesure.**
+> L'arbitrage owner est **retiré**. Les passages ci-dessous sont corrigés en conséquence (§4②, §5 pt 4).
+
 > Le « 100 % vérifié cell-by-cell » de mai 2026 **ne couvre que EN/RU/PT**. Ce document mesure
 > les quatre autres langues, qui ne l'avaient jamais été, et sépare deux questions distinctes :
 > **couverture** (la cellule est-elle remplie ?) et **alignement** (est-elle dans la bonne langue,
@@ -246,14 +254,14 @@ du même régime.
 
 | Corpus | Champ | es | ar | fa | zh | en | ru | pt | Lecture |
 |---|---|---|---|---|---|---|---|---|---|
-| `Scenarii` | `subcategory` | « romance » | « رومانسية » | « عاشقانه » | « 浪漫爱情 » | « Romance » | « Романтика » | « Romance » | faux-ami — `en`/`pt` portent la **même forme** (`Romance`) |
+| `Scenarii` | `subcategory` | « romance » | « رومانسية » | « عاشقانه » | « 浪漫爱情 » | « Romance » | « Романтика » | « Romance » | **tranché** — catégorie `relation intime`, **8/8 langues localisent** (erratum 2026-09-13) |
 | `Fallacies` | `text` | « Ipse dixit » | « إيبسي ديكست » | « ایپسه دیکست » | « 自我引用 » | « Ipse Dixit » | « Ipse Dixit » | « Ipse Dixit » | terme latin — `en`/`ru`/`pt` = `Ipse Dixit` (casse) |
 | `Fallacies` | `text` | « Namasté » | « ناماستي » | « ناماسته » | « 合十礼 » | « Namaste » | « Намасте » | « Namastê » | emprunt — `en` `Namaste`, `pt` `Namastê`, `ru` `Намасте` |
 | `Fallacies` | `text` | « Delenda Carthago » | « يجب تدمير قرطاج » | « کارتاژ باید نابود شود » | « 迦太基必须被毁 » | « Carthago delenda est » | « Да погибнет Карфаген » | « Delenda Cartago » | citation latine — `pt` `Delenda Cartago`, `ru` traduit |
 | `Scenarii` | `smoothTalker` | « Un fan » | « مشجّع » | « یک هوادار » | « 一名球迷 » | « A fan » | « Фанат » | « Um fã » | **espagnol correct** (`un fan`) — `en` `A fan`, `pt` `Um fã` |
 | `Scenarii` | `smoothTalker` | « Un anti-5G » | « مناهض للجيل الخامس » | « یک مخالف 5G » | « 一名反 5G 人士 » | « An anti-5g » | « Анти-5G » | « Um anti-5g » | **espagnol correct** — `en` `An anti-5g`, `pt` `Um anti-5g` |
 
-- **`Scenarii.subcategory` « romance »** — 11 rangées, catégorie `relation intime`. `en` **et** `pt` écrivent `Romance` : la forme espagnole est le **même lexème**, pas une recopie du FR. `ar`/`fa`/`zh`/`ru` le rendent par leur propre vocabulaire (`رومانسية`, `عاشقانه`, `浪漫爱情`, `Романтика`). En espagnol `romance` désigne aussi la ballade : **question de faux-ami à trancher par l'owner** — pas une faute de langue mesurée.
+- **`Scenarii.subcategory` « romance »** — 11 rangées, catégorie **`relation intime`**. `en` **et** `pt` écrivent `Romance` : la forme espagnole est le **même lexème**, pas une recopie du FR. `ar`/`fa`/`zh`/`ru` le rendent par leur propre vocabulaire (`رومانسية`, `عاشقانه`, `浪漫爱情`, `Романтика`). Dans une catégorie `relation intime`, `romance` se lit sans ambiguïté comme le sentiment amoureux — **les 8 langues convergent, rien à trancher**. *(La version antérieure de cette ligne parlait d'un faux-ami « ballade » : elle avait déduit un contexte de la seule forme du mot au lieu de lire la catégorie. Erratum 2026-09-13.)*
 - **`Scenarii.smoothTalker` « Un fan »** — `Un fan` **est de l'espagnol correct** (`un fan` = un fanatique) ; `en` `A fan`, `pt` `Um fã`, `ar`/`fa`/`zh` traduits. Identique au FR par convergence des deux langues, pas par recopie.
 - **`Scenarii.smoothTalker` « Un anti-5G »** — Idem : `Un anti-5G` est une forme espagnole autonome (`en` `An anti-5g`, `pt` `Um anti-5g`, `ru` `Анти-5G`, `ar`/`fa`/`zh` traduits). Convergence, pas contamination.
 - **`Fallacies.text` « Ipse dixit »** — Les trois langues de référence portent la **même locution latine**, à la casse près (`Ipse Dixit`) ; `ar`/`fa`/`zh` translittèrent (`إيبسي ديكست`, `自我引用`). Terme d'usage, non traduit par choix.
@@ -365,13 +373,16 @@ montre que la lacune n'est pas propre aux 4 langues mesurées.
    source communes — jamais une cellule recopiée là où les langues de référence traduisaient.
 3. **La lacune réelle est `link`** (6,2–7,5 % sur Fallacies, 41–69 % sur Virtues) — et elle n'est
    pas propre aux 4 langues : `en` fait 94,7 %, `ru`/`pt` 7–9 %.
-4. **Une question éditoriale**, non une faute de langue : `Scenarii.es.subcategory` « romance »
-   (11 rangées, `relation intime`) — `en` et `pt` portent la même forme (`Romance`), donc c'est un
-   **faux-ami** à trancher par l'owner, pas une contamination mesurée.
+4. **Aucune question éditoriale restante.** Le seul candidat — `Scenarii.es.subcategory` « romance »,
+   11 rangées, catégorie `relation intime` — est **tranché par la mesure** depuis le 2026-09-13 : les
+   8 langues localisent (`Romance` fr/en/pt, `romance` es, `Романтика`, `رومانسية`, `عاشقانه`, `浪漫爱情`)
+   et la catégorie lève l'ambiguïté du mot. L'arbitrage owner ouvert le matin même a été **retiré**
+   (erratum en tête de document). *(Le compte « 25 rangées » qui a circulé dans l'ASK était faux : 11.)*
 
 Les **six** groupes que le contrôle ne tranchait pas ont été lus un par un (§4②) : locutions
-latines, emprunt accentué, citation, et deux formes espagnoles autonomes. **Aucun** ne révèle une
-cellule recopiée du français là où les langues de référence auraient traduit.
+latines, emprunt accentué, citation, et trois formes espagnoles autonomes (`Un fan`, `Un anti-5G`,
+`romance`). **Aucun** ne révèle une cellule recopiée du français là où les langues de référence
+auraient traduit — et **aucun** ne laisse une question ouverte.
 
 ## 7. Ce qui a corrigé l'instrument (à garder)
 
