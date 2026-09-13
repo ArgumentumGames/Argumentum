@@ -1,5 +1,7 @@
 # Argumentum v0.9.0 — Release Notes (DRAFT)
 
+> **Note de version (2026-09-13, #999)** — le tag de release a été re-scopé **v0.9.0 → v2.0.0** (jsboige 2026-08-06, [`DECISION-v2.0.0-jsboige.md`](release-dossier/DECISION-v2.0.0-jsboige.md)). Ce document décrit le chantier sous son ancien nom : les mentions « v0.9.0 » sont des **traces datées**, conservées telles quelles (⛔ pas de renommage rétroactif). Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 **Statut** : DRAFT pour validation jsboige (pré-tag juillet 2026)
 **Auteur** : po-2023 (draft initial), po-2024 (refresh #134 tick 24, alignement 80 PDFs / 596 tests)
 **Scope** : 8 langues (fr / en / ru / pt / es / ar / fa / zh)

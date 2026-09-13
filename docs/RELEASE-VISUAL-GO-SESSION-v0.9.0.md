@@ -1,5 +1,7 @@
 # Argumentum v0.9.0 — Parcours de session GO visuel (jsboige)
 
+> **Note de version (2026-09-13, #999)** — le tag de release a été re-scopé **v0.9.0 → v2.0.0** (jsboige 2026-08-06, [`DECISION-v2.0.0-jsboige.md`](release-dossier/DECISION-v2.0.0-jsboige.md)). Si la session GO est rejouée après la régén du 12/09, c'est le nom **v2.0.0** qui s'applique ; les mentions « v0.9.0 » de ce parcours sont des traces datées, conservées telles quelles. Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 **Objet** : guide d'action (~45 min) pour la **session de validation visuelle finale** de jsboige avant
 de poser le tag v0.9.0 (#134). Calendaire : **sem. du 13/07**. Ce n'est pas un dossier technique — c'est
 un **parcours guidé** « ouvre ceci, vérifie ça, voici ce qui est normal, voici les décisions à prendre ».

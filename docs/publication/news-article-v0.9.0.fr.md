@@ -1,5 +1,7 @@
 # Article d'annonce — Argumentum v0.9.0 (brouillon FR canonique)
 
+> **Note de version (2026-09-13, #999)** — la release annoncée par cet article a été re-scopée **v0.9.0 → v2.0.0** (jsboige 2026-08-06). ⛔ **Ne pas publier tel quel** : le corps annonce encore « v0.9.0 » et doit être repris lors de la rédaction des notes v2.0.0 (#999 DoD 3, relecture jsboige). Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](../release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 > **Statut : BROUILLON (prep #135).** Article public-facing d'annonce de la release v0.9.0, à publier
 > sur le module **News5** du portail DNN. Version FR canonique (le portail sert le FR en primaire).
 > **La publication est GATED** sur #134 (tag GitHub Release), #132 (déploiement prod) et #131 (DNN

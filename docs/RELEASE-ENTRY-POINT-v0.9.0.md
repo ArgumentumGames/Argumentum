@@ -1,5 +1,7 @@
 # Argumentum v0.9.0 — Entry Point (où tout commence)
 
+> **Note de version (2026-09-13, #999)** — le tag de release a été re-scopé **v0.9.0 → v2.0.0** (jsboige 2026-08-06, [`DECISION-v2.0.0-jsboige.md`](release-dossier/DECISION-v2.0.0-jsboige.md)). Les mentions « v0.9.0 » de ce document sont des **traces datées**, conservées telles quelles (⛔ pas de renommage rétroactif). Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 **Date** : 2026-07-17
 **Statut** : Tag différé — gate (b) review T&A + gate (d) DNN ops
 **Pour** : jsboige, Thomas, Adeline, et tout nouvel arrivant sur la release

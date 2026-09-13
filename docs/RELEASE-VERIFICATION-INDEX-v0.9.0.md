@@ -1,5 +1,7 @@
 # Argumentum v0.9.0 — Index de vérification docs release (pre-tag gate)
 
+> **Note de version (2026-09-13, #999)** — le tag de release a été re-scopé **v0.9.0 → v2.0.0** (jsboige 2026-08-06, [`DECISION-v2.0.0-jsboige.md`](release-dossier/DECISION-v2.0.0-jsboige.md)). Les mentions « v0.9.0 » de cet index sont des **traces datées**, conservées telles quelles. Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 **Objet** : index unique pour que **jsboige** puisse reviewer en un seul passage **tous les docs
 release** avant de poser le tag v0.9.0 (#134). Un seul point d'entrée → un lien + une ligne
 « à vérifier » par doc.

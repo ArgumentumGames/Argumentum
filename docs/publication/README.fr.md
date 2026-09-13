@@ -26,6 +26,8 @@ Les règles (« livret ») sont livrées sous forme de **cartes Rules** dans le 
 
 ### 3. Article d'annonce de release
 
+> **Note de version (2026-09-13, #999)** : la release a été re-scopée **v0.9.0 → v2.0.0** (jsboige 2026-08-06). Les fichiers ci-dessous conservent leur nom `v0.9.0` (traces datées) ; leur **contenu** doit repasser au numéro v2.0.0 avant publication (#999 DoD 3).
+
 - **[news-article-v0.9.0.fr.md](news-article-v0.9.0.fr.md)** — brouillon FR canonique de l'article d'annonce v0.9.0 (module News5 DNN) ; publication gated #134/#131/#132 (issue #135).
 - **[news-article-v0.9.0.en.md](news-article-v0.9.0.en.md)** — miroir anglais.
 
