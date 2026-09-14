@@ -36,7 +36,7 @@ fenêtre sans les avoir tranchées revient à provisionner 49 attributs dont un 
                                                                    #685 [6/6] validation visuelle (ai-01)
                                                                           │
                                                                           ▼
-                                                              release v0.9.0 couplée au go-live DNN
+                                                              release v2.0.0 couplée au go-live DNN
 ```
 
 - **#683 est indépendant** : sa propre DoD le dit (« can run in parallel with #A and #B »). Il ne bloque pas
@@ -84,7 +84,7 @@ fonctionne au runtime, mais ce n'est pas un nom provisionnable.
 | eid | `Title` (FR canonique) | Summary | Material | Installation | Content | Variants | Memo |
 |---:|---|:-:|:-:|:-:|:-:|:-:|:-:|
 | 11378 | L'école des menteurs | X | X | X | X | X | X |
-| 11380 | Le Bingo mixologie argumentative | X | X | X | X | X | . |
+| 11380 | Le Bingo mixologie argumentative | X | X | X | X | . | . |
 | 11387 | Le dernier beau parleur | X | X | X | X | . | . |
 | 11388 | Le moulin à baratin | X | X | X | X | X | . |
 | 11389 | La parlote coinchée | X | X | X | X | . | . |
@@ -129,7 +129,7 @@ partie — #490 l'avait laissé de côté, #684 le réclame explicitement.
 | état | **OPEN**, `[runtime pending]` |
 | `mergeStateStatus` | **`DIRTY`** |
 | base | `a41cbda6` — **474 commits** en retard sur `origin/master` |
-| conflit | **1 fichier** : `_RulesExplorer_RuleDetail.cshtml` (le seul fichier de vue qu'elle modifie) |
+| conflit | **1 fichier** : `_RulesExplorer_RuleDetail.cshtml` — ⚠️ **la propriété vraie n'est pas « le seul fichier de vue qu'elle modifie »** (#674 modifie **aussi** `_RuleList.cshtml`) **mais « le seul fichier de vue que `master` a touché depuis la merge-base »** — c'est *cette* propriété qui en fait le seul fichier en conflit |
 | dernier changement master sur ce fichier | `f34ac77c` (#772, deltas `res.Rule*`) |
 
 ⚠️ **La PR modifie exactement le fichier que #772 a modifié sur master.** Le conflit n'est donc pas
@@ -158,7 +158,13 @@ attribut suffixé**, puisque l'attribut s'appelle `Title`.
 
 - **(A) Provisionner `Title_en` …** (le nom réel de l'attribut) ⇒ la vue **ne trouvera jamais** ces valeurs :
   `Loc(ruleEntity, "EntityTitle")` n'a aucune raison de lire `Title_en`. **Le titre serait le seul champ à ne
-  jamais se localiser** — et il se localiserait silencieusement en FR, puisque la vue retomberait sur l'alias.
+  jamais se localiser** — et il se localiserait silencieusement en FR, **parce que la vue retomberait sur l'alias**.
+  ⚠️ **Cette retombée silencieuse est conditionnelle, et la condition n'est pas mesurée** : elle suppose que
+  l'alias `EntityTitle` soit **exposé dans le dictionnaire** que `Loc()` interroge — c'est précisément ce que le
+  §7 déclare **non mesurable** depuis le dépôt. Si l'alias n'y est **pas** exposé, il n'y a pas de retombée :
+  **le titre n'est pas « localisé en FR », il est vide.** Les deux issues de (A) divergent donc, et seule la
+  validation runtime de l'étape 2 les sépare. *(En revanche, la recommandation de retargeter le code sur `Title`
+  ne dépend pas de cette inconnue : elle reste la plus robuste dans les deux cas.)*
 - **(B) Provisionner `EntityTitle_en` …** ⇒ il faut créer un attribut **neuf** nommé `EntityTitle` en plus de
   `Title`, et le titre `IsTitle` reste FR-only. La traduction s'affiche, mais deux champs de titre coexistent.
 
@@ -194,7 +200,9 @@ Chaque étape porte sa **vérification** : c'est elle qui autorise à passer à 
 2. **Provisionner les 49 attributs suffixés** sur le content-type `Game Rule` **setID 377, app 60** —
    `{champ}_{en,ru,pt,es,ar,fa,zh}` pour les 7 champs prose retenus.
 3. **Vérification** : le content-type passe de 15 à 64 attributs ; un `Get` sur une entité rend les 49 clés.
-4. **Ne toucher aucun setID homonyme** (210, 231) — mesuré : seul **377** est servi.
+4. **Ne toucher aucun setID homonyme** (210, 231) — ⚠️ **RAPPORTÉ depuis le transfert owner, non dérivé de
+   l'export committé** : le seul setID que l'export du dépôt permet d'identifier comme servi est **377**. Que
+   210/231 existent *et* soient homonymes est une information de la fenêtre, pas de la mesure.
 
 ### Étape 2 — PR #674 : rebase puis validation runtime · **worker (rebase) + jsboige (runtime)**
 
@@ -222,7 +230,8 @@ Indépendant de #682 et #674 : peut être fait dans la même fenêtre, dans n'im
 
 1. **Traduction** — 7 langues × (23 à 28 cellules de prose) = **161 à 196 unités**, plus **9 clés `res.Rule*`**
    × 7 = **63 cellules**. Harness chunké type `DatasetUpdater` (patron #490).
-2. **Périmètre strict** : app **60**, setID **377** uniquement. **Ne pas retraduire 210/231.**
+2. **Périmètre strict** : app **60**, setID **377** uniquement. **Ne pas retraduire 210/231** (setIDs
+   **rapportés** par le transfert owner — cf. §4 étape 1, point 4 : ils ne sont pas établis par l'export du dépôt).
 3. **Réimport** — l'export **ne porte pas de `ValueId`**. Path A (attributs suffixés) ne l'exige pas ; **toute
    écriture par dimensions EAV l'exigerait** ⇒ si on écrit par dimensions, **ré-exporter d'abord une adresse
    réinjectable**.
@@ -268,6 +277,9 @@ cyrillique `ru` · **détection de fuite FR** (garde #216). Le switcher doit fon
 - **Quels sont les types 2sxc exacts des 49 attributs.** L'inférence « tous String » est de haute confiance
   (`@Html.Raw`), pas une mesure ; #687 reste le débloqueur sysadmin.
 - **Que l'export reflète l'état courant du FR.** Il est daté du **07/07/2026** (§4 étape 4.4).
+- **L'existence et l'homonymie des setIDs 210/231.** Elles sont **RAPPORTÉES** par le transfert owner, non
+  dérivées de l'export committé — qui n'identifie que **377**. Le garde-fou « ne pas toucher 210/231 » reste
+  justifié (il est peu coûteux et prudent) mais son **antécédent n'est pas mesuré ici**.
 - **Aucun verdict visuel**, aucune écriture DB, aucun provisioning, aucune traduction, aucun réimport.
 
 ---
