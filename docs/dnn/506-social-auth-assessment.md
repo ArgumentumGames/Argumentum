@@ -19,7 +19,7 @@ Runtime: DNN **10.3.2.0** (.NET Framework 4.8), webroot `D:\Dev\Argumentum\DNNPl
 | `DotNetNuke.Authentication.LiveConnect.dll` | 10.3.2.0 | `4b0214b8` | 9 216 o | upgraded with core (legacy surface remains) |
 | `DotNetNuke.Authentication.Twitter.dll` | 10.3.2.0 | `4b0214b8` | 9 728 o | upgraded with core |
 | **`Dnn.ExchangeOnlineAuthProvider.dll`** | 10.3.2.0 | `4b0214b8` | 24 576 o | **NEW vs 9.11.1 — modern Entra/Exchange Online path** |
-| **`Dnn.GoogleMailAuthProvider.dll`** | 10.3.2.0 | `4b0214b8` | 25 600 o | **NEW vs 9.11.1 — modern Google path** |
+| **`Dnn.GoogleMailAuthProvider.dll`** | 10.3.2.0 | `4b0214b8` | 25 600 o | **NEW vs 9.11.1 — modern Google path** — ⚠️ **requalifié §9.5 : provider de *scope mail*, pas un chemin de sign-in social** |
 | `Dnn.AuthServices.Jwt.dll` | 1.0.0.0 | — | 31 744 o | JWT auth service assembly |
 | `Google.Apis.Auth.dll` | 1.69.0.0 | `04e8051` | 232 960 o | modern Google SDK surface |
 
@@ -31,7 +31,7 @@ Runtime: DNN **10.3.2.0** (.NET Framework 4.8), webroot `D:\Dev\Argumentum\DNNPl
 ## 2. DNN 10.3.2 compatibility — now MEASURED, no longer projected
 
 - The connectors are platform modules → they were carried automatically by the 9.11.1 → 10.3.2 upgrade (measured: same build SHA as core, §1).
-- The #555 §2 prediction ("10.3.2 ships a modernized Microsoft provider") is **CONFIRMED**, with the actual assembly name `Dnn.ExchangeOnlineAuthProvider` (plus `Dnn.GoogleMailAuthProvider` on the Google side).
+- The #555 §2 prediction ("10.3.2 ships a modernized Microsoft provider") is **CONFIRMED**, with the actual assembly name `Dnn.ExchangeOnlineAuthProvider` (plus `Dnn.GoogleMailAuthProvider` on the Google side — **⚠️ mais la symétrie Google↔Microsoft que cette phrase implique est réfutée en §9.5** : le provider Google neuf est un provider de *scope mail*, il ne peut pas remplacer le connecteur social).
 - `DotNetNuke.Authentication.LiveConnect` is still present in the platform line (dnnsoftware repo, `Live_Auth.dnn`) — both the legacy and the modern Microsoft paths are installed side by side.
 - Runtime = .NET Framework 4.8 (same as core) → no runtime-migration concern for these assemblies.
 - Community-reported fragility ("Facebook, Twitter, Google, Live Authentication Providers do not work in DNN CE", dnnsoftware.com answers) remains **REPORTÉ** — config-dependent, to validate on sandbox.
@@ -53,10 +53,10 @@ Auth-relevant surface = OAuth flows delegated to core (`Microsoft.Owin.Security.
 |---|---|---|---|
 | Facebook (legacy) | OAuth2 live | Low (config-dependent) | REPORTÉ fragility; sandbox-validate |
 | Google (legacy) | OAuth2 live | Low (config-dependent) | REPORTÉ fragility; sandbox-validate |
-| LiveConnect (legacy Microsoft) | Legacy Live Connect API — superseded | **Medium** — legacy endpoint surface | SUPPOSÉ deprecated path; **modern alternative now installed (ExchangeOnline)** → retirement candidate |
+| LiveConnect (legacy Microsoft) | Legacy Live Connect API — superseded | **Medium** — legacy endpoint surface | SUPPOSÉ deprecated path; **modern alternative now installed (ExchangeOnline)** → retirement candidate — **⚠️ requalifié par §9.1 : LiveConnect est le chemin Microsoft *effectivement servi*, pas un candidat à la retraite ; §9.3 montre `login.live.com/oauth20_authorize.srf` vivant (200), ce qui affaiblit aussi le « Medium »** |
 | Twitter | X free OAuth tier closed (2023) | **Medium-High** — external breakage | Likely broken regardless of DNN version unless paid X API tier |
 | **ExchangeOnlineAuthProvider (new)** | Microsoft Entra / Exchange Online modern endpoints | **Unknown — unconfigured** | Installed but no console app registration visible from repo; enable + Entra app = jsboige live step (§6) |
-| **GoogleMailAuthProvider (new)** | Modern Google surface (`Google.Apis.Auth` 1.69) | **Unknown — unconfigured** | Same: enable + console credentials = jsboige live step |
+| **GoogleMailAuthProvider (new)** | Modern Google surface (`Google.Apis.Auth` 1.69) | **Unknown — unconfigured** | Same: enable + console credentials = jsboige live step — **⚠️ et ce n'est pas un substitut au connecteur social : voir §9.5** |
 
 ## 5. Secret-rotation procedure (merged verbatim from #555 §5 — still authoritative)
 
@@ -100,6 +100,7 @@ Rotation cadence (recommendation, jsboige to confirm): every 12 months, or immed
 | #555 §7 (out-of-scope) | Folded into header (status line) |
 | #597 §1–§6 (this file, previous revision) | §1 re-measured; §2 projected→measured; §3 preserved; §4 updated (2 new rows); §5–§6 preserved |
 | **2026-09-14 addendum (§9)** | Added, not rewritten: enabled-state measured on **prod + préprod** served login pages, endpoint-level inventory, liveness probes. **Corrects** §2/§3 (endpoints are compiled into the provider assemblies, not only delegated to core). **Refutes** the §2/§4 Google↔Microsoft symmetry (§9.5). §7 Q1 marked answered. §1, §5, §6, §8 preserved verbatim. |
+| **2026-09-14 — édition des sections visées (post-revue)** | Les réfutations ci-dessus étaient déclarées ici mais **ne se voyaient pas dans les sections visées** — or §4 est la table qu'un implémenteur lit d'abord, et le stub superseded y renvoie. Corrections **inline, sans retirer les énoncés d'origine** : §4 ligne LiveConnect marquée *requalifiée par §9.1* (le chemin Microsoft **servi**, pas un candidat à la retraite ; §9.3 affaiblit aussi le « Medium ») · §2 phrase GoogleMail + §2 ligne du tableau + §4 ligne GoogleMailAuthProvider marquées *requalifiées §9.5* (scope mail, pas un sign-in social) · §9.4 `graph.microsoft.com` borné à *« aucun **littéral** sous `bin/` »*. |
 
 ## 9. Addendum 2026-09-14 — endpoint-level inventory + enabled state (MEASURED)
 
@@ -158,7 +159,7 @@ Unauthenticated GETs, no parameters, status only:
 
 - `Microsoft.Identity.Client.dll` (**MSAL**) — assembly **4.68.0.0**, 1 646 136 o. Its own strings carry the generational marker: *"login.windows.net has been deprecated. Use login.microsoftonline.com instead."*
 - `Dnn.ExchangeOnlineAuthProvider.dll` — 24 576 o, embeds `https://login.microsoftonline.com/`.
-- **`graph.microsoft.com` appears in NO file under `bin/`** (215 files scanned, 4 encoding variants) ⇒ **no Microsoft Graph client is deployed at all.**
+- **`graph.microsoft.com` n'apparaît comme littéral dans AUCUN fichier sous `bin/`** (215 fichiers scannés, 4 variantes d'encodage) ⇒ **aucun client Microsoft Graph n'est déployé sous forme de code.** ⚠️ **Borne de méthode** : un hôte *configuré* (app settings, DB) n'est littéral dans aucun binaire — cette mesure établit l'absence de **littéral**, pas l'absence de **configuration** ; c'est le piège §9.2 appliqué un cran au-dessus. La conclusion « stack moderne installé mais non câblé » tient dans les deux cas.
 
 ⇒ Both Microsoft generations coexist in the deployment; the one **rendered on the login page** is the legacy one. This sharpens §4's "retirement candidate" into "currently the effective path, with the modern stack already installed but unwired".
 
