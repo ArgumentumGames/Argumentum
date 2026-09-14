@@ -33,6 +33,18 @@ commit dé-tracke ne sont pas ce que la préprod exécute aujourd'hui : le disqu
 plus récents. Dé-tracker l'index **ne retire donc rien de ce qui est servi** — cela retire une photographie
 figée que git traînait.
 
+**Ce n'est pas seulement « plus ancien » : c'est une autre majeure.** `DotNetNuke.dll` du jeu **tracké** est en
+**9.11.1.0**, quand le webroot vivant porte **10.3.2.0**. Sur la famille d'assemblages `DotNetNuke.*` / `Dnn.*`
+(les seuls dont la majeure est celle de la plateforme) :
+
+| | majeure 9 | majeure 10 |
+|---|---:|---:|
+| jeu **tracké** (195) | **39** | 0 |
+| **webroot vivant** | 1 | **46** |
+
+Le `bin/` que ce commit dé-tracke est donc le **baseline 9.11.1** — exactement l'écart que #972/#1049 décrivait
+pour `web.config` (« déployé en 10.3.2, tracké au baseline 9.11.1 »), ici appliqué aux assemblages.
+
 ---
 
 ## §2 — Preuve de préservation, quatre niveaux
@@ -62,6 +74,35 @@ désormais sans dépendre de la rétention git.
 porte le jeu **untracked** du webroot : population **disjointe par construction** — recouvrement mesuré
 **0 / 195**. Deux jeux voisins, deux rôles distincts ; les confondre ferait lire « préservé » sur un fichier
 qui n'y est pas.
+
+### §2.1 — La comparaison demandée : 128 extractions vs 330 fichiers runtime
+
+| jeu | fichiers | dll |
+|---|---:|---:|
+| offload du stash `5a086dfe` | **128** | **60** |
+| sandbox `DNN-Argumentum-sandbox-1032-2026-06-28/bin_post_2sxc_realign` | **330** | **255** |
+| webroot vivant `bin/` | 281 | 256 |
+
+Recouvrements **à l'octet** :
+
+| paire | communs |
+|---|---:|
+| stash (128) ∩ sandbox (330) | **112 / 128** |
+| stash (128) ∩ webroot (281) | 62 / 128 |
+| sandbox (330) ∩ webroot (281) | **270 / 330** |
+
+⇒ Les 128 extractions sont **presque** un sous-ensemble du sandbox — **16 n'y sont pas**. Et surtout :
+**`DotNetNuke.dll` est ABSENT de l'offload du stash**, présent au sandbox **et** au webroot.
+
+**Conclusion, sans supposer la complétude** : un jeu de **128 fichiers / 60 DLL ne couvre pas** le besoin
+runtime de 330 fichiers — il lui manque au minimum l'assemblage **noyau**. Le sandbox (330 / 255 DLL) est la
+source runtime ; l'offload du stash (128) est un **complément**, pas un socle.
+
+**Restauration** :
+- **jeu tracké (les 195)** ← archive L2 : recopier `…\DNN-10.3.2-tracked-bin-pre-1244a-2026-09-14\DNNPlatform\bin\`
+  vers `<repo>\DNNPlatform\bin\`, puis vérifier contre `sha256-manifest.txt` (195 entrées).
+  Version du noyau dans cette archive : `DotNetNuke.dll` = **9.11.1.0** (c'est le tracké).
+- **runtime 10.3.2.0** ← sandbox C (330) ou webroot vivant ; `DotNetNuke.dll` y est en **10.3.2.0**.
 
 ---
 
