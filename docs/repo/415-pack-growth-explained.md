@@ -17,7 +17,7 @@ mesuré, la même commande donne aujourd'hui **2,22 GiB**.
 |---|---|---|---|
 | « 2,05 GiB » | **2,050 GiB** | `415-git-weight-audit.md` §Current measurements, 01/07, base `18b4d023` | **ce clone** (C:) |
 | « 5,57 GiB » | **5,57 GiB** | `docs/dnn/1244-bin-branches-abc-instruction.md` l.74, **auteur po-2023**, 13/09, base `35acac04` | clone **po-2023** |
-| aujourd'hui, même commande | **2,223 GiB** | mesuré ce jour, base `21a72385` | **ce clone** (C:) |
+| aujourd'hui, même commande | **2,224 GiB** | mesuré ce jour (ré-mesuré 14/09), base `874a5d98` | **ce clone** (C:) |
 
 **B. La croissance réelle de ce clone — +176,7 MiB en 10 semaines — est intégralement attribuée
 (§3–§7)**, et son moteur n'est pas celui qu'on attendait : **des artefacts régénérables re-commités
@@ -42,14 +42,28 @@ présents dans ce dépôt et antérieurs à cette date reproduisent **exactement
 Les deux nombres tombent juste à l'unité — c'est le **même clone**, la ligne de base est donc
 utilisable telle quelle. (`git merge-base --is-ancestor 18b4d023 HEAD` → vrai, la plage est valide.)
 
+⚠️ **Portabilité — le clone mesuré est nommé, et l'identité de §1 est locale à lui.** Toutes les
+mesures de ce dossier sont faites sur le clone **po-2024**, au chemin **`C:\dev\Argumentum`**.
+Le clone d'**ai-01** mesure aujourd'hui **2,28 GiB / 32 packs / 48 835 objets in-pack** : les
+**trois packs de §1 y sont absents** (repackés depuis). La preuve d'identité ci-dessus vaut donc
+**sur po-2024 seulement** — « tout est rejouable » signifie *rejouable là*, par les commandes citées
+inline, et non reproductible à l'identique depuis n'importe quelle copie.
+
 ## §2 — La trajectoire réelle
 
 ```
 2026-07-01  size-pack 2,050 GiB   3 packs   25 857 objets          ← audit #415
-2026-09-14  size-pack 2,223 GiB  22 packs   44 726 objets (+1 225 loose = 123,65 MiB)
+2026-09-14  size-pack 2,224 GiB  22 packs   44 726 objets (+1 271 loose = 123,73 MiB)
             ────────────────────────────────────────────────────
-            croissance   +0,173 GiB = +176,7 MiB   sur 513 commits (18b4d023..origin/master)
+            croissance   +176,7 MiB de packs neufs  sur 513 commits (18b4d023..origin/master)
 ```
+
+*Ré-mesure du 14/09 : `git count-objects -v` → `count 1271`, `size 126697`, `in-pack 44726`,
+`packs 22`, `size-pack 2332153` (KiB). ⚠️ `size-pack` **somme le poids disque courant** des 22
+packs, or le pack de base a été ré-empaqueté depuis le 01/07 : l'écart entre la croissance de
+`size-pack` et la somme des 19 packs neufs (~1,3 MiB) est de cet ordre, et la fermeture à 608 B
+que §2 annonçait était une mesure de ce jour-là, pas un invariant. Le chiffre robuste reste
+**176,7 MiB de packs neufs**, obtenu par somme directe des 19 fichiers.*
 
 Les 19 packs créés depuis l'audit totalisent **185 333 133 B = 176,7 MiB** ; l'écart avec la
 croissance de `size-pack` est de 608 B (19 × 32 B d'en-tête/trailer) — l'instrument ferme.
@@ -59,26 +73,36 @@ croissance de `size-pack` est de 608 B (19 × 32 B d'en-tête/trailer) — l'ins
 ## §3 — Familles responsables, par `verify-pack`
 
 Méthode : `git verify-pack -v` sur les 22 index ; sont « neufs » les objets absents des 3 packs de
-§1 ; chacun est rattaché à son chemin par `git rev-list --objects --all`. Contribution mesurée =
-**colonne `size-in-packfile`** (l'octet réellement stocké), jamais la taille décompressée.
+§1 ; chacun est rattaché à son chemin par `git rev-list --objects --all`, son **type** venant de
+`verify-pack` (blob / tree / commit). Contribution mesurée = **colonne `size-in-packfile`** (l'octet
+réellement stocké), jamais la taille décompressée. Famille = **deux premiers segments du chemin**
+(`Cards/Fallacies`, `docs/ontology`…), ou le premier pour les fichiers racine.
 
 | famille | objets | MiB in-pack |
 |---|---:|---:|
-| `Cards/Fallacies` | 874 | **37,74** |
-| *(inatteignables — sans chemin)* | 7 025 | **32,97** |
-| `DNNPlatform` | 1 169 | **31,06** |
-| `tmp/` | 88 | **17,28** |
-| `docs/ontology` | 55 | 1,84 |
-| *(arbres, sans blob)* | 1 822 | 1,49 |
-| `docs/investigations` | 145 | 1,39 |
-| `docs/taxonomy` | 330 | 0,98 |
-| `Generation/Converters` | 1 156 | 0,97 |
-| `qa` | 5 | 0,82 |
-| `Cards/Scenarii` | 38 | 0,63 |
-| `docs/dnn-localization` | 119 | 0,31 |
-| `tools` | 119 | 0,23 |
-| `Cards/Rules` | 56 | 0,18 |
-| **total** | **14 070** | **128,9** |
+| `Cards/Fallacies` | 627 | **37,69** |
+| *(inatteignables — sans chemin)* | 3 443 | **31,91** |
+| `DNNPlatform` | 734 | **30,95** |
+| `tmp/` | 62 | **17,28** |
+| *(commits, tags)* | 1 759 | 1,97 |
+| `docs/ontology` | 31 | 1,84 |
+| `docs/investigations` | 77 | 1,38 |
+| *(arbres, sans blob)* | 6 350 | 1,05 |
+| `docs/taxonomy` | 184 | 0,95 |
+| *(35 autres familles < 0,15 MiB)* | 208 | 0,89 |
+| `Generation/Converters` | 404 | 0,86 |
+| `qa/` | 3 | 0,82 |
+| `Cards/Scenarii` | 20 | 0,62 |
+| `docs/dnn-localization` | 69 | 0,29 |
+| `tools/` | 69 | 0,21 |
+| `Cards/Rules` | 30 | 0,18 |
+| **total** | **14 070** | **128,88** |
+
+**La table somme exactement à son total** — c'est la correction du 14/09 : la version antérieure
+portait des comptes d'objets par ligne qui ne réconciliaient pas avec les 14 070 (elles totalisaient
+13 001) alors que ses MiB étaient justes. Les deux colonnes sont désormais dérivées du **même**
+balayage, et la ligne « 35 autres familles » ferme la queue de distribution au lieu de la laisser
+hors table. (Les arrondis à deux décimales peuvent faire apparaître 0,01 MiB d'écart sur la somme.)
 
 ⚠️ **Deux pièges de lecture — les deux sont le sujet.**
 
@@ -100,15 +124,23 @@ L'audit #415 conclut, et sa note de suivi du 06/07 puis du 12/07 le ré-affirme 
 | contenu cumulé de ces 341 blobs (non compressé) | **1 082,6 MiB** |
 
 Le détail par chemin (§6) montre que ce ne sont pas des binaires oubliés mais **des artefacts
-régénérables re-commités en série**. La ligne de l'audit qui classait les SVG de mindmaps
-« text XML (**< 2 MB**) » ne décrit plus la réalité : au HEAD, `docs/ontology/argumentum.owl` pèse
+régénérables re-commités en série**. La ligne du **commentaire de statut #415 du 2026-07-06**
+(po-2024, dispatch `5czj9v`) — *« the only binary activity is mindmap SVG churn … which are text XML
+(< 2 MB) »* — ne décrit plus la réalité ; ce n'est **pas** la ligne de l'audit `415-git-weight-audit.md`,
+dont le §56 parle d'un autre répertoire (`…/Data/Mindmap/*.svg`, 26 MB) : la formule « < 2 MB » vient
+des commentaires de juillet, et c'est elle qui a vieilli. Au HEAD, `docs/ontology/argumentum.owl` pèse
 **5,71 MiB**, `Cards/Fallacies/Mindmaps/zh/Fallacies_zh.html` **5,0 MiB**, `…/ru/Fallacies_ru.svg`
 **2,9 MiB**.
 
-⇒ Conséquence pratique : l'invariant s'était dégradé **sans qu'aucune CI ne le voie** — la garde
-`large-blob-guard.yml` existe et tourne, mais elle ne s'applique qu'aux **ajouts** de la PR courante,
-pas à la ré-accumulation par re-commit de fichiers déjà tracés. C'est ce trou qui laisse passer
-la famille ci-dessous.
+⇒ Conséquence pratique : l'invariant s'est dégradé **par décision, pas par cécité de la CI**. La
+garde `tools/large-blob-guard.py` (workflow `large-blob-guard.yml`) **voit** bien ces fichiers :
+elle liste les objets atteignables depuis la tête mais pas depuis la base, et **un fichier tracé
+modifié produit un nouvel oid, donc il est contrôlé** — son propre self-test porte ce cas
+(« modification flagged »). Ce n'est pas un contrôle manquant : les familles qui ont grossi sont
+**explicitement dans `ALLOWED`** (`Cards/Fallacies/Mindmaps/`, `Cards/Fallacies/Argumentum
+Fallacies - Taxonomy.csv`, `docs/ontology/`, `DNNPlatform/`). La garde les voit et **les autorise
+par décision** — ce qui légalise précisément la croissance mesurée ici. Le levier n'est donc pas
+d'ajouter un contrôle qui existe, mais de **réviser l'allow-list** (§10.4).
 
 ## §5 — Fenêtre : 4 événements, pas une dérive continue
 
@@ -121,9 +153,14 @@ d'*auteur* des commits (cf. §7) :
 | 25/07 → 24/08 | 11 packs | 3,1 *(cumul)* |
 | 2026-08-30 | `pack-4d5e7da0…` | **67,7** |
 | 2026-09-01 | `pack-f167c6b9…` + `eec09f42…` | 16,7 |
+| 2026-09-02 | `pack-d1495786…` | **0,4** |
 | 2026-09-03 | `pack-6e0710d8…` + `9c17ebf0…` | 12,8 |
 | 2026-09-12 | `loose-fb3ab40a…` | **39,6** |
 | **total** | **19 packs** | **176,7** |
+
+*(Correction du 14/09 : la ligne du **02/09** — `pack-d1495786…`, 0,4 MiB — manquait, ce qui
+faisait annoncer « 19 packs / 176,7 MiB » au-dessus d'une table qui n'en listait que **18 pour
+176,3**. Le contrôle inverse du §8 exige que la table ferme : elle ferme désormais à l'unité.)*
 
 Fenêtre de commits correspondante sur `master` : **513 commits**, du **2026-07-01** au **2026-09-14**.
 Par famille : `Cards/Fallacies` 82 commits (02/07→11/09) · `DNNPlatform` 47 (01/07→30/08) ·
@@ -153,10 +190,11 @@ Deux lectures, toutes deux importantes :
   **39,6 MiB** de pack (`Cards/Fallacies` 37,74 + `docs/ontology` 1,84) : des versions successives
   quasi identiques sont des deltas quasi parfaits. **Un dossier qui chiffrerait la croissance par
   la somme des tailles de fichiers se tromperait d'un facteur ~27.**
-- **La famille est exactement celle que la Phase 1 avait laissée tracée.** L'audit note que les
-  SVG de mindmaps « were not covered by the Phase-1 untrack » et les laisse « the conservative
-  choice », en les supposant < 2 MB. Ils ont depuis dépassé 2 MB et sont re-commités 6 à 16 fois
-  par langue sur la fenêtre.
+- **La famille est exactement celle que la Phase 1 avait laissée tracée.** L'audit (§56) note que
+  des SVG de mindmaps « were not covered by the Phase-1 untrack (PR #416) » et que les y laisser est
+  « the conservative choice ». ⚠️ L'hypothèse « < 2 MB » qui allait avec, elle, vient des
+  **commentaires #415 de juillet** (06/07, 12/07) et non de l'audit — c'est cette hypothèse-là qui
+  est tombée. Les fichiers sont depuis re-commités 6 à 16 fois par langue sur la fenêtre.
 
 ## §7 — Qualification : nouvelle, ou préexistante re-fetchée ?
 
@@ -231,10 +269,14 @@ packs pour peu d'objets distincts ⇒ (2) ; peu de packs et beaucoup d'objets ab
 3. **Le fetch des branches mortes** est le premier poste non-`master` (30,3 MiB).
    `git remote prune origin` est non destructif mais ne récupère pas les objets déjà téléchargés,
    d'où l'item 1.
-4. **Le vrai levier n'est pas la réécriture d'historique mais le re-commit.** §6 : trois familles
+4. **Le vrai levier n'est pas la réécriture d'historique mais l'allow-list.** §6 : trois familles
    régénérables (`Mindmaps/**` SVG+HTML, `argumentum.owl`, la taxonomie CSV) ont produit 341 blobs
-   > 2 MiB en 10 semaines. Une garde qui compare le blob entrant à **son prédécesseur dans
-   l'historique** — et non aux seuls ajouts de la PR — fermerait ce trou sans toucher à l'existant.
+   > 2 MiB en 10 semaines — **en toute conformité**, parce que `tools/large-blob-guard.py` les
+   autorise nommément (`ALLOWED`) : la garde les *voit* et les *laisse passer par décision*, elle ne
+   les manque pas. Un contrôle par comparaison au prédécesseur historique **existe déjà** dans sa
+   mécanique (un fichier modifié produit un nouvel oid, donc est contrôlé ; self-test « modification
+   flagged »). Le geste utile est donc de **réviser l'allow-list** — restreindre les quatre entrées
+   qui portent la croissance, ou exiger pour elles un LFS/Release — et non d'ajouter un contrôle.
    C'est une proposition, pas un geste : la règle « ne pas re-committer ce qu'on peut régénérer »
    relève de l'owner.
 5. **Phase 2 (`filter-repo`)** : inchangée, toujours gatée sur GO jsboige ; **ce dossier ne la
@@ -244,13 +286,33 @@ packs pour peu d'objets distincts ⇒ (2) ; peu de packs et beaucoup d'objets ab
    `docs/dnn/1244-bin-branches-abc-instruction.md` — **je ne l'ai pas fait** : ce document est de
    po-2023, sa correction lui revient, et la ligne est déjà marquée « non instruite ». Signalé.
 
-## §11 — Gardes tenues
+## §11 — Erratum et portabilité : ce qui a été gravé sur #415
+
+Ce dossier ne vivait que dans une PR ouverte. Les deux éléments qui doivent survivre à sa fusion
+sont désormais **portés sur l'issue #415 elle-même** (commentaire ai-01/po-2024 du 14/09) :
+
+1. **L'erratum « 2,05 → 5,57 GiB n'est pas commensurable »** — parce que #458 et le Status
+   workspace portaient encore le raccourci, et qu'il a déjà coûté un cycle de lane.
+2. **La commande de comparaison demandée au clone po-2023**, non destructive, avec l'identité
+   **hôte + chemin** du clone de référence (`po-2024`, `C:\dev\Argumentum`) : re-lancer
+   `git count-objects -vH` et publier ses quatre lignes — `count`, `in-pack`, **`packs`**,
+   `size-pack` — **plus** `git for-each-ref | wc -l`. `packs` et `in-pack` discriminent les deux
+   hypothèses du §9 : beaucoup de packs pour peu d'objets distincts ⇒ effet d'instrument ;
+   peu de packs et beaucoup d'objets absents d'ici ⇒ accumulation locale jamais poussée.
+
+Sans cette identité, « tout est rejouable » n'était vrai que sur la machine d'origine (§1).
+
+---
+
+## §12 — Gardes tenues
+
 
 ⛔ Aucune réécriture d'historique · ⛔ aucun `gc` · ⛔ aucun `repack` · ⛔ aucun `remote prune` ·
 ⛔ aucun CSV touché. Instruments : `git count-objects`, `git verify-pack -v`,
-`git rev-list --objects`, `git cat-file`, `ls`. Tout est rejouable par les commandes citées inline.
+`git rev-list --objects`, `git cat-file`, `ls`. Tout est rejouable par les commandes citées inline
+**sur le clone nommé au §1**.
 
 ---
 
 *po-2024 — grain ① du dispatch #458 c.5656689863. Le worker mesure et signale ; le verdict et la
-décision (Phase 2, `gc`, prune, garde anti-re-commit) restent à l'owner.*
+décision (Phase 2, `gc`, prune, révision de l'allow-list) restent à l'owner.*
