@@ -1,6 +1,6 @@
 ---
 name: coordinate
-description: Reprend le rôle de coordinateur Argumentum (ai-01) — lit memory + dashboard + inbox + état GitHub, merge ce qui est mergeable, dispatche en deep-queue aux 2 workers (po-2023 DNN/régén, po-2024 backlog) avec tâches idle de secours, poste le dashboard, ré-arme le cron. Distinct de pipeline-recovery (entrée de session worker/exécution).
+description: Reprend le rôle de coordinateur Argumentum (ai-01) — lit memory + dashboard + inbox + état GitHub, merge ce qui est mergeable, provisionne des pools multi-cycles aux 2 workers (po-2023 DNN/régén, po-2024 backlog), poste le dashboard, ré-arme le cron et termine le tour quand aucune frontière fraîche ne justifie une nouvelle action. Distinct de pipeline-recovery (entrée de session worker/exécution).
 ---
 
 # Skill : Coordinate — Hub de coordination multi-agents Argumentum
@@ -17,7 +17,7 @@ Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster
 |---------|------|------|
 | `myia-ai-01` | **Coordinateur** | merge, dispatch deep-queue, structuration issues/Epics, **verdict QA visuelle** (Playwright+vision), aiguillage root-cause, conclusion de cycle |
 | `myia-po-2023` | Worker | **driver DNN** (#131/#132/#457…) + **régénérations lourdes** du pipeline + présente le dossier de validation release à jsboige |
-| `myia-po-2024` | Worker | **backlog** : polish traduction (gpt-5.5, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
+| `myia-po-2024` | Worker | **backlog** : polish traduction (`gpt-5.6-sol`, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
 
 Adressage : toujours `machine-id:workspace-id` (ex `myia-po-2023:Argumentum`, `myia-po-2024:Argumentum`).
 
@@ -134,11 +134,15 @@ git log --oneline -3
 ```
 Note le hash de tête (`$NEW_MASTER`) pour le dispatch. Si des tests doivent re-tourner après un merge structurant : `dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj"` (jamais `npm test`).
 
-## Phase 5 — Dispatcher en deep-queue (mandate « avancer sans moi »)
+## Phase 5 — Provisionner les pools multi-cycles (mandat « avancer sans moi »)
 
-**Principe** : ne pas hoarder. Le cron est lent (6h, week-end autonome) → chaque worker doit avoir **assez de travail pour ne jamais staller avant ton retour**. Dispatch = **deep-queue** (primaire + secondaire + tertiaire) **+ tâche idle de secours**.
+**Principe** : ne pas hoarder. Chaque worker possède un **pool global multi-cycle**, pas une file P0 linéaire. Provisionne 8–12 grains indépendants et exécutables — au moins deux cycles de travail — plus un registre séparé des candidats bloqués. Le pool remplace `primaire + secondaire + tertiaire + idle` : son ordre guide la pioche, mais un élément indisponible ne bloque jamais les suivants.
+
+**Blocage événementiel** : représenter chaque blocage par `(candidat, événement exact de reprise)`, exclure temporairement le candidat de la pioche, puis prendre le grain READY suivant. Une PR rouge, une re-review attendue, une tête déjà jugée ou une décision owner manquante ne doit pas être re-sondée tant que l'événement nommé n'est pas arrivé. **Le temps qui passe sans événement nommé n'est pas un événement.**
 
 **Multi-grains (règle owner du 2026-09-10, en vigueur)** : une PR ouverte ne met **pas** le worker en attente du merge coordinateur. Chaque session worker traite **tous les grains READY indépendants** qu'elle peut terminer sans feedback : branche fraîche depuis `origin/master` + **une PR autonome par grain**, jamais de branche empilée sur une PR en vol. Arrêt uniquement sur : vraie décision owner/coordinateur, collision de fichiers avec une PR en vol, gate explicite (tag, QA visuelle, UAC/IIS, séquencement régén) ou épuisement démontré des grains READY. Les gates de merge (Phase 3), UAC et verdict QA visuelle **restent inchangées** — l'autonomie porte sur l'enchaînement des grains, pas sur les portes. Le débit doit être limité par les dépendances réelles, pas par la cadence de merge du coordinateur.
+
+**Responsabilité du paquet de preuve** : le worker porte l'instrumentation, le contrôle inverse, la mutation falsifiante, la correction complète, la CI et le paquet de revue. Quand une contre-review croisée est utile, **po-2024 prépare le paquet final des PR po-2023 et po-2023 celui des PR po-2024**, sans corriger la PR de l'autre. Ai-01 conserve les arbitrages owner, le merge final, la QA visuelle et les frontières de sécurité ; il spot-checke les claims falsifiables au lieu de reconstruire l'analyse complète.
 
 Vérifie chaque lane. ⛔ **Ne mesure PAS la liveness d'une lane avec `gh pr list --author "po-20XX"`** : le token GitHub est partagé, ce filtre rend **toujours `0`**, donc « worker sans PR » y est un artefact permanent — et re-dispatcher là-dessus **double-démarre** une campagne (coûteuse en crédits sur les lanes traduction). La liveness se mesure **là où le travail atterrit**, c'est-à-dire sur le dashboard (cf [[feedback_explicit_dashboard_comm]]) :
 
@@ -157,7 +161,7 @@ Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboa
 ### Tasking par worker
 
 - **po-2023** : DNN (Epic #131/#132/#457…), régénérations lourdes du pipeline, dossier de validation release pour jsboige. Travail compute-intensive et visuel-lourd.
-- **po-2024** : backlog — polish traduction (gpt-5.5 **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
+- **po-2024** : backlog — polish traduction (`gpt-5.6-sol` **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
 - **Sérialisation forcée** : si deux tâches éditent les mêmes fichiers (ex CSV trad), dispatcher en séquentiel. `git log -- <fichier>` pour repérer les collisions avant un dispatch parallèle.
 
 ### Où poser le dispatch — le dashboard/l'issue PORTE, le DM NOTIFIE
@@ -178,16 +182,38 @@ Incident fondateur 2026-09-11 : le dispatch #1294 — **seul verrou restant de l
 
 Le remède n'est pas d'abandonner le DM (ce serait le pendule), ni d'ajouter une cérémonie d'accusé de réception : c'est de **poser l'ordre là où il sera lu**, et de laisser au DM le rôle qu'il remplit bien.
 
-### Gabarit deep-queue + idle — à poser sur le dashboard/l'issue, le DM y renvoyant
+### Gabarit pool multi-cycle — l'issue porte, le dashboard résume, le DM pointe
+
+Publie le pool durable sur #458 ou l'issue de tracking appropriée ; ne recopie pas son contenu intégral dans trois canaux.
+
+```markdown
+## Lane pool — `myia-po-XXXX:Argumentum`
+
+### Pool exécutable — plusieurs cycles, une PR autonome par grain
+1. **#NNN — objet.** Base/instrument/DoD mesurable ; limites explicites.
+2. **#NNN — objet.** …
+[… 8–12 grains indépendants, au moins deux cycles …]
+
+### Candidats bloqués — exclus jusqu'à l'événement nommé
+- **#NNN** — événement de reprise : nouvelle tête / décision owner nommée / merge préalable / fenêtre réservée.
+
+### Paquet de preuve obligatoire
+Body signé worker ; tête/base/merge-state ; surface HARD complète ; diff borné ; CI sur la tête ; instrument + contrôle inverse + mutation falsifiante ; claims qualifiés ; section « n'établit pas » ; commit + PR avant `[DONE]`.
+
+### Gardes
+Ai-01 garde merge, arbitrage owner et verdict QA visuelle. Rappeler les gates UAC/webroot/régénération/publication pertinentes à cette lane.
+```
+
+Puis notifier sans dupliquer :
 
 ```
 roosync_messages(
   action: "send",
   to: "myia-po-XXXX:Argumentum",
-  subject: "[DISPATCH] <lane> — bref titre",
+  subject: "[DISPATCH] pool multi-cycle <lane>",
   priority: "HIGH",
   tags: ["TASK"],
-  body: "**De**: Claude Code @ myia-ai-01:Argumentum\n\n## Contexte\n[2-3 lignes — ce qui vient de merger, où en est la track #458]\n\n## Deep-queue (dans l'ordre)\n1. **[primaire]** issue #NNN — base master `$NEW_MASTER` — DoD: [critères mesurables] — PR à ouvrir\n2. **[secondaire]** issue #NNN — …\n3. **[tertiaire]** issue #NNN — …\n\n## Tâche idle de secours (si tu vides la deep-queue avant mon retour)\n- [piocher dans le backlog #XXX/#YYY, ou avancer sur Z] — ne reste pas en stand-by, ouvre des PRs en mode autonome\n\n## Enchaînement (règle owner 2026-09-10)\n- Grain livré = PR ouverte → **continue immédiatement au grain suivant**, branche fraîche depuis `origin/master`, **sans attendre merge ni ACK** — signale juste le lien de la PR. Jamais de branche empilée sur une PR en vol.\n\n## Rappels HARD\n- **Signe le corps de ta PR** (`po-2023` / `po-2024`) — la Phase 3 y lit ta provenance ; un corps non signé force un recoupement manuel et retarde ton merge\n- Ne JAMAIS modifier le CSV avant injection CardPen\n- Branche feature + PR, jamais de push direct master\n- Verdict QA visuelle = ai-01 ; toi tu signales, tu ne déclares pas PASS\n\nACK STP, ou push directement avec mention #NNN.\n\n🤖 Coordinator ai-01"
+  body: "Pool durable : #458 c.<comment-id> ; gouvernance c.<comment-id>. Prends les grains READY sans attendre merge/ACK ; candidat bloqué exclu jusqu'à son événement nommé. Le dashboard porte le résumé."
 )
 ```
 
@@ -201,7 +227,7 @@ Format (synthèse d'abord, jamais une table de counts seule) :
 1. **Synthèse** (2-3 paragraphes) : ce qui vient de se passer, pourquoi, vers où
 2. **Mergé ce cycle** : 1 PR/ligne avec commit master + tests
 3. **Tracks #458 — état** : progression par track active
-4. **Dispatch deep-queue** : table workers (qui fait quoi + idle de secours)
+4. **Pools multi-cycles** : table workers (grains READY + événements de reprise des bloqués)
 5. **Cluster** : master hash + CI + arbitrages en attente jsboige
 6. **Conclusion** : 1-2 phrases
 
@@ -211,11 +237,21 @@ roosync_dashboard(
   type: "workspace",
   tags: ["DONE"],
   author: {"machineId": "myia-ai-01", "workspace": "Argumentum"},
-  content: "## [YYYY-MM-DD HH:MM] ai-01 — <titre>\n\n### Synthèse\n...\n\n### ✅ Mergé\n...\n\n### 🗺️ Tracks #458\n...\n\n### 📤 Dispatch deep-queue\n...\n\n### 📊 Cluster + arbitrages en attente\n...\n\n### 🧭 Conclusion\n...\n\n🤖 Coordinator ai-01"
+  content: "## [YYYY-MM-DD HH:MM] ai-01 — <titre>\n\n### Synthèse\n...\n\n### ✅ Mergé\n...\n\n### 🗺️ Tracks #458\n...\n\n### 📤 Pools multi-cycles\n...\n\n### 📊 Cluster + arbitrages en attente\n...\n\n### 🧭 Conclusion\n...\n\n🤖 Coordinator ai-01"
 )
 ```
 
 Si le status global du pipeline a changé : `roosync_dashboard(action: "write", type: "workspace", content: "<nouveau status>")`. Si l'append timeout (limite MCP) : version courte — mais le **détail actionnable doit rester sur un canal lu** (issue GitHub de préférence), jamais reporté sur les seuls DM.
+
+### Condition positive de fin du tour ai-01
+
+Après les obligations du cycle, **terminer le tour** lorsque ces trois conditions sont vraies :
+
+1. chaque lane dispose d'au moins deux cycles de grains READY dans son pool ;
+2. chaque obligation du cycle est mergée, bloquée avec événement de reprise, ou transmise avec un paquet de preuve ;
+3. aucune tête, décision, review, CI ou autre frontière nouvelle à valeur non marginale ne justifie une action immédiate.
+
+Ne pas relire une tête inchangée, reconstruire un paquet worker déjà complet, ni lancer un nouveau sweep pour remplir le temps. Never-idle reste satisfait par les pools workers ; ai-01 laisse alors le cron de 6 h fournir la prochaine frontière de fraîcheur.
 
 ## Phase 7 — Ré-armer le cron (régime cron, PAS de ScheduleWakeup)
 
