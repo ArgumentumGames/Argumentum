@@ -17,6 +17,13 @@ PK 96 sorti du deck (05/09), format tranché à 70 × 120 mm (#1250), et le déf
 Ce dossier **re-dérive chaque chiffre à la source et sur les artefacts produits**, puis les confronte à ce
 qui a été publié. Il ne tranche aucune décision ouverte : il les **chiffre**.
 
+> ✅ **Décision owner du 14/09 (post-mesure)** — l'arbitrage Memo 1-vs-7 du §2 est **tranché : conserver
+> `NbCopies = 7`** (#1187 c.`5665864605`, reçu interactif, relais ai-01). Les volumes de fabrication sont donc
+> **décidés** : **197 cartes Tarot · 364 par boîte sans Virtues · 495 avec** ; les anciens **191 / 358 / 489**
+> sont **superseded pour la fabrication physique** ; les contrats **197 / 379 restent corrects** ; les valeurs
+> P&P (5 / 1) ne changent pas ; **aucune régénération** — la décision confirme le comportement déjà livré.
+> Le §2 se lit désormais comme le **dossier de la décision**, plus comme une branche ouverte.
+
 ⚠️ **Aucune valeur de prix, de plafond de budget ou de fourchette d'arbitrage ne figure ici — y compris celle
 de #445, qui n'est pas reproduite.** Elle est une donnée d'arbitrage **interne** et ne doit pas partir chez un
 façonnier : ce dossier est destiné à sortir, donc il ne la porte pas. Le renvoi à #445 suffit à retrouver le
@@ -85,15 +92,21 @@ C'est cohérent par construction : le Mémo est une carte d'aide, tirée **une p
 |---|---:|---:|---:|---:|
 | **Publié** (corps d'issue + c.`5552589768`, 05/09) | 1 | **191** | **358** | **489** |
 | **Mesuré sur l'artefact** | **7** | **197** | **364** | **495** |
+| **→ DÉCIDÉ** (owner 14/09, #1187 c.`5665864605`) | **7** | **197** | **364** | **495** |
 
 ⇒ **Six cartes d'écart par boîte.** Sur 8 langues, 48 cartes ; sur une série de 1 000 boîtes, 6 000 cartes.
 À l'échelle d'un tirage, ce n'est pas un arrondi — c'est une ligne de devis.
 
-**Les deux lectures ne peuvent pas être vraies en même temps.** Soit le deck doit sortir à **7 Mémos** et les
-volumes publiés sont à corriger (364 / 495) ; soit il doit sortir à **1 Mémo** et c'est `NbCopies` qui doit
-descendre à 1 — auquel cas **le PDF actuel ne correspond pas au produit voulu**. L'arbitrage est ouvert
-depuis le 28/08 — source **c.`5456018066`**, « Arbitrage Memo 1-vs-7 » — et **il n'a pas été refermé** avant
-que les volumes 358/489 soient publiés le 05/09.
+**L'arbitrage est aujourd'hui tranché — et il tranche pour la mesure.** Décision owner du **14/09**
+(#1187 c.`5665864605`) : **conserver `NbCopies = 7`**. Les volumes **197 / 364 / 495** deviennent les volumes
+de fabrication **décidés** ; les volumes publiés **191 / 358 / 489** (05/09) sont **superseded pour la
+fabrication physique** — ils comptaient une seule Memo au lieu des sept exemplaires réellement imprimés.
+**Aucune régénération** n'est déclenchée : la décision confirme le comportement déjà configuré et livré.
+
+*Historique de l'arbitrage (avant décision)* : ouvert depuis le 28/08 — source **c.`5456018066`**,
+« Arbitrage Memo 1-vs-7 » — et **non refermé** avant que les volumes 358/489 soient publiés le 05/09. La
+fenêtre d'ouverture a donc couvert la publication : c'est le fait que ce dossier chiffre, la décision y met
+terme.
 
 > ⚠️ **Correction de référence (post-revue)** : la v1 de ce dossier citait `c.5448250092` comme source de
 > l'arbitrage. Ce commentaire-là traite d'une **régénération périmée**, pas de l'arbitrage Memo. La source
@@ -112,10 +125,13 @@ sont **pas** en cause :
 | `Argumentum_TarotCards_Print&Play_A4_fr.pdf` | `MemoPrintAndPlay` | **5** |
 | `Argumentum_TarotCards_Print&Play_Light_A4_fr.pdf` | `MemoPrintAndPlay` | **1** |
 
-⇒ Un arbitrage « Memo = 1 » ne porte **que** sur la ligne retail. Basculer le retail à 1 **aligne** les volumes
-publiés (358 / 489) mais **désaligne l'organe** : les baselines épinglées **197 instances / 379 pages** du
-`Argumentum_TarotCards` deviennent **rouges** et devront être **re-dérivées** — c'est un effet de bord à
-budgéter dans le même geste, pas une simple édition de config.
+⇒ La décision du 14/09 ne porte **que** sur la ligne retail — et les valeurs P&P **5** et **1** sont
+**explicitement inchangées** (elles sont des configurations distinctes, #1187 c.`5665864605`). Le contre-fait
+resté ouvert jusqu'à la décision : basculer le retail à 1 aurait **aligné** les volumes publiés (358 / 489)
+mais **désaligné l'organe** — les baselines épinglées **197 instances / 379 pages** du `Argumentum_TarotCards`
+seraient passées **rouges** et auraient dû être **re-dérivées**. **La décision prise (7) conserve ces
+contrats tels quels** — c'est précisément l'un de ses effets actés : « les contrats actuels 197/379 restent
+corrects et ne doivent pas être abaissés à 191/377 ».
 
 ### §2.2 — L'organe existe déjà : ces totaux ne sont plus un rattrapage manuel
 
@@ -194,10 +210,10 @@ corrigées**. Trois dimensions, et elles sont toutes les trois nécessaires :
    Demander explicitement le **calage** et le **minimum par référence** — c'est ce poste, et non le prix
    unitaire, qui décide si les 8 langues partent ensemble ou par vagues.
 
-**Volumes à porter sur la matrice** — les deux lignes Memo, pour que le façonnier chiffre la question au lieu
-de la subir :
+**Volumes à porter sur la matrice** — la colonne retenue est désormais **celle de la décision** (owner 14/09 :
+`NbCopies = 7`) ; la colonne Mémo = 1 est conservée comme trace du contre-fait écarté :
 
-| Ligne de devis | Mémo = 1 | Mémo = 7 *(ce que l'artefact produit aujourd'hui)* |
+| Ligne de devis | Mémo = 1 *(écarté)* | **Mémo = 7 — DÉCIDÉ** (owner 14/09) |
 |---|---:|---:|
 | Fallacies | 175 | 175 |
 | Rules | 15 | 15 |
@@ -255,8 +271,11 @@ les fait redemander.
 
 ## §9 — Gates restants avant envoi aux façonniers
 
-1. 🔴 **Arbitrage owner Memo 1-vs-7** — change 6 cartes par boîte (§2). **À trancher avant l'envoi** : c'est
-   exactement le cas qu'un second tour de consultation rend coûteux.
+1. ✅ **Arbitrage owner Memo 1-vs-7 — TRANCHÉ le 14/09** (#1187 c.`5665864605`) : **conserver `NbCopies = 7`**.
+   Volumes de fabrication décidés **197 / 364 / 495** ; anciens **191 / 358 / 489** superseded pour la
+   fabrication physique ; contrats **197/379 inchangés** ; P&P 5 / Light 1 inchangés ; **aucune régén**.
+   Le gate « à trancher avant l'envoi » est levé — c'était précisément le cas qu'un second tour de
+   consultation aurait rendu coûteux.
 2. 🔴 **Fonds perdu** — décider s'il est produit par le pipeline ou ajouté par le façonnier (§3).
 3. 🔴 **Décision 3 — Vertus** — tranchée avec les devis des deux configurations sous les yeux.
 4. 🔴 **Boîte** (type, grammage, finition, EN71) — décision 4.
@@ -265,8 +284,9 @@ les fait redemander.
    §9.1 et §9.2 aient atterri : les deux changent le fichier livré.
 7. ✅ **Organe épinglant les cinq comptes** — **ACQUIS, pas à construire** : `PdfDeckCountContractTests`
    épingle déjà 379 / 197, 262, 334 et `memo.NbCopies = 7`, avec le contrôle 364 vs 358 (§2.2). La mesure du
-   §1/§2 le **confirme**, elle ne le remplace pas. ⚠️ Corollaire : un arbitrage « Memo = 1 » (§9.1) rend ces
-   baselines **rouges** et exige leur **re-dérivation** — à budgéter avec la décision, pas après.
+   §1/§2 le **confirme**, elle ne le remplace pas. ~~Corollaire : un arbitrage « Memo = 1 » rend ces baselines
+   rouges~~ — **corollaire levé par la décision du 14/09** (7 conservé) : les contrats **restent verts**,
+   aucune re-dérivation à budgéter.
 8. ⏳ **BAT physique validé par les trois** (jsboige, Adeline, Thomas).
 
 ---
