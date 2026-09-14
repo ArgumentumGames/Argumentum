@@ -106,7 +106,7 @@ portait des comptes d'objets par ligne qui ne réconciliaient pas avec les 14 07
 balayage, et la ligne « 35 autres familles » ferme la queue de distribution au lieu de la laisser
 hors table. (Les arrondis à deux décimales peuvent faire apparaître 0,01 MiB d'écart sur la somme.)
 
-⚠️ **Deux pièges de lecture — les deux sont le sujet.**
+⚠️ **Trois pièges de lecture — ils sont le sujet.**
 
 1. **Deux totaux, et ils ne mesurent pas la même chose.** Les 19 packs pèsent **176,7 MiB** sur
    disque mais ne portent que **128,9 MiB d'objets distincts** : **47,9 MiB sont le même objet
@@ -114,6 +114,15 @@ hors table. (Les arrondis à deux décimales peuvent faire apparaître 0,01 MiB 
    128,9 = contenu *acquis*.
 2. **`Cards/Fallacies` n'est pas un binaire.** C'est du texte — CSV de taxonomie, SVG et wrappers
    HTML de mindmaps — et il coûte plus cher que toutes les DLL réunies (§6).
+3. **Deux groupements portent une étiquette « inatteignable / sans chemin », et ils ne désignent pas
+   le même ensemble.** Les deux tableaux classent le **même univers** (les 14 070 objets / 128,9 MiB
+   du §1) mais selon deux axes : ici la **famille** (chemin), au §7 la **classe de ref**. La ligne
+   *(inatteignables — sans chemin)* ci-dessus (**3 443** objets / 31,91 MiB) compte les objets que le
+   rattachement familial ne peut pas ranger — `git rev-list --objects --all` ne leur rend aucun
+   chemin ; les **7 025** objets / 32,97 MiB « inatteignables *(dangling)* » du §7 sont ceux
+   qu'**aucune ref n'atteint**. Les deux comptes diffèrent (3 443 ≠ 7 025) parce que le critère
+   diffère : **ce ne sont pas deux mesures contradictoires du même groupement, mais deux relations
+   différentes appliquées au même univers** — l'étiquette seule ne les identifie donc pas.
 
 ## §4 — L'invariant de l'audit est **rompu**
 
