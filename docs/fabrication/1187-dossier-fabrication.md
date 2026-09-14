@@ -17,8 +17,10 @@ PK 96 sorti du deck (05/09), format tranché à 70 × 120 mm (#1250), et le déf
 Ce dossier **re-dérive chaque chiffre à la source et sur les artefacts produits**, puis les confronte à ce
 qui a été publié. Il ne tranche aucune décision ouverte : il les **chiffre**.
 
-⚠️ **Aucune valeur de prix, de plafond de budget ou de fourchette d'arbitrage ne figure ici.** La fourchette
-`~20–36 €` de #445 est une donnée d'arbitrage **interne** et ne doit pas partir chez un façonnier.
+⚠️ **Aucune valeur de prix, de plafond de budget ou de fourchette d'arbitrage ne figure ici — y compris celle
+de #445, qui n'est pas reproduite.** Elle est une donnée d'arbitrage **interne** et ne doit pas partir chez un
+façonnier : ce dossier est destiné à sortir, donc il ne la porte pas. Le renvoi à #445 suffit à retrouver le
+chiffre côté owner, et **c'est le seul endroit où il doit vivre.**
 
 ---
 
@@ -90,8 +92,50 @@ C'est cohérent par construction : le Mémo est une carte d'aide, tirée **une p
 **Les deux lectures ne peuvent pas être vraies en même temps.** Soit le deck doit sortir à **7 Mémos** et les
 volumes publiés sont à corriger (364 / 495) ; soit il doit sortir à **1 Mémo** et c'est `NbCopies` qui doit
 descendre à 1 — auquel cas **le PDF actuel ne correspond pas au produit voulu**. L'arbitrage est ouvert
-depuis le 28/08 (c.`5448250092`, « Arbitrage Memo 1-vs-7 ») et **il n'a pas été refermé** avant que les
-volumes 358/489 soient publiés le 05/09.
+depuis le 28/08 — source **c.`5456018066`**, « Arbitrage Memo 1-vs-7 » — et **il n'a pas été refermé** avant
+que les volumes 358/489 soient publiés le 05/09.
+
+> ⚠️ **Correction de référence (post-revue)** : la v1 de ce dossier citait `c.5448250092` comme source de
+> l'arbitrage. Ce commentaire-là traite d'une **régénération périmée**, pas de l'arbitrage Memo. La source
+> réelle est `c.5456018066` (28/08), qui retient alors **Memo = 1** et **rejette le ×7 comme non sourcé** —
+> c'est-à-dire l'inverse de ce que l'artefact fait, ce qui est précisément le point du §2.
+
+### §2.1 — De quel `NbCopies` on parle (à ne pas confondre)
+
+Le `7` du §2 est celui du **deck Tarot retail** (`Argumentum_TarotCards_fr.pdf` → `KnownCardSets.Memo`,
+`NbCopies = 7`). Le même CardSet Memo est réutilisé ailleurs avec **d'autres valeurs**, et ces valeurs-là ne
+sont **pas** en cause :
+
+| document | CardSet Memo | `NbCopies` |
+|---|---|---:|
+| `Argumentum_TarotCards_fr.pdf` (**retail**, l'objet du §2) | `Memo` | **7** |
+| `Argumentum_TarotCards_Print&Play_A4_fr.pdf` | `MemoPrintAndPlay` | **5** |
+| `Argumentum_TarotCards_Print&Play_Light_A4_fr.pdf` | `MemoPrintAndPlay` | **1** |
+
+⇒ Un arbitrage « Memo = 1 » ne porte **que** sur la ligne retail. Basculer le retail à 1 **aligne** les volumes
+publiés (358 / 489) mais **désaligne l'organe** : les baselines épinglées **197 instances / 379 pages** du
+`Argumentum_TarotCards` deviennent **rouges** et devront être **re-dérivées** — c'est un effet de bord à
+budgéter dans le même geste, pas une simple édition de config.
+
+### §2.2 — L'organe existe déjà : ces totaux ne sont plus un rattrapage manuel
+
+⚠️ **Correction de périmètre (post-revue).** Le gate 7 du §9 présentait l'organe de comptage comme un
+**préalable à construire**. Il est **déjà livré** : `PdfDeckCountContractTests`
+(`Generation/Converters/Argumentum.AssetConverter.Tests/PdfAssembly/`) **épingle déjà** les comptes que ce
+dossier vient de remesurer —
+
+| ce que le test épingle | valeur |
+|---|---|
+| `Argumentum_TarotCards` pages / instances | **379 / 197** |
+| `Argumentum_TarotCards_Virtues` pages | **262** |
+| `Argumentum_PokerCards` pages | **334** |
+| `Memo.NbCopies` (lu de la config Documents) | **7** |
+| contrôle instances physiques vs cartes uniques | **364 vs 358** |
+
+⇒ Les chiffres du §1/§2 de ce dossier **confirment** un contrat déjà épinglé — ils ne le découvrent pas. Ce
+qui reste ouvert est l'**arbitrage** (§2), pas l'instrument. Conséquence pratique : la mesure du 06/09 et le
+contrat disent la même chose, donc **un écart futur sera signalé par le test**, et non plus rattrapé à la main
+entre deux consultations.
 
 **Aucune valeur n'est publiée ici en tant que vérité** : la mesure dit ce que l'artefact fait, pas ce que le
 produit doit être. Le worker mesure ; la décision est owner.
@@ -108,8 +152,9 @@ produit doit être. Le worker mesure ; la décision est owner.
 #1250 était le gate qui interdisait de rédiger la case « format » : la branche retenue est **70 × 120 mm**,
 et le fonds perdu a été **rogné** par la même passe. Conséquence directe sur le cahier des charges :
 
-⚠️ **Le fonds perdu est à 0 dans les PDF livrés** (`BorderMM = 0` sur les quatre `DocumentCardSet` du deck
-Tarot). Un imprimeur cale sur un fonds perdu de **3 mm** usuel : soit le pipeline doit **produire un PDF avec
+⚠️ **Le fonds perdu est à 0 dans les PDF livrés** (`BorderMM = 0` sur les **trois** `DocumentCardSet` du deck
+Tarot — Rules, Memo, Fallacies ; **Virtues est un document séparé**, `Argumentum_TarotCards_Virtues_fr.pdf`, et
+n'appartient pas au deck Tarot). Un imprimeur cale sur un fonds perdu de **3 mm** usuel : soit le pipeline doit **produire un PDF avec
 fonds perdu** pour le façonnier, soit le façonnier l'ajoute — mais **il faut le demander explicitement**,
 sinon il sera supposé. Le point relevé le 01/09 (fond perdu 5 mm face / 3 mm dos, non uniforme) est donc
 **résolu par soustraction** : il n'y en a plus, ce qui déplace la question du fichier vers le cahier des charges.
@@ -126,7 +171,7 @@ Statut : ✅ établi par mesure · 🟡 proposition à valider · 🔴 ouvert (o
 | **Format Scenarii** | 63,5 × 88,9 mm (poker US) | ✅ | mesuré |
 | **Fonds perdu** | **à 0 dans les PDF livrés** — à produire ou à convenir | 🔴 | `BorderMM = 0` |
 | **Résolution** | 300 dpi (826 × 1417 / 750 × 1050 px) | ✅ | mesuré |
-| **Espace colorimétrique** | DeviceCMYK + OutputIntent **SWOP** | ✅ | chaîne `--pdf-cmyk` (#632/#652) |
+| **Espace colorimétrique** | DeviceCMYK + OutputIntent **SWOP** | ⏳ **non établi** | chaîne `--pdf-cmyk` **existante** (#632/#652) — mais **l'existence du chemin ne prouve pas que le bundle livré l'a traversée** : voir gate 5 §9 |
 | **Nombre de dos Tarot** | 1 dos partagé (Fallacies, répété 175×) + 1 dos Memo + 1 dos Virtues | ✅ | mesuré |
 | **Nombre de dos Scenarii** | **7** (un par catégorie) | ✅ | mesuré |
 | **Grammage / finition / pelliculage** | 300 g/m² couché (Tarot) · 350 g/m² noyau noir (Scenarii) · lin grain fin · pelliculage mat | 🟡 | proposition c.`5448477810`, non validée |
@@ -218,8 +263,10 @@ les fait redemander.
 5. ⏳ **Bundle CMYK vérifié** — contrôle explicite de présence DeviceCMYK, pas la seule sortie 0 du pipeline.
 6. ⏳ **Régénération post-décisions** — aucun PDF ne doit partir chez le façonnier avant que les décisions
    §9.1 et §9.2 aient atterri : les deux changent le fichier livré.
-7. ⏳ **Organe épinglant les cinq comptes** (préalable DoD posé le 28/08) — un compte de cartes qui dérive en
-   silence entre deux consultations est précisément ce que ce dossier vient de rattraper à la main.
+7. ✅ **Organe épinglant les cinq comptes** — **ACQUIS, pas à construire** : `PdfDeckCountContractTests`
+   épingle déjà 379 / 197, 262, 334 et `memo.NbCopies = 7`, avec le contrôle 364 vs 358 (§2.2). La mesure du
+   §1/§2 le **confirme**, elle ne le remplace pas. ⚠️ Corollaire : un arbitrage « Memo = 1 » (§9.1) rend ces
+   baselines **rouges** et exige leur **re-dérivation** — à budgéter avec la décision, pas après.
 8. ⏳ **BAT physique validé par les trois** (jsboige, Adeline, Thomas).
 
 ---
