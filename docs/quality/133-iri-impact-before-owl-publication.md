@@ -117,14 +117,14 @@ Recensement (oracle `origin/master`, compte de l'**ancien** libellé localisé p
 
 | artefact dérivé | ancien libellé | occurrences | nouveau |
 |---|---|---:|---:|
-| `Mindmaps/fr/Fallacies_fr.content.svg` | `Influence non verbale` | **85** | 0 |
-| `Mindmaps/en/Fallacies_en.content.svg` | `Nonverbal influence` | **1** | 0 |
-| `Mindmaps/ru/Fallacies_ru.content.svg` | `Невербальное воздействие` | **85** | 0 |
-| `Mindmaps/pt/Fallacies_pt.content.svg` | `Influência não verbal` | **85** | 0 |
-| `Mindmaps/es/Fallacies_es.content.svg` | `Influencia no verbal` | **85** | 0 |
-| `Mindmaps/ar/Fallacies_ar.content.svg` | `التأثير غير اللفظي` | **85** | 0 |
-| `Mindmaps/fa/Fallacies_fa.content.svg` | `تأثیر غیرکلامی` | **85** | 0 |
-| `Mindmaps/zh/Fallacies_zh.content.svg` | `非言语影响` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/fr/Fallacies_fr.content.svg` | `Influence non verbale` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/en/Fallacies_en.content.svg` | `Nonverbal influence` | **1** | 0 |
+| `Cards/Fallacies/Mindmaps/ru/Fallacies_ru.content.svg` | `Невербальное воздействие` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/pt/Fallacies_pt.content.svg` | `Influência não verbal` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/es/Fallacies_es.content.svg` | `Influencia no verbal` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/ar/Fallacies_ar.content.svg` | `التأثير غير اللفظي` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/fa/Fallacies_fa.content.svg` | `تأثیر غیرکلامی` | **85** | 0 |
+| `Cards/Fallacies/Mindmaps/zh/Fallacies_zh.content.svg` | `非言语影响` | **85** | 0 |
 
 Ces 8 SVG — et l'export AIF (`docs/ontology/aif-export/aif-owl-attack-edges.csv`), qui porte la même
 projection — sont la même classe d'objet que l'OWL : des **projections du libellé** qui divergent dès que la
