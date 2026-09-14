@@ -39,13 +39,30 @@ Les deux arithmétiques tombent juste : `70 + 46 = 116` et `75 − 46 = 29`. **L
 | dont ≥1 cellule skos | **57** |
 | dont **aucun** AIF (ni skos, ni attackType) | **32** |
 
-Les 32 restantes ne sont **pas** des lignes à modéliser : ce sont les **nœuds intérieurs** de la famille, dont les feuilles sont déjà couvertes.
+Les 32 restantes ne sont **pas** des lignes à modéliser **en bloc** : ce sont les **nœuds sans AIF** de la famille, et cet ensemble n'est **pas homogène**.
+
+| forme | n |
+|---|---:|
+| **feuilles** (aucun descendant) | **24** |
+| **nœuds intérieurs** | **8** |
+| dont portent une `carte` | **6** — `798` · `809` · `813` · `837` · `848` · `869` |
+
+⚠️ **Correction du 14/09 (re-review).** La version antérieure généralisait : « les 32 sont les **nœuds intérieurs** de la famille, dont les feuilles sont déjà couvertes ». C'est faux — **24 des 32 sont des feuilles**, `816` compris. La mesure exige une descendance **stricte** sur `path` (préfixe `p.`, séparateur compris) : une sonde par préfixe nu lit `5.1.2.3.2.24` comme descendant de `5.1.2.3.2.2` et gonfle artificiellement les nœuds intérieurs (23 feuilles au lieu de 24). Les 32 se lisent donc comme **32 nœuds sans AIF**, feuille/intérieur distingués — jamais comme une classe unique.
 
 | profondeur | 4 | 5 | 6 | 7 | 1 |
 |---|---:|---:|---:|---:|---:|
 | nœuds | 8 | 8 | 11 | 4 | 1 |
 
-Une seule porte un `nom_vulgarisé` à cette profondeur : **`816` « Argument Bush »** (depth 6, `Définition inexacte > Acception arbitraire`). Le `depth 1` est la racine de famille elle-même. **C'est le seul candidat neuf de la famille** — 1 ligne, pas 32.
+**Deux** d'entre eux portent un `nom_vulgarisé` à profondeur 6 — pas un :
+
+| pk | nom | position | `carte` | voie |
+|---|---|---|---:|---|
+| **`816`** | « Argument Bush » (`Définition inexacte > Acception arbitraire`) | feuille | — | **neuf** |
+| **`869`** | « chosification » (`Ambiguïté > Equivoque`) | intérieur | **2** | **déjà close** |
+
+`869` n'est pas un candidat ouvert : elle appartient au cluster **ratifié** `498-aif-equivoque-reification-cluster.md` (PR-12, **level-confusion → FAIL-LOUD**), qui la déclare `unmapped` avec `868` et `870`–`874`. Elle se cite donc **au même titre que les quatre verdicts ratifiés du §2.2** — une ligne close par verdict, à ne pas re-modéliser. Le `depth 1` est la racine de famille elle-même.
+
+⇒ **`816` reste le seul candidat neuf de la famille** — 1 ligne, pas 32 — mais parce que `869` est **déjà close par verdict**, et non parce qu'elle serait un nœud intérieur.
 
 ---
 
@@ -85,7 +102,7 @@ Une re-modélisation « fraîche » de ces 4 lignes **contredirait un verdict ra
 | **La question** | Que faire du lot P3 ? |
 | **Le fait mesuré** | La tranche `Abus de langage` est **close** (documentée + appliquée). P3 = **29 lignes**, inchangées depuis 24 jours, dont **10 déjà documentées** — 6 par une proposition non appliquée, 4 par des verdicts ratifiés qui les déclarent **sans scheme natif**. Reste **19 lignes sans aucun document**. |
 | **(A) Appliquer palier 1** | **6 lignes** (1024 1174 698 420 1011 667). La proposition existe déjà (`498-reconciliation-p3a-palier1.md`) et a été arbitrée par ai-01 le 30/08. Rien à modéliser — juste un GO. ⚠️ 2 d'entre elles (`698`, `667`) sont des **FAIL-LOUD** : aucune ligne de circularité ni de défaut-de-précision n'existe dans les 116 modélisées, donc leur note serait une **forme nouvelle** — c'est le vrai point d'arbitrage. |
-| **(B) Documenter les 19 restantes** | **19 lignes**. C'est la « tranche documentaire » au sens où `Abus de langage` l'a été (#1219 : modélisation triple-AIF, proposition + dry-run, **puis** write séparé). Coût réel : 19 dérivations `scheme + attack-type + CA-node/CQ` contre le vocabulaire verrouillé (`FallacyAifVocabularyLockTests`, 60 tokens), dont il faut retirer `816` si l'on étend à la famille. |
+| **(B) Documenter les 19 restantes** | **19 lignes**. C'est la « tranche documentaire » au sens où `Abus de langage` l'a été (#1219 : modélisation triple-AIF, proposition + dry-run, **puis** write séparé). Coût réel : 19 dérivations `scheme + attack-type + CA-node/CQ` contre le vocabulaire verrouillé (`FallacyAifVocabularyLockTests`, 60 tokens). ⚠️ Étendre à la famille ajoute **deux** candidats `nom_vulgarisé` de profondeur 6, pas un : `816` « Argument Bush » (**neuf**) et `869` « chosification » (**déjà close** par le verdict ratifié `level-confusion → FAIL-LOUD` — à citer au même titre que les quatre verdicts ratifiés du §2.2). Le travail neuf de cette extension se réduit donc à **`816` seul**. |
 | **(C) Ne rien faire** | 0 écriture. Le corpus reste à **116/145** skos et **29** attack-only, c'est-à-dire l'équilibre stable depuis le 29/08. Aucun défaut *publié* n'en dépend : l'`attackType` non plus n'est pas dans le deck — il alimente l'OWL (#133, gatée). |
 | **Nature** | Modélisation ontologique — chaque ligne est une **affirmation vérifiable** contre le standard Walton/AIF, pas une reformulation. Le DoD de #498 l'exige explicitement : *si un sophisme ne se décrit pas honnêtement comme exception à un scheme, le documenter comme tel — ne pas fabriquer un scheme factice.* |
 | **Ce qu'il faut savoir avant de trancher** | Le lot (A) est **déjà écrit** quelque part : le blocker n'est pas le travail, c'est le GO. Le lot (B) est le seul vrai travail neuf, et il est **plus petit que la ligne du dispatch ne le laisse croire** (19, pas « P3 » en bloc) — parce que 4 des 29 sont closes par verdict et 6 par proposition. |
