@@ -18,8 +18,13 @@ Le portage i18n du site DNN est un enchaînement de 6 étapes (#669) dont 4 rest
 - ce qui est **mécanique** (traduction, rebase, vérifications) — donc faisable par un worker **avant** la
   fenêtre, pour que la fenêtre ne serve qu'à ce que seul l'owner peut faire.
 
-Ce dossier ordonne les deux, et il **remonte deux décisions à prendre avant d'entrer** (§3) : entrer dans la
+Ce dossier ordonne les deux, et il **remontait deux décisions à prendre avant d'entrer** (§3) : entrer dans la
 fenêtre sans les avoir tranchées revient à provisionner 49 attributs dont un tiers ne sera pas lu.
+
+> ✅ **État au 15/09** : les deux décisions sont tranchées — **§3.1 `Title` vs `EntityTitle` → `Title`**
+> (owner 14/09, #682 c.`5665864947`) · **§3.2 « 49 » → levée par la mesure** (transfert confirmé, manifeste
+> à corriger). Ce qui reste ouvert n'est plus une décision mais une **exécution séquencée** : provisionner
+> `Title_<lang>` (owner), retargeter #674 (worker), puis cultures/traduction/réimport.
 
 ---
 
@@ -138,9 +143,17 @@ trivial (474 commits).
 
 ---
 
-## §3 — Les deux décisions à prendre AVANT d'entrer dans la fenêtre
+## §3 — Les deux décisions à prendre AVANT d'entrer dans la fenêtre — **état au 15/09 : §3.1 tranchée, §3.2 levée**
 
-### §3.1 — 🔴 `EntityTitle` ou `Title` ? La liste de provisioning et le code ne nomment pas le même champ
+### §3.1 — ✅ `EntityTitle` ou `Title` ? — **TRANCHÉ le 14/09 : l'attribut réel `Title`**
+
+> ✅ **Décision owner du 14/09** (#682 c.`5665864947`, reçue interactive, relais ai-01) : **utiliser
+> l'attribut réel `Title` et retargeter la cascade vers `Title_<lang>`**. Conséquences actées :
+> **aucun second attribut `EntityTitle`** · provisionner les variantes localisées de **`Title`** sur le
+> content-type setID 377 selon le périmètre validé · **corriger #674** pour appeler la cascade sur `Title`
+> en conservant l'ordre **`Title_<lang> → Title_en → Title_fr → Title`** · rebaser #674 en résolvant
+> **délibérément** le conflit `_RulesExplorer_RuleDetail.cshtml` avec les apports de #772 (aucun force-push
+> sur branche partagée) · **aucune fenêtre DB/runtime** avant dossier corrigé, dry-run et gates UAC.
 
 Trois artefacts, deux noms :
 
@@ -168,9 +181,13 @@ attribut suffixé**, puisque l'attribut s'appelle `Title`.
 - **(B) Provisionner `EntityTitle_en` …** ⇒ il faut créer un attribut **neuf** nommé `EntityTitle` en plus de
   `Title`, et le titre `IsTitle` reste FR-only. La traduction s'affiche, mais deux champs de titre coexistent.
 
-⇒ **Décision à prendre avant de provisionner** : soit on renomme la cible du code en `Title` (le plus propre —
-c'est l'attribut réel, et `UrlKey`/`IsTitle` sont déjà cohérents), soit on assume (B) explicitement. **Entrer
-dans la fenêtre sans trancher produit 7 attributs morts par langue, ou un titre qui ne se traduit jamais.**
+⇒ **Décision actée le 14/09 — c'est le retarget sur `Title` qui est choisi** : la cible du code est renommée
+en `Title` (l'attribut réel, dont `UrlKey`/`IsTitle` sont déjà cohérents), la cascade devient
+**`Title_<lang> → Title_en → Title_fr → Title`**, et **(B) est écarté** — aucun second `EntityTitle`.
+L'inconnue de l'option (A) — l'alias `EntityTitle` est-il exposé dans le dictionnaire ? — est rendue **sans
+objet** : le code livré ne lira plus jamais `EntityTitle`, donc que l'alias résolve ou non n'a plus d'effet.
+Le risque « 7 attributs morts par langue, ou un titre qui ne se traduit jamais » est levé par construction :
+on provisionne **et** on lit **le même nom**.
 
 ### §3.2 — ✅ « 49 » : contradiction levée par la mesure
 
@@ -196,9 +213,10 @@ Chaque étape porte sa **vérification** : c'est elle qui autorise à passer à 
 
 ### Étape 1 — #682 : ratifier et provisionner · **jsboige** (2sxc, base `ArgumentumGames`)
 
-1. **Trancher §3.1** (`Title` vs `EntityTitle`).
+1. **Trancher §3.1** (`Title` vs `EntityTitle`) — ✅ **fait le 14/09** (#682 c.`5665864947`) : **`Title`**.
 2. **Provisionner les 49 attributs suffixés** sur le content-type `Game Rule` **setID 377, app 60** —
-   `{champ}_{en,ru,pt,es,ar,fa,zh}` pour les 7 champs prose retenus.
+   `{champ}_{en,ru,pt,es,ar,fa,zh}` pour les 7 champs prose retenus, **le titre provisionné étant
+   `Title_<lang>`** (jamais `EntityTitle_<lang>` — décision owner).
 3. **Vérification** : le content-type passe de 15 à 64 attributs ; un `Get` sur une entité rend les 49 clés.
 4. **Ne toucher aucun setID homonyme** (210, 231) — ⚠️ **RAPPORTÉ depuis le transfert owner, non dérivé de
    l'export committé** : le seul setID que l'export du dépôt permet d'identifier comme servi est **377**. Que
@@ -208,11 +226,15 @@ Chaque étape porte sa **vérification** : c'est elle qui autorise à passer à 
 
 1. **Rebaser** la branche `fix/649-rules-explorer-i18n-loc` sur `origin/master` (474 commits ; **1 fichier en
    conflit**).
-2. **Aligner le nom de champ** sur la décision §3.1.
+2. **Aligner le nom de champ** sur la décision §3.1 — **actée** : cascade sur **`Title_<lang> → Title_en →
+   Title_fr → Title`**, zéro `EntityTitle` résiduel, apports #772 préservés dans la résolution du conflit
+   (owner : résolution **délibérée des deux côtés**, aucun force-push sur branche partagée).
 3. **Validation runtime minimale** (celle que #682 prescrit) : écrire **une** valeur
    (`Summary_en` = « test »), rendre `RuleDetail` en `?language=en-US`, confirmer que `Loc()` la sert.
    ⇒ C'est **le seul contrôle qui lève `[runtime pending]`** ; il ne peut pas être remplacé par une lecture de
-   code, parce que la question est précisément « la clé `EntityTitle` existe-t-elle dans le dictionnaire 2sxc ? ».
+   code. *(La question d'origine — « la clé `EntityTitle` existe-t-elle dans le dictionnaire 2sxc ? » — est
+   **sans objet depuis la décision** : le code ne la lira plus. Le contrôle reste requis pour `Title_en` et
+   la cascade retargetée.)*
 
 ### Étape 3 — #683 : cultures, routage, switcher · **jsboige** (DNN Admin) — **parallélisable**
 
@@ -274,6 +296,9 @@ cyrillique `ru` · **détection de fuite FR** (garde #216). Le switcher doit fon
 - **Que `EntityTitle` échoue au runtime.** Je constate qu'il n'est pas un attribut provisionnable et que la
   cascade cherchera `EntityTitle_<lang>` ; **le comportement du dictionnaire 2sxc face à l'alias n'est pas
   mesurable en lecture** — c'est exactement ce que `[runtime pending]` désigne, et l'étape 2 le tranche.
+  *(Depuis la décision du 14/09, cette inconnue est **sans objet** pour le code livré — le retarget sur
+  `Title` fait qu'aucun chemin n'exécute plus `EntityTitle`. Elle reste consignée : si un jour le retarget
+  est annulé, elle redevient vivante.)*
 - **Quels sont les types 2sxc exacts des 49 attributs.** L'inférence « tous String » est de haute confiance
   (`@Html.Raw`), pas une mesure ; #687 reste le débloqueur sysadmin.
 - **Que l'export reflète l'état courant du FR.** Il est daté du **07/07/2026** (§4 étape 4.4).
