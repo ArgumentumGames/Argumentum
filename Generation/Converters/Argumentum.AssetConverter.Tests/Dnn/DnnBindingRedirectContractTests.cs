@@ -35,6 +35,28 @@ namespace Argumentum.AssetConverter.Tests.Dnn
     /// commit. Ne pas relacher le test : le rouge dit que le deploy livrera une configuration qui
     /// ne peut pas se resoudre.
     /// </summary>
+    /// <summary>
+    /// #1244(a) : DNNPlatform/bin/ est de-tracke. Ce contrat compare la DLL *livree sur disque* aux
+    /// bindingRedirect versionnes : sur un checkout sans webroot (CI), la DLL n'est pas materialisee
+    /// et le contrat n'est PAS evaluable. On le saute alors explicitement -- un skip visible, pas un
+    /// vert par vacuite. Le contrat reste arme sans changement partout ou le webroot est present.
+    /// </summary>
+    internal sealed class RequiresWebrootBinTheoryAttribute : TheoryAttribute
+    {
+        public RequiresWebrootBinTheoryAttribute()
+        {
+            var bin = Path.Combine(TestRepoRoot.Find(), "DNNPlatform", "bin");
+            if (!Directory.Exists(bin))
+            {
+                Skip = "DNNPlatform/bin/ est de-tracke (#1244a) : la DLL livree n'est pas materialisee sur "
+                     + "ce checkout, le contrat DLL<->bindingRedirect n'est pas evaluable. Copie hors depot : "
+                     + @"G:\Mon Drive\Synchronisation\RooSync\Argumentum-offload\"
+                     + "DNN-10.3.2-tracked-bin-pre-1244a-2026-09-14 (sha256-manifest.txt). "
+                     + "Restaurer l'arborescence pour rearmer ce contrat.";
+            }
+        }
+    }
+
     public class DnnBindingRedirectContractTests
     {
         private static string RepoRoot => TestRepoRoot.Find();
@@ -42,7 +64,7 @@ namespace Argumentum.AssetConverter.Tests.Dnn
         /// <summary>Assemblages epingles : nom d'assemblage tel qu'il figure dans assemblyIdentity.</summary>
         public static TheoryData<string> PinnedAssemblies => new() { "ICSharpCode.SharpZipLib" };
 
-        [Theory]
+        [RequiresWebrootBinTheory]
         [MemberData(nameof(PinnedAssemblies))]
         public void PinnedAssembly_RedirectsAgreeWithShippedDll(string assemblyName)
         {

@@ -148,14 +148,13 @@ yarn-error.log*
 /Cartes/Generation/Converters/Argumentum.AssetConverter/Data
 /Cartes/Generation/Converters/Mindmapper/Data
 
-# Bin DNN (exception pour inclure ce dossier)
-!/DNNPlatform/bin/
-# #972: the directory re-include above does NOT override the *.dll/*.pdb/*.exe rules
-# (L19-21) for the files *inside* it — git only re-includes the directory entry, not its
-# ignored children. Re-include the assemblies explicitly so `git add` no longer needs -f.
-!/DNNPlatform/bin/*.dll
-!/DNNPlatform/bin/*.pdb
-!/DNNPlatform/bin/*.exe
+# #1244(a): DNNPlatform/bin/ est DÉ-TRACKÉ — les assemblages servis vivent dans le webroot sur
+# disque et sont préservés hors dépôt (offload du stash + sandbox ; cf.
+# docs/quality/1244a-dnn-bin-untrack-provenance.md). Les ré-inclusions `!` de #972 sont
+# inversées : les 195 fichiers trackés (179 dll, 9 config, 3 targets, 3 json, 1 xml) sont sortis
+# de l'index dans le même commit. Restauration depuis l'historique git :
+#   git checkout <commit antérieur à #1244a> -- DNNPlatform/bin/
+/DNNPlatform/bin/
 
 # Fichiers de configuration locaux
 /Chatgpt-plugin/azure-function/local.settings.json
