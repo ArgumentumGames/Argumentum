@@ -17,7 +17,7 @@ Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster
 |---------|------|------|
 | `myia-ai-01` | **Coordinateur** | merge, dispatch deep-queue, structuration issues/Epics, **verdict QA visuelle** (Playwright+vision), aiguillage root-cause, conclusion de cycle |
 | `myia-po-2023` | Worker | **driver DNN** (#131/#132/#457…) + **régénérations lourdes** du pipeline + présente le dossier de validation release à jsboige |
-| `myia-po-2024` | Worker | **backlog** : polish traduction (gpt-5.5, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
+| `myia-po-2024` | Worker | **backlog** : polish traduction (`gpt-5.6-sol`, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
 
 Adressage : toujours `machine-id:workspace-id` (ex `myia-po-2023:Argumentum`, `myia-po-2024:Argumentum`).
 
@@ -161,7 +161,7 @@ Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboa
 ### Tasking par worker
 
 - **po-2023** : DNN (Epic #131/#132/#457…), régénérations lourdes du pipeline, dossier de validation release pour jsboige. Travail compute-intensive et visuel-lourd.
-- **po-2024** : backlog — polish traduction (gpt-5.5 **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
+- **po-2024** : backlog — polish traduction (`gpt-5.6-sol` **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
 - **Sérialisation forcée** : si deux tâches éditent les mêmes fichiers (ex CSV trad), dispatcher en séquentiel. `git log -- <fichier>` pour repérer les collisions avant un dispatch parallèle.
 
 ### Où poser le dispatch — le dashboard/l'issue PORTE, le DM NOTIFIE
