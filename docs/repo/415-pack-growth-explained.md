@@ -1,6 +1,7 @@
 # #415 — La croissance du pack expliquée : la paire « 2,05 → 5,57 GiB » n'est pas commensurable
 
-**Auteur** : po-2024 (worker) · **Date** : 2026-09-14 · **Base** : master `21a72385`
+**Auteur** : po-2024 (worker) · **Date** : 2026-09-14 · **Base** : master `874a5d98`
+**Ancre de mesure** : les comptages d'objets (§3, §4, §6) sont pris à `21a72385`, l'ancre sous laquelle le clone a été balayé. Entre `21a72385` et `874a5d98`, master n'a reçu que **3 commits docs-only** (`#1360`, `#1358`, `#1357`), qui ne touchent ni `Cards/` ni `docs/ontology/` : le recensement d'objets est identique **par construction**, pas par supposition. Le comptage de *commits* de la fenêtre, lui, dépend de l'ancre — il est donné aux deux (§5).
 **Statut** : **MESURE / DOSSIER** — lecture seule. `0` écriture, `0` réécriture d'historique, `0` `gc`.
 **Dispatch** : ai-01, deep-queue #458 c.5656689863, grain **①** (`[primaire] #415`).
 **Doc amont** : [`415-git-weight-audit.md`](415-git-weight-audit.md) (po-2024, 2026-07-01, base `18b4d023`).
@@ -11,7 +12,7 @@
 
 **A. Le chiffre de croissance annoncé n'existe pas ici.** « 2,05 → 5,57 GiB » compare **deux clones
 différents**, et le second terme n'est pas mesurable sur ce dépôt. Sur le clone que l'audit #415 a
-mesuré, la même commande donne aujourd'hui **2,22 GiB**.
+mesuré, la même commande donne aujourd'hui **2,224 GiB**.
 
 | terme | valeur | source | clone |
 |---|---|---|---|
@@ -55,7 +56,7 @@ inline, et non reproductible à l'identique depuis n'importe quelle copie.
 2026-07-01  size-pack 2,050 GiB   3 packs   25 857 objets          ← audit #415
 2026-09-14  size-pack 2,224 GiB  22 packs   44 726 objets (+1 271 loose = 123,73 MiB)
             ────────────────────────────────────────────────────
-            croissance   +176,7 MiB de packs neufs  sur 513 commits (18b4d023..origin/master)
+            croissance   +176,7 MiB de packs neufs  sur 516 commits (18b4d023..874a5d98)
 ```
 
 *Ré-mesure du 14/09 : `git count-objects -v` → `count 1271`, `size 126697`, `in-pack 44726`,
@@ -65,10 +66,11 @@ packs, or le pack de base a été ré-empaqueté depuis le 01/07 : l'écart entr
 que §2 annonçait était une mesure de ce jour-là, pas un invariant. Le chiffre robuste reste
 **176,7 MiB de packs neufs**, obtenu par somme directe des 19 fichiers.*
 
-Les 19 packs créés depuis l'audit totalisent **185 333 133 B = 176,7 MiB** ; l'écart avec la
-croissance de `size-pack` est de 608 B (19 × 32 B d'en-tête/trailer) — l'instrument ferme.
+Les 19 packs créés depuis l'audit totalisent **185 333 133 B = 176,7 MiB** *(somme directe des 19
+fichiers — c'est le chiffre robuste ; la soustraction de deux `size-pack` ne l'est pas, cf. la
+ré-mesure ci-dessus)*.
 `.git` complet = 2,4 G. **Aucun `alternates`** (`.git/objects/info/` ne contient que
-`commit-graphs/` et `packs`) : l'écart inter-machines du §8 n'est pas un montage d'objets.
+`commit-graphs/` et `packs`) : l'écart inter-machines du §9 n'est pas un montage d'objets.
 
 ## §3 — Familles responsables, par `verify-pack`
 
@@ -142,7 +144,7 @@ Fallacies - Taxonomy.csv`, `docs/ontology/`, `DNNPlatform/`). La garde les voit 
 par décision** — ce qui légalise précisément la croissance mesurée ici. Le levier n'est donc pas
 d'ajouter un contrôle qui existe, mais de **réviser l'allow-list** (§10.4).
 
-## §5 — Fenêtre : 4 événements, pas une dérive continue
+## §5 — Fenêtre : 7 événements, pas une dérive continue
 
 Datation par le mtime des fichiers `.pack` — l'événement de *packaging*, distinct de la date
 d'*auteur* des commits (cf. §7) :
@@ -162,7 +164,11 @@ d'*auteur* des commits (cf. §7) :
 faisait annoncer « 19 packs / 176,7 MiB » au-dessus d'une table qui n'en listait que **18 pour
 176,3**. Le contrôle inverse du §8 exige que la table ferme : elle ferme désormais à l'unité.)*
 
-Fenêtre de commits correspondante sur `master` : **513 commits**, du **2026-07-01** au **2026-09-14**.
+Fenêtre de commits correspondante sur `master` : **516 commits** (`18b4d023..874a5d98`, l'ancre de
+report), du **2026-07-01** au **2026-09-14**. ⚠️ Le même intervalle compté à l'ancre de **mesure**
+(`21a72385`) donne **513** ; les **3** de plus sont exactement les trois commits docs-only annoncés
+en tête de ce dossier. Les deux chiffres sont justes — ils ne sont pas pris sous la même ancre, et
+un compteur de commits se cite donc **avec son ancre**.
 Par famille : `Cards/Fallacies` 82 commits (02/07→11/09) · `DNNPlatform` 47 (01/07→30/08) ·
 `docs/ontology` 18 (02/07→13/09).
 
@@ -187,7 +193,8 @@ Top des chemins par contenu introduit sur `master` dans la fenêtre (versions > 
 Deux lectures, toutes deux importantes :
 
 - **Le coût en pack est très inférieur au contenu.** Ces ~1 083 MiB de contenu ne coûtent que
-  **39,6 MiB** de pack (`Cards/Fallacies` 37,74 + `docs/ontology` 1,84) : des versions successives
+  **39,5 MiB** de pack (`Cards/Fallacies` 37,69 + `docs/ontology` 1,84, les deux chiffres du §3 —
+  la version antérieure portait ici 37,74, resté d'avant la correction de la table) : des versions successives
   quasi identiques sont des deltas quasi parfaits. **Un dossier qui chiffrerait la croissance par
   la somme des tailles de fichiers se tromperait d'un facteur ~27.**
 - **La famille est exactement celle que la Phase 1 avait laissée tracée.** L'audit (§56) note que
@@ -200,7 +207,7 @@ Deux lectures, toutes deux importantes :
 
 **Les deux — et la date de commit ne date pas la croissance.**
 
-- **Nouvelle** : l'activité propre de `master` (513 commits) — §6.
+- **Nouvelle** : l'activité propre de `master` — §6, sur la fenêtre de **516 commits** du §5.
 - **Préexistante, apportée après coup** : `tmp/` (**17,28 MiB**) vient de
   `origin/validation/regen-dc01445f`, dont les commits sont datés du **2026-06-08** — *avant*
   l'audit. Ces objets n'étaient pas dans ce clone au 01/07 ; ils sont entrés par un **fetch
@@ -241,7 +248,7 @@ L'attribution **sature** la croissance. Le §7 porte sur le même ensemble de 14
 po-2023 (worker) · 2026-09-13 · base `35acac04` »), et marque lui-même l'écart « hors périmètre de
 ce document ; **non instruit** » (l.75, l.171).
 
-**Établi.** Sur ce clone, la commande citée donne **2,223 GiB** — pas 5,57.
+**Établi.** Sur ce clone, la commande citée donne **2,224 GiB** — pas 5,57.
 
 **Non établi, et non établissable d'ici :** *pourquoi* le clone de po-2023 mesurerait ~3,3 GiB de
 plus. Deux hypothèses restent ouvertes ; ce dossier ne tranche pas.
