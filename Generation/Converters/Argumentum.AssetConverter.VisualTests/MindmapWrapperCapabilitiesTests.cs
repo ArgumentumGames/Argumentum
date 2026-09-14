@@ -19,10 +19,13 @@ namespace Argumentum.AssetConverter.VisualTests
     ///   #2  recentring re-centers the SVG root node (id=0) in the viewport;
     ///   #3  drag pans the viewport;
     ///   #4  mouse-wheel zooms;
+    ///   #5  the three control icons exist, are clickable, and each MOVES the viewport;
     ///   #6  double-click zooms;
     ///   #7  clicking a real semantic .node opens the overlay card;
     ///   #8  the clicked node's family class reaches the overlay card and a family
-    ///       palette colour actually computes (measured, never guessed — see Cap8).
+    ///       palette colour actually computes (measured, never guessed — see Cap8);
+    ///   #9  reset lands on the FIT, and the maximal zoom-out is a strictly different state
+    ///       (0,15 x fit) — the two were conflated in the golden-master wording.
     ///
     /// === THE ZOOM-INITIAL DELAY CAVEAT (the reason this suite exists) ===
     /// svg-pan-zoom initializes in fit-to-viewport, THEN the wrapper's requestAnimationFrame
@@ -34,6 +37,13 @@ namespace Argumentum.AssetConverter.VisualTests
     /// <see cref="WaitForViewportSettledAsync"/> which polls until the viewport scale is stable
     /// across two consecutive samples (or times out). Any future harness measuring cap #1 must
     /// copy this settle-wait, else it produces a false positive.
+    ///
+    /// AMENDED RULE for anything that MOVES the viewport (a control click, a reset): "two
+    /// identical samples" is NOT sufficient on its own. The reset animation is deferred about a
+    /// second, so immediately after the click the pre-movement state is itself stable and two
+    /// samples of it read as "settled" — recording the PREVIOUS action's state. Measured live at
+    /// t≈1 048 ms. Those reads go through <see cref="WaitForSettledAfterActionAsync"/>, which waits
+    /// for a CHANGE first and only then for two identical samples.
     ///
     /// Composed via the same <see cref="MindMapHtmlWrapper.FormatWrapper"/> path the pipeline uses
     /// (committed template + committed .content.svg), so a regression in the helper surfaces here.
@@ -210,6 +220,72 @@ namespace Argumentum.AssetConverter.VisualTests
             return (settled, sw.ElapsedMilliseconds);
         }
 
+        /// <summary>
+        /// Settle-wait for an action that MOVES the viewport (a control click, a reset). Same
+        /// two-consecutive-samples rule as <see cref="WaitForViewportSettledAsync"/>, but gated on
+        /// the action having actually taken effect first.
+        ///
+        /// WHY THE GATE IS MANDATORY (measured, ai-01, #830 c.5651920638): the reset animation is
+        /// DEFERRED ~1 s after the click (transition located at t≈1 048 ms; settle at 1 365-1 422 ms,
+        /// vs 310-390 ms for wheel/drag). Right after the click the viewport has not started moving,
+        /// so "two consecutive identical samples" is satisfied by the PRE-MOVEMENT state — and the
+        /// harness records the PREVIOUS action's state instead of the new one. Two full measurement
+        /// passes were wrong this way before the cause was found. Requiring a change first is what
+        /// separates "not started yet" from "arrived".
+        ///
+        /// The amended rule (amendment accepted from the same verdict): wait for a CHANGE, THEN two
+        /// identical samples — never "two identical samples" alone.
+        /// </summary>
+        /// <param name="fromScale">
+        /// The scale the action must move AWAY from. Null skips the gate (use only when the action
+        /// is known to already be in flight).
+        /// </param>
+        private async Task<(double scale, bool changed, double elapsedMs)> WaitForSettledAfterActionAsync(
+            IPage page, double? fromScale)
+        {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            var sawChange = !fromScale.HasValue;
+            double? prev = null;
+            int stableRuns = 0;
+            double settled = double.NaN;
+
+            while (sw.ElapsedMilliseconds < SettleMaxWaitMs)
+            {
+                var s = await GetViewportScaleAsync(page);
+                if (s.HasValue)
+                {
+                    if (!sawChange && Math.Abs(s.Value - fromScale!.Value) > SettleTolerance)
+                    {
+                        sawChange = true;
+                    }
+
+                    if (sawChange && prev.HasValue && Math.Abs(s.Value - prev.Value) < SettleTolerance)
+                    {
+                        stableRuns++;
+                        if (stableRuns >= 2)
+                        {
+                            settled = s.Value;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        stableRuns = 0;
+                    }
+                    prev = s;
+                }
+                else
+                {
+                    stableRuns = 0;
+                }
+                await page.WaitForTimeoutAsync((int)SettleMinIntervalMs);
+            }
+
+            _output.WriteLine($"WaitForSettledAfterAction: from={fromScale?.ToString("F6") ?? "(none)"} " +
+                $"-> scale={settled:F6} changed={sawChange} after {sw.ElapsedMilliseconds}ms");
+            return (settled, sawChange, sw.ElapsedMilliseconds);
+        }
+
         // ---- #1: initial zoom readable + recentring ran ---------------------
 
         // fr + ar + zh cover Latin, RTL, CJK; the Virtues family was regenerated by #983 across
@@ -239,12 +315,20 @@ namespace Argumentum.AssetConverter.VisualTests
                 var median = stats.Length >= 2 ? stats[1] : 0;
                 var readable = stats.Length >= 3 ? stats[2] : 0;
 
-                // Reference: reset() returns the library's ORIGINAL state. With fit disabled the
-                // original zoom equals the fit-to-viewport scale computed from the SVG viewBox.
-                await page.ClickAsync("#svg-pan-zoom-reset-pan-zoom");
-                await page.WaitForTimeoutAsync(300);
-                var scaleFit = await GetViewportScaleAsync(page);
-                Assert.True(scaleFit.HasValue && scaleFit.Value > 0, $"no positive fit scale for {lang}");
+                // Reference: reset() returns the library's ORIGINAL state — the fit-to-viewport
+                // scale. It is read through the change-gated settle, NOT a fixed 300 ms sleep: the
+                // reset animation is deferred ~1 s (measured), so a fixed sleep reads the still
+                // unsettled pre-reset state and silently uses the ZOOMED scale as the fit
+                // reference — which would make the ratio below read ≈1,0 and fail for the wrong
+                // reason, or worse, pass on a regression.
+                await page.Locator("#svg-pan-zoom-reset-pan-zoom").ClickAsync();
+                var (fitScale, fitChanged, _) = await WaitForSettledAfterActionAsync(page, scaleStable);
+                Assert.True(fitChanged,
+                    $"reset must move the viewport away from the settled initial zoom for {lang} " +
+                    $"(settled={scaleStable:F6}, read-back={fitScale:F6}) — a deferred reset read as " +
+                    $"'already settled' records the PRE-reset state");
+                Assert.True(fitScale > 0, $"no positive fit scale for {lang}");
+                double? scaleFit = fitScale;
 
                 var ratio = scaleStable / scaleFit.Value;
                 // A regression #831 (no recentring) would leave the wrapper DOWN at the fit scale:
@@ -490,6 +574,159 @@ namespace Argumentum.AssetConverter.VisualTests
                     $"a palette rule must compute a real background for familyclass '{familyClass}', got '{bg}'");
                 Assert.True(bg != "rgb(255, 255, 255)",
                     $"family palette must not fall back to white for familyclass '{familyClass}', got '{bg}'");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        // ---- #5: the control icons are present, clickable AND effective -----
+
+        /// <summary>
+        /// Capability #5 of #830. Regression #825 had replaced a working svg-pan-zoom with an
+        /// inert <c>transform:scale()</c>; presence of the control cluster proves nothing about what
+        /// the buttons DO. Three assertions of increasing strength:
+        ///   (a) the cluster and each of its three icons exists;
+        ///   (b) each icon is hit-testable (a real, non-degenerate box);
+        ///   (c) each icon MOVES the viewport, in its own direction.
+        /// Before this test, Cap 5 was pinned only by substring presence in the headless golden
+        /// master, and the effectiveness of zoom-in/zoom-out rested on an external pass, never on
+        /// this suite (see the #830 verdict of 2026-09-13).
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
+        public async Task Cap5_ControlIcons_PresentClickableAndEffective(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                var (scaleStable, _) = await WaitForViewportSettledAsync(page);
+                Assert.True(scaleStable > 0, $"no positive settled scale for {lang}");
+
+                const string cluster = "#svg-pan-zoom-controls";
+                const string zoomIn = "#svg-pan-zoom-zoom-in";
+                const string zoomOut = "#svg-pan-zoom-zoom-out";
+                const string reset = "#svg-pan-zoom-reset-pan-zoom";
+
+                // (a) presence.
+                foreach (var id in new[] { cluster, zoomIn, zoomOut, reset })
+                {
+                    Assert.True(await page.Locator(id).CountAsync() == 1,
+                        $"{id} must be present exactly once for {lang}");
+                }
+                var icons = await page.Locator($"{cluster} > g").CountAsync();
+                Assert.True(icons == 3, $"expected 3 control icons for {lang}, got {icons}");
+
+                // (b) clickable — presence is not clickability.
+                foreach (var id in new[] { zoomIn, zoomOut, reset })
+                {
+                    Assert.True(await page.Locator(id).IsVisibleAsync(),
+                        $"{id} is present but not visible for {lang}");
+                    // A box of all zeros — or no box at all — is what Playwright returns for an
+                    // element it cannot lay out: presence in the DOM is not a hit box.
+                    var box = await page.Locator(id).BoundingBoxAsync();
+                    Assert.True(box is { Width: > 0, Height: > 0 },
+                        $"{id} has no hit box for {lang} (present but not clickable): {box?.Width}x{box?.Height}");
+                }
+
+                // (c) effective. Every read goes through the change-gated settle: an icon whose
+                // effect is deferred would otherwise be recorded as "unchanged" and misread as inert.
+                await page.Locator(zoomIn).ClickAsync();
+                var (afterIn, inMoved, _) = await WaitForSettledAfterActionAsync(page, scaleStable);
+                _output.WriteLine($"[{lang}] zoom-in {scaleStable:F6} -> {afterIn:F6}");
+                Assert.True(inMoved && afterIn > scaleStable,
+                    $"zoom-in control must increase the scale for {lang}: {scaleStable:F6} -> {afterIn:F6}");
+
+                await page.Locator(zoomOut).ClickAsync();
+                var (afterOut, outMoved, _) = await WaitForSettledAfterActionAsync(page, afterIn);
+                _output.WriteLine($"[{lang}] zoom-out {afterIn:F6} -> {afterOut:F6}");
+                Assert.True(outMoved && afterOut < afterIn,
+                    $"zoom-out control must decrease the scale for {lang}: {afterIn:F6} -> {afterOut:F6}");
+
+                // Reset returns to the library's ORIGINAL state — the fit-to-viewport scale. The
+                // harness starts ABOVE the fit (the recentring zooms in ~2,2-7,7x), so a working
+                // reset moves the scale DOWN, not up. Cap 9 owns the wording of "lands on the fit";
+                // here the claim is only effectiveness — the icon moves the viewport.
+                await page.Locator(reset).ClickAsync();
+                var (afterReset, resetMoved, _) = await WaitForSettledAfterActionAsync(page, afterOut);
+                _output.WriteLine($"[{lang}] reset {afterOut:F6} -> {afterReset:F6}");
+                Assert.True(resetMoved && afterReset < afterOut,
+                    $"reset control must move the viewport back toward the fit for {lang}: " +
+                    $"{afterOut:F6} -> {afterReset:F6} (the harness settles above the fit, so a " +
+                    $"working reset reads as a DECREASE)");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        // ---- #9: reset lands on FIT — and is NOT the maximum zoom-out -------
+
+        /// <summary>
+        /// Capability #9 of #830, pinned directly (it was covered only transitively through Cap 1,
+        /// which takes its fit reference after a reset).
+        ///
+        /// The golden-master wording carried a false equivalence — "reset revient au fit complet
+        /// (zoom-out max)" — conflating TWO DIFFERENT STATES. Read from the vendored library
+        /// (svg-pan-zoom 3.6.2, shipped inside the wrapper):
+        ///   · <c>resetZoom()</c> re-reads <c>getOriginalState()</c> and calls
+        ///     <c>zoom(t.zoom, true)</c>                                  => reset = FIT;
+        ///   · <c>zoomAtPoint()</c> clamps with <c>minZoom * n.zoom</c> /
+        ///     <c>maxZoom * n.zoom</c> — the bounds are RELATIVE TO THE FIT, so the maximal
+        ///     zoom-out is <c>0,15 x fit</c>, about 6,7x further out than the post-reset state.
+        /// This test asserts the distinction itself: reset lands ON the fit, the zoom-out bound
+        /// lands strictly BELOW it. Without the second assertion the two states are
+        /// indistinguishable in CI — which is how the wording error survived this long.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
+        public async Task Cap9_ResetLandsOnFit_AndZoomOutMaxIsStrictlyBelowIt(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                var (zoomed, _) = await WaitForViewportSettledAsync(page);
+                Assert.True(zoomed > 0, $"no positive settled scale for {lang}");
+
+                // (1) reset lands ON the fit.
+                await page.Locator("#svg-pan-zoom-reset-pan-zoom").ClickAsync();
+                var (fit, fitMoved, _) = await WaitForSettledAfterActionAsync(page, zoomed);
+                Assert.True(fitMoved, $"reset must move the viewport for {lang}");
+                Assert.True(fit < zoomed,
+                    $"reset must zoom OUT from the settled initial zoom for {lang}: {zoomed:F6} -> {fit:F6}");
+
+                // (2) the zoom-out BOUND is a different, strictly further-out state. Click down to
+                // the clamp; the trailing clicks are no-ops once minZoom is reached.
+                for (var k = 0; k < 40; k++)
+                {
+                    await page.Locator("#svg-pan-zoom-zoom-out").ClickAsync();
+                    await page.WaitForTimeoutAsync(60);
+                }
+                var (floorScale, floorMoved, _) = await WaitForSettledAfterActionAsync(page, fit);
+                var ratio = floorScale / fit;
+
+                _output.WriteLine($"[{lang}] fit={fit:F6} zoomOutFloor={floorScale:F6} ratio(floor/fit)={ratio:F3}");
+
+                // The discriminating assertion. Asserting `moved` FIRST (rather than comparing a
+                // NaN read-back) is what makes the failure legible: if zoom-out cannot leave the
+                // fit, the two states are one and the golden-master wording was right after all.
+                Assert.True(floorMoved,
+                    $"the zoom-out control must move the viewport strictly BELOW the fit for {lang} " +
+                    $"(fit={fit:F6}, no further movement observed) — if it cannot, 'reset' and " +
+                    $"'zoom-out max' really are one state and the golden-master wording was right");
+                Assert.True(floorScale < fit,
+                    $"the maximal zoom-out must be strictly further out than reset for {lang}: " +
+                    $"floor={floorScale:F6} vs fit={fit:F6}");
+
+                // minZoom is 0,15 in both templates; this band is the falsifiable bar (it catches a
+                // silently changed minZoom), not a restatement of the observed value.
+                Assert.InRange(ratio, 0.10, 0.25);
             }
             finally
             {

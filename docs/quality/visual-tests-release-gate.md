@@ -13,6 +13,8 @@ Baseline recorded when the workflow was wired (2026-09-11, master `2ece0eb8`): *
 
 Count changed 38 → **39** on 2026-09-11 (#830): `Cap8_ClickNode_AppliesFamilyClassAndColoursOverlay` instruments capability #8 (family colours — class applied to the overlay at click + computed non-white background, no colour guessed). Measured locally before push: **39 cases, 0 failed, 0 skipped, 1 min 14 s** (warm Chromium; a cold CI runner pays the install, as the wired baseline did).
 
+Count changed 39 → **43** on 2026-09-14 (#830): two capabilities that had no direct assertion became falsifiable. `Cap5_ControlIcons_PresentClickableAndEffective` (2 cases, FR × 2 families) asserts the three control icons are not merely **present and clickable** but **effective** — each one moves the viewport; an inert control is present, visible, clickable and useless, so presence alone proves nothing. `Cap9_ResetLandsOnFit_AndZoomOutMaxIsStrictlyBelowIt` (2 cases) asserts reset lands on the **fit** and that the maximal zoom-out is a **strictly different, further-out state** (`0,15 × fit`), refuting the golden-master's "reset = zoom-out max" equivalence. Falsifiability was proven by mutation: setting `minZoom: 0.15` to `1` turns Cap 9 red, after which `git checkout --` restores the fixture. Measured locally before push, on the exact CI filter (`--filter "FullyQualifiedName~MindmapWrapper"`): **43 cases, 0 failed, 0 skipped, 59 s** (warm Chromium).
+
 Do not apply `continue-on-error` to make missing artefacts look like a passing release gate. Compilation alone does not establish that these assertions passed.
 
 ## Run against the intended artefacts
