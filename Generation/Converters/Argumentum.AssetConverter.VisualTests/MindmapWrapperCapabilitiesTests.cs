@@ -24,8 +24,9 @@ namespace Argumentum.AssetConverter.VisualTests
     ///   #7  clicking a real semantic .node opens the overlay card;
     ///   #8  the clicked node's family class reaches the overlay card and a family
     ///       palette colour actually computes (measured, never guessed — see Cap8);
-    ///   #9  reset lands on the FIT, and the maximal zoom-out is a strictly different state
-    ///       (0,15 x fit) — the two were conflated in the golden-master wording.
+    ///   #9  reset and the maximal zoom-out are TWO DISTINCT STATES, related by the template's
+    ///       declared minZoom — the golden-master wording ("reset = zoom-out max") conflated them.
+    ///       NOTE: #9 does NOT independently establish the fit. See the Cap 9 docstring.
     ///
     /// === THE ZOOM-INITIAL DELAY CAVEAT (the reason this suite exists) ===
     /// svg-pan-zoom initializes in fit-to-viewport, THEN the wrapper's requestAnimationFrame
@@ -39,11 +40,21 @@ namespace Argumentum.AssetConverter.VisualTests
     /// copy this settle-wait, else it produces a false positive.
     ///
     /// AMENDED RULE for anything that MOVES the viewport (a control click, a reset): "two
-    /// identical samples" is NOT sufficient on its own. The reset animation is deferred about a
-    /// second, so immediately after the click the pre-movement state is itself stable and two
-    /// samples of it read as "settled" — recording the PREVIOUS action's state. Measured live at
-    /// t≈1 048 ms. Those reads go through <see cref="WaitForSettledAfterActionAsync"/>, which waits
-    /// for a CHANGE first and only then for two identical samples.
+    /// identical samples" is NOT sufficient on its own. Immediately after the click the
+    /// pre-movement state is itself stable, so two samples of it read as "settled" and record the
+    /// PREVIOUS action's state. Those reads go through
+    /// <see cref="WaitForSettledAfterActionAsync"/>, which waits for a CHANGE first and only then
+    /// for two identical samples.
+    ///
+    /// ⚠️ PROVENANCE OF THE "DEFERRED RESET" — read before citing a duration. The deferral that
+    /// motivated the gate was measured on ANOTHER harness, not this one (ai-01, #830
+    /// c.5651920638: transition at t≈1 048 ms, settle 1 365–1 422 ms, against 310–390 ms for
+    /// wheel/drag). It is NOT reproduced here: re-measured on this harness 2026-09-14 (fr, both
+    /// fixtures, click → first CTM change) the delay is **12 ms** and **57 ms**, and reset lands
+    /// directly on its final value — no transition is observable. The repo CI's previous fixed
+    /// 300 ms read stayed green for exactly that reason. The gate is therefore kept as a
+    /// ROBUSTNESS measure — one extra poll, and it closes a whole failure class — not because this
+    /// suite observes a ~1 s deferral. Never cite the ~1 s figure as this suite's measurement.
     ///
     /// Composed via the same <see cref="MindMapHtmlWrapper.FormatWrapper"/> path the pipeline uses
     /// (committed template + committed .content.svg), so a regression in the helper surfaces here.
@@ -109,6 +120,19 @@ namespace Argumentum.AssetConverter.VisualTests
 
         private static string GetSvgPath(string lang, string fileName)
             => Path.Combine(RepoRoot, "Cards", "Fallacies", "Mindmaps", lang, fileName);
+
+        /// <summary>
+        /// The zoom-out bound the template DECLARES, read from the fixture rather than hard-coded.
+        /// Cap 9's ratio assertion is anchored on this constant: it is the one quantity in that
+        /// test that does not come from the observation under test.
+        /// </summary>
+        private static double DeclaredMinZoom()
+        {
+            var m = System.Text.RegularExpressions.Regex.Match(
+                File.ReadAllText(IncludedTemplatePath), @"minZoom\s*:\s*([0-9.]+)");
+            Assert.True(m.Success, $"no minZoom declared in {IncludedTemplatePath}");
+            return double.Parse(m.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture);
+        }
 
         // ---- helpers -------------------------------------------------------
 
@@ -225,16 +249,21 @@ namespace Argumentum.AssetConverter.VisualTests
         /// two-consecutive-samples rule as <see cref="WaitForViewportSettledAsync"/>, but gated on
         /// the action having actually taken effect first.
         ///
-        /// WHY THE GATE IS MANDATORY (measured, ai-01, #830 c.5651920638): the reset animation is
-        /// DEFERRED ~1 s after the click (transition located at t≈1 048 ms; settle at 1 365-1 422 ms,
-        /// vs 310-390 ms for wheel/drag). Right after the click the viewport has not started moving,
+        /// WHY THE GATE EXISTS: right after the click the viewport may not have started moving yet,
         /// so "two consecutive identical samples" is satisfied by the PRE-MOVEMENT state — and the
-        /// harness records the PREVIOUS action's state instead of the new one. Two full measurement
-        /// passes were wrong this way before the cause was found. Requiring a change first is what
-        /// separates "not started yet" from "arrived".
+        /// harness records the PREVIOUS action's state instead of the new one. Requiring a change
+        /// first is what separates "not started yet" from "arrived".
         ///
-        /// The amended rule (amendment accepted from the same verdict): wait for a CHANGE, THEN two
-        /// identical samples — never "two identical samples" alone.
+        /// The rule was amended after a deferral was observed on ANOTHER harness (ai-01, #830
+        /// c.5651920638: transition at t≈1 048 ms, settle 1 365-1 422 ms, vs 310-390 ms for
+        /// wheel/drag). ⚠️ That deferral does NOT reproduce here, and the ~1 s figure must not be
+        /// cited as this suite's measurement: re-measured on this harness 2026-09-14 (fr, both
+        /// fixtures, click → first CTM change) the delay is 12 ms and 57 ms, with reset landing
+        /// directly on its final value. The gate is kept as ROBUSTNESS against the class of bug,
+        /// not to work around a delay this suite actually sees.
+        ///
+        /// The amended rule: wait for a CHANGE, THEN two identical samples — never "two identical
+        /// samples" alone.
         /// </summary>
         /// <param name="fromScale">
         /// The scale the action must move AWAY from. Null skips the gate (use only when the action
@@ -316,11 +345,14 @@ namespace Argumentum.AssetConverter.VisualTests
                 var readable = stats.Length >= 3 ? stats[2] : 0;
 
                 // Reference: reset() returns the library's ORIGINAL state — the fit-to-viewport
-                // scale. It is read through the change-gated settle, NOT a fixed 300 ms sleep: the
-                // reset animation is deferred ~1 s (measured), so a fixed sleep reads the still
-                // unsettled pre-reset state and silently uses the ZOOMED scale as the fit
-                // reference — which would make the ratio below read ≈1,0 and fail for the wrong
-                // reason, or worse, pass on a regression.
+                // scale. It is read through the change-gated settle, NOT a fixed sleep. A fixed
+                // sleep is only correct while the reset happens to land faster than the sleep —
+                // measured here at 12-57 ms, so the previous 300 ms passed — and it silently
+                // substitutes the ZOOMED scale as the fit reference the moment a reset is
+                // deferred, which drives the ratio below to ≈1,0 and fails while accusing the
+                // wrong thing. The change gate is correct either way.
+                // ⚠️ This PR therefore DOES modify Cap 1: fixed 300 ms sleep -> gated settle, plus
+                // a new `fitChanged` assertion. It is an improvement, not an absence of change.
                 await page.Locator("#svg-pan-zoom-reset-pan-zoom").ClickAsync();
                 var (fitScale, fitChanged, _) = await WaitForSettledAfterActionAsync(page, scaleStable);
                 Assert.True(fitChanged,
@@ -648,8 +680,8 @@ namespace Argumentum.AssetConverter.VisualTests
 
                 // Reset returns to the library's ORIGINAL state — the fit-to-viewport scale. The
                 // harness starts ABOVE the fit (the recentring zooms in ~2,2-7,7x), so a working
-                // reset moves the scale DOWN, not up. Cap 9 owns the wording of "lands on the fit";
-                // here the claim is only effectiveness — the icon moves the viewport.
+                // reset moves the scale DOWN, not up. Cap 9 owns the reset-vs-zoom-out bound
+                // distinction; here the claim is only effectiveness — the icon moves the viewport.
                 await page.Locator(reset).ClickAsync();
                 var (afterReset, resetMoved, _) = await WaitForSettledAfterActionAsync(page, afterOut);
                 _output.WriteLine($"[{lang}] reset {afterOut:F6} -> {afterReset:F6}");
@@ -664,28 +696,39 @@ namespace Argumentum.AssetConverter.VisualTests
             }
         }
 
-        // ---- #9: reset lands on FIT — and is NOT the maximum zoom-out -------
+        // ---- #9: reset and the maximal zoom-out are two DISTINCT states -----
 
         /// <summary>
-        /// Capability #9 of #830, pinned directly (it was covered only transitively through Cap 1,
-        /// which takes its fit reference after a reset).
+        /// Capability #9 of #830: reset and the maximal zoom-out are TWO DISTINCT STATES.
         ///
-        /// The golden-master wording carried a false equivalence — "reset revient au fit complet
-        /// (zoom-out max)" — conflating TWO DIFFERENT STATES. Read from the vendored library
-        /// (svg-pan-zoom 3.6.2, shipped inside the wrapper):
-        ///   · <c>resetZoom()</c> re-reads <c>getOriginalState()</c> and calls
-        ///     <c>zoom(t.zoom, true)</c>                                  => reset = FIT;
-        ///   · <c>zoomAtPoint()</c> clamps with <c>minZoom * n.zoom</c> /
-        ///     <c>maxZoom * n.zoom</c> — the bounds are RELATIVE TO THE FIT, so the maximal
-        ///     zoom-out is <c>0,15 x fit</c>, about 6,7x further out than the post-reset state.
-        /// This test asserts the distinction itself: reset lands ON the fit, the zoom-out bound
-        /// lands strictly BELOW it. Without the second assertion the two states are
-        /// indistinguishable in CI — which is how the wording error survived this long.
+        /// ⚠️ WHAT THIS TEST DOES **NOT** PROVE — do not rename it back to "lands on the fit".
+        /// The post-reset value (<c>fit</c> below) is merely the scale observed after the reset;
+        /// nothing independent establishes that it equals the fit-to-viewport scale. An independent
+        /// reference was attempted and FAILED to reproduce it: a geometric fit, derived from the
+        /// viewport group's <c>getBBox()</c> against the container box, lands 1,0-1,5 % away from
+        /// the observed post-reset scale (measured 2026-09-14 on this harness — 0,141989 vs
+        /// 0,144136 on the Virtues fixture, 0,041447 vs 0,041850 on Fallacies). The cause is that
+        /// svg-pan-zoom snapshots its sizes at construction, before the wrapper's CSS is applied,
+        /// so no post-hoc geometry reproduces it. <c>getSizes().realZoom</c> would be the correct
+        /// reference, but the wrapper keeps <c>panZoomInstance</c> in a closure and never exposes
+        /// it. The claim asserted here is therefore the DISTINCTION, not the landing point.
+        ///
+        /// What IS proven, and why it is still worth pinning:
+        ///   · the golden-master wording carried a false equivalence — "reset revient au fit complet
+        ///     (zoom-out max)" — conflating two states. Read from the vendored library (svg-pan-zoom
+        ///     3.6.2, shipped inside the wrapper): <c>resetZoom()</c> re-reads
+        ///     <c>getOriginalState()</c> and calls <c>zoom(t.zoom, true)</c>, while
+        ///     <c>zoomAtPoint()</c> clamps with <c>minZoom * n.zoom</c> — so the zoom-out bound is
+        ///     RELATIVE to the reference the reset returns to;
+        ///   · the two observed states are strictly ordered (<c>floor &lt; fit</c>) and their ratio
+        ///     equals the template's DECLARED <c>minZoom</c> — a constant read from the fixture,
+        ///     not from the observation. A ratio of 1,0 would mean the golden-master wording was
+        ///     right after all.
         /// </summary>
         [Theory]
         [InlineData("fr", "Fallacies_fr.content.svg")]
         [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
-        public async Task Cap9_ResetLandsOnFit_AndZoomOutMaxIsStrictlyBelowIt(string lang, string svgFileName)
+        public async Task Cap9_ResetAndZoomOutMaxAreDistinctStates(string lang, string svgFileName)
         {
             var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
             var page = await OpenPageAsync(wrapperPath);
@@ -724,9 +767,15 @@ namespace Argumentum.AssetConverter.VisualTests
                     $"the maximal zoom-out must be strictly further out than reset for {lang}: " +
                     $"floor={floorScale:F6} vs fit={fit:F6}");
 
-                // minZoom is 0,15 in both templates; this band is the falsifiable bar (it catches a
-                // silently changed minZoom), not a restatement of the observed value.
-                Assert.InRange(ratio, 0.10, 0.25);
+                // The discriminating bar, anchored on the template's DECLARED minZoom — a fixture
+                // constant, not a band drawn around the observed value. The ratio equals minZoom
+                // exactly when reset returns to the reference the zoom-out clamp is relative to; a
+                // ±10 % tolerance absorbs the quantised CTM reads. Ratio 1,0 (the golden-master
+                // equivalence) sits far outside it, and a silently edited minZoom moves the bar
+                // with the fixture instead of turning this red for the wrong reason.
+                var declaredMinZoom = DeclaredMinZoom();
+                _output.WriteLine($"[{lang}] declared minZoom={declaredMinZoom:F3} observed ratio={ratio:F4}");
+                Assert.InRange(ratio, declaredMinZoom * 0.9, declaredMinZoom * 1.1);
             }
             finally
             {
