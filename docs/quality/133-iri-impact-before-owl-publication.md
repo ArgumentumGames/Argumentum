@@ -22,11 +22,14 @@ L'IRI est **une fonction du libellé anglais**. La question que #133 doit tranch
 | ensemble | termes (namespace Argumentum) |
 |---|---:|
 | OWL **publié** (artefact servi, mars 2024 — cf. grain ①) | **1 405** |
-| OWL **committé** (`docs/ontology/argumentum.owl` @ `HEAD`) | **1 439** |
+| OWL **committé** (`docs/ontology/argumentum.owl` @ `origin/master`) | **1 439** |
 | **communs** | **1 264** |
-| **divergents** | **316** |
+| **publiés seulement** (disparaîtraient à la republication) | **141** |
+| **committés seulement** (apparaîtraient à la republication) | **175** |
+| **divergents** (total des deux côtés) | **316** |
 
-⇒ **316 des 1 405 IRI publiés (22,5 %) ne sont pas ceux qu'une publication du committé servirait.**
+⇒ **Une publication du committé ferait disparaître 141 des 1 405 IRI publiés (10,0 %) et apparaître 175 IRI
+nouveaux.** Les **316** « divergents » sont le **total des deux côtés**, pas un sous-ensemble des IRI publiés.
 
 ⚠️ **Provenance des chiffres de la ligne « publié »** : mesurés sur la copie webroot locale
 (`DNNPlatform/argumentum_fallacies.owl`), dont l'identité à l'octet avec le servi a été établie aux grains ①-②.
@@ -142,7 +145,10 @@ l'instrument.
 
 ## §4 — Ce qui a déjà bougé : 73 déplacements, et ils sont causés par la ponctuation
 
-Les 316 divergents se décomposent :
+Les **316** divergents — le **total des deux côtés** — se décomposent **par motif**. ⚠️ **Les 73 couples
+comptent pour 73 IRI de chaque côté** : la décomposition par direction est donc **68 + 73 = 141** publiés seuls
+et **102 + 73 = 175** committés seuls, conforme au tableau §0. Le tableau ci-dessous classe par **motif**, pas
+par direction.
 
 | classe | nombre | lecture |
 |---|---:|---|
@@ -209,16 +215,17 @@ comme une découverte.*
 1. **Publier, c'est figer.** L'IRI étant une projection du `text_en`, toute publication crée une surface que
    la prochaine correction de libellé — même typographique — **déplacera**. #133 demande un *endpoint
    stable* ; la stabilité ne peut pas venir du nom si le nom suit le texte.
-2. **La surface est déjà instable, mesurablement.** 316/1 405 (22,5 %) diffèrent entre ce qui **est servi
-   aujourd'hui** et ce que le dépôt produirait. Republier le committé **déplacerait 73 identifiants** et en
-   ferait disparaître 68 — sans aucune décision de nommage.
+2. **La surface est déjà instable, mesurablement.** **316** IRI divergent **au total** entre ce qui **est servi
+   aujourd'hui** et ce que le dépôt produirait : 1 264 communs, **141 publiés seulement**, **175 committés
+   seulement**. Republier le committé **retirerait 141 des 1 405 IRI publiés (10,0 %)** — dont 68
+   disparaîtraient et 73 seraient déplacés — et en **ferait apparaître 175**, sans aucune décision de nommage.
 3. **PK 511 est le cas vivant, et son issue est déjà arbitrée.** Le renommage est livré dans la source
    (11/09, `930ae523`, 680 cellules × 8 langues) ; l'IRI suivra à la prochaine génération — déplacement
    **accepté par l'owner** (#133 c.`5657175826`). Ce qu'il démontre : un déplacement d'IRI peut être
    **déjà programmé** sans aucune décision de nommage, par simple avance de la source sur les artefacts
    dérivés — OWL, SVG, export AIF (§3.2). Les 73 déplacements du §4 en sont la version accumulée depuis
    mars 2024. *(v1 : « le cas n'existe pas » — artefact d'oracle, cf. §3.3.)*
-4. **Le vrai gate est une politique d'IRI**, pas un renommage : soit des IRI **découplés du libellé** (PK ou
+4. **Le point de politique à documenter est une politique d'IRI**, pas un renommage : soit des IRI **découplés du libellé** (PK ou
    identifiant stable, le libellé devenant un `skos:prefLabel`), soit une **résolution de version** assumée
    (`owl:versionIRI` + redirections), soit l'acceptation explicite du déplacement. **Je ne tranche aucune des
    trois** — #133 les porte. Noter que l'owner vient d'exercer la troisième **une première fois** pour
