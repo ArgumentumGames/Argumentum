@@ -195,13 +195,21 @@ Les **mindmaps ne bougent pas** : les libellés de famille FR sont à 0, et Scen
 | lg | cartes | fichiers sources | PDF |
 |---|---:|---|---:|
 | fr | **146** | Scenarii 138 + Rules 4 + RulesPnP 4 | 6 |
-| en | **18** | Fallacies 5 + Virtues 2 + Scenarii 11 | **3** *(Virtues seul — voir ⚠️)* |
+| en | **18** | Fallacies 5 + Virtues 2 + Scenarii 11 | **10** |
 | pt | 8 | Fallacies 6 + Scenarii 2 | 9 |
 | ru | 3 | Fallacies 1 + Scenarii 2 | 9 |
 | zh | 6 | Fallacies 6 | 6 |
 | es · ar | 1 · 1 | Fallacies | 6 · 6 |
 | fa | 0 | — | 0 |
 | **total** | **183** | | **52 / 80 = 65 %** |
+
+⚠️ **Correction du 14/09 (re-review) — la cellule PDF de la ligne `en` portait `3`.** Le total
+correct est **10** : Fallacies rend **6** PDF, Virtues en ajoute **1** neuf (`TarotCards_Virtues` —
+ses deux `Print&Play_*` sont déjà comptés avec Fallacies), Scenarii en ajoute **3**
+(`PokerCards` ×3). Le `3` de la version antérieure ne comptait que Virtues. Trois contrôles internes
+le confirment, et aucun ne dépend de cette cellule : le §6 annonce « **+10 PDF / 80** » pour cette
+branche ; B = **6 FR + 10 EN = 16** ; et la somme du tableau vaut 45 avec `3` mais **exactement 52**
+avec `10` — soit le total de la branche (C) déjà porté au §4.
 
 ⚠️ **Correction du 14/09 — les trois comptes sont faux dans la version antérieure**, qui annonçait
 **fr 142 · en 12 · total 173**. Re-mesurés par union **par langue × fichier × colonne rendue** :
