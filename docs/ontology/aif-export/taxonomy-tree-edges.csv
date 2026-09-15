@@ -70,31 +70,31 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 1,"1,135",68,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
 1,"1,1351",69,2,Insuffisance,Argument bâclé,Sauvetage ad hoc
 1,"1,2",70,2,Insuffisance,Préjugé,
-1,"1,21",71,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,211",72,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2111",73,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21111",74,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2112",75,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2113",76,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2114",77,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,212",78,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2121",79,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21211",80,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21212",81,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21213",82,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2122",83,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,213",84,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2131",85,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21311",86,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21312",87,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,213121",88,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,213122",89,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,213123",90,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2132",91,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21321",92,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,2133",93,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,21331",94,2,Insuffisance,Préjugé,Argument d'autorité
-1,"1,213311",95,2,Insuffisance,Préjugé,Argument d'autorité
+1,"1,21",71,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,211",72,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2111",73,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21111",74,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2112",75,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2113",76,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2114",77,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,212",78,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2121",79,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21211",80,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21212",81,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21213",82,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2122",83,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,213",84,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2131",85,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21311",86,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21312",87,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,213121",88,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,213122",89,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,213123",90,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2132",91,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21321",92,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,2133",93,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,21331",94,2,Insuffisance,Préjugé,Argument d’autorité
+1,"1,213311",95,2,Insuffisance,Préjugé,Argument d’autorité
 1,"1,22",96,2,Insuffisance,Préjugé,Sophisme naturaliste
 1,"1,221",97,2,Insuffisance,Préjugé,Sophisme naturaliste
 1,"1,222",98,2,Insuffisance,Préjugé,Sophisme naturaliste
@@ -298,63 +298,63 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 2,"2,13651",296,2,Influence,Procédé rhétorique,Poésie
 2,"2,1367",297,2,Influence,Procédé rhétorique,Poésie
 2,"2,13671",298,2,Influence,Procédé rhétorique,Poésie
-2,"2,2",299,2,Influence,Appel à l'émotion,
-2,"2,21",300,2,Influence,Appel à l'émotion,Connivence
-2,"2,211",301,2,Influence,Appel à l'émotion,Connivence
-2,"2,2111",302,2,Influence,Appel à l'émotion,Connivence
-2,"2,212",303,2,Influence,Appel à l'émotion,Connivence
-2,"2,2121",304,2,Influence,Appel à l'émotion,Connivence
-2,"2,2122",305,2,Influence,Appel à l'émotion,Connivence
-2,"2,21221",306,2,Influence,Appel à l'émotion,Connivence
-2,"2,21222",307,2,Influence,Appel à l'émotion,Connivence
-2,"2,2123",308,2,Influence,Appel à l'émotion,Connivence
-2,"2,21231",309,2,Influence,Appel à l'émotion,Connivence
-2,"2,21232",310,2,Influence,Appel à l'émotion,Connivence
-2,"2,21233",311,2,Influence,Appel à l'émotion,Connivence
-2,"2,2124",312,2,Influence,Appel à l'émotion,Connivence
-2,"2,213",313,2,Influence,Appel à l'émotion,Connivence
-2,"2,2131",314,2,Influence,Appel à l'émotion,Connivence
-2,"2,2132",315,2,Influence,Appel à l'émotion,Connivence
-2,"2,21321",316,2,Influence,Appel à l'émotion,Connivence
-2,"2,213211",317,2,Influence,Appel à l'émotion,Connivence
-2,"2,2133",318,2,Influence,Appel à l'émotion,Connivence
-2,"2,214",319,2,Influence,Appel à l'émotion,Connivence
-2,"2,2141",320,2,Influence,Appel à l'émotion,Connivence
-2,"2,2142",321,2,Influence,Appel à l'émotion,Connivence
-2,"2,22",322,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,221",323,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2211",324,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,22111",325,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2212",326,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2213",327,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,22131",328,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,222",329,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2221",330,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2222",331,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,223",332,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2231",333,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2232",334,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2233",335,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2234",336,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,224",337,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2241",338,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,2242",339,2,Influence,Appel à l'émotion,Repoussoir
-2,"2,23",340,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,231",341,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2311",342,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2312",343,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2313",344,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2314",345,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2315",346,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,232",347,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2321",348,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,23211",349,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,23212",350,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,233",351,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2331",352,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2332",353,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,2333",354,2,Influence,Appel à l'émotion,Appel aux conséquences
-2,"2,234",355,2,Influence,Appel à l'émotion,Appel aux conséquences
+2,"2,2",299,2,Influence,Appel à l’émotion,
+2,"2,21",300,2,Influence,Appel à l’émotion,Connivence
+2,"2,211",301,2,Influence,Appel à l’émotion,Connivence
+2,"2,2111",302,2,Influence,Appel à l’émotion,Connivence
+2,"2,212",303,2,Influence,Appel à l’émotion,Connivence
+2,"2,2121",304,2,Influence,Appel à l’émotion,Connivence
+2,"2,2122",305,2,Influence,Appel à l’émotion,Connivence
+2,"2,21221",306,2,Influence,Appel à l’émotion,Connivence
+2,"2,21222",307,2,Influence,Appel à l’émotion,Connivence
+2,"2,2123",308,2,Influence,Appel à l’émotion,Connivence
+2,"2,21231",309,2,Influence,Appel à l’émotion,Connivence
+2,"2,21232",310,2,Influence,Appel à l’émotion,Connivence
+2,"2,21233",311,2,Influence,Appel à l’émotion,Connivence
+2,"2,2124",312,2,Influence,Appel à l’émotion,Connivence
+2,"2,213",313,2,Influence,Appel à l’émotion,Connivence
+2,"2,2131",314,2,Influence,Appel à l’émotion,Connivence
+2,"2,2132",315,2,Influence,Appel à l’émotion,Connivence
+2,"2,21321",316,2,Influence,Appel à l’émotion,Connivence
+2,"2,213211",317,2,Influence,Appel à l’émotion,Connivence
+2,"2,2133",318,2,Influence,Appel à l’émotion,Connivence
+2,"2,214",319,2,Influence,Appel à l’émotion,Connivence
+2,"2,2141",320,2,Influence,Appel à l’émotion,Connivence
+2,"2,2142",321,2,Influence,Appel à l’émotion,Connivence
+2,"2,22",322,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,221",323,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2211",324,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,22111",325,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2212",326,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2213",327,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,22131",328,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,222",329,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2221",330,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2222",331,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,223",332,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2231",333,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2232",334,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2233",335,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2234",336,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,224",337,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2241",338,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,2242",339,2,Influence,Appel à l’émotion,Repoussoir
+2,"2,23",340,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,231",341,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2311",342,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2312",343,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2313",344,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2314",345,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2315",346,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,232",347,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2321",348,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,23211",349,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,23212",350,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,233",351,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2331",352,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2332",353,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,2333",354,2,Influence,Appel à l’émotion,Appel aux conséquences
+2,"2,234",355,2,Influence,Appel à l’émotion,Appel aux conséquences
 2,"2,3",356,2,Influence,Manipulation mentale,
 2,"2,31",357,2,Influence,Manipulation mentale,Conditionnement
 2,"2,311",358,2,Influence,Manipulation mentale,Conditionnement
@@ -510,90 +510,90 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 2,"2,32422",508,2,Influence,Manipulation mentale,Jeu de pouvoir
 2,"2,32423",509,2,Influence,Manipulation mentale,Jeu de pouvoir
 2,"2,32424",510,2,Influence,Manipulation mentale,Jeu de pouvoir
-2,"2,33",511,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,331",512,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3311",513,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3312",514,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33121",515,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33122",516,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33123",517,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,332",518,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,333",519,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3331",520,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334",1406,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3341",521,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33411",522,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3342",523,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33421",524,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334211",525,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3342111",526,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3342112",527,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3342113",528,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334212",529,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334213",530,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334214",531,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334215",532,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334216",533,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334217",534,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33422",535,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334221",536,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334222",537,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334223",538,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334224",539,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334225",540,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334226",541,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334227",542,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33423",543,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334231",544,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334232",545,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334233",546,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334234",547,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334235",548,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334236",549,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334237",550,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334238",551,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334239",552,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33424",553,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334241",554,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334242",555,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334243",556,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334244",557,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334245",558,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334246",559,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334247",560,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334248",561,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33425",562,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334251",563,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3342511",564,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334252",565,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334253",566,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334254",567,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334255",568,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334256",569,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334257",570,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33426",571,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334261",572,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334262",573,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334263",574,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334264",575,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334265",576,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334266",577,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334267",578,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334268",579,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33427",580,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334271",581,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334272",582,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334273",583,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334274",584,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,334275",585,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3343",586,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3344",587,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33441",588,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,33442",589,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,335",590,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3351",591,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,3352",592,2,Influence,Manipulation mentale,Influence non verbale
-2,"2,336",593,2,Influence,Manipulation mentale,Influence non verbale
+2,"2,33",511,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,331",512,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3311",513,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3312",514,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33121",515,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33122",516,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33123",517,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,332",518,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,333",519,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3331",520,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334",1406,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3341",521,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33411",522,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3342",523,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33421",524,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334211",525,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3342111",526,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3342112",527,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3342113",528,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334212",529,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334213",530,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334214",531,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334215",532,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334216",533,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334217",534,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33422",535,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334221",536,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334222",537,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334223",538,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334224",539,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334225",540,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334226",541,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334227",542,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33423",543,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334231",544,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334232",545,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334233",546,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334234",547,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334235",548,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334236",549,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334237",550,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334238",551,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334239",552,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33424",553,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334241",554,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334242",555,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334243",556,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334244",557,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334245",558,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334246",559,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334247",560,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334248",561,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33425",562,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334251",563,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3342511",564,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334252",565,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334253",566,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334254",567,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334255",568,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334256",569,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334257",570,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33426",571,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334261",572,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334262",573,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334263",574,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334264",575,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334265",576,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334266",577,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334267",578,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334268",579,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33427",580,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334271",581,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334272",582,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334273",583,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334274",584,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,334275",585,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3343",586,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3344",587,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33441",588,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,33442",589,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,335",590,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3351",591,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,3352",592,2,Influence,Manipulation mentale,Communication non verbale
+2,"2,336",593,2,Influence,Manipulation mentale,Communication non verbale
 ,3,594,1,Erreur mathématique,,
 3,"3,1",595,2,Erreur mathématique,Généralisation abusive,
 3,"3,11",596,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
@@ -614,13 +614,13 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 3,"3,1132",611,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
 3,"3,1133",612,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
 3,"3,1134",613,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé
-3,"3,12",614,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
-3,"3,121",615,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
-3,"3,1211",616,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
-3,"3,122",617,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
-3,"3,123",618,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
-3,"3,1231",619,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
-3,"3,124",620,2,Erreur mathématique,Généralisation abusive,Sophisme de l'accident
+3,"3,12",614,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
+3,"3,121",615,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
+3,"3,1211",616,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
+3,"3,122",617,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
+3,"3,123",618,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
+3,"3,1231",619,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
+3,"3,124",620,2,Erreur mathématique,Généralisation abusive,Sophisme de l’accident
 3,"3,13",621,2,Erreur mathématique,Généralisation abusive,Transfert illicite
 3,"3,131",622,2,Erreur mathématique,Généralisation abusive,Transfert illicite
 3,"3,1311",623,2,Erreur mathématique,Généralisation abusive,Transfert illicite
@@ -844,8 +844,8 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 5,"5,222",841,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
 5,"5,223",842,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
 5,"5,224",843,2,Abus de langage,Comparaison fallacieuse,Fausse analogie
-5,"5,23",844,2,Abus de langage,Comparaison fallacieuse,Sophisme d'association
-5,"5,231",845,2,Abus de langage,Comparaison fallacieuse,Sophisme d'association
+5,"5,23",844,2,Abus de langage,Comparaison fallacieuse,Sophisme d’association
+5,"5,231",845,2,Abus de langage,Comparaison fallacieuse,Sophisme d’association
 5,"5,3",846,2,Abus de langage,Ambiguïté,
 5,"5,31",847,2,Abus de langage,Ambiguïté,Amphibologie
 5,"5,311",848,2,Abus de langage,Ambiguïté,Amphibologie
@@ -1288,16 +1288,16 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 7,"7,1111",1284,2,Obstruction,Refus du débat,Relativisme abusif
 7,"7,1112",1285,2,Obstruction,Refus du débat,Relativisme abusif
 7,"7,112",1286,2,Obstruction,Refus du débat,Relativisme abusif
-7,"7,12",1287,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,121",1288,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,1211",1289,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,1212",1290,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,122",1291,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,1221",1292,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,12211",1293,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,123",1294,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,124",1295,2,Obstruction,Refus du débat,Sophisme d'Explication
-7,"7,125",1296,2,Obstruction,Refus du débat,Sophisme d'Explication
+7,"7,12",1287,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,121",1288,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,1211",1289,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,1212",1290,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,122",1291,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,1221",1292,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,12211",1293,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,123",1294,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,124",1295,2,Obstruction,Refus du débat,Sophisme d’Explication
+7,"7,125",1296,2,Obstruction,Refus du débat,Sophisme d’Explication
 7,"7,13",1297,2,Obstruction,Refus du débat,Preuve par assertion
 7,"7,131",1298,2,Obstruction,Refus du débat,Preuve par assertion
 7,"7,132",1299,2,Obstruction,Refus du débat,Preuve par assertion

@@ -1,9 +1,29 @@
 # AIF attack-graph export — typed attack-edges + inter-fallacy relations
 
-**Generated** : 2026-07-19 (po-2024, dispatch ai-01 grain msg-eltaoz)
-**Sources** : `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (master `c877c5ba`) + `docs/ontology/argumentum.owl`
+**Generated** : 2026-09-15 (po-2023, pool #458 grain ① — refresh sur l'OWL frais #1379) · édition précédente 2026-07-19 (po-2024, #828/#829/#833)
+**Sources** : `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (master `c089d526`) + `docs/ontology/argumentum.owl` (régénéré #1379 `2b572787`)
 **Posture** : read-only export of EXISTING AIF modelling. 0 new modelling. 0 write to sources.
 **Consumer** : CoursIA ICT-series #7289 / uplift #5721/#6409 (strate-6 argumentation), Argumentum Layer C v1.0 (#790).
+
+> **Refresh 2026-09-15 — ce qui a bougé depuis le 2026-07-19 (et pourquoi).** L'export n'avait pas été
+> re-exécuté depuis #833 ; les artefacts suivaient l'état de l'OWL de juillet. Cette passe re-synchronise
+> sur l'OWL régénéré (#1379) et le CSV master :
+> - **Absorption PK 511 / PK 598** (#1379) : `nonverbalCommunication` remplace `nonverbalInfluence`
+>   (attack-edge ×1, relations ×0) ; `hastyInduction` apparaît (relations ×2) — l'ancienne collision
+>   d'IRI PK2/PK598 sur `hastyGeneralization` est résolue (PK 2 reste porteur : attack-edge ×1,
+>   relations ×12).
+> - **Relations inter-sophismes 1734 → 674** : le corpus de relations a été restructuré depuis #833
+>   (le corpus croisé #1247/#1286 a remplacé l'ancienne modélisation `mirrors`/`isRelatedTo`-lourde —
+>   `mirrors` 548→2, `isRelatedTo` 606→148, `leverages` 399→324, `predatesOn` 13→31, `denounces` 2→9).
+>   Vérifié par un second instrument (parse indépendant) : 735 assertions brutes → 674 triples
+>   uniques, distribution conforme.
+> - **skos 70/145 → 116/145** attack-edges portent ≥1 référence canonique (passes AIF #498).
+> - **Virtues V-A 222 → 142** (#1242 architecture B : attack types mesurés + gaps déclarés — les 80
+>   vertus sans attaque mesurée ne sont plus exportées comme edges).
+> - **Virtues V-B** : les IRI des schémas ont été normalisés dans l'OWL Virtues (`aif#Argument from X`
+>   → `aif#argumentFromX`) — le CSV porte désormais le fragment camelCase.
+> - Comptes stables : attack-edges 145 (87/53/5, 0 violation), concepts 60 (19/35/6), arbre 1408,
+>   OWL attack-edges 142, V-B 222, schémas 14.
 
 ---
 
@@ -41,7 +61,7 @@ The typed AIF attack graph, PK-keyed. One row per fully-modeled fallacy.
 | `decimal_path` | Hierarchical position (comma-separated, e.g. `1,11` = family 1, sub 11). |
 | `attack_type` | `undercut` / `undermine` / `rebut`. |
 | `attacked_node_type` | `RA-node` / `I-node` / `CA-node` (the abstract AIF node-TYPE attacked). |
-| `skos_direct_ref` / `skos_exception_ref` | AIF canonical concept(s) referenced (see concepts file). 70/145 edges carry ≥1. |
+| `skos_direct_ref` / `skos_exception_ref` | AIF canonical concept(s) referenced (see concepts file). 116/145 edges carry ≥1. |
 | `skos_mapping_type` | `skos:broadMatch` / `skos:closeMatch` / etc. |
 | `expected_node_type` / `node_type_axiom_ok` | Axiom cross-check (always `1` — 0 violations). |
 
@@ -66,22 +86,24 @@ The full Fallacies taxonomy tree (all 1408 fallacies, not just the 145 fully-mod
 
 Same AIF attack graph, extracted from `argumentum.owl` AnnotationAssertions (`aifAttackType` + `aifAttackedNode`). `attacker_iri_fragment` is a camelCase fallacy individual (e.g. `hastyGeneralization`), NOT a PK. **Not bijective with the CSV** (see granularity note below).
 
-### `aif-relations-graph.csv` — 1734 inter-fallacy relations (NON-AIF)
+### `aif-relations-graph.csv` — 674 inter-fallacy relations (NON-AIF)
 
 `source_fragment --[relation]--> target_fragment`. These are the OWL's generic semantic relations between fallacy individuals. **NOT AIF attack-edges** — a different, complementary graph.
 
-> **Count reconciliation note.** This file holds **1734 distinct** directed edges (exact `(s,p,o)` triples deduplicated). The ontology README §2 Layer 2 reports **1985** — that count is the **raw emitted assertions** (pre-dedup): the OWL serializer (OWLSharp) emits 243 exact-duplicate triples (a serializer idempotency quirk, not a data issue). Raw parse = 1977 ≈ README 1985 (the -8 delta is one schema self-definition counted per verb, 8 verbs). Symmetric verbs (`mirrors`, `isRelatedTo`, `inverts`, `opposes`) are emitted bidirectionally as two distinct triples `(A,p,B)` + `(B,p,A)` — both are kept here (they are not duplicates). A consumer should use this deduplicated file; the raw count matches the README.
+> **Count reconciliation note (édition 2026-09-15).** This file holds **674 distinct** directed edges (exact `(s,p,o)` triples deduplicated). The current OWL (#1379) emits **735 raw** relation assertions — 61 exact duplicates (OWLSharp serializer idempotency quirk, as before). Symmetric verbs (`mirrors`, `isRelatedTo`, `inverts`, `opposes`) are emitted bidirectionally as two distinct triples `(A,p,B)` + `(B,p,A)` — both are kept (they are not duplicates). A consumer should use this deduplicated file.
+>
+> *Historique (édition 2026-07-19)* : 1734 edges / 1985 raw — l'ancienne modélisation `mirrors`/`isRelatedTo`-lourde, remplacée depuis par le corpus croisé #1247/#1286. Le compte « 1985 » cité par le README ontology §2 Layer 2 décrit cet état ancien.
 
 | Relation | Count | Semantics (loose) |
 |---|---:|---|
-| `isRelatedTo` | 606 | generic relatedness (bidirectional in source) |
-| `mirrors` | 548 | structural mirror (bidirectional) |
-| `leverages` | 399 | exploits / builds on |
-| `allows` | 66 | enables / permits |
+| `leverages` | 324 | exploits / builds on |
+| `isRelatedTo` | 148 | generic relatedness (bidirectional in source) |
 | `inverts` | 62 | logical inversion |
+| `allows` | 60 | enables / permits |
 | `opposes` | 38 | direct opposition |
-| `predatesOn` | 13 | historical precedence |
-| `denounces` | 2 | explicit denunciation |
+| `predatesOn` | 31 | historical precedence |
+| `denounces` | 9 | explicit denunciation |
+| `mirrors` | 2 | structural mirror (bidirectional) |
 
 ---
 
@@ -92,7 +114,7 @@ The two attack-edge files (CSV 145, OWL 142) are **not a bijective cross-check**
 - **CSV** encodes AIF at **taxonomy-row** granularity (PK-keyed) — one entry per fallacy row with populated `AIF_attackType`+`AIF_attackedNode`.
 - **OWL** encodes AIF at **fallacy-individual** granularity (camelCase IRI, e.g. `hastyGeneralization`).
 
-The CSV has no PK→IRI column, so a 1:1 row↔individual mapping cannot be established without a separate join key. Both views are internally consistent (0 axiom violations each) and are exported independently. `attackType` distribution is closely aligned (CSV 87u/53m/5r vs OWL ~85u/~52m/5r); the OWL lags the CSV by a few rows (post-tranche CSV modelling not yet regenerated into the OWL — expected, the OWL is a derived artefact).
+The CSV has no PK→IRI column, so a 1:1 row↔individual mapping cannot be established without a separate join key. Both views are internally consistent (0 axiom violations each) and are exported independently. `attackType` distribution is closely aligned (CSV 87u/53m/5r vs OWL 85u/52m/5r). Depuis le refresh 2026-09-15 l'OWL est **frais** (régénéré #1379 depuis le CSV master) : l'écart résiduel 145↔142 est **structurel** (granularités row-taxonomie vs individu), plus un retard de modélisation.
 
 ---
 
@@ -102,7 +124,7 @@ The companion script `tools/aif-virtues-export.py` extends the AIF export to the
 
 | View | Source | Predicate | Edges | Semantics |
 |---|---|---|---:|---|
-| **V-A** attack-graph | Virtues CSV | `AIF_attackType` + `AIF_attackedNode` | 222 | how the virtue ATTACKS a bad reasoning (counter-argument, bipartite: virtue → node-TYPE RA/I/CA) |
+| **V-A** attack-graph | Virtues CSV | `AIF_attackType` + `AIF_attackedNode` | 142 | how the virtue ATTACKS a bad reasoning (counter-argument, bipartite: virtue → node-TYPE RA/I/CA). *Édition 2026-09-15 : #1242 architecture B — les 80 vertus sans attaque **mesurée** (gaps déclarés) ne sont plus exportées comme edges.* |
 | **V-B** good-tenor | `argumentum_virtues.owl` | `aif#goodTenorOf` | 222 | how the virtue EMBODIES a canonical AIF argument SCHEME (Rule/Commitment/Bias/Sign/…) |
 
 **Not redundant, not contradictory.** A virtue can attack a bad reasoning (V-A) by embodying a good argument scheme (V-B). V-A and V-B point to the **same vocabulary of 14 canonical AIF schemes** (`Argument from Rule`, `Commitment`, `Bias`, `Sign`, `Verbal Classification`, `Cause to Effect`, `Witness Testimony`, `Position to Know`, `Values`, `Analogy`, `Expert Opinion`, `Example`, `Consequences`, `Danger`) but via different predicates.
@@ -115,12 +137,12 @@ Fallacies carry **only** the CSV attack-graph (V-A) — there is no `goodTenorOf
 
 | File | Rows | Content |
 |---|---:|---|
-| `aif-virtues-attack-edges.csv` | 222 | V-A bipartite attack-edges (PK-keyed). `skos_exception_ref` holds the FR critical-question the virtue poses. |
-| `aif-virtues-good-tenor.csv` | 222 | V-B virtue→scheme edges (camelCase IRI → `Argument from X`). |
+| `aif-virtues-attack-edges.csv` | 142 | V-A bipartite attack-edges (PK-keyed). `skos_exception_ref` holds the FR critical-question the virtue poses. |
+| `aif-virtues-good-tenor.csv` | 222 | V-B virtue→scheme edges (camelCase IRI → fragment `argumentFromX` — les IRI de schémas ont été normalisés dans l'OWL Virtues depuis l'édition 2026-07-19, qui portait les libellés lisibles `Argument from X`). |
 | `aif-virtues-canonical-concepts.csv` | 14 | AIF schemes referenced via skos (= the V-B scheme set). |
-| `aif-virtues-schemes.csv` | 14 | Scheme distribution (Rule 50, Commitment 40, Bias 27, …). |
+| `aif-virtues-schemes.csv` | 14 | Scheme distribution (le CSV porte désormais les fragments camelCase). |
 
-V-A axiom: 222/222 respected (undercut→RA 206, undermine→I 13, rebut→CA 3, 0 violations). 222/222 virtues carry a skos ref.
+V-A axiom: 142/142 respected (undermine→I 74, undercut→RA 63, rebut→CA 5, 0 violations). 142/142 exported attackers carry a skos ref.
 
 ### Cross-family coherence (Fallacies ↔ Virtues) — empirical note
 
@@ -155,7 +177,7 @@ python tools/aif-attack-graph-export.py   # Fallacies (5 CSVs)
 python tools/aif-virtues-export.py        # Virtues  (4 CSVs)
 ```
 
-Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s each. Overwrites the CSVs in this directory. 0 write to the source CSV/OWL.
+Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s each. Overwrites the CSVs in this directory. 0 write to the source CSV/OWL. ⚠️ The tools write **CRLF** (`csv` module default) while the committed dialect of these CSVs is **LF** (`core.autocrlf=false` ici) — normalize to LF before committing, or the diff shows whole-file rewrites.
 
 ---
 
