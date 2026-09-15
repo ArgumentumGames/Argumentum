@@ -34,7 +34,7 @@ CSV data is populated for all 8 languages, but the rendering of **non‑Latin sc
 - **Cards**: Rules (15) + Memo (×7 copies) + Fallacies (full taxonomy).
 - **Dimensions**: 60×113 mm (standard Tarot trim, no bleed).
 - **Color profile**: CMYK (printer proof).
-- **FR volume**: 175 Fallacies + 15 Rules + 1 Memo (printed ×7) = **191 unique cards** (recounted in #438 / #1288, 2026-09-05 — see CLAUDE.md "État actuel par CardSet"; backs are localized per language).
+- **FR volume**: 175 Fallacies + 15 Rules + 1 Memo (printed ×7) = **191 unique cards** (recounted in #438 / #1288, 2026-09-05 — see CLAUDE.md "État actuel par CardSet"; backs are localized per language). **Manufacturing volume decided (2026-09-14, #1187 c.5665864605): 197 cards** — the memo counts its 7 printed copies; box **364** without Virtues / **495** with. The 05/09 volumes 358/489 are superseded (P&P unchanged). *(Erratum 2026-09-15: EN twin of the FR catalog line corrected by #1385.)*
 - **Use**: hand off to a professional printer for Tarot deck production.
 
 ### 2. Virtues Tarot — `Argumentum_TarotCards_Virtues_fr.pdf`
