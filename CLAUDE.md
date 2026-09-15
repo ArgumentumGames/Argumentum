@@ -507,7 +507,7 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 ### Translation Pipeline (DatasetUpdater)
 
 - **SDK**: Official OpenAI .NET SDK v2.10.0 (PR #210 merged)
-- **Models**: `gpt-5.5` (EN translations primary, PR #302), `gpt-4.1`/`gpt-4.1-mini` (fallback + RU/PT)
+- **Models**: `gpt-5.5` (EN translations primary, PR #302), `gpt-4.1`/`gpt-4.1-mini` (fallback + RU/PT). *(Erratum 2026-09-15 : ce que la **config** porte encore — 44× `gpt-5.5` + 4× `gpt-5.4`, 0× gpt-5.6 mesuré, `DatasetUpdaterRootConfig.cs` ; le modèle de traduction **décidé** est `gpt-5.6-sol` (GO owner 14/08, coordination hors dépôt) — migration de config gated sur GO nommé, voir [`docs/translation/gpt55-modele-courant-inventaire-2026-09-15.md`](docs/translation/gpt55-modele-courant-inventaire-2026-09-15.md))*
 - **Multi-provider**: API support added via PR #302 (OpenAI + alternative providers configurable)
 - **Config**: `DatasetUpdater/DatasetUpdaterRootConfig.cs` — 7 task configs (all `Enabled = false`)
 - **Prompts**: 29 files in `DatasetUpdater/Resources/`
@@ -543,7 +543,7 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 6. ~~#183 — Upgrade SDK traduction~~ FAIT (PR #210 merged, avril 2026)
 7. ~~#193 — GSheet ↔ CSV sync~~ FAIT (PR #200 merged, avril 2026)
 8. ~~#202 Phase 1 — CSV text micro-fixes~~ FAIT (PR #203 + #213 merged)
-9. Valider DatasetUpdater round-trip avec OpenAI API (3-5 records, Enabled=true) — smoke test gpt-5.5 en cours (po-2023, cycle 61bis)
+9. Valider DatasetUpdater round-trip avec OpenAI API (3-5 records, Enabled=true) — smoke test gpt-5.5 en cours (po-2023, cycle 61bis). *(Erratum 2026-09-15 : « en cours » datait du cycle 61bis ; le protocole smoke à rédiger est explicité **gpt-5.6-sol** — pool #458 c.5666260217 grain ⑩, prérequis bump config gated, cf. inventaire ci-dessus)*
 10. ~~#211 — Retraduction PT Rules~~ ✅ DONE (closed 2026-05-17), Rules PT 100% sauf row 1 cover (fix PR #306 cycle 47)
 11. #212 — Playwright visual regression tests pour PDFs générés
 12. ~~Virtues i18n — ajouter colonnes _en/_ru/_pt~~ ✅ DONE (April-May 2026, PRs #218/#236/#246/#290/#295) — 100% coverage title/description/remark
