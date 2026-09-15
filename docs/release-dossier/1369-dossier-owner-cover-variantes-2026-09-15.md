@@ -1,38 +1,42 @@
 # #1369 — Cover illustrée par variante de jeu : dossier owner tranchable
 
 **Auteur** : po-2024 (worker) · **Date** : 2026-09-15 · **Base** : master `c089d526`
-**Instrument** : re-mesure du template `Cards/Rules/Argumentum_Rules_fr.json` (CSS 16 391 car.,
-CSV embarqué 18 lignes), du mécanisme `cardClass` (`Generation/CardPen/js/main.js:1387`),
-des assets `Cards/Rules/Assets/`. **Aucune image générée, aucune ligne de code écrite** — ce
+**Instrument** : re-mesure du CSV **vivant** du DataSet `Cards/Rules/Argumentum Rules - Cards.csv`
+(15 lignes — c'est lui que le runtime rend : `HarvestManager.cs` fait
+`CardSetDocument.csv = dataSet.GetContent(...)`, config `AssetConverterConfig.cs:74`), du
+template `Cards/Rules/Argumentum_Rules_fr.json` (CSS 16 391 car. ; sa clé `csv` embarquée est
+**STALE** par sa propre note `_csv_note` : *« overridden at runtime by DataSet='Rules' … this key
+is ignored »*), du mécanisme `cardClass` (`Generation/CardPen/js/main.js:1387`), des assets
+`Cards/Rules/Assets/`. **Aucune image générée, aucune ligne de code écrite** — ce
 dossier est le support de décision, pas son exécution (conforme au body #1369).
+**Corrigé le 15/09 après review** (c.5677149869 + c.5677200800) : la première édition publiait
+« 18 lignes » pris sur le CSV embarqué stale — cf. §0.
 **Statut** : **PROPOSITION TRANCHABLE** — 4 décisions, chacune avec objet visible, branches
 chiffrées et coût. Qualification MESURÉ / RAPPORTÉ / DÉRIVÉ / SUPPOSÉ par ligne.
 
 ---
 
-## §0 Ce qui est mesuré (et qui corrige le body sur deux points)
+## §0 Ce qui est mesuré (et ce que la première édition avait faux)
 
-Le body #1369 pose le bon diagnostic structurel mais deux de ses chiffres sont à corriger avant
-de trancher — ils changent le coût des branches :
+Le body #1369 posait le bon diagnostic structurel **et le bon chiffre de cartes**. La première
+édition de ce dossier le « corrigeait » à tort : sa mesure « 18 lignes » était prise sur le CSV
+**embarqué** du gabarit, que sa propre clé `_csv_note` déclare STALE et que le runtime écrase
+(`HarvestManager.cs` : `CardSetDocument.csv = dataSet.GetContent(...)`). Un seul point de
+correction subsiste :
 
-| point | le body dit | mesuré ce jour | conséquence sur la décision |
+| point | le body dit | mesuré ce jour (instrument vivant) | conséquence sur la décision |
 |---|---|---|---|
-| **Nombre de cartes** | « 15 cartes », sélecteurs `[class~="1"]…[class~="15"]` | le CSV embarqué tient **18 lignes** (MESURÉ) ; les covers à titre `# Argumentum ## …` sont aux index **1, 7, 9, 12, 15** | les cartes **16, 17, 18** (fin de « La parlote coinchée ») n'ont **aucun sélecteur dédié** — elles héritent du bloc courant. La « plage d'index » n'est pas un découpage propre. |
+| **Nombre de cartes** | « 15 cartes », sélecteurs `[class~="1"]…[class~="15"]` | **exact** : le CSV vivant du DataSet (`Argumentum Rules - Cards.csv`) tient **15 lignes** (MESURÉ) ; les 5 covers sont aux index **1, 7, 9, 11, 13** ; les sélecteurs 14/15 existent (5 occ. chacun). La piste « 18 lignes » de la 1ʳᵉ édition = mesure sur le csv **embarqué stale** (instantané d'avant édition de contenu, mêmes 5 variantes, pagination différente — pas une troncature). | aucune « carte sans sélecteur » ; les plages de la branche 1b sont **propres** sur 15 lignes : **1-6 · 7-8 · 9-10 · 11-12 · 13-15**. |
 | **Portée multilingue** | « 8 langues » / « 40 images » (5×8) | **un seul template de règles vivant** : `Argumentum_Rules_fr.json` (MESURÉ, `ls Cards/Rules/*.json`) ; les autres langues sont des **colonnes** `Text_en`/`Text_ru`/… du **même** CSV. (Le 2ᵉ fichier `…_Francais_edition_fevrier_2022_Print_and_Play.json` est une relique figée de 2022.) | il n'y a **pas** 8 gabarits à dupliquer — il y a **un** gabarit dont le texte est localisé. Une cover **sans texte** est partagée par les 8 langues ; une cover **avec texte** suppose une surcharge par langue (coût ×N). |
 
-La structure réelle (MESURÉ) :
+La structure réelle (MESURÉ sur le CSV vivant) :
 
 ```
-1  COVER  École des menteurs        ┐ variante 1
-2-6    règles (Matériel…égalité)    ┘
-7  COVER  Bingo mixologie           ┐ variante 2
-8      règles                       ┘
-9  COVER  Dernier beau parleur      ┐ variante 3
-10-11  règles                       ┘
-12 COVER  Moulin à baratin          ┐ variante 4
-13-14  règles + variantes           ┘
-15 COVER  Parlote coinchée          ┐ variante 5
-16-18  règles (pas de sélecteur)    ┘
+1-6   École des menteurs   (1 = COVER)  ┐ variante 1
+7-8   Bingo mixologie      (7 = COVER)  ┐ variante 2
+9-10  Dernier beau parleur (9 = COVER)  ┐ variante 3
+11-12 Moulin à baratin    (11 = COVER)  ┐ variante 4
+13-15 Parlote coinchée    (13 = COVER)  ┐ variante 5
 ```
 
 **5 covers**, 5 variantes, adressées aujourd'hui **par index numérique** (CSS `[class~="N"]` +
@@ -52,12 +56,12 @@ Trois branches, diffs **incompatibles** (c'est pourquoi rien ne peut être codé
 
 | branche | mécanisme | diff type | coût / risque |
 |---|---|---|---|
-| **1a — colonne `variant_class` + `cardClass="variant_class"`** *(reco)* | ajouter une colonne au CSV embarqué portant `cover-ecole`, `cover-bingo`, … sur les 5 covers (vide ailleurs) ; renseigner `cardClass`; écrire les règles `card.cover-<x>` | **CSV + template** (JSON) | réutilise le mécanisme **existant** de CardPen ; extensible (une nouvelle variante = une valeur de colonne) ; ⚠️ le CSV embarqué est dans le JSON — une insertion de colonne doit rester **byte-exacte** (mémoire `csv-byte-exact-column-insertion`) |
-| **1b — plage d'index par variante** | garder l'adressage par index, documenter les plages 1 / 7-8 / 9-11 / 12-14 / 15-18 | **CSS seul** | zéro changement de donnée mais **fragile** : les cartes 16-18 n'ont pas de sélecteur, et tout réordonnancement de règle casse les plages. Ne résout pas « adressé par donnée » (le but de #1369). |
-| **1c — champ dédié au template** | un paramètre `coverIndices: [1,7,9,12,15]` lu par le pipeline pour injecter une classe | **config C# + template** | le plus lourd ; crée un 2ᵉ mécanisme parallèle à `cardClass`. À réserver si 1a est rejeté. |
+| **1a — colonne `variant_class` + `cardClass="variant_class"`** *(reco)* | ajouter une colonne au **CSV vivant du DataSet** (`Argumentum Rules - Cards.csv`) portant `cover-ecole`, `cover-bingo`, … sur les 5 covers (vide ailleurs) ; renseigner `cardClass` dans le template ; écrire les règles `card.cover-<x>` | **CSV + template** (JSON) | réutilise le mécanisme **existant** de CardPen ; extensible (une nouvelle variante = une valeur de colonne) ; ⚠️ l'insertion de colonne dans le CSV vivant doit rester **byte-exacte** (mémoire `csv-byte-exact-column-insertion`) ; ⚠️ ne PAS écrire la colonne dans le `csv` embarqué du template — clé STALE, ignorée au runtime |
+| **1b — plage d'index par variante** | garder l'adressage par index, documenter les plages **1-6 · 7-8 · 9-10 · 11-12 · 13-15** | **CSS seul** | zéro changement de donnée mais **fragile** : tout réordonnancement ou édition de contenu du CSV (la pente qui a fait diverger l'embarqué : 15 → 18 lignes) casse les plages silencieusement. Ne résout pas « adressé par donnée » (le but de #1369). |
+| **1c — champ dédié au template** | un paramètre `coverIndices: [1,7,9,11,13]` lu par le pipeline pour injecter une classe | **config C# + template** | le plus lourd ; crée un 2ᵉ mécanisme parallèle à `cardClass`. À réserver si 1a est rejeté. |
 
 **Recommandation worker : 1a.** C'est le seul qui rende la cover « adressable par la donnée »
-(l'intention explicite du body), en réutilisant le hook CardPen existant, sans toucher aux 18
+(l'intention explicite du body), en réutilisant le hook CardPen existant, sans toucher aux 15
 cartes. Coût d'exécution : 1 colonne CSV (5 valeurs) + `cardClass` + 5 blocs CSS.
 
 > ⚠️ **Prérequis quelle que soit la branche** : le gel du corpus jusqu'au tag interdit l'écriture
@@ -115,7 +119,7 @@ le rendu Debug + verdict ai-01, **puis** les 4 autres si le pilote passe.
 
 ## §4 Décision 4 — Périmètre (quelles variantes, quelles langues)
 
-**Objet visible** : les **5 covers** aux index 1, 7, 9, 12, 15 (MESURÉ par le titre `# Argumentum`).
+**Objet visible** : les **5 covers** aux index 1, 7, 9, 11, 13 (MESURÉ sur le CSV vivant, titres de variante).
 
 | branche | variantes | langues |
 |---|---|---|
@@ -156,9 +160,11 @@ body en deux questions indépendantes :
 ⛔ **Aucune image générée, aucune ligne de code, aucun CSV/template modifié** — le gel du corpus
 jusqu'au tag tient ; ce dossier ne fait que rendre les 4 arbitrages **tranchables**. ⛔ Le **modèle
 d'image** n'est pas choisi (politique de coût = owner) — seul le **facteur langue** est chiffré.
-⛔ Aucun **verdict visuel** n'est rendu ni annoncé (réservé à ai-01). ⛔ La correction « 18 cartes,
-pas 15 » et « 1 gabarit, pas 8 » est une **mesure** ; elle ne préjuge pas du choix, elle chiffre
-les branches. ⛔ L'exécution (post-décision) reste gated sur le **tag** + verdict **ai-01** +
+⛔ Aucun **verdict visuel** n'est rendu ni annoncé (réservé à ai-01). ⛔ La correction publiée
+(« 1 gabarit vivant, pas 8 ») est une **mesure** ; elle ne préjuge pas du choix, elle chiffre
+les branches — et le chiffre « 15 cartes » du body était **juste** (la « correction à 18 » de la
+1ʳᵉ édition était un artefact d'instrument, cf. §0). ⛔ L'exécution (post-décision) reste gated
+sur le **tag** + verdict **ai-01** +
 respect des contraintes #1225/#1228 (asset neuf validable seulement en Debug ou après merge).
 
 ---
