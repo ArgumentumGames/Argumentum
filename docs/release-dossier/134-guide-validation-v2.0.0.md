@@ -68,7 +68,7 @@ gswin64c -q -dNODISPLAY -dNOSAFER -c "(<chemin.pdf>) (r) file runpdfbegin pdfpag
 
 | Type | Pages | Contrat dérivé |
 |---|---|---|
-| `TarotCards` | **379** | 15 Rules (sans dos) + Memo face×7 + dos×7 + Fallacies 175×2 — soit 191 cartes : **175 Fallacies + 15 Rules + 1 Memo** |
+| `TarotCards` | **379** | 15 Rules (sans dos) + Memo face×7 + dos×7 + Fallacies 175×2 — soit 191 cartes : **175 Fallacies + 15 Rules + 1 Memo** *(197 instances imprimées = volume de fabrication décidé 14/09, #1187 c.5665864605)* |
 | `TarotCards_Virtues` | **262** | 131 cartes (faces + dos) |
 | `PokerCards` | **334** | 167 faces + 167 dos |
 | `TarotCards_Print&Play_A4` | 105 | — |
