@@ -179,6 +179,36 @@ répertoire non tracké : **vert en CI, rouge ici**, sans qu'aucune divergence s
 
 ---
 
+## §7 — Organe anti-retour (ajouté 15/09, grain ① du pool po-2023)
+
+`Argumentum.AssetConverter.Tests/Dnn/DnnBinUntrackGuardTests.cs` verrouille l'état établi ci-dessus, sur
+**deux déclencheurs** :
+
+1. **l'index Git** (pas le disque, pas le .gitignore seul) : `git ls-files -- DNNPlatform/bin/` doit être
+   **vide**, corroboré par une seconde sonde (liste complète filtrée en mémoire — le pathspec borné a déjà
+   produit un vide faux, artefact intermittent consigné). Toute entrée sous `bin/` est un **retour de la
+   source de downgrade 9.11.1**, rouge nommément.
+2. **la règle d'ignore explicite** `/DNNPlatform/bin/` doit survivre dans `.gitignore` — sans elle, un
+   `git add .` dans le webroot vivant (qui est un checkout git) ré-ajouterait d'un coup les assemblages du
+   webroot. Une ré-inclusion `!` (forme #972, le piège de §3) ou un glob incident (`bin/`) ne compte pas :
+   le contrat exige la règle qui nomme le chemin.
+
+**Témoins de mutation joués le 15/09** (worktree jetable, fichier texte — aucun binaire, aucun webroot) :
+`git add -f` d'un témoin sous `bin/` → **rouge** nommant l'entrée, retrait → **vert** ; neutralisation de la
+règle `.gitignore` → **rouge**, restauration → **vert**. Sept témoins purs supplémentaires (dont le vecteur
+historique `DotNetNuke.dll` et la ré-inclusion `!`) rougissent par construction.
+
+**Plus fort que la forme initiale de l'issue** : le corps de #1244 proposait « si `DotNetNuke.dll` est tracé,
+sa version doit être celle que la base attend ». Post-(a), l'invariant est plus strict — **aucune** entrée
+sous `bin/` n'est acceptable ; l'ancienne forme laisserait passer 194 fichiers fautifs du moment que la
+seule DLL vérifiée serait à jour. Hors d'un checkout git (p.ex. un zip), les deux faits **sautent
+visiblement** (précédent §4) — jamais un vert par vacuité.
+
+**Frère à venir** : #1049 (grain ⑦ du pool) garde l'autre déclencheur — aucun `web.config` ni binaire DNN
+ne doit atteindre un **webroot**. Deux déclencheurs, deux gardes ; le lien est documenté des deux côtés.
+
+---
+
 *master `874a5d98` · lecture seule : `ls-tree`, `cat-file`, sha256, `git grep` · archive hors dépôt :
 `DNN-10.3.2-tracked-bin-pre-1244a-2026-09-14` (195/195) · ⛔ aucune régénération, aucune publication,
 aucune écriture dans le webroot · verdict visuel : ai-01.*
