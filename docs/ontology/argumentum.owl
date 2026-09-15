@@ -1680,7 +1680,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#sycophancy" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#paralanguage" />
@@ -1953,7 +1953,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#biasedSample" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers" />
@@ -6843,7 +6843,7 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -6979,11 +6979,11 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -12419,7 +12419,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonPractice</IRI>
-    <Literal xml:lang="FR">http://autopsia.fr/sophismes-arguments-autorite</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20161017074711/http://autopsia.fr/sophismes-arguments-autorite</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14897,7 +14897,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fakeExperts</IRI>
-    <Literal xml:lang="EN">https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20230603015724id_/https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -15012,7 +15012,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#bulkFakeExperts</IRI>
-    <Literal xml:lang="EN">https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20230603015724id_/https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -15072,7 +15072,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fakeDebate</IRI>
-    <Literal xml:lang="EN">https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20230603015724id_/https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -19119,7 +19119,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#kafkatrap</IRI>
-    <Literal xml:lang="FR">https://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20240229072223/http://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -25330,7 +25330,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syllepsis</IRI>
-    <Literal xml:lang="FR">http://www.cosmovisions.com/adjonction.htm</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20180102204208/http://www.cosmovisions.com/adjonction.htm</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -28210,7 +28210,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#exclusivityAppeal</IRI>
-    <Literal xml:lang="EN">https://www.fastcompany.com/3032675/5-psychological-tactics-marketers-use-to-influence-consumer-behavior</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20230118171946/https://www.fastcompany.com/3032675/5-psychological-tactics-marketers-use-to-influence-consumer-behavior</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -28355,7 +28355,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#thinkOfTheChildren</IRI>
-    <Literal xml:lang="FR">Appel aux têtes blondes</Literal>
+    <Literal xml:lang="FR">Pensez aux enfants</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -28810,7 +28810,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#yuckFactor</IRI>
-    <Literal xml:lang="FR">Facteur beurk</Literal>
+    <Literal xml:lang="FR">Sagesse du dégoût</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -28820,7 +28820,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#yuckFactor</IRI>
-    <Literal xml:lang="FR">Vous dites qu’une idée est mauvaise seulement parce qu’elle vous déplaît ou vous dégoûte.</Literal>
+    <Literal xml:lang="FR">Vous présentez une réaction intuitive de dégoût comme une preuve qu’une chose, une idée ou une pratique est intrinsèquement mauvaise.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
@@ -35196,7 +35196,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#improvingTheDeal</IRI>
-    <Literal xml:lang="EN">https://www.scu.edu/media/college-of-arts-and-sciences/psychology/documents/Burger-JPSP-1986.pdf</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20240520154811id_/https://www.scu.edu/media/college-of-arts-and-sciences/psychology/documents/Burger-JPSP-1986.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -35812,7 +35812,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#anythingHelps</IRI>
-    <Literal xml:lang="FR">J’en appelle à votre générosité quelque soit votre situation: Chaque centime compte ; même une petite somme peut faire la différence !</Literal>
+    <Literal xml:lang="FR">J’en appelle à votre générosité quelle que soit votre situation: Chaque centime compte ; même une petite somme peut faire la différence !</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -39316,62 +39316,62 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
-    <Literal xml:lang="FR">Influence non verbale</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
+    <Literal xml:lang="FR">Communication non verbale</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
-    <Literal xml:lang="EN">Nonverbal influence</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
+    <Literal xml:lang="EN">Nonverbal communication</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal xml:lang="FR">Vous cherchez à convaincre au-delà du sens des mots, notamment par le langage corporel ou les inflexions de la voix.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal xml:lang="EN">Seeking to persuade beyond the meaning of words, notably through body language or vocal inflections.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal xml:lang="FR">J’ai levé les yeux au ciel et soupiré à plusieurs reprises durant son intervention pour le déstabiliser.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal xml:lang="EN">I sighed and rolled my eyes several times during their speech to destabilize them.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Nonverbal_influence</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Communication_non_verbale</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalManipulation</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalManipulation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -39421,13 +39421,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#paralanguage</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#paralanguage</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -39751,13 +39751,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#chronemics</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#chronemics</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -39806,13 +39806,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#oculesics</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#oculesics</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -39926,13 +39926,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#kinesics</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#kinesics</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -43986,13 +43986,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appearance</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appearance</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -44151,13 +44151,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#haptics</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#haptics</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -44396,57 +44396,57 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
-    <Literal xml:lang="FR">Généralisation hâtive</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <Literal xml:lang="FR">Induction hâtive</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
-    <Literal xml:lang="EN">Hasty generalization</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <Literal xml:lang="EN">Hasty induction</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <Literal xml:lang="FR">Vous déduisez une règle globale d’un échantillon trop restreint.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <Literal xml:lang="EN">Inferring a general rule from too small a sample.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <Literal xml:lang="FR">Le sondage a été réalisé à la sortie du congrès : 90 % des personnes interrogées soutiennent la motion. L’opinion du pays est donc faite.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <Literal xml:lang="EN">The poll was conducted outside the conference: 90% of those surveyed support the motion. The country's opinion is therefore settled.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Hasty_generalization</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedSample</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedSample</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -44496,13 +44496,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -44551,13 +44551,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -46029,7 +46029,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ecologicalFallacy</IRI>
-    <Literal xml:lang="FR">http://wikipedia.qwika.com/en2fr/Ecological_fallacy</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20180809123416id_/http://wikipedia.qwika.com:80/en2fr/Ecological_fallacy</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -49041,7 +49041,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCensoriousAbuse</IRI>
-    <Literal xml:lang="FR">https://www.eyrolles.com/Chapitres/9782708135291/chapA_Grigorieff.pdf</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20170919004238id_/http://www.eyrolles.com/Chapitres/9782708135291/chapA_Grigorieff.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -61281,7 +61281,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misrepresentation</IRI>
-    <Literal xml:lang="EN">https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20230603015724id_/https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -66157,7 +66157,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#impossibleExpectations</IRI>
-    <Literal xml:lang="EN">https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20230603015724id_/https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -66732,7 +66732,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#kafkatrap</IRI>
-    <Literal xml:lang="FR">https://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20240229072223/http://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -85404,7 +85404,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#goBig(lie)OrGoHome</IRI>
-    <Literal xml:lang="FR">Plus c’est gros, plus ça passe</Literal>
+    <Literal xml:lang="FR">Grand mensonge</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -92254,12 +92254,12 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalInfluence</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -92405,11 +92405,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
