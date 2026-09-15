@@ -59,6 +59,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         {
             // Arrange
             var fallacies = await GetTestDataAsync("simple-fallacies.csv");
+            // Guard (#1046 MED #6): the loader suppresses CsvHelper missing-field errors
+            // (HeaderValidFound/MissingFieldFound = null), so a broken fixture parses as
+            // 0 records and skips the per-node loop below while surviving assertions
+            // (File.Exists, root name) still hold on an empty mindmap.
+            fallacies.Should().NotBeEmpty(
+                "the CSV fixture must load records — a 0-record parse skips every per-node check");
             var generator = new FallacyMindMapDocumentConfig
             {
                 DocumentName = "test-fallacies.mm",
@@ -83,7 +89,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
                 var xmlDoc = XDocument.Parse(mmContent);
                 xmlDoc.Should().NotBeNull();
-                xmlDoc.Root.Name.LocalName.Should().Be("map");
+                xmlDoc.Root!.Name.LocalName.Should().Be("map");
 
                 // Validate root node (TitleFunc uses TitleExpression = "{item.TextFr}")
                 xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value.Should().Be("Sophismes");
@@ -135,7 +141,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 var xmlDoc = XDocument.Parse(mmContent);
                 xmlDoc.Root.Should().NotBeNull();
                 xmlDoc.Root.Element("node").Should().NotBeNull("La map doit contenir au moins un noeud racine.");
-                xmlDoc.Root.Element("node").Elements("node").Should().NotBeEmpty("La map doit contenir des noeuds enfants pour les données d'entrée.");
+                xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("La map doit contenir des noeuds enfants pour les données d'entrée.");
             }
             finally
             {
@@ -173,7 +179,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 var xmlDoc = XDocument.Parse(mmContent);
                 xmlDoc.Root.Should().NotBeNull();
                 xmlDoc.Root.Element("node").Should().NotBeNull("the map should contain a root node.");
-                xmlDoc.Root.Element("node").Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
+                xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
 
                 // Verify specific virtue nodes exist
                 mmContent.Should().Contain("Argument pertinent");
@@ -190,6 +196,11 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         {
             // Arrange - generate a real .mm from test data
             var fallacies = await GetTestDataAsync("simple-fallacies.csv");
+            // #1046 Lot C (LOW #22): without this guard a 0-record parse yields a root-only
+            // mindmap whose XSLT output still contains "<svg" and "Sophismes" — the test
+            // would pass without having exercised any real node.
+            fallacies.Should().NotBeEmpty(
+                "the CSV fixture must load records — otherwise the XSLT assertions hold on a root-only mindmap");
             var generator = new FallacyMindMapDocumentConfig
             {
                 DocumentName = "xslt-pipeline-test.mm",
@@ -241,6 +252,96 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 records.Add(record);
             }
             return records;
+        }
+
+        /// <summary>
+        /// Loads Virtue records from an absolute CSV path (used to feed the real taxonomy CSV,
+        /// which carries the fully-translated <c>*_ar/_fa/_zh</c> columns, into the mind-map path).
+        /// </summary>
+        private static async Task<List<Virtue>> LoadVirtuesFromPathAsync(string csvPath)
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HeaderValidated = null,
+                MissingFieldFound = null
+            };
+            using var reader = new StreamReader(csvPath);
+            using var csv = new CsvReader(reader, config);
+            csv.Context.RegisterClassMap<VirtueClassMap>();
+
+            var records = new List<Virtue>();
+            await foreach (var record in csv.GetRecordsAsync<Virtue>())
+            {
+                records.Add(record);
+            }
+            return records;
+        }
+
+        /// <summary>
+        /// Walks up from the test bin directory to locate the committed Virtues taxonomy CSV
+        /// (<c>Cards/Fallacies/Argumentum Virtues - Taxonomy.csv</c>, at the repo root in every checkout).
+        /// </summary>
+        private static string? FindRepoVirtuesCsv()
+        {
+            var dir = new DirectoryInfo(System.AppContext.BaseDirectory);
+            for (int i = 0; i < 12 && dir != null; i++, dir = dir.Parent)
+            {
+                var candidate = Path.Combine(dir.FullName, "Cards", "Fallacies", "Argumentum Virtues - Taxonomy.csv");
+                if (File.Exists(candidate)) return candidate;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// #665 empirical guard — the Virtue mind map must render NATIVE script (not French fallback)
+        /// for ar/fa/zh once the entity + MindMapLocalization tables are wired. Generates a real .mm
+        /// from the actual taxonomy CSV (FreeMind GUI disabled via <c>FreeMindPath=""</c>), applying the
+        /// production localization exactly as the pipeline does, and asserts the target Unicode block is
+        /// present in the node text. This is the regression that would have caught the "Virtues mind maps
+        /// in French instead of the target languages" defect.
+        /// </summary>
+        [Theory]
+        [InlineData("ar", 0x0600, 0x06FF)] // Arabic block
+        [InlineData("fa", 0x0600, 0x06FF)] // Persian (Arabic script + Persian extensions, both in this block)
+        [InlineData("zh", 0x4E00, 0x9FFF)] // CJK Unified Ideographs
+        public async Task VirtueMindMap_GeneratesNativeScript_ForArFaZh(string lang, int lo, int hi)
+        {
+            // Arrange — real taxonomy CSV (carries the translated *_ar/_fa/_zh columns).
+            var csvPath = FindRepoVirtuesCsv();
+            csvPath.Should().NotBeNull("the committed Virtues taxonomy CSV must be locatable from the test bin dir");
+
+            var virtues = await LoadVirtuesFromPathAsync(csvPath!);
+            virtues.Should().NotBeEmpty();
+
+            // Apply the production MindMapLocalization for the target language (rewrites the FR-suffixed
+            // source tokens in the expressions to the per-language Virtue properties), as the pipeline does.
+            var generator = new VirtueMindMapDocumentConfig { DocumentName = $"virtues-{lang}.mm" };
+            foreach (var localization in _config.LocalizationConfig.MindMapLocalization)
+            {
+                localization.DoReflectionTranslate(generator, lang);
+            }
+
+            var originalInteractive = Program.IsInteractive;
+            try
+            {
+                Program.IsInteractive = false; // no interactive SVG prompt
+                // Act — .mm is serialized before any SVG export; FreeMindPath="" ⇒ no GUI, XSLT throwaway.
+                await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, lang);
+            }
+            finally
+            {
+                Program.IsInteractive = originalInteractive;
+            }
+
+            var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+            File.Exists(mmPath).Should().BeTrue($"the {lang} Virtue mind map .mm must be generated");
+            var mm = await File.ReadAllTextAsync(mmPath);
+
+            // Assert — native script present in node text (would be ~0 if it fell back to French).
+            var nativeCount = mm.Count(ch => ch >= lo && ch <= hi);
+            nativeCount.Should().BeGreaterThan(50,
+                $"the generated '{lang}' Virtue mind map must contain native-script node text " +
+                $"(Unicode U+{lo:X4}–U+{hi:X4}), not French fallback — got {nativeCount} native code points");
         }
 
         [Theory]

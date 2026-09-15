@@ -1,0 +1,138 @@
+# 847 Layer-(c) §5 reference-repair worklist — GET re-probe of the 134 HEAD-dead refs.
+# MEASURE not verdict. INPUT for ai-01 synthesis update. GATED jsboige ratification. 0 prod CSV.
+# get_class in {alive, redirect-3xx, dead, unknown}. Reproducible from 847-layerc-reference-reachability-refs.csv (dead bucket).
+pk,lang,host,url,family,subfamily,subsub,get_code,get_class,final_url
+9,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_mystery,Insuffisance,Argument bâclé,Argument vide,503,dead,https://rationalwiki.org/wiki/Appeal_to_mystery
+10,en,rationalwiki.org,http://rationalwiki.org/wiki/Science_doesn%27t_know_everything,Insuffisance,Argument bâclé,Argument vide,503,dead,https://rationalwiki.org/wiki/Science_doesn%27t_know_everything
+11,en,rationalwiki.org,http://rationalwiki.org/wiki/Argument_from_incredulity,Insuffisance,Argument bâclé,Argument vide,503,dead,https://rationalwiki.org/wiki/Argument_from_incredulity
+16,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_omniscience,Insuffisance,Argument bâclé,Argument vide,503,dead,https://rationalwiki.org/wiki/Appeal_to_omniscience
+18,en,rationalwiki.org,http://rationalwiki.org/wiki/Holmesian_fallacy,Insuffisance,Argument bâclé,Argument vide,503,dead,https://rationalwiki.org/wiki/Holmesian_fallacy
+34,en,rationalwiki.org,http://rationalwiki.org/wiki/Anecdotal_evidence,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Anecdotal_evidence
+37,en,rationalwiki.org,http://rationalwiki.org/wiki/Pragmatic_fallacy,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Pragmatic_fallacy
+38,en,rationalwiki.org,http://rationalwiki.org/wiki/Stopped_clock,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Stopped_clock
+40,fr,rationalwiki.org,http://rationalwiki.org/wiki/Argument_de_l'ami,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Argument_de_l'ami
+40,en,rationalwiki.org,https://rationalwiki.org/wiki/Friend_argument,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Friend_argument
+42,en,rationalwiki.org,http://rationalwiki.org/wiki/Generalization_from_fictional_evidence,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Generalization_from_fictional_evidence
+43,fr,autopsia.fr,http://autopsia.fr/sophismes-arguments-autorite,Insuffisance,Argument bâclé,Justification triviale,404,dead,http://autopsia.fr/sophismes-arguments-autorite
+45,en,rationalwiki.org,http://rationalwiki.org/wiki/Silent_Majority,Insuffisance,Argument bâclé,Justification triviale,503,dead,https://rationalwiki.org/wiki/Silent_Majority
+56,en,rationalwiki.org,http://rationalwiki.org/wiki/Golden_hammer,Insuffisance,Argument bâclé,Sauvetage ad hoc,503,dead,https://rationalwiki.org/wiki/Golden_hammer
+57,en,rationalwiki.org,http://rationalwiki.org/wiki/Fractal_wrongness,Insuffisance,Argument bâclé,Sauvetage ad hoc,503,dead,https://rationalwiki.org/wiki/Fractal_wrongness
+59,en,rationalwiki.org,http://rationalwiki.org/wiki/Didit_fallacy,Insuffisance,Argument bâclé,Sauvetage ad hoc,503,dead,https://rationalwiki.org/wiki/Didit_fallacy
+60,en,rationalwiki.org,http://rationalwiki.org/wiki/God_of_the_gaps,Insuffisance,Argument bâclé,Sauvetage ad hoc,503,dead,https://rationalwiki.org/wiki/God_of_the_gaps
+68,en,rationalwiki.org,http://rationalwiki.org/wiki/Argumentum_ex_culo,Insuffisance,Argument bâclé,Sauvetage ad hoc,503,dead,https://rationalwiki.org/wiki/Argumentum_ex_culo
+75,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_confidence,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Appeal_to_confidence
+76,en,rationalwiki.org,http://rationalwiki.org/wiki/Invincible_authority,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Invincible_authority
+84,en,rationalwiki.org,http://rationalwiki.org/wiki/Ultracrepidarianism,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Ultracrepidarianism
+87,en,climatechangecommunication.org,https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf,Insuffisance,Préjugé,Argument d'autorité,404,dead,https://climatecommunication.gmu.edu/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf
+88,en,rationalwiki.org,http://rationalwiki.org/wiki/Professor_of_nothing,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Professor_of_nothing
+89,en,climatechangecommunication.org,https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf,Insuffisance,Préjugé,Argument d'autorité,404,dead,https://climatecommunication.gmu.edu/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf
+90,en,climatechangecommunication.org,https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf,Insuffisance,Préjugé,Argument d'autorité,404,dead,https://climatecommunication.gmu.edu/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf
+92,en,rationalwiki.org,http://rationalwiki.org/wiki/Fox_News#Disguised_opinion,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Fox_News
+93,en,rationalwiki.org,http://rationalwiki.org/wiki/Ipse_dixit,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Ipse_dixit
+94,en,rationalwiki.org,http://rationalwiki.org/wiki/Vicarious_autotheism,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Vicarious_autotheism
+95,en,rationalwiki.org,http://rationalwiki.org/wiki/Cafeteria_Christian,Insuffisance,Préjugé,Argument d'autorité,503,dead,https://rationalwiki.org/wiki/Cafeteria_Christian
+105,en,rationalwiki.org,https://rationalwiki.org/wiki/Draft:Appeal_to_precedent,Insuffisance,Préjugé,Sophisme naturaliste,503,dead,https://rationalwiki.org/wiki/Draft:Appeal_to_precedent
+107,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_ancient_wisdom,Insuffisance,Préjugé,Sophisme naturaliste,503,dead,https://rationalwiki.org/wiki/Appeal_to_ancient_wisdom
+120,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_the_minority,Insuffisance,Préjugé,Sophisme moraliste,503,dead,https://rationalwiki.org/wiki/Appeal_to_the_minority
+125,en,rationalwiki.org,http://rationalwiki.org/wiki/Argument_from_design,Insuffisance,Préjugé,Sophisme moraliste,503,dead,https://rationalwiki.org/wiki/Argument_from_design
+126,en,rationalwiki.org,http://rationalwiki.org/wiki/Argument_from_beauty,Insuffisance,Préjugé,Sophisme moraliste,503,dead,https://rationalwiki.org/wiki/Argument_from_beauty
+127,en,rationalwiki.org,https://rationalwiki.org/wiki/Appeal_to_money,Insuffisance,Préjugé,Sophisme moraliste,503,dead,https://rationalwiki.org/wiki/Appeal_to_money
+140,en,rationalwiki.org,http://rationalwiki.org/wiki/Intuition_pump,Insuffisance,Surinterprétation,Sophisme ludique,503,dead,https://rationalwiki.org/wiki/Intuition_pump
+155,en,rationalwiki.org,http://rationalwiki.org/wiki/Substituting_explanation_for_premise,Insuffisance,Surinterprétation,Argument des mauvaises raisons,503,dead,https://rationalwiki.org/wiki/Substituting_explanation_for_premise
+161,fr,mgtow-france.fr,https://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/,Insuffisance,Surinterprétation,Argument des mauvaises raisons,404,dead,https://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/
+163,en,rationalwiki.org,http://rationalwiki.org/wiki/Ad_iram,Insuffisance,Surinterprétation,Argument des mauvaises raisons,503,dead,https://rationalwiki.org/wiki/Ad_iram
+166,en,rationalwiki.org,http://rationalwiki.org/wiki/Hanlon%27s_razor,Insuffisance,Surinterprétation,Manque de parcimonie,503,dead,https://rationalwiki.org/wiki/Hanlon%27s_razor
+174,en,rationalwiki.org,https://rationalwiki.org/wiki/Clustering_illusion,Insuffisance,Surinterprétation,Manque de parcimonie,503,dead,https://rationalwiki.org/wiki/Clustering_illusion
+194,en,rationalwiki.org,"http://rationalwiki.org/wiki/Quidquid_latine_dictum_sit,_altum_videtur",Influence,Procédé rhétorique,Langage persuasif,503,dead,"https://rationalwiki.org/wiki/Quidquid_latine_dictum_sit,_altum_videtur"
+198,en,rationalwiki.org,http://rationalwiki.org/wiki/Technobabble,Influence,Procédé rhétorique,Langage persuasif,503,dead,https://rationalwiki.org/wiki/Technobabble
+211,en,rationalwiki.org,http://rationalwiki.org/wiki/Linking_to_authority,Influence,Procédé rhétorique,Langage persuasif,503,dead,https://rationalwiki.org/wiki/Linking_to_authority
+214,en,rationalwiki.org,http://rationalwiki.org/wiki/Race_card,Influence,Procédé rhétorique,Langage persuasif,503,dead,https://rationalwiki.org/wiki/Race_card
+268,fr,cosmovisions.com,http://www.cosmovisions.com/adjonction.htm,Influence,Procédé rhétorique,Poésie,404,dead,https://cosmovisions.com/https://www.cosmovisions.com/adjonction.htm
+301,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_confidence,Influence,Appel à l'émotion,Connivence,503,dead,https://rationalwiki.org/wiki/Appeal_to_confidence
+307,en,rationalwiki.org,http://rationalwiki.org/wiki/Deepity,Influence,Appel à l'émotion,Connivence,503,dead,https://rationalwiki.org/wiki/Deepity
+311,en,rationalwiki.org,http://rationalwiki.org/wiki/Fast-food_Christianity,Influence,Appel à l'émotion,Connivence,503,dead,https://rationalwiki.org/wiki/Fast-food_Christianity
+316,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_the_minority,Influence,Appel à l'émotion,Connivence,503,dead,https://rationalwiki.org/wiki/Appeal_to_the_minority
+317,en,fastcompany.com,https://www.fastcompany.com/3032675/5-psychological-tactics-marketers-use-to-influence-consumer-behavior,Influence,Appel à l'émotion,Connivence,403,dead,https://www.fastcompany.com/3032675/5-psychological-tactics-marketers-use-to-influence-consumer-behavior
+318,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_shame#Appeal_to_pride,Influence,Appel à l'émotion,Connivence,503,dead,https://rationalwiki.org/wiki/Appeal_to_shame
+321,en,rationalwiki.org,http://rationalwiki.org/wiki/Argumentum_ad_martyrdom,Influence,Appel à l'émotion,Connivence,503,dead,https://rationalwiki.org/wiki/Argumentum_ad_martyrdom
+326,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_shame,Influence,Appel à l'émotion,Repoussoir,503,dead,https://rationalwiki.org/wiki/Appeal_to_shame
+327,en,rationalwiki.org,http://rationalwiki.org/wiki/Argumentum_ad_fastidium,Influence,Appel à l'émotion,Repoussoir,503,dead,https://rationalwiki.org/wiki/Argumentum_ad_fastidium
+331,en,rationalwiki.org,https://rationalwiki.org/wiki/Appeal_to_hate,Influence,Appel à l'émotion,Repoussoir,503,dead,https://rationalwiki.org/wiki/Appeal_to_hate
+347,en,rationalwiki.org,http://rationalwiki.org/wiki/Tone_argument,Influence,Appel à l'émotion,Appel aux conséquences,503,dead,https://rationalwiki.org/wiki/Tone_argument
+349,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_gravity,Influence,Appel à l'émotion,Appel aux conséquences,503,dead,https://rationalwiki.org/wiki/Appeal_to_gravity
+363,en,rationalwiki.org,http://rationalwiki.org/wiki/Damning_with_faint_praise,Influence,Manipulation mentale,Conditionnement,503,dead,https://rationalwiki.org/wiki/Damning_with_faint_praise
+364,en,rationalwiki.org,http://rationalwiki.org/wiki/Motte_and_bailey,Influence,Manipulation mentale,Conditionnement,503,dead,https://rationalwiki.org/wiki/Motte_and_bailey
+438,en,scu.edu,https://www.scu.edu/media/college-of-arts-and-sciences/psychology/documents/Burger-JPSP-1986.pdf,Influence,Manipulation mentale,Jeu de pouvoir,404,dead,https://www.scu.edu/media/college-of-arts-and-sciences/psychology/documents/Burger-JPSP-1986.pdf
+475,en,rationalwiki.org,https://rationalwiki.org/wiki/Gish_Gallop,Influence,Manipulation mentale,Jeu de pouvoir,503,dead,https://rationalwiki.org/wiki/Gish_Gallop
+477,en,rationalwiki.org,http://rationalwiki.org/wiki/On_the_spot_fallacy,Influence,Manipulation mentale,Jeu de pouvoir,503,dead,https://rationalwiki.org/wiki/On_the_spot_fallacy
+606,en,rationalwiki.org,http://rationalwiki.org/wiki/Apex_fallacy,Erreur mathématique,Généralisation abusive,Échantillon biaisé,503,dead,https://rationalwiki.org/wiki/Apex_fallacy
+607,en,rationalwiki.org,http://rationalwiki.org/wiki/Nutpicking,Erreur mathématique,Généralisation abusive,Échantillon biaisé,503,dead,https://rationalwiki.org/wiki/Nutpicking
+608,en,rationalwiki.org,https://rationalwiki.org/wiki/Selection_bias,Erreur mathématique,Généralisation abusive,Échantillon biaisé,503,dead,https://rationalwiki.org/wiki/Selection_bias
+610,en,rationalwiki.org,http://rationalwiki.org/wiki/Toupee_fallacy,Erreur mathématique,Généralisation abusive,Échantillon biaisé,503,dead,https://rationalwiki.org/wiki/Toupee_fallacy
+612,en,rationalwiki.org,https://rationalwiki.org/wiki/Spotlight_fallacy,Erreur mathématique,Généralisation abusive,Échantillon biaisé,503,dead,https://rationalwiki.org/wiki/Spotlight_fallacy
+613,en,rationalwiki.org,https://rationalwiki.org/wiki/Neyman%27s_bias,Erreur mathématique,Généralisation abusive,Échantillon biaisé,503,dead,https://rationalwiki.org/wiki/Neyman%27s_bias
+626,fr,ikipedia.qwika.com,http://wikipedia.qwika.com/en2fr/Ecological_fallacy,Erreur mathématique,Généralisation abusive,Transfert illicite,0,unknown,http://wikipedia.qwika.com/en2fr/Ecological_fallacy
+643,en,rationalwiki.org,https://rationalwiki.org/wiki/Clustering_illusion,Erreur mathématique,Mauvaise interprétation,Relation infondée,503,dead,https://rationalwiki.org/wiki/Clustering_illusion
+672,en,rationalwiki.org,http://rationalwiki.org/wiki/Uncertainty_tactic,Erreur mathématique,Résultat invalide,Imprécision,503,dead,https://rationalwiki.org/wiki/Uncertainty_tactic
+679,fr,eyrolles.com,https://www.eyrolles.com/Chapitres/9782708135291/chapA_Grigorieff.pdf,Erreur mathématique,Résultat invalide,Imprécision,404,dead,https://www.eyrolles.com/Chapitres/9782708135291/chapA_Grigorieff.pdf
+687,en,rationalwiki.org,http://rationalwiki.org/wiki/Russell%27s_paradox,Erreur mathématique,Résultat invalide,Erreur de calcul,503,dead,https://rationalwiki.org/wiki/Russell%27s_paradox
+711,en,rationalwiki.org,http://rationalwiki.org/wiki/Spider-Man_fallacy,Erreur de raisonnement,Causalité douteuse,Inversion de causalité,503,dead,https://rationalwiki.org/wiki/Spider-Man_fallacy
+767,en,rationalwiki.org,http://rationalwiki.org/wiki/Substituting_explanation_for_premise,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive,503,dead,https://rationalwiki.org/wiki/Substituting_explanation_for_premise
+769,en,rationalwiki.org,http://rationalwiki.org/wiki/Moral_equivalence,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive,503,dead,https://rationalwiki.org/wiki/Moral_equivalence
+772,en,rationalwiki.org,https://rationalwiki.org/wiki/Gish_Gallop,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive,503,dead,https://rationalwiki.org/wiki/Gish_Gallop
+779,en,rationalwiki.org,http://rationalwiki.org/wiki/Self-refuting_idea,Erreur de raisonnement,Mauvaise déduction,Inconsistance,503,dead,https://rationalwiki.org/wiki/Self-refuting_idea
+811,en,rationalwiki.org,https://rationalwiki.org/wiki/Phantom_distinction,Abus de langage,Définition inexacte,Acception arbitraire,503,dead,https://rationalwiki.org/wiki/Phantom_distinction
+824,en,rationalwiki.org,http://rationalwiki.org/wiki/One-way_hash_argument,Abus de langage,Définition inexacte,Acception arbitraire,503,dead,https://rationalwiki.org/wiki/One-way_hash_argument
+829,en,rationalwiki.org,http://rationalwiki.org/wiki/Circular_reasoning,Abus de langage,Définition inexacte,Définition inconsistante,503,dead,https://rationalwiki.org/wiki/Circular_reasoning
+830,en,rationalwiki.org,http://rationalwiki.org/wiki/Argumentum_ad_dictionarium,Abus de langage,Définition inexacte,Définition inconsistante,503,dead,https://rationalwiki.org/wiki/Argumentum_ad_dictionarium
+851,en,rationalwiki.org,http://rationalwiki.org/wiki/Fallacy_of_accent,Abus de langage,Ambiguïté,Amphibologie,503,dead,https://rationalwiki.org/wiki/Fallacy_of_accent
+871,en,rationalwiki.org,http://rationalwiki.org/wiki/Word_magic,Abus de langage,Ambiguïté,Equivoque,503,dead,https://rationalwiki.org/wiki/Word_magic
+872,en,rationalwiki.org,https://rationalwiki.org/wiki/Mistaking_the_map_for_the_territory,Abus de langage,Ambiguïté,Equivoque,503,dead,https://rationalwiki.org/wiki/Mistaking_the_map_for_the_territory
+879,en,rationalwiki.org,http://rationalwiki.org/wiki/Damning_with_faint_praise,Abus de langage,Ambiguïté,Ambiguïté narrative,503,dead,https://rationalwiki.org/wiki/Damning_with_faint_praise
+891,en,climatechangecommunication.org,https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf,Tricherie,Arranger les faits,Mensonge,404,dead,https://climatecommunication.gmu.edu/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf
+913,en,rationalwiki.org,http://rationalwiki.org/wiki/Canard,Tricherie,Arranger les faits,Mensonge,503,dead,https://rationalwiki.org/wiki/Canard
+928,en,rationalwiki.org,http://rationalwiki.org/wiki/Flying_carpet_fallacy,Tricherie,Arranger les faits,Mensonge,503,dead,https://rationalwiki.org/wiki/Flying_carpet_fallacy
+945,en,rationalwiki.org,http://rationalwiki.org/wiki/Quotemining,Tricherie,Arranger les faits,Fausse attribution,503,dead,https://rationalwiki.org/wiki/Quotemining
+946,fr,cs.oswego.edu,http://www.cs.oswego.edu/~blue/xhx/books/semiotics/glossaryL/section31/main.html,Tricherie,Arranger les faits,Fausse attribution,404,dead,https://www.cs.oswego.edu/~blue/xhx/books/semiotics/glossaryL/section31/main.html
+976,en,climatechangecommunication.org,https://www.climatechangecommunication.org/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf,Tricherie,Changement de cap,Exigence renforcée,404,dead,https://climatecommunication.gmu.edu/wp-content/uploads/2020/11/Cook_2020_deconstructing_denial.pdf
+980,en,rationalwiki.org,http://rationalwiki.org/wiki/Science_was_wrong_before,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/Science_was_wrong_before
+981,en,rationalwiki.org,http://rationalwiki.org/wiki/Media_was_wrong_before,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/Media_was_wrong_before
+982,en,rationalwiki.org,http://rationalwiki.org/wiki/Inverse_stopped_clock,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/Inverse_stopped_clock
+985,en,rationalwiki.org,http://rationalwiki.org/wiki/Sanctioning_the_devil,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/Sanctioning_the_devil
+986,fr,mgtow-france.fr,https://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/,Tricherie,Changement de cap,Exigence renforcée,404,dead,https://mgtow-france.fr/2020/01/sophismes-kafkaiens-les-armes-rhetoriques-de-la-victimisation/
+987,en,rationalwiki.org,http://rationalwiki.org/wiki/One_single_proof,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/One_single_proof
+988,en,rationalwiki.org,http://rationalwiki.org/wiki/On_the_spot_fallacy,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/On_the_spot_fallacy
+991,en,rationalwiki.org,http://rationalwiki.org/wiki/Big_words,Tricherie,Changement de cap,Exigence renforcée,503,dead,https://rationalwiki.org/wiki/Big_words
+999,en,rationalwiki.org,http://rationalwiki.org/wiki/Morton%27s_fork,Tricherie,Changement de cap,Beurre et argent du beurre,503,dead,https://rationalwiki.org/wiki/Morton%27s_fork
+1007,en,rationalwiki.org,"http://rationalwiki.org/wiki/Not_prejudiced,_but_._._.",Tricherie,Changement de cap,Beurre et argent du beurre,503,dead,"https://rationalwiki.org/wiki/Not_prejudiced,_but_._._."
+1008,en,rationalwiki.org,http://rationalwiki.org/wiki/Escape_hatch,Tricherie,Changement de cap,Beurre et argent du beurre,503,dead,https://rationalwiki.org/wiki/Escape_hatch
+1009,en,rationalwiki.org,http://rationalwiki.org/wiki/What%27s_the_harm,Tricherie,Changement de cap,Beurre et argent du beurre,503,dead,https://rationalwiki.org/wiki/What%27s_the_harm
+1018,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_identity,Tricherie,Changement de cap,Exigence relâchée,503,dead,https://rationalwiki.org/wiki/Appeal_to_identity
+1022,en,rationalwiki.org,http://rationalwiki.org/wiki/Fun:Argument_from_oh_bloody_hell_that_was_years_ago,Tricherie,Changement de cap,Exigence relâchée,503,dead,https://rationalwiki.org/wiki/Fun:Argument_from_oh_bloody_hell_that_was_years_ago
+1083,en,rationalwiki.org,https://rationalwiki.org/wiki/Apophenia,Tricherie,Pensée biaisée,Biais naturels,503,dead,https://rationalwiki.org/wiki/Apophenia
+1087,en,rationalwiki.org,http://rationalwiki.org/wiki/Anecdotal_evidence,Tricherie,Pensée biaisée,Biais naturels,503,dead,https://rationalwiki.org/wiki/Anecdotal_evidence
+1185,en,rationalwiki.org,http://rationalwiki.org/wiki/Fallacy_of_opposition#Fallacy_of_prejudice,Tricherie,Pensée biaisée,Biais culturels,503,dead,https://rationalwiki.org/wiki/Fallacy_of_opposition
+1197,en,rationalwiki.org,http://rationalwiki.org/wiki/Galileo_gambit,Tricherie,Pensée biaisée,Biais culturels,503,dead,https://rationalwiki.org/wiki/Galileo_gambit
+1286,en,rationalwiki.org,http://rationalwiki.org/wiki/Wronger_than_wrong,Obstruction,Refus du débat,Relativisme abusif,503,dead,https://rationalwiki.org/wiki/Wronger_than_wrong
+1293,en,rationalwiki.org,http://rationalwiki.org/wiki/Handwave,Obstruction,Refus du débat,Sophisme d'Explication,503,dead,https://rationalwiki.org/wiki/Handwave
+1309,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_censorship,Obstruction,Refus du débat,Preuve par assertion,503,dead,https://rationalwiki.org/wiki/Appeal_to_censorship
+1321,en,rationalwiki.org,http://rationalwiki.org/wiki/Moral_equivalence,Obstruction,Saboter le débat,Evasion,503,dead,https://rationalwiki.org/wiki/Moral_equivalence
+1331,en,rationalwiki.org,https://rationalwiki.org/wiki/Gish_Gallop,Obstruction,Saboter le débat,Evasion,503,dead,https://rationalwiki.org/wiki/Gish_Gallop
+1348,en,rationalwiki.org,http://rationalwiki.org/wiki/On_the_spot_fallacy,Obstruction,Saboter le débat,Complication exagérée,503,dead,https://rationalwiki.org/wiki/On_the_spot_fallacy
+1353,en,rationalwiki.org,http://rationalwiki.org/wiki/JAQing_off,Obstruction,Saboter le débat,Empoisonner le puits,503,dead,https://rationalwiki.org/wiki/JAQing_off
+1356,en,rationalwiki.org,http://rationalwiki.org/wiki/DARVO,Obstruction,Saboter le débat,Empoisonner le puits,503,dead,https://rationalwiki.org/wiki/DARVO
+1363,en,rationalwiki.org,http://rationalwiki.org/wiki/Whataboutism,Obstruction,Ad hominem,Procès en inconsistance,503,dead,https://rationalwiki.org/wiki/Whataboutism
+1370,fr,rationalwiki.org,http://rationalwiki.org/wiki/Pathos_gambit,Obstruction,Ad hominem,Procès en inconsistance,503,dead,https://rationalwiki.org/wiki/Pathos_gambit
+1370,en,rationalwiki.org,http://rationalwiki.org/wiki/Pathos_gambit,Obstruction,Ad hominem,Procès en inconsistance,503,dead,https://rationalwiki.org/wiki/Pathos_gambit
+1374,en,rationalwiki.org,http://rationalwiki.org/wiki/Red-baiting,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Red-baiting
+1375,en,rationalwiki.org,http://rationalwiki.org/wiki/Pink-baiting,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Pink-baiting
+1376,en,rationalwiki.org,http://rationalwiki.org/wiki/Terrorism-baiting,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Terrorism-baiting
+1377,en,rationalwiki.org,http://rationalwiki.org/wiki/Anti-environmentalism,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Anti-environmentalism
+1378,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_identity,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Appeal_to_identity
+1383,en,rationalwiki.org,http://rationalwiki.org/wiki/Shill_gambit,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Shill_gambit
+1384,en,rationalwiki.org,http://rationalwiki.org/wiki/Appeal_to_bias,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Appeal_to_bias
+1387,en,rationalwiki.org,http://rationalwiki.org/wiki/Damning_with_faint_praise,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Damning_with_faint_praise
+1390,en,rationalwiki.org,http://rationalwiki.org/wiki/Argumentum_ad_cellarium,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Argumentum_ad_cellarium
+1391,en,rationalwiki.org,http://rationalwiki.org/wiki/Credentialism,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Credentialism
+1392,en,rationalwiki.org,http://rationalwiki.org/wiki/Fallacy_of_opposition,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Fallacy_of_opposition
+1394,en,rationalwiki.org,http://rationalwiki.org/wiki/Jonanism,Obstruction,Ad hominem,Sophisme génétique,503,dead,https://rationalwiki.org/wiki/Jonanism

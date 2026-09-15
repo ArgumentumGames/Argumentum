@@ -202,8 +202,12 @@ namespace Argumentum.AssetConverter
 
             if (images.Count == 0)
             {
-                Logger.LogWarning($"Skipping PDF generation for {fileName} because there are no images.");
-                return;
+                // #1179: zero images for a document×language couple is a FAILURE, not a skip. The old
+                // silent skip left the previous PDF in place with its stale content, and the CMYK pass
+                // then refreshed its mtime — the #1177 defect (3 French PDFs shipped under en/es/ru names).
+                throw new InvalidOperationException(
+                    $"No images for {fileName}: document×language produced 0 images. "
+                    + "Refusing to skip — if a PDF already exists it is stale and must not be left in place.");
             }
 
             // 1. Read images — JPEG Q=85 for Debug (Edge preview), PNG lossless for Release (printer)

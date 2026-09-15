@@ -12,7 +12,7 @@
 <a class="visually-hidden-focusable" rel="nofollow" href="#to-shine-page-main"><%= LocalizeString("SkipLink.MainContent") %></a>
 <nav id="to-shine-page-navigation" class="navbar navbar-expand-lg bg-white">
   <div class="container">
-    <a class="navbar-brand" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc (change this in the theme-body.ascx)">
+    <a class="navbar-brand" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.Instance.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc (change this in the theme-body.ascx)">
       <img alt="Logo" class="logo img-fluid" src="<%=SkinPath%>images/logo.svg">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
@@ -21,7 +21,7 @@
 
     <div class="offcanvas offcanvas-start border-0" id="offcanvasNavbar" tabindex="-1" >
       <div class="offcanvas-header">
-        <a class="navbar-brand" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc (change this in the theme-body.ascx)">
+        <a class="navbar-brand" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.Instance.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc (change this in the theme-body.ascx)">
           <img alt="Logo" class="logo img-fluid" src="<%=SkinPath%>images/logo.svg">
         </a>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>

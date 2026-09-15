@@ -23,7 +23,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 
         private static HashSet<string> CoveredPks(List<List<Dictionary<string, object>>> groups) =>
             groups.SelectMany(group => group)
-                .Select(record => record["path"].ToString())
+                .Select(record => record["path"].ToString()!)
                 .ToHashSet();
 
         [Fact]

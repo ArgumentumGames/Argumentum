@@ -1,5 +1,7 @@
 # Article d'annonce — Argumentum v0.9.0 (brouillon FR canonique)
 
+> **Note de version (2026-09-13, #999)** — la release annoncée par cet article a été re-scopée **v0.9.0 → v2.0.0** (jsboige 2026-08-06). ⛔ **Ne pas publier tel quel** : le corps annonce encore « v0.9.0 » et doit être repris lors de la rédaction des notes v2.0.0 (#999 DoD 3, relecture jsboige). Inventaire complet : [`999-inventaire-v0.9.0-2026-09-13.md`](../release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 > **Statut : BROUILLON (prep #135).** Article public-facing d'annonce de la release v0.9.0, à publier
 > sur le module **News5** du portail DNN. Version FR canonique (le portail sert le FR en primaire).
 > **La publication est GATED** sur #134 (tag GitHub Release), #132 (déploiement prod) et #131 (DNN
@@ -109,7 +111,7 @@ Détail par format (Tarot, Poker, Print & Play, FallaciesWeb A0/A4/Thumbnails) e
 d'impression : voir le [catalogue des cartes](cards-catalog.fr.md) et le
 [snippet downloads du dossier release](../release-dossier/README.md#5-readme-download-section-snippet-ready-to-paste--issue-134-asks-for-it).
 
-> **64 PDFs au total** = 8 langues × 8 types de documents, parité vérifiée.
+> **80 PDFs au total** = 8 langues × 10 types de documents (incl. Print&Play Standard + Print&Play Light, #648-650), parité vérifiée. Les 80 PDFs convertis en DeviceCMYK + OutputIntent SWOP via le post-process Ghostscript (#632/#652).
 
 #### 💬 Rejoindre la communauté
 
@@ -142,7 +144,7 @@ non latins, en particulier RTL/CJK). À planifier post-tag, non bloquant pour la
 
 ## Sources
 
-- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — chiffres canoniques (8 langues, 64 PDFs, 4 variantes, ~9834 images, OWL 5.3 Mo).
+- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — chiffres canoniques (8 langues, ~~64 PDFs~~ **80 PDFs** *(corrigé 2026-09-13 : les notes elles-mêmes disent déjà « 80 PDFs (10 types × 8 langues) — pas 64 » ; cette citation était en retard sur sa source)*, 4 variantes, ~9834 images, OWL 5.3 Mo).
 - [docs/release-dossier/README.md](../release-dossier/README.md) — dossier de validation + snippet README downloads (§5) + gate checklist (§4).
 - [cards-catalog.fr.md](cards-catalog.fr.md) — formats et dimensions physiques.
 - Issue [#135](https://github.com/ArgumentumGames/Argumentum/issues/135) — cahier des charges ( corps d'origine stale : « 4 langues » ; scope réel = 8).

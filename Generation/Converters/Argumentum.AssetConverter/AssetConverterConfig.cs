@@ -25,8 +25,30 @@ namespace Argumentum.AssetConverter
 {
     public class AssetConverterConfig
     {
+		/// <summary>
+		/// #1132 — conversion statique du marqueur de langue posé sur les conteneurs de 1er niveau
+		/// des gabarits de cartes (`class="… argu-lang-fr"`), réécrit en `argu-lang-&lt;langue&gt;`.
+		/// Elle est répétée dans les 4 groupes de <see cref="LocalizationConfig.CardSetLocalizations"/>
+		/// (Fallacies+Memo, Rules, Virtues, Scenarii) : un groupe ne voit que ses propres conversions.
+		/// Propriété et non champ, pour que chaque groupe reçoive sa propre liste plutôt qu'une
+		/// instance partagée que l'un d'eux pourrait muter au détriment des autres.
+		/// </summary>
+		private static (string sourceText, List<(string Language, string destText)> textConversions) ARGU_LANG_MARKER =>
+			("argu-lang-fr", new List<(string Language, string destText)>(new []{
+				("en", "argu-lang-en"), ("ru", "argu-lang-ru"), ("pt", "argu-lang-pt"), ("es", "argu-lang-es"),
+				("ar", "argu-lang-ar"), ("fa", "argu-lang-fa"), ("zh", "argu-lang-zh")
+			}));
 
-
+		// #1132 — l'attribut lang, porté par les mêmes conteneurs que le marqueur ci-dessus.
+		// Il ne sert pas au CSS livré ici (les règles sont ancrées sur la classe) : il renseigne
+		// le NAVIGATEUR, qui s'en sert pour choisir ses fontes de repli, façonner les écritures
+		// cursives et couper les mots — et les lecteurs d'écran, pour changer de voix. Idée reprise
+		// de la PR #1138 de po-2024, qui l'avait vue avant moi.
+		private static (string sourceText, List<(string Language, string destText)> textConversions) LANG_ATTRIBUTE =>
+			("lang=\"fr\"", new List<(string Language, string destText)>(new []{
+				("en", "lang=\"en\""), ("ru", "lang=\"ru\""), ("pt", "lang=\"pt\""), ("es", "lang=\"es\""),
+				("ar", "lang=\"ar\""), ("fa", "lang=\"fa\""), ("zh", "lang=\"zh\"")
+			}));
 
 		//Debug Switch to configure default values
 	// NOTE: SkipConfigFile=true car les tuples List<(string,string)> ne sont pas correctement sérialisés en JSON
@@ -111,7 +133,13 @@ namespace Argumentum.AssetConverter
 						// Memo + MemoPrintAndPlay share FallaciesTaxonomy dataset and reuse the same {{text_fr}}, {{desc_fr}}, {{Famille}}, {{Sous-Famille}}, {{Soussousfamille}} placeholders.
 						// Without entries here, MEMO pages on non-FR PDFs render FR content (#358).
 						KnownCardSets.Memo,
-						KnownCardSets.MemoPrintAndPlay
+						KnownCardSets.MemoPrintAndPlay,
+						// #1141 — FallaciesPrintAndPlayLight reuses the SAME Face/Back templates as
+						// FallaciesPrintAndPlay (Argumentum_Fallacies_Face_fr.json + _Back_fr.json,
+						// verified token-by-token: {{text_fr}}/{{desc_fr}}/{{example_fr}}/{{Famille}}/
+						// {{Sous-Famille}}/{{Soussousfamille}} + {{tagline_fr}} on the back). Orphan since
+						// #645, its 7 non-FR renders shipped French content silently.
+						KnownCardSets.FallaciesPrintAndPlayLight
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						// Order: most specific first (Soussousfamille > Sous-Famille > Famille) to avoid partial-string collisions.
@@ -146,11 +174,24 @@ namespace Argumentum.AssetConverter
 							("fa", "هنر اشتباه نکردن"),
 							("zh", "永远不会错的艺术")
 						}) ),
+						// #1132 — marqueur de langue porté par les conteneurs de 1er niveau du mustache.
+						// Les gabarits déclarent `class="… argu-lang-fr"` ; cette conversion le réécrit en
+						// argu-lang-<langue>, ce qui active les règles .argu-lang-ar/fa/zh de la feuille
+						// (police unique + letter-spacing neutre pour les écritures cursives).
+						// Pourquoi ici et pas via FrontFieldConversions : celui-ci ne remplace que le motif
+						// `<nom>}}` (FormatFieldToken), donc les JETONS mustache — jamais un attribut class.
+						// C'est précisément l'erreur que corrige #1132 : les sélecteurs .desc_ar/.exemple_ar
+						// livrés attendaient une traduction des noms de classe qui n'a jamais lieu.
+						// Portée nulle sur en/ru/pt/es : aucune règle CSS ne cible leur marqueur.
+						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
 					}),
 				},
 				new CardSetLocalization()
 				{
-					// Rules: template uses {{markdown Text}} and CSV exposes Text/Text_en/Text_ru/Text_pt.
+					// Rules: template uses {{markdown Text}} and the CSV exposes all 8 language columns
+					// (Text + Text_en/_ru/_pt/_es/_ar/_fa/_zh) — mapped below, so the markdown render is
+					// exercised in every language, Rules-only among CardSets (#965 correction of a 4-column note).
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Rules,
@@ -158,6 +199,12 @@ namespace Argumentum.AssetConverter
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("Text", new List<(string Language, string destFieldName)>(new []{("en", "Text_en"), ("ru", "Text_ru"), ("pt", "Text_pt"), ("es", "Text_es"), ("ar", "Text_ar"), ("fa", "Text_fa"), ("zh", "Text_zh") }) ),
+					}),
+					// #1132 — cf ARGU_LANG_MARKER. Rules porte le marqueur sur 4 conteneurs (variantHeader,
+					// texte, colorPalette, pageNumber), en guillemets simples dans ce gabarit.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
 					}),
 				},
 				new CardSetLocalization()
@@ -168,6 +215,12 @@ namespace Argumentum.AssetConverter
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Virtues,
+						// #1141 — VirtuesPrintAndPlayLight reuses the SAME Face template as Virtues
+						// (Argumentum_Virtues_Face_fr.json, verified token-by-token: {{title_fr}}/
+						// {{description_fr}}/{{remark_fr}}/{{family_fr}}/{{subfamily_fr}}/
+						// {{subsubfamily_fr}}) and the FALLACIES back ({{tagline_fr}} — covered by the
+						// BackFieldConversions added below). Orphan since #645.
+						KnownCardSets.VirtuesPrintAndPlayLight,
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("title_fr", new List<(string Language, string destFieldName)>(new []{("en", "title_en"), ("ru", "title_ru"), ("pt", "title_pt"), ("es", "title_es"), ("ar", "title_ar"), ("fa", "title_fa"), ("zh", "title_zh") }) ),
@@ -177,13 +230,33 @@ namespace Argumentum.AssetConverter
 						("subfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subfamily_en"), ("ru", "subfamily_ru"), ("pt", "subfamily_pt"), ("es", "subfamily_es"), ("ar", "subfamily_ar"), ("fa", "subfamily_fa"), ("zh", "subfamily_zh") }) ),
 						("subsubfamily_fr", new List<(string Language, string destFieldName)>(new []{("en", "subsubfamily_en"), ("ru", "subsubfamily_ru"), ("pt", "subsubfamily_pt"), ("es", "subsubfamily_es"), ("ar", "subsubfamily_ar"), ("fa", "subsubfamily_fa"), ("zh", "subsubfamily_zh") }) ),
 					}),
+					// #1141 — the Virtues deck reuses the FALLACIES back (WebBasedGeneratorConfig,
+					// Argumentum_Fallacies_Back_fr.json, mustache {{tagline_fr}}). Without this block
+					// the tagline conversion of #1130 exists only in the Fallacies group, so every
+					// non-FR Virtues back rendered the FRENCH tagline (measured: 3 SHA/8 languages,
+					// fr/en/es/pt/ru byte-identical to the FR back). Copied verbatim from group #1.
+					BackFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
+						("tagline_fr", new List<(string Language, string destFieldName)>(new []{("en", "tagline_en"), ("ru", "tagline_ru"), ("pt", "tagline_pt"), ("es", "tagline_es"), ("ar", "tagline_ar"), ("fa", "tagline_fa"), ("zh", "tagline_zh") }) ),
+					}),
+					// #1132 — cf ARGU_LANG_MARKER.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
+					}),
 				},
 				new CardSetLocalization()
 				{
 					CardSetNames = new List<string>(new []
 					{
 						KnownCardSets.Scenarii,
-						KnownCardSets.ScenariiPrintAndPlay
+						KnownCardSets.ScenariiPrintAndPlay,
+						// #1141 — ScenariiPrintAndPlayFull reuses the SAME Face/Back templates as
+						// ScenariiPrintAndPlay (Argumentum_Scenarii_Face_fr.json + _Back_fr.json,
+						// verified token-by-token: {{catégorie}}/{{titre}}/{{contexte}}/{{enjeu}}/
+						// {{piocheur}}/{{baratineur}}/{{suggestion}} + back {{rowset.[0].catégorie}}
+						// covered by ExceptionPatterns). Orphan since #645: PokerCards_Print&Play_A4
+						// shipped 100% French in 7 non-FR languages.
+						KnownCardSets.ScenariiPrintAndPlayFull
 					}),
 					FrontFieldConversions = new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>(new []{
 						("catégorie", new List<(string Language, string destFieldName)>(new []{("en", "category"), ("ru", "category_ru"), ("pt", "category_pt"), ("es", "category_es"), ("ar", "category_ar"), ("fa", "category_fa"), ("zh", "category_zh") }) ),
@@ -201,7 +274,12 @@ namespace Argumentum.AssetConverter
 					{
 						"{{rowset.[0].catégorie}}.jpg",
 						"{{rowset.[0].catégorie}}.png"
-					})
+					}),
+					// #1132 — cf ARGU_LANG_MARKER.
+					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
+						ARGU_LANG_MARKER,
+						LANG_ATTRIBUTE,
+					}),
 				}
 			}),
 			MindMapLocalization = new List<DocumentLocalization>(new[]
@@ -238,17 +316,20 @@ namespace Argumentum.AssetConverter
 						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
 					}),
 				},
-				// Virtue text fields: FR property names → localized property names (#636 §2).
-				// Wired for En/Ru/Pt/Es (data present in CSV + Virtue entity). Ar/Fa/Zh not yet mapped on the Virtue entity → deferred, render FR.
+				// Virtue text fields: FR property names → localized property names (#636 §2, #665).
+				// Wired for all 8 languages (En/Ru/Pt/Es/Ar/Fa/Zh): data present in CSV (title_/description_*_ar/fa/zh)
+				// and now mapped on the Virtue entity (properties + ClassMap .Optional() bindings, #665).
 				new DocumentLocalization(){
 					TargetProperties = new List<string>(new []
 					{
 						nameof(VirtueMindMapDocumentConfig.TitleExpression),
 						nameof(VirtueMindMapDocumentConfig.DescriptionExpression),
+						nameof(VirtueMindMapDocumentConfig.LinkExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Virtue.TitleFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.TitleEn)), ("ru", nameof(Virtue.TitleRu)), ("pt", nameof(Virtue.TitlePt)), ("es", nameof(Virtue.TitleEs))}) ),
-						(nameof(Virtue.DescriptionFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.DescriptionEn)), ("ru", nameof(Virtue.DescriptionRu)), ("pt", nameof(Virtue.DescriptionPt)), ("es", nameof(Virtue.DescriptionEs))}) ),
+						(nameof(Virtue.TitleFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.TitleEn)), ("ru", nameof(Virtue.TitleRu)), ("pt", nameof(Virtue.TitlePt)), ("es", nameof(Virtue.TitleEs)), ("ar", nameof(Virtue.TitleAr)), ("fa", nameof(Virtue.TitleFa)), ("zh", nameof(Virtue.TitleZh))}) ),
+						(nameof(Virtue.DescriptionFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.DescriptionEn)), ("ru", nameof(Virtue.DescriptionRu)), ("pt", nameof(Virtue.DescriptionPt)), ("es", nameof(Virtue.DescriptionEs)), ("ar", nameof(Virtue.DescriptionAr)), ("fa", nameof(Virtue.DescriptionFa)), ("zh", nameof(Virtue.DescriptionZh))}) ),
+						("LinkFrFallback", new List<(string Language, string destText)>(new []{("en", "LinkEnFallback"), ("ru", "LinkRuFallback"), ("pt", "LinkPtFallback"), ("es", "LinkEsFallback"), ("ar", "LinkArFallback"), ("fa", "LinkFaFallback"), ("zh", "LinkZhFallback") }) ),
 					}),
 				},
 				// Virtue family hierarchy: FR names → localized names.
@@ -261,9 +342,9 @@ namespace Argumentum.AssetConverter
 						nameof(VirtueMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Virtue.SubsubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubsubfamilyEn)), ("ru", nameof(Virtue.SubsubfamilyRu)), ("pt", nameof(Virtue.SubsubfamilyPt)), ("es", nameof(Virtue.SubsubfamilyEs))}) ),
-						(nameof(Virtue.SubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubfamilyEn)), ("ru", nameof(Virtue.SubfamilyRu)), ("pt", nameof(Virtue.SubfamilyPt)), ("es", nameof(Virtue.SubfamilyEs))}) ),
-						(nameof(Virtue.FamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.FamilyEn)), ("ru", nameof(Virtue.FamilyRu)), ("pt", nameof(Virtue.FamilyPt)), ("es", nameof(Virtue.FamilyEs))}) ),
+						(nameof(Virtue.SubsubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubsubfamilyEn)), ("ru", nameof(Virtue.SubsubfamilyRu)), ("pt", nameof(Virtue.SubsubfamilyPt)), ("es", nameof(Virtue.SubsubfamilyEs)), ("ar", nameof(Virtue.SubsubfamilyAr)), ("fa", nameof(Virtue.SubsubfamilyFa)), ("zh", nameof(Virtue.SubsubfamilyZh))}) ),
+						(nameof(Virtue.SubfamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.SubfamilyEn)), ("ru", nameof(Virtue.SubfamilyRu)), ("pt", nameof(Virtue.SubfamilyPt)), ("es", nameof(Virtue.SubfamilyEs)), ("ar", nameof(Virtue.SubfamilyAr)), ("fa", nameof(Virtue.SubfamilyFa)), ("zh", nameof(Virtue.SubfamilyZh))}) ),
+						(nameof(Virtue.FamilyFr), new List<(string Language, string destText)>(new []{("en", nameof(Virtue.FamilyEn)), ("ru", nameof(Virtue.FamilyRu)), ("pt", nameof(Virtue.FamilyPt)), ("es", nameof(Virtue.FamilyEs)), ("ar", nameof(Virtue.FamilyAr)), ("fa", nameof(Virtue.FamilyFa)), ("zh", nameof(Virtue.FamilyZh))}) ),
 					}),
 				},
 				// Document name: _fr. → _en./_ru./_pt.

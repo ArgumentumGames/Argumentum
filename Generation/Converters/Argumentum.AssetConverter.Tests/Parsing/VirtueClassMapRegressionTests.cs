@@ -162,11 +162,13 @@ namespace Argumentum.AssetConverter.Tests.Parsing
 
         /// <summary>
         /// #499 Phase 1 — the 12 relational/AIF columns appended to the Virtues prod CSV map to their
-        /// properties when present. The representative row mirrors prod pk=71 (the "Valid results"
-        /// Virtue, Math-accuracy family): crossLink_Opposes is the semicolon list of prevented Fallacy
-        /// PKs, AIF_skosDirectRef the Walton scheme label, AIF_skosMappingType the FR-prose critical
-        /// question (RFC4180-quoted in prod because it contains a comma). The 9 structural-empty
-        /// columns stay null — a Virtue's only cross-taxon link is "Opposes" its prevented family.
+        /// properties when present. #989 then split the FR-prose critical questions out of
+        /// AIF_skosMappingType into the dedicated AIF_criticalQuestion column (81→82 cols), leaving
+        /// AIF_skosMappingType free for skos:*Match tokens. The representative row mirrors prod
+        /// pk=71 (the "Valid results" Virtue, Math-accuracy family): crossLink_Opposes is the
+        /// semicolon list of prevented Fallacy PKs, AIF_skosDirectRef the Walton scheme label,
+        /// AIF_criticalQuestion the FR-prose critical question (RFC4180-quoted in prod because it
+        /// contains a comma), AIF_skosMappingType a skos token (synthetic — prod is empty).
         /// </summary>
         [Fact]
         public void Virtue_LoadFromContent_Maps499RelationalAndAifColumns()
@@ -174,16 +176,18 @@ namespace Argumentum.AssetConverter.Tests.Parsing
             var newCols =
                 "crossLink_PredatesOn,crossLink_Denounces,crossLink_Leverages,crossLink_Allows," +
                 "crossLink_Opposes,crossLink_Inverts,crossLink_Mirrors,crossLink_IsRelatedTo," +
-                "AIF_skosDirectRef,AIF_skosExceptionRef,AIF_skosOther,AIF_skosMappingType";
-            // Representative pk=71 row: 3 of 12 populated, 9 empty by design. The FR-prose
-            // AIF_skosMappingType is quoted because it contains a comma (RFC4180, as written in prod).
+                "AIF_skosDirectRef,AIF_skosExceptionRef,AIF_skosOther,AIF_criticalQuestion,AIF_skosMappingType";
+            // Representative pk=71 row. The FR-prose AIF_criticalQuestion is quoted because it
+            // contains a comma (RFC4180, as written in prod). AIF_skosMappingType carries a skos
+            // token to pin the post-#989 semantics (prod leaves it empty until SKOS mappings exist).
             var newRow =
                 ",,,," +                         // PredatesOn, Denounces, Leverages, Allows (empty)
                 "681;690" +                      // crossLink_Opposes (prevented Fallacy PKs)
                 ",,,," +                         // Inverts, Mirrors, IsRelatedTo (empty)
                 "Argument from Sign" +           // AIF_skosDirectRef (Walton scheme label)
                 ",,," +                          // AIF_skosExceptionRef, AIF_skosOther (empty)
-                "\"Les résultats sont-ils correctement calculés, reproductibles et cohérents ?\""; // AIF_skosMappingType
+                "\"Les résultats sont-ils correctement calculés, reproductibles et cohérents ?\"" + // AIF_criticalQuestion
+                ",skos:closeMatch";              // AIF_skosMappingType (post-#989: skos tokens only)
 
             var csv = VirtueRequiredHeader + "," + newCols + "\n" + VirtueRequiredRow + "," + newRow + "\n";
 
@@ -193,7 +197,9 @@ namespace Argumentum.AssetConverter.Tests.Parsing
             var v = virtues[0];
             v.CrossLinkOpposes.Should().Be("681;690");
             v.AIFSkosDirectRef.Should().Be("Argument from Sign");
-            v.AIFSkosMappingType.Should().Be("Les résultats sont-ils correctement calculés, reproductibles et cohérents ?");
+            v.AIFCriticalQuestion.Should().Be("Les résultats sont-ils correctement calculés, reproductibles et cohérents ?");
+            v.AIFSkosMappingType.Should().Be("skos:closeMatch",
+                "post-#989 the column is skos:*Match-only (Fallacies semantics); prod Virtues leaves it empty");
             // 9 structural empties — empty string by design (cell present but empty in prod; the 7
             // other relation types are Fallacy↔Fallacy internal semantics, AIF Exception/Other are
             // Fallacy attributes). CsvHelper maps an empty cell to "", not null.
@@ -225,6 +231,7 @@ namespace Argumentum.AssetConverter.Tests.Parsing
             var virtues = Virtue.LoadFromContent(csv);
             virtues.Should().ContainSingle();
             virtues[0].CrossLinkOpposes.Should().BeNull("crossLink_Opposes is Optional and absent → null, not throw");
+            virtues[0].AIFCriticalQuestion.Should().BeNull();
             virtues[0].AIFSkosMappingType.Should().BeNull();
         }
     }

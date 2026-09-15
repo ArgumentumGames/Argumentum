@@ -62,7 +62,7 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         private void CreateFakeImageFile(AssetConverterConfig config, string language, string cardSetName, DocumentConfig docConfig, string imageName)
         {
             var fakeImagePath = ImageHelper.GetImageFileName(config, docConfig, language, cardSetName, imageName);
-            Directory.CreateDirectory(Path.GetDirectoryName(fakeImagePath));
+            Directory.CreateDirectory(Path.GetDirectoryName(fakeImagePath)!);
             // Crée une image PNG valide de 1x1 pixel au lieu d'un fichier vide.
             using (var image = new MagickImage(MagickColors.Transparent, 1, 1))
             {
@@ -144,8 +144,13 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
         }
 
         [Fact]
-        public void GenerateDocumentImages_WhenFileCreationIsSkipped_ShouldStillRun()
+        public void GenerateDocumentImages_WhenImageGenerationThrows_ShouldFailLoud()
         {
+            // #1179: this test previously asserted the OPPOSITE (NotThrow + empty image list) — that
+            // graceful swallow is exactly the #1177 defect chain: hard image-generation failure (e.g.
+            // Magick WriteBlob MAX_PATH) → empty image list → silent PDF skip → stale PDF kept in place
+            // with a fresh CMYK mtime. A couple that cannot produce its images must now FAIL the run,
+            // naming the couple.
             // Arrange
             var docConfig = new CardSetDocumentConfig { DocumentName = "TestDoc", Enabled = true, NoBack = false, CardSets = new List<DocumentCardSet> { new DocumentCardSet { CardSetName = "FailingSet" } } };
             var config = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
@@ -156,25 +161,19 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
             };
 
             var harvest = new CardSetHarvest();
-            // Pour ce test, on veut toujours simuler un échec, donc on garde une URL invalide.
+            // Simule une panne dure de génération d'image (même classe que WriteBlob Failed) :
             harvest.Faces.Images.TryAdd("card1", "http://url-that-would-fail");
 
             var harvestDictionary = new ConcurrentDictionary<(string, string), Func<CardSetHarvest>>();
             harvestDictionary.TryAdd(("FailingSet", "en"), () => harvest);
-            
-            // Act
-            ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>> result = null;
-            Action act = () => result = sut.GenerateDocumentImages(harvestDictionary);
 
-            // Assert
-            act.Should().NotThrow("because the process should handle errors gracefully.");
-            
-            result.Should().NotBeNull();
-            _output.WriteLine($"Result dictionary contains {result.Count} entries.");
-            var imageList = result.First().Value;
-            _output.WriteLine($"The resulting image list for the first entry contains {imageList.Count} item(s).");
-            
-            imageList.Should().BeEmpty();
+            // Act
+            Action act = () => sut.GenerateDocumentImages(harvestDictionary);
+
+            // Assert — le run échoue et NOMME le couple mort
+            act.Should().Throw<InvalidOperationException>()
+                .Which.Message.Should().Contain("TestDoc/en")
+                .And.Contain("1 document×language couple");
         }
 
         public void Dispose()

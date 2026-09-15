@@ -14,15 +14,23 @@ Traduis en persan (farsi) les champs vides `_fa` du jeu de données ci-après. P
 
 # Mapping canonique des familles
 
-- `Arguments vertueux` → `استدلال‌های فضیلت‌مند`
-- `Argument valable` → `استدلال معتبر`
+- `Argument valable` (racine) → `استدلال معتبر`
 - `Argument pertinent` → `استدلال مرتبط`
 - `Présentation intègre` → `ارائه صادقانه`
-- `Exactitude mathématique` → `دقت ریاضی`
-- `Raisonnement valide` → `استنتاج معتبر`
-- `Langage rigoureux` → `زبان دقیق`
+- `Sens quantitatif` → `استدلال کمی`
+- `Inférence maîtrisée` → `تسلط بر استنتاج`
+- `Justesse lexicale` → `دقت واژگانی`
 - `Honnêteté intellectuelle` → `صداقت فکری`
-- `Débat respectueux` → `مناظره محترمانه`
+- `Échange enrichissant` → `تبادل غنی‌ساز`
+
+Noms FR **historiques**, retirés de la taxonomie : s'ils apparaissent dans une source ancienne, traduire vers le libellé **courant** ci-dessus — jamais vers l'ancienne cible.
+- `Arguments vertueux` → `استدلال معتبر`
+- `Exactitude mathématique` → `استدلال کمی`
+- `Rigueur mathématique` → `استدلال کمی`
+- `Raisonnement valide` → `تسلط بر استنتاج`
+- `Langage rigoureux` → `دقت واژگانی`
+- `Langage exact` → `دقت واژگانی`
+- `Débat respectueux` → `تبادل غنی‌ساز`
 
 Pour les sous-familles non listées, traduis la première occurrence puis réutilise mot pour mot.
 

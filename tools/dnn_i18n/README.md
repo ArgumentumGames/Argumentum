@@ -77,3 +77,65 @@ python tools/dnn_i18n/reimport_dnn_ui_strings.py reimport --csv /tmp/prod_extrac
 When jsboige exports the 2sxc App Resources (the DB-only `res.*` values), the FR column can be
 populated, at which point the existing config (#487) can be flipped `Enabled=true` to run gpt-5.5
 across the 7 target languages. This tooling feeds that rail; it doesn't replace it.
+
+---
+
+# #684 Game Rule prose translation — document-tier tooling
+
+A **parallel lane** to the string-tier (#457 above). Where #457 translates short UI labels
+(`ui.*`/`res.*` key→value), #684 translates the **rich-HTML game-rule prose** of the 5 published
+2sxc Game Rule entities (Summary/Material/Installation/Content/Variants/Memo + Title). See the
+manifest [`docs/dnn-localization/684-translation-manifest.md`](../../docs/dnn-localization/684-translation-manifest.md)
+and scope correction [`684-scope-correction.md`](../../docs/dnn-localization/684-scope-correction.md)
+(23 populated prose cells + 5 titles, 161 / +35 translation units).
+
+## Files
+
+- `translate_game_rules.py` — read the 2sxc Game Rule export, translate each populated FR cell to
+  the 7 target langs via gpt-5.5 (HTML preserved), write a re-import-ready JSON. Resume-capable
+  (the output doubles as a cache; re-running skips done cell-langs).
+- `verify_game_rule_translations.py` — DoD gate: cell parity, no-fabrication, HTML-tag preservation,
+  script correctness (#216-style FR-contamination guard).
+
+## Quick start
+
+```bash
+# Export is delivered on-box (Method B read-only) and synced to shared-state; pass its path:
+EXPORT="$ROOSYNC_SHARED_PATH/attachments/DNN-Argumentum-export-2026-07-07/12-game-rule-content-items.json"
+
+# Smoke (1 cell x 7 langs) before a full pass:
+python tools/dnn_i18n/translate_game_rules.py --export "$EXPORT" \
+    --out docs/dnn-localization/684-translations.json --smoke
+
+# Full pass (28 cells x 7 langs = 196 cell-langs; ~10-15 min of gpt-5.5 API):
+python tools/dnn_i18n/translate_game_rules.py --export "$EXPORT" \
+    --out docs/dnn-localization/684-translations.json --all
+
+# Verify the artifact (exit 0 = all DoD gates pass):
+python tools/dnn_i18n/verify_game_rule_translations.py \
+    --artifact docs/dnn-localization/684-translations.json --export "$EXPORT"
+```
+
+## gpt-5.5 API specifics (reasoning model)
+
+- OpenAI Chat Completions; **no `temperature`** (HTTP 400); `max_completion_tokens` (not
+  `max_tokens`), sized to field length; `reasoning_effort=low`.
+- OpenAI direct key (`.keys/openai-key.txt`, `sk-proj-`) primary; OpenRouter (`openai/gpt-5.5`,
+  `.keys/openrouter-key.txt`) automatic fallback on 401/429. See memory
+  `reference-gpt55-reasoning-model-api`, `reference-openrouter-gpt55-path`.
+
+## DoD gates (enforced by the verifier)
+
+1. **Cell parity** — every populated FR cell has all 7 target langs present.
+2. **Empty stays empty** — the 7 structurally-empty prose cells are ABSENT (no fabrication).
+3. **HTML preserved** — the tag set of each translation == the FR source tag set.
+4. **Script correctness** — Cyrillic (ru), CJK (zh), Arabic-script (ar/fa), Latin (en/pt/es); no
+   FR-contaminated cells (#216-style).
+
+## Gate boundaries (HARD)
+
+- ❌ **Zero prod write** — neither script touches the live DNN DB, portal, or 2sxc entities. The
+  artifact is a **re-import-ready staging file**; the actual 2sxc re-import is jsboige-gated (DB
+  write). See `684-translation-run-report.md` for the re-import mapping.
+- ❌ Does not modify `Cards/Rules/` CSV (game-content is a separate lane).
+- ❌ Does not declare a QA verdict — that's ai-01.

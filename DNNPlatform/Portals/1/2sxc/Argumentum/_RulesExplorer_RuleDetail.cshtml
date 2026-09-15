@@ -69,6 +69,7 @@
         @Html.Raw(Loc(ruleEntity, "Installation"))
     </div>
     <div class="col-md-12  position-relative">
+        <h2>@Resources.RuleContent</h2>
         @Html.Raw(Loc(ruleEntity, "Content"))
         @if (!string.IsNullOrEmpty(Loc(ruleEntity, "Variants")))
         {

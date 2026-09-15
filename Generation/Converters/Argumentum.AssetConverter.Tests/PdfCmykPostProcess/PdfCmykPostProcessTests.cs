@@ -34,8 +34,14 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
         [Fact]
         public void GetEnabled_is_release_only_by_default()
         {
+            // Force the build mode explicitly instead of relying on the compiled #if DEBUG flag
+            // (AssetConverterConfig.isInDebugMode). The CI Test matrix runs BOTH Debug and Release
+            // configurations (#909), so a test that depends on the assembly being Debug-built would
+            // pass in one matrix leg and fail in the other. Forcing ForceDebugParams/ForceReleaseParams
+            // makes the assertion deterministic under both — the contract under test is the DEFAULT
+            // pair (EnabledDebug=false, EnabledRelease=true), not which way the test host compiled.
             var config = new PdfCmykPostProcessConfig();
-            var debugConfig = new AssetConverterConfig(); // isInDebugMode=true under Debug tests
+            var debugConfig = new AssetConverterConfig { ForceDebugParams = true };
             var releaseConfig = new AssetConverterConfig { ForceReleaseParams = true };
 
             // Default pair: EnabledDebug=false, EnabledRelease=true → OFF in Debug, ON in Release.
@@ -52,7 +58,12 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
             offEverywhere.GetEnabled(releaseConfig).Should().BeFalse("EnabledRelease=false overrides build mode");
 
             var onInDebug = new PdfCmykPostProcessConfig { EnabledDebug = true };
-            var debugConfig = new AssetConverterConfig();
+            // Force Debug build mode explicitly (see GetEnabled_is_release_only_by_default above):
+            // a bare `new AssetConverterConfig()` resolves to Release under a Release-built assembly,
+            // so GetEnabled returns EnabledRelease (default true) and the assertion passes vacuously —
+            // never exercising the EnabledDebug path the test name promises. ForceDebugParams makes
+            // the assertion actually assert on the Debug/EnabledDebug contract under both matrix legs.
+            var debugConfig = new AssetConverterConfig { ForceDebugParams = true };
             onInDebug.GetEnabled(debugConfig).Should().BeTrue("EnabledDebug=true enables it in Debug");
         }
 
@@ -85,6 +96,8 @@ namespace Argumentum.AssetConverter.Tests.PdfCmykPostProcess
             args.Should().Contain("-dColorImageFilter=/FlateEncode");
             args.Should().Contain("-dGrayImageFilter=/FlateEncode");
             args.Should().Contain("-dDownsampleColorImages=false");
+            args.Should().Contain("-dDownsampleGrayImages=false");
+            args.Should().Contain("-dDownsampleMonoImages=false");
             args.Should().Contain("--permit-file-read=\"C:\\icc\\USWebCoatedSWOP.icc\"");
             args.Should().Contain("-o \"C:\\out\\doc-cmyk.pdf\"");
             args.Should().Contain("\"C:\\tmp\\PDFX_def.ps\"");

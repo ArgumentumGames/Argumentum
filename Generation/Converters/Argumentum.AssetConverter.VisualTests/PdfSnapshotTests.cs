@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter.Tests;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -11,14 +12,14 @@ namespace Argumentum.AssetConverter.VisualTests
     /// <summary>
     /// Stage 2 of #212: PDF structural regression via Verify snapshot comparison.
     /// Captures page dimensions, page count, text length, and letter count.
-    /// Tests pass silently if Target/ doesn't exist (CI cold-start).
+    /// Fails LOUD if Target/ doesn't exist (#957 residu ii) — was a silent faux-vert (pass-on-nothing).
     /// </summary>
     public class PdfSnapshotTests : IDisposable
     {
         private readonly ITestOutputHelper _output;
-        private static readonly string TargetRoot = Path.GetFullPath(Path.Combine(
-            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target"));
+        private static readonly string TargetRoot = Path.Combine(
+            TestRepoRoot.Find(),
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target");
 
         public PdfSnapshotTests(ITestOutputHelper output)
         {
@@ -30,14 +31,15 @@ namespace Argumentum.AssetConverter.VisualTests
         private static string GetPdfPath(string lang, string filename) =>
             Path.Combine(TargetRoot, lang, "Documents", "density-0", filename);
 
-        private bool EnsureTarget()
+        private void EnsureTarget()
         {
+            // #957 residu ii: cold-start faux-vert. A missing Target/ must FAIL LOUD, not pass silently —
+            // these tests verify generated PDFs and assert nothing without them. Assert.Fail is a subtraction
+            // (removes the silent `return;`), not a counterweight: no [Fact(Skip)] (static, would kill the
+            // tests where they work), no continue-on-error. VisualTests is NOT run by CI (build.yml targets
+            // only Argumentum.AssetConverter.Tests.csproj), so this fails locally, not in the release gate.
             if (!Directory.Exists(TargetRoot))
-            {
-                _output.WriteLine("Skipped: Target/ not found — run pipeline first");
-                return false;
-            }
-            return true;
+                Assert.Fail("PdfSnapshotTests require a generated Target/ — run the pipeline first (bin/Debug/net9.0-windows/Target not found). This test verified nothing.");
         }
 
         // --- FallaciesWeb A4 (all languages) ---
@@ -49,10 +51,10 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public async Task FallaciesWeb_A4_FirstPage_Structure(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
 
             var pdfPath = GetPdfPath(lang, $"Argumentum_Fallacies_Web_A4_{lang}.pdf");
-            if (!File.Exists(pdfPath)) { _output.WriteLine($"PDF not found: {pdfPath}"); return; }
+            if (!File.Exists(pdfPath)) Assert.Fail($"Expected PDF not found: {pdfPath} — Target/ exists but this file is missing (test verified nothing; check harvest/pipeline output).");
 
             using var doc = PdfDocument.Open(pdfPath);
             var page = doc.GetPage(1);
@@ -82,10 +84,10 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public async Task TarotCards_FirstPage_Structure(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
 
             var pdfPath = GetPdfPath(lang, $"Argumentum_TarotCards_{lang}.pdf");
-            if (!File.Exists(pdfPath)) { _output.WriteLine($"PDF not found: {pdfPath}"); return; }
+            if (!File.Exists(pdfPath)) Assert.Fail($"Expected PDF not found: {pdfPath} — Target/ exists but this file is missing (test verified nothing; check harvest/pipeline output).");
 
             using var doc = PdfDocument.Open(pdfPath);
             var page = doc.GetPage(1);
@@ -113,10 +115,10 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("pt")]
         public async Task PokerCards_FirstPage_Structure(string lang)
         {
-            if (!EnsureTarget()) return;
+            EnsureTarget();
 
             var pdfPath = GetPdfPath(lang, $"Argumentum_PokerCards_{lang}.pdf");
-            if (!File.Exists(pdfPath)) { _output.WriteLine($"PDF not found: {pdfPath}"); return; }
+            if (!File.Exists(pdfPath)) Assert.Fail($"Expected PDF not found: {pdfPath} — Target/ exists but this file is missing (test verified nothing; check harvest/pipeline output).");
 
             using var doc = PdfDocument.Open(pdfPath);
             var page = doc.GetPage(1);

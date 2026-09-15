@@ -1,0 +1,246 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
+using FluentAssertions;
+using Xunit;
+
+namespace Argumentum.AssetConverter.Tests.MindmapGeneration
+{
+    /// <summary>
+    /// #1181 organ: the transverse cross-links of the corpus (crossLink_* columns, 8 verbs) must be
+    /// VISIBLE on the shipped Fallacies mindmaps. Before the fix, all 41 shipped SVGs carried
+    /// 0 cross-link connector while the corpus holds over a thousand declared links — the Arrowlink
+    /// block was unreachable (enum vocabulary disjoint from the corpus, CrossLinks never assigned).
+    /// Measured signature: 0 stroked path in any verb color (Batik exports carry no marker-end at
+    /// all — see CountArrows).
+    ///
+    /// The expectation is DERIVED from the taxonomy CSV at test time with the resolver's own
+    /// semantics (split on ';', trim, drop unresolvable, drop self-links) — never a hardcoded
+    /// number, and never a mere "> 0": a decay from ~1230 arrows to 3 must fail. Cross-links are
+    /// keyed by taxonomy PATH, which is language-independent, so EVERY Fallacies map — each
+    /// language, each variant (original / links / content / cards) — must carry EXACTLY the corpus
+    /// count. The Virtues maps carry none (the Virtues taxonomy has no crossLink columns) and are
+    /// deliberately not asserted here.
+    ///
+    /// #1238 §2 — the same invariant guards the 8 INLINE WRAPPERS (Fallacies_{lang}.html). The
+    /// wrapper inlines the content.svg verbatim (MindMapHtmlWrapper.FormatWrapper does a raw
+    /// [SVGCONTENT] substitution), so a wrapper regenerated before a cross-link or palette change
+    /// silently freezes the stale map — and still renders "a" mindmap, which is why the staleness
+    /// is invisible without this organ (#725 class: the early-skip in MindMapHtmlWrapper
+    /// regeneration). The _ext wrappers are deliberately NOT asserted: they reference the SVG
+    /// through &lt;object data=...&gt;, so they carry 0 inline stroke by construction — asserting
+    /// them would be red forever, and skipping them is not a hole (the referenced SVG is itself
+    /// asserted above).
+    /// </summary>
+    public class CrossLinkArrowCountTests
+    {
+        private static readonly string[] Languages = { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+
+        private static readonly (string Verb, bool Symmetric)[] CrossLinkVerbs =
+        {
+            ("predatesOn", false),
+            ("denounces", false),
+            ("leverages", false),
+            ("allows", false),
+            ("opposes", true),
+            ("inverts", true),
+            ("mirrors", true),
+            ("isRelatedTo", true),
+        };
+
+        [Fact]
+        public void ShippedFallaciesMindmaps_CarryExactlyTheCorpusCrossLinkCount()
+        {
+            var expected = CountResolvableCorpusLinks();
+            expected.Should().BeGreaterThan(0,
+                "the taxonomy must declare at least one resolvable crossLink_* target, otherwise this organ " +
+                "degenerates to 0 == 0 (the #1046 no-op guard)");
+
+            foreach (var svgPath in EnumerateFallaciesSvgs())
+            {
+                var arrowCount = CountArrows(svgPath);
+                arrowCount.Should().Be(expected,
+                    "map '{0}' must draw one arrow per resolvable corpus cross-link. Cross-links are keyed by " +
+                    "taxonomy path (language-independent), so every Fallacies map carries the same count. " +
+                    "Corpus says {1}. A LOWER count means arrows were lost (generation or post-processing " +
+                    "regression — the pre-#1181 tree carried 0); a HIGHER count means duplicate or spurious " +
+                    "arrows (e.g. symmetric verbs double-drawn).",
+                    Path.GetFileName(svgPath), expected);
+            }
+        }
+
+        /// <summary>
+        /// #1238 §2 — the 8 inline wrappers must carry the corpus count, exactly like the SVGs they
+        /// embed. RED AT OPENING BY DESIGN on a stale wrapper set (master's wrappers predate the
+        /// cross-link pass: 0 verb-colored strokes against 1255 corpus links); the red falls when
+        /// the consolidated FreeMind pass rewrites the wrappers. Do NOT weaken the assertion to
+        /// make it green — that would turn the organ against its object.
+        /// </summary>
+        [Fact]
+        public void ShippedInlineWrappers_CarryExactlyTheCorpusCrossLinkCount()
+        {
+            var expected = CountResolvableCorpusLinks();
+            expected.Should().BeGreaterThan(0,
+                "the taxonomy must declare at least one resolvable crossLink_* target, otherwise this organ " +
+                "degenerates to 0 == 0 (the #1046 no-op guard)");
+
+            var mindmapsRoot = Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies", "Mindmaps");
+            foreach (var language in Languages)
+            {
+                var wrapperPath = Path.Combine(mindmapsRoot, language, $"Fallacies_{language}.html");
+                File.Exists(wrapperPath).Should().BeTrue(
+                    $"the inline wrapper 'Fallacies_{language}.html' must exist — a missing file must fail the " +
+                    "organ, not slip past it (same discipline as the SVG inventory)");
+                var arrowCount = CountArrows(wrapperPath);
+                arrowCount.Should().Be(expected,
+                    "the inline wrapper '{0}' embeds the content.svg verbatim (raw [SVGCONTENT] substitution in " +
+                    "MindMapHtmlWrapper.FormatWrapper), so it must carry exactly the corpus cross-link count " +
+                    "like the SVG it embeds — cross-links are keyed by taxonomy path (language-independent). " +
+                    "Corpus says {1}. A LOWER count means the wrapper froze a stale map (the #725 early-skip " +
+                    "class: the page still renders, wrong or empty of cross-links — invisible without this " +
+                    "organ); a HIGHER count means duplicate or spurious arrows. NOTE: the count is taken over " +
+                    "the EIGHT verb colors only — the wrapper's tree edges carry family colors (~3,300 bare " +
+                    "stroke=\"rgb( occurrences on fr at the time of writing), which a bare 'stroke=' needle " +
+                    "would conflate with real cross-link arrows.",
+                    Path.GetFileName(wrapperPath), expected);
+            }
+        }
+
+        private static IEnumerable<string> EnumerateFallaciesSvgs()
+        {
+            var mindmapsRoot = Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies", "Mindmaps");
+            foreach (var language in Languages)
+            {
+                foreach (var pattern in new[]
+                         {
+                             $"Fallacies_{language}.svg",
+                             $"Fallacies_{language}.links.svg",
+                             $"Fallacies_{language}.content.svg",
+                         })
+                {
+                    var path = Path.Combine(mindmapsRoot, language, pattern);
+                    File.Exists(path).Should().BeTrue(
+                        $"the shipped mindmap '{pattern}' must exist for language '{language}' — a missing file " +
+                        "must fail the organ, not slip past it");
+                    yield return path;
+                }
+            }
+
+            // FR-only cards variant (FallacyMindMapCreatorConfig: FR by design, no Translations)
+            var cardsSvg = Path.Combine(mindmapsRoot, "fr", "Argumentum_Fallacies_MindMap_cards_fr.svg");
+            File.Exists(cardsSvg).Should().BeTrue("the FR cards mindmap is part of the shipped inventory (41 SVGs)");
+            yield return cardsSvg;
+        }
+
+        /// <summary>
+        /// Counts the cross-link connectors FreeMind/Batik draws in its SVG export, one stroked
+        /// path per arrowlink, colored by verb. Works on any artifact embedding that markup
+        /// verbatim — the .svg exports and the inline wrappers (#1238). FreeMind exports via the Batik Graphics2D
+        /// generator, which never emits semantic marker-end references — it flattens every shape
+        /// (including arrowheads) into generic paths carrying a stroke color. The verb palette
+        /// (FallacyMindMapDocumentConfig.CrossLinkColors) is therefore the only stable signature:
+        /// each color must also stay countable, i.e. distinct from every other stroke color the
+        /// export can emit (tree edges carry the bright family colors; Batik's default is black —
+        /// which is exactly why Denounces cannot be #000000, it would merge with the default).
+        /// The rgb() strings are derived from GetCrossLinkColor so the organ tracks the palette
+        /// table automatically.
+        /// #1248 dual palette: the links.svg study variant renders the cross-links in the
+        /// high-contrast study register (GetStudyCrossLinkColor) instead of the subtle default —
+        /// every other variant (original .svg, content.svg, cards) carries the default register.
+        /// </summary>
+        private static int CountArrows(string svgPath)
+        {
+            var studyPalette = Path.GetFileName(svgPath).EndsWith(".links.svg", StringComparison.Ordinal);
+            var svg = File.ReadAllText(svgPath);
+            var count = 0;
+            foreach (var (verb, _) in CrossLinkVerbs)
+            {
+                var pascal = char.ToUpperInvariant(verb[0]) + verb.Substring(1);
+                var crossLinkEnum = System.Enum.Parse<Argumentum.AssetConverter.Mindmapper.CrossLink>(pascal);
+                var hex = studyPalette
+                    ? Argumentum.AssetConverter.Mindmapper.FallacyMindMapDocumentConfig.GetStudyCrossLinkColor(crossLinkEnum)
+                    : Argumentum.AssetConverter.Mindmapper.FallacyMindMapDocumentConfig.GetCrossLinkColor(crossLinkEnum);
+                var rgb = string.Join(",",
+                    Convert.ToInt32(hex.Substring(1, 2), 16),
+                    Convert.ToInt32(hex.Substring(3, 2), 16),
+                    Convert.ToInt32(hex.Substring(5, 2), 16));
+                var needle = $"stroke=\"rgb({rgb})\"";
+                var index = 0;
+                while ((index = svg.IndexOf(needle, index, StringComparison.Ordinal)) >= 0)
+                {
+                    count++;
+                    index += needle.Length;
+                }
+            }
+            return count;
+        }
+
+        /// <summary>
+        /// Recomputes from the taxonomy CSV exactly what the mindmap resolver will draw, with the
+        /// resolver's own semantics (split on ';', trim, drop unresolvable, drop self-links).
+        /// Mirrors the OWL corpus counter of OwlE2EGenerationValidationTests (#1182).
+        /// </summary>
+        private static int CountResolvableCorpusLinks()
+        {
+            var csvPath = Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies",
+                "Argumentum Fallacies - Taxonomy.csv");
+            File.Exists(csvPath).Should().BeTrue(
+                "the taxonomy CSV is the source both the mindmaps and this expectation are derived from");
+
+            using var reader = new StreamReader(csvPath, new System.Text.UTF8Encoding(true));
+            using var csv = new CsvReader(reader,
+                new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true });
+            csv.Read();
+            csv.ReadHeader();
+            var header = csv.HeaderRecord ?? Array.Empty<string>();
+
+            var rows = new List<string[]>();
+            while (csv.Read())
+            {
+                var row = new string[csv.Parser.Count];
+                for (var i = 0; i < csv.Parser.Count; i++)
+                {
+                    row[i] = csv.GetField(i) ?? string.Empty;
+                }
+                rows.Add(row);
+            }
+
+            int Col(string name)
+            {
+                var i = Array.FindIndex(header, h => string.Equals(h, name, StringComparison.Ordinal));
+                return i < 0
+                    ? throw new InvalidOperationException(
+                        $"Column '{name}' absent from the taxonomy CSV — renaming a column without the ClassMap " +
+                        "breaks the pipeline silently; this test refuses to guess")
+                    : i;
+            }
+
+            var pathCol = Col("path");
+            var knownPaths = new HashSet<string>(
+                rows.Where(r => pathCol < r.Length).Select(r => r[pathCol].Trim()),
+                StringComparer.Ordinal);
+
+            var resolvable = 0;
+            foreach (var (verb, _) in CrossLinkVerbs)
+            {
+                var col = Col("crossLink_" + char.ToUpperInvariant(verb[0]) + verb.Substring(1));
+                foreach (var row in rows)
+                {
+                    if (col >= row.Length || string.IsNullOrWhiteSpace(row[col]))
+                    {
+                        continue;
+                    }
+                    var self = pathCol < row.Length ? row[pathCol].Trim() : string.Empty;
+                    resolvable += row[col].Split(';').Select(x => x.Trim()).Where(x => x.Length > 0)
+                        .Count(target => knownPaths.Contains(target)
+                                         && !string.Equals(target, self, StringComparison.Ordinal));
+                }
+            }
+            return resolvable;
+        }
+    }
+}

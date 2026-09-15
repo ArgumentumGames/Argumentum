@@ -127,6 +127,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# MCP server config (root) — may contain OAuth client_id / client_secret in clear
+# (e.g. google-workspace MCP). User-local, never commit. See PR #1074.
+.mcp.json
+
 # Fichiers de configuration spécifiques à l'utilisateur
 *.user
 *.userosscache
@@ -134,11 +138,23 @@ yarn-error.log*
 
 # Exclusions spécifiques au projet Argumentum (reprises de l'ancien .gitignore)
 /DNNPlatform/App_Data/Search
+# #972 / #1049: DNNPlatform/ is a LIVE webroot (préprod dnn.argumentum.myia.io, IIS id:52)
+# checked out inside a git repo that workers branch in every 2h. web.config ships deployed at
+# 10.3.2 (local override ~97 KB) but was tracked at the 9.11.1 baseline (~79 KB) — a
+# tracked-and-divergent file that any `git reset/checkout/pull` silently overwrote, killing the
+# site (incident 2026-08-10 01:13:18). Untracked: the live file is now local-only;
+# web.config.example is the sanitized committed template.
+/DNNPlatform/web.config
 /Cartes/Generation/Converters/Argumentum.AssetConverter/Data
 /Cartes/Generation/Converters/Mindmapper/Data
 
-# Bin DNN (exception pour inclure ce dossier)
-!/DNNPlatform/bin/
+# #1244(a): DNNPlatform/bin/ est DÉ-TRACKÉ — les assemblages servis vivent dans le webroot sur
+# disque et sont préservés hors dépôt (offload du stash + sandbox ; cf.
+# docs/quality/1244a-dnn-bin-untrack-provenance.md). Les ré-inclusions `!` de #972 sont
+# inversées : les 195 fichiers trackés (179 dll, 9 config, 3 targets, 3 json, 1 xml) sont sortis
+# de l'index dans le même commit. Restauration depuis l'historique git :
+#   git checkout <commit antérieur à #1244a> -- DNNPlatform/bin/
+/DNNPlatform/bin/
 
 # Fichiers de configuration locaux
 /Chatgpt-plugin/azure-function/local.settings.json
@@ -256,3 +272,23 @@ DNNPlatform/Install/Module/*.zip
 # Large generated SVGs (regenerable via MindMapper pipeline)
 # Note: small source SVGs in Cards/ are kept
 Generation/Converters/Argumentum.AssetConverter/Mindmapper/*.svg
+
+# #141 AIF full-scale candidate sidecar — regenerable derived data
+# (python docs/taxonomy/141-aif-fullscale.py --finalize regenerates from checkpoint,
+#  no API calls). 1.3 MB; per 141-aif-fullscale-report.md it is a tmp/regenerable
+#  artifact, not source. Referenced by 7 committed docs/scripts that document the
+#  regen path. Aligns #415 (reduce .git weight) — keep local, never commit.
+docs/taxonomy/141-aif-candidates-fullscale.json
+
+# Python bytecode / cache — never commit (standard hygiene). The repo ships Python
+# tooling in tools/, docs/taxonomy/, docs/investigations/scripts/; __pycache__ is
+# machine-specific and churns. Catches the untracked docs/taxonomy/__pycache__/ etc.
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Root tmp/ scratch dir — local regenerable working files (AIF #141/#498 datasets,
+#  run logs, audit samples). ~1.3 MB; regenerable from committed scripts (e.g.
+#  docs/taxonomy/141-aif-fullscale.py, tools/498-*.py). Machine-specific scratch,
+#  never source — root-anchored (/tmp/) so a legit nested tmp/ elsewhere is unaffected.
+/tmp/

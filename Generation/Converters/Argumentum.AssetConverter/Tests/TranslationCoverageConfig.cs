@@ -82,8 +82,8 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute le système de rapport de couverture des traductions
         /// </summary>
         /// <param name="config">La configuration de l'application</param>
-        /// <returns>Une tâche représentant l'opération asynchrone</returns>
-        public async Task Apply(AssetConverterConfig config)
+        /// <returns>True si la génération et les exports ont réussi, sinon false.</returns>
+        public async Task<bool> Apply(AssetConverterConfig config)
         {
             Logger.LogTitle("Système de rapport de couverture des traductions");
 
@@ -100,20 +100,33 @@ namespace Argumentum.AssetConverter.Tests
             }
 
             // Exécuter la génération du rapport de couverture
+            // #1046 Lot B (Surface1 #11): every bool was discarded and the final success line
+            // logged unconditionally — a failed generation or export still printed "avec succès".
             var coverageReport = new TranslationCoverageReport(config);
-            await coverageReport.GenerateTranslationCoverageReport();
+            bool success = await coverageReport.GenerateTranslationCoverageReport();
 
-            // Exporter les rapports
-            await coverageReport.ExportReportToHtml(CoverageReportPath);
-            await coverageReport.ExportReportToCsv(CsvReportPath);
-
-            // Suivre la progression dans le temps
-            if (GenerateProgressCharts)
+            if (success)
             {
-                await coverageReport.TrackProgressOverTime(CoverageHistoryDirectory, MaxHistoryReports);
+                // Exporter les rapports
+                success &= await coverageReport.ExportReportToHtml(CoverageReportPath);
+                success &= await coverageReport.ExportReportToCsv(CsvReportPath);
+
+                // Suivre la progression dans le temps
+                if (GenerateProgressCharts)
+                {
+                    success &= await coverageReport.TrackProgressOverTime(CoverageHistoryDirectory, MaxHistoryReports);
+                }
             }
 
-            Logger.LogSuccess("Rapport de couverture des traductions généré avec succès");
+            if (success)
+            {
+                Logger.LogSuccess("Rapport de couverture des traductions généré avec succès");
+            }
+            else
+            {
+                Logger.LogProblem("Rapport de couverture des traductions terminé AVEC ÉCHEC");
+            }
+            return success;
         }
     }
 }

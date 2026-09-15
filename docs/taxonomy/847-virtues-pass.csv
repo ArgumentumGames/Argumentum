@@ -1,0 +1,93 @@
+# 847 release re-run 2026-08-28 — see 847-virtues-two-layer.md. MEASURE not verdict.
+level,node,n_leaves,undercut,undermine,rebut,entropy_norm_a,homogeneity_ratio,native_scheme_n,fail_loud_rate_b,a_high,b_high,decision_rule_tag,n_gate
+d1,Argument pertinent,33,33,0,0,0.0,1.0,33,0.0,False,False,coherent,supported
+d1,Honnêteté intellectuelle,27,22,4,1,0.521,0.815,27,0.0,True,False,A-candidate,supported
+d1,Inférence maîtrisée,55,55,0,0,0.0,1.0,55,0.0,False,False,coherent,supported
+d1,Justesse lexicale,18,15,3,0,0.65,0.833,18,0.0,True,False,A-candidate,supported
+d1,Présentation intègre,25,18,5,2,0.692,0.72,25,0.0,True,False,A-candidate,supported
+d1,Sens quantitatif,20,19,1,0,0.286,0.95,20,0.0,False,False,coherent,supported
+d1,Échange enrichissant,44,44,0,0,0.0,1.0,44,0.0,False,False,coherent,supported
+d2,Argument fondé,10,10,0,0,0.0,1.0,10,0.0,False,False,coherent,supported
+d2,Clarté des enjeux,8,7,0,1,0.544,0.875,8,0.0,True,False,A-candidate,supported
+d2,Clarté linguistique,6,6,0,0,0.0,1.0,6,0.0,False,False,coherent,indicative
+d2,Communication authentique,4,2,2,0,1.0,0.5,4,0.0,True,False,A-candidate,thin
+d2,Comparaisons justifiées,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d2,Construction rigoureuse des énoncés,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d2,Contribution positive,19,19,0,0,0.0,1.0,19,0.0,False,False,coherent,supported
+d2,Déductions correctes,46,46,0,0,0.0,1.0,46,0.0,False,False,coherent,supported
+d2,Définitions recevables,7,4,3,0,0.985,0.571,7,0.0,True,False,A-candidate,indicative
+d2,Effort d’objectivité,12,12,0,0,0.0,1.0,12,0.0,False,False,coherent,supported
+d2,Equilibre émotionnel,4,2,0,2,1.0,0.5,4,0.0,True,False,A-candidate,thin
+d2,Fidélité aux faits,6,2,4,0,0.918,0.667,6,0.0,True,False,A-candidate,indicative
+d2,Généralisations justifiées,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d2,Identification précise des causalités,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d2,Interprétation adéquate des données,7,7,0,0,0.0,1.0,7,0.0,False,False,coherent,indicative
+d2,Interprétation juste,6,6,0,0,0.0,1.0,6,0.0,False,False,coherent,indicative
+d2,Participation efficace,8,8,0,0,0.0,1.0,8,0.0,False,False,coherent,supported
+d2,Prémisses fiables,16,16,0,0,0.0,1.0,16,0.0,False,False,coherent,supported
+d2,Respect de la personne,16,16,0,0,0.0,1.0,16,0.0,False,False,coherent,supported
+d2,Rhétorique acceptable,16,14,2,0,0.544,0.875,16,0.0,True,False,A-candidate,supported
+d2,Résultats valides,8,7,1,0,0.544,0.875,8,0.0,True,False,A-candidate,supported
+d3,Acceptions claires,3,2,1,0,0.918,0.667,3,0.0,True,False,A-candidate,thin
+d3,Adhérence au sujet,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Analogie appropriée,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Analyse sur support fini,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Argument réel,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Association pertinente,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Attribution juste,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Calculs exacts,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d3,Causalité correctement orientée,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Comparaison adequate,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Complexité adaptée,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Concentration sur l’essentiel,2,2,0,0,0.0,1.0,2,0.0,False,False,coherent,thin
+d3,Connexion émotionnelle neutre,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Conscience interculturelle,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Considération équilibrée,3,2,1,0,0.918,0.667,3,0.0,True,False,A-candidate,thin
+d3,Corrélations avérées,2,2,0,0,0.0,1.0,2,0.0,False,False,coherent,thin
+d3,Courtoisie dans la divergence,7,7,0,0,0.0,1.0,7,0.0,False,False,coherent,indicative
+d3,Disponibilité au dialogue,13,13,0,0,0.0,1.0,13,0.0,False,False,coherent,supported
+d3,Définition cohérente,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Définition conforme,2,0,2,0,0.0,1.0,2,0.0,False,False,coherent,thin
+d3,Démonstration cohérente,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Echantillonnage représentatif,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Enoncés propositionnels bien formés,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Enoncés quantifiés bien formés,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Evaluation raisonnable de la position adverse,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d3,Exclusion de causes alternatives,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Exigence réaliste,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Explications suffisantes,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d3,Expressions univoques,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Humour de bon goût,5,5,0,0,0.0,1.0,5,0.0,False,False,coherent,indicative
+d3,Indépendance des prémisses de la conclusion,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Interprétation non partisane,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Mesures précises,2,1,1,0,1.0,0.5,2,0.0,True,False,A-candidate,thin
+d3,Mise à distance des idéologies,5,5,0,0,0.0,1.0,5,0.0,False,False,coherent,indicative
+d3,Narration claire,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Neutralité bienveillante,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Objectif non complaisant,3,2,0,1,0.918,0.667,3,0.0,True,False,A-candidate,thin
+d3,Opérations valides,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Pas de chantage par les conséquences,1,0,0,1,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Positionnement clair,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Posture appropriée,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Preuves tangibles,5,5,0,0,0.0,1.0,5,0.0,False,False,coherent,indicative
+d3,Principe de charité,2,2,0,0,0.0,1.0,2,0.0,False,False,coherent,thin
+d3,Prise en compte des exceptions,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Probabilités maîtrisées,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Raisonnement concluant,41,41,0,0,0.0,1.0,41,0.0,False,False,coherent,supported
+d3,Raisonnement jaloné,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Raisonnement non orienté,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Reconnaissance d’une réalité objective,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Représentation parcimonieuse,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Respect de l’origine des idées,4,4,0,0,0.0,1.0,4,0.0,False,False,coherent,thin
+d3,Rhétorique éloquente,7,6,1,0,0.592,0.857,7,0.0,True,False,A-candidate,indicative
+d3,Réticence dramatique,1,0,0,1,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Sources crédibles,12,12,0,0,0.0,1.0,12,0.0,False,False,coherent,supported
+d3,Sources impartiales,2,2,0,0,0.0,1.0,2,0.0,False,False,coherent,thin
+d3,Sources indépendantes,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Style adapté,3,2,1,0,0.918,0.667,3,0.0,True,False,A-candidate,thin
+d3,Syntaxe claire,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Transfert licite,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Transparence,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Universalisme,3,3,0,0,0.0,1.0,3,0.0,False,False,coherent,thin
+d3,Utilisation adéquate des modalités,1,1,0,0,0.0,1.0,1,0.0,False,False,coherent,thin
+d3,Vérité des faits,1,0,1,0,0.0,1.0,1,0.0,False,False,coherent,thin

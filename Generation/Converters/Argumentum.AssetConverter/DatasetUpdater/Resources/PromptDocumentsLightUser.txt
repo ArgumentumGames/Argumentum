@@ -27,7 +27,7 @@ path	text_fr
 2.3	Manipulation mentale
 2.3.1	Conditionnement
 2.3.2	Jeu de pouvoir
-2.3.3	Influence non verbale
+2.3.3	Communication non verbale
 3	Erreur mathématique
 3.1	Généralisation abusive
 3.1.1	Échantillon biaisé

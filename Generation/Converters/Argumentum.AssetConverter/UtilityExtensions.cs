@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,9 +20,32 @@ namespace Argumentum.AssetConverter
 	public static class UtilityExtensions
 	{
 
+		// #1296: explicit Timeout — the .NET default (100 s) is what turned a minutes-long WAN blip into
+		// 56 dead CardSets on 2026-09-06; combined with the bounded retry below, a transient outage is
+		// retried through instead of costing the set.
+		// NB: these must be declared BEFORE _sharedHttpClient — static field initializers run in
+		// declaration order, and the HttpClient reads HttpDownloadTimeout at construction.
+		internal static readonly TimeSpan HttpDownloadTimeout = TimeSpan.FromSeconds(30);
+
+		// Backoff between download attempts: 4 attempts x 30 s timeout + 35 s backoff = 155 s budget,
+		// which absorbs a 2-minute network cut (#1296 DoD). Readonly — tests pass shorter delays
+		// explicitly instead of mutating this (process-wide static mutation from tests, #1192).
+		internal static readonly TimeSpan[] HttpRetryDelays = { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(20) };
+
+		// Upper bound on waiting for the per-host download slot; without it, one stuck fetch
+		// serialized the whole queue behind it and froze the run (#1296).
+		internal static readonly TimeSpan HttpSemaphoreAcquireTimeout = TimeSpan.FromMinutes(10);
+
 		// Shared HttpClient (was `new HttpClient()` per call — #29 H6). Thread-safe for concurrent calls;
 		// avoids socket exhaustion / GC pressure on long runs with repeated downloads. Output-neutral.
-		private static readonly HttpClient _sharedHttpClient = new HttpClient();
+		private static readonly HttpClient _sharedHttpClient = CreateSharedHttpClient();
+
+		private static HttpClient CreateSharedHttpClient()
+		{
+			var client = new HttpClient();
+			client.Timeout = HttpDownloadTimeout;
+			return client;
+		}
 
 
 		public static void ExportDataTable(this CsvWriter writer, DataTable dt)
@@ -203,7 +227,13 @@ namespace Argumentum.AssetConverter
 
 		private static readonly ConcurrentDictionary<string, SemaphoreSlim> _semaphores = new();
 
-		public static async Task<DocumentPayload> GetDocumentPayload(this string docPath)
+		private static bool IsTransientStatus(HttpStatusCode statusCode)
+		{
+			var code = (int)statusCode;
+			return code == 408 || code == 429 || code >= 500;
+		}
+
+		public static async Task<DocumentPayload> GetDocumentPayload(this string docPath, TimeSpan[] retryDelays = null)
 		{
 			byte[] content;
 			string fileName;
@@ -213,26 +243,63 @@ namespace Argumentum.AssetConverter
 				var urlFile = new Uri(docPath);
 
 				SemaphoreSlim semaphore = _semaphores.GetOrAdd(urlFile.Host, _ => new SemaphoreSlim(1, 1));
-				await semaphore.WaitAsync();
+				if (!await semaphore.WaitAsync(HttpSemaphoreAcquireTimeout))
+				{
+					Logger.LogWarning($"Failed to download document {docPath}: timed out after {HttpSemaphoreAcquireTimeout.TotalMinutes:F0} min " +
+					                  $"waiting for the per-host download slot of '{urlFile.Host}' (another download of the same host is stuck)");
+					return null;
+				}
 				try
 				{
-					// Download the file from the specified URL
+					// Download the file from the specified URL, retrying transient failures (#1296)
 					var client = _sharedHttpClient;
+					retryDelays ??= HttpRetryDelays;
 
-					var response = await client.GetAsync(urlFile);
-					if (response.IsSuccessStatusCode)
+					for (var attempt = 1; ; attempt++)
 					{
-						fileName = response.Content.Headers.ContentDisposition?.FileName ??
-						           System.IO.Path.GetFileName(urlFile.LocalPath);
-						mimeType = response.Content.Headers.ContentType?.MediaType;
-						content = await response.Content.ReadAsByteArrayAsync();
+						var retryIndex = attempt - 1;
+						try
+						{
+							using var response = await client.GetAsync(urlFile);
+							if (response.IsSuccessStatusCode)
+							{
+								fileName = response.Content.Headers.ContentDisposition?.FileName ??
+								           System.IO.Path.GetFileName(urlFile.LocalPath);
+								mimeType = response.Content.Headers.ContentType?.MediaType;
+								content = await response.Content.ReadAsByteArrayAsync();
 
-						Logger.Log($"Downloaded Document {docPath}");
-					}
-					else
-					{
-						Logger.LogWarning($"Failed to download document {docPath}. Status code: {response.StatusCode}");
-						return null;
+								Logger.Log(attempt > 1
+									? $"Downloaded Document {docPath} (attempt {attempt})"
+									: $"Downloaded Document {docPath}");
+								break;
+							}
+
+							if (retryIndex < retryDelays.Length && IsTransientStatus(response.StatusCode))
+							{
+								Logger.LogWarning($"HTTP {(int)response.StatusCode} downloading document {docPath} — attempt {attempt}/{retryDelays.Length + 1}, " +
+								                  $"retrying in {retryDelays[retryIndex].TotalSeconds:F0} s");
+								await Task.Delay(retryDelays[retryIndex]);
+								continue;
+							}
+
+							Logger.LogWarning($"Failed to download document {docPath}. Status code: {response.StatusCode}");
+							return null;
+						}
+						catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException)
+						{
+							// TaskCanceledException here is the HttpClient timeout firing
+							// (no CancellationToken is ever passed to GetAsync in this code path).
+							if (retryIndex >= retryDelays.Length)
+							{
+								Logger.LogWarning($"Network failure downloading document {docPath} after {attempt} attempts " +
+								                  $"({ex.GetType().Name}: {ex.Message})");
+								return null;
+							}
+
+							Logger.LogWarning($"Network failure downloading document {docPath} ({ex.GetType().Name}: {ex.Message}) — " +
+							                  $"attempt {attempt}/{retryDelays.Length + 1}, retrying in {retryDelays[retryIndex].TotalSeconds:F0} s");
+							await Task.Delay(retryDelays[retryIndex]);
+						}
 					}
 				}
 				finally

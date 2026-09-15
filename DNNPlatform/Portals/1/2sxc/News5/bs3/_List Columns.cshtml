@@ -1,7 +1,7 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using ToSic.Sxc.Search;
-@using ToSic.Eav.Run;
+@using ToSic.Sxc.Context;
 
 @Html.Partial("shared/_Assets.cshtml")
 
@@ -11,7 +11,7 @@
   var viewConfiguration = Content;
   var articles = AsList(Data["News"]);
   var categories = AsList(App.Data["Category"]);
-  var categoryQueryString = Request.QueryString["category"];
+  var categoryQueryString = CmsContext.Page.Parameters["category"];
   var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
   var pages = AsList(Data["Paging"]).FirstOrDefault();
 }
@@ -46,7 +46,7 @@
   /**
   * Prevent duplicated search results
   */
-  public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
+  public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IModule moduleInfo, DateTime beginDate) {
     searchInfos.Clear();
   }
 }

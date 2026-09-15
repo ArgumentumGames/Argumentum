@@ -14,15 +14,23 @@ Ta tâche consiste à traduire en **anglais** les champs source (suffixe `_fr`) 
 2. **Cohérence taxonomique :** Les noms de familles doivent rester cohérents entre entrées — si "argumentPertinent" a été traduit "relevantArgument" dans une entrée, réutilise cette traduction pour toutes les entrées de cette famille.
 
 **Mapping de familles canoniques :** Les noms de familles doivent rester rigoureusement cohérents entre toutes les entrées de cette famille. Utilise les traductions suivantes (issues du template visuel et de la taxonomie) :
-- `Arguments vertueux` (racine) → `Virtuous arguments`
-- `Argument valable` → `Valid argument`
+- `Argument valable` (racine) → `Valid argument`
 - `Argument pertinent` → `Relevant argument`
 - `Présentation intègre` → `Honest presentation`
-- `Exactitude mathématique` → `Mathematical accuracy`
-- `Raisonnement valide` → `Valid reasoning`
-- `Langage rigoureux` → `Rigorous language`
+- `Sens quantitatif` → `Quantitative reasoning`
+- `Inférence maîtrisée` → `Inferential mastery`
+- `Justesse lexicale` → `Lexical precision`
 - `Honnêteté intellectuelle` → `Intellectual honesty`
-- `Débat respectueux` → `Respectful debate`
+- `Échange enrichissant` → `Enriching exchange`
+
+Noms FR **historiques**, retirés de la taxonomie : s'ils apparaissent dans une source ancienne, traduire vers le libellé **courant** ci-dessus — jamais vers l'ancienne cible.
+- `Arguments vertueux` → `Valid argument`
+- `Exactitude mathématique` → `Quantitative reasoning`
+- `Rigueur mathématique` → `Quantitative reasoning`
+- `Raisonnement valide` → `Inferential mastery`
+- `Langage rigoureux` → `Lexical precision`
+- `Langage exact` → `Lexical precision`
+- `Débat respectueux` → `Enriching exchange`
 
 Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rigueur : une fois traduit pour la première entrée d'une sous-famille, réutilise mot pour mot pour toutes les autres entrées de cette sous-famille.
 

@@ -48,6 +48,7 @@ namespace Argumentum.AssetConverter.Tests.GSheetSync
             sb.AppendLine();
 
             int totalProtected = 0;
+            var auditErrors = new List<string>();
 
             foreach (var (name, spreadsheetId, gid) in Spreadsheets)
             {
@@ -138,6 +139,9 @@ namespace Argumentum.AssetConverter.Tests.GSheetSync
                 }
                 catch (Exception ex)
                 {
+                    // #1046 MED #10: count instead of swallow — without this the 4 audits
+                    // could all fail and the test would still pass green.
+                    auditErrors.Add($"{name}: {ex.Message}");
                     sb.AppendLine($"**ERROR**: {ex.Message}");
                     sb.AppendLine();
                     _output.WriteLine($"  ERROR: {ex.Message}");
@@ -162,6 +166,10 @@ namespace Argumentum.AssetConverter.Tests.GSheetSync
 
             _output.WriteLine($"Report written to: {reportPath}");
             _output.WriteLine($"Total protected cells: {totalProtected}");
+
+            // #1046 MED #10 (assertion half): a manual run that fails to audit any
+            // spreadsheet must be red, not a green report full of **ERROR** lines.
+            Assert.Empty(auditErrors);
         }
     }
 }

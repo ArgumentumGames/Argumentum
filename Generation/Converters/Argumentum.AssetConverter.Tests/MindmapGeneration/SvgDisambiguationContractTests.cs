@@ -34,7 +34,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         private static readonly XNamespace Svg = "http://www.w3.org/2000/svg";
 
         // Minimal <g> with one <text> child — the shape CollectPossibleSvgNodes scans for.
-        private static XElement G(string text, string id = null)
+        private static XElement G(string text, string? id = null)
         {
             var g = new XElement(Svg + "g");
             if (id != null) g.SetAttributeValue("id", id);

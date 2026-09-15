@@ -1,5 +1,7 @@
 # Announcement article — Argumentum v0.9.0 (EN mirror draft)
 
+> **Version note (2026-09-13, #999)** — the release announced by this article has been re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06). ⛔ **Do not publish as-is**: the body still says "v0.9.0" and must be reworked alongside the v2.0.0 release notes (#999 DoD 3, jsboige-reviewed). Full inventory: [`999-inventaire-v0.9.0-2026-09-13.md`](../release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+
 > **Status: DRAFT (#135 prep).** Public-facing announcement article for the v0.9.0 release, to be
 > published on the DNN portal **News5** module. **English mirror** of the FR canonical
 > ([news-article-v0.9.0.fr.md](news-article-v0.9.0.fr.md)). The DNN portal serves FR as primary; EN
@@ -107,7 +109,7 @@ Per-format detail (Tarot, Poker, Print & Play, FallaciesWeb A0/A4/Thumbnails) an
 instructions: see the [card catalog](cards-catalog.en.md) and the
 [release dossier downloads snippet](../release-dossier/README.md#5-readme-download-section-snippet-ready-to-paste--issue-134-asks-for-it).
 
-> **64 PDFs in total** = 8 languages × 8 document types, parity verified.
+> **80 PDFs in total** = 8 languages × 10 document types (incl. Print&Play Standard + Print&Play Light, #648-650), parity verified. All 80 converted to DeviceCMYK + SWOP OutputIntent via the Ghostscript post-process (#632/#652).
 
 #### 💬 Join the community
 
@@ -140,7 +142,7 @@ scripts, especially RTL/CJK). Planned post-tag, non-blocking for FR+EN publicati
 
 ## Sources
 
-- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — canonical figures (8 languages, 64 PDFs, 4 variants, ~9834 images, 5.3 MB OWL).
+- [RELEASE-NOTES-v0.9.0.md](../../RELEASE-NOTES-v0.9.0.md) — canonical figures (8 languages, ~~64 PDFs~~ **80 PDFs** *(corrected 2026-09-13: the notes themselves already say "80 PDFs (10 types × 8 languages) — not 64"; this citation lagged behind its source)*, 4 variants, ~9834 images, 5.3 MB OWL).
 - [docs/release-dossier/README.md](../release-dossier/README.md) — validation dossier + README downloads snippet (§5) + gate checklist (§4).
 - [cards-catalog.en.md](cards-catalog.en.md) — formats and physical dimensions.
 - Issue [#135](https://github.com/ArgumentumGames/Argumentum/issues/135) — brief (original body stale: "4 languages"; live scope = 8).

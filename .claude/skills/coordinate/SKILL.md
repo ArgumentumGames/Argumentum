@@ -1,6 +1,6 @@
 ---
 name: coordinate
-description: Reprend le rôle de coordinateur Argumentum (ai-01) — lit memory + dashboard + inbox + état GitHub, merge ce qui est mergeable, dispatche en deep-queue aux 2 workers (po-2023 DNN/régén, po-2024 backlog) avec tâches idle de secours, poste le dashboard, ré-arme le cron. Distinct de pipeline-recovery (entrée de session worker/exécution).
+description: Reprend le rôle de coordinateur Argumentum (ai-01) — lit memory + dashboard + inbox + état GitHub, merge ce qui est mergeable, provisionne des pools multi-cycles aux 2 workers (po-2023 DNN/régén, po-2024 backlog), poste le dashboard, ré-arme le cron et termine le tour quand aucune frontière fraîche ne justifie une nouvelle action. Distinct de pipeline-recovery (entrée de session worker/exécution).
 ---
 
 # Skill : Coordinate — Hub de coordination multi-agents Argumentum
@@ -17,7 +17,7 @@ Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster
 |---------|------|------|
 | `myia-ai-01` | **Coordinateur** | merge, dispatch deep-queue, structuration issues/Epics, **verdict QA visuelle** (Playwright+vision), aiguillage root-cause, conclusion de cycle |
 | `myia-po-2023` | Worker | **driver DNN** (#131/#132/#457…) + **régénérations lourdes** du pipeline + présente le dossier de validation release à jsboige |
-| `myia-po-2024` | Worker | **backlog** : polish traduction (gpt-5.5, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
+| `myia-po-2024` | Worker | **backlog** : polish traduction (`gpt-5.6-sol`, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
 
 Adressage : toujours `machine-id:workspace-id` (ex `myia-po-2023:Argumentum`, `myia-po-2024:Argumentum`).
 
@@ -38,13 +38,37 @@ Repo GitHub : `ArgumentumGames/Argumentum`. Le compte `gh` actif sur ai-01 = **`
    roosync_messages(action: "inbox", status: "unread", limit: 10)
    ```
    → ACKs et notifications des workers (si timeout, retry × 2 puis skip — bug intermittent connu).
-4. **État GitHub** :
+4. **État GitHub** — ⚠️ **toujours un `--limit` explicite et large** : les défauts CLI (`gh pr list` = 30, `gh issue list` = 30) tronquent **silencieusement**, et le dépôt porte en permanence ~46 PRs dependabot gelées (`DNNPlatform/Portals/**`, cf #942/#910) qui **saturent la première page**. Sans `--limit`, le scan rend « 0 PR non-dependabot » alors qu'il y en a.
    ```bash
-   gh pr list --state open --json number,title,author,headRefName,statusCheckRollup,mergeStateStatus
-   gh issue list --state open --limit 40 --json number,title,labels
+   # PRs : exclure dependabot DANS la requête, pas après
+   gh pr list --state open --limit 200 \
+     --json number,title,author,headRefName,statusCheckRollup,mergeStateStatus \
+     --jq '.[]|select(.author.login!="app/dependabot")'
+   gh pr list --state open --limit 200 --json number --jq 'length'   # total, pour vérifier la non-troncature
+
+   # Issues : le tri est created-desc ⇒ un --limit trop court coupe les PLUS ANCIENNES,
+   # c'est-à-dire précisément #131/#133/#134/#135/#136 (release + go-live) et #458.
+   gh issue list --state open --limit 300 --json number,title,labels
+
    git fetch origin && git log --oneline -5
    ```
+   **Contrôle de non-troncature** : si `length` est exactement égal au `--limit`, la liste est probablement coupée — relance avec un `--limit` plus grand avant de conclure quoi que ce soit sur une absence.
 5. **Roadmap durable** : `gh issue view 458` (issue de tracking coordination — tracks, owners, décisions jsboige enregistrées). Elle **survit à la condensation du dashboard** ; mets-la à jour quand la structure évolue.
+
+## Phase 1bis — Triage des demandes humaines GitHub (AVANT toute autre lecture)
+
+Les commentaires d'issues sont redevenus un **canal vivant** (jsboige, 2026-08-26 : *« On a commencé à mettre des commentaires dans les issues, il faudra en tenir compte dans les prochains crons »*). Ne **jamais** relire le backlog pour les trouver — un cycle complet de lecture coûte des dizaines de milliers de tokens pour ~2 demandes/mois.
+
+```bash
+scripts/triage/human-requests.sh              # 3 filets, ~1 appel API
+scripts/triage/human-requests.sh --self-test  # si ça échoue, l'organe est aveugle — le dire
+```
+
+Puis classer chaque prise **M** (mesure) / **F** (fix) / **D** (décision) / **V** (verdict) et dispatcher M+F aux workers **avec citation verbatim**, le worker répondant lui-même sur GitHub. ai-01 ne rédige plus que D et V.
+
+⚠️ `author.login` **ne discrimine pas** humain/agent : les workers poussent sous le token partagé `jsboige`. Et **Adeline n'a pas de compte** — ses demandes passent par jsboige.
+
+📖 Politique complète, mesures et angles morts : [`triage-github.md`](triage-github.md).
 
 ## Phase 2 — Lire AVANT d'agir (règle HARD, aucune exception)
 
@@ -71,7 +95,12 @@ Avant tout merge / comment / dispatch / review :
 
 **Critères (TOUS vrais)** :
 
-- [ ] PR créé par `myia-po-2023` ou `myia-po-2024` (`gh pr view N --json author`)
+- [ ] **Provenance worker établie — ⛔ PAS via `author`.** Les deux workers poussent avec le **token partagé `jsboige`** : `author.login` vaut `jsboige` sur *toutes* les PRs du cluster, donc un critère « auteur = `myia-po-2023` » est **structurellement toujours faux** et rejetterait toute PR mergeable. La provenance se lit dans le **corps de la PR** (signature `po-2023` / `po-2024`) et se recoupe avec le **dispatch correspondant** sur le dashboard :
+      ```bash
+      gh pr view N --json body,headRefName --jq '.body' | grep -oiE 'po-20(23|24)' | head -1
+      ```
+      Seul `app/dependabot` s'exclut par `author` (c'est une app, pas le token partagé).
+      Si le corps **ne porte pas** de signature — le cas mesuré sur #1338 le 12/09 — le critère n'est **pas** coché : la provenance s'établit par **recoupement**, et se consigne comme tel. Deux recoupements valent preuve ensemble : le **post dashboard de la lane** nommant la PR, **et** un **artefact que seule cette machine peut produire** (arbre gaté local, chemin de worktree, version de lib câblée). ⚠️ Ne jamais écrire « lu dans le corps » quand le grep est revenu vide : un critère coché sur une mesure absente est pire qu'un critère non coché. Et traiter la **cause** — c'est le **gabarit de dispatch** qui doit exiger la signature, pas la PR qui doit être devinée.
 - [ ] CI GREEN (`statusCheckRollup` : build + tests pass — Argumentum vise 155+/0/5)
 - [ ] Aucun reviewer `CHANGES_REQUESTED` non-adressé (reviews ET comments inline)
 - [ ] Diff sans secrets : `gh pr diff N | grep -iE "(api.?key|token|secret|password|BEGIN.*PRIVATE|sk-[a-zA-Z0-9])"`
@@ -105,33 +134,86 @@ git log --oneline -3
 ```
 Note le hash de tête (`$NEW_MASTER`) pour le dispatch. Si des tests doivent re-tourner après un merge structurant : `dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj"` (jamais `npm test`).
 
-## Phase 5 — Dispatcher en deep-queue (mandate « avancer sans moi »)
+## Phase 5 — Provisionner les pools multi-cycles (mandat « avancer sans moi »)
 
-**Principe** : ne pas hoarder. Le cron est lent (6h, week-end autonome) → chaque worker doit avoir **assez de travail pour ne jamais staller avant ton retour**. Dispatch = **deep-queue** (primaire + secondaire + tertiaire) **+ tâche idle de secours**.
+**Principe** : ne pas hoarder. Chaque worker possède un **pool global multi-cycle**, pas une file P0 linéaire. Provisionne 8–12 grains indépendants et exécutables — au moins deux cycles de travail — plus un registre séparé des candidats bloqués. Le pool remplace `primaire + secondaire + tertiaire + idle` : son ordre guide la pioche, mais un élément indisponible ne bloque jamais les suivants.
 
-Vérifie chaque lane :
-```bash
-gh pr list --author "po-2023" --state open
-gh pr list --author "po-2024" --state open
+**Blocage événementiel** : représenter chaque blocage par `(candidat, événement exact de reprise)`, exclure temporairement le candidat de la pioche, puis prendre le grain READY suivant. Une PR rouge, une re-review attendue, une tête déjà jugée ou une décision owner manquante ne doit pas être re-sondée tant que l'événement nommé n'est pas arrivé. **Le temps qui passe sans événement nommé n'est pas un événement.**
+
+**Multi-grains (règle owner du 2026-09-10, en vigueur)** : une PR ouverte ne met **pas** le worker en attente du merge coordinateur. Chaque session worker traite **tous les grains READY indépendants** qu'elle peut terminer sans feedback : branche fraîche depuis `origin/master` + **une PR autonome par grain**, jamais de branche empilée sur une PR en vol. Arrêt uniquement sur : vraie décision owner/coordinateur, collision de fichiers avec une PR en vol, gate explicite (tag, QA visuelle, UAC/IIS, séquencement régén) ou épuisement démontré des grains READY. Les gates de merge (Phase 3), UAC et verdict QA visuelle **restent inchangées** — l'autonomie porte sur l'enchaînement des grains, pas sur les portes. Le débit doit être limité par les dépendances réelles, pas par la cadence de merge du coordinateur.
+
+**Responsabilité du paquet de preuve** : le worker porte l'instrumentation, le contrôle inverse, la mutation falsifiante, la correction complète, la CI et le paquet de revue. Quand une contre-review croisée est utile, **po-2024 prépare le paquet final des PR po-2023 et po-2023 celui des PR po-2024**, sans corriger la PR de l'autre. Ai-01 conserve les arbitrages owner, le merge final, la QA visuelle et les frontières de sécurité ; il spot-checke les claims falsifiables au lieu de reconstruire l'analyse complète.
+
+Vérifie chaque lane. ⛔ **Ne mesure PAS la liveness d'une lane avec `gh pr list --author "po-20XX"`** : le token GitHub est partagé, ce filtre rend **toujours `0`**, donc « worker sans PR » y est un artefact permanent — et re-dispatcher là-dessus **double-démarre** une campagne (coûteuse en crédits sur les lanes traduction). La liveness se mesure **là où le travail atterrit**, c'est-à-dire sur le dashboard (cf [[feedback_explicit_dashboard_comm]]) :
+
 ```
-Si un worker a 0 PR ouverte ou a vidé sa queue → re-dispatcher immédiatement.
+roosync_dashboard(action: "list")     # qui a posté, où, quand — y compris les lanes sœurs
+roosync_dashboard(action: "read", type: "workspace", section: "all")
+```
+```bash
+# recoupement git, par signature de corps (pas par --author) :
+gh pr list --state open --limit 200 --json number,title,body,headRefName \
+  --jq '.[]|select(.body|test("po-2024";"i"))|"#\(.number) \(.title)"'
+```
+
+Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboard récent, ni dispatch en cours non-ACKé**. Si un dispatch est en vol et non ACKé → **ping**, jamais re-dispatch. Et l'absence de post ≠ mort : certaines lanes ont une cadence cron longue (po-2023 lane IIS = 12 h, cf [[feedback_po2023_iis_cron_12h]]).
 
 ### Tasking par worker
 
 - **po-2023** : DNN (Epic #131/#132/#457…), régénérations lourdes du pipeline, dossier de validation release pour jsboige. Travail compute-intensive et visuel-lourd.
-- **po-2024** : backlog — polish traduction (gpt-5.5 **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
+- **po-2024** : backlog — polish traduction (`gpt-5.6-sol` **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
 - **Sérialisation forcée** : si deux tâches éditent les mêmes fichiers (ex CSV trad), dispatcher en séquentiel. `git log -- <fichier>` pour repérer les collisions avant un dispatch parallèle.
 
-### Envoi via roosync_messages (deep-queue + idle)
+### Où poser le dispatch — le dashboard/l'issue PORTE, le DM NOTIFIE
+
+⛔ **Un DM `roosync_messages` seul ne constitue pas un dispatch.** Il n'est consommé que si la lane ouvre son inbox — ce que son protocole d'ouverture de session **ne garantit pas**. Le dashboard, lui, est lu à chaque ouverture par construction (la Phase 1 l'impose à tous les rôles).
+
+Incident fondateur 2026-09-11 : le dispatch #1294 — **seul verrou restant de la régénération** — a été confié à un DM (`0mp331`) puis à un ping (`xwwzmb`). Aucun des deux relevé. 2 h 35 après un GO owner **nommant explicitement l'option**, la lane rapportait encore « attente GO owner nommant l'option », et son rapport énumérait ce qu'elle avait lu : dashboard, 6 issues, docs, CI — **aucun DM**.
+
+⚠️ Piège de diagnostic à ne pas répéter : j'en ai d'abord conclu « canal DM mort », à partir de deux faits **tous deux exacts** (dispatch non ACKé + worker déclarant attendre). Le fait qui réfute était dans mon propre inbox — un ACK de cette même lane le matin même. Le canal marchait. **Deux mesures vraies ne valident pas l'histoire qui les relie** : chercher le fait qui réfuterait avant de graver une cause.
+
+**Placement, par ordre de durabilité :**
+
+| Canal | Rôle | Pourquoi |
+|---|---|---|
+| **Issue GitHub** | porte l'ordre qui doit tenir **plusieurs cycles** | survit à la condensation du dashboard ; c'est déjà là que les workers Argumentum livrent |
+| **Dashboard** `[TASK]` + mentions | porte l'ordre du cycle | lu à chaque ouverture de session, par construction |
+| **DM** `roosync_messages` | **notifie** | urgence, pièce jointe, pointeur vers les deux ci-dessus — jamais **seul** porteur d'un ordre |
+
+Le remède n'est pas d'abandonner le DM (ce serait le pendule), ni d'ajouter une cérémonie d'accusé de réception : c'est de **poser l'ordre là où il sera lu**, et de laisser au DM le rôle qu'il remplit bien.
+
+### Gabarit pool multi-cycle — l'issue porte, le dashboard résume, le DM pointe
+
+Publie le pool durable sur #458 ou l'issue de tracking appropriée ; ne recopie pas son contenu intégral dans trois canaux.
+
+```markdown
+## Lane pool — `myia-po-XXXX:Argumentum`
+
+### Pool exécutable — plusieurs cycles, une PR autonome par grain
+1. **#NNN — objet.** Base/instrument/DoD mesurable ; limites explicites.
+2. **#NNN — objet.** …
+[… 8–12 grains indépendants, au moins deux cycles …]
+
+### Candidats bloqués — exclus jusqu'à l'événement nommé
+- **#NNN** — événement de reprise : nouvelle tête / décision owner nommée / merge préalable / fenêtre réservée.
+
+### Paquet de preuve obligatoire
+Body signé worker ; tête/base/merge-state ; surface HARD complète ; diff borné ; CI sur la tête ; instrument + contrôle inverse + mutation falsifiante ; claims qualifiés ; section « n'établit pas » ; commit + PR avant `[DONE]`.
+
+### Gardes
+Ai-01 garde merge, arbitrage owner et verdict QA visuelle. Rappeler les gates UAC/webroot/régénération/publication pertinentes à cette lane.
+```
+
+Puis notifier sans dupliquer :
 
 ```
 roosync_messages(
   action: "send",
   to: "myia-po-XXXX:Argumentum",
-  subject: "[DISPATCH] <lane> — bref titre",
+  subject: "[DISPATCH] pool multi-cycle <lane>",
   priority: "HIGH",
   tags: ["TASK"],
-  body: "**De**: Claude Code @ myia-ai-01:Argumentum\n\n## Contexte\n[2-3 lignes — ce qui vient de merger, où en est la track #458]\n\n## Deep-queue (dans l'ordre)\n1. **[primaire]** issue #NNN — base master `$NEW_MASTER` — DoD: [critères mesurables] — PR à ouvrir\n2. **[secondaire]** issue #NNN — …\n3. **[tertiaire]** issue #NNN — …\n\n## Tâche idle de secours (si tu vides la deep-queue avant mon retour)\n- [piocher dans le backlog #XXX/#YYY, ou avancer sur Z] — ne reste pas en stand-by, ouvre des PRs en mode autonome\n\n## Rappels HARD\n- Ne JAMAIS modifier le CSV avant injection CardPen\n- Branche feature + PR, jamais de push direct master\n- Verdict QA visuelle = ai-01 ; toi tu signales, tu ne déclares pas PASS\n\nACK STP, ou push directement avec mention #NNN.\n\n🤖 Coordinator ai-01"
+  body: "Pool durable : #458 c.<comment-id> ; gouvernance c.<comment-id>. Prends les grains READY sans attendre merge/ACK ; candidat bloqué exclu jusqu'à son événement nommé. Le dashboard porte le résumé."
 )
 ```
 
@@ -145,7 +227,7 @@ Format (synthèse d'abord, jamais une table de counts seule) :
 1. **Synthèse** (2-3 paragraphes) : ce qui vient de se passer, pourquoi, vers où
 2. **Mergé ce cycle** : 1 PR/ligne avec commit master + tests
 3. **Tracks #458 — état** : progression par track active
-4. **Dispatch deep-queue** : table workers (qui fait quoi + idle de secours)
+4. **Pools multi-cycles** : table workers (grains READY + événements de reprise des bloqués)
 5. **Cluster** : master hash + CI + arbitrages en attente jsboige
 6. **Conclusion** : 1-2 phrases
 
@@ -155,11 +237,21 @@ roosync_dashboard(
   type: "workspace",
   tags: ["DONE"],
   author: {"machineId": "myia-ai-01", "workspace": "Argumentum"},
-  content: "## [YYYY-MM-DD HH:MM] ai-01 — <titre>\n\n### Synthèse\n...\n\n### ✅ Mergé\n...\n\n### 🗺️ Tracks #458\n...\n\n### 📤 Dispatch deep-queue\n...\n\n### 📊 Cluster + arbitrages en attente\n...\n\n### 🧭 Conclusion\n...\n\n🤖 Coordinator ai-01"
+  content: "## [YYYY-MM-DD HH:MM] ai-01 — <titre>\n\n### Synthèse\n...\n\n### ✅ Mergé\n...\n\n### 🗺️ Tracks #458\n...\n\n### 📤 Pools multi-cycles\n...\n\n### 📊 Cluster + arbitrages en attente\n...\n\n### 🧭 Conclusion\n...\n\n🤖 Coordinator ai-01"
 )
 ```
 
-Si le status global du pipeline a changé : `roosync_dashboard(action: "write", type: "workspace", content: "<nouveau status>")`. Si l'append timeout (limite MCP) : version courte (le détail est déjà dans les messages roosync envoyés aux workers).
+Si le status global du pipeline a changé : `roosync_dashboard(action: "write", type: "workspace", content: "<nouveau status>")`. Si l'append timeout (limite MCP) : version courte — mais le **détail actionnable doit rester sur un canal lu** (issue GitHub de préférence), jamais reporté sur les seuls DM.
+
+### Condition positive de fin du tour ai-01
+
+Après les obligations du cycle, **terminer le tour** lorsque ces trois conditions sont vraies :
+
+1. chaque lane dispose d'au moins deux cycles de grains READY dans son pool ;
+2. chaque obligation du cycle est mergée, bloquée avec événement de reprise, ou transmise avec un paquet de preuve ;
+3. aucune tête, décision, review, CI ou autre frontière nouvelle à valeur non marginale ne justifie une action immédiate.
+
+Ne pas relire une tête inchangée, reconstruire un paquet worker déjà complet, ni lancer un nouveau sweep pour remplir le temps. Never-idle reste satisfait par les pools workers ; ai-01 laisse alors le cron de 6 h fournir la prochaine frontière de fraîcheur.
 
 ## Phase 7 — Ré-armer le cron (régime cron, PAS de ScheduleWakeup)
 
@@ -168,10 +260,10 @@ Argumentum est en **régime cron autonome** (week-end, jsboige en retrait). Les 
 ```
 CronList()
 # si aucun job /coordinate :
-CronCreate(cron: "37 */6 * * *", prompt: "/coordinate", recurring: true)
+CronCreate(cron: "<minute off-:00> */<N> * * *", prompt: "/coordinate", recurring: true)
 ```
 
-- **Cadence = dernière demande explicite jsboige** (cf [[feedback-argumentum-cron-3h]] / [[feedback_schedulewakeup_not_cron]]). La cadence oscille (2h↔3h↔6h) — ne jamais s'accrocher à une valeur périmée. **Courant : 6h** (`37 */6 * * *`).
+- **Cadence = dernière demande explicite jsboige** (cf [[feedback-argumentum-cron-3h]] / [[feedback_schedulewakeup_not_cron]]). Elle oscille — aucune valeur n'est écrite ici parce qu'elle s'y périme : la lire dans le **dashboard** (section État / Décisions actées) ou dans la dernière demande owner, jamais dans ce fichier.
 - **En régime cron, NE PAS empiler de `ScheduleWakeup`** — cela ré-introduirait un cycle court superseded.
 - Minute off-`:00` (jitter, éviter que tout le fleet frappe l'API à la même seconde).
 - **Exception** : si jsboige bascule explicitement en ping-pong serré interactif (≤1h), alors `ScheduleWakeup(delaySeconds: 3540, prompt: "/coordinate", reason: "...")` à chaque fin de turn — mais c'est l'exception, pas le régime courant.
@@ -180,13 +272,29 @@ CronCreate(cron: "37 */6 * * *", prompt: "/coordinate", recurring: true)
 
 Si la session est interactive, **termine par 2-4 phrases factuelles** : ce qui a été mergé, quelles lanes ont été dispatchées (workers + issues), état des tracks #458, prochain tick cron.
 
-**Arbitrages en attente** (pattern « présentation des décisions ») : si des points bloquent et **requièrent une vraie décision jsboige**, liste-les explicitement avec leur contexte (1-2 lignes chacun), pour qu'il tranche — surtout le **dossier de validation release** (jsboige valide les docs le WE **si po-2023 les présente proprement en fin de session**). Vérifie que cette présentation est bien prévue côté po-2023 ; sinon, dispatche-la.
+**Arbitrages en attente** — critère de suffisance : un arbitrage doit être **tranchable sur ta description seule, sans ouvrir l'issue**. C'est la barre, pas un nombre de lignes.
+
+> Correction jsboige, 2026-08-30 (verbatim) : *« tu n'es pas assez précis. C'est souvent le cas quand tu me présente les choses […] je dois pouvoir arbitrer sur tes descriptions, elles sont trop expéditives ».* Le contre-exemple : « 5 cartes : 1092/1120/362 — réécrire, reclasser ou retirer ». Des branches nommées, donc formellement conforme — et pourtant indécidable, **et faux** : ces PK étaient corrigés depuis trois semaines (PR #1032).
+
+Chaque dossier porté à l'arbitrage doit donc porter :
+
+| Élément | Pourquoi |
+|---|---|
+| **L'objet cité** — le texte fautif, pas son numéro | un PK nu ne dit rien ; c'est le contenu qui se tranche |
+| **Le défaut en une phrase** | ce qui cloche, pas la catégorie du défaut |
+| **Les branches avec leur conséquence concrète** | ce que chacune change dans le corpus |
+| **Le coût si GO** | cellules, langues, régénération ou non |
+| **La nature de la décision** (éditorial / sémantique / hygiène / convention) | des lignes homogènes cachent que **une seule** est un vrai choix de fond |
+
+⚠️ **Re-mesurer l'état au moment de présenter**, jamais recopier une note de cycle antérieure : une liste d'arbitrages est un état du corpus, pas du bookkeeping. Une liste expéditive est justement le terrain où une donnée périmée ne se voit pas. Recommandation **en première position**, et le dire.
+
+Surtout le **dossier de validation release** (jsboige valide les docs le WE **si po-2023 les présente proprement en fin de session**). Vérifie que cette présentation est bien prévue côté po-2023 ; sinon, dispatche-la.
 
 ## Issues, Epics et tracks — source de vérité = GitHub
 
 **Ne JAMAIS citer d'Epic/track en dur dans ce skill** (ils changent à chaque cycle). Source unique = GitHub Issues + l'issue de tracking #458. Toujours requêter avant d'agir :
 ```bash
-gh issue list --state open --search "Epic in:title" --json number,title,labels
+gh issue list --state open --limit 300 --search "Epic in:title" --json number,title,labels
 gh issue view N --json title,body,comments,state
 gh pr list --state merged --limit 10   # avancement récent
 ```

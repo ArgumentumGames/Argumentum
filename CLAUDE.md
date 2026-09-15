@@ -65,8 +65,19 @@ CSV Data → [Harvesting] → PNG Images → [PDF Assembly] → Print-ready PDFs
 
 3. **Mind Maps** (`MindMapCreator`)
    - Generates `.mm` files (Freemind format)
-   - Converts to SVG via Freeplane external process
-   - **WARNING**: SVG post-processing uses fragile heuristics ("disambiguation") dependent on Freeplane's output structure
+   - Converts to SVG via **FreeMind GUI** (`FreeMind.exe` driven by `SendKeys` automation, resolved from `ARGUMENTUM_FREEMIND_PATH` env var). A `MindMapFormat.Freeplane` path exists in code but is non-default; the validated production path (PR #565) is FreeMind — `MindMapFormat.Freemind` is the default (`FallacyMindMapDocumentConfig.cs:32`). ⚠️ **Inventory (re-measured 05/09 on master `ceb572c8`, after #1269/#1285): the committed tree holds 43 SVG + 34 HTML wrappers + 2 root templates, NOT "20 per language"** — the historical "20 SVGs" was the file count of commit `55c6774e`, not a per-language total.
+
+   | | Per language (×7) | `fr` | Total |
+   |---|---|---|---|
+   | Fallacies SVG | 3 — `Fallacies_<lang>{,.content,.links}.svg` | 3 | 24 |
+   | Virtues SVG | 2 — `Argumentum_Virtues_MindMap_<lang>{.content,.links}.svg` | 2 | 16 |
+   | Fallacies **cards** SVG | 0 — FR-only by config (`FallacyMindMapCreatorConfig.cs:106`) | 3 | 3 |
+   | HTML wrappers | 4 — {Fallacies, Virtues} × {main, `_ext`} | 6 | 34 |
+
+   Two asymmetries make a naive count go red: **Virtues ships a pair, Fallacies a triplet** (Virtues has no base `.svg`, only `.content`/`.links`), and the FR-only `cards` variant carries a **full triplet since #1269** (it was a lone file before — the viewer was the fix). The 2 root templates (`external.html`, `included.html`) sit at `Mindmaps/` root, **outside** the `<lang>/` directories: a pathspec written `Mindmaps/**/*.html` **excludes them** (34), one written `Mindmaps/*.html` includes them (36) — git glob matches `/`. Do not hardcode any of these numbers in a test: `MindmapWrapperGoldenMasterTests` **derives** the expectation from the creator configs and keeps only an anti-collapse floor.
+
+   If `FreeMind.exe` is not found, `TryFreeMindSvgExportCore` logs a warning and skips GUI export → falls back to XSLT (dead, #184) → DoD SHA-diff fails **silently**
+   - **WARNING**: SVG post-processing uses fragile heuristics ("disambiguation") dependent on FreeMind's output structure
 
 ### CardPen (Custom Fork)
 
@@ -124,13 +135,26 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 | Aspect | Debug (`dotnet run`) | Release (`-c Release`) |
 |--------|----------------------|------------------------|
 | Print&Play image format | JPEG Q=85 (~71 MB Tarot) | PNG lossless (~222 MB) |
-| Per-image CMYK conversion | Disabled (RGB) | Enabled (but see oxymore below) |
-| CardPen source | Local IIS (`UseLocalCardpen=true`) | GitHub Pages URL |
+| Per-image CMYK conversion | Disabled (RGB) | **Disabled since #1111** (RGB — round-trip retired, see oxymore below) |
+| CardPen source | Local IIS (`UseLocalCardpen=true` — default for BOTH modes) | same local IIS — ⚠️ flipping to `false` (GitHub Pages) breaks regen, see #629 note below |
 | Template paths | `JsonFilePathDebug` | `JsonFilePathRelease` |
 | Harvest output | Debug density directory | Release density directory |
-| **PDF CMYK+OutputIntent post-process** (`PdfCmykPostProcess`, #632) | **OFF** | **ON** (Ghostscript post-pass on final PDFs) |
+| **PDF CMYK+OutputIntent post-process** (`PdfCmykPostProcess`, #632) | **OFF** | **OFF too** — not driven by build config, see below |
 
-**⚠️ CMYK oxymore (resolved by #632)**: the per-image `ConvertToCmyk` (`DocumentCardSet.cs`) runs under Release, but the image is then written as **PNG** which cannot carry CMYK — Magick re-encodes to RGB on the write, so the per-image conversion is effectively a no-op for the PNG path. The bundle therefore ships **RGB-300-lossless** (FlateDecode, 0 DeviceCMYK — verified via `pdfimages -list`). The **authoritative CMYK path is the Ghostscript post-process** (`PdfCmykPostProcess`, new flag `ConverterMode.PdfCmykPostProcess = 1<<15`): it converts the final PDF to DeviceCMYK and embeds the SWOP OutputIntent. See `PdfCmykPostProcess/README.md`.
+**⚠️ The CMYK post-process is NOT reached by `-c Release`.** It sits behind **two gates in series**, and only the inner one is a Debug/Release pair:
+
+1. **Outer gate — the `Mode` flag.** The stage runs only `if (Mode.HasFlag(ConverterMode.PdfCmykPostProcess))` (`AssetConverterConfig.cs:644`). The default `Mode` is `WebBasedImageGeneration | QuestPdfGeneration` (`AssetConverterConfig.cs:37`) — the flag is **absent**, and no code path derives `Mode` from the build configuration. The only place it is set is the standalone `--pdf-cmyk` entry point (`Program.cs:391`).
+2. **Inner gate — `EnabledDebug=false` / `EnabledRelease=true`** in `PdfCmykPostProcessConfig`. This is the pair the `PdfCmykPostProcess/README.md` describes as "OFF in Debug, ON in Release" — true, but *conditional on gate 1 already being open*.
+
+⇒ A plain `dotnet run -c Release` regeneration ships **RGB-300-lossless**, never CMYK. To get the printer bundle, run the dedicated pass **on the PDFs already generated** (it discovers them under `Target/`, converts in place, no re-harvest and no PDF regeneration — so a CMYK bundle never requires re-running the pipeline):
+
+```bash
+dotnet run -c Release --project Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj -- --pdf-cmyk
+```
+
+Ghostscript must be resolvable on `PATH`; if it is not, the stage skips every PDF **with a warning rather than crashing** — a silent-RGB failure mode, so check the log, not just the exit code.
+
+**⚠️ CMYK oxymore (resolved by #632, round-trip retired by #1111)**: the per-image `ConvertToCmyk` (`DocumentCardSet.cs`) used to run under Release, but the image is then written as **PNG** which cannot carry CMYK — Magick re-encodes to RGB on the write, so the per-image conversion was effectively a no-op for the PNG path that still shifted pixels through the sRGB→CMYK→RGB round-trip. Since #1111, `ConvertToCmykRelease` defaults to **false** and a standard Release run writes RGB PNGs at every stage; the pixel delta vs the GO v0.9.0 bundle is covered by a fresh visual verdict on the next regen. The **authoritative CMYK path is the Ghostscript post-process** (`PdfCmykPostProcess`, new flag `ConverterMode.PdfCmykPostProcess = 1<<15`): it converts the final PDF to DeviceCMYK and embeds the SWOP OutputIntent. See `PdfCmykPostProcess/README.md`.
 
 **Override**: Set `ForceReleaseParams = true` in JSON config to use Release params in Debug builds.
 
@@ -140,6 +164,29 @@ The pipeline uses `UseDebugParams` / `UseReleaseParams` (in `AssetConverterConfi
 1. SVG disambiguation in mind map generation
 2. Manual PDF layout calculations in `PrintAndPlayDocument.cs`
 3. CardPen Handlebars/Markdown rendering when data contains special characters
+
+### Regeneration runs — launch shell and path length (#1179, second bite of #1121)
+
+Pipeline runs must launch from the **short junction `D:\A1114`** (→ `.prep-1114-worktree`), and only from **PowerShell or cmd**. Launched from **Git-Bash/MSYS2, the junction is resolved at process spawn**: the child's working directory becomes the full worktree path (~30 chars longer), and image writes whose path crosses the ImageMagick native buffer (MAX_PATH = 260) fail as `MagickCoderErrorException: WriteBlob Failed`. Two "identical" invocations therefore do NOT have the same effective path length — the shell is part of the repro. `ImageHelper.EnsurePathWithinLimit` now fails the run at 250 chars (before the native failure), naming the path and its length. Related hardening (#1179): a document×language couple producing zero images fails the run instead of silently skipping PDF generation (the #1177 defect), and the logger archives the previous run's `file_logger.log` to `file_logger-<timestamp>.log` instead of deleting it — the CMYK pass no longer erases the generation log.
+
+### Local CardPen is mandatory for every regen, Debug AND Release (#629, option 3)
+
+`UseLocalCardpen` (`WebBasedGeneratorConfig.cs:84`) is a **single flag defaulting to `true` for both build modes** — it is NOT a Debug/Release pair (the table row above says so explicitly). Keep it `true`. GitHub Pages publishes **only the CardPen site**, not the repo's `/Cards/` tree: a Release run with `UseLocalCardpen=false` resolves Scenarii/asset URLs to `argumentumgames.github.io/Cards/` → **HTTP 404 → 0 images → 0 PDF** (silent set failure, discovered 2026-07-01). The workaround — keep the default `true` — was validated 01/07 (64 PDFs complete) and has been in force on every regen since (22/08, 28/08). The durable fix (Option 1: absolute raw-master URLs, PR #666) is HOLD post-tag.
+
+### A branch fix to a card template is NOT verifiable by a Release render (#1225/#1228)
+
+`JsonFilePathRelease` is an **absolute URL pinned to `master`** — e.g. Rules resolves to `https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Rules/Argumentum_Rules_fr.json` (`WebBasedGeneratorConfig.cs:110`). `CardSetInfo.GetJsonFilePath` picks it whenever `UseDebugParams` is false, so **a Release run downloads the template from master and never reads the worktree**. A template fix living on a feature branch is therefore invisible to a Release render, no matter which branch is checked out.
+
+The failure mode is silent and looks like non-determinism: the render is byte-identical across runs (same code, same master template), the fix "does not take", and a cache-clobber changes nothing. Discovered 2026-09-01 after three identical deliveries on #1228 — the discriminator is already in the log, two lines per CardSet:
+
+```
+[CardSetInfo] JsonFilePathDebug='…', JsonFilePathRelease='…'
+[CardSetInfo] UseDebugParams=<bool>, Selected path: '<path>'
+```
+
+**Validate template fixes in Debug** (local path → worktree), or merge first and validate after. Demanding a Release proof before merge asks for the fix to be on master before it is on master.
+
+Corollary for reviewers: the CSS cascade itself can be measured without the pipeline — extract the `css` and `mustache` keys from the template JSON, apply the language-class rewrite the pipeline performs (`ARGU_LANG_MARKER`, `AssetConverterConfig.cs`), reconstruct the markdown render, and read `getComputedStyle` in a browser. That verdict is independent of which template the pipeline happens to load.
 
 ## Multilingual Support
 
@@ -153,14 +200,23 @@ CSV fields use language suffixes: `Title`, `Title_en`, `Title_ru`, `Title_pt`, `
 
 ## Output Directories
 
-Generated files go to:
+Generated files go to the **converter's build output**, not the repository root (`<repoRoot>/Target/` does not exist — a test anchored there is red on every machine, cf. #1072):
+
 ```
-Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/Target/
-├── {lang}/
-│   ├── Documents/              # Final PDFs
-│   └── Harvest/                # Cached .harvest.json files
-└── Images/                     # Generated card PNGs
+Generation/Converters/Argumentum.AssetConverter/bin/{Debug|Release}/net9.0-windows/Target/
+└── {lang}/                             # ar en es fa fr pt ru zh
+    ├── Documents/                      # Final PDFs
+    ├── Harvest/                        # Cached .harvest.json files
+    └── Images/
+        ├── density-{n}/                # n = density index (0 in practice)
+        │   ├── Fallacies/              # 175 × …_face.png + card_001.png (the single shared back — per language)
+        │   ├── Fallacies-Web/
+        │   ├── Fallacies-Print&Play/
+        │   ├── Memo/  Rules/  …        # one directory per CardSet
+        └── original/                   # pre-resize source PNGs (Fallacies-Web)
 ```
+
+Two consequences that have each already cost a defect: **`Images/` is under `{lang}/`**, and the card PNGs are **two levels below it** (`density-{n}/<CardSet>/`) — enumerating `Images/` with `TopDirectoryOnly` can only ever see the `density-*` directories, never a PNG. Debug and Release hold **independent** trees: a regeneration run in Release (the CMYK/print path) leaves the Debug tree stale, so anything reading artefacts must pick by modification time rather than assume a configuration.
 
 ## Historical Context & Known Issues
 
@@ -178,10 +234,13 @@ Historical note (commit `d324bd3b`, Aug 2025): `SkipConfigFile = true` was *brie
 
 | Package | Version | Notes |
 |---------|---------|-------|
-| QuestPDF | 2022.12.12 | MIT free license, thread-safe issues above this |
-| Magick.NET-Q16-AnyCPU | 14.14.0 | Image processing (per-image CMYK conversion is a no-op for PNG output; CMYK for print is applied via Ghostscript post-process on the final PDFs, see #632) |
+| QuestPDF | 2022.12.12 | **Licence-pinned** — MIT free license; also thread-safe issues above this |
+| Magick.NET-Q16-AnyCPU | 14.15.0 | Image processing (per-image CMYK conversion is a no-op for PNG output; CMYK for print is applied via Ghostscript post-process on the final PDFs, see #632). Bumped from 14.14.0 via #871 (2026-07-25): 14.15.0 is the declared first-patched version for 5 advisories (4 medium + 1 low) that had accumulated against 14.14.0 — licence unchanged (Apache-2.0) |
+| AutoMapper | 14.0.0 | **Licence-pinned — do NOT bump.** 14.0.0 is the last MIT release; 15.0.0+ is RPL-1.5 / commercial dual-licensed (Lucky Penny), `requireLicenseAcceptance: true`. Decision jsboige 2026-06-23, implemented in #588 (`6caf5833`): stay MIT-pure + targeted `NuGetAuditSuppress` for GHSA-rvv3-g6hj-g44x + `MaxDepth(1)` guard in `Entities/MappingProfile.cs` (the only Profile is flat and acyclic, so the vulnerable recursion path is unreachable). No patched 14.x exists. Dependabot re-proposes 15.x periodically — close it (see #887) |
 | SkiaSharp.NativeAssets.Win32 | 2.88.6 | Required for QuestPDF |
 | Microsoft.Playwright | 1.43.0 | Browser automation |
+
+> **NuGet audit warnings surface on `restore`, not on incremental `build`.** An incremental `dotnet build` can report 0 warnings while `dotnet restore --force` reports dozens of `NU1901`/`NU1902` advisories. To check the zero-warning invariant (#587) honestly, force a restore. Advisory sets drift over time against a pinned version, so this can go red without any code change.
 
 ### Applied Corrections (Oct-Dec 2025)
 
@@ -373,18 +432,26 @@ L'échappement transforme les vrais newlines en chaînes littérales "\\n", cass
 
 ### Classes CSS Familles (Virtues/Fallacies)
 
-Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste complète pour Virtues:
+La classe racine de la carte est **la valeur de la colonne CSV** désignée par `cardClass` dans le template — `family_fr_camelcase` pour Virtues, `Famille_camelCase` pour Fallacies. Chaque valeur doit avoir sa règle `card.<valeur>` dans la clé `css` du template JSON (⚠️ pas dans `mustache`, qui ne contient que le HTML).
 
-| Classe CSS | Famille | Couleur |
-|------------|---------|---------|
-| `argumentsVertueux` | Arguments vertueux (racine) | Gris #555555 |
-| `argumentPertinent` | Argument pertinent | Violet #811da3 |
-| `présentationIntègre` | Présentation intègre | Rose #ff66eb |
-| `exactitudeMathématique` | Exactitude mathématique | Turquoise #08af93 |
-| `raisonnementValide` | Raisonnement valide | Vert #8dc801 |
-| `langageRigoureux` | Langage rigoureux | Bleu #0054a4 |
-| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | Jaune #ffc307 |
-| `débatRespectueux` | Débat respectueux | Rouge #dc0f0a |
+Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy.csv` + la clé `css` du template** (master `c99fc4b3`, 2026-08-17) — 8 familles, 223 nœuds :
+
+| Classe CSS (= `family_fr_camelcase`) | Famille (`family_fr`) | Nœuds | Couleur | Alias hérités encore déclarés |
+|------------|---------|---:|---------|---------|
+| `argumentValable` | Argument valable (racine) | 1 | Gris #555555 | `argumentsVertueux` |
+| `argumentPertinent` | Argument pertinent | 33 | Violet #811da3 | — |
+| `présentationIntègre` | Présentation intègre | 25 | Rose #ff66eb | — |
+| `sensQuantitatif` | Sens quantitatif | 20 | Turquoise #08af93 | `rigueurMathématique`, `exactitudeMathématique` |
+| `inférenceMaîtrisée` | Inférence maîtrisée | 55 | Vert #8dc801 | `raisonnementValide` |
+| `justesseLexicale` | Justesse lexicale | 18 | Bleu #0054a4 | `langageExact`, `langageRigoureux` |
+| `honnêtetéIntellectuelle` | Honnêteté intellectuelle | 27 | Jaune #ffc307ff | — |
+| `échangeEnrichissant` | Échange enrichissant | 44 | Rouge #dc0f0a | `débatRespectueux` |
+
+> ⚠️ **Trois familles ont été renommées les 6-7 août 2026** (#981/#982a → `6d22f79a`, #998 → `5631bf3c`, #1002 → `19b9c9d1`) : `Raisonnement valide` → **`Inférence maîtrisée`**, `Rigueur mathématique` → **`Sens quantitatif`**, `Langage exact` → **`Justesse lexicale`**. Les anciens noms **survivent partout dans les artefacts figés** — bodies d'issues, rapports, commentaires. Une recherche sur un ancien nom rend **0 résultat** dans le CSV, ce qui se lit à tort comme « rien à faire » : c'est une panne d'instrument, pas une absence. **Toujours re-mesurer le libellé courant contre le CSV avant d'agir sur une famille.** (Le dossier #985 a ainsi coûté un cycle : son tableau porte encore l'ancien nom *et* des comptes de cartes périmés.)
+
+**Renommage additif** — les renommages ci-dessus ont été faits selon ce motif, et le template le conserve : tous les noms successifs cohabitent **dans le même bloc**, séparés par des virgules (`card.exactitudeMathématique, card.rigueurMathématique, card.sensQuantitatif { … }` — trois générations). Pour renommer une famille : ajouter le nouveau nom au bloc existant **d'abord**, renommer le CSV **ensuite**. L'ordre inverse produit des cartes sans couleur de famille entre les deux merges.
+
+**Second référentiel à synchroniser** — les glossaires en dur des prompts `DatasetUpdater/Resources/` portent aussi les noms de familles : un renommage CSV non répercuté y est **ré-injecté à la passe de traduction suivante**. Les 8 `PromptVirtues*User.txt` sont additifs (ancien + nouveau) et donc corrects ; vérifier ce point à chaque renommage.
 
 **Symptôme si classe manquante**: Carte avec fond blanc au lieu de la couleur de famille.
 
@@ -407,17 +474,28 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 
 **Mise à jour cycle 56+59 (mai 2026)** : Bug #216 corrigé avril 2026, pipeline régen post-merges #301/#302 auditée cycle 56 (Stratégie D recommandée : spot-check 5 cartes pixel diff ~15 min avant décision régen complète A ou aucune C). Tableau ci-dessus reste snapshot 17 mars 2026 (pré-fix).
 
-### État actuel par CardSet (FR - COMPLET)
+### État actuel par CardSet — **mesuré 2026-08-28 sur l'arbre Release** (régén du 22/08), identique sur **les 8 langues**
 
-| CardSet | Images | PDFs | Status |
-|---------|--------|------|--------|
-| Fallacies Tarot FR | 177 | ✅ | TarotCards_fr-1/2.pdf |
-| FallaciesWeb FR | 176 | ✅ | A0 (99MB), A4 (98MB), Thumbnails |
-| Virtues Tarot FR | 113 | ✅ | TarotCards_Virtues_fr-FacesOnly.pdf |
-| Scenarii Poker FR | 97 | ✅ | PokerCards_fr-1.pdf (12MB) |
-| Rules Tarot FR | 24 | ✅ | Dans TarotCards |
-| Memo Tarot FR | 1 | ✅ | Dans TarotCards |
-| Print&Play A4 | 34 | ✅ | Poker + Tarot Print&Play |
+⚠️ Les chiffres barrés ci-dessous étaient périmés dans ce fichier et auraient produit des devis d'impression faux (#1187, #1288). Un devis se chiffre **à la carte** : ne pas citer ce tableau sans re-mesurer.
+
+| CardSet | Faces | Dos | Images | PDFs |
+|---------|------:|----:|-------:|------|
+| Fallacies Tarot | **175** ~~176~~ | 1 † | **176** ~~177~~ | TarotCards_{lang}-1/2.pdf |
+| FallaciesWeb | **175** ~~176~~ | — | **175** ~~176~~ | A0, A4, Thumbnails |
+| Rules Tarot | **15** ~~24~~ | — | 15 | dans TarotCards — réduit par #438 |
+| Memo Tarot | 1 | 1 † | 2 | dans TarotCards |
+| Scenarii Poker | **167** ~~97~~ | **7** | 174 | PokerCards_{lang}-1.pdf |
+| Virtues Tarot | **131** ~~113~~ | 1 | 132 | TarotCards_Virtues_{lang}-FacesOnly.pdf |
+
+† « 1 dos » s'entend **par langue** — les dos du Tarot (famille Fallacies, famille Memo) sont **localisés**, pas partagés entre langues. Mesuré au `sha256` des pixels décodés sur les 8 langues (balayage intégral du bundle v2.0.0, [#134 c. 5643251291](https://github.com/ArgumentumGames/Argumentum/issues/134#issuecomment-5643251291), 2026-09-12) : **0 dos commun aux 8 langues** — chaque dos existe en 8 exemplaires distincts (Fallacies ×175 pages/langue, Memo ×7, 1982×3401 CMYK, 8/8 pixels distincts). Le dos Fallacies porte le **titre du jeu traduit** (bande ~82 % de large à ~5 % du sommet : « L'ART DE NE JAMAIS AVOIR TORT » / « THE ART OF NEVER BEING WRONG » / « EL ARTE DE NUNCA ESTAR EQUIVOCADO » / « A ARTE DE NUNCA ESTAR ERRADO »…). Deux conséquences : un **devis d'impression** compte **un dos par langue** (8 exemplaires de chaque), jamais « un dos partagé sur toute la série » ; et un **contrôle inter-langues** qui attend un dos commun rendra « 0 dos commun » — c'est le comportement correct, pas une anomalie.
+
+**Totaux fabrication** (#1187 revu par #1288, une boîte par langue) : deck **Tarot = 191 cartes** (175 + 15 + 1) · deck **Scenarii = 167 cartes** · boîte **sans** Virtues = **358 cartes**, **avec** = **489**.
+
+⚠️ **#1288 (décision owner du 05/09/2026, épinglée en CI par `PdfDeckCountContractTests`)** : PK 96 est un vrai doublon de PK 108 « Appel à la nature » et sort du deck ⇒ Fallacies 176→**175**, Tarot 192→**191**, boîte 359→**358** / 490→**489** (Scenarii 167 inchangé). Ces chiffres sont **cités d'après #1288/#1187, pas re-mesurés dans ce dépôt** ; le bundle mesuré du 11/09 les conforte (175 faces, 197 instances, 379 pages). Le compte de PNG de l'arbre de régénération reste **à re-mesurer** à la prochaine régén (lane po-2023) — les mindmaps committés embarquent encore les 176 thumbnails d'avant #1288.
+
+⚠️ **Le deck Scenarii a 7 dos distincts**, un par catégorie (`histoire`, `mythologie`, `politique`, `pop_culture`, `relation_intime`, `vie_personnelle`, `vie_professionnelle`) — contrairement au Tarot qui partage **un dos par langue** (voir † ci-dessus : « un » ne traverse pas les langues). C'est une contrainte de façonnage, pas un détail d'asset.
+
+⚠️ **L'arbre Debug est périmé** (Rules 24 = pré-#438, Virtues 1) : Debug et Release sont indépendants — mesurer sur celui dont la date correspond, jamais « le premier trouvé ».
 
 ### Mind Maps & SVGs — April 2026 ✅ COMPLETE
 
@@ -435,6 +513,7 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 - **Prompts**: 29 files in `DatasetUpdater/Resources/`
 - **Function calling**: Manual `FunctionToolDef` + JSON schema + `BinaryData.FromString()`
 - **Virtues CSV**: 100% translated (title/description/remark × fr/en/ru/pt), via PRs #218, #236, #246, #290, #295
+- **Re-mesure i18n `es`/`ar`/`fa`/`zh`** — mesurée 2026-09-13 sur master `35acac04`, 5 corpus (Fallacies, Virtues, Scenarii, Rules, Rules PP), 12 774 cellules par langue : **couverture 100 %** sur tous les champs substantiels (les seuls vides sont **structurels**, identiques dans les 8 langues) et **0 contamination FR**. La seule lacune réelle est `link` (6,2–7,5 % Fallacies, 41–69 % Virtues — mais `en` 94,7 %, `ru`/`pt` 7–9 % : lacune **générale**, pas propre aux 4 langues). 6 groupes ont exigé une lecture ligne à ligne (tous des locutions latines, un emprunt accentué, une citation, deux formes espagnoles autonomes), plus une **question éditoriale** ouverte : `Scenarii.es.subcategory` « romance » (faux-ami, `en`/`pt` portent `Romance`). Instrument, tables et relevé nominatif : [`docs/translation/i18n-remesure-es-ar-fa-zh.md`](docs/translation/i18n-remesure-es-ar-fa-zh.md)
 - **Issue #183** DONE — merged via PR #210
 
 ### GSheet ↔ CSV Sync (PR #200 merged)
@@ -446,10 +525,11 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 - **Pending**: OAuth credentials for end-to-end testing
 - **Tests**: 77 pass / 0 fail / 1 skip (includes CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid tests)
 
-### Test Coverage (July 2026)
+### Test Coverage (refreshed 2026-09-12)
 
-- **548 tests pass**, 5 skips (GUI/infrastructure), 1 known-fail (`OwlE2EGenerationValidationTests.LoadedOntology_RdfTypeAndInScheme_DroppedByOwl2XmlRoundTrip` — OWLSharp round-trip bug, pre-existing, tracked #133 — does not affect generated assets)
-- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests
+- **1095 tests pass** (`dotnet test` on `Argumentum.AssetConverter.Tests`, 2026-09-12, .NET 9 — **1100 total: 1095 pass / 0 fail / 5 skip**, empirique sur `8ebd92fe`), 5 skips (GUI/infrastructure). **0 known-fail** : le round-trip OWL (#133) n'est plus rouge depuis #793 — `skos:inScheme` survit au round-trip (l'ancienne formule « 1 fail `OwlE2E…DroppedByOwl2XmlRoundTrip` » datait d'avant) ; le résidu `rdf:type` reload-drop reste asserté-comme-attendu, sans impact sur les assets.
+- Historique du compteur (l'instrument a changé en route) : 578/584 le 05/07 (local) → 596/601 le 14/07 (local) → 643 total/638 pass/0 fail/5 skip le 27/07 **mesuré en CI, legs Debug+Release** (#911 a rendu l'étape Test signifiante — elle exécutait le build sans lancer les tests ; run `30280070312`) → **1100/1095/0/5 le 12/09** (local). Un compteur de tests dans une doc se **re-mesure**, jamais ne se recopie d'un rapport.
+- Coverage includes: CsvDiffEngine, SyncSafetyChecker, DiffReport, CsvToGrid, MindMapHtmlWrapper, FallaciesLocalizationTests, TaxonomyValidationTests, Memo_Back localization, Playwright visual tests, `PdfDeckCountContractTests` (#1187/#1288), `CardSetExpectedCardCountContractTests` (#1212)
 - Build is zero-warning (CS compiler warnings + NuGet audit, #587)
 - Issue #212 tracks Playwright visual regression tests for generated PDFs
 
@@ -468,7 +548,7 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 11. #212 — Playwright visual regression tests pour PDFs générés
 12. ~~Virtues i18n — ajouter colonnes _en/_ru/_pt~~ ✅ DONE (April-May 2026, PRs #218/#236/#246/#290/#295) — 100% coverage title/description/remark
 13. ~~Scenarii EN/RU/PT — 76/167 records missing (~46%)~~ ✅ DONE — 167/167 records 100% covered EN/RU/PT (verified cell-by-cell on master `7206f2f9`, 2026-05-24) across all 8 translatable fields; filled via commits `7ed970a3` (EN), `2a1b86bf` (RU), `0dc838fb` (PT) + contamination/BOM fixes
-14. #134 — GitHub Release v0.9.0 (en attente validation docs)
+14. #134 — GitHub Release v2.0.0 (ex-v0.9.0, re-scopé jsboige 2026-08-06, #999 — en attente validation docs)
 15. #133 — Publication OWL
 16. #131/#132 — DNN site + déploiement
 
@@ -492,7 +572,7 @@ Chaque famille doit avoir sa classe CSS définie dans le template JSON. Liste co
 | Issue | Description | Status |
 | ------- | ----------- | ------ |
 | ~~Fallacies duplicate PKs 520, 1000~~ | Was reported during GSheet sync; **not reproducible on master** — 1408/1408 PKs unique, PK 520 & 1000 appear once each (verified `7206f2f9`, 2026-05-24). Stale warning or GSheet-view artefact | ✅ N/A |
-| ~~Scenarii 54% translated~~ | 167/167 records now 100% covered EN/RU/PT, all 8 fields; substantive fields (context/issue) 0% FR-contaminated, RU 165/167 Cyrillic. Title=FR overlaps (21 EN/11 PT) = legitimate proper nouns (Sherlock, Jeanne d'Arc, Ergo sum…). Verified `7206f2f9`, 2026-05-24 | ✅ DONE |
+| ~~Scenarii 54% translated~~ | 167/167 records now 100% covered EN/RU/PT, all 8 fields; substantive fields (context/issue) 0% FR-contaminated, RU 165/167 Cyrillic. Title=FR overlaps (21 EN/11 PT) = legitimate proper nouns (Sherlock, Ergo sum…). Verified `7206f2f9`, 2026-05-24. ⚠️ « Jeanne d'Arc » retiré de cette liste (mesure 8 langues sur la rangée `1,0201`, master `1ab6d861`, 2026-09-07) : 7/8 localisent (Joan of Arc, Жанна д'Арк, Juana de Arco, جان دارك, 圣女贞德, ژان دارک) — seul `title_pt` portait « Jeanne d'Arc » ; lacune corrigée en « Joana d'Arc », l'ancienne vérif ne balayait que « FR dans une cellule PT » sans mesurer les 6 autres langues | ✅ DONE |
 | ~~Virtues 0% translated~~ | ✅ Resolved via PRs #218, #236, #246, #290, #295 (April-May 2026) — 100% coverage title/description/remark × 4 languages | DONE |
 | PT Rules row 1 EN contamination | Rules cover showed "Liars 'School" instead of "A Escola dos Mentirosos" | ✅ Fix PR #306 cycle 47 (1 cell CSV, native PT validated po-2023) |
 

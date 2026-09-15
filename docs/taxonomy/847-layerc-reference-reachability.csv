@@ -1,0 +1,93 @@
+# 847 Layer-(c) reference-reachability — per-parent-node rollup. MEASURE not verdict. INPUT for ai-01 synthesis. GATED jsboige ratification. 0 prod CSV.
+# n_referencing = leaves with >=1 external ref. n_refs = total ref cells. pct_* = share of refs. entropy_norm = diversity of buckets cited. min_n=3 referencing leaves.
+level,node,n_leaves,n_referencing,n_refs,wikipedia_stable,archive_repointed,dictionary_known,longtail,pct_wikipedia,pct_dictionary,pct_longtail,entropy_norm
+family(d1),Abus de langage,89,84,142,102,2,24,13,71.8,16.9,9.2,0.478
+family(d1),Erreur de raisonnement,102,94,138,92,3,34,9,66.7,24.6,6.5,0.573
+family(d1),Erreur mathématique,102,94,128,89,2,24,13,69.5,18.8,10.2,0.564
+family(d1),Influence,420,402,876,786,10,34,45,89.7,3.9,5.1,0.262
+family(d1),Insuffisance,174,169,291,184,11,46,50,63.2,15.8,17.2,0.677
+family(d1),Obstruction,126,123,193,135,5,29,24,69.9,15.0,12.4,0.566
+family(d1),Tricherie,394,390,803,731,6,34,32,91.0,4.2,4.0,0.253
+sub-family(d2),Ad hominem,46,46,74,50,0,9,15,67.6,12.2,20.3,0.769
+sub-family(d2),Ambiguïté,41,40,79,62,0,12,5,78.5,15.2,6.3,0.493
+sub-family(d2),Appel à l'émotion,57,56,98,68,3,13,14,69.4,13.3,14.3,0.599
+sub-family(d2),Argument bâclé,68,66,90,41,7,22,20,45.6,24.4,22.2,0.812
+sub-family(d2),Arranger les faits,85,85,188,162,4,15,7,86.2,8.0,3.7,0.346
+sub-family(d2),Causalité douteuse,29,29,47,36,1,7,3,76.6,14.9,6.4,0.488
+sub-family(d2),Changement de cap,51,50,62,28,2,13,19,45.2,21.0,30.6,0.819
+sub-family(d2),Comparaison fallacieuse,13,12,16,8,1,7,0,50.0,43.8,0.0,0.802
+sub-family(d2),Définition inexacte,34,32,47,32,1,5,8,68.1,10.6,17.0,0.581
+sub-family(d2),Généralisation abusive,37,36,48,33,2,5,8,68.8,10.4,16.7,0.613
+sub-family(d2),Manipulation mentale,239,224,439,410,0,13,15,93.4,3.0,3.4,0.198
+sub-family(d2),Mauvaise composition,32,28,37,24,0,12,1,64.9,32.4,2.7,0.677
+sub-family(d2),Mauvaise déduction,40,36,53,31,2,15,5,58.5,28.3,9.4,0.661
+sub-family(d2),Mauvaise interprétation,34,31,45,32,0,12,1,71.1,26.7,2.2,0.619
+sub-family(d2),Pensée biaisée,257,254,551,539,0,6,6,97.8,1.1,1.1,0.092
+sub-family(d2),Procédé rhétorique,123,121,337,306,7,8,16,90.8,2.4,4.7,0.268
+sub-family(d2),Préjugé,63,62,115,74,1,18,22,64.3,15.7,19.1,0.643
+sub-family(d2),Refus du débat,31,30,42,24,4,10,4,57.1,23.8,9.5,0.723
+sub-family(d2),Résultat invalide,30,26,34,23,0,7,4,67.6,20.6,11.8,0.655
+sub-family(d2),Saboter le débat,48,46,76,61,1,9,5,80.3,11.8,6.6,0.48
+sub-family(d2),Surinterprétation,42,41,86,69,3,6,8,80.2,7.0,9.3,0.468
+sub-sub(d3),Acception arbitraire,22,21,36,28,1,1,5,77.8,2.8,13.9,0.47
+sub-sub(d3),Acception vague,4,4,4,2,0,2,0,50.0,50.0,0.0,1.0
+sub-sub(d3),Ambiguïté narrative,11,10,12,9,0,2,1,75.0,16.7,8.3,0.657
+sub-sub(d3),Amphibologie,8,8,17,13,0,2,2,76.5,11.8,11.8,0.57
+sub-sub(d3),Appel aux conséquences,16,15,31,21,2,6,2,67.7,19.4,6.5,0.675
+sub-sub(d3),Argument d'autorité,25,24,32,10,0,7,15,31.2,21.9,46.9,0.954
+sub-sub(d3),Argument des mauvaises raisons,12,12,17,10,1,2,4,58.8,11.8,23.5,0.748
+sub-sub(d3),Argument vide,30,30,46,26,4,10,6,56.5,21.7,13.0,0.74
+sub-sub(d3),Attaque personnelle,8,8,22,22,0,0,0,100.0,0.0,0.0,-0.0
+sub-sub(d3),Attention sélective,20,20,25,13,1,11,0,52.0,44.0,0.0,0.756
+sub-sub(d3),Beurre et argent du beurre,20,19,23,12,2,3,6,52.2,13.0,26.1,0.829
+sub-sub(d3),Biais culturels,68,68,163,158,0,2,3,96.9,1.2,1.8,0.122
+sub-sub(d3),Biais naturels,150,149,222,218,0,1,3,98.2,0.5,1.4,0.079
+sub-sub(d3),Biais théoriques,38,36,165,162,0,3,0,98.2,1.8,0.0,0.131
+sub-sub(d3),Comparaison abusive,5,5,5,1,0,4,0,20.0,80.0,0.0,0.722
+sub-sub(d3),Complication exagérée,7,6,9,7,0,1,1,77.8,11.1,11.1,0.622
+sub-sub(d3),Conclusion hâtive,18,18,23,11,1,7,4,47.8,30.4,17.4,0.779
+sub-sub(d3),Conditionnement,63,60,109,91,0,11,6,83.5,10.1,5.5,0.385
+sub-sub(d3),Connivence,22,22,39,27,0,4,8,69.2,10.3,20.5,0.642
+sub-sub(d3),Définition inconsistante,7,6,6,1,0,2,3,16.7,33.3,50.0,0.959
+sub-sub(d3),Effet cigogne,7,7,12,11,0,1,0,91.7,8.3,0.0,0.414
+sub-sub(d3),Empoisonner le puits,8,8,14,12,0,0,2,85.7,0.0,14.3,0.592
+sub-sub(d3),Equivoque,21,21,48,40,0,6,2,83.3,12.5,4.2,0.495
+sub-sub(d3),Erreur de calcul,9,8,11,10,0,0,1,90.9,0.0,9.1,0.439
+sub-sub(d3),Erreur de logique propositionnelle,8,7,10,5,0,5,0,50.0,50.0,0.0,1.0
+sub-sub(d3),Erreur de modalité,8,7,12,9,0,2,1,75.0,16.7,8.3,0.657
+sub-sub(d3),Erreur de quantification,15,13,14,10,0,4,0,71.4,28.6,0.0,0.863
+sub-sub(d3),Evasion,32,31,46,35,1,8,2,76.1,17.4,4.3,0.528
+sub-sub(d3),Exigence relâchée,12,12,14,6,0,5,3,42.9,35.7,21.4,0.864
+sub-sub(d3),Exigence renforcée,18,18,24,9,0,5,10,37.5,20.8,41.7,0.862
+sub-sub(d3),Fausse analogie,5,5,6,2,1,3,0,33.3,50.0,0.0,0.921
+sub-sub(d3),Fausse attribution,11,11,20,17,1,0,2,85.0,0.0,10.0,0.472
+sub-sub(d3),Humour,28,28,97,96,0,1,0,99.0,1.0,0.0,0.083
+sub-sub(d3),Imprécision,14,14,18,10,0,6,2,55.6,33.3,11.1,0.853
+sub-sub(d3),Inconsistance,7,7,9,3,1,4,1,33.3,44.4,11.1,0.876
+sub-sub(d3),Infini trompeur,8,6,10,9,0,1,0,90.0,10.0,0.0,0.469
+sub-sub(d3),Influence non verbale,84,76,156,153,0,0,3,98.1,0.0,1.9,0.137
+sub-sub(d3),Inversion de causalité,12,12,18,12,1,2,3,66.7,11.1,16.7,0.671
+sub-sub(d3),Jeu de pouvoir,91,87,172,164,0,2,6,95.3,1.2,3.5,0.172
+sub-sub(d3),Justification triviale,22,21,25,8,1,8,8,32.0,32.0,32.0,0.882
+sub-sub(d3),Langage persuasif,42,42,52,31,6,5,10,59.6,9.6,19.2,0.764
+sub-sub(d3),Manque de parcimonie,10,10,33,29,0,2,2,87.9,6.1,6.1,0.413
+sub-sub(d3),Mensonge,53,53,142,132,2,3,5,93.0,2.1,3.5,0.218
+sub-sub(d3),Opération inappropriée,6,4,5,3,0,1,1,60.0,20.0,20.0,0.865
+sub-sub(d3),Poésie,52,50,187,178,1,2,6,95.2,1.1,3.2,0.154
+sub-sub(d3),Preuve par assertion,15,15,26,20,1,4,1,76.9,15.4,3.8,0.534
+sub-sub(d3),Probabilités faussées,14,13,18,15,0,3,0,83.3,16.7,0.0,0.65
+sub-sub(d3),Procès en inconsistance,10,10,16,10,0,3,3,62.5,18.8,18.8,0.839
+sub-sub(d3),Pétition de principe,9,9,16,13,0,3,0,81.2,18.8,0.0,0.696
+sub-sub(d3),Relation infondée,11,11,15,7,0,7,1,46.7,46.7,6.7,0.812
+sub-sub(d3),Relativisme abusif,5,5,6,3,0,2,1,50.0,33.3,16.7,0.921
+sub-sub(d3),Repoussoir,18,18,27,19,1,3,4,70.4,11.1,14.8,0.609
+sub-sub(d3),Sauvetage ad hoc,15,15,19,7,2,4,6,36.8,21.1,31.6,0.894
+sub-sub(d3),Sophisme d'Explication,10,10,10,1,3,4,2,10.0,40.0,20.0,0.881
+sub-sub(d3),Sophisme de l'accident,7,6,7,6,0,1,0,85.7,14.3,0.0,0.592
+sub-sub(d3),Sophisme génétique,27,27,34,16,0,6,12,47.1,17.6,35.3,0.936
+sub-sub(d3),Sophisme ludique,19,18,34,28,2,2,2,82.4,5.9,5.9,0.435
+sub-sub(d3),Sophisme moraliste,21,21,36,24,1,7,4,66.7,19.4,11.1,0.673
+sub-sub(d3),Sophisme naturaliste,16,16,39,32,0,4,3,82.1,10.3,7.7,0.463
+sub-sub(d3),Syllogisme invalide,14,11,21,17,0,4,0,81.0,19.0,0.0,0.702
+sub-sub(d3),Transfert illicite,11,11,16,13,0,1,2,81.2,6.2,12.5,0.497
+sub-sub(d3),Échantillon biaisé,18,18,23,12,2,3,6,52.2,13.0,26.1,0.843

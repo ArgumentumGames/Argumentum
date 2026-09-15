@@ -1,5 +1,7 @@
 # v0.9.0 — Dossier de validation « sur pièce » (pour jsboige, dimanche)
 
+> ⚠️ **Document superseded (snapshot 2026-06-13).** Les compteurs et faits ci-dessous (« 64 PDFs = 8 types × 8 langues », etc.) sont **antérieurs au bundle v3** : 80 PDFs (10 types × 8 langues, expansion P&P #648-650), DeviceCMYK + OutputIntent SWOP via Ghostscript (#632/#652), OWL bilingue EN/FR uniquement, 578 tests. **Référence actuelle : [`docs/RELEASE-VALIDATION-v0.9.0.md`](RELEASE-VALIDATION-v0.9.0.md) (dossier v4).** Ce brief reste l'archive de la validation du 13 juin.
+
 **Objet :** présentation propre des docs release **#456** (`CHANGELOG.md` + `RELEASE-NOTES-v0.9.0.md`,
 mergés sur master `7b57251e`) en vue de ta validation interactive du dimanche.
 **Auteur :** Claude Code @ myia-po-2023 (worker) — **2026-06-13**

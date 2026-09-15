@@ -12,7 +12,22 @@ namespace Argumentum.AssetConverter.Entities
         public string Text => TitleFr;
         public string Description => DescriptionFr;
         public string Example => string.Empty; // No example in source for Virtues
-        public string Link => LinkFr;
+        public string Link => LinkFrFallback;
+
+        // #804 — per-language mind-map link cascade, mirroring Fallacy.cs. The mind-map
+        // links-overlay (WrapNodeByLink) resolves the URL via LinkExpression, which the
+        // AssetConverterConfig token-swap rewrites per dest-lang (LinkFrFallback ->
+        // LinkEnFallback / LinkRuFallback / ...). Without this cascade the Virtues links.svg
+        // always resolved to LinkFr (161 fr.wikipedia refs per non-FR lang). French is the
+        // source; En is 2-deep (Fr<->En), the others are 3-deep (target -> En -> Fr).
+        public string LinkFrFallback => string.IsNullOrEmpty(LinkFr) ? LinkEn : LinkFr;
+        public string LinkEnFallback => string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn;
+        public string LinkRuFallback => string.IsNullOrEmpty(LinkRu) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkRu;
+        public string LinkPtFallback => string.IsNullOrEmpty(LinkPt) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkPt;
+        public string LinkEsFallback => string.IsNullOrEmpty(LinkEs) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkEs;
+        public string LinkArFallback => string.IsNullOrEmpty(LinkAr) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkAr;
+        public string LinkFaFallback => string.IsNullOrEmpty(LinkFa) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkFa;
+        public string LinkZhFallback => string.IsNullOrEmpty(LinkZh) ? string.IsNullOrEmpty(LinkEn) ? LinkFr : LinkEn : LinkZh;
         public int? Carte => int.TryParse(Card, out int c) ? c : null;
         public string PK { get => Pk; set => Pk = value; }
         public string DecimalPath { get; set; }
@@ -67,9 +82,39 @@ namespace Argumentum.AssetConverter.Entities
         public string RemarkEs { get; set; }
         public string LinkEs { get; set; }
 
-        // #499 Phase 1 — 12 relational/AIF columns appended to the Virtues prod CSV (66→78).
-        // crossLink_Opposes is the only one populated (the prevented Fallacy-family PK list);
-        // the other 7 relation types + AIF Exception/Other are structurally empty by design.
+        public string FamilyAr { get; set; }
+        public string SubfamilyAr { get; set; }
+        public string SubsubfamilyAr { get; set; }
+        public string TitleAr { get; set; }
+        public string DescriptionAr { get; set; }
+        public string RemarkAr { get; set; }
+        public string LinkAr { get; set; }
+
+        public string FamilyFa { get; set; }
+        public string SubfamilyFa { get; set; }
+        public string SubsubfamilyFa { get; set; }
+        public string TitleFa { get; set; }
+        public string DescriptionFa { get; set; }
+        public string RemarkFa { get; set; }
+        public string LinkFa { get; set; }
+
+        public string FamilyZh { get; set; }
+        public string SubfamilyZh { get; set; }
+        public string SubsubfamilyZh { get; set; }
+        public string TitleZh { get; set; }
+        public string DescriptionZh { get; set; }
+        public string RemarkZh { get; set; }
+        public string LinkZh { get; set; }
+
+        // #499 Phase 1 — 12 relational/AIF columns appended to the Virtues prod CSV (66→78),
+        // then #989 split the FR-prose critical questions out of AIF_skosMappingType into
+        // AIF_criticalQuestion (81→82), leaving AIF_skosMappingType free for skos:*Match tokens
+        // (empty on the Virtues side until real SKOS mappings exist).
+        // Two relation families coexist: crossLink_Opposes is INTER-deck (the prevented
+        // Fallacy-family PK list), while #988 populated the virtues' OWN intra-deck network —
+        // Leverages / IsRelatedTo / Allows hold taxonomic PATHS of other virtues ("4.3.3.1",
+        // the format CrossLinkResolver resolves). PredatesOn / Denounces / Inverts / Mirrors
+        // and AIF Exception/Other remain empty by design.
         public string CrossLinkPredatesOn { get; set; }
         public string CrossLinkDenounces { get; set; }
         public string CrossLinkLeverages { get; set; }
@@ -82,7 +127,15 @@ namespace Argumentum.AssetConverter.Entities
         public string AIFSkosDirectRef { get; set; }
         public string AIFSkosExceptionRef { get; set; }
         public string AIFSkosOther { get; set; }
+        public string AIFCriticalQuestion { get; set; }
         public string AIFSkosMappingType { get; set; }
+
+        // #989 branch B — the deterministic attack typing back-filled on the Virtues CSV by
+        // tools/499-virtues-aif-columns-apply.py (plan #750 v2). These columns pre-existed on
+        // the CSV (idx 78/79) but were never loaded by C#: the Virtues OWL pass needs them to
+        // emit the AIF attack layer with its derivation provenance.
+        public string AIFAttackType { get; set; }
+        public string AIFAttackedNode { get; set; }
     }
 
     public sealed class VirtueClassMap : ClassMap<Virtue>
@@ -140,8 +193,35 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.RemarkEs).Name("remark_es").Optional();
             Map(m => m.LinkEs).Name("link_es").Optional();
 
-            // #499 Phase 1 — 12 relational/AIF columns. All Optional(): 9 are structurally
-            // empty by design; 3 are populated for the 222 real Virtue nodes (pk=0 root empty).
+            Map(m => m.FamilyAr).Name("family_ar").Optional();
+            Map(m => m.SubfamilyAr).Name("subfamily_ar").Optional();
+            Map(m => m.SubsubfamilyAr).Name("subsubfamily_ar").Optional();
+            Map(m => m.TitleAr).Name("title_ar").Optional();
+            Map(m => m.DescriptionAr).Name("description_ar").Optional();
+            Map(m => m.RemarkAr).Name("remark_ar").Optional();
+            Map(m => m.LinkAr).Name("link_ar").Optional();
+
+            Map(m => m.FamilyFa).Name("family_fa").Optional();
+            Map(m => m.SubfamilyFa).Name("subfamily_fa").Optional();
+            Map(m => m.SubsubfamilyFa).Name("subsubfamily_fa").Optional();
+            Map(m => m.TitleFa).Name("title_fa").Optional();
+            Map(m => m.DescriptionFa).Name("description_fa").Optional();
+            Map(m => m.RemarkFa).Name("remark_fa").Optional();
+            Map(m => m.LinkFa).Name("link_fa").Optional();
+
+            Map(m => m.FamilyZh).Name("family_zh").Optional();
+            Map(m => m.SubfamilyZh).Name("subfamily_zh").Optional();
+            Map(m => m.SubsubfamilyZh).Name("subsubfamily_zh").Optional();
+            Map(m => m.TitleZh).Name("title_zh").Optional();
+            Map(m => m.DescriptionZh).Name("description_zh").Optional();
+            Map(m => m.RemarkZh).Name("remark_zh").Optional();
+            Map(m => m.LinkZh).Name("link_zh").Optional();
+
+            // #499 Phase 1 — 12 relational/AIF columns (all Optional(); 9 structurally empty by
+            // design, 3 populated for the 222 real Virtue nodes, pk=0 root empty). #989 added
+            // AIF_criticalQuestion (the FR-prose Walton question, formerly mis-housed in
+            // AIF_skosMappingType) and emptied AIF_skosMappingType (now skos:*Match-only, like
+            // the Fallacies taxonomy).
             Map(m => m.CrossLinkPredatesOn).Name("crossLink_PredatesOn").Optional();
             Map(m => m.CrossLinkDenounces).Name("crossLink_Denounces").Optional();
             Map(m => m.CrossLinkLeverages).Name("crossLink_Leverages").Optional();
@@ -153,7 +233,10 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.AIFSkosDirectRef).Name("AIF_skosDirectRef").Optional();
             Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef").Optional();
             Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
+            Map(m => m.AIFCriticalQuestion).Name("AIF_criticalQuestion").Optional();
             Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
+            Map(m => m.AIFAttackType).Name("AIF_attackType").Optional();
+            Map(m => m.AIFAttackedNode).Name("AIF_attackedNode").Optional();
         }
     }
 }

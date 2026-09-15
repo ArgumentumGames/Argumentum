@@ -1,0 +1,15 @@
+concept_id,suffix,ref_count,sample_attacker_pks
+Argument from Rule,(none),50,4;62;70
+Argument from Commitment,(none),40,7;42;46
+Argument from Bias,(none),27,11;26;27
+Argument from Sign,(none),26,1;2;3
+Argument from Verbal Classification,(none),21,29;36;38
+Argument from Cause to Effect,(none),11,24;31;32
+Argument from Witness Testimony,(none),10,19;34;151
+Argument from Position to Know,(none),8,10;12;13
+Argument from Values,(none),8,35;43;44
+Argument from Analogy,(none),7,48;50;63
+Argument from Expert Opinion,(none),6,9;16;17
+Argument from Example,(none),4,5;8;60
+Argument from Consequences,(none),3,53;54;204
+Argument from Danger,(none),1,165

@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="coverlet.collector" Version="10.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
     <PackageReference Include="Microsoft.Playwright" Version="1.43.0" />
-    <PackageReference Include="PdfPig" Version="0.1.14" />
-    <PackageReference Include="Verify.ImageSharp" Version="4.4.1" />
-    <PackageReference Include="Verify.Xunit" Version="30.7.3" />
+    <PackageReference Include="PdfPig" Version="0.1.16" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="Verify.Xunit" Version="31.12.5" />
     <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -28,6 +28,23 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Argumentum.AssetConverter\Argumentum.AssetConverter.csproj" />
+  </ItemGroup>
+
+  <!-- TestRepoRoot: linked compile (ai-01 arbitrage 2', msg 3y8vuy). The helper lives in
+       Tests/TestRepoRoot.cs and is compiled INTO this assembly, so it is internal here too.
+       Not a ProjectReference (no build edge between the two suites, which #1054 separated
+       into different execution regimes), not a duplicate (single source on disk — a walk-up
+       fix benefits both suites). The file declares namespace Argumentum.AssetConverter.Tests,
+       hence the `using Argumentum.AssetConverter.Tests;` in the consumers below. -->
+  <ItemGroup>
+    <Compile Include="..\Argumentum.AssetConverter.Tests\TestRepoRoot.cs" Link="TestRepoRoot.cs" />
+    <!-- #1187 PDF card-count organ : mêmes règles que TestRepoRoot ci-dessus (source unique sur
+         disque, compilée dans cet assembly — pas de ProjectReference entre les deux suites #1054,
+         pas de duplicata). L'organe pur vit dans Tests/PdfAssembly/, le comparateur bundle
+         (PdfCardCountIntegrityTests.cs, ce projet) le consomme via ce link. -->
+    <Compile Include="..\Argumentum.AssetConverter.Tests\HarvestCardIdsCsv.cs" Link="HarvestCardIdsCsv.cs" />
+    <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfCardCountIntegrity.cs" Link="PdfAssembly\PdfCardCountIntegrity.cs" />
+    <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfDeckCountDerivation.cs" Link="PdfAssembly\PdfDeckCountDerivation.cs" />
   </ItemGroup>
 
   <ItemGroup>

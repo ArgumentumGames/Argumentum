@@ -1,9 +1,105 @@
 # DNN 10.3.2 Go-Live — Turnkey Session Checklist (jsboige's RDP window)
 
-**Date**: 2026-06-26 · **Author**: po-2023 (dispatched by ai-01, secondary track — release COUPLÉE au site, jsboige input 26/06)
+**Date**: 2026-06-26 (refreshed 2026-07-12 — POST-EXECUTION; **2026-08-24 — PRE-FLIGHT SNAPSHOT appended**) · **Author**: po-2023 (dispatched by ai-01, secondary track)
 **Status**: **Turnkey navigator.** Organizes the entire #131 arc by **what an RDP session is needed for**, not by technical phase (the [dnn-localization README](../dnn-localization/README.md) already does phase-order). The shortest path from "open RDP" to "site live on 10.3.2". Read-only doc, no code.
 **Purpose**: jsboige coupled v0.9.0 to the DNN go-live (#131/#132). Most of the arc is already done by agents without touching the runtime; a bounded set **requires jsboige's interactive RDP/sandbox session**. This is the checklist that says — when you open that window, here is the exact turnkey sequence and nothing redundant.
 **Related**: [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md), [go-live-smoke-test.md](go-live-smoke-test.md), [../dnn-localization/README.md](../dnn-localization/README.md) (arc index), #596 (Razor14), #597 (auth), #131/#132.
+
+> ## 🟢 POST-EXECUTION REALITY (refreshed 2026-07-12) — B1-B3 DELIVERED; only prod VPS go-live (B4) remains
+>
+> Since this checklist was written (2026-06-26), the sandbox-side work it organizes has been **executed and delivered**:
+> - **B1 (bin/ repair), B2 (sandbox upgrade + 2sxc 21), B3 (12 Razor14 templates)** — all **DONE**. DNN **10.3.2 + 2sxc
+>   21.07** are live in **full-IIS** at `dnn.argumentum.myia.io` (HTTP 200/~85 KB, 0× "Something went wrong"; HTTPS
+>   cert as of 2026-08-24: `585269A2`, exp 2026-10-06 — supersedes the earlier `9D80D4CC` exp 2026-09-27). Stopgap `dnn.myia.io` retiré, PortalAlias 1010 droppé. ACME bypass **active in live**
+>   (renew win-acme 2026-08-23) — mechanism now **tracked** at
+>   [`DNNPlatform/.well-known/acme-challenge/web.config`](../../DNNPlatform/.well-known/acme-challenge/web.config), see
+>   note below. Runtime branch `dnn/sandbox-runtime-1032` **deleted 2026-07-25** (B1 bleed-stop, machineKey scrub —
+>   [runbook](machinekey-rotation-scrub-runbook.md)); canonical realigned bin/ = `tmp/dnn-backups/bin_post_2sxc_realign`
+>   (local, po-2023) + analysis captured in [`dnn10-migration-readiness.md`](dnn10-migration-readiness.md). B2.5 smoke GREEN.
+>
+> ### 🔐 ACME / win-acme HTTP-01 bypass — how it works (renewal due 2026-08-23)
+>
+> DNN's `web.config` routes **every** request through the ASP.NET pipeline, so win-acme's HTTP-01 challenge files
+> (extensionless, served from `/.well-known/acme-challenge/`) return 404 and **renewal fails**. The fix is a scoped
+> child `web.config` in that directory which (a) clears inherited handlers and serves the folder with
+> `StaticFileModule` only, and (b) maps the **extensionless** MIME type to `text/plain`:
+>
+> ```xml
+> <handlers><clear /><add name="ACME_StaticFile" path="*" verb="*" modules="StaticFileModule"
+>                          resourceType="File" requireAccess="Read" /></handlers>
+> <staticContent><mimeMap fileExtension="." mimeType="text/plain" /></staticContent>
+> ```
+>
+> This file is **load-bearing for certificate renewal** and is inert unless that directory is served. It previously
+> existed only on the deleted runtime branch (commit `78cd1aab`) — it is now tracked on master so a box rebuild or
+> redeploy cannot silently break the 2026-08-23 renewal.
+>
+> So the turnkey sequence below is now a **proven replay** — B1-B3 are historical record, **only B4 (prod VPS go-live
+> on myia-web1) is the remaining gated frontier.**
+
+> ## 🟢 PRE-FLIGHT SNAPSHOT (2026-08-24, read-only — reference site `dnn.argumentum.myia.io`)
+>
+> Measured the day the assets bundle was validated, while B4 awaits the owner GO. All read-only; no prod mutation.
+>
+> | Check | Measured | Verdict |
+> |---|---|---|
+> | HTTP `/` | 200 · 83 KB · 0.74 s · **0 × "Something went wrong"** | ✅ |
+> | HTTP `/Règles` | 200 · 49 KB · 1.9 s | ✅ |
+> | **Skin served** | **2shinebs5 ×4, Xcillion ×0** on `/` and `/Règles` | ✅ **2c runtime RESOLVED** |
+> | DB version | `dbo.[Version]` top = **10.3.2** | ✅ |
+> | EventLog `PAGE_LOAD_EXCEPTION` | 21 (19/08) → 37 (20/08) → 42 (21/08) → **0/day since 21/08 06:29 (3 clean days)** | ✅ DoD criterion met on current state |
+> | Cert (machine `WebHosting`) | `585269A2` · 53 SANs incl. `argumentum.myia.io` + `dnn.argumentum.myia.io` · expires **2026-10-06 (J-43)** | ⚠️ see below |
+> | ACME bypass file | present in webroot, tracked (383 B) | ✅ |
+> | Webroot git | HEAD `a8628761` (2 behind master, both non-DNN commits) · ~4 800 dirty files = live runtime mutations | ⚠️ garde #972 mandatory on any git op |
+>
+> **Skin 2c closure**: the 20/08 surgical INSERT (`DefaultPortalSkin`, `CultureCode=NULL`) was not reflected at
+> runtime then (stale `PortalSettings` cache; the pending recycle-vs-re-save decision). It is now: a natural app-pool
+> recycle has since occurred and the correct skin is served. The (a)/(b) decision is moot. Exception history matches —
+> `PAGE_LOAD_EXCEPTION` stopped 21/08 06:29, consistent with the skin fix family (#1129/#1131).
+>
+> **⚠️ B4 cert gap**: the current cert covers only `*.myia.io` hostnames — **no `argumentum.games` SAN**. The
+> go-live domain needs its own cert story on web1 (per tracking: prod cert exp 2026-11-04; ACME ops window to
+> avoid 2026-10-05 → 2026-11-04). B4 planning should sequence the argumentum.games cert **before** traffic switch.
+>
+> ### ⛔ CRITICAL CORRECTION to B1 below — the B1-inversion (do NOT follow B1 as written)
+>
+> B1's step 2-3 instruct: *"fetch the 5 .NET-9 contaminants at 6.0.x"* + *"align binding redirects → 6.0.0.0."* **This
+> is the INVERTED thesis — it was proven WRONG during execution.** Reverting BCL/SDK DLLs to 6.0.0.0 breaks 2sxc 21:
+> 2sxc 21.07 is compiled against `System.Text.Json` **9.0.0.0** / `System.Composition`-SCI **9.0.0.0** /
+> `Microsoft.Extensions.*`-Bcl **8.0.0.0**. Reverting → `JsonOptions` type-init `MissingMethodException` → every 2sxc
+> module renders *"Something went really wrong in view.ascx"*.
+>
+> **The correct B1 action (what actually worked):** deploy the matched BCL stack from the **2sxc 21.07 Install
+> package** (Json 9.0.0.0 / SCI 9.0.0.0 / Bcl 8.0.0.0) + align `<assemblyBinding>` redirects to those versions.
+> Canonical working bin = `tmp/dnn-backups/bin_post_2sxc_realign` (330 files). Authoritative version matrix: MEMORY
+> `reference-dnn-2sxc-net48-bcl-stack` + [`../dnn-localization/682-field-model-revision-2sxc21.md`](../dnn-localization/682-field-model-revision-2sxc21.md).
+> The same correction is applied to [`132-deployment-runbook.md`](../dnn-localization/132-deployment-runbook.md) §5.5(a).
+> **Read B1 below as historical-prep-with-a-known-error; the correction supersedes it.**
+>
+> ### Release de-coupling
+> The 26/06 framing "release COUPLÉE au site" is **revised**: the DNN prod go-live (B4) is a **jsboige ops VPS task,
+> de-coupled from the v0.9.0 print release** (worker reco, ai-01 concur). The tag v0.9.0 does not block on B4.
+> **Version note (2026-09-11)**: the release tag has since been re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06,
+> #999 — [`../release-dossier/DECISION-v2.0.0-jsboige.md`](../release-dossier/DECISION-v2.0.0-jsboige.md)); the
+> de-coupling itself is unchanged.
+
+> ## ⚠️ POST-SNAPSHOT EVENTS (2026-08-28 → 2026-09-11) — the snapshot above is historical-of-its-date
+>
+> Per the coordinator's 08/09 doctrine on #1180: positive checks from August are **historical proofs, not a
+> validation of the current state**. Since the 2026-08-24 snapshot:
+> - **28/08**: a deploy rewrote `Default.aspx` to the 9.11.1 variant on the 10.3.2 install → site-wide NRE/500
+>   ([#1244](https://github.com/ArgumentumGames/Argumentum/issues/1244)). The snapshot's "EventLog 0/day since
+>   21/08" row stopped being true that day (305 `DefaultPage.OnInit` NRE on 08/09 before repair).
+> - **08/09 23:43**: repaired — `Default.aspx` 10.x pose (GO jsboige; #1244 `5592291573`); post-pose smoke 6
+>   routes 200/200 (ai-01, #1180 comment).
+> - **09/09 18:30**: jQuery 3.7.1 + jQuery-UI 1.14.1 library folders posed (#1244 `5605297080`) — the two 404s
+>   ai-01 measured on 08/09 23:55 are resolved.
+> - **11/09 re-measure (read-only)**: 5 public pages 200 with freshness proven (3× `tosic.sxc` marker each,
+>   cache-busté); product page 200 in the requalified no-stock state (É5, #1180); jQuery/jQuery-UI 200
+>   byte-exact. **Residuals** (pre-existing, carried by the #1180 recette): 2 content-image 404s
+>   (`Portals/1/Images/github-mark.png`, `Portals/1/adam/News5/…/Open-Store.png`) + 2× 2sxc
+>   `null.setAttribute` console errors.
+> - **Current-state evidence holder = #1180** (É1-É7 + post-pose smokes); regression/repair record = #1244.
 
 ---
 
@@ -19,9 +115,9 @@
 | Templates Razor14 migration (#596) | 12 templates source-level migrated | ❌ no (repo) | ✅ done — runtime verify only (B3) |
 | CVE + target docs (#593) | 9.13.x closes 0 CVE; target = 10.3.2 | ❌ no | ✅ done |
 | Full doc arc + checklists | README index, sandbox smoke (#131-step2), prod smoke (#603), deployment (#132) | ❌ no | ✅ done |
-| **Sandbox `bin/` repair** | 5 .NET-9 contaminants → net48 re-deploy | ✅ **RDP** | ⛔ characterized, recipe ready (B1) |
-| Sandbox upgrade 9.11.1→10.3.2 + 2sxc 15.02→21.07 | wizard + cliff cross | ✅ **RDP** | ⛔ gated (B2) |
-| Browser-verify 12 templates (#596 runtime un-gate) | assign + screenshot | ✅ **RDP** | ⛔ gated (B3) |
+| **Sandbox `bin/` repair** | ~~5 .NET-9 → 6.0.0 re-deploy~~ (B1 inverted) → **9.0.0.0 BCL from 2sxc 21.07 pkg** | ✅ **RDP** | ✅ DONE 2026-06-28 (B1 recipe below ⛔ SUPERSEDED) |
+| Sandbox upgrade 9.11.1→10.3.2 + 2sxc 15.02→21.07 | wizard + cliff cross | ✅ **RDP** | ✅ done — 10.3.2 + 2sxc 21.07 live in full-IIS (header above; B2.5 smoke GREEN) |
+| Browser-verify 12 templates (#596 runtime un-gate) | assign + screenshot | ✅ **RDP** | ✅ done — runtime binding validated on the sandbox (header above; content parity re-proven #1180 É4, 2026-08-26: 4 pages, 0 block lost) |
 | Prod go-live 10.3.2 | wizard on prod + Phase-5 smoke | ✅ **RDP (prod)** | ⛔ gated (B4) |
 
 ## [A] Already done without RDP (agent-delivered — verify only, no action)
@@ -40,7 +136,24 @@ These landed via PRs while `master` stayed frozen at `bef3bc6c`:
 
 > Run in order. Each step references the authoritative doc (don't re-derive here). The whole of [B] is one focused session if B1 goes smoothly.
 
-### B1 — Sandbox `bin/` repair (FIRST — blocks ALL DNN boot) ⛔
+### B1 — Sandbox `bin/` repair — ⛔ SUPERSEDED (2026-07-10); DONE 2026-06-28 via the corrected BCL stack
+
+> **This B1 block encodes the INVERTED "revert to 6.0.0.0" thesis and is kept as a record only.** The
+> 2026-06-25 boot characterization (".NET 9 SDK contamination") was correct about the *EF Core 2.1.1 binding
+> error* but **backwards for the 2sxc 21.07 runtime**: 2sxc 21.07 is compiled against .NET 9 and **requires**
+> `System.Text.Json` 9.0.0.0 / `System.Collections.Immutable` 9.0.0.0 / `Microsoft.Bcl.AsyncInterfaces`
+> 8.0.0.0. Reverting to 6.0.0.0 breaks `JsonOptions` type-init → every 2sxc module *"Something went really
+> wrong in view.ascx"* (looks like a DB bug, isn't).
+>
+> **What actually worked (2026-06-28):** deploy the matched BCL stack from the **2sxc 21.07 Install package**
+> and align redirects **to 9.0.0.0/8.0.0.0** (NOT 6.0.0.0). Canonical snapshot
+> `tmp/dnn-backups/bin_post_2sxc_realign` (330 files); authoritative matrix =
+> `reference-dnn-2sxc-net48-bcl-stack` + [README §0.5](../dnn-localization/README.md). The runnable form of
+> the inverted recipe, [`repair-bin-net48.ps1`](repair-bin-net48.ps1), was deprecated in **#624** (`-Apply`
+> refuses). See also the ⛔ SUPERSEDED callout on [sandbox-bootstrap-runbook.md](sandbox-bootstrap-runbook.md).
+>
+> The numbered steps below are the **original (inverted) recipe — do NOT execute as written**; step 3's
+> `→ 6.0.0.0` is the specific wrong target.
 
 This is the characterized blocker from the 2026-06-25 boot attempt ([#596 `issuecomment-4804068740`](https://github.com/ArgumentumGames/Argumentum/pull/596#issuecomment-4804068740)). The sandbox **cannot start** until the `bin/` SDK contamination is cleaned. **Recipe is turnkey** ([sandbox-bootstrap-runbook.md §3](sandbox-bootstrap-runbook.md)) — or run it as a script: [`repair-bin-net48.ps1`](repair-bin-net48.ps1) (dry-run by default, `-Apply` to execute: backs up `bin\`, copies the 2 local DLLs, fetches the 5 NuGet 6.0.0, drops them in). Manual run in this RDP session only; `bin/` is git-tracked, revert after.
 

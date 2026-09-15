@@ -173,7 +173,7 @@ namespace Argumentum.AssetConverter.Tests.GSheetSync
             // not as the literal text "null", and must not throw.
             var grid = new List<IList<object>>
             {
-                new List<object> { "a", null, "c" },
+                new List<object> { "a", null!, "c" },
             };
 
             var csv = Service.GridToCsv(grid);

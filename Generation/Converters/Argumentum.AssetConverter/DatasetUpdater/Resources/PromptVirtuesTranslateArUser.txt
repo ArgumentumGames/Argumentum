@@ -14,15 +14,23 @@ Traduis en arabe les champs vides `_ar` du jeu de données ci-après. Pour chaqu
 
 # Mapping canonique des familles
 
-- `Arguments vertueux` → `حجج فضلى`
-- `Argument valable` → `حجة صالحة`
+- `Argument valable` (racine) → `حجة معتبرة`
 - `Argument pertinent` → `حجة ملائمة`
 - `Présentation intègre` → `عرض نزيه`
-- `Exactitude mathématique` → `دقة رياضية`
-- `Raisonnement valide` → `استدلال صحيح`
-- `Langage rigoureux` → `لغة دقيقة`
+- `Sens quantitatif` → `استدلال كمي`
+- `Inférence maîtrisée` → `إتقان الاستنتاج`
+- `Justesse lexicale` → `دقة لفظية`
 - `Honnêteté intellectuelle` → `أمانة فكرية`
-- `Débat respectueux` → `نقاش محترم`
+- `Échange enrichissant` → `تبادل مُثرٍ`
+
+Noms FR **historiques**, retirés de la taxonomie : s'ils apparaissent dans une source ancienne, traduire vers le libellé **courant** ci-dessus — jamais vers l'ancienne cible.
+- `Arguments vertueux` → `حجة معتبرة`
+- `Exactitude mathématique` → `استدلال كمي`
+- `Rigueur mathématique` → `استدلال كمي`
+- `Raisonnement valide` → `إتقان الاستنتاج`
+- `Langage rigoureux` → `دقة لفظية`
+- `Langage exact` → `دقة لفظية`
+- `Débat respectueux` → `تبادل مُثرٍ`
 
 Pour les sous-familles non listées, traduis la première occurrence puis réutilise mot pour mot.
 

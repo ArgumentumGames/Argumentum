@@ -40,6 +40,10 @@ public class ImageFileGenerator
 		Logger.Log($"Found {enabledDocs.Count} enabled documents to process in ImageFileGenerator.");
 
 		var parallelOptionsDocs = new ParallelOptions { MaxDegreeOfParallelism = Config.EnableParallelism ? Config.MaxDegreeOfParallelismImageTranslations : 1 };
+		// #1179: a document×language couple whose image generation THROWS must fail the run, not be
+		// swallowed into an empty image list (#1177: Magick WriteBlob MAX_PATH failure → empty list →
+		// silent PDF skip → stale PDF kept in place with a fresh CMYK mtime).
+		var deadCouples = new ConcurrentBag<string>();
 		Parallel.ForEach(enabledDocs, parallelOptionsDocs, configDocument =>
 		{
 			var targetLanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
@@ -94,12 +98,22 @@ public class ImageFileGenerator
 				catch (Exception e)
 				{
 					Logger.LogException(e);
+					deadCouples.Add($"{configDocument.DocumentName}/{currentLanguage}");
 					// Ensure that even in case of an error, we return an entry for this document/language pair.
 					// This is important for the caller to know that a process was attempted.
 					intermediateDict.TryAdd((configDocument.DocumentName, currentLanguage), (configDocument, new List<CardImages>()));
 				}
 			});
 		});
+
+		if (!deadCouples.IsEmpty)
+		{
+			var couples = deadCouples.OrderBy(c => c).ToList();
+			throw new InvalidOperationException(
+				$"Image generation FAILED for {couples.Count} document×language couple(s): {string.Join(", ", couples)}. "
+				+ "A couple producing zero images is a failure, not a silent skip — any PDF already on disk for these couples is stale. "
+				+ "See the log for the originating exceptions (e.g. Magick WriteBlob Failed = path length ≥ 260).");
+		}
 
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
 		foreach (var item in intermediateDict)

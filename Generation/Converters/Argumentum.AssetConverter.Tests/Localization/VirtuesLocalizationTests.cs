@@ -96,6 +96,11 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			var template = File.ReadAllText(path);
 			var loc = GetVirtuesLocalization();
 
+			// Guard (#1046 MED #5): an empty FrontFieldConversions list would skip the loop entirely
+			// and pass green — the total-loss form of the #216 bug this test exists to catch.
+			loc.FrontFieldConversions.Should().NotBeEmpty(
+				"Virtues FrontFieldConversions must not be empty — an empty list skips every token check");
+
 			foreach (var fieldConversion in loc.FrontFieldConversions)
 			{
 				var sourcePattern = loc.FormatField(fieldConversion.sourceFieldName);

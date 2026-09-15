@@ -161,7 +161,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
-		public string LinkExpression { get; set; } = @"{item.Link}";
+		public string LinkExpression { get; set; } = @"{item.LinkFrFallback}";
 
 
 		[IgnoreDataMember]
@@ -228,6 +228,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 		public string ThumbnailsCardSetName { get; set; }
+
+		/// <summary>
+		/// #1197: hard bound on the longest edge (px) of the PNG the .mm references — see
+		/// <see cref="MindMapThumbnailVariant"/>. Symmetric with the Fallacies config.
+		/// </summary>
+		public int ThumbnailsMaxEdge { get; set; } = MindMapThumbnailVariant.DefaultMaxEdge;
 
 		public string ThumbnailsFileNamePattern { get; set; } = "_{item.Path}..";
 
@@ -315,22 +321,16 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private void CreateMindMapNodes(FreemindMap freemindMap, IList<IMindMapItem> mindMapItems, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
 		{
-			var linkedItems = new HashSet<IMindMapItem>();
-
+			// #1181: the Identity text-matching branch (previous enum generation, never enabled) was
+			// removed with the corpus-verb alignment — the Virtues taxonomy carries no crossLink_*
+			// columns, so CrossLinks stays None here and the list below stays empty.
 			foreach (var item in mindMapItems)
 			{
-				linkedItems.Add(item);
 				if (string.IsNullOrEmpty(item.PK)) continue;
 
 				var localPath = item.Path;
 
 				List<(CrossLink crossLinkType, List<IMindMapItem> targets)> crossLinks = new();
-
-				if (this.CrossLinks.HasFlag(CrossLink.Identity))
-				{
-					var identityItems = mindMapItems.Where(f => f.Text == item.Text && !linkedItems.Contains(f)).ToList();
-					crossLinks.Add((CrossLink.Identity, identityItems));
-				}
 
 				var itemNode = CreateNode(item, config, language, crossLinks.ToArray());
 				nodesByPath[localPath] = itemNode;
@@ -384,21 +384,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					crossLinkNode.StartInclination = "892;0;";
 					crossLinkNode.EndInclination = "892;0;";
 					crossLinkNode.Destination = target.Id;
-
-					switch (crossLink.crossLinkType)
-					{
-						case CrossLink.Identity:
-							crossLinkNode.Color = "#dbffd6 ";
-							break;
-						case CrossLink.AppealTo:
-							crossLinkNode.Color = "#ccffff";
-							break;
-						case CrossLink.Opposite:
-							crossLinkNode.Color = "#ffcfcc";
-							break;
-						default:
-							throw new ArgumentOutOfRangeException($"cross link type {crossLink.crossLinkType} unsupported");
-					}
+					crossLinkNode.Color = FallacyMindMapDocumentConfig.GetCrossLinkColor(crossLink.crossLinkType);
 					itemNode.Arrowlinks.Add(crossLinkNode);
 
 				}
@@ -477,6 +463,29 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
+		/// <summary>
+		/// Resolves the thumbnail path embedded in the .mm for <paramref name="item"/>, relative to
+		/// the document directory. #1197: routes at a bounded variant — see
+		/// <see cref="MindMapThumbnailVariant"/>. Symmetric with the Fallacies config.
+		/// </summary>
+		public string ResolveThumbnailPathForItem(AssetConverterConfig assetConverterConfig, string language, IMindMapItem item)
+		{
+			var cardSetDirectory = ImageHelper.GetImageFolder(assetConverterConfig, this, language, ThumbnailsCardSetName);
+			var imageFileName = MatchThumbnailsName(cardSetDirectory, item);
+			if (string.IsNullOrEmpty(imageFileName))
+			{
+				Logger.LogProblem($"No thumbnail for item {TitleFunc(item)} in directory {cardSetDirectory}");
+				return imageFileName;
+			}
+
+			imageFileName = MindMapThumbnailVariant.EnsureBoundedVariant(
+				imageFileName,
+				MindMapThumbnailVariant.GetVariantDirectory(cardSetDirectory),
+				ThumbnailsMaxEdge);
+			var targetDirectory = assetConverterConfig.GetDocumentDirectory(language);
+			return imageFileName.GetRelativePathFrom(targetDirectory);
+		}
+
 		private void AddCardIcon(IMindMapItem item, Node node, AssetConverterConfig assetConverterConfig, string language)
 		{
 			node.Icons.Add(new Icon() { BUILTIN = $"full-{item.Carte}" });
@@ -486,21 +495,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 				var cardSetConfig = assetConverterConfig.WebBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
 				if (cardSetConfig != null)
 				{
-					this.ThumbnailsPathFunc = objItem =>
-					{
-						var cardSetDirectory = ImageHelper.GetImageFolder(assetConverterConfig, this, language, ThumbnailsCardSetName);
-						var imageFileName = MatchThumbnailsName(cardSetDirectory, item);
-						if (string.IsNullOrEmpty(imageFileName))
-						{
-							Logger.LogProblem($"No thumbnail for item {TitleFunc(item)} in directory {cardSetDirectory}");
-						}
-						else
-						{
-							var targetDirectory = assetConverterConfig.GetDocumentDirectory(language);
-							imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
-						}
-						return imageFileName;
-					};
+					this.ThumbnailsPathFunc = objItem => ResolveThumbnailPathForItem(assetConverterConfig, language, item);
 				}
 
 				var cardDoc = new XmlDocument();
@@ -847,21 +842,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private static string GetSvgContent(XDocument svgDoc)
 		{
-			StringBuilder sb = new();
-			XmlWriterSettings settings = new()
-			{
-				Indent = true,
-				IndentChars = "\t", // use tab for indentation
-				NewLineChars = Environment.NewLine,
-				NewLineHandling = NewLineHandling.Replace
-			};
-
-			using (XmlWriter writer = XmlWriter.Create(sb, settings))
-			{
-				svgDoc.Save(writer);
-			}
-			string svgContent = sb.ToString();
-			return svgContent;
+			// #804 — delegate to MindMapSvgWriter so the emitted XML declaration says UTF-8
+			// (matching the physical byte encoding of the written file) instead of the UTF-16
+			// default that a bare XmlWriter-on-StringBuilder would produce. The 32 on-disk
+			// *.content.svg / *.links.svg realign on the next regeneration (post-tag).
+			return MindMapSvgWriter.WriteToString(svgDoc);
 		}
 
 

@@ -7,6 +7,33 @@
 
 ---
 
+> ## ⛔ §2 / §3 SUPERSEDED (2026-07-10) — the B1 "revert to 6.0.0.0" thesis is INVERTED for 2sxc-21
+>
+> This runbook was written 2026-06-26 from the 2026-06-25 boot-attempt characterization. The §2 root-cause
+> framing (".NET 9 SDK **contamination**") and the §3 recipe (fetch NuGet **6.0.0**, align redirects to
+> **6.0.0.0**) pre-date the B1-inversion being understood. For a **2sxc 21.07** site that diagnosis is
+> **backwards and harmful**:
+>
+> - 2sxc 21.07 is **compiled against .NET 9** and **ships** the .NET 9 BCL stack in its own Install pkg. It
+>   **REQUIRES** `System.Text.Json` 9.0.0.0, `System.Collections.Immutable` 9.0.0.0,
+>   `Microsoft.Bcl.AsyncInterfaces` 8.0.0.0, etc.
+> - Reverting them to 6.0.0.0 breaks 2sxc's `JsonOptions` type-init (`MissingMethodException`) →
+>   `StartupDnnWebApi.Configure()` aborts **before** `SetConnectionString` → every 2sxc module renders
+>   *"Something went really wrong in view.ascx"* (mimics a connection-string bug; isn't one).
+>
+> **What was actually done (2026-06-28):** deployed the matched BCL stack from the **2sxc 21.07 Install
+> package** and aligned redirects **to 9.0.0.0** (not 6.0.0.0). Result: homepage 200/86 KB, 0
+> JsonOptions / conn-string errors. Canonical snapshot: `tmp/dnn-backups/bin_post_2sxc_realign` (330 files).
+> Authoritative version matrix: `reference-dnn-2sxc-net48-bcl-stack` (per-machine memory) +
+> [README §0.5](../dnn-localization/README.md). The executable form of the (also-superseded) 6.0.0 recipe —
+> [`repair-bin-net48.ps1`](repair-bin-net48.ps1) — was deprecated in **#624** (its `-Apply` now refuses).
+>
+> **Still valid here** (verified, reusable): §1 (LocalDB / IIS Express / DB-163-tables facts), §3.1
+> (Imageflow local source — but at the 9.x versions, not 6.x), §3.3 binding-redirect **line numbers**
+> (~446/454/596/600 — the `newVersion` *targets* are wrong, the line *locations* are right), §4 (web.config
+> local edits), §6 gotchas (IIS Express `/config:`), §7 (why redirect-only patching fails).
+> **Stale / do-not-execute:** §2 root-cause framing, §3.2 NuGet 6.0.0 table, §3.3 `newVersion → 6.0.0.0`.
+
 ## TL;DR
 
 The sandbox **boot infrastructure is proven** on po-2023 (LocalDB + IIS Express + DB present). DNN itself **cannot start** due to a **pre-existing `bin/` SDK-assembly contamination**: ~5 contract assemblies shipped at `.NET 9` versions (asmVer `9.0.0.0`) into a site that runs **EF Core 2.1.1** (netstandard2.0) on **.NET Framework 4.8**. EF Core 2.1.1 cannot bind `.NET 9` assemblies → HTTP 500 cascade. The fix is a **bounded clean `bin/` re-deploy** (replace ~8 net48-compatible assemblies) — an ops task, **not a config tweak**. This runbook gives the exact recipe.

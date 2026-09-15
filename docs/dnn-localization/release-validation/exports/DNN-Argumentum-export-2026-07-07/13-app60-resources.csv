@@ -1,0 +1,12 @@
+key,context,source_file,fr,en,ru,pt,es,ar,fa,zh,notes
+"Author",App-Resources,2sxc-app-resources-app60,"Auteur","",,,,,,,"lang=[] eid=10340"
+"Licence",App-Resources,2sxc-app-resources-app60,"Licence","",,,,,,,"lang=[] eid=10340"
+"RuleContent",App-Resources,2sxc-app-resources-app60,"Contenu","",,,,,,,"lang=[] eid=10340"
+"RuleInstallation",App-Resources,2sxc-app-resources-app60,"Installation","",,,,,,,"lang=[] eid=10340"
+"RuleMaterial",App-Resources,2sxc-app-resources-app60,"Materiel","",,,,,,,"lang=[] eid=10340"
+"RuleMemoCard",App-Resources,2sxc-app-resources-app60,"Carte Mémo","",,,,,,,"lang=[] eid=10340"
+"RuleMemoCardDownload",App-Resources,2sxc-app-resources-app60,"Télécharger la carte mémo","",,,,,,,"lang=[] eid=10340"
+"RuleMemoCardFileNamePrefix",App-Resources,2sxc-app-resources-app60,"Argumentum - Règle","",,,,,,,"lang=[] eid=10340"
+"RuleMemoInstructions",App-Resources,2sxc-app-resources-app60,"<p>Vous pouvez t&eacute;l&eacute;charger la carte de m&eacute;mo suivante pour retrouver facilement les r&egrave;gles.&nbsp;</p>","",,,,,,,"lang=[] eid=10340"
+"RuleSummary",App-Resources,2sxc-app-resources-app60,"Résumé","",,,,,,,"lang=[] eid=10340"
+"RuleVariants",App-Resources,2sxc-app-resources-app60,"Variantes","",,,,,,,"lang=[] eid=10340"

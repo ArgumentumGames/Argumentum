@@ -6,9 +6,20 @@ Write-Host "Objectif: Vérifier que CardPen génère TOUTES les cartes, pas seul
 
 Set-Location "Generation/Converters/Argumentum.AssetConverter"
 
+# ⚠️ Ce script date de decembre 2025 et cible un bug corrige depuis. Il n'est PAS
+# executable en l'etat : AssetConverterConfig.test-js-fix.json n'a jamais ete commite
+# (verifie 2026-08-22, aucune trace dans tout l'historique). Conserve pour reference ;
+# le garde ci-dessous evite qu'il rapporte un faux ECHEC.
+if (-not (Test-Path "AssetConverterConfig.test-js-fix.json")) {
+    Write-Host "SKIP: AssetConverterConfig.test-js-fix.json absent — script non executable." -ForegroundColor Yellow
+    Write-Host "      (jamais commite ; ce test visait un bug corrige en 2025)" -ForegroundColor Yellow
+    exit 0
+}
+
 # Nettoyer les anciens harvests
+# Nom reel : "<CardSet>_harvest_<lang>.json" — l'ancien "*.harvest.json" ne matchait rien (#1133).
 Write-Host "[NETTOYAGE] Suppression des anciens fichiers harvest..." -ForegroundColor Gray
-Remove-Item "*.harvest.json" -ErrorAction SilentlyContinue
+Remove-Item "*_harvest_*.json" -Recurse -ErrorAction SilentlyContinue
 Write-Host "✓ Nettoyage effectué`n" -ForegroundColor Green
 
 # Tester avec 3 cartes Rules
@@ -18,7 +29,7 @@ $result = dotnet run --config AssetConverterConfig.test-js-fix.json 2>&1 | Tee-O
 # Analyser les résultats
 Write-Host "`n[ANALYSE] Vérification des résultats..." -ForegroundColor Cyan
 
-$harvests = Get-ChildItem "*.harvest.json" -ErrorAction SilentlyContinue
+$harvests = Get-ChildItem "*_harvest_*.json" -Recurse -ErrorAction SilentlyContinue
 if ($harvests.Count -gt 0) {
     Write-Host "✅ SUCCESS: $($harvests.Count) fichier(s) harvest généré(s)" -ForegroundColor Green
     

@@ -24,7 +24,10 @@ Les tests unitaires se concentreront sur la validation des composants individuel
         *   L'intégralité du chargement des enregistrements depuis un fichier CSV valide.
         *   La correspondance exacte entre les colonnes du CSV et les propriétés des objets C#.
         *   La robustesse du système face à des données mal formées, notamment par la gestion correcte des exceptions lorsqu'un en-tête crucial (comme `PK`) est manquant.
-    *   **Implémentation :** La validité des fichiers CSV de taxonomie est testée concrètement par la classe de test `CsvValidationTests.cs` située dans le projet `Argumentum.CsvValidator.Tests`. Cette suite de tests unitaires utilise des fichiers d'exemple comme `valid_fallacies.csv` pour les cas passants et `invalid_fallacies.csv` pour vérifier que le système lève bien les exceptions attendues.
+    *   **Implémentation :** La couverture vit dans `Argumentum.AssetConverter.Tests/Parsing/`, répartie en trois familles qui recouvrent les trois aspects ci-dessus :
+        *   `CsvParserTests.cs` — chargement intégral depuis un CSV valide, collection vide sur CSV vide, exception sur CSV mal formé.
+        *   `CsvBaseStrictContractTests.cs` — le contrat strict d'en-tête : une colonne requise (non `.Optional()`) absente lève `HeaderValidationException`, tandis qu'une colonne optionnelle absente ne lève pas. C'est le garde contre la classe de régression #216/#477, où un `.Optional()` perdu vidait un champ requis en silence.
+        *   `*ClassMapRegressionTests.cs` — la correspondance colonne CSV ↔ propriété C#, une classe par entité (`Fallacy`, `Virtue`, `Rule`, `Scenario`, `DnnUiString`, `TestFallacyCard`), y compris les en-têtes français accentués.
 *   **Logique de Template CardPen :**
     *   **Objectif :** Valider le moteur de rendu HTML de CardPen de manière isolée.
     *   **Validation :** Fournir un jeu de données CSV, un template Mustache et du CSS, puis comparer le HTML généré à un snapshot de référence. Cela inclut la validation des helpers personnalisés (`ifCond`, `each`) et du rendu Markdown.

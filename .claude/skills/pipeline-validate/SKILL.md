@@ -43,11 +43,13 @@ Target/{lang}/Documents/density-0/*.pdf
 
 | CardSet | Face | Back | PDFs associes |
 |---------|------|------|---------------|
-| Fallacies | ~177 | ~7 | TarotCards, FallaciesWeb A0/A4/Thumbnails |
-| Scenarii | ~97 | ~7 (par categorie) | PokerCards |
-| Virtues | ~113 | 0 | TarotCards_Virtues |
-| Rules | ~6 | 0 | Dans TarotCards |
-| Memo | ~1 | ~1 | Dans TarotCards |
+| Fallacies | 175 | 1 | TarotCards, FallaciesWeb A0/A4/Thumbnails |
+| Scenarii | 167 | 7 (par categorie) | PokerCards |
+| Virtues | 131 | 1 | TarotCards_Virtues |
+| Rules | 15 | 0 | Dans TarotCards |
+| Memo | 1 | 1 | Dans TarotCards |
+
+Comptes du contrat courant (12/09/2026) : Rules 24→15 (#438) · Fallacies 176→175 (#1288, décision owner du 05/09/2026 — PK 96 retiré, vrai doublon de PK 108) · Scenarii 97→167 · Virtues 113→131. Référence : CLAUDE.md « État actuel par CardSet » + `PdfDeckCountContractTests` (CI). Dos localisés **par langue** (jamais un dos commun aux 8).
 
 ### Phase 2 — Dimensions images
 

@@ -18,7 +18,7 @@ namespace Argumentum.AssetConverter.Ontology
     /// a concept scheme with the 7-family hierarchy (skos:narrower), one concept per Virtue node,
     /// and a custom AIF link <c>aif:goodTenorOf</c> to the Walton argumentation scheme
     /// declared in <see cref="Virtue.AIFSkosDirectRef"/> (the critical question prose in
-    /// <see cref="Virtue.AIFSkosMappingType"/> is carried as an rdfs:comment annotation).
+    /// <see cref="Virtue.AIFCriticalQuestion"/> is carried as an rdfs:comment annotation).
     ///
     /// Cross-corpus Virtue↔Fallacy links (crossLink_Opposes PK→URI resolution) are deferred to
     /// Phase 3: resolving Fallacy PKs requires loading the Fallacies corpus (new architecture,
@@ -65,7 +65,9 @@ namespace Argumentum.AssetConverter.Ontology
 
 	    public static string GetId(string text)
 	    {
-			return text.Camelize().Replace("'","").Replace("-","").Replace(",","");
+			// Space strip mirrors OwlDocumentConfig.GetId — Humanizer 3.x Camelize keeps raw spaces
+			// around punctuation, which would produce invalid IRI fragments (#951).
+			return text.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
 	    public string OntologyNamespace { get; set; } = "";
@@ -127,11 +129,39 @@ namespace Argumentum.AssetConverter.Ontology
 
 	        // AIF object property: a Virtue is the "good tenor of" a Walton argumentation scheme
 	        // (i.e. the correct practice / answer to the scheme's critical questions). The Fallacies
-	        // switch over skos:*Match tokens cannot fire here: the Virtue AIF_skosMappingType column
-	        // holds the FR-prose critical question, not a skos enum token (design adaptation 1).
+	        // switch over skos:*Match tokens cannot fire here: since #989 the Virtue critical
+	        // questions live in AIF_criticalQuestion and the Virtue AIF_skosMappingType column is
+	        // empty (no SKOS mapping is defined for Virtues yet — design adaptation 1).
 	        var aifGoodTenorOfUri = $"{ExternalReferenceOntologyNamespaceURI}goodTenorOf";
 	        var goodTenorOfProperty = new RDFResource(aifGoodTenorOfUri);
 	        ontology.DeclareObjectProperty(goodTenorOfProperty);
+
+	        // ── #989 architecture B — AIF attack typing with derivation provenance ──
+	        // The Virtues' AIF_attackType/AIF_attackedNode values were written by the architecture-B
+	        // rule (ai-01 arbitration 2026-08-31): strict majority of the opposed fallacies' measured
+	        // attack types, exact tie ⇒ declared gap (empty cells + AIF_skosOther note; the gap rows
+	        // emit nothing here, like the root). Publishing the valued rows bare would suggest
+	        // line-by-line argumentative judgment, so every emitted assertion carries a provenance
+	        // marker. The marker is RE-DERIVED at emission (see DeriveAttackTypeProvenance): a
+	        // stored pair carrying the script's fingerprint is "script-derived"; any deviation is
+	        // "human-reviewed" — a future real revision flips the markers with no schema change.
+	        var aifAttackTypeProp = new RDFResource($"{OntologyNamespace}aifAttackType");
+	        var aifAttackedNodeProp = new RDFResource($"{OntologyNamespace}aifAttackedNode");
+	        ontology.DeclareObjectProperty(aifAttackedNodeProp);
+	        var aifAttackTypeProvenanceProp = new RDFResource($"{OntologyNamespace}aifAttackTypeProvenance");
+	        ontology.Annotate(RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(DerivationDeclaration, "en"));
+
+	        var aifNodeResources = new Dictionary<string, RDFResource>();
+	        RDFResource AifNode(string nodeName)
+	        {
+	            if (!aifNodeResources.TryGetValue(nodeName, out var res))
+	            {
+	                res = new RDFResource($"{ExternalReferenceOntologyNamespaceURI}{nodeName}");
+	                ontology.DeclareClass(res);
+	                aifNodeResources[nodeName] = res;
+	            }
+	            return res;
+	        }
 
 	        // Scheme declaration
 	        var schemeName = GetId(virtues.First().TitleEn);
@@ -174,17 +204,43 @@ namespace Argumentum.AssetConverter.Ontology
 
 	                foreach (var schemeMapping in schemeMappings)
 	                {
-	                    var schemeUri = $"{ExternalReferenceOntologyNamespaceURI}{schemeMapping}";
+	                    // GetId, not the raw cell: AIF_skosDirectRef holds plain-English Walton scheme
+                    // names ("Argument from Analogy") whose spaces are invalid in an IRI fragment.
+                    // Same transform as every other fragment we mint (#951 follow-up; AifNode is
+                    // deliberately NOT routed through it — I-node/RA-node are canonical AIF names).
+                    var schemeUri = $"{ExternalReferenceOntologyNamespaceURI}{VirtueOwlDocumentConfig.GetId(schemeMapping)}";
 	                    var schemeConcept = new RDFResource(schemeUri);
 	                    ontology.AnnotateConceptWithResource(virtueConcept, goodTenorOfProperty, schemeConcept);
+	                    // #133 : la meme arete en assertion (cf OwlAdapter.DeclareObjectAssertion).
+	                    ontology.DeclareObjectAssertion(virtueConcept, goodTenorOfProperty, schemeConcept);
 	                }
 
-	                // The critical-question prose (AIF_skosMappingType) is not a skos token here;
-	                // carry it as a free-text rdfs:comment so it stays consumable and lossless.
-	                if (!string.IsNullOrEmpty(virtue.AIFSkosMappingType))
+	                // The critical-question prose lives in AIF_criticalQuestion since #989 (it was
+	                // mis-housed in AIF_skosMappingType, which is now skos:*Match-only and empty on
+	                // the Virtues side); carry the prose as a free-text rdfs:comment so it stays
+	                // consumable and lossless.
+                if (!string.IsNullOrEmpty(virtue.AIFCriticalQuestion))
+                {
+                    ontology.AnnotateConcept(virtueConcept, RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(virtue.AIFCriticalQuestion, "fr"));
+                }
+	            }
+
+	            // #989 branch B — AIF attack typing + derivation provenance (mirrors the Fallacies
+	            // emission shape in OwlDocumentConfig.CreateOwlDocument). The root Virtue (pk 0, no
+	            // scheme) has empty AIF_attackType by design and emits nothing here.
+	            if (!string.IsNullOrWhiteSpace(virtue.AIFAttackType))
+	            {
+	                var storedType = virtue.AIFAttackType.Trim();
+	                var storedNode = virtue.AIFAttackedNode?.Trim() ?? "";
+	                ontology.AnnotateConcept(virtueConcept, aifAttackTypeProp, new RDFPlainLiteral(storedType));
+	                if (!string.IsNullOrWhiteSpace(storedNode))
 	                {
-	                    ontology.AnnotateConcept(virtueConcept, RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(virtue.AIFSkosMappingType, "fr"));
+	                    ontology.AnnotateConceptWithResource(virtueConcept, aifAttackedNodeProp, AifNode(storedNode));
+	                    // #133 : idem, pour que l'arete d'attaque soit raisonnable et pas seulement lisible.
+	                    ontology.DeclareObjectAssertion(virtueConcept, aifAttackedNodeProp, AifNode(storedNode));
 	                }
+	                ontology.AnnotateConcept(virtueConcept, aifAttackTypeProvenanceProp,
+	                    new RDFPlainLiteral(DeriveAttackTypeProvenance(virtue)));
 	            }
 	        }
 
@@ -192,6 +248,59 @@ namespace Argumentum.AssetConverter.Ontology
 	        await ontology.ToFileAsync(OWLEnums.OWLFormats.OWL2XML, fileName);
 	        Logger.LogSuccess($"Virtue Owl document {fileName} successfully saved");
 	    }
+
+	    /// <summary>
+	    /// #989 architecture B — classifies the STORED pair against the script's fingerprint.
+	    /// The corpus was written by the architecture-B rule (ai-01 arbitration 2026-08-31,
+	    /// msg-20260831T172136-w5x7gm): strict majority of the opposed fallacies' measured
+	    /// AIF_attackType values, exact tie ⇒ declared gap (empty cells + AIF_skosOther note).
+	    /// The script's outputs share a verifiable signature WITHOUT loading the Fallacies
+	    /// corpus: a deterministic type→node coupling (undercut→RA-node, undermine→I-node,
+	    /// rebut→CA-node) and gap separation (a valued row never carries the gap note). That
+	    /// signature is what this marker re-derives: signature-consistent ⇒ "script-derived",
+	    /// any deviation ⇒ "human-reviewed". Re-deriving the majority itself would require the
+	    /// cross-corpus pk→AIF_attackType map (generator Phase 3, deliberately not crossed here).
+	    /// Public static so the organ test can drive it on fabricated witnesses (sensitivity
+	    /// proof: the marker is computed, not a constant).
+	    /// </summary>
+	    public static string DeriveAttackTypeProvenance(Virtue virtue)
+	    {
+	        var storedType = (virtue.AIFAttackType ?? "").Trim();
+	        var storedNode = (virtue.AIFAttackedNode ?? "").Trim();
+	        var hasGapNote = !string.IsNullOrWhiteSpace(virtue.AIFSkosOther);
+	        if (storedType.Length == 0 || hasGapNote)
+	        {
+	            // No derived value to mark (the emitter never calls the marker for an empty
+	            // type), or a valued row carrying a gap declaration — not a script output shape.
+	            return "human-reviewed";
+	        }
+	        var expectedNode = storedType switch
+	        {
+	            "undercut" => "RA-node",
+	            "undermine" => "I-node",
+	            "rebut" => "CA-node",
+	            _ => null,
+	        };
+	        return storedNode == expectedNode ? "script-derived" : "human-reviewed";
+	    }
+
+	    /// <summary>
+	    /// The derivation declaration carried as an ontology-level rdfs:comment — the whole point
+	    /// of #989: a reader who has never seen the issue can tell a derived value from a
+	    /// reviewed one.
+	    /// </summary>
+	    public const string DerivationDeclaration =
+	        "aifAttackType/aifAttackedNode on these virtues were written by the #989 architecture B " +
+	        "rule (ai-01 arbitration 2026-08-31): each virtue carries the strict majority of the " +
+	        "measured AIF_attackType values of the fallacies it opposes (crossLink_Opposes); an exact " +
+	        "tie is a declared gap — the cells stay empty and the reason is serialized in AIF_skosOther " +
+	        "(142 mapped: undermine 74, undercut 63, rebut 5; 80 declared gaps). Each assertion carries " +
+	        "aifAttackTypeProvenance, re-derived at emission: 'script-derived' when the stored pair " +
+	        "shows the script fingerprint (deterministic type-node coupling — undercut/RA-node, " +
+	        "undermine/I-node, rebut/CA-node — and no gap note on a valued row), 'human-reviewed' when " +
+	        "it deviates. Re-deriving the majority per row would require the Fallacies corpus " +
+	        "(pk to AIF_attackType), deliberately deferred with the generator's Phase 3 cross-corpus " +
+	        "architecture; until then the marker verifies the script's signature, not its rule (#989).";
 
 	    private RDFResource GetVirtueConcept(Virtue targetVirtue,
 	     OwlAdapter ontology, RDFResource mainScheme)

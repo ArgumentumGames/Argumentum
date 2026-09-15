@@ -34,7 +34,7 @@
 <a class="visually-hidden-focusable" rel="nofollow" href="#to-shine-page-main"><%= LocalizeString("SkipLink.MainContent") %></a>
 <header id="to-shine-page-header">
   <div class="container d-flex justify-content-between align-items-center py-3">			
-    <a class="logo" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc (change this in the theme-body.ascx)">			
+    <a class="logo" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.Instance.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc (change this in the theme-body.ascx)">			
       <img alt="Logo" class="img-fluid" src="<%=SkinPath%>images/logo.svg">
     </a>
     <div class="to-shine-mobile-hamburger" data-bs-toggle="offcanvas" data-bs-target="#offcanvasStart" aria-controls="offcanvasStart" title="Menu">
@@ -46,7 +46,7 @@
     </div>
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasTopLabel">
     <div class="offcanvas-header">
-      <a class="logo" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc  (change this in the theme-body.ascx)">			
+      <a class="logo" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.Instance.GetCurrentPortalSettings().HomeTabId) %>" title="2shine DNN BS5 2sxc  (change this in the theme-body.ascx)">			
         <img alt="Logo" class="img-fluid" src="<%#SkinPath%>images/logo.svg">
       </a>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -129,8 +129,8 @@
       <%-- 
         Terms and Privacy Links are set in "Site Settings" > "Site Behavior"
       --%>
-      <a href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().PrivacyTabId) %>" title="<%= LocalizeString("Imprint.Text") %>"><%= LocalizeString("Imprint.Text") %></a> | 
-      <a href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.GetCurrentPortalSettings().TermsTabId) %>" title="<%= LocalizeString("Privacy.Text") %>"><%= LocalizeString("Privacy.Text") %></a>
+      <a href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.Instance.GetCurrentPortalSettings().PrivacyTabId) %>" title="<%= LocalizeString("Imprint.Text") %>"><%= LocalizeString("Imprint.Text") %></a> | 
+      <a href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalController.Instance.GetCurrentPortalSettings().TermsTabId) %>" title="<%= LocalizeString("Privacy.Text") %>"><%= LocalizeString("Privacy.Text") %></a>
     </div>
   </div>
 </footer>

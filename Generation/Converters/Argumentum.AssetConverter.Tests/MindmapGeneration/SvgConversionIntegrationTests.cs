@@ -57,7 +57,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
             // Act
             var method = typeof(FallacyMindMapDocumentConfig).GetMethod("TryAutomateSvgConversion", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { typeof(string), typeof(string), typeof(AssetConverterConfig), typeof(bool) }, null);
-            var result = (bool)method.Invoke(_generator, new object[] { mmPath, svgPath, _config, false });
+            Assert.NotNull(method);
+            var result = (bool)method!.Invoke(_generator, new object[] { mmPath, svgPath, _config, false })!;
 
             // Assert
             Assert.True(result, "L'exécution du processus de conversion SVG doit réussir.");

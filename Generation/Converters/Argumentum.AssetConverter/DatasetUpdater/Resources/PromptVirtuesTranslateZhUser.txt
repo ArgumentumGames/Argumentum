@@ -14,15 +14,23 @@ Traduis en chinois simplifié les champs vides `_zh` du jeu de données ci-aprè
 
 # Mapping canonique des familles
 
-- `Arguments vertueux` → `优良论证`
-- `Argument valable` → `有效论证`
+- `Argument valable` (racine) → `有效论证`
 - `Argument pertinent` → `相关论证`
 - `Présentation intègre` → `诚实陈述`
-- `Exactitude mathématique` → `数学精确性`
-- `Raisonnement valide` → `有效推理`
-- `Langage rigoureux` → `严谨语言`
+- `Sens quantitatif` → `定量推理`
+- `Inférence maîtrisée` → `精熟推断`
+- `Justesse lexicale` → `词汇精确性`
 - `Honnêteté intellectuelle` → `智识诚实`
-- `Débat respectueux` → `尊重性辩论`
+- `Échange enrichissant` → `充实性交流`
+
+Noms FR **historiques**, retirés de la taxonomie : s'ils apparaissent dans une source ancienne, traduire vers le libellé **courant** ci-dessus — jamais vers l'ancienne cible.
+- `Arguments vertueux` → `有效论证`
+- `Exactitude mathématique` → `定量推理`
+- `Rigueur mathématique` → `定量推理`
+- `Raisonnement valide` → `精熟推断`
+- `Langage rigoureux` → `词汇精确性`
+- `Langage exact` → `词汇精确性`
+- `Débat respectueux` → `充实性交流`
 
 Pour les sous-familles non listées, traduis la première occurrence puis réutilise mot pour mot.
 

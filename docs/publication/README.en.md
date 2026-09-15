@@ -26,6 +26,8 @@ The rules ("booklet") ship as **Rules cards** in the Tarot deck (and the Print&P
 
 ### 3. Release announcement article
 
+> **Version note (2026-09-13, #999)**: the release has been re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06). The files below keep their `v0.9.0` file names (dated traces); their **content** must move to the v2.0.0 number before publication (#999 DoD 3).
+
 - **[news-article-v0.9.0.en.md](news-article-v0.9.0.en.md)** — EN mirror draft of the v0.9.0 release announcement (DNN News5 module); publication gated on #134/#131/#132 (issue #135).
 - **[news-article-v0.9.0.fr.md](news-article-v0.9.0.fr.md)** — French canonical.
 

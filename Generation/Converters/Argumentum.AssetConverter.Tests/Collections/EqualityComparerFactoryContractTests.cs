@@ -42,7 +42,7 @@ namespace Argumentum.AssetConverter.Tests.Collections
         /// </summary>
         private sealed class Sample
         {
-            public string Id { get; init; }
+            public string Id { get; init; } = null!;
         }
 
         // A real, observable getHashCode/equals pair keyed on Id. If the factory ever swaps the two
@@ -51,8 +51,8 @@ namespace Argumentum.AssetConverter.Tests.Collections
         {
             public int GetHashCodeCalls;
             public int EqualsCalls;
-            public Func<Sample, int> GetHashCode { get; }
-            public Func<Sample, Sample, bool> Equals { get; }
+            public new Func<Sample, int> GetHashCode { get; }
+            public new Func<Sample, Sample, bool> Equals { get; }
 
             public TrackedDelegates()
             {

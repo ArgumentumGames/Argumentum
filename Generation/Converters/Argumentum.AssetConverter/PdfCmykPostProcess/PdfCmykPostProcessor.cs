@@ -192,6 +192,8 @@ namespace Argumentum.AssetConverter.PdfCmykPostProcess
                 + $"-dAutoFilterColorImages=false -dColorImageFilter=/FlateEncode "
                 + $"-dAutoFilterGrayImages=false -dGrayImageFilter=/FlateEncode "
                 + $"-dDownsampleColorImages=false "
+                + $"-dDownsampleGrayImages=false "
+                + $"-dDownsampleMonoImages=false "
                 + $"--permit-file-read=\"{iccPath}\" "
                 + $"-o \"{outputPdf}\" \"{pdfxDefPath}\" \"{inputPdf}\"";
         }

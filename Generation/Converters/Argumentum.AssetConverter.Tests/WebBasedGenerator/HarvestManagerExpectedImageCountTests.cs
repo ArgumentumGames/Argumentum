@@ -54,7 +54,7 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
         [InlineData(10, 3, "BUNCH", 10)]  // case-sensitive: CardPen rsstyle is lowercase; "BUNCH" does NOT group
         [InlineData(10, 3, "Bunch", 10)]  // case-sensitive: mixed-case does NOT group either
         public void ComputeExpectedImageCount_MirrorsCardPenGrouping(
-            int cardCount, int rscount, string rsstyle, int expected)
+            int cardCount, int rscount, string? rsstyle, int expected)
         {
             HarvestManager.ComputeExpectedImageCount(cardCount, rscount, rsstyle)
                 .Should().Be(expected,

@@ -105,38 +105,50 @@ namespace Argumentum.AssetConverter.Tests
         /// Exécute les validations configurées
         /// </summary>
         /// <param name="config">La configuration de l'application</param>
-        /// <returns>Une tâche représentant l'opération asynchrone</returns>
-        public async Task Apply(AssetConverterConfig config)
+        /// <returns>True si toutes les validations exécutées ont réussi, sinon false.</returns>
+        public async Task<bool> Apply(AssetConverterConfig config)
         {
             Logger.LogTitle("Validation de l'ontologie OWL");
 
             var validator = new OwlOntologyValidationTests(config);
 
+            bool success;
             if (ValidateStructure && ValidateMultilingualAnnotations && ValidateAIFMappings)
             {
                 // Si toutes les validations sont activées, exécuter la méthode qui les regroupe
-                await validator.RunAllOwlValidations();
+                success = await validator.RunAllOwlValidations();
             }
             else
             {
                 // Sinon, exécuter les validations individuellement selon la configuration
+                success = true;
                 if (ValidateStructure)
                 {
-                    await validator.ValidateOwlOntologyStructure();
+                    success &= await validator.ValidateOwlOntologyStructure();
                 }
 
                 if (ValidateMultilingualAnnotations)
                 {
-                    await validator.ValidateMultilingualAnnotations();
+                    success &= await validator.ValidateMultilingualAnnotations();
                 }
 
                 if (ValidateAIFMappings)
                 {
-                    await validator.ValidateAIFMappings();
+                    success &= await validator.ValidateAIFMappings();
                 }
             }
 
-            Logger.LogSuccess("Validation de l'ontologie OWL terminée");
+            // #1046 Lot B (Surface1 #9): the aggregate bool was discarded and the success line
+            // logged unconditionally — a failing OWL run still printed "terminée" as a success.
+            if (success)
+            {
+                Logger.LogSuccess("Validation de l'ontologie OWL terminée");
+            }
+            else
+            {
+                Logger.LogProblem("Validation de l'ontologie OWL terminée AVEC ÉCHEC");
+            }
+            return success;
         }
     }
 }

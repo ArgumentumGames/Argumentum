@@ -1,0 +1,41 @@
+# #415 Phase 3 — ratchet against new oversized blobs (see tools/large-blob-guard.py)
+# Fails when a push/PR introduces a NEW blob > 2 MiB outside the documented
+# allow-list. Rename-safe (blob-level comparison). Existing content is proven
+# covered by the --audit-head step.
+name: Large blob guard
+
+on:
+  pull_request:
+    branches: ["master"]
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Script self-test (add / rename / delete / modify / LFS pointer / boundary)
+        run: python tools/large-blob-guard.py --self-test
+
+      - name: Allow-list still covers HEAD
+        run: python tools/large-blob-guard.py --audit-head
+
+      - name: Guard new blobs (PR)
+        if: github.event_name == 'pull_request'
+        run: python tools/large-blob-guard.py --base origin/${{ github.base_ref }}
+
+      - name: Guard new blobs (push)
+        if: github.event_name == 'push'
+        run: python tools/large-blob-guard.py --base ${{ github.event.before }}

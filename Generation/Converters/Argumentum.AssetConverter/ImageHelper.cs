@@ -14,6 +14,25 @@ namespace Argumentum.AssetConverter
 
         private static Regex urlExtractorRegex = new Regex(@$"^data:[a-z]+\/(?:[a-z]+);base64,(?<{base64ContentGroupName}>.*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
+        /// <summary>
+        /// #1179/#1121: ImageMagick's native path buffer is MAX_PATH (260) — a longer path fails
+        /// deep inside the encoder as MagickCoderErrorException "WriteBlob Failed", after the work
+        /// is done, and historically got swallowed into a silent PDF skip. Signal well before,
+        /// naming the path and its length.
+        /// </summary>
+        public const int MaxSafeImagePathLength = 250;
+
+        public static void EnsurePathWithinLimit(string path)
+        {
+            if (path.Length > MaxSafeImagePathLength)
+            {
+                throw new InvalidOperationException(
+                    $"Image path is {path.Length} chars (> {MaxSafeImagePathLength}): {path}. "
+                    + "This exceeds the safe limit before the native MAX_PATH(260) ImageMagick write would fail (#1177/#1121). "
+                    + "Run from the short junction (D:\\A1114); note that Git-Bash/MSYS2 resolves the junction at spawn and adds ~30 chars.");
+            }
+        }
+
 
 
         public static MagickImage LoadImageFromPath(string sourceFile)
@@ -95,6 +114,8 @@ namespace Argumentum.AssetConverter
 
 			var imageFileName = GetImageFileName(config, docConfig, language, documentCardSet.CardSetName, imageName, isBack);
 
+			EnsurePathWithinLimit(imageFileName);
+
 			         if (File.Exists(imageFileName))
             {
 				Logger.Log($"Skip existing image: {imageFileName}");
@@ -110,6 +131,14 @@ namespace Argumentum.AssetConverter
                     _ => ImageHelper.LoadImageFromPath(imageUrl)
                 };
                 imageFromEmbeddedUrl.Density = new Density(sourceDpi);
+
+                // #134 : domtoimage capture en RGBA ; depuis que #1321 retire le round-trip per-image
+                // (dont le Alpha(Remove) strippait l'alpha par effet de bord), le RGBA survit jusqu'aux
+                // PNG écrits ci-dessous (original/ et density), atteint les PDFs en SMask, et la passe
+                // PDF/X aplatit cette transparence à sa résolution device par défaut (720 dpi).
+                // Composite sur blanc à la source — identité mesurée sur tout pixel α=255.
+                imageFromEmbeddedUrl.StripAlphaOnWhite();
+
                 if (documentCardSet.SaveOriginalImage)
                 {
                     var originalFolderName = Path.Combine(imagesFolderName, $@"original\");
@@ -124,6 +153,7 @@ namespace Argumentum.AssetConverter
                     }
                     var imageOriginalFileName = $"{imageName}.png";
                     imageOriginalFileName = Path.Combine(cardSetOriginalFolderName, imageOriginalFileName);
+                    EnsurePathWithinLimit(imageOriginalFileName);
                     if (!File.Exists(imageOriginalFileName))
                     {
                         imageFromEmbeddedUrl.Write(imageOriginalFileName);
@@ -172,6 +202,8 @@ namespace Argumentum.AssetConverter
 
             image.Alpha(AlphaOption.Remove);
             image.Settings.BackgroundColor = MagickColors.White;
+            // ⚠️ Ne pas réintroduire de strip d'alpha ici : voir StripAlphaOnWhite, câblé en amont
+            // dans LoadAndProcessImageUrl (c'est lui qui détient l'invariant d'opacité des PNG).
             //image.TransformColorSpace(ColorProfile.SRGB, ColorProfile.USWebCoatedSWOP);
             image.TransformColorSpace( ColorProfiles.USWebCoatedSWOP, ColorTransformMode.Quantum);
 
@@ -180,6 +212,46 @@ namespace Argumentum.AssetConverter
 
         }
 
+        /// <summary>
+        /// Composite le canal alpha sur fond blanc puis le retire. Restaure l'opacité des PNG
+        /// écrits par <c>LoadAndProcessImageUrl</c> SANS le round-trip colorimétrique de #1111 :
+        /// la conversion per-image retirée par #1321 strippait l'alpha par effet de bord de
+        /// <c>Alpha(AlphaOption.Remove)</c>, et sa suppression laisse le RGBA des captures
+        /// domtoimage atteindre les PDFs (SMask), que la passe PDF/X aplatit à sa résolution
+        /// device par défaut — 720 dpi, ×5,76 pixels pour zéro information (#134). La même
+        /// opération de retrait est réintroduite seule, sans transformation de profil.
+        /// Contrôle mesuré 12/09 sur les PNG RGBA du cache harvest (16 fichiers, 6 jeux + ar,
+        /// 29 517 995 pixels α=255) : identité octet-pour-octet, en mémoire et après ré-encodage PNG.
+        /// </summary>
+        public static void StripAlphaOnWhite(this MagickImage image)
+        {
+            image.BackgroundColor = MagickColors.White;
+            image.Alpha(AlphaOption.Remove);
+        }
+
+        /// <summary>
+        /// Resizes a harvested card to its document geometry <b>without deforming it</b>: the source
+        /// aspect ratio is preserved, the image is scaled to cover the target box, and the excess —
+        /// the gabarit's bleed — is cropped away, centred.
+        /// </summary>
+        /// <remarks>
+        /// <para>Issue #1250. Until 2026-09 this method set <c>IgnoreAspectRatio = true</c> and
+        /// stretched the harvest straight onto <c>WidthMM x HeigthMM</c>. Because CardPen renders each
+        /// card at its gabarit size <i>plus</i> a bleed (5 mm on the Fallacies face, 3 mm on its back,
+        /// 5 mm on Scenarii, 0 on others), the source ratio never matched the target and the bleed was
+        /// squashed into the card instead of being trimmed off. Measured drift on the shipped tree:
+        /// +15.1 % vertical stretch on the Fallacies face, +12.8 % Rules, +9.0 % Memo, +4.0 % Scenarii
+        /// — and, inside one deck, the back stretched differently from the face. Every card shipped
+        /// since April 2024 carried it; nobody saw it because the CardPen preview everyone looked at is
+        /// correct, and the deformation happens one stage later, here.</para>
+        /// <para>Cover-and-crop is what a bleed is for, so the fix restores the intended meaning rather
+        /// than adding a correction on top: scale until both target dimensions are covered, then crop
+        /// the overhang. Every shipped gabarit trims to exactly 1.7273 (tarot) or 1.4000 (poker), so
+        /// after cropping the drift against the retargeted 70 x 120 mm tarot is 0.76 % and against
+        /// 63.5 x 88.9 mm poker is nil.</para>
+        /// <para><paramref name="bordermm"/> keeps its original meaning — a white margin inside the
+        /// card, the image being fitted into the reduced box. It is 0 on every shipped document.</para>
+        /// </remarks>
         public static void ResizeInMM(this MagickImage image, decimal widthmm, decimal lengthmm, decimal bordermm)
         {
             if (image.Density.Units == DensityUnit.Undefined)
@@ -187,23 +259,21 @@ namespace Argumentum.AssetConverter
                 image.Density = new Density(300, DensityUnit.PixelsPerInch);
             }
             image.Density = image.Density.ChangeUnits(DensityUnit.PixelsPerCentimeter);
-            
-            var targetGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
-            targetGeometry.IgnoreAspectRatio = true;
 
-            IMagickGeometry extentGeometry = null ;
-            if (bordermm>0)
+            var cardGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
+
+            IMagickGeometry extentGeometry = null;
+            var innerGeometry = cardGeometry;
+            if (bordermm > 0)
             {
-                extentGeometry = targetGeometry;
-                widthmm = widthmm - (2 * bordermm);
-                lengthmm = lengthmm - (2 * bordermm);
-                targetGeometry = image.Density.ToGeometry((double)(widthmm / 10), (double)lengthmm / 10);
-                targetGeometry.IgnoreAspectRatio = true;
+                extentGeometry = cardGeometry;
+                var innerWidthMM = widthmm - (2 * bordermm);
+                var innerLengthMM = lengthmm - (2 * bordermm);
+                innerGeometry = image.Density.ToGeometry((double)(innerWidthMM / 10), (double)innerLengthMM / 10);
             }
 
-            //image.Resize(targetGeometry);
-            
-            image.AdaptiveResize(targetGeometry);
+            CoverAndCrop(image, innerGeometry);
+
             if (extentGeometry != null)
             {
                 image.BorderColor = MagickColors.White;
@@ -211,7 +281,39 @@ namespace Argumentum.AssetConverter
                 image.MatteColor = MagickColors.White;
                 image.Extent(extentGeometry, Gravity.Center, MagickColors.White);
             }
+        }
 
+        /// <summary>
+        /// Scales <paramref name="image"/> so it covers <paramref name="target"/> with its own aspect
+        /// ratio intact, then crops the overhang from the centre. The result is exactly
+        /// <paramref name="target"/>, and no pixel has been stretched.
+        /// </summary>
+        internal static void CoverAndCrop(MagickImage image, IMagickGeometry target)
+        {
+            if (image.Width == 0 || image.Height == 0 || target.Width == 0 || target.Height == 0)
+            {
+                return;
+            }
+
+            var scale = Math.Max(
+                (double)target.Width / image.Width,
+                (double)target.Height / image.Height);
+
+            var coverWidth = (uint)Math.Max(target.Width, Math.Round(image.Width * scale));
+            var coverHeight = (uint)Math.Max(target.Height, Math.Round(image.Height * scale));
+
+            if (coverWidth != image.Width || coverHeight != image.Height)
+            {
+                // Proportional by construction; IgnoreAspectRatio only pins the exact pixel count so
+                // rounding cannot leave the cover one pixel short of the crop box.
+                image.AdaptiveResize(new MagickGeometry(coverWidth, coverHeight) { IgnoreAspectRatio = true });
+            }
+
+            if (image.Width != target.Width || image.Height != target.Height)
+            {
+                image.Crop(new MagickGeometry(target.Width, target.Height), Gravity.Center);
+                image.ResetPage();
+            }
         }
 
         internal static void Modulate(MagickImage image, double modulation)

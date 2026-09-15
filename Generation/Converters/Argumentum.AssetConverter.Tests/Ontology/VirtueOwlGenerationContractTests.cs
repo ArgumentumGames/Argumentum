@@ -8,8 +8,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// Contract pins for #499 Phase 2 — the Virtues OWL generator (<see cref="VirtueOwlGeneratorConfig"/>
     /// / <see cref="VirtueOwlDocumentConfig"/>). Part 2 mirrors the Fallacies OWL pass but emits
     /// argumentum_virtues.owl, and links each Virtue concept to its Walton argumentation scheme via a
-    /// custom <c>aif:goodTenorOf</c> object property (the Virtue AIF_skosMappingType holds the FR-prose
-    /// critical question, not a skos:*Match token, so the Fallacies switch cannot fire). Cross-corpus
+    /// custom <c>aif:goodTenorOf</c> object property (since #989 the Virtue critical questions live
+    /// in AIF_criticalQuestion and AIF_skosMappingType is empty on the Virtues side, so the
+    /// Fallacies skos:*Match switch cannot fire). Cross-corpus
     /// Virtue↔Fallacy links (crossLink_Opposes PK→URI) are deferred to Phase 3.
     ///
     /// These tests pin the pure, deterministic contract additively (no I/O, no pipeline run):
@@ -37,12 +38,13 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         {
             // Mirrors the proven OwlDocumentConfig.GetId contract (byte-identical transform), asserted
             // on the exact same input strings so a divergence between the two configs is caught.
-            // Camelize preserves punctuation; the trailing Replace chain strips apostrophes/hyphens/commas;
-            // accented characters are preserved (Humanizer does not ASCII-fold).
+            // Camelize preserves punctuation; the trailing Replace chain strips apostrophes/hyphens/commas/spaces;
+            // accented characters are preserved (Humanizer does not ASCII-fold) — v3 (#951) keeps the
+            // accented segment-start letter lowercase, hence "appelàLautorité".
             VirtueOwlDocumentConfig.GetId("A-B").Should().Be("aB", "hyphens are stripped.");
             VirtueOwlDocumentConfig.GetId("A, B").Should().Be("aB", "commas are stripped.");
-            VirtueOwlDocumentConfig.GetId("Appel à l'autorité").Should().Be("appelÀLautorité",
-                "apostrophes stripped, accents preserved, segment starts uppercased by Camelize.");
+            VirtueOwlDocumentConfig.GetId("Appel à l'autorité").Should().Be("appelàLautorité",
+                "apostrophes and spaces stripped, accents preserved (lowercase 'à' under Humanizer v3).");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────

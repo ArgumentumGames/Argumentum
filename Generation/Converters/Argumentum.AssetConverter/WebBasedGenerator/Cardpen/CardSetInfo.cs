@@ -61,6 +61,14 @@ namespace Argumentum.AssetConverter
 				return null;
 			}
 			var docPayload = await jsonFilePath.GetDocumentPayload();
+			if (docPayload == null)
+			{
+				// #1296: a failed template download used to surface as a NullReferenceException
+				// at the deserialize line below; fail loud, naming the CardSet and the URL.
+				throw new InvalidOperationException(
+					$"Failed to load the CardSet document for DataSet '{DataSet}' from '{jsonFilePath}' " +
+					$"(download failed after retries or returned a non-success status — see warnings above)");
+			}
 			//var strContent = Encoding.UTF8.GetString(docPayload.Content);
 
 			var cardSetDoc = JsonSerializer.Deserialize<CardSetDocument>(docPayload.Content);
@@ -144,7 +152,7 @@ namespace Argumentum.AssetConverter
 		public static readonly string RulesPrintAndPlay = "Rules-Print&Play";
 		public static readonly string MemoPrintAndPlay = "Memo-Print&Play";
 		// #645 — Print&Play "Light" (historical sample, print_and_play=1) vs "Standard" (all cards, free digital game).
-		// FallaciesPrintAndPlayLight = the 35 Feb-2022 demo fallacies (filter print_and_play=1), vs FallaciesPrintAndPlay = all 176 real cards.
+		// FallaciesPrintAndPlayLight = the 35 Feb-2022 demo fallacies (filter print_and_play=1), vs FallaciesPrintAndPlay = all 175 real cards (post-#1288).
 		// ScenariiPrintAndPlayFull = all 167 scenarii (no filter), vs ScenariiPrintAndPlay = the 27 demo scenarii (print_and_play=1).
 		public static readonly string FallaciesPrintAndPlayLight = "Fallacies-Print&Play-Light";
 		public static readonly string ScenariiPrintAndPlayFull = "Scenarii-Print&Play-Full";

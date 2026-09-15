@@ -53,7 +53,11 @@ namespace Argumentum.AssetConverter.Ontology
 
 	    public static string GetId(string text)
 	    {
-			return text.Camelize().Replace("'","").Replace("-","").Replace(",","");
+			// The space strip is a no-op under Humanizer 2.x (Camelize already joined the words) but
+			// mandatory under 3.x, whose Camelize keeps raw spaces around punctuation like '(' '.' '"'
+			// — without it, 6 corpus labels (e.g. "drinking the Kool-Aid (politics)") would produce
+			// IRIs containing literal spaces, which are invalid in IRI fragments (#951).
+			return text.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
 	    public string OntologyNamespace { get; set; } = "";
@@ -234,6 +238,78 @@ namespace Argumentum.AssetConverter.Ontology
 	                            break;
 	                    }
 	                }
+	            }
+	        }
+
+
+	        // ── Transverse cross-links + AIF attack typing (2nd pass: concepts is now fully populated) ──
+	        var crossLinkVerbs = new (string Predicate, Func<Fallacy, string> Get, bool Symmetric)[]
+	        {
+	            ("predatesOn",  f => f.CrossLinkPredatesOn,  false),
+	            ("denounces",   f => f.CrossLinkDenounces,   false),
+	            ("leverages",   f => f.CrossLinkLeverages,   false),
+	            ("allows",      f => f.CrossLinkAllows,      false),
+	            ("opposes",     f => f.CrossLinkOpposes,     true),
+	            ("inverts",     f => f.CrossLinkInverts,     true),
+	            ("mirrors",     f => f.CrossLinkMirrors,     true),
+	            ("isRelatedTo", f => f.CrossLinkIsRelatedTo, true),
+	        };
+
+	        var crossLinkProps = new Dictionary<string, RDFResource>();
+	        foreach (var v in crossLinkVerbs)
+	        {
+	            var prop = new RDFResource($"{OntologyNamespace}{v.Predicate}");
+	            ontology.DeclareObjectProperty(prop);
+	            crossLinkProps[v.Predicate] = prop;
+	        }
+
+	        var aifAttackTypeProp = new RDFResource($"{OntologyNamespace}aifAttackType");
+	        var aifAttackedNodeProp = new RDFResource($"{OntologyNamespace}aifAttackedNode");
+	        ontology.DeclareObjectProperty(aifAttackedNodeProp);
+	        var aifNodeResources = new Dictionary<string, RDFResource>();
+	        RDFResource AifNode(string nodeName)
+	        {
+	            if (!aifNodeResources.TryGetValue(nodeName, out var res))
+	            {
+	                res = new RDFResource($"{ExternalReferenceOntologyNamespaceURI}{nodeName}");
+	                ontology.DeclareClass(res);
+	                aifNodeResources[nodeName] = res;
+	            }
+	            return res;
+	        }
+
+	        foreach (var fallacy in fallacies)
+	        {
+	            var sourceConcept = concepts[fallacy];
+
+	            foreach (var v in crossLinkVerbs)
+	            {
+	                var raw = v.Get(fallacy);
+	                if (string.IsNullOrWhiteSpace(raw)) continue;
+	                foreach (var targetPath in raw.Split(';').Select(x => x.Trim()).Where(x => x.Length > 0))
+	                {
+	                    if (!fallaciesByPath.TryGetValue(targetPath, out var targetFallacy)) continue;
+	                    if (targetFallacy == fallacy) continue;
+	                    var targetConcept = concepts[targetFallacy];
+	                    ontology.AnnotateConceptWithResource(sourceConcept, crossLinkProps[v.Predicate], targetConcept);
+	                    // #133 : la meme arete en assertion, pour qu'un raisonneur la voie (cf OwlAdapter.DeclareObjectAssertion).
+	                    ontology.DeclareObjectAssertion(sourceConcept, crossLinkProps[v.Predicate], targetConcept);
+	                    if (v.Symmetric)
+	                    {
+	                        ontology.AnnotateConceptWithResource(targetConcept, crossLinkProps[v.Predicate], sourceConcept);
+	                        ontology.DeclareObjectAssertion(targetConcept, crossLinkProps[v.Predicate], sourceConcept);
+	                    }
+	                }
+	            }
+
+	            if (!string.IsNullOrWhiteSpace(fallacy.AIFAttackType))
+	            {
+	                ontology.AnnotateConcept(sourceConcept, aifAttackTypeProp, new RDFPlainLiteral(fallacy.AIFAttackType.Trim()));
+	                if (!string.IsNullOrWhiteSpace(fallacy.AIFAttackedNode))
+	                    ontology.AnnotateConceptWithResource(sourceConcept, aifAttackedNodeProp, AifNode(fallacy.AIFAttackedNode.Trim()));
+	                    // #133 : idem pour l'arete d'attaque AIF -- c'est elle que le critere
+	                    // "delta d'inference non vide" de CoursIA#13567 exige de pouvoir raisonner.
+	                    ontology.DeclareObjectAssertion(sourceConcept, aifAttackedNodeProp, AifNode(fallacy.AIFAttackedNode.Trim()));
 	            }
 	        }
 

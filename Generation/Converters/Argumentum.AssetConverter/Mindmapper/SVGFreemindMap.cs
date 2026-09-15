@@ -19,6 +19,13 @@ public class SVGFreemindMap : DocumentConfig, ICloneable
 
 	public bool WrapNodeByLink { get; set; }
 
+	/// <summary>
+	/// #1248 dual palette: render this variant's cross-links in the high-contrast study register
+	/// (FallacyMindMapDocumentConfig.CrossLinkColorsStudy) instead of the subtle default baked
+	/// into the .mm. Set on the links.svg study variant only.
+	/// </summary>
+	public bool HighContrastCrossLinks { get; set; }
+
 
 	public List<DocumentConfig> HtmlWrappers { get; set; } = new List<DocumentConfig>();
 	public bool RemoveImages { get; set; }

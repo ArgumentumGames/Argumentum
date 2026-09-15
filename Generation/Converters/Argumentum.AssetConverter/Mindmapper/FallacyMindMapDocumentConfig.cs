@@ -237,6 +237,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		public string ThumbnailsCardSetName { get; set; }
 
+		/// <summary>
+		/// #1197: hard bound on the longest edge (px) of the PNG the .mm references. FreeMind
+		/// decodes the source at its real resolution in a 32-bit JVM — the CardSet's Dpi only
+		/// drives the capture scale, the written PNG is WidthMM x 300 dpi (590x590 here).
+		/// </summary>
+		public int ThumbnailsMaxEdge { get; set; } = MindMapThumbnailVariant.DefaultMaxEdge;
+
 		public string ThumbnailsFileNamePattern { get; set; } = "_{item.Path}..";
 
 
@@ -578,6 +585,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 			IntPtr hInputDesktop = TryAttachToInteractiveDesktop();
 			try
 			{
+				// #1274 — fail loud BEFORE any FreeMind launch: with no foreground window on the
+				// interactive desktop (detached/minimized RDP), every export fails silently and the
+				// run exits 0 over stale SVGs. TryAttachToInteractiveDesktop can also no-op silently
+				// (ERROR_BUSY with matching desktop names), so the check belongs here, after it.
+				InteractiveForegroundGuard.EnsureForegroundWindowExists(() => GetForegroundWindow());
+
 				// 1. Clean slate
 				KillAllFreeMind();
 				Thread.Sleep(2000);
@@ -879,21 +892,30 @@ if (mapFile != null) {
 
 		private void CreateMindMapNodes(FreemindMap freemindMap, IList<IMindMapItem> mindMapItems, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
 		{
-			var linkedItems = new HashSet<IMindMapItem>();
+			// #1181: transverse cross-links resolved from the corpus columns (crossLink_*), same
+			// semantics as the OWL emitter. The previous Identity text-matching branch predated the
+			// corpus vocabulary and was never enabled — the shipped maps carried 0 arrows.
+			var itemsByPath = CrossLinks != CrossLink.None
+				? CrossLinkResolver.ItemsByPath(mindMapItems)
+				: null;
 
 			foreach (var item in mindMapItems)
 			{
-				linkedItems.Add(item);
 				if (string.IsNullOrEmpty(item.PK)) continue;
 
 				var localPath = item.Path;
 
 				List<(CrossLink crossLinkType, List<IMindMapItem> targets)> crossLinks = new();
 
-				if (this.CrossLinks.HasFlag(CrossLink.Identity))
+				if (itemsByPath != null && item is Fallacy fallacy)
 				{
-					var identityItems = mindMapItems.Where(f => f.Text == item.Text && !linkedItems.Contains(f)).ToList();
-					crossLinks.Add((CrossLink.Identity, identityItems));
+					var byVerb = CrossLinkResolver.Resolve(fallacy, itemsByPath, CrossLinks)
+						.GroupBy(link => link.Verb)
+						.OrderBy(g => g.Key);
+					foreach (var verbGroup in byVerb)
+					{
+						crossLinks.Add((verbGroup.Key, verbGroup.Select(link => link.Target).ToList()));
+					}
 				}
 
 				var itemNode = CreateNode(item, config, language, crossLinks.ToArray());
@@ -919,6 +941,124 @@ if (mapFile != null) {
 		}
 
 		
+
+		/// <summary>
+		/// One stable color per crossLink verb. The register is PASTEL - owner instruction,
+		/// 2026-08-31: "les couleurs des crosslinks sont trop fortes, je les avais choisi plus
+		/// legeres, pastel, dans la premiere iteration. Ca a du se perdre quelque part."
+		///
+		/// It had indeed been lost. The original engine (quoted verbatim in the body of #1181)
+		/// carried three pastel verbs on the pre-realignment enum:
+		///     Identity -> #dbffd6      AppealTo -> #ccffff      Opposite -> #ffcfcc
+		/// The 3 -> 8 verb realignment of #1181 replaced the whole table with dark/muted variants
+		/// and dropped the register with it. Those three owner-chosen values are restored here on
+		/// the verbs that inherit their meaning (Identity -> Mirrors, AppealTo -> Leverages,
+		/// Opposite -> Opposes); the five new verbs are derived in the same idiom - very light,
+		/// low saturation, one hue each, channels drawn from the same {cc..ff} range.
+		///
+		/// TWO CONSTRAINTS bind this table, and both are measured, not assumed:
+		///
+		/// 1. An arrow must read as a link, not as a family. The 7 family colors used for node
+		///    borders are bright and saturated; the pastel register stays clear of them by
+		///    construction - the same separation the dark register bought, obtained by going
+		///    lighter than the families instead of darker.
+		///
+		/// 2. Every color must stay COUNTABLE by CrossLinkArrowCountTests, i.e. distinct from
+		///    every other stroke color a Batik export can emit. Verified 2026-08-31 against the
+		///    union of the 41 shipped SVGs: 29 distinct stroke colors present, of which 6 light
+		///    (#ff66eb, #ffe082, #d0fe65, #61f8dd, #ffb0f5, #d75cfa). None of the 8 values below
+		///    appears in that union, and the 8 are mutually distinct. Re-run that check before
+		///    touching this table - a collision does not fail loudly, it silently inflates the
+		///    arrow count of one verb with another shape's strokes.
+		///
+		/// Shared with the Virtue mindmap config (same enum, same rendering block).
+		/// </summary>
+		private static readonly Dictionary<CrossLink, string> CrossLinkColors = new Dictionary<CrossLink, string>()
+		{
+			// #1248 dual palette: this is the DEFAULT (subtle) register, baked into the .mm and
+			// therefore present on every export (original .svg, content.svg, cards, wrappers).
+			// The links.svg study variant additionally rewrites these to CrossLinkColorsStudy
+			// in post-processing (see RecolorCrossLinksToStudy).
+			{ CrossLink.PredatesOn, "#ffe0cc" },
+			{ CrossLink.Denounces, "#fff4c2" },
+			{ CrossLink.Leverages, "#ccffff" },   // owner original, ex-AppealTo
+			{ CrossLink.Allows, "#cce0ff" },
+			{ CrossLink.Opposes, "#ffcfcc" },     // owner original, ex-Opposite
+			{ CrossLink.Inverts, "#e8ccff" },
+			{ CrossLink.Mirrors, "#dbffd6" },     // owner original, ex-Identity
+			{ CrossLink.IsRelatedTo, "#e0dad4" },
+		};
+
+		/// <summary>
+		/// #1248 study register — same hues as <see cref="CrossLinkColors"/> with luminance lowered
+		/// so every verb contrasts >= 0.24 against white (the subtle register sits at 0.05-0.14:
+		/// discreet on the default view, unreadable as the object of study). Applied only to the
+		/// links.svg variant via <see cref="SVGFreemindMap.HighContrastCrossLinks"/>. Must stay
+		/// collision-free against every stroke color a Batik export can emit, same discipline as
+		/// the default table (checked 2026-09-01 against the union of the 41 shipped SVGs).
+		/// </summary>
+		private static readonly Dictionary<CrossLink, string> CrossLinkColorsStudy = new Dictionary<CrossLink, string>()
+		{
+			{ CrossLink.PredatesOn, "#e6b46e" },
+			{ CrossLink.Denounces, "#d2c850" },
+			{ CrossLink.Leverages, "#82d2dc" },
+			{ CrossLink.Allows, "#82aae6" },
+			{ CrossLink.Opposes, "#e68c8c" },
+			{ CrossLink.Inverts, "#c88ce6" },
+			{ CrossLink.Mirrors, "#a0dc8c" },
+			{ CrossLink.IsRelatedTo, "#b4afa5" },
+		};
+
+		public static string GetCrossLinkColor(CrossLink verb) =>
+			CrossLinkColors.TryGetValue(verb, out var color)
+				? color
+				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned color");
+
+		public static string GetStudyCrossLinkColor(CrossLink verb) =>
+			CrossLinkColorsStudy.TryGetValue(verb, out var color)
+				? color
+				: throw new ArgumentOutOfRangeException(nameof(verb), verb, $"cross link verb {verb} has no assigned study color");
+
+		private static string HexToRgb(string hex) =>
+			$"{Convert.ToInt32(hex.Substring(1, 2), 16)},{Convert.ToInt32(hex.Substring(3, 2), 16)},{Convert.ToInt32(hex.Substring(5, 2), 16)}";
+
+		/// <summary>
+		/// #1248: rewrites the serialized SVG's cross-link strokes from the default (subtle)
+		/// register to the study register. Both registers are cross-link-only colors
+		/// (collision-checked), so every rgb() hit is a cross-link stroke. String-level on the
+		/// final serialized content because the palette is baked into the .mm at generation
+		/// time — a single source export serves both registers.
+		/// </summary>
+		public static string RecolorCrossLinksToStudy(string svgContent)
+		{
+			var replaced = 0;
+			foreach (var verb in CrossLinkColors.Keys)
+			{
+				var from = $"rgb({HexToRgb(CrossLinkColors[verb])})";
+				var to = $"rgb({HexToRgb(CrossLinkColorsStudy[verb])})";
+				var count = 0;
+				var index = 0;
+				while ((index = svgContent.IndexOf(from, index, StringComparison.Ordinal)) >= 0)
+				{
+					count++;
+					index += from.Length;
+				}
+				if (count > 0)
+				{
+					svgContent = svgContent.Replace(from, to);
+					replaced += count;
+				}
+			}
+
+			if (replaced == 0)
+			{
+				Logger.LogProblem(
+					"HighContrastCrossLinks requested but no default-palette cross-link stroke found in the SVG - " +
+					"either the map carries no cross-link or the serialized colors no longer match CrossLinkColors.");
+			}
+
+			return svgContent;
+		}
 
 		private Node CreateNode(IMindMapItem item, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<IMindMapItem> targets)[] crossLinks)
 		{
@@ -948,21 +1088,7 @@ if (mapFile != null) {
 					crossLinkNode.StartInclination = "892;0;";
 					crossLinkNode.EndInclination = "892;0;";
 					crossLinkNode.Destination = target.Id;
-
-					switch (crossLink.crossLinkType)
-					{
-						case CrossLink.Identity:
-							crossLinkNode.Color = "#dbffd6 ";
-							break;
-						case CrossLink.AppealTo:
-							crossLinkNode.Color = "#ccffff";
-							break;
-						case CrossLink.Opposite:
-							crossLinkNode.Color = "#ffcfcc";
-							break;
-						default:
-							throw new ArgumentOutOfRangeException($"cross link type {crossLink.crossLinkType} unsupported");
-					}
+					crossLinkNode.Color = GetCrossLinkColor(crossLink.crossLinkType);
 					itemNode.Arrowlinks.Add(crossLinkNode);
 
 				}
@@ -1041,6 +1167,30 @@ if (mapFile != null) {
 			}
 		}
 
+		/// <summary>
+		/// Resolves the thumbnail path embedded in the .mm for <paramref name="item"/>, relative to
+		/// the document directory. #1197: routes at a bounded variant — FreeMind decodes the
+		/// referenced PNG at its real source resolution, so the .mm must never reference the
+		/// print-resolution originals (590x590 -&gt; 32-bit JVM OOM at export time).
+		/// </summary>
+		public string ResolveThumbnailPathForItem(AssetConverterConfig assetConverterConfig, string language, IMindMapItem item)
+		{
+			var cardSetDirectory = ImageHelper.GetImageFolder(assetConverterConfig, this, language, ThumbnailsCardSetName);
+			var imageFileName = MatchThumbnailsName(cardSetDirectory, item);
+			if (string.IsNullOrEmpty(imageFileName))
+			{
+				Logger.LogProblem($"No thumbnail for item {TitleFunc(item)} in directory {cardSetDirectory}");
+				return imageFileName;
+			}
+
+			imageFileName = MindMapThumbnailVariant.EnsureBoundedVariant(
+				imageFileName,
+				MindMapThumbnailVariant.GetVariantDirectory(cardSetDirectory),
+				ThumbnailsMaxEdge);
+			var targetDirectory = assetConverterConfig.GetDocumentDirectory(language);
+			return imageFileName.GetRelativePathFrom(targetDirectory);
+		}
+
 		private void AddCardIcon(IMindMapItem item, Node node, AssetConverterConfig assetConverterConfig, string language)
 		{
 			node.Icons.Add(new Icon() { BUILTIN = $"full-{item.Carte}" });
@@ -1050,21 +1200,7 @@ if (mapFile != null) {
 				var cardSetConfig = assetConverterConfig.WebBasedGeneratorConfig.CardSets.FirstOrDefault(c => c.Name == this.ThumbnailsCardSetName, null);
 				if (cardSetConfig != null)
 				{
-					this.ThumbnailsPathFunc = objItem =>
-					{
-						var cardSetDirectory = ImageHelper.GetImageFolder(assetConverterConfig, this, language, ThumbnailsCardSetName);
-						var imageFileName = MatchThumbnailsName(cardSetDirectory, item);
-						if (string.IsNullOrEmpty(imageFileName))
-						{
-							Logger.LogProblem($"No thumbnail for item {TitleFunc(item)} in directory {cardSetDirectory}");
-						}
-						else
-						{
-							var targetDirectory = assetConverterConfig.GetDocumentDirectory(language);
-							imageFileName = imageFileName.GetRelativePathFrom(targetDirectory);
-						}
-						return imageFileName;
-					};
+					this.ThumbnailsPathFunc = objItem => ResolveThumbnailPathForItem(assetConverterConfig, language, item);
 				}
 
 				var cardDoc = new XmlDocument();
@@ -1113,7 +1249,10 @@ if (mapFile != null) {
 				}
 			}
 
-			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath });
+			// Pass the real mind-map items through so node attributes get injected.
+			// (Regression fix #820: the item-less overload below silently dropped them,
+			// leaving Fallacy content.svg with 0 class="node" — no click-to-define overlay.)
+			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath }, mindMapItems);
 
 			foreach (var svgDoc in processedDocs)
 			{
@@ -1132,7 +1271,13 @@ if (mapFile != null) {
 			}
 		}
 
-		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths)
+		// Test-compatibility overload: no items supplied means no node injection is performed
+		// (used by SvgPostProcessingTests' approved-snapshot test, which only exercises the
+		// viewBox/width/height rewrite, not the item->node matching).
+		internal Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths)
+			=> ProcessSvgFilesAsync(sourceSvgPaths, new List<IMindMapItem>());
+
+		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths, IList<IMindMapItem> mindMapItems)
 		{
 			var processedDocs = new Dictionary<string, XDocument>();
 
@@ -1140,7 +1285,6 @@ if (mapFile != null) {
 			{
 				foreach (var svgFreemindMap in SVGMaps)
 				{
-					var mindMapItems = new List<IMindMapItem>(); // Note: This is a simplification for the test
 					var svgSavedFilePath = Path.ChangeExtension(svgFilePath, svgFreemindMap.DocumentName);
 
 					XDocument svgDoc = XDocument.Load(svgFilePath);
@@ -1162,12 +1306,66 @@ if (mapFile != null) {
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
 					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
-					File.WriteAllText(svgSavedFilePath, GetSvgContent(svgDoc), Encoding.UTF8);
+
+					var svgContent = GetSvgContent(svgDoc);
+					if (svgFreemindMap.HighContrastCrossLinks)
+					{
+						// #1248: recolor the serialized string only — the XDocument keeps the default
+						// register so wrapper generation (which re-serializes content.svg) is unaffected
+						svgContent = RecolorCrossLinksToStudy(svgContent);
+					}
+					File.WriteAllText(svgSavedFilePath, svgContent, Encoding.UTF8);
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
 					processedDocs.Add(svgSavedFilePath, svgDoc);
 				}
 			}
 			return processedDocs;
+		}
+
+		/// <summary>
+		/// #820 — Restore Fallacies mind-map click-to-define interactivity by injecting localized
+		/// node attributes (class="node" + family/subfamily/subsubfamily/description/example/link/
+		/// depth/familyclass) directly into an EXISTING, text-bearing <c>*.content.svg</c>, then
+		/// regenerating its HTML wrappers (integrated + external) from the injected SVG.
+		///
+		/// Deliberately standalone: it does NOT run FreeMind and does NOT read the canonical
+		/// <c>Fallacies_&lt;lang&gt;.svg</c> (text-as-path → 0 matchable text) nor the links.svg.
+		/// Running the normal Mindmapper pipeline would instead re-derive content.svg FROM the
+		/// text-as-path canonical and destroy every node title. This method injects in place.
+		///
+		/// The map config MUST already be localized (DoReflectionTranslate) for
+		/// <paramref name="language"/> so the Desc/Example/Link/Famille expressions resolve to the
+		/// target-language Fallacy columns. Returns the count of class="node" elements after injection.
+		/// </summary>
+		public async Task<int> RegenerateInteractiveContentSvgAsync(
+			IList<IMindMapItem> items, string contentSvgPath, AssetConverterConfig config, string language)
+		{
+			var contentMap = SVGMaps.FirstOrDefault(m => m.Enabled && m.SetSVGNodeAttributes);
+			if (contentMap == null)
+				throw new InvalidOperationException($"No SetSVGNodeAttributes SVGMap found on {DocumentName}.");
+			if (!File.Exists(contentSvgPath))
+				throw new FileNotFoundException($"Text-bearing content.svg not found: {contentSvgPath}");
+
+			XNamespace svgNamespace = "http://www.w3.org/2000/svg";
+			XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+			// The committed content.svg carry a UTF-8 BOM but declare encoding="utf-16" (a latent
+			// mislabel tracked as #804): XDocument.Load honours the declaration and fails without a
+			// UTF-16 BOM. Read as text (BOM auto-detected -> UTF-8) and Parse, which ignores the
+			// declaration on an already-decoded string. The declaration is preserved as-is on write.
+			var svgText = File.ReadAllText(contentSvgPath);
+			var svgDoc = XDocument.Parse(svgText);
+			UpdateSvgWithItems(contentMap, items, svgDoc, svgNamespace, xlinkNamespace);
+			File.WriteAllText(contentSvgPath, GetSvgContent(svgDoc), Encoding.UTF8);
+
+			var nodeCount = svgDoc.Descendants(svgNamespace + "g")
+				.Count(g => (string)g.Attribute("class") == "node");
+
+			// Regenerate the integrated (included.html) + external HTML wrappers from the node-bearing SVG.
+			await GenerateHtmlSvgWrappers(contentMap, config, contentSvgPath,
+				() => Task.FromResult(GetSvgContent(svgDoc)), language);
+
+			return nodeCount;
 		}
 
 		//private void AdjustSvgViewBox(XDocument svgDoc)
@@ -1475,21 +1673,11 @@ if (mapFile != null) {
 
 		internal static string GetSvgContent(XDocument svgDoc)
 		{
-			StringBuilder sb = new();
-			XmlWriterSettings settings = new()
-			{
-				Indent = true,
-				IndentChars = "\t", // use tab for indentation
-				NewLineChars = Environment.NewLine,
-				NewLineHandling = NewLineHandling.Replace
-			};
-
-			using (XmlWriter writer = XmlWriter.Create(sb, settings))
-			{
-				svgDoc.Save(writer);
-			}
-			string svgContent = sb.ToString();
-			return svgContent;
+			// #804 — delegate to MindMapSvgWriter so the emitted XML declaration says UTF-8
+			// (matching the physical byte encoding of the written file) instead of the UTF-16
+			// default that a bare XmlWriter-on-StringBuilder would produce. The 32 on-disk
+			// *.content.svg / *.links.svg realign on the next regeneration (post-tag).
+			return MindMapSvgWriter.WriteToString(svgDoc);
 		}
 
 

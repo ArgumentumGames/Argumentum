@@ -1,0 +1,146 @@
+attacker_pk,attacker_label,family,subfamily,subsubfamily,decimal_path,attack_type,attacked_node_type,skos_direct_ref,skos_exception_ref,skos_mapping_type,expected_node_type,node_type_axiom_ok
+1,1,Insuffisance,,,1,undermine,I-node,GeneralAcceptanceDoubt_Conflict,,skos:broadMatch,I-node,1
+2,1,Insuffisance,Argument bâclé,,"1,1",undercut,RA-node,LackOfPTKReliability_Scheme,,skos:broadMatch,RA-node,1
+3,1,Insuffisance,Argument bâclé,Argument vide,"1,11",undermine,I-node,OppositeConsequences_Conflict,PopularOpinion_Inference,skos:broadMatch,I-node,1
+4,,Insuffisance,Argument bâclé,Argument vide,"1,111",undercut,RA-node,Ignorance_Inference,,skos:broadMatch,RA-node,1
+33,2,Insuffisance,Argument bâclé,Justification triviale,"1,12",undercut,RA-node,AlternativeMeans_Conflict,,skos:broadMatch,RA-node,1
+34,2,Insuffisance,Argument bâclé,Justification triviale,"1,121",undercut,RA-node,,"Example_Inference, InductiveInference_Scheme",skos:broadMatch,RA-node,1
+43,1,Insuffisance,Argument bâclé,Justification triviale,"1,122",undercut,RA-node,,PopularPractice_Inference,skos:closeMatch,RA-node,1
+55,2,Insuffisance,Argument bâclé,Sauvetage ad hoc,"1,13",undermine,I-node,,,,I-node,1
+70,1,Insuffisance,Préjugé,,"1,2",undermine,I-node,Bias_Inference,"PopularOpinion_Inference, EstablishedRule_Inference, PracticalReasoning_Inference, PositionToKnow_Inference, Preference_Scheme, PresumptiveInference_Scheme",skos:broadMatch,I-node,1
+71,2,Insuffisance,Préjugé,Argument d'autorité,"1,21",undercut,RA-node,ExpertiseInconsistency_Conflict,ExpertOpinion_Inference,skos:closeMatch,RA-node,1
+96,2,Insuffisance,Préjugé,Sophisme naturaliste,"1,22",undercut,RA-node,,,,RA-node,1
+112,2,Insuffisance,Préjugé,Sophisme moraliste,"1,23",undercut,RA-node,,,,RA-node,1
+133,1,Insuffisance,Surinterprétation,,"1,3",undermine,I-node,LackOfCompleteKnowledge_Conflict,Sign_Inference,skos:broadMatch,I-node,1
+134,1,Insuffisance,Surinterprétation,Sophisme ludique,"1,31",undercut,RA-node,,,,RA-node,1
+153,2,Insuffisance,Surinterprétation,Argument des mauvaises raisons,"1,32",undercut,RA-node,,Commitment_Inference,skos:broadMatch,RA-node,1
+165,1,Insuffisance,Surinterprétation,Manque de parcimonie,"1,33",undermine,I-node,,,,I-node,1
+177,2,Influence,Procédé rhétorique,Langage persuasif,"2,11",undermine,I-node,"GeneralAcceptanceDoubt_Conflict, ArbitraryVerbalClassification_Inference","PopularOpinion_Inference, EstablishedRule_Inference",skos:broadMatch,I-node,1
+219,1,Influence,Procédé rhétorique,Humour,"2,12",undermine,I-node,,,,I-node,1
+247,2,Influence,Procédé rhétorique,Poésie,"2,13",undermine,I-node,,,,I-node,1
+300,2,Influence,Appel à l'émotion,Connivence,"2,21",undermine,I-node,,PositiveConsequences_Inference,skos:broadMatch,I-node,1
+322,2,Influence,Appel à l'émotion,Repoussoir,"2,22",undermine,I-node,,NegativeConsequences_Inference,skos:broadMatch,I-node,1
+337,2,Influence,Appel à l'émotion,Repoussoir,"2,224",undermine,I-node,IrrationalFearAppeal_Conflict,FearAppeal_Inference,skos:closeMatch,I-node,1
+340,2,Influence,Appel à l'émotion,Appel aux conséquences,"2,23",undermine,I-node,,EstablishedRule_Inference,skos:broadMatch,I-node,1
+356,1,Influence,Manipulation mentale,,"2,3",undermine,I-node,ConflictingGoals_Conflict,,skos:broadMatch,I-node,1
+357,2,Influence,Manipulation mentale,Conditionnement,"2,31",undermine,I-node,SignFromOtherEvents_Conflict,Sign_Inference,skos:broadMatch,I-node,1
+420,2,Influence,Manipulation mentale,Jeu de pouvoir,"2,32",undermine,I-node,,,,I-node,1
+432,2,Influence,Manipulation mentale,Jeu de pouvoir,"2,3221",undercut,RA-node,,Waste_Inference,skos:broadMatch,RA-node,1
+511,1,Influence,Manipulation mentale,Influence non verbale,"2,33",undermine,I-node,,,,I-node,1
+595,1,Erreur mathématique,Généralisation abusive,,"3,1",undercut,RA-node,,"Example_Inference, InductiveInference_Scheme, EvidenceToHypothesis_Inference",skos:broadMatch,RA-node,1
+596,2,Erreur mathématique,Généralisation abusive,Échantillon biaisé,"3,11",undermine,I-node,,,,I-node,1
+614,1,Erreur mathématique,Généralisation abusive,Sophisme de l'accident,"3,12",undercut,RA-node,ExceptionSimilarityCase_Conflict,ExceptionalCase_Inference,skos:broadMatch,RA-node,1
+621,2,Erreur mathématique,Généralisation abusive,Transfert illicite,"3,13",undercut,RA-node,PropertyNotExistant_Conflict,,skos:broadMatch,RA-node,1
+632,1,Erreur mathématique,Mauvaise interprétation,,"3,2",undercut,RA-node,,EvidenceToHypothesis_Inference,skos:broadMatch,RA-node,1
+633,2,Erreur mathématique,Mauvaise interprétation,Relation infondée,"3,21",undercut,RA-node,PropertyNotExistant_Conflict,Sign_Inference,skos:broadMatch,RA-node,1
+644,2,Erreur mathématique,Mauvaise interprétation,Probabilités faussées,"3,22",undermine,I-node,,,,I-node,1
+658,2,Erreur mathématique,Mauvaise interprétation,Infini trompeur,"3,23",undercut,RA-node,,Gradualism_Inference,skos:broadMatch,RA-node,1
+667,2,Erreur mathématique,Résultat invalide,Imprécision,"3,31",undermine,I-node,,,,I-node,1
+677,1,Erreur mathématique,Résultat invalide,Imprécision,"3,3131",undercut,RA-node,WeakestLink_Conflict,"PrecedentSlipperySlope_Inference, FullSlipperySlope_Inference, CausalSlipperySlope_Inference",skos:narrowMatch,RA-node,1
+681,2,Erreur mathématique,Résultat invalide,Erreur de calcul,"3,32",undermine,I-node,,,,I-node,1
+690,2,Erreur mathématique,Résultat invalide,Opération inappropriée,"3,33",undercut,RA-node,,,,RA-node,1
+696,1,Erreur de raisonnement,,,4,undercut,RA-node,Logical_Conflict,,skos:closeMatch,RA-node,1
+697,1,Erreur de raisonnement,Causalité douteuse,,"4,1",undercut,RA-node,OppositeConsequences_Conflict,PracticalReasoning_Inference,skos:broadMatch,RA-node,1
+698,2,Erreur de raisonnement,Causalité douteuse,Pétition de principe,"4,11",undermine,I-node,,,,I-node,1
+705,,Erreur de raisonnement,Causalité douteuse,Pétition de principe,"4,116",undercut,RA-node,RequiredSteps_Conflict,"PrecedentSlipperySlope_Inference, FullSlipperySlope_Inference, CausalSlipperySlope_Inference",skos:narrowMatch,RA-node,1
+707,2,Erreur de raisonnement,Causalité douteuse,Inversion de causalité,"4,12",undercut,RA-node,,CauseToEffect_Inference,skos:broadMatch,RA-node,1
+719,1,Erreur de raisonnement,Causalité douteuse,Effet cigogne,"4,13",undercut,RA-node,OtherCausalFactorsInvolved_Conflict,CorrelationToCause_Inference,skos:closeMatch,RA-node,1
+726,1,Erreur de raisonnement,Mauvaise composition,,"4,2",undercut,RA-node,Commitment_Conflict,"Inference_Scheme, Deductive_Inference",skos:broadMatch,RA-node,1
+727,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle,"4,21",undercut,RA-node,,ModusPonens_Inference,skos:narrowMatch,RA-node,1
+735,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification,"4,22",undercut,RA-node,,,,RA-node,1
+750,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité,"4,23",undercut,RA-node,,Ignorance_Inference,skos:broadMatch,RA-node,1
+758,1,Erreur de raisonnement,Mauvaise déduction,,"4,3",undercut,RA-node,Commitment_Conflict,Deductive_Inference,skos:broadMatch,RA-node,1
+759,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive,"4,31",undercut,RA-node,OppositeConsequences_Conflict,,skos:broadMatch,RA-node,1
+777,1,Erreur de raisonnement,Mauvaise déduction,Inconsistance,"4,32",undermine,I-node,"OpposedCommitment_Conflict, InconsistentCommitment_Inference",,skos:broadMatch,I-node,1
+784,1,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide,"4,33",undercut,RA-node,,,,RA-node,1
+799,1,Abus de langage,Définition inexacte,,"5,1",undermine,I-node,"BiasedClassification_Conflict, ArbitraryVerbalClassification_Inference",VerbalClassification_Inference,skos:broadMatch,I-node,1
+800,2,Abus de langage,Définition inexacte,Acception vague,"5,11",undermine,I-node,VagueVerbalClassification_Inference,,skos:closeMatch,I-node,1
+801,,Abus de langage,Définition inexacte,Acception vague,"5,111",undercut,RA-node,,,,RA-node,1
+802,Pari de Loki,Abus de langage,Définition inexacte,Acception vague,"5,112",undercut,RA-node,,,,RA-node,1
+803,,Abus de langage,Définition inexacte,Acception vague,"5,113",undercut,RA-node,,,,RA-node,1
+804,2,Abus de langage,Définition inexacte,Acception arbitraire,"5,12",undercut,RA-node,PropertyNotExistant_Conflict,,skos:broadMatch,RA-node,1
+805,,Abus de langage,Définition inexacte,Acception arbitraire,"5,121",undercut,RA-node,,,,RA-node,1
+806,,Abus de langage,Définition inexacte,Acception arbitraire,"5,1211",undercut,RA-node,,,,RA-node,1
+807,,Abus de langage,Définition inexacte,Acception arbitraire,"5,1212",undercut,RA-node,,,,RA-node,1
+808,Proposition exclusive,Abus de langage,Définition inexacte,Acception arbitraire,"5,122",undermine,I-node,AlternativeMeans_Conflict,,skos:broadMatch,I-node,1
+814,Pensée binaire,Abus de langage,Définition inexacte,Acception arbitraire,"5,1224",undermine,I-node,,Dilemma_Inference,skos:closeMatch,I-node,1
+826,1,Abus de langage,Définition inexacte,Définition inconsistante,"5,13",undercut,RA-node,,,,RA-node,1
+827,,Abus de langage,Définition inexacte,Définition inconsistante,"5,131",undercut,RA-node,,,,RA-node,1
+828,,Abus de langage,Définition inexacte,Définition inconsistante,"5,1311",undercut,RA-node,,,,RA-node,1
+830,,Abus de langage,Définition inexacte,Définition inconsistante,"5,1321",undercut,RA-node,,,,RA-node,1
+831,,Abus de langage,Définition inexacte,Définition inconsistante,"5,1322",undercut,RA-node,,,,RA-node,1
+833,1,Abus de langage,Comparaison fallacieuse,,"5,2",undermine,I-node,"BiasedClassification_Conflict, ExceptionSimilarityCase_Conflict",,skos:broadMatch,I-node,1
+834,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive,"5,21",undercut,RA-node,,,,RA-node,1
+836,,Abus de langage,Comparaison fallacieuse,Comparaison abusive,"5,212",undercut,RA-node,,,,RA-node,1
+838,,Abus de langage,Comparaison fallacieuse,Comparaison abusive,"5,214",undermine,I-node,,,,I-node,1
+839,1,Abus de langage,Comparaison fallacieuse,Fausse analogie,"5,22",undercut,RA-node,DifferencesUndermineSimilarity_Conflict,Analogy_Inference,skos:closeMatch,RA-node,1
+841,,Abus de langage,Comparaison fallacieuse,Fausse analogie,"5,222",undercut,RA-node,,,,RA-node,1
+842,,Abus de langage,Comparaison fallacieuse,Fausse analogie,"5,223",undercut,RA-node,,,,RA-node,1
+843,,Abus de langage,Comparaison fallacieuse,Fausse analogie,"5,224",undermine,I-node,,,,I-node,1
+844,2,Abus de langage,Comparaison fallacieuse,Sophisme d'association,"5,23",undercut,RA-node,,,,RA-node,1
+845,1,Abus de langage,Comparaison fallacieuse,Sophisme d'association,"5,231",undercut,RA-node,,,,RA-node,1
+846,1,Abus de langage,Ambiguïté,,"5,3",undermine,I-node,"ArbitraryVerbalClassification_Inference, OppositeConsequences_Conflict, SignFromOtherEvents_Conflict",,skos:broadMatch,I-node,1
+847,2,Abus de langage,Ambiguïté,Amphibologie,"5,31",undercut,RA-node,,,,RA-node,1
+849,,Abus de langage,Ambiguïté,Amphibologie,"5,312",undercut,RA-node,,,,RA-node,1
+850,,Abus de langage,Ambiguïté,Amphibologie,"5,3121",undercut,RA-node,,,,RA-node,1
+851,prosodie,Abus de langage,Ambiguïté,Amphibologie,"5,313",undercut,RA-node,,,,RA-node,1
+852,,Abus de langage,Ambiguïté,Amphibologie,"5,3131",undercut,RA-node,,,,RA-node,1
+854,,Abus de langage,Ambiguïté,Amphibologie,"5,315",undercut,RA-node,,,,RA-node,1
+855,Équivoque,Abus de langage,Ambiguïté,Equivoque,"5,32",undercut,RA-node,,,,RA-node,1
+856,,Abus de langage,Ambiguïté,Equivoque,"5,321",undermine,I-node,VagueVerbalClassification_Inference,,skos:broadMatch,I-node,1
+857,,Abus de langage,Ambiguïté,Equivoque,"5,3211",undercut,RA-node,,,,RA-node,1
+858,,Abus de langage,Ambiguïté,Equivoque,"5,3212",undercut,RA-node,,VerbalSlipperySlope_Inference,skos:closeMatch,RA-node,1
+859,Continuum,Abus de langage,Ambiguïté,Equivoque,"5,32121",undercut,RA-node,,,,RA-node,1
+860,,Abus de langage,Ambiguïté,Equivoque,"5,322",undercut,RA-node,,,,RA-node,1
+862,,Abus de langage,Ambiguïté,Equivoque,"5,3222",undercut,RA-node,,,,RA-node,1
+863,,Abus de langage,Ambiguïté,Equivoque,"5,32221",undercut,RA-node,,,,RA-node,1
+864,,Abus de langage,Ambiguïté,Equivoque,"5,3223",undercut,RA-node,,,,RA-node,1
+865,,Abus de langage,Ambiguïté,Equivoque,"5,323",undercut,RA-node,,,,RA-node,1
+866,,Abus de langage,Ambiguïté,Equivoque,"5,3231",undercut,RA-node,,,,RA-node,1
+867,,Abus de langage,Ambiguïté,Equivoque,"5,32311",undercut,RA-node,,,,RA-node,1
+875,,Abus de langage,Ambiguïté,Equivoque,"5,32324",undercut,RA-node,,,,RA-node,1
+876,2,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,33",undermine,I-node,ConflictingGoals_Conflict,,skos:broadMatch,I-node,1
+877,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,331",undercut,RA-node,,,,RA-node,1
+878,Insinuation,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,3311",undercut,RA-node,,,,RA-node,1
+879,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,33111",undercut,RA-node,,,,RA-node,1
+880,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,33112",undercut,RA-node,,,,RA-node,1
+881,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,332",undercut,RA-node,,,,RA-node,1
+882,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,3321",undercut,RA-node,,,,RA-node,1
+883,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,333",undercut,RA-node,,,,RA-node,1
+884,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,3331",undercut,RA-node,,,,RA-node,1
+885,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,3332",undercut,RA-node,,,,RA-node,1
+886,,Abus de langage,Ambiguïté,Ambiguïté narrative,"5,334",undercut,RA-node,,,,RA-node,1
+888,1,Tricherie,Arranger les faits,,"6,1",undermine,I-node,LackOfPTKReliability_Scheme,PositionToKnow_Inference,skos:broadMatch,I-node,1
+889,1,Tricherie,Arranger les faits,Mensonge,"6,11",undermine,I-node,,,,I-node,1
+942,2,Tricherie,Arranger les faits,Fausse attribution,"6,12",undermine,I-node,,,,I-node,1
+953,2,Tricherie,Arranger les faits,Attention sélective,"6,13",undermine,I-node,GeneralAcceptanceDoubt_Conflict,Preference_Scheme,skos:broadMatch,I-node,1
+973,1,Tricherie,Changement de cap,,"6,2",undermine,I-node,ConflictingGoals_Conflict,,skos:broadMatch,I-node,1
+974,Monter la barre,Tricherie,Changement de cap,Exigence renforcée,"6,21",undercut,RA-node,,,,RA-node,1
+992,Versatilité: ON INVERSERAIT PAS LE TEXT_FR eT LE NOM VULGARISé?,Tricherie,Changement de cap,Beurre et argent du beurre,"6,22",undercut,RA-node,,,,RA-node,1
+1011,Baisser la barre,Tricherie,Changement de cap,Exigence relâchée,"6,23",undercut,RA-node,,,,RA-node,1
+1020,1,Tricherie,Changement de cap,Exigence relâchée,"6,234",undercut,RA-node,,Waste_Inference,skos:broadMatch,RA-node,1
+1023,1,Tricherie,Pensée biaisée,,"6,3",undermine,I-node,Bias_Inference,PresumptiveInference_Scheme,skos:closeMatch,I-node,1
+1024,Biais naturel,Tricherie,Pensée biaisée,Biais naturels,"6,31",undermine,I-node,,,,I-node,1
+1066,,Tricherie,Pensée biaisée,Biais naturels,"6,31121",undercut,RA-node,,Example_Inference,skos:broadMatch,RA-node,1
+1083,,Tricherie,Pensée biaisée,Biais naturels,"6,31123",undermine,I-node,,Sign_Inference,skos:broadMatch,I-node,1
+1087,,Tricherie,Pensée biaisée,Biais naturels,"6,311234",undercut,RA-node,,InductiveInference_Scheme,skos:broadMatch,RA-node,1
+1090,,Tricherie,Pensée biaisée,Biais naturels,"6,312",undermine,I-node,OppositeConsequences_Conflict,Preference_Scheme,skos:broadMatch,I-node,1
+1092,2,Tricherie,Pensée biaisée,Biais naturels,"6,31211",undermine,I-node,,NegativeConsequences_Inference,skos:broadMatch,I-node,1
+1104,,Tricherie,Pensée biaisée,Biais naturels,"6,31212",undermine,I-node,,PositiveConsequences_Inference,skos:broadMatch,I-node,1
+1148,,Tricherie,Pensée biaisée,Biais naturels,"6,312311",undercut,RA-node,,Waste_Inference,skos:broadMatch,RA-node,1
+1174,Biais culturel,Tricherie,Pensée biaisée,Biais culturels,"6,32",undermine,I-node,,,,I-node,1
+1175,,Tricherie,Pensée biaisée,Biais culturels,"6,321",undercut,RA-node,,Example_Inference,skos:broadMatch,RA-node,1
+1198,,Tricherie,Pensée biaisée,Biais culturels,"6,322",undermine,I-node,,Preference_Scheme,skos:broadMatch,I-node,1
+1242,Biais dogmatique,Tricherie,Pensée biaisée,Biais théoriques,"6,33",undermine,I-node,,,,I-node,1
+1280,1,Obstruction,,,7,rebut,CA-node,ResolvingInconsistency_Conflict,,skos:broadMatch,CA-node,1
+1281,1,Obstruction,Refus du débat,,"7,1",rebut,CA-node,,Dialogue_Scheme,skos:broadMatch,CA-node,1
+1282,Relativisme,Obstruction,Refus du débat,Relativisme abusif,"7,11",rebut,CA-node,,,,CA-node,1
+1287,2,Obstruction,Refus du débat,Sophisme d'Explication,"7,12",undermine,I-node,,,,I-node,1
+1297,2,Obstruction,Refus du débat,Preuve par assertion,"7,13",undermine,I-node,OpposedCommitment_Conflict,,skos:broadMatch,I-node,1
+1313,1,Obstruction,Saboter le débat,Evasion,"7,21",rebut,CA-node,,Dialogue_Scheme,skos:broadMatch,CA-node,1
+1345,Couper les cheveux en quatre,Obstruction,Saboter le débat,Complication exagérée,"7,22",undercut,RA-node,,,,RA-node,1
+1352,1,Obstruction,Saboter le débat,Empoisonner le puits,"7,23",undermine,I-node,,,,I-node,1
+1360,1,Obstruction,Ad hominem,,"7,3",undermine,I-node,,Ethotic_Inference,skos:broadMatch,I-node,1
+1361,2,Obstruction,Ad hominem,Procès en inconsistance,"7,31",rebut,CA-node,,"InconsistentCommitment_Inference, CircumstantialAdHominem_Inference",skos:broadMatch,CA-node,1
+1371,1,Obstruction,Ad hominem,Sophisme génétique,"7,32",undermine,I-node,SignFromOtherEvents_Conflict,CircumstantialAdHominem_Inference,skos:broadMatch,I-node,1
+1398,1,Obstruction,Ad hominem,Attaque personnelle,"7,33",undermine,I-node,DirectAdHominem_Inference,,skos:broadMatch,I-node,1

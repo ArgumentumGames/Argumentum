@@ -7,6 +7,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Argumentum.AssetConverter.Entities;
+using Argumentum.AssetConverter.Mindmapper;
 using Utf8Json;
 
 namespace Argumentum.AssetConverter
@@ -392,6 +394,159 @@ namespace Argumentum.AssetConverter
 						cmykConfig.ForceReleaseParams = true;
 						
 						await cmykConfig.Apply().ConfigureAwait(false);
+						return;
+					}
+					else if (args[0].Equals("--generate-owl", StringComparison.OrdinalIgnoreCase))
+					{
+						// Regenerate ONLY the OWL ontologies (Fallacies + Virtues) from the current CSV
+						// datasets: no harvest, no PDF, no mindmap. Writes to <Target>/<lang>/Ontology/.
+						// This is the reproducible way to refresh the committed docs/ontology/argumentum.owl
+						// after taxonomy edits (e.g. the crossLink_* / AIF_attack* relational layers).
+						// Mirrors --pdf-cmyk: a single-stage entry point replacing the default harvest+PDF Mode.
+						Logger.LogTitle("Mode génération OWL (ontologies Fallacies + Virtues)");
+
+						var owlGenConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var owlGenConfig = AssetConverterConfig.GetConfig(owlGenConfigFileName, out var _);
+
+						owlGenConfig.Mode = ConverterMode.OwlGenerator;
+
+						await owlGenConfig.Apply().ConfigureAwait(false);
+						return;
+					}
+					else if (args[0].Equals("--regen-fallacy-mindmap-nodes", StringComparison.OrdinalIgnoreCase))
+					{
+						// #820 - Restore Fallacies mind-map click-to-define interactivity for all 8 languages.
+						// Injects localized node attributes (class="node" + description/example/link/family/...) directly
+						// into the EXISTING text-bearing Cards/Fallacies/Mindmaps/<lang>/Fallacies_<lang>.content.svg and
+						// regenerates the integrated + external HTML from it. Standalone on purpose: no FreeMind, and it
+						// NEVER runs the normal Mindmapper pipeline (which would re-derive content.svg from the
+						// text-as-path canonical .svg and lose every node title). Run in Debug so the local included.html
+						// template + FR-source CSV resolve. See #820 (root cause: items dropped + text-as-path source).
+						Logger.LogTitle("Mode regen interactivite mindmaps Fallacies (#820)");
+
+						var regenConfigFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var regenConfig = AssetConverterConfig.GetConfig(regenConfigFileName, out var _);
+						regenConfig.OverwriteExistingHtmlMaps = true; // force HTML wrappers to be rewritten from the injected SVG
+
+						// Locate the repo root (holds Cards/Fallacies/Mindmaps) from the assembly location - CWD-independent.
+						var repoRoot = AppContext.BaseDirectory;
+						while (repoRoot != null && !Directory.Exists(Path.Combine(repoRoot, "Cards", "Fallacies", "Mindmaps")))
+						{
+							repoRoot = Directory.GetParent(repoRoot)?.FullName;
+						}
+						if (repoRoot == null)
+						{
+							throw new DirectoryNotFoundException("Could not locate repo root (Cards/Fallacies/Mindmaps).");
+						}
+
+						// Load the Fallacy taxonomy once (each item carries all language columns).
+						var fallacyDataSet = regenConfig.DataSets.First(d => d.Name == KnownDataSets.FallaciesTaxonomy);
+						var fallacyItems = (await Fallacy.LoadAsync(fallacyDataSet, regenConfig.UseDebugParams))
+							.Cast<IMindMapItem>().ToList();
+						Logger.Log($"Loaded {fallacyItems.Count} Fallacy items for node injection.");
+
+						// The main (non-cards) Fallacies map carries the content.svg map with SetSVGNodeAttributes.
+						var mapTemplate = regenConfig.FallacyMindMapCreatorConfig.DocumentConfigs
+							.First(d => d.SVGMaps.Any(m => m.SetSVGNodeAttributes));
+
+						var regenLanguages = new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+						foreach (var lang in regenLanguages)
+						{
+							var contentSvgPath = Path.Combine(repoRoot, "Cards", "Fallacies", "Mindmaps", lang, $"Fallacies_{lang}.content.svg");
+							if (!File.Exists(contentSvgPath))
+							{
+								Logger.LogWarning($"[{lang}] content.svg missing, skipped: {contentSvgPath}");
+								continue;
+							}
+
+							// Localize a fresh clone of the map for this language (rewrites Desc/Example/Link/Famille expressions).
+							var localizedMap = mapTemplate.CloneMindMap();
+							foreach (var documentLocalization in regenConfig.LocalizationConfig.MindMapLocalization)
+							{
+								documentLocalization.DoReflectionTranslate(localizedMap, lang);
+							}
+
+							var nodeCount = await localizedMap.RegenerateInteractiveContentSvgAsync(fallacyItems, contentSvgPath, regenConfig, lang);
+							Logger.LogSuccess($"[{lang}] injected {nodeCount} class=\"node\" -> {contentSvgPath}");
+						}
+
+						return;
+					}
+					else if (args[0].Equals("--regen-virtue-mindmap-html", StringComparison.OrdinalIgnoreCase))
+					{
+						// #826 follow-up: ai-01 verdict PASS for Fallacies (16 HTML wrappers regenerated from the
+						// svg-pan-zoom-restored templates), HOLD on Virtues because the same regen pass did NOT cover
+						// Argumentum_Virtues_MindMap_<lang>.content.svg -> HTML. Root cause: --regen-fallacy-mindmap-nodes
+						// only calls FallacyMindMapCreatorConfig; VirtueMindMapCreatorConfig uses the same corrected
+						// templates (lines 68-77) but was not re-run in the fix cycle. Templates are good; only the
+						// wrappers need rewriting.
+						//
+						// This handler mirrors --regen-fallacy-mindmap-nodes structurally BUT skips the SVG
+						// node-attribute injection (Virtues content.svg is already correct; only the .html wrappers
+						// need the svg-pan-zoom-bundled template). Run in Debug so the local
+						// Cards/Fallacies/Mindmaps/{included,external}.html (already patched in the same branch) resolve
+						// via the local repo path.
+						Logger.LogTitle("Mode regen wrappers HTML mindmaps Virtues (#826 follow-up)");
+
+						var regenConfigVirtueFileName = Path.Combine(Environment.CurrentDirectory, "AssetConverterConfig.json");
+						var regenConfigVirtue = AssetConverterConfig.GetConfig(regenConfigVirtueFileName, out var _);
+
+						// Locate the repo root (holds Cards/Fallacies/Mindmaps) from the assembly location.
+						var repoRootVirtue = AppContext.BaseDirectory;
+						while (repoRootVirtue != null && !Directory.Exists(Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps")))
+						{
+							repoRootVirtue = Directory.GetParent(repoRootVirtue)?.FullName;
+						}
+						if (repoRootVirtue == null)
+						{
+							throw new DirectoryNotFoundException("Could not locate repo root (Cards/Fallacies/Mindmaps).");
+						}
+
+						// Load both templates (local repo paths, already svg-pan-zoom-restored by #826 fix).
+						var includedTemplatePath = Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps", "included.html");
+						var externalTemplatePath = Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps", "external.html");
+						if (!File.Exists(includedTemplatePath) || !File.Exists(externalTemplatePath))
+						{
+							throw new FileNotFoundException($"Templates missing: {includedTemplatePath} or {externalTemplatePath}");
+						}
+						var includedTemplate = await File.ReadAllTextAsync(includedTemplatePath);
+						var externalTemplate = await File.ReadAllTextAsync(externalTemplatePath);
+
+						// Sanity: templates must already carry the svg-pan-zoom bundle (#826 fix). Abort loudly if not
+						// — better to fail than to regenerate bugged HTML silently.
+						if (!includedTemplate.Contains("svg-pan-zoom v3.6.2") || !externalTemplate.Contains("svg-pan-zoom v3.6.2"))
+						{
+							throw new InvalidOperationException("Templates do not carry svg-pan-zoom v3.6.2 bundle; abort before regenerating bugged HTML. Apply the template fix first.");
+						}
+
+						var regenLanguagesVirtue = new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
+						foreach (var lang in regenLanguagesVirtue)
+						{
+							var langDir = Path.Combine(repoRootVirtue, "Cards", "Fallacies", "Mindmaps", lang);
+							var contentSvgPath = Path.Combine(langDir, $"Argumentum_Virtues_MindMap_{lang}.content.svg");
+							var extSvgRelative = $"Argumentum_Virtues_MindMap_{lang}.content.svg";
+
+							if (!File.Exists(contentSvgPath))
+							{
+								Logger.LogWarning($"[{lang}] content.svg missing, skipped: {contentSvgPath}");
+								continue;
+							}
+
+							var contentSvg = await File.ReadAllTextAsync(contentSvgPath);
+
+							// Included (inline SVG) wrapper.
+							var includedHtml = MindMapHtmlWrapper.FormatWrapper(includedTemplate, extSvgRelative, contentSvg);
+							var includedOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}.html");
+							await File.WriteAllTextAsync(includedOutPath, includedHtml, System.Text.Encoding.UTF8);
+
+							// External (<object data="...">) wrapper.
+							var externalHtml = MindMapHtmlWrapper.FormatWrapper(externalTemplate, extSvgRelative, contentSvg);
+							var externalOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}_ext.html");
+							await File.WriteAllTextAsync(externalOutPath, externalHtml, System.Text.Encoding.UTF8);
+
+							Logger.LogSuccess($"[{lang}] regenerated 2 wrappers (included + external) for Argumentation_Virtues_{lang}");
+						}
+
 						return;
 					}
 				}

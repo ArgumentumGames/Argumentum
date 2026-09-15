@@ -1,3 +1,4 @@
+using Argumentum.AssetConverter.Tests;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,19 +19,19 @@ namespace Argumentum.AssetConverter.VisualTests
     /// Visual VERDICTS (is the card "good" or "bad") remain the exclusive lane
     /// of ai-01 / jsboige (never delegated to automated tests).
     ///
-    /// Tests skip silently if Target/ doesn't exist (CI cold-start, no images).
+    /// Tests fail loudly when required generated artifacts are missing.
     /// </summary>
     public class VisualQaHarness : IDisposable
     {
         private readonly ITestOutputHelper _output;
 
-        private static readonly string TargetRoot = Path.GetFullPath(Path.Combine(
-            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target"));
+        private static readonly string TargetRoot = Path.Combine(
+            TestRepoRoot.Find(),
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Debug", "net9.0-windows", "Target");
 
-        private static readonly string ReleaseTargetRoot = Path.GetFullPath(Path.Combine(
-            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "..",
-            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Release", "net9.0-windows", "Target"));
+        private static readonly string ReleaseTargetRoot = Path.Combine(
+            TestRepoRoot.Find(),
+            "Generation", "Converters", "Argumentum.AssetConverter", "bin", "Release", "net9.0-windows", "Target");
 
         /// <summary>8 languages (post-i18n expansion).</summary>
         private static readonly string[] Languages =
@@ -114,10 +115,7 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             var root = ResolveTargetRoot();
             if (root == null)
-            {
-                _output.WriteLine("SKIP: Target/ not found — run pipeline first");
-                return;
-            }
+                Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var missing = new List<string>();
             foreach (var lang in Languages)
@@ -130,7 +128,12 @@ namespace Argumentum.AssetConverter.VisualTests
             if (missing.Count > 0)
             {
                 _output.WriteLine($"WARN: Missing language dirs: {string.Join(", ", missing)}");
-                // Not a hard fail — some languages may not have been generated yet
+                // Partial generation is legitimate (some languages may not have been generated yet),
+                // so a few missing dirs stay a soft WARN. But a Target/ that exists with ALL
+                // language directories absent is a broken/empty Target/ — the verified-nothing
+                // hole (#1046). The root-null guard above only catches "Target/ absent", not this.
+                if (missing.Count == Languages.Length)
+                    Assert.Fail($"Target/ exists but 0/{Languages.Length} language directories found — test verified nothing (Target/ broken or wrong root)");
             }
 
             _output.WriteLine($"Found {Languages.Length - missing.Count}/{Languages.Length} language directories");
@@ -141,10 +144,7 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             var root = ResolveTargetRoot();
             if (root == null)
-            {
-                _output.WriteLine("SKIP: Target/ not found");
-                return;
-            }
+                Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var inventory = new List<string>();
             foreach (var lang in Languages)
@@ -169,7 +169,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_WhiteBand_NoFullWidthBandInCovers()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -199,6 +199,13 @@ namespace Argumentum.AssetConverter.VisualTests
             foreach (var f in flags)
                 _output.WriteLine($"  FLAG: {f}");
 
+            // Fail-loud guard (#1046 Lot A): without this, if IsCoverImage() matches nothing
+            // (renamed cover files), scanned stays 0 and the test is unconditionally green —
+            // the verified-nothing hole. Below, the all-flagged check is also short-circuited
+            // by its own `scanned > 0` term, so it cannot catch the empty case on its own.
+            if (scanned == 0)
+                Assert.Fail("Scanned 0 cover images in Target/ — test verified nothing (check harvest output / IsCoverImage filter / CardSet naming)");
+
             // This is informational — not a hard fail (thresholds may need tuning)
             // But if ALL covers are flagged, something is wrong
             if (flags.Count > 0 && scanned > 0 && flags.Count >= scanned)
@@ -211,7 +218,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_BlankRatio_Rules_NotExcessivelyEmpty()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -237,10 +244,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 _output.WriteLine($"  FLAG: {f}");
 
             if (scanned == 0)
-            {
-                _output.WriteLine("No Rules images found — skip");
-                return;
-            }
+                Assert.Fail("Scanned 0 Rules images in Target/ — test verified nothing (check harvest output / CardSet filter)");
 
             // Informational: report but don't hard-fail (this is the data ai-01 needs for #250)
         }
@@ -251,7 +255,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_BottomSaturation_Rules_NotOverflowing()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -275,6 +279,12 @@ namespace Argumentum.AssetConverter.VisualTests
 
             foreach (var f in flags)
                 _output.WriteLine($"  FLAG: {f}");
+
+            // Fail-loud guard (#1046 Lot A): mirrors the sibling BlankRatio test (l.234).
+            // Without this, a Target/ present but with an empty Rules subtree scans 0 images
+            // and the test passes green having verified nothing — the verified-nothing hole.
+            if (scanned == 0)
+                Assert.Fail("Scanned 0 Rules images in Target/ — test verified nothing (check harvest output / CardSet filter)");
         }
 
         // --- Detector: footer-collision (body overflowing under absolute footer, #29 recalibration) ---
@@ -283,7 +293,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_FooterCollision_Rules_NoBodyFooterOverlap()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var flags = new List<string>();
             int scanned = 0;
@@ -319,10 +329,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 _output.WriteLine($"  FLAG: {f}");
 
             if (scanned == 0)
-            {
-                _output.WriteLine("No non-cover Rules images found — skip");
-                return;
-            }
+                Assert.Fail("Scanned 0 non-cover Rules images in Target/ — test verified nothing (check harvest output / CardSet filter)");
 
             // Informational: report but don't hard-fail
         }
@@ -333,7 +340,7 @@ namespace Argumentum.AssetConverter.VisualTests
         public void VisualQa_FullGrid_AllCards_AllDetectors()
         {
             var root = ResolveTargetRoot();
-            if (root == null) { _output.WriteLine("SKIP"); return; }
+            if (root == null) Assert.Fail("VisualTests require a generated Target/ — run the pipeline first");
 
             var results = new List<CardCheckResult>();
             int totalImages = 0;
@@ -469,8 +476,11 @@ namespace Argumentum.AssetConverter.VisualTests
                 }
             }
 
+            // Fail-loud guard (#1046 Lot A): a populated Target/ with 0 images across every
+            // language × cardset means GetImages() matched no path — the grid printed above
+            // asserted nothing. Previously this was a WriteLine "skip", i.e. a silent green.
             if (totalImages == 0)
-                _output.WriteLine("No images found in any language — skip");
+                Assert.Fail("Scanned 0 images across all languages/cardsets in Target/ — test verified nothing (check harvest output / GetImages path filter)");
         }
 
         // --- Helper methods ---

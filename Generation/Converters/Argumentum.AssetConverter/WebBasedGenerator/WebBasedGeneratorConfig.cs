@@ -44,6 +44,23 @@ namespace Argumentum.AssetConverter
 		/// </summary>
 		public bool ContinueOnHarvestSetFailure { get; set; } = true;
 
+		/// <summary>
+		/// Issue #613 (Option C — retry serial): after the parallel harvest loop drains, each
+		/// failed set (collected in the <c>failedSets</c> bag by <c>ContinueOnHarvestSetFailure</c>)
+		/// is re-attempted this many times <b>serially</b> (degree=1, no contention) with a
+		/// backoff between attempts. A large set that timed out under high parallelism often
+		/// succeeds when it has the Playwright/CardPen resources to itself. 0 disables the retry
+		/// pass (failed sets go straight to the aggregate error, #614 behavior). Default 1.
+		/// </summary>
+		public int HarvestSetRetryAttempts { get; set; } = 1;
+
+		/// <summary>
+		/// Backoff in seconds between serial retry attempts of a failed harvest set (issue #613).
+		/// Generous default (30s): the root cause is usually CardPen JS still rendering under
+		/// prior memory/CPU pressure, so an immediate retry would likely re-fail. 0 = no wait.
+		/// </summary>
+		public int HarvestSetRetryBackoffSeconds { get; set; } = 30;
+
 		public int MaxDegreeOfParallelismImages { get; set; } = 3;
 
 		public int MaxDegreeOfParallelismImageTranslations { get; set; } = 2;
@@ -242,7 +259,7 @@ namespace Argumentum.AssetConverter
 						Dpi = 300
 					}
 				},
-				// #645 — Light P&P: same proven Fallacies P&P config, but the historical "print_and_play=1" sample (~35 cards) instead of all real cards (carte 1/2 = 176).
+				// #645 — Light P&P: same proven Fallacies P&P config, but the historical "print_and_play=1" sample (~35 cards) instead of all real cards (carte 1/2 = 175, post-#1288).
 				new CardSetConfig(){
 					Name =KnownCardSets.FallaciesPrintAndPlayLight,
 					FaceCardSetInfo = new CardSetInfo()
@@ -449,57 +466,54 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.Memo,
 							NbCopies = 7,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.Fallacies,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						}
 					}),
@@ -524,19 +538,18 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Virtues,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						}
 					}),
@@ -561,7 +574,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Scenarii,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -605,14 +617,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -623,33 +635,32 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.Virtues,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -660,14 +671,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 					}),
@@ -740,14 +751,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -759,34 +770,33 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
 						{
-							// #645 (Virtues subset) Light = "families overview" (print_and_play=1 -> root + 7 family heads = 8 cards). Mirrors Standard Virtues (ConvertToCmyk, 113x60mm).
+							// #645 (Virtues subset) Light = "families overview" (print_and_play=1 -> root + 7 family heads = 8 cards). Mirrors Standard Virtues (113x60mm).
 							CardSetName = KnownCardSets.VirtuesPrintAndPlayLight,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
@@ -797,14 +807,14 @@ namespace Argumentum.AssetConverter
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 					}),
@@ -873,7 +883,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesWeb,
 							NbCopies = 1,
-							ConvertToCmyk = false,
 							SaveOriginalImage = true,
 							FrontCards = new DocumentCard()
 							{
@@ -916,7 +925,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesWeb,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = true,
 							FrontCards = new DocumentCard()
 							{
@@ -956,7 +964,6 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.FallaciesWebThumbnails,
 							NbCopies = 1,
-							ConvertToCmyk = false,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
@@ -983,38 +990,36 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.Fallacies2,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						}
 					}),
@@ -1034,38 +1039,36 @@ namespace Argumentum.AssetConverter
 						{
 							CardSetName = KnownCardSets.Rules,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.Fallacies3,
 							NbCopies = 1,
-							ConvertToCmyk = true,
 							SaveOriginalImage = false,
 							FrontCards = new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							},
 							BackCards =  new DocumentCard()
 							{
 								BorderMM = 0,
-								HeigthMM = 113,
-								WidthMM = 60,
+								HeigthMM = 120,
+								WidthMM = 70,
 							}
 						},
 					}),

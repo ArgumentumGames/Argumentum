@@ -1,0 +1,190 @@
+# Dependabot configuration for ArgumentumGames/Argumentum
+#
+# Authored by po-2024 (tick 113), dispatched by ai-01 (`3zhzkb`).
+# Merged in #910. Scope arbitrated by jsboige 2026-07-26 (interactive): option A —
+# "surveiller, groupé + ignore-major" on the 26 vendored 2sxc/DNN npm trees.
+#
+# ⛔ REVERSED 2026-09-01 (#942, dispatched ai-01 `msg-20260901T144748-b67yk2`): the 26
+# vendored DNNPlatform/Portals update blocks are DELETED. Option A's surveillance produced
+# only noise: 380 of 383 dependabot alerts sat on those trees (devDeps of builds we never
+# run), 0 alerts on any shipped surface (measured, #942), while 27 of 28 open dependabot
+# PRs saturated page 1 of `gh pr list` — an instrument defect for the whole cluster.
+# Proof they are portal artefacts, not compiled code: no project under DNNPlatform in
+# "Argumentum Converters.sln", zero DNNPlatform references in any CI workflow; the trees
+# are the vendored DNN portal export (2sxc app templates + skins shipping their own build
+# tooling). To restore surveillance, git-revert the #942 PR — do NOT re-add the blocks by
+# hand (the per-directory list drifted once already).
+#
+# Policy summary:
+#   1. nuget (our .NET pipeline)         -> group + ignore the load-bearing pins (see `ignore` below)
+#   2. npm our trees (CardPen, pdf-val)   -> group + ignore majors
+#
+# Why groups: collapses multiple same-directory bumps into ONE pull request. The repo saw
+# ~34 dependabot PRs in a single cycle (mostly the same package bumped across many 2sxc
+# module trees, e.g. loader-utils x5). `groups` turns N-per-dir into 1-per-dir.
+#
+# Escape hatch: if a CVE is ever fixable ONLY inside a vendored DNN tree, restore that
+# tree's block by reverting #942 — do not merge a hand-crafted bump bypassing this policy.
+#
+# Why the nuget `ignore` list is NOT "all majors": grouping is all-or-nothing, so one unmergeable
+# package holds the whole group hostage (#941 bundled 24 updates around 3 bad ones). The list names
+# only packages whose pin is an ALREADY-RECORDED decision — licence (#588, #905) or a documented
+# runtime coupling (CLAUDE.md "Stable Dependency Versions"). Everything else keeps flowing and gets
+# triaged on its merits. To add an entry, cite the decision; do not add one to silence a red build.
+#
+# The `labels:` below reference nuget / npm / vendored, which did NOT exist in the repo until
+# 2026-07-27 — dependabot posted a "labels could not be found" comment on every PR it opened
+# (#941, #945 and the 26 npm ones). The labels now exist; do not delete them without also
+# editing this file, or the noise comes back on every future PR.
+
+version: 2
+enable-beta-ecosystems: false
+
+updates:
+  # --- 1. NuGet: the .NET pipeline (our code) ---
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      dotnet:
+        patterns: ["*"]
+    ignore:
+      # AutoMapper 14.0.0 is the LAST MIT release; 15.0.0+ flips to RPL-1.5 / commercial
+      # (Lucky Penny, requireLicenseAcceptance). Pinned by decision jsboige 2026-06-23 (#588).
+      # A dependabot major bump would re-propose the commercial line; ignore it at the source.
+      - dependency-name: "AutoMapper"
+        update-types: ["version-update:semver-major"]
+      # FluentAssertions 7.2.2 is the LAST Apache-2.0 release; 8.0+ flips to a commercial
+      # Xceed licence (the exact invisible-to-expression-scanner shape #905 flagged, same as
+      # QuestPDF below). #949 proposed 8.10.0 and would have shipped the commercial line inside
+      # a grouped bump. Pinned by ai-01's #949 disposition (licence-purity, same basis as the
+      # AutoMapper pin #588 and the PdfPig swap #908). semver-major only: 7.2.x Apache patches
+      # keep flowing; only the 7->8 commercial jump is blocked. The 8.5.0 -> 7.2.2 downgrade
+      # ships in the same PR as this entry (ai-01: "la séquence importe" -- pinning before
+      # downgrading would freeze the commercial version).
+      - dependency-name: "FluentAssertions"
+        update-types: ["version-update:semver-major"]
+      # SixLabors.ImageSharp 3.1.x is the last line that BUILDS without a purchased licence key.
+      # MEASURED on #1097 (run 32002605172, `build (Release)`, 2026-08-17) -- 4.1.0 fails the build
+      # outright, it does not merely change a licence field:
+      #   SixLabors.ImageSharp.targets(28,5): error : No Six Labors license found. Set
+      #   $(SixLaborsLicenseKey), set $(SixLaborsLicenseFile), or add a 'sixlabors.lic' file
+      #   SixLabors.ImageSharp.targets(28,5): error : Please obtain a license from
+      #   https://sixlabors.com/pricing/
+      # Third instance of the AutoMapper (#588) / FluentAssertions (#949) class: a dependency that
+      # flips to commercial at a major. This one is the LOUDEST of the three -- it breaks CI instead
+      # of silently shipping a commercial line -- which is why it is the only one we found by reading
+      # a red build rather than a nuspec. Do not read that as "just fix the build": the red IS the
+      # licence, and the fix on offer is a purchase.
+      # semver-major only: 3.1.x patches keep flowing. Consumers are test/tooling-only
+      # (VisualTests.csproj, Tools/PdfPreviewExtractor) and ship in no binary, but that is
+      # irrelevant here -- the gate is at BUILD time, so a test-only reference is enough to red
+      # the pipeline. Note SixLabors.ImageSharp.Drawing 2.1.7 rides the same licence regime; it has
+      # no major proposed yet, so it gets no entry until one is (do not add speculative pins).
+      #
+      # Why this entry exists at all, given #1097 was already red: grouping is all-or-nothing (see
+      # the header note on #941). #1097 bundled FIVE bumps -- Microsoft.NET.Test.Sdk 18.9.0,
+      # xunit.runner.visualstudio 4.0.0, OpenAI 2.13.0, System.Management 10.0.11 -- and ImageSharp
+      # held the other four hostage for five days. Ignoring ImageSharp at the source lets dependabot
+      # regenerate the group WITHOUT it, so those four can be judged on their merits.
+      - dependency-name: "SixLabors.ImageSharp"
+        update-types: ["version-update:semver-major"]
+      # QuestPDF 2022.12.12 is the last release carrying the SPDX expression `MIT`.
+      # MEASURED on the NuGet catalog (2026-07-26): 2022.12.12 -> licenseExpression "MIT";
+      # 2026.7.1 -> NO licenseExpression at all, licenseUrl = aka.ms/deprecateLicenseUrl,
+      # i.e. the embedded `<license type="file">` form. That is the exact mechanism #905
+      # flagged as invisible to expression-only scanners (same shape as FluentAssertions 8.x).
+      # The #905 release gate reads "24/24 permissive" off those expressions, so a QuestPDF
+      # bump silently removes the evidence the gate is built on. ALL update types ignored,
+      # not just majors: the pin is a licence pin, and QuestPDF uses calendar versioning.
+      # (CLAUDE.md also pins it for the thread-safety behaviour the global PDF lock assumes.)
+      - dependency-name: "QuestPDF"
+      # SkiaSharp is QuestPDF's native rendering backend and is pinned in CLAUDE.md as
+      # "Required for QuestPDF". With QuestPDF frozen at 2022.12.12, a major Skia bump
+      # (2.88.6 -> 4.150.1 was proposed in #941) moves one half of a matched pair.
+      # Minor/patch stay allowed -- DELIBERATELY. #945 delivered 2.88.6 -> 2.88.9, a patch
+      # inside the 2.88.x line QuestPDF 2022.12.12 links against; that is the pin working as
+      # intended, not a leak. Do not widen this entry to all update types by analogy with
+      # Playwright below: the two cases differ in the package's versioning, not in our intent.
+      - dependency-name: "SkiaSharp.NativeAssets.Win32"
+        update-types: ["version-update:semver-major"]
+      # Playwright 1.43.0 is pinned in CLAUDE.md. Since #911 the CI Test step actually
+      # launches real Chromium (HtmlToPngConverterTests, PdfAssemblerTests self-install the
+      # browser); 1.43.0 also carries the mirror-fallback chain that survives the
+      # playwright.azureedge.net 400s observed in CI. A major bump is a deliberate,
+      # tested operation, not a grouped drive-by.
+      #
+      # ALL update types, and the reason is MEASURED, not stylistic: this entry used to read
+      # `update-types: ["version-update:semver-major"]`, which is a NO-OP for this package.
+      # Microsoft.Playwright has never left the 1.x line (1.0 -> 1.61 as of 2026-07), so a
+      # semver-major update cannot fire, ever. #945 duly proposed 1.43.0 -> 1.61.0 as a MINOR
+      # and the filter let it through -- the pin was decorative. Found by po-2024's review on
+      # #945 and confirmed firsthand against the PR's package delta.
+      # Lesson worth keeping: an ignore entry is only as strong as the package's versioning
+      # scheme. "Ignore majors" protects nothing on a project that never bumps its major.
+      - dependency-name: "Microsoft.Playwright"
+      # Humanizer WAS pinned here (majors) until the #951 migration to 3.0.10: v3's Camelize
+      # changes the published OWL IRI fragments (accent case + hyphen joins -- the two GetId
+      # contract tests are the tripwire, measured red on #949), and the pin held the bump
+      # until the deliberate migration landed. Those fragments are the IDENTITY of the
+      # published ontology (1 408 fallacy IRIs + 223 virtue IRIs built by GetId), so a
+      # package CAN change identity-bearing OUTPUT with no diff in our own code. The
+      # migration PR carried the IRI-rename decision (jsboige arbitration, 2026-08-06: IRIs
+      # may move), a GetId space-strip guard (v3 keeps raw spaces around punctuation -- 6
+      # corpus labels would have produced invalid IRIs), and the deliberate update of the
+      # two GetId contract tests. Full history: #949, #953, #951.
+      #
+      # NOT pinned, on purpose: dotNetRdf. The #945 review first attributed the OwlAdapter
+      # break to dotNetRdf 3.3.2 -> 3.5.2; re-measured, that is wrong. dotNetRdf supplies
+      # VDS.RDF (parsing, used elsewhere in the same file), its bump is a MINOR, and
+      # RDFSharp.RDFResource is the type our code PASSES, not the one that moved. Pinning it
+      # would have been an over-pin bought on a mis-attribution.
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "nuget"
+
+  # --- 2. npm: our own trees (customized CardPen fork + pdf-validation tooling) ---
+  - package-ecosystem: "npm"
+    directory: "/Generation/CardPen"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    groups:
+      npm:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+
+
+  - package-ecosystem: "npm"
+    directory: "/docs/investigations/pdf-validation"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    groups:
+      npm:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
