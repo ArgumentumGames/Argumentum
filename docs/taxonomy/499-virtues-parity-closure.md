@@ -8,6 +8,12 @@
 
 **Dispatched by:** ai-01 ([DISPATCH] `msg-20260622T223118-9yo1tg`, 2026-06-23 00:31) — PRIMARY: *"#499 Virtues relationnel → docs/taxonomy/ gated (draft non-prod, gpt-5.5 /v1/responses)"*.
 
+> **Erratum (15/09/2026, sweep pool #458 grain ⑨)** — les noms de familles de ce document
+> (`Raisonnement valide`, `Rigueur mathématique`, `Langage exact`) sont les **anciens noms**, renommés
+> le 6-7/08 en `Inférence maîtrisée`, `Sens quantitatif`, `Justesse lexicale` (#981/#982a/#998/#1002) ;
+> leurs comptes de cartes datent de juin et sont périmés (cf. #985 : toujours re-mesurer le libellé
+> courant au CSV avant d'agir). L'évaluation de couverture de juin reste une trace valable de juin.
+
 ---
 
 ## 1. The #499 target — restated honestly
