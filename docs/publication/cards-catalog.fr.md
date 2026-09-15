@@ -34,7 +34,7 @@ Les données CSV sont remplies pour les 8 langues, mais le rendu des **scripts n
 - **Cartes** : Rules (15) + Memo (×7 copies) + Fallacies (taxonomie complète).
 - **Dimensions** : 60×113 mm (format tarot standard, sans marge de découpe).
 - **Profil couleur** : CMYK (épreuve imprimeur).
-- **Volume FR** : 175 cartes Fallacies + 15 Rules + 1 Memo (imprimée ×7) = **191 cartes uniques** (recomptes #438 / #1288 du 05/09/2026 — cf. CLAUDE.md « État actuel par CardSet » ; dos localisés par langue).
+- **Volume FR** : 175 cartes Fallacies + 15 Rules + 1 Memo (imprimée ×7) = **191 cartes uniques** (recomptes #438 / #1288 du 05/09/2026 — cf. CLAUDE.md « État actuel par CardSet » ; dos localisés par langue). **Volume de fabrication décidé (14/09/2026, #1187 c.5665864605) : 197 cartes** — la memo y compte ses 7 exemplaires imprimés ; boîte **364** sans Vertues / **495** avec. Les volumes 358/489 du 05/09 sont superseded.
 - **Usage** : remise à un imprimeur professionnel pour fabrication d'un deck Tarot.
 
 ### 2. Tarot Vertus — `Argumentum_TarotCards_Virtues_fr.pdf`

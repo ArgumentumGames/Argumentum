@@ -49,7 +49,7 @@ Avant toute régén sur un `Target/` déjà peuplé :
 | Structure TarotCards fr | p.1-15 Rules (15 faces, sans dos) · p.16-29 Memo ×7 (`NbCopies=7`, `WebBasedGeneratorConfig.cs`) · p.30-379 Fallacies ×175 → 15+14+350 = 379 (mesuré 07/09, md5 page par page) |
 | Total PDFs frais | 80 (`Documents/density-0/`, horodatage du run) |
 | Fallacies faces | 175 (PK 96 sorti, #1292) |
-| Deck tarot | 191 cartes (175+15+1) ; boîte 358 sans Virtues / 489 avec |
+| Deck tarot | 191 cartes uniques (175+15+1) ; **volume de fabrication décidé (14/09, #1187 c.5665864605) : 197** (memo ×7 exemplaires) ; boîte 364 sans Virtues / 495 avec |
 | Géométrie tarot | 70×120 mm (#1267) → 413×708 px @150 dpi |
 | Géométrie poker | 63,5×88,9 mm → 375×525 px @150 dpi |
 | Parité recto-verso | **paires = dos, impaires = faces** (vérifié produit 07/09, md5 page par page) — sur la plage alternée p.16-379 uniquement ; p.1-15 = faces Rules sans dos |

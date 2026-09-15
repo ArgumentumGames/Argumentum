@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [~~0.9.0~~ → 2.0.0] — 2026-07-XX (tag pending jsboige visual GO, week of 2026-07-13)
 
 > **Version note (2026-09-13, #999)**: the release was re-scoped **v0.9.0 → v2.0.0** (jsboige 2026-08-06); the tag has not been posed under either name yet. The entry below was drafted under the former name and is kept as-is pending the v2.0.0 notes rework (#999 DoD 3, owner-reviewed). Inventory: [`docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md`](docs/release-dossier/999-inventaire-v0.9.0-2026-09-13.md).
+>
+> **Fabrication volumes (decided 14/09, #1187 c.5665864605; re-measured 15/09 on master `c089d526`)**: retail deck **197** (175 Fallacies + 15 Rules + memo ×7 printed copies) · full box **364** without Virtues / **495** with · **80 PDFs** (10 types × 8 languages). Supersedes the 191/358/489 volumes of 05/09 (they counted a single memo; P&P copies unchanged at ×5/×1). Reader-facing notes: [`docs/RELEASE-NOTES-v2.0.0.md`](docs/RELEASE-NOTES-v2.0.0.md).
 
 ### Added — Multilingual Support (8 Languages)
 
