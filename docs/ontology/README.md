@@ -157,9 +157,13 @@ discriminates a served artefact from an error page.
 - **No content negotiation.** GitHub Pages is a static host: no `Accept`-header dispatch and no `303`
   redirect from the namespace IRI. Distinct URLs are used instead (standard static practice). A
   W3C-style negotiated endpoint needs the `argumentum.myia.io` server and is deferred to #132.
-- **`Content-Type` is the host's, not ours.** `.owl` is not in the host's MIME map, so a response of
-  `application/octet-stream` rather than `application/rdf+xml` should be expected. The smoke reports it
-  instead of asserting it.
+- **`Content-Type` is the host's, not ours — and the host answers `application/rdf+xml`.** This bullet
+  originally predicted `application/octet-stream` (`.owl` assumed absent from the host's MIME map); the
+  live measurement refuted that prediction: both OWL URLs are served `application/rdf+xml` (#133,
+  2026-09-15 — pre-pose 404 / post-pose 200 + sha256 = committed blob; re-measured 2026-09-15 by the
+  counter-review, both URLs `200 application/rdf+xml`). The smoke still reports the header instead of
+  asserting it — the host remains ours to verify, not to dictate. *(Erratum 2026-09-15 of the pre-merge
+  prediction.)*
 - **The namespace IRIs do not resolve, and nothing in the artefact bridges them.** `ontologyIRI` is
   `https://www.argumentum.games/argumentum_fallacies.owl#` (decided 2026-06-02). The file's
   `rdfs:seeAlso` assertions point to **external** references (e.g. Wikipedia) — measuring the committed
