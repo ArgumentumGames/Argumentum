@@ -40,11 +40,22 @@ jobs:
                Generation/CardPen/Rules Generation/CardPen/Scenarii
           # Also remove server/ subproject (not needed for Pages)
           rm -rf Generation/CardPen/server
+      - name: Assemble site (CardPen at the root, ontology under /docs/ontology)
+        run: |
+          # upload-pages-artifact takes a single path, so stage one tree.
+          # CardPen stays at the artifact root => its served URLs are unchanged
+          # (the CardPen host contract the pipeline depends on).
+          mkdir -p site
+          cp -a Generation/CardPen/. site/
+          # #133: publish the ontology alongside it. Distinct URLs — GitHub Pages
+          # is a static host, so there is no Accept-header content negotiation.
+          # See docs/ontology/README.md §6.
+          mkdir -p site/docs/ontology
+          cp -a docs/ontology/. site/docs/ontology/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Deploy only CardPen (HTML card renderer used by the pipeline)
-          path: 'Generation/CardPen'
+          path: 'site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
