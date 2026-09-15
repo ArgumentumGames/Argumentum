@@ -56,7 +56,7 @@
 <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
     <div class="col-md-4 position-relative">
         <h1>
-            @Loc(ruleEntity, "EntityTitle")
+            @Loc(ruleEntity, "Title")
         </h1>
         <h5>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h5>
         <h2>@Resources.RuleSummary</h2>
@@ -90,9 +90,9 @@
                     <bleed>
                         <cut>
                             <safe>
-                                <div class="cardName">@Resources.RuleMemoCardFileNamePrefix - @Loc(ruleEntity, "EntityTitle")</div>
+                                <div class="cardName">@Resources.RuleMemoCardFileNamePrefix - @Loc(ruleEntity, "Title")</div>
                                 <div>
-                                    <p><em>@Loc(ruleEntity, "EntityTitle")</em></p>
+                                    <p><em>@Loc(ruleEntity, "Title")</em></p>
                                     <p><a class="@qrDomId" href='@qrLink' target="_blank"></a></p>
                                     @Html.Raw(Loc(ruleEntity, "Memo"))
                                 </div>

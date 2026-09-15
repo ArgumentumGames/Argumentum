@@ -84,7 +84,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		{
 			var view = ReadView(RuleListPath);
 
-			Count(view, "Loc(ruleEntity, \"EntityTitle\")").Should().Be(1);
+			Count(view, "Loc(ruleEntity, \"Title\")").Should().Be(1);
 			Count(view, "Loc(ruleEntity, \"Summary\")").Should().Be(1);
 		}
 
@@ -97,7 +97,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			// that carry localizable content all go through Loc(); conditional sections
 			// (Variants, Memo) test emptiness through Loc() too, so an empty localized
 			// value hides the section the same way the raw field did.
-			Count(view, "Loc(ruleEntity, \"EntityTitle\")").Should().Be(3);
+			Count(view, "Loc(ruleEntity, \"Title\")").Should().Be(3);
 			Count(view, "Loc(ruleEntity, \"Summary\")").Should().Be(1);
 			Count(view, "Loc(ruleEntity, \"Material\")").Should().Be(1);
 			Count(view, "Loc(ruleEntity, \"Installation\")").Should().Be(1);
