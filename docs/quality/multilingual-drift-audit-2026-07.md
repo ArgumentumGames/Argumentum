@@ -3,6 +3,12 @@
 **Worker** po-2024 · **Date** 2026-07-12 · **Base** master `84a529bf` · **READ-ONLY — 0 write prod CSV, `Cards/` untouched.**
 Dispatch ai-01 `525scp` (PRIMAIRE). Script: [`tools/multilingual-drift-audit.py`](../../tools/multilingual-drift-audit.py) (reusable, idempotent).
 
+> **Erratum (15/09/2026, sweep pool #458 grain ⑨)** — les exemples de noms propres cités comme
+> « cognate overlap » légitime (`Lord Voldemort` pk 2.3.2, `Obélix`…) sont des **traces d'avant la
+> pseudonymisation IP** #1189/#1210 (28/08 : 5 cartes remplacées par des archétypes génériques,
+> 201 cellules, décision owner 27/08) — le CSV courant ne les porte plus. La mesure de juillet reste
+> valable comme mesure de juillet ; ne pas recycler ces exemples comme état courant.
+
 > **Verdict: REAL TRANSLATABLE CONTENT IS CLEAN.** Across all 4 Cards CSVs × 7 non-FR
 > languages, the high-value prose fields (Fallacies `desc`/`example`, Virtues
 > `description`/`remark`, Scenarii `context`/`issue`/`suggestion`, Rules `Text`) are

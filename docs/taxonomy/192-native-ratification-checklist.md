@@ -5,6 +5,12 @@
 **Scope**: docs only. **0 write under `Cards/`**. master stays `44c37fa2`.
 **Companion**: [`192-terminology-glossary-register.md`](192-terminology-glossary-register.md) (full proposal) · [`192-terminology-apply.py`](192-terminology-apply.py) (the applier).
 
+> **Erratum (15/09/2026, sweep pool #458 grain ⑨)** — « Raisonnement valide » est l'**ancien nom** de la
+> famille « Inférence maîtrisée » (renommée 6-7/08, #981/#982a ; cf. aussi #985 : le coût d'un ancien nom
+> non re-mesuré). Les libellés de familles de ce document décrivent l'état de juin ; le CSV re-mesuré le
+> 15/09 sur `c089d526` porte les 8 noms courants (`Inférence maîtrisée`, `Sens quantitatif`,
+> `Justesse lexicale`…). Fond de la checklist inchangé.
+
 ---
 
 ## TL;DR — what this is

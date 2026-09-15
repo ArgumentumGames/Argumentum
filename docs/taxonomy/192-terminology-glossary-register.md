@@ -5,6 +5,11 @@
 **Dispatch**: ai-01 2026-06-25 14:05 (`msg-…o0vg3h`) — pre-instruct the glossary/register gate so #192 passes 2-4 become ratifiable.
 **Scope**: docs proposal only. **0 write under `Cards/`** (release freeze). master stays `bef3bc6c`.
 
+> **Erratum (15/09/2026, sweep pool #458 grain ⑨)** — « Raisonnement valide » est l'**ancien nom** de la
+> famille « Inférence maîtrisée » (renommée 6-7/08, #981/#982a). Les libellés de familles de ce document
+> décrivent l'état de juin ; le CSV re-mesuré le 15/09 sur `c089d526` porte les 8 noms courants. Fond de la
+> proposition inchangé.
+
 ---
 
 ## TL;DR for jsboige (ratify in ~10 min)
