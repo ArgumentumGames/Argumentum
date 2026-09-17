@@ -1,6 +1,7 @@
 # INDEX des arbitrages owner ouverts — une coche par ligne + carte de `docs/`
 
-**Auteur** : po-2024 (worker) · **Date** : 2026-09-17 · **Base** : master `c9290bab`
+**Auteur** : po-2024 (worker) · **Date** : 2026-09-17 · **Base** : master `0ab05d66` (mise à jour
+à 22:41 : E4/E6/E7 cutover soldés par recette #1420, #1369 1a/2a soldés par #1421, D1 Stripe GO 18:50)
 **Grain** : pool #458 c.5666260217, grain ③. **Support de décision — 0 write corpus, 0 décision
 prise, 0 re-mesure** : chaque ligne renvoie à la feuille mergée qui porte la coche ; les coûts et
 recommandations sont **RAPPORTÉS des feuilles** (l'entrée de relecture du dossier v2.0.0 = `134-entree-validation-release-2026-09-16.md`, ~60 min).
@@ -16,8 +17,8 @@ recommandations sont **RAPPORTÉS des feuilles** (l'entrée de relecture du doss
 
 | # | Décision | Feuille (chemin depuis `docs/`) | Coches | Coût / effet (RAPPORTÉ de la feuille) | Reco worker |
 |---|---|---|---|---|---|
-| 1 | **#994 apostrophes** | `release-dossier/994-arbitrage-apostrophes-ABCD-2026-09-15.md` | A / B / C / D | A = 146 cartes · 6 PDF · 1 OWL · régén `fr/` seule ; B = 164 · 16 PDF (fr+en) ; C = 183 · 52 PDF (65 %, 8 langues) ; D = 0. ⚠️ toute branche ≠ D re-touche le deck Poker (fraîcheur `134-fraicheur-post-65dd4742-2026-09-16.md`) | **A** |
-| 2 | **#1369 cover variantes** (×4 décisions) | `release-dossier/1369-dossier-owner-cover-variantes-2026-09-15.md` + chiffrage `1369-cout-mecanisme-cardclass-2026-09-15.md` | 4 décisions (coches dans la feuille) | mécanisme adressable par la donnée (1a = colonne `variant_class`, insertion CSV **byte-exacte**) + brief de style d'abord (2a) + 5 images muettes partagées 8 langues (3a) | **1a · 2a · 3a** |
+| 1 | **#994 apostrophes** | `release-dossier/994-arbitrage-apostrophes-ABCD-2026-09-15.md` | A / B / C / D | A = 146 cartes · 6 PDF · 1 OWL · régén `fr/` seule ; B = 164 · 16 PDF (fr+en) ; C = 183 · 52 PDF (65 %, 8 langues) ; D = 0. ⚠️ toute branche ≠ D re-touche le deck Poker (fraîcheur `134-fraicheur-post-65dd4742-2026-09-16.md`) ; ⚠️ **#1421 a muté `Cards/Rules/Argumentum Rules - Cards.csv`** ce soir (colonne `variant_class` ajoutée — comptes #994 à rejouer sur `0ab05d66`) | **A** |
+| 2 | **#1369 cover variantes** — **1a mécanisme + 2a fiche style SOLDÉS** (17/09 soir, #1421) | `release-dossier/1369-dossier-owner-cover-variantes-2026-09-15.md` + `1369-cout-mecanisme-cardclass-2026-09-15.md` + fiche `design/1369-fiche-style-covers-variantes.md` | restent : images (3a = 5 muettes) + validation visuelle | pilote `cover-bingo` livré : CSV `variant_class` + template + `Cards/Rules/Assets/cover-bingo.png` | **3a · 4e restants** |
 | 3 | **#802 rôles RU/ES** | `release-dossier/802-feuille-decision-ru-es-2026-09-15.md` (contexte : `802-libelles-roles-2026-09-15.md`) | 2 coches (ES lector, RU софист+rôle 2) | (a) = **0 cellule** touchée ; (b) = alignements ponctuels | **(a) ×2** |
 | 4 | **#415 allow-list** | `repo/415-feuille-decision-allowlist-2026-09-15.md` | D1 / D2 / D3 | enjeu **758,7 Mo au HEAD** (DNNPlatform 209,8 · Archive 127,4 · Mindmaps 123,9 · Packaging+Sketch 142,2 · CSV ~28) ; D1-D2 statu quo→LFS, D3 geste LFS post-tag | **(a) ×3** |
 | 5 | **#830 les 9 capacités** | `quality/830-etat-9-capacites-2026-09-15.md` | (a) / (b) | (a) = aligner la CI sur la barre de l'issue (+ registre mis à jour) ; timing reco post-tag | **(a)** post-tag |
@@ -29,13 +30,13 @@ recommandations sont **RAPPORTÉS des feuilles** (l'entrée de relecture du doss
 | 11 | **Fenêtre FreeMind (mindmaps PK 511)** | pas de feuille dédiée — réservation par annonce dashboard | réservation | un seul run, Batik prouvé, ⛔ jamais fallback XSLT silencieux ; garde chemin court #1179 (jonction `D:\A1114` à recréer J-0) | réservation = owner |
 | 12 | **Relecture notes v2.0.0** | entrée `release-dossier/134-entree-validation-release-2026-09-16.md` | — | **~60 min** (ordre indicatif §5 de l'entrée ; 8 pièces + 4 contexte) | point d'entrée |
 | 13 | **Fenêtre régén v2.0.0** (×2 coches) | `release-dossier/134-fenetre-regen-reservation-2026-09-16.md` | tranche (dépend #994) puis créneau | périmètre f(#994) : **D=6 · A=12 · B=19 · C=≈52 PDF** (+ OWL si ≠D) ; planifier **4 h** (run 73-80 min RAPPORTÉ + C1→C6 1 h 45 MESURÉ + verdict ai-01 — le PASS 12/09 ne se transporte pas) | après coche #994 |
-| 14 | **Montée DNN Vague 1 — D1-D6** | `release-dossier/131-feuille-decision-d1-d6-2026-09-16.md` | 6 coques | D1 boutique (A OpenStore ~½ j SUPPOSÉ / B Stripe / C statu quo) · D2 npm dev (A balai ~1 h / B acceptation #1404) · D3 CVE lookup ~30 min **0 fenêtre** (prérequis D5) · D4 Razor14 3-5 h mesurés ou reporter · D5 cutover (~10 min lecture + fenêtre DNS) · D6 re-jeu recette #1180 ~1 h (verdict ai-01) | D2-A · D3 · D4-B · D6 |
-| 15 | **Cutover #1180/#1066 — E1-E11** | `quality/1180-dossier-cutover-2026-09-16.md` | **9 cases restantes** (E8 préreçue #1412 · E11 discipline) | E1 noscript GTM (10 UPDATE DB gated OU re-qualifier plancher ×1) · E3 figer `de763aa9` · E4 reco **(b)** recâblage endpoint Pages (couvre E5+E7) · E6 SVG orphelins **à migrer AVANT bascule** ou perdre (sha256 font foi) · E9 recette (=D6) · E10 **DNS ferme 04/11**, fenêtre ~05/10 ou post-04/11 | E4-(b) |
+| 14 | **Montée DNN Vague 1** ; ⚠️ **D1 = B Stripe, GO owner 17/09 ~18:50** (« on a dit qu'on passait sous Stripe ») — POC en cours (`docs/131-d1-stripe-poc`, audit mesuré), reprise des **124 commandes / 111 comptes** = décision owner restante | `release-dossier/131-feuille-decision-d1-d6-2026-09-16.md` | D2-D6 restantes (D1 tranchée) | D2 npm dev (A balai ~1 h / B acceptation #1404) · D3 CVE lookup ~30 min **0 fenêtre** (prérequis D5) · D4 Razor14 3-5 h ou reporter · D5 cutover (lecture + fenêtre DNS) · D6 re-jeu recette ~1 h (verdict ai-01) | D2-A · D3 · D4-B · D6 |
+| 15 | **Cutover #1180/#1066** — **E4/E5/E6/E7 SOLDÉS** (recette 17/09, #1420 : recâblage Pages tab 171 + SVG orphelins servis aux sha publiés) | `quality/1180-dossier-cutover-2026-09-16.md` + recette `quality/1180-recette-preprod-2026-09-17.md` | **4 restantes** : E1 · E3 · E9 (=D6) · E10 | E1 noscript GTM (10 UPDATE DB gated OU re-qualifier plancher ×1) · E3 figer `de763aa9` · E9 = D6 (recette re-jeu) · E10 **DNS ferme 04/11**, fenêtre ~05/10 ou post-04/11 | E3 figer · E10 fenêtre |
 | 16 | **Tag v2.0.0** | (porte de sortie — aucune feuille dédiée) | pose du tag | débloque #654/#666/#965 exécution, upload release, contact façonniers (RAPPORTÉ cycles ai-01) | après 12-15 |
 
 **Couplages à lire avant de cocher** : #994 → fenêtre régén (ligne 13, le périmètre en dépend) ·
-D3 → D5 (ligne 14) · D6 = E9 (14↔15) · E4 → E5/E7 (ligne 15) · tout ce qui est « post-tag »
-(#830-a, #192-C, #415-D3, fix #1123 implémentation) se débloque à la ligne 16.
+D3 → D5 (ligne 14) · D6 = E9 (14↔15) · ~~E4 → E5/E7~~ **soldé** (17/09 recette #1420) · tout ce qui
+est « post-tag » (#830-a, #192-C, #415-D3, fix #1123 implémentation) se débloque à la ligne 16.
 
 ## §2 Carte de `docs/` (16 répertoires + racine)
 
@@ -59,11 +60,10 @@ D3 → D5 (ligne 14) · D6 = E9 (14↔15) · E4 → E5/E7 (ligne 15) · tout ce 
 
 ⛔ Aucune re-mesure : coûts, comptes et recos sont RAPPORTÉS des feuilles citées (base de chacune =
 son merge) — en cas d'écart, **la feuille fait foi**, pas cette page · ⛔ aucune décision prise ni
-préjugée (les recos citées sont celles des workers, déjà écrites dans les feuilles) · ⛔ fraîcheur
-non garantie au-delà de la base `c9290bab` — une coche posée sur une feuille invalide sa ligne ici ·
-⛔ la carte `docs/` compte des fichiers, pas une revue de contenu · ⛔ ne couvre pas les arbitrages
-**fermés** (voir `DECISION-v2.0.0-jsboige.md` §3) ni les gestes hors dépôt (purge swap po-2024,
-fenêtres machine — dashboards).
+préjugée (les recos citées sont celles des workers, déjà écrites dans les feuilles) · ⛔ fraîcheur non garantie au-delà de la base `0ab05d66` — une coche posée sur une feuille invalide
+sa ligne ici · ⛔ la carte `docs/` compte des fichiers, pas une revue de contenu · ⛔ ne couvre pas
+les arbitrages **fermés** (voir `DECISION-v2.0.0-jsboige.md` §3) ni les gestes hors dépôt
+(dashboards, purge swap po-2024).
 
 ---
 *po-2024 — pool #458 c.5666260217, grain ③. Périphérie : les grains ② (#212 plan tests visuels),
