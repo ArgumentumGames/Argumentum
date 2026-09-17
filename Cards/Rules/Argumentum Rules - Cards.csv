@@ -1,4 +1,4 @@
-﻿pk,Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa
+﻿pk,Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa,variant_class
 Rules_01,"# Argumentum
 ## L'école des menteurs","# Argumentum
 ## The school of liars","# Argumentum
@@ -7,7 +7,7 @@ Rules_01,"# Argumentum
 ## مدرسة الكاذبين","# Argumentum
 ## La escuela de los mentirosos","# Argumentum
 ## 说谎者学校","# Argumentum
-## مدرسهٔ دروغ‌پردازان"
+## مدرسهٔ دروغ‌پردازان",cover-argumentum
 Rules_02,"*Règles du jeu : de 4 à 8 joueurs*
 
 ## Matériel
@@ -718,7 +718,7 @@ Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo 
 ## آماده‌سازی
 
 تمام کارت‌های استدلالِ مغالطه‌آمیزِ موجود به‌طور تصادفی میان همهٔ بازیکنان تقسیم می‌شود، به‌طوری‌که به هر نفر ۱۰ کارت برسد.
-هر بازیکن کارت‌های خود را می‌خواند، آن‌ها را طوری می‌چیند که تا حد ممکن در ذهنش بمانند، و برای تماشای مناظره مستقر می‌شود."
+هر بازیکن کارت‌های خود را می‌خواند، آن‌ها را طوری می‌چیند که تا حد ممکن در ذهنش بمانند، و برای تماشای مناظره مستقر می‌شود.",cover-bingo
 Rules_08,"## Pendant le débat
 
 Chaque joueur écoute les arguments formulés. S'il repère un argument qui correspond à l'une des cartes de sa grille de bingo, il note le temps écoulé, le début d'une citation permettant de retrouver le bon passage, ainsi que le nom de la carte. Il ajoute au besoin un peu de contexte afin de pouvoir restituer plus tard son analyse à l'oral.
@@ -1023,7 +1023,7 @@ El primer lector es quien se ha dejado influir más recientemente por una apelac
 
 ابتدا کارت‌های استدلالِ مغالطه‌آمیز و سپس کارت‌های سناریو را بُر می‌زنیم. سپس ۲ دستهٔ کارتِ کشیدنیِ سناریو تشکیل می‌دهیم و آن‌ها را در وسطِ میز قرار می‌دهیم. به هر بازیکن ۵ کارتِ استدلالِ مغالطه‌آمیز می‌دهیم که آن‌ها را نزد خود نگه می‌دارد. باقیِ کارت‌ها دستهٔ کارت‌های کشیدنی را تشکیل می‌دهند. 
 
-نخستین کارت‌کش، کسی است که آخرین بار تحت تأثیرِ توسل به احساسات قرار گرفته است."
+نخستین کارت‌کش، کسی است که آخرین بار تحت تأثیرِ توسل به احساسات قرار گرفته است.",cover-beau-parleur
 Rules_10,"## Déroulé de la manche
 
 ### 1. Le piocheur
@@ -1360,7 +1360,7 @@ El primer lector es quien haya cedido por última vez ante un argumento por desg
 
 کارت‌های استدلالِ مغالطه‌آمیز و همچنین کارت‌های سناریو خوب بر زده می‌شوند. سپس ۲ دستهٔ کارت سناریو و ۱ دستهٔ کارت استدلالِ مغالطه‌آمیز تشکیل می‌دهیم و آن‌ها را در وسط میز قرار می‌دهیم.
 
-نخستین کارت‌کش کسی است که آخرین بار یک استدلال را از سرِ فرسودگی پذیرفته است."
+نخستین کارت‌کش کسی است که آخرین بار یک استدلال را از سرِ فرسودگی پذیرفته است.",cover-moulin
 Rules_12,"## Déroulé de la manche
 
 ### 1. Le piocheur
@@ -1734,7 +1734,7 @@ El primer lector es el que haya mentido más recientemente.","## 卡壳胡侃
 
 کارت‌های استدلالِ مغالطه‌آمیز بُر زده می‌شوند؛ کارت‌های سناریو نیز جداگانه بُر زده می‌شوند. سپس ۲ دستهٔ کارت‌کشیِ سناریو تشکیل دهید و آن‌ها را در وسط میز قرار دهید.
 
-اولین کارت‌کش کسی است که آخرین بار دروغ گفته است."
+اولین کارت‌کش کسی است که آخرین بار دروغ گفته است.",cover-parlote
 Rules_14,"## Début de la manche
 
 ### 1. Le piocheur
