@@ -1,6 +1,6 @@
 ﻿pk,Text,Text_en,Text_ru,Text_pt,print_and_play,Text_ar,Text_es,Text_zh,Text_fa,variant_class
 Rules_01,"# Argumentum
-## L'école des menteurs","# Argumentum
+## L’école des menteurs","# Argumentum
 ## The school of liars","# Argumentum
 ## Школа лжецов","# Argumentum
 ## A escola dos mentirosos",,"# Argumentum
@@ -721,20 +721,20 @@ Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo 
 هر بازیکن کارت‌های خود را می‌خواند، آن‌ها را طوری می‌چیند که تا حد ممکن در ذهنش بمانند، و برای تماشای مناظره مستقر می‌شود.",cover-bingo
 Rules_08,"## Pendant le débat
 
-Chaque joueur écoute les arguments formulés. S'il repère un argument qui correspond à l'une des cartes de sa grille de bingo, il note le temps écoulé, le début d'une citation permettant de retrouver le bon passage, ainsi que le nom de la carte. Il ajoute au besoin un peu de contexte afin de pouvoir restituer plus tard son analyse à l'oral.
+Chaque joueur écoute les arguments formulés. S’il repère un argument qui correspond à l’une des cartes de sa grille de bingo, il note le temps écoulé, le début d’une citation permettant de retrouver le bon passage, ainsi que le nom de la carte. Il ajoute au besoin un peu de contexte afin de pouvoir restituer plus tard son analyse à l’oral.
 
 ## Validations post-débat
 
 Les joueurs qui revendiquent le plus grand nombre de cartes utilisées sont sélectionnés pour validation.
 
-À partir de leurs notes et de l'enregistrement, on établit la séquence des moments où chacune de leurs cartes a été utilisée.
-Pour chaque carte, on repasse le moment concerné et le joueur explique pourquoi l'argumentation correspond à sa carte.
-L'assemblée vote à main levée pour valider ou non son analyse.
+À partir de leurs notes et de l’enregistrement, on établit la séquence des moments où chacune de leurs cartes a été utilisée.
+Pour chaque carte, on repasse le moment concerné et le joueur explique pourquoi l’argumentation correspond à sa carte.
+L’assemblée vote à main levée pour valider ou non son analyse.
 
 ## Conditions de victoire
 
-Le score final de chaque joueur correspond au nombre de ses cartes validées par l'assemblée.
-Si, à l'issue d'un premier décompte, d'autres joueurs non sélectionnés ont désormais plus de cartes que le meilleur score validé, on procède à leur validation, et ainsi de suite jusqu'à ce que le meilleur score validé ne soit plus contestable.
+Le score final de chaque joueur correspond au nombre de ses cartes validées par l’assemblée.
+Si, à l’issue d’un premier décompte, d’autres joueurs non sélectionnés ont désormais plus de cartes que le meilleur score validé, on procède à leur validation, et ainsi de suite jusqu’à ce que le meilleur score validé ne soit plus contestable.
 
 Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs.","## During the debate
 
@@ -875,7 +875,7 @@ Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la 
 
 Mélangez les cartes d’argument fallacieux, puis les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table. Distribuez à chaque joueur 5 cartes d’argument fallacieux, qu’il garde pour lui. Le reste des cartes constitue la pioche.
 
-Le premier piocheur est celui qui s'est fait influencer le plus récemment par un appel à l'émotion.","## The Last Smooth Talker
+Le premier piocheur est celui qui s’est fait influencer le plus récemment par un appel à l’émotion.","## The Last Smooth Talker
 
 *Game rules: from 1 to 8 players*
 
@@ -1032,19 +1032,19 @@ Le piocheur tire une carte Scénario parmi les deux pioches disponibles et la li
 
 ### 2. La ronde des arguments
 
-En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer un argument répondant à l'injonction du scénario. Si un joueur reconnaît l’une de ses cartes dans un argument donné, il remet cette carte au joueur qui l’a utilisée et l’écarte de la manche.
+En commençant par le voisin de gauche du piocheur, chaque joueur doit proposer un argument répondant à l’injonction du scénario. Si un joueur reconnaît l’une de ses cartes dans un argument donné, il remet cette carte au joueur qui l’a utilisée et l’écarte de la manche.
 
 Si un joueur ne trouve pas de nouvel argument au bout de 10 secondes, il pioche une nouvelle carte et est exclu de la manche.
 
 ### 3. Fin de la manche
 
-La manche s'arrête quand il ne reste plus qu'une personne en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.
+La manche s’arrête quand il ne reste plus qu’une personne en jeu. Le voisin de gauche du piocheur devient le nouveau piocheur et tire le scénario de la manche suivante.
 
 ## Fin de partie et décompte
 
 Si un joueur parvient à se débarrasser de toutes ses cartes, il gagne la partie.
 
-Sinon, la partie s'arrête au bout du nombre de manches initialement prévu. Le vainqueur est celui qui a le moins de cartes en main.","## Round sequence
+Sinon, la partie s’arrête au bout du nombre de manches initialement prévu. Le vainqueur est celui qui a le moins de cartes en main.","## Round sequence
 
 ### 1. The Reader
 
