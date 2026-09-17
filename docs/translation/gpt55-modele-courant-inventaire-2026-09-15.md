@@ -52,5 +52,47 @@ bump 44+4 occurrences n'est pas chiffré en risque de prompt-drift (les prompts 
 porter des instructions spécifiques au modèle 5.5).
 
 ---
+
+## Erratum 2026-09-17 — les 2 réserves de la contre-review #1408 (grain ⑥, pool c.5666260217)
+
+**Auteur** : po-2024 (worker) · **Bases de re-mesure** : `6fbde739` (base d'origine du dossier,
+pour rejouer les claims dans leur portée) et `f69029c4` (master du jour). Instruments publiés
+ci-dessous. Corps du dossier inchangé : mesure figée du 15/09, corrigée en dessous.
+
+### Réserve ① — « 0× gpt-5.6 dans le dépôt » (titre + §0 ligne 3) : FAUX en portée, corroborant
+
+`gpt-5.6` comptait **2 occurrences dans 1 fichier à la base `6fbde739` elle-même** :
+`.claude/skills/coordinate/SKILL.md` l.20 et l.164 (`gpt-5.6-sol`, déjà assigné à la lane
+po-2024 comme tier de traduction). MESURÉ : `git grep -n "gpt-5\.6" 6fbde739 -- .claude/skills/`
+→ 2 hits. La parenthèse de §0 (`docs/`, `tools/`, `Generation/`, README, CLAUDE.md) excluait
+`.claude/` — la claim restait vraie dans cette sous-portée — mais le titre « dans le dépôt » et
+le verdict « n'existe nulle part dans le dépôt » étaient faux. **Incidence config nulle** (skill
+de coordination, pas un chemin de config). Les 2 occurrences citent le GO 14/08 : la correction
+**corrobore** la conclusion §0, elle ne l'affaiblit pas.
+
+### Réserve ② — « 1 590 lignes / 79 fichiers » (§0 ligne 4) : non reproductible, chiffre retiré
+
+Aucun variant `git grep` rejoué sur `6fbde739` ne reproduit 1590/79, et l'instrument d'origine
+n'est pas publié dans le dossier. Instruments publiés (MESURÉ le 17/09) :
+
+| Instrument (sur base `6fbde739`) | Résultat |
+|---|---|
+| `git grep "gpt-5\.5" 6fbde739 \| wc -l` | **366 lignes** |
+| `git grep -l "gpt-5\.5" 6fbde739 \| wc -l` | **82 fichiers** |
+| `git grep -o "gpt-5\.5" 6fbde739 \| wc -l` | 387 occurrences (= contre-chiffrage #1408) |
+
+Chiffres à retenir : **366 lignes / 82 fichiers / 387 occurrences** à la base d'origine
+(à `f69029c4` : 378/85 — croissance post-dossier, les merges #1403/#1405 citent le modèle).
+« 1 590 / 79 » est retiré. Aucune conclusion du dossier n'en dépend : la classification §1
+est par classe et non par cardinalité, et la claim config (44× 5.5 + 4× 5.4 dans
+`DatasetUpdaterRootConfig.cs`) est indépendante et reste vraie.
+
+### Ce que cet erratum n'établit pas
+
+⛔ L'instrument ayant produit « 1590 » n'est pas identifié (SUPPOSÉ : balayage hors-index ou
+outil dérivé — non tranché) · ⛔ aucune mutation du corps du dossier (figé, erratum en dessous)
+· ⛔ 0 write de config, 0 bump, 0 run — le geste reste gated exactement comme avant.
+
+---
 *po-2024 — pool #458 renouvelé (c.5666260217), grain ⑦. Suite naturelle : le protocole smoke #202
 (grain ⑩) doit poser le bump de config comme prérequis gated — les deux grains se répondent.*
