@@ -55,7 +55,7 @@ HOUSEKEEPING='Superseded|Closing in favor|Clos : le DoD|Sans objet|Dispatché|Re
 # coordinateur. Un nom de machine NU (ex. « @myia-ai-01 » en prose) ne matche
 # PAS : c'est le contrôle inverse du self-test (demande humaine #802 26/08 qui
 # mentionne une machine reste vue par le filet A).
-AGENT_BANNER='\[(myia-)?(ai-01|po-20[0-9]{2})[^\]]*\]|\(worker lane\)|Coordinator ai-01'
+AGENT_BANNER='\[(myia-)?(ai-01|po-20[0-9]{2})[^\]]*\]|\(worker lane[,)]|Coordinator ai-01'
 
 # Lit un endpoint REST et écrit le JSON sur stdout. rc=1 + cri sur stderr si
 # l'appel échoue ou ne rend pas du JSON. ⛔ Jamais de `2>/dev/null` ici : c'est
@@ -135,6 +135,15 @@ self_test() {
   # devient rouge, AGENT_BANNER a dégénéré en « match nom de machine nu » et
   # avale des demandes humaines : le faux négatif, sens dangereux.
   grep -q "on a acté avec Thomas et Adeline" <<<"$a" || { echo "FAIL: bannière agent avale une demande humaine mentionnant une machine (filet A)"; rc=1; }
+  # Contrôle local du pattern bannière (19/09, retour ai-01) : les corps des
+  # workers portent « (worker lane, `myia-po-2024`) » — la virgule doit
+  # matcher, pas seulement la forme fermée « (worker lane) ». Assertion
+  # unitaire : la fenêtre GitHub du self-test ne contient pas la forme
+  # étendue (postérieure au 26/08), on teste donc le pattern lui-même.
+  grep -qE "$AGENT_BANNER" <<<"— po-2024 (worker lane, \`myia-po-2024\`) fin de session" \
+    || { echo "FAIL: bannière agent ne matche pas la forme étendue « (worker lane, …) »"; rc=1; }
+  grep -qE "$AGENT_BANNER" <<<"— po-2023 (worker lane) tick :41" \
+    || { echo "FAIL: bannière agent ne matche plus la forme fermée « (worker lane) »"; rc=1; }
   # Contrôle inverse ajouté le 07/09 — la panne que les deux précédents ne
   # voyaient pas. #1293 (auteur externe `jsboigeEpita`, 2600 caractères, sourcé)
   # est resté 44 h sans réponse pendant que l'organe rendait vert : le filet C
