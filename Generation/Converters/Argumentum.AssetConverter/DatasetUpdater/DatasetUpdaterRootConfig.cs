@@ -57,7 +57,7 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "VirtuesJsonPromptSampleAssistant.json"
                 }
             },
-            // Taxonomy creation/refinement — quality tier. Fallback: gpt-4.1-mini
+            // Taxonomy creation/refinement — prévu quality tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
             Model = "gpt-5.6-sol",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.SequentialChunks,
@@ -113,7 +113,7 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "PromptInstructionsAssistantDescription.txt"
                 }
             },
-            // desc_fr refinement — quality tier for nuanced taxonomic descriptions. Fallback: gpt-4.1
+            // desc_fr refinement — prévu quality tier (descriptions taxonomiques nuancées), fallback gpt-4.1 — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
             Model = "gpt-5.6-sol",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -178,7 +178,7 @@ public class DatasetUpdaterRootConfig
                     AssistantAnswerPath = PromptsRootPath + "PromptInstructionsLightAssistantExamples.txt"
                 }
             },
-            // example_fr creative generation — quality tier. Fallback: gpt-4.1
+            // example_fr creative generation — prévu quality tier, fallback gpt-4.1 — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
             Model = "gpt-5.6-sol",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -242,7 +242,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateFrEnInstructionsAssistant.txt"
 				}
 			},
-			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → EN translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -305,7 +305,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateRuInstructionsAssistant.txt"
 				}
 			},
-			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → RU translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -369,7 +369,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslatePtInstructionsAssistant.txt"
 				}
 			},
-			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → PT translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -442,7 +442,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptTranslateCleanupInstructionsAssistant.txt"
 				}
 			},
-			// Multi-lang cleanup review — quality tier for nuanced comparisons. Fallback: gpt-4.1
+			// Multi-lang cleanup review — prévu quality tier (comparaisons nuancées), fallback gpt-4.1 — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -575,7 +575,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateRuAssistant.txt"
 				}
 			},
-			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → RU translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -639,7 +639,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslatePtAssistant.txt"
 				}
 			},
-			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → PT translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -688,7 +688,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesLinksPtAssistant.txt"
 				}
 			},
-			// Wikipedia link lookup - eco tier. Fallback: gpt-4.1-mini
+			// Wikipedia link lookup — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -750,7 +750,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateEsAssistant.txt"
 				}
 			},
-			// FR -> ES translation empty-only - quality tier
+			// FR -> ES translation empty-only — prévu quality tier ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxOutputTokens = 4096,
 			MaxTokensPerMinute = 300000,
@@ -795,7 +795,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslatePtAssistant.txt"
 				}
 			},
-			Model = "gpt-5.6-sol", // Fallback: gpt-4.1-mini
+			Model = "gpt-5.6-sol", // prévu fallback gpt-4.1-mini, jamais branché ; unifié 18/09 (#1426)
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -929,7 +929,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateRuAssistant.txt"
 				}
 			},
-			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → RU translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -997,7 +997,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslatePtAssistant.txt"
 				}
 			},
-			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
+			// FR → PT translation empty-only — prévu éco tier, fallback gpt-4.1-mini — jamais branché ; unifié sur gpt-5.6-sol le 18/09 (#1426)
 			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
