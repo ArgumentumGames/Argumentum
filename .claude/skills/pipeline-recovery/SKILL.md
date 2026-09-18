@@ -7,9 +7,19 @@ description: Entree de session pour la recovery du pipeline Argumentum. Lit le d
 
 Tu reprends le travail de reconstruction du pipeline Argumentum. Ce skill est l'ENTREE DE SESSION : il synchronise l'etat (dashboard + git + checkpoint), identifie la prochaine tache, et garantit qu'en fin de session le travail est rapporte sur le dashboard workspace.
 
-Deux agents collaborent sur ce projet :
-- **ai-01** (cette machine) : validation visuelle, debug interactif, merges, publication
-- **po-2023** (machine distante) : pipelines lourds, builds multi-langues, taches mecaniques
+## Garde d'identite (AVANT toute action — incident 18/09/2026)
+
+```
+hostname
+```
+
+Ce skill est deploye sur TOUTES les machines du cluster : il ne designe jamais « cette machine » par defaut. Le role se deduit du hostname :
+
+- **`MyIA-AI-01`** : coordinateur — validation visuelle, debug interactif, merges, publication. Seul ai-01 arme un cron `/coordinate`.
+- **`myia-po-2023`** : worker — pipelines lourds, builds multi-langues, DNN, taches mecaniques.
+- **`myia-po-2024`** : worker — backlog corpus/traduction, micro-fixes, PRs autonomes par grain (pool #458).
+
+Si le hostname ne correspond PAS au role que tu t'appretes a jouer → **STOP** : un worker ne merge pas, ne signe jamais « ai-01 », n'arme jamais `/coordinate` (usurpation 26/06 et 18/09/2026, cause = ce skill portait « ai-01 (cette machine) » en dur sans garde).
 
 La coordination passe par le **dashboard workspace** du MCP `roo-state-manager`.
 
