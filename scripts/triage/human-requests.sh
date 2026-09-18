@@ -42,7 +42,20 @@ MAXLEN="${TRIAGE_MAXLEN:-700}"
 CLUSTER_LOGINS="${TRIAGE_CLUSTER_LOGINS:-jsboige,myia-ai-01,myia-po-2023,myia-po-2024,app/dependabot}"
 # Vocabulaire de ménage d'agent — SANS ancre ^ : la sortie jq porte un préfixe,
 # une ancre ne matcherait jamais (le bug qui a produit 2 faux positifs au test).
+# ⚠️ Sensible à la casse par design : passer test($hk;"i") avalerait une demande
+# humaine contenant « superseded », « merged as »… en prose (faux négatif = le
+# sens dangereux). La casse du vocabulaire n'est PAS le discriminateur des
+# rapports d'agent — la bannière ci-dessous l'est (incident 18/09 : self-test
+# rouge sur « superseded » minuscule, corrigé par AGENT_BANNER, pas par "i").
 HOUSEKEEPING='Superseded|Closing in favor|Clos : le DoD|Sans objet|Dispatché|Rebase sur|delivered as|livre les|🤖|Fermeture sur|Merged as|Closed by'
+# Bannière STRUCTURELLE d'agent (18/09, piste instruite ai-01 c.5731110146) : ce
+# que les gabarits du cluster génèrent mécaniquement — jamais de la prose qu'un
+# humain écrit naturellement. Bloc crocheté ouvrant sur une machine du cluster
+# (ex. « [po-2024 — pool #458 grain ③] »), signature de pied des workers et du
+# coordinateur. Un nom de machine NU (ex. « @myia-ai-01 » en prose) ne matche
+# PAS : c'est le contrôle inverse du self-test (demande humaine #802 26/08 qui
+# mentionne une machine reste vue par le filet A).
+AGENT_BANNER='\[(myia-)?(ai-01|po-20[0-9]{2})[^\]]*\]|\(worker lane\)|Coordinator ai-01'
 
 # Lit un endpoint REST et écrit le JSON sur stdout. rc=1 + cri sur stderr si
 # l'appel échoue ou ne rend pas du JSON. ⛔ Jamais de `2>/dev/null` ici : c'est
@@ -72,9 +85,9 @@ scan() {
   echo "### Filet A — demandes brèves (<${MAXLEN} car., hors ménage d'agent)"
   # Le tri se fait DANS jq : grep filtre des lignes, or un enregistrement en fait
   # deux — un grep -v laissait l'en-tête orphelin de la ligne rejetée.
-  jq -r --arg hk "$HOUSEKEEPING" '.[]|select(.user.login|test("dependabot")|not)
+  jq -r --arg hk "$HOUSEKEEPING" --arg ab "$AGENT_BANNER" '.[]|select(.user.login|test("dependabot")|not)
              |select(.body|length < '"$MAXLEN"')
-             |select(.body|test($hk)|not)
+             |select(.body|test($hk) or test($ab)|not)
              |"  #\(.issue_url|split("/")|last) \(.created_at|.[0:16]) <\(.html_url)>
     \(.body|gsub("
 ";" "))"' <<<"$comments" | grep . || echo "  (aucune)"
@@ -116,6 +129,12 @@ self_test() {
   # contrôle inverse : le filet A ne doit pas ramasser le ménage d'agent
   local a; a="$(sed -n '/Filet A/,/Filet B/p' <<<"$out")"
   grep -qiE 'Superseded|Dispatché|Rebase sur' <<<"$a" && { echo "FAIL: ménage d'agent capté par le filet A"; rc=1; }
+  # Contrôle inverse du discriminateur bannière (18/09) : la demande humaine
+  # #802 26/08 mentionne une machine EN PROSE (« @myia-ai-01 on a acté… »)
+  # sans bannière crochetée. Le filet A doit la garder — si cette assertion
+  # devient rouge, AGENT_BANNER a dégénéré en « match nom de machine nu » et
+  # avale des demandes humaines : le faux négatif, sens dangereux.
+  grep -q "on a acté avec Thomas et Adeline" <<<"$a" || { echo "FAIL: bannière agent avale une demande humaine mentionnant une machine (filet A)"; rc=1; }
   # Contrôle inverse ajouté le 07/09 — la panne que les deux précédents ne
   # voyaient pas. #1293 (auteur externe `jsboigeEpita`, 2600 caractères, sourcé)
   # est resté 44 h sans réponse pendant que l'organe rendait vert : le filet C
