@@ -58,7 +58,7 @@ public class DatasetUpdaterRootConfig
                 }
             },
             // Taxonomy creation/refinement — quality tier. Fallback: gpt-4.1-mini
-            Model = "gpt-5.4",
+            Model = "gpt-5.6-sol",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.SequentialChunks,
             ChunkSize = 3,
@@ -114,7 +114,7 @@ public class DatasetUpdaterRootConfig
                 }
             },
             // desc_fr refinement — quality tier for nuanced taxonomic descriptions. Fallback: gpt-4.1
-            Model = "gpt-5.4",
+            Model = "gpt-5.6-sol",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
             PKHierarchyLevel = 3,
@@ -179,7 +179,7 @@ public class DatasetUpdaterRootConfig
                 }
             },
             // example_fr creative generation — quality tier. Fallback: gpt-4.1
-            Model = "gpt-5.4",
+            Model = "gpt-5.6-sol",
             MaxTokensPerMinute = 70000,
             DivisionMode = DivisionMode.PKHierarchicalChar,
             PKHierarchyLevel = 3,
@@ -243,7 +243,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → EN translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.PKHierarchicalChar,
 			PKHierarchyLevel = 3,
@@ -306,7 +306,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -370,7 +370,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -443,7 +443,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// Multi-lang cleanup review — quality tier for nuanced comparisons. Fallback: gpt-4.1
-			Model = "gpt-5.4",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			PKHierarchyLevel = 3,
@@ -509,8 +509,8 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateEnAssistant.txt"
 				}
 			},
-			// FR → EN via OpenAI gpt-5.5 (best quality per benchmark)
-			Model = "gpt-5.5",
+			// FR → EN via OpenAI gpt-5.6-sol (best quality per benchmark)
+			Model = "gpt-5.6-sol",
 			OpenAIKeyPath = @".keys\openai-key.txt",
 			MaxOutputTokens = 4096,
 			MaxTokensPerMinute = 70000,
@@ -576,7 +576,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -640,7 +640,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -689,7 +689,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// Wikipedia link lookup - eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -751,7 +751,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR -> ES translation empty-only - quality tier
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxOutputTokens = 4096,
 			MaxTokensPerMinute = 300000,
 			DivisionMode = DivisionMode.SequentialChunks,
@@ -795,7 +795,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslatePtAssistant.txt"
 				}
 			},
-			Model = "gpt-5.5", // Fallback: gpt-4.1-mini
+			Model = "gpt-5.6-sol", // Fallback: gpt-4.1-mini
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -859,8 +859,8 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateEnAssistant.txt"
 				}
 			},
-			// FR → EN via OpenAI gpt-5.5 (best quality per benchmark)
-			Model = "gpt-5.5",
+			// FR → EN via OpenAI gpt-5.6-sol (best quality per benchmark)
+			Model = "gpt-5.6-sol",
 			OpenAIKeyPath = @".keys\openai-key.txt",
 			MaxOutputTokens = 4096,
 			MaxTokensPerMinute = 70000,
@@ -930,7 +930,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → RU translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -998,7 +998,7 @@ public class DatasetUpdaterRootConfig
 				}
 			},
 			// FR → PT translation empty-only — eco tier. Fallback: gpt-4.1-mini
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 8,
@@ -1061,7 +1061,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesRefineEsAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -1125,7 +1125,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateArAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -1189,7 +1189,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateFaAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -1253,7 +1253,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesTranslateZhAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -1299,7 +1299,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateEsAssistant.txt"
 				}
 			},
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1342,7 +1342,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateArAssistant.txt"
 				}
 			},
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1385,7 +1385,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateFaAssistant.txt"
 				}
 			},
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1428,7 +1428,7 @@ public class DatasetUpdaterRootConfig
 					AssistantAnswerPath = PromptsRootPath + "PromptRulesTranslateZhAssistant.txt"
 				}
 			},
-			Model = "gpt-5.5",
+			Model = "gpt-5.6-sol",
 			MaxTokensPerMinute = 70000,
 			DivisionMode = DivisionMode.SequentialChunks,
 			ChunkSize = 3,
@@ -1448,7 +1448,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Translate Scenarii to Spanish empty-only gpt-5.5",
+				Name = "Translate Scenarii to Spanish empty-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -1492,7 +1492,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateEsAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1513,7 +1513,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Translate Scenarii to Arabic empty-only gpt-5.5",
+				Name = "Translate Scenarii to Arabic empty-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -1557,7 +1557,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateArAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1578,7 +1578,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Translate Scenarii to Persian empty-only gpt-5.5",
+				Name = "Translate Scenarii to Persian empty-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -1622,7 +1622,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateFaAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1643,7 +1643,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Translate Scenarii to Chinese empty-only gpt-5.5",
+				Name = "Translate Scenarii to Chinese empty-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -1687,7 +1687,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiTranslateZhAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1708,7 +1708,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Rules FR clarity review gpt-5.5",
+				Name = "Rules FR clarity review gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Rules,
 				FieldsToInclude = new List<string>()
 				{
@@ -1730,7 +1730,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptRulesFrClarityAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1751,7 +1751,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Scenarii FR clarity review gpt-5.5",
+				Name = "Scenarii FR clarity review gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -1779,7 +1779,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiFrClarityAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1802,7 +1802,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Scenarii cascade multi-lang gpt-5.5",
+				Name = "Scenarii cascade multi-lang gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -1836,7 +1836,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -1859,7 +1859,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies FR clarity review gpt-5.5",
+				Name = "Fallacies FR clarity review gpt-5.6-sol",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -1885,7 +1885,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesFrClarityAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -1908,7 +1908,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies cascade multi-lang gpt-5.5",
+				Name = "Fallacies cascade multi-lang gpt-5.6-sol",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -1942,7 +1942,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -1965,7 +1965,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Virtues FR clarity review gpt-5.5",
+				Name = "Virtues FR clarity review gpt-5.6-sol",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -1991,7 +1991,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesFrClarityAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2012,7 +2012,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Rules cascade multi-lang gpt-5.5",
+				Name = "Rules cascade multi-lang gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Rules,
 				FieldsToInclude = new List<string>()
 				{
@@ -2038,7 +2038,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptRulesCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2059,7 +2059,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Virtues cascade multi-lang gpt-5.5",
+				Name = "Virtues cascade multi-lang gpt-5.6-sol",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2093,7 +2093,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2114,7 +2114,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Rules cascade EN-only gpt-5.5",
+				Name = "Rules cascade EN-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Rules,
 				FieldsToInclude = new List<string>()
 				{
@@ -2137,7 +2137,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptRulesCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2158,7 +2158,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Virtues cascade EN-only gpt-5.5",
+				Name = "Virtues cascade EN-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2181,7 +2181,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2202,7 +2202,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Scenarii cascade EN-only gpt-5.5",
+				Name = "Scenarii cascade EN-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -2225,7 +2225,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2248,7 +2248,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies cascade EN-only gpt-5.5",
+				Name = "Fallacies cascade EN-only gpt-5.6-sol",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2271,7 +2271,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesCascadeDriftAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
@@ -2294,7 +2294,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Scenarii PT refine gpt-5.5",
+				Name = "Scenarii PT refine gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -2318,7 +2318,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptScenariiPtRefineAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2341,7 +2341,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies AUDIT_FR cascade 7-lang gpt-5.5",
+				Name = "Fallacies AUDIT_FR cascade 7-lang gpt-5.6-sol",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2376,7 +2376,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesFullRetranslationAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2397,7 +2397,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "RulesP&P blank-fill AR/ES/ZH/FA gpt-5.5",
+				Name = "RulesP&P blank-fill AR/ES/ZH/FA gpt-5.6-sol",
 				SourceDataset = KnownDataSets.RulesPrintAndPlay,
 				FieldsToInclude = new List<string>()
 				{
@@ -2420,7 +2420,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptRulesPPTranslateMultiAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2441,7 +2441,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies cosmetic polish PT/FA/ZH gpt-5.5",
+				Name = "Fallacies cosmetic polish PT/FA/ZH gpt-5.6-sol",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2470,7 +2470,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2491,7 +2491,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Virtues cosmetic polish PT register gpt-5.5",
+				Name = "Virtues cosmetic polish PT register gpt-5.6-sol",
 				SourceDataset = KnownDataSets.VirtuesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2517,7 +2517,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2538,7 +2538,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Scenarii cosmetic polish PT register gpt-5.5",
+				Name = "Scenarii cosmetic polish PT register gpt-5.6-sol",
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
@@ -2566,7 +2566,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2587,7 +2587,7 @@ public class DatasetUpdaterRootConfig
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "Fallacies cosmetic polish PT register gpt-5.5",
+				Name = "Fallacies cosmetic polish PT register gpt-5.6-sol",
 				SourceDataset = KnownDataSets.FallaciesTaxonomy,
 				FieldsToInclude = new List<string>()
 				{
@@ -2615,7 +2615,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptCosmeticPolishPtRegisterAssistant.txt"
 					}
 				},
-				Model = "gpt-5.5",
+				Model = "gpt-5.6-sol",
 				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 300000,
 				DivisionMode = DivisionMode.SequentialChunks,
@@ -2674,8 +2674,8 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptDnnUiStringsTranslateMultiAssistant.txt"
 					}
 				},
-				// FR -> all 7 languages via OpenAI gpt-5.5 (issue #457). OpenRouter key (.keys\openai-key.txt).
-				Model = "gpt-5.5",
+				// FR -> all 7 languages via OpenAI gpt-5.6-sol (issue #457). OpenRouter key (.keys\openai-key.txt).
+				Model = "gpt-5.6-sol",
 				OpenAIKeyPath = @".keys\openai-key.txt",
 				MaxOutputTokens = 4096,
 				MaxTokensPerMinute = 70000,
