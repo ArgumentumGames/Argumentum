@@ -549,6 +549,8 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 
 ### Prochaines étapes
 
+> ⚠️ **Cette liste est une DOC, pas un ÉTAT.** Elle dit ce qui *était* vrai à sa dernière relecture ; l'issue dit ce qui *est* ouvert. ⛔ **Ne jamais dispatcher un item d'ici sans le confronter à `gh issue view N --json state,stateReason`** — deux lignes non barrées ci-dessous pointaient sur du clos (items 11 et 16, mesurés le 20/09), et l'une d'elles a produit un faux dispatch. Même famille que la ligne #1435 corrigée par #1448 : **une ligne de doc périmée ne dort pas, elle se fait exécuter.**
+
 1. ~~Valider génération images après corrections CSV/CSS~~ FAIT
 2. ~~Tester génération PDFs (QuestPDF)~~ FAIT
 3. ~~Activer et tester génération multilingue~~ FAIT (17 Mars 2026)
@@ -559,12 +561,12 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 8. ~~#202 Phase 1 — CSV text micro-fixes~~ FAIT (PR #203 + #213 merged)
 9. Valider DatasetUpdater round-trip avec OpenAI API (3-5 records, Enabled=true) — smoke test gpt-5.5 en cours (po-2023, cycle 61bis). *(Erratum 2026-09-15 : « en cours » datait du cycle 61bis ; le protocole smoke à rédiger est explicité **gpt-5.6-sol** — pool #458 c.5666260217 grain ⑩, prérequis bump config gated, cf. inventaire ci-dessus)*
 10. ~~#211 — Retraduction PT Rules~~ ✅ DONE (closed 2026-05-17), Rules PT 100% sauf row 1 cover (fix PR #306 cycle 47)
-11. #212 — Playwright visual regression tests pour PDFs générés
+11. ~~#212 — Playwright visual regression tests pour PDFs générés~~ ✅ **CLOSED/COMPLETED le 2026-04-23** — le projet `Generation/Converters/Argumentum.AssetConverter.VisualTests` porte les tests (`FallacyCardTests`, `MemoBackPaletteGutterTests`, `MindmapWrapperTests`, `MindmapWrapperCapabilitiesTests`, `PdfBundleIntegrityTests`). ⚠️ **Laissée non barrée jusqu'au 20/09, cette ligne a produit un faux dispatch** (pool #458 v5 grain ⑥ : cadrage demandé sur un ticket clos depuis cinq mois). Le cadrage livré ([#212 c.5752110201](https://github.com/ArgumentumGames/Argumentum/issues/212#issuecomment-5752110201)) partitionne les 4 stages en *mesurable-sans-verdict* (1/3/4) vs *verdict humain* (2, snapshots — qui ne détectent qu'un **changement**, jamais une justesse) : il reste **valable comme note de conception post-tag**, ⛔ mais #212 ne se rouvre pas sur cette base.
 12. ~~Virtues i18n — ajouter colonnes _en/_ru/_pt~~ ✅ DONE (April-May 2026, PRs #218/#236/#246/#290/#295) — 100% coverage title/description/remark
 13. ~~Scenarii EN/RU/PT — 76/167 records missing (~46%)~~ ✅ DONE — 167/167 records 100% covered EN/RU/PT (verified cell-by-cell on master `7206f2f9`, 2026-05-24) across all 8 translatable fields; filled via commits `7ed970a3` (EN), `2a1b86bf` (RU), `0dc838fb` (PT) + contamination/BOM fixes
 14. #134 — GitHub Release v2.0.0 (ex-v0.9.0, re-scopé jsboige 2026-08-06, #999 — en attente validation docs)
 15. #133 — Publication OWL
-16. #131/#132 — DNN site + déploiement
+16. #131 — DNN site + déploiement. ⚠️ **#132 est CLOSED/COMPLETED depuis le 2026-06-18** : ⛔ ne plus citer la paire « #131/#132 » comme un seul item ouvert — c'est un compte de travail restant faux de moitié.
 
 ### Commits clés de la recovery
 
