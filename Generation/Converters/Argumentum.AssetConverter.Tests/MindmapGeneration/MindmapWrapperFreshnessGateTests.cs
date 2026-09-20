@@ -153,6 +153,128 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
         // ── Calibration (required by the dispatch: prove the detector REDS on a known case) ──
 
+        /// <summary>Body of the same-commit calibration minis: sequential zero-padded indexes
+        /// (<c>000000000001…</c>) — every 400-char window is UNIQUE in the body (a run of
+        /// identical chars would be periodic and a shifted window would re-match itself),
+        /// which is what makes the window-shift proof below unambiguous.</summary>
+        private static string SequentialBody(int count)
+            => string.Concat(Enumerable.Range(0, count).Select(i => i.ToString("d6")));
+
+        /// <summary>
+        /// Grain ② of pool #458 v5 — the SAME-COMMIT case: a re-derivation that commits the
+        /// new SVG while the wrapper rewrite is skipped, both in ONE commit. The date organ
+        /// is structurally INERT here (equal dates), so the only net is the mid-slice
+        /// content guard. Measured on the real tree (2026-09-20, po-2024): a dead-URL
+        /// mutation lands inside the 400-char mid window for only 1/17 files — the guard
+        /// does NOT catch the skip by direct hit. It catches it by SHIFT: the window is
+        /// recomputed on the CURRENT file, so any mutation with total length delta Δ≠0
+        /// (structural for #1438: +45 chars per wayback mirror, −URL per cleared link,
+        /// 403 occurrences) moves the window by Δ/2, and the mid window is unique in 16/17
+        /// real SVGs (2× in ru Virtues), so a moved window no longer matches the stale
+        /// slice embedded in the skipped wrapper. This calibration proves that channel on
+        /// a fabricated repo, with the WORST-CASE placement (mutation entirely in the last
+        /// quarter, after the window — exactly the shape of zh Fallacies/Virtues, the two
+        /// real files with zero mutations before the mid) and EQUAL commit dates.
+        /// </summary>
+        [Fact]
+        public void ContentGuard_TurnsRedOnSameCommitSkip()
+        {
+            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
+            {
+                return;
+            }
+
+            var root = Path.Combine(Path.GetTempPath(), "argu-freshness-samecommit-" + Guid.NewGuid().ToString("N"));
+            var dir = Path.Combine(root, "Cards", "Fallacies", "Mindmaps", "fr");
+            Directory.CreateDirectory(dir);
+            try
+            {
+                RunGit("init -q", root);
+                var body = SequentialBody(4_000); // 24 000 chars, every 400-char window unique
+                var svgPath = Path.Combine(dir, "Fallacies_fr.content.svg");
+                var wrapperPath = Path.Combine(dir, "Fallacies_fr.html");
+                File.WriteAllText(svgPath, body);
+                File.WriteAllText(wrapperPath, "<html><body>" + body.Substring(body.Length / 2, 400) + "</body></html>");
+                CommitAll(root, "2026-01-01T10:00:00", "pair committed together");
+
+                // The silent skip, same-commit shape: the SVG is re-derived (last quarter
+                // rewritten, net +400 chars — a Δ≠0 mutation AFTER the window, the worst
+                // case), the wrapper is NOT touched, and both states land in ONE commit
+                // carrying the SAME committer date as the initial one.
+                var tail = body.Substring(body.Length - 300);
+                var grown = body.Substring(0, body.Length - 300) + new string('Z', 100) + tail + tail;
+                File.WriteAllText(svgPath, grown);
+                CommitAll(root, "2026-01-01T10:00:00", "svg re-derived, wrapper skipped, same commit date");
+
+                // Date organ: inert by construction on this shape — equal commit dates means
+                // no pair can be stale by date. (StalePairs itself cannot be called here: it
+                // runs FindPairs, whose content guard throws — which is exactly the point
+                // proven next. The date channel is therefore asserted on its own primitive.)
+                var wrapperDate = CommitDateOf(wrapperPath, root);
+                var svgDate = CommitDateOf(svgPath, root);
+                (wrapperDate == svgDate).Should().BeTrue(
+                    "the date organ is structurally inert in the same-commit case (equal commit "
+                    + "dates) — this assert documents the inertness the content guard must cover");
+
+                // Content guard: the window moved (Δ/2 = +200) and windows are unique in this
+                // body, so the wrapper's stale slice no longer matches — FindPairs must THROW.
+                Action act = () => FindPairs(Path.Combine(root, "Cards", "Fallacies", "Mindmaps"));
+                act.Should().Throw<Exception>().Which.Message.Should().Contain("mid-slice",
+                    "the content guard must catch the same-commit skip via the window shift");
+            }
+            finally
+            {
+                DeleteReadOnlyTree(root);
+            }
+        }
+
+        /// <summary>
+        /// Control inverse of <see cref="ContentGuard_TurnsRedOnSameCommitSkip"/>: the
+        /// measured BLIND SPOT of the content guard — a Δ=0 (iso-length) mutation landing
+        /// outside the mid window leaves the window byte-identical, so neither the date
+        /// organ (equal dates) nor the content guard (unchanged window) can see the skip.
+        /// Documented and ACCEPTED (anti-pendulum, pool #458 v5 grain ②): a re-derivation
+        /// whose total length delta is exactly zero across all 17 files is non-nominal for
+        /// #1438 (wayback mirroring adds +45 chars per mirror, clearing removes whole
+        /// URLs), and the date organ remains the net for cross-commit staleness. This test
+        /// exists so the blind spot is a MEASURED, executable fact — not an unknown.
+        /// </summary>
+        [Fact]
+        public void ContentGuard_DocumentedBlindSpot_ZeroDeltaMutationFarFromTheWindow()
+        {
+            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
+            {
+                return;
+            }
+
+            var root = Path.Combine(Path.GetTempPath(), "argu-freshness-zerodelta-" + Guid.NewGuid().ToString("N"));
+            var dir = Path.Combine(root, "Cards", "Fallacies", "Mindmaps", "fr");
+            Directory.CreateDirectory(dir);
+            try
+            {
+                RunGit("init -q", root);
+                var body = SequentialBody(4_000);
+                var svgPath = Path.Combine(dir, "Fallacies_fr.content.svg");
+                var wrapperPath = Path.Combine(dir, "Fallacies_fr.html");
+                File.WriteAllText(svgPath, body);
+                File.WriteAllText(wrapperPath, "<html><body>" + body.Substring(body.Length / 2, 400) + "</body></html>");
+                CommitAll(root, "2026-01-01T10:00:00", "pair committed together");
+
+                // Iso-length rewrite of the last 300 chars (Δ=0, far after the window) —
+                // the wrapper is skipped, same commit date. Neither organ can see it.
+                File.WriteAllText(svgPath, body.Substring(0, body.Length - 300) + new string('Q', 300));
+                CommitAll(root, "2026-01-01T10:00:00", "svg re-derived iso-length, wrapper skipped, same date");
+
+                var pairs = FindPairs(Path.Combine(root, "Cards", "Fallacies", "Mindmaps"));
+                pairs.Should().HaveCount(1, "the content guard passes: the window did not move (Δ=0) nor change");
+                StalePairs(root).Should().BeEmpty("the date organ passes: equal commit dates — the documented blind spot");
+            }
+            finally
+            {
+                DeleteReadOnlyTree(root);
+            }
+        }
+
         /// <summary>Fabricates a mini-repo where the SVG is committed AFTER its wrapper, with
         /// FORCED distinct committer dates (GIT_COMMITTER_DATE — no sleep), and proves the
         /// detector reports exactly that pair as stale. A detector that cannot red here is
