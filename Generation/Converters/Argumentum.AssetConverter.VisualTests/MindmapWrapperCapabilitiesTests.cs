@@ -386,6 +386,7 @@ namespace Argumentum.AssetConverter.VisualTests
 
         [Theory]
         [InlineData("fr", "Fallacies_fr.content.svg")]
+        [InlineData("ar", "Fallacies_ar.content.svg")]
         [InlineData("zh", "Fallacies_zh.content.svg")]
         public async Task Cap2_Recentring_CentersRootNode_InViewport(string lang, string svgFileName)
         {
