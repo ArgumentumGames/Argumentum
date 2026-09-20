@@ -18,8 +18,13 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// Fallacies taxonomy (#1439 deck — 7 links; #1440 off-deck — 32 don-lindsay cells
     /// mirrored to wayback) and in the Virtues taxonomy (44 dead cells cleared, PR #1442 —
     /// 25 URLs with no wayback snapshot and no equivalent living page). The COMMITTED
-    /// mindmaps still carry the dead URLs (measured 2026-09-20: <b>810 bare occurrences of
-    /// 33 distinct dead URLs across the 43 shipped SVGs</b>) until the re-derivation runs.
+    /// mindmaps still carry the dead URLs (measured 2026-09-20: <b>1 215 bare occurrences
+    /// of 33 distinct dead URLs across 51 files — 810 in the 43 shipped SVGs + 405 in the
+    /// 17 inlining HTML wrappers</b>) until the re-derivation runs. The wrapper half of the
+    /// perimeter was an ANGLE BLIND of the first version of this organ (SVG-only: it saw
+    /// 67% of the defect and would have passed with 405 clickable dead links in the files a
+    /// reader actually opens); it is in scope since grain ⑩ — the #1112 trap applies to the
+    /// PERIMETER as much as to the values.
     ///
     /// This organ freezes the end-state of #1438 as three falsifiable invariants over the
     /// shipped SVGs:
@@ -143,6 +148,26 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "the shipped mindmap set holds 43 SVGs today; a re-derivation that ships fewer "
                 + "than 40 has collapsed a language or a variant");
 
+            // #1438 grain ⑩ — the INLINE HTML WRAPPERS are part of the shipped defect surface,
+            // not an afterthought: measured on c56ec6d6, the 17 inlining wrappers (.html files
+            // that embed a mindmap SVG verbatim — 2 per language + Fallacies_cards_fr) carry
+            // 405 bare dead-URL occurrences, exactly one third of the total, and they are the
+            // files a reader actually opens. The 17 _ext wrappers reference their SVG through
+            // <object data> and carry 0 URL by construction; the 2 root templates likewise.
+            // All .html files are scanned anyway (they can only add zero), but the floor is
+            // asserted on the INLINING subset so a re-derivation that stops shipping inline
+            // wrappers entirely cannot pass vacuously.
+            var htmls = Directory.EnumerateFiles(mindmapDir, "*.html", SearchOption.AllDirectories)
+                .OrderBy(p => p, StringComparer.Ordinal)
+                .ToList();
+            var inliningHtmls = htmls
+                .Where(h => File.ReadAllText(h).Contains("<svg", StringComparison.Ordinal))
+                .ToList();
+            inliningHtmls.Should().HaveCount(c => c >= 17,
+                "the shipped set holds 17 inlining wrappers today (2 per language × 8 + "
+                + "Fallacies_cards_fr); fewer means the inline delivery of the mindmaps has collapsed");
+            var targets = svgs.Concat(htmls).ToList();
+
             // Every dead URL is probed under both accent encodings: the taxonomies carry the
             // literal é while some SVG export paths percent-encode it.
             var deadForms = new List<string>();
@@ -156,9 +181,9 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             }
 
             var bareByForm = deadForms.ToDictionary(f => f, _ => new List<string>(), StringComparer.Ordinal);
-            foreach (var svg in svgs)
+            foreach (var target in targets)
             {
-                var text = File.ReadAllText(svg);
+                var text = File.ReadAllText(target);
                 foreach (var form in deadForms)
                 {
                     var start = text.IndexOf(form, StringComparison.Ordinal);
@@ -168,7 +193,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                         var prefix = text.Substring(windowStart, start - windowStart);
                         if (!WaybackPrefixAtEnd.IsMatch(prefix))
                         {
-                            bareByForm[form].Add(Path.GetFileName(svg));
+                            bareByForm[form].Add(Path.GetFileName(target));
                         }
                         start = text.IndexOf(form, start + 1, StringComparison.Ordinal);
                     }
@@ -184,8 +209,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 + bareSummary);
 
             // Inverse control — the repairs themselves must SHIP. A re-derivation that drops
-            // link rendering entirely would pass the bare-dead-URL check vacuously.
-            var allText = svgs.Select(File.ReadAllText).ToList();
+            // link rendering entirely would pass the bare-dead-URL check vacuously. Scoped to
+            // SVGs AND wrappers: the inlining wrappers embed the SVG verbatim, so a repair
+            // that reached the SVGs but was skipped on the wrappers (the silent
+            // OverwriteExistingHtmlMaps=false skip, #1438 c.5750260550) must still be caught
+            // by the bare-URL assertion above — this control just proves the live URLs exist.
+            var allText = targets.Select(File.ReadAllText).ToList();
             foreach (var expected in RepairedDeckLinks.Where(r => r.Expected != null).Select(r => r.Expected!)
                          .Append(DonLindsayWaybackRoot))
             {
