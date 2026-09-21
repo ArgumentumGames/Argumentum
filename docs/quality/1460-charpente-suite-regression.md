@@ -62,14 +62,18 @@ C'est la famille `regen sans clobber = stale trap`, à laquelle s'ajoute la règ
 
 ⚠️ **L'état 1 est aujourd'hui INATTEIGNABLE, et l'organe le dit lui-même.** Aucune source d'attendu n'y est branchée — **volontairement** : dériver un compte ici **dupliquerait** les organes de contrat (§4) et fabriquerait un second référentiel qui dériverait du premier. L'état 1 s'activera quand la **phase A** branchera sa source. ⛔ Ne pas lire « verdict à trois états » comme « trois états implémentés ».
 
-**Contrôle inverse (mutation falsifiante)** — la garde a été éprouvée sur 4 arbres synthétiques, parce qu'un organe qui ne sait dire que « NON MESURABLE » n'est pas une garde, c'est un constat :
+**Contrôle inverse (mutation falsifiante)** — committé et rejouable : `tools/test_1460-structure-charpente-pilot.py` (`python tools/test_1460-structure-charpente-pilot.py`, **7 cas, stdlib seulement, aucun artefact requis**). La garde y est éprouvée sur des arbres **synthétiques** datés par `os.utime`, parce qu'un organe qui ne sait dire que « NON MESURABLE » n'est pas une garde, c'est un constat :
 
 | Cas | Attendu | Obtenu |
 |---|---:|---|
 | arbre **antérieur** au corpus | 2 | **2** — `ANTERIEUR au corpus de 5.0 j` |
 | arbre **postérieur** au corpus | 0 | **0** — `frais : 1 PDF` |
 | arbre frais **sans PDF** | 2 | **2** — `MAIS 0 PDF — rien a mesurer` |
+| arbre **absent** | 2 | **2** — `arbre ABSENT` |
 | dépôt **sans `Cards/`** | ≠ 0 | **1** — refus net `REPO INVALIDE` |
+| l'état 1 est **déclaré** inatteignable | — | **le mot est imprimé** |
+
+⚠️ **Le 7ᵉ cas est un *grounding* sur le dépôt réel** : la garde doit tourner et rendre un VERDICT sans planter. ⛔ Il n'asserte **pas** le code (0 ou 2) — figer `0` rendrait ce test rouge sur la machine qui n'a **pas** d'arbre, c'est-à-dire exactement sur le cas nominal de la garde.
 
 ⚠️ **La première passe de ce contrôle a rendu un faux « KO »** : l'aiguille du harnais était en minuscules face à `ANTERIEUR` — l'organe était correct, **l'instrument de contrôle était faux**. Même famille que tout ce document dénonce ; consigné parce qu'un contrôle inverse non éprouvé ne prouve rien.
 
@@ -113,8 +117,9 @@ Les trois organes cités ont été **vérifiés présents** dans l'arbre avant d
 ## 8. Ce qui est livré
 
 - **La charpente** : ce document — contrat par phase, frontière vs l'existant, pattern d'armement.
-- **L'organe 0**, exécutable et falsifié : [`tools/1460-structure-charpente-pilot.py`](../../tools/1460-structure-charpente-pilot.py) — lecture seule, sortie graduée 0/2/1, mutation à 4 cas.
-- **Inchangé** : `#1460` reste **POST-TAG** ; aucune phase n'est ouverte ; ⛔ aucune prétention sur le bundle.
+- **L'organe 0**, exécutable et falsifié : [`tools/1460-structure-charpente-pilot.py`](../../tools/1460-structure-charpente-pilot.py) — lecture seule, sortie graduée 0/2/1.
+- **Son contrôle inverse, committé** : [`tools/test_1460-structure-charpente-pilot.py`](../../tools/test_1460-structure-charpente-pilot.py) — 7 cas, stdlib, arbres synthétiques + 1 *grounding* sur le dépôt réel. ⚠️ Livré dans un **second temps** : la mutation du premier jet vivait dans un scratchpad, donc un relecteur devait croire une transcription — **une mutation non committée n'est pas un contrôle, c'est une affirmation**.
+- **Inchangé** : `#1460` reste **POST-TAG** ; aucune phase n'est ouverte ; ⛔ aucune prétention sur le bundle. ⛔ **Rien n'est câblé en CI** : le pilot comme son test s'exécutent **à la main** (la suite elle-même est « inerte en CI » — pas d'arbre `Target/` en CI) ; câbler le seul test du contrat reste une **option non tranchée**, pas un fait.
 
 ---
 
