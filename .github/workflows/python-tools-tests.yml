@@ -1,0 +1,52 @@
+# #1460 -- test du contrat de la garde d'arbre (charpente de la suite de regression).
+#
+# POURQUOI UN WORKFLOW DISTINCT DE build.yml
+#   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
+#   chaque PR. Il ne lance aucun test Python. La garde d'arbre (#1460) est un test
+#   **std-lib seulement, sans arborescence Target/** : elle peut tourner n'importe
+#   quand, sans bundle, et elle DOIT tourner pour empecher la regression du contrat
+#   que la charpente a pose. La mettre dans build.yml ajouterait du bruit au pipeline
+#   principal ; la mettre dans un workflow dedie lui donne un signal clair.
+#
+# CE QUE CE WORKFLOW FAIT (et ne fait pas)
+#   Il execute **uniquement** le test du contrat de la garde (#1460). Pourquoi pas
+#   tous les test_*.py du depot ? Parce que **certains dependent d'un artefact**
+#   (la garde elle-meme en mode pilot doit avoir un Target/ ; d'autres outils
+#   lisent la base de regeneration). Ce workflow est la **charpente executable** ;
+#   chaque test_*.py sera cable quand sa condition d'execution sera documentee.
+#   C'est la distinction posee en tete de docs/quality/1460-charpente-suite-regression.md.
+#
+# DEPLOIEMENT
+#   - push sur master : NE SE DECLENCHE PAS (paths-ignore ci-dessous). build.yml
+#     reste autorite sur les PRs.
+#   - pull_request vers master : idem.
+#   - workflow_dispatch : lancement manuel (po-2024 l'utilise apres un touch).
+#   - schedule : aucune (pas d'autorite d'execution).
+#
+# MEMO
+#   Avant de CABLER un autre test_*.py ici, lire sa docstring : si elle depend d'un
+#   bundle, d'un Target/ peuple, ou d'un depot G:, ce n'est PAS ce workflow.
+
+name: Python tools - tree guard contract
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly Sunday ~04:42 UTC : la garde est std-lib-only, un cron hebdo suffit.
+    # Apres le merge : si la garde passe en CI, son silence verte est credible.
+    - cron: '42 4 * * 0'
+
+jobs:
+  tree-guard-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tree-guard contract test (#1460)
+        # 7 cas, std-lib seulement. Aucun artefact, aucun bundle, aucun Target/.
+        # C'est le cas NOMINAL de la garde : s'executer la ou il n'y a rien a mesurer.
+        # Le cas 7 (grounding sur le depot reel) rend un verdict 0 ou 2 selon
+        # la machine ; le test ne l'asserte pas, par design (cf. le fichier).
+        run: python tools/test_1460-structure-charpente-pilot.py
