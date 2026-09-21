@@ -204,6 +204,24 @@ Validated 2026-09-21 (#1469): throwaway worktree (`--detach origin/master`) reac
 
 ⇒ one language ≈ 30 min; all eight ≈ 3 h 25. A targeted pass therefore costs ~6× less than a full one, and the full pass is what buys the control pair.
 
+⚠️ **The recipe above ends at the bundle, and the bundle is NOT what a reviewer opens.** A regen produces **three** objects, and the third one does not move on its own:
+
+| Objet | Où | Qui l'écrit |
+|---|---|---|
+| Build tree | `bin/{Debug,Release}/net9.0-windows/Target/` | the run |
+| Review bundle | `G:\Mon Drive\Argumentum\review-<tag>-<date>\` | the operator, by copy |
+| **Published assets** | **release `v2.0.0-review`, 80 files** | **nobody — unless it is done explicitly** |
+
+Measured 2026-09-21: the three `fr` PDFs fixed by #1469 landed in the bundle at 17:00, and **four hours later the published assets still carried the pre-fix bytes** (`updatedAt` 18/09). A reviewer opening the kit in that window read the defect the fix had already removed. Remedy in one line, from **PowerShell** (`G:` is invisible to MSYS/Git-Bash — a bash `ls` shows the directory and none of its files):
+
+```powershell
+gh release upload v2.0.0-review "<bundle>\<lang>\<file>.pdf" --clobber   # 244 MB → 19 s
+```
+
+⚠️ GitHub **rewrites `&` to `.`** in asset names: `Print&Play` on disk is `Print.Play` once published. `--clobber` matches the **published** name, so the replacement lands correctly — but a script that greps the on-disk name against the asset list finds nothing and reads it as "asset absent".
+
+**The control is the byte size, not the timestamp** — the corrected and pre-fix PDFs differ by a few hundred bytes, so `gh release view --json assets` compared against the bundle is a one-call discriminator. ⭐ And the general form, which has now cost two cycles: *a validated artefact and the channel that serves it are two different objects* — the verdict is only worth what the **recipient's link** shows.
+
 ### Local CardPen is mandatory for every regen, Debug AND Release (#629, option 3)
 
 `UseLocalCardpen` (`WebBasedGeneratorConfig.cs:84`) is a **single flag defaulting to `true` for both build modes** — it is NOT a Debug/Release pair (the table row above says so explicitly). Keep it `true`. GitHub Pages publishes **only the CardPen site**, not the repo's `/Cards/` tree: a Release run with `UseLocalCardpen=false` resolves Scenarii/asset URLs to `argumentumgames.github.io/Cards/` → **HTTP 404 → 0 images → 0 PDF** (silent set failure, discovered 2026-07-01). The workaround — keep the default `true` — was validated 01/07 (64 PDFs complete) and has been in force on every regen since (22/08, 28/08). The durable fix (Option 1: absolute raw-master URLs, PR #666) is HOLD post-tag.
