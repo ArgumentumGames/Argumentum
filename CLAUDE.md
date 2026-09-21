@@ -241,6 +241,8 @@ The failure mode is silent and looks like non-determinism: the render is byte-id
 
 Corollary for reviewers: the CSS cascade itself can be measured without the pipeline — extract the `css` and `mustache` keys from the template JSON, apply the language-class rewrite the pipeline performs (`ARGU_LANG_MARKER`, `AssetConverterConfig.cs`), reconstruct the markdown render, and read `getComputedStyle` in a browser. That verdict is independent of which template the pipeline happens to load.
 
+⚠️ **"Extract the `css` key" means PARSE the JSON, not grep the file** — and the difference silently inverts results (measured 2026-09-21, [#1485 c.5767568615](https://github.com/ArgumentumGames/Argumentum/issues/1485#issuecomment-5767568615)). A template's CSS lives inside a JSON **string**, so on disk every quote is escaped: a rule written `src:url("…/BigJohnPRO-Bold.otf")` is stored as `src:url(\"…\")`. A regex run over the **raw bytes** stops at the backslash and yields an **empty capture** — which reads as *"this declaration is empty"* when the declaration is in fact full. One font declaration was published as measured-empty on that basis and had to be retracted; parsed correctly it carries three `url()` entries. ⛔ The retracted figures are deliberately not repeated here — a remedy that quotes the defect re-indexes it; #1485 holds the detail. The rule generalises: ⭐ *a `0` is only an absence if the instrument could have seen a `1`.* Parse with `json.load`, walk to the `css` key, **then** apply the regex — and commit an inverse control that injects the pattern you claim is absent and asserts it is found.
+
 ## Multilingual Support
 
 Languages: French (default), English, Russian, Portuguese, Spanish, Arabic, Farsi, Chinese (8 languages)
