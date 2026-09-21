@@ -45,6 +45,37 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			return loc!;
 		}
 
+		/// <summary>
+		/// Asserts the Memo Back subtitle is localized, every pattern DERIVED from the config
+		/// rather than typed. A hardcoded FR string here goes vacuously green the day the
+		/// template is reworded: measured 2026-09-21 while fixing the subtitle to correct French
+		/// ("de ne jamais avoir tort"), the previous <c>NotContain("L'art de jamais avoir tort")</c>
+		/// kept passing on a string that no longer existed anywhere — it would have stayed green
+		/// while all 7 non-FR languages silently fell back to French.
+		/// </summary>
+		private static void AssertSubtitleLocalized(CardSetLocalization loc, string original, string translated, string destLang)
+		{
+			var subtitle = loc.StaticConversions
+				.FirstOrDefault(c => c.textConversions.Any(t => t.Language == destLang));
+			subtitle.sourceText.Should().NotBeNullOrEmpty(
+				$"the Fallacies localization must carry a StaticConversion reaching {destLang} for the Memo Back subtitle (#358)");
+
+			// (1) LOCKSTEP. The replace key lives in AssetConverterConfig, the string lives in the
+			//     JSON template: editing one without the other turns DoStaticConversions into a no-op
+			//     and drops every non-FR language back to French, silently. This must go red first.
+			original.Should().Contain(subtitle.sourceText,
+				$"the StaticConversions key must match the template subtitle verbatim, otherwise conversion is a no-op and {destLang} falls back to FR (#358)");
+
+			// (2) The FR source string is gone after conversion…
+			translated.Should().NotContain(subtitle.sourceText,
+				$"{destLang} Memo Back must have a translated subtitle, not the FR original (#358)");
+
+			// (3) …and the target language's own translation is actually present.
+			var expected = subtitle.textConversions.First(t => t.Language == destLang).destText;
+			translated.Should().Contain(expected,
+				$"{destLang} Memo Back subtitle must carry the {destLang} translation declared in StaticConversions (#358)");
+		}
+
 		private static string ApplyFrontSubstitution(CardSetLocalization loc, string template, string destLang)
 		{
 			foreach (var fieldConversion in loc.FrontFieldConversions)
@@ -158,9 +189,8 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			// Apply StaticConversions (subtitle translation)
 			translated = loc.DoStaticConversions(translated, destLang);
 
-			// (a) Subtitle must be translated — no more FR "L'art de jamais avoir tort"
-			translated.Should().NotContain("L'art de jamais avoir tort",
-				$"{destLang} Memo Back must have a translated subtitle, not the FR original (#358)");
+			// (a) Subtitle must be translated, and the config key must stay in lockstep with the template.
+			AssertSubtitleLocalized(loc, original, translated, destLang);
 
 			// (b) Grouping is language-invariant (control-break helpers from #449) and must survive
 			//     translation untouched, so all 8 families still group correctly in every language.
@@ -209,8 +239,8 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			// (d) The CSS colour class binding ({{Famille_camelCase}}) must stay intact.
 			translated.Should().Contain("Famille_camelCase", $"{destLang} Back CSS colour class binding must be preserved");
 
-			// (e) Subtitle still localized via StaticConversions.
-			translated.Should().NotContain("L'art de jamais avoir tort", $"{destLang} Back subtitle must be translated (#358)");
+			// (e) Subtitle still localized via StaticConversions, key still in lockstep with the template.
+			AssertSubtitleLocalized(loc, original, translated, destLang);
 		}
 
 		[Fact]
