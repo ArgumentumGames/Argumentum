@@ -16,12 +16,19 @@
 #   chaque test_*.py sera cable quand sa condition d'execution sera documentee.
 #   C'est la distinction posee en tete de docs/quality/1460-charpente-suite-regression.md.
 #
-# DEPLOIEMENT
-#   - push sur master : NE SE DECLENCHE PAS (paths-ignore ci-dessous). build.yml
-#     reste autorite sur les PRs.
-#   - pull_request vers master : idem.
-#   - workflow_dispatch : lancement manuel (po-2024 l'utilise apres un touch).
-#   - schedule : aucune (pas d'autorite d'execution).
+# DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
+#   - push sur master     : AUCUN declencheur declare. ⚠️ Ce n'est PAS obtenu par
+#     un `paths-ignore` : il n'y en a pas, et il n'y a pas non plus de cle `push:`.
+#     L'absence de declenchement vient de l'absence du declencheur lui-meme.
+#   - pull_request        : AUCUN declencheur declare. build.yml reste seul
+#     autorite sur les PRs.
+#   - workflow_dispatch   : lancement manuel (po-2024 l'utilise apres un touch).
+#   - schedule            : hebdomadaire, dimanche ~04:42 UTC (cf. `on.schedule`).
+#
+#   ⚠️ Ce bloc a deja menti une fois (il annoncait un `paths-ignore` inexistant et
+#   un `schedule: aucune` dix lignes au-dessus d'un cron hebdo). Un commentaire qui
+#   decrit un mecanisme absent envoie le prochain lecteur chercher une cle qui
+#   n'existe pas. En modifiant `on:`, modifier CE bloc dans le meme commit.
 #
 # MEMO
 #   Avant de CABLER un autre test_*.py ici, lire sa docstring : si elle depend d'un
@@ -35,6 +42,12 @@ on:
     # Weekly Sunday ~04:42 UTC : la garde est std-lib-only, un cron hebdo suffit.
     # Apres le merge : si la garde passe en CI, son silence verte est credible.
     - cron: '42 4 * * 0'
+
+# Le job ne fait que lire le depot et executer un test std-lib : il n'a besoin
+# d'aucun droit d'ecriture. On le borne explicitement plutot que d'heriter du
+# defaut du depot, qui peut etre plus large.
+permissions:
+  contents: read
 
 jobs:
   tree-guard-contract:
