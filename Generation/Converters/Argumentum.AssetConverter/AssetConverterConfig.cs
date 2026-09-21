@@ -165,7 +165,7 @@ namespace Argumentum.AssetConverter
 					// cannot reach (text not wrapped in {{}}). Safe for Fallacies templates (no-op if absent).
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						// Memo Back/Face subtitle: hardcoded FR subtitle, not a {{variable}} (#358).
-						("L'art de jamais avoir tort", new List<(string Language, string destText)>(new []{
+						("L'art de ne jamais avoir tort", new List<(string Language, string destText)>(new []{
 							("en", "The art of never being wrong"),
 							("ru", "Искусство никогда не ошибаться"),
 							("pt", "A arte de nunca estar errado"),
