@@ -259,8 +259,21 @@ dotnet run -c Release --project "Generation/Converters/Argumentum.AssetConverter
       `UseLocalCardpen`, never by the build config. A fresh template on a stale engine renders a *silently* wrong card.
 - [ ] `dotnet clean` + `dotnet build -c $CONFIG` green (§4).
 - [ ] Mindmap pass isolated first (§3) — prove foreground-lock before the long PDF pass.
+- [ ] **DoD mindmaps #1 — dead-link gate 13/13** (born from the #1438/#1453 re-derivation pass, 2026-09-20): after the
+      regen commits its mindmaps, `ARGUMENTUM_DEADLINK_GATE=1 dotnet test
+      "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj"
+      --filter "FullyQualifiedName~Gate"` must be green on the merged tree. ⚠️ The count is **tree-relative** — a green
+      run on the regen branch does not transfer: verify by `git merge-base --is-ancestor <gate-commit> HEAD`, never by
+      the colour of the branch-local run (the 11/11 of PR #1453 was true on its base and measured 13 tests on the
+      merged tree).
+- [ ] **DoD mindmaps #2 — template comment propagated: `fit complet` 34 → 0** (born from #1452/#1453): the 34 committed
+      wrappers carry the pre-#1452 template comment by construction; the regen re-derives them from the fixed
+      templates, so afterwards `git grep -c "fit complet" -- "Cards/Fallacies/Mindmaps/*"` must read **0** (it reads
+      34 on `68e8d3d5`). ⚠️ Pathspec trap (measured 2026-09-21): the trailing-slash form
+      `"Cards/Fallacies/Mindmaps/*/"` returns **0** where the bare `"Cards/Fallacies/Mindmaps/*"` returns **34** —
+      replay the witness with its exact calibrated invocation, or you are running a new, uncalibrated instrument.
 
-All seven must be green before the regen. The first six are staged-by-this-doc; the seventh (scope decision) is the
+All boxes must be green before the regen. All but the scope decision are staged by this doc; the scope decision is the
 gating human input.
 
 ---
