@@ -3,8 +3,15 @@
 **Auteur** : po-2024 (worker) · **Date** : 2026-09-15 · **Base lecture** : master `6fbde739`
 **Grain** : pool #458 renouvelé (c.5666260217), grain ⑩. ⛔ **Rédigé sans être exécuté** —
 l'exécution est gated sur **GO owner + clé nommée**. Ce protocole hérite du prérequis mesuré par le
-grain ⑦ ([inventaire gpt-5.5](gpt55-modele-courant-inventaire-2026-09-15.md)) : la config compile
-44× `gpt-5.5`, 0× gpt-5.6.
+grain ⑦ ([inventaire gpt-5.5](gpt55-modele-courant-inventaire-2026-09-15.md)) : ~~la config compile
+44× `gpt-5.5`, 0× gpt-5.6~~ *(mesure du 15/09, superseded — voir P1)*.
+
+> **[Mise à jour 2026-09-21 — pool #458 v6 grain ⑥, po-2024]** Re-vérifié sur master `68e8d3d5` :
+> le bump de config a été **mergé par #1426** (`0a79d217`) puis les commentaires stale historisés par
+> #1431 (`1fa179f8`) — la config compile désormais **48× `"gpt-5.6-sol"` exact, 0× `gpt-5.5`**
+> (re-mesuré le 21/09). **P1 est soldé** (voir tableau). P4/P5 et les mécanismes `TakeChunkNb`
+> (l.72, usage l.258), `CompareMode` (l.93/163), `TargetPath` (l.434) sont **retrouvés conformes** aux
+> lignes citées. **L'exécution reste gated** — GO owner + clé nommée inchangés, aucun appel API effectué.
 
 ---
 
@@ -19,7 +26,7 @@ l'instrument, pas la qualité de traduction (verdict qualité = passes dédiées
 
 | # | Prérequis | Détail | Statut |
 |---|---|---|---|
-| P1 | **Bump de la task smoke — gated GO** | Créer/éditer UNE task dédiée `Model = "gpt-5.6-sol"` (1 ligne) — le reste de la config reste 5.5 (44 occurrences). Lancer sans bump = tester 5.5 en croyant tester 5.6. | ⛔ à faire, GO requis |
+| P1 | **Bump de la task smoke — ~~gated GO~~ ✅ SOLDÉ par #1426** | ~~Créer/éditer UNE task dédiée `Model = "gpt-5.6-sol"` (1 ligne) — le reste de la config reste 5.5 (44 occurrences).~~ Depuis #1426 (`0a79d217`, merged), **toute la config compile `gpt-5.6-sol`** (48 occurrences exactes, 0× 5.5 — re-mesuré 21/09). Le modèle par défaut EST le modèle décidé : la task smoke n'a plus de bump à porter, seulement `Model = "gpt-5.6-sol"` explicite (auto-documentant). | ✅ soldé (21/09) |
 | P2 | **Clé nommée** | `OpenAIKeyPath` → fichier hors dépôt (`.keys/`, jamais committé — le défaut historique pointe un chemin G:Drive : le remplacer par le chemin local de la lane). | ⛔ GO requis |
 | P3 | **Probe crédit AVANT** | `POST /v1/responses` minimal : un `429 credit_balance_exhausted` = stop immédiat. Un `GET /v1/models` 200 ne prouve rien. | à l'exécution |
 | P4 | **API Responses + effort low** | `UseResponsesApi = true`, `ReasoningEffort = "low"` — sans quoi un modèle raisonneur brûle le budget en raisonnement (précédent mesuré, chat/completions inclu). | config à poser |
@@ -30,7 +37,7 @@ l'instrument, pas la qualité de traduction (verdict qualité = passes dédiées
 ```
 Enabled = true                    // le seul geste d'armement, sur CETTE task uniquement
 Name = "smoke-202-roundtrip"
-Model = "gpt-5.6-sol"             // P1 — la seule occurrence 5.6 du dépôt au moment du smoke
+Model = "gpt-5.6-sol"             // P1 — défaut de toute la config depuis #1426 ; explicite = auto-documentant
 UseResponsesApi = true ; ReasoningEffort = "low" ; MaxOutputTokens = 4096
 SourceDataset = <DataSet Rules — 15 rangées, le plus petit corpus>
 TargetPath = <scratchpad>/smoke202-rules-copy.csv   // P5 — copie fraîche du corpus Rules
@@ -79,3 +86,5 @@ smoke vert ouvre la QUESTION des passes, pas la réponse.
 ---
 *po-2024 — pool #458 renouvelé (c.5666260217), grain ⑩. Prérequis P1-P2 = le GO owner à nommer ;
 P3-P5 = mécanique mesurée sur `6fbde739`. L'exécution suit le GO, jamais l'inverse.*
+*Mise à jour 21/09 (pool #458 v6 grain ⑥) : P1 soldé par #1426 ; P2-P5 inchangés ; mécanique
+re-vérifiée conforme sur `68e8d3d5`. Toujours zéro appel API à ce jour.*
