@@ -92,12 +92,39 @@ Ils sont **déclarés dans la licence** plutôt que laissés à l'implicite. Auc
 Les feuilles de style des gabarits de cartes **en service** déclarent des familles de polices
 **commerciales**, aux côtés de familles libres. Le produit est destiné à la vente.
 
-⚠️ Qualifié **SUPPOSÉ**, et la nuance porte tout le poids : une déclaration `font-family` dans une
-CSS **n'établit pas** que la police est utilisée dans le rendu final (la cascade peut retomber sur
-une autre), ni **quelle licence a été acquise** — un nom de police n'est pas une licence. Deux
-mesures manquent, et aucune n'est faite ici : (i) quelles familles sont **effectivement résolues**
-dans le rendu, (ii) quelles licences sont détenues. ⇒ **Point à instruire avant commercialisation**,
-indépendant de la licence de contenu.
+⚠️ Qualifié **SUPPOSÉ** au départ, et la nuance porte tout le poids : une déclaration `font-family`
+dans une CSS **n'établit pas** que la police est utilisée dans le rendu final (la cascade peut
+retomber sur une autre), ni **quelle licence a été acquise** — un nom de police n'est pas une licence.
+
+**Mesure conduite le 21/09 sur les 51 gabarits vivants** (hors `Archive/`), qui **précise** le
+signalement au lieu de le laisser en l'air — 15 familles déclarées, dont **3 sous `@font-face`** :
+
+| Famille | Gabarits | `src` du `@font-face` | Lecture |
+|---|---:|---|---|
+| **DINPro** | **49 / 51** | `https://fonts.cdnfonts.com/s/18774/DINPro-*.woff` | ⚠️ **CDN tiers de redistribution**, pas la fonderie |
+| **TrendSlabW00-Four** | 3 | `http://db.onlinewebfonts.com/t/<hash>.{woff,ttf,eot,svg}` | ⚠️ idem, **et en clair (`http://`)** |
+| `big-john-pro` | 1 | `src` **vide** | ⇒ **jamais chargée**, retombe sur la cascade |
+
+⇒ Le point **se resserre** : ce n'est pas « des noms commerciaux traînent dans des CSS », c'est que
+**deux polices commerciales sont tirées au rendu depuis des CDN de redistribution non officiels**,
+dont l'un en HTTP. ⭐ *Le `src` mesure ce que le `font-family` ne dit pas* : `big-john-pro`, que
+j'avais signalée en premier, est en réalité **inerte**, tandis que **DINPro est dans 49 gabarits
+sur 51**. Le signalement initial visait la mauvaise police.
+
+⚠️ **Ce que la mesure n'établit toujours pas** : ni qu'une licence a été acquise, ni que la police
+est **effectivement résolue** au rendu (le harvest Playwright doit joindre le CDN ; s'il échoue, la
+cascade retombe **en silence**). C'est aussi un risque de **reproductibilité** : le rendu dépend
+d'un tiers qui peut disparaître.
+
+⇒ **Point à instruire avant commercialisation**, indépendant de la licence de contenu — suivi hors
+de ce dossier.
+
+### 3.a-bis — Une coquille découverte au passage
+
+`Cards/Memo/Argumentum_Memo_Face_fr.json` déclare `font-family:'Bebas Neue', sans-setif` — **`setif`
+au lieu de `serif`**. Le repli de secours du titre de la carte Memo ne résout donc rien. Sans effet
+visible tant que *Bebas Neue* est disponible, ⚠️ mais c'est exactement le repli censé protéger si
+elle ne l'est pas. Défaut réel, indépendant de la licence, à corriger séparément.
 
 ### 3.b — LGPL-3.0 à la racine, GPL-3.0 dans le composant de rendu
 

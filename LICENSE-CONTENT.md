@@ -95,8 +95,11 @@ Il est plus sûr de déclarer ces points que de les laisser croire réglés :
    style des gabarits vivants sont des polices **commerciales**, dont la licence est celle de leur
    fonderie et **prime sur tout ce qui est écrit ici**. ⚠️ Qualifié **SUPPOSÉ** : une déclaration
    `font-family` dans une CSS n'établit ni que la police est effectivement utilisée dans le rendu
-   final, ni quelle licence a été acquise. Ce point demande une vérification propre, et il n'est
-   **pas** couvert par cette licence.
+   final, ni quelle licence a été acquise. Une **mesure partielle** a été conduite (quelles familles
+   sont déclarées, et vers quoi pointe leur `@font-face`) et figure au
+   [dossier de périmètre §3.a](docs/licensing/licence-contenu-perimetre-2026-09-21.md) ; elle
+   **resserre** le point sans le clore. Il demande une vérification propre, et il n'est **pas**
+   couvert par cette licence.
 3. **La coexistence LGPL-3.0 / GPL-3.0 dans le dépôt** — le fichier racine [`LICENSE`](LICENSE)
    déclare LGPL-3.0, tandis que `Generation/CardPen/LICENSE.txt` déclare **GPL-3.0** pour le
    composant de rendu, qui est un *fork*. Les deux sont des licences de **code** et ne sont pas
