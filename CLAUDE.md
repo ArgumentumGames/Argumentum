@@ -493,12 +493,14 @@ Liste complète pour Virtues, **vérifiée contre `Argumentum Virtues - Taxonomy
 
 | CardSet | Faces | Dos | Images | PDFs |
 |---------|------:|----:|-------:|------|
-| Fallacies Tarot | **175** ~~176~~ | 1 † | **176** ~~177~~ | TarotCards_{lang}-1/2.pdf |
+| Fallacies Tarot | **175** ~~176~~ | 1 † | **176** ~~177~~ | Argumentum_TarotCards_{lang}.pdf |
 | FallaciesWeb | **175** ~~176~~ | — | **175** ~~176~~ | A0, A4, Thumbnails |
 | Rules Tarot | **15** ~~24~~ | — | 15 | dans TarotCards — réduit par #438 |
 | Memo Tarot | 1 | 1 † | 2 | dans TarotCards |
-| Scenarii Poker | **167** ~~97~~ | **7** | 174 | PokerCards_{lang}-1.pdf |
-| Virtues Tarot | **131** ~~113~~ | 1 | 132 | TarotCards_Virtues_{lang}-FacesOnly.pdf |
+| Scenarii Poker | **167** ~~97~~ | **7** | 174 | Argumentum_PokerCards_{lang}.pdf |
+| Virtues Tarot | **131** ~~113~~ | 1 | 132 | Argumentum_TarotCards_Virtues_{lang}.pdf |
+
+⚠️ La colonne « PDFs » nomme les **assets publiés** (mesurés sur les 80 PDF du bundle v2.0.0-regen du 21/09 : 10 documents × 8 langues, aucun suffixe). Les formes historiques `…_{lang}-1/2.pdf` / `…_{lang}-1.pdf` / `…-FacesOnly.pdf` décrivent d'anciennes sorties de pipeline et **ne correspondent à aucun asset** — c'est la famille de défauts qui a fait envoyer les relecteurs #802 sur un fichier inexistant (corrigé 21/09, c.5755612517).
 
 † « 1 dos » s'entend **par langue** — les dos du Tarot (famille Fallacies, famille Memo) sont **localisés**, pas partagés entre langues. Mesuré au `sha256` des pixels décodés sur les 8 langues (balayage intégral du bundle v2.0.0, [#134 c. 5643251291](https://github.com/ArgumentumGames/Argumentum/issues/134#issuecomment-5643251291), 2026-09-12) : **0 dos commun aux 8 langues** — chaque dos existe en 8 exemplaires distincts (Fallacies ×175 pages/langue, Memo ×7, 1982×3401 CMYK, 8/8 pixels distincts). Le dos Fallacies porte le **titre du jeu traduit** (bande ~82 % de large à ~5 % du sommet : « L'ART DE NE JAMAIS AVOIR TORT » / « THE ART OF NEVER BEING WRONG » / « EL ARTE DE NUNCA ESTAR EQUIVOCADO » / « A ARTE DE NUNCA ESTAR ERRADO »…). Deux conséquences : un **devis d'impression** compte **un dos par langue** (8 exemplaires de chaque), jamais « un dos partagé sur toute la série » ; et un **contrôle inter-langues** qui attend un dos commun rendra « 0 dos commun » — c'est le comportement correct, pas une anomalie.
 
