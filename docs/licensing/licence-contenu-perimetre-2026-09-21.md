@@ -40,12 +40,44 @@ fichiers sont rangés, pas ce qu'ils sont.
 
 Second piège, plus discret : sur les **14** `.csv`, **8 sont sous `Archive/`**. Une énumération
 mécanique « tous les CSV » aurait relicencié des états historiques non livrés. Le périmètre retenu
-est donc de **7 fichiers** — 5 CSV vivants + 2 prose de règles — chacun nommé.
+est de **5 fichiers**, chacun nommé — et non 7, pour la raison mesurée au §1.b.
 
 ⚠️ **Correction d'une affirmation antérieure de ma part** : j'avais annoncé « les 14 CSV » comme
 périmètre candidat. C'est le compte **tous dossiers confondus**, Archive inclus. Le périmètre
 livrable en compte **5**. L'écart n'était pas une approximation, c'était une mesure faite sur le
 mauvais ensemble.
+
+### 1.b — ⭐ Le filtre qui a retiré deux fichiers de plus : **la co-écriture**
+
+Dernier contrôle avant merge, et le plus payant — `git blame` ligne à ligne sur **chacun** des
+fichiers candidats, pour vérifier que le titulaire peut effectivement les céder :
+
+| Fichier candidat | Lignes | Écrites par un **co-auteur** |
+|---|---:|---:|
+| `Argumentum Fallacies - Taxonomy.csv` | 1 548 | **0** |
+| `Argumentum Virtues - Taxonomy.csv` | 224 | **0** |
+| `Argumentum Scenarii - Cards.csv` | 168 | **0** |
+| `Argumentum Rules - Cards.csv` | 2 117 | **0** |
+| `Argumentum Rules - Cards Print and Play.csv` | 485 | **0** |
+| **`Cards/Rules/regles.md`** | 70 | ⚠️ **40 — 57 %** |
+| **`Cards/Rules/rules.md`** | 68 | ⚠️ 7 — 10 % |
+
+⭐ **Un titulaire ne peut pas relicencier seul une œuvre qu'il n'a pas seul écrite.** La prose des
+règles est donc **sortie du périmètre** — elle ne pourra le rejoindre qu'avec l'accord nommé du
+co-auteur.
+
+⚠️ **Ce contrôle a failli ne pas être fait.** Le périmètre « 7 fichiers » était écrit, vérifié
+(les 7 existent, les liens résolvent), la CI était verte et la PR prête à merger. Le réflexe qui
+l'a déclenché est une **question**, pas une alerte : *« le titulaire peut-il céder ces fichiers ? »*
+— une question que ni la CI, ni les liens, ni l'existence des fichiers ne posent.
+
+⇒ ⭐ *Vérifier qu'un fichier **existe** n'est pas vérifier qu'on a le **droit** de le licencier.*
+Les deux contrôles ont l'air du même geste et n'ont pas le même objet.
+
+⛔ **Limite, et elle est structurante** : `git blame` attribue le **dernier rédacteur** d'une ligne,
+⛔ pas son créateur, et ne voit **aucune** contribution hors dépôt. Cet instrument sert donc à
+**restreindre** le périmètre — jamais à l'élargir. Un `0` dans la colonne de droite ne prouve pas
+l'écriture solitaire ; il prouve seulement que *cet* instrument ne voit personne d'autre.
 
 ---
 

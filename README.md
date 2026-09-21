@@ -220,11 +220,11 @@ This repository is **dual-licensed**.
 | What | Licence | File |
 |---|---|---|
 | **Source code** — the .NET pipeline, CardPen, card templates, build tooling | LGPL-3.0 | [LICENSE](/LICENSE) |
-| **Editorial corpus** — the fallacy and virtue taxonomies, the game scenarios and the game rules (7 enumerated text files) | **CC BY-SA 4.0** | [LICENSE-CONTENT.md](/LICENSE-CONTENT.md) |
+| **Editorial corpus** — the fallacy and virtue taxonomies, the game scenarios and the two rules card sets (**5 enumerated text files**) | **CC BY-SA 4.0** | [LICENSE-CONTENT.md](/LICENSE-CONTENT.md) |
 
 The content licence is scoped by **explicit enumeration of files**, never by directory:
-illustrations, packaging artwork and fonts are **out of its scope**. If a file is not listed in
-[LICENSE-CONTENT.md](/LICENSE-CONTENT.md) §1, it is not under CC BY-SA.
+illustrations, packaging artwork, fonts and the **prose of the rules** are **out of its scope**.
+If a file is not listed in [LICENSE-CONTENT.md](/LICENSE-CONTENT.md) §1, it is not under CC BY-SA.
 
 Note that `Generation/CardPen/` is a fork and carries its own upstream
 [GPL-3.0 notice](/Generation/CardPen/LICENSE.txt).

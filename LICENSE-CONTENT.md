@@ -19,12 +19,29 @@ La licence **Creative Commons Attribution - Partage dans les Mêmes Conditions 4
 | `Cards/Scenarii/Argumentum Scenarii - Cards.csv` | Scénarios de jeu (contextes, enjeux, répliques, 8 langues) |
 | `Cards/Rules/Argumentum Rules - Cards.csv` | Règles du jeu, version cartes |
 | `Cards/Rules/Argumentum Rules - Cards Print and Play.csv` | Règles du jeu, version Print & Play |
-| `Cards/Rules/regles.md` | Règles du jeu, prose française |
-| `Cards/Rules/rules.md` | Règles du jeu, prose anglaise |
 
-Soit **7 fichiers**, correspondant au **texte** du jeu.
+Soit **5 fichiers**, correspondant au **texte des cartes** du jeu.
 
-### 1.a — Ce que le périmètre exclut, et pourquoi
+### 1.a — ⛔ Deux fichiers en sont **retirés**, et c'est délibéré
+
+`Cards/Rules/regles.md` et `Cards/Rules/rules.md` — la prose des règles — **ne sont pas** sous CC
+BY-SA. Mesure d'attribution ligne à ligne à `2f299fcc` :
+
+| Fichier | Lignes | Dont écrites par un **co-auteur** |
+|---|---:|---|
+| `Cards/Rules/regles.md` | 70 | **40 — soit 57 %** |
+| `Cards/Rules/rules.md` | 68 | 7 — soit 10 % |
+
+⭐ **Un titulaire ne peut pas relicencier seul une œuvre qu'il n'a pas seul écrite.** Ces deux
+fichiers ne pourront rejoindre le périmètre qu'avec **l'accord du co-auteur concerné**, demandé
+nommément. Les 5 fichiers ci-dessus sont, eux, mesurés à **100 % d'écriture du titulaire** —
+c'est ce qui rend leur cession possible aujourd'hui.
+
+⚠️ Limite de la mesure, déclarée : `git blame` attribue le **dernier rédacteur** d'une ligne, pas
+son créateur, et **ne voit aucune contribution hors dépôt**. Elle est donc utilisée ici pour
+**restreindre** le périmètre, ⛔ jamais pour l'élargir.
+
+### 1.b — Ce que le périmètre exclut par ailleurs, et pourquoi
 
 ⛔ **Le périmètre n'est PAS « le répertoire `Cards/` ».** Ce répertoire compte **803 fichiers**,
 dont **617 images PNG** : le délimiter par chemin placerait sous CC BY-SA des œuvres graphiques
@@ -37,6 +54,7 @@ qui n'y ont pas leur place. Sont donc **hors** de cette licence, même situés s
   couverts par [`LICENSE`](LICENSE) ;
 - **tout le contenu sous `Cards/**/Archive/`** — états historiques non livrés ;
 - `Cards/Rules/Argumentum Rules - Cards.old.csv` — copie de travail supplantée, non livrée.
+- **la prose des règles** (`regles.md`, `rules.md`) — voir §1.a : co-écrites, accord requis.
 
 ---
 
@@ -119,10 +137,15 @@ Il est plus sûr de déclarer ces points que de les laisser croire réglés :
 
 ## English summary
 
-This repository is **dual-licensed**. This file covers **only** the seven editorial text files
+This repository is **dual-licensed**. This file covers **only** the five editorial text files
 enumerated in §1 — the taxonomies of fallacies and argumentative virtues, the game scenarios and
-the game rules — which are released under
+the two rules card sets — which are released under
 **[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode)**.
+
+⛔ The **prose** of the rules (`regles.md`, `rules.md`) is **deliberately excluded**: line-level
+attribution measures 57% and 10% of those two files as written by a co-author, and a rightsholder
+cannot relicense alone a work they did not write alone. They can only join the scope with that
+co-author's named agreement.
 
 Everything else, **including all source code**, remains under [`LICENSE`](LICENSE) (LGPL-3.0).
 Illustrations, packaging artwork, fonts and card templates are **explicitly out of scope** — see
