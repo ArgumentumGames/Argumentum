@@ -822,8 +822,14 @@
                             // === ZOOM INITIAL LISIBLE : centrer sur la racine (restauration #829) ===
                             // Carte trop grande : le fit initial montre toute la taxo illisible. On zoome
                             // pour afficher ~2600 unites-utilisateur de hauteur autour de la racine
-                            // (node id=0) => racine + familles lisibles. Additif : RESET/zoom-out revient
-                            // au fit complet (comportement svg-pan-zoom inchange). SVG dans <object> =>
+                            // (node id=0) => racine + familles lisibles. Additif : le RESET revient au
+                            // fit, et le zoom-out maximal va PLUS LOIN que le fit (0,15 x fit) -- deux
+                            // etats distincts. Les bornes de svg-pan-zoom sont relatives au fit
+                            // (minZoom * n.zoom dans zoomAtPoint), pas absolues. Mesure #830 Cap 9 :
+                            // floor/fit = 0,150 sur Fallacies fr ET Virtues fr ; des bornes absolues
+                            // rendraient 1,00. Le libelle anterieur fusionnait les deux etats ; il
+                            // n'est pas recite ici afin qu'un grep reste un detecteur valide.
+                            // SVG dans <object> =>
                             // le noeud racine se lit sur svgDocument (contentDocument), pas document.
                             requestAnimationFrame(function () {
                                 try {
