@@ -1,0 +1,214 @@
+# Licence de contenu CC BY-SA 4.0 — périmètre mesuré, et les trois points qu'il ne tranche pas
+
+> **Date** : 2026-09-21 · **Base** : `2f299fcc` · **Agent** : `myia-ai-01:Argumentum` (coordinateur)
+> **Décision** : GO owner, interactif, 2026-09-21 — **VÉRIFIÉ** (reçu en direct, pas relayé).
+> Question posée : variante CC à retenir. Recommandation présentée : **BY-SA**. Réponse : « OK Go ».
+
+Ce document porte la **mesure** qui a servi à écrire [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md).
+Il est séparé de l'acte lui-même parce qu'une licence doit rester courte et stable, alors qu'une
+mesure se re-fait.
+
+---
+
+## 1. Pourquoi le périmètre est énuméré et non délimité par chemin
+
+C'était le premier réflexe, et il était **faux**. Mesure sur `Cards/**` à `2f299fcc` :
+
+| Extension | Fichiers |
+|---|---:|
+| `.png` | **617** |
+| `.json` | 46 |
+| `.svg` | 45 |
+| `.html` | 38 |
+| **`.csv`** | **14** |
+| `.jpg` | 9 |
+| `.pdf` | 5 |
+| `.otf` | 5 |
+| `.css` | 4 |
+| `.ini` | 3 |
+| `.ai` | 3 |
+| `.md` | 2 |
+| `.git-id` | 10 |
+| `.xlsx` | 1 |
+| `.mm` | 1 |
+| **Total** | **803** |
+
+⇒ Écrire « le contenu de `Cards/` est sous CC BY-SA » aurait placé sous licence de contenu
+**617 images** et 3 fichiers de façonnage `.ai`, c'est-à-dire l'essentiel de ce que le périmètre
+est censé **exclure**. ⭐ **Un répertoire n'est pas un périmètre juridique** : il décrit où les
+fichiers sont rangés, pas ce qu'ils sont.
+
+Second piège, plus discret : sur les **14** `.csv`, **8 sont sous `Archive/`**. Une énumération
+mécanique « tous les CSV » aurait relicencié des états historiques non livrés. Le périmètre retenu
+est de **5 fichiers**, chacun nommé — et non 7, pour la raison mesurée au §1.b.
+
+⚠️ **Correction d'une affirmation antérieure de ma part** : j'avais annoncé « les 14 CSV » comme
+périmètre candidat. C'est le compte **tous dossiers confondus**, Archive inclus. Le périmètre
+livrable en compte **5**. L'écart n'était pas une approximation, c'était une mesure faite sur le
+mauvais ensemble.
+
+### 1.b — ⭐ Le filtre qui a retiré deux fichiers de plus : **la co-écriture**
+
+Dernier contrôle avant merge, et le plus payant — `git blame` ligne à ligne sur **chacun** des
+fichiers candidats, pour vérifier que le titulaire peut effectivement les céder :
+
+| Fichier candidat | Lignes | Écrites par un **co-auteur** |
+|---|---:|---:|
+| `Argumentum Fallacies - Taxonomy.csv` | 1 548 | **0** |
+| `Argumentum Virtues - Taxonomy.csv` | 224 | **0** |
+| `Argumentum Scenarii - Cards.csv` | 168 | **0** |
+| `Argumentum Rules - Cards.csv` | 2 117 | **0** |
+| `Argumentum Rules - Cards Print and Play.csv` | 485 | **0** |
+| **`Cards/Rules/regles.md`** | 70 | ⚠️ **40 — 57 %** |
+| **`Cards/Rules/rules.md`** | 68 | ⚠️ 7 — 10 % |
+
+⭐ **Un titulaire ne peut pas relicencier seul une œuvre qu'il n'a pas seul écrite.** La prose des
+règles est donc **sortie du périmètre** — elle ne pourra le rejoindre qu'avec l'accord nommé du
+co-auteur.
+
+⚠️ **Ce contrôle a failli ne pas être fait.** Le périmètre « 7 fichiers » était écrit, vérifié
+(les 7 existent, les liens résolvent), la CI était verte et la PR prête à merger. Le réflexe qui
+l'a déclenché est une **question**, pas une alerte : *« le titulaire peut-il céder ces fichiers ? »*
+— une question que ni la CI, ni les liens, ni l'existence des fichiers ne posent.
+
+⇒ ⭐ *Vérifier qu'un fichier **existe** n'est pas vérifier qu'on a le **droit** de le licencier.*
+Les deux contrôles ont l'air du même geste et n'ont pas le même objet.
+
+⛔ **Limite, et elle est structurante** : `git blame` attribue le **dernier rédacteur** d'une ligne,
+⛔ pas son créateur, et ne voit **aucune** contribution hors dépôt. Cet instrument sert donc à
+**restreindre** le périmètre — jamais à l'élargir. Un `0` dans la colonne de droite ne prouve pas
+l'écriture solitaire ; il prouve seulement que *cet* instrument ne voit personne d'autre.
+
+---
+
+## 2. La liste des co-auteurs ne se dérive pas de git — mesuré deux fois, dans les deux sens
+
+Le grain #1188 conduit par `po-2024` ([`1188-attribution-par-fichier-et-survivance.md`](1188-attribution-par-fichier-et-survivance.md),
+base `6694d702`) mesure l'attribution **fichier par fichier** et **par survivance à HEAD**. Ses
+conclusions **corrigent ma propre liste**, et dans les deux directions :
+
+| Piste | Ce que git voit | Expression survivante dans `Cards/**` |
+|---|---|---:|
+| `Jean-Sylvain Boige` / `jsboige` | 1 025 commits | 328 / 341 fichiers livrés |
+| `ThomasWatanabeVermorel` | 5 commits | **13 fichiers** |
+| `Ludovic Pelletier` | 6 commits | **0** |
+| `Nathaniel Richand` | 178 fichiers touchés | **0** |
+| **Une relectrice nommée par tous les documents de recette** | **aucun commit, aucun *trailer*** | **non mesurable par git** |
+
+⭐ **Le chiffre « 2 co-auteurs externes » est juste par coïncidence de méthode, pas par identité
+de liste.** Par `git log` c'est {Pelletier, Thomas} ; par les documents de recette c'est
+{Thomas, la relectrice}. **Les deux valent 2, et ce ne sont pas les mêmes deux.** Publier l'un en
+croyant publier l'autre aurait nommé quelqu'un sans expression survivante et omis quelqu'un dont
+la contribution est documentée partout.
+
+### 2.a — Ce que j'ai refusé d'écrire
+
+⛔ **Aucun patronyme n'a été inventé.** Mesure : le prénom de la relectrice apparaît dans **8
+documents** du dépôt, **jamais suivi d'un nom de famille**. Et « Thomas » se présente dans la
+prose du dépôt sous une forme qui désigne **une autre personne** (figure de la communauté DNN,
+sans rapport avec le projet) — un `grep` naïf sur le prénom aurait attribué le corpus à un tiers.
+
+⇒ [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md) nomme **une identité mesurée** (le compte git)
+et renvoie au présent dossier pour le reste, plutôt que de clore une liste qu'aucun instrument
+disponible ne peut établir. **Compléter la liste par les noms civils est un geste owner** : lui
+seul dispose de la source.
+
+---
+
+## 3. Les trois points signalés, non tranchés
+
+Ils sont **déclarés dans la licence** plutôt que laissés à l'implicite. Aucun ne bloque le tag.
+
+### 3.a — Polices commerciales déclarées dans des gabarits vivants
+
+Les feuilles de style des gabarits de cartes **en service** déclarent des familles de polices
+**commerciales**, aux côtés de familles libres. Le produit est destiné à la vente.
+
+⚠️ Qualifié **SUPPOSÉ** au départ, et la nuance porte tout le poids : une déclaration `font-family`
+dans une CSS **n'établit pas** que la police est utilisée dans le rendu final (la cascade peut
+retomber sur une autre), ni **quelle licence a été acquise** — un nom de police n'est pas une licence.
+
+**Mesure conduite le 21/09 sur les 51 gabarits vivants** (hors `Archive/`), qui **précise** le
+signalement au lieu de le laisser en l'air — 15 familles déclarées, dont **3 sous `@font-face`** :
+
+| Famille | Gabarits | `src` du `@font-face` | Lecture |
+|---|---:|---|---|
+| **DINPro** | **49 / 51** | `https://fonts.cdnfonts.com/s/18774/DINPro-*.woff` | ⚠️ **CDN tiers de redistribution**, pas la fonderie |
+| **TrendSlabW00-Four** | 3 | `http://db.onlinewebfonts.com/t/<hash>.{woff,ttf,eot,svg}` | ⚠️ idem, **et en clair (`http://`)** |
+| `big-john-pro` | 1 | `src` **vide** | ⇒ **jamais chargée**, retombe sur la cascade |
+
+⇒ Le point **se resserre** : ce n'est pas « des noms commerciaux traînent dans des CSS », c'est que
+**deux polices commerciales sont tirées au rendu depuis des CDN de redistribution non officiels**,
+dont l'un en HTTP. ⭐ *Le `src` mesure ce que le `font-family` ne dit pas* : `big-john-pro`, que
+j'avais signalée en premier, est en réalité **inerte**, tandis que **DINPro est dans 49 gabarits
+sur 51**. Le signalement initial visait la mauvaise police.
+
+⚠️ **Ce que la mesure n'établit toujours pas** : ni qu'une licence a été acquise, ni que la police
+est **effectivement résolue** au rendu (le harvest Playwright doit joindre le CDN ; s'il échoue, la
+cascade retombe **en silence**). C'est aussi un risque de **reproductibilité** : le rendu dépend
+d'un tiers qui peut disparaître.
+
+⇒ **Point à instruire avant commercialisation**, indépendant de la licence de contenu — suivi hors
+de ce dossier.
+
+### 3.a-bis — Une coquille découverte au passage
+
+`Cards/Memo/Argumentum_Memo_Face_fr.json` déclare `font-family:'Bebas Neue', sans-setif` — **`setif`
+au lieu de `serif`**. Le repli de secours du titre de la carte Memo ne résout donc rien. Sans effet
+visible tant que *Bebas Neue* est disponible, ⚠️ mais c'est exactement le repli censé protéger si
+elle ne l'est pas. Défaut réel, indépendant de la licence, à corriger séparément.
+
+### 3.b — LGPL-3.0 à la racine, GPL-3.0 dans le composant de rendu
+
+`LICENSE` déclare **LGPL-3.0** ; `Generation/CardPen/LICENSE.txt` déclare **GPL-3.0** (mesuré :
+en-tête « GNU GENERAL PUBLIC LICENSE Version 3 », sans la clause *Lesser*). CardPen est un *fork*,
+donc sa licence amont s'impose à lui. Les deux sont des licences de **code** ; la licence de
+contenu ne les modifie pas et n'en dépend pas. ⇒ **Articulation à documenter**, pas à improviser.
+
+### 3.c — Illustrations et façonnage
+
+617 PNG, 9 JPG, 3 `.ai` de packaging : travail graphique, potentiellement de prestataires externes.
+Explicitement **hors périmètre**. Les placer sous CC BY-SA demanderait leur accord, qui n'a pas été
+demandé — et **ne pas les mentionner** aurait laissé croire qu'ils sont couverts.
+
+---
+
+## 4. Pourquoi BY-SA, et une erreur de raisonnement à ne pas reproduire
+
+La recommandation présentée à l'arbitrage était **BY-SA**, contre **BY-NC-SA**.
+
+⭐ **Le motif qui a fait pencher, et qui corrige une affirmation antérieure fausse de ma part** :
+j'avais soutenu que la clause **NC** « referme la cession » et protégerait donc la vente du jeu.
+**C'est faux.** Une licence ouverte ne lie que le **licencié** ; elle ne s'applique **jamais au
+titulaire des droits**, qui conserve la faculté de commercialiser son œuvre et de la concéder sous
+d'autres termes. Ajouter NC n'aurait donc **rien protégé du côté du projet**, tout en interdisant
+les usages qui font la valeur d'un corpus pédagogique : reprise en cours payant, manuel, MOOC,
+formation professionnelle.
+
+Le **SA** (partage à l'identique), lui, fait un travail réel : il garantit que les enrichissements
+du corpus — traductions, nouveaux sophismes, exemples — reviennent sous la même licence.
+
+⇒ **NC coûtait des usages légitimes sans rien acheter.** Le raisonnement à retenir : *vérifier qui
+une clause lie avant de lui prêter un effet protecteur.*
+
+---
+
+## 5. Instruments
+
+| Mesure | Commande |
+|---|---|
+| Inventaire par extension | `git ls-files 'Cards/**'` + comptage par suffixe |
+| CSV livrables vs archivés | `git ls-files 'Cards/**/*.csv' \| grep -vi archive` |
+| Identités git | `git log --all --format='%an\|%ae' -- Cards Generation \| sort \| uniq -c` |
+| Forme nominale | `git grep -rhoiE "<prénom>[ ]+[A-ZÀ-Þ]…" -- '*.md'` |
+| Licence CardPen | lecture de l'en-tête de `Generation/CardPen/LICENSE.txt` |
+
+⛔ **Limites déclarées.** `git ls-files` ne voit que **HEAD** : il ne dit rien de l'historique
+(cf. la leçon #415, où un pathspec vérifié à HEAD rend 0 pendant que l'historique porte 462 objets).
+Aucun de ces instruments **ne peut voir une contribution hors dépôt** — relecture, direction
+éditoriale, arbitrage. C'est la limite qui compte le plus ici, et elle joue **contre** la
+conclusion rassurante.
+
+---
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
