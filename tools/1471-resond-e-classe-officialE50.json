@@ -1,0 +1,4828 @@
+{
+ "sample_size": 50,
+ "total_probes": 400,
+ "n_found": 394,
+ "fn_rate": 0.985,
+ "wilson_lo": 0.9676649364884468,
+ "wilson_hi": 0.993107802129863,
+ "by_lang": {
+  "ar_hit": 50,
+  "en_hit": 50,
+  "es_hit": 49,
+  "fa_hit": 50,
+  "fr_hit": 50,
+  "pt_hit": 48,
+  "ru_hit": 47,
+  "zh_hit": 50,
+  "ru_miss": 3,
+  "es_miss": 1,
+  "pt_miss": 2
+ },
+ "controls": [
+  {
+   "lang": "fr",
+   "query": "Sophisme",
+   "n_hits": 5,
+   "ok": true
+  },
+  {
+   "lang": "en",
+   "query": "Fallacy",
+   "n_hits": 5,
+   "ok": true
+  },
+  {
+   "lang": "es",
+   "query": "Falacia",
+   "n_hits": 5,
+   "ok": true
+  },
+  {
+   "lang": "ar",
+   "query": "السفسطة",
+   "n_hits": 5,
+   "ok": true
+  },
+  {
+   "lang": "de",
+   "query": "Fehlschluss",
+   "n_hits": 5,
+   "ok": true
+  }
+ ],
+ "details": [
+  {
+   "pk": "1",
+   "lang": "ar",
+   "query": "الادعاء غير الكافي",
+   "n_hits": 5,
+   "top_titles": [
+    "الادعاء الكاذب بالاعتداء الجنسي على الأطفال",
+    "الادعاء العام (سلطنة عمان)",
+    "عبد الملك الحوثي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "en",
+   "query": "Insufficiency",
+   "n_hits": 5,
+   "top_titles": [
+    "Insufficiency",
+    "Adrenal insufficiency",
+    "Addison's disease"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "es",
+   "query": "Insuficiencia",
+   "n_hits": 5,
+   "top_titles": [
+    "Insuficiencia cardíaca",
+    "Insuficiencia hepática",
+    "Insuficiencia aórtica"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "fa",
+   "query": "ناکافی بودن",
+   "n_hits": 5,
+   "top_titles": [
+    "توجیه ناکافی",
+    "فاجعه‌های مرگبار در دورهٔ جمهوری اسلامی ایران",
+    "بهداشت و درمان در پاکستان"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "fr",
+   "query": "Insuffisance",
+   "n_hits": 5,
+   "top_titles": [
+    "Insuffisance cardiaque chez l'humain",
+    "Insuffisance surrénalienne",
+    "Insuffisance rénale aiguë"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "pt",
+   "query": "Insuficiência",
+   "n_hits": 5,
+   "top_titles": [
+    "Insuficiência cardíaca",
+    "Insuficiência respiratória",
+    "Insuficiência renal"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "ru",
+   "query": "недостаток",
+   "n_hits": 5,
+   "top_titles": [
+    "Дефицит",
+    "Гипоксия",
+    "Депривация сна"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1",
+   "lang": "zh",
+   "query": "不足",
+   "n_hits": 5,
+   "top_titles": [
+    "注意力不足過動症",
+    "转向不足与转向过度",
+    "人口不足"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "ar",
+   "query": "تبرير تافه",
+   "n_hits": 5,
+   "top_titles": [
+    "علم تافه",
+    "سلوك سلبي عدواني",
+    "مصر ضد الأرجنتين (كأس العالم 2026)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "en",
+   "query": "Trivial Justification",
+   "n_hits": 5,
+   "top_titles": [
+    "Breaching experiment",
+    "Epistemology",
+    "Faith"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "es",
+   "query": "Justificación trivial",
+   "n_hits": 5,
+   "top_titles": [
+    "Grupo nilpotente",
+    "Teorema de Haag–Łopuszański–Sohnius",
+    "Apología de un matemático"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "fa",
+   "query": "توجیه جزئی",
+   "n_hits": 5,
+   "top_titles": [
+    "فعالیت‌های اقتصادی سپاه پاسداران انقلاب اسلامی ایران",
+    "پرونده ارعاب رای دهندگان حزب پلنگ سیاه جدید",
+    "دین آسی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "fr",
+   "query": "Justification triviale",
+   "n_hits": 5,
+   "top_titles": [
+    "Wikitexte",
+    "Préordre de spécialisation",
+    "Argument de l'illusion"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "pt",
+   "query": "Justificação Trivial",
+   "n_hits": 5,
+   "top_titles": [
+    "Martinho Lutero",
+    "Bíblia",
+    "Niilismo existencial"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "ru",
+   "query": "Тривиальное обоснование",
+   "n_hits": 5,
+   "top_titles": [
+    "Эйнштейн, Альберт",
+    "Пушки вместо масла",
+    "Периодическая система химических элементов"
+   ],
+   "found": true
+  },
+  {
+   "pk": "33",
+   "lang": "zh",
+   "query": "琐碎的理由",
+   "n_hits": 5,
+   "top_titles": [
+    "葉舒華",
+    "约翰·洛克",
+    "六四事件"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "ar",
+   "query": "دليل قصصي",
+   "n_hits": 5,
+   "top_titles": [
+    "الصفحة الرئيسة",
+    "قائمة مسلسلات رمضان 2012",
+    "قائمة الأفلام المصرية سنة 2026"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "en",
+   "query": "Anecdotal evidence",
+   "n_hits": 5,
+   "top_titles": [
+    "Anecdotal evidence",
+    "Anecdote",
+    "Looksmaxxing"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "es",
+   "query": "Prueba anecdótica",
+   "n_hits": 5,
+   "top_titles": [
+    "Prueba anecdótica",
+    "Peritaje caligráfico",
+    "Falacia de evidencia incompleta"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "fa",
+   "query": "مدرک حکایتی",
+   "n_hits": 5,
+   "top_titles": [
+    "لکس یولیا و پاپیا",
+    "مهدی حجوانی",
+    "نقطه جی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "fr",
+   "query": "Preuve anecdotique",
+   "n_hits": 5,
+   "top_titles": [
+    "Preuve anecdotique",
+    "Déclin des populations d'insectes",
+    "Preuve scientifique"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "pt",
+   "query": "Prova Anedótica",
+   "n_hits": 5,
+   "top_titles": [
+    "Evidência anedótica",
+    "ChatGPT",
+    "Prova por exemplo"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "ru",
+   "query": "Анекдотичное обоснование",
+   "n_hits": 5,
+   "top_titles": [
+    "Камо грядеши (роман)",
+    "Публий Корнелий Тацит",
+    "Баротерапия"
+   ],
+   "found": true
+  },
+  {
+   "pk": "34",
+   "lang": "zh",
+   "query": "轶事证据",
+   "n_hits": 5,
+   "top_titles": [
+    "軼事證據",
+    "轶事",
+    "科學證據"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "ar",
+   "query": "نداء إلى السوابق",
+   "n_hits": 5,
+   "top_titles": [
+    "دلال عبد العزيز",
+    "رفيعة الشال",
+    "سابقة ثنائية"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "en",
+   "query": "Appeal to Precedent",
+   "n_hits": 5,
+   "top_titles": [
+    "Precedent",
+    "United States courts of appeals",
+    "Appeal to tradition"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "es",
+   "query": "Apelación a la precedencia",
+   "n_hits": 5,
+   "top_titles": [
+    "Corte Suprema de Noruega",
+    "Primado",
+    "Ministro de la Corte Suprema de Chile"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "fa",
+   "query": "توسل به سابقه",
+   "n_hits": 5,
+   "top_titles": [
+    "فورتسا ایتالیا (۱۹۹۴)",
+    "کشتار اربا",
+    "دادخواستی در دفاع از حقوق مردان"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "fr",
+   "query": "Appel au précédent",
+   "n_hits": 5,
+   "top_titles": [
+    "Règle du précédent",
+    "Journée défense et citoyenneté",
+    "Fan (admirateur)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "pt",
+   "query": "Apelo ao precedente",
+   "n_hits": 5,
+   "top_titles": [
+    "China",
+    "Estados Unidos",
+    "Carlos III do Reino Unido"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "ru",
+   "query": "Аргумент к прецеденту",
+   "n_hits": 5,
+   "top_titles": [
+    "Аргумент a fortiori",
+    "Дети Льюльяйльяко",
+    "Анна Кашинская"
+   ],
+   "found": true
+  },
+  {
+   "pk": "105",
+   "lang": "zh",
+   "query": "诉诸先例",
+   "n_hits": 5,
+   "top_titles": [
+    "訴諸權威",
+    "勒内·笛卡儿",
+    "奥贝格费尔诉霍奇斯案"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "ar",
+   "query": "الإفراط في التأويل",
+   "n_hits": 5,
+   "top_titles": [
+    "إباحية",
+    "تفسير البيضاوي",
+    "أهل السنة والجماعة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "en",
+   "query": "Overinterpretation",
+   "n_hits": 5,
+   "top_titles": [
+    "2022 Swedish general election",
+    "Umberto Eco",
+    "Cryptomnesia"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "es",
+   "query": "Sobreinterpretación",
+   "n_hits": 5,
+   "top_titles": [
+    "Lee In-hwa",
+    "Umberto Eco",
+    "Vladimiro Rivas Iturralde"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "fa",
+   "query": "تفسیر بیش از حد",
+   "n_hits": 5,
+   "top_titles": [
+    "امتیاز چایلد-پیو",
+    "توبه در اسلام",
+    "پرسش‌نامه اضطراب بک"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "fr",
+   "query": "Surinterprétation",
+   "n_hits": 5,
+   "top_titles": [
+    "Brigitte Macron",
+    "Nostradamus",
+    "Héliocentrisme"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "pt",
+   "query": "Superinterpretação",
+   "n_hits": 4,
+   "top_titles": [
+    "Miniconto",
+    "Umberto Eco",
+    "1.º Prêmio Jabuti Acadêmico"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "ru",
+   "query": "Домыслы",
+   "n_hits": 5,
+   "top_titles": [
+    "Убийство Джонбенет Рэмси",
+    "Збарская, Регина Николаевна",
+    "Катастрофа A310 под Междуреченском"
+   ],
+   "found": true
+  },
+  {
+   "pk": "133",
+   "lang": "zh",
+   "query": "过度解读",
+   "n_hits": 5,
+   "top_titles": [
+    "西遊記第壹佰零壹回之月光寶盒",
+    "西遊記大結局之仙履奇緣",
+    "王洪光"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "ar",
+   "query": "مغالطة الأسباب السيئة",
+   "n_hits": 5,
+   "top_titles": [
+    "أنواع المغالطات",
+    "مراوغة (أخلاق)",
+    "منحدر زلق"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "en",
+   "query": "Bad reasons fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "Argument from fallacy",
+    "List of fallacies",
+    "Fallacy"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "es",
+   "query": "Falacia de las malas razones",
+   "n_hits": 5,
+   "top_titles": [
+    "Falacia",
+    "Falacia informal",
+    "Argumento ad consequentiam"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "fa",
+   "query": "مغالطه دلایل بد",
+   "n_hits": 5,
+   "top_titles": [
+    "قانون سه",
+    "برگشت به میانگین",
+    "مسئله باید و هست"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "fr",
+   "query": "Argument des mauvaises raisons",
+   "n_hits": 5,
+   "top_titles": [
+    "Argumentation",
+    "Sophisme",
+    "L'Art d'avoir toujours raison"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "pt",
+   "query": "Falácia de Más Razões",
+   "n_hits": 5,
+   "top_titles": [
+    "Argumento ad logicam",
+    "Marcos Eberlin",
+    "Teoremas da incompletude de Gödel"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "ru",
+   "query": "Ложные доводы",
+   "n_hits": 5,
+   "top_titles": [
+    "Спор",
+    "Логическая ошибка",
+    "Подмена тезиса"
+   ],
+   "found": true
+  },
+  {
+   "pk": "153",
+   "lang": "zh",
+   "query": "不良理由谬误",
+   "n_hits": 5,
+   "top_titles": [
+    "稻草人論證",
+    "訴諸人身",
+    "謬誤列表"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "ar",
+   "query": "بديل زائف",
+   "n_hits": 5,
+   "top_titles": [
+    "بديل حليب",
+    "دجل",
+    "تكلفة الفرصة البديلة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "en",
+   "query": "Alternative advance",
+   "n_hits": 5,
+   "top_titles": [
+    "Alternative for Social Advance",
+    "Advance UK",
+    "Advance healthcare directive"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "es",
+   "query": "Alternativa falsa",
+   "n_hits": 5,
+   "top_titles": [
+    "Falso dilema",
+    "Medicina alternativa",
+    "Alternativa (revista)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "fa",
+   "query": "پیشروی جایگزین",
+   "n_hits": 5,
+   "top_titles": [
+    "آمیزش جنسی در انسان",
+    "اواخر دودمان هان",
+    "خانات بوگد مغولستان"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "fr",
+   "query": "Fausse alternative",
+   "n_hits": 5,
+   "top_titles": [
+    "Faux dilemme",
+    "Référendum français sur le traité de Maastricht",
+    "Mathieu Bock-Côté"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "pt",
+   "query": "Alternativa Falsa",
+   "n_hits": 5,
+   "top_titles": [
+    "Notícia falsa",
+    "Teoria dos construtores",
+    "Operação de bandeira falsa"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "ru",
+   "query": "Фальшивая альтернатива",
+   "n_hits": 5,
+   "top_titles": [
+    "Ложная дилемма",
+    "Путин, Владимир Владимирович",
+    "Спойлер (политика)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "182",
+   "lang": "zh",
+   "query": "伪选项",
+   "n_hits": 5,
+   "top_titles": [
+    "馬英九",
+    "大卫·休谟",
+    "中國國民黨"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "ar",
+   "query": "التشويه",
+   "n_hits": 5,
+   "top_titles": [
+    "تشويه",
+    "تشويه البقر",
+    "تشويه معرفي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "en",
+   "query": "Foil",
+   "n_hits": 5,
+   "top_titles": [
+    "Foil",
+    "Foil (fencing)",
+    "Foil (narrative)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "es",
+   "query": "Espantajo",
+   "n_hits": 5,
+   "top_titles": [
+    "Espantapájaros",
+    "Los espantajomanes",
+    "Mumbo Jumbo (frase)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "fa",
+   "query": "پوششی",
+   "n_hits": 5,
+   "top_titles": [
+    "نوک پستان",
+    "واژن",
+    "مدافع"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "fr",
+   "query": "Repoussoir",
+   "n_hits": 5,
+   "top_titles": [
+    "Les Repoussoirs",
+    "Déterminisme",
+    "Ligue catholique (France)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "pt",
+   "query": "Repulsão",
+   "n_hits": 5,
+   "top_titles": [
+    "Repulsão elétrica",
+    "Teoria da repulsão dos pares de elétrons da camada de valência",
+    "Geometria molecular"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "ru",
+   "query": "Очернение",
+   "n_hits": 5,
+   "top_titles": [
+    "Диффамация",
+    "Форд, Харрисон",
+    "Путин, Владимир Владимирович"
+   ],
+   "found": true
+  },
+  {
+   "pk": "322",
+   "lang": "zh",
+   "query": "贬低",
+   "n_hits": 5,
+   "top_titles": [
+    "文化大革命",
+    "卡尔·马克思",
+    "新加坡"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "ar",
+   "query": "طُعم وتحويل",
+   "n_hits": 5,
+   "top_titles": [
+    "بولو (حلوى)",
+    "زرع الطعم الخيفي",
+    "طعم الأيام (مسلسل)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "en",
+   "query": "Bait and Switch",
+   "n_hits": 5,
+   "top_titles": [
+    "Bait-and-switch",
+    "Bait and Switch (disambiguation)",
+    "Motte-and-bailey fallacy"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "es",
+   "query": "Cebo y cambio",
+   "n_hits": 5,
+   "top_titles": [
+    "Señuelo y cambio",
+    "Pesca con caña",
+    "Jamón ibérico"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "fa",
+   "query": "طراحی و تغییر",
+   "n_hits": 5,
+   "top_titles": [
+    "فراری ۱۲سیلیندری",
+    "نشان‌واره ویکی‌پدیا",
+    "برج چاملیجا"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "fr",
+   "query": "Appât et substitution",
+   "n_hits": 5,
+   "top_titles": [
+    "Happy Hogan",
+    "Modèle d'entreprise",
+    "Saison 17 de Naruto Shippuden"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "pt",
+   "query": "Isca e Troca",
+   "n_hits": 5,
+   "top_titles": [
+    "Dark pattern",
+    "RuPaul's Drag Race Holi-slay Spectacular",
+    "America PAC"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "ru",
+   "query": "Приманка",
+   "n_hits": 5,
+   "top_titles": [
+    "Приманка",
+    "Приманки",
+    "Приманка (значения)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "361",
+   "lang": "zh",
+   "query": "诱导策略",
+   "n_hits": 5,
+   "top_titles": [
+    "植物的诱导抗性",
+    "性交",
+    "關於我轉生變成史萊姆這檔事角色列表"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "ar",
+   "query": "السحر الشخصي",
+   "n_hits": 5,
+   "top_titles": [
+    "قائمة شخصيات مسلسل باب الحارة",
+    "إيقاع السحر",
+    "قائمة حلقات أهلا بك في عالم السحرة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "en",
+   "query": "Personal charm",
+   "n_hits": 5,
+   "top_titles": [
+    "Charm",
+    "Personal life of Osama bin Laden",
+    "Santivarma"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "es",
+   "query": "Encanto personal",
+   "n_hits": 5,
+   "top_titles": [
+    "Encanto (película)",
+    "El encanto del águila",
+    "(Des)encanto"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "fa",
+   "query": "جذابیت شخصی",
+   "n_hits": 5,
+   "top_titles": [
+    "جذابیت جسمانی",
+    "جورجینا رودریگز",
+    "تاینا مولر"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "fr",
+   "query": "Charme personnel",
+   "n_hits": 5,
+   "top_titles": [
+    "Paul-Clément Jagot",
+    "Édouard VII",
+    "John Willoughby"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "pt",
+   "query": "Charme pessoal",
+   "n_hits": 5,
+   "top_titles": [
+    "Cheias de Charme",
+    "Neville Cardus",
+    "Antonietta Meo"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "ru",
+   "query": "Личное обаяние",
+   "n_hits": 5,
+   "top_titles": [
+    "Елизавета Баварская (императрица Австрии)",
+    "Гапон, Георгий Аполлонович",
+    "Утомлённые солнцем"
+   ],
+   "found": true
+  },
+  {
+   "pk": "421",
+   "lang": "zh",
+   "query": "个人魅力",
+   "n_hits": 5,
+   "top_titles": [
+    "魅力",
+    "魅力型权威",
+    "偶像 (日本)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "ar",
+   "query": "مغالطة الانحدار نحو المتوسط",
+   "n_hits": 5,
+   "top_titles": [
+    "التطور",
+    "مغالطة بيئية",
+    "معركة أنقرة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "en",
+   "query": "Regression fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "Regression fallacy",
+    "Representativeness heuristic",
+    "Regression toward the mean"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "es",
+   "query": "Sofisma de regresión",
+   "n_hits": 3,
+   "top_titles": [
+    "Paradoja",
+    "Paradojas de Zenón",
+    "Argumento ontológico"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "fa",
+   "query": "مغالطهٔ بازگشت به میانگین",
+   "n_hits": 5,
+   "top_titles": [
+    "دانش در ۲۰۲۴",
+    "اثر بدتر از میانگین",
+    "ژنتیک کمی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "fr",
+   "query": "Sophisme de régression",
+   "n_hits": 5,
+   "top_titles": [
+    "Hypothèse de l'homoncule",
+    "Paradoxe",
+    "Non causa pro causa"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "pt",
+   "query": "Sofisma da regressão",
+   "n_hits": 5,
+   "top_titles": [
+    "Altruísmo",
+    "Absurdismo",
+    "Glossário de filosofia"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "ru",
+   "query": "Софизм регрессии",
+   "n_hits": 1,
+   "top_titles": [
+    "Евтидем (Платон)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "636",
+   "lang": "zh",
+   "query": "回归谬误",
+   "n_hits": 5,
+   "top_titles": [
+    "因果謬誤",
+    "迴歸謬誤",
+    "謬誤列表"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "ar",
+   "query": "احتمالات مشوهة",
+   "n_hits": 5,
+   "top_titles": [
+    "زنا المحارم",
+    "أطر فلزية عضوية",
+    "داء الليشمانيات الجلدي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "en",
+   "query": "Probabilistic fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "List of fallacies",
+    "Gambler's fallacy",
+    "Informal fallacy"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "es",
+   "query": "Probabilidades Falseadas",
+   "n_hits": 5,
+   "top_titles": [
+    "Futurología",
+    "Líquido preseminal",
+    "Guzmán de Alfarache"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "fa",
+   "query": "احتمالات نادرست",
+   "n_hits": 5,
+   "top_titles": [
+    "سند سوم بازل",
+    "یادگیری ماشین در معماری",
+    "انگشت‌نگاری دی‌ان‌ای"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "fr",
+   "query": "Probabilités faussées",
+   "n_hits": 5,
+   "top_titles": [
+    "Probabilité",
+    "Histoire des probabilités",
+    "Indépendance (probabilités)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "pt",
+   "query": "Falácia Probabilística",
+   "n_hits": 5,
+   "top_titles": [
+    "Falácia do apostador",
+    "Falácia informal",
+    "Apelo à probabilidade"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "ru",
+   "query": "Ложная вероятность",
+   "n_hits": 5,
+   "top_titles": [
+    "Ложная лисичка",
+    "Постоянная вероятность ложных тревог",
+    "Ошибки первого и второго рода"
+   ],
+   "found": true
+  },
+  {
+   "pk": "644",
+   "lang": "zh",
+   "query": "错误概率",
+   "n_hits": 5,
+   "top_titles": [
+    "ZPP (複雜度)",
+    "比特误码率",
+    "条件概率"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "ar",
+   "query": "مغالطة اليد الساخنة",
+   "n_hits": 5,
+   "top_titles": [
+    "سلعة فبلين",
+    "عين الحسد",
+    "تسمم بالرصاص"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "en",
+   "query": "Hot hand fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "Hot hand",
+    "Gambler's fallacy",
+    "Jeffrey Zwiebel"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "es",
+   "query": "Falacia de la mano caliente",
+   "n_hits": 5,
+   "top_titles": [
+    "Ley de promedios",
+    "Efecto Forer",
+    "Jainismo"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "fa",
+   "query": "توهم دستیابی داغ",
+   "n_hits": 5,
+   "top_titles": [
+    "سید علی خامنه‌ای",
+    "حبس روانپزشکی کریستوفر اسمارت",
+    "داوکینز دربرابر گولد"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "fr",
+   "query": "Main chaude",
+   "n_hits": 5,
+   "top_titles": [
+    "La Main chaude",
+    "Manique (cuisine)",
+    "Macha Méril"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "pt",
+   "query": "Falácia da Mão Quente",
+   "n_hits": 5,
+   "top_titles": [
+    "Falácia do apostador",
+    "Lei da demanda",
+    "Ricardo Felício"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "ru",
+   "query": "Разогретые мышцы",
+   "n_hits": 5,
+   "top_titles": [
+    "Принципы силового тренинга",
+    "Физиотерапия",
+    "Разминка"
+   ],
+   "found": true
+  },
+  {
+   "pk": "653",
+   "lang": "zh",
+   "query": "热手谬误",
+   "n_hits": 5,
+   "top_titles": [
+    "熱手謬誤",
+    "賭徒謬誤",
+    "不充分的謬誤"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "ar",
+   "query": "اللانهاية الخادعة",
+   "n_hits": 4,
+   "top_titles": [
+    "النهاية الزمنية",
+    "مقدمة لكل ميتافيزيقا مقبلة",
+    "دايسكي هيراكاوا"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "en",
+   "query": "Deceptive infinity",
+   "n_hits": 5,
+   "top_titles": [
+    "Infinity Within",
+    "Antinomy",
+    "Pascal's wager"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "es",
+   "query": "Infinito engañoso",
+   "n_hits": 5,
+   "top_titles": [
+    "Gráfico engañoso",
+    "Paradoja",
+    "Alonso Gómez de Encinas"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "fa",
+   "query": "بی‌نهایت گمراه‌کننده",
+   "n_hits": 5,
+   "top_titles": [
+    "آمیزش جنسی در انسان",
+    "ضربه‌زنی (کریکت)",
+    "سید عباس عراقچی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "fr",
+   "query": "Infini fallacieux",
+   "n_hits": 5,
+   "top_titles": [
+    "Faux dilemme",
+    "Raisonnement",
+    "Liste de paradoxes"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "pt",
+   "query": "Infinito Enganoso",
+   "n_hits": 5,
+   "top_titles": [
+    "Guerra de Canudos",
+    "Prolegômenos Para Qualquer Futura Metafísica",
+    "Aristóteles"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "ru",
+   "query": "Обманчивая бесконечность",
+   "n_hits": 5,
+   "top_titles": [
+    "Фильмография Армена Джигарханяна",
+    "Апории Зенона",
+    "Янковский, Олег Иванович"
+   ],
+   "found": true
+  },
+  {
+   "pk": "658",
+   "lang": "zh",
+   "query": "虚假的无限",
+   "n_hits": 5,
+   "top_titles": [
+    "无限飞行III",
+    "勒内·笛卡儿",
+    "小径分岔的花园"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "ar",
+   "query": "غموض",
+   "n_hits": 5,
+   "top_titles": [
+    "غموض",
+    "سيد الغموض",
+    "فلم غموض"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "en",
+   "query": "Vagueness",
+   "n_hits": 5,
+   "top_titles": [
+    "Vagueness",
+    "Vagueness doctrine",
+    "Vague (disambiguation)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "es",
+   "query": "Imprecisión",
+   "n_hits": 5,
+   "top_titles": [
+    "Provincia de Lima",
+    "Soft computing",
+    "Conjunto difuso"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "fa",
+   "query": "ابهام",
+   "n_hits": 5,
+   "top_titles": [
+    "ابهام",
+    "کون (ابهام‌زدایی)",
+    "SEX"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "fr",
+   "query": "Imprécision",
+   "n_hits": 5,
+   "top_titles": [
+    "Précision",
+    "Nom vernaculaire",
+    "Zayed ben Sultan Al Nahyane"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "pt",
+   "query": "Imprecisão",
+   "n_hits": 5,
+   "top_titles": [
+    "A Odisseia",
+    "ChatGPT",
+    "Rio"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "ru",
+   "query": "Неточность",
+   "n_hits": 5,
+   "top_titles": [
+    "Диспраксия",
+    "Храброе сердце (фильм)",
+    "Чёрная дыра (фильм, 2000)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "667",
+   "lang": "zh",
+   "query": "含糊其辞",
+   "n_hits": 5,
+   "top_titles": [
+    "唐納·川普",
+    "孔子",
+    "帕劳国旗"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "ar",
+   "query": "فرضية غير محتملة",
+   "n_hits": 5,
+   "top_titles": [
+    "فرضية السديم",
+    "فرضية الأرض النادرة",
+    "فرضية المحاكاة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "en",
+   "query": "Least Plausible Hypothesis",
+   "n_hits": 5,
+   "top_titles": [
+    "Riemann hypothesis",
+    "Statistical hypothesis test",
+    "Zoo hypothesis"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "es",
+   "query": "Hipótesis menos plausible",
+   "n_hits": 5,
+   "top_titles": [
+    "Hipótesis macro-sioux",
+    "Hipótesis de los kurganes",
+    "Hipótesis del mundo de ARN"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "fa",
+   "query": "فرضیه غیر محتمل",
+   "n_hits": 5,
+   "top_titles": [
+    "بلوپ",
+    "زندگی ویلیام شکسپیر",
+    "آتش‌گردانی ذهنی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "fr",
+   "query": "Hypothèse peu plausible",
+   "n_hits": 5,
+   "top_titles": [
+    "Château de Madrid",
+    "Mileva Einstein",
+    "Bergerac (Dordogne)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "pt",
+   "query": "Hipótese Improvável",
+   "n_hits": 5,
+   "top_titles": [
+    "Guerra do Pinheirinho",
+    "Testes de hipóteses",
+    "Hipótese de Riemann"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "ru",
+   "query": "Недостоверная гипотеза",
+   "n_hits": 5,
+   "top_titles": [
+    "Индоевропейские языки",
+    "Гипотеза (математика)",
+    "Рукопись Войнича"
+   ],
+   "found": true
+  },
+  {
+   "pk": "680",
+   "lang": "zh",
+   "query": "最不可能假设",
+   "n_hits": 5,
+   "top_titles": [
+    "假說檢定",
+    "奥卡姆剃刀",
+    "连续统假设"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "ar",
+   "query": "خطأ في الحساب",
+   "n_hits": 5,
+   "top_titles": [
+    "خطأ عددي",
+    "خطأ",
+    "خلاصة الحساب (كتاب)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "en",
+   "query": "Erroneous calculation",
+   "n_hits": 5,
+   "top_titles": [
+    "Tetrahedron",
+    "Adoption of the Gregorian calendar",
+    "The Void (2001 film)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "es",
+   "query": "Error de cálculo",
+   "n_hits": 5,
+   "top_titles": [
+    "Error de redondeo",
+    "Error de aproximación",
+    "Error"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "fa",
+   "query": "اشتباه محاسباتی",
+   "n_hits": 5,
+   "top_titles": [
+    "دیپ‌سیک",
+    "چت‌جی‌پی‌تی",
+    "هوش مصنوعی مولد"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "fr",
+   "query": "Erreur de calcul",
+   "n_hits": 5,
+   "top_titles": [
+    "Marge d'erreur",
+    "Erreur de mesure",
+    "Erreur type"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "pt",
+   "query": "Erro de Cálculo",
+   "n_hits": 5,
+   "top_titles": [
+    "Cálculo diferencial",
+    "Estádio Milton de Souza Corrêa",
+    "Cripta Imperial do Ipiranga"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "ru",
+   "query": "Ошибка в вычислении",
+   "n_hits": 5,
+   "top_titles": [
+    "Программная ошибка",
+    "Ошибка округления",
+    "Метод обратного распространения ошибки"
+   ],
+   "found": true
+  },
+  {
+   "pk": "681",
+   "lang": "zh",
+   "query": "计算错误",
+   "n_hits": 5,
+   "top_titles": [
+    "錯誤",
+    "程序错误",
+    "错误检测与纠正"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "ar",
+   "query": "عملية غير مناسبة",
+   "n_hits": 5,
+   "top_titles": [
+    "غير مناسب للعمل",
+    "عطلة رسمية",
+    "كيرلس الأورشليمي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "en",
+   "query": "Wrong reasoning",
+   "n_hits": 5,
+   "top_titles": [
+    "Reasoning model",
+    "Reason",
+    "Not even wrong"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "es",
+   "query": "Operación inapropiada",
+   "n_hits": 5,
+   "top_titles": [
+    "Incidente de la isla de Perejil",
+    "Una respuesta proporcional",
+    "Oficina de Servicios Estratégicos"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "fa",
+   "query": "استدلال نادرست",
+   "n_hits": 5,
+   "top_titles": [
+    "استدلال از ناباوری",
+    "تشییع جنازه سید علی خامنه‌ای",
+    "واژن"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "fr",
+   "query": "Opération inappropriée",
+   "n_hits": 5,
+   "top_titles": [
+    "Timothy Ballard",
+    "Commandement central des États-Unis",
+    "Contrôle parental"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "pt",
+   "query": "Raciocínio matemático inadequado",
+   "n_hits": 5,
+   "top_titles": [
+    "Inteligência artificial simbólica",
+    "Modelos de linguagem em grande escala",
+    "Falácia"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "ru",
+   "query": "Неуместное умозаключение",
+   "n_hits": 5,
+   "top_titles": [
+    "Аристотель",
+    "Лейбниц, Готфрид Вильгельм",
+    "Дело Pussy Riot"
+   ],
+   "found": true
+  },
+  {
+   "pk": "690",
+   "lang": "zh",
+   "query": "不当操作",
+   "n_hits": 5,
+   "top_titles": [
+    "肌肉注射",
+    "灌肠 (医学)",
+    "操作制約"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "ar",
+   "query": "تأليف مغلوط",
+   "n_hits": 5,
+   "top_titles": [
+    "المسيحية في لبنان",
+    "ورود ملونة (مسلسل)",
+    "شخصنة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "en",
+   "query": "Spurious composition",
+   "n_hits": 5,
+   "top_titles": [
+    "Spurious relationship",
+    "List of compositions by Claude Debussy",
+    "BWV Anh."
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "es",
+   "query": "Composición espuria",
+   "n_hits": 5,
+   "top_titles": [
+    "Missa brevis n.º 12 (Mozart)",
+    "Sinfonía concertante para oboe, clarinete, trompa, fagot y orquesta (Mozart)",
+    "Fuga en sol menor, BWV 131a"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "fa",
+   "query": "ترکیب نادرست",
+   "n_hits": 5,
+   "top_titles": [
+    "واژن",
+    "لامین یامال",
+    "تمدن ایلام"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "fr",
+   "query": "Composition fautive",
+   "n_hits": 5,
+   "top_titles": [
+    "Accent grave en français",
+    "Liste de prénoms en français",
+    "Mécoupure"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "pt",
+   "query": "Composição falaciosa",
+   "n_hits": 5,
+   "top_titles": [
+    "Jesus",
+    "Cabala",
+    "Lista de falácias"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "ru",
+   "query": "Неправильная композиция",
+   "n_hits": 5,
+   "top_titles": [
+    "Композиция VIII",
+    "Три обезьяны",
+    "Композиция VII"
+   ],
+   "found": true
+  },
+  {
+   "pk": "726",
+   "lang": "zh",
+   "query": "虚假组合",
+   "n_hits": 5,
+   "top_titles": [
+    "時代少年團",
+    "肖戰",
+    "Re:從零開始的異世界生活角色列表"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "ar",
+   "query": "مغالطة في منطق المقترحات",
+   "n_hits": 5,
+   "top_titles": [
+    "توسل بالمرجعية",
+    "عقل (منطق)",
+    "أنواع المغالطات"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "en",
+   "query": "Propositional logic fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "Formal fallacy",
+    "Modal fallacy",
+    "Argument from fallacy"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "es",
+   "query": "Falacia de la lógica proposicional",
+   "n_hits": 5,
+   "top_titles": [
+    "Lógica",
+    "Filosofía de la lógica",
+    "Transposición (lógica)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "fa",
+   "query": "اشتباه در منطق گزاره‌ای",
+   "n_hits": 5,
+   "top_titles": [
+    "فلسفه سورن کی‌یرکگور",
+    "اختربینی و علم",
+    "تحریف ترجیحات"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "fr",
+   "query": "Erreur de logique propositionnelle",
+   "n_hits": 5,
+   "top_titles": [
+    "Problème SAT",
+    "Stoïcisme",
+    "Langage de la logique"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "pt",
+   "query": "Erro de lógica proposicional",
+   "n_hits": 5,
+   "top_titles": [
+    "Lógica proposicional",
+    "Lógica de primeira ordem",
+    "Fórmula bem formada"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "ru",
+   "query": "Логическая ошибка в предложении",
+   "n_hits": 5,
+   "top_titles": [
+    "Список кодов состояния HTTP",
+    "Софизм",
+    "Логическая форма"
+   ],
+   "found": true
+  },
+  {
+   "pk": "727",
+   "lang": "zh",
+   "query": "命题逻辑谬误",
+   "n_hits": 5,
+   "top_titles": [
+    "稻草人論證",
+    "斯多葛派逻辑",
+    "逻辑"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "ar",
+   "query": "مغالطة التكميم",
+   "n_hits": 5,
+   "top_titles": [
+    "مكمم",
+    "قاعدة التنبؤ السريري",
+    "برهان فلسفي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "en",
+   "query": "Quantification fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "List of fallacies",
+    "Quantifier (logic)",
+    "Texas sharpshooter fallacy"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "es",
+   "query": "Falacia de cuantificación",
+   "n_hits": 5,
+   "top_titles": [
+    "Falacia de reificación",
+    "Falacia de McNamara",
+    "Reificación"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "fa",
+   "query": "سفسطه کمیت",
+   "n_hits": 5,
+   "top_titles": [
+    "منطق احتمالاتی",
+    "فهرست وام‌واژه‌های عربی در فارسی",
+    "فهرست مغالطه‌ها"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "fr",
+   "query": "Erreur de quantification",
+   "n_hits": 5,
+   "top_titles": [
+    "Quantification (signal)",
+    "Dither (audio)",
+    "Rapport signal sur bruit"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "pt",
+   "query": "Erro de Quantificação",
+   "n_hits": 5,
+   "top_titles": [
+    "Quantificação universal",
+    "Cromatografia gasosa bidimensional abrangente GC×GC",
+    "Futebol"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "ru",
+   "query": "Количественная ошибка",
+   "n_hits": 5,
+   "top_titles": [
+    "Теория денег",
+    "Закон перехода количественных изменений в качественные",
+    "Ошибка в уголовном праве"
+   ],
+   "found": true
+  },
+  {
+   "pk": "735",
+   "lang": "zh",
+   "query": "量化谬误",
+   "n_hits": 5,
+   "top_titles": [
+    "量化詞對調",
+    "謬誤列表",
+    "麥納馬拉謬誤"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "ar",
+   "query": "التناقض",
+   "n_hits": 5,
+   "top_titles": [
+    "مبدأ عدم التناقض",
+    "نظرية التناقض الذاتي",
+    "تناقض (منطق)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "en",
+   "query": "Inconsistency",
+   "n_hits": 5,
+   "top_titles": [
+    "Consistency",
+    "Dynamic inconsistency",
+    "Inconsistent triad"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "es",
+   "query": "Inconsistencia",
+   "n_hits": 5,
+   "top_titles": [
+    "Fernando el Católico y los falsarios de la historia",
+    "Falsa equivalencia",
+    "Lógica paraconsistente"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "fa",
+   "query": "ناسازگاری",
+   "n_hits": 5,
+   "top_titles": [
+    "ناسازگاری",
+    "ناسازگاری فرگشتی",
+    "پیروز نهاوندی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "fr",
+   "query": "Inconsistance",
+   "n_hits": 5,
+   "top_titles": [
+    "Rémi Bichet",
+    "Zeus",
+    "Euripide"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "pt",
+   "query": "Inconsistência",
+   "n_hits": 5,
+   "top_titles": [
+    "Dissonância cognitiva",
+    "Clube de Regatas do Flamengo",
+    "Wikipédia"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "ru",
+   "query": "Несостоятельность",
+   "n_hits": 5,
+   "top_titles": [
+    "Несостоятельность",
+    "Федеральный закон «О несостоятельности (банкротстве)»",
+    "Индивидуальный предприниматель (Россия)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "777",
+   "lang": "zh",
+   "query": "不一致",
+   "n_hits": 5,
+   "top_titles": [
+    "一致性 (邏輯)",
+    "性別焦慮",
+    "不一致的謬誤"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "ar",
+   "query": "سوء استخدام اللغة",
+   "n_hits": 5,
+   "top_titles": [
+    "زنا المحارم",
+    "اللغة الدرية",
+    "مقر اللغة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "en",
+   "query": "Misleading language",
+   "n_hits": 5,
+   "top_titles": [
+    "Cant",
+    "Pseudoscience",
+    "Large language model"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "es",
+   "query": "Abuso del Lenguaje",
+   "n_hits": 5,
+   "top_titles": [
+    "Abuso sexual infantil",
+    "Abuso sexual",
+    "Abuso de notación"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "fa",
+   "query": "سوء استفاده از زبان",
+   "n_hits": 5,
+   "top_titles": [
+    "سوءاستفاده جنسی",
+    "سوءرفتار جنسی",
+    "گواهی ریشه"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "fr",
+   "query": "Abus de langage",
+   "n_hits": 5,
+   "top_titles": [
+    "Abus de langage",
+    "Toilettes à la turque",
+    "Bien (économie)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "pt",
+   "query": "Abuso da Linguagem",
+   "n_hits": 5,
+   "top_titles": [
+    "Asiáticos",
+    "Abuso infantil",
+    "Abuso verbal"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "ru",
+   "query": "Злоупотребление языком",
+   "n_hits": 5,
+   "top_titles": [
+    "Злоупотребление кавычками",
+    "Бипериден",
+    "Злоупотребление тианептином"
+   ],
+   "found": true
+  },
+  {
+   "pk": "798",
+   "lang": "zh",
+   "query": "语言误导",
+   "n_hits": 5,
+   "top_titles": [
+    "谎言",
+    "大型语言模型",
+    "Java"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "ar",
+   "query": "تعريف غامض",
+   "n_hits": 5,
+   "top_titles": [
+    "ملف تعريف ارتباط",
+    "ثقافة العلاقات العابرة",
+    "قائمة أفلام مبنية على أحداث حقيقية"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "en",
+   "query": "Vague definition",
+   "n_hits": 5,
+   "top_titles": [
+    "Vague language",
+    "Vagueness",
+    "IHRA definition of antisemitism"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "es",
+   "query": "Definición vaga",
+   "n_hits": 5,
+   "top_titles": [
+    "Vågå",
+    "Definiciones de filosofía",
+    "Verbo auxiliar"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "fa",
+   "query": "تعریف مبهم",
+   "n_hits": 5,
+   "top_titles": [
+    "مبهم‌نویسی",
+    "جنگ حقوقی",
+    "مکتب فکری کنش فراکنش"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "fr",
+   "query": "Acception vague",
+   "n_hits": 5,
+   "top_titles": [
+    "Plage",
+    "Houle",
+    "Nouvelle Vague (Japon)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "pt",
+   "query": "Definição Vaga",
+   "n_hits": 5,
+   "top_titles": [
+    "Vaga-lume",
+    "Sadcore",
+    "Noroeste da Europa"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "ru",
+   "query": "Размытое определение",
+   "n_hits": 5,
+   "top_titles": [
+    "Темперамент",
+    "Крот (разведка)",
+    "Расстройства мышления"
+   ],
+   "found": true
+  },
+  {
+   "pk": "800",
+   "lang": "zh",
+   "query": "模糊定义",
+   "n_hits": 5,
+   "top_titles": [
+    "模糊逻辑",
+    "模糊集",
+    "模糊数学"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "ar",
+   "query": "التعريف غير المتسق",
+   "n_hits": 5,
+   "top_titles": [
+    "رقم تعريف المركبة",
+    "مقدر متسق",
+    "أدلة السلف المشترك"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "en",
+   "query": "Inconsistent definition",
+   "n_hits": 5,
+   "top_titles": [
+    "League (unit)",
+    "Jüdisch versippt",
+    "Row crop"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "es",
+   "query": "Definición inconsistente",
+   "n_hits": 5,
+   "top_titles": [
+    "Teorema de completitud de Gödel",
+    "Consistencia (lógica)",
+    "Álgebra graduada"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "fa",
+   "query": "تعریف ناسازگار",
+   "n_hits": 5,
+   "top_titles": [
+    "اطلاعات سلامت در ویکی‌پدیا",
+    "ارتباط اپی ژنتیک و اعتیاد به مواد مخدر",
+    "گسترش مسیحیت"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "fr",
+   "query": "Définition incohérente",
+   "n_hits": 5,
+   "top_titles": [
+    "Cohérence (logique)",
+    "Cohérence (physique)",
+    "Chaos (cosmogonie)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "pt",
+   "query": "Definição Inconsistente",
+   "n_hits": 5,
+   "top_titles": [
+    "Fato",
+    "Enchentes no Rio Grande do Sul em 2024",
+    "Paradoxo"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "ru",
+   "query": "Несостоятельное определение",
+   "n_hits": 5,
+   "top_titles": [
+    "Несостоятельность",
+    "Федеральный закон «О несостоятельности (банкротстве)»",
+    "Сапог Шварца"
+   ],
+   "found": true
+  },
+  {
+   "pk": "826",
+   "lang": "zh",
+   "query": "不一致定义",
+   "n_hits": 5,
+   "top_titles": [
+    "性別焦慮",
+    "一致空间",
+    "一致性质"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "ar",
+   "query": "مقارنة غير ملائمة",
+   "n_hits": 5,
+   "top_titles": [
+    "مقارنة",
+    "إباحية",
+    "سياسة مقارنة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "en",
+   "query": "Faulty comparison",
+   "n_hits": 5,
+   "top_titles": [
+    "List of fallacies",
+    "False equivalence",
+    "Capacitor plague"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "es",
+   "query": "Comparación errónea",
+   "n_hits": 5,
+   "top_titles": [
+    "Hymenopus coronatoides",
+    "Información errónea",
+    "Comparación entre el nazismo y el estalinismo"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "fa",
+   "query": "قیاس نادرست",
+   "n_hits": 5,
+   "top_titles": [
+    "حمله هوایی به مدرسه میناب",
+    "ریچارد شوسترمن",
+    "درمان گشتالت"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "fr",
+   "query": "Comparaison abusive",
+   "n_hits": 5,
+   "top_titles": [
+    "Comparaison (rhétorique)",
+    "Nicolas Copernic",
+    "Comparaison entre le nazisme et le communisme"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "pt",
+   "query": "Comparação abusiva",
+   "n_hits": 5,
+   "top_titles": [
+    "Dark Horse (filme de 2026)",
+    "Fatal Model",
+    "Guerra de Canudos"
+   ],
+   "found": true
+  },
+  {
+   "pk": "834",
+   "lang": "ru",
+   "query": "Злопотребление сравнением",
+   "n_hits": 0,
+   "top_titles": [],
+   "found": false
+  },
+  {
+   "pk": "834",
+   "lang": "zh",
+   "query": "错误的比较",
+   "n_hits": 5,
+   "top_titles": [
+    "差一错误",
+    "即时通讯软件比较",
+    "大规模比较法"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "ar",
+   "query": "مقارنة غير متسقة",
+   "n_hits": 5,
+   "top_titles": [
+    "فوكس نيوز",
+    "آيفون",
+    "توما الأكويني"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "en",
+   "query": "Inconsistent comparison",
+   "n_hits": 5,
+   "top_titles": [
+    "False advertising",
+    "Comparison of e-readers",
+    "Steam Frame"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "es",
+   "query": "Comparación inconsistente",
+   "n_hits": 5,
+   "top_titles": [
+    "Arroyo de la Gándara",
+    "Equipo de Copa Davis de Gran Bretaña",
+    "Batalla de la tierra"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "fa",
+   "query": "قیاس غیرمستقیم",
+   "n_hits": 5,
+   "top_titles": [
+    "درمان گشتالت",
+    "فهرست منابع جنگ‌های صلیبی",
+    "هزاره یازدهم (پیش از میلاد)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "fr",
+   "query": "Comparaison incohérente",
+   "n_hits": 5,
+   "top_titles": [
+    "Règle (instrument de géométrie)",
+    "Industrie du sexe",
+    "Liste des pays et territoires par superficie"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "pt",
+   "query": "Comparação inconsistente",
+   "n_hits": 5,
+   "top_titles": [
+    "Got to Be There",
+    "Titanoboa",
+    "Guerra de Canudos"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "ru",
+   "query": "Несостоятельное сравнение",
+   "n_hits": 5,
+   "top_titles": [
+    "Индивидуальный предприниматель (Россия)",
+    "Общество с ограниченной ответственностью (Россия)",
+    "Москва"
+   ],
+   "found": true
+  },
+  {
+   "pk": "837",
+   "lang": "zh",
+   "query": "不一致的比较",
+   "n_hits": 5,
+   "top_titles": [
+    "不一致的比較",
+    "不完整的比較",
+    "地位不一致"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "ar",
+   "query": "غموض",
+   "n_hits": 5,
+   "top_titles": [
+    "غموض",
+    "سيد الغموض",
+    "فلم غموض"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "en",
+   "query": "Ambiguity",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambiguity",
+    "Ambiguity aversion",
+    "Ambiguity (disambiguation)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "es",
+   "query": "Ambigüedad",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambigüedad",
+    "Falacia ecológica",
+    "Tilde diacrítica"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "fa",
+   "query": "ابهام",
+   "n_hits": 5,
+   "top_titles": [
+    "ابهام",
+    "کون (ابهام‌زدایی)",
+    "SEX"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "fr",
+   "query": "Ambiguïté",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambiguïté",
+    "Intersexuation",
+    "Effet d'ambiguïté"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "pt",
+   "query": "Ambiguidade",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambiguidade",
+    "Ambiguidade de Tolkien",
+    "Função ambiguidade"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "ru",
+   "query": "Двусмысленность",
+   "n_hits": 5,
+   "top_titles": [
+    "Двусмысленность",
+    "Омофоны",
+    "Амфиболия"
+   ],
+   "found": true
+  },
+  {
+   "pk": "846",
+   "lang": "zh",
+   "query": "歧义",
+   "n_hits": 5,
+   "top_titles": [
+    "歧義",
+    "歧義謬誤",
+    "HI"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "ar",
+   "query": "ترقيم ملتبس",
+   "n_hits": 5,
+   "top_titles": [
+    "مسيحيون يهود",
+    "شكلة",
+    "تحليل المفردات"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "en",
+   "query": "Ambiguous punctuation",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambiguity",
+    "Hebrew punctuation",
+    "Slash (punctuation)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "es",
+   "query": "Puntuación ambigua",
+   "n_hits": 5,
+   "top_titles": [
+    "Yuxtaposición (gramática)",
+    "Equívoco (falacia)",
+    "Test de apercepción temática"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "fa",
+   "query": "نشانه‌گذاری مبهم",
+   "n_hits": 5,
+   "top_titles": [
+    "نشانه‌های هشداردهنده خودکشی",
+    "ویکتوریا اژنی باتنبرگ",
+    "دژ هوهنسالزبورگ"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "fr",
+   "query": "Ponctuation ambiguë",
+   "n_hits": 5,
+   "top_titles": [
+    "Apostrophe (typographie)",
+    "Émoticône",
+    "Conjonction de coordination en français"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "pt",
+   "query": "Pontuação Ambígua",
+   "n_hits": 5,
+   "top_titles": [
+    "Justaposição (gramática)",
+    "Ambiguidade",
+    "Modelos de linguagem em grande escala"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "ru",
+   "query": "Двусмысленная пунктуация",
+   "n_hits": 5,
+   "top_titles": [
+    "Серийная запятая",
+    "Грозовой перевал",
+    "Тайское письмо"
+   ],
+   "found": true
+  },
+  {
+   "pk": "848",
+   "lang": "zh",
+   "query": "模糊标点",
+   "n_hits": 5,
+   "top_titles": [
+    "逻辑语",
+    "御製五體清文鑑",
+    "Unicode字符列表"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "ar",
+   "query": "الغموض السردي",
+   "n_hits": 5,
+   "top_titles": [
+    "سرد",
+    "الموتيف (سرد)",
+    "كتابة السيناريو"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "en",
+   "query": "Narrative ambiguity",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambiguity",
+    "Dark romance",
+    "Narrative"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "es",
+   "query": "Ambigüedad narrativa",
+   "n_hits": 5,
+   "top_titles": [
+    "La mano junto al muro",
+    "Romance oscuro",
+    "Nueva narrativa chilena de los noventa"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "fa",
+   "query": "ابهام روایت",
+   "n_hits": 5,
+   "top_titles": [
+    "تاسیان (مجموعه نمایش خانگی)",
+    "قاسم سلیمانی",
+    "سانحه سقوط بالگرد در ورزقان"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "fr",
+   "query": "Ambiguïté narrative",
+   "n_hits": 5,
+   "top_titles": [
+    "Figuration narrative",
+    "Le Double",
+    "La Peur (nouvelle, 1884)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "pt",
+   "query": "Ambiguidade narrativa",
+   "n_hits": 5,
+   "top_titles": [
+    "Ambiguidade",
+    "Esaú e Jacó (romance)",
+    "Ambiguidade de Tolkien"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "ru",
+   "query": "Двусмысленное повествование",
+   "n_hits": 5,
+   "top_titles": [
+    "Омен. Непорочная",
+    "Монро, Мэрилин",
+    "Улисс (роман)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "876",
+   "lang": "zh",
+   "query": "叙事模糊性",
+   "n_hits": 5,
+   "top_titles": [
+    "叙事",
+    "非敘事電影",
+    "后现代主义"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "ar",
+   "query": "الحجة بالإيحاء",
+   "n_hits": 5,
+   "top_titles": [
+    "أنواع المغالطات",
+    "سورة الفتح",
+    "قراءة الأفكار"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "en",
+   "query": "Insinuation",
+   "n_hits": 5,
+   "top_titles": [
+    "Innuendo",
+    "Islam",
+    "Karmina Constantino"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "es",
+   "query": "Argumento por insinuación",
+   "n_hits": 5,
+   "top_titles": [
+    "Argumento ad baculum",
+    "Historieta para adultos",
+    "Defensa de pánico gay"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "fa",
+   "query": "استدلال از طریق کنایه",
+   "n_hits": 5,
+   "top_titles": [
+    "تک‌بیضگی احتمالی آدولف هیتلر",
+    "رسوایی پروفومو",
+    "سیپریان نوروید"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "fr",
+   "query": "Argument par l’insinuation",
+   "n_hits": 5,
+   "top_titles": [
+    "L'Art d'avoir toujours raison",
+    "Puy du Fou",
+    "West Side Story"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "pt",
+   "query": "Argumento por insinuação",
+   "n_hits": 5,
+   "top_titles": [
+    "Pablo Marçal",
+    "Falácia",
+    "Netiqueta"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "ru",
+   "query": "Аргументация инсинуацией",
+   "n_hits": 5,
+   "top_titles": [
+    "Ломоносов, Михаил Васильевич",
+    "Война в Грузии (2008)",
+    "Речь Владимира Путина о начале вторжения на Украину"
+   ],
+   "found": true
+  },
+  {
+   "pk": "878",
+   "lang": "zh",
+   "query": "暗示性论点",
+   "n_hits": 5,
+   "top_titles": [
+    "韩流中的性化和性剥削",
+    "天主教會性侵害案例",
+    "滑坡謬誤"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "ar",
+   "query": "عرض مضلّل للوقائع",
+   "n_hits": 5,
+   "top_titles": [
+    "قانون العقود الإنجليزي",
+    "إنكار الهولوكوست",
+    "الجمهورية المختلطة"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "en",
+   "query": "Misleading presentation of facts",
+   "n_hits": 5,
+   "top_titles": [
+    "Misleading graph",
+    "Misleading of parliament",
+    "False or misleading statements by Donald Trump (second term)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "es",
+   "query": "Arreglar los hechos",
+   "n_hits": 5,
+   "top_titles": [
+    "Peine",
+    "La poetisa laureada de los Estados Unidos",
+    "Gran Premio de Yugoslavia de Motociclismo de 1972"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "fa",
+   "query": "دستکاری حقایق",
+   "n_hits": 5,
+   "top_titles": [
+    "ایالات متحده آمریکا در برابر آمیستاد",
+    "محاکمه هیئت منصفه",
+    "باورهای نوین زمین تخت"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "fr",
+   "query": "Présentation trompeuse des faits",
+   "n_hits": 5,
+   "top_titles": [
+    "Méditations métaphysiques",
+    "Aqababe",
+    "Greenwashing"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "pt",
+   "query": "Manipulação de Fatos",
+   "n_hits": 5,
+   "top_titles": [
+    "Manipulação psicológica",
+    "Maskirovka",
+    "Manipulação da Internet"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "ru",
+   "query": "Подгонка фактов",
+   "n_hits": 5,
+   "top_titles": [
+    "Слово о полку Игореве",
+    "Террористический акт в Беслане",
+    "Депортация чеченцев и ингушей"
+   ],
+   "found": true
+  },
+  {
+   "pk": "888",
+   "lang": "zh",
+   "query": "操纵事实",
+   "n_hits": 5,
+   "top_titles": [
+    "線傳飛控系統",
+    "乳糖操縱子",
+    "维基百科"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "ar",
+   "query": "انتباه انتقائي",
+   "n_hits": 5,
+   "top_titles": [
+    "انتباه انتقائي بصري",
+    "إدارة الانتباه",
+    "أتوموكسيتين"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "en",
+   "query": "Selective attention",
+   "n_hits": 5,
+   "top_titles": [
+    "Selective auditory attention",
+    "Attentional control",
+    "Attention"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "es",
+   "query": "Atención selectiva",
+   "n_hits": 5,
+   "top_titles": [
+    "Atención selectiva",
+    "Atención",
+    "Percepción selectiva"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "fa",
+   "query": "توجه انتخابی",
+   "n_hits": 5,
+   "top_titles": [
+    "سیلدنافیل",
+    "یاسمین پهلوی",
+    "جام ملت‌های فوتسال اروپا ۲۰۲۶"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "fr",
+   "query": "Attention sélective",
+   "n_hits": 5,
+   "top_titles": [
+    "Contrôle attentionnel",
+    "Trouble déficit de l'attention avec ou sans hyperactivité",
+    "Attention"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "pt",
+   "query": "Atenção Seletiva",
+   "n_hits": 5,
+   "top_titles": [
+    "Efeitos da meditação",
+    "Transtorno do déficit de atenção e hiperatividade",
+    "Efeito coquetel"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "ru",
+   "query": "Избирательное внимание",
+   "n_hits": 5,
+   "top_titles": [
+    "Внимание",
+    "Рассеянность внимания",
+    "Женское избирательное право"
+   ],
+   "found": true
+  },
+  {
+   "pk": "953",
+   "lang": "zh",
+   "query": "选择性注意",
+   "n_hits": 5,
+   "top_titles": [
+    "注意",
+    "鸡尾酒会效应",
+    "選擇性知覺"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "ar",
+   "query": "زيادة المتطلبات",
+   "n_hits": 5,
+   "top_titles": [
+    "نقص فيتامين بي12",
+    "لهث",
+    "التزود بالوقود جوا"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "en",
+   "query": "Stronger requirements",
+   "n_hits": 5,
+   "top_titles": [
+    "Block cipher mode of operation",
+    "Strong customer authentication",
+    "Age of candidacy"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "es",
+   "query": "Aumento de requisitos",
+   "n_hits": 5,
+   "top_titles": [
+    "Peso máximo al despegue",
+    "Generador de vórtices",
+    "Ley Orgánica Constitucional de Enseñanza"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "fa",
+   "query": "نیازمندی‌های قوی‌تر",
+   "n_hits": 5,
+   "top_titles": [
+    "آنتن فراماده",
+    "اوام‌اس سیف‌هاربر",
+    "مهاجرت به تهران"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "fr",
+   "query": "Exigence renforcée",
+   "n_hits": 5,
+   "top_titles": [
+    "Exigence (ingénierie)",
+    "ISO 15189",
+    "Eugène Perma"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "pt",
+   "query": "Exigências Aumentadas",
+   "n_hits": 5,
+   "top_titles": [
+    "Jeffrey Epstein",
+    "Governo Lula (2023–presente)",
+    "Guerra de Canudos"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "ru",
+   "query": "Усиленное требование",
+   "n_hits": 5,
+   "top_titles": [
+    "Выборы в Государственную думу (2026)",
+    "5S",
+    "Новые люди (партия)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "974",
+   "lang": "zh",
+   "query": "更高的要求",
+   "n_hits": 5,
+   "top_titles": [
+    "单片系统",
+    "中国公民签证要求",
+    "美國郵區編號"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "ar",
+   "query": "أخذ الزبدة وثمنها",
+   "n_hits": 5,
+   "top_titles": [
+    "الدولة البويهية",
+    "جنون التوليب",
+    "صفي الدين الهندي الأرموي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "en",
+   "query": "Having Your Cake and Eating It Too",
+   "n_hits": 5,
+   "top_titles": [
+    "You can't have your cake and eat it",
+    "Emotional eating",
+    "Multi-licensing"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "es",
+   "query": "Tener la mantequilla y el dinero de la mantequilla",
+   "n_hits": 5,
+   "top_titles": [
+    "Big Butter and Egg Man",
+    "Vida sencilla",
+    "Coste de oportunidad"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "fa",
+   "query": "هم کیک و هم خوردن آن",
+   "n_hits": 5,
+   "top_titles": [
+    "فهرست خوراکی‌های خشک‌شده",
+    "برنج سرخ‌کرده",
+    "تقاطع خندان"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "fr",
+   "query": "Vouloir le beurre et l’argent du beurre",
+   "n_hits": 5,
+   "top_titles": [
+    "Liste d'idiotismes gastronomiques en français",
+    "Marché noir en France pendant la Seconde Guerre mondiale",
+    "Jean Yanne"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "pt",
+   "query": "Ter o bolo e comê-lo também",
+   "n_hits": 5,
+   "top_titles": [
+    "Bolo-rei",
+    "Falling Down (filme)",
+    "Devorador de pecados"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "ru",
+   "query": "И на елку влезть...",
+   "n_hits": 5,
+   "top_titles": [
+    "Ёлки 2",
+    "The Fight Before Christmas",
+    "Домовой (фильм, 2008)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "992",
+   "lang": "zh",
+   "query": "鱼与熊掌兼得",
+   "n_hits": 5,
+   "top_titles": [
+    "熊掌",
+    "机会成本",
+    "德寿宫遗址"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "ar",
+   "query": "المراوغة",
+   "n_hits": 5,
+   "top_titles": [
+    "اختبار المراوغة بالمركبة",
+    "لامين جمال",
+    "بيضة (كرة قدم)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "en",
+   "query": "Hedging",
+   "n_hits": 5,
+   "top_titles": [
+    "Hedge (disambiguation)",
+    "Hedge (finance)",
+    "Fuel hedging"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "es",
+   "query": "Cobertura",
+   "n_hits": 5,
+   "top_titles": [
+    "Cobertura",
+    "Cobertura (telecomunicaciones)",
+    "Problema de la cobertura de vértices"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "fa",
+   "query": "چرخش",
+   "n_hits": 5,
+   "top_titles": [
+    "دوران (هندسه)",
+    "واژن مصنوعی",
+    "حوثی‌ها"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "fr",
+   "query": "Couverture",
+   "n_hits": 5,
+   "top_titles": [
+    "Couverture",
+    "Couverture lestée",
+    "Couverture (construction)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "pt",
+   "query": "Esquivando",
+   "n_hits": 5,
+   "top_titles": [
+    "Transtorno de apego reativo",
+    "Mulheres Apaixonadas",
+    "Muay thai"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "ru",
+   "query": "Под прикрытием",
+   "n_hits": 5,
+   "top_titles": [
+    "Афера под прикрытием",
+    "Кей Си. Под прикрытием",
+    "Под прикрытием"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1004",
+   "lang": "zh",
+   "query": "回避",
+   "n_hits": 5,
+   "top_titles": [
+    "迴避型人格障礙",
+    "迴避 (倫理學)",
+    "回避制度"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "ar",
+   "query": "متطلبات منخفضة",
+   "n_hits": 5,
+   "top_titles": [
+    "استهلاك الأكسجين الزائد بعد التمرين (علوم الرياضة)",
+    "حافلة منخفضة الأرضية",
+    "سام 6"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "en",
+   "query": "Weaker demands",
+   "n_hits": 5,
+   "top_titles": [
+    "Harley-Davidson India",
+    "Book-to-bill ratio",
+    "Weak Hero"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "es",
+   "query": "Exigencia relajada",
+   "n_hits": 5,
+   "top_titles": [
+    "Papeleta de conchabo",
+    "Antonio Fazio",
+    "Cruz Laureada de San Fernando"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "fa",
+   "query": "کاهش تقاضا",
+   "n_hits": 5,
+   "top_titles": [
+    "نیروگاه زغال سنگ سوز",
+    "هوشمندسازی ساختمان‌ها",
+    "رویکرد مدل نوردیک به تن‌فروشی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "fr",
+   "query": "Exigence relâchée",
+   "n_hits": 5,
+   "top_titles": [
+    "Leni Riefenstahl",
+    "Charles Bronson (prisonnier)",
+    "Nina Simone"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "pt",
+   "query": "Demandas Mais Fracas",
+   "n_hits": 5,
+   "top_titles": [
+    "Elasticidade (economia)",
+    "Resident Evil (filme de 2026)",
+    "ChatGPT"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "ru",
+   "query": "Снижение требований",
+   "n_hits": 5,
+   "top_titles": [
+    "ACID",
+    "Выборы в Государственную думу (2026)",
+    "Эра Варгаса"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1011",
+   "lang": "zh",
+   "query": "降低要求",
+   "n_hits": 5,
+   "top_titles": [
+    "2022年降低通胀法",
+    "降低成本",
+    "80 PLUS"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "ar",
+   "query": "جهد ملحوظ",
+   "n_hits": 5,
+   "top_titles": [
+    "جهد الفعل",
+    "فرق ملحوظ بالكاد",
+    "ترانزستور ثنائي القطب"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "en",
+   "query": "Notable effort",
+   "n_hits": 5,
+   "top_titles": [
+    "Rescue and recovery effort after the September 11 attacks on the World Trade Center",
+    "Federal Bureau of Investigation",
+    "Effort, Pennsylvania"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "es",
+   "query": "Esfuerzo notable",
+   "n_hits": 5,
+   "top_titles": [
+    "Notable",
+    "Sangre, esfuerzo, lágrimas y sudor",
+    "Puente Tampico"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "fa",
+   "query": "تلاش چشمگیر",
+   "n_hits": 5,
+   "top_titles": [
+    "کشته شدن سید علی خامنه‌ای",
+    "تشییع جنازه سید علی خامنه‌ای",
+    "ادیسه (فیلم ۲۰۲۶)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "fr",
+   "query": "Argument de l’effort notable",
+   "n_hits": 5,
+   "top_titles": [
+    "Risque existentiel posé par l'intelligence artificielle",
+    "Rhétorique",
+    "Conditions météorologiques lors du débarquement de Normandie"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "pt",
+   "query": "Argumento do esforço notável",
+   "n_hits": 5,
+   "top_titles": [
+    "Racismo no Quebec",
+    "Cronologia da história da China",
+    "Construção do World Trade Center"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "ru",
+   "query": "Заметное усилие",
+   "n_hits": 5,
+   "top_titles": [
+    "Гидроусилитель руля",
+    "Страны Великобритании",
+    "Антиблокировочная система"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1015",
+   "lang": "zh",
+   "query": "值得注意的努力",
+   "n_hits": 5,
+   "top_titles": [
+    "约翰逊字典",
+    "大统一理论",
+    "初戀那件小事"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "ar",
+   "query": "مغالطة التكاليف الغارقة",
+   "n_hits": 4,
+   "top_titles": [
+    "تكلفة غارقة",
+    "التفكير السريع والبطيء (كتاب)",
+    "تصعيد الالتزام"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "en",
+   "query": "Sunk Cost Fallacy",
+   "n_hits": 5,
+   "top_titles": [
+    "Sunk cost",
+    "Law & Order: Special Victims Unit season 19",
+    "Fox Stevenson"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "es",
+   "query": "Falacia del costo hundido",
+   "n_hits": 5,
+   "top_titles": [
+    "Costo hundido",
+    "Falacia del costo irrecuperable",
+    "Aumento del compromiso"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "fa",
+   "query": "مغالطه هزینه‌های غرق‌شده",
+   "n_hits": 3,
+   "top_titles": [
+    "اما گلدمن",
+    "هزینه ازدست‌رفته",
+    "تاریخ‌نگاری"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "fr",
+   "query": "Sophisme des coûts irrécupérables",
+   "n_hits": 4,
+   "top_titles": [
+    "Coût irrécupérable",
+    "Biais cognitif",
+    "Les Shadoks"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "pt",
+   "query": "Falácia dos Custos Irrecuperáveis",
+   "n_hits": 5,
+   "top_titles": [
+    "Custo irrecuperável",
+    "Escalada irracional de compromisso",
+    "Psicologia do investimento prévio"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1020",
+   "lang": "ru",
+   "query": "Логическая ошибка затонувших издержек",
+   "n_hits": 0,
+   "top_titles": [],
+   "found": false
+  },
+  {
+   "pk": "1020",
+   "lang": "zh",
+   "query": "沉没成本谬误",
+   "n_hits": 5,
+   "top_titles": [
+    "沉没成本",
+    "承諾續擴",
+    "惯性论证"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "ar",
+   "query": "تحيز السلبية",
+   "n_hits": 5,
+   "top_titles": [
+    "التحيز الأيديولوجي على ويكيبيديا",
+    "تحيز العزو العدائي",
+    "تحليل تلوي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "en",
+   "query": "Negativity bias",
+   "n_hits": 5,
+   "top_titles": [
+    "Negativity bias",
+    "Doomscrolling",
+    "Negative-bias temperature instability"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "es",
+   "query": "Sesgo de negatividad",
+   "n_hits": 5,
+   "top_titles": [
+    "Sesgo de negatividad",
+    "Sesgo mediático",
+    "Principio de Pollyanna"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "fa",
+   "query": "سوگیری منفی‌نگری",
+   "n_hits": 5,
+   "top_titles": [
+    "منفی‌نگری",
+    "فمینیسم مسیحی",
+    "اختلال کم‌توجهی-بیش‌فعالی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "fr",
+   "query": "Biais de négativité",
+   "n_hits": 5,
+   "top_titles": [
+    "Biais de négativité",
+    "Régime miracle",
+    "Biais cognitif"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "pt",
+   "query": "Viés de Negatividade",
+   "n_hits": 5,
+   "top_titles": [
+    "Ragebait",
+    "Doomscrolling",
+    "Viés cognitivo"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "ru",
+   "query": "Предвзятость к негативу",
+   "n_hits": 5,
+   "top_titles": [
+    "Хороший, плохой, злой",
+    "Фотограф",
+    "Папаши (телесериал)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1092",
+   "lang": "zh",
+   "query": "负面偏见",
+   "n_hits": 5,
+   "top_titles": [
+    "乐观偏误",
+    "媒體偏見",
+    "外貌魅力偏见"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "ar",
+   "query": "العرقلة",
+   "n_hits": 5,
+   "top_titles": [
+    "عرقلة حركة المرور",
+    "تخريب متعمد",
+    "التلفزة الأمريكية في 2022"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "en",
+   "query": "Obstruction",
+   "n_hits": 5,
+   "top_titles": [
+    "Obstruction",
+    "Bowel obstruction",
+    "Traffic obstruction"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "es",
+   "query": "Obstrucción",
+   "n_hits": 5,
+   "top_titles": [
+    "Obstrucción",
+    "Obstrucción intestinal",
+    "Teoría de la obstrucción"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "fa",
+   "query": "مانع‌تراشی",
+   "n_hits": 5,
+   "top_titles": [
+    "مهاجمان سرحد(بلوچستان شمالی)",
+    "موج‌های گرما ۲۰۲۶ اروپا",
+    "زن، زندگی، آزادی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "fr",
+   "query": "Obstruction",
+   "n_hits": 5,
+   "top_titles": [
+    "Obstruction",
+    "Obstruction parlementaire",
+    "Obstruction nasale"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "pt",
+   "query": "Obstrução",
+   "n_hits": 5,
+   "top_titles": [
+    "Obstrução",
+    "Obstrução de justiça",
+    "Obstrução intestinal"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "ru",
+   "query": "Обструкция",
+   "n_hits": 5,
+   "top_titles": [
+    "Обструкция",
+    "Обструкция дыхательных путей",
+    "Обтурация"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1280",
+   "lang": "zh",
+   "query": "阻碍",
+   "n_hits": 5,
+   "top_titles": [
+    "卡尔·马克思",
+    "日本",
+    "六四事件"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "ar",
+   "query": "رفض النقاش",
+   "n_hits": 5,
+   "top_titles": [
+    "نقاش عام",
+    "المسيحية واليهودية",
+    "استوديو 54"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "en",
+   "query": "Refusing debate",
+   "n_hits": 5,
+   "top_titles": [
+    "Debate",
+    "Lincoln–Douglas debates",
+    "United States presidential debates"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "es",
+   "query": "Rechazo del debate",
+   "n_hits": 5,
+   "top_titles": [
+    "7D: El debate decisivo",
+    "Campeonato Mundial Universitario de Debate en Español",
+    "Debate electoral de Mendoza de 2019"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "fa",
+   "query": "امتناع از مناظره",
+   "n_hits": 5,
+   "top_titles": [
+    "کلیسای کاتولیک و یهودیت",
+    "جنجال‌های بی‌بی‌سی",
+    "سارا مور گریمکی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "fr",
+   "query": "Refus du débat",
+   "n_hits": 5,
+   "top_titles": [
+    "Élection présidentielle française de 2002",
+    "Débat télévisé du second tour de l'élection présidentielle française",
+    "Élection présidentielle française de 1995"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "pt",
+   "query": "Recusa do debate",
+   "n_hits": 5,
+   "top_titles": [
+    "Eleição presidencial no Brasil em 2026",
+    "Eleição municipal em São Paulo em 2024",
+    "Pesquisas de opinião para a eleição presidencial no Brasil em 2026"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "ru",
+   "query": "Отказ от дебатов",
+   "n_hits": 5,
+   "top_titles": [
+    "Выборы мэра Москвы (2013)",
+    "Выборы в Государственную думу (2026)",
+    "Президентские дебаты в США (2020)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1281",
+   "lang": "zh",
+   "query": "拒绝辩论",
+   "n_hits": 5,
+   "top_titles": [
+    "美國總統選舉辯論",
+    "政策性辩论",
+    "厨房辩论"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "ar",
+   "query": "النسبية التعسفية",
+   "n_hits": 5,
+   "top_titles": [
+    "متجه موضع",
+    "تاكيون",
+    "فضاء دي سيتر المضاد"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "en",
+   "query": "Abusive relativism",
+   "n_hits": 5,
+   "top_titles": [
+    "Revy (Black Lagoon)",
+    "Pete Hegseth",
+    "Catholic Church sexual abuse cases"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "es",
+   "query": "Relativismo abusivo",
+   "n_hits": 5,
+   "top_titles": [
+    "Violencia doméstica en Chile",
+    "The Same Boat",
+    "Pierre Bourdieu"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "fa",
+   "query": "نسبی‌گرایی سوءاستفاده‌آمیز",
+   "n_hits": 5,
+   "top_titles": [
+    "پیت هگست",
+    "آموزش در اتحاد جماهیر شوروی",
+    "فرمان استرداد"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "fr",
+   "query": "Relativisme abusif",
+   "n_hits": 5,
+   "top_titles": [
+    "Nihilisme",
+    "Hypothèse de Sapir-Whorf",
+    "John Hick"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "pt",
+   "query": "Relativismo abusivo",
+   "n_hits": 5,
+   "top_titles": [
+    "Vício",
+    "Hermes",
+    "Telebasura"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "ru",
+   "query": "Злоупотребление релятивизмом",
+   "n_hits": 5,
+   "top_titles": [
+    "Протестантизм",
+    "Тулмин, Стивен Эделстон",
+    "Цинизм"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1282",
+   "lang": "zh",
+   "query": "滥用相对主义",
+   "n_hits": 5,
+   "top_titles": [
+    "薄熙来事件",
+    "薄熙来",
+    "约瑟夫·斯大林"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1287",
+   "lang": "ar",
+   "query": "تفسير زائف",
+   "n_hits": 5,
+   "top_titles": [
+    "الخط الكوفي الزائف",
+    "نظرية المعلومات المتكاملة",
+    "آية التبليغ"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1287",
+   "lang": "en",
+   "query": "Pseudo-explanation",
+   "n_hits": 5,
+   "top_titles": [
+    "Vitalism",
+    "Pseudo-Dionysius the Areopagite",
+    "Pseudocode"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1287",
+   "lang": "es",
+   "query": "Pseudoexplicación",
+   "n_hits": 0,
+   "top_titles": [],
+   "found": false
+  },
+  {
+   "pk": "1287",
+   "lang": "fa",
+   "query": "شبه‌تبیین",
+   "n_hits": 5,
+   "top_titles": [
+    "فتیش جنسی",
+    "محمدباقر قالیباف",
+    "مهدی تدینی"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1287",
+   "lang": "fr",
+   "query": "Pseudo-explication",
+   "n_hits": 5,
+   "top_titles": [
+    "Kenny McCormick",
+    "Pseudoscience",
+    "Gland de lait"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1287",
+   "lang": "pt",
+   "query": "Pseudoexplicação",
+   "n_hits": 2,
+   "top_titles": [
+    "Sigmund Freud",
+    "Rótulo (termo)"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1287",
+   "lang": "ru",
+   "query": "Псевдообъяснение",
+   "n_hits": 0,
+   "top_titles": [],
+   "found": false
+  },
+  {
+   "pk": "1287",
+   "lang": "zh",
+   "query": "伪解释",
+   "n_hits": 5,
+   "top_titles": [
+    "解釋學",
+    "VB伪代码",
+    "伪代码"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "ar",
+   "query": "مبدأ غير قابل للإثبات",
+   "n_hits": 5,
+   "top_titles": [
+    "مبدأ إثبات الإيرادات",
+    "قانون الإثبات",
+    "مبدأ الهوية"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "en",
+   "query": "Unfalsifiability",
+   "n_hits": 5,
+   "top_titles": [
+    "Falsifiability",
+    "Objections to evolution",
+    "Friedrich Nietzsche"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "es",
+   "query": "Postulado infalsificable",
+   "n_hits": 3,
+   "top_titles": [
+    "Pampsiquismo",
+    "Interpretación de los muchos mundos",
+    "Argumento de indispensabilidad de Quine-Putnam"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "fa",
+   "query": "ادعای غیرقابل ابطال",
+   "n_hits": 5,
+   "top_titles": [
+    "فلسفه سورن کی‌یرکگور",
+    "نقد روان‌شناسی فرگشتی",
+    "ضمانت"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "fr",
+   "query": "Postulat infalsifiable",
+   "n_hits": 3,
+   "top_titles": [
+    "Bitcoin",
+    "Gary Becker",
+    "Argument d'indispensabilité de Quine-Putnam"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "pt",
+   "query": "Postulado Inconfutável",
+   "n_hits": 0,
+   "top_titles": [],
+   "found": false
+  },
+  {
+   "pk": "1288",
+   "lang": "ru",
+   "query": "Неопровержимый постулат",
+   "n_hits": 5,
+   "top_titles": [
+    "Российская пропаганда",
+    "Бог",
+    "Солипсизм"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1288",
+   "lang": "zh",
+   "query": "不可证伪性",
+   "n_hits": 5,
+   "top_titles": [
+    "可证伪性",
+    "卡尔·波普尔",
+    "羅素的茶壺"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "ar",
+   "query": "عمق محدود",
+   "n_hits": 5,
+   "top_titles": [
+    "مضيق باب المندب",
+    "ميناء المكلا",
+    "إن أميناس"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "en",
+   "query": "Limited depth",
+   "n_hits": 5,
+   "top_titles": [
+    "Depth-first search",
+    "Iterative deepening depth-first search",
+    "Focus variation"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "es",
+   "query": "Profundidad limitada",
+   "n_hits": 5,
+   "top_titles": [
+    "Búsqueda en profundidad limitada",
+    "Búsqueda en profundidad iterativa",
+    "Búsquedas no informadas"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "fa",
+   "query": "عمق محدود",
+   "n_hits": 5,
+   "top_titles": [
+    "روش‌های آمیزش جنسی",
+    "تنگه باب‌المندب",
+    "آمیزش جنسی در انسان"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "fr",
+   "query": "Profondeur limitée",
+   "n_hits": 5,
+   "top_titles": [
+    "Profondeur de champ",
+    "Introsort",
+    "Profondeur récurrente"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "pt",
+   "query": "Profundidade Limitada",
+   "n_hits": 5,
+   "top_titles": [
+    "Lista de classes de complexidade",
+    "Kung Fu Chaos",
+    "Plataforma autoelevatória"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "ru",
+   "query": "Ограниченная глубина",
+   "n_hits": 5,
+   "top_titles": [
+    "Минор ограниченной глубины",
+    "Неинформированный метод поиска",
+    "Глубина цвета"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1291",
+   "lang": "zh",
+   "query": "有限深度",
+   "n_hits": 5,
+   "top_titles": [
+    "深度求索",
+    "深度 (模論)",
+    "博通有限"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "ar",
+   "query": "تعقيد مبالغ فيه",
+   "n_hits": 5,
+   "top_titles": [
+    "فلم إباحي",
+    "وعد بلفور",
+    "إنكار الهولوكوست"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "en",
+   "query": "Overcomplicating",
+   "n_hits": 5,
+   "top_titles": [
+    "MasterChef Australia series 18",
+    "Project Hail Mary",
+    "Sanjeev Sanyal"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "es",
+   "query": "Complicación exagerada",
+   "n_hits": 5,
+   "top_titles": [
+    "Pica (enfermedad)",
+    "Traqueomalacia",
+    "Aspergilosis broncopulmonar alérgica"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "fa",
+   "query": "پیچیدگی بیش از حد",
+   "n_hits": 5,
+   "top_titles": [
+    "خط راه‌آهن میانه-اردبیل",
+    "جنگ حقوقی",
+    "انقراض نئاندرتال‌ها"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "fr",
+   "query": "Complication exagérée",
+   "n_hits": 5,
+   "top_titles": [
+    "Complice",
+    "Syndrome de Marfan",
+    "Élisabeth Báthory"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "pt",
+   "query": "Complexificação exagerada",
+   "n_hits": 0,
+   "top_titles": [],
+   "found": false
+  },
+  {
+   "pk": "1345",
+   "lang": "ru",
+   "query": "Чрезмерное усложнение",
+   "n_hits": 5,
+   "top_titles": [
+    "Бюрократия (значения)",
+    "KISS (принцип)",
+    "Гуляй, Вася! Свидание на Бали"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1345",
+   "lang": "zh",
+   "query": "过度复杂化",
+   "n_hits": 5,
+   "top_titles": [
+    "城市化",
+    "過適",
+    "過度消耗"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "ar",
+   "query": "مزاعم كاذبة",
+   "n_hits": 5,
+   "top_titles": [
+    "كاشف الفساد",
+    "بشار الأسد",
+    "الادعاء الكاذب بالاعتداء الجنسي على الأطفال"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "en",
+   "query": "False propositions",
+   "n_hits": 5,
+   "top_titles": [
+    "Proposition",
+    "Trivialism",
+    "Propositional logic"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "es",
+   "query": "Falsos argumentos",
+   "n_hits": 5,
+   "top_titles": [
+    "Argumento",
+    "Argumento a silentio",
+    "Argumento ad populum"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "fa",
+   "query": "مقدمات نادرست",
+   "n_hits": 5,
+   "top_titles": [
+    "پیش‌فرض نادرست",
+    "دانش اظهاری",
+    "جنگ مقدس سوم"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "fr",
+   "query": "Arguments factices",
+   "n_hits": 5,
+   "top_titles": [
+    "Trouble factice",
+    "Théorie de l'Internet mort",
+    "Qualia"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "pt",
+   "query": "Argumentos falsos",
+   "n_hits": 5,
+   "top_titles": [
+    "Argumento",
+    "Lista de falácias",
+    "Falácia"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "ru",
+   "query": "Ложные утверждения",
+   "n_hits": 5,
+   "top_titles": [
+    "Галлюцинация (искусственный интеллект)",
+    "Хелиф, Иман",
+    "Ложная информация о медицинской помощи трансгендерным людям"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1357",
+   "lang": "zh",
+   "query": "虚假命题",
+   "n_hits": 5,
+   "top_titles": [
+    "命题",
+    "断言命题",
+    "蕴涵命题演算"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "ar",
+   "query": "اتهام بعدم الاتساق",
+   "n_hits": 5,
+   "top_titles": [
+    "وطنية",
+    "مصر ضد الأرجنتين (كأس العالم 2026)",
+    "خطاب دونالد ترمب"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "en",
+   "query": "Accusation of inconsistency",
+   "n_hits": 5,
+   "top_titles": [
+    "False accusation of rape",
+    "Accusation in a mirror",
+    "2026 FIFA World Cup officiating controversies"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "es",
+   "query": "Acusación de incoherencia",
+   "n_hits": 5,
+   "top_titles": [
+    "Averroísmo",
+    "Bong Joon-ho",
+    "Edmund Burke"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "fa",
+   "query": "اتهام به ناسازگاری",
+   "n_hits": 5,
+   "top_titles": [
+    "پاسبان (پلیس)",
+    "جنگ اکوادور و پرو",
+    "هاردیپ سینگ نیجار"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "fr",
+   "query": "Procès en incohérence",
+   "n_hits": 5,
+   "top_titles": [
+    "Procès de Riom",
+    "Affaire Fiona",
+    "Steven Avery"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "pt",
+   "query": "Acusação de incoerência",
+   "n_hits": 5,
+   "top_titles": [
+    "Crise das Americanas",
+    "Rodrigo Alves Taxa",
+    "Cronologia da história da China"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "ru",
+   "query": "Обвинение в непоследовательности",
+   "n_hits": 5,
+   "top_titles": [
+    "Монстры: История братьев Менендес",
+    "Президентство Масуда Пезешкиана",
+    "Принцип ненападения"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1361",
+   "lang": "zh",
+   "query": "不一致指控",
+   "n_hits": 5,
+   "top_titles": [
+    "不一致的謬誤",
+    "虚假指控",
+    "新疆种族灭绝指控"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "ar",
+   "query": "الهجوم على الثقة بالنفس",
+   "n_hits": 5,
+   "top_titles": [
+    "ماميلودي صنداونز",
+    "شخصيات عالم مارفل السينمائي: من م إلى ز",
+    "رعب نفسي"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "en",
+   "query": "Ad Fidentia",
+   "n_hits": 5,
+   "top_titles": [
+    "Fidenza",
+    "List of Roman civil wars and revolts",
+    "Sulla's civil war"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "es",
+   "query": "Ataque a la autoconfianza",
+   "n_hits": 5,
+   "top_titles": [
+    "Expedición de Khanasor",
+    "Batalla de Le Cateau",
+    "Carlos Alejandro de Lorena"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "fa",
+   "query": "حمله به اعتماد به نفس",
+   "n_hits": 5,
+   "top_titles": [
+    "سوءرفتار جنسی",
+    "مهسا آراسته",
+    "نبرد بلو وود"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "fr",
+   "query": "Attaque de la confiance en soi",
+   "n_hits": 5,
+   "top_titles": [
+    "Pyramide des besoins",
+    "Attaque de l'homme du milieu",
+    "Intelligence artificielle digne de confiance"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "pt",
+   "query": "Ataque à Confiança",
+   "n_hits": 5,
+   "top_titles": [
+    "Ataque a Pearl Harbor",
+    "Copa do Nordeste de Futebol de 2026",
+    "Métricas de confiança"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "ru",
+   "query": "Нападки на неуверенность",
+   "n_hits": 5,
+   "top_titles": [
+    "Кто не спрятался",
+    "Нюрнбергский процесс",
+    "Теория поколений Штрауса — Хау"
+   ],
+   "found": true
+  },
+  {
+   "pk": "1388",
+   "lang": "zh",
+   "query": "诉诸信心",
+   "n_hits": 5,
+   "top_titles": [
+    "訴諸信心",
+    "任何一種能夠作為科學出現的未來形而上學導論",
+    "断言"
+   ],
+   "found": true
+  }
+ ]
+}
