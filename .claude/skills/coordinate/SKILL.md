@@ -197,8 +197,16 @@ Publie le pool durable sur #458 ou l'issue de tracking appropriée ; ne recopie 
 ### Candidats bloqués — exclus jusqu'à l'événement nommé
 - **#NNN** — événement de reprise : nouvelle tête / décision owner nommée / merge préalable / fenêtre réservée.
 
+### Signature de lane — dernière ligne du corps de CHAQUE PR, littéralement
+
+```
+*po-XXXX*
+```
+
+⛔ Sans elle, ai-01 ne peut pas cocher la provenance et doit merger sur recoupement (plus lent, plus fragile). ⚠️ Ne pas la compter dans le paquet ci-dessous : elle en sortait, et elle s'y perdait — mesuré deux fois (#1338 le 12/09, #1508 le 22/09), la seconde **après** que la cause a été nommée en Phase 3. Une consigne noyée dans une énumération n'est pas une consigne, c'est une décoration.
+
 ### Paquet de preuve obligatoire
-Body signé worker ; tête/base/merge-state ; surface HARD complète ; diff borné ; CI sur la tête ; instrument + contrôle inverse + mutation falsifiante ; claims qualifiés ; section « n'établit pas » ; commit + PR avant `[DONE]`.
+Tête/base/merge-state ; surface HARD complète ; diff borné ; CI sur la tête ; instrument + contrôle inverse + mutation falsifiante ; claims qualifiés ; section « n'établit pas » ; commit + PR avant `[DONE]`.
 
 ### Gardes
 Ai-01 garde merge, arbitrage owner et verdict QA visuelle. Rappeler les gates UAC/webroot/régénération/publication pertinentes à cette lane.
