@@ -164,18 +164,48 @@ Les 2 colonnes « en plus » du classeur sont un artefact de renommage : le dép
 `crossLink_Levarages` → `crossLink_Leverages` et `latin` → `latin1`, puis ajouté
 `AIF_attackType` / `AIF_attackedNode`.
 
+## 6bis. ⚠️ Quelle archive fait référence — v3, pas 2022
+
+Mesuré sur les **175 cartes imprimées actuelles** :
+
+| Archive | Cartes couvertes |
+|---|---:|
+| **`Archive/v3/`** (169 lignes) | **153 / 175** |
+| `Archive/2022/` (70 lignes) | 63 / 175 |
+| couvertes par **2022 seul** | **0** |
+| couvertes par aucune des deux | 22 |
+
+⭐ **`Archive/2022/` ⊂ `Archive/v3/`** pour les cartes courantes : le tirage de février 2022
+(70 lignes, toutes marquées `edition_fevrier_2022`) n'apporte **aucune** carte que v3 n'ait pas.
+La carte signalée par l'owner (`path` 2.1) **n'y figure même pas** — « Procédé rhétorique » n'y
+est qu'une **Sous-Famille**. ⇒ **La référence du deck effectivement joué est `v3`** ; 2022 est un
+tirage antérieur plus court, utile pour dater, pas pour couvrir. ⛔ Une consigne « prendre 2022 en
+priorité, v3 en repli » inverse les rôles et laisse 90 cartes sans référence.
+
 ## 7. Ce que ce document n'établit pas
 
 - ⚠️ **Seul l'onglet `Taxonomy` a été comparé.** `Cards`, `Cards Print and Play`,
   `12/2023EN_AdelinePrint&Play` et les 10 autres onglets ne sont pas mesurés.
 - ⚠️ **L'historique de révisions du classeur n'a pas été lu** — des édits 2025 ultérieurement
   annulés y seraient invisibles à la comparaison de contenu.
-- ⚠️ **La perte de l'exemple La Fontaine n'est détectable par aucun instrument** sur ce corpus :
-  dans la lignée git, l'exemple ne porte **ni guillemets ni attribution** (elles n'existent que
-  dans `Cards/Fallacies/Archive/v3/`). Une sonde « citation attribuée perdue » rend **0**, et ce
-  `0` n'est pas une absence de défaut — c'est une absence d'instrument. ⇒ **Les 145 exemples
-  modifiés ne sont pas triables automatiquement** pour cette classe ; ils demandent une relecture
-  humaine. C'est ce chiffre qui dimensionne la revue.
+- ⚠️ **Correction du 22/09 — la perte d'attribution EST mesurable, contre la bonne référence.**
+  Une première rédaction affirmait qu'aucun instrument ne pouvait la voir. C'était un **artefact
+  de référence** : la sonde tournait contre la baseline 2025, où l'attribution avait **déjà**
+  disparu — un contrôle inverse incapable de voir le défaut. Contre `Archive/v3/` :
+
+  | Sonde « exemple cité / attribué » | lignes | guillemets | **attribution** |
+  |---|---:|---:|---:|
+  | Archive 2022 | 70 | 0 | 0 |
+  | **Archive v3** | 169 | 1 | **1** |
+  | HEAD (cartes) | 175 | 4 | **0** |
+
+  ⇒ **1 sur 1 perdue — 100 % de la classe.** ⚠️ Mais la classe ne compte qu'**un** cas : un seul
+  exemple du corpus de référence a jamais été une citation attribuée. ⛔ **Ne pas en tirer un taux.**
+- ⚠️ **Ce qui reste hors de portée d'un instrument**, et qui est le vrai sujet : un exemple
+  remplacé par un autre qui illustre un sophisme **voisin mais différent** (ici, une flatterie à la
+  place d'un mouvement poétique). Aucune sonde ne juge l'adéquation d'un exemple à la définition
+  qu'il sert. ⇒ **Les 145 exemples modifiés demandent une relecture humaine** ; c'est ce chiffre
+  qui dimensionne la revue.
 - ⚠️ **Les blobs orphelins ne sont pas garantis** : la récupération dépend du ramasse-miettes de
   GitHub. Le manifeste rejoue la récupération, il ne la remplace pas.
 - Aucune autre famille de fichiers décrochés (images CardPen, données Mindmap, gabarits
