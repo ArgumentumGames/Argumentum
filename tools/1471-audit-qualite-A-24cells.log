@@ -1,0 +1,37 @@
+=== #1471 grain ② — audit qualite cellules A (24 cellules) ===
+
+UA : Argumentum-AssetConverter/2.0 (https://argumentum.games; jsboige@gmail.com) 1471-auditA
+Cellules A officielles : 24
+  [ 1/24] PK   55 es ancre='Ad hoc' -> SUJET_CORRECT
+  [ 2/24] PK   55 pt ancre='Ad hoc' -> SUJET_CORRECT
+  [ 3/24] PK   55 zh ancre='Ad hoc' -> SUJET_CORRECT
+  [ 4/24] PK   98 es ancre='Argumentum ad populum' -> SUJET_CORRECT
+  [ 5/24] PK   98 pt ancre='Argumentum ad populum' -> SUJET_CORRECT
+  [ 6/24] PK  104 es ancre='Argumentum ad antiquitatem' -> SUJET_CORRECT
+  [ 7/24] PK  104 pt ancre='Argumentum ad antiquitatem' -> SUJET_CORRECT
+  [ 8/24] PK  112 ar ancre='Moralistic fallacy' -> SUJET_CORRECT
+  [ 9/24] PK  128 es ancre='Argumentum ad crumenam' -> SUJET_CORRECT
+  [10/24] PK  128 pt ancre='Argumentum ad crumenam' -> SUJET_CORRECT
+  [11/24] PK  128 ru ancre='Argumentum ad crumenam' -> HORS_SUJET
+  [12/24] PK  420 ar ancre='Power and control in abusive relationships' -> SUJET_CORRECT
+  [13/24] PK  594 ar ancre='Mathematical fallacy' -> SUJET_CORRECT
+  [14/24] PK  603 es ancre='Cherry picking' -> SUJET_CORRECT
+  [15/24] PK  603 pt ancre='Cherry picking' -> SUJET_CORRECT
+  [16/24] PK  603 ru ancre='Cherry picking' -> SUJET_CORRECT
+  [17/24] PK  614 es ancre='Secundum quid' -> SUJET_CORRECT
+  [18/24] PK  622 ar ancre='Fallacy of composition' -> SUJET_CORRECT
+  [19/24] PK  625 ar ancre='Fallacy of division' -> SUJET_CORRECT
+  [20/24] PK  659 ar ancre='Continuum fallacy' -> SUJET_CORRECT
+  [21/24] PK  666 ar ancre='Mathematical fallacy' -> SUJET_CORRECT
+  [22/24] PK  839 ar ancre='Argument from analogy#False analogy' -> HORS_SUJET
+  [23/24] PK  943 ar ancre='Quoting out of context' -> SUJET_CORRECT
+  [24/24] PK  973 ar ancre='Moving the goalposts' -> SUJET_CORRECT
+
+Distribution :
+  HOMONYMIE        : 0
+  HORS_SUJET       : 2
+  SUJET_CORRECT    : 22
+
+Resultat ecrit -> C:/Users/jsboi/AppData/Local/Temp/auditA.json
+
+[exited with code 0]
