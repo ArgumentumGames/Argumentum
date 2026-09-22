@@ -90,6 +90,13 @@ Réparti par année (avant la coupure) : 2022 → 24, 2023 → 269, 2024 → 188
 **continue** une histoire de site qui a vécu sur `MyIA-Web1` jusqu'au **30/05/2026**, puis sur `myia-po-2023` à
 partir du **02/06/2026**, et qui a été **coupée net le 28/06/2026 à 18:42** — l'instant de la sauvegarde.
 
+⚠️ **Note d'instrument — les compteurs qui bougent.** La base **journalise en continu** : `eventlog_newest`,
+`eventlog_rows` et la ligne `srv_postcut` de `myia-po-2023` **croissent entre deux exécutions** (mesuré :
+1 947 lignes 2026 puis 1 948, `srv_postcut` 1 434 puis 1 435 en quelques minutes le 22/09). Un rejeu de la
+batterie ne rendra donc **pas** ces trois valeurs à l'identique, et ce n'est pas un échec — ce sont des
+compteurs vivants. Les valeurs **figées** sur lesquelles porte la démonstration (date de sauvegarde, date de
+restauration, vintage 2020-2022, lignée par machine, alias, frontière 28/06 → 01/07) sont, elles, stables.
+
 Les alias du portail (`dbo.PortalAlias`, 4 lignes) portent, à côté des alias de préprod
 (`dnn.argumentum.myia.io`, `argumentum.myia.org`, `argumentum2.dnndev.me`), l'alias **`www.argumentum.games`** —
 le domaine de **production**.
@@ -133,6 +140,11 @@ sqlcmd -S "<serveur>" -d "<base>" -i tools/1091-db-provenance-probes.sql -h -1 -
 La batterie est en batches `GO` : un lot compilé d'un bloc s'annule **entier** sur une seule colonne invalide (piège
 rencontré : `EventLog.CreatedOnDate` n'existe pas en DNN 10 — la colonne est `LogCreateDate`), et rend alors
 `0 ligne` là où l'on croit lire une absence.
+
+**L'instrument livré a été exécuté tel quel avant commit** (`-i` sur le fichier du dépôt, compte `dnn_user`) :
+il rend les 30 lignes `K|...` reproduisant **toutes** les valeurs citées ici, y compris les sondes `msdb`
+(accessibles à ce compte) et `SERVERPROPERTY` (le chemin `D:\SQLData\` a été obtenu ainsi, `sys.master_files`
+étant vide pour ce compte). Les trois compteurs vivants signalés au §3 près, le rejeu est identique.
 
 ---
 *po-2023 (worker lane) · instruments : `sqlcmd` (batches `GO`), inspection disque lecture seule ·
