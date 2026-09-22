@@ -39,6 +39,11 @@ relecture sont un paquet éphémère sur le drive, pas un artefact versionné.
   été interrompu pour ne pas disputer le débit du drive pendant la capture). La signature couvre
   les smasks depuis ⑦bis partout où ils existeraient — l'ordre de merge des deux grains est donc
   sans effet sur ce manifeste.
+- **Recette de vérification (CRLF-safe)** : hacher le contenu **normalisé LF** (égal au blob git),
+  ⛔ pas le fichier brut du checkout — sinon le sha dépend du `core.autocrlf` local (une machine
+  CRLF rend `e810ae55…` sur ce même commit et lit « ligne de base corrompue », #1493 c.5780629625).
+  `git cat-file blob HEAD:tools/pdf-page-signature.py` → sha256, ou normaliser `CRLF→LF` avant
+  hachage. Les deux rendent `6553b615…`.
 
 ## Contrôle (DoD)
 

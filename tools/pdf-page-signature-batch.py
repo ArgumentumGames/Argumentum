@@ -47,6 +47,22 @@ def sha256_file(path):
     return h.hexdigest()
 
 
+def sha256_instrument(path):
+    """sha256 du contenu NORMALISÉ LF — propriété du commit, pas de la machine.
+
+    Le .py n'est régi par aucune règle de fin de ligne (.gitattributes muet),
+    donc le checkout applique le core.autocrlf LOCAL : la même version commitée
+    rend deux sha256 selon la machine qui l'a checkoutée (#1493 c.5780629625 —
+    un re-jeu DoD virait rouge sur une ligne de base saine). Normaliser avant
+    hachage rend l'empreinte égale au blob git (stocké LF). Le manifeste du
+    2026-09-22 reste exact : il portait déjà la valeur LF (6553b615…).
+    """
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        h.update(fh.read().replace(b"\r\n", b"\n"))
+    return h.hexdigest()
+
+
 def sign_pdf(page_sig, path):
     import fitz  # PyMuPDF — même dépendance que l'instrument livré
 
@@ -75,7 +91,7 @@ def main(argv):
         return 2
     page_sig = load_page_sig()
     here = os.path.dirname(os.path.abspath(__file__))
-    instrument_sha = sha256_file(os.path.join(here, "pdf-page-signature.py"))
+    instrument_sha = sha256_instrument(os.path.join(here, "pdf-page-signature.py"))
 
     if argv[1] == "--check":
         manifest_path, pdfs = argv[2], argv[3:]
@@ -123,6 +139,7 @@ def main(argv):
         "what": "ligne de base de régénération — signatures page-par-page du bundle de recette",
         "instrument": "tools/pdf-page-signature.py (page_sig importé, non redéfini)",
         "instrument_sha256": instrument_sha,
+        "instrument_sha256_recipe": "sha256 du contenu normalisé LF (= blob git) — indépendant du core.autocrlf local ; vérifier avec la même normalisation, pas Get-FileHash brut",
         "driver": "tools/pdf-page-signature-batch.py",
         "bundle_dir": bundle,
         "captured_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
