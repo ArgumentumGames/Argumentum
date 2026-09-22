@@ -42,7 +42,9 @@ import subprocess
 import sys
 import tempfile
 
-REPO = r"D:\Dev\Argumentum"
+# Racine derivee du fichier lui-meme : tools/<script>.py -> <repo>.
+# ⛔ Jamais de chemin absolu en dur — un instrument doit tourner chez son destinataire.
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOLS_SRC = os.path.join(REPO, "tools", "654-mnemonics-scanner.py")
 TOOLS_994_SRC = os.path.join(REPO, "tools", "994-apostrophe-dryrun.py")
 VIRTUES_REL = "Cards/Fallacies/Argumentum Virtues - Taxonomy.csv"
