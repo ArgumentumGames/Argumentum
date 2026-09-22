@@ -1,0 +1,321 @@
+{
+ "total_A_official": 24,
+ "by_class": {
+  "SUJET_CORRECT": 22,
+  "HOMONYMIE": 0,
+  "HORS_SUJET": 2
+ },
+ "details": [
+  {
+   "pk": "55",
+   "lang": "es",
+   "ancre": "Ad hoc",
+   "title_fr": "Sauvetage ad hoc",
+   "wikibase_item": "Q192683",
+   "extract_preview": "Ad hoc​ es una locución latina​ que significa literalmente «para esto».​\nGeneralmente se refiere a una solución específicamente elaborada para un problema o fin preciso y, por tanto, no generalizable ni utilizable para otros propósitos. \nEn sentido amplio, ad hoc en el mundo científico se llama a algo que es una excepción a la ley establecida, por ejemplo se añade un tribunal por fuera del sistema ordinario para un caso específico.",
+   "keywords": [
+    "sauvetage"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "55",
+   "lang": "pt",
+   "ancre": "Ad hoc",
+   "title_fr": "Sauvetage ad hoc",
+   "wikibase_item": "Q192683",
+   "extract_preview": "Ad hoc é uma expressão latina cuja tradução literal é \"para isto\" ou \"para esta finalidade\". Geralmente se refere a uma solução especificamente elaborada para um problema ou fim preciso e, por tanto, não generalizável e nem utilizável para outros propósitos. É geralmente empregada, sobretudo em contexto jurídico, também no sentido de \"para um fim específico\". Por exemplo: um advogado \"ad hoc\" (nomeado apenas para um determinado ato jurídico). Em sentido amplo, ad hoc no mundo científico é chamad",
+   "keywords": [
+    "sauvetage"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "55",
+   "lang": "zh",
+   "ancre": "Ad hoc",
+   "title_fr": "Sauvetage ad hoc",
+   "wikibase_item": "Q192683",
+   "extract_preview": "Ad hoc 是一个拉丁文常用短语。这个短语的意思是“特设的、特定目的的（地）、即席的、临时的、将就的、专案的”。这个短语通常用来形容一些特殊的、不能用于其它方面的，为一个特定的问题、任务而专门设定的解决方案。这个词汇須与 a priori 区分。\n这个短语通常用来形容的东西包括一些为一个特别问题而设立的国家级或者国际性的组织、组委会以及合约等。在其他方面，譬如特殊环境下所组建的军队单位、手工制作的服装、临时搭建的网络协议或者是满足特殊条件的方程式等也可使用这个短语来进行形容。\nAd hoc 同时也包含有负面的评价，表明所形容的事物是一个权宜之计、不周密的计划或者是一个即兴举办的活动。",
+   "keywords": [
+    "sauvetage"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "98",
+   "lang": "es",
+   "ancre": "Argumentum ad populum",
+   "title_fr": "Appel à la majorité",
+   "wikibase_item": "Q251695",
+   "extract_preview": "Un argumento ad populum, argumentum ad populum (en latín, «dirigido al pueblo») o sofisma populista es una falacia que implica responder a un argumento o a una afirmación refiriéndose a la supuesta opinión que de ello tiene la gente en general, en lugar de al argumento por sí mismo. Se suele tomar como que un argumento es válido solo porque mucha gente lo cree así.​ Un argumento ad populum tiene esta estructura:\n\nPara la mayoría, A es verdadero.\nPor lo tanto, A es verdadero.\nLos argumentos ad po",
+   "keywords": [
+    "appel",
+    "majorité"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "98",
+   "lang": "pt",
+   "ancre": "Argumentum ad populum",
+   "title_fr": "Appel à la majorité",
+   "wikibase_item": "Q251695",
+   "extract_preview": "Argumentum ad populum (apelo à multidão) é uma expressão latina que define um raciocínio falacioso que consiste em dizer que determinada proposição é válida ou boa simplesmente porque muitas pessoas (ou a maioria delas) a aprovam. Também chamado de apelo à quantidade, o argumento é inválido pois nada garante que algo seja verdadeiro ou correto apenas pela sua popularidade.",
+   "keywords": [
+    "appel",
+    "majorité"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "104",
+   "lang": "es",
+   "ancre": "Argumentum ad antiquitatem",
+   "title_fr": "Appel à la tradition",
+   "wikibase_item": "Q1993735",
+   "extract_preview": "El argumento ad antiquitatem (también llamado apelación a la tradición) es una falacia lógica que consiste en afirmar que, si algo se ha venido haciendo o creyendo desde hace tiempo, entonces es que está bien o es verdadero.​\nAdemás, este tipo de argumento (cuya frase significativa se encarna en «todo pasado fue mejor»)​ hace dos suposiciones:​\n\nQue la antigua manera de pensar fue probada como correcta cuando se introdujo, lo cual puede ser falso, ya que la tradición puede estar basada en fundam",
+   "keywords": [
+    "appel",
+    "tradition"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "104",
+   "lang": "pt",
+   "ancre": "Argumentum ad antiquitatem",
+   "title_fr": "Appel à la tradition",
+   "wikibase_item": "Q1993735",
+   "extract_preview": "Argumentum ad antiquitatem (expressão latina para argumento da antiguidade),  também chamada de apelo à tradição, é uma falácia que consiste em dar autoridade a algo em função de sua antiguidade, ou ainda afirmar que algo é verdadeiro ou bom porque é antigo ou \"sempre foi assim\".",
+   "keywords": [
+    "appel",
+    "tradition"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "112",
+   "lang": "ar",
+   "ancre": "Moralistic fallacy",
+   "title_fr": "Sophisme moraliste",
+   "wikibase_item": "Q1581960",
+   "extract_preview": "المغالطة الأخلاقية هي مغالطة غير رسمية لافتراض أن جانب الطبيعة الذي يملك عواقب غير سارة اجتماعياً غير موجود. وشكله النموذجي هو «إذا كان X صحيحاً، فسوف يحدث Z»، حيث أن Z هو أمر غير مرغوب معنوياً أو اجتماعياً أو سياسياً. من المفروض مسبقاً أن الأخلاقية يجب أن تحدث بشكل طبيعي. أحياناً يتم تقديم المغالطة الأخلاقية على أنها عكس المغالطة الطبيعية. ومع ذلك، يمكن اعتبارها مختلفة عن المغالطة الطبيعية بحد ذاتها؛ ويمكن تحديد الفرق بينهما عملياً اعتماداً على نوايا من يستخدم هذه المغالطة: فتكون مغالطة طبيعية ",
+   "keywords": [
+    "moraliste",
+    "sophisme"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "128",
+   "lang": "es",
+   "ancre": "Argumentum ad crumenam",
+   "title_fr": "Raison du plus riche",
+   "wikibase_item": "Q2861095",
+   "extract_preview": "El argumentum ad crumenam (del latín crumena, ae ‘morral, bolsillo para el dinero, dinero’) o apelación a la riqueza es una falacia que consiste en concluir que algo es cierto porque quien lo propone es rico.\nEsta falacia es muy común en la crítica de arte, películas, videojuegos o música con la siguiente forma: «Puedes criticar el producto X, pero genera millones, así que algún mérito tendrá».\nLa falacia opuesta es el argumentum ad lazarum.",
+   "keywords": [
+    "plus",
+    "raison",
+    "riche"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "128",
+   "lang": "pt",
+   "ancre": "Argumentum ad crumenam",
+   "title_fr": "Raison du plus riche",
+   "wikibase_item": "Q2861095",
+   "extract_preview": "O apelo à riqueza (idolatria) é uma expressão latina: argumentum ad crumenam, que consiste na tendencia de darem razão ao mais privilegiado, também chamado de argumento da bolsa, é uma falácia que se usa da superioridade monetária de um argumentador para defender uma ideia sem antes prestar argumentos válidos sobre essa.. O oposto dessa falácia é o argumentum ad lazarum ou apelo à pobreza.",
+   "keywords": [
+    "plus",
+    "raison",
+    "riche"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "128",
+   "lang": "ru",
+   "ancre": "Argumentum ad crumenam",
+   "title_fr": "Raison du plus riche",
+   "wikibase_item": "Q87248",
+   "extract_preview": "Список крылатых латинских выражений — краткий перечень (список) популярных латинских устойчивых выражений.\nСписок состоит из устойчивых латинских выражений (крылатых слов, пословиц и поговорок). Оформление списка, в соответствии с латинским алфавитом:\n\nВ квадратные скобки заключены слова, которые отсутствуют в исходном тексте, но подразумеваются по смыслу.\nВ круглых скобках даны пояснения.\nВарианты перевода отделяются точкой с запятой ( ; ).\nСокращение в начале перевода обозначает отрасль знаний",
+   "keywords": [
+    "plus",
+    "raison",
+    "riche"
+   ],
+   "class": "HORS_SUJET"
+  },
+  {
+   "pk": "420",
+   "lang": "ar",
+   "ancre": "Power and control in abusive relationships",
+   "title_fr": "Jeu de pouvoir",
+   "wikibase_item": "Q17009621",
+   "extract_preview": "السلطة والتحكم في العلاقات المسيئة أو التعسفية (الإنجليزية: Power and control in abusive relationships) أو (السيطرة القسرية (الإنجليزية: coercive control) أو السلوك المسيطر (الإنجليزية: controlling behaviour)) هي طريقة يكتسب من خلالها الشخص المعتدي (المتعسف أو المسيئ) السيطرة على الضحية ويحافظ عليها وذلك لأغراض تعسفية مثل الاعتداء النفسي والجسدي والجنسي. ويستخدم الشخص المعتدي تكتيكات متعددة لممارسة السلطة والسيطرة على غيره، وتعتبر هذه التكتيكات في حد ذاتها مسيئة نفسيا. ويهدف المعتدي إلي السيطرة ",
+   "keywords": [
+    "pouvoir"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "594",
+   "lang": "ar",
+   "ancre": "Mathematical fallacy",
+   "title_fr": "Erreur mathématique",
+   "wikibase_item": "Q387855",
+   "extract_preview": "تطلق عبارة إثبات خاطئ أو مغالطة رياضية أو مبرهنة خاطئة أو إثبات غير مشروع على أي تعبير زائف الإثبات في الرياضيات. تعتمد أغلب طرق البراهين الزائفة أساليب تضليل بارعة تصل في النهاية لعمل خرق فاضح في القانون الرياضي مما يعطي البعض فرصة للتشكيك في صحة الرياضيات. ومع ذلك فإن مثل هذه البراهين تدل على مدى ضرورة الدقة في الرياضيات. يعد كتاب سيوداريا Pseudaria من الكتب القديمة ذات البراهين الخاطئة ويعزى إلى إقليدس.\nفيما يلي ستتم الإشارة إلى بعض وأكثر البراهين الخاطئة انتشارا.",
+   "keywords": [
+    "erreur",
+    "mathématique"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "603",
+   "lang": "es",
+   "ancre": "Cherry picking",
+   "title_fr": "Picorage de données",
+   "wikibase_item": "Q3006765",
+   "extract_preview": "La falacia de prueba incompleta o por su designación en inglés cherry picking (literalmente, «recolección de cerezas») es un espigueo​​​ sesgado. Es la acción de citar solo los casos individuales o datos que parecen confirmar cierta postura a la vez que se ignoran las pruebas que podrían contradecirla. Es un tipo de falacia de atención selectiva, el ejemplo más común es el sesgo de confirmación.​\nEsta falacia se puede observar en numerosas falacias lógicas. Por ejemplo, la falacia de prueba anec",
+   "keywords": [
+    "données",
+    "picorage"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "603",
+   "lang": "pt",
+   "ancre": "Cherry picking",
+   "title_fr": "Picorage de données",
+   "wikibase_item": "Q3006765",
+   "extract_preview": "Evidência suprimida, supressão de evidências ou evidência incompleta (em inglês:  cherry picking, \"catação de cereja\") é uma falácia que consiste em citar casos ou dados individuais que parecem confirmar uma determinada posição, ao mesmo tempo em que se ignora uma porção significativa de casos ou dados relacionados que possam contradizer aquela posição. É um tipo de falácia de atenção seletiva, sendo seu exemplo mais comum o viés de confirmação. Ela pode ser feita de forma intencional e também d",
+   "keywords": [
+    "données",
+    "picorage"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "603",
+   "lang": "ru",
+   "ancre": "Cherry picking",
+   "title_fr": "Picorage de données",
+   "wikibase_item": "Q3006765",
+   "extract_preview": "Выборочное представление фактов, избирательный подход, выборочное цитирование или черри-пикинг (англ. cherry picking, досл.: «сбор вишенок») — логическая ошибка, состоящая в указании на отдельные случаи либо данные, подтверждающие определённое положение, при игнорировании значительной части связанных случаев или данных, которые могут противоречить этому положению. Может быть как умышленным, так и неумышленным.\nВыборочное представление фактов является частным проявлением склонности к подтверждени",
+   "keywords": [
+    "données",
+    "picorage"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "614",
+   "lang": "es",
+   "ancre": "Secundum quid",
+   "title_fr": "Sophisme de l’accident",
+   "wikibase_item": "Q332406",
+   "extract_preview": "En lógica, la generalización apresurada, generalización indebida, Según quien o inducción indebida ​ es una falacia informal que se comete al inferir una conclusión general a partir de una prueba insuficiente.​ Una generalización apresurada puede dar lugar a una mala inducción y por tanto a una conclusión errónea.​ Por ejemplo, considérese el siguiente argumento:\n\nJuan es alto y es rápido.\nMaría es alta y es rápida.\nMatías es alto y es rápido.\nPor lo tanto, todas las personas altas son rápidas.\n",
+   "keywords": [
+    "accident",
+    "sophisme"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "622",
+   "lang": "ar",
+   "ancre": "Fallacy of composition",
+   "title_fr": "Sophisme de composition",
+   "wikibase_item": "Q531873",
+   "extract_preview": "مغالطة التركيب هي إحدى أشكال المغالطات غير الصورية، وتحصل هذه المغالطة بالاستنتاج الخاطئ بأن ما ينطبق على الجزء ينطبق على الكل، فإن كانت الأجزاء المكونة لشيئ ما لها صفة معينة، فإن هذا الشيئ بكليته لابد أن يكون له نفس الصفة، مع عدم وجود تبرير منطقي لهذه النقلة، فمثلا: إطار السيارة مصنوع من المطاط، لإذن السيارة كلية مصنوعة من المطاط، أو مثال آخر: الذرة ليست كائن حي، إذن كل شيئ يتكون من الذرات ليس حيا. \nهناك نوعان من هذه المغالطة:\nالنوع الأول يحصل حينما يستدل الشخص بخصائص عن أجزاء ضمن الفئة ليصل إل",
+   "keywords": [
+    "composition",
+    "sophisme"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "625",
+   "lang": "ar",
+   "ancre": "Fallacy of division",
+   "title_fr": "Sophisme de division",
+   "wikibase_item": "Q1616189",
+   "extract_preview": "مغالطة التفكيك ويتم ارتكابها حين يستدل شخص بأن ماهو صحيح بالنسبة للكل، فهو صحيح بالنسبة لجميع الأجزاء، وبدون تقديم مسوغات لهذا الاستدلال.\nوهناك نوعان من هذه المغالطة:\nالنوع الأول، حينما يستدل شخص بأن ماهو صحيح بالنسبة للكل، يجب أن يكون صحيحاً بالنسبة لكل الأجزاء وبدون أن يقدم مسوغات منطقية لهذا الاستدلال. وتسير على النحو التالي:\n\nكل س، لديها الخصائص التالية: أ، ب، ج..\nإذن، كل الأجزاء في س، لديها الخصائص التالية: أ، ب، ج..\nوهذه المغالطة واضحة بالمثال التالي: 4 عدد زوجي، إذن 1 و 3 يجب أن يكونا زوج",
+   "keywords": [
+    "division",
+    "sophisme"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "659",
+   "lang": "ar",
+   "ancre": "Continuum fallacy",
+   "title_fr": "Sophisme du continuum",
+   "wikibase_item": "Q17009032",
+   "extract_preview": "مغالطة الاستمراريَّة (continuum fallacy)، وتُسمَّى أحياناً مغالطة رسم الخط ، هي إحدى المغالطات غير الرسمية التي ترتبط ارتباطاً وثيقاً بمفارقة سوريتس أو \"مفارقة الكومة\"، في هذه المغالطة يرفض المرء أي ادعاءٍ غامض لمجرَّد أنَّه ليس دقيقاً أو واضحاً كفاية على النحو الذي يرغب به شخصياً، ولكنَّ غموض قضية لا يعني بالضرورة أنَّها باطلة أو خاطئة.\nالمغالطة هنا هي الحجة القائلة بأنَّه لا يمكن اعتبار حالتين متمايزتين لأنَّه يوجد بينهما سلسلة متصلة ومستمرة من الحالات.",
+   "keywords": [
+    "continuum",
+    "sophisme"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "666",
+   "lang": "ar",
+   "ancre": "Mathematical fallacy",
+   "title_fr": "Conclusion mathématique invalide",
+   "wikibase_item": "Q387855",
+   "extract_preview": "تطلق عبارة إثبات خاطئ أو مغالطة رياضية أو مبرهنة خاطئة أو إثبات غير مشروع على أي تعبير زائف الإثبات في الرياضيات. تعتمد أغلب طرق البراهين الزائفة أساليب تضليل بارعة تصل في النهاية لعمل خرق فاضح في القانون الرياضي مما يعطي البعض فرصة للتشكيك في صحة الرياضيات. ومع ذلك فإن مثل هذه البراهين تدل على مدى ضرورة الدقة في الرياضيات. يعد كتاب سيوداريا Pseudaria من الكتب القديمة ذات البراهين الخاطئة ويعزى إلى إقليدس.\nفيما يلي ستتم الإشارة إلى بعض وأكثر البراهين الخاطئة انتشارا.",
+   "keywords": [
+    "conclusion",
+    "invalide",
+    "mathématique"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "839",
+   "lang": "ar",
+   "ancre": "Argument from analogy#False analogy",
+   "title_fr": "Fausse analogie",
+   "wikibase_item": "Q4789736",
+   "extract_preview": "الحجة من القياس هي نوع خاص من الحجة الاستقرائية إذ يتم استخدام أوجه التشابه المتصورة كأساس لاستنتاج بعض التشابه الذي لم يتم ملاحظته بعد. التفكير المنطقي هو أحد الأساليب الأكثر شيوعًا التي يحاول بها البشر فهم العالم واتخاذ القرارات. عندما يكون لدى الشخص تجربة سيئة مع منتج ويقرر عدم شراء أي شيء آخر من المنتج فغالباً ما يكون هذا هو السبب في التفكير المنطقي. كما أنه ضمني في الكثير من العلوم. على سبيل المثال، عادة ما تستمر التجارب على الفئران المختبرية على أساس أن بعض أوجه التشابه الفيزيولوجية بين ال",
+   "keywords": [
+    "analogie",
+    "fausse"
+   ],
+   "class": "HORS_SUJET"
+  },
+  {
+   "pk": "943",
+   "lang": "ar",
+   "ancre": "Quoting out of context",
+   "title_fr": "Décontextualisation",
+   "wikibase_item": "Q5106561",
+   "extract_preview": "الاقتباس من خارج السياق (بالإنجليزية: Quoting out of context) يُعرف أيضًا باستئصال السياق أو الاقتباس الملغم، هو مغالطة غير صورية ونوع من الإسناد الزائف، تُزال فيه القطعة من المادة النصية المحيطة بها بطريقة تشوه المعنى الأصلي للنص. ربما يكون الاقتباس من خارج السياق عمديًّا أو عرضيًّا إذا أساء الشخص فهم المعنى وأسقط شيئًا ضروريًّا لإيضاحه، ظنًا منه أنه غير ضروري.\nتأخذ الحجج المبنية على هذه المغالطة شكلين:\n\nحجة رجل القش، وتشمل الاقتباس من الخصم من خارج السياق من أجل إضعاف موقفه (من أجل أن يبسط موق",
+   "keywords": [
+    "décontextualisation"
+   ],
+   "class": "SUJET_CORRECT"
+  },
+  {
+   "pk": "973",
+   "lang": "ar",
+   "ancre": "Moving the goalposts",
+   "title_fr": "Déplacement des critères",
+   "wikibase_item": "Q3244473",
+   "extract_preview": "مغالطة تحريك المرمى (Moving the goalposts)، هي استعارة مستمدة من رياضة كرة القدم والرياضات الأخرى التي تتضمن مرمى أو ما يشابهه، تُستخدم هذه الاستعارة للتعبير عن التغيير في هدف العملية أو المنافسة ومغزاها والذي يحدث والمنافسة مازالت مستمرة.",
+   "keywords": [
+    "critères",
+    "déplacement"
+   ],
+   "class": "SUJET_CORRECT"
+  }
+ ]
+}
