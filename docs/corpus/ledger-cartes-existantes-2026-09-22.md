@@ -6,6 +6,25 @@
 
 ---
 
+## ⚠️ 0. Correctif d'imputation — lire avant les chiffres
+
+**Ce registre compare le corpus à l'édition imprimée de février 2022.** Une mesure ultérieure du même jour ([`bfg-history-recovery-2026-09-22.md`](bfg-history-recovery-2026-09-22.md)) a établi qu'entre cette impression et la vague agentique il existe une **couche intermédiaire** que ce document ne distingue pas. ⇒ **Il impute deux dérives superposées au corpus courant et surévalue donc la part agentique.** Les cellules restent justes ; c'est leur **attribution** qui l'est moins.
+
+Sur la carte signalée par l'owner (PK 176) :
+
+| Date | Description | Nature |
+|---|---|---|
+| 2022 → déc. 2023 | « Vous faites preuve d'une éloquence persuasive. » | l'imprimé |
+| **09/01/2024** `01a5403ee` « MAJ desc_fr » | « …**sans nécessairement argumenter de manière logique.** » | ⭐ **manuel, pré-agentique — et c'est exactement la correction que l'owner décrit comme la bonne** ; La Fontaine est conservé |
+| 2024 → 2025 | *stable* | |
+| 2026 | titre → « **Technique** rhétorique » · exemple → une flatterie | ⛔ **agentique** |
+
+**Baseline canonique mesurée** — `62b561e75:Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (2025-07-27, contenu du 22/04/2024), corroborée **indépendamment** par le classeur GDrive maître (321/322 cellules). Contre elle, le delta strictement agentique sur les cartes imprimées est de **322 cellules FR sur 159 cartes**, dont **32 renommages réels** (et non 47 : 15 ne sont que des apostrophes typographiques) et ⛔ **1 collision de nom** — « Généralisation hâtive » a quitté PK 598 pour atterrir sur PK 2.
+
+⚠️ Et la perte que l'owner a repérée à l'œil — l'exemple La Fontaine — **n'est détectable par aucun instrument** ici : dans la lignée git l'exemple ne porte ni guillemets ni attribution. Une sonde « citation attribuée perdue » rend **0**, ce qui n'est pas une absence de défaut mais une absence d'instrument. ⇒ **Les 145 exemples modifiés demandent une relecture humaine.**
+
+---
+
 ## 1. La référence — et pourquoi elle rend l'OCR inutile
 
 Le premier cadrage de #1503 annonçait qu'il faudrait **OCR-iser le tirage de février 2022**, faute de référence diffable : le dépôt commence en mai 2023, un an après l'impression.
