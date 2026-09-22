@@ -1,0 +1,29 @@
+2024-04-25|0087f0eca|69edd83483c4dc68afc82c4b774e9cc6d74daf94|New logos + taxo update
+2024-04-22|6f2f36fbe|e29ed0ce60f3ec06ff9dc182be4fd779bc06221b|Updated Fallacy illustrations and taxonomy
+2024-04-19|d723020d5|e993ab66fb7d1278662f0be191e59cf0f6635505|Update taxonomy fallacies
+2024-04-16|a44214d02|a9ac8d4591353ea3978e50f698622fe3aaac96b2|Updated Mindmap generator
+2024-03-01|4097f8774|864191c52a83a54a39e608c87b55fc702bc506a6|Fallacy translations ru + pt
+2024-02-29|222123443|3ede009648e7a69595ea2ffa04c313db51cb1be3|English translation
+2024-02-21|eb83d1135|32de0fe9124acf3af44728a5112bf3e2967f3701|svg-pan-zoom integration
+2024-02-21|858a7421b|170821a299501930683382bfefc5ff799a26e384|completed examples
+2024-02-15|6a215b6f0|60a4522596fa72e00768d71f65af8be8955c9902|Fixed csv sort bug
+2024-02-14|cb24784b6|fe88219ac1414df83d7da681413db3d004945480|owl generation
+2024-02-08|435f30854|feab446459c1de16d8c3dabab252731128b905ff|Include biases codex
+2024-01-31|276a47c4d|da1c095d47a71b3a8d78533ecc0e42f8926242ae|Fix mindmap maker parent filter
+2024-01-21|c8e7dd2f3|0b835f30e54ef2b1b30db5aa81c7e1dda9a122ca|Updated images, fallacy taxonomy, introduced cross l
+2024-01-12|ad6c8c45d|4e84dfa50e439e96c0524dda43bd9b76843b1e4e|Updating images and promoting main config parameters
+2024-01-09|01a5403ee|30cbbc4675b8611bf40f824ca0256065d5ea9425|MAJ desc_fr
+2024-01-06|4de266e0a|21dfcec8a122de633b649e9ce90a45d9479313d8|Update taxonomy and scripts
+2023-12-27|4576c8aed|22c8b25e81c712e3f6caa008d3963aa01be69582|Prompt mis à jour exemples + cleanup taxonomie
+2023-12-22|f0682ece7|db91c54b4fae89e668a5b385503acb9cbdb66fee|Updated Fallacies
+2023-12-13|1e24e01e4|4bd02ccf5f20a160536690012b03e9b318934a73|Mise à jour taxonomies
+2023-12-08|e2bc1eba3|1542bb7d67437ef9db2bdb25e75b26f3c306a2ce|MAJ manuelle Taxonomies
+2023-07-26|7bb5154be|4d62f94e7b222bd36c20bba83457da30b7f2cd16|Fix duplicate
+2023-06-14|8ba4f2cef|383b15ba5ca85481f102d570079d81c0a8e97bd0|Working on mindmaps, fixing csvs
+2023-06-14|84adc0417|66902dcbb6bdd74825bc47ebfbbbcc9e7cb0eb23|Fixing broken generation
+2023-05-08|a6cabf573|e7ef84afdd1b055a2b74748d512b3486ceadf95a|Fixed Taxonomy link
+2023-05-08|7f6be492f|b5d4ecae215440a1707d6071ca7eef8d8214d142|Added support for dataset filtering
+2023-05-08|1a53f9a00|1941ea2555396741dfb9188cfd29b001b5d95969|Removed extra end line from taxonomy
+2023-05-07|6d570a062|563de706846fdba2eb32c93b57a0c911d53b3853|Adding portuguese
+2023-05-07|0648644c3|dbee44d575dee58614a81a79a8d9f6df9f04385c|Fixed russian text header
+2023-05-06|54f6e3298|43616379357e4a6bc88bb119d23649045777d181|Added Taxonomy Dataset
