@@ -1,0 +1,57 @@
+=== #1471 grain ⑤ v2 — audit PERTINENCE cellules E hittees ===
+
+UA : Argumentum-AssetConverter/2.0 (https://argumentum.games; jsboige@gmail.com) 1471-audit-pertinenceE
+Cellules hittees grain ① : 394
+
+=== CONTROLES INVERSES (avant audit) ===
+  POS  fr 'Sophisme' -> PERTINENT  (sophism='Ad hoc')
+  POS  en 'Fallacy' -> PERTINENT  (sophism='Formal fallacy')
+  NEG  en 'Infinity Within' -> HORS_SUJET  (doit etre HORS_SUJET)
+  POS 2/2 OK, NEG 1/1 OK
+  [ 20/394] PK 34 fa top='لکس یولیا و پاپیا' -> HORS_SUJET
+  [ 40/394] PK 133 zh top='西遊記第壹佰零壹回之月光寶盒' -> HORS_SUJET
+  [ 60/394] PK 322 fa top='نوک پستان' -> HORS_SUJET
+  [ 80/394] PK 421 zh top='魅力' -> HORS_SUJET
+  [100/394] PK 653 fa top='سید علی خامنه\u200cای' -> HORS_SUJET
+  [120/394] PK 667 zh top='唐納·川普' -> HORS_SUJET
+  [140/394] PK 690 fa top='استدلال از ناباوری' -> PERTINENT
+  [160/394] PK 727 zh top='稻草人論證' -> PERTINENT
+  [180/394] PK 798 fa top='سوءاستفاده جنسی' -> HORS_SUJET
+  [200/394] PK 826 zh top='性別焦慮' -> HORS_SUJET
+  [220/394] PK 846 fr top='Ambiguïté' -> HORS_SUJET
+  [240/394] PK 878 ar top='أنواع المغالطات' -> HORS_SUJET
+  [260/394] PK 953 fr top='Contrôle attentionnel' -> HORS_SUJET
+  [280/394] PK 1004 ar top='اختبار المراوغة بالمركبة' -> HORS_SUJET
+  [300/394] PK 1015 fr top="Risque existentiel posé par l'intel" -> HORS_SUJET
+  [320/394] PK 1280 en top='Obstruction' -> HOMONYMIE
+  [340/394] PK 1282 pt top='Vício' -> HORS_SUJET
+  [360/394] PK 1291 fr top='Profondeur de champ' -> HORS_SUJET
+  [380/394] PK 1361 en top='False accusation of rape' -> HORS_SUJET
+  [394/394] PK 1388 zh top='訴諸信心' -> PERTINENT
+
+Total sondes : 394
+Distribution globale :
+  PERTINENT      :   40  ( 10.2 %)
+  HORS_SUJET     :  345  ( 87.6 %)
+  HOMONYMIE      :    9  (  2.3 %)
+  ERREUR_API     :    0  (  0.0 %)
+
+Detail par langue :
+  ar   : PERT=  0  HORS= 49  HOMO=  1  ERR=  0  taux_pert=  0.0%
+  en   : PERT=  8  HORS= 38  HOMO=  4  ERR=  0  taux_pert= 16.0%
+  es   : PERT=  9  HORS= 40  HOMO=  0  ERR=  0  taux_pert= 18.4%
+  fa   : PERT=  1  HORS= 47  HOMO=  2  ERR=  0  taux_pert=  2.0%
+  fr   : PERT=  6  HORS= 42  HOMO=  2  ERR=  0  taux_pert= 12.0%
+  pt   : PERT=  4  HORS= 44  HOMO=  0  ERR=  0  taux_pert=  8.3%
+  ru   : PERT=  2  HORS= 45  HOMO=  0  ERR=  0  taux_pert=  4.3%
+  zh   : PERT= 10  HORS= 40  HOMO=  0  ERR=  0  taux_pert= 20.0%
+
+=== SYNTHESE GRAIN ⑤ v2 ===
+  Cellules hittees auditees : 394
+  PERTINENT                  : 40  (10.2 %)
+  HORS_SUJET                 : 345
+  HOMONYMIE                  : 9
+  ERREUR_API                 : 0
+  Controles inverses         : POS 2/2 OK, NEG 1/1 OK
+
+Resultat ecrit -> tools/1471-audit-pertinence-E.json
