@@ -105,7 +105,12 @@ print("  appariees sur `path` .............. %d  (2022: %d, v3 seul: %d)"
       % (sum(1 for p in CUR if p in E22 or p in V3),
          sum(1 for p in CUR if p in E22),
          sum(1 for p in CUR if p not in E22 and p in V3)))
-print("  NON appariees (cartes nouvelles) .. %d" % sum(1 for p in CUR if p not in E22 and p not in V3))
+# ⛔ « cartes nouvelles » est une SUR-LECTURE : `path` est ce que la restructuration de taxonomie
+# deplace, donc une orpheline de `path` peut etre une carte ancienne DEPLACEE. Mesure du 22/09 :
+# sur 22 orphelines, 15 sont retrouvees en archive via `archive-bridge-instrument.py`
+# (archive --nom--> baseline 2024 --PK--> HEAD). Seules 7 le sont vraiment pas.
+print("  NON appariees sur `path` .......... %d  (⛔ PAS 'nouvelles' : cf archive-bridge-instrument.py)"
+      % sum(1 for p in CUR if p not in E22 and p not in V3))
 print()
 print("CONTROLES INVERSES")
 print("  [1] 2022 vs v3 sur %d paths communs : %d desaccords de cellule%s"
