@@ -1,0 +1,123 @@
+=== #1471 grain ① — re-sondage classe E (chemin distinct) ===
+
+UA : Argumentum-AssetConverter/2.0 (https://argumentum.games; jsboige@gmail.com) 1471-resond
+Timeout par sonde : 10s
+Candidats classe E detectes : 50
+Echantillon sonde         : 50
+Sondes prevues : 400
+  sonde 5/400 (pk 1, fr) -- 5 hits
+  sonde 10/400 (pk 33, en) -- 5 hits
+  sonde 15/400 (pk 33, ru) -- 5 hits
+  sonde 20/400 (pk 34, fa) -- 5 hits
+  sonde 25/400 (pk 105, ar) -- 5 hits
+  sonde 30/400 (pk 105, pt) -- 5 hits
+  sonde 35/400 (pk 133, es) -- 5 hits
+  sonde 40/400 (pk 133, zh) -- 5 hits
+  sonde 45/400 (pk 153, fr) -- 5 hits
+  sonde 50/400 (pk 182, en) -- 5 hits
+  sonde 55/400 (pk 182, ru) -- 5 hits
+  sonde 60/400 (pk 322, fa) -- 5 hits
+  sonde 65/400 (pk 361, ar) -- 5 hits
+  sonde 70/400 (pk 361, pt) -- 5 hits
+  sonde 75/400 (pk 421, es) -- 5 hits
+  sonde 80/400 (pk 421, zh) -- 5 hits
+  sonde 85/400 (pk 636, fr) -- 5 hits
+  sonde 90/400 (pk 644, en) -- 5 hits
+  sonde 95/400 (pk 644, ru) -- 5 hits
+  sonde 100/400 (pk 653, fa) -- 5 hits
+  sonde 105/400 (pk 658, ar) -- 4 hits
+  sonde 110/400 (pk 658, pt) -- 5 hits
+  sonde 115/400 (pk 667, es) -- 5 hits
+  sonde 120/400 (pk 667, zh) -- 5 hits
+  sonde 125/400 (pk 680, fr) -- 5 hits
+  sonde 130/400 (pk 681, en) -- 5 hits
+  sonde 135/400 (pk 681, ru) -- 5 hits
+  sonde 140/400 (pk 690, fa) -- 5 hits
+  sonde 145/400 (pk 726, ar) -- 5 hits
+  sonde 150/400 (pk 726, pt) -- 5 hits
+  sonde 155/400 (pk 727, es) -- 5 hits
+  sonde 160/400 (pk 727, zh) -- 5 hits
+  sonde 165/400 (pk 735, fr) -- 5 hits
+  sonde 170/400 (pk 777, en) -- 5 hits
+  sonde 175/400 (pk 777, ru) -- 5 hits
+  sonde 180/400 (pk 798, fa) -- 5 hits
+  sonde 185/400 (pk 800, ar) -- 5 hits
+  sonde 190/400 (pk 800, pt) -- 5 hits
+  sonde 195/400 (pk 826, es) -- 5 hits
+  sonde 200/400 (pk 826, zh) -- 5 hits
+  sonde 205/400 (pk 834, fr) -- 5 hits
+  sonde 210/400 (pk 837, en) -- 5 hits
+  sonde 215/400 (pk 837, ru) -- 5 hits
+  sonde 220/400 (pk 846, fa) -- 5 hits
+  sonde 225/400 (pk 848, ar) -- 5 hits
+  sonde 230/400 (pk 848, pt) -- 5 hits
+  sonde 235/400 (pk 876, es) -- 5 hits
+  sonde 240/400 (pk 876, zh) -- 5 hits
+  sonde 245/400 (pk 878, fr) -- 5 hits
+  sonde 250/400 (pk 888, en) -- 5 hits
+  sonde 255/400 (pk 888, ru) -- 5 hits
+  sonde 260/400 (pk 953, fa) -- 5 hits
+  sonde 265/400 (pk 974, ar) -- 5 hits
+  sonde 270/400 (pk 974, pt) -- 5 hits
+  sonde 275/400 (pk 992, es) -- 5 hits
+  sonde 280/400 (pk 992, zh) -- 5 hits
+  sonde 285/400 (pk 1004, fr) -- 5 hits
+  sonde 290/400 (pk 1011, en) -- 5 hits
+  sonde 295/400 (pk 1011, ru) -- 5 hits
+  sonde 300/400 (pk 1015, fa) -- 5 hits
+  sonde 305/400 (pk 1020, ar) -- 4 hits
+  sonde 310/400 (pk 1020, pt) -- 5 hits
+  sonde 315/400 (pk 1092, es) -- 5 hits
+  sonde 320/400 (pk 1092, zh) -- 5 hits
+  sonde 325/400 (pk 1280, fr) -- 5 hits
+  sonde 330/400 (pk 1281, en) -- 5 hits
+  sonde 335/400 (pk 1281, ru) -- 5 hits
+  sonde 340/400 (pk 1282, fa) -- 5 hits
+  sonde 345/400 (pk 1287, ar) -- 5 hits
+  sonde 350/400 (pk 1287, pt) -- 2 hits
+  sonde 355/400 (pk 1288, es) -- 3 hits
+  sonde 360/400 (pk 1288, zh) -- 5 hits
+  sonde 365/400 (pk 1291, fr) -- 5 hits
+  sonde 370/400 (pk 1345, en) -- 5 hits
+  sonde 375/400 (pk 1345, ru) -- 5 hits
+  sonde 380/400 (pk 1357, fa) -- 5 hits
+  sonde 385/400 (pk 1361, ar) -- 5 hits
+  sonde 390/400 (pk 1361, pt) -- 5 hits
+  sonde 395/400 (pk 1388, es) -- 5 hits
+  sonde 400/400 (pk 1388, zh) -- 5 hits
+
+Sondes effectuees        : 400
+Trouvailles (hits > 0)   : 394  (98.5 %)
+Intervalle Wilson 95 %   : [96.8 %, 99.3 %]
+
+Detail par langue :
+  langue    hits  miss   taux_hit
+  ar          50     0     100.0 %
+  en          50     0     100.0 %
+  es          49     1      98.0 %
+  fa          50     0     100.0 %
+  fr          50     0     100.0 %
+  pt          48     2      96.0 %
+  ru          47     3      94.0 %
+  zh          50     0     100.0 %
+
+=== CONTROLE INVERSE (sujets REPUTES ANCRES) ===
+L'instrument doit trouver ces titres ; sinon, il est aveugle.
+  [OK ] fr    'Sophisme' -> 5 hit(s), top=['Sophisme', 'Frédéric Bastiat', 'Sophisme du vrai Écossais']
+  [OK ] en    'Fallacy' -> 5 hit(s), top=['Fallacy', 'List of fallacies', "Gambler's fallacy"]
+  [OK ] es    'Falacia' -> 5 hit(s), top=['Falacia', 'Falacia ecológica', 'Falacia del apostador']
+  [OK ] ar    'السفسطة' -> 5 hit(s), top=['سفسطة', 'دحض السفسطة', 'غورغياس']
+  [OK ] de    'Fehlschluss' -> 5 hit(s), top=['Fehlschluss', 'Naturalistischer Fehlschluss', 'Informeller Fehlschluss']
+
+Controles OK : 5/5
+
+=== SYNTHESE GRAIN ① ===
+  Echantillon            : 50 cartes (>= 40 selon DoD)
+  Sondes effectuees       : 400
+  Trouvailles (faux E)    : 394 (98.5 %, IC95 [96.8 %, 99.3%])
+  Controles positifs OK   : 5/5
+  ⚠ La classe E est sous-estimee par l'instrument originel.
+    Extrapolation : 355 cellules * 98.5 % = ~349 faux-<< non ancre >>.
+    Strate E re-caracterisee AVANT arbitrage owner.
+
+Resultat ecrit -> C:/Users/jsboi/AppData/Local/Temp/resond2.json
