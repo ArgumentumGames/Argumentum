@@ -90,6 +90,32 @@ def main():
     else:
         print('controle inverse (a) INOPERANT : le temoin a disparu du corpus -- revoir le temoin')
 
+    # --- sante du MAILLON 1 : le nom apparie-t-il l'archive a la baseline 2024 ? ---
+    # C'est la seule justification du pont : si ce taux etait bas, le maillon serait sans valeur.
+    # Le `path` qui bouge a nom constant est la mesure DIRECTE de la restructuration de taxonomie.
+    base_by_name = {}
+    for r in base:
+        if key(r.get('text_fr')):
+            base_by_name.setdefault(key(r.get('text_fr')), []).append(r)
+    m1_ok = m1_moved = m1_miss = 0
+    for _t, a in arch:
+        k = key(a.get('text_fr'))
+        if not k:
+            continue
+        hit = base_by_name.get(k)
+        if hit and len(hit) == 1:
+            m1_ok += 1
+            if n(hit[0].get('path')) != n(a.get('path')):
+                m1_moved += 1
+        else:
+            m1_miss += 1   # absent, ou nom ambigu dans la baseline -> inexploitable
+    print('\nmaillon 1 -- archive --(nom)--> baseline 2024 : %d/%d noms uniques appaires (%.1f%%)'
+          % (m1_ok, m1_ok + m1_miss, 100.0 * m1_ok / max(1, m1_ok + m1_miss)))
+    print('   dont %d a `path` DIFFERENT => mesure directe de la restructuration de taxonomie'
+          % m1_moved)
+    if m1_moved == 0:
+        print('   ⛔ 0 deplacement mesure : si `path` n\'a pas bouge, le pont n\'a pas lieu d\'etre')
+
     # --- appariement etage 1 : `path` ---
     apparie = [r for r in deck if n(r.get('path')) in arch_paths]
     orphelines = [r for r in deck if n(r.get('path')) not in arch_paths]
