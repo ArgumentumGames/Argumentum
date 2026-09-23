@@ -36,8 +36,10 @@ COUCHES (par PK contre `62b561e75`)
                    ⛔ pas l'objet de l'arbitrage agentique.
   typo-seul-agent: baseline ≠ HEAD, mais skeleton(baseline)=skeleton(HEAD)
                    ⇒ la différence est purement typographique.
-  hors-deck      : PK absente de la baseline (ex PK 96 retirée par
-                   décision owner #1288).
+  hors-deck      : PK absente du deck HEAD (retirée par décision
+                   owner, ex PK 96 par #1288). ⚠️ Elle figure
+                   toujours dans la baseline 2024 — « absente de la
+                   baseline » serait faux (review v2 d'ai-01).
 
 CLASSES (alignées sur ledger-instrument.py)
   IDENT       : nom inchangé
@@ -54,10 +56,34 @@ TÉMOINS À CHAQUE RUN
   (d) collision PK 598/2 : nom imprimé désigne désormais une autre
       carte ⇒ mesuré sur contenu (similarité en mots), pas sur titre
 
-RÈGLE D'ARBITRAGE
-  Surface d'arbitrage par défaut = **couche agentique uniquement**.
-  La couche pré-agentique est un travail d'époque owner, présentée
-  à part s'il la demande.
+RÈGLE D'ARBITRAGE (review ai-01 v2 : « surface = 32, pas 34 »)
+  Surface d'arbitrage = **agentique uniquement (32)**.
+  - PK 855 (Equivoque → Équivoque) : différence agentique purement
+    typographique ⇒ même classe que les C « à garder », hors surface.
+  - PK 96 : n'est plus une carte (#1288) — rien à imprimer, rien à
+    arbitrer ⇒ information, hors surface.
+  - PK 185 (« anti critique » → « anticritique ») : SOUDURE — le
+    squelette sans espaces est identique ; classable typographique.
+    L'instrument la garde en SUBST (l'espace compte dans le
+    squelette) et la MARQUE ; le choix final est éditorial.
+  La couche pré-agentique est un geste d'époque owner (2022→2024) :
+  un « retour à l'imprimé » y reviendrait sur un geste owner —
+  ⛔ ce n'est PAS un non-geste (la baseline 2024 n'est pas l'imprimé).
+
+TROIS COLONNES (règle Epic #1499 c.5787733627 + review v2)
+  Le tableau d'arbitrage porte imprimé (archive v3) / baseline 2024 /
+  HEAD : « annuler l'agentique » et « retour à l'imprimé » donnent
+  deux titres différents sur 4 PK (361, 658, 799, 1361), et le retour
+  à l'imprimé N'EXISTE PAS pour 2 PK sans référence archive
+  (492, 1357 — cf. #1507).
+
+RÉCONCILIATIONS CLOSED par la review v2 d'ai-01 (⛔ pas des questions)
+  - 30 = 32 − {492, 1357} : les 2 PK sans ancêtre archive.
+    Exclure la passe 2 donnerait 27, pas 30 : 598/603/680 SONT des
+    cartes v3, sous d'autres `path` (#1507).
+  - 16 = 5 pré-agentiques + 3 DÉPLACÉ (PK 3/33/55) + 8 nœuds
+    non-cartes (4, 20, 22, 600, 602, 679, 730, 1372), sortis par le
+    filtre `carte ≠ vide`.
 
 CE QUE L'INSTRUMENT N'EST PAS : il ne tranche aucune valeur éditoriale.
 Il classe et décompose, ⛔ il juge pas.
@@ -74,6 +100,16 @@ BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 CSV_PATH = 'Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv'
 ARCHIVE_PATH = 'Cards/Fallacies/Archive/v3/Argumentum Fallacies - Cards.csv'
 BASELINE_REF = '62b561e75'
+# Cartes HEAD sans AUCUNE référence archive v3 (mesuré #1507, couverture 168/175).
+# 492 et 1357 en font partie ; 598/603/680 NON — leur carte v3 existe
+# sous un autre `path` que la jointure passe 1 ne rejoint pas.
+NO_REF_ARCHIVE = {'105', '362', '492', '1020', '1092', '1120', '1357'}
+
+
+def imprimé_passe2(pk):
+    if pk in NO_REF_ARCHIVE:
+        return '— (aucune réf. archive, #1507)'
+    return '(carte v3 sous un autre path)'
 
 
 def git_show(commit, path):
@@ -106,6 +142,15 @@ def deaccent(s):
 
 def skeleton(s):
     return re.sub(r'[^a-z0-9 ]', '', deaccent(norm_ws(s)).lower()).strip()
+
+
+def skeleton_nospace(s):
+    return re.sub(r'[^a-z0-9]', '', deaccent(norm_ws(s)).lower())
+
+
+def is_soudure(ref, now):
+    """Soudure : diffère avec les espaces, identique sans (ex PK 185)."""
+    return skeleton(ref) != skeleton(now) and skeleton_nospace(ref) == skeleton_nospace(now)
 
 
 def classify(ref, now):
@@ -299,23 +344,32 @@ def main():
     # On classe TOUS les cas (subst, typo, deplace) selon baseline→HEAD.
     # Une PK peut être DEPLACE (titre archive ailleurs) ET typo-seul-agent
     # (baseline→HEAD = C) — c'est le cas PK 1313 (cf. review #1515).
+    # DEPLACE prime sur la ventilation, sans dédoubler la ligne (review v2).
     for r in subst:
         if r.get('hors_deck'):
             r['couche'] = 'hors-deck'
-            r['couche_why'] = 'PK retirée du deck entre baseline et HEAD (#1288)'
+            r['couche_why'] = 'PK retirée du deck HEAD (#1288) — figure toujours en baseline'
             continue
         c, why = couche(r['pk_head'], r['nom_h'], B_pk)
         r['couche'] = c
         r['couche_why'] = why
     for r in typo:
+        # Pas de renommage de couche ici : un C dont baseline = HEAD est
+        # pré-agentique (le geste typo date d'avant 2024, ex PK 1362).
         c, why = couche(r['pk_head'], r['nom_h'], B_pk)
-        r['couche'] = c if c not in ('agentique', 'pre-agentique') else 'typo-seul-agent'
+        r['couche'] = c
         r['couche_why'] = why
     for r in deplace:
         # DEPLACE : on garde la classe, mais on note la COUCHE baseline.
         c, why = couche(r['pk_head'], r.get('nom_h', r['nom_a']), B_pk)
         r['couche'] = c
         r['couche_why'] = why + ' (DEPLACE : titre archive vit ailleurs)'
+
+    # ========== ENRICHISSEMENT : colonne baseline + soudure ==========
+    for r in subst + typo + deplace:
+        pk = r['pk_head']
+        r['nom_b'] = norm_ws(nfc(B_pk[pk].get('text_fr', '')).strip()) if pk in B_pk else ''
+        r['soudure'] = bool(is_soudure(r['nom_a'], r['nom_h'])) if not r.get('hors_deck') else False
 
     # ========== VÉRIFIE LE 30 attendu ==========
     n_agentique = sum(1 for r in subst if r.get('couche') == 'agentique')
@@ -342,43 +396,53 @@ def main():
     print('    agentique (par PK vs baseline 62b561e75) : %d' % n_agentique)
     print('    pre-agentique (HEAD = baseline deja)     : %d' % n_pre)
     print('    typo-seul-agent (SUBST nominal, C skel)  : %d' % n_typo_agent)
-    print('    hors-deck (PK absente baseline, ex 96)   : %d' % n_hors_deck)
+    print('    hors-deck (absente du deck HEAD, ex 96)  : %d' % n_hors_deck)
     print('  Corrections typographiques pures (C)       : %d' % len(typo))
     print('  DEPLACE (titre archive vit ailleurs)       : %d' % len(deplace))
     print('  Passe 2 (PKs créés après archive v3)      : %d' % passe2_count)
     print()
-    print('  TOTAL SUBST+DÉPLACÉ (sans typo pure)       : %d' % (len(subst) + len(deplace)))
+    print('  TOTAL lignes mesurées (SUBST+C+DÉPLACÉ)    : %d' % (len(subst) + len(typo) + len(deplace)))
 
     # ========== TABLEAU D'ARBITRAGE (agentique UNIQUEMENT) ==========
+    # 3 colonnes : imprimé (archive v3) / baseline 2024 / HEAD (règle Epic).
     print()
-    print('=' * 90)
+    print('=' * 130)
     print("TABLEAU D'ARBITRAGE — agentique UNIQUEMENT (surface owner par defaut)")
-    print('=' * 90)
+    print('=' * 130)
     print()
-    print(f"{'PK':<6} {'path':<14} {'passe':<6} {'couche':<18} {'ancien':<35} {'nouveau':<35}")
+    print(f"{'PK':<6} {'path':<14} {'passe':<6} {'imprimé (archive v3)':<30} {'baseline 2024':<30} {'HEAD':<30}")
     print('-' * 130)
     for r in subst:
-        if r.get('couche') in ('agentique', 'typo-seul-agent', 'hors-deck'):
-            print(f"{r['pk_head']:<6} {r['path']:<14} {r['passe']:<6} {r['couche']:<18} "
-                  f"{r['nom_a'][:33]:<35} {r['nom_h'][:33]:<35}")
+        if r.get('couche') == 'agentique':
+            marque = ' *SOUDURE*' if r.get('soudure') else ''
+            if r['passe'] == 1:
+                imp = r['nom_a'][:28]
+            else:
+                imp = imprimé_passe2(r['pk_head'])[:28]
+            bas = r['nom_b'][:28] if r['nom_b'] else '—'
+            print(f"{r['pk_head']:<6} {r['path']:<14} {r['passe']:<6} {imp:<30} {bas:<30} {r['nom_h'][:28]:<30}{marque}")
 
     # ========== TABLEAU COMPLET ==========
     print()
-    print('=' * 90)
-    print('TABLEAU COMPLET — toutes couches (SUBST + typo + déplace)')
-    print('=' * 90)
+    print('=' * 145)
+    print('TABLEAU COMPLET — toutes couches (SUBST + typo + déplace), avec baseline')
+    print('=' * 145)
     print()
-    print(f"{'PK':<6} {'path':<14} {'passe':<6} {'couche':<18} {'classe':<8} {'ancien':<35} {'nouveau':<35}")
+    print(f"{'PK':<6} {'path':<14} {'passe':<6} {'couche':<18} {'classe':<8} {'imprimé':<28} {'baseline':<28} {'HEAD':<28}")
     print('-' * 145)
     for r in subst:
+        if r['passe'] == 1:
+            imp = r['nom_a'][:26]
+        else:
+            imp = imprimé_passe2(r['pk_head'])[:26]
         print(f"{r['pk_head']:<6} {r['path'][:12]:<14} {r['passe']:<6} {r['couche']:<18} {'SUBST':<8} "
-              f"{r['nom_a'][:33]:<35} {r['nom_h'][:33]:<35}")
+              f"{imp:<28} {(r['nom_b'] or '—')[:26]:<28} {r['nom_h'][:26]:<28}")
     for r in typo:
         print(f"{r['pk_head']:<6} {r['path'][:12]:<14} {r['passe']:<6} {r['couche']:<18} {'C':<8} "
-              f"{r['nom_a'][:33]:<35} {r['nom_h'][:33]:<35}")
+              f"{r['nom_a'][:26]:<28} {(r['nom_b'] or '—')[:26]:<28} {r['nom_h'][:26]:<28}")
     for r in deplace:
         print(f"{r['pk_head']:<6} {r['path'][:12]:<14} {r['passe']:<6} {r['couche']:<18} {'DEPLACE':<8} "
-              f"{r['nom_a'][:33]:<35} {r.get('nom_h', r['nom_a'])[:33]:<35}")
+              f"{r['nom_a'][:26]:<28} {(r['nom_b'] or '—')[:26]:<28} {r.get('nom_h', r['nom_a'])[:26]:<28}")
 
     # ========== CAS PARTICULIERS ==========
     print()
@@ -417,17 +481,20 @@ def main():
 
     print()
     print('=' * 90)
-    print('SYNTHÈSE — surface d\'arbitrage par défaut')
+    print('SYNTHÈSE — surface d\'arbitrage par défaut (review v2 : surface = agentique)')
     print('=' * 90)
-    print('  Agentique          : %d' % n_agentique)
-    print('  Typo-seul-agent    : %d' % n_typo_agent)
-    print('  Hors-deck          : %d' % n_hors_deck)
-    print('  Pré-agentique (≠)  : %d — TRAVAIL D\'ÉPOQUE OWNER, hors arbitrage agentique' % n_pre)
+    n_soudures = sum(1 for r in subst if r.get('couche') == 'agentique' and r.get('soudure'))
+    print('  Agentique          : %d  (surface d\'arbitrage — dont %d soudure(s), classable(s) typo)'
+          % (n_agentique, n_soudures))
+    print('  Typo-seul-agent    : %d — différence agentique typographique seulement (hors surface, à garder)'
+          % n_typo_agent)
+    print('  Hors-deck          : %d — n\'est plus une carte (#1288), rien à arbitrer' % n_hors_deck)
+    print('  Pré-agentique (≠)  : %d — geste d\'époque owner 2022→2024 ; retour à l\'imprimé = revenir sur un geste owner' % n_pre)
     print('  DEPLACE (sœurs)    : %d — permutation, pas renommage' % len(deplace))
     print('  Typos pures        : %d — à garder' % len(typo))
     print()
-    print('  Surface d\'arbitrage agentique : %d (vs 32 du dispatch)'
-          % (n_agentique + n_typo_agent + n_hors_deck))
+    print('  Surface d\'arbitrage agentique : %d (= le 32 du dispatch, recoupé par ai-01)'
+          % n_agentique)
 
 
 if __name__ == '__main__':
