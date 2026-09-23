@@ -4,21 +4,33 @@
 Télécharge les 6 pages publiées (landing + 5 détails de variantes), en extrait
 les sections du volet de contenu DNN, les apparie INTRA-variante aux sections
 markdown des 15 cartes de « Argumentum Rules - Cards.csv » (colonne Text, fr),
-et imprime la matrice de similarité + les deltas de contenu NOMINATIFS mesurés
-le 2026-09-23. Référence de rédaction : docs/quality/1502-g7-regles-site-vs-cartes-2026-09-23.md.
+et MESURE la matrice de similarité + les deltas de contenu nominatifs
+(compteurs joueurs par variante, historique git -S). Chaque verdict est
+CALCULÉ — rien d'imprimé en chaîne fixe (#1517 v1 : T4 avait traversé le rc=0
+parce que sa conclusion était un print figé).
+
+Référence de rédaction : docs/quality/1502-g7-regles-site-vs-cartes-2026-09-23.md.
 
 Gardes :
 - lecture seule stricte (GET sur les pages publiques, aucun POST/auth/écriture) ;
 - aucune écriture CSV/gabarit — ceci est un instrument de dossier d'arbitrage.
 
-Usage : python docs/corpus/rules-site-vs-cards.py   (depuis la racine du dépôt)
-Sortie : matrice + deltas ; rc=0 si l'extraction est complète et cohérente,
-rc=2 si une page manque ou si l'appariement structural échoue.
+Usage :
+  python docs/corpus/rules-site-vs-cards.py [csv_path]
+    csv_path optionnel : copie du CSV pour le CONTRÔLE INVERSE par mutation
+    (ex. compteur de Rules_09 changé ⇒ verdict « beau » doit basculer à ECART).
+
+Codes de sortie :
+  0  extraction complète et structurelle cohérente (les écarts site↔cartes
+     sont des RÉSULTATS, pas des erreurs) ;
+  2  erreur structurelle : page inaccessible, appariement insuffisant (<30
+     paires), compteur introuvable sur une carte attendue, ou git indisponible.
 """
 import csv
 import html
 import os
 import re
+import subprocess
 import sys
 import unicodedata
 import urllib.request
@@ -26,19 +38,32 @@ from difflib import SequenceMatcher
 
 BASE = "https://www.argumentum.games/R%C3%A8gles"
 VARIANTS = {
-    "l-ecole-des-menteurs": ("ecole", ["Rules_01", "Rules_02", "Rules_03", "Rules_04", "Rules_05", "Rules_06"]),
-    "le-bingo-mixologie-argumentative": ("bingo", ["Rules_07", "Rules_08"]),
-    "le-dernier-beau-parleur": ("beau", ["Rules_09", "Rules_10"]),
-    "le-moulin-a-baratin": ("moulin", ["Rules_11", "Rules_12"]),
-    "la-parlote-coinchee": ("parlote", ["Rules_13", "Rules_14", "Rules_15"]),
+    "l-ecole-des-menteurs": ("ecole", ["Rules_01", "Rules_02", "Rules_03", "Rules_04", "Rules_05", "Rules_06"], "Rules_02"),
+    "le-bingo-mixologie-argumentative": ("bingo", ["Rules_07", "Rules_08"], "Rules_07"),
+    "le-dernier-beau-parleur": ("beau", ["Rules_09", "Rules_10"], "Rules_09"),
+    "le-moulin-a-baratin": ("moulin", ["Rules_11", "Rules_12"], "Rules_11"),
+    "la-parlote-coinchee": ("parlote", ["Rules_13", "Rules_14", "Rules_15"], "Rules_13"),
 }
+SITE_VARIANT_LABELS = [
+    ("ecole", "L'école des menteurs"),
+    ("bingo", "Le Bingo mixologie argumentative"),
+    ("moulin", "Le moulin à baratin"),
+    ("beau", "Le dernier beau parleur"),
+    ("parlote", "La parlote coinchée"),
+]
 TIMEOUT = 30
+RE_COUNTER_CARD = re.compile(r"R[èe]gles du jeu\s*:\s*(de\s+(\d+)\s+[àa]\s+(\d+)|(\d+))\s*joueurs")
+RE_COUNTER_SITE = re.compile(r"(de\s+(\d+)\s+[àa]\s+(\d+)|(?<!\d)(\d+))\s*joueurs")
 
 
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "argumentum-diff/1502 (read-only)"})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        return r.read().decode("utf-8", errors="replace")
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+            return r.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"ERREUR: page inaccessible {url} — {e}")
+        return None
 
 
 def norm(s):
@@ -98,32 +123,92 @@ def card_sections(text):
     return out
 
 
-def main():
+def counter_card(text):
+    """(min, max) du compteur d'une carte, None si absent."""
+    m = RE_COUNTER_CARD.search(text)
+    if not m:
+        return None
+    if m.group(2):
+        return (int(m.group(2)), int(m.group(3)))
+    return (int(m.group(4)), int(m.group(4)))
+
+
+def counter_site(label, landing_text):
+    """(min, max) du compteur annoncé sur la landing pour la variante, None si absent."""
+    idx = landing_text.find(label)
+    if idx < 0:
+        return None
+    m = RE_COUNTER_SITE.search(landing_text, idx + len(label))
+    if not m:
+        return None
+    if m.group(2):
+        return (int(m.group(2)), int(m.group(3)))
+    return (int(m.group(4)), int(m.group(4)))
+
+
+def git_s_count(needle):
+    """Compte les commits touchant l'occurrence — EXÉCUTÉ, pas imprimé."""
+    ref = "origin/master"
+    try:
+        r = subprocess.run(["git", "log", "--oneline", "-S", needle, ref, "--", "Cards/Rules/"],
+                           capture_output=True, text=True, timeout=30)
+        return len([l for l in r.stdout.splitlines() if l.strip()])
+    except Exception:
+        return None
+
+
+def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    csv_path = os.path.join("Cards", "Rules", "Argumentum Rules - Cards.csv")
+    csv_path = argv[1] if len(argv) > 1 else os.path.join("Cards", "Rules", "Argumentum Rules - Cards.csv")
     rows = {r["pk"].strip(): r.get("Text") or "" for r in csv.DictReader(open(csv_path, encoding="utf-8-sig"))}
     if len(rows) != 15:
-        print(f"ERREUR: 15 cartes attendues, {len(rows)} lues")
+        print(f"ERREUR: 15 cartes attendues, {len(rows)} lues dans {csv_path}")
         return 2
 
+    # ── Compteurs joueurs : MESURÉS des deux côtés, verdict CALCULÉ ──
     landing = fetch(BASE)
-    counts = re.findall(r"(L['’]école des menteurs|Le Bingo mixologie argumentative|Le moulin à baratin|Le dernier beau parleur|La parlote coinchée)\s+(de \d+ à \d+ joueurs|de \d+ joueurs)", text_of(landing))
-    print("=== Compteurs joueurs annoncés par le SITE (landing /Règles) ===")
-    for name, c in counts:
-        print(f"  {name}: {c}")
+    if landing is None:
+        return 2
+    landing_txt = re.sub(r"\s+", " ", text_of(landing))
+    print("=== Compteurs joueurs par variante — site (landing) vs carte (ligne « Règles du jeu ») ===")
+    structural_fail = False
+    for vk, label in SITE_VARIANT_LABELS:
+        s = counter_site(label, landing_txt)
+        card_pk = next(c for slug, (v, pks, c) in VARIANTS.items() if v == vk)
+        c = counter_card(rows.get(card_pk, ""))
+        if s is None or c is None:
+            fmt = lambda t: "?" if t is None else f"{t[0]}-{t[1]}"
+            print(f"  {vk:8s} site={fmt(s)} carte({card_pk})={fmt(c)}  [STRUCTURE: compteur introuvable]")
+            structural_fail = True
+            continue
+        verdict = "identique" if s == c else "ECART"
+        print(f"  {vk:8s} site={s[0]}-{s[1]}  carte({card_pk})={c[0]}-{c[1]}  -> {verdict}")
 
+    # ── Historique git -S : EXÉCUTÉ ──
+    print("\n=== Historique git -S (exécuté, ref origin/master, chemin Cards/Rules/) ===")
+    n3 = git_s_count("3 ou 4 joueurs")
+    n5 = git_s_count("5 joueurs et plus")
+    if n3 is None or n5 is None:
+        print("  ERREUR: git indisponible")
+        structural_fail = True
+    else:
+        print(f"  \"3 ou 4 joueurs\"  : {n3} commit(s)")
+        print(f"  \"5 joueurs et plus\": {n5} commit(s) (0 = jamais existé dans la lignée cartes)")
+
+    # ── Matrice de similarité ──
     print("\n=== Matrice site↔cartes (appariement intra-variante, similarité SequenceMatcher sur texte normalisé) ===")
-    failures, paired = 0, 0
-    site_all_keys = set()
-    for slug, (vk, pks) in VARIANTS.items():
-        secs = site_sections(fetch(f"{BASE}/details/{slug}/mid/602"))
+    paired = 0
+    for slug, (vk, pks, _) in VARIANTS.items():
+        raw = fetch(f"{BASE}/details/{slug}/mid/602")
+        if raw is None:
+            return 2
+        secs = site_sections(raw)
         print(f"--- {vk} ({len(secs)} sections site) ---")
         card_pool = {}
         for pk in pks:
             card_pool.update(card_sections(rows[pk]))
         for name, text in secs:
             k = nkey(name)
-            site_all_keys.add((vk, k))
             cands = [(ck, cv) for ck, cv in card_pool.items() if nkey(ck) == k]
             if not cands:
                 print(f"  {name[:34]:36s} <-> (aucune carte)")
@@ -141,19 +226,14 @@ def main():
                 tag = "reecrit"
             print(f"  {name[:34]:36s} <-> {cands[0][0][:30]:32s} sim={s:5.3f}  {tag}")
 
-    print("\n=== Deltas de contenu NOMINATIFS (mesurés 2026-09-23, cf. dossier) ===")
-    print("  T1 compteurs joueurs : site école 'de 4 à 10' vs carte Rules_02 'de 4 à 8' (imprimé 2022 : 4 à 8)")
-    print("  T2 règle 'À 3 ou 4 joueurs' (jury + pioches) : carte seule — absente site ET imprimé 2022")
-    print("  T3 condition 'A 5 joueurs et plus' (1re variante) : site seul — 0 occurrence dans l'historique CSV (git log -S)")
-    print("  T4 'de 4 à 4 joueurs' (parlote, site) : formulation suspecte site")
-    print("  T5 pictogrammes : inlinés dans les cartes / sections séparées 'Conditions de Victoire'+'Nombre de pioches' (site)")
-    print("  T6 sections site sans carte : Carte Mémo (téléchargement), Conditions de Victoire, Nombre de pioches")
-
     if paired < 30:
         print(f"\nERREUR: appariement structurel insuffisant ({paired} paires < 30)")
-        failures += 1
-    return 1 if failures else 0
+        structural_fail = True
+    if structural_fail:
+        return 2
+    print(f"\n[{paired} paires] Instrument cohérent — les écarts ci-dessus sont des résultats.")
+    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv))
