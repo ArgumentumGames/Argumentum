@@ -24,7 +24,9 @@ Codes de sortie :
   0  extraction complète et structurelle cohérente (les écarts site↔cartes
      sont des RÉSULTATS, pas des erreurs) ;
   2  erreur structurelle : page inaccessible, appariement insuffisant (<30
-     paires), compteur introuvable sur une carte attendue, ou git indisponible.
+     paires), compteur introuvable sur une carte attendue, compteur carte
+     divergeant de la valeur décidée par l'owner (EXPECTED_CARD_COUNTERS),
+     ou git indisponible.
 """
 import csv
 import html
@@ -54,6 +56,10 @@ SITE_VARIANT_LABELS = [
 TIMEOUT = 30
 RE_COUNTER_CARD = re.compile(r"R[èe]gles du jeu\s*:\s*(de\s+(\d+)\s+[àa]\s+(\d+)|(\d+))\s*joueurs")
 RE_COUNTER_SITE = re.compile(r"(de\s+(\d+)\s+[àa]\s+(\d+)|(?<!\d)(\d+))\s*joueurs")
+# Décision owner 23/09 (#1502 c.5794914387, « monter à 10 joueurs, ça passe avec le
+# nouveau deck ») : la carte École annonce « de 3 à 10 joueurs ». Le site publié
+# reste à 4-10 jusqu'à sa re-synchronisation — l'écart site/carte est ATTENDU.
+EXPECTED_CARD_COUNTERS = {"ecole": (3, 10)}
 
 
 def fetch(url):
@@ -182,6 +188,16 @@ def main(argv):
             structural_fail = True
             continue
         verdict = "identique" if s == c else "ECART"
+        expected = EXPECTED_CARD_COUNTERS.get(vk)
+        if expected is not None:
+            if c != expected:
+                print(f"  {vk:8s} site={s[0]}-{s[1]}  carte({card_pk})={c[0]}-{c[1]}  "
+                      f"[STRUCTURE: compteur carte != {expected[0]}-{expected[1]} attendu "
+                      f"(décision owner #1502)]")
+                structural_fail = True
+                continue
+            if s != c:
+                verdict = "ECART attendu (site à re-synchroniser)"
         print(f"  {vk:8s} site={s[0]}-{s[1]}  carte({card_pk})={c[0]}-{c[1]}  -> {verdict}")
 
     # ── Historique git -S : EXÉCUTÉ ──
