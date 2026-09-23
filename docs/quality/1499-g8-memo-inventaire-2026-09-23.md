@@ -80,7 +80,10 @@ virer au rouge.
 - L'appariement chemin-à-chemin peut mal pairer des sœurs restructurées (#1516) : les deltas
   +35/−16/+16/−3 sont **directionnels**, pas carte-à-carte.
 - Aucune mesure de rendu (couleurs, tenue en page) — QA visuelle = ai-01.
-- Les 7 autres langues : le Memo est fr-seul par config.
+- Les 7 autres langues : le **gabarit** Memo est un seul fichier `_fr`
+  (`Argumentum_Memo_{Face,Back}_fr.json`) ; le Memo **produit** sort dans les 8 langues
+  (réécriture du gabarit par langue au pipeline, dos distincts par langue). Ce dossier ne
+  mesure que `fr`.
 
 ## Reproductibilité
 
