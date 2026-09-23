@@ -244,11 +244,23 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             _output.WriteLine($"Tarot Light: {tarot.ExpectedPages} pages — {tarot.Breakdown}");
             _output.WriteLine($"Poker Light: {poker.ExpectedPages} pages — {poker.Breakdown}");
 
-            // Le filtre print_and_play=1 doit être LU du CSV, pas cru depuis les commentaires
-            // de config : le commentaire dit « 8 cartes » Vertues-Light, le CSV en donne 24.
-            var virtuesLight = tarot.CardSets.Single(c => c.CardSetName == KnownCardSets.VirtuesPrintAndPlayLight);
-            virtuesLight.SourceRows.Should().Be(24,
-                "mesuré sur le CSV : print_and_play=1 = 24 vertus — le commentaire de config « root + 7 family heads = 8 cards » est FIGÉ, pas un état du CSV");
+            // #1501 (décision owner 22/09, verdict RX11 : « les vertues sont un autre sujet à
+            // garder séparé ») : le document Tarot Light n'agrège PLUS VirtuesPrintAndPlayLight.
+            // L'attendu n'est PAS la valeur observée recopiée : c'est l'ABSENCE elle-même qu'on
+            // épingle — un retour accidentel de l'agrégation ferait rouge ici, et le retrait de
+            // la CAPACITÉ ferait rouge au témoin du bas.
+            tarot.CardSets.Should().NotContain(c => c.CardSetName == KnownCardSets.VirtuesPrintAndPlayLight,
+                "#1501 : agrégation retirée du document Tarot Light — le deck Light ne porte plus que Fallacies (+ Rules + Memo)");
+
+            // Témoin de capacité : le CardSet VirtuesPrintAndPlayLight reste DÉFINI dans la
+            // config (on retire une agrégation, pas une capacité — le retour arrière est une
+            // ligne, #1501 §2). Son filtre CSV reste mesuré : print_and_play=1 = 24 vertus
+            // (racine + 7 têtes + 16 sous-têtes), pas les « 8 » du commentaire historique.
+            var config = new AssetConverterConfig();
+            var cardSetStillDefined = config.WebBasedGeneratorConfig.CardSets
+                .Any(cs => cs.Name == KnownCardSets.VirtuesPrintAndPlayLight);
+            cardSetStillDefined.Should().BeTrue(
+                "#1501 : le CardSet VirtuesPrintAndPlayLight reste défini (capacité conservée, agrégation seule retirée)");
         }
     }
 }

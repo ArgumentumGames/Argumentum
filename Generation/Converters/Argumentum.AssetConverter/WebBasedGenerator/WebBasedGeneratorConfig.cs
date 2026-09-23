@@ -282,7 +282,7 @@ namespace Argumentum.AssetConverter
 						Dpi = 300
 					}
 				},
-				// #645 (Virtues subset) — Light P&P: same proven Virtues config, filtered to the historical "families overview" sample (print_and_play=1 -> root + 7 family heads = 8 cards) instead of all 113 virtue cards.
+				// #645 (Virtues subset) — Light P&P: same proven Virtues config, filtered to the historical "families overview" sample (print_and_play=1 -> 24 cards rendered: root + 7 family heads + 16 sub-heads — NOT 8, see PdfDeckCountContractTests). #1501: retiré du document Tarot Light, capacité conservée.
 				new CardSetConfig(){
 					Name =KnownCardSets.VirtuesPrintAndPlayLight,
 					FaceCardSetInfo = new CardSetInfo()
@@ -780,25 +780,10 @@ namespace Argumentum.AssetConverter
 								WidthMM = 70,
 							}
 						},
-						new DocumentCardSet()
-						{
-							// #645 (Virtues subset) Light = "families overview" (print_and_play=1 -> root + 7 family heads = 8 cards). Mirrors Standard Virtues (113x60mm).
-							CardSetName = KnownCardSets.VirtuesPrintAndPlayLight,
-							NbCopies = 1,
-							SaveOriginalImage = false,
-							FrontCards = new DocumentCard()
-							{
-								BorderMM = 0,
-								HeigthMM = 120,
-								WidthMM = 70,
-							},
-							BackCards =  new DocumentCard()
-							{
-								BorderMM = 0,
-								HeigthMM = 120,
-								WidthMM = 70,
-							}
-						},
+						// #1501 — VirtuesPrintAndPlayLight retiré du document Tarot Light (décision owner
+						// 22/09, verdict RX11 : « les vertues sont un autre sujet à garder séparé »).
+						// Le CardSet reste défini plus bas (~:287) : on retire une AGRÉGATION, pas une
+						// capacité — le retour arrière est une ligne.
 						new DocumentCardSet()
 						{
 							CardSetName = KnownCardSets.MemoPrintAndPlay,
