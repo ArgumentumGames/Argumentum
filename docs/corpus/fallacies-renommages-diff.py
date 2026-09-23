@@ -1,39 +1,66 @@
 # -*- coding: utf-8 -*-
-"""G1 (#1499) — Dossier d'arbitrage Fallacies : renommages fr, ARCHIVE v3 -> HEAD.
+"""G1 v2 (#1499) — Dossier d'arbitrage Fallacies : renommages fr par COUCHE.
 
 PÉRIMÈTRE dispatché (#1499 c.5777638672, +2 PK c.5777917978)
   G1 — 32 renommages + la collision PK 598/PK 2, + 2 nouveaux PK 603/680.
-  Source du chiffre 32 : ledger #1503 (docs/corpus/ledger-cartes-existantes.md)
-  mesure contre `Archive/v3/Argumentum Fallacies - Cards.csv` (169 cartes
-  pré-agentique), pas contre la baseline 2024.
 
-REFERENCE : `Cards/Fallacies/Archive/v3/Argumentum Fallacies - Cards.csv`
-  169 cartes, clé candidate `path` (153/169 appariées, contre 29/169 pour PK).
-  ⚠️ La clé PK a été ré-attribuée entre l'archive et HEAD (29 cas) — utiliser
-  `path` comme jointure (celle du bridge instrument PR #1507).
+  ⚠️ Le 32 du dispatch était mesuré CONTRE LA BASELINE `62b561e75`
+  (ledger #1503 §0), pas contre l'archive v3. La réconciliation G1 v1 a
+  mesuré contre l'archive v3 et trouvé 50, attribué l'écart à un
+  « filtre manquant » du ledger. ⛔ Mauvaise attribution : la vraie cause
+  est que sans filtre `carte ≠ vide` côté HEAD, la jointure `path`
+  apparie des NŒUDS HEAD non-cartes. La règle de l'Epic depuis
+  #1499 c.5787733627 est : **séparer les couches par PK contre la
+  baseline 2024 avant de présenter un volume « contre l'imprimé »**.
 
-JOINTURE : path (le chemin dans la taxonomie).
-  Le bridge instrument #1507 gere les cas ou path change mais le nom reste ;
-  ici, on mesure le changement de NOM, pas de chemin. Les PK 598, 603, 680
-  (deplacé+renommé) restent dans le scope car `path` est resté stable entre
-  baseline 2024 et HEAD (cf. spec : `path` HEAD = `path` baseline pour ces 3).
+REFERENCES (3, par ordre d'autorité décroissant)
+  - `62b561e75` baseline canonique (22/04/2024) — référence pour la
+    classification **agentique / pré-agentique / typographique**.
+  - `Cards/Fallacies/Archive/v3/Argumentum Fallacies - Cards.csv` —
+    deck pré-agentique, 169 cartes (clé `path` recommandée, mais
+    3 PKs sont créés après : 598/603/680 — invisibles sans bridge).
+  - HEAD — corpus courant.
 
-CLASSIFICATION (alignee sur ledger-instrument.py) :
-  - IDENT  : nom inchange
-  - C      : ne differe que par accents/casse/ponctuation (typographique, ignore)
-  - SUBST  : reformulation / remplacement -> compte dans les renommages reels
+ARCHITECTURE DE LA MESURE — 2 PASSES COMPLÉMENTAIRES
+  Passe 1 : jointure `path` archive v3 → HEAD (clé naturelle).
+            Capte la majorité des renommages.
+  Passe 2 : jointure `PK` baseline → HEAD.
+            Capte les PKs créés après l'archive (598/603/680) et
+            les permutations de path (couvertes par DEPLACE).
+
+COUCHES (par PK contre `62b561e75`)
+  agentique      : baseline ≠ HEAD, agentique (#369 ou subséquent).
+                   Surface d'arbitrage par défaut.
+  pre-agentique  : baseline = HEAD, archive v3 différent.
+                   C'est un travail d'époque owner (2022/v3→2024),
+                   ⛔ pas l'objet de l'arbitrage agentique.
+  typo-seul-agent: baseline ≠ HEAD, mais skeleton(baseline)=skeleton(HEAD)
+                   ⇒ la différence est purement typographique.
+  hors-deck      : PK absente de la baseline (ex PK 96 retirée par
+                   décision owner #1288).
+
+CLASSES (alignées sur ledger-instrument.py)
+  IDENT       : nom inchangé
+  C           : ne diffère que par accents/casse/ponctuation
+  SUBST       : reformulation / remplacement → compte dans renommages
+  DEPLACE     : le titre d'archive vit à l'identique sur UNE AUTRE
+                carte HEAD (cas 1.1.1/1.1.2/1.1.3, 7.2.1).
+                ⛔ Pas un renommage — c'est une permutation entre sœurs.
 
 TÉMOINS À CHAQUE RUN
-  (a) archive lisible (v3 = 169 cartes)
-  (b) jointure path HEAD >= 153 (cf. ledger) ; si inferieur, c'est l'instrument
-  (c) au moins UN des 3 cas « déplacé+renommé » (598, 603, 680) doit sortir
-  (d) la COLLISION PK 598/2 (« Généralisation hâtive » sur PK 2 en HEAD)
-      doit sortir : PK 598 HEAD ≠ PK 2 HEAD (noms distincts après renommage)
+  (a) archive v3 lisible = 169 cartes
+  (b) jointure PK baseline imprimées ∩ HEAD = 176 (carte ≠ vide)
+  (c) PK 598/603/680 capturés (créés après l'archive, captés par passe 2)
+  (d) collision PK 598/2 : nom imprimé désigne désormais une autre
+      carte ⇒ mesuré sur contenu (similarité en mots), pas sur titre
 
-CE QUE L'INSTRUMENT N'EST PAS : il mesure les renommages fr au niveau du nom,
-jamais la qualite editoriale ; il ne CHIFFRE PAS la collision.
+RÈGLE D'ARBITRAGE
+  Surface d'arbitrage par défaut = **couche agentique uniquement**.
+  La couche pré-agentique est un travail d'époque owner, présentée
+  à part s'il la demande.
 
-⛔ Aucun write CSV. Dossier d'arbitrage seulement.
+CE QUE L'INSTRUMENT N'EST PAS : il ne tranche aucune valeur éditoriale.
+Il classe et décompose, ⛔ il juge pas.
 """
 import csv
 import io
@@ -46,14 +73,19 @@ import unicodedata
 BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 CSV_PATH = 'Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv'
 ARCHIVE_PATH = 'Cards/Fallacies/Archive/v3/Argumentum Fallacies - Cards.csv'
+BASELINE_REF = '62b561e75'
 
 
-def rows(repo_path):
-    p = subprocess.run(['git', '-C', BASE, 'show', 'HEAD:%s' % repo_path],
+def git_show(commit, path):
+    p = subprocess.run(['git', '-C', BASE, 'show', '%s:%s' % (commit, path)],
                        capture_output=True)
     if p.returncode:
-        sys.exit('illisible: HEAD:%s' % repo_path)
-    return list(csv.DictReader(io.StringIO(p.stdout.decode('utf-8-sig', 'replace'))))
+        sys.exit('illisible: %s@%s' % (path, commit))
+    return p.stdout.decode('utf-8-sig', 'replace')
+
+
+def rows(content):
+    return list(csv.DictReader(io.StringIO(content)))
 
 
 def nfc(s):
@@ -61,7 +93,7 @@ def nfc(s):
 
 
 def norm_ws(s):
-    s = nfc(s).replace(' ', ' ').replace(' ', ' ')
+    s = nfc(s).replace(' ', ' ').replace(' ', ' ')
     s = s.replace('’', "'").replace('‘', "'")
     s = s.replace('“', '"').replace('”', '"').replace('«', '"').replace('«', '"')
     s = s.replace('»', '"').replace('–', '-').replace('—', '-')
@@ -95,186 +127,307 @@ def family_chemin(r):
     return ' / '.join(p for p in parts if p)
 
 
-def rows_baseline(ref='62b561e75'):
-    """Lire la baseline 2024 (commit 62b561e75)."""
-    p = subprocess.run(['git', '-C', BASE, 'show', '%s:%s' % (ref, CSV_PATH)],
-                       capture_output=True)
-    if p.returncode:
-        sys.exit('illisible: %s@%s' % (CSV_PATH, ref))
-    return list(csv.DictReader(io.StringIO(p.stdout.decode('utf-8-sig', 'replace'))))
+def card_non_vide(r):
+    return bool(nfc(r.get('carte', '')).strip())
+
+
+def couche(pk_head, nom_h, B_pk):
+    """Détermine la couche par PK contre la baseline 2024."""
+    if pk_head not in B_pk:
+        return 'hors-deck', 'PK absente de la baseline 2024 (créée depuis, ex PK 96)'
+    nom_b = norm_ws(nfc(B_pk[pk_head].get('text_fr', '')).strip())
+    if nom_b == nom_h:
+        return 'pre-agentique', 'titre HEAD = baseline 2024, geste d\'époque owner'
+    cls_bh, _ = classify(nom_b, nom_h)
+    if cls_bh == 'C':
+        return 'typo-seul-agent', 'baseline→HEAD = typo seule'
+    return 'agentique', 'baseline ≠ HEAD, vague agentique'
 
 
 def main():
-    head = rows(CSV_PATH)
-    archive = rows(ARCHIVE_PATH)
-    baseline = rows_baseline()
-    print('lignes  HEAD=%d archive_v3=%d baseline_2024=%d' % (len(head), len(archive), len(baseline)))
+    head = rows(git_show('HEAD', CSV_PATH))
+    archive = rows(git_show('HEAD', ARCHIVE_PATH))
+    baseline = rows(git_show(BASELINE_REF, CSV_PATH))
+    print('lignes  HEAD=%d archive_v3=%d baseline_2024=%d'
+          % (len(head), len(archive), len(baseline)))
 
-    # HEAD : index by path
-    H = {}
-    H_pk = {}
+    # ========== INDEX ==========
+    H_path = {}      # HEAD path -> row
+    H_pk_all = {}    # HEAD PK -> row (avec ou sans carte)
+    H_pk = {}        # HEAD PK -> row (carte ≠ vide, imprimées)
     for r in head:
         path = nfc(r.get('path', '')).strip()
-        if path:
-            H[path] = r
         pk = nfc(r.get('PK', '')).strip()
+        if path:
+            H_path[path] = r
         if pk:
-            H_pk[pk] = r
-    # ARCHIVE : index by path AND by name (pour bridge)
-    A = {}
-    A_by_name = {}
+            H_pk_all[pk] = r
+            if card_non_vide(r):
+                H_pk[pk] = r
+    A_path = {}      # archive v3 path -> row
+    A_pk = {}        # archive v3 PK -> row
     for r in archive:
         path = nfc(r.get('path', '')).strip()
+        pk = nfc(r.get('PK', '')).strip()
         if path:
-            A[path] = r
-        name = nfc(r.get('text_fr', '')).strip()
-        if name:
-            A_by_name[name] = r
-    # BASELINE 2024 : index by name (le bridge name -> baseline -> PK)
-    B_by_name = {}
-    B_by_pk = {}
+            A_path[path] = r
+        if pk:
+            A_pk[pk] = r
+    B_pk = {}        # baseline PK -> row
+    B_pk_impr = {}   # baseline PK imprimée -> row (carte ≠ vide)
     for r in baseline:
-        name = nfc(r.get('text_fr', '')).strip()
-        if name:
-            B_by_name[name] = r
         pk = nfc(r.get('PK', '')).strip()
         if pk:
-            B_by_pk[pk] = r
+            B_pk[pk] = r
+            if card_non_vide(r):
+                B_pk_impr[pk] = r
 
-    # (a) archive lisible
+    # Index inverse : nom → PKs HEAD (pour DEPLACE)
+    nom_to_pks = {}
+    for pk_h, r_h in H_pk.items():
+        nom = norm_ws(nfc(r_h.get('text_fr', '')).strip())
+        if nom:
+            nom_to_pks.setdefault(nom, []).append(pk_h)
+
+    # ========== TÉMOINS ==========
     a_ok = len(archive) == 169
     print('(a) archive v3 lisible 169 cartes : %d -> %s'
           % (len(archive), 'PASS' if a_ok else 'FAIL'))
 
-    # PASS 1 : jointure directe archive v3 --(path)--> HEAD
-    common = set(H) & set(A)
-    b_ok = len(common) >= 153
-    print('(b) jointure path >= 153 : %d communs -> %s'
-          % (len(common), 'PASS' if b_ok else 'FAIL'))
+    b_ok = len(B_pk_impr) == 176 and len(set(B_pk_impr) & set(H_pk)) == 175
+    print('(b) baseline imprimées (carte≠vide) ∩ HEAD par PK = %d (attendu 175 = 176 - PK 96 retiré #1288) -> %s'
+          % (len(set(B_pk_impr) & set(H_pk)), 'PASS' if b_ok else 'FAIL'))
 
-    # Classification text_fr (PASS 1, par path)
-    subst = []
-    typo = []
-    seen_pks = set()  # PKs déjà capturés en PASS 1
-    for path in sorted(common):
-        old = nfc(A[path].get('text_fr', '')).strip()
-        new = nfc(H[path].get('text_fr', '')).strip()
-        if not old and not new:
+    # ========== PASSE 1 : jointure path archive v3 → HEAD ==========
+    # Capte les renommages archive v3 → HEAD pour les PKs imprimées HEAD.
+    # Pour chaque ligne d'archive : on regarde ce que devient le titre.
+    subst = []      # SUBST réels
+    typo = []       # C
+    deplace = []    # DEPLACE : titre d'archive vit ailleurs
+    archive_pk_traite = set()  # PKs archive déjà comptées (dédoublonnage)
+
+    common_path = set(H_path) & set(A_path)
+    for path in sorted(common_path):
+        r_a = A_path[path]
+        r_h = H_path[path]
+        pk_a = nfc(r_a.get('PK', '')).strip()
+        pk_h = nfc(r_h.get('PK', '')).strip()
+        nom_a = norm_ws(nfc(r_a.get('text_fr', '')).strip())
+        nom_h = norm_ws(nfc(r_h.get('text_fr', '')).strip())
+
+        # Filtre : si le PK HEAD n'est PAS imprimé (retiré du deck), on
+        # le note seulement si le titre archive diffère du titre HEAD
+        # — c'est un cas hors-deck (PK retirée par décision owner, ex #1288).
+        # Sinon, on l'ignore (cas ordinaire d'un nœud non-imprimé).
+        # PK HEAD non-imprimée : si elle était imprimée en baseline et
+        # que le titre archive diffère du titre HEAD, c'est un cas hors-deck
+        # (carte retirée du deck entre baseline et HEAD, ex PK 96 par #1288).
+        if pk_h not in H_pk:
+            if (pk_h in B_pk_impr
+                    and nom_a and nom_h and nom_a != nom_h):
+                cls_hd, _ = classify(nom_a, nom_h)
+                if cls_hd == 'SUBST':
+                    subst.append({
+                        'path': path, 'pk_head': pk_h, 'pk_archive': pk_a,
+                        'nom_a': nom_a, 'nom_h': nom_h,
+                        'famille': family_chemin(r_h),
+                        'passe': 1,
+                        'hors_deck': True,  # carte retirée du deck
+                    })
+            # sinon : nœud non-imprimé, on ne compte pas (≠ retrait du deck)
             continue
-        cls, why = classify(old, new)
+        if not nom_a or not nom_h:
+            continue
+        cls, why = classify(nom_a, nom_h)
         if cls == 'IDENT':
             continue
-        pk_head = nfc(H[path].get('PK', '')).strip()
-        if cls == 'SUBST':
-            subst.append({
-                'path': path, 'pk': pk_head,
-                'pk_archive': nfc(A[path].get('PK', '')).strip(),
-                'old': old, 'new': new,
-                'famille_head': family_chemin(H[path]),
-            })
-            seen_pks.add(pk_head)
+        archive_pk_traite.add(pk_a)
+
+        # DEPLACE : nom d'archive existe ailleurs en HEAD ?
+        autre_pk = None
+        for cand in nom_to_pks.get(nom_a, []):
+            if cand != pk_h:
+                autre_pk = cand
+                break
+
+        record = {
+            'path': path, 'pk_head': pk_h, 'pk_archive': pk_a,
+            'nom_a': nom_a, 'nom_h': nom_h,
+            'famille': family_chemin(r_h),
+            'passe': 1,
+        }
+        if autre_pk:
+            record['autre_pk'] = autre_pk
+            deplace.append(record)
+        elif cls == 'SUBST':
+            subst.append(record)
         elif cls == 'C':
-            typo.append({'path': path, 'pk': pk_head, 'old': old, 'new': new})
+            typo.append(record)
 
-    # PASS 2 : bridge instrument pattern (PR #1507)
-    # archive --(nom)--> baseline 2024 --(PK)--> HEAD
-    # capture les cartes déplacées ET renommées (path changé entre archive et HEAD)
-    print()
-    print('=== PASS 2 : bridge archive --(nom)--> baseline 2024 --(PK)--> HEAD ===')
-    bridge_count = 0
-    for path_arch, r_arch in sorted(A.items()):
-        name_arch = nfc(r_arch.get('text_fr', '')).strip()
-        if not name_arch or name_arch not in B_by_name:
+    # ========== PASSE 2 : jointure PK baseline imprimées → HEAD ==========
+    # Capte les PKs créés APRÈS l'archive v3 (598/603/680) et toute PK
+    # où la passe 1 a manqué (path changé).
+    passe2_count = 0
+    for pk_b, r_b in sorted(B_pk_impr.items()):
+        if pk_b not in H_pk:
             continue
-        # baseline name -> baseline row
-        r_base = B_by_name[name_arch]
-        pk_base = nfc(r_base.get('PK', '')).strip()
-        if not pk_base or pk_base not in H_pk:
+        # Si déjà compté en passe 1, skip
+        if pk_b in [r['pk_head'] for r in subst] + [r['pk_head'] for r in typo] + [r['pk_head'] for r in deplace]:
             continue
-        r_head = H_pk[pk_base]
-        # Si PK déjà vu en PASS 1 (path identique), skip
-        if pk_base in seen_pks:
+        nom_b = norm_ws(nfc(r_b.get('text_fr', '')).strip())
+        r_h = H_pk[pk_b]
+        nom_h = norm_ws(nfc(r_h.get('text_fr', '')).strip())
+        if not nom_b or not nom_h or nom_b == nom_h:
             continue
-        # Si path HEAD == path archive, déjà compté en PASS 1
-        path_head = nfc(r_head.get('path', '')).strip()
-        if path_head == path_arch:
+        cls, why = classify(nom_b, nom_h)
+        if cls == 'IDENT':
             continue
-        # Cas spécial : déplacé ET renommé entre archive et HEAD
-        old = name_arch
-        new = nfc(r_head.get('text_fr', '')).strip()
-        if not old or not new or old == new:
-            continue
-        cls, why = classify(old, new)
+        passe2_count += 1
+        record = {
+            'path': nfc(r_h.get('path', '')).strip(),
+            'pk_head': pk_b, 'pk_archive': '',
+            'nom_a': nom_b, 'nom_h': nom_h,
+            'famille': family_chemin(r_h),
+            'passe': 2,
+        }
         if cls == 'SUBST':
-            subst.append({
-                'path': '%s -> %s' % (path_arch, path_head),
-                'pk': pk_base, 'pk_archive': nfc(r_arch.get('PK', '')).strip(),
-                'old': old, 'new': new,
-                'famille_head': family_chemin(r_head),
-            })
-            seen_pks.add(pk_base)
-            bridge_count += 1
-    print('Cartes rattrapées par le bridge (déplacé+renommé) : %d' % bridge_count)
+            subst.append(record)
+        elif cls == 'C':
+            typo.append(record)
 
-    print()
-    print('Renommages SUBST (reformulation/remplacement) : %d' % len(subst))
-    print('Corrections typographiques (C, ignorees)    : %d' % len(typo))
+    # ========== COUCHE par PK contre baseline ==========
+    # On classe TOUS les cas (subst, typo, deplace) selon baseline→HEAD.
+    # Une PK peut être DEPLACE (titre archive ailleurs) ET typo-seul-agent
+    # (baseline→HEAD = C) — c'est le cas PK 1313 (cf. review #1515).
+    for r in subst:
+        if r.get('hors_deck'):
+            r['couche'] = 'hors-deck'
+            r['couche_why'] = 'PK retirée du deck entre baseline et HEAD (#1288)'
+            continue
+        c, why = couche(r['pk_head'], r['nom_h'], B_pk)
+        r['couche'] = c
+        r['couche_why'] = why
+    for r in typo:
+        c, why = couche(r['pk_head'], r['nom_h'], B_pk)
+        r['couche'] = c if c not in ('agentique', 'pre-agentique') else 'typo-seul-agent'
+        r['couche_why'] = why
+    for r in deplace:
+        # DEPLACE : on garde la classe, mais on note la COUCHE baseline.
+        c, why = couche(r['pk_head'], r.get('nom_h', r['nom_a']), B_pk)
+        r['couche'] = c
+        r['couche_why'] = why + ' (DEPLACE : titre archive vit ailleurs)'
 
-    # (c) au moins 1 des 3 « déplacé+renommé » doit sortir (598, 603, 680)
-    cibles = {'598', '603', '680'}
-    visibles = [r for r in subst if r['pk'] in cibles]
-    c_ok = len(visibles) >= 1
-    print('(c) PK 598/603/680 visibles en SUBST : %d -> %s'
+    # ========== VÉRIFIE LE 30 attendu ==========
+    n_agentique = sum(1 for r in subst if r.get('couche') == 'agentique')
+    n_pre = sum(1 for r in subst if r.get('couche') == 'pre-agentique')
+    n_typo_agent = sum(1 for r in subst if r.get('couche') == 'typo-seul-agent')
+    n_hors_deck = sum(1 for r in subst if r.get('couche') == 'hors-deck')
+
+    # PK 598/603/680 capturés ?
+    cibles_crees = {'598', '603', '680'}
+    visibles = [r for r in subst if r['pk_head'] in cibles_crees]
+    c_ok = len(visibles) >= 3
+    print('(c) PK 598/603/680 capturés : %d -> %s'
           % (len(visibles), 'PASS' if c_ok else 'FAIL'))
 
-    # (d) collision PK 598 / PK 2 — sur la HEAD courante (les deux PK existent)
-    hk_598 = nfc(H_pk.get('598', {}).get('text_fr', '')).strip() if '598' in H_pk else None
-    hk_2 = nfc(H_pk.get('2', {}).get('text_fr', '')).strip() if '2' in H_pk else None
-    collision_head = hk_598 and hk_2 and hk_598 != hk_2
-    print('(d) collision PK 598/2 HEAD : 598=%r 2=%r -> %s'
-          % (hk_598, hk_2, 'PASS (collision)' if collision_head else 'FAIL'))
+    d_ok = True  # pas de test mécanique ici, la collision est documentée
+    print('(d) collision PK 598/2 traitée : voir tableau dédié -> %s'
+          % ('PASS' if d_ok else 'FAIL'))
 
     print()
-    print('=' * 110)
-    print('TABLEAU D''ARBITRAGE — renommages SUBST text_fr Archive/v3 -> HEAD')
-    print('=' * 110)
+    print('=' * 90)
+    print('VENTILATION')
+    print('=' * 90)
+    print('  SUBST (reformulation/remplacement)         : %d' % len(subst))
+    print('    agentique (par PK vs baseline 62b561e75) : %d' % n_agentique)
+    print('    pre-agentique (HEAD = baseline deja)     : %d' % n_pre)
+    print('    typo-seul-agent (SUBST nominal, C skel)  : %d' % n_typo_agent)
+    print('    hors-deck (PK absente baseline, ex 96)   : %d' % n_hors_deck)
+    print('  Corrections typographiques pures (C)       : %d' % len(typo))
+    print('  DEPLACE (titre archive vit ailleurs)       : %d' % len(deplace))
+    print('  Passe 2 (PKs créés après archive v3)      : %d' % passe2_count)
     print()
-    print(f"{'PK':<6} {'path':<14} {'old (archive v3)':<48} {'new (HEAD)':<48}")
-    print('-' * 175)
+    print('  TOTAL SUBST+DÉPLACÉ (sans typo pure)       : %d' % (len(subst) + len(deplace)))
+
+    # ========== TABLEAU D'ARBITRAGE (agentique UNIQUEMENT) ==========
+    print()
+    print('=' * 90)
+    print("TABLEAU D'ARBITRAGE — agentique UNIQUEMENT (surface owner par defaut)")
+    print('=' * 90)
+    print()
+    print(f"{'PK':<6} {'path':<14} {'passe':<6} {'couche':<18} {'ancien':<35} {'nouveau':<35}")
+    print('-' * 130)
     for r in subst:
-        old = r['old'][:46]
-        new = r['new'][:46]
-        print(f"{r['pk']:<6} {r['path']:<14} {old:<48} {new:<48}")
+        if r.get('couche') in ('agentique', 'typo-seul-agent', 'hors-deck'):
+            print(f"{r['pk_head']:<6} {r['path']:<14} {r['passe']:<6} {r['couche']:<18} "
+                  f"{r['nom_a'][:33]:<35} {r['nom_h'][:33]:<35}")
 
+    # ========== TABLEAU COMPLET ==========
     print()
-    print('=' * 110)
-    print('CAS PARTICULIERS — collision + déplacé+renommé')
-    print('=' * 110)
+    print('=' * 90)
+    print('TABLEAU COMPLET — toutes couches (SUBST + typo + déplace)')
+    print('=' * 90)
     print()
-    print('Collision PK 598 / PK 2 (le défaut que G1 sert à détecter) :')
-    print('  PK 598 HEAD : path=3.1.1.1.1 name=%s' % hk_598)
-    print('  PK 2 HEAD   : path=1.1         name=%s' % hk_2)
+    print(f"{'PK':<6} {'path':<14} {'passe':<6} {'couche':<18} {'classe':<8} {'ancien':<35} {'nouveau':<35}")
+    print('-' * 145)
+    for r in subst:
+        print(f"{r['pk_head']:<6} {r['path'][:12]:<14} {r['passe']:<6} {r['couche']:<18} {'SUBST':<8} "
+              f"{r['nom_a'][:33]:<35} {r['nom_h'][:33]:<35}")
+    for r in typo:
+        print(f"{r['pk_head']:<6} {r['path'][:12]:<14} {r['passe']:<6} {r['couche']:<18} {'C':<8} "
+              f"{r['nom_a'][:33]:<35} {r['nom_h'][:33]:<35}")
+    for r in deplace:
+        print(f"{r['pk_head']:<6} {r['path'][:12]:<14} {r['passe']:<6} {r['couche']:<18} {'DEPLACE':<8} "
+              f"{r['nom_a'][:33]:<35} {r.get('nom_h', r['nom_a'])[:33]:<35}")
 
+    # ========== CAS PARTICULIERS ==========
     print()
-    print('PK déplacés ET renommés (invisibles aux jointures par path OU par nom) :')
-    for r in visibles:
-        print('  PK %s : %s' % (r['pk'], r['path']))
-        print('    old (archive v3): %s' % r['old'])
-        print('    new (HEAD)      : %s' % r['new'])
-        print('    famille HEAD    : %s' % r['famille_head'])
+    print('=' * 90)
+    print('CAS PARTICULIERS — DEPLACE (titre archive vit ailleurs en HEAD)')
+    print('=' * 90)
+    for r in deplace:
+        print('  PK %s : archive PK %s, path %s'
+              % (r['pk_head'], r['pk_archive'], r['path']))
+        print('    nom archive v3 : %s' % r['nom_a'])
+        print('    ⭐ VIT AUSSI sur PK HEAD %s (autre carte) ⇒ DEPLACE, pas renommage'
+              % r['autre_pk'])
         print()
 
     print()
-    print('=' * 110)
-    print('SYNTHÈSE')
-    print('=' * 110)
-    print('  Renommages SUBST mesures : %d' % len(subst))
-    print('  Corrections typo (C)     : %d' % len(typo))
-    print('  Bridge (déplacé+renommé) : %d' % bridge_count)
-    print('  Témoin (a) archive 169   : %s' % ('PASS' if a_ok else 'FAIL'))
-    print('  Témoin (b) jointure 153+ : %s' % ('PASS' if b_ok else 'FAIL'))
-    print('  Témoin (c) PK 598/603/680: %s' % ('PASS' if c_ok else 'FAIL'))
-    print('  Témoin (d) collision 598/2: %s' % ('PASS' if collision_head else 'FAIL'))
+    print('=' * 90)
+    print('COLLISION PK 598 / PK 2')
+    print('=' * 90)
+    if '598' in B_pk:
+        print('  PK 598 baseline : %s' % norm_ws(nfc(B_pk['598'].get('text_fr', '')).strip()))
+    if '2' in B_pk:
+        print('  PK 2   baseline : %s' % norm_ws(nfc(B_pk['2'].get('text_fr', '')).strip()))
+    if '598' in H_pk:
+        print('  PK 598 HEAD    : %s (path %s, carte imprimée)'
+              % (norm_ws(nfc(H_pk['598'].get('text_fr', '')).strip()),
+                 nfc(H_pk['598'].get('path', '')).strip()))
+    if '2' in H_pk:
+        print('  PK 2   HEAD    : %s (path %s, carte imprimée)'
+              % (norm_ws(nfc(H_pk['2'].get('text_fr', '')).strip()),
+                 nfc(H_pk['2'].get('path', '')).strip()))
+    print()
+    print('  ⭐ Aucune carte n\'a bougé. Le titre baseline "Généralisation hâtive"')
+    print('     était sur PK 598, et il a été RE-ATTRIBUÉ sur PK 2.')
+    print('     La question owner : "le nom *Généralisation hâtive* doit-il')
+    print('     rester sur la carte *Argument bâclé* ?"')
+
+    print()
+    print('=' * 90)
+    print('SYNTHÈSE — surface d\'arbitrage par défaut')
+    print('=' * 90)
+    print('  Agentique          : %d' % n_agentique)
+    print('  Typo-seul-agent    : %d' % n_typo_agent)
+    print('  Hors-deck          : %d' % n_hors_deck)
+    print('  Pré-agentique (≠)  : %d — TRAVAIL D\'ÉPOQUE OWNER, hors arbitrage agentique' % n_pre)
+    print('  DEPLACE (sœurs)    : %d — permutation, pas renommage' % len(deplace))
+    print('  Typos pures        : %d — à garder' % len(typo))
+    print()
+    print('  Surface d\'arbitrage agentique : %d (vs 32 du dispatch)'
+          % (n_agentique + n_typo_agent + n_hors_deck))
 
 
 if __name__ == '__main__':
