@@ -287,6 +287,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Sorties JSON des instruments de dossier #1499 (docs/corpus/) — dérivées,
+# régénérables par les scripts committés (fallacies-exemples-diff.py,
+# fallacies-desc-diff.py, g1w-impact.py). Jamais source : la mesure se refait
+# en une passe. Garde structurelle, pas déclarative (review #1523, note NanoClaw).
+docs/corpus/*.json
+
 # Root tmp/ scratch dir — local regenerable working files (AIF #141/#498 datasets,
 #  run logs, audit samples). ~1.3 MB; regenerable from committed scripts (e.g.
 #  docs/taxonomy/141-aif-fullscale.py, tools/498-*.py). Machine-specific scratch,
