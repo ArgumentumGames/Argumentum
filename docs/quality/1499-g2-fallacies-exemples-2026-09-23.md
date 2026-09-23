@@ -186,7 +186,7 @@ Format : `PK | path | p | référence (p1 = imprimé 2022/v3, p2 = baseline) | H
 
 ### Pré-agentiques (12) — geste d'époque owner, HEAD = baseline 2024 déjà
 
-PK 633, 636, 698, 729, 787, 844, 889, 900, 1015, 1345, 1360, 1373. Un « retour à l'imprimé » y reviendrait sur un geste owner d'époque (2022→2024) — ⛔ pas un non-geste (leçon G1 v3). À présenter à part seulement sur demande.
+PK 633, 636, 698, 729, 787, 844, 889, 900, 1015, 1345, 1360, 1373. Un « retour à l'imprimé » y reviendrait sur un geste owner d'époque (2022→2024) — ⛔ pas un non-geste (leçon G1 v3). HEAD = baseline 2024 pour ces 12, **modulo l'apostrophe typographique (`'` → `’`) pour 8/12** — PK 636, 698, 729, 787, 900, 1015, 1360, 1373 (re-mesure ai-01, review #1518) ; les 4 autres (633, 844, 889, 1345) sont identiques octet à octet. À présenter à part seulement sur demande.
 
 ### Typo-seul-agent (9) — à garder sans arbitrage
 
@@ -214,13 +214,14 @@ Contrôle 5 : 16 jointures sœurs ré-appariées. Contrôle 6 : 3 déplacements 
 - ⚠️ La chronologie agentique : la vague dominante est probablement `9d45b4f9` (PR #369, 28/05/2026, « 744/1408 example_fr ») mais chaque cellule daterait par `git log -S` individuellement.
 - ⛔ Ne couvre pas `desc_fr` (G3), ni `text_fr` (G1, mergé), ni Virtues/Rules/Scenarii.
 
-## 9. Ce qui est attendu (input pour Q-9 / G9)
+## 9. Ce qui est attendu — rien : la règle est posée, la suite est G2-C
 
-1. **Trancher le régime par défaut** pour les 111 : retour à l'imprimé uniforme, annulation de l'agentique (retour baseline), ou tri par régimes (§3) — le tri est le seul compatible avec la contrainte politique.
-2. **Les 3 déplacements verbatim** (633/636/844) et les **12 pré-agentiques** sortent de tout geste uniforme par construction.
-3. G9 (clé Scenarii) reste gaté sur l'arbitrage de G2 + G3 — ce dossier couvre la moitié Fallacies-exemples de ce gate.
+**Règle générale owner (23/09 12:35Z, [#1499 c.5794911968](https://github.com/ArgumentumGames/Argumentum/issues/1499#issuecomment-5794911968), reprise [#458 c.5794922231](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5794922231))** : *« Si des choses ont progressé on les garde meilleures donc C on fait du cas par cas, pas que pour les vertues »* — valable pour tous les dossiers G, G2 compris, tranchée **avant** l'ouverture de ce dossier.
 
-⚠️ **Amplitude si retour large** : 111 cellules × réécriture FR → cascade 8 langues (barème #1469 : ~3 h 25 la régén complète) + ré-impression du paquet de relecture.
+1. **Défaut = garder HEAD** : les 111 cellules restent telles quelles sauf décision contraire, item par item.
+2. **La suite est G2-C** (calqué sur G4-C) : parmi les 111, relever uniquement ce qui mérite de revenir — perte d'un fait, d'une nuance ou d'un exemple mieux ciblé ; erreur introduite (contresens, exemple qui n'illustre plus le sophisme de la carte) ; exemple devenu trop long. Une ligne par item, lisible sans ouvrir l'issue. Le passage tutoiement → vouvoiement (§3.1) est un changement **systématique**, à compter et signaler une seule fois, pas item par item. ⛔ Aucune écriture CSV : G1-W écrit dans le même fichier.
+3. **Les 3 déplacements verbatim** (633/636/844) et les **12 pré-agentiques** sortent de tout geste par construction.
+4. G9 (clé Scenarii) reste gaté sur l'arbitrage de G2 + G3 — ce dossier couvre la moitié Fallacies-exemples de ce gate.
 
 ---
 
