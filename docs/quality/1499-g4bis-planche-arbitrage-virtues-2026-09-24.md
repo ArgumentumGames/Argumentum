@@ -120,7 +120,7 @@ Référence : [liste courte G4-C](1499-g4c-virtues-liste-courte-2026-09-24.md) (
 
 ## 5. Ce que cette planche n'établit pas
 
-- Elle **n'arbitre pas** : le choix de régime **A / B / C** reste celui de l'owner. Elle met l'échantillon sous l'œil, elle ne conclut pas.
+- Elle **n'arbitre pas d'elle-même** : le régime est **tranché** (règle C, Q-7, owner 23/09 — par défaut on garde HEAD, retour arrière **item par item** sur perte ou erreur). La planche est le matériau de cet examen item par item, pas un choix A / B / C encore ouvert.
 - Elle **n'évalue pas la qualité littéraire** : la réduction de taille est voulue (Q-7, owner 23/09 — règle C).
 - Elle ne couvre **pas** les 123 remarks de similarité 0,30-0,60, ni `title_fr` (53) ni `description_fr` (128) — périmètre du dossier G4.
 - La similarité difflib **sous-estime les remplacements lexicaux** (leçon #1516) — contre-mesure : les deux textes sont affichés **entiers**, non tronqués.
