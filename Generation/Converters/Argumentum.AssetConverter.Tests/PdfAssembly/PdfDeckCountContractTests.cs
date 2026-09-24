@@ -262,5 +262,57 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             cardSetStillDefined.Should().BeTrue(
                 "#1501 : le CardSet VirtuesPrintAndPlayLight reste défini (capacité conservée, agrégation seule retirée)");
         }
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // (4) ⑪ #1502 : LE TEXTE P&P = LE TEXTE DU DECK, OCTET À OCTET, 8 LANGUES.
+        //     Décision owner 23/09 (« Les règles devraient être les même en print&play ») : le
+        //     P&P était une édition ANTÉRIEURE (jauge 4-8, 7 points de règle divergents) — et
+        //     aucune garde ne voyait la divergence. Ici, une future modification des règles du
+        //     deck qui oublie le P&P fait ROUGE EN CI avant toute régénération : c'est le défaut
+        //     d'origine de #1502 rendu impossible à répéter en silence. Moteur : RulesTextParity.
+        // ─────────────────────────────────────────────────────────────────────────
+
+        [Fact]
+        public void RulesPrintAndPlay_Text_Is_ByteForByte_The_Deck_Text_Across_8_Languages()
+        {
+            var failures = RulesTextParity.FindViolations(RepoRoot);
+
+            failures.Should().BeEmpty(
+                "décision owner 23/09 (#1502 c.5801212274, « Les règles devraient être les même en print&play ») : "
+                + "RulesPP_0N doit porter exactement le texte de Rules_0N sur les 8 colonnes — les violations nommées sont "
+                + "autant de cartes P&P à ré-aligner sur le deck :\n" + string.Join("\n", failures));
+        }
+
+        [Fact]
+        public void Witness_RulesTextParity_Sees_An_Injected_Divergence()
+        {
+            // Témoin rouge (#1046 : une garde jamais vue rouge est un no-op) : une divergence
+            // Text_fa injectée SUR TABLES EN MÉMOIRE doit produire exactement UNE violation nommant
+            // la carte ET la langue — c'est le contrat d'affichage de l'organe, éprouvé séparément
+            // de la mutation réelle du CSV (consignée dans la PR du grain ⑪).
+            IReadOnlyDictionary<string, string> Row(string fr, string fa) => new Dictionary<string, string>
+            {
+                ["Text"] = fr,
+                ["Text_fa"] = fa,
+            };
+            var deck = new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.Ordinal);
+            var printAndPlay = new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.Ordinal);
+            for (var n = 1; n <= 6; n++)
+            {
+                deck[$"Rules_0{n}"] = Row($"*texte du deck {n}*", $"*متن {n}*");
+                // Text_fa de RulesPP_05 diverge : seule cellule fautive, injectée — les 5 autres
+                // paires sont complètes et identiques, pour que l'unique violation vue soit bien
+                // la DIVERGENCE (le contrôle de complétude doit rester silencieux ici).
+                printAndPlay[$"RulesPP_0{n}"] = Row($"*texte du deck {n}*", n == 5 ? "*متن قدیمی*" : $"*متن {n}*");
+            }
+
+            var failures = RulesTextParity.CompareTables(deck, printAndPlay);
+
+            failures.Should().ContainSingle(
+                "une seule cellule diverge (Text_fa de RulesPP_05) — la parité Text doit rester verte et la seule faute visible");
+            failures.Single().Should()
+                .Contain("RulesPP_05").And.Contain("Text_fa").And.Contain("fa",
+                    "la violation nomme la carte ET la langue, pour agir sans re-dérouler l'instrument");
+        }
     }
 }
