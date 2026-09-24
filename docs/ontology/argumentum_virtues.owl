@@ -18,6 +18,14 @@
     <Literal>Argumentum</Literal>
   </Annotation>
   <Annotation>
+    <AnnotationProperty IRI="http://purl.org/dc/terms/title" />
+    <Literal xml:lang="EN">Argumentum Virtues Ontology</Literal>
+  </Annotation>
+  <Annotation>
+    <AnnotationProperty IRI="http://purl.org/dc/terms/creator" />
+    <Literal>Argumentum</Literal>
+  </Annotation>
+  <Annotation>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
     <Literal xml:lang="EN">aifAttackType/aifAttackedNode on these virtues were written by the #989 architecture B rule (ai-01 arbitration 2026-08-31): each virtue carries the strict majority of the measured AIF_attackType values of the fallacies it opposes (crossLink_Opposes); an exact tie is a declared gap — the cells stay empty and the reason is serialized in AIF_skosOther (142 mapped: undermine 74, undercut 63, rebut 5; 80 declared gaps). Each assertion carries aifAttackTypeProvenance, re-derived at emission: 'script-derived' when the stored pair shows the script fingerprint (deterministic type-node coupling — undercut/RA-node, undermine/I-node, rebut/CA-node — and no gap note on a valued row), 'human-reviewed' when it deviates. Re-deriving the majority per row would require the Fallacies corpus (pk to AIF_attackType), deliberately deferred with the generator's Phase 3 cross-corpus architecture; until then the marker verifies the script's signature, not its rule (#989).</Literal>
   </Annotation>
@@ -2528,6 +2536,16 @@
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_virtues.owl#mutualCommitment" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#CA-node" />
   </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#</IRI>
+    <IRI>https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#</IRI>
+    <IRI>https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum.owl</IRI>
+  </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgumentScheme</IRI>
