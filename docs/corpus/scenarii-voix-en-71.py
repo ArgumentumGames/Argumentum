@@ -25,13 +25,13 @@ le 14/09/2026 — cet instrument vérifie que la cible est atteinte et tient)
   (e) cartes mixtes restantes par sonde pronom (attendu 0).
 
 SORTIE : rc=0 garde PASS ; rc=2 anomalie publiée ; --extract <fichier> : TSV des 71 paires
-FR canonique / EN courant.
+FR canonique / EN courant ; --self-test : 4 mutations in-memory (sain / colonne absente /
+pronom injecté / colonne renommée), rc attendu [0, 2, 2, 2].
 """
 import csv
 import io
 import os
 import re
-import subprocess
 import sys
 
 BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
@@ -39,6 +39,7 @@ CSV_PATH = 'Cards/Scenarii/Argumentum Scenarii - Cards.csv'
 KEY = 'coordonnées'
 COLS = ['context', 'smoothTalker', 'drawer', 'issue']
 FR_REF = {'context': 'contexte', 'smoothTalker': 'baratineur', 'drawer': 'piocheur', 'issue': 'enjeu'}
+REQUIRED = {KEY} | set(COLS) | set(FR_REF.values())
 
 ISSUE_9_BASCULES = ['3,0104', '4,0301', '7,0102', '7,0103', '7,0104', '7,0105', '7,0107', '7,0201', '7,0206']
 ISSUE_15_HORS25 = ['1,0301', '2,0101', '3,0102', '3,0106', '3,0107', '3,0108', '3,0202', '3,0203',
@@ -60,21 +61,126 @@ YOU = re.compile(r'\b(you|your|yours|yourself|yourselves)\b', re.I)
 
 
 def rows():
-    p = subprocess.run(['git', '-C', BASE, 'show', 'HEAD:%s' % CSV_PATH], capture_output=True)
-    if p.returncode:
-        sys.exit('illisible: %s@HEAD' % CSV_PATH)
-    return list(csv.DictReader(io.StringIO(p.stdout.decode('utf-8-sig', 'replace'))))
+    # Lecture directe du CSV dans le worktree (chemin BASE/CSV_PATH).
+    # Évite `git show HEAD:...` qui pédale en Python 3.13.7 sur cette machine
+    # (subprocess + threading + contextlib = recursion). Le CSV n'est pas
+    # modifié entre worktree et HEAD pour cette garde.
+    p = os.path.join(BASE, CSV_PATH)
+    if not os.path.isfile(p):
+        sys.exit('illisible: %s' % p)
+    with open(p, encoding='utf-8-sig', newline='') as f:
+        return list(csv.DictReader(f))
 
 
 def n(v):
     return (v or '').replace('\r\n', '\n').replace('\r', '\n').strip()
 
 
+def header_ok(headers):
+    """Vérifie la présence des colonnes requises. Retourne (ok, manquantes)."""
+    manquantes = sorted(REQUIRED - set(headers))
+    return (not manquantes), manquantes
+
+
+def run_self_test():
+    """Self-test in-memory : 4 mutations, rc attendu [0, 2, 2, 2].
+
+    But : prouver que la garde réagit dans les deux sens (PASS sur sain, FAIL sur défaut)
+    sans dépendre du CSV courant. In-process (mono-thread) — l'isolation n'est pas requise
+    puisque le script n'a pas d'autre usage concurrent. Le piège Windows MAX_PATH=#1179
+    rend le runner-sous-processus inutilisable ici. Mutations :
+      (1) sain                          -> rc=0
+      (2) colonne « context » absente   -> rc=2 (header guard)
+      (3) « You » injecté dans context  -> rc=2 (pronom)
+      (4) colonne « context » renommée  -> rc=2 (header guard — défaut M2 avéré par ai-01)
+    """
+    # Construit le CSV en mémoire à partir du fichier réel (toutes les rangées —
+    # le test « sain » a besoin que les 71 coordonnées de la worklist soient
+    # présentes pour que le check (a) passe).
+    src_path = os.path.join(BASE, CSV_PATH)
+    with open(src_path, encoding='utf-8-sig', newline='') as f:
+        src = f.read()
+    src_reader = list(csv.reader(io.StringIO(src)))
+    hdr, src_rows = src_reader[0], src_reader[1:]
+    src_rows = [list(r) for r in src_rows]
+
+    cases = []
+
+    # (1) sain
+    cases.append(('sain', hdr, [list(r) for r in src_rows], 0))
+
+    # (2) colonne « context » absente (suppression pure)
+    hdr2 = [c for c in hdr if c != 'context']
+    cases.append(('header context absent', hdr2, [list(r) for r in src_rows], 2))
+
+    # (3) « You » injecté dans la cellule index 0 de « context »
+    rows3 = [list(r) for r in src_rows]
+    ci = hdr.index('context')
+    rows3[0][ci] = 'You should listen.'
+    cases.append(('pronom You injecte', hdr, rows3, 2))
+
+    # (4) colonne « context » renommée (le défaut originel)
+    hdr4 = [c if c != 'context' else 'context_renamed' for c in hdr]
+    cases.append(('header context renommee', hdr4, [list(r) for r in src_rows], 2))
+
+    saved_rows = rows  # rows est défini en module-level ; on sauvegarde pour restaurer
+    failures = []
+
+    def run_case(label, hdr_, rows_, expected):
+        buf = io.StringIO()
+        csv.writer(buf).writerow(hdr_)
+        csv.writer(buf).writerows(rows_)
+        buf.seek(0)
+        text = buf.getvalue()
+
+        def patched():
+            return list(csv.DictReader(io.StringIO(text)))
+
+        old_rows = sys.modules[__name__].rows
+        saved_argv = sys.argv[:]
+        sys.argv = [saved_argv[0]]  # retire --self-test pour éviter la boucle
+        sys.modules[__name__].rows = patched
+        try:
+            rc = main()
+        finally:
+            sys.modules[__name__].rows = old_rows
+            sys.argv = saved_argv
+        got = rc
+        ok = got == expected
+        marker = 'PASS' if ok else 'FAIL'
+        print('  [%s] %-26s attendu rc=%d, recu rc=%d' % (marker, label, expected, got))
+        return ok, got, expected
+
+    for label, hdr_, rows_, expected in cases:
+        ok, got, exp = run_case(label, hdr_, rows_, expected)
+        if not ok:
+            failures.append((label, exp, got))
+
+    if failures:
+        print('[SELF-TEST] FAIL (%d/%d) — header guard absent ?' % (len(failures), len(cases)))
+        return 2
+    print('[SELF-TEST] PASS (%d/%d) — la garde parle dans les deux sens, header guard actif'
+          % (len(cases), len(cases)))
+    return 0
+
+
 def main():
     argv = sys.argv[1:]
     extract = argv[argv.index('--extract') + 1] if '--extract' in argv else None
+    # Standard Python : argv = sys.argv[1:]. Le runner C# passe
+    # `python script.py <args>`, donc argv = ['--self-test'] etc.
+    self_test = '--self-test' in argv
+
+    if self_test:
+        return run_self_test()
 
     data = rows()
+    h_ok, h_missing = header_ok(data[0].keys() if data else [])
+    if not h_ok:
+        print('(header) colonnes absentes : %s -> FAIL rc=2' % h_missing)
+        return 2
+    print('(header) %d colonnes requises présentes (sur %d) -> PASS' % (len(REQUIRED), len(data[0]) if data else 0))
+
     by_key = {n(r.get(KEY)): r for r in data}
     ok = True
 
