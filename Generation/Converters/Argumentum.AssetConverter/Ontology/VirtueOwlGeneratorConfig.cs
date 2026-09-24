@@ -50,6 +50,12 @@ namespace Argumentum.AssetConverter.Ontology
 					Comment = "Virtuous argumentation taxonomy — the mirror of the fallacies axis (223 nodes, 7 families)",
 					Version = new Version(1,0,0),
 					Creator = "Argumentum",
+					Title = "Argumentum Virtues Ontology",
+					SeeAlsoEndpoints = new List<string>
+					{
+						"https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl",
+						"https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum.owl"
+					},
 
 				}
 			});
@@ -82,6 +88,12 @@ namespace Argumentum.AssetConverter.Ontology
 
 
 		public string Creator { get; set; } = "";
+
+		/// <summary>#133 publication bridge — dcterms:title (dcterms:creator mirrors Creator).</summary>
+		public string Title { get; set; } = "";
+
+		/// <summary>#133 publication bridge — rdfs:seeAlso IRIs (the served Pages endpoints).</summary>
+		public List<string> SeeAlsoEndpoints { get; set; } = new List<string>();
 
 
 		public Version Version { get; set; } = new Version(1,0,0);
@@ -126,6 +138,7 @@ namespace Argumentum.AssetConverter.Ontology
 	        ontology.Annotate(RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(Comment, "en"));
 	        ontology.Annotate(RDFVocabulary.OWL.VERSION_INFO, new RDFPlainLiteral(Version.ToString()));
 	        ontology.Annotate(RDFVocabulary.DC.CREATOR, new RDFPlainLiteral(Creator.ToString()));
+	        ontology.AnnotatePublicationMetadata(Title, Creator, SeeAlsoEndpoints);
 
 	        // AIF object property: a Virtue is the "good tenor of" a Walton argumentation scheme
 	        // (i.e. the correct practice / answer to the scheme's critical questions). The Fallacies

@@ -49,6 +49,20 @@ namespace Argumentum.AssetConverter.Ontology
     }
 
     /// <summary>
+    /// Dublin Core Terms vocabulary constants (http://purl.org/dc/terms/).
+    /// RDFVocabulary in RDFSharp 4.0.0 only ships DC elements/1.1 — no DCTERMS — so the
+    /// #133 publication bridge declares the two predicates it needs as raw IRIs,
+    /// mirroring the SKOSVocabulary pattern above.
+    /// </summary>
+    public static class DCTermsVocabulary
+    {
+        private const string NS = "http://purl.org/dc/terms/";
+
+        public static readonly RDFResource Title = new RDFResource($"{NS}title");
+        public static readonly RDFResource Creator = new RDFResource($"{NS}creator");
+    }
+
+    /// <summary>
     /// Adaptateur pour la bibliothèque OWLSharp 4.9.0
     /// </summary>
     public class OwlAdapter
@@ -132,6 +146,36 @@ namespace Argumentum.AssetConverter.Ontology
         public void Annotate(RDFResource property, RDFPlainLiteral value)
         {
             _ontology.Annotate(new OWLAnnotation(new OWLAnnotationProperty(property), new OWLLiteral(value)));
+        }
+
+        // #133 — pont de publication dcterms + rdfs:seeAlso vers l'endpoint servi.
+        //
+        // POURQUOI ICI et non dupliqué dans chaque générateur : les deux passes (Fallacies +
+        // Virtues) portent le même bloc de métadonnées ; une divergence entre les deux copies
+        // serait invisible jusqu'à la servitude. Le pont seeAlso est une AnnotationAssertion à
+        // valeur IRI (sujet = IRI de l'ontologie) : aucun IRI du namespace Argumentum n'est créé
+        // ni déplacé — la surface figée (#133 / Q-11) reste intacte, y compris au round-trip.
+        // Les dates (dcterms:modified/issued) sont exclues à dessein : elles casseraient le
+        // déterminisme octet/octet des régénérations (contrat IDENTIQUE ×2 du pipeline).
+        public void AnnotatePublicationMetadata(string title, string creator, IEnumerable<string> seeAlsoEndpoints)
+        {
+            if (!string.IsNullOrEmpty(title))
+            {
+                Annotate(DCTermsVocabulary.Title, new RDFPlainLiteral(title, "en"));
+            }
+            if (!string.IsNullOrEmpty(creator))
+            {
+                Annotate(DCTermsVocabulary.Creator, new RDFPlainLiteral(creator));
+            }
+            var ontologyIri = new RDFResource(Uri.ToString());
+            foreach (var endpoint in seeAlsoEndpoints ?? Enumerable.Empty<string>())
+            {
+                if (!string.IsNullOrEmpty(endpoint))
+                {
+                    _ontology.AnnotationAxioms.Add(new OWLAnnotationAssertion(
+                        new OWLAnnotationProperty(RDFVocabulary.RDFS.SEE_ALSO), ontologyIri, new RDFResource(endpoint)));
+                }
+            }
         }
 
         public void DeclareClass(RDFResource resource)
