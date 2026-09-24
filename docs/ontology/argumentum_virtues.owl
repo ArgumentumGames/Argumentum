@@ -3219,11 +3219,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Citation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#citingSources</IRI>
-    <Literal xml:lang="FR">https://www.service-public.fr/professionnels-entreprises/vosdroits/F33492</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#tangibleEvidence</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#citingSources</IRI>
@@ -3909,11 +3904,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Journalism</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#confirmedInformation</IRI>
-    <Literal xml:lang="FR">https://www.journalism.org/2018/12/03/many-americans-believe-fake-news-is-sowing-confusion/</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#credibleSources</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#confirmedInformation</IRI>
@@ -4179,11 +4169,6 @@
     <Literal xml:lang="EN">Premises drawn from multiple sources, independent of one another, in order to minimize possible biases.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#independentSources</IRI>
-    <Literal xml:lang="FR">https://www.huffpost.com/entry/comment-reconnaitre-une-information-fiable-sur-internet_b_5ac4497ee4b094d3f5c0b93d</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#reliablePremises</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#independentSources</IRI>
@@ -4252,11 +4237,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Impartiality</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
-    <Literal xml:lang="FR">https://www.huffpost.com/entry/comment-reconnaitre-une-information-fiable-sur-internet_b_5ac4497ee4b094d3f5c0b93d</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -4457,16 +4437,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#appropriateComplexity</IRI>
     <Literal xml:lang="EN">Argumentation matching the complexity inherent in the subject without underestimating or overestimating it.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#appropriateComplexity</IRI>
-    <Literal xml:lang="EN">https://www.persee.fr/doc/comm_0588-8018_2005_num_78_1_3769</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#appropriateComplexity</IRI>
-    <Literal xml:lang="FR">https://www.persee.fr/doc/comm_0588-8018_2005_num_78_1_3769</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6254,11 +6224,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Emotional_blackmail</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences</IRI>
-    <Literal xml:lang="FR">https://www.psychologies.com/Therapies/Toutes-les-therapies/Therapies-breves/Articles-et-Dossiers/Le-chantage-affectif</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#emotionalBalance</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences</IRI>
@@ -6397,11 +6362,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#transparency</IRI>
     <Literal xml:lang="EN">Encouragement of openness and frankness in exchanges without concealing intentions or seeking to influence the debate or the audience.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#transparency</IRI>
-    <Literal xml:lang="FR">https://www.village-justice.com/articles/transparence-et-communication-dans-entreprise,35542.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12384,11 +12344,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Definition</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#consistentDefinition</IRI>
-    <Literal xml:lang="FR">https://www.usherbrooke.ca/dca/documents/Dictionnaire_de_lacronyme_UEL.pdf</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearDefinitions</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#consistentDefinition</IRI>
@@ -12442,11 +12397,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#justifiedComparisons</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Analogy</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#justifiedComparisons</IRI>
-    <Literal xml:lang="FR">https://philosophie.cegeptr.qc.ca/wp-content/uploads/sites/2/2019/01/FICHE-6-Lanalyse-des-analogies.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12517,11 +12467,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#adequateComparison</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Analogy</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#adequateComparison</IRI>
-    <Literal xml:lang="FR">https://www.persee.fr/doc/hel_0750-8069_2003_num_25_1_3148</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12802,11 +12747,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearSyntax</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Syntax</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearSyntax</IRI>
-    <Literal xml:lang="FR">https://www.ladissertation.com/Philosophie/Les-sophismes/Sophismes-Liste-compl%C3%A8te-sophismes?fbclid=IwAR21LunKe6jOu7e5AadRavnUgHbxMdkdLs7ZyPMZ-I86WzI727kQzt0jLQU</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13264,11 +13204,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Truth</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#truthOfFacts</IRI>
-    <Literal xml:lang="FR">https://www.usherbrooke.ca/udeconsulter/ethique/ethique/integrite-scientifique/principes/</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fidelityToFacts</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#truthOfFacts</IRI>
@@ -13612,11 +13547,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Framing_(social_sciences)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
-    <Literal xml:lang="FR">https://www.laligue.be/associations/la-ligue-de-l-enseignement/methode-pedagogique/les-cinq-regles-d-or-de-l-argumentation/n-2-clarte-des-enjeux</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14042,11 +13972,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns</IRI>
     <Literal xml:lang="EN">Proactive analysis of risks and definition of preventive measures to ensure the success of objectives.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#identifyingWarningSigns</IRI>
-    <Literal xml:lang="FR">https://www.ameli.fr/sites/default/files/Documents/911739/document/gestion-risque-methodes-identification-points-vigilance.pdf</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14539,11 +14464,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Cultural_bias</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalCulturalBiases</IRI>
-    <Literal xml:lang="FR">https://www.scienceshumaines.com/les-biais-culturels-nouvelle-source-d-inegalites_fr_40797.html</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#interculturalAwareness</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalCulturalBiases</IRI>
@@ -14687,11 +14607,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#distancingFromIdeologies</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Political_neutrality</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#distancingFromIdeologies</IRI>
-    <Literal xml:lang="FR">https://www.franceculture.fr/societe/faut-il-etre-neutre-ou-partisan-sur-les-questions-de-societe</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -15224,16 +15139,6 @@
     <Literal xml:lang="EN">Provision of detailed and understandable explanations to establish a common basis for discussion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sufficientExplanations</IRI>
-    <Literal xml:lang="EN">https://www.caissedesdepots.fr/agir-ensemble-professionnels/une-explication-suffisante</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#sufficientExplanations</IRI>
-    <Literal xml:lang="FR">https://www.caissedesdepots.fr/agir-ensemble-professionnels/une-explication-suffisante</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#positiveContribution</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#sufficientExplanations</IRI>
@@ -15674,11 +15579,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Suspension_of_judgment</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#suspensionOfJudgment</IRI>
-    <Literal xml:lang="FR">https://www.psychologies.com/Therapies/Toutes-les-therapies/Psychotherapies/Articles-et-Dossiers/Suspendre-le-jugement</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#availabilityForDialogue</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#suspensionOfJudgment</IRI>
@@ -15929,11 +15829,6 @@
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Cognitive_bias</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#identificationOfOnesBiases</IRI>
-    <Literal xml:lang="FR">https://www.philomag.com/les-idees/analyse/les-biais-cognitifs-ou-lassurance-davoir-toujours-raison-14096</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfFallibility</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#identificationOfOnesBiases</IRI>
@@ -16142,11 +16037,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#opennessToChange</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Open-mindedness</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#opennessToChange</IRI>
-    <Literal xml:lang="FR">https://www.psychologies.com/Culture/Philosophie/L-ouverture-d-esprit-une-vertu</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -16432,16 +16322,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfClarity</IRI>
     <Literal xml:lang="EN">Clear and precise argumentation facilitates understanding and helps keep the exchange on the main topic.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfClarity</IRI>
-    <Literal xml:lang="EN">https://www.opinion-internationale.com/2016/09/26/argumenter-construire-idees-renforcer-arugments-efficace_46817.html</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfClarity</IRI>
-    <Literal xml:lang="FR">https://www.opinion-internationale.com/2016/09/26/argumenter-construire-idees-renforcer-arugments-efficace_46817.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -17424,11 +17304,6 @@
     <Literal xml:lang="EN">Maintaining constructive dialogue through a respectful attitude, despite differences of opinion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#courtesyInDisagreement</IRI>
-    <Literal xml:lang="FR">https://www.agoracademie.com/respect-mutuel-et-respect-de-l-autre-dans-l-echange-constructif/</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectForThePerson</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#courtesyInDisagreement</IRI>
@@ -17492,11 +17367,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#avoidingPersonalAttacks</IRI>
     <Literal xml:lang="EN">Focusing on the actual argument rather than criticizing, insulting, or ridiculing one's interlocutor preserves mutual respect.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#avoidingPersonalAttacks</IRI>
-    <Literal xml:lang="FR">https://www.lesmotssontdescadeaux.com/2018/02/comment-critiquer-sans-agresser.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -17639,11 +17509,6 @@
     <Literal xml:lang="EN">Ensuring an appropriate sharing of speaking time for an equitable representation of all perspectives.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairnessInDialogue</IRI>
-    <Literal xml:lang="FR">https://www.francetvinfo.fr/societe/education/justice-comment-gerer-les-discussions-en-classe-autour-de-ce-sujet-sensible_2091325.html</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#courtesyInDisagreement</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairnessInDialogue</IRI>
@@ -17747,11 +17612,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectfulTone</IRI>
     <Literal xml:lang="EN">It is important to use a cordial and non-aggressive tone to express one's point of view</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectfulTone</IRI>
-    <Literal xml:lang="FR">https://www.lexpress.fr/actualite/societe/education/neuf-reformes-pour-une-meilleure-ecole_1355387.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
