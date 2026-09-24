@@ -9,10 +9,11 @@ Colonnes text_<lang> ; ⛔ desc/example inchangés.
 """
 import csv
 import io
+import os
 import subprocess
 import sys
 
-BASE = r'D:\Dev\Argumentum'
+BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 CSV_PATH = 'Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv'
 
 TARGETS = {
