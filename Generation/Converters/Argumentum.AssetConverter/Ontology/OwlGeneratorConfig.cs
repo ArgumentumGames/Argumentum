@@ -85,6 +85,12 @@ namespace Argumentum.AssetConverter.Ontology
 		/// <summary>#133 publication bridge — rdfs:seeAlso IRIs (the served Pages endpoints).</summary>
 		public List<string> SeeAlsoEndpoints { get; set; } = new List<string>();
 
+		/// <summary>Q-15a (24/09/2026) — dcterms:license IRI: the published artefact reuses the
+		/// text of the CC BY-SA 4.0 taxonomies (LICENSE-CONTENT.md §1), so the content licence
+		/// applies to it, not the generator's LGPL-3.0. Root licence IRI; the legalcode — the
+		/// only authoritative text — is linked from it.</summary>
+		public string LicenseIri { get; set; } = "https://creativecommons.org/licenses/by-sa/4.0/";
+
 
 		public Version Version { get; set; } = new Version(1,0,0);
 		
@@ -134,7 +140,7 @@ namespace Argumentum.AssetConverter.Ontology
 	        ontology.Annotate(RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(Comment, "en"));
 	        ontology.Annotate(RDFVocabulary.OWL.VERSION_INFO, new RDFPlainLiteral(Version.ToString()));
 	        ontology.Annotate(RDFVocabulary.DC.CREATOR, new RDFPlainLiteral(Creator.ToString()));
-	        ontology.AnnotatePublicationMetadata(Title, Creator, SeeAlsoEndpoints);
+	        ontology.AnnotatePublicationMetadata(Title, Creator, SeeAlsoEndpoints, LicenseIri);
 
 	        var aifHasConflictUri = $"{ExternalReferenceOntologyNamespaceURI}hasConflictedElement";
 	        var hasConflictResource = new RDFResource(aifHasConflictUri);
