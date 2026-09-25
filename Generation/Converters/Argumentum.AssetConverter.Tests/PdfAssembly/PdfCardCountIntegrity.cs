@@ -15,8 +15,9 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// <item><description><c>FacesOnly</c> — 1 page per card instance.</description></item>
     /// <item><description><c>PrintAndPlay</c> — the deck is chunked into grid sheets whose capacity
     /// comes from <see cref="PrintAndPlayDocument.ComputePageGeometry"/> (the documented pure
-    /// function — truncation, not rounding); each chunk emits its back sheet only when at least one
-    /// card on it has a back, then always its front sheet (<c>PrintAndPlayDocument.Compose</c>).</description></item>
+    /// function — truncation, not rounding); every chunk emits a back page whenever the document has
+    /// backs (a chunk with no back emits a <b>blank</b> back page — #1536), then always its front
+    /// sheet (<c>PrintAndPlayDocument.Compose</c>).</description></item>
     /// <item><description><c>BackFirstOneDocPerBack</c> — emits one PDF per distinct back art; its
     /// page count depends on how back images group, which this organ does not model: derivation
     /// <b>throws</b> rather than guessing. No enabled boîte document uses it today.</description></item>
@@ -66,8 +67,8 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         /// <summary>
         /// PrintAndPlay emission, mirroring <see cref="PrintAndPlayDocument.Compose"/>: the geometry
         /// (columns/rows/capacity/sheet count) comes from the renderer's own pure function — never
-        /// recomputed here — and each sheet emits a back page only when at least one of its cards
-        /// has a back (or never, when <paramref name="noBack"/>), then always a front page.
+        /// recomputed here — and every chunk emits a back page whenever the document has backs
+        /// (a backless chunk emits a <b>blank</b> back page — #1536), then always its front page.
         /// </summary>
         public static int ExpectedPagesPrintAndPlay(
             float pageWidthPoints, float pageHeightPoints,
@@ -79,17 +80,9 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                 pageWidthPoints, pageHeightPoints, cardWidthPoints, cardHeightPoints,
                 totalMarginPoints, hasHeader, configuredNbColumns, instanceHasBack.Count);
 
-            int pages = 0;
-            for (int chunk = 0; chunk < geometry.NbPages; chunk++)
-            {
-                var chunkHasAnyBack = instanceHasBack
-                    .Skip(chunk * geometry.NbCardsPerPage)
-                    .Take(geometry.NbCardsPerPage)
-                    .Any(hasBack => hasBack);
-                if (!noBack && chunkHasAnyBack) pages++;
-                pages++;
-            }
-            return pages;
+            return PrintAndPlayDocument
+                .EmittedPageSequence(instanceHasBack, noBack, geometry.NbCardsPerPage)
+                .Count;
         }
     }
 }
