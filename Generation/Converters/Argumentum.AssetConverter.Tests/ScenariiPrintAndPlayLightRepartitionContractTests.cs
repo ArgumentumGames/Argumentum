@@ -122,8 +122,18 @@ namespace Argumentum.AssetConverter.Tests
 				"symétrie : politique = 0 doit aussi apparaître (sinon la garde n'énumère qu'une moitié)");
 			failures.Should().Contain(f => f.Contains("vie personnelle") && f.Contains("0"),
 				"symétrie : vie personnelle = 0 doit aussi apparaître (3ᵉ catégorie absente du défaut mesuré)");
-			failures.Should().Contain(f => f.Contains("relation intime") && f.Contains("51,"),
-				"la dominance mesurée (14/27 = 51,9 %) doit être nommée — sinon la correction par catégorie seule pourrait masquer le déséquilibre de ton");
+			// ⚠️ L'assertion porte sur la FRACTION (14/27), pas sur le pourcentage rendu.
+			// La v1 assertait `f.Contains("51,")` — une virgule décimale FR. Sur le runner CI, dont
+			// la culture n'est pas fr-FR, `{share:P1}` rend « 51.9% » et l'assertion tombait :
+			// VERT EN LOCAL, ROUGE EN CI (mesuré 2026-09-25, runs Debug et Release sur `3ffef5cc`).
+			// La fraction « dominateur/total » est le même fait, écrit sans aucun séparateur décimal :
+			// elle est donc identique sur toute machine. C'est la quantification qu'on veut épingler,
+			// pas l'orthographe du séparateur. Même famille que le tube Python mal encodé de #1535 :
+			// un défaut que SEUL l'environnement de CI révèle, parce qu'il dépend d'un réglage
+			// régional que le poste de dev a par chance identique à celui du rédacteur du test.
+			failures.Should().Contain(f => f.Contains("relation intime") && f.Contains("14/27"),
+				"la dominance mesurée (14/27 = 51,9 %) doit être NOMMÉE ET QUANTIFIÉE — sinon la correction "
+				+ "par catégorie seule pourrait masquer le déséquilibre de ton");
 		}
 
 		[Fact]
