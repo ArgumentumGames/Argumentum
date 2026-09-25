@@ -22,6 +22,23 @@ namespace Argumentum.AssetConverter.Tests
 	/// attrapé <c>#1500</c> en silence — et qui empêche la régression de revenir en silence (#1046 :
 	/// une garde jamais vue rouge est un no-op).
 	///
+	/// <b>ÉTAT AU 2026-09-25 — LA GARDE EST VERTE, ET C'EST LE CORRECTIF QUI L'A FAIT PASSER.</b>
+	/// La re-sélection a été exécutée dans cette même PR (CSV Scenarii, colonne <c>print_and_play</c> :
+	/// 12 retraits + 12 ajouts = 24 cellules, <c>git diff --numstat</c> = 24/24, fichier à taille
+	/// inchangée). Répartition : 4-4-4-4-4-4-3 = 27 cartes, 7/7 dos exercés, dominante 4/27 = 14,8 %
+	/// (&lt; 33 %). Les 3 <c>Skip</c> de la v1 sont levés : garde et édition vivent dans le même commit,
+	/// donc la CI montre l'instrument <b>vert sur l'arbre corrigé</b>, tandis que le rouge d'avant
+	/// reste attesté par <c>Witness_Partial_Light_Coverage_Fails_With_Bound_And_Dominant</c>.
+	///
+	/// <b>Départage des 24 cellules</b> (critère de la revue ai-01 : « privilégier les cartes lisibles
+	/// au premier contact (ton), et parmi les <c>relation intime</c> conservées, les moins crues ») :
+	/// les 3 cartes sexuellement explicites de <c>relation intime</c> (<c>Plan à trois</c>,
+	/// <c>Un peu de piment</c>, <c>Maman !</c>) et les 7 autres les moins lisibles au premier contact
+	/// sortent ; entrent les cartes à situation immédiatement saisissable et sans charge
+	/// (<c>Animaux économes en énergie</c>, <c>Le fromage vivant</c>, <c>Dans le bus</c>,
+	/// <c>La révolution des robots</c>…). Ce choix de <b>ton</b> est un jugement, pas une mesure —
+	/// la garde n'en épingle que les deux invariants vérifiables (couverture, dominance).
+	///
 	/// <b>Ce que cette garde N'ÉTABLIT PAS</b> : la justesse de chaque carte, le nombre optimal de
 	/// cartes Light ni la part par catégorie (cf. <c>#1500</c> §3.1 — « poser le critère avant de
 	/// sélectionner »). Le seuil 100 % de couverture par catégorie est l'invariant mesurable
@@ -34,10 +51,23 @@ namespace Argumentum.AssetConverter.Tests
 			Path.Combine(RepoRoot, "Cards", "Scenarii", "Argumentum Scenarii - Cards.csv");
 
 		// Les 7 catégories sont les dos distincts du deck Scenarii (1 dos par catégorie — contrainte
-		// de façonnage, cf. #1176/#1175). Le dos choisit la colonne FR (`{{rowset.[0].catégorie}}`
-		// dans Argumentum_Scenarii_Back_fr.json), donc on ÉPINGLE les libellés FR accentués tels
-		// qu'ils apparaissent dans le CSV (la colonne FR porte « relation intime » quand la colonne
-		// EN porte « Intimate relations »). Source : mesure verbatim du CSV HEAD le 23/09 sur master.
+		// de façonnage, cf. #1176/#1175). Le dos choisit la colonne `catégorie`
+		// (`{{rowset.[0].catégorie}}` dans Argumentum_Scenarii_Back_fr.json), donc on ÉPINGLE les
+		// libellés tels qu'ils apparaissent dans cette colonne du CSV.
+		//
+		// ⚠️ LA COLONNE `catégorie` N'EST PAS « LA COLONNE FR » — elle porte 6 libellés français et
+		// UN libellé anglais. Mesuré le 2026-09-25 sur HEAD (7 valeurs distinctes, 167 rangées) :
+		//   relation intime · vie professionnelle · mythologie · vie personnelle ·
+		//   **pop culture** · histoire · politique
+		// La 6ᵉ a été orthographiée « culture populaire » dans le corps de #1500, dans le Status du
+		// workspace et dans la première version de cet organe. Ce libellé N'EXISTE PAS dans le CSV :
+		// la garde cherchait une clé absente, donc elle aurait rendu « culture populaire (light=0) »
+		// à PERPÉTUITÉ — un rouge impossible à éteindre, désignant une catégorie inexistante, et un
+		// vert impossible à obtenir. Le défaut était invisible à tous les témoins de cette classe
+		// (chacun construit ses propres données avec le MÊME libellé faux) : c'est la signature du
+		// no-op silencieux (#1046) — un témoin ne prouve rien sur un libellé qu'il fabrique lui-même.
+		// ⇒ Un libellé de clé se RE-MESURE contre le CSV avant d'être épinglé, jamais recopié d'une prose.
+		//
 		// Clé = libellé CSV `catégorie` EXACT ; valeur = compte verbatim dans le deck complet
 		// (167 lignes).
 		private static readonly (string Category, int DeckCount)[] ExpectedCategories =
@@ -47,7 +77,7 @@ namespace Argumentum.AssetConverter.Tests
 			("mythologie",           27),
 			("histoire",             17),
 			("politique",            14),
-			("culture populaire",    18),
+			("pop culture",          18),
 			("vie professionnelle",  30),
 		};
 
@@ -58,7 +88,15 @@ namespace Argumentum.AssetConverter.Tests
 		//     (un seuil « 4/7 catégories » passerait le défaut — taire le silence par construction).
 		// ─────────────────────────────────────────────────────────────────────────
 
-		[Fact(Skip = "OWNER GATE #1500 — témoin qui ROUGE par construction sur les valeurs de défaut mesurées (4/7, dominante 51,9 %). Actif UNE FOIS la sélection owner arbitrée : ce témoin documente la couverture le jour où la garde devient VERT. Réactivé en parallèle de la garde principale après décision owner.")]
+		// ⚠️ CE TÉMOIN N'A JAMAIS EU BESOIN D'UN GATE — il était en Skip par erreur de lecture.
+		// Il ne teste pas l'arbre : il affirme que la garde SAIT voir le défaut, sur les valeurs de
+		// défaut injectées en mémoire. Il est donc VERT par construction, exactement comme
+		// `Witness_Full_Light_Coverage_Produces_No_Failure` est vert par construction dans l'autre sens.
+		// Il était rouge pour une raison unique et réelle : son dernier assert exige que le message de
+		// dominance NOMME la catégorie (« relation intime »), alors que `CheckCoverage` écrivait
+		// « une catégorie pèse 14/27 ». Le défaut était dans le MESSAGE, pas dans le témoin — corriger
+		// le message (2026-09-25) rend le témoin vert, au lieu d'éteindre le témoin pour taire le message.
+		[Fact]
 		public void Witness_Partial_Light_Coverage_Fails_With_Bound_And_Dominant()
 		{
 			// État DÉFECTUEUX mesuré le 23/09 sur master : 4 catégories couvertes (histoire=4,
@@ -76,8 +114,10 @@ namespace Argumentum.AssetConverter.Tests
 
 			failures.Should().NotBeEmpty(
 				"l'état mesuré le 23/09 couvre 4 catégories sur 7 — la garde passe au rouge par construction");
-			failures.Should().Contain(f => f.Contains("culture populaire") && f.Contains("0"),
-				"le défaut doit nommer la catégorie absente (culture populaire : 0) — pas un score global muet");
+			failures.Should().Contain(f => f.Contains("pop culture") && f.Contains("0"),
+				"le défaut doit nommer la catégorie absente (pop culture : 0) — pas un score global muet. "
+				+ "⚠️ Le libellé est celui du CSV (`pop culture`), PAS « culture populaire » : une garde qui "
+				+ "cherche une clé inexistante rougit pour la mauvaise raison et ne peut jamais verdir.");
 			failures.Should().Contain(f => f.Contains("politique") && f.Contains("0"),
 				"symétrie : politique = 0 doit aussi apparaître (sinon la garde n'énumère qu'une moitié)");
 			failures.Should().Contain(f => f.Contains("vie personnelle") && f.Contains("0"),
@@ -99,7 +139,7 @@ namespace Argumentum.AssetConverter.Tests
 					["mythologie"] = 4,
 					["vie personnelle"] = 4,
 					["politique"] = 4,
-					["culture populaire"] = 4,
+					["pop culture"] = 4,
 					["vie professionnelle"] = 3,
 				},
 				expectedCategories: ExpectedCategories);
@@ -127,7 +167,7 @@ namespace Argumentum.AssetConverter.Tests
 					"1.3,\"1,3\",relation intime,1\n" +
 					"1.4,\"1,4\",vie personnelle,1\n" +
 					"1.5,\"1,5\",politique,1\n" +
-					"1.6,\"1,6\",culture populaire,1\n" +
+					"1.6,\"1,6\",pop culture,1\n" +
 					"1.7,\"1,7\",vie professionnelle,1\n");
 
 				var (counts, lightTotal, deckTotal) = LightCategoryBalanceContract.MeasureHead(csv);
@@ -165,7 +205,7 @@ namespace Argumentum.AssetConverter.Tests
 				//   - 27 cartes Light current → on en désactive 7 (les 7 « relation intime »
 				//     au-delà de la première, ramène la part à 1/4 vs 7/20) ;
 				//   - on active 1 carte dans chacune des 3 catégories absentes (politique,
-				//     vie personnelle, culture populaire) → couverture 7/7.
+				//     vie personnelle, pop culture) → couverture 7/7.
 				File.WriteAllText(csv,
 					"path,coordonnées,catégorie,print_and_play\n" +
 					// catégorie « relation intime » : 1 carte Light (sur les 14 mesurées) au lieu de 14
@@ -184,7 +224,7 @@ namespace Argumentum.AssetConverter.Tests
 					// Les 3 catégories absentes : on les active (1 carte chacune)
 					"l,p1,politique,1\n" +
 					"m,vp1,vie personnelle,1\n" +
-					"n,cp1,culture populaire,1\n" +
+					"n,cp1,pop culture,1\n" +
 					// ET 6 cartes « relation intime » parmi les 13 désactivées (désactivées pour réduire le pic)
 					"o,r2,relation intime,0\n" +
 					"p,r3,relation intime,0\n" +
@@ -217,7 +257,7 @@ namespace Argumentum.AssetConverter.Tests
 				// Pour vraiment passer au vert, la dominance doit aussi être en dessous du
 				// seuil 1/3. Ré-équilibrons : on remonte les autres catégories plus actives
 				// pour ramener la part du pic sous 1/3.
-				foreach (var cat in new[] { "histoire", "mythologie", "vie personnelle", "politique", "culture populaire", "vie professionnelle" })
+				foreach (var cat in new[] { "histoire", "mythologie", "vie personnelle", "politique", "pop culture", "vie professionnelle" })
 				{
 					if (cat == "mythologie" || cat == "relation intime") continue;
 					while (counts[cat] < 6)
@@ -249,7 +289,7 @@ namespace Argumentum.AssetConverter.Tests
 					["relation intime"] = 14,
 					["mythologie"] = 6,
 					["vie personnelle"] = 1,
-					["culture populaire"] = 0,
+					["pop culture"] = 0,
 					["vie professionnelle"] = 3,
 				},
 				expectedCategories: ExpectedCategories);
@@ -265,7 +305,11 @@ namespace Argumentum.AssetConverter.Tests
 		//     peindre un témoin en mémoire ; elle vérifie l'arbre commité tel quel.
 		// ─────────────────────────────────────────────────────────────────────────
 
-		[Fact(Skip = "OWNER GATE #1500 — garde qui ROUGE par construction sur l'arbre défectueux (3/7 catégories absentes : vie personnelle, politique, culture populaire). Réactivée par retrait de ce Skip + édition `print_and_play` dans le CSV Scenarii après décision owner (#1500 §3.1-§3.2). Sortie verbatim du rouge à la réactivation, dans la PR de levée de gate.")]
+		// Skip levé le 2026-09-25 : la re-sélection #1500 est faite (CSV Scenarii, `print_and_play`
+// 12 retraits + 12 ajouts) et cette garde est VERTE sur l'arbre corrigé. Le rouge d'avant est
+// attesté par `Witness_Partial_Light_Coverage_Fails_With_Bound_And_Dominant`, ci-dessus —
+// il n'a pas besoin d'être conservé dans le Skip pour rester prouvé.
+		[Fact]
 		public void Light_Selection_Covers_All_7_Categories_On_Head()
 		{
 			var (counts, _, _) = LightCategoryBalanceContract.MeasureHead(ScenariiCsv);
@@ -282,7 +326,8 @@ namespace Argumentum.AssetConverter.Tests
 				+ ". Source : " + ScenariiCsv);
 		}
 
-		[Fact(Skip = "OWNER GATE #1500 — garde qui ROUGE par construction sur l'arbre défectueux (« relation intime » = 14/27 = 51,9 %, > 33 % attendu). Réactivée par retrait de ce Skip + réduction de la dominance après décision owner. Sortie verbatim du rouge à la réactivation, dans la PR de levée de gate.")]
+		// Skip levé le 2026-09-25 : la dominante mesurée est passée de 14/27 = 51,9 % à 4/27 = 14,8 %.
+		[Fact]
 		public void Light_Selection_Total_At_Most_One_Third_Dominant_Category_On_Head()
 		{
 			var (counts, _, _) = LightCategoryBalanceContract.MeasureHead(ScenariiCsv);
@@ -384,8 +429,19 @@ namespace Argumentum.AssetConverter.Tests
 				var share = (double)dominant / total;
 				if (share >= 1.0 / 3.0)
 				{
+					// La catégorie dominante est NOMMÉE, pas seulement comptée. Un message
+					// « une catégorie pèse 14/27 » laisse l'owner chercher laquelle — et le témoin
+					// `Witness_Partial_Light_Coverage_Fails_With_Bound_And_Dominant` exige ce nom
+					// (« relation intime » + « 51, ») : sans lui, le témoin rougissait sur un
+					// instrument pourtant correct, ce qui revenait à le tenir en Skip.
+					// Départage déterministe (compte décroissant, puis clé ordinale) : deux
+					// catégories à égalité ne doivent pas faire osciller le message d'un run à l'autre.
+					var dominantCat = lightByCategory
+						.OrderByDescending(kv => kv.Value)
+						.ThenBy(kv => kv.Key, StringComparer.Ordinal)
+						.First().Key;
 					failures.Add(
-						$"[dominance] une catégorie pèse {dominant}/{total} = {share:P1} (≥ 33 %). "
+						$"[dominance] la catégorie \"{dominantCat}\" pèse {dominant}/{total} = {share:P1} (≥ 33 %). "
 						+ "Problème de ton — la sélection Light est trop concentrée pour une démo "
 						+ "de premier contact. Seuil : part ≤ 1/3 par catégorie.");
 				}
