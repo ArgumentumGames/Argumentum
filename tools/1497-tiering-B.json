@@ -1,0 +1,8078 @@
+{
+ "total_B": 265,
+ "counters": {
+  "T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 156,
+  "A_RESIDUEL_PERTINENT": 256,
+  "T3_LACUNE_IRREDUCTIBLE_sujet_etabli": 79,
+  "T3_LACUNE_IRREDUCTIBLE_sujet_mince": 30,
+  "A_RESIDUEL_ANCRE_SECTION": 16
+ },
+ "by_lang": {
+  "es_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 21,
+  "fa_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 27,
+  "pt_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 30,
+  "ru_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 46,
+  "ar_T3_LACUNE_IRREDUCTIBLE_sujet": 14,
+  "fa_T3_LACUNE_IRREDUCTIBLE_sujet": 21,
+  "es_T3_LACUNE_IRREDUCTIBLE_sujet": 15,
+  "fr_T3_LACUNE_IRREDUCTIBLE_sujet": 12,
+  "pt_T3_LACUNE_IRREDUCTIBLE_sujet": 15,
+  "fr_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 17,
+  "ar_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 12,
+  "ru_T3_LACUNE_IRREDUCTIBLE_sujet": 20,
+  "zh_T3_LACUNE_IRREDUCTIBLE_sujet": 12,
+  "zh_T2_SOURCE_ALTERNATIVE_IDENTIFIEE": 3
+ },
+ "controls": {
+  "invented": [
+   {
+    "lang": "fr",
+    "title": "Zorblaxion infundibulaire du troisième ordre",
+    "n_hits": 0
+   },
+   {
+    "lang": "ru",
+    "title": "Мнемозинальный дрейф кактуса",
+    "n_hits": 0
+   },
+   {
+    "lang": "ar",
+    "title": "قياس الزبركانة الشمالية الغربية",
+    "n_hits": 0
+   }
+  ],
+  "positive": {
+   "probe": [
+    "fr",
+    "Sophisme"
+   ],
+   "class": "PERTINENT"
+  },
+  "negative": {
+   "probe": [
+    "en",
+    "Infinity Within"
+   ],
+   "class": "HORS_SUJET"
+  }
+ },
+ "details": [
+  {
+   "pk": "2",
+   "lang": "es",
+   "titre_fr": "Argument bâclé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Rebelión en los llanos",
+   "pertinent": null
+  },
+  {
+   "pk": "2",
+   "lang": "fa",
+   "titre_fr": "Argument bâclé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "روش‌های بانداج",
+   "pertinent": null
+  },
+  {
+   "pk": "2",
+   "lang": "pt",
+   "titre_fr": "Argument bâclé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Practical Magic",
+   "pertinent": null
+  },
+  {
+   "pk": "2",
+   "lang": "ru",
+   "titre_fr": "Argument bâclé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "bg"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Симоньян, Маргарита Симоновна",
+   "pertinent": null
+  },
+  {
+   "pk": "34",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "دليل متناقل"
+  },
+  {
+   "pk": "34",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "شواهد روایی"
+  },
+  {
+   "pk": "34",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Evidência anedótica"
+  },
+  {
+   "pk": "34",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Анекдотическое свидетельство"
+  },
+  {
+   "pk": "43",
+   "lang": "en",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad populum"
+  },
+  {
+   "pk": "43",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumento ad populum"
+  },
+  {
+   "pk": "43",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به اکثریت"
+  },
+  {
+   "pk": "43",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad populum"
+  },
+  {
+   "pk": "43",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸群眾"
+  },
+  {
+   "pk": "51",
+   "lang": "ar",
+   "titre_fr": "Sophisme du psychologue",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مغالطة صورية",
+   "pertinent": null
+  },
+  {
+   "pk": "51",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia del psicólogo"
+  },
+  {
+   "pk": "51",
+   "lang": "fa",
+   "titre_fr": "Sophisme du psychologue",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "نظریه مایه‌کوبی",
+   "pertinent": null
+  },
+  {
+   "pk": "51",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Erreur du psychologue"
+  },
+  {
+   "pk": "51",
+   "lang": "pt",
+   "titre_fr": "Sophisme du psychologue",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Sabedoria",
+   "pertinent": null
+  },
+  {
+   "pk": "51",
+   "lang": "ru",
+   "titre_fr": "Sophisme du psychologue",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Лживость",
+   "pertinent": null
+  },
+  {
+   "pk": "51",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "心理學家謬誤"
+  },
+  {
+   "pk": "55",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مخصص (علوم)"
+  },
+  {
+   "pk": "55",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "اد هوک"
+  },
+  {
+   "pk": "71",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad verecundiam"
+  },
+  {
+   "pk": "71",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸權威"
+  },
+  {
+   "pk": "78",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad verecundiam"
+  },
+  {
+   "pk": "78",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Апелляция к авторитету"
+  },
+  {
+   "pk": "78",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸權威"
+  },
+  {
+   "pk": "79",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "احتكام إلى الإنجاز"
+  },
+  {
+   "pk": "79",
+   "lang": "es",
+   "titre_fr": "Argument d’accomplissement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Argumento teleológico",
+   "pertinent": null
+  },
+  {
+   "pk": "79",
+   "lang": "fa",
+   "titre_fr": "Argument d’accomplissement",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "تونک دراخت",
+   "pertinent": null
+  },
+  {
+   "pk": "79",
+   "lang": "fr",
+   "titre_fr": "Argument d’accomplissement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Arguments sur l'existence de Dieu",
+   "pertinent": null
+  },
+  {
+   "pk": "79",
+   "lang": "pt",
+   "titre_fr": "Argument d’accomplissement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Pedro Granger",
+   "pertinent": null
+  },
+  {
+   "pk": "79",
+   "lang": "ru",
+   "titre_fr": "Argument d’accomplissement",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Платон",
+   "pertinent": null
+  },
+  {
+   "pk": "79",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸成就"
+  },
+  {
+   "pk": "98",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به اکثریت"
+  },
+  {
+   "pk": "98",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸群眾"
+  },
+  {
+   "pk": "104",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل بالتقاليد"
+  },
+  {
+   "pk": "104",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به سنت"
+  },
+  {
+   "pk": "104",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸傳統"
+  },
+  {
+   "pk": "108",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "احتكام إلى الطبيعي"
+  },
+  {
+   "pk": "108",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Apelación a la naturaleza"
+  },
+  {
+   "pk": "108",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به طبیعت"
+  },
+  {
+   "pk": "108",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Apelo à natureza"
+  },
+  {
+   "pk": "108",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸自然"
+  },
+  {
+   "pk": "112",
+   "lang": "es",
+   "titre_fr": "Sophisme moraliste",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "fi",
+    "pfl",
+    "pt",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falacia informal",
+   "pertinent": null
+  },
+  {
+   "pk": "112",
+   "lang": "fa",
+   "titre_fr": "Sophisme moraliste",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "fi",
+    "pfl",
+    "pt",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "احتمال‌گرایی",
+   "pertinent": null
+  },
+  {
+   "pk": "112",
+   "lang": "fr",
+   "titre_fr": "Sophisme moraliste",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "fi",
+    "pfl",
+    "pt",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Two wrongs make a right",
+   "pertinent": null
+  },
+  {
+   "pk": "112",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falácia moralista"
+  },
+  {
+   "pk": "112",
+   "lang": "ru",
+   "titre_fr": "Sophisme moraliste",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "fi",
+    "pfl",
+    "pt",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "В Советском Союзе (мем)",
+   "pertinent": null
+  },
+  {
+   "pk": "112",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "道德主義謬誤"
+  },
+  {
+   "pk": "128",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "احتكام إلى الغنى"
+  },
+  {
+   "pk": "128",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به ثروت"
+  },
+  {
+   "pk": "128",
+   "lang": "ru",
+   "titre_fr": "Raison du plus riche",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "be",
+    "ca",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "nl",
+    "pfl",
+    "pt",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "be"
+   ],
+   "exact_class": "Q_DIFFERENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Обсессия (фильм)",
+   "pertinent": null
+  },
+  {
+   "pk": "128",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸富貴"
+  },
+  {
+   "pk": "134",
+   "lang": "ar",
+   "titre_fr": "Sophisme ludique",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "he",
+    "ko",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "ZERO_HIT",
+   "search_top": null,
+   "pertinent": null
+  },
+  {
+   "pk": "134",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia lúdica"
+  },
+  {
+   "pk": "134",
+   "lang": "fa",
+   "titre_fr": "Sophisme ludique",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "he",
+    "ko",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "معناشناسی منطقی",
+   "pertinent": null
+  },
+  {
+   "pk": "134",
+   "lang": "fr",
+   "titre_fr": "Sophisme ludique",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "he",
+    "ko",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Homo ludens",
+   "pertinent": null
+  },
+  {
+   "pk": "134",
+   "lang": "pt",
+   "titre_fr": "Sophisme ludique",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "he",
+    "ko",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Teoria da decisão",
+   "pertinent": null
+  },
+  {
+   "pk": "134",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Игровое заблуждение"
+  },
+  {
+   "pk": "134",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "戲局謬誤"
+  },
+  {
+   "pk": "153",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة المغالطة"
+  },
+  {
+   "pk": "153",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumento ad logicam"
+  },
+  {
+   "pk": "153",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه رد استدلال"
+  },
+  {
+   "pk": "153",
+   "lang": "fr",
+   "titre_fr": "Argument des mauvaises raisons",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "de",
+    "diq",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "hu",
+    "lt",
+    "pfl",
+    "pt",
+    "ro",
+    "ru",
+    "tr",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Argumentation",
+   "pertinent": null
+  },
+  {
+   "pk": "153",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Аргумент к логике"
+  },
+  {
+   "pk": "153",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "謬誤論證"
+  },
+  {
+   "pk": "154",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه رد استدلال"
+  },
+  {
+   "pk": "175",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "تأثير اجتماعي"
+  },
+  {
+   "pk": "175",
+   "lang": "es",
+   "titre_fr": "Influence",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "az",
+    "bg",
+    "ca",
+    "cv",
+    "da",
+    "de",
+    "el",
+    "en",
+    "et",
+    "fa",
+    "fr",
+    "gl",
+    "he",
+    "hi",
+    "hy",
+    "it",
+    "ja",
+    "jbo",
+    "kk",
+    "ko",
+    "nb",
+    "nl",
+    "pl",
+    "pt",
+    "ru",
+    "simple",
+    "sl",
+    "sq",
+    "sv",
+    "tr",
+    "uk",
+    "vi",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "pt",
+    "it",
+    "ca"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Influencia",
+   "pertinent": null
+  },
+  {
+   "pk": "175",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "نفوذ اجتماعی"
+  },
+  {
+   "pk": "175",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Influência social"
+  },
+  {
+   "pk": "175",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Социальное влияние"
+  },
+  {
+   "pk": "175",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "社会影响"
+  },
+  {
+   "pk": "176",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مجاز (بلاغة)"
+  },
+  {
+   "pk": "176",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Figura literaria"
+  },
+  {
+   "pk": "176",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "آرایه‌های ادبی"
+  },
+  {
+   "pk": "176",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Figure de style"
+  },
+  {
+   "pk": "176",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Figura de linguagem"
+  },
+  {
+   "pk": "176",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Фигуры речи"
+  },
+  {
+   "pk": "176",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "修辞手法"
+  },
+  {
+   "pk": "177",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "لغة انفعالية"
+  },
+  {
+   "pk": "177",
+   "lang": "es",
+   "titre_fr": "Langage persuasif",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fa",
+    "is",
+    "ja",
+    "ko",
+    "pl",
+    "ru",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Escritura persuasiva",
+   "pertinent": null
+  },
+  {
+   "pk": "177",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "عبارت جهت‌دار"
+  },
+  {
+   "pk": "177",
+   "lang": "fr",
+   "titre_fr": "Langage persuasif",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fa",
+    "is",
+    "ja",
+    "ko",
+    "pl",
+    "ru",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Hallucination (intelligence artificielle)",
+   "pertinent": null
+  },
+  {
+   "pk": "177",
+   "lang": "pt",
+   "titre_fr": "Langage persuasif",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fa",
+    "is",
+    "ja",
+    "ko",
+    "pl",
+    "ru",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Denotação",
+   "pertinent": null
+  },
+  {
+   "pk": "177",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Языковое манипулирование"
+  },
+  {
+   "pk": "177",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "既定觀點用詞"
+  },
+  {
+   "pk": "179",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "سؤال مركب"
+  },
+  {
+   "pk": "179",
+   "lang": "es",
+   "titre_fr": "Question piège",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fr",
+    "id",
+    "lt",
+    "mr",
+    "pt",
+    "sr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Pregunta cerrada",
+   "pertinent": null
+  },
+  {
+   "pk": "179",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه پرسش پیچیده"
+  },
+  {
+   "pk": "179",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Pergunta complexa"
+  },
+  {
+   "pk": "179",
+   "lang": "ru",
+   "titre_fr": "Question piège",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fr",
+    "id",
+    "lt",
+    "mr",
+    "pt",
+    "sr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Вопрос с подвохом",
+   "pertinent": null
+  },
+  {
+   "pk": "179",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "复杂问语"
+  },
+  {
+   "pk": "182",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مأزق مفتعل"
+  },
+  {
+   "pk": "182",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "دوگانه جعلی"
+  },
+  {
+   "pk": "182",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falsa dicotomia"
+  },
+  {
+   "pk": "182",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "假兩難推理"
+  },
+  {
+   "pk": "184",
+   "lang": "ar",
+   "titre_fr": "Définition persuasive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "he",
+    "ja",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "قائمة أفلام مبنية على أحداث حقيقية",
+   "pertinent": null
+  },
+  {
+   "pk": "184",
+   "lang": "es",
+   "titre_fr": "Définition persuasive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "ja",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Definición",
+   "pertinent": null
+  },
+  {
+   "pk": "184",
+   "lang": "fa",
+   "titre_fr": "Définition persuasive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "ja",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ادیسه (فیلم ۲۰۲۶)",
+   "pertinent": null
+  },
+  {
+   "pk": "184",
+   "lang": "fr",
+   "titre_fr": "Définition persuasive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "ja",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Rhétorique (Aristote)",
+   "pertinent": null
+  },
+  {
+   "pk": "184",
+   "lang": "pt",
+   "titre_fr": "Définition persuasive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "ja",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Lista de falácias",
+   "pertinent": null
+  },
+  {
+   "pk": "184",
+   "lang": "ru",
+   "titre_fr": "Définition persuasive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "ja",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Президентские выборы в России (2024)",
+   "pertinent": null
+  },
+  {
+   "pk": "184",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "說服性定義"
+  },
+  {
+   "pk": "299",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "استمالة العاطفة (مغالطة)"
+  },
+  {
+   "pk": "299",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Apelar a las emociones"
+  },
+  {
+   "pk": "299",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به احساسات"
+  },
+  {
+   "pk": "299",
+   "lang": "fr",
+   "titre_fr": "Appel à l’émotion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "de",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "he",
+    "hr",
+    "id",
+    "ja",
+    "ko",
+    "lt",
+    "ms",
+    "pfl",
+    "ps",
+    "pt",
+    "ro",
+    "sh",
+    "simple",
+    "sr",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Émotion",
+   "pertinent": null
+  },
+  {
+   "pk": "299",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Apelo à emoção"
+  },
+  {
+   "pk": "299",
+   "lang": "ru",
+   "titre_fr": "Appel à l’émotion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "de",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "he",
+    "hr",
+    "id",
+    "ja",
+    "ko",
+    "lt",
+    "ms",
+    "pfl",
+    "ps",
+    "pt",
+    "ro",
+    "sh",
+    "simple",
+    "sr",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr",
+    "sh"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Эмоция",
+   "pertinent": null
+  },
+  {
+   "pk": "299",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸情感"
+  },
+  {
+   "pk": "300",
+   "lang": "ar",
+   "titre_fr": "Connivence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "tr"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "رشوة بالتواطؤ",
+   "pertinent": null
+  },
+  {
+   "pk": "300",
+   "lang": "es",
+   "titre_fr": "Connivence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "tr"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "139 a. C.",
+   "pertinent": null
+  },
+  {
+   "pk": "300",
+   "lang": "fa",
+   "titre_fr": "Connivence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "tr"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "جی و باب ساکت",
+   "pertinent": null
+  },
+  {
+   "pk": "300",
+   "lang": "pt",
+   "titre_fr": "Connivence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "tr"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Operação Puerto",
+   "pertinent": null
+  },
+  {
+   "pk": "300",
+   "lang": "ru",
+   "titre_fr": "Connivence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "tr"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Сговор",
+   "pertinent": null
+  },
+  {
+   "pk": "300",
+   "lang": "zh",
+   "titre_fr": "Connivence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "tr"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "臺灣海峽中線",
+   "pertinent": null
+  },
+  {
+   "pk": "313",
+   "lang": "es",
+   "titre_fr": "Flatterie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "en",
+    "fa",
+    "fr",
+    "he",
+    "id",
+    "nl",
+    "pfl",
+    "pt",
+    "ro",
+    "sr",
+    "uk",
+    "ur",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "pt",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Adulación",
+   "pertinent": null
+  },
+  {
+   "pk": "319",
+   "lang": "fa",
+   "titre_fr": "Appel à la pitié",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "en",
+    "es",
+    "eu",
+    "fi",
+    "fr",
+    "he",
+    "hr",
+    "hu",
+    "ja",
+    "ko",
+    "lt",
+    "ms",
+    "nl",
+    "pfl",
+    "pl",
+    "pt",
+    "ro",
+    "ru",
+    "sr",
+    "sv",
+    "tr",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "واکنش‌ها به خیزش ۱۴۰۴ ایران",
+   "pertinent": null
+  },
+  {
+   "pk": "323",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "ذنب بالتداعي (مغالطة)"
+  },
+  {
+   "pk": "323",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia de asociación"
+  },
+  {
+   "pk": "323",
+   "lang": "fa",
+   "titre_fr": "Appel au mépris",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "is",
+    "nl",
+    "pl",
+    "simple",
+    "sr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ادغام نژادی در مدارس ایالات متحده آمریکا",
+   "pertinent": null
+  },
+  {
+   "pk": "323",
+   "lang": "pt",
+   "titre_fr": "Appel au mépris",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "is",
+    "nl",
+    "pl",
+    "simple",
+    "sr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Ditadura militar brasileira",
+   "pertinent": null
+  },
+  {
+   "pk": "323",
+   "lang": "ru",
+   "titre_fr": "Appel au mépris",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "is",
+    "nl",
+    "pl",
+    "simple",
+    "sr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Теракт в Каспийске (2002)",
+   "pertinent": null
+  },
+  {
+   "pk": "323",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "關聯謬誤"
+  },
+  {
+   "pk": "337",
+   "lang": "ru",
+   "titre_fr": "Appel à la terreur",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "be",
+    "ca",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "ja",
+    "lt",
+    "nb",
+    "pfl",
+    "pt",
+    "ro",
+    "sr",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "be",
+    "sr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Носферату, симфония ужаса",
+   "pertinent": null
+  },
+  {
+   "pk": "340",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "احتكام إلى نتائج (مغالطة)"
+  },
+  {
+   "pk": "340",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumento ad consequentiam"
+  },
+  {
+   "pk": "340",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به نتیجه‌ها"
+  },
+  {
+   "pk": "340",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad consequentiam"
+  },
+  {
+   "pk": "340",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Аргумент к последствиям"
+  },
+  {
+   "pk": "340",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸後果"
+  },
+  {
+   "pk": "356",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "تلاعب نفسي"
+  },
+  {
+   "pk": "356",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Manipulación mental"
+  },
+  {
+   "pk": "356",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "دستکاری روانی"
+  },
+  {
+   "pk": "356",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Manipulação psicológica"
+  },
+  {
+   "pk": "356",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Психологическая манипуляция"
+  },
+  {
+   "pk": "356",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "心理操縱"
+  },
+  {
+   "pk": "357",
+   "lang": "ar",
+   "titre_fr": "Conditionnement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "es",
+    "et",
+    "fr",
+    "gl",
+    "ht",
+    "it",
+    "pl",
+    "pt"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "تكييف الهواء",
+   "pertinent": null
+  },
+  {
+   "pk": "357",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Condicionamiento"
+  },
+  {
+   "pk": "357",
+   "lang": "fa",
+   "titre_fr": "Conditionnement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "es",
+    "et",
+    "fr",
+    "gl",
+    "ht",
+    "it",
+    "pl",
+    "pt"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "شرطی‌شدن",
+   "pertinent": null
+  },
+  {
+   "pk": "357",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Condicionamento"
+  },
+  {
+   "pk": "357",
+   "lang": "zh",
+   "titre_fr": "Conditionnement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "es",
+    "et",
+    "fr",
+    "gl",
+    "ht",
+    "it",
+    "pl",
+    "pt"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "古典制約",
+   "pertinent": null
+  },
+  {
+   "pk": "358",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "تأطير"
+  },
+  {
+   "pk": "358",
+   "lang": "es",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Encuadre (ciencias sociales)"
+  },
+  {
+   "pk": "358",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "چارچوب‌بندی (علوم اجتماعی)"
+  },
+  {
+   "pk": "358",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Enquadramento noticioso"
+  },
+  {
+   "pk": "358",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Фрейм (социальные науки)"
+  },
+  {
+   "pk": "358",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "框架 (社會科學)"
+  },
+  {
+   "pk": "362",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "شطيرة المجاملة"
+  },
+  {
+   "pk": "362",
+   "lang": "es",
+   "titre_fr": "Sandwich de louanges",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fr",
+    "nl"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Android Ice Cream Sandwich",
+   "pertinent": null
+  },
+  {
+   "pk": "362",
+   "lang": "fa",
+   "titre_fr": "Sandwich de louanges",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fr",
+    "nl"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "امیر تتلو",
+   "pertinent": null
+  },
+  {
+   "pk": "362",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Méthode sandwich"
+  },
+  {
+   "pk": "362",
+   "lang": "pt",
+   "titre_fr": "Sandwich de louanges",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fr",
+    "nl"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Vale Tudo (2025)",
+   "pertinent": null
+  },
+  {
+   "pk": "362",
+   "lang": "ru",
+   "titre_fr": "Sandwich de louanges",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fr",
+    "nl"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Империя Северного Моря",
+   "pertinent": null
+  },
+  {
+   "pk": "362",
+   "lang": "zh",
+   "titre_fr": "Sandwich de louanges",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fr",
+    "nl"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ONE PIECE角色列表",
+   "pertinent": null
+  },
+  {
+   "pk": "420",
+   "lang": "es",
+   "titre_fr": "Jeu de pouvoir",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "en",
+    "fr",
+    "ha",
+    "he",
+    "hr",
+    "id",
+    "ko",
+    "pt",
+    "simple",
+    "sr",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Juego de poder",
+   "pertinent": null
+  },
+  {
+   "pk": "420",
+   "lang": "fa",
+   "titre_fr": "Jeu de pouvoir",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "en",
+    "fr",
+    "ha",
+    "he",
+    "hr",
+    "id",
+    "ko",
+    "pt",
+    "simple",
+    "sr",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "امیر نوری",
+   "pertinent": null
+  },
+  {
+   "pk": "420",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Contrôle coercitif"
+  },
+  {
+   "pk": "420",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Controle coercitivo"
+  },
+  {
+   "pk": "420",
+   "lang": "ru",
+   "titre_fr": "Jeu de pouvoir",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "en",
+    "fr",
+    "ha",
+    "he",
+    "hr",
+    "id",
+    "ko",
+    "pt",
+    "simple",
+    "sr",
+    "zh"
+   ],
+   "famille_presents": [
+    "sr",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Большая игра (фильм, 2009)",
+   "pertinent": null
+  },
+  {
+   "pk": "420",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "虐待關係中的權力與控制"
+  },
+  {
+   "pk": "432",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "إذعان (علم نفس)"
+  },
+  {
+   "pk": "432",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Engagement"
+  },
+  {
+   "pk": "432",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "اجابت (روان‌شناسی)"
+  },
+  {
+   "pk": "432",
+   "lang": "pt",
+   "titre_fr": "Engagement",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "el",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "ro",
+    "uk"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Comprometimento organizacional",
+   "pertinent": null
+  },
+  {
+   "pk": "432",
+   "lang": "ru",
+   "titre_fr": "Engagement",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "el",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "ro",
+    "uk"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Обязательство",
+   "pertinent": null
+  },
+  {
+   "pk": "432",
+   "lang": "zh",
+   "titre_fr": "Engagement",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "el",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "ro",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Google",
+   "pertinent": null
+  },
+  {
+   "pk": "492",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "لعب دور الضحية"
+  },
+  {
+   "pk": "492",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Victimismo"
+  },
+  {
+   "pk": "492",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مظلوم‌نمایی"
+  },
+  {
+   "pk": "492",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Vitimismo"
+  },
+  {
+   "pk": "492",
+   "lang": "ru",
+   "titre_fr": "Jouer la victime",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "az",
+    "ca",
+    "cs",
+    "en",
+    "eo",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "hr",
+    "hy",
+    "id",
+    "it",
+    "mad",
+    "pam",
+    "pt",
+    "sr",
+    "sv",
+    "th",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Виктимизация",
+   "pertinent": null
+  },
+  {
+   "pk": "492",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "扮演受害者"
+  },
+  {
+   "pk": "511",
+   "lang": "ar",
+   "titre_fr": "Communication non verbale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "تواصل غير كلامي",
+   "pertinent": null
+  },
+  {
+   "pk": "511",
+   "lang": "es",
+   "titre_fr": "Communication non verbale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Comunicación no verbal",
+   "pertinent": null
+  },
+  {
+   "pk": "511",
+   "lang": "fa",
+   "titre_fr": "Communication non verbale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ارتباط غیرکلامی",
+   "pertinent": null
+  },
+  {
+   "pk": "511",
+   "lang": "pt",
+   "titre_fr": "Communication non verbale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Comunicação não verbal",
+   "pertinent": null
+  },
+  {
+   "pk": "511",
+   "lang": "ru",
+   "titre_fr": "Communication non verbale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Невербальное общение",
+   "pertinent": null
+  },
+  {
+   "pk": "511",
+   "lang": "zh",
+   "titre_fr": "Communication non verbale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "非言语交际",
+   "pertinent": null
+  },
+  {
+   "pk": "594",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Demostración inválida"
+  },
+  {
+   "pk": "594",
+   "lang": "fa",
+   "titre_fr": "Erreur mathématique",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "da",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ga",
+    "he",
+    "hy",
+    "id",
+    "it",
+    "ja",
+    "mr",
+    "nb",
+    "pt",
+    "ro",
+    "ru",
+    "ta",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "چت‌جی‌پی‌تی",
+   "pertinent": null
+  },
+  {
+   "pk": "594",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Pseudo-démonstration d'égalité entre nombres"
+  },
+  {
+   "pk": "594",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falácia matemática"
+  },
+  {
+   "pk": "594",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Математический софизм"
+  },
+  {
+   "pk": "594",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "無效證明"
+  },
+  {
+   "pk": "595",
+   "lang": "es",
+   "titre_fr": "Généralisation abusive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falacia",
+   "pertinent": null
+  },
+  {
+   "pk": "595",
+   "lang": "fa",
+   "titre_fr": "Généralisation abusive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "سیاست در هند",
+   "pertinent": null
+  },
+  {
+   "pk": "595",
+   "lang": "pt",
+   "titre_fr": "Généralisation abusive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Elliott P. Currie",
+   "pertinent": null
+  },
+  {
+   "pk": "595",
+   "lang": "ru",
+   "titre_fr": "Généralisation abusive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "bg"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Использование психиатрии в политических целях в СССР",
+   "pertinent": null
+  },
+  {
+   "pk": "598",
+   "lang": "es",
+   "titre_fr": "Généralisation hâtive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Generalización apresurada",
+   "pertinent": null
+  },
+  {
+   "pk": "598",
+   "lang": "fa",
+   "titre_fr": "Généralisation hâtive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "آیزاک نیوتن",
+   "pertinent": null
+  },
+  {
+   "pk": "598",
+   "lang": "pt",
+   "titre_fr": "Généralisation hâtive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Generalização precipitada",
+   "pertinent": null
+  },
+  {
+   "pk": "598",
+   "lang": "ru",
+   "titre_fr": "Généralisation hâtive",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "en",
+    "fr",
+    "he",
+    "id",
+    "ms",
+    "pfl",
+    "ps",
+    "ro",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "bg"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Рабочая аристократия",
+   "pertinent": null
+  },
+  {
+   "pk": "603",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "التقاطية"
+  },
+  {
+   "pk": "603",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "گلچین‌کردن"
+  },
+  {
+   "pk": "603",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "單方論證"
+  },
+  {
+   "pk": "614",
+   "lang": "ar",
+   "titre_fr": "Sophisme de l’accident",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "he",
+    "pfl",
+    "pl",
+    "pt",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مغالطة الحادث",
+   "pertinent": null
+  },
+  {
+   "pk": "614",
+   "lang": "fa",
+   "titre_fr": "Sophisme de l’accident",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "pfl",
+    "pl",
+    "pt",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "برگشت به میانگین",
+   "pertinent": null
+  },
+  {
+   "pk": "614",
+   "lang": "fr",
+   "titre_fr": "Sophisme de l’accident",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "he",
+    "pfl",
+    "pl",
+    "pt",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Sophisme de la solution parfaite",
+   "pertinent": null
+  },
+  {
+   "pk": "614",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Dicto simpliciter"
+  },
+  {
+   "pk": "614",
+   "lang": "ru",
+   "titre_fr": "Sophisme de l’accident",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "he",
+    "pfl",
+    "pl",
+    "pt",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "ZERO_HIT",
+   "search_top": null,
+   "pertinent": null
+  },
+  {
+   "pk": "614",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "籠統推論"
+  },
+  {
+   "pk": "621",
+   "lang": "ar",
+   "titre_fr": "Transfert illicite",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "حافلات جازان",
+   "pertinent": null
+  },
+  {
+   "pk": "621",
+   "lang": "es",
+   "titre_fr": "Transfert illicite",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Flujos ilícitos",
+   "pertinent": null
+  },
+  {
+   "pk": "621",
+   "lang": "fa",
+   "titre_fr": "Transfert illicite",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مفتی اعظم اورشلیم",
+   "pertinent": null
+  },
+  {
+   "pk": "621",
+   "lang": "pt",
+   "titre_fr": "Transfert illicite",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Doleiro",
+   "pertinent": null
+  },
+  {
+   "pk": "621",
+   "lang": "ru",
+   "titre_fr": "Transfert illicite",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Преемственность от Киевской Руси",
+   "pertinent": null
+  },
+  {
+   "pk": "621",
+   "lang": "zh",
+   "titre_fr": "Transfert illicite",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "俄羅斯刑法典",
+   "pertinent": null
+  },
+  {
+   "pk": "622",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia de composición"
+  },
+  {
+   "pk": "622",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه ترکیب"
+  },
+  {
+   "pk": "622",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Composição (falácia)"
+  },
+  {
+   "pk": "622",
+   "lang": "ru",
+   "titre_fr": "Sophisme de composition",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "ca",
+    "de",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hr",
+    "ja",
+    "ko",
+    "la",
+    "pfl",
+    "pl",
+    "pt",
+    "ro",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Протагор (Платон)",
+   "pertinent": null
+  },
+  {
+   "pk": "622",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "合成謬誤"
+  },
+  {
+   "pk": "625",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia de división"
+  },
+  {
+   "pk": "625",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه تقسیم"
+  },
+  {
+   "pk": "625",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Sophisme de division"
+  },
+  {
+   "pk": "625",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Divisão (falácia)"
+  },
+  {
+   "pk": "625",
+   "lang": "ru",
+   "titre_fr": "Sophisme de division",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "de",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hr",
+    "la",
+    "pfl",
+    "pt",
+    "ro",
+    "simple",
+    "uk",
+    "vi",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Софизм",
+   "pertinent": null
+  },
+  {
+   "pk": "625",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "分割謬誤"
+  },
+  {
+   "pk": "632",
+   "lang": "es",
+   "titre_fr": "Mauvaise interprétation",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "en",
+    "fr",
+    "he",
+    "ja",
+    "th",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falacia ecológica",
+   "pertinent": null
+  },
+  {
+   "pk": "632",
+   "lang": "fa",
+   "titre_fr": "Mauvaise interprétation",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "en",
+    "fr",
+    "he",
+    "ja",
+    "th",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "واژن",
+   "pertinent": null
+  },
+  {
+   "pk": "632",
+   "lang": "pt",
+   "titre_fr": "Mauvaise interprétation",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "en",
+    "fr",
+    "he",
+    "ja",
+    "th",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falácia",
+   "pertinent": null
+  },
+  {
+   "pk": "632",
+   "lang": "ru",
+   "titre_fr": "Mauvaise interprétation",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "en",
+    "fr",
+    "he",
+    "ja",
+    "th",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "P-значение",
+   "pertinent": null
+  },
+  {
+   "pk": "633",
+   "lang": "fr",
+   "titre_fr": "Relation infondée",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "da",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "fa",
+    "he",
+    "it",
+    "ja",
+    "ko",
+    "nb",
+    "nn",
+    "pl",
+    "pt",
+    "ru",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt",
+    "it",
+    "ca"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Accusation infondée de viol",
+   "pertinent": null
+  },
+  {
+   "pk": "644",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة المقامر"
+  },
+  {
+   "pk": "644",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia del apostador"
+  },
+  {
+   "pk": "644",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه قمارباز"
+  },
+  {
+   "pk": "644",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Erreur du parieur"
+  },
+  {
+   "pk": "644",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Ошибка игрока"
+  },
+  {
+   "pk": "644",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "賭徒謬誤"
+  },
+  {
+   "pk": "653",
+   "lang": "ar",
+   "titre_fr": "Main chaude",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "fa",
+    "fi",
+    "ja",
+    "ko",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "fa"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "سلعة فبلين",
+   "pertinent": null
+  },
+  {
+   "pk": "653",
+   "lang": "es",
+   "titre_fr": "Main chaude",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "en",
+    "fa",
+    "fi",
+    "ja",
+    "ko",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Ley de promedios",
+   "pertinent": null
+  },
+  {
+   "pk": "653",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "دست خوب"
+  },
+  {
+   "pk": "653",
+   "lang": "fr",
+   "titre_fr": "Main chaude",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "en",
+    "fa",
+    "fi",
+    "ja",
+    "ko",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "La Main chaude",
+   "pertinent": null
+  },
+  {
+   "pk": "653",
+   "lang": "pt",
+   "titre_fr": "Main chaude",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "en",
+    "fa",
+    "fi",
+    "ja",
+    "ko",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falácia do apostador",
+   "pertinent": null
+  },
+  {
+   "pk": "653",
+   "lang": "ru",
+   "titre_fr": "Main chaude",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "fa",
+    "fi",
+    "ja",
+    "ko",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Принципы силового тренинга",
+   "pertinent": null
+  },
+  {
+   "pk": "659",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Paradoja sorites"
+  },
+  {
+   "pk": "659",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "پارادوکس خرمن"
+  },
+  {
+   "pk": "659",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Paradoxe sorite"
+  },
+  {
+   "pk": "659",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Paradoxo sorites"
+  },
+  {
+   "pk": "659",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Парадокс кучи"
+  },
+  {
+   "pk": "659",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "連鎖悖論"
+  },
+  {
+   "pk": "666",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Demostración inválida"
+  },
+  {
+   "pk": "666",
+   "lang": "fa",
+   "titre_fr": "Résultat invalide",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "da",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ga",
+    "he",
+    "hy",
+    "id",
+    "it",
+    "ja",
+    "mr",
+    "nb",
+    "pt",
+    "ro",
+    "ru",
+    "ta",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "در حاشیه",
+   "pertinent": null
+  },
+  {
+   "pk": "666",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Pseudo-démonstration d'égalité entre nombres"
+  },
+  {
+   "pk": "666",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falácia matemática"
+  },
+  {
+   "pk": "666",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Математический софизм"
+  },
+  {
+   "pk": "666",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "無效證明"
+  },
+  {
+   "pk": "670",
+   "lang": "ar",
+   "titre_fr": "Faux équilibre",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "bn",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "eu",
+    "fi",
+    "fr",
+    "id",
+    "ja",
+    "ko",
+    "nb",
+    "nl",
+    "pfl",
+    "ru",
+    "simple",
+    "sr",
+    "sv",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "تخاطر زائف كمومي",
+   "pertinent": null
+  },
+  {
+   "pk": "670",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falso equilibrio"
+  },
+  {
+   "pk": "670",
+   "lang": "fa",
+   "titre_fr": "Faux équilibre",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "bn",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "eu",
+    "fi",
+    "fr",
+    "id",
+    "ja",
+    "ko",
+    "nb",
+    "nl",
+    "pfl",
+    "ru",
+    "simple",
+    "sr",
+    "sv",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "HOMONYMIE",
+   "search_top": "فاجعه‌های مرگبار در دورهٔ جمهوری اسلامی ایران",
+   "pertinent": null
+  },
+  {
+   "pk": "670",
+   "lang": "pt",
+   "titre_fr": "Faux équilibre",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "bn",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "eu",
+    "fi",
+    "fr",
+    "id",
+    "ja",
+    "ko",
+    "nb",
+    "nl",
+    "pfl",
+    "ru",
+    "simple",
+    "sr",
+    "sv",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "ca"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falsa equivalência",
+   "pertinent": null
+  },
+  {
+   "pk": "670",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Ложный баланс"
+  },
+  {
+   "pk": "670",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "虚假平衡"
+  },
+  {
+   "pk": "673",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "حل وسط (مغالطة)"
+  },
+  {
+   "pk": "673",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia del punto medio"
+  },
+  {
+   "pk": "673",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "توسل به میانه‌روی"
+  },
+  {
+   "pk": "673",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad temperantiam"
+  },
+  {
+   "pk": "673",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Апелляция к умеренности"
+  },
+  {
+   "pk": "673",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸中庸"
+  },
+  {
+   "pk": "677",
+   "lang": "pt",
+   "titre_fr": "Pente glissante",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "az",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "lt",
+    "mnw",
+    "nl",
+    "pfl",
+    "pl",
+    "ps",
+    "simple",
+    "sr",
+    "sv",
+    "th",
+    "uk",
+    "vi",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "it",
+    "ca"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Governo Michel Temer",
+   "pertinent": null
+  },
+  {
+   "pk": "677",
+   "lang": "ru",
+   "titre_fr": "Pente glissante",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "az",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "lt",
+    "mnw",
+    "nl",
+    "pfl",
+    "pl",
+    "ps",
+    "simple",
+    "sr",
+    "sv",
+    "th",
+    "uk",
+    "vi",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Никто (фильм)",
+   "pertinent": null
+  },
+  {
+   "pk": "697",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "السبب المشكوك فيه"
+  },
+  {
+   "pk": "697",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia de causa cuestionable"
+  },
+  {
+   "pk": "697",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه علت جعلی"
+  },
+  {
+   "pk": "697",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Non causa pro causa"
+  },
+  {
+   "pk": "697",
+   "lang": "pt",
+   "titre_fr": "Causalité douteuse",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "he",
+    "pfl",
+    "ro",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Lista de falácias",
+   "pertinent": null
+  },
+  {
+   "pk": "697",
+   "lang": "ru",
+   "titre_fr": "Causalité douteuse",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bn",
+    "ca",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "he",
+    "pfl",
+    "ro",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Перестрелка на Рочдельской улице",
+   "pertinent": null
+  },
+  {
+   "pk": "697",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "因果謬誤"
+  },
+  {
+   "pk": "699",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "استدلال دائري"
+  },
+  {
+   "pk": "699",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia circular"
+  },
+  {
+   "pk": "699",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "استدلال دوری"
+  },
+  {
+   "pk": "699",
+   "lang": "pt",
+   "titre_fr": "Argument circulaire",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "bg",
+    "ca",
+    "ckb",
+    "da",
+    "de",
+    "diq",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "id",
+    "it",
+    "ja",
+    "kn",
+    "ko",
+    "ms",
+    "nl",
+    "pl",
+    "ru",
+    "simple",
+    "sk",
+    "sr",
+    "sv",
+    "th",
+    "tl",
+    "tr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "it",
+    "ca"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Teoria da conspiração",
+   "pertinent": null
+  },
+  {
+   "pk": "699",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "循環論證"
+  },
+  {
+   "pk": "707",
+   "lang": "ru",
+   "titre_fr": "Inversion de causalité",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "cs",
+    "de",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hi",
+    "hu",
+    "is",
+    "ja",
+    "ko",
+    "nb",
+    "nl",
+    "pfl",
+    "pt",
+    "th",
+    "tr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "bg",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Причинность",
+   "pertinent": null
+  },
+  {
+   "pk": "713",
+   "lang": "es",
+   "titre_fr": "Sophisme de la double faute",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "fr",
+    "ja",
+    "lt",
+    "nl",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Dos errores hacen un acierto",
+   "pertinent": null
+  },
+  {
+   "pk": "713",
+   "lang": "pt",
+   "titre_fr": "Sophisme de la double faute",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "fr",
+    "ja",
+    "lt",
+    "nl",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Malba Tahan",
+   "pertinent": null
+  },
+  {
+   "pk": "713",
+   "lang": "ru",
+   "titre_fr": "Sophisme de la double faute",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "fr",
+    "ja",
+    "lt",
+    "nl",
+    "simple",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Апории Зенона",
+   "pertinent": null
+  },
+  {
+   "pk": "719",
+   "lang": "ru",
+   "titre_fr": "Effet cigogne",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "ca",
+    "cs",
+    "de",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hi",
+    "hu",
+    "is",
+    "ja",
+    "ko",
+    "nb",
+    "nl",
+    "pfl",
+    "pt",
+    "th",
+    "tr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "bg",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Овсянки (фильм)",
+   "pertinent": null
+  },
+  {
+   "pk": "733",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة تأكيد الانفصال"
+  },
+  {
+   "pk": "733",
+   "lang": "es",
+   "titre_fr": "Affirmation d’une disjonction",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fa",
+    "fr",
+    "he",
+    "ja",
+    "pt",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Disyunción lógica",
+   "pertinent": null
+  },
+  {
+   "pk": "733",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه تصدیق فصل"
+  },
+  {
+   "pk": "733",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Afirmar uma disjunção"
+  },
+  {
+   "pk": "733",
+   "lang": "ru",
+   "titre_fr": "Affirmation d’une disjonction",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "fa",
+    "fr",
+    "he",
+    "ja",
+    "pt",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Дизъюнкция",
+   "pertinent": null
+  },
+  {
+   "pk": "733",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "肯定選言"
+  },
+  {
+   "pk": "735",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة تبديل محددات الكمية"
+  },
+  {
+   "pk": "735",
+   "lang": "es",
+   "titre_fr": "Erreur de quantification",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "pt",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falacia de reificación",
+   "pertinent": null
+  },
+  {
+   "pk": "735",
+   "lang": "fa",
+   "titre_fr": "Erreur de quantification",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "pt",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "منطق احتمالاتی",
+   "pertinent": null
+  },
+  {
+   "pk": "735",
+   "lang": "fr",
+   "titre_fr": "Erreur de quantification",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "pt",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Quantification (signal)",
+   "pertinent": null
+  },
+  {
+   "pk": "735",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Mudança de quantificadores"
+  },
+  {
+   "pk": "735",
+   "lang": "ru",
+   "titre_fr": "Erreur de quantification",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "pt",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Закон перехода количественных изменений в качественные",
+   "pertinent": null
+  },
+  {
+   "pk": "740",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "استدلال مباشر"
+  },
+  {
+   "pk": "740",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Inferencia inmediata"
+  },
+  {
+   "pk": "740",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "استدلال مباشر"
+  },
+  {
+   "pk": "740",
+   "lang": "fr",
+   "titre_fr": "Inférence immédiate erronée",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "fa",
+    "hi",
+    "it",
+    "pt",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt",
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Intuition",
+   "pertinent": null
+  },
+  {
+   "pk": "740",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Inferência imediata"
+  },
+  {
+   "pk": "740",
+   "lang": "ru",
+   "titre_fr": "Inférence immédiate erronée",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "fa",
+    "hi",
+    "it",
+    "pt",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Вторжение России на Украину (с 2022)",
+   "pertinent": null
+  },
+  {
+   "pk": "740",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "直接推理"
+  },
+  {
+   "pk": "752",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة الرجل المقنع"
+  },
+  {
+   "pk": "752",
+   "lang": "es",
+   "titre_fr": "Sophisme de l’homme masqué",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "et",
+    "eu",
+    "fa",
+    "it",
+    "ko",
+    "pt",
+    "ru",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt",
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falacia",
+   "pertinent": null
+  },
+  {
+   "pk": "752",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه مرد نقابدار"
+  },
+  {
+   "pk": "752",
+   "lang": "fr",
+   "titre_fr": "Sophisme de l’homme masqué",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "et",
+    "eu",
+    "fa",
+    "it",
+    "ko",
+    "pt",
+    "ru",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt",
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Marie-Estelle Dupont",
+   "pertinent": null
+  },
+  {
+   "pk": "752",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falácia do homem mascarado"
+  },
+  {
+   "pk": "752",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "蒙面人謬誤"
+  },
+  {
+   "pk": "758",
+   "lang": "ar",
+   "titre_fr": "Déduction invalide",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "eu",
+    "he",
+    "it"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "استنتاج",
+   "pertinent": null
+  },
+  {
+   "pk": "758",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Non sequitur"
+  },
+  {
+   "pk": "758",
+   "lang": "fa",
+   "titre_fr": "Déduction invalide",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "eu",
+    "he",
+    "it"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "وحشی (مجموعه نمایش خانگی)",
+   "pertinent": null
+  },
+  {
+   "pk": "758",
+   "lang": "pt",
+   "titre_fr": "Déduction invalide",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "eu",
+    "he",
+    "it"
+   ],
+   "famille_presents": [
+    "es",
+    "it"
+   ],
+   "exact_class": "Q_DIFFERENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Generalização universal",
+   "pertinent": null
+  },
+  {
+   "pk": "758",
+   "lang": "ru",
+   "titre_fr": "Déduction invalide",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "eu",
+    "he",
+    "it"
+   ],
+   "famille_presents": [],
+   "exact_class": "Q_DIFFERENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Парадокс импликации",
+   "pertinent": null
+  },
+  {
+   "pk": "758",
+   "lang": "zh",
+   "titre_fr": "Déduction invalide",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "eu",
+    "he",
+    "it"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "型一錯誤與型二錯誤",
+   "pertinent": null
+  },
+  {
+   "pk": "759",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "القفز إلى الاستنتاجات"
+  },
+  {
+   "pk": "759",
+   "lang": "es",
+   "titre_fr": "Conclusion hâtive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "id",
+    "pfl",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Generalización apresurada",
+   "pertinent": null
+  },
+  {
+   "pk": "759",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "نتیجه‌گیری سریع"
+  },
+  {
+   "pk": "759",
+   "lang": "fr",
+   "titre_fr": "Conclusion hâtive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "id",
+    "pfl",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Distorsion cognitive",
+   "pertinent": null
+  },
+  {
+   "pk": "759",
+   "lang": "pt",
+   "titre_fr": "Conclusion hâtive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "id",
+    "pfl",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Rebelião de Essex",
+   "pertinent": null
+  },
+  {
+   "pk": "759",
+   "lang": "ru",
+   "titre_fr": "Conclusion hâtive",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "fa",
+    "fi",
+    "id",
+    "pfl",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Микромегас",
+   "pertinent": null
+  },
+  {
+   "pk": "759",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "妄下结论"
+  },
+  {
+   "pk": "768",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة التكافؤ الكاذب"
+  },
+  {
+   "pk": "768",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falsa equivalencia"
+  },
+  {
+   "pk": "768",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغلطه معادل‌سازی کاذب"
+  },
+  {
+   "pk": "768",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Fausse équivalence"
+  },
+  {
+   "pk": "768",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falsa equivalência"
+  },
+  {
+   "pk": "768",
+   "lang": "ru",
+   "titre_fr": "Fausse équivalence",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "he",
+    "id",
+    "ja",
+    "ko",
+    "ms",
+    "pfl",
+    "pt",
+    "simple",
+    "sr",
+    "th",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Банановый эквивалент",
+   "pertinent": null
+  },
+  {
+   "pk": "768",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "错误对等"
+  },
+  {
+   "pk": "781",
+   "lang": "ar",
+   "titre_fr": "Logique du chaudron",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "eu",
+    "fa",
+    "fr",
+    "it",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [
+    "fa"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مفارقة الحلاق",
+   "pertinent": null
+  },
+  {
+   "pk": "781",
+   "lang": "es",
+   "titre_fr": "Logique du chaudron",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "eu",
+    "fa",
+    "fr",
+    "it",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Caldero de Gundestrup",
+   "pertinent": null
+  },
+  {
+   "pk": "781",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه منطق کتری‌وار"
+  },
+  {
+   "pk": "781",
+   "lang": "pt",
+   "titre_fr": "Logique du chaudron",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "eu",
+    "fa",
+    "fr",
+    "it",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr",
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Pé de mosca",
+   "pertinent": null
+  },
+  {
+   "pk": "781",
+   "lang": "ru",
+   "titre_fr": "Logique du chaudron",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "eu",
+    "fa",
+    "fr",
+    "it",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Паровоз",
+   "pertinent": null
+  },
+  {
+   "pk": "781",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "破釜邏輯"
+  },
+  {
+   "pk": "787",
+   "lang": "ar",
+   "titre_fr": "Syllogisme du politicien",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "et",
+    "fr",
+    "he",
+    "nb",
+    "pt"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "عبد الحميد قياس",
+   "pertinent": null
+  },
+  {
+   "pk": "787",
+   "lang": "es",
+   "titre_fr": "Syllogisme du politicien",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "et",
+    "fr",
+    "he",
+    "nb",
+    "pt"
+   ],
+   "famille_presents": [
+    "fr",
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Entimema",
+   "pertinent": null
+  },
+  {
+   "pk": "787",
+   "lang": "fa",
+   "titre_fr": "Syllogisme du politicien",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "et",
+    "fr",
+    "he",
+    "nb",
+    "pt"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "جی‌دی ونس",
+   "pertinent": null
+  },
+  {
+   "pk": "787",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Syllogisme du politicien"
+  },
+  {
+   "pk": "787",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Silogismo do político"
+  },
+  {
+   "pk": "787",
+   "lang": "ru",
+   "titre_fr": "Syllogisme du politicien",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "et",
+    "fr",
+    "he",
+    "nb",
+    "pt"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Силлогистика",
+   "pertinent": null
+  },
+  {
+   "pk": "787",
+   "lang": "zh",
+   "titre_fr": "Syllogisme du politicien",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "et",
+    "fr",
+    "he",
+    "nb",
+    "pt"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "对基督教的批评",
+   "pertinent": null
+  },
+  {
+   "pk": "799",
+   "lang": "ar",
+   "titre_fr": "Définition inexacte",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ملف تعريف ارتباط",
+   "pertinent": null
+  },
+  {
+   "pk": "799",
+   "lang": "es",
+   "titre_fr": "Définition inexacte",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Era de la navegación a vela",
+   "pertinent": null
+  },
+  {
+   "pk": "799",
+   "lang": "fa",
+   "titre_fr": "Définition inexacte",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "واژن",
+   "pertinent": null
+  },
+  {
+   "pk": "799",
+   "lang": "fr",
+   "titre_fr": "Définition inexacte",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Paléoart",
+   "pertinent": null
+  },
+  {
+   "pk": "799",
+   "lang": "pt",
+   "titre_fr": "Définition inexacte",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Hipótese de Gaia",
+   "pertinent": null
+  },
+  {
+   "pk": "799",
+   "lang": "ru",
+   "titre_fr": "Définition inexacte",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "en",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Слэкер-рок",
+   "pertinent": null
+  },
+  {
+   "pk": "802",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "رهان لوكي"
+  },
+  {
+   "pk": "802",
+   "lang": "es",
+   "titre_fr": "Indéfinissabilité",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "da",
+    "en",
+    "hu",
+    "nl",
+    "pt",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Teorema de indefinibilidad de Tarski",
+   "pertinent": null
+  },
+  {
+   "pk": "802",
+   "lang": "fa",
+   "titre_fr": "Indéfinissabilité",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "da",
+    "en",
+    "hu",
+    "nl",
+    "pt",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ارباب/برده (بی‌دی‌اس‌ام)",
+   "pertinent": null
+  },
+  {
+   "pk": "802",
+   "lang": "fr",
+   "titre_fr": "Indéfinissabilité",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "da",
+    "en",
+    "hu",
+    "nl",
+    "pt",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Esthétique",
+   "pertinent": null
+  },
+  {
+   "pk": "802",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Aposta de Loki"
+  },
+  {
+   "pk": "802",
+   "lang": "ru",
+   "titre_fr": "Indéfinissabilité",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "da",
+    "en",
+    "hu",
+    "nl",
+    "pt",
+    "sv",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Пецица изменчивая",
+   "pertinent": null
+  },
+  {
+   "pk": "802",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "洛基的賭注"
+  },
+  {
+   "pk": "804",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "تعسف"
+  },
+  {
+   "pk": "804",
+   "lang": "es",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Arbitrariedad"
+  },
+  {
+   "pk": "804",
+   "lang": "fa",
+   "titre_fr": "Acception arbitraire",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "et",
+    "fi",
+    "fr",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "scn",
+    "sv",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مسئله تناظر پست",
+   "pertinent": null
+  },
+  {
+   "pk": "804",
+   "lang": "pt",
+   "titre_fr": "Acception arbitraire",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "et",
+    "fi",
+    "fr",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "scn",
+    "sv",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "it",
+    "ca"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Metro",
+   "pertinent": null
+  },
+  {
+   "pk": "804",
+   "lang": "ru",
+   "titre_fr": "Acception arbitraire",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "et",
+    "fi",
+    "fr",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "scn",
+    "sv",
+    "uk",
+    "vi",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Произвольная программа",
+   "pertinent": null
+  },
+  {
+   "pk": "804",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "任意性"
+  },
+  {
+   "pk": "808",
+   "lang": "ar",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مغالطة المقامر",
+   "pertinent": null
+  },
+  {
+   "pk": "808",
+   "lang": "es",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Argumento ontológico",
+   "pertinent": null
+  },
+  {
+   "pk": "808",
+   "lang": "fa",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "برون‌گروه‌گرایی",
+   "pertinent": null
+  },
+  {
+   "pk": "808",
+   "lang": "fr",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Spécisme",
+   "pertinent": null
+  },
+  {
+   "pk": "808",
+   "lang": "pt",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Filosofia da tecnologia",
+   "pertinent": null
+  },
+  {
+   "pk": "808",
+   "lang": "ru",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "ZERO_HIT",
+   "search_top": null,
+   "pertinent": null
+  },
+  {
+   "pk": "808",
+   "lang": "zh",
+   "titre_fr": "Sophisme des corrélatifs",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "el",
+    "en",
+    "he",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "謬誤",
+   "pertinent": null
+  },
+  {
+   "pk": "809",
+   "lang": "es",
+   "titre_fr": "Contraste perdu",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "he",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Contraste radiológico",
+   "pertinent": null
+  },
+  {
+   "pk": "809",
+   "lang": "fa",
+   "titre_fr": "Contraste perdu",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "he",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مضامین در هفت سامورایی",
+   "pertinent": null
+  },
+  {
+   "pk": "809",
+   "lang": "fr",
+   "titre_fr": "Contraste perdu",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "he",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Le Pandemonium",
+   "pertinent": null
+  },
+  {
+   "pk": "809",
+   "lang": "pt",
+   "titre_fr": "Contraste perdu",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "he",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Marvel's Wolverine",
+   "pertinent": null
+  },
+  {
+   "pk": "809",
+   "lang": "ru",
+   "titre_fr": "Contraste perdu",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "he",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ISO 18916",
+   "pertinent": null
+  },
+  {
+   "pk": "833",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "الحجة من القياس"
+  },
+  {
+   "pk": "833",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Razonamiento por analogía"
+  },
+  {
+   "pk": "833",
+   "lang": "fa",
+   "titre_fr": "Comparaison fallacieuse",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "ja",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "نظریه مایه‌کوبی",
+   "pertinent": null
+  },
+  {
+   "pk": "833",
+   "lang": "pt",
+   "titre_fr": "Comparaison fallacieuse",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "ja",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Tentativa de golpe de Estado no Brasil em 2022–2023",
+   "pertinent": null
+  },
+  {
+   "pk": "833",
+   "lang": "ru",
+   "titre_fr": "Comparaison fallacieuse",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "ja",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Майя (философия)",
+   "pertinent": null
+  },
+  {
+   "pk": "833",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "类推论证"
+  },
+  {
+   "pk": "837",
+   "lang": "ar",
+   "titre_fr": "Comparaison incohérente",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "فوكس نيوز",
+   "pertinent": null
+  },
+  {
+   "pk": "837",
+   "lang": "es",
+   "titre_fr": "Comparaison incohérente",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Arroyo de la Gándara",
+   "pertinent": null
+  },
+  {
+   "pk": "837",
+   "lang": "fa",
+   "titre_fr": "Comparaison incohérente",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "فهرست منابع جنگ‌های صلیبی",
+   "pertinent": null
+  },
+  {
+   "pk": "837",
+   "lang": "fr",
+   "titre_fr": "Comparaison incohérente",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Règle (instrument de géométrie)",
+   "pertinent": null
+  },
+  {
+   "pk": "837",
+   "lang": "pt",
+   "titre_fr": "Comparaison incohérente",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Got to Be There",
+   "pertinent": null
+  },
+  {
+   "pk": "837",
+   "lang": "ru",
+   "titre_fr": "Comparaison incohérente",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Индивидуальный предприниматель (Россия)",
+   "pertinent": null
+  },
+  {
+   "pk": "839",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "الحجة من القياس"
+  },
+  {
+   "pk": "839",
+   "lang": "es",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Razonamiento por analogía"
+  },
+  {
+   "pk": "839",
+   "lang": "fa",
+   "titre_fr": "Fausse analogie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "ja",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "قیاس فقهی",
+   "pertinent": null
+  },
+  {
+   "pk": "839",
+   "lang": "pt",
+   "titre_fr": "Fausse analogie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "ja",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Falsa equivalência",
+   "pertinent": null
+  },
+  {
+   "pk": "839",
+   "lang": "ru",
+   "titre_fr": "Fausse analogie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "ja",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Логическая ошибка",
+   "pertinent": null
+  },
+  {
+   "pk": "839",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "类推论证"
+  },
+  {
+   "pk": "844",
+   "lang": "fa",
+   "titre_fr": "Sophisme d’association",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "is",
+    "nl",
+    "pl",
+    "simple",
+    "sr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "دیوید هیلبرت",
+   "pertinent": null
+  },
+  {
+   "pk": "844",
+   "lang": "pt",
+   "titre_fr": "Sophisme d’association",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "is",
+    "nl",
+    "pl",
+    "simple",
+    "sr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Íris (mitologia)",
+   "pertinent": null
+  },
+  {
+   "pk": "844",
+   "lang": "ru",
+   "titre_fr": "Sophisme d’association",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "is",
+    "nl",
+    "pl",
+    "simple",
+    "sr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Софизм",
+   "pertinent": null
+  },
+  {
+   "pk": "845",
+   "lang": "ar",
+   "titre_fr": "Amalgame",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "pt",
+    "simple"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "خلط (توضيح)",
+   "pertinent": null
+  },
+  {
+   "pk": "845",
+   "lang": "es",
+   "titre_fr": "Amalgame",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "pt",
+    "simple"
+   ],
+   "famille_presents": [
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Confusión",
+   "pertinent": null
+  },
+  {
+   "pk": "845",
+   "lang": "fa",
+   "titre_fr": "Amalgame",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "pt",
+    "simple"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "آمیختن صدا",
+   "pertinent": null
+  },
+  {
+   "pk": "845",
+   "lang": "ru",
+   "titre_fr": "Amalgame",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "pt",
+    "simple"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Амальгама",
+   "pertinent": null
+  },
+  {
+   "pk": "845",
+   "lang": "zh",
+   "titre_fr": "Amalgame",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "pt",
+    "simple"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "銀鱈",
+   "pertinent": null
+  },
+  {
+   "pk": "847",
+   "lang": "es",
+   "titre_fr": "Amphibologie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "eu",
+    "fa",
+    "id",
+    "it",
+    "nl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Anfibología",
+   "pertinent": null
+  },
+  {
+   "pk": "847",
+   "lang": "pt",
+   "titre_fr": "Amphibologie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "eu",
+    "fa",
+    "id",
+    "it",
+    "nl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Ambiguidade",
+   "pertinent": null
+  },
+  {
+   "pk": "847",
+   "lang": "ru",
+   "titre_fr": "Amphibologie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "eu",
+    "fa",
+    "id",
+    "it",
+    "nl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Предложения «вводящие в заблуждение» (Garden-path sentences)",
+   "pertinent": null
+  },
+  {
+   "pk": "869",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة التجسيم"
+  },
+  {
+   "pk": "869",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "شی‌ءانگاری (مغالطه)"
+  },
+  {
+   "pk": "869",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Reificação (falácia)"
+  },
+  {
+   "pk": "869",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "具體化謬誤"
+  },
+  {
+   "pk": "887",
+   "lang": "pt",
+   "titre_fr": "Tricherie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bh",
+    "bn",
+    "cdo",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "ga",
+    "hu",
+    "ja",
+    "ko",
+    "nan",
+    "nl",
+    "nn",
+    "pl",
+    "ro",
+    "simple",
+    "sv",
+    "te",
+    "th",
+    "tr",
+    "uk",
+    "wuu",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Trapaça",
+   "pertinent": null
+  },
+  {
+   "pk": "887",
+   "lang": "ru",
+   "titre_fr": "Tricherie",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bh",
+    "bn",
+    "cdo",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "ga",
+    "hu",
+    "ja",
+    "ko",
+    "nan",
+    "nl",
+    "nn",
+    "pl",
+    "ro",
+    "simple",
+    "sv",
+    "te",
+    "th",
+    "tr",
+    "uk",
+    "wuu",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Коварство",
+   "pertinent": null
+  },
+  {
+   "pk": "900",
+   "lang": "ar",
+   "titre_fr": "Restriction mentale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ja",
+    "pl",
+    "pt",
+    "sv"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "خير الدين بربروس",
+   "pertinent": null
+  },
+  {
+   "pk": "900",
+   "lang": "fa",
+   "titre_fr": "Restriction mentale",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ja",
+    "pl",
+    "pt",
+    "sv"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مرد سگی (فیلم)",
+   "pertinent": null
+  },
+  {
+   "pk": "900",
+   "lang": "ru",
+   "titre_fr": "Restriction mentale",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ja",
+    "pl",
+    "pt",
+    "sv"
+   ],
+   "famille_presents": [
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Вечные (Marvel Comics)",
+   "pertinent": null
+  },
+  {
+   "pk": "900",
+   "lang": "zh",
+   "titre_fr": "Restriction mentale",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ja",
+    "pl",
+    "pt",
+    "sv"
+   ],
+   "famille_presents": [
+    "ja"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "心理-社会心理学",
+   "pertinent": null
+  },
+  {
+   "pk": "908",
+   "lang": "fa",
+   "titre_fr": "Factoïde",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "hy",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "lv",
+    "nb",
+    "pl",
+    "pt",
+    "ru",
+    "simple",
+    "sr",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "ZERO_HIT",
+   "search_top": null,
+   "pertinent": null
+  },
+  {
+   "pk": "908",
+   "lang": "fr",
+   "titre_fr": "Factoïde",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "hy",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "lv",
+    "nb",
+    "pl",
+    "pt",
+    "ru",
+    "simple",
+    "sr",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt",
+    "it"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Jennifer Lawrence",
+   "pertinent": null
+  },
+  {
+   "pk": "942",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "إسناد زائف"
+  },
+  {
+   "pk": "942",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falsa atribución"
+  },
+  {
+   "pk": "942",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه انتساب جعلی"
+  },
+  {
+   "pk": "942",
+   "lang": "fr",
+   "titre_fr": "Fausse attribution",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "nl",
+    "pt",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Désinformation lors de la guerre russo-ukrainienne",
+   "pertinent": null
+  },
+  {
+   "pk": "942",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Atribuição falsa"
+  },
+  {
+   "pk": "942",
+   "lang": "ru",
+   "titre_fr": "Fausse attribution",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "nl",
+    "pt",
+    "th",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "ZERO_HIT",
+   "search_top": null,
+   "pertinent": null
+  },
+  {
+   "pk": "942",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "假資訊來源"
+  },
+  {
+   "pk": "943",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Cita fuera de contexto"
+  },
+  {
+   "pk": "943",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "نقل قول خارج از بطن"
+  },
+  {
+   "pk": "943",
+   "lang": "fr",
+   "titre_fr": "Décontextualisation",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "da",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "id",
+    "ja",
+    "ko",
+    "pfl",
+    "ps",
+    "pt",
+    "sh",
+    "sr",
+    "sv",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "pt"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Jeu",
+   "pertinent": null
+  },
+  {
+   "pk": "943",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Citação fora de contexto"
+  },
+  {
+   "pk": "943",
+   "lang": "ru",
+   "titre_fr": "Décontextualisation",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "da",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "id",
+    "ja",
+    "ko",
+    "pfl",
+    "ps",
+    "pt",
+    "sh",
+    "sr",
+    "sv",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr",
+    "sh"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Контекст",
+   "pertinent": null
+  },
+  {
+   "pk": "943",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "語境去除"
+  },
+  {
+   "pk": "956",
+   "lang": "fr",
+   "titre_fr": "Plaidoirie spéciale",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "ja",
+    "pfl",
+    "ro",
+    "ru",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Richard Berry",
+   "pertinent": null
+  },
+  {
+   "pk": "956",
+   "lang": "pt",
+   "titre_fr": "Plaidoirie spéciale",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "ja",
+    "pfl",
+    "ro",
+    "ru",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Eleição presidencial no Brasil em 2026",
+   "pertinent": null
+  },
+  {
+   "pk": "973",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Mover los postes de la portería"
+  },
+  {
+   "pk": "973",
+   "lang": "fa",
+   "titre_fr": "Changement de cap",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "eu",
+    "fr",
+    "ja",
+    "ko",
+    "pt",
+    "ro",
+    "simple",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "آزیترومایسین",
+   "pertinent": null
+  },
+  {
+   "pk": "973",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Changer les règles du jeu"
+  },
+  {
+   "pk": "973",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Mudar as regras do jogo"
+  },
+  {
+   "pk": "973",
+   "lang": "ru",
+   "titre_fr": "Changement de cap",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "eu",
+    "fr",
+    "ja",
+    "ko",
+    "pt",
+    "ro",
+    "simple",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Дело храбрых",
+   "pertinent": null
+  },
+  {
+   "pk": "973",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "挪動門柱"
+  },
+  {
+   "pk": "977",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطة النيرفانا"
+  },
+  {
+   "pk": "977",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falacia del Nirvana"
+  },
+  {
+   "pk": "977",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه کامل نامیسر"
+  },
+  {
+   "pk": "977",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Falácia Nirvana"
+  },
+  {
+   "pk": "977",
+   "lang": "ru",
+   "titre_fr": "Solution parfaite",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "hu",
+    "pl",
+    "pt",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Теория решения изобретательских задач",
+   "pertinent": null
+  },
+  {
+   "pk": "977",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "涅槃謬誤"
+  },
+  {
+   "pk": "989",
+   "lang": "ar",
+   "titre_fr": "Renverser la charge de la preuve",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "bg",
+    "br",
+    "ca",
+    "ckb",
+    "da",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "hi",
+    "hu",
+    "is",
+    "ja",
+    "ko",
+    "la",
+    "mk",
+    "nb",
+    "pfl",
+    "pt",
+    "simple",
+    "sq",
+    "sv",
+    "tl",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "fa",
+    "ckb"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "الثورة الصناعية",
+   "pertinent": null
+  },
+  {
+   "pk": "989",
+   "lang": "es",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Carga de la prueba (filosofía)"
+  },
+  {
+   "pk": "989",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "بار اثبات (فلسفه)"
+  },
+  {
+   "pk": "989",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "Ônus da prova"
+  },
+  {
+   "pk": "989",
+   "lang": "ru",
+   "titre_fr": "Renverser la charge de la preuve",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "bg",
+    "br",
+    "ca",
+    "ckb",
+    "da",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "hi",
+    "hu",
+    "is",
+    "ja",
+    "ko",
+    "la",
+    "mk",
+    "nb",
+    "pfl",
+    "pt",
+    "simple",
+    "sq",
+    "sv",
+    "tl",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "bg",
+    "mk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "План Коэна",
+   "pertinent": null
+  },
+  {
+   "pk": "989",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_ANCRE_SECTION",
+   "titre_interwiki": "舉證責任 (哲學)"
+  },
+  {
+   "pk": "994",
+   "lang": "fa",
+   "titre_fr": "Langue de bois",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ro"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "چاپ افست",
+   "pertinent": null
+  },
+  {
+   "pk": "994",
+   "lang": "pt",
+   "titre_fr": "Langue de bois",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ro"
+   ],
+   "famille_presents": [
+    "es",
+    "fr",
+    "it",
+    "ca",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Parapeito",
+   "pertinent": null
+  },
+  {
+   "pk": "994",
+   "lang": "ru",
+   "titre_fr": "Langue de bois",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ro"
+   ],
+   "famille_presents": [
+    "cs"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Российский новояз",
+   "pertinent": null
+  },
+  {
+   "pk": "994",
+   "lang": "zh",
+   "titre_fr": "Langue de bois",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "ca",
+    "cs",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ro"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "白話",
+   "pertinent": null
+  },
+  {
+   "pk": "1020",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "تكلفة غارقة"
+  },
+  {
+   "pk": "1020",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Costo hundido"
+  },
+  {
+   "pk": "1020",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "هزینه ازدست‌رفته"
+  },
+  {
+   "pk": "1020",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Custo irrecuperável"
+  },
+  {
+   "pk": "1020",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Невозвратные затраты"
+  },
+  {
+   "pk": "1020",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "沉没成本"
+  },
+  {
+   "pk": "1023",
+   "lang": "ar",
+   "titre_fr": "Raisonnement biaisé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "es",
+    "fa",
+    "it",
+    "mk",
+    "ro",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [
+    "fa"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "تفكير نقدي",
+   "pertinent": null
+  },
+  {
+   "pk": "1023",
+   "lang": "fr",
+   "titre_fr": "Raisonnement biaisé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "es",
+    "fa",
+    "it",
+    "mk",
+    "ro",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "it",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Biais des survivants",
+   "pertinent": null
+  },
+  {
+   "pk": "1023",
+   "lang": "pt",
+   "titre_fr": "Raisonnement biaisé",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "es",
+    "fa",
+    "it",
+    "mk",
+    "ro",
+    "ru",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "it",
+    "ro"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Xi Jinping",
+   "pertinent": null
+  },
+  {
+   "pk": "1024",
+   "lang": "ar",
+   "titre_fr": "Biais naturels",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "طبيعة التحيز",
+   "pertinent": null
+  },
+  {
+   "pk": "1024",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Ídolos de la tribu"
+  },
+  {
+   "pk": "1024",
+   "lang": "fa",
+   "titre_fr": "Biais naturels",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "چت‌جی‌پی‌تی",
+   "pertinent": null
+  },
+  {
+   "pk": "1024",
+   "lang": "pt",
+   "titre_fr": "Biais naturels",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [
+    "es",
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Viés político",
+   "pertinent": null
+  },
+  {
+   "pk": "1024",
+   "lang": "ru",
+   "titre_fr": "Biais naturels",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "es",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Гордость и предубеждение (телесериал, 1995)",
+   "pertinent": null
+  },
+  {
+   "pk": "1024",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "种族幻象"
+  },
+  {
+   "pk": "1120",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "انفصام (علم النفس)"
+  },
+  {
+   "pk": "1120",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Clivaje (psicología)"
+  },
+  {
+   "pk": "1120",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "دوپاره‌سازی"
+  },
+  {
+   "pk": "1120",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Clivagem (psicologia)"
+  },
+  {
+   "pk": "1120",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Расщепление эго"
+  },
+  {
+   "pk": "1120",
+   "lang": "zh",
+   "titre_fr": "Pensée dichotomique",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bg",
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "he",
+    "it",
+    "ja",
+    "ko",
+    "pl",
+    "pt",
+    "ru",
+    "sv",
+    "uk"
+   ],
+   "famille_presents": [
+    "ja",
+    "ko"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "假兩難推理",
+   "pertinent": null
+  },
+  {
+   "pk": "1174",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "أوهام الكهف"
+  },
+  {
+   "pk": "1174",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Ídolos de la caverna"
+  },
+  {
+   "pk": "1174",
+   "lang": "fa",
+   "titre_fr": "Biais culturels",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "سقوط شاهنشاهی ساسانی",
+   "pertinent": null
+  },
+  {
+   "pk": "1174",
+   "lang": "fr",
+   "titre_fr": "Biais culturels",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Biais",
+   "pertinent": null
+  },
+  {
+   "pk": "1174",
+   "lang": "pt",
+   "titre_fr": "Biais culturels",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Viés",
+   "pertinent": null
+  },
+  {
+   "pk": "1174",
+   "lang": "ru",
+   "titre_fr": "Biais culturels",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Этноцентризм",
+   "pertinent": null
+  },
+  {
+   "pk": "1174",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "洞穴幻象"
+  },
+  {
+   "pk": "1242",
+   "lang": "ar",
+   "titre_fr": "Biais théoriques",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "وعي نقدي",
+   "pertinent": null
+  },
+  {
+   "pk": "1242",
+   "lang": "es",
+   "titre_fr": "Biais théoriques",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Sesgo",
+   "pertinent": null
+  },
+  {
+   "pk": "1242",
+   "lang": "fa",
+   "titre_fr": "Biais théoriques",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "چت‌جی‌پی‌تی",
+   "pertinent": null
+  },
+  {
+   "pk": "1242",
+   "lang": "pt",
+   "titre_fr": "Biais théoriques",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "en",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [
+    "fr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Lista de vieses cognitivos",
+   "pertinent": null
+  },
+  {
+   "pk": "1242",
+   "lang": "ru",
+   "titre_fr": "Biais théoriques",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "en",
+    "fr",
+    "ko",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Теоретическая выборка",
+   "pertinent": null
+  },
+  {
+   "pk": "1242",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "剧场幻象"
+  },
+  {
+   "pk": "1297",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "الإثبات بالتأكيد"
+  },
+  {
+   "pk": "1297",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Prueba por aseveración"
+  },
+  {
+   "pk": "1297",
+   "lang": "fa",
+   "titre_fr": "Preuve par assertion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "هزاره یازدهم (پیش از میلاد)",
+   "pertinent": null
+  },
+  {
+   "pk": "1297",
+   "lang": "fr",
+   "titre_fr": "Preuve par assertion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Assertion",
+   "pertinent": null
+  },
+  {
+   "pk": "1297",
+   "lang": "pt",
+   "titre_fr": "Preuve par assertion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "es"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Prova",
+   "pertinent": null
+  },
+  {
+   "pk": "1297",
+   "lang": "ru",
+   "titre_fr": "Preuve par assertion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "es",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Математическое доказательство",
+   "pertinent": null
+  },
+  {
+   "pk": "1297",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸斷言"
+  },
+  {
+   "pk": "1301",
+   "lang": "ar",
+   "titre_fr": "Argumentum ad nauseam",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ca",
+    "da",
+    "de",
+    "diq",
+    "el",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "gl",
+    "he",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "ka",
+    "lt",
+    "nb",
+    "nl",
+    "nn",
+    "pfl",
+    "pt",
+    "ro",
+    "ru",
+    "sr",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "fa",
+    "he"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "شارع الرشيد",
+   "pertinent": null
+  },
+  {
+   "pk": "1301",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumento ad nauseam"
+  },
+  {
+   "pk": "1301",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مغالطه تکرار"
+  },
+  {
+   "pk": "1301",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Argumentum ad nauseam"
+  },
+  {
+   "pk": "1301",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Ad nauseam"
+  },
+  {
+   "pk": "1301",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "訴諸反覆"
+  },
+  {
+   "pk": "1313",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "مراوغة (أخلاق)"
+  },
+  {
+   "pk": "1313",
+   "lang": "es",
+   "titre_fr": "Évasion",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "sq",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Evasión",
+   "pertinent": null
+  },
+  {
+   "pk": "1313",
+   "lang": "fa",
+   "titre_fr": "Évasion",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "en",
+    "sq",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "طفره رفتن از خواب",
+   "pertinent": null
+  },
+  {
+   "pk": "1313",
+   "lang": "fr",
+   "titre_fr": "Évasion",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "sq",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Évasion",
+   "pertinent": null
+  },
+  {
+   "pk": "1313",
+   "lang": "pt",
+   "titre_fr": "Évasion",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "sq",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Evasão",
+   "pertinent": null
+  },
+  {
+   "pk": "1313",
+   "lang": "ru",
+   "titre_fr": "Évasion",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "ar",
+    "en",
+    "sq",
+    "sv",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Уклонение от военной службы",
+   "pertinent": null
+  },
+  {
+   "pk": "1313",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "迴避 (倫理學)"
+  },
+  {
+   "pk": "1314",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "الرنجة الحمراء"
+  },
+  {
+   "pk": "1314",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Red herring"
+  },
+  {
+   "pk": "1314",
+   "lang": "fa",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "نکته انحرافی"
+  },
+  {
+   "pk": "1314",
+   "lang": "fr",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Hareng rouge"
+  },
+  {
+   "pk": "1314",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Pista falsa"
+  },
+  {
+   "pk": "1314",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Отвлекающий манёвр"
+  },
+  {
+   "pk": "1314",
+   "lang": "zh",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "紅鯡魚"
+  },
+  {
+   "pk": "1330",
+   "lang": "ar",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "دفاع الإلهاء"
+  },
+  {
+   "pk": "1330",
+   "lang": "es",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Defensa Chewbacca"
+  },
+  {
+   "pk": "1330",
+   "lang": "fa",
+   "titre_fr": "Noyer le poisson",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bar",
+    "ca",
+    "da",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "hu",
+    "is",
+    "it",
+    "ja",
+    "pt",
+    "ru",
+    "uk"
+   ],
+   "famille_presents": [
+    "ar"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "پاسدار",
+   "pertinent": null
+  },
+  {
+   "pk": "1330",
+   "lang": "pt",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Defesa Chewbacca"
+  },
+  {
+   "pk": "1330",
+   "lang": "ru",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Защита Чубакки"
+  },
+  {
+   "pk": "1330",
+   "lang": "zh",
+   "titre_fr": "Noyer le poisson",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "bar",
+    "ca",
+    "da",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "hu",
+    "is",
+    "it",
+    "ja",
+    "pt",
+    "ru",
+    "uk"
+   ],
+   "famille_presents": [
+    "ja"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "77式两栖装甲输送车",
+   "pertinent": null
+  },
+  {
+   "pk": "1352",
+   "lang": "ru",
+   "titre_fr": "Empoisonnement du puits",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fr",
+    "he",
+    "hr",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "nn",
+    "pl",
+    "pt",
+    "sr",
+    "tr",
+    "uk",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk",
+    "sr"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Пичушкин, Александр Юрьевич",
+   "pertinent": null
+  },
+  {
+   "pk": "1361",
+   "lang": "ar",
+   "titre_fr": "Procès en incohérence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "pfl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "وطنية",
+   "pertinent": null
+  },
+  {
+   "pk": "1361",
+   "lang": "es",
+   "titre_fr": "Procès en incohérence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "pfl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Averroísmo",
+   "pertinent": null
+  },
+  {
+   "pk": "1361",
+   "lang": "fa",
+   "titre_fr": "Procès en incohérence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "pfl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "جنگ اکوادور و پرو",
+   "pertinent": null
+  },
+  {
+   "pk": "1361",
+   "lang": "fr",
+   "titre_fr": "Procès en incohérence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "pfl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Procès de Riom",
+   "pertinent": null
+  },
+  {
+   "pk": "1361",
+   "lang": "pt",
+   "titre_fr": "Procès en incohérence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "pfl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Rodrigo Alves Taxa",
+   "pertinent": null
+  },
+  {
+   "pk": "1361",
+   "lang": "ru",
+   "titre_fr": "Procès en incohérence",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "pfl",
+    "yue",
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Монстры: История братьев Менендес",
+   "pertinent": null
+  },
+  {
+   "pk": "1371",
+   "lang": "ru",
+   "titre_fr": "Sophisme génétique",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "af",
+    "ar",
+    "de",
+    "en",
+    "es",
+    "eu",
+    "fa",
+    "fi",
+    "fr",
+    "he",
+    "it",
+    "ja",
+    "ko",
+    "lt",
+    "nb",
+    "pfl",
+    "pt",
+    "simple",
+    "sv",
+    "th",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Апелляция к природе",
+   "pertinent": null
+  },
+  {
+   "pk": "1373",
+   "lang": "fa",
+   "titre_fr": "Reductio ad Hitlerum",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "ar",
+    "ast",
+    "az",
+    "bar",
+    "be",
+    "be-tarask",
+    "br",
+    "ca",
+    "cs",
+    "da",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "eu",
+    "fi",
+    "fr",
+    "gl",
+    "he",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "ka",
+    "la",
+    "lt",
+    "nb",
+    "nl",
+    "pl",
+    "pt",
+    "ru",
+    "sh",
+    "simple",
+    "sr",
+    "sv",
+    "tr",
+    "uk",
+    "zh"
+   ],
+   "famille_presents": [
+    "ar",
+    "az"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "فمینیسم در آلمان",
+   "pertinent": null
+  },
+  {
+   "pk": "1388",
+   "lang": "ar",
+   "titre_fr": "Attaque de la confiance en soi",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "ماميلودي صنداونز",
+   "pertinent": null
+  },
+  {
+   "pk": "1388",
+   "lang": "es",
+   "titre_fr": "Attaque de la confiance en soi",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Expedición de Khanasor",
+   "pertinent": null
+  },
+  {
+   "pk": "1388",
+   "lang": "fa",
+   "titre_fr": "Attaque de la confiance en soi",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "مهسا آراسته",
+   "pertinent": null
+  },
+  {
+   "pk": "1388",
+   "lang": "fr",
+   "titre_fr": "Attaque de la confiance en soi",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Pyramide des besoins",
+   "pertinent": null
+  },
+  {
+   "pk": "1388",
+   "lang": "pt",
+   "titre_fr": "Attaque de la confiance en soi",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Ataque a Pearl Harbor",
+   "pertinent": null
+  },
+  {
+   "pk": "1388",
+   "lang": "ru",
+   "titre_fr": "Attaque de la confiance en soi",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_mince",
+   "exists_in": [
+    "zh"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Кто не спрятался",
+   "pertinent": null
+  },
+  {
+   "pk": "1398",
+   "lang": "ar",
+   "titre_fr": "Attaque personnelle",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "en",
+    "fr",
+    "it",
+    "oc",
+    "pfl",
+    "pl",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "شخصنة",
+   "pertinent": null
+  },
+  {
+   "pk": "1398",
+   "lang": "en",
+   "tier": "A_RESIDUEL_PERTINENT",
+   "titre_interwiki": "Ad personam"
+  },
+  {
+   "pk": "1398",
+   "lang": "es",
+   "titre_fr": "Attaque personnelle",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "fr",
+    "it",
+    "oc",
+    "pfl",
+    "pl",
+    "uk"
+   ],
+   "famille_presents": [
+    "fr",
+    "it",
+    "oc"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Argumento ad hominem",
+   "pertinent": null
+  },
+  {
+   "pk": "1398",
+   "lang": "fa",
+   "titre_fr": "Attaque personnelle",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "en",
+    "fr",
+    "it",
+    "oc",
+    "pfl",
+    "pl",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "بازستانی",
+   "pertinent": null
+  },
+  {
+   "pk": "1398",
+   "lang": "pt",
+   "titre_fr": "Attaque personnelle",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "fr",
+    "it",
+    "oc",
+    "pfl",
+    "pl",
+    "uk"
+   ],
+   "famille_presents": [
+    "fr",
+    "it",
+    "oc"
+   ],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Argumentum ad hominem",
+   "pertinent": null
+  },
+  {
+   "pk": "1398",
+   "lang": "ru",
+   "titre_fr": "Attaque personnelle",
+   "tier": "T2_SOURCE_ALTERNATIVE_IDENTIFIEE",
+   "exists_in": [
+    "de",
+    "en",
+    "fr",
+    "it",
+    "oc",
+    "pfl",
+    "pl",
+    "uk"
+   ],
+   "famille_presents": [
+    "uk"
+   ],
+   "exact_class": "Q_DIFFERENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "Атака мертвецов",
+   "pertinent": null
+  },
+  {
+   "pk": "1398",
+   "lang": "zh",
+   "titre_fr": "Attaque personnelle",
+   "tier": "T3_LACUNE_IRREDUCTIBLE_sujet_etabli",
+   "exists_in": [
+    "de",
+    "en",
+    "fr",
+    "it",
+    "oc",
+    "pfl",
+    "pl",
+    "uk"
+   ],
+   "famille_presents": [],
+   "exact_class": "ABSENT",
+   "search_class": "Q_DIFFERENT",
+   "search_top": "人身攻擊",
+   "pertinent": null
+  }
+ ]
+}
