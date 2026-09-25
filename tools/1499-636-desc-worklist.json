@@ -1,0 +1,70 @@
+{
+ "carte": {
+  "pk": "636",
+  "text_fr": "Sophisme de régression",
+  "text_en": "Regression fallacy",
+  "path": "3.2.1.3"
+ },
+ "dispatch": "https://github.com/ArgumentumGames/Argumentum/issues/1499#issuecomment-5837035919",
+ "archive_source": {
+  "fichier": "Cards/Fallacies/Archive/v3/Argumentum Fallacies - Cards.csv",
+  "pk_dans_archive": "524",
+  "note": "La « boite 2022 » citee par le dispatch correspond OCTET POUR OCTET a la ligne PK 524 de Archive/v3 — PAS a Archive/2022/ (70 lignes, cette carte y est ABSENTE : 0 hit sur « fluctuation » / « regression »)."
+ },
+ "cellules": [
+  {
+   "lang": "fr",
+   "provenance": "archive-v3",
+   "regle": "texte de l'archive, apostrophes courbes (norme du deck, #994)",
+   "valeur": "Vous attribuez une cause erronée à ce qui n’est que le résultat d’une fluctuation tout à fait normale."
+  },
+  {
+   "lang": "en",
+   "provenance": "archive-v3",
+   "regle": "texte de l'archive a l'octet",
+   "valeur": "Attributing a specific cause to the natural return from an extreme to the average."
+  },
+  {
+   "lang": "ru",
+   "provenance": "archive-v3",
+   "regle": "texte de l'archive, ESPACE FINAL RETIRE (artefact 2022 : 1 seule cellule desc_* du corpus en porte un ; declaration §ecarts)",
+   "valeur": "Вы приписываете ошибочную причину тому, что является всего лишь результатом естественных колебаний."
+  },
+  {
+   "lang": "pt",
+   "provenance": "retraduction (registre actuel du deck)",
+   "regle": "sens de l'archive-v3 (« causa errada ... resultado ... flutuacao ») transpose dans le registre VOUVOIEMENT du deck (« Os senhores »), la ou l'archive emploie le tutoiement (« Voce »)",
+   "valeur": "Os senhores atribuem uma causa errada ao que não passa do resultado de uma flutuação completamente normal.",
+   "ancres_archive": ["causa errada", "resultado", "flutuação", "completamente normal"]
+  },
+  {
+   "lang": "es",
+   "provenance": "retraduction (registre actuel du deck)",
+   "regle": "registre « Ustedes » conserve de la cellule courante ; sens de la fr retenue",
+   "valeur": "Ustedes atribuyen una causa errónea a lo que no es más que el resultado de una fluctuación completamente normal."
+  },
+  {
+   "lang": "ar",
+   "provenance": "retraduction (registre actuel du deck)",
+   "regle": "registre « تنسبون » conserve ; « cause erronee » remplace « effet particulier » ; l'adverbe « خطأً » tombe (l'adjectif porte deja la notion)",
+   "valeur": "تنسبون سبباً خاطئاً إلى ما ليس سوى نتيجة تقلب طبيعي تماماً."
+  },
+  {
+   "lang": "fa",
+   "provenance": "retraduction (registre actuel du deck)",
+   "regle": "registre « شما » conserve ; « علتی نادرست » (cause erronee) remplace « اثری خاص » ; ZWNJ conserve",
+   "valeur": "شما علتی نادرست را به چیزی نسبت می‌دهید که صرفاً نتیجه یک نوسان کاملاً طبیعی است."
+  },
+  {
+   "lang": "zh",
+   "provenance": "retraduction (registre actuel du deck)",
+   "regle": "registre « 您 » conserve ; « cause erronee » + « resultat d'une fluctuation tout a fait normale »",
+   "valeur": "您把某种错误的原因归因于仅仅是完全正常波动所造成的结果。"
+  }
+ ],
+ "non_touche": {
+  "example_fr": "l'exemple courant (« Comme j’étais très malade, j’ai prié et cela m’a guéri. ») est celui que le dispatch cite COMME PREUVE de la definition retenue — il ne change pas",
+  "example_ru_pt_en": "idem : seules les 8 cellules desc_* sont dans le perimetre",
+  "pk_1361": "« Procès en incohérence » GARDEE (dispatch)"
+ }
+}
