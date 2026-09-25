@@ -51,7 +51,7 @@ namespace Argumentum.AssetConverter.Ontology
     /// <summary>
     /// Dublin Core Terms vocabulary constants (http://purl.org/dc/terms/).
     /// RDFVocabulary in RDFSharp 4.0.0 only ships DC elements/1.1 — no DCTERMS — so the
-    /// #133 publication bridge declares the two predicates it needs as raw IRIs,
+    /// #133 publication bridge declares the predicates it needs as raw IRIs,
     /// mirroring the SKOSVocabulary pattern above.
     /// </summary>
     public static class DCTermsVocabulary
@@ -60,6 +60,7 @@ namespace Argumentum.AssetConverter.Ontology
 
         public static readonly RDFResource Title = new RDFResource($"{NS}title");
         public static readonly RDFResource Creator = new RDFResource($"{NS}creator");
+        public static readonly RDFResource License = new RDFResource($"{NS}license");
     }
 
     /// <summary>
@@ -157,7 +158,12 @@ namespace Argumentum.AssetConverter.Ontology
         // ni déplacé — la surface figée (#133 / Q-11) reste intacte, y compris au round-trip.
         // Les dates (dcterms:modified/issued) sont exclues à dessein : elles casseraient le
         // déterminisme octet/octet des régénérations (contrat IDENTIQUE ×2 du pipeline).
-        public void AnnotatePublicationMetadata(string title, string creator, IEnumerable<string> seeAlsoEndpoints)
+        // Q-15a (24/09/2026) — dcterms:license : les .owl publiés reprennent le texte des
+        // taxonomies (2 816 skos:definition), donc la licence du contenu (CC BY-SA 4.0) prime
+        // sur celle du générateur. Même famille de sérialisation que seeAlso : assertion à
+        // valeur IRI sur l'IRI de l'ontologie — aucun IRI Argumentum créé ni déplacé, le
+        // déterminisme et la surface figée Q-11 restent intacts.
+        public void AnnotatePublicationMetadata(string title, string creator, IEnumerable<string> seeAlsoEndpoints, string licenseIri = null)
         {
             if (!string.IsNullOrEmpty(title))
             {
@@ -168,6 +174,11 @@ namespace Argumentum.AssetConverter.Ontology
                 Annotate(DCTermsVocabulary.Creator, new RDFPlainLiteral(creator));
             }
             var ontologyIri = new RDFResource(Uri.ToString());
+            if (!string.IsNullOrEmpty(licenseIri))
+            {
+                _ontology.AnnotationAxioms.Add(new OWLAnnotationAssertion(
+                    new OWLAnnotationProperty(DCTermsVocabulary.License), ontologyIri, new RDFResource(licenseIri)));
+            }
             foreach (var endpoint in seeAlsoEndpoints ?? Enumerable.Empty<string>())
             {
                 if (!string.IsNullOrEmpty(endpoint))

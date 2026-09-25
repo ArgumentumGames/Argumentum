@@ -7,7 +7,7 @@
 | [`argumentum.owl`](argumentum.owl) | `https://www.argumentum.games/argumentum_fallacies.owl#` | ~5.9 MB | 1408 fallacies |
 | [`argumentum_virtues.owl`](argumentum_virtues.owl) | `https://www.argumentum.games/argumentum_virtues.owl#` | ~863 KB | 223 virtues |
 
-**Version:** 1.0.0 · **License:** LGPL-3.0 (see root [`LICENSE`](../../LICENSE)) · **Format:** OWL/XML.
+**Version:** 1.0.0 · **License:** CC BY-SA 4.0 (see root [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md) §1 — derived artefacts of the CC BY-SA taxonomies, decision Q-15a 2026-09-24; the C# generator itself remains LGPL-3.0) · **Format:** OWL/XML.
 
 ---
 

@@ -19,8 +19,13 @@ La licence **Creative Commons Attribution - Partage dans les Mêmes Conditions 4
 | `Cards/Scenarii/Argumentum Scenarii - Cards.csv` | Scénarios de jeu (contextes, enjeux, répliques, 8 langues) |
 | `Cards/Rules/Argumentum Rules - Cards.csv` | Règles du jeu, version cartes |
 | `Cards/Rules/Argumentum Rules - Cards Print and Play.csv` | Règles du jeu, version Print & Play |
+| `docs/ontology/argumentum.owl` | Ontologie OWL des sophismes — **artefact dérivé** de la taxonomie (Q-15a) |
+| `docs/ontology/argumentum_virtues.owl` | Ontologie OWL des vertus — **artefact dérivé** de la taxonomie (Q-15a) |
 
-Soit **5 fichiers**, correspondant au **texte des cartes** du jeu.
+Soit **7 fichiers** : les **5 fichiers du texte des cartes**, plus les **2 ontologies OWL
+dérivées** de ces taxonomies (ajoutées le 24/09/2026, décision Q-15a : les `.owl` reprennent le
+texte des taxonomies — 2 816 `skos:definition` — donc la licence du contenu s'y applique, et non
+celle du générateur qui les produit, lequel reste sous LGPL-3.0).
 
 ### 1.a — ⛔ Deux fichiers en sont **retirés**, et c'est délibéré
 
@@ -137,9 +142,10 @@ Il est plus sûr de déclarer ces points que de les laisser croire réglés :
 
 ## English summary
 
-This repository is **dual-licensed**. This file covers **only** the five editorial text files
-enumerated in §1 — the taxonomies of fallacies and argumentative virtues, the game scenarios and
-the two rules card sets — which are released under
+This repository is **dual-licensed**. This file covers **only** the seven files enumerated in §1 —
+the five editorial text files (the taxonomies of fallacies and argumentative virtues, the game
+scenarios and the two rules card sets) plus the **two derived OWL ontologies** (Q-15a) — which are
+released under
 **[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode)**.
 
 ⛔ The **prose** of the rules (`regles.md`, `rules.md`) is **deliberately excluded**: line-level

@@ -220,7 +220,7 @@ This repository is **dual-licensed**.
 | What | Licence | File |
 |---|---|---|
 | **Source code** — the .NET pipeline, CardPen, card templates, build tooling | LGPL-3.0 | [LICENSE](/LICENSE) |
-| **Editorial corpus** — the fallacy and virtue taxonomies, the game scenarios and the two rules card sets (**5 enumerated text files**) | **CC BY-SA 4.0** | [LICENSE-CONTENT.md](/LICENSE-CONTENT.md) |
+| **Editorial corpus** — the fallacy and virtue taxonomies, the game scenarios and the two rules card sets (**5 enumerated text files**), plus the **2 derived OWL ontologies** (Q-15a) | **CC BY-SA 4.0** | [LICENSE-CONTENT.md](/LICENSE-CONTENT.md) |
 
 The content licence is scoped by **explicit enumeration of files**, never by directory:
 illustrations, packaging artwork, fonts and the **prose of the rules** are **out of its scope**.

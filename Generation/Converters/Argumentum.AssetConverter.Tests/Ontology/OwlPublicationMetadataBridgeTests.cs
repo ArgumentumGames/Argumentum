@@ -31,6 +31,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         private const string VirtuesNs = "https://www.argumentum.games/argumentum_virtues.owl#";
         private const string ServedBase = "https://argumentumgames.github.io/Argumentum/docs/ontology";
         private const string DcTermsNs = "http://purl.org/dc/terms/";
+        // Q-15a (24/09/2026): the published .owl reuses the text of the CC BY-SA 4.0 taxonomies,
+        // so the content licence — not the generator's LGPL-3.0 — applies (LICENSE-CONTENT.md §1).
+        private const string CcBySaIri = "https://creativecommons.org/licenses/by-sa/4.0/";
 
         private static string FallaciesFile => $"{ServedBase}/argumentum.owl";
         private static string VirtuesFile => $"{ServedBase}/argumentum_virtues.owl";
@@ -69,6 +72,8 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             doc.Title.Should().Be("Argumentum Fallacies Ontology");
             doc.SeeAlsoEndpoints.Should().Equal(new[] { FallaciesFile, VirtuesFile },
                 "self first, sibling second — the cross-corpus bridge is symmetric with the Virtues pass.");
+            doc.LicenseIri.Should().Be(CcBySaIri,
+                "Q-15a: the artefact carries the content licence of the taxonomies it reuses.");
         }
 
         [Fact]
@@ -78,6 +83,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 
             doc.Title.Should().Be("Argumentum Virtues Ontology");
             doc.SeeAlsoEndpoints.Should().Equal(VirtuesFile, FallaciesFile);
+            doc.LicenseIri.Should().Be(CcBySaIri, "Q-15a applies to both corpora symmetrically.");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
@@ -91,7 +97,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         {
             var adapter = BuildSkeleton(FallaciesNs);
             adapter.AnnotatePublicationMetadata("Argumentum Fallacies Ontology", "Argumentum",
-                new[] { FallaciesFile, VirtuesFile });
+                new[] { FallaciesFile, VirtuesFile }, CcBySaIri);
             var path = await SerializeToTemp(adapter);
             try
             {
@@ -105,6 +111,13 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                     "seeAlso must bridge the ontology to its own served endpoint.");
                 xml.Should().Contain(VirtuesFile,
                     "seeAlso must bridge the ontology to its sibling corpus endpoint.");
+                xml.Should().Contain($"{DcTermsNs}license",
+                    "Q-15a: the artefact states its content licence machine-readably.");
+                xml.Should().Contain(CcBySaIri);
+                xml.Should().MatchRegex(
+                    $@"<AnnotationAssertion>\s*<AnnotationProperty IRI=""{Regex.Escape(DcTermsNs)}license""",
+                    "the licence is an IRI-valued annotation assertion on the ontology IRI, " +
+                    "same serialization family as the endpoint seeAlso.");
 
                 xml.Should().MatchRegex(
                     $@"<Annotation>\s*<AnnotationProperty IRI=""{Regex.Escape(DcTermsNs)}title""",
@@ -132,7 +145,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             var bare = BuildSkeleton(FallaciesNs);
             var bridged = BuildSkeleton(FallaciesNs);
             bridged.AnnotatePublicationMetadata("Argumentum Fallacies Ontology", "Argumentum",
-                new[] { FallaciesFile, VirtuesFile });
+                new[] { FallaciesFile, VirtuesFile }, CcBySaIri);
 
             var barePath = await SerializeToTemp(bare);
             var bridgedPath = await SerializeToTemp(bridged);
@@ -166,7 +179,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         {
             var adapter = BuildSkeleton(VirtuesNs);
             adapter.AnnotatePublicationMetadata("Argumentum Virtues Ontology", "Argumentum",
-                new[] { VirtuesFile, FallaciesFile });
+                new[] { VirtuesFile, FallaciesFile }, CcBySaIri);
             var path = await SerializeToTemp(adapter);
             try
             {
@@ -181,6 +194,15 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                     "an IRI-valued seeAlso assertion on the ontology must survive the reload — " +
                     "unlike rdf:type, nothing in the documented serializer drops annotation objects.");
                 seeAlsoValues.Should().Contain(FallaciesFile);
+
+                var licenseValues = reloaded.AnnotationAxioms.OfType<OWLAnnotationAssertion>()
+                    .Where(a => a.AnnotationProperty.GetIRI().ToString() == $"{DcTermsNs}license")
+                    .Select(a => a.ValueIRI)
+                    .ToList();
+
+                licenseValues.Should().Contain(CcBySaIri,
+                    "the IRI-valued dcterms:license assertion must survive the OWL2XML reload, " +
+                    "same as seeAlso — Q-15a must stay machine-readable after a round-trip.");
             }
             finally
             {

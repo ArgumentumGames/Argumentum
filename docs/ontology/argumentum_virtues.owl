@@ -2537,6 +2537,11 @@
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#CA-node" />
   </ObjectPropertyAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://purl.org/dc/terms/license" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#</IRI>
+    <IRI>https://creativecommons.org/licenses/by-sa/4.0/</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#</IRI>
     <IRI>https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl</IRI>
