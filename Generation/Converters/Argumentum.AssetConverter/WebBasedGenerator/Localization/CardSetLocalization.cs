@@ -172,11 +172,28 @@ public class CardSetLocalization:DocumentLocalization
 		var returnDoc = sourceCardSetPayload.CardSetDocument.Clone();
 		returnDoc.mustache = template;
 
+		// #1537 — the template's `css` key carries hard-coded text too (the Rules variant
+		// footers are `content:` pseudo-elements, French in all 8 languages). Clone() copies
+		// `css`, so applying the same StaticConversions to it is safe and is the ONLY way the
+		// footer is localized: a mustache-only conversion would leave it French in silence.
+		returnDoc.css = ApplyCssStaticConversions(returnDoc.css, languages.destLang);
+
 
 		var newFileName = GetLocalizedFileName(sourceCardSetPayload.FileName, languages.sourceLang, languages.destLang);
 
 		return new CardSetPayload() { CardSetDocument = returnDoc, FileName = newFileName };
 	}
+
+	/// <summary>
+	/// Pure extraction of the #1537 css static-conversion step: the same StaticConversions that
+	/// <see cref="TranslateCardSetInfo"/> applies to the mustache, applied to the template's
+	/// <c>css</c> key. Extracted (mirroring <see cref="ApplyFieldConversions"/>) so the regression
+	/// tests exercise the REAL production transform — calling <see cref="DoStaticConversions"/>
+	/// directly from a test proves nothing about #1537, since that method worked on mustache
+	/// before the fix too (the defect was that the css was never routed through it).
+	/// </summary>
+	public string ApplyCssStaticConversions(string css, string destLang)
+		=> DoStaticConversions(css, destLang);
 
 
 
