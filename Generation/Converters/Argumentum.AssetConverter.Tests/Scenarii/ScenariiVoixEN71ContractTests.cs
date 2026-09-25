@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using FluentAssertions;
 using Xunit;
 
@@ -123,6 +124,8 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 				CreateNoWindow = true,
 			};
 			psi.ArgumentList.Add("--version");
+			psi.StandardOutputEncoding = Encoding.UTF8;
+			psi.StandardErrorEncoding = Encoding.UTF8;
 
 			using var process = Process.Start(psi);
 			if (process is null)
@@ -171,6 +174,14 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 				WorkingDirectory = TestRepoRoot.Find(),
 			};
 			psi.EnvironmentVariables["PYTHONUNBUFFERED"] = "1";
+			// Encodage explicite des DEUX côtés du tube. Sur un runner Windows, Python écrit
+			// ses print() dans l'encodage ANSI de la machine (é = 0xE9) et .NET décodait en
+			// CP437 (OEM) : « présentes » arrivait en « prΘsentes », et toute assertion sur un
+			// libellé accentué échouait — en CI seulement, jamais en local. Mesuré sur
+			// `Healthy_Csv_Emits_Header_Trace` (CI Debug/Release du 2026-09-25T01:13Z).
+			psi.EnvironmentVariables["PYTHONIOENCODING"] = "utf-8";
+			psi.StandardOutputEncoding = Encoding.UTF8;
+			psi.StandardErrorEncoding = Encoding.UTF8;
 			psi.ArgumentList.Add(ResolveScriptPath());
 			foreach (var a in args)
 			{
