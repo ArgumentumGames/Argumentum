@@ -126,6 +126,58 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         }
 
         // ─────────────────────────────────────────────────────────────────────────
+        // (0bis) TÉMOINS ROUGES DE LA PARITÉ RECTO-VERSO P&P (#1536 p.2).
+        //        Le défaut d'origine : le Tarot P&P A4 était produit à 105 pages (IMPAIR) —
+        //        une planche avant sans sa planche arrière appariée. La dérivation #1187 ne
+        //        pouvait pas le voir (elle appelle EmittedPageSequence, la fonction fautive) :
+        //        la parité est le prédicat INDÉPENDANT.
+        // ─────────────────────────────────────────────────────────────────────────
+
+        [Fact]
+        public void Witness_Pnp_Parity_Fails_On_Odd_Page_Count()
+        {
+            // 105 = le Tarot P&P A4 tel que PRODUIT avant #1544 (attendu corrigé : 106).
+            var failures = PdfCardCountIntegrity.CheckPnpRectoVersoParity(new[]
+            {
+                ("Argumentum_TarotCards_Print&Play_A4", "fr", 105),
+            });
+            failures.Should().ContainSingle()
+                .Which.Should().Contain("ODD").And.Contain("105").And.Contain("#1536");
+        }
+
+        [Fact]
+        public void Witness_Pnp_Parity_Names_Only_The_Odd_Documents()
+        {
+            // Contrôle de sélectivité : le MÊME document à deux états — pair post-#1544, impair
+            // avant — ne doit produire qu'UN échec, sur l'impair. Un vérificateur qui crie sur
+            // tout n'est pas un vérificateur.
+            var failures = PdfCardCountIntegrity.CheckPnpRectoVersoParity(new[]
+            {
+                ("Argumentum_TarotCards_Print&Play_A4", "fr", 106), // mesuré : attendu post-#1544
+                ("Argumentum_TarotCards_Print&Play_A4", "ru", 105), // mesuré : produit pré-#1544
+            });
+            failures.Should().ContainSingle()
+                .Which.Should().Contain("ru").And.Contain("105");
+        }
+
+        [Fact]
+        public void Witness_Pnp_Parity_Passes_On_Even_Page_Counts()
+        {
+            // Contrôle inverse : les 4 documents P&P aux attentes dérivées mesurées
+            // (Tarot A4 106 · Poker A4 38 · Tarot Light 14 · Poker Light 6 — dérivées de la config
+            // × CSV × template, cf. PdfCardCountIntegrityTests côté VisualTests) sont tous PAIRS :
+            // aucun échec de parité.
+            var failures = PdfCardCountIntegrity.CheckPnpRectoVersoParity(new[]
+            {
+                ("Argumentum_TarotCards_Print&Play_A4", "fr", 106),
+                ("Argumentum_PokerCards_Print&Play_A4", "fr", 38),
+                ("Argumentum_TarotCards_Print&Play_Light_A4", "fr", 14),
+                ("Argumentum_PokerCards_Print&Play_Light_A4", "en", 6),
+            });
+            failures.Should().BeEmpty();
+        }
+
+        // ─────────────────────────────────────────────────────────────────────────
         // (1) LA DÉRIVATION REPRODUIT LES CINQ BASELINES MESURÉES (bundle v0.9.0-review).
         //     Chaque Fact épingle une page MESURÉE indépendamment ; l'organe doit la retrouver
         //     par config×CSV×template. Une dérive de source → rouge AVANT régénération.

@@ -61,6 +61,36 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         public static int ExpectedPagesAlternateFaceAndBack(IReadOnlyList<bool> instanceHasBack)
             => instanceHasBack.Count(b => b) * 2 + instanceHasBack.Count(b => !b);
 
+        /// <summary>
+        /// #1536 p.2 — recto-verso parity OF THE PRODUCED PDF: every PrintAndPlay document whose
+        /// chunks carry backs (<c>NoBack=false</c>, i.e. <see cref="PrintAndPlayDocument.EmittedPageSequence"/>
+        /// with <c>noBack: false</c>) must emit an <b>even</b> number of pages, because each grid
+        /// chunk emits Back+Front (a backless chunk emits a <b>blank</b> back page — the #1536 fix).
+        ///
+        /// This predicate is deliberately INDEPENDENT of the derivation: an expectation computed
+        /// by calling <c>EmittedPageSequence</c> cannot see a defect lying INSIDE that function —
+        /// before #1536 both the derivation and the render agreed on the same wrong (odd) number
+        /// for the Tarot P&amp;P, which is exactly why the #1187 equality alone left the defect
+        /// standing (#1548 family lesson: a stable defect passes every delta control). A duplex
+        /// printer pairs pages (0,1),(2,3)…: an odd total shifts every pair by one and prints the
+        /// backs of chunk k+1 behind the fronts of chunk k.
+        /// </summary>
+        public static IReadOnlyList<string> CheckPnpRectoVersoParity(
+            IEnumerable<(string Doc, string Lang, int ActualPages)> records)
+        {
+            var failures = new List<string>();
+            foreach (var r in records)
+            {
+                if (r.ActualPages % 2 == 0) continue;
+                failures.Add(
+                    $"{r.Lang}/{r.Doc}: produced {r.ActualPages} page(s) — ODD count, recto-verso parity broken. " +
+                    "A P&P document with backs emits Back+Front per sheet chunk (blank back page for a backless chunk, #1536): " +
+                    "an odd total means a front sheet was emitted without its paired back page. " +
+                    "If the bundle predates the #1544 fix, regenerate before quoting this page count.");
+            }
+            return failures;
+        }
+
         /// <summary>FacesOnly emission: 1 page per instance.</summary>
         public static int ExpectedPagesFacesOnly(int cardInstances) => cardInstances;
 
