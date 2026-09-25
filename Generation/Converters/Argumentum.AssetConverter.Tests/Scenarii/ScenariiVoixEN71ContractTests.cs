@@ -35,6 +35,13 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 	/// CI qui n'ont pas Python (rare), le test est Skip avec rationale explicite — jamais un
 	/// vert par vacuité. Cf. <c>RequiresGitIndexFactAttribute</c> de
 	/// <c>DnnBinUntrackGuardTests</c> (pattern identique pour git).
+	///
+	/// LA SONDE LANCE L'INTERPRÉTEUR SEUL. Le premier jet sondait via
+	/// <c>Run(new[]{ "--version" })</c>, donc `python &lt;script&gt; --version` : cela
+	/// EXÉCUTE la garde entière, et une garde ROUGE (rc=2, M2 par exemple) se lisait
+	/// « python non exécutable » → les 2 Facts devenaient SKIP au lieu d'échouer. Une
+	/// suite verte sur un arbre cassé. Relevé par ai-01 (pool v21, c.5821321181) ;
+	/// <c>ProbeInterpreter()</c> sonde désormais `python --version`, sans argument script.
 	/// </summary>
 	internal sealed class RequiresPythonFactAttribute : FactAttribute
 	{
@@ -42,10 +49,10 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 		{
 			try
 			{
-				var (exit, stdout) = ScenariiVoixEN71Runner.Run(new[] { "--version" }, timeoutSeconds: 5);
+				var (exit, output) = ScenariiVoixEN71Runner.ProbeInterpreter();
 				if (exit != 0)
 				{
-					Skip = $"#1535 : python non exécutable ici (--version exit={exit}, stdout='{stdout}') — l'organe exige un interpréteur Python.";
+					Skip = $"#1535 : python non exécutable ici (--version exit={exit}, sortie='{output}') — l'organe exige un interpréteur Python.";
 				}
 			}
 			catch (Exception ex)
@@ -58,6 +65,38 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 	internal static class ScenariiVoixEN71Runner
 	{
 		private const string ScriptRelativePath = "docs/corpus/scenarii-voix-en-71.py";
+
+		/// <summary>
+		/// Sonde de disponibilité — lance l'INTERPRÉTEUR SEUL (`python --version`), JAMAIS le
+		/// script : une garde rouge ne doit pas se déguiser en « outil indisponible » (elle
+		/// deviendrait SKIP au lieu d'échouer, et la suite resterait verte sur un arbre cassé).
+		/// </summary>
+		public static (int exit, string output) ProbeInterpreter()
+		{
+			var psi = new ProcessStartInfo
+			{
+				FileName = "python",
+				RedirectStandardOutput = true,
+				RedirectStandardError = true,
+				UseShellExecute = false,
+				CreateNoWindow = true,
+			};
+			psi.ArgumentList.Add("--version");
+
+			using var process = Process.Start(psi);
+			if (process is null)
+			{
+				throw new InvalidOperationException("Impossible de lancer python.");
+			}
+			var stdout = process.StandardOutput.ReadToEnd();
+			var stderr = process.StandardError.ReadToEnd();
+			if (!process.WaitForExit(TimeSpan.FromSeconds(10)))
+			{
+				process.Kill();
+				throw new TimeoutException("python --version timeout (10s) — la sonde ne doit jamais bloquer la découverte des tests.");
+			}
+			return (process.ExitCode, stdout + stderr);
+		}
 
 		public static string ResolveScriptPath()
 		{
