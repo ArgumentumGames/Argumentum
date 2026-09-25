@@ -41,7 +41,7 @@ Trois conséquences mécaniques — elles remplacent le « blocage dur », sans 
 
 ⇒ Ce qui reste à arbitrer n'est plus « **quelle** licence s'applique » (c'est mesuré et documenté) mais **ce que la voie 3 cède exactement**, sous quel régime, et l'accord nommé du co-auteur pour les deux fichiers de prose. C'est un périmètre à poser, plus une inconnue à lever.
 
-**Instrument** : `LICENSE-CONTENT.md` §1 (les 7 fichiers), §1.a (les 2 exclus), §2 (liens de licence), §3 (co-auteurs) ; `README.md:216-230` (table de double licence) ; citation lue sur le **legalcode FR** lié par `LICENSE-CONTENT.md` §2 ; `head -20 LICENSE` (LGPL-3.0, 29 June 2007) pour le code ; `git ls-files | grep -cE '(^|/)(LICENSE|LICENCE|COPYING)'` → **128** fichiers de licence dans le dépôt au 25/09 (`DNNPlatform/` inclus).
+**Instrument** : `LICENSE-CONTENT.md` §1 (les 7 fichiers), §1.a (les 2 exclus), §2 (liens de licence), §3 (co-auteurs) ; `README.md:216-230` (table de double licence) ; citation lue sur le **legalcode FR** lié par `LICENSE-CONTENT.md` §2 ; `head -20 LICENSE` (LGPL-3.0, 29 June 2007) pour le code ; `git ls-files | grep -ciE '(^|/)(LICENSE|LICENCE|COPYING)'` → **128** fichiers de licence dans le dépôt au 25/09 (`-i` : insensible à la casse, `DNNPlatform/` inclus — la forme sans `-i` rend 52).
 
 ### 1.b — Le catalogue est déjà livré, et les quatre voies ne consomment pas les mêmes artefacts
 
@@ -146,7 +146,7 @@ Deux conséquences que #1188 ne porte pas :
 
 | Mesure | Voie |
 |---|---|
-| Licences déclarées | `LICENSE-CONTENT.md` §1/§1.a/§2/§5 (les 7 fichiers sous CC BY-SA, les 2 exclus, les liens de licence, la non-rétroactivité) · `README.md:216-230` (table de double licence) · `head -20 LICENSE` (LGPL-3.0) · `git ls-files \| grep -cE '(^\|/)(LICENSE\|LICENCE\|COPYING)'` → 128 au 25/09 |
+| Licences déclarées | `LICENSE-CONTENT.md` §1/§1.a/§2/§5 (les 7 fichiers sous CC BY-SA, les 2 exclus, les liens de licence, la non-rétroactivité) · `README.md:216-230` (table de double licence) · `head -20 LICENSE` (LGPL-3.0) · `git ls-files \| grep -ciE '(^\|/)(LICENSE\|LICENCE\|COPYING)'` → 128 au 25/09 (`-i`, insensible à la casse) |
 | Catalogue d'assets | `gh release view v2.0.0-review --json assets --jq '.assets[].name'` → 80, classés par préfixe |
 | Volumétrie boîte | `PdfDeckCountContractTests` (contrat pinné, #1176/#1288) : 197 + 167 = 364 instances ; Vertus 131 |
 | Assets éducatifs | comptage des colonnes `KIDZ` et `print_and_play` sur les 4 CSV (`Cards/Fallacies/`, `Cards/Scenarii/`, `Cards/Rules/`) |
