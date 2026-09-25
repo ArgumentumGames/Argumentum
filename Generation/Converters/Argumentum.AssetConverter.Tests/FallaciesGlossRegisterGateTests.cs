@@ -15,12 +15,11 @@ namespace Argumentum.AssetConverter.Tests
 	/// Garde G2-C-W (#1499, Q-12 1a/2a/3a du 24/09, arbitrage ai-01
 	/// [#458 c.5825475175](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5825475175)) :
 	/// les 11 gloses didactiques sont retirées, PK 598 porte son exemple 2024 restauré
-	/// (source <c>3eb08fc6^</c>), PK 1361 est au registre poli en fr/ru/pt/es/zh/fa.
-	///
-	/// ⚠️ Périmètre du registre : PK 1361 SEUL. Le deck conserve ~30 tutoiements
-	/// légitimes ailleurs (dialogues des PK 403-1397, mesuré 25/09) — une sonde
-	/// deck-wide « 0 tu » serait rouge par construction et hors arbitrage
-	/// (« fr + ce que ta sonde trouve sur PK 1361 »).
+	/// (source <c>3eb08fc6^</c>), et le contrôle corrigé du dispatch tient :
+	/// <c>example_fr</c> du DECK (175 cartes, colonne <c>carte</c> non vide) = 0 forme
+	/// tu/te/t' (mesuré 25/09 : 0/175 post-grain). Les 19 rangées porteuses de
+	/// tutoiement hors deck (têtes de famille NON imprimées) restent légitimes et
+	/// hors périmètre — pt/es/ru hors PK 1361 idiomatiques, consignés « n'établit pas ».
 	///
 	/// Ce que cette garde n'établit pas : la justesse des traductions ; la qualité
 	/// littéraire des 93 reformulations restantes du dossier ; l'état des PDF
@@ -31,10 +30,12 @@ namespace Argumentum.AssetConverter.Tests
 		private static string FallaciesCsv =>
 			Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies", "Argumentum Fallacies - Taxonomy.csv");
 
-		// 'tu' pronom : bornes lettres (accents inclus) — laisse « coutumes », « virtuosité » tranquilles ;
-		// t'élisions avec les DEUX apostrophes (U+0027 et U+2019) et le verbe borné à droite.
+		// 'tu'/'te' pronoms : bornes lettres (accents inclus) — laisse « coutumes », « virtuosité »,
+		// « méthode » tranquilles ; t'élisions avec les DEUX apostrophes (U+0027 et U+2019).
 		private static readonly Regex TuWord = new Regex(
 			@"(?<![A-Za-zÀ-ÿ])tu(?![A-Za-zÀ-ÿ])", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+		private static readonly Regex TeWord = new Regex(
+			@"(?<![A-Za-zÀ-ÿ])te(?![A-Za-zÀ-ÿ])", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 		private static readonly Regex TElision = new Regex(
 			@"(?<![A-Za-zÀ-ÿ])t['’](es|as|avais|aurais|est|étais|serais|a|ai|aie|peux|pourras|pourrais|veux|voudrais|vois|voyais|sais|savais|fais|faisais|penses|pensais|crois|croyais|dis|disais|appartiens|entends|appelles)(?![A-Za-zÀ-ÿ])",
 			RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -163,20 +164,42 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void Pk1361_French_Example_Has_No_Tu_Forms()
+		public void Deck_French_Examples_Have_No_Tu_Te_TElision_Forms()
 		{
-			var csv = Load();
-			var cell = Cell(csv.byPk, csv.headers, "1361", "example_fr");
+			// Contrôle corrigé du dispatch (c.5825475175) : example_fr du DECK (175, colonne
+			// `carte` non vide) = 0 forme tu/te/t' APRÈS le grain (avant : 1 = PK 1361).
+			var (headers, byPk) = Load();
+			var carteIdx = headers.IndexOf("carte");
+			carteIdx.Should().BeGreaterThanOrEqualTo(0, "header guard: carte column (deck membership)");
+			var frIdx = headers.IndexOf("example_fr");
+			var deck = byPk.Values.Where(row => (row[carteIdx] ?? string.Empty).Trim().Length > 0).ToList();
+			deck.Count.Should().Be(175, "#1288: the printed deck is 175 cards");
 
-			TuWord.IsMatch(cell).Should().BeFalse($"PK 1361 example_fr must be vouvoyé, got: {cell}");
-			TElision.IsMatch(cell).Should().BeFalse($"PK 1361 example_fr must be vouvoyé, got: {cell}");
+			var flagged = new List<string>();
+			foreach (var row in deck)
+			{
+				var pk = row[headers.IndexOf("PK")]?.Trim() ?? "";
+				var cell = row[frIdx] ?? string.Empty;
+				if (TuWord.IsMatch(cell) || TeWord.IsMatch(cell) || TElision.IsMatch(cell))
+				{
+					flagged.Add(pk);
+				}
+			}
+			flagged.Should().BeEmpty(
+				$"example_fr of the 175 printed cards must be vouvoyé (dispatch corrected control); flagged PKs: {string.Join(", ", flagged)}");
 
-			// Self-test des sondes : l'élision VOIT le texte d'avant (il est fait de
-			// t'élisions, pas de « tu » nus — mesuré)…
-			TElision.IsMatch(Pk1361FrBefore).Should().BeTrue("the elision-probe must see the pre-conversion text");
+			// Self-test des sondes : elles VOIENT les formes fautives…
+			TuWord.IsMatch("Si tu continues, tu échoueras.").Should().BeTrue();
+			TeWord.IsMatch("Je te vois demain.").Should().BeTrue();
+			TElision.IsMatch(Pk1361FrBefore).Should().BeTrue(
+				"the pre-conversion 1361 text is built from t-elisions; the probe must see it");
 			// …et ne crient pas sur les faux positifs lexicaux.
 			TuWord.IsMatch("Il en coûte de coutumes rompre la virtuosité du tabou.").Should().BeFalse(
 				"the tu-probe must not flag 'tu' inside words (coutumes, virtuosité, tabou)");
+			TeWord.IsMatch("Cette méthode écrit un texte exact.").Should().BeFalse(
+				"the te-probe must not flag 'te' inside words (méthode, texte, exact)");
+			TuWord.IsMatch(Pk1361FrBefore).Should().BeFalse(
+				"the pre-conversion 1361 text carries no bare 'tu' (élisions only, measured) - documented on purpose");
 		}
 
 		// --- Témoins rouges : le comparateur NOMME la cellule quand le défaut revient.
@@ -231,6 +254,7 @@ namespace Argumentum.AssetConverter.Tests
 			var reverted = cell.Replace("vous ", "tu ");
 			TuWord.IsMatch(reverted).Should().BeTrue("a reverted PK 1361 must trip the tu-probe");
 			TElision.IsMatch(cell.Replace("vous ", "t'")).Should().BeTrue("an elision form must trip the elision-probe");
+			TeWord.IsMatch(cell.Replace("je vous ai", "je te")).Should().BeTrue("a te form must trip the te-probe");
 		}
 	}
 }
