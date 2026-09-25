@@ -7,7 +7,14 @@ dans le gabarit Virtues ; elle reste la règle modus ponens inchangée).
 
 La description doit porter les DEUX hémistiches :
   (1) évaluation selon la forme logique, indépendamment du contenu ;
-  (2) le transfert de vérité : la conclusion n'est vraie QUE SI les prémisses le sont.
+  (2) le transfert de vérité : ce qui est conditionné est la GARANTIE qu'apporte la
+      forme valide — « ne garantit une conclusion vraie que si les prémisses le sont »
+      (condition SUFFISANTE sur la garantie). Jamais une condition NÉCESSAIRE sur la
+      vérité de la conclusion (« la conclusion n'est vraie que si… »), qui est FAUSSE :
+      « Tous les chats sont des chiens ; tous les chiens sont des mammifères ; donc
+      tous les chats sont des mammifères » est valide, a une prémisse fausse et une
+      conclusion vraie. La v1 portait cette erreur ; rejetée par la revue ai-01
+      (pulls/1540/reviews, 2026-09-24T19:59Z), corrigée ici en v2.
 
 TÉMOINS À CHAQUE RUN
   (a) en-têtes : `pk` + `description_{fr,en,ru,pt,ar,es,fa,zh}` + `remark_fr` présents
@@ -19,11 +26,13 @@ TÉMOINS À CHAQUE RUN
   (e) longueur ≤ 158 (plafond mesuré dispatch ; re-mesure fraîche 2026-09-24 :
       max 243, p90 135, médiane 95).
 
---self-test : 4 mutations in-memory, rc attendu [0, 2, 2, 2]
+--self-test : 5 mutations in-memory, rc attendu [0, 2, 2, 2, 2]
   (1) sain                     -> 0
   (2) description_fr renommée  -> 2 (header guard, défaut M2)
   (3) description_fr revertée  -> 2 (valeur 2024 courte)
   (4) remark_fr mutée          -> 2
+  (5) desc_fr = v1 (fausse)    -> 2 (condition nécessaire sur la vérité ; la garde
+                                     distingue v1 de v2 — sinon elle ne prouve rien)
 """
 import csv
 import io
@@ -36,15 +45,16 @@ LANGS = ['fr', 'en', 'ru', 'pt', 'ar', 'es', 'fa', 'zh']
 REQUIRED = {'pk', 'remark_fr'} | {'description_' + l for l in LANGS}
 
 EXPECTED_DESC = {
-    'fr': "Évaluer un raisonnement selon sa forme logique, indépendamment du contenu ; une conclusion n’est vraie que si les prémisses le sont.",
-    'en': "Evaluating reasoning according to its logical form, regardless of content; a conclusion is true only if its premises are.",
-    'ru': "Оценивать рассуждение по его логической форме, независимо от содержания; вывод истинен, только если истинны его посылки.",
-    'pt': "Avaliar um raciocínio segundo sua forma lógica, independentemente do conteúdo; uma conclusão só é verdadeira se as premissas o forem.",
-    'es': "Evaluar un razonamiento según su forma lógica, independientemente del contenido; una conclusión solo es verdadera si las premisas lo son.",
-    'ar': "تقييم الاستدلال بحسب صورته المنطقية، بمعزل عن محتواه؛ لا يكون الاستنتاج صحيحًا إلا إذا كانت مقدماته صحيحة.",
-    'fa': "ارزیابی استدلال بر پایهٔ صورت منطقی آن، مستقل از محتوا؛ یک نتیجه تنها زمانی صادق است که مقدماتش صادق باشند.",
-    'zh': "依据推理的逻辑形式对其有效性进行评估，而不考虑其内容；结论唯有在前提为真时才为真。",
+    'fr': "Évaluer un raisonnement selon sa forme logique, indépendamment du contenu ; une forme valide ne garantit une conclusion vraie que si les prémisses le sont.",
+    'en': "Evaluating reasoning according to its logical form, regardless of content; a valid form guarantees a true conclusion only if its premises are true.",
+    'ru': "Оценивать рассуждение по его логической форме, независимо от содержания; валидная форма гарантирует истинное заключение только при истинности посылок.",
+    'pt': "Avaliar um raciocínio segundo sua forma lógica, independentemente do conteúdo; uma forma válida só garante uma conclusão verdadeira se as premissas o forem.",
+    'es': "Evaluar un razonamiento según su forma lógica, independientemente del contenido; la validez solo garantiza una conclusión verdadera con premisas verdaderas.",
+    'ar': "تقييم الاستدلال بحسب صورته المنطقية، بمعزل عن محتواه؛ الصورة الصحيحة لا تضمن استنتاجًا صحيحًا إلا إذا كانت المقدمات صحيحة.",
+    'fa': "ارزیابی استدلال بر پایهٔ صورت منطقی آن، مستقل از محتوا؛ صورت معتبر تنها در صورتی نتیجهٔ صادق را تضمین می‌کند که مقدماتش صادق باشند.",
+    'zh': "依据推理的逻辑形式对其有效性进行评估，而不考虑其内容；有效的形式唯有在前提为真时才保证结论为真。",
 }
+EXPECTED_V1_FR = "Évaluer un raisonnement selon sa forme logique, indépendamment du contenu ; une conclusion n’est vraie que si les prémisses le sont."
 EXPECTED_REMARK_FR = "Même avec des termes absurdes, la forme « Si A alors B ; A ; donc B » reste valide."
 CEILING = 158
 
@@ -138,6 +148,12 @@ def run_self_test():
             r['remark_fr'] = 'MUTÉ'
     cases.append(('remark_fr mutee', rows4, 2))
 
+    rows5 = clone()
+    for r in rows5:
+        if (r.get('pk') or '').strip() == '94':
+            r['description_fr'] = EXPECTED_V1_FR
+    cases.append(('desc_fr v1 (fausse)', rows5, 2))
+
     failures = []
     for label, data, expected in cases:
         ok, out = check(data)
@@ -149,7 +165,7 @@ def run_self_test():
     if failures:
         print('[SELF-TEST] FAIL (%s)' % ', '.join(failures))
         return 2
-    print('[SELF-TEST] PASS (4/4) — la garde parle dans les deux sens')
+    print('[SELF-TEST] PASS (%d/%d) — la garde parle dans les deux sens' % (len(cases), len(cases)))
     return 0
 
 
