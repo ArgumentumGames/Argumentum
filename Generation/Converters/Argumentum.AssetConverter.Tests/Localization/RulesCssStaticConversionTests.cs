@@ -111,12 +111,11 @@ namespace Argumentum.AssetConverter.Tests.Localization
 
 					var config = new AssetConverterConfig();
 					config.WebBasedGeneratorConfig.UseLocalCardpen = useLocalCardpen;
-					// UseDebugParams is computed from the build mode (isInDebugMode) — in a Debug test
-					// run it is already true, so JsonFilePathDebug is the selected path by construction.
-					// Asserted (not assumed): under a Release runner GetJsonFilePath would resolve
-					// JsonFilePathRelease and this test would silently read nothing.
-					config.UseDebugParams.Should().BeTrue(
-						"the test suite runs Debug — UseDebugParams must be true so JsonFilePathDebug is selected");
+					// UseDebugParams is computed from the BUILD mode (#if DEBUG): Debug locally, but
+					// the CI Release leg runs this same test — asserting Debug there is red by
+					// construction (measured: run 36087727689, both InlineData failed on it).
+					// Setting BOTH template paths to the spiked file makes the test
+					// mode-independent: whichever path GetJsonFilePath selects, it lands here.
 					var loc = new CardSetLocalization
 					{
 						CardSetNames = new System.Collections.Generic.List<string> { KnownCardSets.Rules },
@@ -134,6 +133,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 					{
 						DataSet = KnownDataSets.Rules,
 						JsonFilePathDebug = spikedPath,
+						JsonFilePathRelease = spikedPath,
 					};
 
 					var payload = await loc.TranslateCardSetInfo(source, front: true, ("fr", destLang), config);
