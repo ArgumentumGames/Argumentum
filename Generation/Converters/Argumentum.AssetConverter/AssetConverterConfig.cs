@@ -205,6 +205,15 @@ namespace Argumentum.AssetConverter
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						ARGU_LANG_MARKER,
 						LANG_ATTRIBUTE,
+						// #1537 p.2 — les 5 pieds de page de variantes (pseudo-elements `content:`) sont
+						// DÉRIVÉS des lignes de couverture du CSV Rules (Rules_01/07/09/11/13, colonnes
+						// Text_<lang>), verbatim : aucune traduction inventée. La casse d'affichage vient
+						// du `text-transform: uppercase` porté par chacune des 5 règles (mesuré).
+						("L'ÉCOLE DES MENTEURS", new List<(string Language, string destText)>(new []{("en", "The school of liars"), ("ru", "Школа лжецов"), ("pt", "A escola dos mentirosos"), ("es", "La escuela de los mentirosos"), ("ar", "مدرسة الكاذبين"), ("fa", "مدرسهٔ دروغ‌پردازان"), ("zh", "说谎者学校")}) ),
+						("LE BINGO MIXOLOGIE ARGUMENTATIVE", new List<(string Language, string destText)>(new []{("en", "Argumentative mixology bingo"), ("ru", "Бинго аргументативной миксологии"), ("pt", "O Bingo de mixologia argumentativa"), ("es", "El bingo de la mixología argumentativa"), ("ar", "بينغو الخلط البلاغي الحِجاجي"), ("fa", "بینگوی میکسولوژی استدلالی"), ("zh", "论证调配宾果")}) ),
+						("LE DERNIER BEAU PARLEUR", new List<(string Language, string destText)>(new []{("en", "The Last Smooth Talker"), ("ru", "Последний Софист"), ("pt", "O último boa-lábia"), ("es", "El último gran orador"), ("ar", "آخر متكلم بارع"), ("fa", "آخرین چرب‌زبان"), ("zh", "最后的能言善辩者")}) ),
+						("LE MOULIN À BARATIN", new List<(string Language, string destText)>(new []{("en", "The Smooth-Talk Mill"), ("ru", "Мели, Емеля"), ("pt", "O moinho de embromação"), ("es", "El molino de la palabrería"), ("ar", "طاحونة الثرثرة"), ("fa", "آسیابِ چرب‌زبانی"), ("zh", "花言巧语磨坊")}) ),
+						("LA PARLOTE COINCHÉE", new List<(string Language, string destText)>(new []{("en", "The Coinched Chat"), ("ru", "Косноязычное красноречие"), ("pt", "A conversa à sueca"), ("es", "La charla trabada"), ("ar", "الثرثرة المتعثرة"), ("fa", "زبان‌بازیِ گره‌خورده"), ("zh", "卡壳胡侃")}) ),
 					}),
 				},
 				new CardSetLocalization()
