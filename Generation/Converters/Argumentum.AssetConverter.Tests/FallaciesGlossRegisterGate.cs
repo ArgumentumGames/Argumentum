@@ -174,7 +174,7 @@ namespace Argumentum.AssetConverter.Tests
 				"1120", new Dictionary<string, string>
 				{
 					{ "fr", "Soit j’ai la moyenne, soit je suis complètement nul." },
-					{ "en", "Either I get a passing grade, or I’m completely hopeless." },
+					{ "en", "Either I get a passing grade, or I'm completely hopeless." },
 					{ "ru", "Либо у меня средний балл, либо я полный ноль." },
 					{ "pt", "Ou eu tiro a média, ou sou completamente incapaz." },
 					{ "es", "O bien saco el aprobado, o soy un completo inútil." },
