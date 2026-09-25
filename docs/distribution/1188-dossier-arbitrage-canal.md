@@ -1,7 +1,8 @@
 # #1188 — Dossier d'arbitrage : quel canal de distribution
 
 **Auteur** : po-2024 (worker) · **Date** : 2026-09-21 · **Base** : master `cea6e699`
-**Grain** : pool #458 v7 ⑦ · **Statut** : **dossier d'arbitrage — ⛔ aucun contact pris, aucune décision prise**
+**Mise à jour** : 25/09/2026, base `9e79e88d` — §1.a réécrit, matrice §2 et §4/§6 alignés (la version du 21/09 mesurait juste **avant** la fusion de `LICENSE-CONTENT.md`)
+**Grain** : pool #458 v7 ⑦ puis v13 ④ · **Statut** : **dossier d'arbitrage — ⛔ aucun contact pris, aucune décision prise**
 
 ---
 
@@ -15,18 +16,32 @@ Les quatre voies, leurs acteurs et leurs coûts généraux sont **déjà écrits
 
 ## 1. Trois mesures qui déplacent l'arbitrage
 
-### 1.a — ⚠️ La licence déclarée du dépôt est **LGPL-3.0**, et c'est un blocage dur de la voie 3
+### 1.a — La licence du corpus est **documentée** : CC BY-SA 4.0 sur 7 fichiers énumérés — la voie 3 change de forme
 
-`LICENSE` (racine, 165 lignes) est la **GNU Lesser General Public License v3**, et `README.md:218` la déclare pour « the project ». Or :
+*Corrigé le 25/09/2026 : la version du 21/09 concluait « LGPL-3.0, blocage dur de la voie 3 » — elle mesurait juste **avant** que [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md) ne soit fusionné (24/09, Q-15a).*
 
-- la LGPL-3.0 est une **licence de logiciel** — son objet est la « Library », ses §3/§4 traitent du code objet et des « Combined Works ». Le corpus d'Argumentum (CSV de taxonomie, SVG, PDF, cartes) n'est pas un logiciel : **il n'entre dans aucune des catégories que la licence définit**.
-- surtout, une licence libre est **irrévocable** : elle autorise d'ores et déjà quiconque à copier, modifier et redistribuer le corpus publié.
+Le dépôt porte **deux licences**, et le corpus n'est plus dans l'angle mort :
 
-⇒ **Conséquence à arbitrer** : la voie 3 (« céder à un éditeur ») suppose de transférer des droits qui, sur tout ce qui est **déjà publié sous LGPL-3.0**, ne sont plus exclusifs. Une cession **exclusive** du corpus tel que publié n'est donc pas disponible en l'état ; il faudrait soit relicencier, soit céder un périmètre qui n'a jamais été publié — et dans les deux cas, **l'accord des co-auteurs** (Thomas, Adeline, contributeurs de traduction) est en jeu.
+| Ce qui | Licence | Où c'est écrit |
+|---|---|---|
+| **Corpus éditorial** — les **5 CSV de texte des cartes** + les **2 ontologies OWL dérivées** (Q-15a) | **CC BY-SA 4.0** | `LICENSE-CONTENT.md` §1 (énumération fichier par fichier) |
+| **Tout le reste**, y compris le code, les gabarits, les illustrations | LGPL-3.0 (code) ou régime propre | `LICENSE` ; `README.md:216-230` porte la même table |
 
-⚠️ **Ce dossier ne tranche pas cette question** : il constate que la licence déclarée est LGPL-3.0 (mesuré), que c'est une licence de logiciel appliquée à du contenu, et que la voie 3 ne peut pas avancer avant que l'owner ait décidé **ce qui est sous licence et ce qui ne l'est pas**. C'est un préalable, pas une formalité — et c'est le seul des cinq points de #1188 qui **bloque une voie entière à lui seul**.
+Le périmètre CC BY-SA est **énuméré, jamais déduit d'un répertoire** (`Cards/` compte 803 fichiers dont 617 images) ; en sont retirés délibérément les illustrations, le façonnage, les polices, les gabarits et **la prose des règles** (`regles.md`/`rules.md`, co-écrites — 57 % et 10 % par un co-auteur, accord nommé requis). Les 5 CSV de texte sont, eux, mesurés à **100 % d'écriture du titulaire** — c'est ce qui rend leur cession possible aujourd'hui.
 
-**Instrument** : `head -20 LICENSE` (LGPL v3, 29 June 2007) ; `grep -n "LGPL" README.md` → l.218. Aucun fichier `LICENSE`/`COPYING` n'existe pour le corpus seul (les 20 autres `LICENSE*` du dépôt appartiennent à `DNNPlatform/`).
+Ce que la licence déclarée dit, **textuellement** — CC BY-SA 4.0, **Art. 2(a)(1)** :
+
+> « le Donneur de licence Vous autorise à exercer pour le monde entier, à titre gratuit, non sous-licenciable, **non exclusif, irrévocable**, les Droits accordés par la licence afin de : (1) reproduire et Partager l'Œuvre sous licence, en tout ou partie ; et (2) produire, reproduire et Partager l'Œuvre dérivée. »
+
+Trois conséquences mécaniques — elles remplacent le « blocage dur », sans basculer dans l'excès inverse :
+
+1. **Non exclusif et irrévocable** : les droits accordés sur le corpus **déjà publié** le sont définitivement, à tous. Une exclusivité **ne peut donc pas porter sur ces versions-là** — et ce n'est pas propre à CC BY-SA : c'est la propriété de la licence effectivement déclarée.
+2. **La licence n'épuise pas les droits du titulaire** : une concession **non exclusive** laisse le Donneur libre de céder ou de licencier autrement — la voie 3 n'est donc pas fermée, elle est **bornée** : elle peut porter sur ce qui n'a pas été publié sous CC BY-SA, ou prendre la forme d'une concession non exclusive.
+3. Les conditions de CC BY-SA (attribution, partage à l'identique) s'attachent au corpus : elles pèsent sur ce que la voie 3 pourrait vouloir faire d'une **version dérivée ou remaniée**, pas sur la cession de droits du titulaire.
+
+⇒ Ce qui reste à arbitrer n'est plus « **quelle** licence s'applique » (c'est mesuré et documenté) mais **ce que la voie 3 cède exactement**, sous quel régime, et l'accord nommé du co-auteur pour les deux fichiers de prose. C'est un périmètre à poser, plus une inconnue à lever.
+
+**Instrument** : `LICENSE-CONTENT.md` §1 (les 7 fichiers), §1.a (les 2 exclus), §2 (liens de licence), §3 (co-auteurs) ; `README.md:216-230` (table de double licence) ; citation lue sur le **legalcode FR** lié par `LICENSE-CONTENT.md` §2 ; `head -20 LICENSE` (LGPL-3.0, 29 June 2007) pour le code ; `git ls-files | grep -ciE '(^|/)(LICENSE|LICENCE|COPYING)'` → **128** fichiers de licence dans le dépôt au 25/09 (`-i` : insensible à la casse, `DNNPlatform/` inclus — la forme sans `-i` rend 52).
 
 ### 1.b — Le catalogue est déjà livré, et les quatre voies ne consomment pas les mêmes artefacts
 
@@ -69,7 +84,7 @@ Deux conséquences que #1188 ne porte pas :
 | Artefacts produits | ✅ 80 assets | ✅ 80 assets | ✅ 80 assets | ✅ **Print & Play ×8 langues** |
 | Contenu de la boîte figé (#1187 déc. 1) | ⛔ | ⛔ | ⛔ | 🟡 (P&P, pas de boîte) |
 | Fabrication / stock (#1187) | ⛔ série | 🟡 **~10 unités** (voir §3) | ⛔ série (éditeur) | 🟡 impression locale |
-| **Licence du corpus** | ✅ (libre) | ✅ (libre) | ⛔ **LGPL-3.0 — §1.a** | ✅ (libre) |
+| **Licence du corpus** | ✅ (libre) | ✅ (libre) | 🟡 **CC BY-SA 4.0 — pas d'exclusivité sur le publié (§1.a)** | ✅ (libre) |
 | Prix public | ❔ | ❔ | ❔ | ❔ **modèle par établissement** |
 | Prix de cession | — (sans objet) | 🟡 **pas de cession en dépôt-vente** | ❔ royalties | — (sans objet) |
 | Boutique / tunnel de paiement | ⛔ **dormant, 2 défauts** (#1180) | — | — | 🟡 bon de commande public |
@@ -77,7 +92,7 @@ Deux conséquences que #1188 ne porte pas :
 | Interlocuteur identifié | — | 🟡 liste dans #1188 | 🟡 carte des 259 | 🟡 Canopé/CSEN/éduscol cités |
 | Solvabilité du partenaire vérifiée | — | ❔ **vérifiable gratuitement** (SIREN public) | ❔ | — |
 
-**Lecture de la matrice** : aucune voie n'est prête. Mais elles ne sont pas bloquées par la même chose — la voie 3 par un **préalable juridique**, les voies 1–2 par la **fabrication**, la voie 4 par la **conformité** et un **modèle de prix**. Confondre ces blocages conduit à attendre #1187 pour tout, alors que #1187 ne bloque **que** les voies 1–3.
+**Lecture de la matrice** : aucune voie n'est prête. Mais elles ne sont pas bloquées par la même chose — la voie 3 par le **périmètre cédable** (§1.a), les voies 1–2 par la **fabrication**, la voie 4 par la **conformité** et un **modèle de prix**. Confondre ces blocages conduit à attendre #1187 pour tout, alors que #1187 ne bloque **que** les voies 1–3.
 
 ---
 
@@ -111,7 +126,7 @@ Deux conséquences que #1188 ne porte pas :
 | **1. Modèle** (direct / distributeur / cession / éducatif) | la **structure** et les **blocages** (§2) — mais pas le choix | les conditions réelles des partenaires |
 | **2. Prix public + prix de cession** | qu'il n'y a **pas de cession en dépôt-vente** (§3) | tout le reste : chaque voie a un prix différent, aucun n'est mesurable à distance |
 | **3. Périmètre géographique** | le catalogue existe en **8 langues** ; une boîte par langue = **8 références** (§1.c) | la disposition des distributeurs à porter du multilingue |
-| **4. Licence du corpus** | ⛔ **bloquant, mesuré** : LGPL-3.0 déclarée (§1.a) | l'accord des co-auteurs |
+| **4. Licence du corpus** | ✅ **documenté** : CC BY-SA 4.0 sur 7 fichiers énumérés ; non exclusif + irrévocable ⇒ **pas d'exclusivité sur le publié** (§1.a) | ce que la voie 3 cède exactement — et, pour `regles.md`/`rules.md`, l'accord **nommé** du co-auteur |
 | **5. Rouvrir la boutique** | les 2 défauts de fiche et l'état dormant sont **connus et localisés** (#1180) | rien — c'est un geste technique, pas une négociation |
 
 ---
@@ -120,7 +135,7 @@ Deux conséquences que #1188 ne porte pas :
 
 ⛔ **Aucun contact** : rien ici n'engage Argumentum vers un partenaire ; c'est aussi pourquoi le dossier **ne peut pas trancher** le modèle.
 ⛔ **Aucun prix** : ni public, ni de cession, ni coût de revient. Le **coût de revient n'existe pas encore** (il dépend des devis de #1187, non demandés) — toute grille de prix construite avant est un chiffre inventé.
-⛔ **Aucun conseil juridique** : §1.a constate une licence déclarée et une incompatibilité de catégorie ; l'arbitrage appartient à l'owner, avec conseil s'il l'estime nécessaire.
+⛔ **Aucun conseil juridique** : §1.a **cite** le texte de la licence déclarée et en tire les conséquences mécaniques (non exclusif + irrévocable ⇒ pas d'exclusivité sur le publié ; le titulaire garde la faculté de céder ou licencier autrement) — il n'apprécie pas les mérites d'une cession. L'arbitrage appartient à l'owner, avec conseil s'il l'estime nécessaire.
 ⛔ **Les termes d'Anoukis sont ceux de sa page publique au 21/09/2026** — ils peuvent changer, et ils ne remplacent pas des conditions contractuelles.
 ⛔ **La voie 4 n'est pas chiffrée** : le modèle « achat par établissement » n'a été ni tarifé ni documenté ici ; les assets éducatifs propres au corpus sont d'ailleurs **embryonnaires** — la colonne `KIDZ` porte **6 cellules remplies sur 223**, dont une est un marqueur de travail (« wording à travailler »), soit **5 entrées réelles**. En revanche le corpus **Print & Play** est, lui, complet : 24 (Vertus) + 35 (Fallacies) + 27 (Scenarii) + 3 (Rules P&P) lignes marquées.
 ⛔ **Les 2 défauts de fiche produit** (`## En Rupture ##`, « Nach oben ») sont repris de #1188/#1180, **non re-mesurés ici** — le site est un acte de production, hors périmètre de ce grain.
@@ -131,7 +146,7 @@ Deux conséquences que #1188 ne porte pas :
 
 | Mesure | Voie |
 |---|---|
-| Licence déclarée | `head -20 LICENSE` · `grep -n "LGPL" README.md` · `git ls-files \| grep -iE '(^\|/)(LICENSE\|LICENCE\|COPYING)'` (20 fichiers, tous sous `DNNPlatform/`) |
+| Licences déclarées | `LICENSE-CONTENT.md` §1/§1.a/§2/§5 (les 7 fichiers sous CC BY-SA, les 2 exclus, les liens de licence, la non-rétroactivité) · `README.md:216-230` (table de double licence) · `head -20 LICENSE` (LGPL-3.0) · `git ls-files \| grep -ciE '(^\|/)(LICENSE\|LICENCE\|COPYING)'` → 128 au 25/09 (`-i`, insensible à la casse) |
 | Catalogue d'assets | `gh release view v2.0.0-review --json assets --jq '.assets[].name'` → 80, classés par préfixe |
 | Volumétrie boîte | `PdfDeckCountContractTests` (contrat pinné, #1176/#1288) : 197 + 167 = 364 instances ; Vertus 131 |
 | Assets éducatifs | comptage des colonnes `KIDZ` et `print_and_play` sur les 4 CSV (`Cards/Fallacies/`, `Cards/Scenarii/`, `Cards/Rules/`) |
