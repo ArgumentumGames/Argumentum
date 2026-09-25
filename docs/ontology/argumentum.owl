@@ -17,6 +17,14 @@
     <AnnotationProperty IRI="http://purl.org/dc/elements/1.1/creator" />
     <Literal>Argumentum</Literal>
   </Annotation>
+  <Annotation>
+    <AnnotationProperty IRI="http://purl.org/dc/terms/title" />
+    <Literal xml:lang="EN">Argumentum Fallacies Ontology</Literal>
+  </Annotation>
+  <Annotation>
+    <AnnotationProperty IRI="http://purl.org/dc/terms/creator" />
+    <Literal>Argumentum</Literal>
+  </Annotation>
   <Declaration>
     <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
   </Declaration>
@@ -33,7 +41,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#insufficiency" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument" />
@@ -1953,7 +1961,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#biasedSample" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers" />
@@ -2649,7 +2657,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflicted" />
@@ -2658,7 +2666,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition_Conflict" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition" />
@@ -3021,10 +3029,10 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#cheating" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts_Conflict" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#lying" />
@@ -4239,7 +4247,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#wrongerThanWrong" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#unfalsifiability" />
@@ -5201,7 +5209,7 @@
     </ObjectIntersectionOf>
   </EquivalentClasses>
   <EquivalentClasses>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition_Conflict" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition_Conflict" />
     <ObjectUnionOf>
       <Class IRI="http://www.arg.dundee.ac.uk/aif#BiasedClassification_Conflict" />
       <Class IRI="http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference" />
@@ -5434,7 +5442,7 @@
     </ObjectUnionOf>
   </EquivalentClasses>
   <EquivalentClasses>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts_Conflict" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring_Conflict" />
     <ObjectUnionOf>
       <Class IRI="http://www.arg.dundee.ac.uk/aif#LackOfPTKReliability_Scheme" />
       <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PositionToKnow_Inference_Conflict" />
@@ -5538,7 +5546,7 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#RA-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -6954,11 +6962,11 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -6969,21 +6977,21 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -7014,11 +7022,11 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#nutpicking" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#nutpicking" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -7029,7 +7037,7 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#toupéeFallacy" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -7459,11 +7467,11 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#proofByExample" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#proofByExample" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -7648,7 +7656,7 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -8208,7 +8216,7 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -9089,7 +9097,7 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -9109,11 +9117,11 @@
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyConclusion" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument" />
     <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#hastyConclusion" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -9643,7 +9651,7 @@
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
     <ObjectProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation" />
+    <NamedIndividual IRI="https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation" />
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <ObjectPropertyAssertion>
@@ -9932,6 +9940,16 @@
     <NamedIndividual IRI="http://www.arg.dundee.ac.uk/aif#I-node" />
   </ObjectPropertyAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#</IRI>
+    <IRI>https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum.owl</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#</IRI>
+    <IRI>https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#ConceptScheme</IRI>
@@ -10053,57 +10071,67 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
-    <Literal xml:lang="FR">Généralisation hâtive</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
+    <Literal xml:lang="FR">Argument bâclé</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
-    <Literal xml:lang="EN">Hasty generalization</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
+    <Literal xml:lang="EN">Sloppy argument</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <Literal xml:lang="FR">Vous construisez un argument à partir d’impressions ou d’anecdotes, sans preuve solide.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <Literal xml:lang="EN">Basing an argument on impressions or anecdotes, without solid evidence.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <Literal xml:lang="FR">Hier, j’ai marché dans une crotte de chien après avoir salué un passant dans la rue. En ville, il vaut donc mieux éviter de parler à des inconnus.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <Literal xml:lang="EN">Yesterday, I stepped in dog poo after greeting a passer-by in the street. In the city, it is therefore better to avoid talking to strangers.</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
+    <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Hasty_generalization</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation_h%C3%A2tive</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#LackOfPTKReliability_Scheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -10158,13 +10186,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hollowArgument</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
@@ -10729,7 +10757,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromPersonalAstonishment</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#astonishment</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#astonishment</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -10844,7 +10872,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToComplexity</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#complexity</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#complexity</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11454,7 +11482,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#clicheThinking</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#cliche</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#cliche</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11509,7 +11537,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#exceptionThatProvesTheRule</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#proves_the_rule</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#proves_the_rule</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11853,13 +11881,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialJustification</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialJustification</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
@@ -12414,11 +12442,6 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonPractice</IRI>
-    <Literal xml:lang="EN">http://www.nizkor.org/features/fallacies/appeal-to-common-practice.html</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonPractice</IRI>
     <Literal xml:lang="FR">http://web.archive.org/web/20161017074711/http://autopsia.fr/sophismes-arguments-autorite</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -12809,7 +12832,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonSense</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#commonsense</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#commonsense</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13098,13 +13121,13 @@
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#adHocRescue</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#adHocRescue</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -13424,7 +13447,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentByScenario</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#scenario</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#scenario</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13589,7 +13612,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#amazingFamiliarity</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#familiarity</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#familiarity</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -16439,7 +16462,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#proofFromTheFuture</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#future</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#future</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -17564,7 +17587,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ludicFallacy</IRI>
-    <Literal xml:lang="FR">Sophisme du jeu</Literal>
+    <Literal xml:lang="FR">Sophisme ludique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -17649,7 +17672,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#réductiveFallacy</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#reductive</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#reductive</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -17704,7 +17727,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfTheCrucialExperiment</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#crucial_experiment</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#crucial_experiment</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -19174,7 +19197,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychogeneticFallacy</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#psycho</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#psycho</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -19960,7 +19983,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#rhetoricalDevice</IRI>
-    <Literal xml:lang="FR">Technique rhétorique</Literal>
+    <Literal xml:lang="FR">Procédé rhétorique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -20105,7 +20128,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#question</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#question</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -20220,7 +20243,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#rhetoricalQuestion</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#rhetorical_question</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#rhetorical_question</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -20505,7 +20528,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#thoughtTerminatingCliché</IRI>
-    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Thought-terminating_cliché</Literal>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Clich%C3%A9</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -20560,7 +20583,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentBySlogan</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#slogan</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#slogan</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -20676,7 +20699,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#clichéThinking</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#cliche</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#cliche</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -20966,7 +20989,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#proofByPrestigiousJargon</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#jargon</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#jargon</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -21640,7 +21663,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentByGibberish</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#gibberish</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#gibberish</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -24080,7 +24103,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poetry</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#poetry</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#poetry</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -29240,7 +29263,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#contrarianArgumentation</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#contrarian</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#contrarian</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -29605,7 +29628,7 @@ uninitiated.</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToForce</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#force
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#force
 https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -29661,7 +29684,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vehemence</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#vehemence</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#vehemence</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -29717,6 +29740,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToTheStick</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Argumentum_ad_baculum</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToTheStick</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Argumentum_ad_baculum</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -30166,7 +30194,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToSelfInterest</IRI>
-    <Literal xml:lang="FR">https://en.wikipedia.org/wiki/Appeal_to_advantage</Literal>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Argumentum_ad_consequentiam</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -38272,7 +38300,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#playingTheVictim</IRI>
-    <Literal xml:lang="FR">Auto-victimisation</Literal>
+    <Literal xml:lang="FR">Jouer la victime</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -43980,11 +44008,6 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">https://nonverbalcommunicationpreserviceteacherr.weebly.com/artifactics.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appearance</IRI>
-    <Literal xml:lang="FR">https://en.wikipedia.org/wiki/Human_physical_appearance</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appearance</IRI>
@@ -44396,57 +44419,62 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
-    <Literal xml:lang="FR">Induction hâtive</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <Literal xml:lang="FR">Généralisation hâtive</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
-    <Literal xml:lang="EN">Hasty induction</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <Literal xml:lang="EN">Hasty generalization</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <Literal xml:lang="FR">Vous déduisez une règle globale d’un échantillon trop restreint.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <Literal xml:lang="EN">Inferring a general rule from too small a sample.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <Literal xml:lang="FR">Le sondage a été réalisé à la sortie du congrès : 90 % des personnes interrogées soutiennent la motion. L’opinion du pays est donc faite.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <Literal xml:lang="EN">The poll was conducted outside the conference: 90% of those surveyed support the motion. The country's opinion is therefore settled.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Hasty_generalization</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation_abusive</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedSample</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedSample</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -44492,17 +44520,17 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#numbers</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#numbers</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -44551,13 +44579,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -46335,7 +46363,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#interpretationFallacy</IRI>
-    <Literal xml:lang="FR">Interprétation quantitative erronée</Literal>
+    <Literal xml:lang="FR">Mauvaise interprétation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -47820,7 +47848,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#deceptiveInfinity</IRI>
-    <Literal xml:lang="FR">Infini fallacieux</Literal>
+    <Literal xml:lang="FR">Infini trompeur</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -48276,7 +48304,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
-    <Literal xml:lang="FR">Conclusion mathématique invalide</Literal>
+    <Literal xml:lang="FR">Résultat invalide</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -48302,6 +48330,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
     <Literal xml:lang="EN">Car A's average acceleration is greater than Car B's; therefore, Car A is going faster than Car B.</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
+    <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Mathematical_fallacy</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -49984,6 +50017,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Fallacy#Logical_fallacies</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Raisonnement_fallacieux</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
@@ -50041,7 +50079,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#questionableCausality</IRI>
-    <Literal xml:lang="EN">http://www.nizkor.org/features/fallacies/questionable-cause.html</Literal>
+    <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Questionable_cause</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -50941,7 +50979,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#twoWrongsMakeARight</IRI>
-    <Literal xml:lang="FR">Deux torts font un droit</Literal>
+    <Literal xml:lang="FR">Sophisme de la double faute</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -53530,6 +53568,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">If no solution is found, it must be because there is no problem.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#wrongEntailment</IRI>
+    <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Non_sequitur</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#wrongEntailment</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Non_sequitur</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyLogics</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#wrongEntailment</IRI>
@@ -53872,7 +53920,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#amazingFamiliarity</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#familiarity</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#familiarity</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -54782,7 +54830,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#internalContradiction</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#contradiction</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#contradiction</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -55787,63 +55835,63 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
-    <Literal xml:lang="FR">Définition biaisée</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
+    <Literal xml:lang="FR">Définition inexacte</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
-    <Literal xml:lang="EN">Biased definition</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
+    <Literal xml:lang="EN">Inexact definition</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <Literal xml:lang="FR">Vous définissez les termes de façon à favoriser votre argument, en écartant leur sens établi.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <Literal xml:lang="EN">Defining terms in a way that favors one's argument while setting aside their established meaning.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <Literal xml:lang="FR">J’arrête de fumer cinq fois par jour, après chaque cigarette.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <Literal xml:lang="EN">I quit smoking five times a day, after each cigarette.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Fallacies_of_definition</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition_Conflict</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -55892,13 +55940,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
@@ -56137,13 +56185,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#arbitraryDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#arbitraryDefinition</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
@@ -56781,7 +56829,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#shortTermPriority</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#short</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#short</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -57400,13 +57448,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
@@ -57804,6 +57852,16 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">School is like prison: you don't enter it or leave it whenever you want.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
+    <Literal xml:lang="EN">https://en.wikipedia.org/wiki/False_analogy</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Fausse_analogie</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
@@ -58156,7 +58214,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
-    <Literal xml:lang="FR">http://www.sceptiques.qc.ca/dictionnaire/falseanalogy.html</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20210201140130/http://www.sceptiques.qc.ca/dictionnaire/falseanalogy.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -58331,7 +58389,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousSimilarityArgument</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#similarity</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#similarity</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -58521,7 +58579,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation</IRI>
-    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Amalgame_(communication)</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20210214002734/http://fr.wikipedia.org/wiki/Amalgame_(communication)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -61065,63 +61123,63 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
-    <Literal xml:lang="FR">Présentation trompeuse des faits</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
+    <Literal xml:lang="FR">Arranger les faits</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
-    <Literal xml:lang="EN">Misleading presentation of facts</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
+    <Literal xml:lang="EN">Spin doctoring</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <Literal xml:lang="FR">Vous présentez les faits ou les événements d’une manière susceptible d’induire en erreur.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <Literal xml:lang="EN">Presenting events or facts in a misleading light.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <Literal xml:lang="FR">Je ne suis pas responsable de votre décision : je vous ai dit que le produit avait réussi certains tests, mais j’ai omis de préciser qu’il en avait échoué d’autres.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <Literal xml:lang="EN">I am not responsible for your decision: I told you the product had passed certain tests, but I omitted to mention that it had failed others.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <Literal xml:lang="EN">https://www.logicallyfallacious.com/tools/lp/Bo/LogicalFallacies/241/Spin-Doctoring</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cheating</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cheating</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts_Conflict</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -61175,13 +61233,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#lying</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#lying</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -61571,7 +61629,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#outdatedInformation</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#outdated</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#outdated</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -61631,7 +61689,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#piousFraud</IRI>
-    <Literal xml:lang="FR">http://www.don-lindsay-archive.org/skeptic/arguments.html#pious_fraud</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#pious_fraud</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -64230,13 +64288,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAttribution</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAttribution</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64857,13 +64915,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selectiveAttention</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selectiveAttention</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
@@ -65413,7 +65471,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selectiveReading</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#selective_reading</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#selective_reading</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -65953,7 +66011,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#movingTheGoalposts</IRI>
-    <Literal xml:lang="FR">Déplacement des critères</Literal>
+    <Literal xml:lang="FR">Changement de cap</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -66222,7 +66280,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nirvanaFallacy</IRI>
-    <Literal xml:lang="FR">http://www.sceptiques.qc.ca/dictionnaire/perfectsolution.html</Literal>
+    <Literal xml:lang="FR">http://web.archive.org/web/20210115204652/http://www.sceptiques.qc.ca/dictionnaire/perfectsolution.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -67122,7 +67180,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#failureToState</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#state</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#state</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -67297,7 +67355,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguousAssertion</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#ambig_assertion</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#ambig_assertion</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -84034,57 +84092,57 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
-    <Literal xml:lang="FR">Pseudo-explication</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
+    <Literal xml:lang="FR">Sophisme d’Explication</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
-    <Literal xml:lang="EN">Pseudo-explanation</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
+    <Literal xml:lang="EN">Fallacy of explanation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <Literal xml:lang="FR">Vous faussez le débat en feignant d’expliquer des faits ou des concepts.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <Literal xml:lang="EN">Distorting the debate by pretending to explain facts or concepts.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <Literal xml:lang="FR">Peu importe vos arguments : la vraie explication, c’est que nous n’avons pas besoin de ce produit. Tout le monde le sait.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <Literal xml:lang="EN">No matter what your arguments are: the real explanation is that we do not need this product. Everyone knows it.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <Literal xml:lang="EN">https://web.archive.org/web/20171215143918/http://www.onegoodmove.org/fallacy/explan_index.htm</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#refusingDebate</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#refusingDebate</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -84134,13 +84192,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfalsifiability</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfalsifiability</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -84299,13 +84357,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedDepth</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedDepth</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -84464,13 +84522,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedScope</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedScope</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -84519,13 +84577,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unsoundPremise</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unsoundPremise</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -84574,13 +84632,13 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#subvertedSupport</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#subvertedSupport</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -85144,7 +85202,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentByPigheadness</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#dogged</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#dogged</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -85492,6 +85550,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Sabotage</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sabotage</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Sabotage</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#obstruction</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sabotage</IRI>
@@ -85659,7 +85722,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#changingTheSubject</IRI>
-    <Literal xml:lang="EN">http://www.don-lindsay-archive.org/skeptic/arguments.html#digression</Literal>
+    <Literal xml:lang="EN">http://web.archive.org/web/20210109083616/http://www.don-lindsay-archive.org/skeptic/arguments.html#digression</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -87933,6 +87996,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Psychological_projection</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalProjection</IRI>
+    <Literal xml:lang="FR">https://fr.wikipedia.org/wiki/Projection_%28psychologie%29</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poisoningTheWell</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalProjection</IRI>
@@ -89898,11 +89966,6 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Courtier%27s_Reply</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#courtiersReply</IRI>
-    <Literal xml:lang="FR">https://en.wikipedia.org/wiki/Courtier%27s_Reply</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToAccomplishment</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#courtiersReply</IRI>
@@ -90683,11 +90746,6 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
     <Literal xml:lang="EN">https://en.wikipedia.org/wiki/Name_calling</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nameCalling</IRI>
-    <Literal xml:lang="FR">https://en.wikipedia.org/wiki/Name_calling</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#adPersonam</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nameCalling</IRI>
@@ -90819,12 +90877,12 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <Literal>undercut</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#RA-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -92380,11 +92438,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromSmallNumbers</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -92395,21 +92453,21 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insensitivityToSampleSize</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#inverts" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyInduction</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#slothfulInduction</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -92440,11 +92498,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nutpicking</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nutpicking</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -92455,7 +92513,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#toupéeFallacy</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -92980,11 +93038,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#proofByExample</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#proofByExample</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -93194,12 +93252,12 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedDefinition</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -94039,12 +94097,12 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingPresentationOfFacts</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -95005,7 +95063,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#leverages" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
@@ -95025,11 +95083,11 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyConclusion</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#isRelatedTo" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyGeneralization</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hastyConclusion</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -95599,12 +95657,12 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackType" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <Literal>undermine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="https://www.argumentum.games/argumentum_fallacies.owl#aifAttackedNode" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoExplanation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#I-node</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>

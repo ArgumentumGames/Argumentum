@@ -41,6 +41,12 @@ namespace Argumentum.AssetConverter.Ontology
 					Comment = "Fallacies, biases, manipulations in argumentation",
 					Version = new Version(1,0,0),
 					Creator = "Argumentum",
+					Title = "Argumentum Fallacies Ontology",
+					SeeAlsoEndpoints = new List<string>
+					{
+						"https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum.owl",
+						"https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl"
+					},
 					
 				}
 			});
@@ -72,6 +78,12 @@ namespace Argumentum.AssetConverter.Ontology
 
 
 		public string Creator { get; set; } = "";
+
+		/// <summary>#133 publication bridge — dcterms:title (dcterms:creator mirrors Creator).</summary>
+		public string Title { get; set; } = "";
+
+		/// <summary>#133 publication bridge — rdfs:seeAlso IRIs (the served Pages endpoints).</summary>
+		public List<string> SeeAlsoEndpoints { get; set; } = new List<string>();
 
 
 		public Version Version { get; set; } = new Version(1,0,0);
@@ -122,6 +134,7 @@ namespace Argumentum.AssetConverter.Ontology
 	        ontology.Annotate(RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(Comment, "en"));
 	        ontology.Annotate(RDFVocabulary.OWL.VERSION_INFO, new RDFPlainLiteral(Version.ToString()));
 	        ontology.Annotate(RDFVocabulary.DC.CREATOR, new RDFPlainLiteral(Creator.ToString()));
+	        ontology.AnnotatePublicationMetadata(Title, Creator, SeeAlsoEndpoints);
 
 	        var aifHasConflictUri = $"{ExternalReferenceOntologyNamespaceURI}hasConflictedElement";
 	        var hasConflictResource = new RDFResource(aifHasConflictUri);
