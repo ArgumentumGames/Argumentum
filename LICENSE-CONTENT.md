@@ -39,7 +39,7 @@ BY-SA. Mesure d'attribution ligne à ligne à `2f299fcc` :
 
 ⭐ **Un titulaire ne peut pas relicencier seul une œuvre qu'il n'a pas seul écrite.** Ces deux
 fichiers ne pourront rejoindre le périmètre qu'avec **l'accord du co-auteur concerné**, demandé
-nommément. Les 5 fichiers ci-dessus sont, eux, mesurés à **100 % d'écriture du titulaire** —
+nommément. Les 5 fichiers de texte ci-dessus sont, eux, mesurés à **100 % d'écriture du titulaire** —
 c'est ce qui rend leur cession possible aujourd'hui.
 
 ⚠️ Limite de la mesure, déclarée : `git blame` attribue le **dernier rédacteur** d'une ligne, pas
