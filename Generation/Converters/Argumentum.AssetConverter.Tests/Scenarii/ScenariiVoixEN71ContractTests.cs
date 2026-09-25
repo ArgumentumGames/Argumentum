@@ -25,11 +25,13 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 	/// in-memory, rc attendu <c>[0, 2, 2, 2]</c> — sain, header absent, pronom injecté,
 	/// header renommée (le défaut originel).
 	///
-	/// POURQUOI DEUX TESTS, PAS UN. Le premier (SelfTest) appelle le mode embarqué et
-	/// assert <c>PASS (4/4)</c> : c'est le témoin de l'instrument, versionné en code.
-	/// Le second (HeaderOkRejectsMissingColumn) reconstruit le défaut <c>M2</c> d'ai-01 par
-	/// injection directe (header altéré) et assert rc=2 — c'est la preuve end-to-end que
-	/// la garde parle dans le sens FAIL, sans dépendre du self-test interne.
+	/// POURQUOI TROIS TESTS, PAS UN. (1) <c>SelfTest</c> appelle le mode embarqué et
+	/// assert <c>PASS (4/4)</c> : témoin de l'instrument, versionné en code.
+	/// (2) <c>Header_Renamed_Column_Fails_Loudly_EndToEnd</c> rejoue la mutation <c>M2</c>
+	/// d'ai-01 — en-tête `context` renommé — sur une COPIE en temp via `--csv` et assert
+	/// rc=2 : c'est le contrôle inverse bout-en-bout, qui ne dépend ni du self-test interne
+	/// ni de l'état du worktree. (3) <c>Healthy_Csv_Emits_Header_Trace</c> vérifie la trace
+	/// `(header)` sur un run normal sain (rc=0) — le nom dit ce qui est vérifié.
 	///
 	/// SKIP CONDITIONNEL. L'instrument est un script Python externe au repo. Sur les runners
 	/// CI qui n'ont pas Python (rare), le test est Skip avec rationale explicite — jamais un
@@ -39,9 +41,10 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 	/// LA SONDE LANCE L'INTERPRÉTEUR SEUL. Le premier jet sondait via
 	/// <c>Run(new[]{ "--version" })</c>, donc `python &lt;script&gt; --version` : cela
 	/// EXÉCUTE la garde entière, et une garde ROUGE (rc=2, M2 par exemple) se lisait
-	/// « python non exécutable » → les 2 Facts devenaient SKIP au lieu d'échouer. Une
+	/// « python non exécutable » → les Facts devenaient SKIP au lieu d'échouer. Une
 	/// suite verte sur un arbre cassé. Relevé par ai-01 (pool v21, c.5821321181) ;
 	/// <c>ProbeInterpreter()</c> sonde désormais `python --version`, sans argument script.
+	/// Épreuve mesurée sous M2 : pré-correctif 0 échec / 2 skip → post-correctif 2 échecs / 0 skip.
 	/// </summary>
 	internal sealed class RequiresPythonFactAttribute : FactAttribute
 	{
@@ -65,6 +68,44 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 	internal static class ScenariiVoixEN71Runner
 	{
 		private const string ScriptRelativePath = "docs/corpus/scenarii-voix-en-71.py";
+		private const string CsvRelativePath = "Cards/Scenarii/Argumentum Scenarii - Cards.csv";
+
+		/// <summary>Chemin du CSV Scenarii du dépôt (celui que l'instrument lit par défaut).</summary>
+		public static string ResolveCsvPath()
+		{
+			var path = Path.Combine(TestRepoRoot.Find(), CsvRelativePath);
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException(
+					$"#1535 : CSV Scenarii absent — '{path}'.");
+			}
+			return path;
+		}
+
+		/// <summary>
+		/// Construit une copie du CSV avec l'en-tête `context` renommé en
+		/// <c>context_renamed</c> — la mutation M2 d'ai-01, rejouée sans toucher au worktree.
+		/// Seule la ligne d'en-tête change ; les octets des rangées sont recopiés tels quels.
+		/// </summary>
+		public static string BuildRenamedHeaderCopy()
+		{
+			var source = ResolveCsvPath();
+			var lines = File.ReadAllLines(source);
+			var fields = lines[0].Split(',');
+			var idx = Array.IndexOf(fields, "context");
+			if (idx < 0)
+			{
+				throw new InvalidOperationException(
+					"#1535 : colonne 'context' introuvable dans l'en-tête — la mutation M2 ne peut pas être construite.");
+			}
+			fields[idx] = "context_renamed";
+			lines[0] = string.Join(",", fields);
+
+			var temp = Path.Combine(Path.GetTempPath(),
+				"#1535-scenarii-m2-" + Guid.NewGuid().ToString("N") + ".csv");
+			File.WriteAllLines(temp, lines);
+			return temp;
+		}
 
 		/// <summary>
 		/// Sonde de disponibilité — lance l'INTERPRÉTEUR SEUL (`python --version`), JAMAIS le
@@ -178,22 +219,53 @@ namespace Argumentum.AssetConverter.Tests.Scenarii
 		}
 
 		[RequiresPythonFact]
-		public void Header_Missing_Context_Fails_Loudly()
+		public void Header_Renamed_Column_Fails_Loudly_EndToEnd()
 		{
-			// Témoin direct de la cause-racine (M2 d'ai-01) : on invoque l'instrument en mode
-			// normal (pas self-test), ce qui revient à charger le CSV via filesystem. Pour
-			// tester le défaut sans toucher le worktree, on altère le CSV en mémoire via
-			// self-test — mais on observe la sortie pour confirmer que ce mode normal est
-			// désormais capte par le (header) check avant les sondes pronom.
+			// Contrôle inverse exigé par la revue ai-01 (point 3) : la mutation M2 — en-tête
+			// `context` renommé — rejouée sur une COPIE en temp (worktree intact) via `--csv`.
+			// C'est le seul témoin qui prouve que le sens FAIL sort en rouge (rc=2), et que la
+			// sonde de disponibilité ne peut plus transformer ce rouge en SKIP.
+			var temp = ScenariiVoixEN71Runner.BuildRenamedHeaderCopy();
+			try
+			{
+				var (exit, stdout) = ScenariiVoixEN71Runner.Run(new[] { "--csv", temp });
+
+				exit.Should().Be(2,
+					"l'en-tête `context` renommé doit faire sortir la garde en rc=2 (défaut M2 d'ai-01). Sortie:\n"
+					+ stdout);
+
+				stdout.Should().Contain("(header) colonnes absentes",
+					"la trace du header guard doit citer explicitement les colonnes absentes — c'est la "
+					+ "signature que le check d'en-tête précède les sondes pronom. Sortie:\n" + stdout);
+
+				stdout.Should().Contain("['context']",
+					"la colonne manquante doit être NOMMÉE dans la sortie, pas seulement comptée. Sortie:\n"
+					+ stdout);
+			}
+			finally
+			{
+				if (File.Exists(temp))
+				{
+					File.Delete(temp);
+				}
+			}
+		}
+
+		[RequiresPythonFact]
+		public void Healthy_Csv_Emits_Header_Trace()
+		{
+			// Trace du header guard sur un run NORMAL (CSV du dépôt) : la ligne (header) doit
+			// apparaître en tête et la garde sortir rc=0. Le nom dit ce qui est vérifié —
+			// le sens FAIL vit dans Header_Renamed_Column_Fails_Loudly_EndToEnd.
 			var (exit, stdout) = ScenariiVoixEN71Runner.Run(Array.Empty<string>());
 
 			exit.Should().Be(0,
-				"sur master `0681242b+`, le CSV Scenarii porte les colonnes requises : (header) doit PASSER et "
-				+ "la garde doit retourner rc=0. Sortie:\n" + stdout);
+				"le CSV Scenarii du dépôt porte les colonnes requises : (header) doit PASSER et "
+				+ "la garde retourner rc=0. Sortie:\n" + stdout);
 
-			stdout.Should().Contain("(header)",
-				"la trace (header) doit apparaître en tête — c'est la signature du nouveau garde. Avant le "
-				+ "correctif, elle n'existait pas.");
+			stdout.Should().Contain("(header) 9 colonnes requises présentes",
+				"la trace (header) doit apparaître en tête — c'est la signature du header guard. "
+				+ "Avant le correctif M2, elle n'existait pas. Sortie:\n" + stdout);
 		}
 	}
 }

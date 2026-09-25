@@ -25,8 +25,10 @@ le 14/09/2026 — cet instrument vérifie que la cible est atteinte et tient)
   (e) cartes mixtes restantes par sonde pronom (attendu 0).
 
 SORTIE : rc=0 garde PASS ; rc=2 anomalie publiée ; --extract <fichier> : TSV des 71 paires
-FR canonique / EN courant ; --self-test : 4 mutations in-memory (sain / colonne absente /
-pronom injecté / colonne renommée), rc attendu [0, 2, 2, 2].
+FR canonique / EN courant ; --csv <fichier> : lit un AUTRE CSV que celui du dépôt (copie
+mutée en temp par la garde xUnit, pour exercer le sens FAIL sans toucher le worktree) ;
+--self-test : 4 mutations in-memory (sain / colonne absente / pronom injecté / colonne
+renommée), rc attendu [0, 2, 2, 2].
 """
 import csv
 import io
@@ -60,12 +62,15 @@ EXPECTED = {'context': 25, 'smoothTalker': 12, 'drawer': 10, 'issue': 24}
 YOU = re.compile(r'\b(you|your|yours|yourself|yourselves)\b', re.I)
 
 
+CSV_OVERRIDE = None  # posé par --csv <fichier> : lire un autre CSV que celui du dépôt
+
+
 def rows():
     # Lecture directe du CSV dans le worktree (chemin BASE/CSV_PATH).
     # Évite `git show HEAD:...` qui pédale en Python 3.13.7 sur cette machine
     # (subprocess + threading + contextlib = recursion). Le CSV n'est pas
     # modifié entre worktree et HEAD pour cette garde.
-    p = os.path.join(BASE, CSV_PATH)
+    p = CSV_OVERRIDE or os.path.join(BASE, CSV_PATH)
     if not os.path.isfile(p):
         sys.exit('illisible: %s' % p)
     with open(p, encoding='utf-8-sig', newline='') as f:
@@ -85,8 +90,10 @@ def header_ok(headers):
 def run_self_test():
     """Self-test in-memory : 4 mutations, rc attendu [0, 2, 2, 2].
 
-    But : prouver que la garde réagit dans les deux sens (PASS sur sain, FAIL sur défaut)
-    sans dépendre du CSV courant. In-process (mono-thread) — l'isolation n'est pas requise
+    But : prouver que la garde réagit dans les deux sens (PASS sur sain, FAIL sur défaut).
+    Les 4 cas sont construits À PARTIR du fichier réel : le cas « sain » en dépend donc —
+    si le CSV du dépôt est cassé, il sort rc=2 et le self-test échoue, ce qui est voulu.
+    In-process (mono-thread) — l'isolation n'est pas requise
     puisque le script n'a pas d'autre usage concurrent. Le piège Windows MAX_PATH=#1179
     rend le runner-sous-processus inutilisable ici. Mutations :
       (1) sain                          -> rc=0
@@ -173,6 +180,13 @@ def main():
 
     if self_test:
         return run_self_test()
+
+    if '--csv' in argv:
+        global CSV_OVERRIDE
+        CSV_OVERRIDE = os.path.abspath(argv[argv.index('--csv') + 1])
+        if not os.path.isfile(CSV_OVERRIDE):
+            print('(csv) fichier illisible : %s -> FAIL rc=2' % CSV_OVERRIDE)
+            return 2
 
     data = rows()
     h_ok, h_missing = header_ok(data[0].keys() if data else [])
