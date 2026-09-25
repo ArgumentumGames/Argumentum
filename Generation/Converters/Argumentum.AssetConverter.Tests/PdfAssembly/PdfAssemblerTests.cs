@@ -42,12 +42,17 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             // 2. Préparer les entrées pour l'assembleur PDF
             var outputPdfPath = Path.Combine(_testOutputDir, "assembled.pdf");
             var cardImages = generatedPngPaths.Select(pngPath => new CardImages { Front = pngPath }).ToList();
-            
-            // Création d'une configuration minimale pour le document
+
+            // Création d'une configuration minimale pour le document.
+            // NoBack = true : le test assemble les SEULES faces générées, aucun dos n'existe —
+            // une page de dos blanche (#1536) doublerait le compte (3 → 6) pour un test qui n'a
+            // jamais eu de dos à mesurer. La parité recto-verso est couverte par
+            // PrintAndPlayRectoVersoParityContractTests.
             var docConfig = new CardSetDocumentConfig
             {
                 DocumentFormat = CardDocumentFormat.PrintAndPlay,
                 PageSize = "A4",
+                NoBack = true,
                 CardSets = new List<DocumentCardSet>
                 {
                     new DocumentCardSet()

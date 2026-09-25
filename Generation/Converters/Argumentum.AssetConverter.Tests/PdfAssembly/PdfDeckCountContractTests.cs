@@ -22,6 +22,13 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// du CSV ou de la config fait donc passer CETTE suite rouge AVANT toute régénération — le
     /// coût exact du défaut #1204 était un devis émis sur un chiffre faux.
     ///
+    /// ⚠ <b>#1536 (25/09/2026) — la baseline TarotCards_P&amp;P_A4 est passée de 105 à 106 pages.</b>
+    /// Le défaut : la planche 0 (6 Rules sans dos) n'émettait PAS de page de dos ⇒ séquence
+    /// F₀·B₁F₁·B₂F₂… = 105 pages, IMPAIRE, avec le verso des règles portant les dos du lot 1. La
+    /// correction émet une page de dos BLANCHE pour une planche sans dos (document à dos) ⇒
+    /// B₀F₀·B₁F₁… = 106 pages, paire, recto-verso rétabli. C'est le second cas où un nombre de ce
+    /// fichier bouge sans être une dérive du CSV : l'organe a mesuré le défaut, pas contourné.
+    ///
     /// ⚠ <b>#1288 (05/09/2026) — la baseline TarotCards est passée de 381 à 379 pages.</b> Décision
     /// owner : PK 96 sort du deck (vrai doublon de PK 108) ⇒ Fallacies 176 → <b>175</b> cartes,
     /// instances 198 → 197, pages 381 → 379. C'est le seul cas où un nombre de ce fichier bouge
@@ -67,15 +74,15 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         [Fact]
         public void Witness_Amputated_Sheet_Fails_Lower_Bound()
         {
-            // Témoin du DoD : le TarotCards P&P A4 (105 pages attendues) amputé d'une planche
-            // recto-verso → 103 pages produites. La garde DOIT échouer en nommant la borne basse.
+            // Témoin du DoD : le TarotCards P&P A4 (106 pages attendues, #1536) amputé d'une planche
+            // recto-verso → 104 pages produites. La garde DOIT échouer en nommant la borne basse.
             var failures = PdfCardCountIntegrity.CheckPageCounts(new[]
             {
-                ("Argumentum_TarotCards_Print&Play_A4", "fr", 105, 103,
+                ("Argumentum_TarotCards_Print&Play_A4", "fr", 106, 104,
                  "format PrintAndPlay, 318 instance(s) (témoin)"),
             });
             failures.Should().ContainSingle()
-                .Which.Should().Contain("LOWER BOUND violated").And.Contain("103").And.Contain("105");
+                .Which.Should().Contain("LOWER BOUND violated").And.Contain("104").And.Contain("106");
         }
 
         [Fact]
@@ -166,13 +173,14 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         }
 
         [Fact]
-        public void TarotCards_PrintAndPlay_A4_Derives_105_Pages()
+        public void TarotCards_PrintAndPlay_A4_Derives_106_Pages()
         {
             var plan = DeriveByName("Argumentum_TarotCards_Print&Play_A4_fr.pdf");
             _output.WriteLine(plan.Breakdown);
-            plan.ExpectedPages.Should().Be(105,
-                "baseline MESURÉE (#1176) : 318 instances (RulesPP 6 sans dos + Fallacies 176 + Virtues 131 + MemoPP 1×5) sur grille 3×2 = 53 planches ; "
-                + "la planche 0 (6 Rules) est SANS dos → pas de page dos ⇒ 52 dos + 53 faces = 105 — la suppression dos-par-planche de Compose est modélisée, pas devinée");
+            plan.ExpectedPages.Should().Be(106,
+                "#1536 : 318 instances (RulesPP 6 sans dos + Fallacies 176 + Virtues 131 + MemoPP 1×5) sur grille 3×2 = 53 planches ; "
+                + "le document A des dos → CHAQUE planche émet sa page de dos, blanche pour la planche 0 (6 Rules sans dos) ⇒ 53 dos + 53 faces = 106, pair. "
+                + "La baseline mesurée 105 (#1176) portait le défaut #1536 (page 1 = faces seules, pairs décalés d'une page)");
         }
 
         // ─────────────────────────────────────────────────────────────────────────

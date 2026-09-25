@@ -76,10 +76,17 @@ namespace Argumentum.AssetConverter
                 var pageFrontImages = _frontImagesData.Skip(pageIndex * nbCardsPerPage).Take(nbCardsPerPage).ToArray();
                 var pageBackImages = _backImagesData.Skip(pageIndex * nbCardsPerPage).Take(nbCardsPerPage).ToArray();
 
-                // Back page — only render if at least one card on this page has a non-null back
-                if (!_docConfig.NoBack && pageBackImages.Any(b => b != null))
+                // Back page — every chunk emits one whenever the document has backs at all, so a
+                // duplex printer always pairs (back of chunk k, front of chunk k). When a chunk has
+                // NO back (the 6 Rules cards of the Tarot P&P), the back page is emitted BLANK
+                // instead of being skipped: skipping it (#1536) shifted every subsequent pair by one
+                // page, putting the backs of chunk k+1 behind the fronts of chunk k.
+                if (!_docConfig.NoBack)
                 {
-                    var backCardsArray = ReorderBacksForRectoVerso(pageBackImages, nbColumns);
+                    var hasAnyBack = pageBackImages.Any(b => b != null);
+                    var backCardsArray = hasAnyBack
+                        ? ReorderBacksForRectoVerso(pageBackImages, nbColumns)
+                        : pageBackImages; // all nulls — CardGridComponent renders an empty grid cell for each null
                     container.Page(page =>
                     {
                         ComposePage(page, pageSize, pageMarginMm, nbColumns, backCardsArray);
@@ -176,6 +183,41 @@ namespace Argumentum.AssetConverter
             int nbPages = (int)Math.Ceiling((decimal)frontImageCount / (decimal)nbCardsPerPage);
 
             return new PrintPlayPageGeometry(nbColumns, nbRows, nbCardsPerPage, nbPages);
+        }
+
+        /// <summary>
+        /// Kind of each emitted page, in document order — the printable trace of
+        /// <see cref="Compose"/> with no render. A duplex printer pairs pages (0,1), (2,3)… :
+        /// the sequence must therefore read <c>Back, Front, Back, Front…</c> whenever the document
+        /// has backs, and hold an EVEN length. Before #1536 a chunk with no back (the 6 Rules of the
+        /// Tarot P&amp;P) emitted NO back page, breaking the alternation and shifting every pair by one
+        /// page — the backs of chunk k+1 printed behind the fronts of chunk k.
+        /// </summary>
+        public enum PageKind { Back, Front }
+
+        /// <summary>
+        /// Emitted page kinds for a deck whose instances are marked <paramref name="instanceHasBack"/>.
+        /// Pure &amp; deterministic — mirrors <see cref="Compose"/> exactly, and is the single source the
+        /// unit tests pin instead of re-deriving the loop. <paramref name="noBack"/> true = faces only.
+        /// </summary>
+        public static IReadOnlyList<PageKind> EmittedPageSequence(IReadOnlyList<bool> instanceHasBack, bool noBack, int nbCardsPerPage)
+        {
+            if (nbCardsPerPage <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(nbCardsPerPage), nbCardsPerPage,
+                    "nbCardsPerPage must be > 0 — a zero capacity would loop forever and is a degenerate geometry the renderer never produces.");
+            }
+            var sequence = new List<PageKind>();
+            var nbPages = (int)Math.Ceiling((double)instanceHasBack.Count / nbCardsPerPage);
+            for (var chunk = 0; chunk < nbPages; chunk++)
+            {
+                if (!noBack)
+                {
+                    sequence.Add(PageKind.Back); // blank when the chunk has no back (#1536)
+                }
+                sequence.Add(PageKind.Front);
+            }
+            return sequence;
         }
 
         private void ComposePage(PageDescriptor page, PageSize pageSize, float pageMarginMm, int nbColumns, IEnumerable<byte[]> images)
