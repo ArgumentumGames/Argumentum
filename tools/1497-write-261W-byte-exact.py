@@ -4,7 +4,7 @@
 
 Spec ai-01 (#1497 c.5831302892) : au plus 261 ecritures (256 interwiki + 5
 sections), APRES audit d'extraits cellule par cellule ; les defectueuses sont
-retenues et nommees (worklist), jamais ecrites. ⛔ Aucune URL d'une autre langue.
+retenues et nommees (worklist), jamais ecrites. Aucune URL d'une autre langue.
 
 Worklist : tools/1497-write-261W-worklist.json — verdicts de relecture humaine
 des extraits de tools/1497-audit-261W.json. Chaque entree ecrite doit exister
@@ -12,31 +12,46 @@ dans l'audit avec empty_on_master + q_match + non-disambiguation.
 
 GARDES (meme famille que tools/1471-write-14E-byte-exact.py) :
   (1) COLLISION : chaque cible vise une cellule vide, verifiee a l'octet ;
-  (2) LANGUE : le sous-domaine de l'URL == la colonne visee (garde ⛔ mechanicale) ;
+  (2) LANGUE : le sous-domaine de l'URL == la colonne visee (garde mechanicale) ;
   (3) 1408 lignes / CRLF / BOM invariants ; splice par offsets absolus ;
   (4) RE-PARSE COMPLET : les cellules changees == exactement la worklist ;
   (5) RETENUES : verifiees VIDES apres ecriture ;
   (6) MUTATION : --mutation-test injecte une retenue dans une copie en memoire
       et doit faire ROUGIR la garde (2)/(5) — la preuve que l'instrument mesure.
 
+BASE (grain 4 de l'avenant #458 c.5836219154) : les modes qui SIMULENT
+(--check, --replay-check, --mutation-test) lisent leur base dans l'HISTORIQUE,
+jamais dans l'arbre ecrit. La base est DERIVEE — le commit le plus recent dont le
+blob porte les cibles VIDES — puis NOMMEE dans la sortie. Sans cela la garde (1)
+rougit sur l'ecriture deja faite, et l'instrument ne se rejoue qu'une fois
+(defaut constate par ai-01 au merge de #1557). --apply, lui, lit l'arbre : c'est
+l'operation d'ecriture. --base-ref <ref> force la base ; le controle falsifiant
+est --base-ref HEAD, qui DOIT rougir sur la garde (1).
+
 Usage :
-    python tools/1497-write-261W-byte-exact.py            # --check : plan + preuve, 0 ecriture
-    python tools/1497-write-261W-byte-exact.py --apply    # ecrit + backup .BEFORE-1497W
-    python tools/1497-write-261W-byte-exact.py --head-check   # HEAD 200/404 sur les URL ecrites
+    python tools/1497-write-261W-byte-exact.py               # --check : plan + preuve, 0 ecriture
+    python tools/1497-write-261W-byte-exact.py --apply       # ecrit + backup .BEFORE-1497W
+    python tools/1497-write-261W-byte-exact.py --head-check  # HEAD 200/404 sur les URL ecrites
     python tools/1497-write-261W-byte-exact.py --mutation-test
+    python tools/1497-write-261W-byte-exact.py --replay-check   # re-derivation == arbre
+    python tools/1497-write-261W-byte-exact.py --self-test
 """
 
 import argparse
 import csv
+import hashlib
 import io
 import json
 import os
+import subprocess
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_REL = "Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv"
 CSV_PATH = os.path.join(REPO, "Cards", "Fallacies", "Argumentum Fallacies - Taxonomy.csv")
 WORKLIST = os.path.join(REPO, "tools", "1497-write-261W-worklist.json")
 AUDIT = os.path.join(REPO, "tools", "1497-audit-261W.json")
@@ -69,6 +84,65 @@ def check_against_audit(ecrit):
     assert len(ecrit) <= 261, f"borne 261 depassee : {len(ecrit)}"
 
 
+# --------------------------------------------------------------------------
+# base : lecture d'un blob historique, derivation de la base pre-ecriture
+# --------------------------------------------------------------------------
+
+def git_bytes(ref, rel=CSV_REL):
+    """Octets du blob a <ref>:<rel> — lu par git, jamais recopie de memoire."""
+    p = subprocess.run(["git", "-C", REPO, "cat-file", "blob", f"{ref}:{rel}"],
+                       capture_output=True)
+    assert p.returncode == 0, f"git cat-file {ref}:{rel} -> {p.stderr.decode()[:120]}"
+    return p.stdout
+
+
+def git_log_shas(rel=CSV_REL):
+    """SHAs des commits qui touchent le fichier, du plus recent au plus ancien."""
+    p = subprocess.run(["git", "-C", REPO, "log", "--format=%H", "--", rel],
+                       capture_output=True, check=True)
+    return p.stdout.decode().split()
+
+
+def rows_of(raw):
+    text = raw[len(BOM):].decode("utf-8") if raw.startswith(BOM) else raw.decode("utf-8")
+    return list(csv.DictReader(io.StringIO(text)))
+
+
+def targets_empty(raw, ecrit, reten):
+    """Vrai si TOUTES les cibles (ecrites et retenues) sont vides dans ce blob."""
+    by_pk = {r["PK"].strip(): r for r in rows_of(raw)}
+    for pk, lang, _ in list(ecrit) + list(reten):
+        row = by_pk.get(pk)
+        if row is None:
+            return False
+        if (row.get(f"link_{lang}") or "").strip() != "":
+            return False
+    return True
+
+
+def find_base_ref(ecrit, reten):
+    """DERIVE la base : le commit le plus recent dont le blob a les cibles VIDES.
+
+    C'est l'etat immediatement pre-ecriture. Le commit d'ecriture lui-meme a les
+    cibles remplies : il est donc ecarte par le predicat, jamais par un SHA recite.
+    """
+    for sha in git_log_shas():
+        if targets_empty(git_bytes(sha), ecrit, reten):
+            return sha
+    raise AssertionError("aucune base pre-ecriture : tous les commits du CSV ont les cibles remplies")
+
+
+def load_raw(ref=None):
+    if ref:
+        return git_bytes(ref)
+    with open(CSV_PATH, "rb") as fh:
+        return fh.read()
+
+
+# --------------------------------------------------------------------------
+# splice byte-exact
+# --------------------------------------------------------------------------
+
 def field_spans(record):
     spans, i, start, quoted = [], 0, 0, False
     while i < len(record):
@@ -96,11 +170,6 @@ def split_raw(rec):
     return [rec[s:e] for s, e in field_spans(rec)]
 
 
-def load_raw():
-    with open(CSV_PATH, "rb") as fh:
-        return fh.read()
-
-
 def url_lang_ok(url, lang):
     pre = f"https://{lang}.wikipedia.org/wiki/"
     return url.startswith(pre)
@@ -123,7 +192,7 @@ def build(raw, ecrit, reten):
     for pk in {w[0] for w in ecrit} | {r[0] for r in reten}:
         assert len(by_pk.get(pk, [])) == 1, f"PK {pk}: {len(by_pk.get(pk, []))} enregistrements"
 
-    # garde (2) ⛔ langue : AVANT toute ecriture
+    # garde (2) langue : AVANT toute ecriture
     for pk, lang, url in ecrit:
         assert url_lang_ok(url, lang), f"({pk},{lang}) URL d'une autre langue : {url}"
 
@@ -148,11 +217,7 @@ def build(raw, ecrit, reten):
 
 
 def verify(old_raw, new_raw, ecrit, reten):
-    def rows(raw):
-        text = raw[len(BOM):].decode("utf-8") if raw.startswith(BOM) else raw.decode("utf-8")
-        return list(csv.DictReader(io.StringIO(text)))
-
-    old_rows, new_rows = rows(old_raw), rows(new_raw)
+    old_rows, new_rows = rows_of(old_raw), rows_of(new_raw)
     assert len(old_rows) == len(new_rows) == N_ROWS, f"lignes {len(old_rows)}/{len(new_rows)}"
     expected = {(pk, f"link_{lang}"): url for pk, lang, url in ecrit}
     changed = []
@@ -212,10 +277,17 @@ def head_check(ecrit):
     return codes
 
 
-def mutation_test(ecrit, reten):
-    """Injecte une retenue dans une COPIE en memoire : la garde doit rougir."""
+# --------------------------------------------------------------------------
+# modes bases sur l'historique
+# --------------------------------------------------------------------------
+
+def mutation_test(ecrit, reten, base_ref):
+    """Injecte une retenue dans une COPIE en memoire : la garde doit rougir.
+
+    Lit sa base dans l'HISTORIQUE : rejouable apres l'ecriture.
+    """
     assert reten, "aucune retenue : mutation-test sans objet"
-    old_raw = load_raw()
+    old_raw = load_raw(base_ref)
     new_raw, _ = build(old_raw, ecrit, reten)
     text = new_raw.decode("utf-8-sig")
     new_rows = list(csv.DictReader(io.StringIO(text)))
@@ -233,27 +305,89 @@ def mutation_test(ecrit, reten):
     return 1
 
 
+def replay_check(ecrit, reten, base_ref):
+    """Re-derivation depuis la base : les cellules cibles doivent egaler la worklist
+    ET l'arbre courant. Un instrument qui ne lit que l'arbre ne peut pas le dire.
+
+    L'egalite d'OCTETS est rapportee en information : un commit posterieur qui
+    touche d'autres cellules la fait tomber sans que la re-jouabilite soit en cause.
+    """
+    new_raw, _ = build(load_raw(base_ref), ecrit, reten)
+    tree_raw = load_raw()
+    tree_rows = rows_of(tree_raw)
+    by_pk = {r["PK"].strip(): r for r in tree_rows}
+    ecarts = [(pk, lang, by_pk.get(pk, {}).get(f"link_{lang}"))
+              for pk, lang, url in ecrit if (by_pk.get(pk, {}).get(f"link_{lang}") or "") != url]
+    print(f"base      : {base_ref}")
+    print(f"re-derive : {len(ecrit)} cibles, sha256 {hashlib.sha256(new_raw).hexdigest()[:16]}")
+    print(f"arbre     : sha256 {hashlib.sha256(tree_raw).hexdigest()[:16]} "
+          f"(octets {'egaux' if new_raw == tree_raw else 'DIFFERENTS'})")
+    for pk, lang, v in ecarts[:10]:
+        print(f"  ECART pk={pk} link_{lang} : {(v or '')[:60]!r}")
+    assert not ecarts, f"{len(ecarts)} cible(s) de l'arbre != worklist"
+    print(f"re-jouabilite : OK — {len(ecrit)}/{len(ecrit)} cibles de l'arbre "
+          f"reproduites depuis {base_ref[:8]}")
+    return 0
+
+
+def self_test(ecrit, reten):
+    """Controle direct ET controle INVERSE : l'instrument doit voir un 1 la ou il y
+    en a un, et rougir quand la base est l'arbre ecrit."""
+    base = find_base_ref(ecrit, reten)
+    assert targets_empty(load_raw(base), ecrit, reten), "base derivee : cibles non vides"
+    ecrit_sha = next((s for s in git_log_shas() if not targets_empty(git_bytes(s), ecrit, reten)), None)
+    assert ecrit_sha, "aucun commit aux cibles remplies : controle inverse impossible"
+
+    new_raw, _ = build(load_raw(base), ecrit, reten)
+    assert len(rows_of(new_raw)) == N_ROWS, "re-derivation : nombre de lignes"
+    assert mutation_test(ecrit, reten, base) == 0, "mutation non vue sur la base derivee"
+
+    try:
+        build(load_raw(ecrit_sha), ecrit, reten)
+    except AssertionError as e:
+        print(f"controle falsifiant VU (base = ecrit) : {str(e)[:70]}")
+    else:
+        raise AssertionError("base = ecrit n'a PAS rougi : garde (1) aveugle")
+
+    print(f"self-test OK : base {base[:8]} (cibles vides) < ecrit {ecrit_sha[:8]} (cibles remplies)")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--head-check", action="store_true")
     ap.add_argument("--mutation-test", action="store_true")
+    ap.add_argument("--replay-check", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--base-ref", default=None,
+                    help="force la base ; defaut = derivee (plus recent commit aux cibles vides)")
     args = ap.parse_args()
 
     ecrit, reten, w = load_worklist()
     print(f"worklist : {len(ecrit)} ecritures, {len(reten)} retenues nommees, "
           f"{len(w.get('retenues_sans_section', []))} sans section (non ecrites)")
 
-    if args.mutation_test:
-        return mutation_test(ecrit, reten)
+    if args.self_test:
+        return self_test(ecrit, reten)
+
+    check_against_audit(ecrit)
 
     if args.head_check:
         head_check(ecrit)
         return 0
 
-    check_against_audit(ecrit)
+    base_ref = args.base_ref or find_base_ref(ecrit, reten)
+    print(f"base : {base_ref} ({'imposee' if args.base_ref else 'derivee'})")
 
-    old_raw = load_raw()
+    if args.mutation_test:
+        return mutation_test(ecrit, reten, base_ref)
+    if args.replay_check:
+        return replay_check(ecrit, reten, base_ref)
+
+    # --apply lit l'arbre : c'est l'operation d'ecriture. Les modes de simulation
+    # lisent la base historique (cf. en-tete).
+    old_raw = load_raw(None if args.apply else base_ref)
     new_raw, edits = build(old_raw, ecrit, reten)
     changed = verify(old_raw, new_raw, ecrit, reten)
 
