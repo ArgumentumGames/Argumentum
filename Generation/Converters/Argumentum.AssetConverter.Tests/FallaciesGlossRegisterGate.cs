@@ -4,12 +4,18 @@ using System.Collections.Generic;
 namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
-	/// Organ G2-C-W (#1499, decisions owner Q-12 1a/2a/3a du 24/09, arbitrage ai-01
-	/// [#458 c.5825475175](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5825475175)) :
-	/// les 11 gloses didactiques retirees (88 cellules), PK 598 restaure a son exemple 2024
-	/// (source mesuree 3eb08fc6^, le pre-composite #1265 ; 97431d64^ porte DEJA le composite),
-	/// PK 1361 vouvoye (fr/ru/pt/es/zh/fa ; ar sans distinction standard, en indifferencie).
-	/// Dossier : docs/quality/1499-g2c-fallacies-exemples-liste-courte-2026-09-24.md.
+	/// Organ G2-C-W / G2-C-W2 (#1499, decisions owner Q-12 (1a/2a/3a) et Q-16 (c) du 24/09-25/09,
+	/// arbitrages ai-01 [#458 c.5825475175](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5825475175),
+	/// [#1499 c.5828321925](https://github.com/ArgumentumGames/Argumentum/issues/1499#issuecomment-5828321925)).
+	///
+	/// - 11 gloses didactiques retirees (88 cellules, G2-C-W) ;
+	/// - PK 598 : exemple 2024 restaure x8 (source mesuree 3eb08fc6^, pre-composite #1265) ;
+	/// - PK 1361 : registre poli fr/ru/pt/es/zh/fa ; ar sans distinction standard, en indifferencie ;
+	/// - G2-C-W2 (Q-16 (c)) : 7 exceptions RESTAUREES a l'octet depuis 9f606c98^ (la cellule
+	///   d'avant #1546, glose comprise) :
+	///     PK 796 example_{en,ru,pt,es,ar,zh} et PK 848 example_zh.
+	///   ⛔ PK 796 example_fr N'EST PAS restaure (Q-16 (c)) : la glose fr y reste coupee.
+	///
 	/// Les attendus sont INSCRITS ici : toute derive du CSV fait rouge AVANT regeneration,
 	/// et le rouge NOMME la cellule - pas un diff muet.
 	/// </summary>
@@ -23,7 +29,15 @@ namespace Argumentum.AssetConverter.Tests
 			"33", "322", "362", "432", "658", "796", "834", "848", "908", "1092", "1120",
 		};
 
-		/// <summary>Texte attendu apres retrait de la glose, par PK puis langue.</summary>
+		/// <summary>G2-C-W2 (Q-16 (c)) : les 7 cellules dont la glose est RESTAUREE (pk:lang).</summary>
+		public static readonly string[] RestoredExceptions =
+		{
+			"796:en", "796:ru", "796:pt", "796:es", "796:ar", "796:zh", "848:zh",
+		};
+
+		/// <summary>
+		/// Texte attendu, par PK puis langue (gloses coupees SAUF les 7 exceptions G2-C-W2).
+		/// </summary>
 		public static readonly Dictionary<string, Dictionary<string, string>> GlossExpected = new()
 		{
 			{
@@ -95,13 +109,13 @@ namespace Argumentum.AssetConverter.Tests
 				"796", new Dictionary<string, string>
 				{
 					{ "fr", "Tous les avocats défendent des clients au tribunal. Ce fruit est un avocat. Donc ce fruit défend des clients au tribunal." },
-					{ "en", "All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court." },
-					{ "ru", "Все адвокаты защищают клиентов в суде. Этот плод — авокадо. Следовательно, этот плод защищает клиентов в суде." },
-					{ "pt", "Todos os advogados defendem clientes no tribunal. Esta fruta é um abacate. Portanto, esta fruta defende clientes no tribunal." },
-					{ "es", "Todos los abogados defienden a clientes ante los tribunales. Esta fruta es un aguacate. Por lo tanto, esta fruta defiende a clientes ante los tribunales." },
-					{ "ar", "كل من هو «أفوكات» يدافع عن موكّلين في المحكمة. هذه الثمرة «أفوكات». إذن هذه الثمرة تدافع عن موكّلين في المحكمة." },
+					{ "en", "All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court. — “Lawyer” and “avocado” are the same word in French, but its meaning changes: it refers to the legal profession in the first premise and to the fruit in the second. The reasoning therefore actually contains four terms instead of three." },
+					{ "ru", "Все адвокаты защищают клиентов в суде. Этот плод — авокадо. Следовательно, этот плод защищает клиентов в суде. — Французское слово «avocat» меняет значение: в первой посылке оно обозначает юридическую профессию, а во второй — плод авокадо. Таким образом, в действительности рассуждение содержит четыре термина вместо трёх." },
+					{ "pt", "Todos os advogados defendem clientes no tribunal. Esta fruta é um abacate. Portanto, esta fruta defende clientes no tribunal. — Em francês, a palavra « avocat » muda de sentido: refere-se à profissão jurídica na primeira premissa e à fruta na segunda. Portanto, o raciocínio contém, na verdade, quatro termos em vez de três." },
+					{ "es", "Todos los abogados defienden a clientes ante los tribunales. Esta fruta es un aguacate. Por lo tanto, esta fruta defiende a clientes ante los tribunales. — «Abogado» y «aguacate» corresponden a la misma palabra en francés, «avocat», que cambia de sentido: profesión jurídica en la primera premisa y fruta en la segunda. Por lo tanto, el razonamiento contiene en realidad cuatro términos en lugar de tres." },
+					{ "ar", "كل من هو «أفوكات» يدافع عن موكّلين في المحكمة. هذه الثمرة «أفوكات». إذن هذه الثمرة تدافع عن موكّلين في المحكمة. — يتغيّر معنى «أفوكات»: فهو يعني صاحب مهنة قانونية في المقدمة الأولى، ويعني ثمرة في المقدمة الثانية. لذلك يحتوي الاستدلال في الواقع على أربعة مصطلحات بدلًا من ثلاثة." },
 					{ "fa", "همهٔ «آوُکا»ها، یعنی وکلا، در دادگاه از موکلان دفاع می‌کنند. این میوه یک «آوُکا»، یعنی آووکادو، است. پس این میوه در دادگاه از موکلان دفاع می‌کند." },
-					{ "zh", "所有阿沃卡都在法庭上为当事人辩护。这个水果是阿沃卡。因此，这个水果在法庭上为当事人辩护。" },
+					{ "zh", "所有阿沃卡都在法庭上为当事人辩护。这个水果是阿沃卡。因此，这个水果在法庭上为当事人辩护。——“阿沃卡”一词改变了含义：在第一个前提中指律师，在第二个前提中指牛油果。因此，这个推理实际上包含四个词项，而不是三个。" },
 				}
 			},
 			{
@@ -127,7 +141,7 @@ namespace Argumentum.AssetConverter.Tests
 					{ "es", "Los miembros del comité que aprobaron este expediente serán convocados." },
 					{ "ar", "سيُستدعى أعضاء اللجنة الذين صادقوا على هذا الملف." },
 					{ "fa", "اعضای کمیته که این پرونده را تأیید کرده‌اند احضار خواهند شد." },
-					{ "zh", "批准了这份材料的委员会成员将被传唤。" },
+					{ "zh", "批准了这份材料的委员会成员将被传唤。——限制性：只有批准了这份材料的成员才会被传唤。委员会成员，他们批准了这份材料，将被传唤。——解释性：所有成员都会被传唤，同时补充说明他们批准了这份材料。" },
 				}
 			},
 			{
@@ -186,9 +200,8 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>
 		/// PK 1361 : registre poli (Q-12 3a, PK 1361 seul). ar = laisse tel quel
-		/// (l'arabe standard ne distingue pas tu/vous ; une forme honorifique serait guindee -
-		/// a revoir par un lecteur natif si l'owner veut ce registre), en = indifferencie.
-		/// Les deux sont epingles POUR constater le caractere delimite de l'absence de changement.
+		/// (l'arabe standard ne distingue pas tu/vous), en = indifferencie. Les deux sont
+		/// epingles POUR constater le caractere delimite de l'absence de changement.
 		/// </summary>
 		public static readonly Dictionary<string, string> Pk1361Expected = new()
 		{
@@ -201,5 +214,5 @@ namespace Argumentum.AssetConverter.Tests
 			{ "fa", "از حرف‌هایتان که برمی‌آید، هر خریدی غیراخلاقی است. با این حال، چند روز پیش دیدم که در حراج‌ها خرید می‌کردید، و اخلاق من این را تحمل می‌کند." },
 			{ "zh", "照您这么说，任何购买都是不道德的。可我前几天还看见您去抢购打折商品，而我的道德观是容许这一点的。" },
 		};
-	}
+}
 }

@@ -12,10 +12,13 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
-	/// Garde G2-C-W (#1499, Q-12 1a/2a/3a du 24/09, arbitrage ai-01
-	/// [#458 c.5825475175](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5825475175)) :
+	/// Garde G2-C-W / G2-C-W2 (#1499, Q-12 1a/2a/3a du 24/09 + Q-16 (c) du 25/09, arbitrages ai-01
+	/// [#458 c.5825475175](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5825475175),
+	/// [#1499 c.5828321925](https://github.com/ArgumentumGames/Argumentum/issues/1499#issuecomment-5828321925)) :
 	/// les 11 gloses didactiques sont retirées, PK 598 porte son exemple 2024 restauré
-	/// (source <c>3eb08fc6^</c>), et le contrôle corrigé du dispatch tient :
+	/// (source <c>3eb08fc6^</c>), <b>sauf les 7 exceptions G2-C-W2 restaurées à l'octet
+	/// depuis <c>9f606c98^</c></b> (PK 796 example_{{en,ru,pt,es,ar,zh}} + PK 848 example_zh —
+	/// ⛔ PK 796 fr n'est PAS restauré), et le contrôle corrigé du dispatch tient :
 	/// <c>example_fr</c> du DECK (175 cartes, colonne <c>carte</c> non vide) = 0 forme
 	/// tu/te/t' (mesuré 25/09 : 0/175 post-grain). Les 19 rangées porteuses de
 	/// tutoiement hors deck (têtes de famille NON imprimées) restent légitimes et
@@ -51,6 +54,14 @@ namespace Argumentum.AssetConverter.Tests
 		/// <summary>658 fr avec glose (leçon après le dernier tiret) — témoin rouge du retrait.</summary>
 		private const string Pk658FrWithGloss =
 			"Cette affirmation est vraie. — Mais comment le savez-vous ? Je l’ai vérifiée. — Mais comment avez-vous vérifié cette vérification ? Et la vérification de cette vérification, comment l’avez-vous vérifiée ? … — Régression à l’infini de la justification épistémique : chaque niveau de preuve en exige un autre.";
+
+		/// <summary>796 en SANS glose (état #1546 / master avant G2-C-W2) — charge de la mutation « glose retirée ».</summary>
+		private const string Pk796EnCut =
+			"All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court.";
+
+		/// <summary>796 fr AVEC glose (état pré-#1546) — charge de la mutation « glose ajoutée sur 796 fr », qui doit rester coupée (Q-16 (c)).</summary>
+		private const string Pk796FrWithGloss =
+			"Tous les avocats défendent des clients au tribunal. Ce fruit est un avocat. Donc ce fruit défend des clients au tribunal. — « avocat » change de sens : profession juridique dans la première prémisse, fruit dans la seconde. Le raisonnement contient donc en réalité quatre termes au lieu de trois.";
 
 		private static (List<string> headers, Dictionary<string, string[]> byPk) Load()
 		{
@@ -235,6 +246,51 @@ namespace Argumentum.AssetConverter.Tests
 			var bad = Mismatches(view, "598", FallaciesGlossRegisterGate.Pk598Expected);
 			bad.Should().ContainSingle("re-injecting the #1265 composite into 598.example_en must be named")
 				.Which.Should().Be("598.example_en");
+		}
+
+		[Fact]
+		public void G2cw2_Exceptions_Are_Exactly_Seven_And_Named()
+		{
+			// Les 7 exceptions G2-C-W2 (Q-16 (c)) sont NOMMÉES — et 796:fr n'en fait pas partie.
+			FallaciesGlossRegisterGate.RestoredExceptions.Should().BeEquivalentTo(new[]
+			{
+				"796:en", "796:ru", "796:pt", "796:es", "796:ar", "796:zh", "848:zh",
+			});
+			FallaciesGlossRegisterGate.RestoredExceptions.Should().NotContain("796:fr",
+				"Q-16 (c) ne restaure PAS la glose fr de PK 796");
+			FallaciesGlossRegisterGate.RestoredExceptions.Should().HaveCount(7);
+		}
+
+		[Fact]
+		public void Witness_G2cw2_Stripping_The_Gloss_From_A_Restored_Cell_Is_Named()
+		{
+			// Mutation 1 exigée par le dispatch : glose retirée d'UNE des 7 ⇒ rouge nommant la cellule.
+			var csv = Load();
+			var mutated = new Dictionary<string, string[]>(csv.byPk.ToDictionary(
+				kv => kv.Key, kv => (string[])kv.Value.Clone()));
+			var idx = csv.headers.IndexOf("example_en");
+			mutated["796"][idx] = Pk796EnCut;
+
+			var view = (csv.headers, mutated);
+			var bad = Mismatches(view, "796", FallaciesGlossRegisterGate.GlossExpected["796"]);
+			bad.Should().ContainSingle("stripping the gloss from a restored cell (796.example_en) must be named")
+				.Which.Should().Be("796.example_en");
+		}
+
+		[Fact]
+		public void Witness_G2cw2_Adding_The_Gloss_To_796_Fr_Is_Named()
+		{
+			// Mutation 2 exigée par le dispatch : glose AJOUTÉE sur 796 fr ⇒ rouge (fr reste coupé).
+			var csv = Load();
+			var mutated = new Dictionary<string, string[]>(csv.byPk.ToDictionary(
+				kv => kv.Key, kv => (string[])kv.Value.Clone()));
+			var idx = csv.headers.IndexOf("example_fr");
+			mutated["796"][idx] = Pk796FrWithGloss;
+
+			var view = (csv.headers, mutated);
+			var bad = Mismatches(view, "796", FallaciesGlossRegisterGate.GlossExpected["796"]);
+			bad.Should().ContainSingle("adding the gloss to 796.example_fr must be named (fr stays cut, Q-16 (c))")
+				.Which.Should().Be("796.example_fr");
 		}
 
 		[Fact]
