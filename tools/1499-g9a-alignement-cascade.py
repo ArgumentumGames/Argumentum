@@ -63,6 +63,9 @@ def derive():
 
 # ── registre PK 1361 : marqueurs FORMELS/INFORMELS mesurés sur les textes du corpus ──
 # en : exempt par construction (pas de distinction tutoiement/vouvoiement).
+# ar : exempt PAR DÉCISION (erratum G9-A, 26/09) — #1546 : « l'arabe standard ne
+# distingue pas tu/vous », épinglé par la garde Pk1361_Example_Matches_The_Polite_
+# Register_Decision. Le classificateur naïf le comptait « retardataire » : faux positif.
 FORMAL = {
     "fr": ["À vous entendre", "je vous ai vu"],
     "ru": ["вас послушать", "как вы ходили"],
@@ -70,7 +73,6 @@ FORMAL = {
     "es": ["Oyéndole", "le vi ir"],
     "fa": ["حرف‌هایتان", "می‌کردید"],
     "zh": ["您"],
-    "ar": ["رأيتكم", "تتسوقون"],
 }
 INFORMAL = {
     "fr": ["À t’entendre", "je t’ai vu"],
@@ -79,9 +81,8 @@ INFORMAL = {
     "es": ["Oyéndote", "te vi ir"],
     "fa": ["حرف‌هایت", "می‌کردی"],
     "zh": ["你"],
-    "ar": ["رأيتك", "تتسوق"],
 }
-EXEMPT = {"en"}
+EXEMPT = {"en", "ar"}
 
 
 def register_of(cell):
@@ -105,21 +106,18 @@ def cell_1361(head):
 
 
 def self_test(head):
-    """Controle falsifiant sur LITTERERAUX (ne lit pas l'arbre qu'il valide pour
-    ses mutations ; l'etat HEAD est le temoin inverse)."""
-    cases = []
+    """Controle falsifiant sur LITTERERAUX + TEMOINS. Le HEAD (ar exempt par
+    decision #1546) est le temoin vert ; les mutations portent sur des copies."""
     cur = cell_1361(head)
-    cases.append(("HEAD (ar au tutoiement)", dict(cur), ["ar"], "DÉSALIGNÉ"))
-
-    fixed = dict(cur)
-    fixed["ar"] = cur["ar"].replace("رأيتك", "رأيتكم").replace("تتسوق", "تتسوقون")
-    cases.append(("copie : ar passe au vouvoiement", fixed, [], "ALIGNÉ (témoin)"))
-
-    broken = dict(cur)
-    broken["ar"] = fixed["ar"]
-    broken["pt"] = "A ouvir-te, toda compra é imoral. No entanto, vi-te a aproveitar os saldos outro dia, e a minha moral tolera isso."
-    cases.append(("copie : pt (aligné) reverti au tutoiement", broken, ["pt"], "DÉSALIGNÉ"))
-
+    cases = [
+        ("HEAD (ar : exempt par décision #1546)", dict(cur), [], "ALIGNÉ (témoin)"),
+        ("copie : pt (aligné) reverti au tutoiement",
+         dict(cur, pt="A ouvir-te, toda compra é imoral. No entanto, vi-te a aproveitar os saldos outro dia, e a minha moral tolera isso."),
+         ["pt"], "DÉSALIGNÉ (mutation vue — le contrôle DoD)"),
+        ("copie : fr (cible) reverti au tutoiement",
+         dict(cur, fr="À t’entendre, tout achat est immoral. Pourtant je t’ai vu faire les soldes l’autre jour, et ma morale le tolère."),
+         ["fr"], "ROUGE instrument (la cible n'est plus au registre attendu)"),
+    ]
     ok = True
     for name, cell, want, verdict in cases:
         got = register_of(cell)
@@ -127,8 +125,7 @@ def self_test(head):
         ok &= good
         print(f"  [{'PASS' if good else 'FAIL'}] {name} -> retardataires {got or 'aucun'} "
               f"(attendu {want or 'aucun'}) : {verdict}")
-    print("SELF-TEST " + ("OK (le désalignement ar est vu ; le témoin ar-fixé reste vert ; "
-                          "la mutation pt est vue)" if ok else "NON PROUVE"))
+    print("SELF-TEST " + ("OK (témoin HEAD vert ; mutation pt vue ; dérive fr vue)" if ok else "NON PROUVE"))
     return 0 if ok else 1
 
 
