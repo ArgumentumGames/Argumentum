@@ -45,10 +45,12 @@ def derive():
         ["git", "rev-list", "-1", "--before=2026-09-22T13:00:00Z", "origin/master"],
         capture_output=True, check=True, text=True, cwd=REPO,
     ).stdout.strip()
-    head_ref = subprocess.run(
-        ["git", "rev-parse", "origin/master"],
-        capture_output=True, check=True, text=True, cwd=REPO,
-    ).stdout.strip()
+    # ⚠️ Tête ÉPINGLÉE (dispatch v17 grain 1, #458 c.5843387663) : la mesure
+    # vise l'arbre de la revue ai-01 (15 candidats sur 906284ab). Sur un master
+    # qui avance, une tête flottante rend 19 candidats et rougit la garde pour
+    # une raison qui n'est pas un défaut : la cascade a continué d'écrire.
+    HEAD_PINNED = "906284ab3897dddaf9f73f805860b6d1f3d7232d"
+    head_ref = HEAD_PINNED
     base, head = rows_of(base_ref), rows_of(head_ref)
     cands = []
     for pk in sorted(set(base) & set(head), key=lambda p: int(p)):

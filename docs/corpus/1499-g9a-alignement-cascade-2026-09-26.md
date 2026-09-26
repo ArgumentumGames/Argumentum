@@ -19,6 +19,8 @@
 
 La re-dérivation (outil `tools/1499-g9a-alignement-cascade.py`, garde `EXPECTED_N = 15`) rend **exactement les 15 candidats** de la mesure ai-01, même liste, même répartition changés/inchangés. La base est **dérivée par date**, pas recitée.
 
+⚠️ **Tête de mesure épinglée (v17 grain 1, [#458 c.5843387663](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5843387663))** : la tête vaut désormais `906284ab3897dddaf9f73f805860b6d1f3d7232d` — l'arbre de la revue ai-01 — et non plus `origin/master`, qui avance. Une tête flottante rendait **19 candidats** sur `880b107d` et rougissait la garde sans que ce soit un défaut : la cascade a simplement continué d'écrire après la mesure.
+
 ## 1. Méthode
 
 - **Candidat** : PK × champ (`text|desc|example`) tel que la cellule `fr` diffère base→tête **et** que moins de 8 langues changent.
