@@ -81,6 +81,10 @@ Un `0` n'est une absence que si l'instrument pouvait rendre un `1` — ici il a 
 - Que `es`/`ar`/`fa`/`zh` soient sans défaut : ils sont **sans référence** (§2). Leur cohérence interne est une autre question, hors de ce grain.
 - **Aucune écriture** n'est proposée, ni sur les 18 PK, ni ailleurs.
 
+### Une 9ᵉ colonne, vérifiée puis écartée
+
+`example_en_bis` **est rendue** — quatre gabarits Fallacies la lisent (`Argumentum_Fallacies_Face{,_2,_3,_Web}_fr.json`). Elle est **vide** : `0` cellule non vide sur les **1408 lignes**, à HEAD comme aux deux références. La colonne existe, le contenu n'existe pas : le périmètre de 8 langues est donc complet pour ce que les cartes portent. ⭐ Le motif vaut d'être noté — *une colonne référencée par un gabarit n'est pas une colonne peuplée.*
+
 ## 7. Exécutables
 
 ```bash
