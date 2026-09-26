@@ -1,0 +1,54 @@
+{
+ "grain": "G9-es-W",
+ "dispatch": "https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5842223755",
+ "delegation": "09/09 : choix linguistique ordinaire, decide puis rapporte avec veto ouvert",
+ "base": "origin/master 46d9b61c",
+ "source_mesure": "docs/corpus/1499-g9-es-registre-defs-2026-09-26.md (PR #1566)",
+ "regle": "Les 6 cartes flavées vosotros de la mesure G9-es : 887, 1092, 1120 sont un vosotros COHERENT (toute la phrase au pluriel) et sont GARDEES ; 1297 et 1301 sont HYBRIDES (verbe 2e pers. pluriel « Repetís » + possessif singulier « tu » dans la meme phrase) — l'incoherence interne se resout vers le singulier, la ou la phrase regarde deja le lecteur au singulier ; 492 est en vosotros complet alors que son text_es vient d'etre aligne et que le deck adresse partout ailleurs un lecteur SINGULIER. On ne touche que les mots d'adresse : le reste de chaque phrase reste byte-identique (suffixe epingle).",
+ "cellules": [
+  {
+   "pk": "1297",
+   "col": "desc_es",
+   "ancienne": "Repetís tu punto de vista con fuerza en lugar de proporcionar pruebas o argumentos reales.",
+   "valeur": "Repites tu punto de vista con fuerza en lugar de proporcionar pruebas o argumentos reales.",
+   "suffixe_epingle": " punto de vista con fuerza en lugar de proporcionar pruebas o argumentos reales.",
+   "regle": "hybride : « Repetís » (2e pers. pluriel) devant le possessif singulier « tu » — le singulier est deja porte par la phrase ; seule la desinence change"
+  },
+  {
+   "pk": "1301",
+   "col": "desc_es",
+   "ancienne": "Repetís tu punto de vista en exceso para intentar imponerlo sin responder a las objeciones.",
+   "valeur": "Repites tu punto de vista en exceso para intentar imponerlo sin responder a las objeciones.",
+   "suffixe_epingle": " punto de vista en exceso para intentar imponerlo sin responder a las objeciones.",
+   "regle": "meme hybride que 1297 — « Repetís » + « tu » ; seule la desinence change"
+  },
+  {
+   "pk": "492",
+   "col": "desc_es",
+   "ancienne": "Os presentáis como una víctima, a menudo de manera exagerada, para ganar simpatía o evitar la responsabilidad.",
+   "valeur": "Te presentas como una víctima, a menudo de manera exagerada, para ganar simpatía o evitar la responsabilidad.",
+   "suffixe_epingle": " como una víctima, a menudo de manera exagerada, para ganar simpatía o evitar la responsabilidad.",
+   "regle": "vosotros complet alors que le deck adresse ailleurs un lecteur singulier ; le pronom reflechi et le verbe passent au singulier (« Os presentáis » -> « Te presentas »)"
+  }
+ ],
+ "protegees": [
+  {"pk": "887", "col": "desc_es", "valeur": "Os liberáis de las reglas tácitas que rigen un debate racional.", "motif": "vosotros COHERENT (verbe et reflexif au pluriel) — GARDE, dispatch grain 3 : ne pas toucher"},
+  {"pk": "1092", "col": "desc_es", "valeur": "Os concentráis en los elementos desfavorables y pesimistas, en detrimento de los posibles aspectos positivos.", "motif": "vosotros COHERENT — GARDE"},
+  {"pk": "1120", "col": "desc_es", "valeur": "Razonáis en términos de todo o nada, sin matices: si no sois perfectos, os consideráis un fracaso total.", "motif": "vosotros COHERENT (« Razonáis… sois… os consideráis ») — GARDE"},
+  {"pk": "492", "col": "text_es", "valeur": "Hacerse la víctima", "motif": "aligne par G9-A-W (#1565, merge beeff841) — doit rester byte-identique"}
+ ],
+ "controle_inverse": {
+  "motif": "les 3 formes remplacees ne doivent plus apparaitre nulle part dans le CSV, et les 3 formes gardees doivent y etre exactement une fois",
+  "absentes_apres": ["Repetís tu", "Os presentáis"],
+  "presentes_apres": [
+   "Os liberáis de las reglas tácitas",
+   "Os concentráis en los elementos desfavorables",
+   "Razonáis en términos de todo o nada"
+  ]
+ },
+ "non_touche": {
+  "887_1092_1120": "vosotros coherent, garde sur decision du dispatch (grain 3) — ⛔ ne pas toucher",
+  "example_es": "couvert par la decision Q-12 3a (#1546) et sa garde — hors perimetre",
+  "autres_desc_es": "les 58 autres adressantes (tú / usted / ustedes) et les 114 impersonnelles restent telles quelles : la mesure G9-es conclut « melange stable », aucune harmonisation n'est proposee"
+ }
+}
