@@ -1,0 +1,36 @@
+{
+ "grain": "G9-A-W",
+ "dispatch": "https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5838808923",
+ "delegation": "09/09 : choix linguistique ordinaire, decide puis rapporte avec veto ouvert",
+ "base": "origin/master 906284ab",
+ "source_mesure": "docs/corpus/1499-g9a-alignement-cascade-2026-09-26.md (PR #1564)",
+ "hors_perimetre": {
+  "796_example_fa": "GLOSE NON restauree : l'exclusion est portee par TROIS artefacts coherents (decision Q-16 c « x6 », PR #1549 qui ne nomme pas fa, garde FallaciesGlossRegisterGate qui epingle l'etat coupe) — reouverture a l'arbitrage ai-01, pas au worker",
+  "1361_example_ar": "VOULU, pas DESALIGNÉ (erratum G9-A) : #1546 — « ar inchangé (l'arabe standard ne distingue pas tu/vous) », arbitrage ai-01 c.5825475175, epingle par la garde Pk1361_Example_Matches_The_Polite_Register_Decision. Une premiere ecriture (4 cellules) a ROUGI la garde ; revertee depuis le backup, jamais poussee."
+ },
+ "cellules": [
+  {
+   "pk": "492",
+   "col": "text_es",
+   "regle": "fr « Jouer la victime » (G1-W #1522) rejoint la famille metaphorie « jouer la victime » deja portee par en (Playing the Victim), ru (Игра в жертву), pt (Jogar a Vítima), ar (لعب دور الضحية) ; es reste sur l'ancien titre fr (« Auto-victimización »). Forme idiomatique espagnole, infinitif comme les titres verbaux du deck (cf. 888 « Arreglar los hechos »)",
+   "valeur": "Hacerse la víctima"
+  },
+  {
+   "pk": "492",
+   "col": "text_fa",
+   "regle": "meme alignment ; خود-قربانی‌گری (auto-victimisation, ancien fr) devient la metaphorie « poser en victime », construction persane usuelle",
+   "valeur": "قربانی جلوه دادن"
+  },
+  {
+   "pk": "492",
+   "col": "text_zh",
+   "regle": "meme alignment ; 自我受害 (auto-victimisation, ancien fr) devient « jouer la victime », forme standard",
+   "valeur": "扮演受害者"
+  }
+ ],
+ "non_touche": {
+  "492_autres_langues": "fr/en/ru/pt/ar deja alignes (mesure G9-A) — inchanges",
+  "1361": "voir hors_perimetre — ar VOULU inchangé (Q-12/#1546), les 6 converties et en exempt epingles par la garde",
+  "796": "voir hors_perimetre"
+ }
+}
