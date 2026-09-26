@@ -170,6 +170,66 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
                        .And.Contain("visible");
         }
 
+        /// <summary>
+        /// The .famille label overflows on 123 of the 131 Virtues fr cards, always the same
+        /// way — a constant structural signal that dominated the headline tables (reco (b) of
+        /// the 25/09 review). Those findings must move to a dedicated section: the main
+        /// tables list only cards with findings BEYOND .famille, the headline splits the
+        /// count, and the structural findings stay listed and counted — quarantined, not
+        /// dropped.
+        /// </summary>
+        [Fact]
+        public void FormatMarkdown_FamilleFindings_QuarantinedInTheirOwnSection()
+        {
+            var report = BuildReport(
+                new CardOverflowResult { CardIndex = 0, CardName = "Carte propre", Findings = new() },
+                new CardOverflowResult
+                {
+                    CardIndex = 1,
+                    CardName = "Structurelle-seule",
+                    Findings = new() { new OverflowFinding
+                    {
+                        Selector = ".famille", Kind = "self", ExcessHeight = 12, FontSizePx = 9,
+                        OverflowCss = "hidden", TextSnippet = "Presentation integre"
+                    } }
+                },
+                new CardOverflowResult
+                {
+                    CardIndex = 2,
+                    CardName = "Mixte",
+                    Findings = new List<OverflowFinding>
+                    {
+                        new() { Selector = ".title", Kind = "container", ExcessHeight = 30, FontSizePx = 9, OverflowCss = "visible", TextSnippet = "titre" },
+                        new() { Selector = ".famille", Kind = "self", ExcessHeight = 12, FontSizePx = 9, OverflowCss = "hidden", TextSnippet = "Presentation integre" }
+                    }
+                });
+
+            var md = OverflowDetector.FormatMarkdown(report);
+
+            // Headline: full count, split between beyond-famille and structural-only.
+            md.Should().Contain("2 / 3 cards have at least one overflow");
+            md.Should().Contain("1 card(s) with findings beyond `.famille`");
+            md.Should().Contain("1 whose only findings are on `.famille`");
+
+            var mainPart = md.Split("## Structural findings")[0];
+            var structuralPart = md.Substring(md.IndexOf("## Structural findings", StringComparison.Ordinal));
+
+            // Main tables: the structural-only card disappears, the mixed card stays with
+            // its non-famille finding only.
+            mainPart.Should().Contain("Mixte");
+            mainPart.Should().NotContain("Structurelle-seule");
+            var mixteLine = mainPart.Split('\n').First(l => l.Contains("Mixte"));
+            mixteLine.Should().Contain(".title").And.NotContain("famille");
+
+            // Quarantine section: every .famille finding stays listed, sorted by excess.
+            structuralPart.Should().Contain("Structurelle-seule");
+            structuralPart.Should().Contain("Mixte");
+            structuralPart.Should().Contain("| 1 | Structurelle-seule | self | hidden |");
+
+            // The aggregate the harvest logs is untouched: still per-card, not per-section.
+            report.CardsWithOverflowCount.Should().Be(2);
+        }
+
         [Fact]
         public void CardsWithOverflowCount_ComputedFromFindings()
         {
