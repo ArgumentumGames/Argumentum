@@ -180,6 +180,128 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 			report.CardsWithOverflowCount.Should().Be(2);
 		}
 
+		/// <summary>
+		/// Fixture reproducing the REAL Sophismes face DOM as committed in
+		/// Argumentum_Fallacies_Face{,_2,_Web}_*.json — the reservation ai-01 voiced on #1568:
+		/// the earlier geometry fixture hosted .title inside .header, a shape the real template
+		/// never produces. In the committed template .title is the sibling AFTER .image inside
+		/// .imageSection (.imageSection &gt; .image + .title), with .image in flex-grow:1;
+		/// min-height:0 and .title in flex-shrink:0. When the wrapped title is taller than the
+		/// space the .body column allots to .imageSection, .image collapses to min-height:0 and
+		/// the title's box crosses .imageSection's bottom edge, sliding under the .texte banner
+		/// below — the exact geometry of the es "Quaternio terminorum" card of the 25/09 bundle.
+		/// The second card is the same DOM with a one-line title: an organ that flagged it too
+		/// would be as broken as one that flags nothing.
+		/// </summary>
+		private const string RealSophismesFaceFixtureHtml = @"<!DOCTYPE html>
+<html><head><meta charset=""utf-8""><style>
+  /* Structure and flex properties mirrored from Argumentum_Fallacies_Face_fr.json */
+  card { display: block; width: 240px; height: 360px; margin: 8px; font-family: sans-serif; }
+  .cardName { display: none; }
+  .body { display: flex; flex-flow: column nowrap; height: 100%; }
+  .header { display: flex; justify-content: center; }
+  .famille { font-size: 16px; line-height: 30px; }
+  .imageSection { min-height: 0; flex-shrink: 1; display: flex; flex-flow: column;
+                  justify-content: flex-start; align-items: flex-start; width: 100%; height: 100%; }
+  .image { width: 100%; flex-grow: 1; min-height: 0; background: #ccc; }
+  .image img { max-width: 100%; max-height: 100%; }
+  .title { width: 100%; box-sizing: border-box; flex-shrink: 0; min-height: 2.5em;
+           display: flex; justify-content: center; align-items: center;
+           font-size: 16px; line-height: 20px; letter-spacing: 0.05em; text-transform: uppercase;
+           padding: 9px 12px; background: #008000; color: #fff; }
+  .title > div { flex-shrink: 1; width: 100%; }
+  .texte { padding: 50px 0; background: #008000; color: #fff; }
+</style></head><body>
+  <card>
+    <div class=""cardName"">titre-reel-dom-qui-deborde</div>
+    <div class=""body"">
+      <div class=""header"">
+        <div class=""famille"">Erreurs de raisonnement</div>
+      </div>
+      <div class=""imageSection"">
+        <div class=""image"">
+          <img src=""data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="">
+        </div>
+        <div class=""title"">
+          <div>RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT RAISONNEMENT</div>
+        </div>
+      </div>
+      <div class=""texte"">
+        <div class=""desc_fr"">Definition courte</div>
+        <div class=""exemple_fr"">Exemple court</div>
+      </div>
+    </div>
+  </card>
+  <card>
+    <div class=""cardName"">titre-reel-dom-propre</div>
+    <div class=""body"">
+      <div class=""header"">
+        <div class=""famille"">Erreurs de raisonnement</div>
+      </div>
+      <div class=""imageSection"">
+        <div class=""image"">
+          <img src=""data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="">
+        </div>
+        <div class=""title"">
+          <div>Appel a la nature</div>
+        </div>
+      </div>
+      <div class=""texte"">
+        <div class=""desc_fr"">Definition courte</div>
+        <div class=""exemple_fr"">Exemple court</div>
+      </div>
+    </div>
+  </card>
+</body></html>";
+
+		[Fact]
+		public async Task DetectAsync_OnRealSophismesFaceDom_TitleEscapingTheImageSection_ReportsContainerFinding()
+		{
+			var innerPath = Path.Combine(_fixtureDir, "real-face.html");
+			File.WriteAllText(innerPath, RealSophismesFaceFixtureHtml);
+
+			var hostPath = Path.Combine(_fixtureDir, "host-real-face.html");
+			File.WriteAllText(hostPath,
+				"<!DOCTYPE html><html><body><iframe id=\"cpOutput\" width=\"400\" height=\"600\" src=\"real-face.html\"></iframe></body></html>");
+
+			Microsoft.Playwright.Program.Main(new[] { "install", "chromium" })
+				.Should().Be(0, "the organ drives the real Playwright path, not a stub");
+
+			using var playwright = await Playwright.CreateAsync();
+			await using var browser = await playwright.Chromium.LaunchAsync(
+				new BrowserTypeLaunchOptions { Headless = true });
+			var page = await browser.NewPageAsync();
+			await page.GotoAsync(new Uri(hostPath).AbsoluteUri);
+
+			var report = await OverflowDetector.DetectAsync(
+				page.FrameLocator("#cpOutput"), "RealSophismesFace", "fr");
+
+			report.Cards.Should().HaveCount(2);
+
+			// The too-long title: flex-shrink:0 keeps its box at full content height, .image
+			// has collapsed to min-height:0, so the title's box crosses .imageSection's
+			// bottom edge and slides under the .texte banner — a "container" finding, the
+			// geometry of the es Quaternio terminorum card of #1567.
+			var overflower = report.Cards.Single(c => c.CardName == "titre-reel-dom-qui-deborde");
+			overflower.Findings.Should().Contain(f => f.Kind == "container" && f.Selector == ".title",
+				"in the committed template the title escapes .imageSection, not a .header banner");
+			overflower.Findings.Should().NotContain(f => f.Kind == "card",
+				"the .texte zone below absorbs the excess: the title crosses its container, " +
+				"not the card edge");
+			overflower.Findings.Should().NotContain(f => f.Kind == "self",
+				"the title has no overflow:hidden: it paints outside its box instead of clipping");
+			overflower.Findings.Single(f => f.Selector == ".title").ExcessHeight.Should().BeGreaterThan(2,
+				"the escape must exceed the default 2 px tolerance");
+
+			// Inverse control: same real DOM, one-line title — .image flex-grows to fill the
+			// leftover space and nothing overflows anywhere.
+			var clean = report.Cards.Single(c => c.CardName == "titre-reel-dom-propre");
+			clean.Findings.Should().BeEmpty(
+				"an organ that flags every card would be as broken as one that flags none");
+
+			report.CardsWithOverflowCount.Should().Be(1);
+		}
+
 		public void Dispose()
 		{
 			if (Directory.Exists(_fixtureDir))
