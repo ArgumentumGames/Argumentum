@@ -101,6 +101,85 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 				"the aggregate the harvest logs must agree with the per-card findings");
 		}
 
+		/// <summary>
+		/// Fixture for the two defects seen on the 25/09 bundle (#1567) that the self-overflow
+		/// predicate alone cannot see: a title crossing out of its banner (the es
+		/// "Quaternio terminorum" case — the last line slides under the green banner and the
+		/// illustration disappears) and a text block cut by the card edge (the Vertues remark
+		/// sliced at the bottom of the card). The third card is clean: an organ that flagged
+		/// every card would be as broken as one that flags none.
+		/// </summary>
+		private const string GeometryFixtureHtml = @"<!DOCTYPE html>
+<html><head><meta charset=""utf-8""><style>
+  card { display: block; width: 240px; margin: 8px; font-family: sans-serif; }
+</style></head><body>
+  <card>
+    <div class=""cardName"">titre-qui-passe-sous-le-bandeau</div>
+    <div class=""header"" style=""height: 30px; background: #008000;"">
+      <div class=""title"" style=""font-size: 16px; line-height: 20px;"">Quaternio terminorum (falacia de los cuatro terminos) muy largo</div>
+    </div>
+    <div class=""imageSection"" style=""height: 60px; background: #ccc;"">image</div>
+  </card>
+  <card style=""height: 120px; overflow: hidden;"">
+    <div class=""cardName"">texte-coupe-par-le-bas</div>
+    <div class=""texte"" style=""height: 200px;"">Un texte qui tient dans sa boite mais pas dans la carte.</div>
+  </card>
+  <card>
+    <div class=""cardName"">carte-propre-geometrie</div>
+    <div class=""header"" style=""height: 30px; background: #008000;"">
+      <div class=""title"" style=""font-size: 12px; line-height: 14px;"">Titre court</div>
+    </div>
+    <div class=""imageSection"" style=""height: 60px; background: #ccc;"">image</div>
+  </card>
+</body></html>";
+
+		[Fact]
+		public async Task DetectAsync_OnTitleCrossingItsBannerAndOnTextCutByTheCard_ReportsBothKinds()
+		{
+			var innerPath = Path.Combine(_fixtureDir, "geometry.html");
+			File.WriteAllText(innerPath, GeometryFixtureHtml);
+
+			var hostPath = Path.Combine(_fixtureDir, "host-geometry.html");
+			File.WriteAllText(hostPath,
+				"<!DOCTYPE html><html><body><iframe id=\"cpOutput\" width=\"400\" height=\"600\" src=\"geometry.html\"></iframe></body></html>");
+
+			Microsoft.Playwright.Program.Main(new[] { "install", "chromium" })
+				.Should().Be(0, "the organ drives the real Playwright path, not a stub");
+
+			using var playwright = await Playwright.CreateAsync();
+			await using var browser = await playwright.Chromium.LaunchAsync(
+				new BrowserTypeLaunchOptions { Headless = true });
+			var page = await browser.NewPageAsync();
+			await page.GotoAsync(new Uri(hostPath).AbsoluteUri);
+
+			var report = await OverflowDetector.DetectAsync(
+				page.FrameLocator("#cpOutput"), "SyntheticGeometry", "es");
+
+			report.Cards.Should().HaveCount(3);
+
+			// (a) The title grows past its fixed-height banner: nothing overflows INSIDE the
+			// title box, so the self predicate is blind to it by construction.
+			var banner = report.Cards.Single(c => c.CardName == "titre-qui-passe-sous-le-bandeau");
+			banner.Findings.Should().Contain(f => f.Kind == "container" && f.Selector == ".title",
+				"a title whose box crosses its banner is the #1567 Quaternio defect");
+			banner.Findings.Should().NotContain(f => f.Kind == "self",
+				"the title fits inside its own box — only the container comparison sees the defect");
+
+			// (b) The text block fits its own box but is cut by the card edge.
+			var clipped = report.Cards.Single(c => c.CardName == "texte-coupe-par-le-bas");
+			clipped.Findings.Should().Contain(f => f.Kind == "card" && f.Selector == ".texte",
+				"a block reaching past the card edge is the #1567 Vertues remark defect");
+			clipped.Findings.Should().NotContain(f => f.Kind == "self",
+				"the text fits its own box — the clip happens at the card boundary");
+
+			// (c) Inverse control: the same shape, correctly sized, stays silent.
+			var clean = report.Cards.Single(c => c.CardName == "carte-propre-geometrie");
+			clean.Findings.Should().BeEmpty(
+				"an organ that flags every card would be as broken as one that flags none");
+
+			report.CardsWithOverflowCount.Should().Be(2);
+		}
+
 		public void Dispose()
 		{
 			if (Directory.Exists(_fixtureDir))
