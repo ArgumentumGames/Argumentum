@@ -206,10 +206,10 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 
             var md = OverflowDetector.FormatMarkdown(report);
 
-            // Headline: full count, split between beyond-famille and structural-only.
+            // Headline: full count, split between actionable and structural-only.
             md.Should().Contain("2 / 3 cards have at least one overflow");
-            md.Should().Contain("1 card(s) with findings beyond `.famille`");
-            md.Should().Contain("1 whose only findings are on `.famille`");
+            md.Should().Contain("1 card(s) with actionable findings");
+            md.Should().Contain("1 whose only findings are the structural `.famille` label");
 
             var mainPart = md.Split("## Structural findings")[0];
             var structuralPart = md.Substring(md.IndexOf("## Structural findings", StringComparison.Ordinal));
@@ -228,6 +228,73 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
 
             // The aggregate the harvest logs is untouched: still per-card, not per-section.
             report.CardsWithOverflowCount.Should().Be(2);
+        }
+
+        /// <summary>
+        /// Refinement of the .famille quarantine (ai-01 reservation on #1575, v18 grain 4):
+        /// ONLY the small vertical self excess (the line-height:0.9 residue) is structural.
+        /// A .famille finding that crosses the card edge (kind "card") is a real defect and
+        /// must stay in the MAIN tables — headline count, summary row and detail row — not
+        /// be quarantined away with the constant label signal.
+        /// </summary>
+        [Fact]
+        public void FormatMarkdown_FamilleCardKind_StaysInMainTables()
+        {
+            var report = BuildReport(
+                new CardOverflowResult
+                {
+                    CardIndex = 0,
+                    CardName = "Bord-coupe",
+                    Findings = new() { new OverflowFinding
+                    {
+                        Selector = ".famille", Kind = "card", ExcessHeight = 8, ExcessWidth = 0,
+                        FontSizePx = 9, OverflowCss = "hidden", TextSnippet = "Echange enrichissant"
+                    } }
+                });
+
+            var md = OverflowDetector.FormatMarkdown(report);
+
+            md.Should().Contain("1 / 1 cards have at least one overflow");
+
+            var mainPart = md.Split("## Structural findings")[0];
+
+            mainPart.Should().Contain("Bord-coupe");
+            var summaryLine = mainPart.Split('\n').First(l => l.Contains("Bord-coupe"));
+            summaryLine.Should().Contain(".famille (card)");
+            mainPart.Should().Contain("| `.famille` | card | hidden | 8.0 |",
+                "le constat .famille kind=card apparaît comme ligne de détail normale.");
+
+            md.Should().NotContain("## Structural findings",
+                "aucun constat structurel ici : le .famille kind=card n'est pas mis en quarantaine.");
+        }
+
+        /// <summary>
+        /// Second face of the same refinement: a .famille finding that is a HORIZONTAL self
+        /// excess (ExcessWidth beyond tolerance — the label sliding out of its box sideways)
+        /// is not the vertical line-height residue either, and stays in the main tables.
+        /// </summary>
+        [Fact]
+        public void FormatMarkdown_FamilleSelfHorizontal_StaysInMainTables()
+        {
+            var report = BuildReport(
+                new CardOverflowResult
+                {
+                    CardIndex = 0,
+                    CardName = "Glisse-laterale",
+                    Findings = new() { new OverflowFinding
+                    {
+                        Selector = ".famille", Kind = "self", ExcessHeight = 0, ExcessWidth = 6,
+                        FontSizePx = 9, OverflowCss = "hidden", TextSnippet = "Justesse lexicale"
+                    } }
+                });
+
+            var md = OverflowDetector.FormatMarkdown(report);
+
+            md.Should().Contain("1 / 1 cards have at least one overflow");
+            md.Split("## Structural findings")[0].Should().Contain("Glisse-laterale",
+                "6 px de débordement horizontal dépassent la tolérance (2) : pas structurel.");
+            md.Should().Contain("| `.famille` | self |");
+            md.Should().NotContain("## Structural findings");
         }
 
         [Fact]

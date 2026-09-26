@@ -97,7 +97,7 @@ def parse_finding_row(cells):
         return None
 
 
-def parse_report(text):
+def parse_report(text, tol=TOL_DEFAULT):
     """Un rapport markdown → dict :
     { 'with_findings': n, 'total': m,
       'cards': {code: {'title': str, 'worst': float, 'findings': [(sel,kind,h,w)]}},
@@ -176,9 +176,12 @@ def parse_report(text):
             continue
         sel, kind, eh, ew = f
         code, entry = current
-        if section == "main" and sel == FAMILLE:
+        if section == "main" and sel == FAMILLE and kind == "self" and ew <= tol:
             # Ancien format : le .famille était mêlé au détail — normalisé en
             # structurel pour que les deux formats comparent à armes égales.
+            # Règle affinée (v18 grain 4, miroir du générateur) : seul le résidu
+            # VERTICAL self (ew <= tolérance) est structurel ; un .famille kind=card
+            # ou horizontal est un vrai défaut et reste dans le main des deux côtés.
             sentry = out["structural"].setdefault(code, {"title": entry["title"], "worst": 0.0})
             sentry["worst"] = max(sentry["worst"], eh, ew)
         elif section == "structural":
@@ -274,8 +277,8 @@ def render(path_a, path_b, a, b, res, tol):
 
 
 def run_pair(path_a, path_b, tol):
-    a = parse_report(Path(path_a).read_text(encoding="utf-8"))
-    b = parse_report(Path(path_b).read_text(encoding="utf-8"))
+    a = parse_report(Path(path_a).read_text(encoding="utf-8"), tol)
+    b = parse_report(Path(path_b).read_text(encoding="utf-8"), tol)
     res = compare(a, b, tol)
     return render(Path(path_a).name, Path(path_b).name, a, b, res, tol)
 
@@ -420,6 +423,17 @@ def self_test():
     d = parse_report("## Detailed findings\n\n### 0 — A_1..Titre | avec pipe\n\n"
                      "| `.title` | container | 5.0 | 0.0 | 9.0 | 3 | x |\n")
     check("pipe échappé dans le titre ne casse pas le parse", d["cards"]["A_1"]["worst"] == 5.0)
+
+    # Règle affinée (v18 grain 4) : dans un rapport ancien format, seul le .famille
+    # self VERTICAL part en quarantaine — card ou horizontal reste un constat du main.
+    e = parse_report("## Detailed findings\n\n### 0 — Argumentum_Fallacies_9.1..Bord\n\n"
+                     "| `.famille` | card | 8.0 | 0.0 | 9.0 | 20 | bord |\n")
+    check(".famille kind=card (ancien format) reste dans le main, pas structurel",
+          "9.1" in e["cards"] and "9.1" not in e["structural"])
+    f = parse_report("## Detailed findings\n\n### 0 — Argumentum_Fallacies_9.2..Glisse\n\n"
+                     "| `.famille` | self | 0.0 | 6.0 | 9.0 | 20 | glisse |\n")
+    check(".famille self horizontal (> tolérance) reste dans le main",
+          "9.2" in f["cards"] and "9.2" not in f["structural"])
 
     print(f"SELF-TEST : {ok[0]} cas OK")
     return True

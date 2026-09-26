@@ -210,29 +210,34 @@ public static class OverflowDetector
         }
 
         // The .famille label is a constant structural signal (reco (b) of the 25/09 review:
-        // 123 of the 131 Virtues fr cards overflow on it, always the same way). Quarantining
-        // its findings in a dedicated section keeps the headline tables readable as a defect
-        // surface — without dropping the findings, which stay counted and listed below.
-        var actionable = cardsWithOverflow.Where(c => c.Findings.Any(f => f.Selector != ".famille")).ToList();
+        // 123 of the 131 Virtues fr cards overflow on it, always the same way) — but only in
+        // its VERTICAL residue form: a small self excess left by line-height:0.9 (ai-01
+        // reservation on #1575, refined in v18 grain 4). Any other .famille finding — a
+        // card-edge crossing (kind "card"), a container escape, or a HORIZONTAL excess — is
+        // a real defect and stays in the main tables. Quarantining only the structural form
+        // keeps the headline tables readable without dropping or hiding actual defects.
+        Func<OverflowFinding, bool> isStructural = f =>
+            f.Selector == ".famille" && f.Kind == "self" && f.ExcessWidth <= report.TolerancePx;
+        var actionable = cardsWithOverflow.Where(c => c.Findings.Any(f => !isStructural(f))).ToList();
         var structuralOnly = cardsWithOverflow.Count - actionable.Count;
-        var familleFindings = cardsWithOverflow
-            .SelectMany(c => c.Findings.Where(f => f.Selector == ".famille")
+        var structuralFindings = cardsWithOverflow
+            .SelectMany(c => c.Findings.Where(isStructural)
                 .Select(f => (Card: c, Finding: f)))
             .OrderByDescending(x => Math.Max(x.Finding.ExcessHeight, x.Finding.ExcessWidth))
             .ToList();
-        if (familleFindings.Count > 0)
+        if (structuralFindings.Count > 0)
         {
             sb.Append(actionable.Count.ToString(culture))
-              .Append(" card(s) with findings beyond `.famille` · ")
+              .Append(" card(s) with actionable findings · ")
               .Append(structuralOnly.ToString(culture))
-              .AppendLine(" whose only findings are on `.famille` (see \"Structural findings\" below).");
+              .AppendLine(" whose only findings are the structural `.famille` label (see \"Structural findings\" below).");
             sb.AppendLine();
         }
 
         // Per-card sections, sorted by worst excess first so the most urgent cards are on top.
-        // The rank uses only the findings the tables display (non-.famille).
+        // The rank uses only the findings the tables display (non-structural).
         var sorted = actionable
-            .OrderByDescending(c => c.Findings.Where(f => f.Selector != ".famille")
+            .OrderByDescending(c => c.Findings.Where(f => !isStructural(f))
                 .Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
             .ToList();
 
@@ -248,7 +253,7 @@ public static class OverflowDetector
             sb.AppendLine("|---|------|-------------------|-----------|----------|");
             foreach (var card in sorted)
             {
-                var relevant = card.Findings.Where(f => f.Selector != ".famille").ToList();
+                var relevant = card.Findings.Where(f => !isStructural(f)).ToList();
                 var worst = relevant.Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth));
                 var selectors = string.Join(", ",
                     relevant.Select(f => $"{f.Selector} ({f.Kind})").Distinct());
@@ -272,7 +277,7 @@ public static class OverflowDetector
             sb.AppendLine();
             sb.AppendLine("| Selector | Kind | Overflow | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |");
             sb.AppendLine("|----------|------|----------|---------------|---------------|-----------|----------|---------|");
-            foreach (var f in card.Findings.Where(f => f.Selector != ".famille")
+            foreach (var f in card.Findings.Where(f => !isStructural(f))
                 .OrderByDescending(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
             {
                 sb.Append("| `").Append(f.Selector).Append("` | ").Append(f.Kind).Append(" | ")
@@ -287,13 +292,13 @@ public static class OverflowDetector
             sb.AppendLine();
         }
 
-        if (familleFindings.Count > 0)
+        if (structuralFindings.Count > 0)
         {
             sb.AppendLine("## Structural findings — `.famille` label");
             sb.AppendLine();
             sb.AppendLine("| # | Card | Kind | Overflow | Excess H (px) | Excess W (px) | Snippet |");
             sb.AppendLine("|---|------|------|----------|---------------|---------------|---------|");
-            foreach (var (card, f) in familleFindings)
+            foreach (var (card, f) in structuralFindings)
             {
                 sb.Append("| ").Append(card.CardIndex.ToString(culture))
                   .Append(" | ").Append(EscapePipes(card.CardName))
