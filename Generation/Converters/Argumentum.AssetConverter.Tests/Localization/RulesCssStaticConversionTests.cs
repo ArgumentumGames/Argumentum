@@ -10,7 +10,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 	/// <summary>
 	/// Regression tests for #1537: the CardPen template's <c>css</c> key carries hard-coded
 	/// FRENCH text that no mustache substitution can ever reach — the Rules variant footers are
-	/// <c>content:</c> pseudo-elements (<c>[class~="2..6"]:before { content: "L'ÉCOLE DES
+	/// <c>content:</c> pseudo-elements (<c>[class~="2..6"]:before { content: "L’ÉCOLE DES
 	/// MENTEURS"; }</c> …), so a mustache-only localization ships them French in all 8 languages.
 	///
 	/// Until #1537, <see cref="CardSetLocalization.TranslateCardSetInfo"/> ran StaticConversions
@@ -47,7 +47,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 
 		private static readonly string[] FrenchFooters =
 		{
-			"L'ÉCOLE DES MENTEURS",
+			"L’ÉCOLE DES MENTEURS",
 			"LE BINGO MIXOLOGIE ARGUMENTATIVE",
 			"LE DERNIER BEAU PARLEUR",
 			"LE MOULIN À BARATIN",
@@ -130,7 +130,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 						CardSetNames = new System.Collections.Generic.List<string> { KnownCardSets.Rules },
 						StaticConversions = new System.Collections.Generic.List<(string sourceText, System.Collections.Generic.List<(string Language, string destText)> textConversions)>
 						{
-							("L'ÉCOLE DES MENTEURS — VARIANTE MARQUEE",
+							("L’ÉCOLE DES MENTEURS — VARIANTE MARQUEE",
 								new System.Collections.Generic.List<(string Language, string destText)> { ("en", "THE SCHOOL OF LIARS") }),
 						},
 					};
@@ -237,7 +237,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			// localization object — registering the spike on it would leak into a concurrent test.
 			var templatePath = Path.Combine(TestRepoRoot.Find(), RulesTemplateRelPath);
 			var css = LoadRulesCss();
-			var spiked = css.Replace("L'ÉCOLE DES MENTEURS", "L'ÉCOLE DES MENTEURS — VARIANTE MARQUEE");
+			var spiked = css.Replace("L’ÉCOLE DES MENTEURS", "L’ÉCOLE DES MENTEURS — VARIANTE MARQUEE");
 			spiked.Should().NotBe(css, "the spike must actually alter the css — otherwise this test is vacuous");
 
 			var convertedCss = await TranslateViaProductionPath(useLocalCardpen, spiked, templatePath, "en");
@@ -246,7 +246,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			convertedCss.Should().Contain("THE SCHOOL OF LIARS",
 				"the StaticConversion registered on the Rules localization must reach the CLONED css — " +
 				"pre-#1537, TranslateCardSetInfo left returnDoc.css untouched and this was impossible");
-			convertedCss.Should().NotContain("L'ÉCOLE DES MENTEURS — VARIANTE MARQUEE",
+			convertedCss.Should().NotContain("L’ÉCOLE DES MENTEURS — VARIANTE MARQUEE",
 				"the French (spiked) footer must be gone from the converted css");
 			// Anti-clobber: the other 4 footers (no conversion registered) must survive verbatim.
 			foreach (var footer in FrenchFooters.Skip(1))
@@ -262,7 +262,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// </summary>
 		private static readonly (string Footer, string Pk)[] FooterCoverRows =
 		{
-			("L'ÉCOLE DES MENTEURS", "Rules_01"),
+			("L’ÉCOLE DES MENTEURS", "Rules_01"),
 			("LE BINGO MIXOLOGIE ARGUMENTATIVE", "Rules_07"),
 			("LE DERNIER BEAU PARLEUR", "Rules_09"),
 			("LE MOULIN À BARATIN", "Rules_11"),
