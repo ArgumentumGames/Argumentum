@@ -216,17 +216,20 @@ public static class OverflowDetector
 
         sb.AppendLine("## Cards with overflow");
         sb.AppendLine();
-        sb.AppendLine("| # | Card | Worst excess (px) | Selectors |");
-        sb.AppendLine("|---|------|-------------------|-----------|");
+        sb.AppendLine("| # | Card | Worst excess (px) | Selectors | Overflow |");
+        sb.AppendLine("|---|------|-------------------|-----------|----------|");
         foreach (var card in sorted)
         {
             var worst = card.Findings.Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth));
             var selectors = string.Join(", ",
                 card.Findings.Select(f => $"{f.Selector} ({f.Kind})").Distinct());
+            var overflowCss = string.Join(", ",
+                card.Findings.Select(f => f.OverflowCss).Where(v => !string.IsNullOrEmpty(v)).Distinct());
             sb.Append("| ").Append(card.CardIndex.ToString(culture))
               .Append(" | ").Append(EscapePipes(card.CardName))
               .Append(" | ").Append(worst.ToString("F1", culture))
               .Append(" | ").Append(EscapePipes(selectors))
+              .Append(" | ").Append(overflowCss)
               .AppendLine(" |");
         }
         sb.AppendLine();
@@ -237,11 +240,12 @@ public static class OverflowDetector
         {
             sb.Append("### ").Append(card.CardIndex.ToString(culture)).Append(" — ").AppendLine(card.CardName);
             sb.AppendLine();
-            sb.AppendLine("| Selector | Kind | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |");
-            sb.AppendLine("|----------|------|---------------|---------------|-----------|----------|---------|");
+            sb.AppendLine("| Selector | Kind | Overflow | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |");
+            sb.AppendLine("|----------|------|----------|---------------|---------------|-----------|----------|---------|");
             foreach (var f in card.Findings.OrderByDescending(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
             {
                 sb.Append("| `").Append(f.Selector).Append("` | ").Append(f.Kind).Append(" | ")
+                  .Append(f.OverflowCss).Append(" | ")
                   .Append(f.ExcessHeight.ToString("F1", culture)).Append(" | ")
                   .Append(f.ExcessWidth.ToString("F1", culture)).Append(" | ")
                   .Append(f.FontSizePx.ToString("F1", culture)).Append(" | ")
