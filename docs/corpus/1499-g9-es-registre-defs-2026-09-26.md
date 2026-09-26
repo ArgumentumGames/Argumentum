@@ -34,7 +34,7 @@ Par famille, les deux formes principales cohabitent dans les 7 : p. ex. Influenc
 
 1. **Pas de majorité nette** : tú plafonne à ~56 % des adressantes — soit 35 % du deck réel (61/175 adressent) ; harmoniser exigerait de réécrire 25-57 définitions selon la cible.
 2. **Aucune raison d'écarter une forme** : tú et usted(es) sont tous deux corrects ; la décision Q-12 3a (vouvoiement pour `example_*`, #1546) est **example-scoped** — aucune décision documentée ne couvre `desc_*` (grep des gardes : 0 hit).
-3. **Le coût dépasse le bénéfice d'un grain worker** : choisir « tout usted » contredirait la tendance tú de 34 cartes ; choisir « tout tú » contredirait la direction de politesse déjà retenue pour les exemples. **L'harmonisation globale est un arbitrage éditorial owner, pas un choix linguistique ordinaire** au sens de la délégation du 09/09 — et c'est pourquoi **elle n'a pas été écrite** : G9-es-W a écrit les **incohérences internes** (§3), pas l'harmonisation. ⛔ Ne pas relire ce point comme « l'owner doit trancher le mélange » : le mélange est **retenu** ; seule une décision owner explicite le rouvrirait.
+3. **Le coût dépasse le bénéfice d'un grain worker** : choisir « tout usted » contredirait la tendance tú de 34 cartes ; choisir « tout tú » contredirait la direction de politesse déjà retenue pour les exemples. **L'harmonisation globale n'est pas un choix linguistique ordinaire** au sens de la délégation du 09/09 — et elle est désormais **décidé (ai-01, revue [#1566](https://github.com/ArgumentumGames/Argumentum/pull/1566), délégation 09/09) : pas d'harmonisation**, donc **elle n'a pas été écrite** : G9-es-W a écrit les **incohérences internes** (§3), pas l'harmonisation. ⛔ Ne pas relire ce point comme « l'owner doit trancher le mélange » : le mélange est **retenu par décision rendue** (veto owner ouvert) ; seule une décision owner explicite le rouvrirait.
 
    ⚠️ **Distinguer les deux objets**, c'est ce qui a décidé le périmètre de G9-es-W : une phrase qui se contredit *elle-même* (verbe au pluriel + possessif au singulier) est un **défaut**, pas un registre — elle se corrige par choix linguistique ordinaire ; deux cartes qui adressent différemment sont un **mélange**, et un mélange n'est pas un défaut tant que personne n'a dit quelle forme est la cible.
 
@@ -53,7 +53,7 @@ Par famille, les deux formes principales cohabitent dans les 7 : p. ex. Influenc
 
   ⛔ **887 / 1092 / 1120 ne sont pas touchées** (décision du dispatch grain 3) et sont **épinglées par la garde** de l'outil d'écriture, qui échoue si l'une bouge.
 
-- **Éclatement usted (5) vs ustedes (20)** sur des sources fr identiques en forme (« Vous… ») — signature probable de passes de traduction distinctes. **Non écrit** : les deux formes sont correctes et aucune n'est majoritaire sans raison ⇒ relève de l'harmonisation globale, arbitrage owner (§2.3), ⛔ pas d'un grain worker.
+- **Éclatement usted (5) vs ustedes (20)** sur des sources fr identiques en forme (« Vous… ») — signature probable de passes de traduction distinctes. **Non écrit** : les deux formes sont correctes et aucune n'est majoritaire sans raison ⇒ relève de l'harmonisation globale — **décidé (ai-01, revue [#1566](https://github.com/ArgumentumGames/Argumentum/pull/1566), délégation 09/09) : pas d'harmonisation** (§2.3), ⛔ pas d'un grain worker.
 
 ### 3bis. Ce qui a été écrit, et le contrôle
 
