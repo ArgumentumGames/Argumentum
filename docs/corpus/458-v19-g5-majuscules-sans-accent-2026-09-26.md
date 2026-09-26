@@ -15,7 +15,7 @@ exclu (copie remplacée par `Cards.csv`) · colonnes `link_*` exclues (URLs) · 
 |---|---:|---:|---|---:|
 | fr | 67 | 67 | 8 — Ca, Echantillonnage, Enoncés, Equilibre, Equivoque, Etre, Evaluation, Evasion | 16 |
 | es | 459 | 0 | 1 — El | 0 |
-| pt | 52 | 1 | 3 — Aqueles, As, Es | 0 |
+| pt | 52 | 0 | 3 — Aqueles, As, Es | 0 |
 
 « Paires minimales » : mots grammaticaux dont l'homologue accentué est un **autre mot** (es « El » vs
 pronom « él », pt « As » vs contraction « às ») — listés pour transparence, **non des défauts**.
@@ -596,11 +596,11 @@ Nature : **paire minimale grammaticale — non un défaut** : él = pronom ≠ e
 - Scenarii · `7.3.5` «Le fromage vivant» · `context_es` · imprimé
 - Scenarii · `7.3.5` «Le fromage vivant» · `drawer_es` · imprimé
 
-## pt — 52 cellules candidates (1 hors paires minimales)
+## pt — 52 cellules candidates (0 hors paires minimales)
 
 ### «Aqueles» → «Àqueles» — 1 cellules (0 imprimées)
 
-Nature : défaut probable (même mot, initiale à accentuer)
+Nature : **paire minimale grammaticale — non un défaut** : aqueles = démonstratif sujet (« ceux qui ») ≠ àqueles = contraction (à + aqueles) ; « Aqueles que se opõem à nossa política… » est correct — « Àqueles » introduirait une faute
 
 - Fallacies · PK 331 (`2.2.2.2.2`) · `example_pt` · non imprimé
 
@@ -733,7 +733,12 @@ ANY_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ]+")
 GRAMMATICAL_PAIRS = {
     "es": {"El": "él = pronom ≠ el = article ; « El periódico » est correct"},
     "pt": {"As": "às = contraction (a+as) ≠ as = article ; « As cartas » est correct",
-           "Es": "és = verbe ser ≠ es ; à examiner en contexte"},
+           "Es": "és = verbe ser ≠ es ; à examiner en contexte",
+           # Correction revue #1591 (ai-01) : « Aqueles que se opõem… » (rangée 331,
+           # example_pt) — « Aqueles » y est SUJET (« Ceux qui s'opposent… »), la forme
+           # sans accent est correcte ; « Àqueles » (contraction à+aqueles) y serait une faute.
+           "Aqueles": "aqueles = démonstratif sujet (« ceux qui ») ≠ àqueles = contraction (à + aqueles) ; "
+                      "« Aqueles que se opõem à nossa política… » est correct — « Àqueles » introduirait une faute"},
 }
 
 def row_id(row, name):
