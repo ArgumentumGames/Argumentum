@@ -547,10 +547,13 @@ public class HarvestManager : IAsyncDisposable
 			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
 			currentHarvest.Faces = faces;
 
-			// Issue #190 phase 1: opportunistic overflow detection on Virtues face cards.
+			// Issue #190 phase 1 / #1567 grain 3: opportunistic overflow detection on the face
+			// cards of the two decks that carry a body of prose — Virtues and the Fallacies
+			// (Sophismes), whose es "Quaternio terminorum" title crosses its banner.
 			// Runs while the face DOM is still in the iframe — must happen before the back
 			// cardset generation overwrites the iframe content.
-			if (configCardSet.Config.FaceCardSetInfo?.DataSet == KnownDataSets.VirtuesTaxonomy)
+			var faceDataSet = configCardSet.Config.FaceCardSetInfo?.DataSet;
+			if (faceDataSet == KnownDataSets.VirtuesTaxonomy || faceDataSet == KnownDataSets.FallaciesTaxonomy)
 			{
 				try
 				{

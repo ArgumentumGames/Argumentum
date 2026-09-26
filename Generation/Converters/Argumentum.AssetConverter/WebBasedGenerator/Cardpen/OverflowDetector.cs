@@ -50,7 +50,11 @@ public static class OverflowDetector
         var selectors = (targetSelectors ?? DefaultTargetSelectors).ToArray();
 
         // Single-pass JS: walks every <card> in the iframe, measures the declared selectors
-        // with both box-model (offsetHeight/Width) and content-size (scrollHeight/Width).
+        // with both box-model (offsetHeight/Width) and content-size (scrollHeight/Width),
+        // PLUS two geometric comparisons the self predicate is blind to by construction
+        // (#1567): an element whose box crosses out of its parent block (kind "container" —
+        // a title whose last line slides under the banner), and an element whose box reaches
+        // past the card edge (kind "card" — a remark sliced by the bottom of the card).
         // Returns a JSON-serializable payload that we hydrate to strongly-typed results.
         const string js = @"(element, args) => {
             const selectors = args.selectors;
@@ -60,35 +64,50 @@ public static class OverflowDetector
                 const nameEl = cardEl.querySelector('.cardName');
                 const cardName = nameEl ? (nameEl.textContent || '').trim() : '';
                 const findings = [];
+                const cardRect = cardEl.getBoundingClientRect();
+                const push = (el, sel, kind, excessH, excessW) => {
+                    const cs = getComputedStyle(el);
+                    const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+                    findings.push({
+                        selector: sel,
+                        kind: kind,
+                        scrollWidth: el.scrollWidth,
+                        scrollHeight: el.scrollHeight,
+                        clientWidth: el.clientWidth,
+                        clientHeight: el.clientHeight,
+                        offsetWidth: el.offsetWidth,
+                        offsetHeight: el.offsetHeight,
+                        excessWidth: Math.max(0, excessW),
+                        excessHeight: Math.max(0, excessH),
+                        overflowCss: cs.overflow,
+                        fontSizePx: parseFloat(cs.fontSize) || 0,
+                        textLength: text.length,
+                        textSnippet: text.length > 160 ? text.substring(0, 157) + '...' : text
+                    });
+                };
                 for (const sel of selectors) {
                     const nodes = Array.from(cardEl.querySelectorAll(sel));
                     for (const el of nodes) {
-                        const scrollH = el.scrollHeight;
-                        const scrollW = el.scrollWidth;
-                        const clientH = el.clientHeight;
-                        const clientW = el.clientWidth;
-                        const offsetH = el.offsetHeight;
-                        const offsetW = el.offsetWidth;
-                        const excessH = scrollH - clientH;
-                        const excessW = scrollW - clientW;
+                        const excessH = el.scrollHeight - el.clientHeight;
+                        const excessW = el.scrollWidth - el.clientWidth;
                         if (excessH > tolerance || excessW > tolerance) {
-                            const cs = getComputedStyle(el);
-                            const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
-                            findings.push({
-                                selector: sel,
-                                scrollWidth: scrollW,
-                                scrollHeight: scrollH,
-                                clientWidth: clientW,
-                                clientHeight: clientH,
-                                offsetWidth: offsetW,
-                                offsetHeight: offsetH,
-                                excessWidth: Math.max(0, excessW),
-                                excessHeight: Math.max(0, excessH),
-                                overflowCss: cs.overflow,
-                                fontSizePx: parseFloat(cs.fontSize) || 0,
-                                textLength: text.length,
-                                textSnippet: text.length > 160 ? text.substring(0, 157) + '...' : text
-                            });
+                            push(el, sel, 'self', excessH, excessW);
+                        }
+                        const r = el.getBoundingClientRect();
+                        const byCardH = r.bottom - cardRect.bottom;
+                        const byCardW = r.right - cardRect.right;
+                        if (byCardH > tolerance || byCardW > tolerance) {
+                            push(el, sel, 'card', byCardH, byCardW);
+                            continue;
+                        }
+                        const parent = el.parentElement;
+                        if (parent && parent !== cardEl) {
+                            const pr = parent.getBoundingClientRect();
+                            const byParentH = r.bottom - pr.bottom;
+                            const byParentW = r.right - pr.right;
+                            if (byParentH > tolerance || byParentW > tolerance) {
+                                push(el, sel, 'container', byParentH, byParentW);
+                            }
                         }
                     }
                 }
@@ -109,6 +128,9 @@ public static class OverflowDetector
             {
                 findings.Add(new OverflowFinding
                 {
+                    Kind = f.TryGetProperty("kind", out var kindProp)
+                        ? kindProp.GetString() ?? "self"
+                        : "self",
                     Selector = f.GetProperty("selector").GetString() ?? string.Empty,
                     ScrollWidth = f.GetProperty("scrollWidth").GetDouble(),
                     ScrollHeight = f.GetProperty("scrollHeight").GetDouble(),
@@ -199,7 +221,8 @@ public static class OverflowDetector
         foreach (var card in sorted)
         {
             var worst = card.Findings.Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth));
-            var selectors = string.Join(", ", card.Findings.Select(f => f.Selector).Distinct());
+            var selectors = string.Join(", ",
+                card.Findings.Select(f => $"{f.Selector} ({f.Kind})").Distinct());
             sb.Append("| ").Append(card.CardIndex.ToString(culture))
               .Append(" | ").Append(EscapePipes(card.CardName))
               .Append(" | ").Append(worst.ToString("F1", culture))
@@ -214,11 +237,11 @@ public static class OverflowDetector
         {
             sb.Append("### ").Append(card.CardIndex.ToString(culture)).Append(" — ").AppendLine(card.CardName);
             sb.AppendLine();
-            sb.AppendLine("| Selector | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |");
-            sb.AppendLine("|----------|---------------|---------------|-----------|----------|---------|");
+            sb.AppendLine("| Selector | Kind | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |");
+            sb.AppendLine("|----------|------|---------------|---------------|-----------|----------|---------|");
             foreach (var f in card.Findings.OrderByDescending(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
             {
-                sb.Append("| `").Append(f.Selector).Append("` | ")
+                sb.Append("| `").Append(f.Selector).Append("` | ").Append(f.Kind).Append(" | ")
                   .Append(f.ExcessHeight.ToString("F1", culture)).Append(" | ")
                   .Append(f.ExcessWidth.ToString("F1", culture)).Append(" | ")
                   .Append(f.FontSizePx.ToString("F1", culture)).Append(" | ")
@@ -256,6 +279,16 @@ public class CardOverflowResult
 
 public class OverflowFinding
 {
+    /// <summary>
+    /// Which comparison produced this finding:
+    /// <c>self</c> — the element's own content exceeds its box (scroll vs client);
+    /// <c>container</c> — the element's box crosses out of its parent block (#1567: a title
+    /// whose last line slides under the banner);
+    /// <c>card</c> — the element's box reaches past the card edge (#1567: a remark sliced by
+    /// the bottom of the card).
+    /// </summary>
+    public string Kind { get; set; } = "self";
+
     public string Selector { get; set; } = string.Empty;
     public double ScrollWidth { get; set; }
     public double ScrollHeight { get; set; }
