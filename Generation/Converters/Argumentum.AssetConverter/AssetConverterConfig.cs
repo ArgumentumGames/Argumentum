@@ -165,7 +165,11 @@ namespace Argumentum.AssetConverter
 					// cannot reach (text not wrapped in {{}}). Safe for Fallacies templates (no-op if absent).
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
 						// Memo Back/Face subtitle: hardcoded FR subtitle, not a {{variable}} (#358).
-						("L'art de ne jamais avoir tort", new List<(string Language, string destText)>(new []{
+						// ⚠️ La clé doit rester VERBATIM celle du gabarit (garde FallaciesLocalizationTests
+						// .AssertSubtitleLocalized, lockstep) : le gabarit porte l'apostrophe COURBE (#1562),
+						// la clé aussi — une des deux qui bouge seule rend la conversion no-op et fait
+						// retomber les 7 langues sur le FR, silencieusement.
+						("L’art de ne jamais avoir tort", new List<(string Language, string destText)>(new []{
 							("en", "The art of never being wrong"),
 							("ru", "Искусство никогда не ошибаться"),
 							("pt", "A arte de nunca estar errado"),
@@ -209,7 +213,10 @@ namespace Argumentum.AssetConverter
 						// DÉRIVÉS des lignes de couverture du CSV Rules (Rules_01/07/09/11/13, colonnes
 						// Text_<lang>), verbatim : aucune traduction inventée. La casse d'affichage vient
 						// du `text-transform: uppercase` porté par chacune des 5 règles (mesuré).
-						("L'ÉCOLE DES MENTEURS", new List<(string Language, string destText)>(new []{("en", "The school of liars"), ("ru", "Школа лжецов"), ("pt", "A escola dos mentirosos"), ("es", "La escuela de los mentirosos"), ("ar", "مدرسة الكاذبين"), ("fa", "مدرسهٔ دروغ‌پردازان"), ("zh", "说谎者学校")}) ),
+						// ⚠️ Apostrophe COURBE, comme la règle `content:` du gabarit Rules (#1562) et comme
+						// l'intitulé fr du CSV (Rules_01 Text : « ## L’école des menteurs ») — les trois
+						// surfaces portent le même libellé et doivent s'écrire pareil.
+						("L’ÉCOLE DES MENTEURS", new List<(string Language, string destText)>(new []{("en", "The school of liars"), ("ru", "Школа лжецов"), ("pt", "A escola dos mentirosos"), ("es", "La escuela de los mentirosos"), ("ar", "مدرسة الكاذبين"), ("fa", "مدرسهٔ دروغ‌پردازان"), ("zh", "说谎者学校")}) ),
 						("LE BINGO MIXOLOGIE ARGUMENTATIVE", new List<(string Language, string destText)>(new []{("en", "Argumentative mixology bingo"), ("ru", "Бинго аргументативной миксологии"), ("pt", "O Bingo de mixologia argumentativa"), ("es", "El bingo de la mixología argumentativa"), ("ar", "بينغو الخلط البلاغي الحِجاجي"), ("fa", "بینگوی میکسولوژی استدلالی"), ("zh", "论证调配宾果")}) ),
 						("LE DERNIER BEAU PARLEUR", new List<(string Language, string destText)>(new []{("en", "The Last Smooth Talker"), ("ru", "Последний Софист"), ("pt", "O último boa-lábia"), ("es", "El último gran orador"), ("ar", "آخر متكلم بارع"), ("fa", "آخرین چرب‌زبان"), ("zh", "最后的能言善辩者")}) ),
 						("LE MOULIN À BARATIN", new List<(string Language, string destText)>(new []{("en", "The Smooth-Talk Mill"), ("ru", "Мели, Емеля"), ("pt", "O moinho de embromação"), ("es", "El molino de la palabrería"), ("ar", "طاحونة الثرثرة"), ("fa", "آسیابِ چرب‌زبانی"), ("zh", "花言巧语磨坊")}) ),
