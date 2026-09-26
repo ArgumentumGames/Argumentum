@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using Xunit;
 
@@ -125,6 +126,48 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
             // Pipes inside table cells must be escaped to avoid breaking the markdown grid.
             md.Should().Contain("Pipe \\| inside");
             md.Should().Contain("a \\| b \\| c");
+        }
+
+        /// <summary>
+        /// The overflowCss value (hidden = text clipped/lost, visible = painted outside its
+        /// box) was captured in every finding since #1567 but never printed — a reader of the
+        /// report could not tell a cut text from an out-of-box one. It must now appear in BOTH
+        /// tables: per finding in the detail rows, and as the distinct set on the summary line.
+        /// </summary>
+        [Fact]
+        public void FormatMarkdown_OverflowCss_AppearsInBothTables()
+        {
+            var report = BuildReport(
+                new CardOverflowResult { CardIndex = 0, CardName = "Clean card", Findings = new() },
+                new CardOverflowResult
+                {
+                    CardIndex = 1,
+                    CardName = "Carte mixte",
+                    Findings = new List<OverflowFinding>
+                    {
+                        new()
+                        {
+                            Selector = ".texte", Kind = "self", ExcessHeight = 40, FontSizePx = 8,
+                            OverflowCss = "hidden", TextSnippet = "texte coupe par overflow:hidden"
+                        },
+                        new()
+                        {
+                            Selector = ".title", Kind = "container", ExcessHeight = 25, FontSizePx = 9,
+                            OverflowCss = "visible", TextSnippet = "titre peint hors de sa boite"
+                        }
+                    }
+                });
+
+            var md = OverflowDetector.FormatMarkdown(report);
+
+            // Detail table: each finding carries its own overflowCss right after the kind.
+            md.Should().Contain("| `.texte` | self | hidden |");
+            md.Should().Contain("| `.title` | container | visible |");
+
+            // Summary table: the card's line shows the distinct set next to the selectors.
+            var summaryLine = md.Split('\n').First(l => l.Contains("Carte mixte"));
+            summaryLine.Should().Contain("hidden", "a clipped text reads differently from an out-of-box one")
+                       .And.Contain("visible");
         }
 
         [Fact]
