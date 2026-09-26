@@ -1,6 +1,6 @@
 # #1499 grain ③ — surface **multilingue** des `example_*` : 0 défaut résiduel, et pourquoi un compte par langue ne se lit pas comme un compte de défauts
 
-**Date :** 2026-09-26 · **Lane :** po-2024 (worker) · **Dispatch :** pool v16 grain 6 ([#458 c.5842223755](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5842223755)) — grain ③ de l'epic ([#1499](https://github.com/ArgumentumGames/Argumentum/issues/1499) §5), resté non pris
+**Date :** 2026-09-26 · **Lane :** po-2024 (worker) · **PR :** [#1572](https://github.com/ArgumentumGames/Argumentum/pull/1572) · **Dispatch :** pool v16 grain 6 ([#458 c.5842223755](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5842223755)) — grain ③ de l'epic ([#1499](https://github.com/ArgumentumGames/Argumentum/issues/1499) §5), resté non pris
 **Instrument :** `tools/1499-g3-exemples-multilingue.py` (`--self-test` 17/17, `--mutation-test` OK)
 
 ## 0. Verdict
