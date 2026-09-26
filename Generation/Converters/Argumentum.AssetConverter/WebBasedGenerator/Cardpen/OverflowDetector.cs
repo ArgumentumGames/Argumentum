@@ -209,28 +209,58 @@ public static class OverflowDetector
             return sb.ToString();
         }
 
+        // The .famille label is a constant structural signal (reco (b) of the 25/09 review:
+        // 123 of the 131 Virtues fr cards overflow on it, always the same way). Quarantining
+        // its findings in a dedicated section keeps the headline tables readable as a defect
+        // surface — without dropping the findings, which stay counted and listed below.
+        var actionable = cardsWithOverflow.Where(c => c.Findings.Any(f => f.Selector != ".famille")).ToList();
+        var structuralOnly = cardsWithOverflow.Count - actionable.Count;
+        var familleFindings = cardsWithOverflow
+            .SelectMany(c => c.Findings.Where(f => f.Selector == ".famille")
+                .Select(f => (Card: c, Finding: f)))
+            .OrderByDescending(x => Math.Max(x.Finding.ExcessHeight, x.Finding.ExcessWidth))
+            .ToList();
+        if (familleFindings.Count > 0)
+        {
+            sb.Append(actionable.Count.ToString(culture))
+              .Append(" card(s) with findings beyond `.famille` · ")
+              .Append(structuralOnly.ToString(culture))
+              .AppendLine(" whose only findings are on `.famille` (see \"Structural findings\" below).");
+            sb.AppendLine();
+        }
+
         // Per-card sections, sorted by worst excess first so the most urgent cards are on top.
-        var sorted = cardsWithOverflow
-            .OrderByDescending(c => c.Findings.Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
+        // The rank uses only the findings the tables display (non-.famille).
+        var sorted = actionable
+            .OrderByDescending(c => c.Findings.Where(f => f.Selector != ".famille")
+                .Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
             .ToList();
 
         sb.AppendLine("## Cards with overflow");
         sb.AppendLine();
-        sb.AppendLine("| # | Card | Worst excess (px) | Selectors | Overflow |");
-        sb.AppendLine("|---|------|-------------------|-----------|----------|");
-        foreach (var card in sorted)
+        if (sorted.Count == 0)
         {
-            var worst = card.Findings.Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth));
-            var selectors = string.Join(", ",
-                card.Findings.Select(f => $"{f.Selector} ({f.Kind})").Distinct());
-            var overflowCss = string.Join(", ",
-                card.Findings.Select(f => f.OverflowCss).Where(v => !string.IsNullOrEmpty(v)).Distinct());
-            sb.Append("| ").Append(card.CardIndex.ToString(culture))
-              .Append(" | ").Append(EscapePipes(card.CardName))
-              .Append(" | ").Append(worst.ToString("F1", culture))
-              .Append(" | ").Append(EscapePipes(selectors))
-              .Append(" | ").Append(overflowCss)
-              .AppendLine(" |");
+            sb.AppendLine("No findings beyond the structural `.famille` label.");
+        }
+        else
+        {
+            sb.AppendLine("| # | Card | Worst excess (px) | Selectors | Overflow |");
+            sb.AppendLine("|---|------|-------------------|-----------|----------|");
+            foreach (var card in sorted)
+            {
+                var relevant = card.Findings.Where(f => f.Selector != ".famille").ToList();
+                var worst = relevant.Max(f => Math.Max(f.ExcessHeight, f.ExcessWidth));
+                var selectors = string.Join(", ",
+                    relevant.Select(f => $"{f.Selector} ({f.Kind})").Distinct());
+                var overflowCss = string.Join(", ",
+                    relevant.Select(f => f.OverflowCss).Where(v => !string.IsNullOrEmpty(v)).Distinct());
+                sb.Append("| ").Append(card.CardIndex.ToString(culture))
+                  .Append(" | ").Append(EscapePipes(card.CardName))
+                  .Append(" | ").Append(worst.ToString("F1", culture))
+                  .Append(" | ").Append(EscapePipes(selectors))
+                  .Append(" | ").Append(overflowCss)
+                  .AppendLine(" |");
+            }
         }
         sb.AppendLine();
 
@@ -242,7 +272,8 @@ public static class OverflowDetector
             sb.AppendLine();
             sb.AppendLine("| Selector | Kind | Overflow | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |");
             sb.AppendLine("|----------|------|----------|---------------|---------------|-----------|----------|---------|");
-            foreach (var f in card.Findings.OrderByDescending(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
+            foreach (var f in card.Findings.Where(f => f.Selector != ".famille")
+                .OrderByDescending(f => Math.Max(f.ExcessHeight, f.ExcessWidth)))
             {
                 sb.Append("| `").Append(f.Selector).Append("` | ").Append(f.Kind).Append(" | ")
                   .Append(f.OverflowCss).Append(" | ")
@@ -251,6 +282,26 @@ public static class OverflowDetector
                   .Append(f.FontSizePx.ToString("F1", culture)).Append(" | ")
                   .Append(f.TextLength.ToString(culture)).Append(" | ")
                   .Append(EscapePipes(f.TextSnippet))
+                  .AppendLine(" |");
+            }
+            sb.AppendLine();
+        }
+
+        if (familleFindings.Count > 0)
+        {
+            sb.AppendLine("## Structural findings — `.famille` label");
+            sb.AppendLine();
+            sb.AppendLine("| # | Card | Kind | Overflow | Excess H (px) | Excess W (px) | Snippet |");
+            sb.AppendLine("|---|------|------|----------|---------------|---------------|---------|");
+            foreach (var (card, f) in familleFindings)
+            {
+                sb.Append("| ").Append(card.CardIndex.ToString(culture))
+                  .Append(" | ").Append(EscapePipes(card.CardName))
+                  .Append(" | ").Append(f.Kind)
+                  .Append(" | ").Append(f.OverflowCss)
+                  .Append(" | ").Append(f.ExcessHeight.ToString("F1", culture))
+                  .Append(" | ").Append(f.ExcessWidth.ToString("F1", culture))
+                  .Append(" | ").Append(EscapePipes(f.TextSnippet))
                   .AppendLine(" |");
             }
             sb.AppendLine();
