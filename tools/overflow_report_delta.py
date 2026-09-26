@@ -97,6 +97,28 @@ def parse_finding_row(cells):
         return None
 
 
+def _route_finding(out, code, title, sel, kind, eh, ew, tol):
+    """Route UN constat par le prédicat affiné (miroir du générateur #1582),
+    QUELLE QUE SOIT la section où le rapport l'avait mis : seul le résidu
+    `.famille` self VERTICAL (ew <= tolérance) est structurel. Une ligne de la
+    section structurelle qui ne satisfait pas le prédicat (kind=card,
+    horizontal) provient d'un rapport produit par la quarantaine plus large
+    d'avant #1582 : elle est reversée au décompte principal, pour qu'un
+    changement de SECTION entre deux rapports ne se lise pas comme un
+    apparu/disparu (réserve ai-01, revue #1582 — pool v19 grain 6)."""
+    if sel == FAMILLE and kind == "self" and ew <= tol:
+        sentry = out["structural"].setdefault(code, {"title": title, "worst": 0.0})
+        if title:
+            sentry["title"] = title
+        sentry["worst"] = max(sentry["worst"], eh, ew)
+    else:
+        entry = out["cards"].setdefault(code, {"title": title, "worst": 0.0, "findings": []})
+        if title:
+            entry["title"] = title
+        entry["findings"].append((sel, kind, eh, ew))
+        entry["worst"] = max(entry["worst"], eh, ew)
+
+
 def parse_report(text, tol=TOL_DEFAULT):
     """Un rapport markdown → dict :
     { 'with_findings': n, 'total': m,
@@ -110,7 +132,7 @@ def parse_report(text, tol=TOL_DEFAULT):
             out["with_findings"], out["total"] = int(m.group(1)), int(m.group(2))
 
     section = None
-    current = None  # (code, entry) du bloc ### courant, s'il y en a un
+    current = None  # (code, title) du bloc ### courant, s'il y en a un
 
     def ensure(bucket, code, title):
         entry = bucket.setdefault(code, {"title": title, "worst": 0.0, "findings": []})
@@ -132,13 +154,7 @@ def parse_report(text, tol=TOL_DEFAULT):
         m = DETAIL_HEAD_RE.match(line)
         if m:
             code, title = card_key(m.group(2).strip())
-            if section == "main":
-                current = (code, ensure(out["cards"], code, title))
-            elif section == "structural":
-                current = (code, out["structural"].setdefault(
-                    code, {"title": title, "worst": 0.0}))
-            else:
-                current = None
+            current = (code, title) if section in ("main", "structural") else None
             continue
         if not line.startswith("|"):
             continue
@@ -158,15 +174,15 @@ def parse_report(text, tol=TOL_DEFAULT):
             continue
 
         # Table structurelle sans ### : | # | Card | Kind | Overflow | H | W | Snip |
+        # La section est la quarantaine .famille du RAPPORT, pas celle de
+        # l'outil : chaque ligne repasse par le prédicat (_route_finding).
         if section == "structural" and current is None and cells[0].isdigit() and len(cells) >= 6:
             code, title = card_key(cells[1])
-            entry = out["structural"].setdefault(code, {"title": title, "worst": 0.0})
-            if title:
-                entry["title"] = title
             try:
-                entry["worst"] = max(entry["worst"], float(cells[4]), float(cells[5]))
+                eh, ew = float(cells[4]), float(cells[5])
             except ValueError:
-                pass
+                continue
+            _route_finding(out, code, title, FAMILLE, cells[2], eh, ew, tol)
             continue
 
         if current is None:
@@ -175,20 +191,8 @@ def parse_report(text, tol=TOL_DEFAULT):
         if f is None:
             continue
         sel, kind, eh, ew = f
-        code, entry = current
-        if section == "main" and sel == FAMILLE and kind == "self" and ew <= tol:
-            # Ancien format : le .famille était mêlé au détail — normalisé en
-            # structurel pour que les deux formats comparent à armes égales.
-            # Règle affinée (v18 grain 4, miroir du générateur) : seul le résidu
-            # VERTICAL self (ew <= tolérance) est structurel ; un .famille kind=card
-            # ou horizontal est un vrai défaut et reste dans le main des deux côtés.
-            sentry = out["structural"].setdefault(code, {"title": entry["title"], "worst": 0.0})
-            sentry["worst"] = max(sentry["worst"], eh, ew)
-        elif section == "structural":
-            entry["worst"] = max(entry["worst"], eh, ew)
-        else:
-            entry["findings"].append(f)
-            entry["worst"] = max(entry["worst"], eh, ew)
+        code, title = current
+        _route_finding(out, code, title, sel, kind, eh, ew, tol)
 
     # Le worst de la carte principale ne compte QUE ses constats propres, et
     # une carte sans constat propre (que du .famille, ancien format) sort de
@@ -376,6 +380,67 @@ Generated: 2026-09-26T10:00:00Z · tolerance: 2px
 """
 
 
+OLD_WIDE = """# Overflow detection report — Fallacies (fr)
+Generated: 2026-09-25T11:00:00Z · tolerance: 2px
+
+**2 / 10 cards have at least one overflow.**
+
+## Cards with overflow
+
+| # | Card | Worst excess (px) | Selectors | Overflow |
+|---|------|-------------------|-----------|----------|
+| 0 | Argumentum_Fallacies_4.7..Vrai defaut | 30.0 | `.title` (container) | visible |
+
+## Detailed findings
+
+### 0 — Argumentum_Fallacies_4.7..Vrai defaut
+
+| Selector | Kind | Overflow | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |
+|----------|------|----------|---------------|---------------|-----------|----------|---------|
+| `.title` | container | visible | 30.0 | 0.0 | 9.0 | 40 | x |
+
+## Structural findings — `.famille` label
+
+| # | Card | Kind | Overflow | Excess H (px) | Excess W (px) | Snippet |
+|---|------|------|----------|---------------|---------------|---------|
+| 1 | Argumentum_Fallacies_9.3..Vertical | self | hidden | 12.0 | 0.0 | erreur |
+| 2 | Argumentum_Fallacies_9.5..Bord | card | hidden | 8.0 | 0.0 | bord |
+"""
+
+NEW_NARROW = """# Overflow detection report — Fallacies (fr)
+Generated: 2026-09-26T11:00:00Z · tolerance: 2px
+
+**2 / 10 cards have at least one overflow.**
+
+## Cards with overflow
+
+| # | Card | Worst excess (px) | Selectors | Overflow |
+|---|------|-------------------|-----------|----------|
+| 0 | Argumentum_Fallacies_4.7..Vrai defaut | 30.0 | `.title` (container) | visible |
+| 2 | Argumentum_Fallacies_9.5..Bord | 8.0 | `.famille` (card) | hidden |
+
+## Detailed findings
+
+### 0 — Argumentum_Fallacies_4.7..Vrai defaut
+
+| Selector | Kind | Overflow | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |
+|----------|------|----------|---------------|---------------|-----------|----------|---------|
+| `.title` | container | visible | 30.0 | 0.0 | 9.0 | 40 | x |
+
+### 2 — Argumentum_Fallacies_9.5..Bord
+
+| Selector | Kind | Overflow | Excess H (px) | Excess W (px) | Font (px) | Text len | Snippet |
+|----------|------|----------|---------------|---------------|-----------|----------|---------|
+| `.famille` | card | hidden | 8.0 | 0.0 | 9.0 | 20 | bord |
+
+## Structural findings — `.famille` label
+
+| # | Card | Kind | Overflow | Excess H (px) | Excess W (px) | Snippet |
+|---|------|------|----------|---------------|---------------|---------|
+| 1 | Argumentum_Fallacies_9.3..Vertical | self | hidden | 12.0 | 0.0 | erreur |
+"""
+
+
 def self_test():
     ok = [0]
 
@@ -434,6 +499,26 @@ def self_test():
                      "| `.famille` | self | 0.0 | 6.0 | 9.0 | 20 | glisse |\n")
     check(".famille self horizontal (> tolérance) reste dans le main",
           "9.2" in f["cards"] and "9.2" not in f["structural"])
+
+    # Réserve ai-01 (revue #1582, pool v19 grain 6) : la table structurelle d'un
+    # rapport d'AVANT #1582 (quarantaine plus large : tout .famille y passait)
+    # contient des lignes que le prédicat affiné ne mettrait pas en quarantaine.
+    # Un delta avant→après sur la même carte ne doit RIEN compter : la ligne
+    # kind=card est reversée au main des deux côtés, le self vertical reste
+    # structurel des deux côtés.
+    a2, b2 = parse_report(OLD_WIDE), parse_report(NEW_NARROW)
+    check("avant→après #1582 : la ligne .famille kind=card de la table structurelle "
+          "est reversée au main",
+          "9.5" in a2["cards"] and "9.5" not in a2["structural"])
+    check("avant→après #1582 : le self vertical reste structurel des deux côtés",
+          "9.3" in a2["structural"] and "9.3" in b2["structural"]
+          and "9.3" not in a2["cards"] and "9.3" not in b2["cards"])
+    res2 = compare(a2, b2)
+    check("avant→après #1582, même carte : AUCUN apparu ni disparu (le changement "
+          "de section n'est pas un delta)",
+          res2["appeared"] == [] and res2["disappeared"] == [])
+    check("avant→après #1582 : aucun delta structurel non plus",
+          res2["structural"]["appeared"] == [] and res2["structural"]["disappeared"] == [])
 
     print(f"SELF-TEST : {ok[0]} cas OK")
     return True
