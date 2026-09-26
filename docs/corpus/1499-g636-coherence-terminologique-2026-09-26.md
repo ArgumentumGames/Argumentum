@@ -1,6 +1,6 @@
 # #1499 grain 4 — PK 636 « Sophisme de régression » : cohérence terminologique (mesure, ⛔ 0 écriture)
 
-**Date :** 2026-09-26 · **Lane :** po-2024 (worker) · **Dispatch :** pool v16 grain 4 ([#458 c.5842223755](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5842223755))
+**Date :** 2026-09-26 · **Lane :** po-2024 (worker) · **PR :** [#1570](https://github.com/ArgumentumGames/Argumentum/pull/1570) · **Dispatch :** pool v16 grain 4 ([#458 c.5842223755](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5842223755))
 **Objet :** les 8 `desc_*` réécrites par [#1563](https://github.com/ArgumentumGames/Argumentum/pull/1563) — leur terme clé est-il celui qu'emploient **le titre de la même carte** et **ses sœurs de famille** ?
 **Instrument :** `tools/1499-g636-coherence-termino.py` (`--self-test` 12/12)
 
