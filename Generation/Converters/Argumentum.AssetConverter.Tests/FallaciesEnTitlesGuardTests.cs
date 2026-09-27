@@ -192,4 +192,4 @@ namespace Argumentum.AssetConverter.Tests
 			return values[0].Trim();
 		}
 	}
-	}
+}
