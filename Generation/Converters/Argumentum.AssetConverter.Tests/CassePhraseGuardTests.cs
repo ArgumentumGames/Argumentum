@@ -43,6 +43,44 @@ namespace Argumentum.AssetConverter.Tests
 			"without", "within", "toward", "towards", "per", "via", "vs", "that", "is", "not", "ad"
 		};
 
+		/// <summary>Noms propres gardés capitalisés (① deck + ⑤ hors deck, arbitrage sur le
+		/// précédent EN post-#1601 des mêmes rangées : « Motte and bailey », « Gish gallop »,
+		/// « Golem effect » abattus ; « Van Gogh fallacy », « Clever Hans effect »,
+		/// « Semmelweis reflex » gardés).</summary>
+		private static readonly HashSet<string> ProperNouns = new(StringComparer.Ordinal)
+		{
+			// ① (deck)
+			"Chewbacca", "Christianity", "Hitler", "Hitlerum", "Linda", "Moon", "Morgan's",
+			"Flintstones", "Rogers", "Latin",
+			// ⑤ (hors deck pt/es)
+			"Sherlock", "Holmes", "Gold", "Semmelweis", "Lua", "Luna", "Kafkaiana", "Kafka",
+			"França", "Barnum", "Pigmalião", "Pigmalión", "Mateus", "Mateo", "Hans", "Clever",
+			"Gish", "V", "Van", "Gogh", "Von", "Restorff", "Woozle", "El", "Greco", "Carthago",
+			"Cartago", "Galileu", "Galileo", "Neyman", "Murphy", "Simpson", "Stroop", "Weber",
+			"Fechner", "IKEA", "Google", "Pangloss", "Russell", "Will",
+			// ⑤ deuxième vague (rangées « mixtes » — connectifs pela/pelos/uma, es « a »)
+			"Hanlon", "Morgan", "Morton", "Wobegon", "Picapiedra", "España"
+		};
+
+		/// <summary>Casse de phrase (⑤) : tout mot après le premier est minuscule, sauf nom
+		/// propre en liste. C'est la post-condition exacte de la transformation du grain.</summary>
+		private static List<string> NonSentenceCaseIn(string column, string? csvPath = null)
+		{
+			var csv = new HarvestCardIdsCsv(csvPath ?? FallaciesCsv);
+			var titles = csv.LoadColumn(column);
+			var violators = new List<string>();
+			foreach (var raw in titles)
+			{
+				var t = raw.Trim();
+				var words = WordRe.Matches(t).Select(m => m.Value).ToList();
+				if (words.Count < 2)
+					continue;
+				if (words.Skip(1).Any(w => char.IsUpper(w[0]) && !ProperNouns.Contains(w)))
+					violators.Add(t);
+			}
+			return violators;
+		}
+
 		/// <summary>Casse de titre = tous les mots porteurs capitalisés (connectifs minuscules
 		/// admis, « ad » compris — leçon 1373 « Reductio ad Hitlerum », particule latine).</summary>
 		private static bool IsTitleCase(string title, HashSet<string> connectives)
@@ -196,6 +234,113 @@ namespace Argumentum.AssetConverter.Tests
 					values.Count(v => string.Equals(v.Trim(), form, StringComparison.Ordinal)).Should().Be(0,
 						$"la forme retirée «{form}» ne doit plus exister en {col} (Vertus, ①).");
 			}
+		}
+
+			[Fact]
+		public void Pt_Corpus_Every_Title_IsSentenceCase_OrNamedException()
+		{
+			var violators = NonSentenceCaseIn("text_pt");
+			var kept = new[] { "Falácia Nirvana" };
+			var unexpected = violators.Where(v => !kept.Contains(v, StringComparer.Ordinal)).ToList();
+			unexpected.Should().BeEmpty(
+				"⑤ pt : la casse de phrase couvre désormais le corpus ENTIER (deck ① + hors deck ⑤, " +
+				"423 titres retournés). Seule exception nommée : « Falácia Nirvana » (nom établi du " +
+				"sophisme, décision ai-01 #1600). Les noms propres (Sherlock Holmes, Gold, Semmelweis, " +
+				"Van Gogh, Von Restorff…) restent capitalisés par construction du détecteur.");
+			kept.Should().OnlyContain(k => violators.Contains(k, StringComparer.Ordinal),
+				"l'exception tenue doit rester vivante — une morte rend la garde aveugle.");
+		}
+
+		[Fact]
+		public void Es_Corpus_Every_Title_IsSentenceCase_OrNamedException()
+		{
+			var violators = NonSentenceCaseIn("text_es");
+			var kept = new[] { "Falacia del Nirvana", "Quaternio Terminorum (Falacia de los Cuatro Términos)" };
+			var unexpected = violators.Where(v => !kept.Contains(v, StringComparer.Ordinal)).ToList();
+			unexpected.Should().BeEmpty(
+				"⑤ es : la casse de phrase couvre le corpus entier (2 décisions ① + 25 titres hors " +
+				"deck ⑤). Exceptions nommées : « Falacia del Nirvana » (nom établi, décision #1600) et " +
+				"le titre long 796 « Quaternio Terminorum (…) » (gardé — son défaut est un défaut " +
+				"d'impression, dispatché au gabarit de po-2023, grain ②).");
+			kept.Should().OnlyContain(k => violators.Contains(k, StringComparer.Ordinal),
+				"les deux exceptions tenues restent vivantes.");
+		}
+
+		[Fact]
+		public void Pt_Es_HorsDeck_Samples_Applied()
+		{
+			TitlePt("1.1.3.5.1").Should().Be("História ad hoc", "⑤ : locution latine (69).");
+			TitlePt("1.2.1.3.3").Should().Be("Ipse dixit", "⑤ : locution latine (93).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.2.3.2.2.1", "text_pt").Should().Be("Gish gallop",
+				"⑤ : « Gish Gallop » suit le précédent EN « Gish gallop » (475 ; jumeaux 772/1331).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.1.3.2.2", "text_pt").Should().Be("Efeito golem",
+				"⑤ : « Golem effect » EN — golem est un nom commun (400).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "6.3.2.3.1.4", "text_pt").Should().Be("Efeito halo",
+				"⑤ : « Halo effect » EN — halo est un nom commun (1231).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.1.1.1.4", "text_pt").Should().Be("Falácia da motte e bailey",
+				"⑤ : « Motte and bailey » EN — terme de château commun, les deux abattus (364).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.2.1.2.2.1", "text_pt").Should().Be("Apelo à “França que acorde cedo”",
+				"⑤ : pays capitalisé, slogan en casse de phrase (306).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.1.5.4", "text_pt").Should().Be("Efeito Hans, o inteligente",
+				"⑤ : « Hans » nom propre gardé, adjectif abattu (412).");
+			// no-ops tenus (noms propres) — la garde épingle aussi les non-gestes
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "1.1.2.2.4.1", "text_pt").Should().Be("Efeito Gold",
+				"⑤ no-op tenu : « Gold » nom propre (49).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "4.1.2.1.1", "text_pt").Should().Be("Falácia de Van Gogh",
+				"⑤ no-op tenu : « Van Gogh » nom propre (709).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "1.2.2.4.3", "text_es").Should().Be("El noble salvaje",
+				"⑤ es : 111.");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.1.1.1.4", "text_es").Should().Be("Sofisma de motte y bailey",
+				"⑤ es : 364.");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.2.3.1.1.1", "text_es").Should().Be("Efecto gaslight",
+				"⑤ es : 459 — gaslighting est un commun.");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "2.3.1.5.4", "text_es").Should().Be("Efecto Clever Hans",
+				"⑤ es no-op tenu : « Clever Hans » est le nom du cheval (412).");
+			CellOf(new HarvestCardIdsCsv(FallaciesCsv), "7.1.3.3.2", "text_es").Should().Be("Delenda Carthago",
+				"⑤ es no-op tenu : « Carthago » nom propre latin (1303).");
+		}
+
+		[Fact]
+		public void Removed_G5_Forms_Absent_From_Titles_And_Bands()
+		{
+			var fallacies = new HarvestCardIdsCsv(FallaciesCsv);
+			var removed = new Dictionary<string, string[]>
+			{
+				["text_pt|Family_pt|Subfamily_pt|Subsubfamily_pt"] = new[] {
+					"Gish Gallop", "Efeito Halo", "Efeito Golem", "Efeito Placebo", "Efeito Nocebo",
+					"Efeito Gaslight", "História Ad Hoc", "Ipse Dixit", "Falácia Post Hoc",
+					"Teologia Fast-Food", "Efeito Swish", "Jogada de Pathos" },
+				["text_es|Family_es|Subfamily_es|Subsubfamily_es"] = new[] {
+					"El Noble Salvaje", "Efecto Gaslight", "Efecto Golem",
+					"Sofisma de Motte y Bailey", "Correlación Ilusoria", "Tácticas de Presión" },
+			};
+			foreach (var (columns, forms) in removed)
+				foreach (var col in columns.Split('|'))
+				{
+					var values = fallacies.LoadColumn(col);
+					foreach (var form in forms)
+						values.Count(v => string.Equals(v.Trim(), form, StringComparison.Ordinal)).Should().Be(0,
+							$"la forme retirée «{form}» ne doit plus exister en {col} (⑤).");
+				}
+			var virtues = new HarvestCardIdsCsv(VirtuesCsv);
+			foreach (var col in new[] { "title_pt", "family_pt", "subfamily_pt", "subsubfamily_pt",
+				"title_es", "family_es", "subfamily_es", "subsubfamily_es" })
+			{
+				var values = virtues.LoadColumn(col);
+				foreach (var form in new[] { "Inferência: Resolução", "Inferencia: Resolución" })
+					values.Count(v => string.Equals(v.Trim(), form, StringComparison.Ordinal)).Should().Be(0,
+						$"la forme retirée «{form}» ne doit plus exister en {col} (⑤ Vertus 103).");
+			}
+		}
+
+		[Fact]
+		public void Virtues_103_SentenceCase_Applied()
+		{
+			var csv = new HarvestCardIdsCsv(VirtuesCsv);
+			CellOf(csv, "4.3.3.1.1.8", "title_pt").Should().Be("Inferência: resolução",
+				"⑤ Vertus 103 pt : aligné sur l'anglais « Inference: resolution » (①).");
+			CellOf(csv, "4.3.3.1.1.8", "title_es").Should().Be("Inferencia: resolución",
+				"⑤ Vertus 103 es : aligné sur l'anglais « Inference: resolution » (①).");
 		}
 
 		private static string TitlePt(string path)
