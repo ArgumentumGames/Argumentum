@@ -116,12 +116,13 @@ namespace Argumentum.AssetConverter.Tests
 		public void Pt_Deck_Every_Title_IsSentenceCase_OrNamedException()
 		{
 			var violators = TitleCaseIn("text_pt", "carte", PtConnectives);
-			var kept = new[] { "Falácia Nirvana", "Defesa de Chewbacca", "Cartão Hitler" };
+			var kept = new[] { "Falácia Nirvana", "Defesa de Chewbacca", "Reductio ad Hitlerum" };
 			var unexpected = violators.Where(v => !kept.Contains(v, StringComparer.Ordinal)).ToList();
 			unexpected.Should().BeEmpty(
 				"① pt direction A : plus aucun titre deck en casse de titre. Exceptions nommées : " +
 				"« Falácia Nirvana » (nom établi, décision ai-01), « Defesa de Chewbacca » et " +
-				"« Cartão Hitler » (no-ops — seuls leurs noms propres portent des majuscules).");
+				"« Reductio ad Hitlerum » (no-ops — seuls leurs noms propres portent des majuscules ; " +
+				"1373 renommé ainsi par ⑥, l'ancien « Cartão Hitler » est sorti avec le renommage).");
 			kept.Should().OnlyContain(k => violators.Contains(k, StringComparer.Ordinal),
 				"les trois exceptions tenues doivent rester vivantes — une morte rend la garde aveugle.");
 		}
@@ -255,15 +256,15 @@ namespace Argumentum.AssetConverter.Tests
 		public void Es_Corpus_Every_Title_IsSentenceCase_OrNamedException()
 		{
 			var violators = NonSentenceCaseIn("text_es");
-			var kept = new[] { "Falacia del Nirvana", "Quaternio Terminorum (Falacia de los Cuatro Términos)" };
+			var kept = new[] { "Falacia del Nirvana" };
 			var unexpected = violators.Where(v => !kept.Contains(v, StringComparer.Ordinal)).ToList();
 			unexpected.Should().BeEmpty(
 				"⑤ es : la casse de phrase couvre le corpus entier (2 décisions ① + 25 titres hors " +
-				"deck ⑤). Exceptions nommées : « Falacia del Nirvana » (nom établi, décision #1600) et " +
-				"le titre long 796 « Quaternio Terminorum (…) » (gardé — son défaut est un défaut " +
-				"d'impression, dispatché au gabarit de po-2023, grain ②).");
+				"deck ⑤). Seule exception nommée : « Falacia del Nirvana » (nom établi, décision #1600). " +
+				"L'ancienne exception 796 « Quaternio Terminorum (…) » est sortie par ⑥ : le titre est " +
+				"devenu « Falacia de los cuatro términos », en casse de phrase.");
 			kept.Should().OnlyContain(k => violators.Contains(k, StringComparer.Ordinal),
-				"les deux exceptions tenues restent vivantes.");
+				"l'exception tenue doit rester vivante — une morte rend la garde aveugle.");
 		}
 
 		[Fact]
@@ -341,6 +342,93 @@ namespace Argumentum.AssetConverter.Tests
 				"⑤ Vertus 103 pt : aligné sur l'anglais « Inference: resolution » (①).");
 			CellOf(csv, "4.3.3.1.1.8", "title_es").Should().Be("Inferencia: resolución",
 				"⑤ Vertus 103 es : aligné sur l'anglais « Inference: resolution » (①).");
+		}
+
+		[Fact]
+		public void Fidelity_G6_Renames_Applied()
+		{
+			var csv = new HarvestCardIdsCsv(FallaciesCsv);
+			CellOf(csv, "3.1.2", "text_es").Should().Be("Falacia del accidente",
+				"⑥ es 614 : « Accidente » → locution complète (arbitrage ai-01 #458 c.5856549779).");
+			CellOf(csv, "6.1.1", "text_es").Should().Be("Mentira",
+				"⑥ es 889 : le substantif espagnol est « Mentira », pas l'infinitif « Mentir ».");
+			CellOf(csv, "6.2.3.3", "text_es").Should().Be("Argumento del esfuerzo notable",
+				"⑥ es 1015 : aligné sur le fr « Argument de l'effort notable ».");
+			CellOf(csv, "4.3.3.3.1", "text_es").Should().Be("Falacia de los cuatro términos",
+				"⑥ es 796 : le titre long latinisant laisse place au nom espagnol établi.");
+			CellOf(csv, "4", "text_pt").Should().Be("Erro de raciocínio",
+				"⑥ pt 696 : tête du sous-arbre 4 — « Lógicas defeituosas » était un calque, 101 bandeaux suivent.");
+			CellOf(csv, "3.3.1.3.1", "text_pt").Should().Be("Ladeira escorregadia",
+				"⑥ pt 677 : rejoint son jumeau hors deck 706 qui portait déjà ce nom (ai-01).");
+			CellOf(csv, "4.3.3.3.1", "text_pt").Should().Be("Falácia dos quatro termos",
+				"⑥ pt 796 : coquille « quatros » → « quatro » + alignement sur le nom établi.");
+			CellOf(csv, "7.3.2.1.1", "text_pt").Should().Be("Reductio ad Hitlerum",
+				"⑥ pt 1373 : « Cartão Hitler » → nom latin consacré, comme fr/en/ru.");
+			CellOf(csv, "6.2.2.5.1", "text_pt").Should().Be("Argumento após contestação",
+				"⑥ pt 1005 : « Alterar os postes da baliza » décrivait un autre sophisme (le déplacement " +
+				"de buts = 973) ; le fr dit « Argument après contestation ».");
+			CellOf(csv, "6.2.2.5.1", "text_ru").Should().Be("Аргумент после опровержения",
+				"⑥ ru 1005 : proposition po-2024 validée par ai-01 — « argument après réfutation », " +
+				"sans collision avec « Изменение направления » (973) ni « Спасение ad hoc » (55).");
+			CellOf(csv, "6.2.2.5.1", "text_zh").Should().Be("被驳后改口",
+				"⑥ zh 1005 : proposition po-2024 validée par ai-01 — « changer de discours après avoir " +
+				"été réfuté », sans collision avec « 移动目标 » (973) ni « 特殊辩护 » (55).");
+			CellOf(new HarvestCardIdsCsv(VirtuesCsv), "6.3.3.1", "title_en").Should().Be(
+				"Recognition of personal ideological biases",
+				"⑥ Vertus 175 en : la desc_en de la rangée dit elle-même « Recognition » (dossier ④).");
+		}
+
+		[Fact]
+		public void Fidelity_G6_Bands_Followed()
+		{
+			var csv = new HarvestCardIdsCsv(FallaciesCsv);
+			Action<string, string, int, string> count = (column, value, expected, because) =>
+				csv.LoadColumn(column).Count(v => string.Equals(v.Trim(), value, StringComparison.Ordinal))
+					.Should().Be(expected, because);
+			count("Family_pt", "Erro de raciocínio", 102,
+				"⑥ : les 102 bandeaux Family_pt du sous-arbre 4 suivent le titre renommé de 696 (self compris).");
+			count("Subsubfamily_es", "Mentira", 53,
+				"⑥ : les 53 bandeaux Subsubfamily_es du sous-arbre 6.1.1 suivent « Mentira » (self compris).");
+			count("Subsubfamily_es", "Falacia del accidente", 7,
+				"⑥ : les 7 bandeaux Subsubfamily_es du sous-arbre 3.1.2 suivent « Falacia del accidente ».");
+			CellOf(csv, "4", "Family_pt").Should().Be("Erro de raciocínio",
+				"⑥ : self-band de 696 suit son titre (règle #1588).");
+			CellOf(csv, "6.1.1", "Subsubfamily_es").Should().Be("Mentira",
+				"⑥ : self-band de 889 suit son titre.");
+			CellOf(csv, "3.1.2", "Subsubfamily_es").Should().Be("Falacia del accidente",
+				"⑥ : self-band de 614 suit son titre.");
+		}
+
+		[Fact]
+		public void Removed_G6_Forms_Absent_From_Titles_And_Bands()
+		{
+			var fallacies = new HarvestCardIdsCsv(FallaciesCsv);
+			var removed = new Dictionary<string, string[]>
+			{
+				["text_pt|Family_pt|Subfamily_pt|Subsubfamily_pt"] = new[] {
+					"Lógicas defeituosas", "Pente fino", "Falácia dos quatros termos",
+					"Cartão Hitler", "Alterar os postes da baliza" },
+				["text_es|Family_es|Subfamily_es|Subsubfamily_es"] = new[] {
+					"Accidente", "Mentir", "Esfuerzo notable",
+					"Quaternio Terminorum (Falacia de los Cuatro Términos)" },
+				["text_ru|Family_ru|Subfamily_ru|Subsubfamily_ru"] = new[] { "Перемещение ворот" },
+				["text_zh|Family_zh|Subfamily_zh|Subsubfamily_zh"] = new[] { "移动界标" },
+			};
+			foreach (var (columns, forms) in removed)
+				foreach (var col in columns.Split('|'))
+				{
+					var values = fallacies.LoadColumn(col);
+					foreach (var form in forms)
+						values.Count(v => string.Equals(v.Trim(), form, StringComparison.Ordinal)).Should().Be(0,
+							$"la forme retirée «{form}» ne doit plus exister en {col} (⑥).");
+				}
+			var virtues = new HarvestCardIdsCsv(VirtuesCsv);
+			foreach (var col in new[] { "title_en", "family_en", "subfamily_en", "subsubfamily_en" })
+			{
+				var values = virtues.LoadColumn(col);
+				values.Count(v => string.Equals(v.Trim(), "Consideration of one's ideological biases", StringComparison.Ordinal))
+					.Should().Be(0, "la forme retirée ne doit plus exister en " + col + " (⑥ Vertus 175).");
+			}
 		}
 
 		private static string TitlePt(string path)
