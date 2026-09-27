@@ -59,7 +59,9 @@ namespace Argumentum.AssetConverter.Tests
 			"Cartago", "Galileu", "Galileo", "Neyman", "Murphy", "Simpson", "Stroop", "Weber",
 			"Fechner", "IKEA", "Google", "Pangloss", "Russell", "Will",
 			// ⑤ deuxième vague (rangées « mixtes » — connectifs pela/pelos/uma, es « a »)
-			"Hanlon", "Morgan", "Morton", "Wobegon", "Picapiedra", "España"
+			"Hanlon", "Morgan", "Morton", "Wobegon", "Picapiedra", "España",
+			// ⑧ (noms propres remontés : Linda, Will Rogers, Homem-Aranha, Spider-Man, Nirvana)
+			"Homem", "Aranha", "Spider", "Man", "Nirvana"
 		};
 
 		/// <summary>Casse de phrase (⑤) : tout mot après le premier est minuscule, sauf nom
@@ -241,30 +243,24 @@ namespace Argumentum.AssetConverter.Tests
 		public void Pt_Corpus_Every_Title_IsSentenceCase_OrNamedException()
 		{
 			var violators = NonSentenceCaseIn("text_pt");
-			var kept = new[] { "Falácia Nirvana" };
-			var unexpected = violators.Where(v => !kept.Contains(v, StringComparer.Ordinal)).ToList();
-			unexpected.Should().BeEmpty(
+			violators.Should().BeEmpty(
 				"⑤ pt : la casse de phrase couvre désormais le corpus ENTIER (deck ① + hors deck ⑤, " +
-				"423 titres retournés). Seule exception nommée : « Falácia Nirvana » (nom établi du " +
-				"sophisme, décision ai-01 #1600). Les noms propres (Sherlock Holmes, Gold, Semmelweis, " +
-				"Van Gogh, Von Restorff…) restent capitalisés par construction du détecteur.");
-			kept.Should().OnlyContain(k => violators.Contains(k, StringComparer.Ordinal),
-				"l'exception tenue doit rester vivante — une morte rend la garde aveugle.");
+				"423 titres retournés). Les noms propres (Sherlock Holmes, Gold, Semmelweis, " +
+				"Van Gogh, Von Restorff…) restent capitalisés par construction du détecteur. " +
+				"L'ancienne exception nommée « Falácia Nirvana » est consommée par ⑧ : Nirvana est " +
+				"entré dans la liste des noms propres, le titre n'est plus un violateur.");
 		}
 
 		[Fact]
 		public void Es_Corpus_Every_Title_IsSentenceCase_OrNamedException()
 		{
 			var violators = NonSentenceCaseIn("text_es");
-			var kept = new[] { "Falacia del Nirvana" };
-			var unexpected = violators.Where(v => !kept.Contains(v, StringComparer.Ordinal)).ToList();
-			unexpected.Should().BeEmpty(
+			violators.Should().BeEmpty(
 				"⑤ es : la casse de phrase couvre le corpus entier (2 décisions ① + 25 titres hors " +
-				"deck ⑤). Seule exception nommée : « Falacia del Nirvana » (nom établi, décision #1600). " +
-				"L'ancienne exception 796 « Quaternio Terminorum (…) » est sortie par ⑥ : le titre est " +
-				"devenu « Falacia de los cuatro términos », en casse de phrase.");
-			kept.Should().OnlyContain(k => violators.Contains(k, StringComparer.Ordinal),
-				"l'exception tenue doit rester vivante — une morte rend la garde aveugle.");
+				"deck ⑤). L'ancienne exception 796 « Quaternio Terminorum (…) » est sortie par ⑥ : le " +
+				"titre est devenu « Falacia de los cuatro términos », en casse de phrase. L'ancienne " +
+				"exception nommée « Falacia del Nirvana » est consommée par ⑧ : Nirvana est entré dans " +
+				"la liste des noms propres, le titre n'est plus un violateur.");
 		}
 
 		[Fact]
@@ -357,9 +353,10 @@ namespace Argumentum.AssetConverter.Tests
 			CellOf(csv, "4.3.3.3.1", "text_es").Should().Be("Falacia de los cuatro términos",
 				"⑥ es 796 : le titre long latinisant laisse place au nom espagnol établi.");
 			CellOf(csv, "4", "text_pt").Should().Be("Erro de raciocínio",
-				"⑥ pt 696 : tête du sous-arbre 4 — « Lógicas defeituosas » était un calque, 101 bandeaux suivent.");
+				"⑥ pt 696 : tête du sous-arbre 4 — « Lógicas defeituosas » était un calque, 102 bandeaux suivent.");
 			CellOf(csv, "3.3.1.3.1", "text_pt").Should().Be("Ladeira escorregadia",
-				"⑥ pt 677 : rejoint son jumeau hors deck 706 qui portait déjà ce nom (ai-01).");
+				"⑥ pt 677 : rejoint son jumeau hors deck 705 qui portait déjà ce nom (ai-01 ; coquille " +
+				"706 corrigée en ⑧, review #1606 5331251574).");
 			CellOf(csv, "4.3.3.3.1", "text_pt").Should().Be("Falácia dos quatro termos",
 				"⑥ pt 796 : coquille « quatros » → « quatro » + alignement sur le nom établi.");
 			CellOf(csv, "7.3.2.1.1", "text_pt").Should().Be("Reductio ad Hitlerum",
@@ -429,6 +426,51 @@ namespace Argumentum.AssetConverter.Tests
 				values.Count(v => string.Equals(v.Trim(), "Consideration of one's ideological biases", StringComparison.Ordinal))
 					.Should().Be(0, "la forme retirée ne doit plus exister en " + col + " (⑥ Vertus 175).");
 			}
+		}
+
+		[Fact]
+		public void G8_Proper_Nouns_Remontes_Applied()
+		{
+			var csv = new HarvestCardIdsCsv(FallaciesCsv);
+			CellOf(csv, "2.3.1.5.5", "text_pt").Should().Be("Apelo ao efeito Linda",
+				"⑧ pt 413 : « Linda » est le prénom du problème de Linda — en minuscule, « linda » " +
+				"veut dire « jolie » (défaut de ⑤ : la garde ne vérifiait que les majuscules en trop).");
+			CellOf(csv, "2.3.1.5.5", "text_es").Should().Be("Efecto Linda",
+				"⑧ es 413 : même raison — le prénom porte sa majuscule.");
+			CellOf(csv, "3.3.2.2.5", "text_es").Should().Be("Fenómeno de Will Rogers",
+				"⑧ es 688 : « Will Rogers » est le nom propre de l'acteur (abaisser « Rogers » est " +
+				"la mutation-témoin de la garde inverse).");
+			CellOf(csv, "4.1.2.2.1", "text_pt").Should().Be("Falácia do Homem-Aranha",
+				"⑧ pt 711 : « Homem-Aranha » est le nom propre portugais de Spider-Man.");
+			CellOf(csv, "4.1.2.2.1", "text_es").Should().Be("Falacia de Spider-Man",
+				"⑧ es 711 : « Spider-Man » nom propre.");
+			CellOf(csv, "7.2.2.2", "text_pt").Should().Be("Falácia Nirvana",
+				"⑧ pt 1350 : le jumeau hors deck prend le nom établi de sa carte du deck (977, décision ai-01).");
+			CellOf(csv, "7.2.2.2", "text_es").Should().Be("Falacia del Nirvana",
+				"⑧ es 1350 : jumeau hors deck aligné sur le deck 977 (décision ai-01 #1600).");
+		}
+
+		[Fact]
+		public void Proper_Nouns_Never_Lowercase_In_Any_Title()
+		{
+			// ⑧ sens inverse : la garde ⑤ ne voyait que les majuscules en trop — les noms propres
+			// abaissés par la casse de phrase lui étaient invisibles (défaut constaté sur #1605).
+			var tokens = new[] { "Linda", "Rogers", "Homem-Aranha", "Spider-Man", "Nirvana",
+				"Chewbacca", "Hitlerum" };
+			var csv = new HarvestCardIdsCsv(FallaciesCsv);
+			var offenders = new List<string>();
+			foreach (var column in new[] { "text_fr", "text_en", "text_ru", "text_pt",
+				"text_ar", "text_es", "text_zh", "text_fa" })
+				foreach (var title in csv.LoadColumn(column))
+				{
+					var t = title.Trim();
+					foreach (var token in tokens)
+						if (t.Contains(token.ToLowerInvariant(), StringComparison.Ordinal))
+							offenders.Add($"{column}: {t} [{token}]");
+				}
+			offenders.Should().BeEmpty(
+				"⑧ : un nom propre de la liste ne figure JAMAIS en minuscule dans un titre, aucune " +
+				"langue confondue (mesure pré-chirurgie : exactement les 7 cellules du défaut, 0 faux positif).");
 		}
 
 		private static string TitlePt(string path)
