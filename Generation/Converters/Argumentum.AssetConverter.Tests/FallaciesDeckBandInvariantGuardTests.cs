@@ -20,11 +20,9 @@ namespace Argumentum.AssetConverter.Tests
 	/// <c>Sous-Famille</c>/<c>Soussousfamille</c> s'impriment si
 	/// <c>Soussousfamille</c> rempli — <c>template.Replace</c> portant les noms de
 	/// champ par langue, conditions comprises.
-	/// Exceptions nommées : UNIQUEMENT les 5 cellules d'accents portées par #1589
-	/// (869, 1314, 1330 ancêtres ; 855, 1313 self). Chaque exception doit être
-	/// <b>encore</b> un écart réel, sinon la garde rougit — la liste ne peut que
-	/// rétrécir. Choreography du dispatch : après merge de #1589, merge de master
-	/// dans la branche puis retrait des exceptions devenues fausses → 0 exception.
+	/// Aucune exception : les 5 cellules d'accents de #1589 (869, 1314, 1330 ancêtres ;
+	/// 855, 1313 self), tolérées tant que #1589 n'était pas mergé, ont été retirées
+	/// après son merge (chorégraphie du dispatch) — 0 exception.
 	/// </summary>
 	public class FallaciesDeckBandInvariantGuardTests
 	{
@@ -66,12 +64,6 @@ namespace Argumentum.AssetConverter.Tests
 
 		private sealed record BandMismatch(string CardPath, string Lang, string Column, string Band, string Title);
 
-		/// <summary>Les 5 cellules d'accents portées par #1589 — les seules exceptions tolérées.</summary>
-		private static readonly (string Path, string Lang)[] AccentExceptions =
-		{
-			("5.3.2", "fr"), ("5.3.2.3.2.1", "fr"), ("7.2.1", "fr"), ("7.2.1.1", "fr"), ("7.2.1.2.2", "fr"),
-		};
-
 		private static List<BandMismatch> PrintedBandMismatches(Dictionary<string, Dictionary<string, string>> rows)
 		{
 			var mismatches = new List<BandMismatch>();
@@ -110,16 +102,7 @@ namespace Argumentum.AssetConverter.Tests
 			var rows = LoadRowsByPath();
 			var mismatches = PrintedBandMismatches(rows);
 
-			// les seules tolérées : les 5 cellules d'accents #1589 (merge en attente)
-			var tolerated = mismatches
-				.Where(m => AccentExceptions.Any(e => e.Path == m.CardPath && e.Lang == m.Lang && m.Column == "Soussousfamille"))
-				.ToList();
-			var others = mismatches.Except(tolerated).ToList();
-
-			tolerated.Should().HaveCount(AccentExceptions.Length,
-				"chaque exception nommée doit être ENCORE un écart réel — une exception résolue " +
-				"(#1589 mergé) doit être retirée de la liste, jamais laissée morte.");
-			others.Should().BeEmpty(
+			mismatches.Should().BeEmpty(
 				"l'invariant ④c : chaque bandeau imprimé du deck (niveaux 1-3, niveau propre compris, " +
 				"8 langues) est égal au titre de la rangée de ce préfixe. Écarts restants : " +
 				$"{string.Join(" ; ", mismatches.Select(m => $"{m.CardPath} [{m.Lang}] {m.Column} = «{m.Band}» vs «{m.Title}»"))}");
