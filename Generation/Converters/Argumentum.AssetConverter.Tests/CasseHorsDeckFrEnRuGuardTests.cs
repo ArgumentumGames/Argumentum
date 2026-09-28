@@ -42,6 +42,10 @@ namespace Argumentum.AssetConverter.Tests
 			// fr
 			"Écossais", "Lune", "Coué", "Pygmalion", "Golem", "Matthieu", "France",
 			"Spider", "Man", "Galilée", "Sherlock", "Holmes",
+			// reprise ⑩ (review 5333238621) : Flintstones = « Pierrafeu » (es « Picapiedra »)
+			"Pierrafeu",
+			// ru — « Судный день » garde sa majuscule (nom religieux, forme majoritaire)
+			"Судного",
 			// tokens latins ①/⑤ (CassePhraseGuardTests) repris tels quels : les titres
 			// fr hors deck portent eux aussi ces noms propres (Effet Gold, Réflexe
 			// Semmelweis, effet Barnum…)
@@ -80,9 +84,14 @@ namespace Argumentum.AssetConverter.Tests
 			foreach (var raw in OffDeckTitles(column))
 			{
 				var t = raw.Trim();
-				var words = wordRe.Matches(t).Select(m => m.Value).ToList();
-				if (words.Count < 2) continue;
-				if (words.Skip(1).Any(w => char.IsUpper(w[0]) && !ProperNouns.Contains(w)))
+				// Règle du second titre (reprise ⑩, review 5333238621) : après une barre
+				// oblique commence un nouveau titre — son premier mot garde sa majuscule
+				// (« Drinking the Kool-Aid / Peer pressure »).
+				var words = t.Split('/')
+					.SelectMany((seg, i) => wordRe.Matches(seg).Select(m => m.Value).Skip(1))
+					.ToList();
+				if (wordRe.Matches(t).Count < 2) continue;
+				if (words.Any(w => char.IsUpper(w[0]) && !ProperNouns.Contains(w)))
 					violators.Add(t);
 			}
 			return violators;
@@ -113,12 +122,13 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void En_G10_Cells_Pinned()
 		{
-			// Balayage complet différé à post-#1624 : les cinq retardataires EN
-			// (Self-fulfilling Prophecy, Endogenous…, Social Engineering ×2, In-group
-			// Favoritism) appartiennent à la PR ⑨ et portent encore leurs majuscules
-			// sur cet arbre — un balayage serait rouge pour la bonne raison.
-			CellOf("1.2.2.2.3", "text_en").Should().Be("Drinking the Kool-Aid. / peer pressure",
-				"⑩ en : Peer était un faux nom propre (Kool-Aid, lui, en est un vrai).");
+			// Balayage complet EN désormais possible : ⑨ (#1624) est mergé, ses cinq
+			// retardataires sont sentence case sur cet arbre.
+			Violators("text_en", LatinWordRe).Should().BeEmpty(
+				"⑩ en : balayage complet post-merge ⑨ — majuscule réservée au premier mot, aux noms propres, " +
+				"et au premier mot d'un second titre après barre oblique (reprise ⑩ : « Peer pressure »).");
+			CellOf("1.2.2.2.3", "text_en").Should().Be("Drinking the Kool-Aid / Peer pressure",
+				"reprise ⑩ : après la barre commence un SECOND titre (majuscule) ; le point parasite sort.");
 			CellOf("2.3.2.2.2", "text_en").Should().Be("Disrupt then reframe", "⑩ en.");
 			CellOf("2.3.3.5.1", "text_en").Should().Be("Socio-cultural marker", "⑩ en.");
 			CellOf("3.2.3.2.1", "text_en").Should().Be("Vicious infinite regress", "⑩ en.");
@@ -126,6 +136,24 @@ namespace Argumentum.AssetConverter.Tests
 			CellOf("6.1.3.1.1.3", "text_en").Should().Be("One-sided argument", "⑩ en.");
 			CellOf("6.3.1.1.1.3", "text_en").Should().Be("Levels of processing model",
 				"⑩ en : terme établi de psychologie (« levels of processing »).");
+		}
+
+		[Fact]
+		public void G10_Rework_Cells_Pinned()
+		{
+			// Reprise ⑩ — review 5333238621 : quatre cellules ne sont pas des
+			// majuscules « en trop » mais des noms propres ou un second titre.
+			CellOf("1.3.1.3.1.1.1", "text_fr").Should().Be("Sophisme des Pierrafeu",
+				"reprise ⑩ : famille Flintstones (« Les Pierrafeu », es « Picapiedra ») — " +
+				"en minuscule, « pierre-à-feu » devient un silex.");
+			CellOf("2.3.3.4.2.3.9", "text_ru").Should().Be("Вулканский салют",
+				"reprise ⑩ : nom russe établi du salut de Star Trek — en minuscule, " +
+				"« вулкана » voudrait dire « d'un volcan ».");
+			CellOf("3.2.2.2.2", "text_ru").Should().Be("Аргумент Судного дня",
+				"reprise ⑩ : « Судный день » garde la majuscule (nom religieux, forme " +
+				"majoritaire presse/vulgarisation).");
+			CellOf("1.2.2.2.3", "text_en").Should().Be("Drinking the Kool-Aid / Peer pressure",
+				"reprise ⑩ : second titre capitalisé, point parasite sorti.");
 		}
 
 		[Fact]
@@ -167,9 +195,12 @@ namespace Argumentum.AssetConverter.Tests
 					.Split('|').ToList().ForEach(w =>
 						t.Should().NotContain($" {w}", $"forme retirée « {w} » (⑩ fr)."));
 			foreach (var t in en)
-				"Peer pressure|Reframe|Marker|Infinite|Slippery|Argument|Processing"
+				"Reframe|Marker|Infinite|Slippery|Argument|Processing"
 					.Split('|').ToList().ForEach(w =>
 						t.Should().NotContain($" {w}", $"forme retirée « {w} » (⑩ en)."));
+			// « Peer pressure » (second titre après barre) et les formes russes
+			// « Вулкана »/« Судного » sont redevenues CORRECTES en reprise ⑩
+			// (review 5333238621) : elles ne sont plus des formes interdites.
 			foreach (var t in ru)
 			{
 				t.Should().NotContain(" Ничего", "forme retirée (⑩ ru).");
@@ -181,10 +212,8 @@ namespace Argumentum.AssetConverter.Tests
 				t.Should().NotContain(" Издевательство", "forme retirée (⑩ ru).");
 				t.Should().NotContain(" Каннибализм", "forme retirée (⑩ ru).");
 				t.Should().NotContain(" Кондиционирование", "forme retirée (⑩ ru).");
-				t.Should().NotContain(", Скаут", "forme retirée (⑩ ru).");
-				t.Should().NotContain(" Будо", "forme retirée (⑩ ru).");
-				t.Should().NotContain(" Вулкана", "forme retirée (⑩ ru).");
-				t.Should().NotContain(" Судного", "forme retirée (⑩ ru).");
+				t.Should().NotContain(", Скаут", "forme retirée (⑩ ru — retrait du capital ; ⑯ retraduira le titre).");
+				t.Should().NotContain(" Будо", "forme retirée (⑩ ru — ⑯ retraduira).");
 				t.Should().NotContain(" Энтимем", "forme retirée (⑩ ru).");
 			}
 		}
