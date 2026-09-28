@@ -629,6 +629,9 @@ namespace Argumentum.AssetConverter
 			catch (Exception e)
 			{
 				Logger.LogException(e);
+				// #1609: a run that failed must EXIT non-zero — downstream tooling (watchers, schedulers,
+				// CMYK passes) reads the exit code, and "the log is the only judge" was the symptom, not the design.
+				Environment.ExitCode = 1;
 
 			}
 		}

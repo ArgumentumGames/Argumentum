@@ -44,6 +44,10 @@ public class ImageFileGenerator
 		// swallowed into an empty image list (#1177: Magick WriteBlob MAX_PATH failure → empty list →
 		// silent PDF skip → stale PDF kept in place with a fresh CMYK mtime).
 		var deadCouples = new ConcurrentBag<string>();
+		// #1609: four paths SKIP without throwing (harvest key missing, face URL null, face image not
+		// generated) and never feed deadCouples — a document×language missing ONE expected set still
+		// yields images from its other sets, the zero-image guard stays green, and the PDF ships amputee.
+		var missingSets = new ConcurrentBag<string>();
 		Parallel.ForEach(enabledDocs, parallelOptionsDocs, configDocument =>
 		{
 			var targetLanguages = new List<string>(new[] { AssetConverterConfig.LocalizationConfig.DefaultLanguage });
@@ -69,11 +73,13 @@ public class ImageFileGenerator
 						if (!harvestDictionary.ContainsKey(harvestKey))
 						{
 							Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
+							missingSets.Add($"{configDocument.DocumentName}/{currentLanguage}/{configCardSet.CardSetName}: harvest key not found");
 							continue;
 						}
 						if (!harvestDictionary.TryGetValue(harvestKey, out var harvestFunc))
 						{
 							Logger.LogWarning($"Harvest key not found: {harvestKey}. Skipping.");
+							missingSets.Add($"{configDocument.DocumentName}/{currentLanguage}/{configCardSet.CardSetName}: harvest key not retrievable");
 							continue;
 						}
 						var currentHarvest = harvestFunc();
@@ -81,7 +87,7 @@ public class ImageFileGenerator
 						GenerateBacks(configCardSet, configDocument, currentLanguage, currentHarvest, backImages);
 
 						var cardSetImages = new List<CardImages>();
-						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, cardSetImages);
+						GenerateFacesAndAssembleCard(configCardSet, configDocument, currentLanguage, currentHarvest, backImages, cardSetImages, missingSets);
 
 						// Apply NbCopies: duplicate cards for this CardSet
 						for (int copy = 0; copy < configCardSet.NbCopies; copy++)
@@ -113,6 +119,16 @@ public class ImageFileGenerator
 				$"Image generation FAILED for {couples.Count} document×language couple(s): {string.Join(", ", couples)}. "
 				+ "A couple producing zero images is a failure, not a silent skip — any PDF already on disk for these couples is stale. "
 				+ "See the log for the originating exceptions (e.g. Magick WriteBlob Failed = path length ≥ 260).");
+		}
+
+		if (!missingSets.IsEmpty)
+		{
+			var missing = missingSets.OrderBy(s => s).ToList();
+			throw new InvalidOperationException(
+				$"Image generation SKIPPED expected card sets for {missing.Count} entry(ies): {string.Join(", ", missing)}. "
+				+ "A document×language missing one of its expected sets still yields images from its other sets, so the "
+				+ "zero-image guard cannot catch it and the PDF would ship amputee. Any PDF already on disk for these "
+				+ "couples is stale. See the log for the originating warnings.");
 		}
 
 		var toReturn = new ConcurrentDictionary<(CardSetDocumentConfig document, string language), List<CardImages>>();
@@ -166,14 +182,16 @@ public class ImageFileGenerator
 
 
 
-	private void GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList)
+	private void GenerateFacesAndAssembleCard(DocumentCardSet configCardSet, CardSetDocumentConfig configDocument, string currentLanguage, CardSetHarvest currentHarvest, ConcurrentDictionary<string, string> backImages, List<CardImages> targetList, ConcurrentBag<string> missingSets)
 	{
 		Logger.Log($"Processing {currentHarvest.Faces.Images.Count} face images for card set.");
+		var skippedFaces = 0;
 		foreach (var (faceKey, cardFaceUrl) in currentHarvest.Faces.Images)
 		{
 			if (string.IsNullOrEmpty(cardFaceUrl))
 			{
 				Logger.LogWarning($"Face image URL for '{faceKey}' is null or empty. Skipping processing.");
+				skippedFaces++;
 				continue;
 			}
 			var faceName = $"{faceKey.ToLowerInvariant()}";
@@ -192,7 +210,13 @@ public class ImageFileGenerator
 			else
 			{
 				Logger.LogWarning($"Image for '{faceKey}' was not generated or path is empty. Skipping assembly.");
+				skippedFaces++;
 			}
+		}
+
+		if (skippedFaces > 0)
+		{
+			missingSets.Add($"{configDocument.DocumentName}/{currentLanguage}/{configCardSet.CardSetName}: {skippedFaces} face image(s) missing (null URL or not generated)");
 		}
 	}
 
