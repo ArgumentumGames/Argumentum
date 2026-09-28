@@ -64,8 +64,14 @@ function autoFitTitle(title, minFontPx) {
 // Classe dédiée posée par le seul template dos : les .footer génériques des
 // faces ({{depth_max4}}, <img> Scenarii) restent hors de portée — un sélecteur
 // large aurait exposé ~4200 images de face à un shrink silencieux non testé.
+// Inclut .famille (Fallacies Face, #458 ⑦) : le bandeau de famille porte un nom
+// propre insécable qui peut être plus large que le panneau (ru « ЗЛОУПОТРЕБ-
+// ЛЕНИЕ » débordait de 15/11 px sur la bordure). Décision typographique ai-01 :
+// on RÉDUIT la police, on ne coupe jamais un nom de famille imprimé — le
+// gabarit ne porte plus hyphens/overflow-wrap, ce sélecteur est le seul levier.
+// No-op pour les bandeaux qui tiennent (toutes langues non-RU mesurées à 0).
 function autoFitCardTitles(cardNode) {
-    var titles = cardNode.querySelectorAll('.title, .subtitle, .footer-tagline');
+    var titles = cardNode.querySelectorAll('.title, .subtitle, .footer-tagline, .famille');
     for (var t = 0; t < titles.length; t++) {
         autoFitTitle(titles[t]);
     }
