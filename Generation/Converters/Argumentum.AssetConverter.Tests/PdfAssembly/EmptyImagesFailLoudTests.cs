@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
+using ImageMagick;
 using Xunit;
 
 namespace Argumentum.AssetConverter.Tests.PdfAssembly
@@ -27,6 +28,25 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                 new List<CardImages>(), true);
 
             // Assert — fail loud, naming the file, and leave nothing behind
+            act.Should().Throw<InvalidOperationException>()
+                .Which.Message.Should().Contain(outputPath)
+                .And.Contain("0 images");
+            File.Exists(outputPath).Should().BeFalse("a refused generation must not leave a file behind");
+        }
+
+        [Fact]
+        public void GeneratePdfsFromImages_WithEmptyTargetList_ShouldThrowNotSkip()
+        {
+            // #1609: the three formats funneling into GeneratePdfsFromImages (FacesOnly,
+            // AlternateFaceAndBack, BackFirstOneDocPerBack) had no zero-image guard — an empty target
+            // list produced NOTHING, left any existing PDF in place as stale, and the run stayed green.
+            var pdfManager = new PdfManager();
+            var outputPath = Path.Combine(Path.GetTempPath(), $"arg1609_{Guid.NewGuid()}.pdf");
+
+            Action act = () => pdfManager.GeneratePdfsFromImages(
+                new List<(string fileName, Func<MagickImageCollection> documentImages)>(),
+                true, outputPath);
+
             act.Should().Throw<InvalidOperationException>()
                 .Which.Message.Should().Contain(outputPath)
                 .And.Contain("0 images");

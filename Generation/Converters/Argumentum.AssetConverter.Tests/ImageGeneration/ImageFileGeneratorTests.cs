@@ -176,6 +176,34 @@ namespace Argumentum.AssetConverter.Tests.ImageGeneration
                 .And.Contain("1 document×language couple");
         }
 
+        [Fact]
+        public void GenerateDocumentImages_WhenExpectedCardSetHarvestMissing_ShouldFailLoud()
+        {
+            // #1609: a harvest key absent for an expected CardSet was a LogWarning + continue — the
+            // document's OTHER sets still produced images, the #1179 zero-image guard stayed green,
+            // and the PDF shipped amputee. Missing an expected set must FAIL the run, naming the set.
+            var docConfig = new CardSetDocumentConfig { DocumentName = "TestDoc", Enabled = true, NoBack = false, CardSets = new List<DocumentCardSet> { new DocumentCardSet { CardSetName = "MissingSet" } } };
+            var config = SetupTestConfiguration(new List<CardSetDocumentConfig> { docConfig });
+            var sut = new ImageFileGenerator
+            {
+                AssetConverterConfig = config,
+                Config = config.WebBasedGeneratorConfig
+            };
+
+            // The harvest dictionary deliberately does NOT contain ("MissingSet", "en") — the
+            // document expects that set, and its absence is the amputee-PDF scenario.
+            var harvestDictionary = new ConcurrentDictionary<(string, string), Func<CardSetHarvest>>();
+
+            // Act
+            Action act = () => sut.GenerateDocumentImages(harvestDictionary);
+
+            // Assert — le run échoue et NOMME le jeu manquant
+            act.Should().Throw<InvalidOperationException>()
+                .Which.Message.Should().Contain("TestDoc/en")
+                .And.Contain("MissingSet")
+                .And.Contain("expected card sets");
+        }
+
         public void Dispose()
         {
             if (Directory.Exists(_testOutputDir))

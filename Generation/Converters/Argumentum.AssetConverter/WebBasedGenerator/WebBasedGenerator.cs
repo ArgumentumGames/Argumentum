@@ -93,6 +93,10 @@ namespace Argumentum.AssetConverter
 			Logger.Log($"Found {docImages.Count} document configurations to process for PDF generation.");
 
 			var pdfLock = new object();
+			// #1609: a document×language whose PDF assembly THROWS must fail the run, not be logged
+			// and skipped — the #1179 zero-image guard is rethrown by PdfManager precisely so the run
+			// fails, and this catch was swallowing it back (#1177 defect chain: stale PDF left in place).
+			var failedPdfDocuments = new ConcurrentBag<string>();
 			Parallel.ForEach(docImages, parallelOptionsDocuments, docImageList =>
 			{
 				try
@@ -160,8 +164,18 @@ namespace Argumentum.AssetConverter
 				catch (Exception e)
 				{
 					Logger.LogException(e);
+					failedPdfDocuments.Add($"{docImageList.Key.document.DocumentName}/{docImageList.Key.language}");
 				}
 			});
+
+			if (!failedPdfDocuments.IsEmpty)
+			{
+				var failed = failedPdfDocuments.OrderBy(d => d).ToList();
+				throw new InvalidOperationException(
+					$"PDF generation FAILED for {failed.Count} document×language couple(s): {string.Join(", ", failed)}. "
+					+ "Other documents were produced, but any PDF already on disk for the failed couples is stale "
+					+ "and must not be shipped. See the log for the originating exceptions.");
+			}
 		}
 
 

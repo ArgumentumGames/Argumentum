@@ -29,7 +29,7 @@ namespace Argumentum.AssetConverter
             };
 
             targetFiles.Add((baseName, collecBuilderAFB));
-            GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+            GeneratePdfsFromImages(targetFiles, overwriteExistingDocs, baseName);
         }
 
         public void GenerateAlternateFaceAndBack(string baseName, List<CardImages> cardImages, bool overwriteExistingDocs)
@@ -55,7 +55,7 @@ namespace Argumentum.AssetConverter
             };
 
             targetFiles.Add((baseName, collecBuilderAFB));
-            GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+            GeneratePdfsFromImages(targetFiles, overwriteExistingDocs, baseName);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Argumentum.AssetConverter
                 AnsiConsole.MarkupLine($"[cyan]INFO: Creating additional 'FacesOnly' PDF for {cardsWithoutBack.Count} cards without back[/]");
             }
 
-            GeneratePdfsFromImages(targetFiles, overwriteExistingDocs);
+            GeneratePdfsFromImages(targetFiles, overwriteExistingDocs, baseName);
         }
 
         public void GeneratePrintAndPlay(string fileName, CardSetDocumentConfig docConfig, List<CardImages> images, bool configOverwriteExistingDocs, bool useReleaseMode = false)
@@ -212,7 +212,7 @@ namespace Argumentum.AssetConverter
 
             // 1. Read images — JPEG Q=85 for Debug (Edge preview), PNG lossless for Release (printer)
             byte[] ProcessImage(string path) => !string.IsNullOrEmpty(path) && File.Exists(path)
-                ? (useReleaseMode ? File.ReadAllBytes(path) : ConvertToJpeg(File.ReadAllBytes(path), 85))
+                ? (useReleaseMode ? File.ReadAllBytes(path) : ConvertToJpeg(File.ReadAllBytes(path), 85, path))
                 : null;
 
             var frontImagesData = images.Select(img => ProcessImage(img.Front)).ToList();
@@ -238,7 +238,7 @@ namespace Argumentum.AssetConverter
             }
         }
 
-        private static byte[] ConvertToJpeg(byte[] imageData, int quality)
+        private static byte[] ConvertToJpeg(byte[] imageData, int quality, string context = null)
         {
             if (imageData == null || imageData.Length == 0) return imageData;
             try
@@ -248,15 +248,30 @@ namespace Argumentum.AssetConverter
                 image.Format = MagickFormat.Jpeg;
                 return image.ToByteArray();
             }
-            catch
+            catch (Exception ex)
             {
+                // #1609: a Magick conversion failure previously fell back to the original bytes WITHOUT a
+                // trace — a Debug PDF could silently ship PNG payloads where JPEG Q85 was contracted.
+                Logger.LogWarning(
+                    $"ConvertToJpeg failed for {(string.IsNullOrEmpty(context) ? $"{imageData.Length}-byte image" : context)}: {ex.Message}. "
+                    + $"Keeping original image data (Debug builds ship the source format instead of JPEG Q{quality}).");
                 return imageData;
             }
         }
 
         public void GeneratePdfsFromImages(List<(string fileName, Func<MagickImageCollection> documentImages)> targetFiles,
-            bool configOverwriteExistingDocs)
+            bool configOverwriteExistingDocs, string documentContext = null)
         {
+            if (targetFiles.Count == 0)
+            {
+                // #1609: same contract as GeneratePrintAndPlay's #1179 guard — an empty target list is a
+                // FAILURE, not a silent skip. All three formats (FacesOnly, AlternateFaceAndBack,
+                // BackFirstOneDocPerBack) funnel here; with zero targets any PDF already on disk is stale.
+                throw new InvalidOperationException(
+                    $"No PDF target files to generate{(string.IsNullOrEmpty(documentContext) ? "" : $" for {documentContext}")}: "
+                    + "document×language produced 0 images. Refusing to skip — if a PDF already exists it is stale and must not be left in place.");
+            }
+
             foreach (var targetFile in targetFiles)
             {
                 if (File.Exists(targetFile.fileName) && !configOverwriteExistingDocs)
