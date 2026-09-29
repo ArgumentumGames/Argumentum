@@ -5,6 +5,9 @@ using Xunit;
 
 namespace Argumentum.AssetConverter.Tests.GSheetSync
 {
+    // Shares the console-capture collection: this class redirects Console.Out,
+    // so it must not run in parallel with the other capturing test classes.
+    [Collection("GSheetSyncConsoleCapture")]
     public class DiffReportTests
     {
         private static DiffResult MakeDiff(

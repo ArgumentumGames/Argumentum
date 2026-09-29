@@ -13,7 +13,7 @@ using Google.Apis.Sheets.v4.Data;
 
 namespace Argumentum.AssetConverter.GSheetSync
 {
-	public class GSheetService
+	public class GSheetService : IGSheetService
 	{
 		private readonly SheetsService _sheetsService;
 
@@ -127,13 +127,21 @@ namespace Argumentum.AssetConverter.GSheetSync
 		}
 
 		/// <summary>
-		/// Creates a backup tab from existing data, named "Backup YYYY-MM-DD HH-mm-ss".
+		/// Millisecond-precise backup tab title, so two uploads on the same spreadsheet
+		/// within the same second cannot collide on the title.
+		/// </summary>
+		internal static string BuildBackupTitle(System.DateTime now)
+		{
+			return $"Backup {now:yyyy-MM-dd HH-mm-ss-fff}";
+		}
+
+		/// <summary>
+		/// Creates a backup tab from existing data, named via <see cref="BuildBackupTitle"/>.
 		/// Returns the title of the new backup sheet.
 		/// </summary>
 		public async Task<string> CreateBackupSheetAsync(string spreadsheetId, string sourceSheetTitle)
 		{
-			var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
-			var backupTitle = $"Backup {timestamp}";
+			var backupTitle = BuildBackupTitle(System.DateTime.Now);
 
 			// Step 1: Read source data
 			var range = $"'{sourceSheetTitle}'";
@@ -288,9 +296,23 @@ namespace Argumentum.AssetConverter.GSheetSync
 			if (response.TotalUpdatedCells != patches.Count)
 			{
 				throw new InvalidOperationException(
-					$"Batch update mismatch: expected {patches.Count} cells updated, " +
-					$"got {response.TotalUpdatedCells}.");
+					BuildBatchUpdateMismatchMessage(
+						patches.Count, response.TotalUpdatedCells ?? 0, sheetTitle));
 			}
+		}
+
+		/// <summary>
+		/// Message for a count-mismatched batch upload. Names the backup-tab restore
+		/// path because cells already written by the batch are not rolled back automatically.
+		/// </summary>
+		internal static string BuildBatchUpdateMismatchMessage(
+			int expectedCells, int actualCells, string sheetTitle)
+		{
+			return
+				$"Batch update mismatch: expected {expectedCells} cells updated, " +
+				$"got {actualCells}. Cells already written are NOT rolled back automatically. " +
+				$"Restore tab '{sheetTitle}' from the 'Backup …' tab created before this upload " +
+				"(copy the backup contents over the source tab), then re-apply the remaining patches.";
 		}
 
 		/// <summary>
