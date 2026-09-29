@@ -19,8 +19,10 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// <para><b>The defect it closes</b>: PK 1368's English title minted <c>calling"Cards"</c> — an
     /// ASCII quote is FORBIDDEN in an IRI fragment — and that fragment IS in the served ontology
     /// today (Class + NamedIndividual). The corpus title is now 'Calling “cards”' (typographic,
-    /// path 7.3.1.3): legal in an IRI, but it must not enter an identifier either, or the next
-    /// regeneration ships <c>calling“cards”</c> verbatim.</para>
+    /// path 7.3.1.3): stripping the quotes AFTER Camelize() would mint <c>callingcards</c> — quote
+    /// gone, but the word's capital swallowed by the quote Camelize tried to uppercase (measured on
+    /// the merged tree, review of #1661) — so the strip runs BEFORE Camelize() and mints
+    /// <c>callingCards</c>.</para>
     ///
     /// <para><b>Scope</b>: the corpus-derived fragments (Fallacies <c>text_en</c> → TextEn, Virtues
     /// <c>title_en</c> → TitleEn) — the inputs the generators feed to GetId
@@ -143,15 +145,21 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                 "stripping the quotes must leave a legal fragment, got '{0}'", id);
         }
 
-        [Fact]
-        public void Pk1368_AsciiForm_MintsCallingCards()
+        [Theory]
+        [InlineData("Calling “cards”")]          // PK 1368's CURRENT corpus title (path 7.3.1.3) — the
+                                                 // form the #1525 regeneration will actually mint
+        [InlineData("Calling \"Cards\"")]        // the ASCII form the served ontology shipped
+        public void Pk1368_BothQuoteForms_MintCallingCards(string title)
         {
-            // The outcome #1651 states, pinned on the form that IS in the served ontology. The
-            // typographic form the corpus carries today is only asserted through the strip theory
-            // above: its exact Camelize output is not a contract worth freezing (a legitimate
-            // translation edit to the title must not redden this organ).
-            OwlDocumentConfig.GetId("Calling \"Cards\"").Should().Be("callingCards",
-                "PK 1368's IRI becomes ...#callingCards at the #1525 regeneration (#1651)");
+            // Pinned on BOTH forms because they split the labor differently: under the pre-review
+            // chain (quotes stripped AFTER Camelize) the ASCII form still yielded 'callingCards' — its
+            // capital C comes from the input — while the current typographic title yielded
+            // 'callingcards' (measured on the merged tree, review of #1661): Camelize uppercases the
+            // character following the space, which is the quote '“', not the 'c'. Only the pin on the
+            // CURRENT title reddens when the strip moves back after Camelize().
+            OwlDocumentConfig.GetId(title).Should().Be("callingCards",
+                "PK 1368's IRI is ...#callingCards at the #1525 regeneration (#1651), whichever quote " +
+                "form the title carries — the quote strip must run before Camelize");
         }
 
         [Fact]

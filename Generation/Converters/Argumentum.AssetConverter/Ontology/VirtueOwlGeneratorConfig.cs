@@ -75,10 +75,12 @@ namespace Argumentum.AssetConverter.Ontology
 			// around punctuation, which would produce invalid IRI fragments (#951).
 			// Quote strip mirrors OwlDocumentConfig.GetId too (#1651) — an ASCII '"' is forbidden in an
 			// IRI fragment (RFC 3987); the typographic quotes are legal but must not enter an identifier.
-			// Keep this chain byte-identical to the Fallacies one: VirtueOwlGenerationContractTests pins
-			// the two transforms as the same.
-			return text.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","")
-				.Replace("\"","").Replace("“","").Replace("”","").Replace("«","").Replace("»","");
+			// Like the Fallacies chain, the quote strip runs BEFORE Camelize() (#1661 review): Camelize
+			// uppercases the character after the space, so a leading quote would swallow the word's
+			// capital. Keep this chain byte-identical to the Fallacies one:
+			// VirtueOwlGenerationContractTests pins the two transforms as the same.
+			return text.Replace("\"","").Replace("“","").Replace("”","").Replace("«","").Replace("»","")
+				.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
 	    public string OntologyNamespace { get; set; } = "";
