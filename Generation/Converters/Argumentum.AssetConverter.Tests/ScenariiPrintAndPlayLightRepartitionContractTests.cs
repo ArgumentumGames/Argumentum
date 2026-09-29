@@ -386,27 +386,38 @@ namespace Argumentum.AssetConverter.Tests
 	/// <summary>
 	/// Petit moteur de mesure + contrat — à côté du test pour rester testable en isolation
 	/// (témoins (0)) et pour qu'un autre test puisse le réutiliser sans dupliquer la
-	/// logique CsvHelper. Lit la colonne <c>catégorie</c> (FR, sans _fr — utilisée par le
-	/// <c>Back</c> via <c>{{rowset.[0].catégorie}}</c>) et filtre <c>print_and_play=1</c>.
+	/// logique CsvHelper. Lit une colonne de catégorie et filtre <c>print_and_play=1</c> ;
+	/// la surcharge à un argument garde la colonne Scenarii <c>catégorie</c> (FR, sans _fr —
+	/// utilisée par le <c>Back</c> via <c>{{rowset.[0].catégorie}}</c>), la surcharge à deux
+	/// arguments sert le Poker Light (colonne <c>Famille</c> de la taxonomie Fallacies).
 	/// </summary>
 	public static class LightCategoryBalanceContract
 	{
 		public static (Dictionary<string, int> LightByCategory, int LightTotal, int DeckTotal)
-			MeasureHead(string csvPath)
+			MeasureHead(string csvPath) => MeasureHead(csvPath, "catégorie");
+
+		/// <summary>
+		/// Même mesure, colonne de catégorie choisie par l'appelant. Le nom est passé BRUT :
+		/// <see cref="HarvestCardIdsCsv"/> normalise les en-têtes (diacritiques, <c>_</c>, <c>-</c>,
+		/// espaces), donc <c>Famille</c> et <c>catégorie</c> se résolvent par le même chemin — et
+		/// un libellé de colonne faux lève, il ne rend pas un dictionnaire vide.
+		/// </summary>
+		public static (Dictionary<string, int> LightByCategory, int LightTotal, int DeckTotal)
+			MeasureHead(string csvPath, string categoryColumn)
 		{
 			var csv = new HarvestCardIdsCsv(csvPath);
 			// Light = print_and_play=1 — via la signature surchargeée LoadColumn(col, filtreCol, valeurs).
-			var allCategories = csv.LoadColumn("catégorie");
+			var allCategories = csv.LoadColumn(categoryColumn);
 
 			// Dictionary<char,int> pas possible directement — on recompose via LoadColumnSet pour
 			// le deck total, puis on filtre pour le Light.
-			var deckSet = csv.LoadColumnSet("catégorie");
+			var deckSet = csv.LoadColumnSet(categoryColumn);
 			var deckTotal = deckSet.Count;
 			var lightTotal = allCategories.Count; // déjà filtré côté LoadColumn dans la version colonne nue — cf. usage réel ci-dessous
 
-			// Re-mesure propre : on charge la colonne "catégorie" filtrée par print_and_play=1
+			// Re-mesure propre : on charge la colonne filtrée par print_and_play=1
 			// grâce à HarvestCardIdsCsv.LoadColumn.
-			var lightList = csv.LoadColumn("catégorie", "print_and_play", new[] { "1" });
+			var lightList = csv.LoadColumn(categoryColumn, "print_and_play", new[] { "1" });
 			lightTotal = lightList.Count;
 
 			var byCat = new Dictionary<string, int>(StringComparer.Ordinal);
