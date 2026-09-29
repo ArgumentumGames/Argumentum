@@ -1154,29 +1154,19 @@ var cardpen = {};
                     // Les warnings "Too few fields" sont normaux pour certains CSV (champs optionnels)
                 }
 
-                // ✅ DEBUG CRITIQUE: Combien de lignes PapaParse a-t-il parsé ?
-                console.log('[DEBUG PapaParse] Raw parsed data length:', cardsTemp.data.length);
-                console.log('[DEBUG PapaParse] First 3 rows:', JSON.stringify(cardsTemp.data.slice(0, 3)));
 
                 //Massage the csv.
                 // ✅ CORRECTION BUG #3: Vérifier que rscount est explicitement défini ET >1
                 // Sans cela, rscount d'un CardSet précédent (ex: Scenarii=4) peut contaminer le suivant (Rules)
-                console.log('[DEBUG restructure CHECK] data.rscount=' + data.rscount + ' (type: ' + typeof data.rscount + ')');
-                console.log('[DEBUG restructure CHECK] parseInt(data.rscount)=' + parseInt(data.rscount));
                 
                 if (data.rscount && data.rscount !== 0 && parseInt(data.rscount) > 1) {
-                    console.log('[DEBUG restructure] BEFORE restructure:', cardsTemp.data.length, 'cards');
                     cardsParsed = restructure(parseInt(data.rscount), data.rsstyle, cardsTemp).data;
-                    console.log('[DEBUG restructure] AFTER restructure:', cardsParsed.length, 'cards');
                 } else {
-                    console.log('[DEBUG restructure] SKIPPED (rscount=' + (data.rscount || 0) + ')');
                     cardsParsed = cardsTemp.data;
                 }
                 
-                console.log('[DEBUG after restructure] cardsParsed length:', cardsParsed.length);
 
                 if (data.cindices !== "") {
-                    console.log('[DEBUG cindices] Filtering by cindices:', data.cindices);
                     var indicesParsed = data.cindices.split`,`.map(x => +x);
                     var tempCards = [];
                     for (var co = 0; co < cardsParsed.length; co++) {
@@ -1185,10 +1175,8 @@ var cardpen = {};
                         }
                     }
                     cardsParsed = tempCards;
-                    console.log('[DEBUG cindices] AFTER filtering:', cardsParsed.length, 'cards');
                 }
                 
-                console.log('[DEBUG before mapping] Final cardsParsed length:', cardsParsed.length);
 
 
                 //Handle the noop case automatically, so the user doesn't have to fill it in.
@@ -1215,7 +1203,6 @@ var cardpen = {};
                 fullOutput += externalLink;
                 //Prepare for image.
                 if (forImages) {
-                    fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image.min.js"></script>\n';
                     fullOutput += '\t<script type="text/javascript" src="lib/dom-to-image-more.js"></script>\n';
                     fullOutput += '\t<script type="text/javascript" src="lib/FileSaver.min.js"></script>\n';
                     fullOutput += '\t<script type="text/javascript" src="lib/jszip.min.js"></script>\n';
@@ -1414,6 +1401,9 @@ var cardpen = {};
                     text = text.replace(/(\r\n|\n|\r)/gm, '<br/>');
                     return new Handlebars.SafeString(text);
                 });
+                // Note (#1615) : ce helper rend le HTML de marked() tel quel (SafeString), SANS
+                // sanitization — par conception : le contenu CSV est une source interne de confiance
+                // du pipeline, et des gabarits comptent sur le HTML inline rendu ici.
                 Handlebars.registerHelper("markdown", function (md) {
                    marked.setOptions({
                        breaks: true
@@ -1484,16 +1474,11 @@ var cardpen = {};
                 }
                 var compiledTemplate = Handlebars.compile(templateA + " {{cardIndex}}" + templateB);
                 cardHTML = compiledTemplate({ cardpen: cards });
-                console.log('[DEBUG formatter] Handlebars generated HTML length:', cardHTML.length);
-                console.log('[DEBUG formatter] Number of <card> elements:', (cardHTML.match(/<card/g) || []).length);
             }
 
-            console.log('[DEBUG formatter] Total cards to process:', cards.length);
-            console.log('[DEBUG formatter] cardHTML length:', cardHTML.length);
             
             // Découper le HTML généré en pages
             var cardElements = cardHTML.split('</card>');
-            console.log('[DEBUG formatter] Split into', cardElements.length - 1, 'card elements');
             
             for (var c = 0; c < cardElements.length - 1; c++) {
                 if (c % (rows * cols) == 0) {
