@@ -23,7 +23,9 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// number, and never a mere "> 0": a decay from ~1230 arrows to 3 must fail. Cross-links are
     /// keyed by taxonomy PATH, which is language-independent, so EVERY Fallacies map — each
     /// language, each variant (original / links / content / cards) — must carry EXACTLY the corpus
-    /// count. The Virtues maps carry none (the Virtues taxonomy has no crossLink columns) and are
+    /// count. The Virtues maps carry none — the Virtues taxonomy DOES declare the crossLink_*
+    /// columns (4 filled, incl. inter-deck Opposes Fallacies PKs), but the Virtues creator never
+    /// enables CrossLinks (see VirtueMindMapDocumentConfig.CreateMindMapNodes, #1614) — and are
     /// deliberately not asserted here.
     ///
     /// #1238 §2 — the same invariant guards the 8 INLINE WRAPPERS (Fallacies_{lang}.html). The

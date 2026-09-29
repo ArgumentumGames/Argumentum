@@ -19,7 +19,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             {
                 OverwriteExistingDocs = true,
                 FreeMindPath = "",  // Disable FreeMind GUI in tests
-                FreeplanePath = "", // Disable Freeplane GUI in tests
             };
             _tempTestDirectory = Path.Combine(Path.GetTempPath(), "SvgConversionTests", Path.GetRandomFileName());
             Directory.CreateDirectory(_tempTestDirectory);

@@ -22,15 +22,16 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// Four pure clone bodies are pinned (all output-neutral; production code untouched, exercised via
     /// the public <see cref="DocumentConfig.Clone"/> / <see cref="SVGFreemindMap"/> entries):
     /// <list type="bullet">
-    /// <item><see cref="MindMapDocumentConfig.CloneMindMap"/> — MemberwiseClone + deep copy of
+    /// <item><see cref="FallacyMindMapDocumentConfig.CloneMindMap"/> — MemberwiseClone + deep copy of
     /// <c>Colors</c>, <c>FontSizes</c>, <c>EdgeSizes</c>, and <c>SVGMaps</c> (element-wise).</item>
-    /// <item><see cref="FallacyMindMapDocumentConfig.CloneMindMap"/> — identical 4-collection pattern.</item>
     /// <item><see cref="VirtueMindMapDocumentConfig.CloneMindMap"/> — identical 4-collection pattern.</item>
     /// <item><see cref="SVGFreemindMap"/>.<c>GetClone</c> — MemberwiseClone + element-wise deep copy of
     /// <c>HtmlWrappers</c> (2-level: the list AND each wrapper element).</item>
     /// </list>
+    /// (#1614: the fourth pinned body, the never-instantiated <c>MindMapDocumentConfig.CloneMindMap</c>,
+    /// was removed with its class — the contract stays pinned on both living variants.)
     ///
-    /// The three <c>MindMapDocumentConfig</c> variants declare their own <c>Colors</c>/<c>FontSizes</c>/
+    /// The MindMap document config variants declare their own <c>Colors</c>/<c>FontSizes</c>/
     /// <c>EdgeSizes</c>/<c>SVGMaps</c> (no shared base exposing them), so the deep-copy battery runs
     /// duck-typed via <c>dynamic</c> over the identical member names. Pinned per collection:
     /// reference-distinct (not the same instance), value/count preserved (it is a copy, not empty),
@@ -42,7 +43,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     public class MindMapCloneContractTests
     {
         // ─────────────────────────────────────────────────────────────────────────────
-        // Deep-copy battery for the 3 MindMapDocumentConfig variants.
+        // Deep-copy battery for the MindMapDocumentConfig variants.
         // Runs duck-typed (dynamic) over the identical Colors/FontSizes/EdgeSizes/SVGMaps members.
         // ─────────────────────────────────────────────────────────────────────────────
 
@@ -104,12 +105,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
-        // The 3 MindMapDocumentConfig variants — same 4-collection deep-copy contract.
+        // The MindMapDocumentConfig variants — same 4-collection deep-copy contract.
         // ─────────────────────────────────────────────────────────────────────────────
-
-        [Fact]
-        public void MindMapDocumentConfig_Clone_DeepCopiesCollections()
-            => AssertDocumentConfigCloneIsDeep(new MindMapDocumentConfig());
 
         [Fact]
         public void FallacyMindMapDocumentConfig_Clone_DeepCopiesCollections()
@@ -165,9 +162,9 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         // ─────────────────────────────────────────────────────────────────────────────
 
         [Fact]
-        public void MindMapDocumentConfig_CloneMindMap_Direct_DeepCopiesFourCollections()
+        public void FallacyMindMapDocumentConfig_CloneMindMap_Direct_DeepCopiesFourCollections()
         {
-            var original = new MindMapDocumentConfig();
+            var original = new FallacyMindMapDocumentConfig();
             original.Colors.Clear();
             original.Colors[42] = "# direct";
             original.FontSizes.Clear();
@@ -210,12 +207,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [Fact]
         public void Clone_IsDeterministic_AndProducesEquivalentCopy()
         {
-            var original = new MindMapDocumentConfig();
+            var original = new FallacyMindMapDocumentConfig();
             original.Colors.Clear();
             original.Colors[1] = "#abc";
 
-            var c1 = (MindMapDocumentConfig)original.Clone();
-            var c2 = (MindMapDocumentConfig)original.Clone();
+            var c1 = (FallacyMindMapDocumentConfig)original.Clone();
+            var c2 = (FallacyMindMapDocumentConfig)original.Clone();
 
             // Two clones of the same original are equivalent (same colors) but distinct instances.
             c1.Should().NotBeSameAs(c2);

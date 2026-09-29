@@ -322,8 +322,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 		private void CreateMindMapNodes(FreemindMap freemindMap, IList<IMindMapItem> mindMapItems, Dictionary<string, Node> nodesByPath, AssetConverterConfig config, string language)
 		{
 			// #1181: the Identity text-matching branch (previous enum generation, never enabled) was
-			// removed with the corpus-verb alignment — the Virtues taxonomy carries no crossLink_*
-			// columns, so CrossLinks stays None here and the list below stays empty.
+			// removed with the corpus-verb alignment. The Virtues taxonomy DOES declare the 8
+			// crossLink_* columns (mapped in Virtue.cs; Leverages/Allows/IsRelatedTo filled with
+			// virtue paths, Opposes with inter-deck Fallacies PKs) — no arrows are drawn because
+			// the Virtues creator never enables CrossLinks (stays None by default, unlike
+			// FallacyMindMapCreatorConfig which sets CrossLink.All), so the list below stays
+			// empty by choice, not by missing data (#1614).
 			foreach (var item in mindMapItems)
 			{
 				if (string.IsNullOrEmpty(item.PK)) continue;
@@ -586,7 +590,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				}
 
-				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader, language);
+				await MindMapSvgWrapperWriter.GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgSavedFilePath, svgLoader, language);
 
 
 
@@ -850,40 +854,6 @@ namespace Argumentum.AssetConverter.Mindmapper
 		}
 
 
-
-		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, AssetConverterConfig config,
-			string svgSavedFilePath,
-			Func<Task<string>> svgContent, string language)
-		{
-			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
-			{
-				var templateFilePath = config.UseDebugParams
-					? htmlSvgWrapper.TemplatePathDebug
-					: htmlSvgWrapper.TemplatePathRelease;
-
-				string htmlTemplate = (await templateFilePath.GetDocumentPayload()).AsString();
-
-				var languageAwareDocName = htmlSvgWrapper.DocumentName.Replace("[LANGUAGE]", language);
-
-				var htmlFileName = Path.Combine(Directory.GetParent(svgSavedFilePath)!.FullName, languageAwareDocName);  
-
-
-				if (File.Exists(htmlFileName) && !config.OverwriteExistingHtmlMaps)
-				{
-					Logger.Log($"Skip existing Html SVG Wrapper: {htmlFileName}");
-				}
-				else
-				{
-					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Path.GetDirectoryName(htmlFileName));
-
-					// Issue #196: single helper, tested separately (see MindMapHtmlWrapperTests).
-					htmlTemplate = MindMapHtmlWrapper.FormatWrapper(htmlTemplate, svgRelativePath, await svgContent());
-
-					File.WriteAllText(htmlFileName, htmlTemplate, Encoding.UTF8);
-					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
-				}
-			}
-		}
 
 		public VirtueMindMapDocumentConfig CloneMindMap()
 		{

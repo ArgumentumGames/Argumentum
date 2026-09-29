@@ -126,7 +126,6 @@ namespace Argumentum.AssetConverter
 						}),
 						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Face_fr.json",
 						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Face_fr.json",
-						PauseForEdits = false,
 						Dpi = 300
 					},
 					BackCardSetInfo = new CardSetInfo()
