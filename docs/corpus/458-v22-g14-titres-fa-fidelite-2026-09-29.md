@@ -50,14 +50,14 @@ Aucune coquille mécanique détectée (contrairement à zh ⑫ : 1, ar ⑬ : 2) 
 12. `1373` « استدلال به نازی » (Reductio ad Hitlerum) → **قیاس به هیتلر** : la cible du sophisme est Hitler, pas « les nazis » ; ru a gardé le latin (⑪c), fa peut garder le sien — à trancher.
 13. `1330` « حرف زیادی زدن » (Noyer le poisson) : « parler trop » — concept transmis, idiome non mirroré (zh ⑫ proposait 搅浑水). P acceptable.
 14. `1362` « تو کوکوئه » : translittération phonétique (fr garde le latin) — P (garder), alt. libre تو هم همین‌طور.
-15. **« Acception » rendu par تعریف (définition)** — famille 5.1.x (`104` تعریف مبهم, `106` تعریف دلخواه…) → معنای مبهم / کاربرد دلخواه. Miroir C6 ar.
-16. `129` « رزرو ذهنی » : رزرو = réservation (hôtelière !) → **احتیاط ذهنی** (réserve mentale).
+15. **« Acception » rendu par تعریف (définition)** — famille 5.1.x (`800` تعریف مبهم, `804` تعریف دلخواه…) → معنای مبهم / کاربرد دلخواه. Miroir C6 ar.
+16. `900` « رزرو ذهنی » : رزرو = réservation (hôtelière !) → **احتیاط ذهنی** (réserve mentale).
 17. « زبان چوبی » (Langue de bois) : calque littéral compréhensible — P (garder). Miroir C14 ar / constat ru.
-18. **تعصب vs سوگیری en 6.3.x** : `146`/`147` سوگیری (biais — correct) vs `1174` تعصب فرهنگی / `1242` تعصبات نظری (préjugé/fanatisme) → سوگیری فرهنگی / سوگیری‌های نظری pour la cohérence de la famille Biais. Miroir C17 ar (là : singulier/pluriel ; ici : split lexical).
+18. **تعصب vs سوگیری en 6.3.x** : `1024`/`1092` سوگیری (biais — correct) vs `1174` تعصب فرهنگی / `1242` تعصبات نظری (préjugé/fanatisme) → سوگیری فرهنگی / سوگیری‌های نظری pour la cohérence de la famille Biais. Miroir C17 ar (là : singulier/pluriel ; ici : split lexical).
 19. **Asymétrie de sœurs 6.2.x** : `1011` کاهش تقاضا (Exigence relâchée) — تقاضا = demande économique / requête ; défendable en persan courant, الزامات سست‌تر plus propre ; la sœur نیازمندی‌ها porte le nom. Miroir C3 zh / C15 ar.
 20. « تلاش چشمگیر » (Argument d'effort) — perd « argument » → استدلال تلاش چشمگیر. Miroir C6 ru / C14 zh / C16 ar.
 21. `1004` « چرخش » (Couverture) — **P (garder)** : précédent arbitré ⑪c — ai-01 a gardé ru « Изменение направления » (même famille sémantique directionnelle). Ne pas corriger sans revoir la décision ru.
-22. **Constats positifs** — cellules établies que ru ⑪ a dû corriger et que fa porte déjà : `144` هزینه‌های غرق‌شده (coûts irrécupérables — terme standard d'économie persane), `138` انتقال بار اثبات (renversement de charge), `170` آدم پوشالی (homme de paille ; پهلوان‌پنبه = alt. fa.wiki, les deux vivants), `99` منطق کتری (logique du bouilloire), `165` فرافکنی روانی (projection — terme psychanalytique établi), `139` هم کیک و هم خوردن آن (« avoir le gâteau et le manger » — miroir idiomatique excellent, comme zh 对牛弹琴 pour le chinois). **Et `1360`/`1398` حمله شخصی vs توهین شخصی : la paire ad hominem / attaque personnelle est PROPREMENT DISTINGUÉE — là où zh entrait en collision (⑫).**
+22. **Constats positifs** — cellules établies que ru ⑪ a dû corriger et que fa porte déjà : `1020` هزینه‌های غرق‌شده (coûts irrécupérables — terme standard d'économie persane), `989` انتقال بار اثبات (renversement de charge), `1365` آدم پوشالی (homme de paille ; پهلوان‌پنبه = alt. fa.wiki, les deux vivants), `781` منطق کتری (logique du bouilloire), `1355` فرافکنی روانی (projection — terme psychanalytique établi), `992` هم کیک و هم خوردن آن (« avoir le gâteau et le manger » — miroir idiomatique excellent, comme zh 对牛弹琴 pour le chinois). **Et `1360`/`1398` حمله شخصی vs توهین شخصی : la paire ad hominem / attaque personnelle est PROPREMENT DISTINGUÉE — là où zh entrait en collision (⑫).**
 
 ## ✓ — fidèles (143)
 
@@ -70,5 +70,6 @@ Une garde « deux cartes du deck ne portent pas le même titre entier dans une l
 ## Instrument
 
 - Extraction : 175 rangées deck (colonne `carte` non vide), champs PK/path/text_fr/text_fa/desc_fr/desc_fa (tronqués 180), JSON scratchpad `g14_fa_deck.json` régénéré et re-vérifié contre l'arbre du jour (0 écart).
+- **Correction post-revue (ai-01, 29/09)** : les PK des C-notes rédigées de mémoire pré-extraction désignaient d'autres cartes (11 occurrences, ex. `104` pour تعریف مبهم dont le PK réel est `800`) — tous les PK cités ont été **re-joints sur `text_fa`** contre le CSV `b48ee69a` et vérifiés cellule par cellule. L'annonce « 0 écart » ci-dessus était vraie de l'extraction, pas de la rédaction des C-notes.
 - Jugement : rangée par rangée, adossé à desc_fr/desc_fa ; toute proposition marquée SUPPOSÉ n'est pas sourcée — l'arbitrage décide.
 - Sources vérifiées le 29/09 par recherche web (SearXNG, langue fa) : مصادره به مطلوب (fa.wiki lemma + wikifeqh + manuel scolaire + Civilica/ensani + abadis), شیءانگاری (fa.wiki lemma marxisme + traductions Lukács + presse académique). Les autres propositions (اثر لکلق, عدم دقت, مقایسه نادرست/ناسازگار, وارونگی علیت, طعم و تغییر, توهم دست داغ, بدیل کاذب) sont SUPPOSÉ ou dérivées de la desc_fa elle-même.
