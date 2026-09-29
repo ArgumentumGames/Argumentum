@@ -204,7 +204,6 @@ async function generateImages() {
     domtoimage.getFontsBefore();
     nodes = document.getElementsByTagName("card");
        for (var n = 0; n < nodes.length; n++) {
-           //imaginer(nodes[n],n);
            autoFitCardTitles(nodes[n]);   // Option B (#316) : ajuster les titres débordants avant capture
            autoFitBodyText(nodes[n]);     // Issue #190 : ajuster le corps de texte si débordement vertical
            autoFitFamilyGrid(nodes[n]);   // QA 2026-06-10 : grille Mémo Back qui déborde verticalement (RU)
@@ -216,27 +215,8 @@ async function generateImages() {
 }
 
 
-function imaginer(node,n) {
-	//Need to pass height and width due to an issue with oversized transparent canvases (#50).
-	//domtoimage.toPng(node, { height: height, width: width, dpi: dpi }).then(function (dataUrl) {
-    domtoimage.toPng(node, { height: height, width: width, scale: dpi / 150 }).then(function (dataUrl) {
-  cards[n] = dataUrl;
-		var img = new Image();
-		img.src = dataUrl;
-		document.getElementById("cpImages").appendChild(img);
-	}).catch(function (error) {
-		var msg = 'Something went wrong!  Your browser may not support image generation.';
-        if (console)
-            console.error(msg, error);
-		document.getElementById("cpError").innerHTML = msg;
-		
-	});
-}
-
-
 async function imaginerSync(node, n) {
     try {
-        console.log(`[imaginerSync] Processing node ${n}`, node);
         // Restauré du Golden Master: scale et cachedFonts au lieu de webfont
         const options = {
             height: height,
@@ -245,12 +225,8 @@ async function imaginerSync(node, n) {
             cachedFonts: true,  // Restauré - utilise les polices préchargées
             imagePlaceholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/epv2AAAAABJRU5ErkJggg=="
         };
-        console.log(`[imaginerSync] Options for domtoimage:`, options);
-        console.log(`[imaginerSync] Node HTML content for node ${n}:`, node.outerHTML);
 
   var dataUrl = await domtoimage.toPng(node, options);
-
-        console.log(`[imaginerSync] Received dataUrl for node ${n}: ${dataUrl.substring(0, 100)}...`);
 
         if (dataUrl === 'data:,') {
             throw new Error('domtoimage.toPng returned an empty data URL.');
