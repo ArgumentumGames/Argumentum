@@ -41,8 +41,6 @@ namespace Argumentum.AssetConverter
 		public string JsonFilePathRelease { get; set; }
 		public string JsonFilePathDebug { get; set; }
 
-		public bool PauseForEdits { get; set; }
-
 		public List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)> FieldsLocalization { get; set; }
 			= new List<(string sourceFieldName, List<(string Language, string destFieldName)> fieldConversions)>();
 

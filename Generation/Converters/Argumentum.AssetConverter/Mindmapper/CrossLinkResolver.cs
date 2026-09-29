@@ -62,6 +62,10 @@ public static class CrossLinkResolver
             {
                 if (!itemsByPath.TryGetValue(targetPath, out var target))
                 {
+                    // #1614: silent skip hid corpus drift — an unresolved path meant an arrow that
+                    // quietly never got drawn. Log it; CrossLinkArrowCountTests keeps the corpus at
+                    // 0 unresolved today, so any hit here is a corpus regression to investigate.
+                    Logger.LogWarning($"CrossLink {verb} of '{source.Path}': target path '{targetPath}' not found in the taxonomy — arrow skipped");
                     continue;
                 }
                 if (target.Path == source.Path)

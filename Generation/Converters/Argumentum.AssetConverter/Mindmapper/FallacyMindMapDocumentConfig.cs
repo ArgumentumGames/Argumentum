@@ -1262,7 +1262,7 @@ if (mapFile != null) {
 					Logger.LogWarning($"No SVGMap matching processed file: {svgDoc.Key}");
 					continue;
 				}
-				await GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgDoc.Key, () => Task.FromResult(GetSvgContent(svgDoc.Value)), language);
+				await MindMapSvgWrapperWriter.GenerateHtmlSvgWrappers(svgFreemindMap, webBasedGeneratorConfig, svgDoc.Key, () => Task.FromResult(GetSvgContent(svgDoc.Value)), language);
 			}
 
 			if (!this.KeepOriginalSVG && File.Exists(svgFilePath))
@@ -1362,7 +1362,7 @@ if (mapFile != null) {
 				.Count(g => (string)g.Attribute("class") == "node");
 
 			// Regenerate the integrated (included.html) + external HTML wrappers from the node-bearing SVG.
-			await GenerateHtmlSvgWrappers(contentMap, config, contentSvgPath,
+			await MindMapSvgWrapperWriter.GenerateHtmlSvgWrappers(contentMap, config, contentSvgPath,
 				() => Task.FromResult(GetSvgContent(svgDoc)), language);
 
 			return nodeCount;
@@ -1678,47 +1678,6 @@ if (mapFile != null) {
 			// default that a bare XmlWriter-on-StringBuilder would produce. The 32 on-disk
 			// *.content.svg / *.links.svg realign on the next regeneration (post-tag).
 			return MindMapSvgWriter.WriteToString(svgDoc);
-		}
-
-
-
-		private static async Task GenerateHtmlSvgWrappers(SVGFreemindMap svgMap, AssetConverterConfig config,
-			string svgSavedFilePath,
-			Func<Task<string>> svgContent, string language)
-		{
-			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
-			{
-				var templateFilePath = config.UseDebugParams
-					? htmlSvgWrapper.TemplatePathDebug
-					: htmlSvgWrapper.TemplatePathRelease;
-
-				string htmlTemplate = (await templateFilePath.GetDocumentPayload()).AsString();
-
-				var languageAwareDocName = htmlSvgWrapper.DocumentName.Replace("[LANGUAGE]", language);
-
-				var htmlFileName = Path.Combine(Directory.GetParent(svgSavedFilePath)!.FullName, languageAwareDocName);  // Path.ChangeExtension(svgSavedFilePath, $".{Path.GetFileName(templateFilePath)}");
-
-
-				if (File.Exists(htmlFileName) && !config.OverwriteExistingHtmlMaps)
-				{
-					
-
-					Logger.Log($"Skip existing Html SVG Wrapper: {htmlFileName}");
-
-				}
-				else
-				{
-					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Path.GetDirectoryName(htmlFileName));
-
-					// Issue #196: single helper, tested separately (see MindMapHtmlWrapperTests).
-					htmlTemplate = MindMapHtmlWrapper.FormatWrapper(htmlTemplate, svgRelativePath, await svgContent());
-
-					File.WriteAllText(htmlFileName, htmlTemplate, Encoding.UTF8);
-					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");
-				}
-
-				
-			}
 		}
 
 
