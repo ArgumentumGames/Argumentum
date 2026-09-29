@@ -12,18 +12,29 @@ on:
     branches: [master]
   workflow_dispatch:
 
+# Least privilege (#1616): restore, build and test need nothing more. Declared
+# explicitly because the repository default hands GITHUB_TOKEN WRITE scope —
+# the declaration is local and reviewable; flipping the repo-wide setting to
+# `read` is a separate, owner-level decision.
+permissions:
+  contents: read
+
 jobs:
   build:
     strategy:
+      # #1616: without this, a Debug failure cancels the Release leg and the run
+      # stops saying whether BOTH configurations fail — the same information
+      # loss this audit is about. Both legs always report.
+      fail-fast: false
       matrix:
         configuration: [Debug, Release]
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
           dotnet-version: '9.0.x'
 

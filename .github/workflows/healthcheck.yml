@@ -8,6 +8,12 @@ on:
   schedule:
     - cron: '23 6 * * 1'  # Weekly Monday ~06:23 UTC
 
+# Least privilege (#1616): this workflow only curls PUBLIC Pages URLs — it reads
+# nothing from the repository and writes nothing. Previously it inherited the
+# repository default (write scope).
+permissions:
+  contents: read
+
 jobs:
   healthcheck:
     runs-on: ubuntu-latest
