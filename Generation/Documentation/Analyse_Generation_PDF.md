@@ -4,7 +4,7 @@ Ce document détaille le fonctionnement interne de l'outil `Argumentum.AssetConv
 
 ## 1. Architecture Générale
 
-L'application est une console .NET 8 qui orchestre plusieurs bibliothèques et processus externes pour accomplir sa tâche. Le flux de travail principal peut être décomposé en trois grandes étapes :
+L'application est une console .NET 9 qui orchestre plusieurs bibliothèques et processus externes pour accomplir sa tâche. Le flux de travail principal peut être décomposé en trois grandes étapes :
 
 1.  **Configuration** : Lecture et interprétation des fichiers de configuration.
 2.  **Phase de "Harvesting" (Récolte)** : Génération et capture d'images de cartes via un navigateur web automatisé.

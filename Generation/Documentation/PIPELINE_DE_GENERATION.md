@@ -45,7 +45,7 @@ flowchart TD
         
         subgraph "Outils"
             G --- G_Tool[Logique C#]
-            H --- H_Tool[Processus externe<br/>freeplane.bat]
+            H --- H_Tool[Processus externe<br/>FreeMind.exe]
         end
     end
 ```
@@ -60,11 +60,11 @@ Le pipeline est lancé via l'exécutable `Argumentum.AssetConverter.exe`. Aucune
 
 ```powershell
 # Exemple de commande pour lancer la génération
-cd Generation/Converters/Argumentum.AssetConverter/bin/Debug/net8.0/
+cd Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/
 ./Argumentum.AssetConverter.exe
 ```
 
-Le processus commence par lire et interpréter le fichier [`AssetConverterConfig.json`](Generation/Converters/Argumentum.AssetConverter/bin/Debug/net8.0/AssetConverterConfig.json:1). Ce fichier est le cerveau de l'opération et définit :
+Le processus commence par lire et interpréter le fichier [`AssetConverterConfig.json`](Generation/Converters/Argumentum.AssetConverter/bin/Debug/net9.0-windows/AssetConverterConfig.json:1). Ce fichier est le cerveau de l'opération et définit :
 -   **`DataSets`** : Des pointeurs vers les fichiers de données brutes, principalement des `.csv`.
     -   *Exemple :* Le `DataSet` "Rules" pointe vers le fichier [`Cards/Rules/Argumentum Rules - Cards.csv`](Cards/Rules/Argumentum%20Rules%20-%20Cards.csv).
 -   **`CardSets`** : Des ensembles de cartes qui lient un `DataSet` à un fichier de gabarit `.json`.
@@ -99,20 +99,21 @@ Cette étape est gérée par la logique C# au sein de l'orchestrateur.
 
 1.  **Lecture des Données :** Le processus lit les mêmes fichiers `.csv` que le pipeline PDF, par exemple [`Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv`](Cards/Fallacies/Argumentum%20Fallacies%20-%20Taxonomy.csv).
 2.  **Construction de l'Arbre :** La logique applicative (ex: `FallacyMindMapCreatorConfig`) parcourt les lignes du CSV et construit une structure de données en mémoire qui représente la hiérarchie de la mindmap.
-3.  **Sérialisation XML :** La structure en mémoire est sérialisée en un fichier `.mm`. Il s'agit d'un format de fichier XML spécifique, compatible avec le logiciel **Freeplane** (et Freemind).
+3.  **Sérialisation XML :** La structure en mémoire est sérialisée en un fichier `.mm`. Il s'agit d'un format de fichier XML spécifique, compatible avec **FreeMind**.
     -   *Exemple de sortie :* [`Cards/Fallacies/Mindmaps/fallacy_map.mm`](Cards/Fallacies/Mindmaps/fallacy_map.mm)
 
 ### Étape 3.2 : Conversion en SVG via un Processus Externe
 
-L'application .NET ne convertit pas directement le `.mm` en SVG. Elle délègue cette tâche à un outil externe.
+L'application .NET ne convertit pas directement le `.mm` en SVG. Elle délègue cette tâche à un outil externe : **FreeMind.exe**, lancé comme processus puis piloté par `SendKeys`.
 
-1.  **Appel de la Commande :** L'orchestrateur exécute une commande pour lancer l'outil Freeplane en ligne de commande.
+1.  **Lancement :** Il n'existe **pas** de ligne de commande d'export — l'orchestrateur ouvre FreeMind puis déclenche l'export SVG par `SendKeys` (voir `FallacyMindMapDocumentConfig.TryFreeMindSvgExportCore`). Seul le chemin de l'exécutable se configure :
     ```powershell
-    # Le chemin vers l'exécutable est défini dans le fichier de configuration
-    # Exemple de commande (simplifiée) exécutée par l'application
-    & "C:\Program Files (x86)\Freeplane\freeplane.bat" -X ConvertToSVG -S "<chemin_entree.mm>" "<chemin_sortie.svg>"
+    # Le chemin vient de config.FreeMindPath, puis de la variable d'environnement
+    # ARGUMENTUM_FREEMIND_PATH. Si FreeMind est introuvable, l'export GUI est
+    # sauté avec un avertissement (mode d'échec décrit dans CLAUDE.md § Mind Maps).
+    $env:ARGUMENTUM_FREEMIND_PATH = "C:\Program Files\FreeMind\FreeMind.exe"
     ```
-2.  **Fichier de sortie :** Cette commande produit un fichier `.svg` brut à partir de la carte mentale.
+2.  **Fichier de sortie :** Cette étape produit un fichier `.svg` brut à partir de la carte mentale.
 
 ### Étape 3.3 : Post-traitement et Intégration HTML
 

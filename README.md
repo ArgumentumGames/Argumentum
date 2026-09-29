@@ -101,7 +101,7 @@ The top-level configuration is composed of several key sections:
     "ImagesDirectoryName": "Images\\",
     "DocumentsDirectoryName": "Documents\\",
     "ReleaseCardpenUrl": "https://argumentumgames.github.io/Argumentum/index.html",
-    "DebugCardpenUrl": "https://argumentum.myia.io/index.html",
+    "LocalCardpenUrl": "https://argumentum.myia.io/index.html",
     "DataSets": [
 	(...)
     ],
@@ -120,7 +120,8 @@ The top-level configuration is composed of several key sections:
   },
   "BatchImageConverterConfig": {  },
   "Dnn2sxcConfig": {  },
-  "MindMapCreatorConfig": {    }
+  "FallacyMindMapCreatorConfig": {    },
+  "VirtueMindMapCreatorConfig": {    }
 }
 ```
 

@@ -18,7 +18,7 @@ Le texte français (`text_fr`, `desc_fr`, `example_fr`) est la **source canoniqu
 
 **Stratégie d'exécution** :
 
-1. **Function calling exclusif** : Pour chaque cellule à remplir, appelle `UpdateRecord` avec `pk` (PK du record), `field` (nom de la colonne, ex `desc_en`) et `value` (traduction). Pas de texte libre, pas de skip.
+1. **Function calling exclusif** : Pour chaque cellule à remplir, appelle `UpdateRecord` avec `primaryKey` (PK du record), `fieldName` (nom de la colonne, ex `desc_en`) et `newValue` (traduction). Pas de texte libre, pas de skip.
 
 2. **Couverture exhaustive** : Pour chaque record dans le chunk, émets **jusqu'à 21 UpdateRecord** (7 langues × 3 champs : text/desc/example). Ne saute aucune cellule cible vide. Si une cellule cible est déjà non-vide dans l'input (rare, ignore-la), ne l'écrase pas.
 
@@ -42,10 +42,10 @@ Le texte français (`text_fr`, `desc_fr`, `example_fr`) est la **source canoniqu
 **Format des appels** :
 
 ```
-UpdateRecord(pk="<PK>", field="text_en", value="<trad>")
-UpdateRecord(pk="<PK>", field="desc_en", value="<trad>")
-UpdateRecord(pk="<PK>", field="example_en", value="<trad>")
-UpdateRecord(pk="<PK>", field="text_ru", value="<trad>")
+UpdateRecord(primaryKey="<PK>", fieldName="text_en", newValue="<trad>")
+UpdateRecord(primaryKey="<PK>", fieldName="desc_en", newValue="<trad>")
+UpdateRecord(primaryKey="<PK>", fieldName="example_en", newValue="<trad>")
+UpdateRecord(primaryKey="<PK>", fieldName="text_ru", newValue="<trad>")
 ... (et ainsi de suite pour ru, pt, ar, es, fa, zh)
 ```
 

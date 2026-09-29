@@ -35,7 +35,7 @@ Les tests unitaires se concentreront sur la validation des composants individuel
     *   **Objectif :** S'assurer que la logique C# du `MindMapCreator` génère des fichiers `.mm` valides et bien formés.
     *   **Validation :** Vérifier la conformité XML du fichier généré et l'intégrité des données (le texte des nœuds correspond aux données sources).
 *   **Génération d'Ontologie OWL :**
-    *   **Objectif :** Valider que le `OwlManager` génère des ontologies OWL structurellement cohérentes et conformes aux spécifications.
+    *   **Objectif :** Valider que le `OwlAdapter` génère des ontologies OWL structurellement cohérentes et conformes aux spécifications.
     *   **Validation :** Vérifier la présence des classes, propriétés, instances et annotations multilingues attendues.
 
 ## 4. Tests d'Intégration et Dépendances (Chaînes de Tests)
@@ -91,15 +91,15 @@ Cette chaîne valide le flux complet de la génération d'images à l'assemblage
 
 *   **Test 1 : `Test MM Generation` (Génération du Fichier .mm)**
     *   **Objectif :** Valider que la logique C# génère un fichier `.mm` valide.
-    *   **Setup :** Répertoire de test, `AssetConverterConfig.test.json` activant le mode `MindMapGeneration` et pointant vers un CSV de test.
+    *   **Setup :** Répertoire de test, `AssetConverterConfig.test.json` activant le mode `Mindmapper` et pointant vers un CSV de test.
     *   **Action :** Exécuter le pipeline.
     *   **Assertion :** Vérifier l'existence et la validité XML du fichier `.mm`.
     *   **Artefacts de Sortie :** Fichier `.mm`.
 
 *   **Test 2 : `Test MM to SVG Conversion` (Conversion .mm en SVG)**
-    *   **Objectif :** Valider que le processus externe Freeplane convertit correctement le fichier `.mm` en SVG.
+    *   **Objectif :** Valider que le processus externe FreeMind convertit correctement le fichier `.mm` en SVG.
     *   **Dépendance :** Nécessite le fichier `.mm` généré par `Test MM Generation`.
-    *   **Setup :** Répertoire de test, `AssetConverterConfig.test.json` activant le mode `MindMapGeneration` et pointant vers le `.mm` généré.
+    *   **Setup :** Répertoire de test, `AssetConverterConfig.test.json` activant le mode `Mindmapper` et pointant vers le `.mm` généré.
     *   **Action :** Exécuter le pipeline.
     *   **Assertion :** Vérifier l'existence et la validité minimale du fichier SVG (balise `<svg>`).
     *   **Artefacts de Sortie :** Fichier SVG.
@@ -107,7 +107,7 @@ Cette chaîne valide le flux complet de la génération d'images à l'assemblage
 *   **Test 3 : `Test SVG Post-Processing` (Post-Traitement SVG)**
     *   **Objectif :** Valider que la logique de post-traitement SVG (y compris la "disambiguation") fonctionne correctement.
     *   **Dépendance :** Nécessite le fichier SVG généré par `Test MM to SVG Conversion`.
-    *   **Setup :** Répertoire de test, `AssetConverterConfig.test.json` activant le mode `MindMapGeneration` et pointant vers le SVG généré.
+    *   **Setup :** Répertoire de test, `AssetConverterConfig.test.json` activant le mode `Mindmapper` et pointant vers le SVG généré.
     *   **Action :** Exécuter le pipeline.
     *   **Assertion :** Utiliser des tests de snapshot pour comparer le SVG post-traité à un fichier de référence, garantissant la non-régression de la structure et des attributs.
     *   **Artefacts de Sortie :** Fichier SVG final.
@@ -118,7 +118,7 @@ Nous allons cibler spécifiquement les risques identifiés dans le document d'ar
 
 *   **Test de Non-Régression pour la Logique de "Disambiguation" SVG :**
     *   **Objectif :** Détecter toute régression dans la logique de liaison entre les données et les nœuds SVG des mind maps.
-    *   **Stratégie :** Utiliser des tests de snapshot. Un fichier `.mm` et un fichier `.svg` de référence (générés par une version connue de Freeplane) seront utilisés. Le test exécutera la phase de post-traitement SVG et comparera le résultat au snapshot. Toute modification inattendue de la structure SVG entraînera un échec.
+    *   **Stratégie :** Utiliser des tests de snapshot. Un fichier `.mm` et un fichier `.svg` de référence (générés par une version connue de FreeMind) seront utilisés. Le test exécutera la phase de post-traitement SVG et comparera le résultat au snapshot. Toute modification inattendue de la structure SVG entraînera un échec.
 *   **Test de Validation du Comportement du `lock` pour la Génération PDF :**
     *   **Objectif :** S'assurer que le mécanisme de `lock` autour de `QuestPDF` fonctionne comme prévu, empêchant les *race conditions* et garantissant la génération séquentielle des PDF.
     *   **Stratégie :** Créer un test d'intégration qui tente de générer plusieurs documents PDF en parallèle (en simulant des appels concurrents au `PdfManager`). Le test devra vérifier que les documents sont générés correctement et qu'aucune corruption ou erreur liée à la concurrence ne se produit. Bien que le `lock` rende la génération séquentielle, ce test validera que le contournement est efficace.
@@ -133,6 +133,6 @@ Pour lancer ces tests, l'environnement doit être préparé comme suit :
     *   **CSV :** Fournir des jeux de données CSV représentatifs (cas nominaux, cas limites, cas d'erreur) pour les tests unitaires et d'intégration.
     *   **Templates CardPen :** Inclure des templates HTML/CSS/JS de référence pour CardPen.
     *   **Images PNG de Référence :** Pour les tests d'assemblage PDF, disposer d'un jeu d'images PNG pré-générées (simulant la sortie du `HarvestManager`).
-    *   **Fichiers `.mm` et SVG de Référence :** Pour les tests de mind map et de "disambiguation" SVG, avoir des fichiers `.mm` et SVG de référence générés par une version stable de Freeplane.
-*   **Outils Externes :** S'assurer que Playwright et Freeplane sont installés et configurés correctement sur l'environnement de CI/CD et de développement local. Le chemin vers Freeplane (`FreeplanePath`) doit être correctement défini dans les configurations de test.
+    *   **Fichiers `.mm` et SVG de Référence :** Pour les tests de mind map et de "disambiguation" SVG, avoir des fichiers `.mm` et SVG de référence générés par une version stable de FreeMind.
+*   **Outils Externes :** S'assurer que Playwright et FreeMind sont installés et configurés correctement sur l'environnement de CI/CD et de développement local. Le chemin vers FreeMind (`FreeMindPath`, ou la variable d'environnement `ARGUMENTUM_FREEMIND_PATH`) doit être correctement défini dans les configurations de test.
 *   **Framework de Test :** Utiliser xUnit avec des bibliothèques d'assertion comme FluentAssertions et de mocking comme NSubstitute.
