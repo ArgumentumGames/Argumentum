@@ -15,5 +15,8 @@
     "concat-glob-cli": "latest",
     "http-server": "latest",
     "marked": "^16.4.2"
+  },
+  "overrides": {
+    "qs": ">=6.15.4"
   }
 }
