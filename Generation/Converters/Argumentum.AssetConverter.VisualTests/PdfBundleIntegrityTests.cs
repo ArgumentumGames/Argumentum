@@ -142,6 +142,8 @@ namespace Argumentum.AssetConverter.VisualTests
         /// across the 8 langs is grouped (e.g. Argumentum_PokerCards_{lang}.pdf → "PokerCards").
         /// Documents present in fewer than 4 languages are reported but not parity-checked
         /// (a single-language document has no median to compare against).
+        /// A document whose median page count is 0 — empty in the majority of its
+        /// languages — FAILS, named (document + zero-page languages), not skipped (#1620).
         /// </summary>
         [Fact]
         public void Bundle_Page_Count_Parity_Across_Languages()
@@ -192,14 +194,7 @@ namespace Argumentum.AssetConverter.VisualTests
                     _output.WriteLine($"SKIP (n={pages.Count}): {grp.Key} — present in {grp.Select(r => r.Lang).Aggregate((a, b) => a + "," + b)}");
                     continue;
                 }
-                double median = Median(pages);
-                foreach (var r in grp)
-                {
-                    if (median == 0) continue; // degenerate; skip
-                    double dev = Math.Abs(r.Pages - median) / median;
-                    if (dev > PageCountParityThreshold)
-                        parityFailures.Add($"{r.File}: {r.Pages} pages ({dev:P0} vs median {median:0.#}, threshold {PageCountParityThreshold:P0})");
-                }
+                parityFailures.AddRange(DocumentParityFailures(grp));
             }
 
             // Print the full parity table for diagnosis.
@@ -222,6 +217,68 @@ namespace Argumentum.AssetConverter.VisualTests
                 Assert.Fail($"Page-count parity failures (> {PageCountParityThreshold:P0} vs median):\n  {string.Join("\n  ", parityFailures)}");
 
             _output.WriteLine($"PASS: {byDoc.Count} document types, 0 parity failures.");
+        }
+
+        /// <summary>
+        /// #1620 inverse control: a document empty in the majority of its languages
+        /// (median == 0) must produce a NAMED failure — the exact case the old
+        /// `if (median == 0) continue; // degenerate; skip` silently passed green.
+        /// Mutation proof: restoring the old skip empties the failure list and this
+        /// test goes red. Synthetic data — no Target/ bundle required.
+        /// </summary>
+        [Fact]
+        public void Bundle_Page_Count_Parity_Fails_When_Majority_Of_Languages_Are_Empty()
+        {
+            var records = new List<(string DocKey, string Lang, int Pages, string File)>();
+            foreach (var lang in new[] { "en", "fr", "ru", "es", "pt" }) // 5 empty
+                records.Add(("PokerCards", lang, 0, $"Argumentum_PokerCards_{lang}.pdf"));
+            foreach (var lang in new[] { "de", "zh", "fa" })             // 3 non-empty
+                records.Add(("PokerCards", lang, 334, $"Argumentum_PokerCards_{lang}.pdf"));
+
+            var failures = DocumentParityFailures(records);
+
+            Assert.NotEmpty(failures);
+            var named = Assert.Single(failures);
+            Assert.Contains("PokerCards", named);
+            Assert.Contains("median page count 0", named);
+            // The failure names every zero-page language, not just a bare count.
+            foreach (var lang in new[] { "en", "fr", "ru", "es", "pt" })
+                Assert.Contains(lang, named);
+        }
+
+        /// <summary>
+        /// #1620: parity check for ONE document group (4+ languages), returning named
+        /// failure lines. Median == 0 — the document is empty in the majority of its
+        /// languages — is the most severe case a bundle check must catch, so it FAILS
+        /// (document + zero-page languages named) instead of skipping every language.
+        /// Extracted from Bundle_Page_Count_Parity_Across_Languages so the zero-median
+        /// branch has an inverse control that runs without a generated bundle.
+        /// </summary>
+        internal static List<string> DocumentParityFailures(
+            IEnumerable<(string DocKey, string Lang, int Pages, string File)> records)
+        {
+            var failures = new List<string>();
+            var list = records.ToList();
+            var pages = list.Select(r => (double)r.Pages).OrderBy(p => p).ToList();
+            double median = Median(pages);
+            if (median == 0)
+            {
+                var zeroLangs = list.Where(r => r.Pages == 0).Select(r => r.Lang).OrderBy(l => l).ToList();
+                var nonzero = list.Where(r => r.Pages > 0).Select(r => $"{r.Lang}={r.Pages} pages").ToList();
+                failures.Add(
+                    $"{list[0].DocKey}: median page count 0 over {list.Count} languages — " +
+                    $"{zeroLangs.Count} empty ({string.Join(", ", zeroLangs)})" +
+                    (nonzero.Count > 0 ? $", non-empty: {string.Join(", ", nonzero)}" : "") +
+                    " — a document empty in the majority of its languages must fail, not pass green (#1620)");
+                return failures;
+            }
+            foreach (var r in list)
+            {
+                double dev = Math.Abs(r.Pages - median) / median;
+                if (dev > PageCountParityThreshold)
+                    failures.Add($"{r.File}: {r.Pages} pages ({dev:P0} vs median {median:0.#}, threshold {PageCountParityThreshold:P0})");
+            }
+            return failures;
         }
 
         /// <summary>
