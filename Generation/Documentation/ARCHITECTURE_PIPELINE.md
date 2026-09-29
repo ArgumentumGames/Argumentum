@@ -4,7 +4,7 @@
 
 Ce document fournit une description détaillée de l'architecture technique du pipeline `Argumentum.AssetConverter`. Son objectif est de servir de référence pour la maintenance, l'évolution et la création de tests unitaires et d'intégration.
 
-Le pipeline est une application console .NET 8 qui orchestre un ensemble de processus et de bibliothèques pour transformer des données brutes (principalement des fichiers CSV) en assets finaux (PDF "Print & Play", cartes mentales SVG, ontologies OWL, etc.).
+Le pipeline est une application console .NET 9 qui orchestre un ensemble de processus et de bibliothèques pour transformer des données brutes (principalement des fichiers CSV) en assets finaux (PDF "Print & Play", cartes mentales SVG, ontologies OWL, etc.).
 
 ### Diagramme de Flux Global
 
@@ -47,7 +47,7 @@ Le cœur du pipeline est son système de configuration. Une mauvaise compréhens
 ### 2.1. Le Rôle Central de `AssetConverterConfig.json`
 
 Le fichier `AssetConverterConfig.json` est le point de contrôle unique pour une exécution donnée. Il définit :
-- **Les modes actifs** (`Mode`) : Quelles actions effectuer (`WebBasedImageGeneration`, `QuestPdfGeneration`, `MindMapGeneration`, `PdfAuditor`, etc.).
+- **Les modes actifs** (`Mode`) : Quelles actions effectuer (`WebBasedImageGeneration`, `QuestPdfGeneration`, `Mindmapper`, `PdfAuditor`, etc.).
 - **Les sources de données** (`DataSets`) : Pointeurs vers les fichiers CSV.
 - **Les ensembles de cartes** (`CardSets`) : Définit les templates (HTML/CSS/JS via CardPen) pour chaque type de carte.
 - **Les documents à produire** (`CardSetDocuments`) : Décrit les documents PDF à assembler à partir des images générées.
@@ -102,7 +102,7 @@ Le fichier `AssetConverterConfig.json` est structuré en plusieurs sections clé
 -   **`TaxonomyValidatorConfig` / `OwlValidatorConfig` / `CardValidatorConfig` / `ContinuousValidationConfig` / `TranslationCoverageConfig`** : Configurations pour les différents modules de validation et de rapport.
 -   **`ParallelismOptimizerConfig`** : Gère l'optimisation dynamique du parallélisme.
 -   **`PdfAuditorConfig`** : Configuration pour l'audit des PDF générés.
--   **`FreeplanePath`** : Chemin vers l'exécutable de Freeplane (pour la génération des mind maps).
+-   **`FreeMindPath`** : Chemin vers l'exécutable FreeMind (génération des mind maps) ; résolu depuis `config.FreeMindPath`, puis la variable d'environnement `ARGUMENTUM_FREEMIND_PATH`.
 -   **`OverwriteExistingDocs` / `OverwriteExistingHtmlMaps`** : Drapeaux pour forcer l'écrasement des fichiers existants.
 -   **`EnableSVGPrompt` / `AsynchronousPipeline`** : Options avancées pour le pipeline.
 
@@ -201,34 +201,34 @@ Ce composant assemble les images PNG en documents PDF "Print & Play".
         -   **Dette Technique** : Il s'agit d'un **contournement temporaire** et non d'une solution architecturale propre. La dépendance à ce `lock` est une dette technique importante qui doit être remboursée.
         -   **Impact sur les Tests** : Lors de l'écriture de tests, il est crucial de se rappeler que la génération PDF est séquentielle. Les tests d'intégration qui impliquent la création de plusieurs PDF ne bénéficieront pas de la parallélisation et devront être conçus en conséquence (ex: en limitant le nombre de documents générés par test ou en augmentant les timeouts).
         -   **Surveillance des Mises à Jour QuestPDF** : Il est impératif de surveiller les futures versions de `QuestPDF` pour vérifier si le problème de thread-safety a été résolu. Si c'est le cas, le `lock` pourra être retiré, permettant de restaurer la parallélisation et d'améliorer les performances.
--   **Dépendance à une Ancienne Version** : Le projet a dû revenir à une version plus ancienne de `QuestPDF` (`2023.12.0`) pour résoudre des problèmes de compatibilité et de stabilité. Cette dépendance à une version non à jour représente un risque de sécurité (vulnérabilités non corrigées) et de maintenance (difficulté à intégrer de nouvelles fonctionnalités ou à résoudre des bugs).
-    -   **Action Recommandée** : Planifier une migration vers la dernière version stable de `QuestPDF` dès que possible, en s'assurant que les problèmes de thread-safety sont résolus ou en mettant en place une stratégie de gestion de la concurrence plus robuste.
+-   **`QuestPDF` 2022.12.12 — version ÉPINGLÉE, ne pas « migrer »** : c'est la dernière version sous licence MIT ; au-delà, la licence devient commerciale (cf. `CLAUDE.md` § Stable Dependency Versions). ⛔ Le conseil « migrer vers la dernière version stable », qui figurait ici, est **retiré** : le suivre ferait basculer le projet sous licence commerciale. La version est aussi figée pour la stabilité de mise en page (le `lock` global suppose ce comportement).
+    -   **Surveillance** : les montées de version de la pile sont proposées par Dependabot ; `QuestPDF` et `AutoMapper` sont exclus par `ignore` (verrous de licence), les autres passent par le groupe `dotnet`.
 
-### 4.2. Générateur de Mind Map (`MindMapCreator`, `freeplane.bat`)
+### 4.2. Générateur de Mind Map (`FallacyMindMapDocumentConfig` / `VirtueMindMapDocumentConfig`, `FreeMind.exe`)
 
-Ce composant génère des cartes mentales au format SVG à partir de fichiers `.mm` (Freeplane/Freemind).
+Ce composant génère des cartes mentales au format SVG à partir de fichiers `.mm` (format Freemind).
 
--   **Processus Externe** : La génération des fichiers `.mm` (format natif de Freeplane) est gérée par la logique C# du `MindMapCreator`. La conversion de ces fichiers `.mm` en SVG s'appuie sur l'exécution d'un **processus externe** via le script `freeplane.bat` (ou `freeplane.sh` sur Linux/macOS), qui lance l'application Freeplane en ligne de commande pour effectuer la conversion. Le chemin vers cet exécutable est configuré via `FreeplanePath` dans `AssetConverterConfig.json`.
--   **Logique de "Disambiguation" SVG (Point de Fragilité Majeur)** : Après la conversion initiale du `.mm` en SVG par Freeplane, le pipeline tente de post-traiter le fichier SVG généré pour y injecter des métadonnées supplémentaires ou modifier des attributs. Cette étape est cruciale pour rendre le SVG interactif ou pour lier les éléments graphiques aux données sources.
-    -   **Le Problème de la "Magie"** : Pour établir le lien entre un élément de donnée (ex: une `Fallacy` avec son `Path` unique) et son nœud graphique correspondant dans le fichier SVG, le code utilise une **heuristique de "disambiguation" extrêmement complexe et fragile**. Cette logique repose sur des suppositions implicites concernant la structure interne du SVG généré par Freeplane, notamment :
+-   **Processus Externe** : La génération des fichiers `.mm` est gérée par la logique C# de `FallacyMindMapDocumentConfig` / `VirtueMindMapDocumentConfig`. La conversion de ces fichiers `.mm` en SVG lance **`FreeMind.exe`** en processus externe et le pilote par `SendKeys` (export GUI — il n'existe pas de ligne de commande). Le chemin de l'exécutable vient de `config.FreeMindPath`, puis de la variable d'environnement `ARGUMENTUM_FREEMIND_PATH`. (L'énumération `MindMapFormat` connaît aussi `Freeplane`, mais la voie de production est `Freemind` ; l'export XSLT est mort, cf. #184.)
+-   **Logique de "Disambiguation" SVG (Point de Fragilité Majeur)** : Après la conversion initiale du `.mm` en SVG par FreeMind, le pipeline tente de post-traiter le fichier SVG généré pour y injecter des métadonnées supplémentaires ou modifier des attributs. Cette étape est cruciale pour rendre le SVG interactif ou pour lier les éléments graphiques aux données sources.
+    -   **Le Problème de la "Magie"** : Pour établir le lien entre un élément de donnée (ex: une `Fallacy` avec son `Path` unique) et son nœud graphique correspondant dans le fichier SVG, le code utilise une **heuristique de "disambiguation" extrêmement complexe et fragile**. Cette logique repose sur des suppositions implicites concernant la structure interne du SVG généré par FreeMind, notamment :
         -   **Contenu Textuel** : Elle tente de faire correspondre le texte des nœuds SVG avec les titres des entités de données.
         -   **Positionnement** : Elle peut se baser sur des coordonnées ou des relations spatiales entre les éléments SVG.
-        -   **Absence d'ID Stables** : Le problème fondamental est que Freeplane n'exporte pas les mind maps avec des identifiants uniques et stables pour chaque nœud qui pourraient être directement liés aux IDs des données sources. Le code doit donc "deviner" ces correspondances.
+        -   **Absence d'ID Stables** : Le problème fondamental est que FreeMind n'exporte pas les mind maps avec des identifiants uniques et stables pour chaque nœud qui pourraient être directement liés aux IDs des données sources. Le code doit donc "deviner" ces correspondances.
     -   **Dépendances et Fragilité** :
-        -   **Dépendance à Freeplane** : La logique de post-traitement est intrinsèquement liée à la version et au comportement d'export de Freeplane. Toute mise à jour de Freeplane qui modifie la structure interne du SVG (ex: changement de balises, d'attributs, d'ordre des éléments) cassera cette logique.
-        -   **Retouches Manuelles** : Si un utilisateur modifie manuellement un fichier `.mm` dans Freeplane, cela peut altérer la structure du SVG exporté et rendre la logique de "disambiguation" inopérante.
+        -   **Dépendance à FreeMind** : La logique de post-traitement est intrinsèquement liée à la version et au comportement d'export de FreeMind. Toute mise à jour de FreeMind qui modifie la structure interne du SVG (ex: changement de balises, d'attributs, d'ordre des éléments) cassera cette logique.
+        -   **Retouches Manuelles** : Si un utilisateur modifie manuellement un fichier `.mm` dans FreeMind, cela peut altérer la structure du SVG exporté et rendre la logique de "disambiguation" inopérante.
         -   **Risque (Commit `fc62618c`)** : Ce mécanisme est une **bombe à retardement**. Il a déjà été la source de bugs difficiles à diagnostiquer (comme le montre le commit `fc62618c`). La moindre déviation par rapport au format SVG attendu entraînera des erreurs silencieuses ou des SVG corrompus. C'est un "code smell" majeur.
-    -   **Solution à Long Terme** : Idéalement, il faudrait trouver un moyen d'exporter les mind maps avec des identifiants stables et programmatiques depuis Freeplane/Freemind, ou envisager un autre outil de cartographie mentale qui offre cette fonctionnalité. Cela permettrait une liaison déterministe entre les données et le SVG.
-    -   **Solution à Court Terme pour les Tests** : Isoler cette logique de "disambiguation" dans un composant séparé et la couvrir avec des tests de caractérisation robustes. Ces tests devraient utiliser un fichier `.mm` et un fichier `.svg` de référence (générés par une version connue de Freeplane) pour détecter immédiatement toute régression due à des changements dans Freeplane ou dans la logique de post-traitement.
+    -   **Solution à Long Terme** : Idéalement, il faudrait trouver un moyen d'exporter les mind maps avec des identifiants stables et programmatiques depuis Freemind, ou envisager un autre outil de cartographie mentale qui offre cette fonctionnalité. Cela permettrait une liaison déterministe entre les données et le SVG.
+    -   **Solution à Court Terme pour les Tests** : Isoler cette logique de "disambiguation" dans un composant séparé et la couvrir avec des tests de caractérisation robustes. Ces tests devraient utiliser un fichier `.mm` et un fichier `.svg` de référence (générés par une version connue de FreeMind) pour détecter immédiatement toute régression due à des changements dans FreeMind ou dans la logique de post-traitement.
 
-### 4.3. Générateur d'Ontologie OWL (`OwlManager`)
+### 4.3. Générateur d'Ontologie OWL (`OwlAdapter`)
 
 Ce composant est responsable de la génération des ontologies au format OWL (Web Ontology Language) à partir des données sources. Il utilise la bibliothèque `OWLSharp`.
 
 -   **Objectif** : Créer une représentation formelle des connaissances du domaine (ex: les sophismes, les vertus) sous forme d'ontologie, permettant des requêtes sémantiques et des inférences logiques.
 -   **Dépendance** : S'appuie sur la bibliothèque `OWLSharp` pour la manipulation et la sérialisation des ontologies.
 -   **Configuration** : La section `OwlGeneratorConfig` dans `AssetConverterConfig.json` définit les paramètres de génération, tels que le namespace de l'ontologie (`OntologyNamespace`), les références à des ontologies externes (`ExternalReferenceOntologyNamespaceURI`, `ExternalReferenceOntologyUri`), et les métadonnées (commentaires, créateur, version).
--   **Flux de Données** : Le `OwlManager` lit les données structurées (principalement les taxonomies de sophismes et de vertus) et les transforme en classes, propriétés et instances OWL, en respectant la hiérarchie définie dans les données sources.
+-   **Flux de Données** : Le `OwlAdapter` lit les données structurées (principalement les taxonomies de sophismes et de vertus) et les transforme en classes, propriétés et instances OWL, en respectant la hiérarchie définie dans les données sources.
 -   **Validation** : L'ontologie générée peut être validée par le `OwlValidator` pour s'assurer de sa cohérence structurelle, de la présence des annotations multilingues et de la conformité aux mappings AIF (Argument Interchange Format).
 
 ### 4.4. Auditeur de PDF (`PdfAuditor`)
@@ -244,7 +244,7 @@ L'objectif de cette section est de fournir une stratégie claire pour tester les
 
 ### 5.1. Tester chaque brique séparément
 
-Le principal défi du test de ce pipeline est son caractère monolithique et ses dépendances à des processus externes (Playwright, Freeplane). La stratégie consiste à découpler les composants.
+Le principal défi du test de ce pipeline est son caractère monolithique et ses dépendances à des processus externes (Playwright, FreeMind). La stratégie consiste à découpler les composants.
 
 ### 5.2. Tests d'Intégration Granulaires et le Principe du "Skip"
 
@@ -313,7 +313,7 @@ Cette stratégie permet des tests rapides et ciblés, essentiels pour un pipelin
 
 Pour les tests, il est fondamental de ne **pas** utiliser la configuration globale du projet.
 -   **Principe** : Créer des fichiers `AssetConverterConfig.test.json` spécifiques à chaque scénario de test.
--   **Exemple** : Pour tester le `PdfManager`, on créera une configuration qui ne contient **que** le mode `QuestPdfGeneration` et la définition d'un seul `CardSetDocument` pointant vers nos images de test. Tous les autres modes (`WebBasedImageGeneration`, `MindMapGeneration`, etc.) sont omis.
+-   **Exemple** : Pour tester le `PdfManager`, on créera une configuration qui ne contient **que** le mode `QuestPdfGeneration` et la définition d'un seul `CardSetDocument` pointant vers nos images de test. Tous les autres modes (`WebBasedImageGeneration`, `Mindmapper`, etc.) sont omis.
 
 Cela garantit que le test est focalisé sur un seul composant et n'est pas pollué par l'exécution d'autres parties du pipeline.
 
@@ -325,6 +325,6 @@ Cette architecture, bien que fonctionnelle, porte le poids de son histoire. Voic
 
 2.  **Contournement du Bug de Concurrence de QuestPDF** : Le `lock` sur la génération de PDF est un contournement, pas une solution. Il a un impact direct sur les performances. **Solution à long terme :** Surveiller les nouvelles versions de `QuestPDF` pour voir si le problème de thread-safety est résolu et retirer le `lock`.
 
-3.  **Dépendances à des Versions Anciennes** : Le projet est épinglé à des versions spécifiques de `QuestPDF` et `Magick.NET`. C'est un risque de sécurité et de maintenance. **Action à court terme :** Créer des tests de caractérisation robustes autour des fonctionnalités qui utilisent ces librairies. **Action à long terme :** Planifier une migration vers des versions plus récentes, ce qui nécessitera une phase de test et de validation importante.
+3.  **Dépendances épinglées** : `QuestPDF` est **figé volontairement** — 2022.12.12 est la dernière version sous licence MIT (cf. `CLAUDE.md` § Stable Dependency Versions) ; ⛔ ne pas planifier de « migration vers une version plus récente » sans arbitrage, elle ferait basculer le projet sous licence commerciale. Le reste de la pile est suivi par Dependabot (groupe `dotnet`). **Action à court terme :** Créer des tests de caractérisation robustes autour des fonctionnalités qui utilisent ces librairies.
 
-4.  **La "Disambiguation" SVG Magique** : La liaison entre les données et les nœuds SVG est le point le plus fragile de tout le pipeline. **Solution à long terme :** Idéalement, trouver un moyen d'exporter les mind maps avec des ID stables depuis Freeplane/Freemind, ou trouver un autre outil de cartographie qui le permet. **Solution à court terme :** Isoler cette logique et la couvrir avec des tests de caractérisation utilisant un fichier `.mm` et un fichier `.svg` de référence pour détecter immédiatement toute régression.
+4.  **La "Disambiguation" SVG Magique** : La liaison entre les données et les nœuds SVG est le point le plus fragile de tout le pipeline. **Solution à long terme :** Idéalement, trouver un moyen d'exporter les mind maps avec des ID stables depuis Freemind, ou trouver un autre outil de cartographie qui le permet. **Solution à court terme :** Isoler cette logique et la couvrir avec des tests de caractérisation utilisant un fichier `.mm` et un fichier `.svg` de référence pour détecter immédiatement toute régression.

@@ -49,7 +49,7 @@ Un nouveau projet C# sera créé :
 
 *   **Nom :** `Argumentum.AssetConverter.Tests`
 *   **Emplacement :** `Generation/Converters/Argumentum.AssetConverter.Tests/`
-*   **Type :** Bibliothèque de classes (.NET 8.0)
+*   **Type :** Bibliothèque de classes (net9.0-windows)
 
 ### 4.2. Dépendances NuGet
 
@@ -247,7 +247,7 @@ Cette approche en plusieurs niveaux permet une couverture de test complète et p
 
 ## 7. Stratégie de Test pour la Génération de Mindmap
 
-Le pipeline de génération de mindmap, utilisant des outils externes comme Freeplane, présente des défis uniques qui nécessitent une approche de test spécifique. La stratégie se concentre sur la validation des données et des processus plutôt que sur l'esthétique du rendu final.
+Le pipeline de génération de mindmap, utilisant des outils externes comme FreeMind, présente des défis uniques qui nécessitent une approche de test spécifique. La stratégie se concentre sur la validation des données et des processus plutôt que sur l'esthétique du rendu final.
 
 Pour une analyse complète et une description détaillée de l'architecture de test pour ce pipeline, veuillez consulter le document dédié :
 **[Architecture de Test pour le Pipeline de Génération de Mindmap](./MINDMAP_TESTING_ARCHITECTURE.md)**
