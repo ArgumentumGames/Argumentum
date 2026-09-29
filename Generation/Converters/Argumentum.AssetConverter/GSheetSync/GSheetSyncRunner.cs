@@ -8,10 +8,25 @@ namespace Argumentum.AssetConverter.GSheetSync
 	public class GSheetSyncRunner
 	{
 		private readonly GSheetSyncConfig _config;
+		private readonly IGSheetService _injectedService;
+		private readonly string _injectedSheetTitle;
 
 		public GSheetSyncRunner(GSheetSyncConfig config)
 		{
 			_config = config;
+		}
+
+		/// <summary>
+		/// Test seam: injects a service + sheet title so orchestration guards
+		/// (download safety abort, atomic write, post-upload verification) can be
+		/// exercised without OAuth credentials or network access.
+		/// </summary>
+		internal GSheetSyncRunner(
+			GSheetSyncConfig config, IGSheetService service, string sheetTitle)
+		{
+			_config = config;
+			_injectedService = service;
+			_injectedSheetTitle = sheetTitle;
 		}
 
 		public async Task RunAsync()
@@ -69,14 +84,42 @@ namespace Argumentum.AssetConverter.GSheetSync
 			var diff = diffEngine.Compare(localCsv, downloadedCsv);
 			DiffReport.PrintToConsole(diff, "Local CSV", "GSheet (downloaded)");
 
-			// Step 4: Dry-run check
+			// Step 4: Safety check — same thresholds as upload (#1618). Download
+			// overwrites the repository CSV, so an emptied or truncated sheet
+			// (a ~100% deletion diff) must abort before any write.
+			var safetyChecker = new SyncSafetyChecker();
+			var safetyResult = safetyChecker.Evaluate(diff, _config);
+
+			if (safetyResult.Warnings.Count > 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				foreach (var warning in safetyResult.Warnings)
+				{
+					Console.WriteLine($"  ⚠ {warning}");
+				}
+				Console.ResetColor();
+			}
+
+			if (!safetyResult.IsSafe)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("  ✗ Safety check FAILED — download aborted:");
+				foreach (var error in safetyResult.Errors)
+				{
+					Console.WriteLine($"    ✗ {error}");
+				}
+				Console.ResetColor();
+				return;
+			}
+
+			// Step 5: Dry-run check
 			if (_config.DryRun)
 			{
 				Console.WriteLine("  [DRY RUN] No local files modified. Set DryRun=false to apply changes.");
 				return;
 			}
 
-			// Step 5: User confirmation
+			// Step 6: User confirmation
 			if (_config.RequireConfirmation)
 			{
 				Console.Write("  Apply these changes to local CSV? (y/N): ");
@@ -87,16 +130,53 @@ namespace Argumentum.AssetConverter.GSheetSync
 					return;
 				}
 			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("  ⚠ RequireConfirmation=false — local CSV will be overwritten without prompt.");
+				Console.ResetColor();
+			}
 
-			// Step 6: Write local CSV
+			// Step 7: Write local CSV (temp + rename, so a failed write never
+			// leaves the corpus CSV truncated)
 			var directory = Path.GetDirectoryName(localPath);
 			if (!string.IsNullOrEmpty(directory))
 			{
 				Directory.CreateDirectory(directory);
 			}
 
-			await File.WriteAllTextAsync(localPath, downloadedCsv);
+			await WriteCsvAtomicallyAsync(localPath, downloadedCsv);
 			Console.WriteLine($"  ✓ Local CSV updated: {localPath}");
+		}
+
+		/// <summary>
+		/// Writes content via a sibling temp file + rename, so a failed write
+		/// (locked target, disk full) leaves the existing file intact instead of truncated.
+		/// </summary>
+		internal static async Task WriteCsvAtomicallyAsync(string path, string content)
+		{
+			var tempPath = path + ".tmp";
+			try
+			{
+				await File.WriteAllTextAsync(tempPath, content);
+				File.Move(tempPath, path, overwrite: true);
+			}
+			catch
+			{
+				try
+				{
+					if (File.Exists(tempPath))
+					{
+						File.Delete(tempPath);
+					}
+				}
+				catch
+				{
+					// A stray .tmp is preferable to masking the original failure.
+				}
+
+				throw;
+			}
 		}
 
 		private async Task RunUploadAsync()
@@ -214,6 +294,12 @@ namespace Argumentum.AssetConverter.GSheetSync
 					return;
 				}
 			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("  ⚠ RequireConfirmation=false — patches will be applied without prompt.");
+				Console.ResetColor();
+			}
 
 			// Step 8: Create backup
 			if (_config.CreateBackupBeforeUpload)
@@ -222,6 +308,12 @@ namespace Argumentum.AssetConverter.GSheetSync
 				var backupTitle = await service.CreateBackupSheetAsync(
 					_config.SpreadsheetId, sheetTitle);
 				Console.WriteLine($"  ✓ Backup created: '{backupTitle}'");
+			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("  ⚠ CreateBackupBeforeUpload=false — no backup tab will be created before upload.");
+				Console.ResetColor();
 			}
 
 			// Step 9: Apply patches
@@ -237,20 +329,48 @@ namespace Argumentum.AssetConverter.GSheetSync
 
 			if (mismatches.Count > 0)
 			{
-				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine($"  ⚠ {mismatches.Count} verification mismatches:");
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine($"  ✗ {mismatches.Count} verification mismatches — upload considered FAILED:");
 				foreach (var mm in mismatches.Take(10))
 				{
-					Console.WriteLine($"    ⚠ {mm}");
+					Console.WriteLine($"    ✗ {mm}");
 				}
 				if (mismatches.Count > 10)
 					Console.WriteLine($"    ... (+{mismatches.Count - 10} more)");
 				Console.ResetColor();
+
+				throw new InvalidOperationException(
+					BuildPostUploadVerificationFailureMessage(mismatches.Count, sheetTitle));
 			}
 			else
 			{
 				Console.WriteLine("  ✓ All patches verified — upload successful.");
 			}
+		}
+
+		/// <summary>
+		/// Message for a verification failure after a cell-level upload — the sheet
+		/// may be partially updated, so the restore path is named explicitly.
+		/// </summary>
+		internal static string BuildPostUploadVerificationFailureMessage(
+			int mismatchCount, string sheetTitle)
+		{
+			return
+				$"{mismatchCount} cell(s) still diverge after upload — upload considered FAILED. " +
+				$"The sheet may be partially updated. Restore tab '{sheetTitle}' from the 'Backup …' tab " +
+				"created before this upload, or re-run the upload after fixing the cause.";
+		}
+
+		/// <summary>
+		/// Message for a row-count mismatch after a full-sheet upload.
+		/// </summary>
+		internal static string BuildPostUploadRowCountFailureMessage(
+			int uploadedRows, int foundRows, string sheetTitle)
+		{
+			return
+				$"Row count mismatch after upload: uploaded {uploadedRows}, found {foundRows} — " +
+				$"upload considered FAILED. Restore tab '{sheetTitle}' from the 'Backup …' tab " +
+				"created before this upload, or re-run the upload after fixing the cause.";
 		}
 
 		/// <summary>
@@ -333,6 +453,12 @@ namespace Argumentum.AssetConverter.GSheetSync
 					return;
 				}
 			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("  ⚠ RequireConfirmation=false — changes will be uploaded without prompt.");
+				Console.ResetColor();
+			}
 
 			// Step 7: Create backup
 			if (_config.CreateBackupBeforeUpload)
@@ -342,14 +468,18 @@ namespace Argumentum.AssetConverter.GSheetSync
 					_config.SpreadsheetId, sheetTitle);
 				Console.WriteLine($"  ✓ Backup created: '{backupTitle}'");
 			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("  ⚠ CreateBackupBeforeUpload=false — no backup tab will be created before upload.");
+				Console.ResetColor();
+			}
 
 			// Step 8: Upload (legacy full-sheet overwrite)
-#pragma warning disable CS0618 // Suppress obsolete warning for backward compat
 			Console.WriteLine("  Uploading data (full-sheet overwrite)...");
 			var uploadGrid = GSheetService.CsvToGrid(localCsv);
 			await service.UpdateSheetDataAsync(
 				_config.SpreadsheetId, sheetTitle, uploadGrid);
-#pragma warning restore CS0618
 			Console.WriteLine($"  ✓ Uploaded {uploadGrid.Count} rows to '{sheetTitle}'");
 
 			// Step 9: Verification
@@ -360,9 +490,13 @@ namespace Argumentum.AssetConverter.GSheetSync
 
 			if (verifyGrid.Count != uploadGrid.Count)
 			{
-				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine($"  ⚠ Row count mismatch: uploaded {uploadGrid.Count}, found {verifyGrid.Count}");
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine($"  ✗ Row count mismatch: uploaded {uploadGrid.Count}, found {verifyGrid.Count} — upload considered FAILED");
 				Console.ResetColor();
+
+				throw new InvalidOperationException(
+					BuildPostUploadRowCountFailureMessage(
+						uploadGrid.Count, verifyGrid.Count, sheetTitle));
 			}
 			else
 			{
@@ -370,8 +504,13 @@ namespace Argumentum.AssetConverter.GSheetSync
 			}
 		}
 
-		private async Task<(GSheetService service, string sheetTitle)> InitializeServiceAsync()
+		private async Task<(IGSheetService service, string sheetTitle)> InitializeServiceAsync()
 		{
+			if (_injectedService != null)
+			{
+				return (_injectedService, _injectedSheetTitle);
+			}
+
 			var authManager = new GSheetAuthManager(
 				_config.OAuthCredentialsPath,
 				_config.RefreshTokenPath);

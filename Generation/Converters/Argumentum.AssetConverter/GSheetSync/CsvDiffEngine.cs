@@ -141,6 +141,14 @@ namespace Argumentum.AssetConverter.GSheetSync
 		{
 			var dataTable = new DataTable();
 
+			// An entirely empty input has no header record; CsvHelper throws on
+			// ReadHeader here. Return an empty table instead so callers see a
+			// normal (100% deletion / column-change) diff rather than a raw crash.
+			if (string.IsNullOrWhiteSpace(csvContent))
+			{
+				return dataTable;
+			}
+
 			using var reader = new StringReader(csvContent);
 			using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
 			{
@@ -184,6 +192,13 @@ namespace Argumentum.AssetConverter.GSheetSync
 
 			if (!table.Columns.Contains(primaryKeyColumn))
 			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine(
+					$"  ⚠ Primary key column '{primaryKeyColumn}' not found in header — " +
+					"rows matched by position (row number), not by key. " +
+					"Deletions and additions are inferred from row order.");
+				Console.ResetColor();
+
 				// Fallback: index by row position
 				for (int i = 0; i < table.Rows.Count; i++)
 				{

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Argumentum.AssetConverter.GSheetSync
@@ -43,15 +45,48 @@ namespace Argumentum.AssetConverter.GSheetSync
 
 		public async Task Apply(AssetConverterConfig config)
 		{
-			foreach (var syncConfig in SyncConfigs)
+			await RunAllAsync(SyncConfigs, async syncConfig =>
 			{
-				if (syncConfig.Enabled)
+				Logger.LogTitle($"GSheet Sync: {syncConfig.Name}");
+				var runner = new GSheetSyncRunner(syncConfig);
+				await runner.RunAsync();
+				Logger.LogTitle($"GSheet Sync Complete: {syncConfig.Name}");
+			});
+		}
+
+		/// <summary>
+		/// Runs every enabled corpus, isolating failures: a corpus that throws is
+		/// logged and the following corpora still run. At the end, if any failed,
+		/// the aggregated failure is logged and rethrown so the caller still sees it.
+		/// </summary>
+		internal static async Task RunAllAsync(
+			IEnumerable<GSheetSyncConfig> syncConfigs, Func<GSheetSyncConfig, Task> runOne)
+		{
+			var enabled = syncConfigs.Where(c => c.Enabled).ToList();
+			var failures = new List<(string Name, Exception Error)>();
+
+			foreach (var syncConfig in enabled)
+			{
+				try
 				{
-					Logger.LogTitle($"GSheet Sync: {syncConfig.Name}");
-					var runner = new GSheetSyncRunner(syncConfig);
-					await runner.RunAsync();
-					Logger.LogTitle($"GSheet Sync Complete: {syncConfig.Name}");
+					await runOne(syncConfig);
 				}
+				catch (Exception ex)
+				{
+					failures.Add((syncConfig.Name, ex));
+					Logger.LogProblem($"GSheet Sync FAILED for '{syncConfig.Name}': {ex.Message}");
+				}
+			}
+
+			if (failures.Count > 0)
+			{
+				Logger.LogProblem(
+					$"GSheet Sync: {failures.Count}/{enabled.Count} corpus failed — " +
+					string.Join(", ", failures.Select(f => f.Name)));
+				throw new AggregateException(
+					$"GSheet sync failed for {failures.Count} of {enabled.Count} corpus: " +
+					string.Join(", ", failures.Select(f => f.Name)) + ".",
+					failures.Select(f => f.Error));
 			}
 		}
 	}
