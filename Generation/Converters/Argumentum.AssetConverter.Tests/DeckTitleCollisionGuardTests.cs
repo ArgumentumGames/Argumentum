@@ -9,13 +9,13 @@ namespace Argumentum.AssetConverter.Tests
 	/// <summary>
 	/// Garde de collision des titres du deck (arbitrage ⑫/⑬/⑭, #458 c.5882003715) :
 	/// dans chaque langue, deux cartes du deck ne portent jamais le même titre.
-	/// Arrive avec ⑫w (zh, 3 collisions résolues : 55/956, 833/834, 1360/1398).
-	/// Exceptions nommées à la création : ar 667/846 (« غموض »), fa 667/846
-	/// (« ابهام ») et fa 784/834 (« قیاس نادرست ») — ⑬w retire l'exception ar,
-	/// ⑭w les deux fa. La garde échoue aussi si une exception ne collisionne plus
-	/// (la liste ne pourrit pas) ou si elle nomme une carte hors deck. Les titres
-	/// sont rendus en tête de face (text_&lt;lang&gt;) : une collision se voit sur
-	/// la carte imprimée, indistinguable pour le lecteur.
+	/// Arrive avec ⑫w (zh, 3 collisions résolues : 55/956, 833/834, 1360/1398) ;
+	/// ⑬w retire l'exception ar (667/846, résolue par 667 → « عدم الدقة »).
+	/// Exceptions restantes : fa 667/846 (« ابهام ») et fa 784/834
+	/// (« قیاس نادرست ») — ⑭w les retirera. La garde échoue aussi si une exception
+	/// ne collisionne plus (la liste ne pourrit pas) ou si elle nomme une carte
+	/// hors deck. Les titres sont rendus en tête de face (text_&lt;lang&gt;) : une
+	/// collision se voit sur la carte imprimée, indistinguable pour le lecteur.
 	/// </summary>
 	public class DeckTitleCollisionGuardTests
 	{
@@ -30,7 +30,6 @@ namespace Argumentum.AssetConverter.Tests
 		private static readonly Dictionary<string, (string A, string B)[]> ExpectedCollisions =
 			new(StringComparer.Ordinal)
 		{
-			["ar"] = new[] { ("667", "846") },
 			["fa"] = new[] { ("667", "846"), ("784", "834") },
 		};
 
@@ -97,9 +96,9 @@ namespace Argumentum.AssetConverter.Tests
 				messages.AddRange(CheckLanguage(lang, titles, expected ?? Array.Empty<(string, string)>()));
 			}
 			messages.Should().BeEmpty(
-				"garde de collision #458 : zh 0 (3 paires résolues par ⑫w), fr/en/ru/pt/es 0, " +
-				"ar 1 (667/846), fa 2 (667/846, 784/834) — nommées en exception, " +
-				"retirées par ⑬w/⑭w.");
+				"garde de collision #458 : zh 0 (3 paires résolues par ⑫w), ar 0 (667/846 " +
+				"résolue par ⑬w), fr/en/ru/pt/es 0, fa 2 (667/846, 784/834) — nommées en " +
+				"exception, retirées par ⑭w.");
 		}
 
 		[Fact]
