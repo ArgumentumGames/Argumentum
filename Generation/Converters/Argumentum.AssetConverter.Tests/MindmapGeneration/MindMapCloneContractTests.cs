@@ -43,7 +43,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     public class MindMapCloneContractTests
     {
         // ─────────────────────────────────────────────────────────────────────────────
-        // Deep-copy battery for the 3 MindMapDocumentConfig variants.
+        // Deep-copy battery for the MindMapDocumentConfig variants.
         // Runs duck-typed (dynamic) over the identical Colors/FontSizes/EdgeSizes/SVGMaps members.
         // ─────────────────────────────────────────────────────────────────────────────
 
