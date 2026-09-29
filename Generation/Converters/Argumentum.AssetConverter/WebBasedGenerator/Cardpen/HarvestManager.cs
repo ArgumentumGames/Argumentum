@@ -188,10 +188,17 @@ public class HarvestManager : IAsyncDisposable
 	/// swallowed so the caller's aggregate-error path can report the residual set list).
 	/// Extracted as a pure helper so the retry/backoff contract is unit-testable without a
 	/// browser (precedent: <c>ComputeExpectedImageCount</c>).
+	/// <paramref name="delay"/> is the injection seam (#1659): production passes nothing and gets
+	/// <see cref="Task.Delay(TimeSpan)"/>, tests pass a recorder so that "no delay was requested"
+	/// is OBSERVED instead of timed. A wall-clock bound cannot see the guard that was removed —
+	/// <c>Task.Delay(TimeSpan.Zero)</c> returns almost immediately — which is why the zero-backoff
+	/// test was both load-flaky and blind to the branch it names.
 	/// </summary>
-	internal static async Task<bool> RetryAsync(Func<Task> action, int attempts, TimeSpan backoff, string label = "")
+	internal static async Task<bool> RetryAsync(Func<Task> action, int attempts, TimeSpan backoff, string label = "",
+		Func<TimeSpan, Task> delay = null)
 	{
 		if (attempts < 1) attempts = 1;
+		var wait = delay ?? Task.Delay;
 		Exception lastError = null;
 		for (var attempt = 1; attempt <= attempts; attempt++)
 		{
@@ -213,7 +220,7 @@ public class HarvestManager : IAsyncDisposable
 						$"Backing off {backoff.TotalSeconds}s before retry (issue #613).", MessageType.Problem);
 					if (backoff > TimeSpan.Zero)
 					{
-						await Task.Delay(backoff);
+						await wait(backoff);
 					}
 				}
 			}
