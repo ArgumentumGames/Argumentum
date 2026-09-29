@@ -78,6 +78,13 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "http://web.archive.org/web/20210115204652/http://www.sceptiques.qc.ca/dictionnaire/perfectsolution.html"),
             ("http://www.nizkor.org/features/fallacies/appeal-to-common-practice.html", null),
             ("https://fr.wikipedia.org/wiki/Thought-terminating_cliché", null),
+            // #1621 (deck 7.3.1 + off-deck 7.3.1.1.2, same URL): host dead (replayed 000;
+            // parking page when it answered). Wayback 2020/2022 snapshots capture only a
+            // ~5.5 KB HTML page — the 2018-12-21 capture serves the real PDF (application/
+            // pdf, 71 948 bytes, %PDF-1.3 magic, verified byte-level on the id_ form AND
+            // the human-facing form). Same document, same language.
+            ("http://www.dougwalton.ca/papers%20in%20pdf/04historical.pdf",
+                "http://web.archive.org/web/20181221142544/http://www.dougwalton.ca/papers%20in%20pdf/04historical.pdf"),
         };
 
         // #1440 (off-deck): the don-lindsay root URL, 32 cells mirrored to this snapshot.
@@ -116,6 +123,11 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             "https://www.usherbrooke.ca/dca/documents/Dictionnaire_de_lacronyme_UEL.pdf",
             "https://www.usherbrooke.ca/udeconsulter/ethique/ethique/integrite-scientifique/principes/",
             "https://www.village-justice.com/articles/transparence-et-communication-dans-entreprise,35542.html",
+            // #1621 (Virtues deck card 200 « Respect du sujet », link_fr/link_en/link_es):
+            // host no longer resolves (000) and NEVER had a wayback snapshot (CDX empty,
+            // availability API empty at 7 timestamps). The three cells are cleared — the
+            // fr URL also violated the same-language rule for link_en/link_es (#1621).
+            "http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/",
         };
 
         /// <summary>A wayback prefix ends exactly where the archived (dead) URL begins.</summary>
