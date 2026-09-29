@@ -25,7 +25,7 @@ tracking since 2026-07 ("0 new blob > 2 MB committed since 2026-07-01").
 Allow-list (validated by `--audit-head`: 0 unlisted blob > 2 MiB at HEAD):
     Cards/Fallacies/Mindmaps/                                       regenerated mindmap SVG/HTML, committed-of-record (29 files > 2 MiB)
     Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv             live editorial taxonomy CSV (4.1 MB, touched by every editorial PR)
-    Cards/Virtues/Argumentum Virtues - Taxonomy.csv                 editorial data of record (currently < 2 MiB, pre-allowed for symmetry)
+    Cards/Fallacies/Argumentum Virtues - Taxonomy.csv               editorial data of record (932 KB today, pre-allowed — same family as the taxonomy CSV above; path corrected in #1616, it used to name Cards/Virtues/, a directory that has never existed)
     Cards/Fallacies/Archive/                                        archives of record
     Cards/Fallacies/Assets/                                         card input art (PNG)
     Cards/Packaging/                                                design sources — preserve/LFS per #628
@@ -64,7 +64,7 @@ DEFAULT_THRESHOLD = 2 * 1024 * 1024  # 2 MiB — see module docstring
 ALLOWED = [
     "Cards/Fallacies/Mindmaps/",                                      # regenerated mindmap SVG/HTML (#415 status-checks)
     "Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv",            # live editorial taxonomy (4.1 MB)
-    "Cards/Virtues/Argumentum Virtues - Taxonomy.csv",                # editorial data of record (symmetry)
+    "Cards/Fallacies/Argumentum Virtues - Taxonomy.csv",              # editorial data of record (932 KB today; pre-allowed, same family as the fallacies CSV above)
     "Cards/Fallacies/Archive/",                                       # archives of record
     "Cards/Fallacies/Assets/",                                        # card input art
     "Cards/Packaging/",                                               # design sources — preserve/LFS (#628)

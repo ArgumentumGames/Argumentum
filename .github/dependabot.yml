@@ -18,6 +18,7 @@
 # Policy summary:
 #   1. nuget (our .NET pipeline)         -> group + ignore the load-bearing pins (see `ignore` below)
 #   2. npm our trees (CardPen, pdf-val)   -> group + ignore majors
+#   3. github-actions (.github/workflows) -> group; this is what keeps the SHA pins alive (#1616)
 #
 # Why groups: collapses multiple same-directory bumps into ONE pull request. The repo saw
 # ~34 dependabot PRs in a single cycle (mostly the same package bumped across many 2sxc
@@ -188,3 +189,29 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+
+  # --- 3. github-actions: keeps the SHA pins alive (#1616) ---
+  # #1616 pins every `uses:` in .github/workflows to a commit SHA (a mutable
+  # tag runs whatever code the tag points to at run time, with the run's token).
+  # A pin with no surveillance freezes the action for good — so this ecosystem
+  # was added FIRST, in the same PR, and is what proposes the next SHA.
+  #
+  # group: ["*"] keeps the whole workflow set in ONE PR per week (same rationale
+  # as the other two ecosystems above). The label list stays `dependencies`
+  # alone, deliberately: a `github-actions` label does not exist in this repo,
+  # and dependabot comments on every PR it opens when a referenced label is
+  # missing — the noise the header above already records (#941, #945).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    labels:
+      - "dependencies"
