@@ -2542,9 +2542,8 @@ public class DatasetUpdaterRootConfig
 				SourceDataset = KnownDataSets.Scenarii,
 				FieldsToInclude = new List<string>()
 				{
-					"pk",
+					"path",
 					"title",
-					"title_en",
 					"issue_pt",
 					"context_pt",
 					"suggestion_pt",
@@ -2555,7 +2554,7 @@ public class DatasetUpdaterRootConfig
 					"context_pt",
 					"suggestion_pt",
 				},
-				PrimaryField = "pk",
+				PrimaryField = "path",
 				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
 				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
 				DialogPrompts = new List<PromptExample>()

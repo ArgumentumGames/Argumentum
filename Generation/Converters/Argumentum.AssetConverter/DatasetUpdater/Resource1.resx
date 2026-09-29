@@ -127,15 +127,6 @@
   <data name="CsvPromptSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\CsvPromptSystem.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="FallaciesJsonPromptSampleAssistant" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\FallaciesJsonPromptSampleAssistant.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="FallaciesJsonPromptSampleUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\FallaciesJsonPromptSampleUser.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="FallaciesJsonPromptSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\FallaciesJsonPromptSystem.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="VirtuesJsonPromptSampleAssistant" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\VirtuesJsonPromptSampleAssistant.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
