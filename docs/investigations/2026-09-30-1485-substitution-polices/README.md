@@ -118,7 +118,7 @@ PK=611  colonne desc_fr  "…la fausseté d'une con**с**lusion…"
 
 Un `с` cyrillique s'est glissé à la place du `c` latin. DINPro le couvre (d'où l'invisibilité de la coquille aujourd'hui) ; Barlow et Archivo ne le couvrent pas et le rendraient depuis une police de repli, ce qui produirait un glyphe d'une autre fonte **au milieu d'un mot**. Inter le couvre, ce qui masquerait la coquille.
 
-**Signalé hors périmètre** : la correction est dans le CSV (`Cards/Fallacies/Argumentum_Fallacies_Face_fr.json`, ligne PK=611) et mérite sa propre PR. Une fois la coquille corrigée, les trois candidats couvrent l'intégralité du corpus français.
+**Signalé hors périmètre → [#1669](https://github.com/ArgumentumGames/Argumentum/issues/1669)** : le défaut est **un** caractère, porté par **6** des 12 CSV de cartes vivants (PK=611, `desc_fr`, tous la même cellule recopiée), mesuré en balayant les 10 colonnes de langue latine contre la table des sosies cyrilliques. Une fois la coquille corrigée, les trois candidats couvrent l'intégralité du corpus français.
 
 ---
 
@@ -157,6 +157,10 @@ python mesurer_substitution.py mesurer \
 python mesurer_substitution.py couverture \
     --gabarit ../../../Cards/Fallacies/Argumentum_Fallacies_Face_fr.json \
     --familles Barlow Archivo Inter
+
+# 5. parmi les caracteres non couverts, lesquels sont des coquilles de donnees ?
+#    rc=1 des qu'une occurrence existe -> utilisable comme garde sur Cards/*/*.json
+python scan_cyrillique.py ../../../Cards/Fallacies/Argumentum_Fallacies_Face_fr.json
 ```
 
 `cardpen` doit être joignable à l'adresse de `WebBasedGeneratorConfig.LocalCardpenUrl` (`https://argumentum.myia.io/index.html`).
