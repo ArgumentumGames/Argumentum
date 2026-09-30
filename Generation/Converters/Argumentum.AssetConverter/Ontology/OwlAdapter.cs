@@ -325,9 +325,106 @@ namespace Argumentum.AssetConverter.Ontology
             AnnotateConcept(concept, property, value);
         }
 
-        public Task ToFileAsync(OWLEnums.OWLFormats format, string filePath)
+        public async Task ToFileAsync(OWLEnums.OWLFormats format, string filePath)
         {
-            return _ontology.ToFileAsync(format, filePath);
+            await _ontology.ToFileAsync(format, filePath);
+            if (format == OWLEnums.OWLFormats.OWL2XML)
+                LowercaseXmlLanguageTags(filePath);
+        }
+
+        /// <summary>
+        /// #1622 point 3 — the OWL2XML writer uppercases the language tags. The generators pass
+        /// <c>"fr"</c> / <c>"en"</c> (see <c>OwlGeneratorConfig</c>), and OWLSharp 5.0 serializes
+        /// them as <c>xml:lang="FR"</c> / <c>"EN"</c>. Replayed on 2026-09-30: a minimal ontology
+        /// carrying <c>new RDFPlainLiteral("essai", "fr")</c> comes out as
+        /// <c>&lt;Literal xml:lang="FR"&gt;essai&lt;/Literal&gt;</c>. A language tag is
+        /// case-insensitive (BCP 47), so the artifact stays valid — but a query comparing
+        /// <c>lang(?x) = "fr"</c> matches nothing, and RDF 1.1 puts the value space of language
+        /// tags in lowercase. The committed artifacts carried <b>11,927</b> literals in that
+        /// state (fallacies 10,428 = 5,562 EN + 4,866 FR; virtues 1,499 = 640 EN + 859 FR),
+        /// none of them lowercase.
+        /// </summary>
+        /// <remarks>
+        /// The rewrite works on the <b>bytes</b> and only inside markup: it tracks the
+        /// "between <c>&lt;</c> and <c>&gt;</c>" state and the "inside an attribute value" state,
+        /// so an occurrence of the same sequence in a literal's <i>text</i> is left alone. That
+        /// precaution is not theoretical: OWLSharp escapes <c>&lt;</c> and <c>&amp;</c> but
+        /// <b>not</b> the double quote, so a literal whose value contains <c>xml:lang="FR"</c> is
+        /// written verbatim into the element content (probed on 2026-09-30) and a bare textual
+        /// replacement would rewrite the payload. Nothing else moves: not the encoding, not the
+        /// BOM, not the indentation, not the ordering.
+        /// </remarks>
+        private static void LowercaseXmlLanguageTags(string filePath)
+        {
+            const string attribute = "xml:lang=\"";
+            var bytes = File.ReadAllBytes(filePath);
+            var changed = false;
+            var inMarkup = false;
+            var quote = (byte)0;
+
+            var i = 0;
+            while (i < bytes.Length)
+            {
+                var b = bytes[i];
+
+                if (quote != 0)
+                {
+                    if (b == quote)
+                        quote = 0;
+                    i++;
+                    continue;
+                }
+
+                if (b == (byte)'<')
+                {
+                    inMarkup = true;
+                    i++;
+                    continue;
+                }
+
+                if (b == (byte)'>')
+                {
+                    inMarkup = false;
+                    i++;
+                    continue;
+                }
+
+                if (inMarkup && i + attribute.Length <= bytes.Length && Same(bytes, i, attribute))
+                {
+                    var v = i + attribute.Length;
+                    while (v < bytes.Length && bytes[v] != (byte)'"')
+                    {
+                        if (bytes[v] >= (byte)'A' && bytes[v] <= (byte)'Z')
+                        {
+                            bytes[v] = (byte)(bytes[v] + 32);
+                            changed = true;
+                        }
+                        v++;
+                    }
+                    // i lands AFTER the closing quote: otherwise the generic quote branch would
+                    // read it as an opening one and swallow the tag's closing '>'.
+                    i = v + 1;
+                    continue;
+                }
+
+                if (inMarkup && (b == (byte)'"' || b == (byte)'\''))
+                    quote = b;
+
+                i++;
+            }
+
+            if (changed)
+                File.WriteAllBytes(filePath, bytes);
+        }
+
+        private static bool Same(byte[] bytes, int offset, string ascii)
+        {
+            for (var k = 0; k < ascii.Length; k++)
+            {
+                if (bytes[offset + k] != (byte)ascii[k])
+                    return false;
+            }
+            return true;
         }
 
         // #946 — OWLSharp 5.0: SKOSHelper signatures take OWLNamedIndividual instead of RDFResource.
