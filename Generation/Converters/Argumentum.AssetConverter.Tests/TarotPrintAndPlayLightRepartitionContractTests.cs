@@ -108,7 +108,8 @@ namespace Argumentum.AssetConverter.Tests
 					["Tricherie"] = 0,
 					["Obstruction"] = 0,
 				},
-				expectedCategories: ExpectedCategories);
+				expectedCategories: ExpectedCategories,
+				exercisedLabel: "familles");
 
 			failures.Should().NotBeEmpty(
 				"2 familles vidées sur 7 — la garde DOIT rougir, sinon elle ne protège rien");
@@ -117,6 +118,9 @@ namespace Argumentum.AssetConverter.Tests
 			failures.Should().Contain(f => f.Contains("Obstruction") && f.Contains("0"),
 				"symétrie : la seconde famille vidée doit apparaître aussi — un message qui n'en nomme "
 				+ "qu'une obligerait l'owner à relancer la garde N fois");
+			failures.Should().Contain(f => f.Contains("0/7 familles exercés"),
+				"#1665 : le libellé vient de l'appelant Tarot (« familles »), pas du littéral « dos » "
+				+ "du contrat — le message partagé suit la sélection qui l'invoque");
 			// ⚠️ Assertion portée sur la FRACTION (18/35), jamais sur le pourcentage rendu :
 			// `{share:P1}` dépend de la culture du runner (la v1 de l'organe Scenarii assertait
 			// « 51, » et était verte en local, rouge en CI — mesuré 2026-09-25). La fraction est
@@ -142,7 +146,8 @@ namespace Argumentum.AssetConverter.Tests
 					["Tricherie"] = 5,
 					["Obstruction"] = 5,
 				},
-				expectedCategories: ExpectedCategories);
+				expectedCategories: ExpectedCategories,
+				exercisedLabel: "familles");
 
 			failures.Should().BeEmpty(
 				"7/7 couvertes ≥ 1 et dominante 5/35 sous le seuil — l'invariant est tenu, la garde ne crie pas");
@@ -177,7 +182,7 @@ namespace Argumentum.AssetConverter.Tests
 				lightTotal.Should().Be(7);
 				deckTotal.Should().Be(7, "7 familles distinctes portent une carte dans ce CSV");
 
-				var failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories);
+				var failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "familles");
 				failures.Should().BeEmpty("CSV sain : 7/7 couvertes ≥ 1, dominante 1/7 < 33 % — l'organe verdit");
 			}
 			finally
