@@ -162,10 +162,10 @@
 				<path d="M0 0 L0 43 L377 43 L377 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath53">
-				<path d="M0 0 L0 189 L841 189 L841 0 Z" />
+				<path d="M0 0 L0 189 L829 189 L829 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath54">
-				<path d="M0 0 L0 56 L379 56 L379 0 Z" />
+				<path d="M0 0 L0 56 L367 56 L367 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath55">
 				<path d="M0 0 L0 143 L442 143 L442 0 Z" />
@@ -1567,31 +1567,31 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4590,4748)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
-			<path fill="none" d="M428 94 C440 94 429 92 449 92" clip-path="url(#clipPath53)" />
-			<path fill="none" d="M428 94 C440 94 429 138 449 138" clip-path="url(#clipPath53)" />
+			<path fill="none" d="M416 94 C428 94 417 92 437 92" clip-path="url(#clipPath53)" />
+			<path fill="none" d="M416 94 C428 94 417 138 437 138" clip-path="url(#clipPath53)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4640,4814)" fill="rgb(249,122,119)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(249,122,119)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath54)" width="378" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath54)" fill="none" width="378" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
+			<rect x="0" y="0" clip-path="url(#clipPath54)" width="366" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath54)" fill="none" width="366" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
 		</g>
-		<a xlink:href="http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/" target="_blank">
+		<a xlink:href="" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4640,4814)">
-				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath54)" stroke="none">Respect du sujet</text>
+				<text text-rendering="geometricPrecision" x="44" xml:space="preserve" y="43" clip-path="url(#clipPath54)" stroke="none">Respect du sujet</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(5039,4844)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(5027,4844)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath56)" x2="342" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(5039,4844)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(5027,4844)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">Éviter les digressions</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(5039,4798)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(5027,4798)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath58)" x2="298" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(5039,4798)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(5027,4798)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="42" xml:space="preserve" y="33" clip-path="url(#clipPath58)" stroke="none">Principe de clarté</text>
 			</g>
 		</a>

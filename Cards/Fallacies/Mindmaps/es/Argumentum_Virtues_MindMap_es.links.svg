@@ -156,10 +156,10 @@
 				<path d="M0 0 L0 43 L576 43 L576 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath51">
-				<path d="M0 0 L0 189 L887 189 L887 0 Z" />
+				<path d="M0 0 L0 189 L875 189 L875 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath52">
-				<path d="M0 0 L0 56 L425 56 L425 0 Z" />
+				<path d="M0 0 L0 56 L413 56 L413 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath53">
 				<path d="M0 0 L0 143 L442 143 L442 0 Z" />
@@ -684,10 +684,10 @@
 				<path d="M0 0 L0 43 L284 43 L284 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath227">
-				<path d="M0 0 L0 137 L394 137 L394 0 Z" />
+				<path d="M0 0 L0 137 L384 137 L384 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath228">
-				<path d="M0 0 L0 37 L294 37 L294 0 Z" />
+				<path d="M0 0 L0 37 L284 37 L284 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath229">
 				<path d="M0 0 L0 137 L484 137 L484 0 Z" />
@@ -1456,8 +1456,8 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Constructive_criticism" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5053,5424)">
-				<text x="56" y="45" clip-path="url(#clipPath38)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Evaluación razonable de la </text>
-				<text x="56" y="97" clip-path="url(#clipPath38)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">posición adversa</text>
+				<text x="56" y="45" clip-path="url(#clipPath38)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Evaluación leal de la posición </text>
+				<text x="56" y="97" clip-path="url(#clipPath38)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">adversa</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5738,5503)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1543,31 +1543,31 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4935,5112)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
-			<path fill="none" d="M474 94 C486 94 475 92 495 92" clip-path="url(#clipPath51)" />
-			<path fill="none" d="M474 94 C486 94 475 138 495 138" clip-path="url(#clipPath51)" />
+			<path fill="none" d="M462 94 C474 94 463 92 483 92" clip-path="url(#clipPath51)" />
+			<path fill="none" d="M462 94 C474 94 463 138 483 138" clip-path="url(#clipPath51)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4985,5178)" fill="rgb(249,122,119)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(249,122,119)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath52)" width="424" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath52)" fill="none" width="424" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
+			<rect x="0" y="0" clip-path="url(#clipPath52)" width="412" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath52)" fill="none" width="412" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
 		</g>
-		<a xlink:href="http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/" target="_blank">
+		<a xlink:href="" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4985,5178)">
-				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath52)" stroke="none">Adherencia al tema</text>
+				<text text-rendering="geometricPrecision" x="44" xml:space="preserve" y="43" clip-path="url(#clipPath52)" stroke="none">Adherencia al tema</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(5430,5208)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(5418,5208)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath54)" x2="342" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(5430,5208)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(5418,5208)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath54)" stroke="none">Evitar las digresiones</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(5430,5162)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(5418,5162)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath56)" x2="341" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(5430,5162)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(5418,5162)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="42" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">Principio de claridad</text>
 			</g>
 		</a>
@@ -2634,11 +2634,11 @@
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6246,3614)" stroke="rgb(141,200,1)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath228)" x2="294" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath228)" x2="284" y1="36" />
 		</g>
 		<a xlink:href="https://es.wikipedia.org/wiki/Método_científico" target="_blank">
 			<g font-size="25" transform="translate(6246,3614)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath228)" stroke="none">Inferencia: Resolución</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath228)" stroke="none">Inferencia: resolución</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6246,3574)" stroke="rgb(141,200,1)">

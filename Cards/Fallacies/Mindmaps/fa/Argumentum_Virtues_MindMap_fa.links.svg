@@ -162,10 +162,10 @@
 				<path d="M0 0 L0 43 L394 43 L394 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath53">
-				<path d="M0 0 L0 189 L665 189 L665 0 Z" />
+				<path d="M0 0 L0 189 L653 189 L653 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath54">
-				<path d="M0 0 L0 56 L314 56 L314 0 Z" />
+				<path d="M0 0 L0 56 L302 56 L302 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath55">
 				<path d="M0 0 L0 143 L331 143 L331 0 Z" />
@@ -1601,31 +1601,31 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2781,4644)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
-			<path fill="none" d="M363 94 C375 94 364 92 384 92" clip-path="url(#clipPath53)" />
-			<path fill="none" d="M363 94 C375 94 364 138 384 138" clip-path="url(#clipPath53)" />
+			<path fill="none" d="M351 94 C363 94 352 92 372 92" clip-path="url(#clipPath53)" />
+			<path fill="none" d="M351 94 C363 94 352 138 372 138" clip-path="url(#clipPath53)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2831,4710)" fill="rgb(249,122,119)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(249,122,119)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath54)" width="313" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath54)" fill="none" width="313" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
+			<rect x="0" y="0" clip-path="url(#clipPath54)" width="301" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath54)" fill="none" width="301" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
 		</g>
-		<a xlink:href="http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/" target="_blank">
+		<a xlink:href="" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2831,4710)">
-				<text text-rendering="geometricPrecision" x="57" xml:space="preserve" y="43" clip-path="url(#clipPath54)" stroke="none">پایبندی به موضوع</text>
+				<text text-rendering="geometricPrecision" x="45" xml:space="preserve" y="43" clip-path="url(#clipPath54)" stroke="none">پایبندی به موضوع</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(3165,4740)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(3153,4740)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath56)" x2="231" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(3165,4740)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(3153,4740)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath56)" stroke="none">پرهیز از حاشیه‌روی</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(3165,4694)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(3153,4694)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath58)" x2="168" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(3165,4694)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(3153,4694)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="42" xml:space="preserve" y="33" clip-path="url(#clipPath58)" stroke="none">اصل وضوح</text>
 			</g>
 		</a>
@@ -1891,7 +1891,7 @@
 		<g font-size="30" transform="translate(0,3259)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath108)" x2="550" y1="42" />
 		</g>
-		<a xlink:href="https://www.edutechwiki.unige.ch/fr/Biais_cognitifs#Biais_d'attribution" target="_blank">
+		<a xlink:href="https://fa.wikipedia.org/wiki/سوگیری_شناختی" target="_blank">
 			<g font-size="30" transform="translate(0,3259)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath108)" stroke="none">درنظرگرفتن سوگیری‌های ایدئولوژیک طرف مقابل</text>
 			</g>
@@ -2004,7 +2004,7 @@
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(202,2972)" stroke="rgb(255,195,7)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath130)" x2="174" y1="42" />
 		</g>
-		<a xlink:href="https://www.transparency.org/fr/définition-conflit-dintérêt" target="_blank">
+		<a xlink:href="https://fa.wikipedia.org/wiki/تعارض_منافع" target="_blank">
 			<g font-size="30" transform="translate(202,2972)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath130)" stroke="none">تعارض منافع</text>
 			</g>

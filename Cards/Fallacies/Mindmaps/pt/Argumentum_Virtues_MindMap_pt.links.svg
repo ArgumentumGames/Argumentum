@@ -159,10 +159,10 @@
 				<path d="M0 0 L0 56 L573 56 L573 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath52">
-				<path d="M0 0 L0 189 L817 189 L817 0 Z" />
+				<path d="M0 0 L0 189 L805 189 L805 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath53">
-				<path d="M0 0 L0 56 L367 56 L367 0 Z" />
+				<path d="M0 0 L0 56 L355 56 L355 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath54">
 				<path d="M0 0 L0 143 L429 143 L429 0 Z" />
@@ -375,13 +375,13 @@
 				<path d="M0 0 L0 43 L269 43 L269 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath124">
-				<path d="M0 0 L0 307 L1712 307 L1712 0 Z" />
+				<path d="M0 0 L0 307 L1695 307 L1695 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath125">
 				<path d="M0 0 L0 68 L579 68 L579 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath126">
-				<path d="M0 0 L0 189 L1113 189 L1113 0 Z" />
+				<path d="M0 0 L0 189 L1096 189 L1096 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath127">
 				<path d="M0 0 L0 56 L547 56 L547 0 Z" />
@@ -393,10 +393,10 @@
 				<path d="M0 0 L0 43 L320 43 L320 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath130">
-				<path d="M0 0 L0 143 L546 143 L546 0 Z" />
+				<path d="M0 0 L0 143 L529 143 L529 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath131">
-				<path d="M0 0 L0 43 L446 43 L446 0 Z" />
+				<path d="M0 0 L0 43 L429 43 L429 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath132">
 				<path d="M0 0 L0 156 L460 156 L460 0 Z" />
@@ -693,10 +693,10 @@
 				<path d="M0 0 L0 43 L299 43 L299 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath230">
-				<path d="M0 0 L0 137 L388 137 L388 0 Z" />
+				<path d="M0 0 L0 137 L378 137 L378 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath231">
-				<path d="M0 0 L0 37 L288 37 L288 0 Z" />
+				<path d="M0 0 L0 37 L278 37 L278 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath232">
 				<path d="M0 0 L0 137 L520 137 L520 0 Z" />
@@ -1083,75 +1083,69 @@
 				<path d="M0 0 L0 43 L321 43 L321 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath360">
-				<path d="M0 0 L0 143 L529 143 L529 0 Z" />
-			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath361">
-				<path d="M0 0 L0 43 L429 43 L429 0 Z" />
-			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath362">
 				<path d="M0 0 L0 143 L742 143 L742 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath363">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath361">
 				<path d="M0 0 L0 137 L373 137 L373 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath364">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath362">
 				<path d="M0 0 L0 37 L273 37 L273 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath365">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath363">
 				<path d="M0 0 L0 143 L416 143 L416 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath366">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath364">
 				<path d="M0 0 L0 43 L316 43 L316 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath367">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath365">
 				<path d="M0 0 L0 143 L350 143 L350 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath368">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath366">
 				<path d="M0 0 L0 43 L250 43 L250 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath369">
-				<path d="M0 0 L0 432 L1569 432 L1569 0 Z" />
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath367">
+				<path d="M0 0 L0 432 L1530 432 L1530 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath370">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath368">
 				<path d="M0 0 L0 156 L570 156 L570 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath371">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath369">
 				<path d="M0 0 L0 56 L470 56 L470 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath372">
-				<path d="M0 0 L0 281 L884 281 L884 0 Z" />
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath370">
+				<path d="M0 0 L0 281 L845 281 L845 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath373">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath371">
 				<path d="M0 0 L0 56 L377 56 L377 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath374">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath372">
 				<path d="M0 0 L0 143 L448 143 L448 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath375">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath373">
 				<path d="M0 0 L0 143 L357 143 L357 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath376">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath374">
 				<path d="M0 0 L0 43 L257 43 L257 0 Z" />
 			</clipPath>
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath375">
+				<path d="M0 0 L0 143 L360 143 L360 0 Z" />
+			</clipPath>
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath376">
+				<path d="M0 0 L0 43 L260 43 L260 0 Z" />
+			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath377">
-				<path d="M0 0 L0 143 L487 143 L487 0 Z" />
-			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath378">
-				<path d="M0 0 L0 43 L387 43 L387 0 Z" />
-			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath379">
 				<path d="M0 0 L0 189 L809 189 L809 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath380">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath378">
 				<path d="M0 0 L0 56 L339 56 L339 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath381">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath379">
 				<path d="M0 0 L0 143 L441 143 L441 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath382">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath380">
 				<path d="M0 0 L0 143 L450 143 L450 0 Z" />
 			</clipPath>
-			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath383">
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath381">
 				<path d="M0 0 L0 43 L350 43 L350 0 Z" />
 			</clipPath>
 			<font horiz-adv-x="75.0" id="font1">
@@ -1442,7 +1436,7 @@
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Crítica_construtiva" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5027,5379)">
-				<text x="56" y="45" clip-path="url(#clipPath29)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Avaliação razoável da posição </text>
+				<text x="56" y="45" clip-path="url(#clipPath29)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">Avaliação leal da posição </text>
 				<text x="56" y="97" clip-path="url(#clipPath29)" text-rendering="geometricPrecision" font-family="sans-serif" stroke="none" xml:space="preserve">contrária</text>
 			</g>
 		</a>
@@ -1528,31 +1522,31 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(4914,5086)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(220,15,10)">
-			<path fill="none" d="M416 94 C428 94 417 92 437 92" clip-path="url(#clipPath52)" />
-			<path fill="none" d="M416 94 C428 94 417 138 437 138" clip-path="url(#clipPath52)" />
+			<path fill="none" d="M404 94 C416 94 405 92 425 92" clip-path="url(#clipPath52)" />
+			<path fill="none" d="M404 94 C416 94 405 138 425 138" clip-path="url(#clipPath52)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(4964,5152)" fill="rgb(249,122,119)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(249,122,119)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath53)" width="366" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath53)" fill="none" width="366" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
+			<rect x="0" y="0" clip-path="url(#clipPath53)" width="354" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath53)" fill="none" width="354" rx="5" ry="5" height="55" stroke="rgb(220,15,10)" />
 		</g>
-		<a xlink:href="http://www.communication-orthophonie.fr/la-communication/la-communication-verbale/le-dialogue/" target="_blank">
+		<a xlink:href="" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(4964,5152)">
-				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath53)" stroke="none">Adesão ao tema</text>
+				<text text-rendering="geometricPrecision" x="44" xml:space="preserve" y="43" clip-path="url(#clipPath53)" stroke="none">Adesão ao tema</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(5351,5182)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(5339,5182)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath16)" x2="330" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(5351,5182)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(5339,5182)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="33" clip-path="url(#clipPath16)" stroke="none">Evitar as divagações</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(5351,5136)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
+		<g font-size="30" transform="translate(5339,5136)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath55)" x2="329" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(5351,5136)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
+			<g font-size="30" transform="translate(5339,5136)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="42" xml:space="preserve" y="33" clip-path="url(#clipPath55)" stroke="none">Princípio da clareza</text>
 			</g>
 		</a>
@@ -1985,10 +1979,10 @@
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath123)" stroke="none">Ónus da prova</text>
 			</g>
 		</a>
-		<g stroke-linecap="butt" font-size="11" transform="translate(729,2686)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
-			<path fill="none" d="M1083 153 C1071 153 1082 78 1062 78" clip-path="url(#clipPath124)" />
-			<path fill="none" d="M1083 153 C1071 153 1082 137 1062 137" clip-path="url(#clipPath124)" />
-			<path fill="none" d="M1083 153 C1071 153 1082 212 1062 212" clip-path="url(#clipPath124)" />
+		<g stroke-linecap="butt" font-size="11" transform="translate(746,2686)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)" stroke-width="5">
+			<path fill="none" d="M1066 153 C1054 153 1065 78 1045 78" clip-path="url(#clipPath124)" />
+			<path fill="none" d="M1066 153 C1054 153 1065 137 1045 137" clip-path="url(#clipPath124)" />
+			<path fill="none" d="M1066 153 C1054 153 1065 212 1045 212" clip-path="url(#clipPath124)" />
 		</g>
 		<g stroke-linecap="butt" font-size="50" transform="translate(1812,2805)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
 			<rect x="0" y="0" clip-path="url(#clipPath125)" width="578" rx="5" ry="5" height="67" stroke="none" />
@@ -2001,9 +1995,9 @@
 				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="53" clip-path="url(#clipPath125)" stroke="none">Fidelidade aos factos</text>
 			</g>
 		</a>
-		<g font-size="11" stroke-linecap="butt" transform="translate(729,2804)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
-			<path fill="none" d="M516 94 C504 94 515 92 495 92" clip-path="url(#clipPath126)" />
-			<path fill="none" d="M516 94 C504 94 515 138 495 138" clip-path="url(#clipPath126)" />
+		<g font-size="11" stroke-linecap="butt" transform="translate(746,2804)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
+			<path fill="none" d="M499 94 C487 94 498 92 478 92" clip-path="url(#clipPath126)" />
+			<path fill="none" d="M499 94 C487 94 498 138 478 138" clip-path="url(#clipPath126)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(1245,2870)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold">
 			<rect x="0" y="0" clip-path="url(#clipPath127)" width="546" rx="5" ry="5" height="55" stroke="none" />
@@ -2022,12 +2016,12 @@
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath129)" stroke="none">Divulgação integral</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(779,2854)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath131)" x2="446" y1="42" />
+		<g font-size="30" transform="translate(796,2854)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath131)" x2="429" y1="42" />
 		</g>
 		<a xlink:href="" target="_blank">
-			<g font-size="30" transform="translate(779,2854)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath131)" stroke="none">Considerações nuanceadas</text>
+			<g font-size="30" transform="translate(796,2854)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath131)" stroke="none">Considerações nuançadas</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(1432,2795)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold" stroke-width="5">
@@ -2618,11 +2612,11 @@
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6148,3588)" stroke="rgb(141,200,1)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath231)" x2="288" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath231)" x2="278" y1="36" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Método_científico" target="_blank">
 			<g font-size="25" transform="translate(6148,3588)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath231)" stroke="none">Inferência: Resolução</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath231)" stroke="none">Inferência: resolução</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6148,3548)" stroke="rgb(141,200,1)">
@@ -3543,15 +3537,15 @@
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5655,473)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath361)" x2="429" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath131)" x2="429" y1="42" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Depoimento" target="_blank">
 			<g font-size="30" transform="translate(5655,473)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath361)" stroke="none">Testemunho não controverso</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath131)" stroke="none">Testemunho não controverso</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5605,377)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M398 92 C410 92 399 87 419 87" clip-path="url(#clipPath362)" />
+			<path fill="none" d="M398 92 C410 92 399 87 419 87" clip-path="url(#clipPath360)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5655,427)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath61)" x2="349" y1="42" />
@@ -3562,33 +3556,33 @@
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(6024,428)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath364)" x2="273" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath362)" x2="273" y1="36" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Autoridade" target="_blank">
 			<g font-size="25" transform="translate(6024,428)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath364)" stroke="none">Especialista da área</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath362)" stroke="none">Especialista da área</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5655,381)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath366)" x2="316" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath364)" x2="316" y1="42" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Revisão_por_pares" target="_blank">
 			<g font-size="30" transform="translate(5655,381)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath366)" stroke="none">Publicação científica</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath364)" stroke="none">Publicação científica</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(5655,335)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath368)" x2="250" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath366)" x2="250" y1="42" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Fiabilidade" target="_blank">
 			<g font-size="30" transform="translate(5655,335)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath368)" stroke="none">Jornal reputado</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath366)" stroke="none">Jornal reputado</text>
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(4376,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
-			<path fill="none" d="M714 215 C726 215 715 94 735 94" clip-path="url(#clipPath369)" />
-			<path fill="none" d="M714 215 C726 215 715 232 735 232" clip-path="url(#clipPath369)" />
-			<path fill="none" d="M714 215 C726 215 715 354 735 354" clip-path="url(#clipPath369)" />
+			<path fill="none" d="M714 215 C726 215 715 94 735 94" clip-path="url(#clipPath367)" />
+			<path fill="none" d="M714 215 C726 215 715 232 735 232" clip-path="url(#clipPath367)" />
+			<path fill="none" d="M714 215 C726 215 715 354 735 354" clip-path="url(#clipPath367)" />
 		</g>
 		<g stroke-linecap="butt" font-size="50" transform="translate(4426,99)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
 			<rect x="0" y="0" clip-path="url(#clipPath110)" width="664" rx="5" ry="5" height="131" stroke="none" />
@@ -3603,29 +3597,29 @@
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(5111,276)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
-			<rect x="0" y="0" clip-path="url(#clipPath371)" width="469" rx="5" ry="5" height="55" stroke="none" />
+			<rect x="0" y="0" clip-path="url(#clipPath369)" width="469" rx="5" ry="5" height="55" stroke="none" />
 		</g>
 		<g font-size="40" transform="translate(5111,276)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath371)" fill="none" width="469" rx="5" ry="5" height="55" />
+			<rect x="0" y="0" clip-path="url(#clipPath369)" fill="none" width="469" rx="5" ry="5" height="55" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Objetividade" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5111,276)">
-				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath371)" stroke="none">Raciocínio sem vieses</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath369)" stroke="none">Raciocínio sem vieses</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5061,42)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M426 140 C438 140 427 92 447 92" clip-path="url(#clipPath372)" />
-			<path fill="none" d="M426 140 C438 140 427 138 447 138" clip-path="url(#clipPath372)" />
-			<path fill="none" d="M426 140 C438 140 427 184 447 184" clip-path="url(#clipPath372)" />
-			<path fill="none" d="M426 140 C438 140 427 230 447 230" clip-path="url(#clipPath372)" />
+			<path fill="none" d="M426 140 C438 140 427 92 447 92" clip-path="url(#clipPath370)" />
+			<path fill="none" d="M426 140 C438 140 427 138 447 138" clip-path="url(#clipPath370)" />
+			<path fill="none" d="M426 140 C438 140 427 184 447 184" clip-path="url(#clipPath370)" />
+			<path fill="none" d="M426 140 C438 140 427 230 447 230" clip-path="url(#clipPath370)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(5111,154)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath373)" width="376" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath373)" fill="none" width="376" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath371)" width="376" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath371)" fill="none" width="376" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Prova_(lógica)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5111,154)">
-				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath373)" stroke="none">Provas tangíveis</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath371)" stroke="none">Provas tangíveis</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5508,230)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3645,32 +3639,32 @@
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5508,138)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath376)" x2="257" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath374)" x2="257" y1="42" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Exemplo" target="_blank">
 			<g font-size="30" transform="translate(5508,138)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath376)" stroke="none">Dar exemplos</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath374)" stroke="none">Dar exemplos</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5508,92)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath378)" x2="387" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath376)" x2="260" y1="42" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Debate" target="_blank">
 			<g font-size="30" transform="translate(5508,92)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath378)" stroke="none">Objectivo estabelecido</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath376)" stroke="none">Objetivo claro</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(5061,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M388 94 C400 94 389 92 409 92" clip-path="url(#clipPath379)" />
-			<path fill="none" d="M388 94 C400 94 389 138 409 138" clip-path="url(#clipPath379)" />
+			<path fill="none" d="M388 94 C400 94 389 92 409 92" clip-path="url(#clipPath377)" />
+			<path fill="none" d="M388 94 C400 94 389 138 409 138" clip-path="url(#clipPath377)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(5111,16)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath380)" width="338" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath380)" fill="none" width="338" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath378)" width="338" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath378)" fill="none" width="338" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Argumentação" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(5111,16)">
-				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath380)" stroke="none">Argumento real</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath378)" stroke="none">Argumento real</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5470,46)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3682,11 +3676,11 @@
 			</g>
 		</a>
 		<g font-size="30" transform="translate(5470,0)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath383)" x2="350" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath381)" x2="350" y1="42" />
 		</g>
 		<a xlink:href="https://pt.wikipedia.org/wiki/Raciocínio_dedutivo" target="_blank">
 			<g font-size="30" transform="translate(5470,0)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath383)" stroke="none">Argumento dedutivo</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath381)" stroke="none">Argumento dedutivo</text>
 			</g>
 		</a>
 	</g>
