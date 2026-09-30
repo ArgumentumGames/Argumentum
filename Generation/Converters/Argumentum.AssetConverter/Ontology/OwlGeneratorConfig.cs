@@ -63,7 +63,15 @@ namespace Argumentum.AssetConverter.Ontology
 			// mandatory under 3.x, whose Camelize keeps raw spaces around punctuation like '(' '.' '"'
 			// — without it, 6 corpus labels (e.g. "drinking the Kool-Aid (politics)") would produce
 			// IRIs containing literal spaces, which are invalid in IRI fragments (#951).
-			return text.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
+			// Quote strip (#1651): an ASCII '"' is forbidden in an IRI fragment (RFC 3987) and PK 1368
+			// shipped 'calling"Cards"' into the served ontology; the typographic quotes must not enter
+			// an identifier either. The strip runs BEFORE Camelize() (#1661 review): Camelize uppercases
+			// the character that follows the space — for 'Calling “cards”' that is the quote '“', which
+			// has no uppercase form, so the 'c' stayed lowercase and the AFTER-Camelize chain minted
+			// 'callingcards' instead of 'callingCards'. This chain must stay byte-identical to
+			// VirtueOwlDocumentConfig.GetId (pinned by VirtueOwlGenerationContractTests).
+			return text.Replace("\"","").Replace("“","").Replace("”","").Replace("«","").Replace("»","")
+				.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
 	    public string OntologyNamespace { get; set; } = "";
