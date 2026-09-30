@@ -8,23 +8,31 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
-	/// Organe #1500 (moitié Poker) : la sélection Print&amp;Play Light Fallacies n'est pas curatée
-	/// dans le code (<c>WebBasedGeneratorConfig.cs:263</c> filtre <c>print_and_play=1</c>) — elle est
-	/// l'état de la colonne CSV héritée de la démo février 2022. Le document qui l'agrège,
-	/// <c>Argumentum_PokerCards_Print&amp;Play_Light_A4_fr.pdf</c> (<c>WebBasedGeneratorConfig.cs:808</c>,
-	/// jeu auquel la carte est rattachée en <c>:766</c>), agrège aussi la sélection Scenarii
-	/// (<c>:828</c>) : c'est le « Print&amp;Play Light Poker/Scenarii » que <c>#1500</c> nomme.
+	/// Organe de la sélection <c>KnownCardSets.FallaciesPrintAndPlayLight</c> (35 cartes de
+	/// sophismes, filtre <c>print_and_play=1</c> hérité de la démo février 2022). Cette sélection
+	/// n'est curatée nulle part dans le code : elle EST l'état de la colonne CSV.
 	///
-	/// <para><b>Pourquoi cette seconde moitié.</b> <c>#1534</c> a épinglé la répartition de la
-	/// sélection <i>Scenarii</i> (3 des 7 catégories absentes, « relation intime » à 14/27 = 52 %).
-	/// Le docstring de cet organe-là dit : « C'est l'organe qui aurait attrapé <c>#1500</c> en
-	/// silence ». L'autre moitié du document — les 35 cartes de sophismes — n'avait pas d'organe :
-	/// une dérive de la colonne <c>print_and_play</c> sur la taxonomie Fallacies n'aurait été vue
-	/// par personne, exactement comme celle de Scenarii l'a été par personne pendant trois ans.</para>
+	/// <para><b>Le document qu'elle sert — nommé, pas numéroté.</b> <c>FallaciesPrintAndPlayLight</c>
+	/// est agrégée par un seul document, <c>Argumentum_TarotCards_Print&amp;Play_Light_A4_fr.pdf</c>,
+	/// aux côtés de <c>KnownCardSets.RulesPrintAndPlay</c> et <c>KnownCardSets.MemoPrintAndPlay</c>.
+	/// Le document homologue <c>Argumentum_PokerCards_Print&amp;Play_Light_A4_fr.pdf</c> n'agrège
+	/// qu'un jeu, <c>KnownCardSets.ScenariiPrintAndPlay</c> — un lecteur qui suit les <i>noms</i>
+	/// voit cela d'un coup d'œil ; celui qui suit les numéros de ligne de
+	/// <c>WebBasedGeneratorConfig</c> attribue au Poker le jeu du bloc Tarot (erreur commise dans
+	/// la première version de cet organe, corrigée en revue). C'est pourquoi cette garde-là ne cite
+	/// plus aucun numéro de ligne : les symboles sont stables, les lignes non.</para>
+	///
+	/// <para><b>Pourquoi cette sélection a son organe.</b> <c>#1534</c>/<c>#1500</c> ont épinglé la
+	/// répartition de <c>KnownCardSets.ScenariiPrintAndPlay</c> (3 des 7 catégories absentes,
+	/// « relation intime » à 14/27 = 52 %). La sélection Scenarii vit dans un autre document et un
+	/// autre CSV — <b>même contrat, autre sélection</b>. Celle-ci, les 35 cartes de sophismes,
+	/// n'avait pas d'organe : une dérive de la colonne <c>print_and_play</c> sur la taxonomie
+	/// Fallacies n'aurait été vue par personne, exactement comme celle de Scenarii l'a été par
+	/// personne pendant trois ans.</para>
 	///
 	/// <para><b>ÉTAT MESURÉ AU 2026-09-30 — LA GARDE EST VERTE, ET AUCUN DÉFAUT N'EST MESURÉ ICI.</b>
 	/// 35 cartes Light, 7 familles imprimées à 5 cartes chacune (5/35 = 14,3 % pour la dominante,
-	/// très en dessous du seuil 33 %). Contrairement à la moitié Scenarii, <b>cette garde n'est pas
+	/// très en dessous du seuil 33 %). Contrairement à <c>ScenariiPrintAndPlay</c>, <b>cette garde n'est pas
 	/// née d'une régression réparée mais d'une capacité non protégée</b> : l'état est sain, et ce qui
 	/// manquait était le témoin qui rougirait si l'état cessait de l'être. La doctrine
 	/// <c>#1046</c> — « une garde jamais vue rouge est un no-op » — est honorée par les témoins de
@@ -36,15 +44,16 @@ namespace Argumentum.AssetConverter.Tests
 	/// l'<b>exclusion elle-même</b>, mesurée ci-dessous plutôt que recopiée d'une prose.</para>
 	///
 	/// <para><b>Virtues Light n'est PAS gardée ici, et c'est un choix mesuré.</b>
-	/// <c>#1501</c>/<c>#1514</c> a retiré <c>VirtuesPrintAndPlayLight</c> du document Tarot Light
-	/// (décision owner du 22/09) ; le CardSet reste défini (<c>:286</c>) — « on retire une
+	/// <c>#1501</c>/<c>#1514</c> a retiré <c>KnownCardSets.VirtuesPrintAndPlayLight</c> du document
+	/// <c>Argumentum_TarotCards_Print&amp;Play_Light_A4_fr.pdf</c> (décision owner du 22/09) ; le
+	/// CardSet reste défini dans <c>WebBasedGeneratorConfig</c> — « on retire une
 	/// AGRÉGATION, pas une capacité ». Aucun document n'imprime donc cette sélection aujourd'hui :
 	/// il n'y a pas de carte rendue dont la répartition puisse dériver devant un lecteur. Le jour où
 	/// la capacité est rebranchée, l'organe à écrire est le même qu'ici, avec la colonne
 	/// <c>family_fr</c> et les 8 familles du corpus Vertus (mesuré le 2026-09-30 : 24 cartes Light,
 	/// 8/8 familles, dominante 4/24 = 16,7 %).</para>
 	/// </summary>
-	public class PokerPrintAndPlayLightRepartitionContractTests
+	public class TarotPrintAndPlayLightRepartitionContractTests
 	{
 		private static string RepoRoot => TestRepoRoot.Find();
 		private static string FallaciesCsv =>
@@ -140,7 +149,7 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void Witness_A_Poker_Light_Shaped_Csv_Passes_All_Checks()
+		public void Witness_A_Tarot_Light_Shaped_Csv_Passes_All_Checks()
 		{
 			// Témoin de PLOMBERIE : un CSV à la forme de la taxonomie Fallacies (colonne `Famille`,
 			// 7 familles imprimées) traverse la surcharge `MeasureHead(csv, "Famille")` et verdit.
@@ -148,9 +157,9 @@ namespace Argumentum.AssetConverter.Tests
 			// ⚠️ Il ne prouve RIEN sur les libellés de famille : il les fabrique lui-même, donc il
 			// serait vert même si `ExpectedCategories` portait des clés inexistantes dans le vrai
 			// CSV. C'est le Fact (1) sur l'état vivant qui établit cette vérité-là.
-			var dir = Path.Combine(Path.GetTempPath(), "argumentum-1500-poker-" + Guid.NewGuid().ToString("N"));
+			var dir = Path.Combine(Path.GetTempPath(), "argumentum-1500-tarot-" + Guid.NewGuid().ToString("N"));
 			Directory.CreateDirectory(dir);
-			var csv = Path.Combine(dir, "poker-light-healthy.csv");
+			var csv = Path.Combine(dir, "tarot-light-healthy.csv");
 			try
 			{
 				File.WriteAllText(csv,
@@ -179,11 +188,12 @@ namespace Argumentum.AssetConverter.Tests
 
 		// ─────────────────────────────────────────────────────────────────────────
 		// (1) LA GARDE SUR L'ÉTAT VIVANT — la colonne `print_and_play` de la
-		//     taxonomie Fallacies telle qu'elle est committée.
+		//     taxonomie Fallacies, telle qu'elle est committée. C'est cette colonne
+		//     qui définit `KnownCardSets.FallaciesPrintAndPlayLight`.
 		// ─────────────────────────────────────────────────────────────────────────
 
 		[Fact]
-		public void Poker_Light_Covers_All_7_Printed_Families_On_Head()
+		public void Tarot_Light_Covers_All_7_Printed_Families_On_Head()
 		{
 			var (counts, _, _) = LightCategoryBalanceContract.MeasureHead(FallaciesCsv, FamilleColumn);
 
@@ -192,14 +202,14 @@ namespace Argumentum.AssetConverter.Tests
 				.Select(t => $"\"{t.Category}\" (deck={t.DeckCount}, light=0)")
 				.ToList();
 			missing.Should().BeEmpty(
-				"#1500 : la sélection Light du Poker omet " + missing.Count + " famille(s) imprimée(s) sur 7 — "
+				"la sélection Light du Tarot omet " + missing.Count + " famille(s) imprimée(s) sur 7 — "
 				+ "un seul message doit nommer TOUTES les manquantes pour que l'owner agisse sans relancer "
 				+ "la garde N fois. Manquantes : " + string.Join(", ", missing)
 				+ ". Source : " + FallaciesCsv);
 		}
 
 		[Fact]
-		public void Poker_Light_Dominant_Family_Stays_Under_One_Third_On_Head()
+		public void Tarot_Light_Dominant_Family_Stays_Under_One_Third_On_Head()
 		{
 			var (counts, _, _) = LightCategoryBalanceContract.MeasureHead(FallaciesCsv, FamilleColumn);
 
@@ -214,7 +224,7 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void Poker_Light_Is_Not_Empty_On_Head()
+		public void Tarot_Light_Is_Not_Empty_On_Head()
 		{
 			// Une sélection Light vide ferait RUNNER la chaîne sans rendre aucun PDF — fail-loud
 			// ici est moins coûteux que la trace « 0 image » d'un run complet (#1187).
@@ -267,7 +277,7 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void Poker_Light_Is_A_Subset_Of_The_Deck_On_Head()
+		public void Tarot_Light_Is_A_Subset_Of_The_Deck_On_Head()
 		{
 			// Contrôle inverse, à l'image de `Deck_Selection_Still_Sums_To_167_On_Head` (Scenarii) :
 			// si le filtre Light se mettait à consommer des cartes du deck complet — ou à en rendre
@@ -284,7 +294,8 @@ namespace Argumentum.AssetConverter.Tests
 
 			var lightCarte = csv.LoadColumn("carte", "print_and_play", new[] { "1" });
 			lightCarte.Should().HaveCount(35,
-				"la démo Light Fallacies compte 35 cartes (commentaire #645 en WebBasedGeneratorConfig.cs:261)");
+				"`KnownCardSets.FallaciesPrintAndPlayLight` compte 35 cartes (démo #645, filtre "
+				+ "`print_and_play=1` de la taxonomie Fallacies)");
 			lightCarte.Count(v => string.IsNullOrWhiteSpace(v)).Should().Be(0,
 				"chaque carte Light doit porter une carte (`carte` non vide) : une carte Light sans carte "
 				+ "serait comptée dans une famille et absente du jeu — la sélection Light est un "

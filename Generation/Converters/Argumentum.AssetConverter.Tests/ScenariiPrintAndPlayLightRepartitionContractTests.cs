@@ -389,7 +389,8 @@ namespace Argumentum.AssetConverter.Tests
 	/// logique CsvHelper. Lit une colonne de catégorie et filtre <c>print_and_play=1</c> ;
 	/// la surcharge à un argument garde la colonne Scenarii <c>catégorie</c> (FR, sans _fr —
 	/// utilisée par le <c>Back</c> via <c>{{rowset.[0].catégorie}}</c>), la surcharge à deux
-	/// arguments sert le Poker Light (colonne <c>Famille</c> de la taxonomie Fallacies).
+	/// arguments sert la sélection Tarot Light <c>KnownCardSets.FallaciesPrintAndPlayLight</c>
+	/// (colonne <c>Famille</c> de la taxonomie Fallacies).
 	/// </summary>
 	public static class LightCategoryBalanceContract
 	{
