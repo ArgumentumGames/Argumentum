@@ -239,11 +239,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         /// <para><b>Un renommage tombe d'un côté et entre de l'autre, jamais les deux.</b> Les deux
         /// paires épinglées sont celles que #1666 a appariées par leur <c>prefLabel</c> français :
         /// « Faulty reasoning » contre « Faulty logics », et « Cafeteria Christianity » contre
-        /// « Cafetaria Christianity » — la seconde documentant au passage la coquille du côté OWL.</para>
-        ///
-        /// <para><b>Cycle de vie, le même que les plafonds</b> : une régénération réconcilie et fait
-        /// disparaître les noms d'hier. Que le rouge soit lu comme « recaler et dater », jamais comme
-        /// « effacer ».</para>
+        /// « Cafetaria Christianity » — la seconde documentant au passage la coquille du côté OWL.
+        /// Le détail de ce qui est vrai dans <b>les deux états</b> est porté par
+        /// <see cref="AssertRenamePair"/>.</para>
         /// </summary>
         [Fact]
         public void Renames_LandOnOppositeSides_AndAlignedConcepts_OnBoth()
@@ -259,16 +257,88 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                     "S'il manque ici alors qu'il est produit, le census a cessé de lire le fichier.", aligned);
             }
 
-            produced.Should().Contain("faultyReasoning").And.NotContain("faultyLogics",
-                "le nom d'aujourd'hui est « Faulty reasoning » : « faultyLogics » est l'identité d'hier, " +
-                "que seule l'ontologie non régénérée porte encore.");
-            declared.Should().Contain("faultyLogics").And.NotContain("faultyReasoning",
-                "l'ontologie committée porte l'identité d'hier — c'est cet écart que le grain #1666 mesure.");
+            AssertRenamePair(produced, declared, "faultyLogics", "faultyReasoning", "Faulty reasoning");
+            AssertRenamePair(produced, declared, "cafetariaChristianity", "cafeteriaChristianity",
+                "Cafeteria Christianity");
+        }
 
-            produced.Should().Contain("cafeteriaChristianity").And.NotContain("cafetariaChristianity",
-                "« Cafeteria » est l'orthographe de la taxonomie d'aujourd'hui.");
-            declared.Should().Contain("cafetariaChristianity").And.NotContain("cafeteriaChristianity",
-                "« Cafetaria » est l'orthographe figée dans l'ontologie — la coquille est côté OWL.");
+        /// <summary>
+        /// Épingle ce qui reste vrai d'une paire « nom d'hier / nom d'aujourd'hui » <b>dans les deux
+        /// états</b> — avant et après la régénération qui réconciliera l'OWL (#1525).
+        ///
+        /// <para><b>Ce que la première version faisait de travers (revue ai-01, 2026-09-30).</b> Elle
+        /// assertait que <c>declared</c> contient l'ancien nom et <b>pas</b> le nouveau — vrai le jour
+        /// de la rédaction, faux <b>le jour de la réparation</b>. Un contrôle positif qui rougit sur
+        /// la réparation qu'il attend contredit la doctrine des bornes du même fichier : une
+        /// régénération doit faire passer l'organe au vert, jamais au rouge.</para>
+        ///
+        /// <para><b>Côté CSV, l'invariant est absolu</b> : la taxonomie produit le nom d'aujourd'hui
+        /// et plus celui d'hier. Le corpus ne se réécrit pas tout seul, donc une régression ici en est
+        /// une, avant comme après la régénération.</para>
+        ///
+        /// <para><b>Côté OWL, l'invariant est « exactement un »</b> : l'ancien avant la régénération,
+        /// le nouveau après, <b>jamais les deux, jamais aucun</b>. C'est ce XOR qui porte le contrôle :
+        /// « les deux » signale un concept <i>doublé</i> au lieu d'être renommé, « aucun » un concept
+        /// <i>perdu</i> au lieu d'être renommé. Les deux états interdits sont vus mordre par
+        /// <see cref="TheRenameInvariant_RejectsBothForbiddenStates"/>.</para>
+        /// </summary>
+        private static void AssertRenamePair(HashSet<string> produced, HashSet<string> declared,
+            string oldName, string newName, string label)
+        {
+            produced.Should().Contain(newName,
+                $"« {newName} » est le nom d'aujourd'hui de {label} — il doit rester dans l'ensemble CSV.");
+            produced.Should().NotContain(oldName,
+                $"« {oldName} » est le nom d'hier de {label} — le corpus ne le produit plus. S'il " +
+                "réapparaît ici, la taxonomie a régressé, et c'est cette régression qu'il faut traiter.");
+
+            var declaredOld = declared.Contains(oldName);
+            var declaredNew = declared.Contains(newName);
+
+            (declaredOld ^ declaredNew).Should().BeTrue(
+                $"l'ontologie committée doit porter exactement un des deux noms de {label} : " +
+                $"« {oldName} » avant la régénération de #1525, « {newName} » après. " +
+                $"Lu : ancien={declaredOld}, nouveau={declaredNew}. " +
+                "Les deux vrais = le concept a été doublé au lieu d'être renommé ; " +
+                "les deux faux = il a été perdu au lieu d'être renommé. " +
+                "Cette assertion ne rougit ni avant ni après la réparation : elle rougit sur une perte " +
+                "ou sur un doublon.");
+        }
+
+        /// <summary>
+        /// Témoin des deux états que <see cref="AssertRenamePair"/> doit refuser. Il ne suffit pas que
+        /// l'invariant soit écrit : il faut l'avoir vu mordre, sinon rien ne dit que la branche est
+        /// vivante.
+        ///
+        /// <para>Les quatre états sont alimentés à la main, sur des ensembles construits, plutôt que
+        /// par quatre mutations du fichier de 5,9 Mo : le témoin reste dans le dépôt, la mutation non.
+        /// Un second témoin, par mutation réelle des données, est mesuré dans le corps de PR.</para>
+        /// </summary>
+        [Fact]
+        public void TheRenameInvariant_RejectsBothForbiddenStates()
+        {
+            var produced = new HashSet<string>(StringComparer.Ordinal) { "newName" };
+            HashSet<string> Declared(params string[] names) =>
+                new HashSet<string>(names, StringComparer.Ordinal);
+
+            Action oldOnly = () => AssertRenamePair(produced, Declared("oldName"),
+                "oldName", "newName", "la paire de témoin");
+            oldOnly.Should().NotThrow(
+                "l'état d'aujourd'hui est légitime : l'OWL porte encore le nom d'hier.");
+
+            Action newOnly = () => AssertRenamePair(produced, Declared("newName"),
+                "oldName", "newName", "la paire de témoin");
+            newOnly.Should().NotThrow(
+                "l'état réparé est légitime : l'OWL porte le nom d'aujourd'hui.");
+
+            Action both = () => AssertRenamePair(produced, Declared("oldName", "newName"),
+                "oldName", "newName", "la paire de témoin");
+            both.Should().Throw<Exception>().WithMessage("*exactement un*",
+                "déclarer les deux noms signale un doublon, pas un renommage.");
+
+            Action neither = () => AssertRenamePair(produced, Declared("autreChose"),
+                "oldName", "newName", "la paire de témoin");
+            neither.Should().Throw<Exception>().WithMessage("*exactement un*",
+                "ne déclarer aucun des deux noms signale une perte, pas un renommage.");
         }
 
         /// <summary>
