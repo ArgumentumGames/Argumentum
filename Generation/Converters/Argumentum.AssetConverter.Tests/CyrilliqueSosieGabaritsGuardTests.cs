@@ -213,7 +213,9 @@ namespace Argumentum.AssetConverter.Tests
 				File.Exists(chemin).Should().BeTrue($"{relatif} est un porteur de #1669.");
 
 				using var json = JsonDocument.Parse(File.ReadAllText(chemin));
-				var (entete, lignes) = LireCsv(json.RootElement.GetProperty("csv").GetString());
+				var csv = json.RootElement.GetProperty("csv").GetString() ?? string.Empty;
+				csv.Should().NotBeNullOrEmpty($"{relatif} porte une clé csv non vide.");
+				var (entete, lignes) = LireCsv(csv);
 				var colonne = Array.IndexOf(entete, "desc_fr");
 				colonne.Should().BeGreaterThanOrEqualTo(0, $"{relatif} porte la colonne desc_fr.");
 

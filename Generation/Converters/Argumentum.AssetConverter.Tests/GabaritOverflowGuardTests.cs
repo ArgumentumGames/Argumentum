@@ -23,7 +23,9 @@ namespace Argumentum.AssetConverter.Tests
 			var path = Path.Combine(TestRepoRoot.Find(), "Cards", "Fallacies",
 				"Argumentum_Fallacies_Face_fr.json");
 			var json = JsonDocument.Parse(File.ReadAllText(path));
-			return json.RootElement.GetProperty("css").GetString();
+			var css = json.RootElement.GetProperty("css").GetString() ?? string.Empty;
+			css.Should().NotBeNullOrEmpty("le gabarit Fallacies Face porte une clé css.");
+			return css;
 		}
 
 		private static string RuleOf(string css, string selector)

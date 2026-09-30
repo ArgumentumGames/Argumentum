@@ -333,6 +333,7 @@ namespace Argumentum.AssetConverter.VisualTests
             // Click zoom-in twice, then reset — viewport CTM should return to original.
             var initialScale = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
                 "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            Assert.True(initialScale.HasValue, "viewport must expose an initial CTM scale");
             await page.ClickAsync("#svg-pan-zoom-zoom-in");
             await page.WaitForTimeoutAsync(200);
             await page.ClickAsync("#svg-pan-zoom-zoom-in");
@@ -348,6 +349,7 @@ namespace Argumentum.AssetConverter.VisualTests
 
             var afterReset = await page.Locator(".svg-pan-zoom_viewport").EvaluateAsync<double?>(
                 "el => { const m = el.getCTM(); return m ? m.a : null; }");
+            Assert.True(afterReset.HasValue, "reset must leave a measurable CTM scale");
             _output.WriteLine($"After reset: '{afterReset}' (initial was '{initialScale}')");
             Assert.True(Math.Abs(afterReset.Value - initialScale.Value) < 0.001,
                 $"reset should restore initial scale {initialScale}, got {afterReset}");

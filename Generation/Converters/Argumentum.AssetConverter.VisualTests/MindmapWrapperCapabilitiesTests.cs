@@ -477,8 +477,9 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.WaitForTimeoutAsync(200);
 
                 var after = await GetViewportScaleAsync(page);
+                Assert.True(after.HasValue, $"no post-wheel scale for {lang}");
                 _output.WriteLine($"[{lang}] wheel scale before={before.Value:F5} after={after.Value:F5}");
-                Assert.True(after.HasValue && after.Value > before.Value,
+                Assert.True(after.Value > before.Value,
                     $"mouse wheel should zoom in for {lang}: {before.Value:F5} -> {after.Value:F5}");
             }
             finally
@@ -508,8 +509,9 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.WaitForTimeoutAsync(200);
 
                 var after = await GetViewportScaleAsync(page);
+                Assert.True(after.HasValue, $"no post-dblclick scale for {lang}");
                 _output.WriteLine($"[{lang}] dblclick scale before={before.Value:F5} after={after.Value:F5}");
-                Assert.True(after.HasValue && after.Value > before.Value,
+                Assert.True(after.Value > before.Value,
                     $"double-click should zoom in for {lang}: {before.Value:F5} -> {after.Value:F5}");
             }
             finally
