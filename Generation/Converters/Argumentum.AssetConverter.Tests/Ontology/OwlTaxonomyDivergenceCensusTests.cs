@@ -60,11 +60,11 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             OwlAdapter.FromFile(Path.Combine(TestRepoRoot.Find(), "docs", "ontology", "argumentum.owl")));
 
         /// <summary>
-        /// Les IRI que la taxonomie produit : <see cref="OwlDocumentConfig.GetId"/> sur <c>text_en</c>,
-        /// l'organe de production lui-même — jamais une réimplémentation, qui dériverait au premier
-        /// changement de <c>GetId</c> (c'est exactement ce que #1651/#1622 point 1 modifient).
+        /// Les lignes du CSV Fallacies, lues une seule fois : <c>PK</c> et <c>text_en</c> (chaîne vide
+        /// si la cellule est vide). Les deux lectures de cet organe — l'ensemble produit et la table
+        /// annoncée — passent par ici, pour qu'elles ne puissent pas diverger sur la façon de lire.
         /// </summary>
-        private static HashSet<string> ProducedIds()
+        private static IEnumerable<(int Pk, string TextEn)> Rows()
         {
             var csvPath = Path.Combine(TestRepoRoot.Find(),
                 "Cards", "Fallacies", "Argumentum Fallacies - Taxonomy.csv");
@@ -77,11 +77,27 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             using var reader = new StringReader(File.ReadAllText(csvPath));
             using var csv = new CsvReader(reader, config);
 
-            var ids = new HashSet<string>(StringComparer.Ordinal);
             foreach (var record in csv.GetRecords<dynamic>())
             {
                 var row = (IDictionary<string, object>)record;
-                var textEn = row.TryGetValue("text_en", out var raw) ? raw?.ToString()?.Trim() : null;
+                var rawPk = row.TryGetValue("PK", out var pkRaw) ? pkRaw?.ToString()?.Trim() : null;
+                if (!int.TryParse(rawPk, NumberStyles.Integer, CultureInfo.InvariantCulture, out var pk))
+                    continue;
+                var textEn = row.TryGetValue("text_en", out var enRaw) ? enRaw?.ToString()?.Trim() : null;
+                yield return (pk, textEn ?? string.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Les IRI que la taxonomie produit : <see cref="OwlDocumentConfig.GetId"/> sur <c>text_en</c>,
+        /// l'organe de production lui-même — jamais une réimplémentation, qui dériverait au premier
+        /// changement de <c>GetId</c> (c'est exactement ce que #1651/#1622 point 1 modifient).
+        /// </summary>
+        private static HashSet<string> ProducedIds()
+        {
+            var ids = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var (_, textEn) in Rows())
+            {
                 if (string.IsNullOrEmpty(textEn))
                     continue;
                 var id = OwlDocumentConfig.GetId(textEn);
@@ -90,6 +106,63 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             }
             return ids;
         }
+
+        /// <summary>
+        /// <c>PK</c> → <c>text_en</c>. La clé de jointure est le <c>PK</c>, jamais le <c>path</c> :
+        /// #1503 a mesuré que deux états du corpus ne se joignent pas par <c>path</c> — 153/169 de
+        /// recouvrement entre `Archive/v3` et le corpus courant — et la table annoncée nomme des
+        /// identités, donc elle se joint sur ce que la table nomme.
+        /// </summary>
+        private static Dictionary<int, string> EnglishTitlesByPk()
+        {
+            var titles = new Dictionary<int, string>();
+            foreach (var (pk, textEn) in Rows())
+                titles[pk] = textEn;
+            return titles;
+        }
+
+        /// <summary>
+        /// Les seize identités que la prochaine regénération publiera — la colonne « Nouvelle IRI »
+        /// de la table annoncée à CoursIA (#1525 c.5892207390), <b>re-mesurée au merge de #1661</b>.
+        ///
+        /// <para><b>Pourquoi elles sont épinglées ici, alors que le census borne déjà l'écart.</b>
+        /// Le census compte <i>combien</i> d'identités bougent ; il ne dit pas <i>lesquelles</i>. Or
+        /// c'est la liste qui sort du dépôt — elle est annoncée à un consommateur extérieur
+        /// (jsboige/CoursIA#4960) qui s'en sert pour réécrire des IRI. #1651 a montré le 2026-09-30
+        /// ce que coûte une liste non vérifiée : la ligne PK 1368 annonçait <c>callingCards</c> alors
+        /// que la chaîne d'alors mintait <c>callingcards</c> — un guillemet occupant la place de la
+        /// lettre à mettre en majuscule. Une réplique de <c>GetId</c> ne suit pas la fonction
+        /// qu'elle réplique ; ces épingles passent par <see cref="OwlDocumentConfig.GetId"/>.</para>
+        ///
+        /// <para><b>Le plafond du census ne peut pas voir l'erreur qu'elles attrapent.</b> Un
+        /// renommage corrigé et un autre apparu le même jour laissent le compte à 16 : le nombre est
+        /// juste, la liste est fausse. Seule la comparaison d'ensembles les sépare.</para>
+        ///
+        /// <para><b>Cycle de vie.</b> Les épingles portent sur le titre du CSV, qu'une régénération
+        /// ne touche pas (<c>--generate-owl</c> lit la taxonomie, il ne la réécrit pas). Elles ne
+        /// rougissent que si quelqu'un renomme un de ces seize titres anglais — c'est-à-dire
+        /// exactement quand une annonce neuve est due. Le second membre du test, lui, porte sur
+        /// l'écart : une régénération le réconcilie et rend l'inclusion <b>vacue, pas fausse</b>.</para>
+        /// </summary>
+        private static readonly (int Pk, string Iri)[] AnnouncedIdentities =
+        {
+            (95, "cafeteriaChristianity"),
+            (101, "drinkingTheKoolAid/PeerPressure"),
+            (178, "argumentByQuestion"),
+            (182, "falseAlternative"),
+            (390, "contrastFraming"),
+            (667, "imprecision"),
+            (690, "inappropriateOperation"),
+            (696, "faultyReasoning"),
+            (829, "circularDefinition"),
+            (944, "hook"),
+            (1005, "backpedaling"),
+            (1015, "appealToEffort"),
+            (1312, "debateSabotage"),
+            (1357, "shamArguments"),
+            (1368, "callingCards"),
+            (1386, "appealToLackOfAccomplishment"),
+        };
 
         /// <summary>
         /// Les concepts que le fichier porte : les sujets des assertions <c>skos:prefLabel</c>,
@@ -196,6 +269,75 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                 "« Cafeteria » est l'orthographe de la taxonomie d'aujourd'hui.");
             declared.Should().Contain("cafetariaChristianity").And.NotContain("cafeteriaChristianity",
                 "« Cafetaria » est l'orthographe figée dans l'ontologie — la coquille est côté OWL.");
+        }
+
+        /// <summary>
+        /// La table annoncée sort-elle du dépôt en disant vrai, et en disant <b>tout</b> ?
+        ///
+        /// <para><b>Membre 1 — les seize entrées sont-elles ce que l'émetteur minta ?</b> Chaque
+        /// ligne passe par <see cref="OwlDocumentConfig.GetId"/> sur le <c>text_en</c> que le
+        /// <c>PK</c> désigne. C'est la vérification que #1525 a dû faire à la main le 2026-09-30 :
+        /// la table avait été calculée par une <b>réplique Python</b> de <c>GetId</c>, qui minta
+        /// <c>callingcards</c> là où la fonction réelle, après #1651, minta <c>callingCards</c>.</para>
+        ///
+        /// <para><b>Membre 2 — la table nomme-t-elle toutes les IRI absentes ?</b> Celles que la
+        /// taxonomie produit et que l'OWL ne porte pas doivent toutes figurer dans la table : un
+        /// consommateur qui réécrit des IRI d'après elle n'a pas d'autre source. C'est une
+        /// <b>inclusion</b>, jamais une égalité — une régénération fait tomber des deux côtés et
+        /// laisse l'inclusion vraie. Le plafond du census, lui, ne voit pas un <b>échange</b> : un
+        /// renommage corrigé et un autre apparu laissent le compte à 16 pendant que la liste
+        /// annoncée devient fausse.</para>
+        ///
+        /// <para><b>Ce que ce test ne remplace pas.</b> Il ne prouve pas que l'annonce est
+        /// <i>publiée</i> — l'annonce vit sur CoursIA#4960, hors de ce dépôt. Il prouve que ce que
+        /// le dépôt peut vérifier est vrai au moment où il le vérifie.</para>
+        /// </summary>
+        [Fact]
+        public void TheAnnouncedIdentities_AreWhatTheEmitterMints_AndEveryAbsentIriIsNamed()
+        {
+            var titleByPk = EnglishTitlesByPk();
+
+            // Anti-vacuité : un PK disparu du corpus rendrait sa ligne verte par omission.
+            var missing = AnnouncedIdentities.Where(a => !titleByPk.ContainsKey(a.Pk))
+                .Select(a => a.Pk).OrderBy(pk => pk).ToList();
+            missing.Should().BeEmpty(
+                "les seize lignes annoncées doivent exister dans le CSV des Fallacies — la jointure " +
+                "se fait par PK, l'identité que la table nomme. PK introuvables : " +
+                string.Join(", ", missing));
+
+            var diverging = new List<string>();
+            foreach (var (pk, iri) in AnnouncedIdentities)
+            {
+                var title = titleByPk[pk];
+                var minted = OwlDocumentConfig.GetId(title);
+                if (!string.Equals(minted, iri, StringComparison.Ordinal))
+                    diverging.Add($"PK {pk} « {title} » minta {minted}, la table annonce {iri}");
+            }
+
+            _out.WriteLine($"table annoncée : {AnnouncedIdentities.Length} entrées, "
+                           + $"{AnnouncedIdentities.Length - diverging.Count} conformes à GetId");
+            foreach (var line in diverging)
+                _out.WriteLine("  DIVERGE : " + line);
+
+            diverging.Should().BeEmpty(
+                "chaque IRI annoncée doit être celle que GetId minta pour le titre que le PK désigne. " +
+                "C'est la vérification que #1525 a faite à la main, après que la table calculée par " +
+                "réplique Python eut annoncé callingcards là où GetId minta callingCards (#1651). " +
+                "Divergentes : " + string.Join(" | ", diverging));
+
+            var (produced, declared) = Measure();
+            var announced = new HashSet<string>(
+                AnnouncedIdentities.Select(a => a.Iri), StringComparer.Ordinal);
+            var unnamed = produced.Except(declared)
+                .Where(x => !announced.Contains(x))
+                .OrderBy(x => x, StringComparer.Ordinal).ToList();
+
+            _out.WriteLine($"absentes non nommées par la table : {unnamed.Count}");
+
+            unnamed.Should().BeEmpty(
+                "toute IRI que la taxonomie produit et que l'OWL ne porte pas doit figurer dans la " +
+                "table annoncée : c'est la seule source du consommateur qui réécrit les IRI " +
+                "(jsboige/CoursIA#4960). Celles que rien ne nomme : " + string.Join(", ", unnamed));
         }
     }
 }
