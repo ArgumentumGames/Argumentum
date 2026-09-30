@@ -22,7 +22,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// Ce qui ne l'est pas, c'est qu'il soit <b>invisible</b> : rien ne distingue une dérive ordinaire
     /// d'un oubli, et #133 (publication, qui <b>fige les IRI</b>) peut partir à tout moment. Mesuré sur
     /// <c>f95c0b70</c> : 1313 IRI produites par le CSV, 1306 concepts portés par le fichier, 16 absents,
-    /// 9 orphelins.</para>
+    /// 9 orphelins. <b>Réconcilié par la régénération #1681</b> (30/09) : 1313 produites / 1313 portées,
+    /// <b>0 absentes, 0 orphelines</b> sur <c>c1491de9</c> — les plafonds descendent à 0 : l'écart devient
+    /// un invariant d'égalité, et tout renommage anglais non suivi d'une régénération rougit nommément.</para>
     ///
     /// <para><b>Pourquoi aucun organe existant ne le voyait.</b>
     /// <c>OwlE2EGenerationValidationTests.LoadedOntology_CrossLinkAndAifCounts_MatchTheCorpusExactly</c>
@@ -52,9 +54,11 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         private const int ProducedFloor = 1300;
         private const int DeclaredFloor = 1290;
 
-        // Plafonds : l'écart mesuré sur f95c0b70. Ils ne peuvent que descendre.
-        private const int AbsentCeiling = 16;
-        private const int OrphanCeiling = 9;
+        // Plafonds : 16 et 9 à f95c0b70 (le constat #1666), descendus à 0 à la réconciliation
+        // #1681 — l'OWL régénéré (c1491de9) porte exactement les 1313 identités produites.
+        // Ils ne peuvent plus remonter : un renommage anglais sans régénération rougit.
+        private const int AbsentCeiling = 0;
+        private const int OrphanCeiling = 0;
 
         private static readonly Lazy<OwlAdapter> CommittedOntology = new(() =>
             OwlAdapter.FromFile(Path.Combine(TestRepoRoot.Find(), "docs", "ontology", "argumentum.owl")));
@@ -217,14 +221,16 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 
             absent.Should().HaveCountLessThanOrEqualTo(AbsentCeiling,
                 $"une IRI que la taxonomie produit et que le fichier ne porte pas est un concept que la " +
-                $"publication #133 servirait sous une identité qui n'existe plus. Écart mesuré à f95c0b70 : " +
-                $"{AbsentCeiling}. Régénérer (--generate-owl), ou recaler ce plafond avec la date — jamais " +
-                $"effacer la ligne. Absentes aujourd'hui ({absent.Count}) : {string.Join(", ", absent)}");
+                $"publication #133 servirait sous une identité qui n'existe plus. Plafond 0 depuis la " +
+                $"réconciliation #1681 (16 absentes à f95c0b70, 0 sur c1491de9). Régénérer " +
+                $"(--generate-owl), ou recaler ce plafond avec la date — jamais effacer la ligne. " +
+                $"Absentes aujourd'hui ({absent.Count}) : {string.Join(", ", absent)}");
 
             orphans.Should().HaveCountLessThanOrEqualTo(OrphanCeiling,
                 $"un concept que le fichier porte et qu'aucune ligne ne produit est une identité que la " +
-                $"publication #133 figerait sans corpus derrière. Écart mesuré à f95c0b70 : {OrphanCeiling}. " +
-                $"Régénérer (--generate-owl), ou recaler ce plafond avec la date — jamais effacer la ligne. " +
+                $"publication #133 figerait sans corpus derrière. Plafond 0 depuis la réconciliation " +
+                $"#1681 (9 orphelines à f95c0b70, 0 sur c1491de9). Régénérer (--generate-owl), ou " +
+                $"recaler ce plafond avec la date — jamais effacer la ligne. " +
                 $"Orphelines aujourd'hui ({orphans.Count}) : {string.Join(", ", orphans)}");
         }
 
