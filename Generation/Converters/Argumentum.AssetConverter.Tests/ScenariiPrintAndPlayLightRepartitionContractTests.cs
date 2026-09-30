@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -111,7 +111,7 @@ namespace Argumentum.AssetConverter.Tests
 					["vie professionnelle"] = 3,
 				},
 				expectedCategories: ExpectedCategories,
-				exercisedLabel: "dos");
+				exercisedLabel: "dos exercés");
 
 			failures.Should().NotBeEmpty(
 				"l'état mesuré le 23/09 couvre 4 catégories sur 7 — la garde passe au rouge par construction");
@@ -157,7 +157,7 @@ namespace Argumentum.AssetConverter.Tests
 					["vie professionnelle"] = 3,
 				},
 				expectedCategories: ExpectedCategories,
-				exercisedLabel: "dos");
+				exercisedLabel: "dos exercés");
 
 			failures.Should().BeEmpty(
 				"7/7 couvertes ≥ 1 — l'invariant de couverture est tenu, la garde ne crie pas");
@@ -190,7 +190,7 @@ namespace Argumentum.AssetConverter.Tests
 				lightTotal.Should().Be(7);
 				deckTotal.Should().Be(7);
 
-				var failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "dos");
+				var failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "dos exercés");
 				failures.Should().BeEmpty(
 					"CSV sain : 7/7 couvertes ≥ 1, dominance 1/7 = 14 % < 33 % — l'organe VERDIT VERT");
 			}
@@ -257,7 +257,7 @@ namespace Argumentum.AssetConverter.Tests
 				lightTotal.Should().Be(15,
 					"15 cartes Light : 4 hist + 6 my + 1 ri + 1 politique + 1 vp + 1 cp + 1 vpr = 15");
 
-				var failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "dos");
+				var failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "dos exercés");
 				// À ce stade, couverture 7/7 (mutation a ajouté les 3 manquantes) MAIS
 				// dominance « mythologie » 6/15 = 40 % reste > 33 %. La garde DOIT crier
 				// la dominance — c'est la PROUVE que les deux invariants sont disjoints et
@@ -280,7 +280,7 @@ namespace Argumentum.AssetConverter.Tests
 						counts[cat] = counts[cat] + 1;
 					}
 				}
-				failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "dos");
+				failures = LightCategoryBalanceContract.CheckCoverage(counts, ExpectedCategories, "dos exercés");
 				failures.Should().BeEmpty(
 					"mutée + ré-équilibrée : couverture 7/7, dominance ≤ 33 % — l'organe passe au vert (preuve d'instrument vivant, pas un no-op)");
 			}
@@ -308,7 +308,7 @@ namespace Argumentum.AssetConverter.Tests
 					["vie professionnelle"] = 3,
 				},
 				expectedCategories: ExpectedCategories,
-				exercisedLabel: "dos");
+				exercisedLabel: "dos exercés");
 
 			failures.Should().NotBeEmpty(
 				"5/7 catégories couvertes ≠ 7/7 — la règle « 7/7 ≥ 1 » est ce que la garde ÉPINGLE, "
@@ -441,9 +441,10 @@ namespace Argumentum.AssetConverter.Tests
 		/// Le message de couverture porte DEUX comptes mesurés et le libellé de
 		/// l'appelant (#1665) : le compte de la catégorie absente vient du
 		/// dictionnaire mesuré, le dénominateur vient du tableau d'attendus, et le
-		/// libellé (« dos » côté Scenarii, « familles » côté Tarot) est passé par
-		/// l'appelant — plus aucun littéral « (0/7 dos exercés) » ne survit à un
-		/// changement de sélection.
+		/// libellé — PARTICIPE COMPRIS, car c'est l'appelant qui connaît le genre
+		/// (« dos exercés » côté Scenarii, « familles exercées » côté Tarot, renvoi
+		/// c.5909445912) — est passé par l'appelant : plus aucun littéral ne survit
+		/// à un changement de sélection.
 		/// </summary>
 		public static List<string> CheckCoverage(
 			Dictionary<string, int> lightByCategory,
@@ -456,7 +457,7 @@ namespace Argumentum.AssetConverter.Tests
 				var n = lightByCategory.TryGetValue(cat, out var count) ? count : 0;
 				if (n <= 0)
 				{
-					failures.Add($"[coverage] catégorie absente du Light : \"{cat}\" ({n}/{expectedCategories.Length} {exercisedLabel} exercés). Catégorie print_and_play=1 à sélectionner.");
+					failures.Add($"[coverage] catégorie absente du Light : \"{cat}\" ({n}/{expectedCategories.Length} {exercisedLabel}). Catégorie print_and_play=1 à sélectionner.");
 				}
 			}
 
