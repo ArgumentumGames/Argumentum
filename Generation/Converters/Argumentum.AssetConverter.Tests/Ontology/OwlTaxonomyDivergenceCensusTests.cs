@@ -177,7 +177,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             foreach (var subject in CommittedOntology.Value.GetOntology().AnnotationAxioms
                          .OfType<OWLAnnotationAssertion>()
                          .Where(a => a.AnnotationProperty.GetIRI().ToString() == prefLabel)
-                         .Select(a => a.SubjectIRI?.ToString())
+                         .Select(a => a.SubjectIRI?.ToString() ?? string.Empty)
                          .Where(s => !string.IsNullOrEmpty(s)))
             {
                 var hash = subject.LastIndexOf('#');

@@ -91,10 +91,10 @@ namespace Argumentum.AssetConverter.Tests.Localization
 					"aucun CardSet servi ne lui correspond dans WebBasedGeneratorConfig — cablage a verifier.");
 
 				var surfaces = served
-					.Select(p => (Path: p, Surface: File.Exists(p) ? ReadLiveSurface(p) : null))
+					.Select(p => (Path: p, Surface: File.Exists(p) ? ReadLiveSurface(p) : string.Empty))
 					.ToList();
 
-				surfaces.Where(s => s.Surface == null).ToList().Should().BeEmpty(
+				surfaces.Where(s => s.Surface.Length == 0).ToList().Should().BeEmpty(
 					"chaque gabarit declare par la config doit exister dans le checkout.");
 
 				foreach (var s in surfaces) measuredTemplates.Add(s.Path);

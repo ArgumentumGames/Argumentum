@@ -94,7 +94,7 @@ namespace Argumentum.AssetConverter.Tests
 			var rows = LoadRowsByPk();
 			foreach (var lang in new[] { "pt", "es", "ru", "ar" })
 			{
-				var title = rows["208"].GetValueOrDefault("title_" + lang).Trim();
+				var title = (rows["208"].GetValueOrDefault("title_" + lang) ?? string.Empty).Trim();
 				title.Should().NotBeNullOrEmpty($"pk 208 doit avoir un titre {lang}.");
 				foreach (var pk in new[] { "208", "209", "210", "211" })
 					rows[pk].GetValueOrDefault("subsubfamily_" + lang).Should().Be(title,
