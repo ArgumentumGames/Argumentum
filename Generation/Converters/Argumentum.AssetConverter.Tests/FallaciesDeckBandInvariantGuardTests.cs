@@ -23,6 +23,13 @@ namespace Argumentum.AssetConverter.Tests
 	/// Aucune exception : les 5 cellules d'accents de #1589 (869, 1314, 1330 ancêtres ;
 	/// 855, 1313 self), tolérées tant que #1589 n'était pas mergé, ont été retirées
 	/// après son merge (chorégraphie du dispatch) — 0 exception.
+	/// <para>Extension ⑱w du pool v22 (#458 c.5882003715 § « Arbitrage ⑱ », base
+	/// <c>89f78bcd</c>) : l'invariant est étendu aux rangées HORS deck — les colonnes
+	/// bandeaux alimentent la localisation des mindmaps, imprimées ou non. 422 cellules
+	/// écrites (94 vides en, 320 alias, 8 casse pt ; 29 clusters, 269 rangées), les deux
+	/// exceptions arbitraires alignées par la règle générale (ru 2.3.2
+	/// « Игра власти », en 4.1.3 « Stork effect »). Le comparateur étendu est strict :
+	/// aucune règle « imprimé », aucun titre vide toléré.</para>
 	/// </summary>
 	public class FallaciesDeckBandInvariantGuardTests
 	{
@@ -106,6 +113,50 @@ namespace Argumentum.AssetConverter.Tests
 				"l'invariant ④c : chaque bandeau imprimé du deck (niveaux 1-3, niveau propre compris, " +
 				"8 langues) est égal au titre de la rangée de ce préfixe. Écarts restants : " +
 				$"{string.Join(" ; ", mismatches.Select(m => $"{m.CardPath} [{m.Lang}] {m.Column} = «{m.Band}» vs «{m.Title}»"))}");
+		}
+
+		/// <summary>
+		/// Comparateur ⑱w : toutes les rangées (deck ET hors deck), niveaux 1 à
+		/// min(profondeur, 3), niveau propre compris, 8 langues — strict, sans règle
+		/// « imprimé » ni tolérance de titre vide. Partagé par le test d'invariant
+		/// étendu et par tout futur grain qui voudrait mesurer avant d'écrire.
+		/// </summary>
+		private static List<BandMismatch> AllRowsBandMismatches(Dictionary<string, Dictionary<string, string>> rows)
+		{
+			var mismatches = new List<BandMismatch>();
+			foreach (var (path, row) in rows)
+			{
+				var segs = path.Split('.');
+				for (var k = 1; k <= 3 && k <= segs.Length; k++)
+				{
+					var ancestorPath = string.Join(".", segs.Take(k));
+					if (!rows.TryGetValue(ancestorPath, out var ancestor))
+						continue;
+					foreach (var lang in Languages)
+					{
+						var bandCols = BandColumns(lang);
+						var band = row.GetValueOrDefault(bandCols[k - 1])?.Trim() ?? "";
+						var title = ancestor.GetValueOrDefault("text_" + lang)?.Trim() ?? "";
+						if (band != title)
+							mismatches.Add(new BandMismatch(path, lang, bandCols[k - 1], band, title));
+					}
+				}
+			}
+			return mismatches;
+		}
+
+		[Fact]
+		public void Every_Row_Band_OffDeck_Included_Matches_Its_Rank_Title()
+		{
+			var rows = LoadRowsByPath();
+			rows.Should().HaveCount(1408, "1408 chemins uniques attendus (anti-vacuité du balayage).");
+			var mismatches = AllRowsBandMismatches(rows);
+
+			mismatches.Should().BeEmpty(
+				"l'invariant ⑱w (#458 c.5882003715) : chaque colonne bandeau, rangée du deck OU hors deck, " +
+				"niveaux 1 à min(profondeur, 3), niveau propre compris, 8 langues, porte le titre actuel du " +
+				"rang de ce préfixe — les colonnes bandeaux alimentent les mindmaps et l'OWL, imprimées ou non. " +
+				$"Écarts restants : {string.Join(" ; ", mismatches.Take(12).Select(m => $"{m.CardPath} [{m.Lang}] {m.Column} = «{m.Band}» vs «{m.Title}»"))}");
 		}
 
 		[Fact]
