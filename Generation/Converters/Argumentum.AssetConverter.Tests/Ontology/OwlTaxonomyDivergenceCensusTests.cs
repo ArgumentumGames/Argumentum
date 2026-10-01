@@ -27,7 +27,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// un invariant d'égalité, et tout renommage anglais non suivi d'une régénération rougit nommément.
     /// <b>②b (2026-10-01)</b> : la copie « Question piège » (PK 701) prend le titre anglais de sa
     /// carte (PK 179) — <c>trickQuestion</c> tombe de l'ensemble produit (1312 produites) et devient
-    /// l'orpheline nommée <see cref="DeclaredOrphans"/>, en attendant la re-dérivation n°2.</para>
+    /// l'orpheline nommée <see cref="DeclaredOrphans"/>. <b>Re-dérivation n°2 (2026-10-01)</b> :
+    /// l'OWL régénéré porte exactement les 1312 identités produites — 0 absentes, 0 orphelines,
+    /// l'épingle est retirée (burn-down daté).</para>
     ///
     /// <para><b>Pourquoi aucun organe existant ne le voyait.</b>
     /// <c>OwlE2EGenerationValidationTests.LoadedOntology_CrossLinkAndAifCounts_MatchTheCorpusExactly</c>
@@ -66,12 +68,12 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         // comme les collisions de OwlIriCollisionGuardTests) : l'OWL porte l'identité, plus
         // aucune ligne ne la produit. ②b (2026-10-01) a aligné le titre anglais de la copie
         // « Question piège » (PK 701) sur sa carte (PK 179, « Loaded question ») : trickQuestion
-        // tombe de l'ensemble produit en attendant la re-dérivation n°2 (po-2023, débloquée au
-        // merge ②b). Quand la régénération réconciliera l'OWL, l'épingle deviendra fausse et
-        // rougira : RETIRER son entrée — burn-down, jamais effacer la ligne sans la dater.
+        // est tombée de l'ensemble produit, épingle posée en attendant la re-dérivation n°2.
+        // Re-dérivation n°2 (2026-10-01, po-2023) : OWL régénéré = 1312/1312, 0 orpheline —
+        // l'épingle est RETIRÉE (burn-down daté ; l'entrée a vécu ici quelques heures).
+        // L'ensemble reste vivant : toute future orpheline se déclare ici, datée.
         private static readonly HashSet<string> DeclaredOrphans = new HashSet<string>(StringComparer.Ordinal)
         {
-            "trickQuestion",
         };
 
         private static readonly Lazy<OwlAdapter> CommittedOntology = new(() =>

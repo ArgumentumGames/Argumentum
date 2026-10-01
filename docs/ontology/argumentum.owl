@@ -2312,7 +2312,7 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#cartesianCircle" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion" />
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ignoratioElenchi" />
@@ -50343,62 +50343,62 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#inScheme" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyScheme</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="fr">Question piège</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
-    <Literal xml:lang="en">Trick question</Literal>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
+    <Literal xml:lang="en">Loaded question</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="fr">Vous posez une question qui suppose subtilement une prémisse fausse ou controversée.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="en">Formulating a question that subtly assumes a false or controversial premise.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="fr">Avez-vous arrêté de martyriser votre chien ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="en">Have you stopped mistreating your dog?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Complex_question</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Plurium_interrogationum</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#beggingTheQuestion</IRI>
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
-    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trickQuestion</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#loadedQuestion</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#beggingTheQuestion</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
@@ -50479,7 +50479,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#questionBeggingAnalogy</IRI>
-    <Literal xml:lang="en">Question begging analogy</Literal>
+    <Literal xml:lang="en">Question-begging analogy</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
