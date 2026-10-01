@@ -24,7 +24,10 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// <c>f95c0b70</c> : 1313 IRI produites par le CSV, 1306 concepts portés par le fichier, 16 absents,
     /// 9 orphelins. <b>Réconcilié par la régénération #1681</b> (30/09) : 1313 produites / 1313 portées,
     /// <b>0 absentes, 0 orphelines</b> sur <c>c1491de9</c> — les plafonds descendent à 0 : l'écart devient
-    /// un invariant d'égalité, et tout renommage anglais non suivi d'une régénération rougit nommément.</para>
+    /// un invariant d'égalité, et tout renommage anglais non suivi d'une régénération rougit nommément.
+    /// <b>②b (2026-10-01)</b> : la copie « Question piège » (PK 701) prend le titre anglais de sa
+    /// carte (PK 179) — <c>trickQuestion</c> tombe de l'ensemble produit (1312 produites) et devient
+    /// l'orpheline nommée <see cref="DeclaredOrphans"/>, en attendant la re-dérivation n°2.</para>
     ///
     /// <para><b>Pourquoi aucun organe existant ne le voyait.</b>
     /// <c>OwlE2EGenerationValidationTests.LoadedOntology_CrossLinkAndAifCounts_MatchTheCorpusExactly</c>
@@ -58,7 +61,18 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         // #1681 — l'OWL régénéré (c1491de9) porte exactement les 1313 identités produites.
         // Ils ne peuvent plus remonter : un renommage anglais sans régénération rougit.
         private const int AbsentCeiling = 0;
-        private const int OrphanCeiling = 0;
+
+        // Orphelines NOMMÉES (le plafond brut devient une épingle nominative à deux directions,
+        // comme les collisions de OwlIriCollisionGuardTests) : l'OWL porte l'identité, plus
+        // aucune ligne ne la produit. ②b (2026-10-01) a aligné le titre anglais de la copie
+        // « Question piège » (PK 701) sur sa carte (PK 179, « Loaded question ») : trickQuestion
+        // tombe de l'ensemble produit en attendant la re-dérivation n°2 (po-2023, débloquée au
+        // merge ②b). Quand la régénération réconciliera l'OWL, l'épingle deviendra fausse et
+        // rougira : RETIRER son entrée — burn-down, jamais effacer la ligne sans la dater.
+        private static readonly HashSet<string> DeclaredOrphans = new HashSet<string>(StringComparer.Ordinal)
+        {
+            "trickQuestion",
+        };
 
         private static readonly Lazy<OwlAdapter> CommittedOntology = new(() =>
             OwlAdapter.FromFile(Path.Combine(TestRepoRoot.Find(), "docs", "ontology", "argumentum.owl")));
@@ -226,12 +240,18 @@ namespace Argumentum.AssetConverter.Tests.Ontology
                 $"(--generate-owl), ou recaler ce plafond avec la date — jamais effacer la ligne. " +
                 $"Absentes aujourd'hui ({absent.Count}) : {string.Join(", ", absent)}");
 
-            orphans.Should().HaveCountLessThanOrEqualTo(OrphanCeiling,
+            orphans.Should().BeSubsetOf(DeclaredOrphans,
                 $"un concept que le fichier porte et qu'aucune ligne ne produit est une identité que la " +
-                $"publication #133 figerait sans corpus derrière. Plafond 0 depuis la réconciliation " +
-                $"#1681 (9 orphelines à f95c0b70, 0 sur c1491de9). Régénérer (--generate-owl), ou " +
-                $"recaler ce plafond avec la date — jamais effacer la ligne. " +
-                $"Orphelines aujourd'hui ({orphans.Count}) : {string.Join(", ", orphans)}");
+                $"publication #133 figerait sans corpus derrière. Une orpheline ABSENTE de la table " +
+                $"nommée est un renommage anglais sans épingle : l'ajouter avec la date — jamais " +
+                $"effacer la ligne. Orphelines aujourd'hui ({orphans.Count}) : {string.Join(", ", orphans)}");
+
+            DeclaredOrphans.Should().BeSubsetOf(orphans,
+                $"chaque orpheline nommée doit être réelle : l'OWL la porte ET aucune ligne ne la " +
+                $"produit. Une épingle devenue fausse, c'est la re-dérivation qui a réconcilié " +
+                $"l'OWL — RETIRER son entrée (burn-down, comme les collisions résolues de la garde " +
+                $"#1622), sinon elle ré-autorise en silence le renommage qu'elle date. " +
+                $"Épingles vides aujourd'hui : {string.Join(", ", DeclaredOrphans.Except(orphans))}");
         }
 
         /// <summary>
