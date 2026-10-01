@@ -50,17 +50,19 @@ namespace Argumentum.AssetConverter.Tests
 	/// le même fragment <c>questionBeggingAnalogy</c> (la collision convergente que #1622 a mesurée) —
 	/// l'alignement répare le double <c>prefLabel</c> EN, il ne déplace aucune identité.</para>
 	///
-	/// <para><b>Exclusion nominative.</b> « Self-refuting idea » (PK 779) / « Stolen concept
-	/// fallacy » (PK 828) portent le même couple (titre, définition) français mais dénotent deux
-	/// notions DISTINCTES en anglais : la consigne du dispatch est de ne rien écrire et de le
-	/// rapporter — la question de savoir si le français les confond à tort reste ouverte côté
-	/// owner. La garde exclut cette paire NOMINATIVEMENT (par PK), jamais par valeur.</para>
+	/// <para><b>Grain ③d (décision owner 01/10, #1622 c.5936687358).</b> « Self-refuting idea »
+	/// (PK 779) / « Stolen concept fallacy » (PK 828) sont DEUX notions : l'exclusion nominative
+	/// qui existait au grain ②b est MORTE avec l'écriture — le PK 779 porte désormais
+	/// « Idée autoréfutante » (titre + définition propres, 7 langues réalignées, <c>text_en</c>
+	/// inchangé donc 0 IRI, <c>example_fr</c> gardé règle C), le PK 828 garde « Concept volé ».
+	/// Le couple (titre, définition) français diffère : la paire n'est plus dans les groupes.</para>
 	///
 	/// <para><b>Anti-vacuité recalibrée.</b> Groupes imprimés sous la clé (fr, en) : 24 après ②b
 	/// (les 23 du grain #1686 + « Question piège » dont la copie a rejoint la carte via
 	/// l'alignement anglais ; recalibré le 2026-10-01, était 23 sur <c>3bd84bc1</c>). Groupes
-	/// sous la clé (fr, définition) : 34 épinglés — recaler avec la date, jamais effacer la
-	/// ligne.</para>
+	/// sous la clé (fr, définition) : 33 après ③d (34 mesurés au grain ②b ; la paire 779/828
+	/// quitte les groupes quand ses titres français diffèrent) — recaler avec la date, jamais
+	/// effacer la ligne.</para>
 	/// </summary>
 	public class DuplicateConceptTitleAlignmentGuardTests
 	{
@@ -181,30 +183,20 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void FrTitleAndDefinition_Groups_Are_Uniform_Except_The_Nominative_Pair()
+		public void FrTitleAndDefinition_Groups_Are_Uniform()
 		{
 			var rows = LoadRows();
 			var groups = FrTitleAndDefinitionDuplicateGroups(rows);
 
-			groups.Should().HaveCount(34,
-				"anti-vacuité : 34 groupes (titre + définition français identiques) mesurés au grain ②b " +
-				"(dd902694 + écriture, 01/10). Recaler avec la date, jamais effacer la ligne.");
-
-			// L'exclusion est NOMINATIVE, par PK — jamais par valeur : la consigne du dispatch est
-			// que cette paire-là ne s'écrit pas tant que l'owner n'a pas tranché si le français
-			// confond à tort deux notions que l'anglais distingue.
-			var excluded = new HashSet<string> { "779", "828" };
-			var byPk = rows.ToDictionary(r => Cell(r, "PK"), StringComparer.Ordinal);
-			Cell(byPk["779"], "text_en").Should().Be("Self-refuting idea",
-				"l'exclusion nominative suppose que le PK 779 porte exactement ce titre anglais.");
-			Cell(byPk["828"], "text_en").Should().Be("Stolen concept fallacy",
-				"idem PK 828 — si l'un des deux change, l'exclusion doit être réexaminée, pas contournée.");
+			groups.Should().HaveCount(33,
+				"anti-vacuité : 33 groupes (titre + définition français identiques) — 34 mesurés au grain " +
+				"②b (dd902694 + écriture, 01/10), la paire 779/828 les quitte au grain ③d (01/10, décision " +
+				"owner : deux notions, le PK 779 devient « Idée autoréfutante »). Recaler avec la date, " +
+				"jamais effacer la ligne.");
 
 			var failures = new List<string>();
 			foreach (var group in groups)
 			{
-				if (group.All(r => excluded.Contains(Cell(r, "PK"))))
-					continue;
 				foreach (var lang in Languages)
 				{
 					var vals = new HashSet<string>(group.Select(r => Cell(r, "text_" + lang)));
@@ -217,8 +209,24 @@ namespace Argumentum.AssetConverter.Tests
 
 			failures.Should().BeEmpty(
 				"l'invariant ②b : chaque groupe (titre + définition français identiques) porte UN titre " +
-				"par langue, hors la paire exclue nommément (PK 779/828, notions distinctes en anglais, " +
-				$"arbitrage owner ouvert). Écarts restants : {string.Join(" ; ", failures.Take(8))}");
+				$"par langue — plus d'exclusion nominative depuis ③d. Écarts restants : {string.Join(" ; ", failures.Take(8))}");
+		}
+
+		[Fact]
+		public void Pk779_SelfRefuting_Idea_Is_Distinct_From_Pk828_Stolen_Concept()
+		{
+			// Témoin du grain ③d (décision owner 01/10, #1622 c.5936687358) : deux notions.
+			// Le PK 779 reçoit « Idée autoréfutante », le PK 828 garde « Concept volé ».
+			// text_en ne change pas des deux côtés => 0 IRI OWL déplacée.
+			var rows = LoadRows();
+			var byPk = rows.ToDictionary(r => Cell(r, "PK"), StringComparer.Ordinal);
+			Cell(byPk["779"], "text_fr").Should().Be("Idée autoréfutante",
+				"le témoin ③d suppose que le PK 779 porte exactement ce titre français.");
+			Cell(byPk["828"], "text_fr").Should().Be("Concept volé",
+				"idem PK 828 — c'est lui qui garde le titre d'origine.");
+			Cell(byPk["779"], "text_en").Should().Be("Self-refuting idea",
+				"③d ne touche aucune colonne en : l'IRI (GetId dérive du titre EN) reste en place.");
+			Cell(byPk["828"], "text_en").Should().Be("Stolen concept fallacy", "idem PK 828.");
 		}
 
 		[Fact]
