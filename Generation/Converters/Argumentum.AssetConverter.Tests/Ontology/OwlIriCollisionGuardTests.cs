@@ -46,6 +46,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// Fallacies: 1408 rows → 1313 distinct fragments and <b>88 collisions</b> — 87 of them two rows
     /// carrying the SAME English label (7 of those involve three rows), 1 of them two DIFFERENT labels
     /// converging through <c>GetId</c> (the #1622 pair). Virtues: 223 rows, <b>0 collisions</b>.
+    /// Recalibrated at ②b (2026-10-01): <b>89 collisions, all identical-label</b> — the #1622 pair's
+    /// labels were aligned on the hyphen form (both mint the same fragment; the class moves), and
+    /// <c>loadedQuestion</c> {179,701} joined when the off-deck copy took the card's English title.
     /// Cross-check against the artefact: 87 of the 88 fragments are already present in the committed
     /// OWL as <c>skos:prefLabel</c> subjects, which is what validates this file's model of the emitter
     /// against the real one.
@@ -148,6 +151,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             { "kafkatrap", "161,986" },   // identical
             { "leapOfFaith", "22,770" },   // identical
             { "lessIsBetterEffect", "1042,1239" },   // identical
+            { "loadedQuestion", "179,701" },   // identical — ②b 2026-10-01: PK 701 (« Trick question ») rejoint la carte PK 179
             { "magnificationAndMinimization", "895,1101" },   // identical
             { "mentalReservation", "900,1329" },   // identical
             { "metonymy", "295,866" },   // identical
@@ -169,7 +173,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             { "psychologicalProjection", "1165,1355" },   // identical
             { "psychologistsFallacy", "51,1055" },   // identical
             { "quantifierShift", "749,850" },   // identical
-            { "questionBeggingAnalogy", "703,840" },   // convergent
+            { "questionBeggingAnalogy", "703,840" },   // identical since ②b (2026-10-01) — was the #1622 convergent pair
             { "rationalization", "62,762" },   // identical
             { "scapegoating", "501,960" },   // identical
             { "shiftingGround", "983,1319" },   // identical
@@ -187,14 +191,18 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         };
 
         /// <summary>
-        /// The collisions whose rows carry DIFFERENT labels — the SKOS-violating class. Only one today:
-        /// the #1622 pair itself. Derived on every run from the measured labels, so the <c>[…]</c> tags
-        /// above are checked rather than trusted.
+        /// The collisions whose rows carry DIFFERENT labels — the SKOS-violating class (two
+        /// <c>prefLabel</c> for one language on one concept). Derived on every run from the measured
+        /// labels, so the <c>[…]</c> tags above are checked rather than trusted.
+        ///
+        /// Empty since ②b (2026-10-01): the #1622 pair was its only member, and the grain aligned
+        /// PK 703 on PK 840's hyphen form — both forms mint the SAME fragment
+        /// (<c>GetId</c> strips the hyphen; that convergence is what #1622 measured), so the pair
+        /// stays a collision but joins the identical-label class. The set stays declared rather
+        /// than deleted: the next DIFFERENT-labels collision must red here.
         /// </summary>
-        private static readonly HashSet<string> ExpectedConvergentFragments = new HashSet<string>(StringComparer.Ordinal)
-        {
-            "questionBeggingAnalogy",
-        };
+        private static readonly HashSet<string> ExpectedConvergentFragments =
+            new HashSet<string>(StringComparer.Ordinal);
 
         /// <summary>
         /// The Fallacies corpus carries every pinned collision, and every one of them is inside the
