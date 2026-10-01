@@ -47,20 +47,19 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// hardcoded number.</description></item>
     /// </list>
     ///
-    /// <b>Explicit-run gate.</b> The Tests project runs UNFILTERED in CI: a red-by-design
-    /// acceptance gate would block the whole repository while the re-derivation is pending.
-    /// The organ is therefore inert unless <c>ARGUMENTUM_DEADLINK_GATE=1</c> is set — CI
-    /// runs it as a trivial pass, and the re-deriving lane executes it for real with:
-    /// <code>ARGUMENTUM_DEADLINK_GATE=1 dotnet test --filter MindmapDeadLinkGate</code>.
-    /// The gate is an environment variable rather than a <c>[Fact(Skip=…)]</c> so the
-    /// executor never has to edit source (and risk shipping an un-skipped red gate) to run
-    /// it. Witness state: RED on the committed SVGs as of 2026-09-20 (810 bare
-    /// occurrences), proven by the authoring lane before delivery.
+    /// <b>Promoted to an always-on CI guard</b> (2026-10-01, pool #458 « oracles
+    /// d'acceptation »): the re-derivation #1681 has landed and this organ measures GREEN
+    /// on the committed tree (run gate-open on <c>48618fc5</c>: 5/5 with the freshness
+    /// companion). The explicit-run gate (<c>ARGUMENTUM_DEADLINK_GATE=1</c>) is REMOVED
+    /// rather than defaulted-off: a standing disable switch would re-open the silent-skip
+    /// hole the gate exists to close. From here on, any PR that regresses a shipped
+    /// mindmap — bare dead URL, dropped repair, thumbnail loss — reds in CI by itself,
+    /// including every future re-derivation pass. History: authored RED on the committed
+    /// SVGs as of 2026-09-20 (810 bare occurrences), gated inert until #1681 landed
+    /// (witness proven by the authoring lane before delivery).
     /// </summary>
     public class MindmapDeadLinkGateTests
     {
-        private const string GateEnvVariable = "ARGUMENTUM_DEADLINK_GATE";
-
         // ── Dead-URL dictionary: state FROZEN by po-2024 from the repair commits ──────────
         // #1439 (deck): 7 links — 4 mirrored to wayback, 1 replaced by the live en-Wikipedia
         // article, 2 cleared (page deleted even from fr.wikipedia; no equivalent kept).
@@ -140,13 +139,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [Fact]
         public void ReDerivedMindmaps_CarryNoBareDeadUrl_AndCarryTheRepairs()
         {
-            // Explicit-run gate: inert (trivial pass) in CI, real when the re-deriving lane
-            // sets the variable. See the class doc for why this is not [Fact(Skip=…)].
-            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
-            {
-                return;
-            }
-
             var repoRoot = TestRepoRoot.Find();
             var mindmapDir = Path.Combine(repoRoot, "Cards", "Fallacies", "Mindmaps");
             var svgs = Directory.EnumerateFiles(mindmapDir, "*.svg", SearchOption.AllDirectories)
@@ -217,7 +209,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 $"{kv.Key} x{kv.Value.Count} in {string.Join(", ", kv.Value.Distinct())}"));
             bare.Should().BeEmpty(
                 "every dead link of #1438 must be either cleared (no occurrence) or mirrored "
-                + $"behind a wayback prefix ({GateEnvVariable}=1 acceptance run). Bare occurrences by URL: "
+                + "behind a wayback prefix (always-on acceptance invariant since 2026-10-01). "
+                + "Bare occurrences by URL: "
                 + bareSummary);
 
             // Inverse control — the repairs themselves must SHIP. A re-derivation that drops

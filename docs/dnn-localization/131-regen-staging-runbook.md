@@ -259,8 +259,10 @@ dotnet run -c Release --project "Generation/Converters/Argumentum.AssetConverter
       `UseLocalCardpen`, never by the build config. A fresh template on a stale engine renders a *silently* wrong card.
 - [ ] `dotnet clean` + `dotnet build -c $CONFIG` green (§4).
 - [ ] Mindmap pass isolated first (§3) — prove foreground-lock before the long PDF pass.
-- [ ] **DoD mindmaps #1 — dead-link gate 13/13** (born from the #1438/#1453 re-derivation pass, 2026-09-20): after the
-      regen commits its mindmaps, `ARGUMENTUM_DEADLINK_GATE=1 dotnet test
+- [ ] **DoD mindmaps #1 — dead-link gate 13/13** (born from the #1438/#1453 re-derivation pass, 2026-09-20; the env
+      gates were promoted always-on on 2026-10-01 — plain `dotnet test`, the `ARGUMENTUM_DEADLINK_GATE=1` prefix is
+      historical): after the
+      regen commits its mindmaps, `dotnet test
       "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj"
       --filter "FullyQualifiedName~Gate"` must be green on the merged tree. ⚠️ The count is **tree-relative** — a green
       run on the regen branch does not transfer: verify by `git merge-base --is-ancestor <gate-commit> HEAD`, never by

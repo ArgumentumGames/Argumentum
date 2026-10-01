@@ -40,16 +40,18 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// measurement; its red day is the FUTURE: a re-derivation that commits new SVGs while
     /// the wrapper skip fires makes every touched pair stale, nominatively.
     ///
-    /// Same explicit-run gate as <see cref="MindmapDeadLinkGateTests"/>
-    /// (<c>ARGUMENTUM_DEADLINK_GATE=1</c>), inert in CI. The companion
-    /// <c>ARGUMENTUM_DEADLINK_GATE=1 dotnet test --filter Gate</c> runs both organs. Requires
-    /// a NON-shallow clone: commit dates are read from git, and on a shallow checkout every
-    /// file reports the single fetched commit — the organ would be inert, so it throws
-    /// instead of passing silently.
+    /// <b>Promoted to an always-on CI guard</b> (2026-10-01, pool #458 « oracles
+    /// d'acceptation »): measured GREEN gate-open on the committed tree (<c>48618fc5</c>,
+    /// post-#1681 re-derivation), so the explicit-run gate is REMOVED rather than
+    /// defaulted-off — a standing disable switch would re-open the silent-skip hole this
+    /// organ exists to close. Requires a NON-shallow clone: commit dates are read from
+    /// git, and on a shallow checkout every file reports the single fetched commit — the
+    /// organ would be inert, so it throws instead of passing silently. <c>build.yml</c>
+    /// checks out with <c>fetch-depth: 0</c> since the promotion (cost measured via
+    /// large-blob-guard.yml, already full-fetch: under ~1 min per run).
     /// </summary>
     public class MindmapWrapperFreshnessGateTests
     {
-        private const string GateEnvVariable = "ARGUMENTUM_DEADLINK_GATE";
 
         // ── Core detector (pure over a repo root — calibratable on a fabricated repo) ─────
 
@@ -123,11 +125,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [Fact]
         public void InliningWrappers_AreNotOlderThanTheSvgTheyEmbed()
         {
-            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
-            {
-                return;
-            }
-
             var repoRoot = TestRepoRoot.Find();
 
             // Fail loud on a shallow clone: every file would report the single fetched commit
@@ -146,8 +143,9 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var stale = StalePairs(repoRoot);
             stale.Should().BeEmpty(
                 "an inlining wrapper older than the SVG it embeds means the SVG was re-derived and the "
-                + $"wrapper rewrite was silently skipped (OverwriteExistingHtmlMaps=false, {GateEnvVariable}=1 "
-                + "acceptance run). The named gesture is required on the re-derivation pass. Stale pairs: "
+                + "wrapper rewrite was silently skipped (OverwriteExistingHtmlMaps=false; always-on "
+                + "acceptance invariant since 2026-10-01). The named gesture is required on the "
+                + "re-derivation pass. Stale pairs: "
                 + string.Join(" | ", stale));
         }
 
@@ -179,11 +177,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [Fact]
         public void ContentGuard_TurnsRedOnSameCommitSkip()
         {
-            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
-            {
-                return;
-            }
-
             var root = Path.Combine(Path.GetTempPath(), "argu-freshness-samecommit-" + Guid.NewGuid().ToString("N"));
             var dir = Path.Combine(root, "Cards", "Fallacies", "Mindmaps", "fr");
             Directory.CreateDirectory(dir);
@@ -242,11 +235,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [Fact]
         public void ContentGuard_DocumentedBlindSpot_ZeroDeltaMutationFarFromTheWindow()
         {
-            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
-            {
-                return;
-            }
-
             var root = Path.Combine(Path.GetTempPath(), "argu-freshness-zerodelta-" + Guid.NewGuid().ToString("N"));
             var dir = Path.Combine(root, "Cards", "Fallacies", "Mindmaps", "fr");
             Directory.CreateDirectory(dir);
@@ -282,11 +270,6 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         [Fact]
         public void Detector_TurnsRedOnDeliberateDesynchronization()
         {
-            if (Environment.GetEnvironmentVariable(GateEnvVariable) != "1")
-            {
-                return;
-            }
-
             var root = Path.Combine(Path.GetTempPath(), "argu-freshness-calib-" + Guid.NewGuid().ToString("N"));
             var dir = Path.Combine(root, "Cards", "Fallacies", "Mindmaps", "fr");
             Directory.CreateDirectory(dir);
