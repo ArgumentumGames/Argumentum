@@ -1437,7 +1437,7 @@ if (mapFile != null) {
 
 
 
-		private void UpdateSvgWithItems(SVGFreemindMap svgMap, IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		internal void UpdateSvgWithItems(SVGFreemindMap svgMap, IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
 		{
 
 
@@ -1535,88 +1535,136 @@ if (mapFile != null) {
 			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode = new();
 			Dictionary<XElement, IMindMapItem> svgNodeToItem = new();
 
-			foreach (var pair in itemToSvgNodes)
+			// #1698 — appariement UN-POUR-UN, indépendant de l'unicité des titres. FreeMind
+			// exporte les nœuds dans l'ordre de l'arbre et les items suivent le même ordre :
+			// pour un titre donné, la k-ième occurrence dans l'ordre des items correspond à la
+			// k-ième occurrence dans l'ordre du document SVG. L'ancien départage (proximité du
+			// parent calculée par troncature de caractère sur DecimalPath) laissait MUETS les
+			// homonymes — parent ET enfant dans le cas 614/615 — et écrivait deux fois sur le
+			// même nœud sans exclure les nœuds déjà attribués.
+			var itemRanks = new Dictionary<IMindMapItem, int>();
+			for (var i = 0; i < items.Count; i++)
 			{
-				IMindMapItem item = pair.Key;
-				List<XElement> candidateSvgNodes = pair.Value;
+				itemRanks[items[i]] = i;
+			}
 
-				if (candidateSvgNodes.Count == 1)
+			// Pass 1 — groupes homonymes ET groupes triviaux : appariement par rang. Les
+			// groupes sont parcourus dans l'ordre des items (celui de itemToSvgNodes, construit
+			// dans l'ordre des items), les candidats dans l'ordre du document.
+			var pendingSingles = new List<KeyValuePair<IMindMapItem, List<XElement>>>();
+			foreach (var titleGroup in itemToSvgNodes.GroupBy(pair => TitleFunc(pair.Key) ?? "", StringComparer.Ordinal))
+			{
+				var groupItems = titleGroup.Select(pair => pair.Key).OrderBy(item => itemRanks[item]).ToList();
+				var candidates = titleGroup.SelectMany(pair => pair.Value).Distinct()
+					.Where(node => nodeIndices.ContainsKey(node))
+					.OrderBy(node => nodeIndices[node]).ToList();
+				// Un nœud déjà attribué à un item d'UN AUTRE groupe ne se ré-attribue pas :
+				// c'est l'exclusion minimale demandée par #1698 pour les collisions de
+				// sous-chaînes entre titres différents.
+				var available = candidates.Where(node => !svgNodeToItem.ContainsKey(node)).ToList();
+
+				if (available.Count == 0)
 				{
-					var candidate = candidateSvgNodes.First();
-					disambiguatedItemToSvgNode[item] = candidate;
-					svgNodeToItem[candidate] = item;
+					Logger.LogProblem($"No available SVG node for title \"{titleGroup.Key}\" ({groupItems.Count} item(s)) - all candidates already attributed to other items.");
+					continue;
 				}
-				else
+
+				if (groupItems.Count == 1 && available.Count > 1)
 				{
-					if (string.IsNullOrEmpty(item.DecimalPath) || item.DecimalPath.Length <= 1)
-					{
-						Logger.LogProblem($"Cannot determine parent for item {TitleFunc(item)} - {item.Path}");
-						continue;
-					}
-					string parentDecimalPath = item.DecimalPath.Remove(item.DecimalPath.Length - 1);
-					var parentItemCandidates = items.Where(f => f.DecimalPath == parentDecimalPath).ToArray();
-					if (parentItemCandidates.Length == 0)
-					{
-						Logger.LogProblem($"Parent item not found for {TitleFunc(item)} - {item.Path}");
-						continue;
-					}
+					// Titre unique côté items mais plusieurs candidats de longueur minimale :
+					// départage par proximité du PARENT (pass 2, après le rang — le parent
+					// homonyme est alors déjà résolu).
+					pendingSingles.Add(new KeyValuePair<IMindMapItem, List<XElement>>(groupItems[0], available));
+					continue;
+				}
 
-					var parentItem = parentItemCandidates.First();
-
-					if (!disambiguatedItemToSvgNode.TryGetValue(parentItem, out var parentSvgNode))
-					{
-						if (itemToSvgNodes.TryGetValue(parentItem, out List<XElement> parentSvgNodes))
-						{
-							if (parentSvgNodes.Count > 1)
-							{
-								Logger.LogProblem($"Could not disambiguate SVG nodes for item {TitleFunc(item)} because its parent {TitleFunc(parentItem)} does not have a single corresponding SVG node.");
-								continue;
-							}
-							parentSvgNode = parentSvgNodes.FirstOrDefault();
-							if (parentSvgNode == null)
-							{
-								Logger.LogProblem($"List of parent SVG nodes for {TitleFunc(parentItem)} is empty.");
-								continue;
-							}
-						}
-						else
-						{
-							Logger.LogProblem($"Could not find parent node from {TitleFunc(item)}");
-							continue;
-						}
-					}
-
-					if (!nodeIndices.TryGetValue(parentSvgNode, out int parentIndex))
-					{
-						Logger.LogProblem($"SVG Node index for parent item: {parentItem.Path}-{TitleFunc(parentItem)} of item {item.Path}-{TitleFunc(item)} not found");
-						continue;
-					}
-					
-					var closestSvgNode = candidateSvgNodes
-						.Where(node => nodeIndices.ContainsKey(node))
-						.OrderBy(node => Math.Abs(nodeIndices[node] - parentIndex))
-						.FirstOrDefault();
-					
-					if (closestSvgNode != null)
-					{
-						disambiguatedItemToSvgNode[item] = closestSvgNode;
-						if (svgNodeToItem.TryGetValue(closestSvgNode, out var existingItem))
-						{
-							Logger.LogProblem($"Conflicting attribution of SVG node to items: {item.Path}-{TitleFunc(item)} and {existingItem.Path}-{TitleFunc(existingItem)}");
-						}
-						else
-						{
-							svgNodeToItem[closestSvgNode] = item;
-						}
-					}
-					else
-					{
-						Logger.LogWarning($"Could not find a valid matching SVG node for item {TitleFunc(item)} among candidates.");
-					}
+				var paired = Math.Min(groupItems.Count, available.Count);
+				for (var k = 0; k < paired; k++)
+				{
+					AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, groupItems[k], available[k]);
+				}
+				if (available.Count < groupItems.Count)
+				{
+					var unpaired = groupItems.Skip(available.Count)
+						.Select(item => $"{item.Path}-{TitleFunc(item)}").ToList();
+					Logger.LogProblem($"Title \"{titleGroup.Key}\": {groupItems.Count} items for {available.Count} available SVG node(s) - left without node: {string.Join(", ", unpaired)}.");
 				}
 			}
 
+			// Pass 2 — items uniques à candidats multiples : le candidat le plus proche du
+			// nœud du parent, parent calculé par Path en notation pointée ("3.1.2.1" -> "3.1.2"),
+			// robuste à toute profondeur et aux fratries de plus de 9 (l'ancien
+			// DecimalPath.Remove(length-1) ne redonnait le bon parent qu'à partir de la
+			// profondeur 3). Défaut documenté : si le parent est introuvable ou lui-même
+			// irrésolu, on retombe sur le premier candidat disponible dans l'ordre du document
+			// plutôt que de laisser l'item muet.
+			foreach (var pending in pendingSingles)
+			{
+				var item = pending.Key;
+				var available = pending.Value;
+				var chosen = ChooseNodeNearestToParent(item, available, itemToSvgNodes, disambiguatedItemToSvgNode, items, nodeIndices)
+					?? available[0];
+				AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, item, chosen);
+			}
+
 			return disambiguatedItemToSvgNode;
+		}
+
+		private void AssignNode(Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode,
+			Dictionary<XElement, IMindMapItem> svgNodeToItem, IMindMapItem item, XElement node)
+		{
+			disambiguatedItemToSvgNode[item] = node;
+			if (!svgNodeToItem.TryAdd(node, item))
+			{
+				// Ne peut arriver que par collision de sous-chaînes entre titres DIFFÉRENTS
+				// (les groupes homonymes s'apparient un-pour-un par rang) : le premier
+				// attribué garde le nœud, l'écart est journalisé.
+				Logger.LogProblem($"Conflicting attribution of SVG node to items: {item.Path}-{TitleFunc(item)} and {svgNodeToItem[node].Path}-{TitleFunc(svgNodeToItem[node])}");
+			}
+		}
+
+		private XElement ChooseNodeNearestToParent(IMindMapItem item, List<XElement> availableNodes,
+			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes,
+			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode, IList<IMindMapItem> items,
+			Dictionary<XElement, int> nodeIndices)
+		{
+			var lastSeparator = (item.Path ?? "").LastIndexOf('.');
+			if (lastSeparator < 0)
+			{
+				Logger.LogProblem($"Cannot determine parent for item {TitleFunc(item)} - {item.Path}");
+				return null;
+			}
+			var parentPath = item.Path.Substring(0, lastSeparator);
+			var parentItem = items.FirstOrDefault(f => f.Path == parentPath);
+			if (parentItem == null)
+			{
+				Logger.LogProblem($"Parent item not found for {TitleFunc(item)} - {item.Path}");
+				return null;
+			}
+
+			XElement parentSvgNode;
+			if (!disambiguatedItemToSvgNode.TryGetValue(parentItem, out parentSvgNode))
+			{
+				if (!itemToSvgNodes.TryGetValue(parentItem, out var parentSvgNodes) || parentSvgNodes.Count != 1)
+				{
+					// Parent homonyme non encore résolu ou sans candidat unique : l'ancien
+					// code abandonnait ici (enfant muet, cas 614/615). Le rang l'a normalement
+					// déjà départagé en pass 1 ; sinon l'appelant retombe sur l'ordre du
+					// document plutôt que de laisser l'item muet.
+					return null;
+				}
+				parentSvgNode = parentSvgNodes[0];
+			}
+
+			if (!nodeIndices.TryGetValue(parentSvgNode, out var parentIndex))
+			{
+				Logger.LogProblem($"SVG Node index for parent item: {parentItem.Path}-{TitleFunc(parentItem)} of item {item.Path}-{TitleFunc(item)} not found");
+				return null;
+			}
+
+			return availableNodes
+				.OrderBy(node => Math.Abs(nodeIndices[node] - parentIndex))
+				.First();
 		}
 
 
