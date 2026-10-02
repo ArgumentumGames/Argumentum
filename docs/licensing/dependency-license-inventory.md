@@ -91,7 +91,8 @@ Versions re-verified against the `Tests`/`VisualTests` `.csproj` on master `adc1
 > it for a **direct `SixLabors.ImageSharp 3.1.12`** reference. Licence effect (verified in #1067,
 > recorded here): the Split License was **already present transitively** (Verify.ImageSharp 5.0.1 →
 > `SixLabors.ImageSharp >= 3.1.11`) — the swap is a promotion to direct, **−1 AGPL dependency, no
-> new licence introduced**. Argumentum is non-commercial → under the Split License threshold.
+> new licence introduced**. Whether Argumentum meets the Split License's Apache-2.0
+> conditions is an **owner fact, not measured here** (see §7.3).
 > See also `docs/quality/visual-tests-release-gate.md` (the old AGPL gate is retired as
 > "removal, not approval").
 
@@ -271,9 +272,11 @@ fixed by swap rather than caveat, as the remediation was small (one file, two `u
 ships a `type="file"` LICENSE that resolves to the **Six Labors Split License v1.0 (June 2022)** —
 NOT Apache-2.0 (that was ImageSharp 2.x). The Split License is dual-term: Apache-2.0 for
 open-source projects and organizations under the revenue threshold, commercial otherwise.
-**Argumentum is non-commercial → under the threshold** (verified in #1067 c.f., po-2024). The
-package sits in **test/dev tooling only** — it is NOT in the shipping `Argumentum.AssetConverter`
-binary, so the §8 shipping gate is unaffected. No action pending; re-flag if the project ever
+Whether Argumentum meets those conditions is an **owner fact, not measured here**. The
+exposure is bounded: ImageSharp is used only by the VisualTests project and the
+PdfPreviewExtractor dev tool, and is **not redistributed** with any shipped artefact — it is not
+in the shipping `Argumentum.AssetConverter` binary, so the §8 shipping gate is unaffected.
+No action pending; re-flag if the project ever
 ships a binary that statically links ImageSharp or takes commercial sponsorship.
 
 ## 8. Conclusion — gate status
@@ -288,8 +291,9 @@ ships a binary that statically links ImageSharp or takes commercial sponsorship.
   flag (Verify.ImageSharp) from the graph. Across the surface this audit covers — the direct deps
   of the shipping binary (§1), the test projects (§2/§2b, **all five csproj measured 2026-10-02**)
   — the **only licence outside the permissive set is the Six Labors Split License**
-  (ImageSharp 3.1.12, test + dev tooling, §7.3): dual-term, **non-commercial → Apache-2.0 terms**,
-  not in the shipping binary. §7 now holds two RESOLVED records and one OPEN awareness flag with
+  (ImageSharp 3.1.12, test + dev tooling, §7.3): dual-term, whether Argumentum meets its
+  Apache-2.0 conditions is an **owner fact, not measured here**; not in the shipping binary.
+  §7 now holds two RESOLVED records and one OPEN awareness flag with
   no action pending.
 - **No GPL / AGPL / RPL / SSPL / proprietary** in the shipping dependency graph.
 - **Vendored CardPen libraries** (§9, added 2026-07-29): a **separate, non-binary surface** — the
