@@ -9,6 +9,14 @@
 > **Method:** `dotnet list package --include-transitive` + NuGet Registration API
 > (`registration5-gz-semver2`) for `licenseExpression` / `licenseUrl` / `requireLicenseAcceptance`.
 > **Rule:** the nuspec is truth — where doc and nuspec diverge, nuspec wins.
+>
+> **Refresh pass (2026-10-02, pool #458 cycle L grain 5):** direct dependencies of **all five**
+> csproj files re-measured on master `da8a49a2` against the `.nuspec` in the local NuGet cache
+> (namespace-agnostic parse — the cache mixes nuspec namespaces 2013/05 and 2012/06; `type="file"`
+> licenses read from the embedded LICENSE). Scope: **directs only** — the §3 transitive tables are
+> *not* re-measured this pass (last full enumeration: `ded70c81`, #1053). Two surfaces the original
+> audit did not cover are added: `PdfPreviewExtractor` (§2b) and the (empty) CardPen `server.csproj`.
+> One structural change recorded: `Verify.ImageSharp` (AGPL) left the graph via #1069 — see §2.
 
 ---
 
@@ -38,20 +46,26 @@ The license gate for the **shipping binary is PASS**.
 
 24 top-level packages. All permissive. Versions re-verified against `Argumentum.AssetConverter.csproj` on master `adc1ff04` (#1051); every license re-checked on the **cited version** via the NuGet flat-container `.nuspec` — **no license changed** in the #970 bumps (16 versions moved), and the two load-bearing pins (`AutoMapper 14.0.0` last MIT, `QuestPDF 2022.12.12` last MIT) hold.
 
+> **Refresh 2026-10-02 (`da8a49a2`):** seven versions drifted (#1627 moved OpenAI + Magick.NET;
+> OWLSharp 4.23.0→5.0.0, PdfPig 0.1.15→0.1.16, System.Linq.Dynamic.Core 1.7.3→1.7.4,
+> System.Management 10.0.10→10.0.12 via the dependabot lot) — **every license re-read on the new
+> version's local nuspec, none changed**. The two load-bearing pins still hold (AutoMapper 14.0.0
+> MIT, QuestPDF 2022.12.12 MIT). Table below reflects the refreshed state.
+
 | Package | Version | License (nuspec) | reqAccept |
 |---------|---------|------------------|-----------|
 | AutoMapper | 14.0.0 | **MIT** ✅ (last MIT; 15.x = RPL-1.5 — pinned, #588) | False |
-| OpenAI | 2.12.0 | MIT | True |
+| OpenAI | 2.14.0 | MIT | True |
 | CsvHelper | 33.1.0 | MS-PL OR Apache-2.0 | True |
 | dotNetRdf | 3.5.2 | MIT | False |
 | Google.Apis.Sheets.v4 | 1.75.0.4178 | Apache-2.0 | False |
 | ExtendedXmlSerializer | 3.10.0 | file → **MIT** (see §6; `licenseUrl` now MS deprecation stub, not a usable fallback) | False |
 | Humanizer | 3.0.10 | MIT (licence unchanged by the 2.14.1 → 3.0.10 #951 migration) | False |
-| Magick.NET-Q16-AnyCPU | 14.16.0 | **Apache-2.0** ✅ (#902) | False |
+| Magick.NET-Q16-AnyCPU | 14.17.2 | **Apache-2.0** ✅ (#902; 14.15.0 → 14.17.1 → 14.17.2 all Apache-2.0, re-read each time) | False |
 | Microsoft.Playwright | 1.43.0 | MIT | False |
 | Newtonsoft.Json | 13.0.4 | MIT | False |
-| OWLSharp | 4.23.0 | Apache-2.0 | False |
-| OWLSharp.Extensions | 4.23.0 | Apache-2.0 | False |
+| OWLSharp | 5.0.0 | Apache-2.0 | False |
+| OWLSharp.Extensions | 5.0.0 | Apache-2.0 | False |
 | QuestPDF | 2022.12.12 | **MIT** ✅ (>2022.12.12 = commercial — pinned) | False |
 | SkiaSharp.NativeAssets.Win32 | 2.88.9 | **MIT** ✅ (expression in nuspec at 2.88.9 — §6 file-url caveat obsolete, license now explicit) | True |
 | SharpToken | 2.0.6 | file → **MIT** (see §6; `licenseUrl` now MS deprecation stub, not a usable fallback) | False |
@@ -59,9 +73,9 @@ The license gate for the **shipping binary is PASS**.
 | Spectre.Console.Json | 0.57.2 | MIT | True |
 | System.ComponentModel.TypeConverter | 4.3.0 | file-url → **MIT** (MS .NET license) | True |
 | System.Drawing.Primitives | 4.3.0 | file-url → **MIT** (MS .NET license) | True |
-| System.Linq.Dynamic.Core | 1.7.3 | Apache-2.0 | False |
-| System.Management | 10.0.10 | MIT | False |
-| PdfPig | 0.1.15 | **Apache-2.0** ✅ (official; swapped from `UglyToad.PdfPig 1.7.0-custom-5` via #908, §7.2) | False |
+| System.Linq.Dynamic.Core | 1.7.4 | Apache-2.0 | False |
+| System.Management | 10.0.12 | MIT | False |
+| PdfPig | 0.1.16 | **Apache-2.0** ✅ (official; swapped from `UglyToad.PdfPig 1.7.0-custom-5` via #908, §7.2) | False |
 | Utf8Json | 1.3.7 | (none in catalog) → **MIT** (known, §6) | False |
 | xunit.extensibility.core | 2.9.3 | Apache-2.0 | False |
 
@@ -69,18 +83,44 @@ The license gate for the **shipping binary is PASS**.
 
 Versions re-verified against the `Tests`/`VisualTests` `.csproj` on master `adc1ff04` (#1051). **No license changed** in the #970 version bumps; three pre-existing license **mislabels** were corrected (Scriban, xunit.runner.visualstudio, Verify.ImageSharp — the nuspec carried these licenses at the *old* versions too, the doc was wrong before, not changed by the bump).
 
+> **Refresh 2026-10-02 (`da8a49a2`):** five version drifts (coverlet 10.0.1→10.1.0, Test.Sdk
+> 18.8.1→18.10.1, Scriban 7.2.6→7.5.0, xunit.runner.visualstudio 3.1.5→4.0.0, PdfPig 0.1.15→0.1.16)
+> — **licenses re-read on the new nuspecs, none changed** (Scriban still BSD-2-Clause at 7.5.0,
+> runner still Apache-2.0 at 4.0.0). One **structural change**: `Verify.ImageSharp` (the AGPL flag
+> of §2) **left the graph** — #1069 (`fb9971ba`, merged 2026-08-12, issue #1067 "Gate 3") swapped
+> it for a **direct `SixLabors.ImageSharp 3.1.12`** reference. Licence effect (verified in #1067,
+> recorded here): the Split License was **already present transitively** (Verify.ImageSharp 5.0.1 →
+> `SixLabors.ImageSharp >= 3.1.11`) — the swap is a promotion to direct, **−1 AGPL dependency, no
+> new licence introduced**. Argumentum is non-commercial → under the Split License threshold.
+> See also `docs/quality/visual-tests-release-gate.md` (the old AGPL gate is retired as
+> "removal, not approval").
+
 | Project | Package | Version | License | Notes |
 |---------|---------|---------|---------|-------|
-| Tests | coverlet.collector | 10.0.1 | MIT | |
+| Tests | coverlet.collector | 10.1.0 | MIT | |
 | Tests | FluentAssertions | 7.2.2 | Apache-2.0 | downgraded from 8.5.0 commercial via #955 — see §7.1 |
-| Tests | Microsoft.NET.Test.Sdk | 18.8.1 | MIT (MS) | |
+| Tests | Microsoft.NET.Test.Sdk | 18.10.1 | MIT (MS) | |
 | Tests | Microsoft.Playwright | 1.43.0 | MIT | |
-| Tests | Scriban | 7.2.6 | **BSD-2-Clause** ✏️ (was wrongly "MIT"; nuspec = BSD-2-Clause at 7.2.2 too — pre-existing mislabel, corrected) | permissive |
+| Tests | Scriban | 7.5.0 | **BSD-2-Clause** ✏️ (was wrongly "MIT"; BSD-2-Clause at 7.2.2 and still at 7.5.0) | permissive |
 | Tests | xunit | 2.9.3 | Apache-2.0 | |
-| Tests | xunit.runner.visualstudio | 3.1.5 | **Apache-2.0** ✏️ (was wrongly "MIT (MS)"; nuspec = Apache-2.0 at 2.8.2 too — pre-existing mislabel, corrected) | |
-| VisualTests | PdfPig | 0.1.15 | **Apache-2.0** (real PdfPig) | matches AssetConverter post-swap #908 |
-| VisualTests | Verify.ImageSharp | 5.0.1 | ⚠️ **AGPL-3.0-only** ✏️ (was wrongly "MIT"; nuspec = AGPL-3.0-only at 4.4.1 too — pre-existing mislabel, surfaced by #1051) | **test-only** (VisualTests.csproj, not in shipping binary) — flagged for ai-01/jsboige; see #1051 |
+| Tests | xunit.runner.visualstudio | 4.0.0 | **Apache-2.0** ✏️ (was wrongly "MIT (MS)"; Apache-2.0 at 2.8.2 and still at 4.0.0) | |
+| VisualTests | PdfPig | 0.1.16 | **Apache-2.0** (real PdfPig) | matches AssetConverter post-swap #908 |
+| VisualTests | SixLabors.ImageSharp | 3.1.12 | ⚠️ **Six Labors Split License v1.0 (June 2022)** — NOT Apache-2.0 (that was ImageSharp 2.x) | test-only; promoted from transitive by #1069 — see refresh note above; flagged §7.3 |
 | VisualTests | Verify.Xunit | 31.12.5 | MIT | |
+
+~~| VisualTests | Verify.ImageSharp | 5.0.1 | AGPL-3.0-only |~~ — **removed from the csproj by #1069**;
+the row is retained struck-through as the audit record (it was the §2/#1051 AGPL flag).
+
+### 2b. Direct dependencies — `PdfPreviewExtractor` (added by the 2026-10-02 pass)
+
+The original audit covered only the converter solution's three projects; `Generation/Tools/PdfPreviewExtractor/`
+is a dev tool (PDF preview extraction) with its own two references. `Generation/CardPen/server/server.csproj`
+was also checked: **zero `PackageReference`** — nothing to inventory.
+
+| Project | Package | Version | License | Notes |
+|---------|---------|---------|---------|-------|
+| PdfPreviewExtractor | Docnet.Core | 2.6.0 | MIT (SPDX expression, nuspec read after a local restore — the project had never been restored on the measuring machine; cache-miss is not an absence) | |
+| PdfPreviewExtractor | SixLabors.ImageSharp | 3.1.12 | ⚠️ **Six Labors Split License v1.0** | dev tool, not the shipping binary; same status as the VisualTests reference — flagged §7.3 |
 
 ## 3. Transitive dependencies (notable, non-trivial)
 
@@ -132,7 +172,7 @@ binary gate (§8) does not cover them, and `Verify.ImageSharp` (§7.3 / the AGPL
 | Package | Pinned at | License | Next-version risk | nuspec vs doc |
 |---------|-----------|---------|-------------------|---------------|
 | **AutoMapper** | 14.0.0 | MIT | 15.0.0+ → **RPL-1.5 / commercial** (Lucky Penny, `requireLicenseAcceptance`) | nuspec = MIT ✅ (matches #902) |
-| **Magick.NET-Q16-AnyCPU** | 14.16.0 | Apache-2.0 | none (Apache stable) | nuspec = Apache-2.0 ✅ |
+| **Magick.NET-Q16-AnyCPU** | 14.17.2 | Apache-2.0 | none (Apache stable) | nuspec = Apache-2.0 ✅ (re-read at 14.17.2, 2026-10-02) |
 | **QuestPDF** | 2022.12.12 | MIT | >2022.12.12 → **commercial** (community-license) | nuspec = MIT ✅ |
 
 All three nuspec values match the #902 documentation. No divergence.
@@ -220,18 +260,37 @@ The catalog had no license expression/URL. The real PdfPig package (`PdfPig`, us
 changed terms. This was the one item that prevented the headline from reading as a clean PASS —
 fixed by swap rather than caveat, as the remediation was small (one file, two `using` lines).
 
+### 7.3 SixLabors.ImageSharp 3.1.12 — Six Labors Split License (OPEN — awareness flag, no action pending)
+
+> Added by the 2026-10-02 refresh. This is **not a regression**: the Split License entered the
+> graph **transitively** with Verify.ImageSharp long before, and the #1069 swap merely promoted it
+> to a direct reference while removing the AGPL package. Recorded here so the flag is legible
+> instead of living only in #1067.
+
+`SixLabors.ImageSharp 3.1.12` (referenced directly by `VisualTests` and `PdfPreviewExtractor`)
+ships a `type="file"` LICENSE that resolves to the **Six Labors Split License v1.0 (June 2022)** —
+NOT Apache-2.0 (that was ImageSharp 2.x). The Split License is dual-term: Apache-2.0 for
+open-source projects and organizations under the revenue threshold, commercial otherwise.
+**Argumentum is non-commercial → under the threshold** (verified in #1067 c.f., po-2024). The
+package sits in **test/dev tooling only** — it is NOT in the shipping `Argumentum.AssetConverter`
+binary, so the §8 shipping gate is unaffected. No action pending; re-flag if the project ever
+ships a binary that statically links ImageSharp or takes commercial sponsorship.
+
 ## 8. Conclusion — gate status
 
 - **Shipping binary (`Argumentum.AssetConverter`):** **24/24 direct deps permissive** (MIT /
   Apache-2.0 / MS-PL / BSD-3), full transitive closure permissive.
   AutoMapper/Magick/QuestPDF license-pins verified against nuspec. PdfPig-custom gap closed via #908.
   **License gate: PASS.**
-- **Test tooling:** **also clean since 2026-07-27.** FluentAssertions was the single commercial
-  item; jsboige arbitrated downgrade and #955 (`6d0bfda9`) landed 7.2.2 (Apache-2.0) with a
-  semver-major pin. Across the surface this audit covers — the 24 direct deps of the shipping
-  binary plus their transitive closure (§1/§2), and the direct deps of the test project (§3) —
-  **no commercial or copyleft dependency remains**. The gate no longer carries an "awareness
-  item" caveat (§7.1); §7 now holds two RESOLVED records and nothing open.
+- **Test tooling:** **also clean since 2026-07-27, one awareness flag since 2026-08-12.**
+  FluentAssertions was the single commercial item; jsboige arbitrated downgrade and #955
+  (`6d0bfda9`) landed 7.2.2 (Apache-2.0) with a semver-major pin. #1069 later removed the §2 AGPL
+  flag (Verify.ImageSharp) from the graph. Across the surface this audit covers — the direct deps
+  of the shipping binary (§1), the test projects (§2/§2b, **all five csproj measured 2026-10-02**)
+  — the **only licence outside the permissive set is the Six Labors Split License**
+  (ImageSharp 3.1.12, test + dev tooling, §7.3): dual-term, **non-commercial → Apache-2.0 terms**,
+  not in the shipping binary. §7 now holds two RESOLVED records and one OPEN awareness flag with
+  no action pending.
 - **No GPL / AGPL / RPL / SSPL / proprietary** in the shipping dependency graph.
 - **Vendored CardPen libraries** (§9, added 2026-07-29): a **separate, non-binary surface** — the
   card-rendering toolchain CardPen loads at harvest time. **Does not affect the shipping-binary
