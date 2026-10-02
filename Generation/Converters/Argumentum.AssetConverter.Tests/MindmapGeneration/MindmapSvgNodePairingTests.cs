@@ -288,6 +288,99 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 		}
 
 		/// <summary>
+		/// #1700 suite A (revue c.5945920853, défaut introduit par la reprise — ne se produit que
+		/// sur l'injection EN PLACE après un retitrage) : un nœud dont le texte EST ÉGAL au titre
+		/// d'un item n'est pas attribuable à un item dont le titre est seulement CONTENU dans ce
+		/// texte. Cas mesuré en arabe : le nœud exact de PK 975 « المغالطات الاعتراضية » était le
+		/// seul candidat du groupe de PK 298 « الاعتراض » (traité plus tôt au rang 2.x) : le
+		/// premier attribué gardait le nœud — fiche FAUSSE sur le nœud de 975, et 975 muet.
+		/// </summary>
+		[Fact]
+		public void Exact_Title_Owns_Its_Node_Over_A_Containing_Title()
+		{
+			// Ordre CSV (préfixe droit) : l'item au titre CONTENU (« 2.1 », l'équivalent de
+			// PK 298) vient AVANT l'item au titre EXACT (« 6.1 », l'équivalent de PK 975) —
+			// c'est l'ordre qui traite le groupe voleur en premier.
+			var typedItems = new List<TestMindMapItem>
+			{
+				Item("titre-contenu", "Titre Contenu", "2.1", "2,1", 2),
+				Item("titre-exact", "Long Titre Contenu Étendu", "6.1", "6,1", 2),
+			};
+			IList<IMindMapItem> items = typedItems.Cast<IMindMapItem>().ToList();
+
+			// Carte périmée : le nœud de « titre-exact » porte son titre exact (le retitrage
+			// n'est pas encore re-dérivé) ; le nœud de « titre-contenu » porte un ancien
+			// libellé absent du SVG de test — son texte ne matche plus rien.
+			var svgDoc = SyntheticSvg("Long Titre Contenu Étendu");
+
+			var config = new FallacyMindMapDocumentConfig();
+			var svgMap = new SVGFreemindMap { SetSVGNodeAttributes = true, WrapNodeByLink = true };
+			config.UpdateSvgWithItems(svgMap, items, svgDoc, Svg, XLink);
+
+			var attributed = svgDoc.Descendants(Svg + "g")
+				.Where(g => Attr(g, "class") == "node")
+				.ToList();
+
+			// Le nœud exact porte la fiche de l'item EXACT — pas celle de l'item au titre contenu.
+			attributed.Should().ContainSingle(
+				"un seul nœud existe et un seul item doit le recevoir : celui dont le titre EST le texte du nœud");
+			var node = attributed.Single();
+			Attr(node, "id").Should().Be("titre-exact",
+				"un nœud qui porte exactement le titre d'un item n'est pas attribué à un autre item dont le " +
+				"titre est seulement CONTENU dans ce texte (cas ar 298/975 : fiche fausse + 975 muet)");
+			Attr(node, "description").Should().Contain(typedItems[1].DescFr,
+				"le nœud doit porter la définition de l'item exact, pas celle de l'item au titre contenu");
+		}
+
+		/// <summary>
+		/// #1700 suite B (revue c.5945920853) : quand un groupe d'homonymes a MOINS de nœuds que
+		/// d'items, le texte ne permet pas de trancher — cas mesurés ar 295/296 et 43/46, fa
+		/// 791/793 et 255/259 : le retitrage d'un DESCENDANT au titre de son ANCIÊTRE laisse un
+		/// seul nœud pour deux items sur la carte périmée, et la carte committée portait le nœud
+		/// du descendant alors que le rang d'appariement le donne à l'ancêtre. Principe de la PR
+		/// elle-même : « un nœud muet vaut mieux qu'une fiche fausse » — ne rien attribuer.
+		/// </summary>
+		[Fact]
+		public void Fewer_Nodes_Than_Homonyms_Leaves_The_Whole_Group_Unattributed()
+		{
+			// L'ancêtre (6.1) et le descendant retitré (2.1) : au rang préfixe inversé,
+			// l'ancêtre 6.x vient AVANT le descendant 2.x — c'est lui que le code d'avant la
+			// suite B attribuait (le cas mesuré : le rang donne l'ancêtre, la carte portait
+			// le descendant).
+			var typedItems = new List<TestMindMapItem>
+			{
+				Item("descendant-retitre", "Nom Commun", "2.1", "2,1", 2),
+				Item("ancetre", "Nom Commun", "6.1", "6,1", 2),
+				Item("temoin", "Branche Témoin", "4.1", "4,1", 2),
+			};
+			IList<IMindMapItem> items = typedItems.Cast<IMindMapItem>().ToList();
+
+			// Ordre document (frères inversés) : la branche 6 avant la 4 avant la 2. Un seul
+			// nœud « Nom Commun », dans la branche de l'ancêtre.
+			var svgDoc = SyntheticSvg(
+				"Nom Commun",
+				"Branche Témoin");
+
+			var config = new FallacyMindMapDocumentConfig();
+			var svgMap = new SVGFreemindMap { SetSVGNodeAttributes = true, WrapNodeByLink = true };
+			config.UpdateSvgWithItems(svgMap, items, svgDoc, Svg, XLink);
+
+			var attributed = svgDoc.Descendants(Svg + "g")
+				.Where(g => Attr(g, "class") == "node")
+				.ToList();
+
+			// Personne du groupe homonyme ne reçoit le nœud : le texte ne tranche pas entre
+			// l'ancêtre et le descendant, la carte est périmée — attribuer serait deviner.
+			var homonymNode = svgDoc.Descendants(Svg + "g")
+				.Single(g => string.Equals(NodeText(g), "Nom Commun", StringComparison.Ordinal));
+			Attr(homonymNode, "class").Should().NotBe("node",
+				"un groupe d'homonymes sous-approvisionné en nœuds ne doit recevoir AUCUNE attribution : " +
+				"le texte ne peut pas départager l'ancêtre du descendant retitré (ar 295/296, fa 791/793)");
+			attributed.Select(g => Attr(g, "id")).Should().BeEquivalentTo(new[] { "temoin" },
+				"le groupe ambigu reste muet mais les groupes sains continuent d'être appariés");
+		}
+
+		/// <summary>
 		/// Les occurrences EXACTES d'un titre, dans l'ordre du document, doivent porter les ids
 		/// des items homonymes dans l'ordre préfixe inversé.
 		/// </summary>

@@ -1540,6 +1540,25 @@ if (mapFile != null) {
 			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode = new();
 			Dictionary<XElement, IMindMapItem> svgNodeToItem = new();
 
+			// #1700 suite A (revue c.5945920853, injection en place) : un nœud dont le texte
+			// EST ÉGAL au titre d'un item du lot n'est candidat QUE pour le groupe de CE
+			// titre. Mesuré en ar : le nœud exact de PK 975 « المغالطات الاعتراضية » était
+			// aussi candidat du groupe de PK 298 « الاعتراض » (titre CONTENU), traité plus
+			// tôt au rang 2.x : le premier attribué gardait le nœud — fiche FAUSSE sur le
+			// nœud de 975, et 975 muet. Sans effet sur une carte fraîchement dérivée
+			// (chaque rangée y a son nœud à son titre exact).
+			var exactOwner = new Dictionary<XElement, string>();
+			foreach (var exactGroup in itemToSvgNodes.GroupBy(pair => TitleFunc(pair.Key) ?? "", StringComparer.Ordinal))
+			{
+				foreach (var node in exactGroup.SelectMany(pair => pair.Value).Distinct())
+				{
+					if (string.Equals(SvgNodeText(node, svgNamespace), exactGroup.Key, StringComparison.Ordinal))
+					{
+						exactOwner[node] = exactGroup.Key;
+					}
+				}
+			}
+
 			// #1700 — appariement UN-POUR-UN, indépendant de l'unicité des titres. L'ordre du
 			// document SVG suit le parcours préfixe À FRÈRES INVERSÉS (voir
 			// CompareBatikDocumentOrder) : pour un titre donné, la k-ième occurrence dans cet
@@ -1564,12 +1583,29 @@ if (mapFile != null) {
 					.OrderBy(node => nodeIndices[node]).ToList();
 				// Un nœud déjà attribué à un item d'UN AUTRE groupe ne se ré-attribue pas :
 				// c'est l'exclusion minimale demandée par #1698 pour les collisions de
-				// sous-chaînes entre titres différents.
-				var available = candidates.Where(node => !svgNodeToItem.ContainsKey(node)).ToList();
+				// sous-chaînes entre titres différents. Suite A : un nœud qui porte le titre
+				// EXACT d'un item d'un autre groupe leur reste réservé.
+				var available = candidates.Where(node => !svgNodeToItem.ContainsKey(node)
+					&& (!exactOwner.TryGetValue(node, out var exactTitle) || exactTitle == titleGroup.Key)).ToList();
 
 				if (available.Count == 0)
 				{
-					Logger.LogProblem($"No available SVG node for title \"{titleGroup.Key}\" ({groupItems.Count} item(s)) - all candidates already attributed to other items.");
+					Logger.LogProblem($"No available SVG node for title \"{titleGroup.Key}\" ({groupItems.Count} item(s)) - candidates already attributed to other items or carrying the exact title of another item (reserved by it).");
+					continue;
+				}
+
+				if (available.Count < groupItems.Count)
+				{
+					// #1700 suite B (revue c.5945920853, injection en place) : moins de nœuds
+					// que d'homonymes — mesuré en ar 295/296 et 43/46, fa 791/793 et 255/259 :
+					// le retitrage d'un DESCENDANT au titre de son ANCIÊTRE laisse un seul
+					// nœud pour deux items sur la carte périmée, et le texte ne permet pas de
+					// trancher (la carte committée portait le nœud du descendant, le rang
+					// d'appariement le donne à l'ancêtre). « Un nœud muet vaut mieux qu'une
+					// fiche fausse » : RIEN n'est attribué dans ce groupe — les deux items
+					// restent muets jusqu'à la re-dérivation. Sans effet sur une carte fraîche.
+					var wholeGroup = groupItems.Select(item => $"{item.Path}-{TitleFunc(item)}").ToList();
+					Logger.LogProblem($"Title \"{titleGroup.Key}\": {groupItems.Count} items share this title but only {available.Count} SVG node(s) exist - the text cannot disambiguate on a stale map, leaving every item of the group without a node: {string.Join(", ", wholeGroup)}.");
 					continue;
 				}
 
@@ -1582,7 +1618,6 @@ if (mapFile != null) {
 					continue;
 				}
 
-				var paired = Math.Min(groupItems.Count, available.Count);
 				if (available.Count > groupItems.Count)
 				{
 					// #1700 (reprise, surnuméraires) : le SVG porte PLUS d'occurrences du
@@ -1595,7 +1630,7 @@ if (mapFile != null) {
 					// à défaut de parent résolu, le premier candidat restant dans l'ordre du
 					// document. Le surnuméraire reste sans item : journalisé.
 					var remaining = new List<XElement>(available);
-					foreach (var item in groupItems.Take(paired))
+					foreach (var item in groupItems)
 					{
 						var chosen = ChooseNodeNearestToParent(item, remaining, itemToSvgNodes,
 							disambiguatedItemToSvgNode, items, nodeIndices) ?? remaining[0];
@@ -1608,16 +1643,10 @@ if (mapFile != null) {
 				}
 				else
 				{
-					for (var k = 0; k < paired; k++)
+					for (var k = 0; k < groupItems.Count; k++)
 					{
 						AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, groupItems[k], available[k]);
 					}
-				}
-				if (available.Count < groupItems.Count)
-				{
-					var unpaired = groupItems.Skip(available.Count)
-						.Select(item => $"{item.Path}-{TitleFunc(item)}").ToList();
-					Logger.LogProblem($"Title \"{titleGroup.Key}\": {groupItems.Count} items for {available.Count} available SVG node(s) - left without node: {string.Join(", ", unpaired)}.");
 				}
 			}
 
@@ -1705,6 +1734,16 @@ if (mapFile != null) {
 			{
 				return CompareBatikDocumentOrder(x ?? "", y ?? "");
 			}
+		}
+
+		/// <summary>
+		/// Texte d'un nœud <c>g</c> de la carte : concaténation de ses <c>text</c> directs — la
+		/// MÊME extraction que <see cref="CollectPossibleSvgNodes"/>, pour que la réservation des
+		/// titres exacts (suite A) juge l'égalité sur la chaîne qui a servi au filtre par contenu.
+		/// </summary>
+		private static string SvgNodeText(XElement g, XNamespace svgNamespace)
+		{
+			return string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value));
 		}
 
 		private void AssignNode(Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode,
