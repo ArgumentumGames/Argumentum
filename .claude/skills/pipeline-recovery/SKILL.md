@@ -117,9 +117,12 @@ roosync_dashboard(
   action: "append",
   type: "workspace",
   tags: ["DONE"],
-  content: "## [YYYY-MM-DD HH:MM] ai-01 — <titre>\n\n### Actions\n- ...\n\n### PRs/commits\n- ...\n\n### Bloqueurs / handoff po-2023\n- ...\n\n### Prochaine etape\n- ..."
+  author: {"machineId": "<hostname en minuscules, ex. myia-po-2023>", "workspace": "Argumentum"},
+  content: "## [YYYY-MM-DD HH:MM] <lane du hostname> — <titre>\n\n### Actions\n- ...\n\n### PRs/commits\n- ...\n\n### Bloqueurs / handoff\n- ...\n\n### Prochaine etape\n- ...\n\n*<lane du hostname>*"
 )
 ```
+
+La lane (`ai-01`, `po-2023`, `po-2024`) se lit dans la sortie de `hostname` de la garde d'identite ci-dessus, jamais dans ce gabarit (incident 03/10/2026 : un rapport po-2023 signe « ai-01 », parce que ce gabarit portait le nom en dur).
 
 Si un PR a ete cree + merge pendant la session, l'annoncer AVANT de poster le DONE (ordre : commit → push → merge → dashboard).
 
