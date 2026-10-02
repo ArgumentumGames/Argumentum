@@ -132,8 +132,13 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				Item("accident-child", "Sophisme de l'accident", "3.1.2.1", "3,121", 4),
 				Item("ecossais-1", "Vrai Écossais", "1.1", "1,1", 2),
 				Item("ecossais-2", "Vrai Écossais", "2.3", "2,3", 2),
-				Item("ecossais-3", "Vrai Écossais", "5.1.2", "5,12", 3),
+				Item("ecossais-3", "Vrai Écossais", "5.2", "5,2", 2),
 				Item("appel", "Appel à la nature", "4.1", "4,1", 2),
+				// Parents des branches porteuses des homonymes : nécessaires au départage
+				// par proximité du parent quand le groupe porte un surnuméraire (cas zh).
+				Item("branche-un", "Branche Un", "1", "1", 1),
+				Item("branche-deux", "Branche Deux", "2", "2", 1),
+				Item("branche-cinq", "Branche Cinq", "5", "5", 1),
 				// #1700 — titre de 2 caractères SANS candidat dans le SVG (la branche de
 				// diagnostic de CollectPossibleSvgNodes) : ~150 titres zh font 2 caractères
 				// (« 谬论 », « 偏见 »…) ; l'injection zh crasait en
@@ -145,16 +150,24 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 			// Ordre du document = parcours préfixe À FRÈRES INVERSÉS (mesure ai-01 : c'est ce
 			// que FreeMind/Batik peint). Les branches se lisent 5, 4, 3, 2, 1 ; dans la
 			// branche 3, l'ancêtre 3.1.2 précède son descendant 3.1.2.1 (le préfixe ne
-			// s'inverse pas). Les deux derniers nœuds sont des distracteurs : leur texte
-			// CONTIENT un titre mais est plus long — le filtre de longueur minimale doit les
-			// écarter.
+			// s'inverse pas). Le PREMIER nœud est un SURNUMÉRAIRE : une occurrence du titre
+			// écossais placée hors de toute branche porteuse (le cas zh mesuré — un nœud
+			// orphelin « 循环论证 » sous 5.1.3.3, branche sans enfant CSV) : le k-ième↔k-ième
+			// naïf le consommerait et décalerait TOUT le groupe. Les deux derniers nœuds
+			// sont des distracteurs plus longs.
 			var svgDoc = SyntheticSvg(
-				"Vrai Écossais",                 // 5.1.2 — ecossais-3 (branche 5 peinte en premier)
-				"Appel à la nature",             // 4.1  — appel
+				"Branche Cinq",                  // 5     — branche-cinq
+				"Vrai Écossais",                 // 5.2   — ecossais-3
+				"Appel à la nature",             // 4.1   — appel
+				"Vrai Écossais",                 // SURNUMÉRAIRE (orphelin d'un état antérieur
+				                                 // de l'arbre, posé dans une branche non
+				                                 // porteuse — le cas zh mesuré)
 				"Sophisme de l'accident",        // 3.1.2   — accident-parent (ancêtre)
 				"Sophisme de l'accident",        // 3.1.2.1 — accident-child (descendant)
-				"Vrai Écossais",                 // 2.3  — ecossais-2
-				"Vrai Écossais",                 // 1.1  — ecossais-1 (branche 1 peinte en dernier)
+				"Branche Deux",                  // 2     — branche-deux
+				"Vrai Écossais",                 // 2.3   — ecossais-2
+				"Branche Un",                    // 1     — branche-un
+				"Vrai Écossais",                 // 1.1   — ecossais-1
 				"Sophisme de l'accident et ses cousins",
 				"Vrai Écossais — variante longue");
 
@@ -185,9 +198,10 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 			//    était croisé (e1 sur le nœud de e3 et réciproquement).
 			AssertPairingOrder(svgDoc, "Sophisme de l'accident", new[] { "accident-parent", "accident-child" },
 				"parent et enfant homonymes (PK 614/615) : le préfixe ne s'inverse pas, l'ancêtre précède le descendant");
-			AssertPairingOrder(svgDoc, "Vrai Écossais", new[] { "ecossais-3", "ecossais-2", "ecossais-1" },
-				"titre sous 3 branches (PK 65=1.1 / 616=2.3 / 813=5.1.2) : FreeMind peint les branches 5, 2 puis 1 — " +
-				"la k-ième occurrence du document prend le k-ième item au rang préfixe inversé, pas au rang CSV");
+			AssertPairingOrder(svgDoc, "Vrai Écossais", new[] { "ecossais-3", "", "ecossais-2", "ecossais-1" },
+				"titre sous 3 branches + un SURNUMÉRAIRE orphelin en zone non porteuse (cas zh mesuré) : chaque " +
+				"item prend le nœud de SA branche par proximité du parent — le k-ième↔k-ième naïf consommait " +
+				"l'orphelin à partir du 2e item et décalait tout le reste du groupe ; l'orphelin reste VIERGE");
 
 			// 4. Chaque nœud porte SES données — valeur propre à l'item, pas seulement le
 			//    compte (la moitié du défaut était invisible à un décompte).

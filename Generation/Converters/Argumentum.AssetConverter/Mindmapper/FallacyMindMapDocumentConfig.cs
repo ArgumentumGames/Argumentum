@@ -1583,9 +1583,35 @@ if (mapFile != null) {
 				}
 
 				var paired = Math.Min(groupItems.Count, available.Count);
-				for (var k = 0; k < paired; k++)
+				if (available.Count > groupItems.Count)
 				{
-					AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, groupItems[k], available[k]);
+					// #1700 (reprise, surnuméraires) : le SVG porte PLUS d'occurrences du
+					// titre que le CSV d'items — mesuré en zh : un nœud orphelin « 循环论证 »
+					// sous 5.1.3.3 (branche sans enfant CSV, reste d'un texte antérieur à la
+					// re-dérivation). Le k-ième↔k-ième décale alors TOUT le groupe (chaque
+					// item prenait le nœud du suivant). Départage par proximité du PARENT —
+					// le même instrument que le pass 2, dont les groupes parents sont déjà
+					// résolus (ordre des groupes = ordre des items, parent avant enfant) ;
+					// à défaut de parent résolu, le premier candidat restant dans l'ordre du
+					// document. Le surnuméraire reste sans item : journalisé.
+					var remaining = new List<XElement>(available);
+					foreach (var item in groupItems.Take(paired))
+					{
+						var chosen = ChooseNodeNearestToParent(item, remaining, itemToSvgNodes,
+							disambiguatedItemToSvgNode, items, nodeIndices) ?? remaining[0];
+						AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, item, chosen);
+						remaining.Remove(chosen);
+					}
+					var surplus = remaining
+						.Select(node => nodeIndices[node]).ToList();
+					Logger.LogWarning($"Title \"{titleGroup.Key}\": {available.Count} SVG nodes for {groupItems.Count} item(s) - surplus node(s) left unattributed at document index {string.Join(", ", surplus)} (orphan node of an earlier tree state).");
+				}
+				else
+				{
+					for (var k = 0; k < paired; k++)
+					{
+						AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, groupItems[k], available[k]);
+					}
 				}
 				if (available.Count < groupItems.Count)
 				{
