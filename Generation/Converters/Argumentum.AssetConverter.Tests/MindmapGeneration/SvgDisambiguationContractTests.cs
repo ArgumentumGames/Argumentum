@@ -144,21 +144,27 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         [Fact]
-        public void Collect_TitleShorterThan3CharsAndNoMatch_ThrowsOnPrefixFallback()
+        public void Collect_TitleShorterThan3CharsAndNoMatch_IsLoggedNotThrown()
         {
-            // Documents a LATENT bug worth pinning: the no-match branch calls title.Substring(0, 3)
-            // UNCONDITIONALLY (line 1304). A title shorter than 3 chars with no exact match throws
-            // ArgumentOutOfRangeException. In practice fallacy titles are long enough, but the code
-            // has no guard — pinning the throw documents the hazard (a future caller with a short
-            // label crashes loud here rather than silently misbehaving).
+            // This test used to PIN the throw: the no-match branch called
+            // title.Substring(0, 3) unconditionally and a <3-char title with no exact match
+            // crashed with ArgumentOutOfRangeException. That latent hazard stopped being
+            // theoretical in #1700: ~150 zh titles are 2 characters ("谬论", "偏见"...) and
+            // the first one with no SVG candidate killed the ENTIRE zh injection pass. The
+            // diagnostic prefix now truncates to the title's own length: the item is
+            // logged without a node and the pass continues.
             var item = Item("Ab"); // 2 chars
             var doc = Doc(G("Something else entirely"));
 
             var act = () => Collect(Config(), new List<IMindMapItem> { item }, doc);
 
-            act.Should().Throw<TargetInvocationException>()
-                .WithInnerException<System.ArgumentOutOfRangeException>(
-                    "title.Substring(0,3) on a <3-char title with no exact match throws — the latent guard-less fallback");
+            act.Should().NotThrow(
+                "the close-matches diagnostic must not slice past the title's length — the zh " +
+                "pass dies here otherwise, taking every later language with it");
+            // The item is simply absent from the collected map: no node carries its title.
+            var collected = Collect(Config(), new List<IMindMapItem> { item }, doc);
+            collected.Should().NotContainKey(item,
+                "an item whose title matches nothing is left without a node (logged), not force-fed a wrong one");
         }
 
         // ─────────────────────────────────────────────────────────────────────────────
