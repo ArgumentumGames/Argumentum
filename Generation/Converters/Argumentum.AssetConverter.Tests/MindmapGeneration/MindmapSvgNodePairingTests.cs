@@ -9,38 +9,40 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 {
 	/// <summary>
-	/// #1698 — appariement un-pour-un items CSV → nœuds SVG, indépendant de l'unicité des
-	/// titres. Le défaut mesuré par ai-01 (master <c>9e765e4b</c>, lecture seule) : sur les
-	/// cartes mentales des sophismes, des nœuds restent MUETS (aucune donnée attachée, le clic
-	/// n'ouvre pas la fiche) quand des retitrages ont créé des titres identiques — la
-	/// polyhiérarchie place un même concept dans deux branches et le titre y est identique PAR
-	/// CONSTRUCTION (décision ai-01 du 01/10 : pas de fusion). Le défaut est dans le
-	/// générateur, pas dans les titres.
+	/// #1698/#1700 — appariement un-pour-un items CSV → nœuds SVG, indépendant de l'unicité des
+	/// titres. Défaut mesuré par ai-01 (master <c>9e765e4b</c>, lecture seule) : des nœuds
+	/// restent MUETS quand des retitrages ont créé des titres identiques — la polyhiérarchie
+	/// place un même concept dans deux branches et le titre y est identique PAR CONSTRUCTION.
 	///
-	/// <para>Cas nommés par ai-01 et reproduits ici sur un SVG synthétique :</para>
+	/// <para><b>La reprise #1700 corrige l'hypothèse d'ordre de la première version (rejetée,
+	/// <c>caa5aee3</c>).</b> FreeMind peint les frères du DERNIER au PREMIER (Swing peint les
+	/// enfants en ordre inverse) : l'ordre du document SVG est le parcours préfixe À FRÈRES
+	/// INVERSÉS, mesuré par ai-01 sur <c>Fallacies_fr.content.svg</c> — 2 ruptures pour le
+	/// préfixe inversé contre 891 pour le préfixe droit. L'appariement par rang de liste CSV
+	/// (~170 fiches/langue) croisait les homonymes INTER-BRANCHES : chaque nœud ouvrait la
+	/// fiche du mauvais concept. Le rang des items doit dériver de <c>Path</c> (segments
+	/// comparés comme ENTIERS, divergence inversée, ancêtre avant descendant), pas de
+	/// l'ordre d'entrée.</para>
+	///
+	/// <para>Cas couverts :</para>
 	/// <list type="bullet">
 	/// <item><description><b>Parent et enfant homonymes</b> — « Sophisme de l'accident »,
-	/// PK 614 (<c>3.1.2</c>) et PK 615 (<c>3.1.2.1</c>) : l'ANCIEN départage cherchait le
-	/// parent par troncature de caractère sur <c>DecimalPath</c>, échouait, et laissait les
-	/// DEUX nœuds muets.</description></item>
-	/// <item><description><b>Un titre sous 3 branches</b> — « Vrai Écossais » (PK 65, 616,
-	/// 813) : un des trois restait muet.</description></item>
+	/// PK 614 (<c>3.1.2</c>) et PK 615 (<c>3.1.2.1</c>) : le préfixe ne s'inverse PAS,
+	/// l'ancêtre précède toujours ses descendants dans le document.</description></item>
+	/// <item><description><b>Un titre sous 3 branches</b> — « Vrai Écossais » (PK 65 =
+	/// <c>1.1</c>, PK 616 = <c>2.3</c>, PK 813 = <c>5.1.2</c>) : dans le document, la branche
+	/// 5 est peinte AVANT la 2, elle-même avant la 1 — le renversement inter-branches est LE
+	/// défaut de la version rejetée.</description></item>
 	/// <item><description><b>Distracteurs plus longs</b> — des nœuds dont le texte CONTIENT le
-	/// titre : le filtre de longueur minimale doit continuer de les écarter (ils ne sont pas
-	/// des occurrences du concept).</description></item>
+	/// titre : le filtre de longueur minimale doit continuer de les écarter.</description></item>
 	/// </list>
 	///
-	/// <para><b>Contrat</b> : FreeMind exporte les nœuds dans l'ordre de l'arbre et les items
-	/// suivent le même ordre — pour un titre donné, la <i>k</i>-ième occurrence dans l'ordre
-	/// des items correspond à la <i>k</i>-ième occurrence dans l'ordre du document SVG. Chaque
-	/// item reçoit un nœud DISTINCT et SES données (vérifiées par une valeur propre à l'item,
-	/// pas seulement par le compte — la moitié du défaut était invisible à un simple
-	/// décompte).</para>
-	///
-	/// <para>Écrit ROUGE contre le départage d'origine (mesuré : 1 item attribué sur 6, les
-	/// homonymes muets) avant l'implémentation — c'est la mutation falsifiante du
-	/// DoD. L'application aux SVG réels passe par la re-dérivation n° 3 (FreeMind, po-2023) :
-	/// ce test ne régénère RIEN.</para>
+	/// <para><b>Piège du test synthétique (la leçon de la rejetée)</b> : un test qui construit
+	/// son SVG dans l'ordre qu'il suppose ne peut pas voir un défaut d'ordre. Ici le document
+	/// est construit dans l'ordre préfixe inversé RÉEL et la liste d'items dans l'ordre CSV
+	/// (les deux DIFFÈRENT) : la version <c>caa5aee3</c> rend ce test ROUGE sur le trio
+	/// inter-branches. L'application aux SVG réels passe par la re-dérivation n° 3 (FreeMind,
+	/// po-2023) : ce test ne régénère RIEN.</para>
 	/// </summary>
 	public class MindmapSvgNodePairingTests
 	{
@@ -118,11 +120,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 		}
 
 		[Fact]
-		public void Homonymous_Titles_Receive_OneToOne_Pairing_In_Tree_Order()
+		public void Homonymous_Titles_Receive_OneToOne_Pairing_In_Batik_Document_Order()
 		{
-			// Items dans l'ordre de l'arbre (= ordre CSV = ordre d'export FreeMind) :
-			// parent puis enfant homonymes (PK 614/615), un titre sous 3 branches
-			// (PK 65/616/813), un titre unique témoin.
+			// Items dans l'ordre de la liste CSV (préfixe DROIT) : parent puis enfant
+			// homonymes (PK 614/615), un titre sous 3 branches (PK 65/616/813), un titre
+			// unique témoin. C'est l'ordre que la version rejetée (caa5aee3) prenait pour
+			// l'ordre du document — à tort.
 			var typedItems = new List<TestMindMapItem>
 			{
 				Item("accident-parent", "Sophisme de l'accident", "3.1.2", "3,12", 3),
@@ -134,16 +137,19 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 			};
 			IList<IMindMapItem> items = typedItems.Cast<IMindMapItem>().ToList();
 
-			// Ordre du document = ordre de l'arbre. Les deux derniers nœuds sont des
-			// distracteurs : leur texte CONTIENT un titre mais est plus long — le filtre de
-			// longueur minimale doit les écarter.
+			// Ordre du document = parcours préfixe À FRÈRES INVERSÉS (mesure ai-01 : c'est ce
+			// que FreeMind/Batik peint). Les branches se lisent 5, 4, 3, 2, 1 ; dans la
+			// branche 3, l'ancêtre 3.1.2 précède son descendant 3.1.2.1 (le préfixe ne
+			// s'inverse pas). Les deux derniers nœuds sont des distracteurs : leur texte
+			// CONTIENT un titre mais est plus long — le filtre de longueur minimale doit les
+			// écarter.
 			var svgDoc = SyntheticSvg(
-				"Sophisme de l'accident",
-				"Sophisme de l'accident",
-				"Vrai Écossais",
-				"Vrai Écossais",
-				"Vrai Écossais",
-				"Appel à la nature",
+				"Vrai Écossais",                 // 5.1.2 — ecossais-3 (branche 5 peinte en premier)
+				"Appel à la nature",             // 4.1  — appel
+				"Sophisme de l'accident",        // 3.1.2   — accident-parent (ancêtre)
+				"Sophisme de l'accident",        // 3.1.2.1 — accident-child (descendant)
+				"Vrai Écossais",                 // 2.3  — ecossais-2
+				"Vrai Écossais",                 // 1.1  — ecossais-1 (branche 1 peinte en dernier)
 				"Sophisme de l'accident et ses cousins",
 				"Vrai Écossais — variante longue");
 
@@ -156,27 +162,26 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				.ToList();
 
 			// 1. Couverture : les SIX items reçoivent un nœud — l'ancien départage laissait
-			//    muets parent ET enfant homonymes (défaut #1698 mesuré : accident et écossais
-			//    muets, 1/6 attribué).
+			//    muets parent ET enfant homonymes (défaut #1698 mesuré : 1/6 attribué).
 			attributed.Should().HaveCount(items.Count,
 				"chaque item, homonyme ou non, doit recevoir un nœud : c'est le défaut #1698");
 
-			// 2. Un-pour-un : un nœud ne porte les données que d'UN item. L'ancien code
-			//    journalisait « Conflicting attribution » puis écrivait QUAND MÊME — un nœud
-			//    écrit deux fois, l'autre jamais.
+			// 2. Un-pour-un : un nœud ne porte les données que d'UN item.
 			attributed.Select(g => Attr(g, "id")).Should().OnlyHaveUniqueItems(
 				"l'appariement est un-pour-un : deux items homonymes ne peuvent pas écrire sur le même nœud");
 
-			// 3. k-ième occurrence d'items ↔ k-ième occurrence du document (l'ordre de
-			//    l'arbre est le même des deux côtés) — vérifié TITRE PAR TITRE, avec les
-			//    distracteurs exclus par l'égalité exacte du texte.
+			// 3. k-ième occurrence du document ↔ k-ième item AU RANG PRÉFIXE INVERSÉ — vérifié
+			//    TITRE PAR TITRE, avec les distracteurs exclus par l'égalité exacte du texte.
+			//    C'est L'assertion qui rougissait contre caa5aee3 : le trio inter-branches y
+			//    était croisé (e1 sur le nœud de e3 et réciproquement).
 			AssertPairingOrder(svgDoc, "Sophisme de l'accident", new[] { "accident-parent", "accident-child" },
-				"parent et enfant homonymes (PK 614/615) : le parent précède l'enfant dans l'arbre, donc dans le document");
-			AssertPairingOrder(svgDoc, "Vrai Écossais", new[] { "ecossais-1", "ecossais-2", "ecossais-3" },
-				"titre sous 3 branches (PK 65/616/813) : la k-ième occurrence d'items prend la k-ième occurrence du document");
+				"parent et enfant homonymes (PK 614/615) : le préfixe ne s'inverse pas, l'ancêtre précède le descendant");
+			AssertPairingOrder(svgDoc, "Vrai Écossais", new[] { "ecossais-3", "ecossais-2", "ecossais-1" },
+				"titre sous 3 branches (PK 65=1.1 / 616=2.3 / 813=5.1.2) : FreeMind peint les branches 5, 2 puis 1 — " +
+				"la k-ième occurrence du document prend le k-ième item au rang préfixe inversé, pas au rang CSV");
 
 			// 4. Chaque nœud porte SES données — valeur propre à l'item, pas seulement le
-			//    compte (l'autre moitié du défaut était invisible à un décompte).
+			//    compte (la moitié du défaut était invisible à un décompte).
 			foreach (var item in typedItems)
 			{
 				var node = attributed.Single(g => Attr(g, "id") == item.Id);
@@ -204,9 +209,64 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				"un nœud plus long qui CONTIENT un titre n'est pas une occurrence du concept");
 		}
 
+		[Fact]
+		public void BatikDocumentOrder_Ranks_Segments_As_Integers_With_Reversed_Siblings()
+		{
+			// Le comparateur DÉRIVÉ de Path, épingle sur les cas limites mesurés : fratrie de
+			// plus de 9 (une branche .24 se peint APRÈS .2 et AVANT .3 à l'échelle des frères —
+			// le classement lexicographique la mettrait entre 2 et 3, l'artefact nommé par
+			// ai-01), ancêtre avant descendant, branches inversées.
+			var ordered = new[]
+			{
+				"5.1.10",            // fratrie > 9 : le frère 10 se peint avant le frère 2
+				"5.1.2",
+				"4.11",              // fratrie > 9 au niveau 1 : le frère 11 se peint avant le frère 3
+				"4.3.2",             // l'ancêtre précède ses descendants…
+				"4.3.2.24",          // …puis ses enfants inversés : 24 avant 1
+				"4.3.2.1.1",
+				"4.1",
+				"3.1.2",             // ancêtre avant descendant : le préfixe ne s'inverse pas
+				"3.1.2.1",
+				"2.3",
+				"1.1",
+			};
+
+			for (var i = 0; i < ordered.Length; i++)
+			{
+				for (var j = 0; j < ordered.Length; j++)
+				{
+					var actual = FallacyMindMapDocumentConfig.CompareBatikDocumentOrder(ordered[i], ordered[j]);
+					var sign = Math.Sign(actual);
+					var expected = Math.Sign(i.CompareTo(j));
+					sign.Should().Be(expected,
+						$"CompareBatikDocumentOrder(\"{ordered[i]}\", \"{ordered[j]}\") doit classer " +
+						$"{(i < j ? $"\"{ordered[i]}\" avant" : i == j ? "égal" : $"\"{ordered[j]}\" avant")} — " +
+						"segments ENTIERS, frères inversés, ancêtre d'abord");
+				}
+			}
+
+			// La racine du map : le path "0" (l'unique rangée au segment 0 du CSV — « Argument
+			// fallacieux », PK 0) et le path vide désignent le MÊME nœud racine, peint PREMIER :
+			// sans frère, l'inversion des frères ne s'applique pas. Sans cette règle, le
+			// segment 0 inverse la racine en DERNIERE — l'artefact racine mesuré sur les 9
+			// content.svg committés (la racine ouvre chaque document).
+			foreach (var root in new[] { "0", "" })
+			{
+				foreach (var other in ordered)
+				{
+					FallacyMindMapDocumentConfig.CompareBatikDocumentOrder(root, other).Should().BeNegative(
+						$"la racine (\"{root}\") se peint avant \"{other}\"");
+					FallacyMindMapDocumentConfig.CompareBatikDocumentOrder(other, root).Should().BePositive(
+						$"\"{other}\" se peint après la racine (\"{root}\")");
+				}
+			}
+			FallacyMindMapDocumentConfig.CompareBatikDocumentOrder("0", "").Should().Be(0,
+				"le path \"0\" et le path vide désignent le même nœud racine : même rang");
+		}
+
 		/// <summary>
 		/// Les occurrences EXACTES d'un titre, dans l'ordre du document, doivent porter les ids
-		/// des items homonymes dans l'ordre des items.
+		/// des items homonymes dans l'ordre préfixe inversé.
 		/// </summary>
 		private static void AssertPairingOrder(XDocument svgDoc, string title, string[] expectedIdsInOrder, string because)
 		{

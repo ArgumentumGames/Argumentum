@@ -1535,26 +1535,25 @@ if (mapFile != null) {
 			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode = new();
 			Dictionary<XElement, IMindMapItem> svgNodeToItem = new();
 
-			// #1698 — appariement UN-POUR-UN, indépendant de l'unicité des titres. FreeMind
-			// exporte les nœuds dans l'ordre de l'arbre et les items suivent le même ordre :
-			// pour un titre donné, la k-ième occurrence dans l'ordre des items correspond à la
-			// k-ième occurrence dans l'ordre du document SVG. L'ancien départage (proximité du
-			// parent calculée par troncature de caractère sur DecimalPath) laissait MUETS les
-			// homonymes — parent ET enfant dans le cas 614/615 — et écrivait deux fois sur le
-			// même nœud sans exclure les nœuds déjà attribués.
-			var itemRanks = new Dictionary<IMindMapItem, int>();
-			for (var i = 0; i < items.Count; i++)
-			{
-				itemRanks[items[i]] = i;
-			}
+			// #1700 — appariement UN-POUR-UN, indépendant de l'unicité des titres. L'ordre du
+			// document SVG suit le parcours préfixe À FRÈRES INVERSÉS (voir
+			// CompareBatikDocumentOrder) : pour un titre donné, la k-ième occurrence dans cet
+			// ordre correspond à la k-ième occurrence dans l'ordre du document. La première
+			// version (caa5aee3, rejetée) prenait l'ordre de la liste CSV pour ordre du
+			// document — faux pour les frères : ~170 fiches/langue ouvraient le mauvais
+			// homonyme. L'ancien départage d'origine (proximité du parent par troncature de
+			// caractère sur DecimalPath) laissait MUETS les homonymes — parent ET enfant dans
+			// le cas 614/615 — et écrivait deux fois sur le même nœud sans exclure les nœuds
+			// déjà attribués.
 
-			// Pass 1 — groupes homonymes ET groupes triviaux : appariement par rang. Les
-			// groupes sont parcourus dans l'ordre des items (celui de itemToSvgNodes, construit
-			// dans l'ordre des items), les candidats dans l'ordre du document.
+			// Pass 1 — groupes homonymes ET groupes triviaux : appariement par rang préfixe
+			// inversé. Les groupes sont parcourus dans l'ordre des items (celui de
+			// itemToSvgNodes), les candidats dans l'ordre du document.
 			var pendingSingles = new List<KeyValuePair<IMindMapItem, List<XElement>>>();
 			foreach (var titleGroup in itemToSvgNodes.GroupBy(pair => TitleFunc(pair.Key) ?? "", StringComparer.Ordinal))
 			{
-				var groupItems = titleGroup.Select(pair => pair.Key).OrderBy(item => itemRanks[item]).ToList();
+				var groupItems = titleGroup.Select(pair => pair.Key)
+					.OrderBy(item => item.Path ?? "", BatikPathComparer.Instance).ToList();
 				var candidates = titleGroup.SelectMany(pair => pair.Value).Distinct()
 					.Where(node => nodeIndices.ContainsKey(node))
 					.OrderBy(node => nodeIndices[node]).ToList();
@@ -1608,6 +1607,73 @@ if (mapFile != null) {
 			}
 
 			return disambiguatedItemToSvgNode;
+		}
+
+		/// <summary>
+		/// #1700 — ordre du document SVG produit par FreeMind/Batik, DÉRIVÉ de <paramref name="leftPath"/>/
+		/// <paramref name="rightPath"/> (notation pointée « 4.3.2.1.1 »). Swing peint les enfants du
+		/// DERNIER au PREMIER : le document suit le parcours préfixe À FRÈRES INVERSÉS (mesure ai-01
+		/// sur Fallacies_fr.content.svg @ 9e765e4b : 2 ruptures pour cet ordre contre 891 pour le
+		/// préfixe droit). Trois règles :
+		/// <list type="bullet">
+		/// <item><description>les segments se comparent comme ENTIERS — une fratrie de 24 trie après
+		/// le frère 2 et avant le frère 3, jamais entre 2 et 3 par ordre lexicographique ;</description></item>
+		/// <item><description>à la première divergence, le PLUS GRAND segment vient D'ABORD (frères
+		/// inversés) ;</description></item>
+		/// <item><description>un chemin préfixe de l'autre (l'ancêtre) précède toujours ses
+		/// descendants — le préfixe ne s'inverse pas.</description></item>
+		/// </list>
+		/// Le path vide ou <c>"0"</c> (la racine du map, unique rangée au segment 0 du CSV) est
+		/// peint PREMIER : sans frère, l'inversion ne s'applique pas à lui (mesure : la racine
+		/// ouvre le document dans les 9 content.svg committés).
+		/// </summary>
+		internal static int CompareBatikDocumentOrder(string leftPath, string rightPath)
+		{
+			var left = ParsePathSegments(leftPath);
+			var right = ParsePathSegments(rightPath);
+			var leftIsRoot = IsRootPath(left);
+			var rightIsRoot = IsRootPath(right);
+			if (leftIsRoot || rightIsRoot)
+			{
+				return leftIsRoot && rightIsRoot ? 0 : (leftIsRoot ? -1 : 1);
+			}
+			var common = Math.Min(left.Length, right.Length);
+			for (var i = 0; i < common; i++)
+			{
+				if (left[i] != right[i])
+				{
+					// Frères inversés : le plus grand segment est peint EN PREMIER.
+					return right[i].CompareTo(left[i]);
+				}
+			}
+			// Préfixe : l'ancêtre (chemin plus court) précède ses descendants.
+			return left.Length.CompareTo(right.Length);
+		}
+
+		private static int[] ParsePathSegments(string path)
+		{
+			if (string.IsNullOrEmpty(path))
+			{
+				return Array.Empty<int>();
+			}
+			return path.Split('.').Select(segment => int.Parse(segment, CultureInfo.InvariantCulture)).ToArray();
+		}
+
+		/// <summary>La racine du map : path vide, ou réduit au seul segment 0.</summary>
+		private static bool IsRootPath(int[] segments)
+		{
+			return segments.Length == 0 || (segments.Length == 1 && segments[0] == 0);
+		}
+
+		/// <summary>Adapte <see cref="CompareBatikDocumentOrder"/> au tri LINQ sur <c>item.Path</c>.</summary>
+		private sealed class BatikPathComparer : IComparer<string>
+		{
+			public static readonly BatikPathComparer Instance = new();
+
+			public int Compare(string x, string y)
+			{
+				return CompareBatikDocumentOrder(x ?? "", y ?? "");
+			}
 		}
 
 		private void AssignNode(Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode,
