@@ -1498,7 +1498,12 @@ if (mapFile != null) {
 				}
 				else
 				{
-					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title.Substring(0, 3))).ToList();
+					// #1700 — le préfixe de diagnostic se tronque à la longueur du titre :
+					// ~150 titres zh font 2 caractères (« 谬论 », « 偏见 »…) et un titre court
+					// sans candidat tuait l'injection zh entière en
+					// ArgumentOutOfRangeException sur Substring(0, 3).
+					var titleHead = title.Length <= 3 ? title : title.Substring(0, 3);
+					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(titleHead)).ToList();
 					var closeMatchesMessages = closeMatches.Select(g => string.Join(" ", g.Elements(svgNamespace + "text").Select(t => t.Value))).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
 					Logger.LogProblem($"Could not find Svg node for item {TitleFunc(item)}\nClose matches:\n{closeMatchesMessages}");
 				}

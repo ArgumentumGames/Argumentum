@@ -134,6 +134,11 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				Item("ecossais-2", "Vrai Écossais", "2.3", "2,3", 2),
 				Item("ecossais-3", "Vrai Écossais", "5.1.2", "5,12", 3),
 				Item("appel", "Appel à la nature", "4.1", "4,1", 2),
+				// #1700 — titre de 2 caractères SANS candidat dans le SVG (la branche de
+				// diagnostic de CollectPossibleSvgNodes) : ~150 titres zh font 2 caractères
+				// (« 谬论 », « 偏见 »…) ; l'injection zh crasait en
+				// ArgumentOutOfRangeException sur title.Substring(0, 3) avant le garde.
+				Item("zh-court", "谬论", "6.1", "6,1", 2),
 			};
 			IList<IMindMapItem> items = typedItems.Cast<IMindMapItem>().ToList();
 
@@ -161,10 +166,14 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				.Where(g => Attr(g, "class") == "node")
 				.ToList();
 
-			// 1. Couverture : les SIX items reçoivent un nœud — l'ancien départage laissait
-			//    muets parent ET enfant homonymes (défaut #1698 mesuré : 1/6 attribué).
-			attributed.Should().HaveCount(items.Count,
-				"chaque item, homonyme ou non, doit recevoir un nœud : c'est le défaut #1698");
+			// 1. Couverture : les SIX items Avec candidat reçoivent un nœud — l'ancien
+			//    départage laissait muets parent ET enfant homonymes (défaut #1698 mesuré :
+			//    1/6 attribué). Le 7e (titre zh de 2 caractères absent du SVG) reste SANS
+			//    nœud, journalisé — sans l'exception qui tuait l'injection zh entière.
+			attributed.Should().HaveCount(items.Count - 1,
+				"chaque item homonyme ou non reçoit un nœud ; seul l'item sans candidat (titre zh " +
+				"court absent du SVG) n'en reçoit pas — sans crasher : le diagnostic des candidats " +
+				"proches ne doit pas découper le titre au-delà de sa longueur");
 
 			// 2. Un-pour-un : un nœud ne porte les données que d'UN item.
 			attributed.Select(g => Attr(g, "id")).Should().OnlyHaveUniqueItems(
@@ -182,7 +191,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
 			// 4. Chaque nœud porte SES données — valeur propre à l'item, pas seulement le
 			//    compte (la moitié du défaut était invisible à un décompte).
-			foreach (var item in typedItems)
+			foreach (var item in typedItems.Where(i => i.Id != "zh-court"))
 			{
 				var node = attributed.Single(g => Attr(g, "id") == item.Id);
 				Attr(node, "description").Should().Contain(item.DescFr,
