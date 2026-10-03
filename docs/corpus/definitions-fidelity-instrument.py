@@ -41,12 +41,34 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 MAIN = os.path.join(ROOT, "Cards", "Fallacies", "Argumentum Fallacies - Taxonomy.csv")
 BRIDGE_PY = os.path.join(HERE, "archive-bridge-instrument.py")
 
-# Marqueurs de négation. ⚠️ `\bне\b` ne voit PAS la négation préfixée russe
-# (недостаточны, необоснованными, неприменим, невозможность...) : l'écran mesure
-# l'absence d'une PARTICULE, pas l'absence d'une NÉGATION. Mesuré sur (20) : 21/21
-# drapeaux POLARITY sont des faux positifs pour cette raison.
-NEG_FR = re.compile(r"(?:\bne\b|\bn'|\bpas\b|\bjamais\b|\baucun|\bsans\b|\brien\b|\bnon\b)", re.I)
-NEG_RU = re.compile(r"(?:\bне\b|\bни\b|\bникогда\b|\bбез\b|\bнет\b|\bничего\b|\bни один)", re.I)
+# Marqueurs de négation, PAR LANGUE. L'écran n'est pas neutre entre les langues : appliquer
+# le jeu russe à du chinois ne lève rien (aucun `\bне\b` dans « 不 »), donc CHAQUE rangée dont
+# le français nie sort en POLARITY -- 43 faux positifs mesurés sur `zh`. Un écran de
+# polarité n'a de sens que dans la langue qu'il lit.
+#
+# ⚠️ Même dans sa propre langue, `\bне\b` ne voit pas la négation PRÉFIXÉE russe
+# (недостаточны, необоснованными, неприменим, невозможность...) : il mesure l'absence d'une
+# PARTICULE, pas d'une NÉGATION. Mesuré sur (20) : 21/21 drapeaux POLARITY faux positifs.
+NEG_MARKERS = {
+    "fr": r"(?:\bne\b|\bn'|\bpas\b|\bjamais\b|\baucun|\bsans\b|\brien\b|\bnon\b)",
+    "en": r"(?:\bnot\b|\bno\b|\bnever\b|\bnone\b|\bwithout\b|\bnothing\b|\bnor\b)",
+    "ru": r"(?:\bне\b|\bни\b|\bникогда\b|\bбез\b|\bнет\b|\bничего\b|\bни один)",
+    "pt": r"(?:\bnão\b|\bnem\b|\bnunca\b|\bsem\b|\bnada\b|\bnenhum)",
+    "es": r"(?:\bno\b|\bnunca\b|\bsin\b|\bnada\b|\bning[uú]n)",
+    # Écritures sans séparateur de mot : recherche de sous-chaîne, pas de `\b`.
+    "zh": r"(?:不|没|無|无|非|未|別|别)",
+    "ar": r"(?:لا|ما|ليس|ليست|غير|بدون|دون)",
+    "fa": r"(?:نه|نیست|نیستم|بدون|هیچ|نمی)",
+}
+NEG_FR = re.compile(NEG_MARKERS["fr"], re.I)
+
+
+def neg_hits(lang, text):
+    """None quand la langue n'a pas de jeu configuré -- à NOMMER, pas à feindre."""
+    pat = NEG_MARKERS.get(lang)
+    if pat is None:
+        return None
+    return bool(re.search(pat, text or "", re.I))
 
 
 def read_csv_guarded(path, required):
@@ -72,16 +94,35 @@ def nums(s):
     return set(re.findall(r"\d+", s or ""))
 
 
+def is_cjk_dominant(s):
+    """Un ratio de LONGUEUR EN CARACTÈRES n'est pas comparable entre écritures.
+
+    Mesuré sur le deck (desc_zh contre desc_fr) : ratio 0,146-0,417, médiane 0,255 --
+    le chinois dit la même chose en ~4 fois moins de caractères. Les bornes calibrées
+    pour le russe (0,60-1,65) lèvent donc 175/175 drapeaux SHORT sur `zh` : un écran qui
+    crie toujours ne trie rien. Aucune borne ne rattrape ça -- en dessous de 0,146 il ne
+    reste rien à lever, au-dessus de 0,417 non plus. On le DIT au lieu de le feindre.
+    """
+    s = s or ""
+    if not s:
+        return False
+    cjk = sum(1 for c in s if u"一" <= c <= u"鿿" or u"぀" <= c <= u"ヿ")
+    return cjk / len(s) > 0.3
+
+
 def segments(s):
+    """Découpe en phrases. ⚠️ La ponctuation CJK (。！？；) n'est pas ASCII : sans elle,
+    une phrase chinoise compte pour 1 et l'écran CLAUSES devient muet par construction."""
     s = (s or "").strip()
     if not s:
         return 0
-    return len([x for x in re.split(r"[.;:!?]\s+|\n", s) if x.strip()])
+    return len([x for x in re.split(r"[.;:!?。！？；：]\s*|\n", s) if x.strip()])
 
 
-def flags_for(fr, tg):
+def flags_for(fr, tg, lang="ru"):
     """Drapeaux mécaniques, bornes calibrées sur ce corpus (phrases uniques, 48-187 car.).
-    Chacun est une PRIORITÉ DE LECTURE, jamais un verdict."""
+    Chacun est une PRIORITÉ DE LECTURE, jamais un verdict. Les notices (LEN-NA, POL-NA)
+    disent qu'un écran n'a PAS tourné -- elles ne comptent pas comme des priorités."""
     out = []
     if not (tg or "").strip():
         out.append("EMPTY-target")
@@ -90,15 +131,23 @@ def flags_for(fr, tg):
         out.append("EMPTY-source")
     lf, lt = len((fr or "").strip()), len((tg or "").strip())
     if lf:
-        ratio = lt / lf
-        if ratio < 0.60:
-            out.append("SHORT(%.2f)" % ratio)
-        elif ratio > 1.65:
-            out.append("LONG(%.2f)" % ratio)
+        if is_cjk_dominant(tg):
+            # Nommé, pas silencieux : le lecteur doit savoir que l'écran de longueur
+            # n'a PAS tourné sur cette rangée, et pourquoi.
+            out.append("LEN-NA(CJK)")
+        else:
+            ratio = lt / lf
+            if ratio < 0.60:
+                out.append("SHORT(%.2f)" % ratio)
+            elif ratio > 1.65:
+                out.append("LONG(%.2f)" % ratio)
     only = nums(fr) - nums(tg)
     if only:
         out.append("NUM-only-FR:" + ",".join(sorted(only)[:4]))
-    if bool(NEG_FR.search(fr)) != bool(NEG_RU.search(tg)):
+    pt = neg_hits(lang, tg)
+    if pt is None:
+        out.append("POL-NA(%s)" % lang)      # pas de jeu de marqueurs : on le dit
+    elif bool(NEG_FR.search(fr)) != pt:
         out.append("POLARITY")
     sf, st = segments(fr), segments(tg)
     if sf - st >= 2:
@@ -166,13 +215,15 @@ def main():
                                key=lambda i: abs(len(deck[i]["desc_fr"]) - med))])
         print("SELF-TEST -- calibré sur la distribution réelle (mediane desc_fr=%d)" % med)
         victim["desc_%s" % lang] = "Полная противоположность: правило всегда соблюдается."
-        fa = flags_for(victim["desc_fr"], victim["desc_%s" % lang])
+        fa = flags_for(victim["desc_fr"], victim["desc_%s" % lang], lang)
         print("  (a) cellule tronquée -> %s" % fa)
         assert any(x.startswith("SHORT") for x in fa), "instrument AVEUGLE a une cellule tronquee"
+        assert lang in NEG_MARKERS, "langue sans jeu de marqueurs : ecran POLARITY non testable"
         neg = [r for r in deck if NEG_FR.search(r.get("desc_fr") or "")]
         assert neg, "aucune carte a marqueur de negation FR -- ecran POLARITY non testable"
         v2 = dict(neg[0])
-        fb = flags_for(v2["desc_fr"], NEG_RU.sub("", v2["desc_%s" % lang]))
+        stripped = re.sub(NEG_MARKERS[lang], "", v2["desc_%s" % lang] or "", flags=re.I)
+        fb = flags_for(v2["desc_fr"], stripped, lang)
         print("  (b) polarité inversée -> %s" % fb)
         assert "POLARITY" in fb, "instrument AVEUGLE a un desaccord de polarite"
         print("  PASS. ⚠️ Ce sont des priorités de lecture : le contrôle prouve que")
@@ -185,14 +236,17 @@ def main():
     bridge = load_bridge()
     reference_for = build(deck, bridge)
     matched = {1: 0, 2: 0}
-    n_flag = 0
+    n_flag = n_notice = 0
     with open(a.out, "w", encoding="utf-8", newline="\n") as out:
         for i, r in enumerate(deck, 1):
             fr = (r.get("desc_fr") or "").strip()
             tg = (r.get("desc_%s" % lang) or "").strip()
-            f = flags_for(fr, tg)
-            if f:
+            f = flags_for(fr, tg, lang)
+            prio = [x for x in f if not x.startswith(("LEN-NA", "POL-NA"))]
+            if prio:
                 n_flag += 1
+            elif f:
+                n_notice += 1
             tier, tag, arow = reference_for(r)
             if tier:
                 matched[tier] += 1
@@ -213,8 +267,9 @@ def main():
                 out.write("IMPRIME: <aucune reference, sous aucun nom>\n")
             out.write("FLAGS: %s\n\n" % (", ".join(f) if f else "-"))
         out.write("---\nDENOMINATEUR: %d cartes lues, %d affichees\n" % (len(deck), len(deck)))
-        out.write("FLAGS mecaniques: %d/%d lignes portent au moins un drapeau\n"
-                  % (n_flag, len(deck)))
+        out.write("FLAGS mecaniques: %d/%d lignes portent au moins une PRIORITE de lecture "
+                  "(+ %d lignes ne portent qu'une NOTICE : ecran non applicable)\n"
+                  % (n_flag, len(deck), n_notice))
         out.write("REFERENCE IMPRIMEE: %d/%d (etage1 `path` %d + pont %d; ⛔ pas %d -- "
                   "cf. docs/corpus/archive-coverage-2026-09-22.md)\n"
                   % (matched[1] + matched[2], len(deck), matched[1], matched[2], matched[1]))
