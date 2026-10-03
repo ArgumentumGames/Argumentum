@@ -6,6 +6,8 @@ Premier grain de la série des exemples (dispatch c.5966980587, item 4), même m
 
 ## Synthèse — 0 A / 0 M / 15 rangées observées / 154 ✓ (168 non vides)
 
+> **Erratum d'arbitrage (04/10, ai-01, [c.5968567847](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5968567847) — exécuté par #1725).** Les trois coquilles probables sont **tranchées et corrigées** : PK 361 (double « о » + tiret long), PK 1352 (retour au mot imprimé « сосудистая »), PK 848 (virgules normatives autour du relatif « которые »). Les trois gloses 796/847/855 sont **gardées** (C-note définitive, même doctrine que les dossiers zh/ar/fa/es). La réserve « locuteur natif requis » du § N'établit pas est levée par la règle d'arbitrage du 03/10 (coquilles : toujours corrigées ; l'imprimé ru est par ailleurs l'arbitre de 1352).
+
 | Verdict | Rangées |
 |---|---:|
 | **A — sens faux ou inversé** | **0** (aucune candidate) |
