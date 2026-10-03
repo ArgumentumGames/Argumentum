@@ -15,6 +15,9 @@ namespace Argumentum.AssetConverter.Tests
 	///   d'avant #1546, glose comprise) :
 	///     PK 796 example_{en,ru,pt,es,ar,zh} et PK 848 example_zh.
 	///   ⛔ PK 796 example_fr N'EST PAS restaure (Q-16 (c)) : la glose fr y reste coupee.
+	/// - 03/10 (arbitrage ai-01 #458 c.5968567847) : 848 example_ru GAGNE ses virgules
+	///   normatives autour du relatif « которые » — l'attendu suit l'arbitrage (la glose
+	///   n'y revient pas : seules deux virgules sont ajoutees a la phrase nue).
 	///
 	/// Les attendus sont INSCRITS ici : toute derive du CSV fait rouge AVANT regeneration,
 	/// et le rouge NOMME la cellule - pas un diff muet.
@@ -136,7 +139,7 @@ namespace Argumentum.AssetConverter.Tests
 				{
 					{ "fr", "Les membres du comité qui ont validé ce dossier seront convoqués." },
 					{ "en", "The committee members who approved this file will be summoned." },
-					{ "ru", "Члены комитета которые утвердили это досье будут вызваны." },
+					{ "ru", "Члены комитета, которые утвердили это досье, будут вызваны." },
 					{ "pt", "Os membros do comitê que aprovaram este dossiê serão convocados." },
 					{ "es", "Los miembros del comité que aprobaron este expediente serán convocados." },
 					{ "ar", "سيُستدعى أعضاء اللجنة الذين صادقوا على هذا الملف." },
