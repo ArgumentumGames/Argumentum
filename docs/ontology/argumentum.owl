@@ -45852,7 +45852,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfComposition</IRI>
-    <Literal xml:lang="en">Atrributing properties of the parts of a set to the whole set.</Literal>
+    <Literal xml:lang="en">Attributing properties of the parts of a set to the whole set.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -46027,7 +46027,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#divisionFallacy</IRI>
-    <Literal xml:lang="en">Attributing properties of a whole set to each of its individual part.</Literal>
+    <Literal xml:lang="en">Attributing properties of a whole set to each of its individual parts.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -54815,7 +54815,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selfRefutingIdea</IRI>
-    <Literal xml:lang="fr">Concept volé</Literal>
+    <Literal xml:lang="fr">Idée autoréfutante</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -54825,12 +54825,12 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selfRefutingIdea</IRI>
-    <Literal xml:lang="fr">Vous niez un concept tout en continuant à l’utiliser dans votre raisonnement.</Literal>
+    <Literal xml:lang="fr">Vous avancez une affirmation qui se réfute elle-même : si elle était vraie, elle serait fausse.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selfRefutingIdea</IRI>
-    <Literal xml:lang="en">Denying a concept while continuing to use it in the reasoning.</Literal>
+    <Literal xml:lang="en">Putting forward a claim that refutes itself: if it were true, it would be false.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -88493,7 +88493,7 @@ populations, geopolitical considerations, and legal and ethical aspects.</Litera
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#tuQuoque</IRI>
-    <Literal xml:lang="en">Discrediting the opponent's position by asserting the opponent's failure to act consistently in accordance with that position</Literal>
+    <Literal xml:lang="en">Discrediting the opponent's position by asserting the opponent's failure to act consistently in accordance with that position.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
