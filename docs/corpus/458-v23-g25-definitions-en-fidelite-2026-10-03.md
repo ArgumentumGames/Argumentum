@@ -6,6 +6,8 @@ Sixième et dernier grain de la série ⑳-㉕. La colonne `en` est celle qui a 
 
 ## Synthèse — 0 A / 0 M / 36 rangées observées / 139 ✓ (175)
 
+> **Erratum d'arbitrage (03/10, ai-01, [c.5966971153](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5966971153)).** Les frontières de ce dossier sont tranchées : **PK 989 et PK 154 sont gardées — C-note définitives** (989 : la forme « présomption faute de preuve contraire » n'est ni inversée ni contradictoire — contrairement au chinois corrigé par #1714 ; 154 : « is false » est la définition classique de l'*argument from fallacy*). **PK 1015 gardée** : la tournure est maladroite mais compréhensible — la corriger serait une réécriture d'une carte imprimée, pas une coquille (formulation de polissage possible consignée par ai-01 si l'owner veut un jour polir l'anglais imprimé). **Les 3 coquilles héritées (PK 622 « Atrributing », 625 « individual part. », 1362 point final manquant) sont confirmées et corrigées** par la PR d'arbitrage. Règle actée : une langue imprimée (en) garde son texte sauf contresens ; les coquilles se corrigent toujours. Aucun compte ne change.
+
 | Verdict | Rangées |
 |---|---:|
 | **A — sens faux ou inversé** | **0** (2 candidates consignées avec frontière) |

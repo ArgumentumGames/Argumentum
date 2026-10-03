@@ -6,6 +6,8 @@ Cinquième grain de la série ⑳-㉕, les deux langues ibériques en un dossier
 
 ## Synthèse — 0 A / 0 M / 55 rangées observées / 295 ✓ (2×175)
 
+> **Erratum d'arbitrage (03/10, ai-01, [c.5966971153](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5966971153)).** Les frontières de ce dossier sont tranchées : **pt 154, pt 594 et es 989 sont gardées — C-note définitives** (154 : conclure que la conclusion est *fausse* est la définition classique de l'*argument from fallacy*, le « rejetez » français est la version adoucie ; 594 : redondant, pas faux — un changement de style sur une langue imprimée ne vaut pas le coût ; 989 : la forme « présomption faute de preuve contraire » appartient à la même famille que le renversement de charge, l'espagnol est la traduction fidèle de l'anglais imprimé). **es 1357 (Invéntas) confirmée coquille et corrigée** par la PR d'arbitrage. Règle actée : une langue imprimée (pt) garde son texte sauf contresens ; les coquilles se corrigent toujours. Aucun compte ne change.
+
 | Langue | A | M | C-note | ✓ |
 |---|---:|---:|---:|---:|
 | **pt** | **0** | **0** | **31** (5 catégories) | **144** |
