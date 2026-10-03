@@ -113,6 +113,13 @@ L'instrument réutilise donc le **pont** du dépôt (`archive-bridge-instrument.
 
 Les 7 sans aucune référence — **PK 105, 362, 492, 1020, 1092, 1120, 1357** — sont jugées sur le seul français.
 
+> **Erratum jointure (03/10, grain 3 — instrument réparé sur ordre du pool, c.5964435596).** Le rattachement par `path` attache une **position**, pas une carte. Réparé : un `path` ne vaut plus rattachement **confirmé** que si l'archive porte le même nom — directement ou via le nom de la même PK dans la baseline 2024 ; sinon le pont, et à défaut le rattachement est gardé mais marqué **POSITION SEULE** (compté à part, contenu d'archive non affiché). Re-passe `ru` : **157 confirmées par le nom** (139 `etage1-nom` + 18 pont) **+ 11 position seule** — le total 168/175 ne change pas, il se précise.
+>
+> - **Triplet path `1.1.1`–`1.1.3` (PK 3/33/55)** : les trois sœurs avaient permuté leurs positions depuis l'archive v3 — chacune était lue contre la **mauvaise** carte. **PK 55 passe DIFFERE → IDENTIQUE** (mesurée par ai-01, c'est la carte qui a démontré le défaut) ; PK 3 et 33 restent DIFFERE, désormais contre leur propre texte d'archive. **Aucune des trois n'était citée dans ce dossier — aucun verdict ne change.**
+> - **11 renommées** (PK 153, 361, 658, 799, 847, 855, 1024, 1174, 1242, 1313, 1361 — l'archive v3 porte l'ancien nom, la baseline déjà le nouveau) : rattachement plausible mais **non prouvé par le nom**. **Deux lignes de ce dossier sont concernées** : **PK 361** et **PK 847** (tableau 1, et la ligne `SHORT` « compressions identiques à l'imprimé » — sur les 5, il en reste 4 prouvées). Les observations subsistent (elles comparent `ru` et `fr`), mais leur corroboration par l'imprimé est rétrogradée de **prouvée** à **plausible**.
+> - Le candidat M levé par l'imprimé (**PK 848**) n'est **pas** concerné : son rattachement passe par le pont, confirmé par le nom, `IDENTIQUE` — la levée reste prouvée.
+> - **L'arithmétique du verdict ne change pas : 0 A / 0 M / 16 C-note / 159 ✓.**
+
 ## N'établit pas
 
 - **Que les définitions russes soient sans défaut.** Le verdict est une **lecture sémantique unique**, faite par un non-locuteur natif, sur des paires de phrases. Un relecteur natif peut voir ce que cette passe n'a pas vu — c'est le sens même d'un `0 A`. Ce qui est établi est plus étroit : *aucun écart n'a été trouvé en lisant les 175 rangées*.

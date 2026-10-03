@@ -21,6 +21,14 @@ corrigée -- voir docs/corpus/archive-coverage-2026-09-22.md. Cet instrument ré
 le pont du dépôt (`archive-bridge-instrument.py`) : archive --(nom)--> baseline 2024
 --(PK)--> HEAD.
 
+⛔ MÊME `path` N'EST PAS UN ARBITRE SANS LE NOM (grain 3, 03/10). Un `path` qui tombe sur
+une ligne d'archive ne vaut rattachement CONFIRMÉ que si l'archive porte le même nom --
+directement, ou via le nom de la même PK dans la baseline 2024. Sinon : pont, et à défaut
+le rattachement est gardé mais marqué POSITION SEULE (compté à part, contenu non affiché :
+un DIFFERE lu contre la mauvaise carte est le défaut, pas la preuve). Mesure ai-01 du
+03/10 : le triplet path 1.1.1-1.1.3 (PK 3/33/55, trois sœurs permutées depuis l'archive
+v3) était rattaché aux MAUVAISES cartes -- PK 55 sortait DIFFERE contre « Argument vide ».
+
 USAGE
 -----
     python docs/corpus/definitions-fidelity-instrument.py --lang ru --out /tmp/ru.txt
@@ -224,20 +232,44 @@ def build(deck, bridge, lang):
                   for r in bridge.rows(bridge.DECK, bridge.BASELINE_REF)
                   if bridge.n(r.get("PK"))}
 
+    def confirmed_by_name(arow, drow, base):
+        """Un rattachement par `path` ne vaut CONFIRMÉ que si l'archive porte le
+        même nom -- directement, ou via le nom de la même PK dans la baseline
+        2024 (la carte a pu être re-titrée entre la baseline et HEAD).
+        ⛔ Mesure ai-01 du 03/10 (pool c.5964435596) : sur 153 rattachements par
+        `path`, 3 pointaient la MAUVAISE carte -- le triplet path 1.1.1 à 1.1.3
+        (PK 3/33/55), dont les trois sœurs ont permuté leurs positions depuis
+        l'archive v3. `path` est aveugle aux permutations de sœurs : il attache
+        une POSITION, pas une carte."""
+        ka = bridge.key(arow.get("text_fr"))
+        if not ka:
+            return False
+        if ka == bridge.key(drow.get("text_fr")):
+            return True
+        return base is not None and ka == bridge.key(base.get("text_fr"))
+
     def reference_for(drow):
-        """(etage, tag, ligne, colonne-presente) -- 1 = `path`, 2 = le pont.
-        None si aucune archive. Le 4e champ distingue une archive SANS la colonne
-        d'une archive dont la cellule est vide : sans lui, les deux se rendent pareil."""
+        """(etage, tag, ligne, colonne-presente, confirmee-par-nom) -- 1 = `path`,
+        2 = le pont. None si aucune archive. Le 4e champ distingue une archive
+        SANS la colonne d'une archive dont la cellule est vide : sans lui, les
+        deux se rendent pareil. Le 5e : un `path` NON confirmé cède la place au
+        pont ; si le pont échoue, il est gardé mais marqué POSITION SEULE -- une
+        position sans nom n'est pas un arbitre imprimé."""
         p = bridge.n(drow.get("path"))
-        if p in by_path:
-            t, r = by_path[p]
-            return 1, t, r, col_present.get(t, False)
-        b = base_by_pk.get(bridge.n(drow.get("PK")))
-        if b:
-            hits = by_name.get(bridge.key(b.get("text_fr"))) or []
+        base = base_by_pk.get(bridge.n(drow.get("PK")))
+        hit = by_path.get(p) if p else None
+        if hit:
+            t, r = hit
+            if confirmed_by_name(r, drow, base):
+                return 1, t, r, col_present.get(t, False), True
+        if base:
+            hits = by_name.get(bridge.key(base.get("text_fr"))) or []
             if hits:
-                return 2, hits[0][0], hits[0][1], col_present.get(hits[0][0], False)
-        return None, None, None, False
+                return 2, hits[0][0], hits[0][1], col_present.get(hits[0][0], False), True
+        if hit:
+            t, r = hit
+            return 1, t, r, col_present.get(t, False), False
+        return None, None, None, False, False
 
     return reference_for
 
@@ -303,6 +335,41 @@ def main():
             assert not any(x.startswith("LENDEV") for x in fz), \
                 "ecran CJK crie sur une cellule saine -- borne trop serree"
             print("  (c') temoin sain (PK=%s) -> aucun LENDEV" % sane.get("PK"))
+
+        # (d) JOINTURE PAR NOM. `path` seul attache une POSITION, pas une carte :
+        # les trois soeurs du triplet path 1.1.1-1.1.3 (PK 3/33/55) ont permute
+        # leurs positions depuis l'archive v3, et l'instrument d'avant-réparation
+        # rattachait chacune a la MAUVAISE (mesure ai-01 03/10, pool c.5964435596).
+        # Exigeance : chacune doit desormais etre attachee CONFIRMEE PAR LE NOM.
+        bridge = load_bridge()
+        ref = build(deck, bridge, lang)
+        tri = [r for r in deck if (r.get("path") or "").strip() in
+               ("1.1.1", "1.1.2", "1.1.3")]
+        assert len(tri) == 3, \
+            "triplet 1.1.1-1.1.3 introuvable -- controle de jointure non testable"
+        for r in sorted(tri, key=lambda x: x.get("PK", "")):
+            tier, tag, arow, has_col, ok_nom = ref(r)
+            assert tier is not None, "PK %s : plus aucun rattachement" % r.get("PK")
+            assert ok_nom, ("PK %s rattachee SANS confirmation de nom (archive « %s » "
+                            "vs deck « %s »)" % (r.get("PK"),
+                                                 (arow.get("text_fr") or "").strip(),
+                                                 (r.get("text_fr") or "").strip()))
+            print("  (d) PK %-3s %-28s -> etage%d(%s) CONFIRME sur « %s »"
+                  % (r.get("PK"), (r.get("text_fr") or "").strip()[:28], tier, tag,
+                     (arow.get("text_fr") or "").strip()))
+        # (d') PK 55 : c'est la carte qui a DEMONTRE le defaut -- lue contre
+        # « Argument vide » par la jointure path, elle sortait DIFFERE. Le pont doit
+        # la rattacher a SA carte archive, et l'imprime russe doit etre IDENTIQUE.
+        r55 = [r for r in deck if r.get("PK") == "55"]
+        assert len(r55) == 1, "PK 55 introuvable -- controle de jointure non testable"
+        t55, g55, a55, hc55, ok55 = ref(r55[0])
+        assert t55 == 2 and ok55, \
+            "PK 55 doit venir du PONT, confirmee par nom (etage=%s)" % t55
+        pl55 = (a55.get("desc_ru") or "").strip()
+        assert pl55 and pl55 == (r55[0].get("desc_ru") or "").strip(), \
+            "PK 55 : l'imprime russe du pont n'est pas IDENTIQUE -- jointure suspecte"
+        print("  (d') PK 55 -> pont, archive « %s », desc_ru IDENTIQUE (%d car.)"
+              % ((a55.get("text_fr") or "").strip(), len(pl55)))
         print("  PASS. ⚠️ Ce sont des priorités de lecture : le contrôle prouve que")
         print("  l'instrument n'est pas structurellement aveugle, pas qu'il juge.")
         return
@@ -312,7 +379,7 @@ def main():
 
     bridge = load_bridge()
     reference_for = build(deck, bridge, lang)
-    matched = {1: 0, 2: 0}
+    n_e1nom = n_e1pos = n_pont = 0
     n_flag = n_notice = 0
     usable = 0
     col_missing = set()
@@ -333,9 +400,19 @@ def main():
                 n_flag += 1
             elif f:
                 n_notice += 1
-            tier, tag, arow, has_col = reference_for(r)
-            if tier:
-                matched[tier] += 1
+            tier, tag, arow, has_col, ok_nom = reference_for(r)
+            if tier == 1:
+                if ok_nom:
+                    n_e1nom += 1
+                else:
+                    n_e1pos += 1
+            elif tier == 2:
+                n_pont += 1
+            # EXPLOITABLE ne compte que les rattachements CONFIRMÉS PAR LE NOM
+            # (étage1-nom + pont) dont l'archive porte la colonne. Une POSITION
+            # SEULE n'est pas un arbitre imprimé : la compter ici contredit la
+            # ligne du dessus (ru : 157, pas 168 — c.5965769047).
+            if tier and ok_nom:
                 if has_col:
                     usable += 1
                 else:
@@ -346,8 +423,21 @@ def main():
             out.write("FR: %s\n" % fr)
             out.write("%s: %s\n" % (lang.upper(), tg))
             if arow is not None:
-                via = "etage%d" % tier if tier == 1 else "pont"
-                if not has_col:
+                via = ("etage1-nom" if tier == 1 and ok_nom else
+                       "etage1-pos" if tier == 1 else "pont")
+                if tier == 1 and not ok_nom:
+                    # ⚠ POSITION SEULE : le `path` a attaché une POSITION, pas une
+                    # carte. Le contenu de l'archive n'est volontairement PAS affiché :
+                    # un DIFFERE lu contre la mauvaise carte est exactement le défaut
+                    # que cette réparation ferme (PK 55 lue contre « Argument vide »,
+                    # mesure ai-01 03/10, pool c.5964435596).
+                    out.write("IMPRIME[%s](%s): ⚠ POSITION SEULE -- l'archive %s porte "
+                              "« %s » a ce path, le deck y lit « %s », et le pont n'a "
+                              "rien trouve sous ce nom : PAS un arbitre imprime\n"
+                              % (via, tag, tag,
+                                 (arow.get("text_fr") or "").strip(),
+                                 (r.get("text_fr") or "").strip()))
+                elif not has_col:
                     # ⛔ DISTINCT de « cellule vide ». L'archive n'a pas la colonne :
                     # aucun arbitrage imprime n'est possible pour cette langue.
                     out.write("IMPRIME[%s](%s): <archive SANS colonne desc_%s -- "
@@ -367,17 +457,22 @@ def main():
         out.write("FLAGS mecaniques: %d/%d lignes portent au moins une PRIORITE de lecture "
                   "(+ %d lignes ne portent qu'une NOTICE : ecran non applicable)\n"
                   % (n_flag, len(deck), n_notice))
-        out.write("REFERENCE IMPRIMEE: %d/%d (etage1 `path` %d + pont %d; ⛔ pas %d -- "
-                  "cf. docs/corpus/archive-coverage-2026-09-22.md)\n"
-                  % (matched[1] + matched[2], len(deck), matched[1], matched[2], matched[1]))
+        n_att = n_e1nom + n_e1pos + n_pont
+        out.write("REFERENCE IMPRIMEE: %d/%d rattachees -- CONFIRMEES PAR LE NOM %d "
+                  "(etage1-nom %d + pont %d) + POSITION SEULE %d (le `path` a attache "
+                  "une position, l'archive porte un AUTRE nom : pas un arbitre imprime) "
+                  "+ aucune %d -- cf. docs/corpus/archive-coverage-2026-09-22.md\n"
+                  % (n_att, len(deck), n_e1nom + n_pont, n_e1nom, n_pont, n_e1pos,
+                     len(deck) - n_att))
         out.write("REFERENCE EXPLOITABLE: %d/%d -- %s\n"
                   % (usable, len(deck),
                      "colonne desc_%s presente dans toutes les archives" % lang
                      if not col_missing else
                      "⛔ AUCUN arbitrage imprime : desc_%s ABSENTE des archives %s"
                      % (lang, sorted(col_missing))))
-    print("written %s: %d cards, %d flagged, reference %d/%d"
-          % (a.out, len(deck), n_flag, matched[1] + matched[2], len(deck)))
+    print("written %s: %d cards, %d flagged, reference %d/%d "
+          "(confirmees par le nom %d, position seule %d)"
+          % (a.out, len(deck), n_flag, n_att, len(deck), n_e1nom + n_pont, n_e1pos))
 
 
 if __name__ == "__main__":
