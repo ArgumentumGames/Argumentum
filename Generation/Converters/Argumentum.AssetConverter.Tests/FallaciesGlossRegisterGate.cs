@@ -99,7 +99,7 @@ namespace Argumentum.AssetConverter.Tests
 				"658", new Dictionary<string, string>
 				{
 					{ "fr", "Cette affirmation est vraie. — Mais comment le savez-vous ? Je l’ai vérifiée. — Mais comment avez-vous vérifié cette vérification ? Et la vérification de cette vérification, comment l’avez-vous vérifiée ? …" },
-					{ "en", "This statement is true.—But how do you know? I verified it.—But how did you verify that verification? And how did you verify the verification of that verification? …" }, // incises en collées (grain 2, c.5971513525)
+					{ "en", "This statement is true. — But how do you know? I verified it. — But how did you verify that verification? And how did you verify the verification of that verification? …" },
 					{ "ru", "Это утверждение истинно. — Но откуда вы это знаете? Я это проверил. — Но как вы проверили эту проверку? А проверку этой проверки — как вы проверили её? …" },
 					{ "pt", "Esta afirmação é verdadeira. — Mas como você sabe? Eu a verifiquei. — Mas como você verificou essa verificação? E a verificação dessa verificação, como você a verificou? …" },
 					{ "es", "Esta afirmación es verdadera. — Pero ¿cómo lo sabes? La he verificado. — Pero ¿cómo verificaste esa verificación? Y la verificación de esa verificación, ¿cómo la verificaste?…" },
@@ -112,7 +112,7 @@ namespace Argumentum.AssetConverter.Tests
 				"796", new Dictionary<string, string>
 				{
 					{ "fr", "Tous les avocats défendent des clients au tribunal. Ce fruit est un avocat. Donc ce fruit défend des clients au tribunal." },
-					{ "en", "All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court.—“Lawyer” and “avocado” are the same word in French, but its meaning changes: it refers to the legal profession in the first premise and to the fruit in the second. The reasoning therefore actually contains four terms instead of three." }, // incise en collée (grain 2, c.5971513525)
+					{ "en", "All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court. — “Lawyer” and “avocado” are the same word in French, but its meaning changes: it refers to the legal profession in the first premise and to the fruit in the second. The reasoning therefore actually contains four terms instead of three." },
 					{ "ru", "Все адвокаты защищают клиентов в суде. Этот плод — авокадо. Следовательно, этот плод защищает клиентов в суде. — Французское слово «avocat» меняет значение: в первой посылке оно обозначает юридическую профессию, а во второй — плод авокадо. Таким образом, в действительности рассуждение содержит четыре термина вместо трёх." },
 					{ "pt", "Todos os advogados defendem clientes no tribunal. Esta fruta é um abacate. Portanto, esta fruta defende clientes no tribunal. — Em francês, a palavra « avocat » muda de sentido: refere-se à profissão jurídica na primeira premissa e à fruta na segunda. Portanto, o raciocínio contém, na verdade, quatro termos em vez de três." },
 					{ "es", "Todos los abogados defienden a clientes ante los tribunales. Esta fruta es un aguacate. Por lo tanto, esta fruta defiende a clientes ante los tribunales. — «Abogado» y «aguacate» corresponden a la misma palabra en francés, «avocat», que cambia de sentido: profesión jurídica en la primera premisa y fruta en la segunda. Por lo tanto, el razonamiento contiene en realidad cuatro términos en lugar de tres." },

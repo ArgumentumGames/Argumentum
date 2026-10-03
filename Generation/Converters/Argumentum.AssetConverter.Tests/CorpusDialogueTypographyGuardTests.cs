@@ -9,27 +9,30 @@ namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
 	/// Garde de typographie des dialogues et tirets du deck (pool #458, dispatch
-	/// c.5971513525 grain 2 + corrections d'arbitrage) : épingle les 35 cellules
-	/// rétablies pour qu'aucune passe de traduction ou de fusion ne ramène les
-	/// formes aplaties ou les tirets ASCII.
+	/// c.5971513525 grain 2 + corrections d'arbitrage, renvoi c.5974397377) :
+	/// épingle les 31 cellules rétablies pour qu'aucune passe de traduction ou
+	/// de fusion ne ramène les formes aplaties ou les tirets ASCII.
 	/// <list type="bullet">
-	/// <item>Cellules structurelles : 974 aplati en ru/pt/es/ar/fa/zh rétabli en
-	/// 3 lignes comme le FR ; 943 aplati en pt rétabli en 2 lignes ; marqueurs de
-	/// réplique « — » espacé (fr/en/ru/pt/ar/fa), « — » collé (es, usage RAE,
-	/// c.5971513525 pt 2), « —— » double (zh, 破折号) — les colonnes déjà
-	/// conformes (974 en, 813 fr/ar/en/pt) sont épinglées telles quelles.</item>
-	/// <item>813 : découpage en lignes inchangé par langue (décision pt 2),
-	/// marqueurs normalisés (es collé, fa espacé, zh doublé) ; ru 813 nu —
-	/// l'archive imprimée v3 ne porte pas les marques, « — » ajouté en ligne
-	/// comme le FR (pt 3) ; es 943 reçoit sa ponctuation espagnole « —¡…! »
-	/// (pt 4).</item>
-	/// <item>13 tirets ASCII → cadratin espacé : example_ru 51/121/182/726/735/784/
-	/// 844/1388, example_pt et example_ar 1388, desc_ru 989/1398.</item>
-	/// <item>Tirets en collés (incises) : example_en 658/796 « — » → «—».</item>
+	/// <item>Cellules structurelles (17) : 974 aplati en ru/pt/es/ar/fa/zh rétabli
+	/// en 3 lignes comme le FR (×6) ; 943 aplati en pt rétabli en 2 lignes (×7,
+	/// toutes les langues non-fr) ; 813 découpage inchangé par langue, marqueurs
+	/// normalisés (×4 : es/fa/ru/zh). Marqueurs de réplique « — » espacé
+	/// (fr/en/ru/pt/ar/fa), « — » collé (es, usage RAE), « —— » double (zh,
+	/// 破折号). Les colonnes déjà conformes (974 en, 813 fr/ar/en/pt) sont
+	/// épinglées telles quelles.</item>
+	/// <item>12 tirets ASCII → cadratin espacé : example_ru 51/121/182/726/735/
+	/// 784/844/1388, example_pt et example_ar 1388, desc_ru 989/1398.</item>
 	/// <item>Énumérations 784 : desc_en/desc_ar « - » → demi-cadratin « – » ×2.</item>
+	/// <item>RETIRÉS au renvoi (c.5974397377) : example_en 658/796 restaient en
+	/// forme espacée de master — le tiret y suit un point final (changement
+	/// d'interlocuteur / glose), pas une incise ; l'arbitrage initial du collé
+	/// était une erreur d'ai-01, le collé ne se justifie qu'au milieu d'une
+	/// phrase (847/855/1388, non touchés).</item>
 	/// </list>
 	/// Hors périmètre, documenté : les doublons hors deck 1055/1341 (copies de
-	/// 51/121 example_ru, ASCII conservé) relèvent du grain « tirets hors deck ».
+	/// 51/121 example_ru, ASCII conservé) relèvent du grain « tirets hors deck » ;
+	/// les 24 retours à la ligne intra-phrase relèvent d'une PR à part après
+	/// merge (même fichier — pool c.5974403468).
 	/// Le balayage final exige zéro « - » et zéro séparateur aplati sur tout le
 	/// deck, 16 colonnes.
 	/// NB : exprimé en HaveCount(1) + Be, jamais ContainSingle(valeur, parce-que)
@@ -96,12 +99,6 @@ namespace Argumentum.AssetConverter.Tests
 			["1388|example_ar"] = "يبدو أنك متوتر عند تقديم مشروعك — ربما أنت نفسك لا تؤمن به؟",
 			["989|desc_ru"] = "Вы считаете, что другая сторона должна опровергать ваши доводы, а не вы — доказывать ваши.",
 			["1398|desc_ru"] = "Личная атака на собеседника, вне связи с темой дебатов. Цель — дискредитировать его самого и его аргументы одним махом.",
-		};
-
-		private static readonly Dictionary<string, string> EnGlue = new()
-		{
-			["658"] = "This statement is true.—But how do you know? I verified it.—But how did you verify that verification? And how did you verify the verification of that verification? …",
-			["796"] = "All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court.—“Lawyer” and “avocado” are the same word in French, but its meaning changes: it refers to the legal profession in the first premise and to the fruit in the second. The reasoning therefore actually contains four terms instead of three.",
 		};
 
 		/// <summary>813 « vrai Écossais » : découpage par langue conservé (décision c.5971513525 pt 2),
@@ -175,17 +172,6 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void EnGlue_658And796_EmDashClosedUp()
-		{
-			foreach (var (pk, expected) in EnGlue)
-			{
-				var cell = Cell("example_en", pk);
-				cell.Should().Be(expected, "incises en : cadratin collé «—» (norme en), PK {0}.", pk);
-				cell.Should().NotContain(" — ", "l'incise en ne prend pas d'espaces autour du cadratin (PK {0}).", pk);
-			}
-		}
-
-		[Fact]
 		public void DemiCadratin_784_Enumerations_EnDashTwice()
 		{
 			foreach (var column in new[] { "desc_en", "desc_ar" })
@@ -225,59 +211,6 @@ namespace Argumentum.AssetConverter.Tests
 				{
 					cell.Should().NotContain("。-",
 						"le séparateur aplati chinois (point idéographique + tiret) ne doit plus exister ({0}).", column);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Extension review #1735 (c.5972921914) : sur TOUT le corpus (deck et hors deck),
-		/// un saut de ligne dans text_*/desc_*/example_* doit OUVRIR UNE RÉPLIQUE (marqueur
-		/// « — »/« —— »/« - » en fin de ligne précédente ou en tête de la suivante) —
-		/// jamais couper une phrase. Les 24 cellules mesurées ont été jointes (23 ici :
-		/// zh sans espace, ponctuation pleine-largeur ; les autres avec un espace) ;
-		/// la 24e (476 example_fr) appartient au rework #1735 qui y écrit le texte
-		/// de PK 1300 — retirer l'exception dès que #1735 est mergé.
-		/// </summary>
-		private static readonly string[] MidPhraseBreakExceptions =
-		{
-			"476:example_fr", // rework #1735 (de347222) — joint là-bas au texte de PK 1300
-		};
-
-		[Fact]
-		public void AllRows_TextDescExample_LineBreaksOpenAReplyOrNothing()
-		{
-			var columns = new[] { "text", "desc", "example" }
-				.SelectMany(f => new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" }
-					.Select(lang => f + "_" + lang))
-				.ToArray();
-			var pks = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn("PK");
-			foreach (var column in columns)
-			{
-				var values = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn(column);
-				values.Count.Should().Be(pks.Count, "les deux colonnes couvrent les mêmes rangées.");
-				for (var i = 0; i < values.Count; i++)
-				{
-					var cell = values[i] ?? string.Empty;
-					if (!cell.Contains('\n'))
-					{
-						continue;
-					}
-					if (MidPhraseBreakExceptions.Contains(pks[i] + ":" + column))
-					{
-						continue;
-					}
-					var lines = cell.Split('\n');
-					for (var j = 0; j < lines.Length - 1; j++)
-					{
-						var opensReply = lines[j].TrimEnd().EndsWith("—")
-							|| lines[j].TrimEnd().EndsWith("-")
-							|| lines[j + 1].TrimStart().StartsWith("—")
-							|| lines[j + 1].TrimStart().StartsWith("-");
-						opensReply.Should().BeTrue(
-							"PK {0} {1} : le saut de ligne coupe une phrase (joint en review #1735, "
-							+ "c.5972921914) — un \\n n'est légitime qu'entre répliques",
-							pks[i], column);
-					}
 				}
 			}
 		}
