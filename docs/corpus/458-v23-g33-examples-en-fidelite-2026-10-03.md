@@ -4,9 +4,9 @@
 
 Septième et dernier grain de la série des exemples (dispatch c.5968567990 : ㉖ ru, ㉗ zh, ㉘ ar, ㉙ fa, ㉚ pt, ㉛ es, ㉜ en). Deuxième grain avec arbitre imprimé (REFERENCE EXPLOITABLE 157/175) — et comme le pt (㉚), **deux générations** : 16 IDENTIQUE / 123 DIFFERE / ~12 cellules imprimées vides. Verdict deck : **colonne saine** (0 A, 0 M). Mais ce grain fait plus que mesurer la colonne : **il établit, preuves à l'appui et daté au pickaxe, l'origine des jumeaux inter-langues** — la conclusion ㉕ cesse d'être une thèse.
 
-## Synthèse — 1 A / 0 M / 16 rangées observées / 151 ✓ (168 non vides)
+## Synthèse — 0 A / 0 M / 16 rangées observées / 151 ✓ · corrigées (coquilles / forme) : 1 (168 non vides)
 
-> **Erratum d'arbitrage (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525)).** L'asymétrie 673 (idiome « couper la poire en deux » non rendu — cellule IDENTIQUE à l'imprimé) est tranchée **au niveau coquille seulement** : « let's meetup » employait le nom « meetup » comme verbe → **« meet up »** (PR grain 1). L'en imprimé garde son texte ; l'observation d'idiome (calque absent) reste ouverte pour un éventuel grain d'écriture. Verdict courant : **1 A / 0 M / 16 rangées observées / 151 ✓**.
+> **Erratum d'arbitrage (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525) ; requalifié 04/10, review c.5972921914).** L'asymétrie 673 (idiome « couper la poire en deux » non rendu — cellule IDENTIQUE à l'imprimé) est tranchée **au niveau coquille seulement** : « let's meetup » employait le nom « meetup » comme verbe → **« meet up »** (PR grain 1). L'en imprimé garde son texte ; l'observation d'idiome (calque absent) reste ouverte pour un éventuel grain d'écriture. Une coquille d'espacement verbe/adverbe n'est pas un « A » (review #1735) — la colonne reste **0 A / 0 M**. Verdict courant : **0 A / 0 M / 16 rangées observées / 151 ✓ · corrigées (coquilles / forme) : 1 (673)**.
 
 | Verdict | Rangées |
 |---|---:|

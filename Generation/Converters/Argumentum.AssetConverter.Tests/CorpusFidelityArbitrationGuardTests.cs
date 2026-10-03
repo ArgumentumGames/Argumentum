@@ -176,6 +176,12 @@ namespace Argumentum.AssetConverter.Tests
 				"c.5971513525 : خيار (option) est masculin, le démonstratif doit être هذا");
 			cell.Should().NotContain("هذه بالتأكيد خيار",
 				"l'accord fautif هذه بالتأكيد خيار ne doit pas revenir");
+			// review #1735 c.5972921914 : le pronom suffixe suit le démonstratif —
+			// اقتراح (masculin) porte la voyelle hu, pas ha.
+			cell.Should().Contain("اقتراحه",
+				"c.5972921914 : le pronom final suit le masculin خيار — اقتراحها était la forme fautive");
+			cell.Should().NotContain("اقتراحها",
+				"l'accord fautif اقتراحها ne doit pas revenir (review #1735)");
 		}
 
 		[Fact]
@@ -221,13 +227,14 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
-		public void ExampleFr_Pk476_GishGallop_AccidentalLineBreaksJoined()
+		public void ExampleFr_Pk476_GishGallop_TakesThePk1300Text_Arbitrated()
 		{
 			AssertSingleRowCell("example_fr", "476",
-				"Mon adversaire devrait maintenant répondre à mes arguments sur diverses politiques économiques, sociales et environnementales, couvrant les implications à court et à long terme, les impacts sur les personnes vulnérables, populations, considérations géopolitiques et aspects juridiques et éthiques.",
-				"c.5971513525 : les deux sauts de ligne médians étaient accidentels (pas des "
-				+ "marqueurs de réplique — le FR du deck ne casse la ligne qu'entre répliques "
-				+ "« — », cf. 974/943) ; hors deck, joint en une ligne");
+				"Mon adversaire devrait maintenant répondre à mes arguments sur diverses politiques économiques, sociales et environnementales, en tenant compte des implications à court et à long terme, des effets sur les populations vulnérables, des considérations géopolitiques ainsi que des aspects juridiques et éthiques.",
+				"c.5972921914 : la simple jointure laissait « personnes vulnérables, populations » "
+				+ "(mot orphelin devenu élément de liste) — le FR avait traduit les deux morceaux du "
+				+ "retour à la ligne de mise en forme de l'EN. L'arbitrage (c.5971513525) impose le "
+				+ "texte de PK 1300, même exemple, propre ; hors deck.");
 		}
 	}
 }

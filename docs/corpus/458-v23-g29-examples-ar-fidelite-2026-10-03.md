@@ -4,9 +4,9 @@
 
 Troisième grain de la série des exemples (dispatch c.5968567990). Même fait structurel que zh : **`example_ar` ABSENTE de toutes les archives** (REFERENCE EXPLOITABLE 0/175) — pas d'arbitre imprimé. Verdict court : **colonne saine** (0 A, 0 M) — et le grain apporte un **fait structurel neuf : 10 déviations partagées mot à mot avec le zh (㉗)**, qui désignent un ancêtre commun aux deux colonnes.
 
-## Synthèse — 2 A / 0 M / 18 rangées observées / 148 ✓ (168 non vides)
+## Synthèse — 0 A / 0 M / 18 rangées observées / 148 ✓ · corrigées (coquilles / forme) : 2 (168 non vides)
 
-> **Erratum d'arbitrage (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525)).** Les deux coquilles d'accord du démonstratif consignées §4 sont **tranchées et corrigées** (PR grain 1) : 622 « هذا الحديقة » → « هذه الحديقة » (jardin féminin) ; 900 « هذه بالتأكيد خيار » → « هذا بالتأكيد خيار » (option masculine), même famille. L'écart de temps verbal noté sur 900 (« لم أفكر », passé, pour le conditionnel FR) reste une **observation non arbitrée**. Verdict courant : **2 A / 0 M / 18 rangées observées / 148 ✓**.
+> **Erratum d'arbitrage (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525) ; requalifié 04/10, review c.5972921914).** Les deux accords du démonstratif consignés §4 sont **tranchés et corrigés** (PR grain 1) : 622 « هذا الحديقة » → « هذه الحديقة » (jardin féminin) ; 900 « هذه بالتأكيد خيار » → « هذا بالتأكيد خيار » (option masculine), même famille — **et le pronom suffixe de 900 suit le masculin : اقتراحها → اقتراحه** (review #1735). Ce sont des **coquilles d'accord, pas des « A »** : le mécanisme du sophisme est intact sur les deux cartes, le constat « 0 contresens dans les exemples des 8 langues » tient. L'écart de temps verbal noté sur 900 (« لم أفكر », passé, pour le conditionnel FR) reste une **observation non arbitrée**. Verdict courant : **0 A / 0 M / 18 rangées observées / 148 ✓ · corrigées (coquilles / forme) : 2 (622, 900)**.
 
 | Verdict | Rangées |
 |---|---:|
