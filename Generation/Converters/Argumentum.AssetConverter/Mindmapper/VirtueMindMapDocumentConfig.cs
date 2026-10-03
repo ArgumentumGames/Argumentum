@@ -650,147 +650,17 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 
 
+		// #458 jumeau Vertus -- portage de la génération #1700 + #1704 par code partagé
+		// (arbitrage ai-01 c.5961901512). L'ancienne génération (préfixe Substring(0, 3),
+		// candidat unique sans exclusion, écrasement svgNodeToItem[candidate] = item) est
+		// retirée au profit de MindMapSvgItemPairing -- la MÊME implémentation que Fallacies,
+		// jamais une copie divergente (une copie divergente est ce qui a laissé passer #1698).
 		private Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace)
-		{
-			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes = new();
-			var textGroups = svgDoc.Descendants(svgNamespace + "g").Where(g => g.Elements(svgNamespace + "text").Any()).ToList();
-
-			foreach (var item in items)
-			{
-				string title = TitleFunc(item);
-				var matchingGroups = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title)).ToList();
-
-				if (matchingGroups.Any())
-				{
-					var groupedGroups = matchingGroups.GroupBy(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Length);
-					var groups = groupedGroups as IGrouping<int, XElement>[] ?? groupedGroups.ToArray();
-					var minLength = groups.Min(g => g.Key);
-					var minLengthGroups = groups.First(g => g.Key == minLength).ToList();
-
-					itemToSvgNodes[item] = minLengthGroups;
-				}
-				else
-				{
-					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title.Substring(0, 3))).ToList();
-					var closeMatchesMessages = closeMatches.Select(g => string.Join(" ", g.Elements(svgNamespace + "text").Select(t => t.Value))).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
-					Logger.LogProblem($"Could not find Svg node for item {TitleFunc(item)}\nClose matches:\n{closeMatchesMessages}");
-				}
-			}
-
-			return itemToSvgNodes;
-		}
-
+			=> MindMapSvgItemPairing.CollectPossibleSvgNodes(items, svgDoc, svgNamespace, TitleFunc);
 
 		private Dictionary<IMindMapItem, XElement> DisambiguateSvgNodes(
 			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace)
-		{
-			if (!itemToSvgNodes.Any() || !itemToSvgNodes.First().Value.Any())
-			{
-				Logger.LogProblem("No SVG nodes to disambiguate.");
-				return new Dictionary<IMindMapItem, XElement>();
-			}
-
-			var tempNode = itemToSvgNodes.First().Value.First();
-			var allNodesList = tempNode.Document.Descendants(svgNamespace + tempNode.Name.LocalName).ToList();
-			var nodeIndices = allNodesList.Select((n, i) => new { Node = n, Index = i }).ToDictionary(n => n.Node, n => n.Index);
-
-			foreach (var itemToSvgNode in itemToSvgNodes)
-			{
-				foreach (var svgNode in itemToSvgNode.Value)
-				{
-					if (!nodeIndices.ContainsKey(svgNode))
-					{
-						Logger.LogWarning($"SVG node for item {TitleFunc(itemToSvgNode.Key)} not found in document index. It might be a new or detached node.");
-					}
-				}
-			}
-
-			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode = new();
-			Dictionary<XElement, IMindMapItem> svgNodeToItem = new();
-
-			foreach (var pair in itemToSvgNodes)
-			{
-				IMindMapItem item = pair.Key;
-				List<XElement> candidateSvgNodes = pair.Value;
-
-				if (candidateSvgNodes.Count == 1)
-				{
-					var candidate = candidateSvgNodes.First();
-					disambiguatedItemToSvgNode[item] = candidate;
-					svgNodeToItem[candidate] = item;
-				}
-				else
-				{
-					if (string.IsNullOrEmpty(item.DecimalPath) || item.DecimalPath.Length <= 1)
-					{
-						Logger.LogProblem($"Cannot determine parent for item {TitleFunc(item)} - {item.Path}");
-						continue;
-					}
-					string parentDecimalPath = item.DecimalPath.Remove(item.DecimalPath.Length - 1);
-					var parentItemCandidates = items.Where(f => f.DecimalPath == parentDecimalPath).ToArray();
-					if (parentItemCandidates.Length == 0)
-					{
-						Logger.LogProblem($"Parent item not found for {TitleFunc(item)} - {item.Path}");
-						continue;
-					}
-
-					var parentItem = parentItemCandidates.First();
-
-					if (!disambiguatedItemToSvgNode.TryGetValue(parentItem, out var parentSvgNode))
-					{
-						if (itemToSvgNodes.TryGetValue(parentItem, out List<XElement> parentSvgNodes))
-						{
-							if (parentSvgNodes.Count > 1)
-							{
-								Logger.LogProblem($"Could not disambiguate SVG nodes for item {TitleFunc(item)} because its parent {TitleFunc(parentItem)} does not have a single corresponding SVG node.");
-								continue;
-							}
-							parentSvgNode = parentSvgNodes.FirstOrDefault();
-							if (parentSvgNode == null)
-							{
-								Logger.LogProblem($"List of parent SVG nodes for {TitleFunc(parentItem)} is empty.");
-								continue;
-							}
-						}
-						else
-						{
-							Logger.LogProblem($"Could not find parent node from {TitleFunc(item)}");
-							continue;
-						}
-					}
-
-					if (!nodeIndices.TryGetValue(parentSvgNode, out int parentIndex))
-					{
-						Logger.LogProblem($"SVG Node index for parent item: {parentItem.Path}-{TitleFunc(parentItem)} of item {item.Path}-{TitleFunc(item)} not found");
-						continue;
-					}
-					
-					var closestSvgNode = candidateSvgNodes
-						.Where(node => nodeIndices.ContainsKey(node))
-						.OrderBy(node => Math.Abs(nodeIndices[node] - parentIndex))
-						.FirstOrDefault();
-					
-					if (closestSvgNode != null)
-					{
-						disambiguatedItemToSvgNode[item] = closestSvgNode;
-						if (svgNodeToItem.TryGetValue(closestSvgNode, out var existingItem))
-						{
-							Logger.LogProblem($"Conflicting attribution of SVG node to items: {item.Path}-{TitleFunc(item)} and {existingItem.Path}-{TitleFunc(existingItem)}");
-						}
-						else
-						{
-							svgNodeToItem[closestSvgNode] = item;
-						}
-					}
-					else
-					{
-						Logger.LogWarning($"Could not find a valid matching SVG node for item {TitleFunc(item)} among candidates.");
-					}
-				}
-			}
-
-			return disambiguatedItemToSvgNode;
-		}
+			=> MindMapSvgItemPairing.DisambiguateSvgNodes(itemToSvgNodes, items, svgNamespace, TitleFunc);
 
 
 		private void UpdateSvgMatch(SVGFreemindMap svgMap, XElement match, IMindMapItem item, XNamespace svgNamespace,
