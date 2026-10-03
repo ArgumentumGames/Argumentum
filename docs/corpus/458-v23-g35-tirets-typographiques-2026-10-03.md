@@ -4,6 +4,8 @@
 **Dispatch** : c.5968567990 item 7 — « tirets typographiques — mesure 0 écriture (106 lignes CSV " - "), compter par colonne × langue, correction PR à part ».
 **Écritures CSV : 0** (`git status --porcelain Cards/` vide).
 
+> **Erratum d'exécution (03/10, grain 2 du dispatch c.5971513525, PR de typographie des dialogues).** Le volet **deck** de cet inventaire est exécuté : 29 cellules — 974 rétabli en 3 lignes (ru/pt/es/ar/fa `— ` espacé, zh `——`) et 943 en 2 lignes (pt rétabli, marqueurs échangés sur en/ru/es/ar/fa/zh) ; 13 tirets ASCII → cadratin espacé (example_ru 51/121/182/726/735/784/844/1388, example_pt 1388, example_ar 1388, desc_ru 989/1398) ; en 658/796 cadratin collé ; 784 desc_en/desc_ar énumérations en demi-cadratin ` – `. ⚠️ La worklist mesurait example_ru à 10 : **361 était déjà soldé par #1725** (tiret long arbitré c.5968567847) — l'arbre d'exécution en portait 9. Garde : `CorpusDialogueTypographyGuardTests` (8 faits, dont un balayage zéro ` - `/`.-` sur les 16 colonnes du deck). Restent pour le grain « hors-deck » : les 84 rangées non imprimées (dont les doublons 1055/1341 de 51/121 example_ru, ASCII conservé volontairement) et les 37 cellules Remarques. La mesure ci-dessous demeure l'état pré-exécution.
+
 ---
 
 ## 1. Réconciliation du chiffre du dispatch (106)
