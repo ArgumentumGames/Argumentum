@@ -4,18 +4,20 @@
 
 Deuxième grain de la série ⑳-㉕. Le grain ⑳ (russe) a établi la méthode ; ce grain la porte sur `zh` — et **le portage a cassé deux choses**, toutes deux réparées ici et mesurées.
 
-## Synthèse — 0 A / 0 M / 20 C-note / 155 ✓ (175)
+## Synthèse — 1 A / 0 M / 19 C-note / 155 ✓ (175)
+
+> **Erratum d'arbitrage (03/10, ai-01, c.5964429559).** Ce dossier a d'abord été publié **0 A / 0 M / 20 C-note**. PK 989 — classée C-note 2 avec sa frontière écrite — est **tranchée en A** : le raisonnement de frontière était juste, c'est la décision qui change. La correction (un caractère, 为真 → 为假, CSV seul) vit dans la PR dédiée **#1714**. Verdict courant : **1 A / 0 M / 19 C-note / 155 ✓**.
 
 | Verdict | Rangées |
 |---|---:|
-| **A — sens faux ou inversé** | **0** |
+| **A — sens faux ou inversé** | **1** (PK 989, arbitrage ai-01) |
 | **M — contenu manquant ou ajouté** | **0** |
-| **C-note — observation consignée, aucune écriture proposée** | 20 |
+| **C-note — observation consignée, aucune écriture proposée** | 19 |
 | **✓ — fidèle** | 155 |
 
 **Les 175 rangées ont été lues, aucun échantillonnage.**
 
-⚠️ **Ce zéro est plus faible que celui du grain ⑳, et il faut le dire avant de le lire.** Le russe disposait de 168 références imprimées *exploitables* ; le chinois en a **zéro** (section suivante). Le verdict repose donc sur une lecture simple, sans contrôle croisé imprimé — c'est un cran de moins dans l'échelle de preuve, et aucun chiffre ci-dessus ne le rattrape.
+⚠️ **Ce verdict est plus faible que celui du grain ⑳, et il faut le dire avant de le lire.** Le russe disposait de 168 références imprimées *exploitables* ; le chinois en a **zéro** (section suivante). Le verdict repose donc sur une lecture simple, sans contrôle croisé imprimé — c'est un cran de moins dans l'échelle de preuve, et aucun chiffre ci-dessus ne le rattrape. C'est précisément cette lecture sans filet qui a produit le **seul A des grains ⑳-㉑** — et il a fallu l'arbitrage d'ai-01 pour le trancher.
 
 ## L'arbitre imprimé est structurellement absent — et l'instrument le cachait
 
@@ -43,15 +45,24 @@ La série repose sur une règle du pool : *une traduction qui retrouve l'imprim�
 
 ## A — écarts réels
 
-**Aucun.** Aucune des 175 définitions chinoises ne dit le contraire de sa source.
+**PK 989 — « Renverser la charge de la preuve » : la subordonnée inverse la direction de la charge.** Publiée C-note 2, **tranchée A par ai-01** (c.5964429559).
 
-Le candidat le plus proche est traité en C-note 2 ci-dessous (PK 989), avec la raison pour laquelle il n'est **pas** classé A.
+| | Texte |
+|---|---|
+| FR (courant) | *Vous estimez que c'est à la partie adverse de démontrer que votre position est **fausse**, au lieu de la justifier vous-même.* |
+| EN (imprimé) | *Assuming a proposition to be true until proved **false** or vice-versa.* |
+| ZH (fautif) | *认为证明自己的主张**为真**是对方的责任，而不是自己证明其正确性。* — c'est à l'adversaire de prouver votre position **vraie** |
+| ZH (corrigé, #1714) | *认为证明自己的主张**为假**是对方的责任，而不是自己证明其正确性。* |
+
+**Pourquoi A — et pourquoi la frontière avait d'abord arrêté le classement ici.** La passe de mesure avait lu la contradiction (les deux membres de l'opposition disaient tous deux « prouver vrai ») et l'avait consignée en C-note au motif que *le sujet de la carte survit* : la charge est bien renversée sur l'autre partie. L'arbitrage tranche l'inverse : **la proposition qui porte la définition est inversée**, les cinq autres langues traduites disent toutes « fausse » (ru « опровергать », pt « demonstrar a invalidez », ar « إثبات عدم صحة », es « hasta que se demuestre lo contrario », en « until proved false »), et une définition imprimée qui se contredit se voit en moins de 30 secondes par un lecteur chinois — que le sujet survive ne suffit pas. **Le raisonnement de frontière est conservé comme enseignement** : c'est exactement le genre de ligne qu'un non-locuteur ne doit pas trancher seul ; la consigner avec sa frontière écrite était la bonne action, le verdict appartenait à l'arbitre.
+
+**Propagation.** La phrase fautive est aussi portée par `Cards/Fallacies/Mindmaps/zh/Fallacies_zh.content.svg` et `Fallacies_zh.html` (mesuré par `git grep` au dispatch). **#1714 corrige le CSV seul** — la re-dérivation n° 3 propage, ces fichiers ne se corrigent pas à la main.
 
 ## M — contenu manquant ou ajouté
 
 **Aucun.** Aucune définition chinoise ne perd ni n'ajoute de contenu substantiel par rapport à sa source.
 
-## C-notes — 20 observations, aucune écriture proposée
+## C-notes — 19 observations, aucune écriture proposée
 
 ### 1. Le chinois reproduit l'imprimé, le français a été réécrit depuis (17)
 
@@ -81,21 +92,7 @@ Le cas majoritaire, et de loin. Sur ces 17 cartes, le chinois correspond **au mo
 
 ⭐ **PK 844 est le témoin mécanique de toute la catégorie** : le français courant ne contient **aucun** jeton `A` ni `B`, l'anglais imprimé et le chinois les portent tous deux. Un sinogramme ne fabrique pas une lettre latine isolée : le chinois n'a pas pu être traduit du français **actuel**. (Voir T2 — cette observation est plus forte que l'hypothèse qu'elle a d'abord semblé servir.)
 
-### 2. PK 989 — « Renverser la charge de la preuve » : la subordonnée est inversée
-
-**Le seul cas de la passe où un lecteur peut légitimement voir un A**, et la raison pour laquelle il est classé C-note est donnée ci-dessous.
-
-| | Texte |
-|---|---|
-| FR (courant) | *Vous estimez que c'est à la partie adverse de démontrer que votre position est **fausse**, au lieu de la justifier vous-même.* |
-| EN (imprimé) | *Assuming a proposition to be true until proved **false** or vice-versa.* |
-| ZH | *认为证明自己的主张**为真**是对方的责任，而不是自己证明其正确性。* |
-
-Le français et l'anglais imprimé disent tous deux que la charge retombe sur l'adversaire pour **réfuter**. Le chinois dit que c'est à l'adversaire de **prouver** — soit l'inverse de l'obligation décrite.
-
-**Pourquoi C-note et non A.** Le sujet de la carte — *la charge de la preuve est renversée sur l'autre partie* — survit intact dans la phrase chinoise ; c'est la **direction** de la preuve qui est embrouillée, au point que la phrase se contredit (les deux membres de l'opposition disent tous deux « prouver vrai »). Une inversion de subordonnée sur un sujet préservé ne vaut pas « sens faux ou inversé » au sens du pool. **Mais la frontière est mince et explicite** : si un relecteur natif juge que la subordonnée porte le verdict, cette ligne passe en **A**, et c'est la seule des 175 dans ce cas.
-
-### 3. PK 729 — « Négation de l'antécédent » : déplacement de notion + ajout explicatif
+### 2. PK 729 — « Négation de l'antécédent » : déplacement de notion + ajout explicatif
 
 | | Texte |
 |---|---|
@@ -105,11 +102,11 @@ Le français et l'anglais imprimé disent tous deux que la charge retombe sur l'
 
 « condition suffisante » devient « cause possible » (可能原因), et le chinois **ajoute** une glose (« confondant cause et condition nécessaire »). La carte s'appelle « négation de l'antécédent » : « cause possible » décrit bien l'antécédent, donc le sens tient. Consigné pour l'ajout, pas pour la notion.
 
-### 4. PK 134 — « Sophisme ludique » : un connecteur change de nature
+### 3. PK 134 — « Sophisme ludique » : un connecteur change de nature
 
 FR : « des modèles simplistes **qui** négligent leur complexité réelle » (relative). ZH : 使用简单化的模型**或**忽略了真正的复杂性 (« **ou** ignorant… »). Le lien logique passe de la caractérisation à l'alternative. Écart mineur, consigné.
 
-### 5. Observations transverses
+### 4. Observations transverses
 
 **T1 — Les écrans mécaniques n'ont, là encore, trouvé aucun défaut.** Compteur : 47 drapeaux sur 175 (puis 48 après réparation, cf. ci-dessous), **0 défaut réel derrière**.
 
@@ -134,7 +131,7 @@ FR : « des modèles simplistes **qui** négligent leur complexité réelle » (
 
 ⚠️ Limite nommée : l'écran attrape les troncatures des cellules **longues** et laisse passer celles des cellules courtes (à 50 %, 71 cellules échappent). Il n'est pas un filet complet ; il est strictement meilleur que rien.
 
-### 6. T2 — D'où vient le chinois ? (**SUPPOSÉ**, et deux mesures se contredisent)
+### 5. T2 — D'où vient le chinois ? (**SUPPOSÉ**, et deux mesures se contredisent)
 
 La catégorie 1 montre que le chinois ne dérive pas du français **courant**. L'hypothèse naturelle est alors : le chinois dérive de l'**anglais imprimé**. **Deux mesures indépendantes la testent, et elles ne disent pas la même chose.**
 
@@ -176,7 +173,7 @@ Ces deux contrôles tournent dans `--self-test`, avec les contrôles (a) cellule
 - **Que les écrans corroborent le zéro.** `POLARITY` : 0 défaut réel sur 47 drapeaux. `LENDEV` : 1 levée, 0 défaut. Le contresens planté sort `FLAGS: -`.
 - **Que le nouvel écran de contenu soit complet** : il manque les troncatures de cellules courtes (71 non détectées sur 175 à 50 % de troncature).
 - **Rien sur** les 7 cartes sans aucune archive (PK 105, 362, 492, 1020, 1092, 1120, 1357), les 4 autres langues de la série (㉒ `ar`, ㉓ `fa`, ㉔ `pt`+`es`, ㉕ `en`), les champs `example_<lang>` / `link_<lang>`, ni les **1233 rangées hors deck**.
-- **Aucune écriture n'a eu lieu, et aucune n'est proposée.** Les 20 C-notes sont des observations ; l'arbitrage revient à ai-01.
+- **Aucune écriture n'a eu lieu lors de la mesure, et la seule décidée l'a été par l'arbitre** : la correction de PK 989 (#1714, un caractère) suit l'arbitrage d'ai-01, elle n'est pas une proposition de la lane. Les 19 C-notes restent des observations ; l'arbitrage revient à ai-01.
 
 ## Reproductibilité
 
