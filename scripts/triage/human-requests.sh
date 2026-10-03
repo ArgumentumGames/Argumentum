@@ -28,8 +28,8 @@
 #   C. issue OUVERTE sans bannière d'agent                      → le nouveau sujet
 #
 # Usage :
-#   ./human-requests.sh [SINCE_ISO]     # défaut : il y a 26 h
-#   ./human-requests.sh --self-test     # contrôle inverse permanent (CI)
+#   ./human-requests.sh [SINCE_ISO [UNTIL_ISO]]   # défaut : il y a 26 h, sans borne haute
+#   ./human-requests.sh --self-test               # contrôle inverse permanent (CI)
 set -uo pipefail
 
 REPO="${TRIAGE_REPO:-ArgumentumGames/Argumentum}"
@@ -55,7 +55,14 @@ HOUSEKEEPING='Superseded|Closing in favor|Clos : le DoD|Sans objet|Dispatché|Re
 # coordinateur. Un nom de machine NU (ex. « @myia-ai-01 » en prose) ne matche
 # PAS : c'est le contrôle inverse du self-test (demande humaine #802 26/08 qui
 # mentionne une machine reste vue par le filet A).
-AGENT_BANNER='\[(myia-)?(ai-01|po-20[0-9]{2})[^\]]*\]|\(worker lane[,)]|Coordinator ai-01'
+# ⚠️ Pied italique (03/10, pool #458 item 5) : les corps du cluster signent
+# désormais d'un pied « *po-2024* » / « *ai-01* » / « *myia-web2* » (PR bodies,
+# commentaires de session). Incident réel #1677 c.5917959959 (30/09) : rapport
+# court, sans crochet ni « (worker lane », capté par le filet A — son
+# « (rebase sur `3bd84bc1`) » a fait rougir le self-test. Le pied ASTÉRISQUÉ
+# matche donc la bannière ; le nom nu SANS astérisques ne matche toujours pas
+# (le faux négatif reste le sens dangereux).
+AGENT_BANNER='\[(myia-)?(ai-01|po-20[0-9]{2})[^\]]*\]|\(worker lane[,)]|Coordinator ai-01|\*(ai-01|po-20[0-9]{2}|myia-web2)\*'
 
 # Lit un endpoint REST et écrit le JSON sur stdout. rc=1 + cri sur stderr si
 # l'appel échoue ou ne rend pas du JSON. ⛔ Jamais de `2>/dev/null` ici : c'est
@@ -75,7 +82,13 @@ fetch() {
 }
 
 scan() {
-  local since="$1"
+  # UNTIL facultatif : borne HAUTE de la fenêtre, côté client (l'API ne sait
+  # fenêtrer que par `since`). Vide = sans borne (comportement de production,
+  # « dernières 26 h »). Le self-test passe une borne pour FIGER son jeu
+  # d'entrées — sans elle, chaque commentaire/issue créé depuis entre dans la
+  # fenêtre et le test dérive (03/10 : filet A rougissant sur des rapports
+  # d'agent postérieurs aux faits qu'il prétend couvrir).
+  local since="$1" until="${2:-}"
   local comments issues
   # Assignation sur sa propre ligne : `local x="$(cmd)"` rendrait le rc de
   # `local`, pas celui de la commande — la garde ne verrait jamais l'échec.
@@ -85,15 +98,17 @@ scan() {
   echo "### Filet A — demandes brèves (<${MAXLEN} car., hors ménage d'agent)"
   # Le tri se fait DANS jq : grep filtre des lignes, or un enregistrement en fait
   # deux — un grep -v laissait l'en-tête orphelin de la ligne rejetée.
-  jq -r --arg hk "$HOUSEKEEPING" --arg ab "$AGENT_BANNER" '.[]|select(.user.login|test("dependabot")|not)
+  jq -r --arg hk "$HOUSEKEEPING" --arg ab "$AGENT_BANNER" --arg u "$until" '.[]|select(.user.login|test("dependabot")|not)
              |select(.body|length < '"$MAXLEN"')
+             |select($u == "" or .created_at < $u)
              |select(.body|test($hk) or test($ab)|not)
              |"  #\(.issue_url|split("/")|last) \(.created_at|.[0:16]) <\(.html_url)>
     \(.body|gsub("
 ";" "))"' <<<"$comments" | grep . || echo "  (aucune)"
 
   echo "### Filet B — commentaires adressés à un agent (toute longueur)"
-  jq -r '.[]|select(.body|test("@myia-(ai-01|po-20[0-9]{2})"))
+  jq -r --arg u "$until" '.[]|select($u == "" or .created_at < $u)
+             |select(.body|test("@myia-(ai-01|po-20[0-9]{2})"))
              |"  #\(.issue_url|split("/")|last) \(.created_at|.[0:16]) <\(.html_url)>\n    \(.body|gsub("\n";" ")|.[0:300])"' \
     <<<"$comments" | grep . || echo "  (aucun)"
 
@@ -108,10 +123,14 @@ scan() {
   # est remonté quelle que soit la longueur.
   # ⚠️ REST et non `gh issue list` : cet endpoint mêle issues et PR, d'où le
   # `select(.pull_request==null)` — une PR n'est pas une demande humaine.
-  jq -r -n --arg s "$since" --arg cl "$CLUSTER_LOGINS" '[inputs]|add
+  # ⚠️ Fenêtre AVANT la tranche .[0:60] (03/10) : la tranche sur données non
+  # fenêtrées glisse au fil des créations — #1293 finirait par en sortir et le
+  # self-test rougirait pour rien. Fenêtrer d'abord fige le jeu candidat.
+  jq -r -n --arg s "$since" --arg u "$until" --arg cl "$CLUSTER_LOGINS" '[inputs]|add
              |($cl|split(",")) as $cluster
-             |[.[]|select(.pull_request==null)]|.[0:60]|.[]|. as $it
-             |select($it.created_at > $s)
+             |[.[]|select(.pull_request==null)]
+             |map(select(.created_at > $s and ($u == "" or .created_at < $u)))
+             |.[0:60]|.[]|. as $it
              |select(($it.body // "")|ascii_downcase|test("agent `myia|coordinator ai-01|⚠️ agent|ouverte par l.agent")|not)
              |select((($cluster|index($it.user.login))==null) or ((($it.body // "")|length) < 1200))
              |"  #\($it.number) \($it.created_at|.[0:16]) [\($it.user.login)] \($it.title)\n    \($it.html_url)"' \
@@ -119,11 +138,12 @@ scan() {
 }
 
 self_test() {
-  # Fenêtre figée d'août 2026 : deux demandes humaines connues sur #802
-  # (« Revue du deck tarot anglais », « on a acté avec Thomas et Adeline »).
-  # L'organe doit les VOIR, et doit REJETER le ménage d'agent de la même fenêtre.
+  # Fenêtre FIGÉE des deux côtés (03/10) : les deux demandes humaines connues
+  # de #802 (26/08) et l'issue externe #1293 (05/09, 2600 car.) — tout ce qui
+  # est créé après le 06/09 n'entre JAMAIS dans ce test, sinon chaque rapport
+  # d'agent récent le fait dériver (rouge du 30/09 : #1677, filet A).
   local out rc=0
-  out="$(scan 2026-08-26T14:00:00Z)"
+  out="$(scan 2026-08-26T14:00:00Z 2026-09-06T00:00:00Z)"
   grep -q "Revue du deck tarot anglais"      <<<"$out" || { echo "FAIL: demande humaine brève manquée"; rc=1; }
   grep -q "on a acté avec Thomas et Adeline" <<<"$out" || { echo "FAIL: demande humaine adressée manquée"; rc=1; }
   # contrôle inverse : le filet A ne doit pas ramasser le ménage d'agent
@@ -144,6 +164,22 @@ self_test() {
     || { echo "FAIL: bannière agent ne matche pas la forme étendue « (worker lane, …) »"; rc=1; }
   grep -qE "$AGENT_BANNER" <<<"— po-2023 (worker lane) tick :41" \
     || { echo "FAIL: bannière agent ne matche plus la forme fermée « (worker lane) »"; rc=1; }
+  # Contrôle du pied italique (03/10) — l'incident réel : #1677 c.5917959959
+  # (30/09), rapport court sans crochet ni « (worker lane », signé « *po-2024* »,
+  # capté par le filet A dont il a fait rougir ce self-test. Le pied ASTÉRISQUÉ
+  # doit matcher ; le nom nu SANS astérisques ne doit PAS (faux négatif = le
+  # sens dangereux : une demande humaine qui cite une lane en prose reste vue).
+  grep -qE "$AGENT_BANNER" <<<'## Nouvelle tête (rebase sur abc123) — les deux BOM retirés, le diff se réduit aux 2 fichiers.
+
+*po-2024*' \
+    || { echo "FAIL: pied de signature « *po-2024* » non reconnu comme bannière"; rc=1; }
+  grep -qE "$AGENT_BANNER" <<<"signé po-2024 en prose, sans astérisques" \
+    && { echo "FAIL: nom de lane NU (sans astérisques) capté comme bannière"; rc=1; }
+  # Contrôle de la borne haute (03/10) : aucune ligne d'en-tête du scan ne doit
+  # porter une date postérieure à UNTIL — si cette assertion rougit, la fenêtre
+  # s'est rouverte côté droit et le test dérive à nouveau avec le temps.
+  grep -qE '^  #[0-9]+ 2026-(09-0[6-9]|09-[12][0-9]|10-[0-9]{2})T' <<<"$out" \
+    && { echo "FAIL: la fenêtre du self-test n'est pas bornée côté droit (entrée postérieure au 06/09 visible)"; rc=1; }
   # Contrôle inverse ajouté le 07/09 — la panne que les deux précédents ne
   # voyaient pas. #1293 (auteur externe `jsboigeEpita`, 2600 caractères, sourcé)
   # est resté 44 h sans réponse pendant que l'organe rendait vert : le filet C
@@ -159,12 +195,12 @@ self_test() {
   dead="$(REPO=ArgumentumGames/__triage_selftest_no_such_repo__ scan 2026-08-26T14:00:00Z 2>&1)"
   grep -q "ORGANE AVEUGLE" <<<"$dead" || { echo "FAIL: une panne d'API se déguise en backlog propre"; rc=1; }
   grep -q "(aucune)"       <<<"$dead" && { echo "FAIL: une panne d'API rend encore '(aucune)'"; rc=1; }
-  [ $rc -eq 0 ] && echo "OK — l'organe voit les 3 demandes humaines, rejette le ménage d'agent, et crie quand l'API tombe"
+  [ $rc -eq 0 ] && echo "OK — l'organe voit les 3 demandes humaines, rejette le ménage d'agent (crochets, worker lane, pied italique), fenêtre figée, et crie quand l'API tombe"
   return $rc
 }
 
 case "${1:-}" in
   --self-test) self_test ;;
   "")          scan "$(date -u -d '26 hours ago' +%Y-%m-%dT%H:%M:%SZ)" ;;
-  *)           scan "$1" ;;
+  *)           scan "$1" "${2:-}" ;;
 esac
