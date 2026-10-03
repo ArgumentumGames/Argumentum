@@ -228,5 +228,58 @@ namespace Argumentum.AssetConverter.Tests
 				}
 			}
 		}
+
+		/// <summary>
+		/// Extension review #1735 (c.5972921914) : sur TOUT le corpus (deck et hors deck),
+		/// un saut de ligne dans text_*/desc_*/example_* doit OUVRIR UNE RÉPLIQUE (marqueur
+		/// « — »/« —— »/« - » en fin de ligne précédente ou en tête de la suivante) —
+		/// jamais couper une phrase. Les 24 cellules mesurées ont été jointes (23 ici :
+		/// zh sans espace, ponctuation pleine-largeur ; les autres avec un espace) ;
+		/// la 24e (476 example_fr) appartient au rework #1735 qui y écrit le texte
+		/// de PK 1300 — retirer l'exception dès que #1735 est mergé.
+		/// </summary>
+		private static readonly string[] MidPhraseBreakExceptions =
+		{
+			"476:example_fr", // rework #1735 (de347222) — joint là-bas au texte de PK 1300
+		};
+
+		[Fact]
+		public void AllRows_TextDescExample_LineBreaksOpenAReplyOrNothing()
+		{
+			var columns = new[] { "text", "desc", "example" }
+				.SelectMany(f => new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" }
+					.Select(lang => f + "_" + lang))
+				.ToArray();
+			var pks = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn("PK");
+			foreach (var column in columns)
+			{
+				var values = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn(column);
+				values.Count.Should().Be(pks.Count, "les deux colonnes couvrent les mêmes rangées.");
+				for (var i = 0; i < values.Count; i++)
+				{
+					var cell = values[i] ?? string.Empty;
+					if (!cell.Contains('\n'))
+					{
+						continue;
+					}
+					if (MidPhraseBreakExceptions.Contains(pks[i] + ":" + column))
+					{
+						continue;
+					}
+					var lines = cell.Split('\n');
+					for (var j = 0; j < lines.Length - 1; j++)
+					{
+						var opensReply = lines[j].TrimEnd().EndsWith("—")
+							|| lines[j].TrimEnd().EndsWith("-")
+							|| lines[j + 1].TrimStart().StartsWith("—")
+							|| lines[j + 1].TrimStart().StartsWith("-");
+						opensReply.Should().BeTrue(
+							"PK {0} {1} : le saut de ligne coupe une phrase (joint en review #1735, "
+							+ "c.5972921914) — un \\n n'est légitime qu'entre répliques",
+							pks[i], column);
+					}
+				}
+			}
+		}
 	}
 }
