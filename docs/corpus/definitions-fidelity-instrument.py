@@ -64,6 +64,12 @@ BRIDGE_PY = os.path.join(HERE, "archive-bridge-instrument.py")
 # cellules) ajouté : « négation détectée » passe de 130/175 à 78/175, POLARITY de 95
 # à 45. Limite qui RESTE : ما homophone (négation vs pronom indéfini « سلوكًا ما »)
 # est indécidable par frontières -- l'écran reste une priorité de lecture, pas un verdict.
+#
+# ⚠️ Farsi (grain ㉓, 03/10) : même défaut de sous-chaînes (نه à l'intérieur de خانه,
+# 42 occurrences) -- frontières posées : négation « détectée » 64/175 → 28/175,
+# POLARITY 57 → 29. Le ZWNJ (U+200C, non-\w) CRÉE la frontière de \bنمی\b : les 8
+# نمی du corpus sont toutes suivies de ZWNJ (mesuré, 0 attachée) -- une forme
+# attachée sans ZWNJ (نمیخواهم) serait ratée, limite nommée.
 NEG_MARKERS = {
     "fr": r"(?:\bne\b|\bn'|\bpas\b|\bjamais\b|\baucun|\bsans\b|\brien\b|\bnon\b)",
     "en": r"(?:\bnot\b|\bno\b|\bnever\b|\bnone\b|\bwithout\b|\bnothing\b|\bnor\b)",
@@ -73,7 +79,7 @@ NEG_MARKERS = {
     # Écritures sans séparateur de mot : recherche de sous-chaîne, pas de `\b`.
     "zh": r"(?:不|没|無|无|非|未|別|别)",
     "ar": r"(?:\bلا\b|\bلن\b|\bما\b|\bليس(?:ت)?\b|\bغير\b|\bبدون\b|\bدون\b)",
-    "fa": r"(?:نه|نیست|نیستم|بدون|هیچ|نمی)",
+    "fa": r"(?:\bنه\b|\bنیست(?:یم)?\b|\bبدون\b|\bهیچ\b|\bنمی\b)",
 }
 NEG_FR = re.compile(NEG_MARKERS["fr"], re.I)
 
