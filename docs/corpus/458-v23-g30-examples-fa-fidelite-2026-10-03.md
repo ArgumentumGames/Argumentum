@@ -45,6 +45,8 @@ Quatrième grain de la série des exemples (dispatch c.5968567990). Même fait s
 
 Lecture : la colonne fa descend du **même ancêtre commun** que zh et ar (six déviations profondes partagées), mais **trois cellules ont été corrigées** quelque part dans sa chaîne — ou n'ont jamais hérité ces trois retouches. La cause n'est pas établie (l'ancêtre n'a pas été relu pour ce grain). Conséquence pratique inchangée : **toute arbitration sur les six triples et sur 699 doit trancher les langues ensemble**.
 
+*(Erratum 03/10, grain ㉚-pt : la mesure portugaise établit que **PK 699 est restructuré en zh, fa ET pt** (ar fidèle) — « avec zh seul » ci-dessus devient « avec zh et pt » ; et **pt dévie avec zh+ar sur 154 et 595** — le contre-exemple fa sur ces deux PK reste entier (79 : pt fidèle aussi, identique à l'imprimé). Les verdicts de ce dossier sur fa sont inchangés.)*
+
 ## Drapeaux — 51, tous lus
 
 - **36 `POLARITY`** : **parité respectée** (نمی/نباید/نگفتم… vs négations lexicalisées FR — le détecteur compte des caractères, pas des polarités ; même famille de FP que zh et ar).
