@@ -9,23 +9,29 @@ namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
 	/// Garde de typographie des dialogues et tirets du deck (pool #458, dispatch
-	/// c.5971513525 grain 2) : épingle les 29 cellules rétablies pour qu'aucune passe
-	/// de traduction ou de fusion ne ramène les formes aplaties ou les tirets ASCII.
+	/// c.5971513525 grain 2 + corrections d'arbitrage) : épingle les 35 cellules
+	/// rétablies pour qu'aucune passe de traduction ou de fusion ne ramène les
+	/// formes aplaties ou les tirets ASCII.
 	/// <list type="bullet">
-	/// <item>13 cellules structurelles : 974 aplati en ru/pt/es/ar/fa/zh rétabli en
+	/// <item>Cellules structurelles : 974 aplati en ru/pt/es/ar/fa/zh rétabli en
 	/// 3 lignes comme le FR ; 943 aplati en pt rétabli en 2 lignes ; marqueurs de
-	/// réplique « — » espacé (en/ru/pt/es/ar/fa) et « —— » double (zh, 破折号) — la
-	/// colonne en 974, déjà conforme, est épinglée telle quelle (référence).</item>
+	/// réplique « — » espacé (fr/en/ru/pt/ar/fa), « — » collé (es, usage RAE,
+	/// c.5971513525 pt 2), « —— » double (zh, 破折号) — les colonnes déjà
+	/// conformes (974 en, 813 fr/ar/en/pt) sont épinglées telles quelles.</item>
+	/// <item>813 : découpage en lignes inchangé par langue (décision pt 2),
+	/// marqueurs normalisés (es collé, fa espacé, zh doublé) ; ru 813 nu —
+	/// l'archive imprimée v3 ne porte pas les marques, « — » ajouté en ligne
+	/// comme le FR (pt 3) ; es 943 reçoit sa ponctuation espagnole « —¡…! »
+	/// (pt 4).</item>
 	/// <item>13 tirets ASCII → cadratin espacé : example_ru 51/121/182/726/735/784/
 	/// 844/1388, example_pt et example_ar 1388, desc_ru 989/1398.</item>
 	/// <item>Tirets en collés (incises) : example_en 658/796 « — » → «—».</item>
 	/// <item>Énumérations 784 : desc_en/desc_ar « - » → demi-cadratin « – » ×2.</item>
 	/// </list>
-	/// Hors périmètre, documenté : 813 es/fa/zh gardent leurs préfixes de ligne
-	/// « - » (le FR 813 est monoligne — structure divergente non arbitrée) ; les
-	/// doublons hors deck 1055/1341 (copies de 51/121 example_ru, ASCII conservé)
-	/// relèvent du grain « tirets hors deck ». Le balayage final exige zéro
-	/// « - » et zéro séparateur aplati sur tout le deck, 16 colonnes.
+	/// Hors périmètre, documenté : les doublons hors deck 1055/1341 (copies de
+	/// 51/121 example_ru, ASCII conservé) relèvent du grain « tirets hors deck ».
+	/// Le balayage final exige zéro « - » et zéro séparateur aplati sur tout le
+	/// deck, 16 colonnes.
 	/// NB : exprimé en HaveCount(1) + Be, jamais ContainSingle(valeur, parce-que)
 	/// (mémoire FluentassertionsContainSingleStringVacuous).
 	/// </summary>
@@ -55,7 +61,7 @@ namespace Argumentum.AssetConverter.Tests
 			["en"] = "— You don't know how to drive.\n— But I have my driver's license!\n— Yes, but you've never been able to parallel park properly...",
 			["ru"] = "— Ты не умеешь водить.\n— Но у меня есть водительские права!\n— Да, но ты никогда не мог правильно парковаться.",
 			["pt"] = "— Você não sabe dirigir.\n— Mas eu tenho minha carteira de motorista!\n— Sim, mas você nunca soube estacionar direito...",
-			["es"] = "— No sabes conducir.\n— Pero tengo mi carnet de conducir.\n— Sí, pero nunca has sabido aparcar en paralelo correctamente...",
+			["es"] = "—No sabes conducir.\n—Pero tengo mi carnet de conducir.\n—Sí, pero nunca has sabido aparcar en paralelo correctamente...",
 			["ar"] = "— لا تعرف كيف تقود السيارة.\n— ولكن لدي رخصة قيادة!\n— نعم، لكنك لم تستطع أبدًا ركن السيارة بشكل متوازي بشكل صحيح...",
 			["fa"] = "— تو رانندگی بلد نیستی.\n— اما من گواهی‌نامه رانندگی دارم!\n— بله، اما تو هیچ‌وقت نتوانسته‌ای به درستی پارک دوبل کنی...",
 			["zh"] = "——你不会开车。\n——但我有驾照！\n——是的，但你从来没有能够正确地平行停车……",
@@ -66,7 +72,7 @@ namespace Argumentum.AssetConverter.Tests
 			["en"] = "— You said you found this movie dazzling.\n— Dazzling in its stupidity!",
 			["ru"] = "— Ты сказал, что нашел этот фильм потрясающим.\n— Потрясающим своей глупостью!",
 			["pt"] = "— Você me disse que tinha achado o filme deslumbrante...\n— Deslumbrante de tão estúpido!",
-			["es"] = "— Dijiste que encontraste esta película deslumbrante.\n— Deslumbrante por su estupidez",
+			["es"] = "—Dijiste que encontraste esta película deslumbrante.\n—¡Deslumbrante por su estupidez!",
 			["ar"] = "— لقد قلت أنك وجدت هذا الفيلم مبهر.\n— مبهر في غبائه!",
 			["fa"] = "— تو گفتی که این فیلم را خیره‌کننده دانستی.\n— خیره‌کننده در احمقانه بودنش!",
 			["zh"] = "——你不是说这电影很耀眼吗？\n——耀眼的是它的愚蠢！",
@@ -98,6 +104,20 @@ namespace Argumentum.AssetConverter.Tests
 			["796"] = "All lawyers defend clients in court. This fruit is an avocado. Therefore, this fruit defends clients in court.—“Lawyer” and “avocado” are the same word in French, but its meaning changes: it refers to the legal profession in the first premise and to the fruit in the second. The reasoning therefore actually contains four terms instead of three.",
 		};
 
+		/// <summary>813 « vrai Écossais » : découpage par langue conservé (décision c.5971513525 pt 2),
+		/// marqueurs normalisés ; fr/ar monolignes (références), en/pt 3 lignes déjà conformes.</summary>
+		private static readonly Dictionary<string, string> Dialog813 = new()
+		{
+			["fr"] = "— Tous les Écossais sont roux. — Angus est écossais, mais il n’est pas roux. — Alors ce n’est pas un vrai Écossais.",
+			["en"] = "— All Scots are red-haired.\n— Angus is Scottish, but he is not red-haired.\n— Then he is not a true Scot.",
+			["ru"] = "— Все шотландцы рыжие. — Ангус шотландец, но он не рыжий. — Значит, он не настоящий шотландец.",
+			["pt"] = "— Todos os escoceses são ruivos.\n— Angus é escocês, mas não é ruivo.\n— Então, ele não é um escocês de verdade.",
+			["es"] = "—Todos los escoceses son pelirrojos.\n—Angus es escocés, pero no es pelirrojo.\n—Entonces, no es un verdadero escocés.",
+			["ar"] = "— جميع الاسكتلنديين ذوو شعر أحمر. — أنغوس اسكتلندي، لكنه ليس ذا شعر أحمر. — إذًا فهو ليس اسكتلنديًا حقيقيًا.",
+			["fa"] = "— همه اسکاتلندی‌ها مو قرمز هستند.\n— آنگوس اسکاتلندی است اما مو قرمز نیست.\n— پس او یک اسکاتلندی واقعی نیست.",
+			["zh"] = "——所有苏格兰人都是红发。\n——安格斯是苏格兰人，但他不是红发。\n——那么他不是一个真正的苏格兰人。",
+		};
+
 		[Fact]
 		public void Reply974_AllLanguages_ThreeLinesWithLanguageMarker()
 		{
@@ -117,6 +137,17 @@ namespace Argumentum.AssetConverter.Tests
 				var cell = Cell("example_" + lang, "943");
 				cell.Should().Be(expected,
 					"943 {0} : pt rétabli en 2 lignes, les autres passées du préfixe « - » au marqueur de la norme {0}.", lang);
+			}
+		}
+
+		[Fact]
+		public void Dialog813_AllLanguages_LineStructureKept_MarkersNormalized()
+		{
+			foreach (var (lang, expected) in Dialog813)
+			{
+				var cell = Cell("example_" + lang, "813");
+				cell.Should().Be(expected,
+					"813 {0} : découpage en lignes conservé, marqueur normalisé (c.5971513525 pt 2 et 3 — ru : archive v3 sans marques, « — » en ligne comme le FR).", lang);
 			}
 		}
 
