@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Instrument registre pt/es (pool #458, grain registre, 03/10).
+"""Instrument registre pt/es (pool #458, grain registre, 03/10 ; etendu exemples + coherence).
 
-Mesure 0-ecriture : classe chaque desc_pt / desc_es du deck par registre de
+Mesure 0-ecriture : classe chaque desc_pt / desc_es (--field desc, defaut)
+ou example_pt / example_es (--field example) du deck par registre de
 personne. Preuve = la colonne EVIDENCE (marqueur mecanique qui a decide) --
 un classement sans preuve mecanique est sorti GRIS et exige la lecture
 (la cellule est imprimee a cote pour cela).
+
+--coherence : jointure PAR CARTE desc x example (les deux champs classes,
+les deux langues) -- le signal demande par le dispatch item 4 : une carte
+dont la definition et l'exemple addressent des personnes differentes
+(ex. def « usted » / exemple « tu »). Mecanique : un verdict DIFFERENT
+n'est emis que si les DEUX cotes ont une preuve mecanique ; toute rangee
+GRIS d'un cote est comptee unilaterale, jamais qualifiee.
 
 Methode, par passes decroissantes de certitude :
   1. EXPLICITES (sujet rendu) : Os/O senhores, Voces, Voce, vos/vossa ;
@@ -53,7 +61,11 @@ PT_2PL = re.compile(r"\b\w{3,}(ais|eis|is|ís)\b")
 PT_2PL_STOP = {"mais", "seis", "três", "país", "paises", "anos", "depois",
                "sempre", "vocês", "guanais", "demais", "fazeres", "raízes",
                "vezes", "flores", "amores", "valores", "cores", "tu",
-               "quais", "sensoriais", "verbais", "capitalais", "montanais"}
+               "quais", "sensoriais", "verbais", "capitalais", "montanais",
+               # mesures champ example (03/10, grain registre-exemples) :
+               # noms/adjectifs/adverbes en -ais/-eis/-veis, jamais des 2pl
+               "animais", "automóveis", "excepcionais", "favoráveis",
+               "jamais", "mortais", "reais", "responsáveis", "variáveis"}
 # es : formes ACCENTUEES seulement (-ais/-eis/-is accentues = vosotros quasi
 # exclusivement ; les noms ne portent pas ces accents).
 ES_2PL = re.compile(r"\b\w{3,}(áis|éis|ís)\b")
@@ -62,7 +74,11 @@ ES_2PL_STOP = {"verdad", "apenas", "usted", "veis"}
 # --- passe 3 : sujet zero (gerondif/infinitif initial) ----------------------
 # \w{1,} : "Usar"/"Usando" (4/6 lettres) sont des infinitifs/gerondifs reels ;
 # les mots de 3 lettres ou moins (Ser, Ir, Ver) ne laissent rien a l'alternance.
+# INITIAL_STOP : mots initiaux mesures comme FP (terminent en -ndo/-er/-ir
+# sans etre ni gerondif ni infinitif) -- "Quando/Cuando" (conjonction,
+# champs exemple 357/800/869), "Ayer" (adverbe, exemple es PK 2).
 INITIAL_NO_SUBJ = re.compile(r"^[A-ZÀ-Ý]\w{1,}(ndo|ar|er|ir)\b")
+INITIAL_STOP = {"quando", "cuando", "ayer"}
 
 
 def morpho(cell, regex, stop):
@@ -87,9 +103,27 @@ def classify(cell, lang):
     if ev:
         return ("VOS_MORPHO" if lang == "pt" else "VOSOTROS_MORPHO"), ev, cell
     m = INITIAL_NO_SUBJ.match(cell)
-    if m:
+    if m and m.group(0).lower() not in INITIAL_STOP:
         return "ZERO_SUJET", cell.split()[0], cell
     return "GRIS", "", cell
+
+
+def base_reg(reg):
+    """Normalise les variantes morphologiques sur leur registre de personne."""
+    return {"VOS_MORPHO": "VOS", "VOSOTROS_MORPHO": "VOSOTROS"}.get(reg, reg)
+
+
+def pair_bucket(d_reg, e_reg):
+    """Verdict de coherence par carte -- mecanique, aucun jugement."""
+    if d_reg == "VIDE" or e_reg == "VIDE":
+        return "VIDE"
+    if d_reg != "GRIS" and e_reg != "GRIS":
+        return "SAME" if base_reg(d_reg) == base_reg(e_reg) else "DIFFERENT"
+    if d_reg != "GRIS":
+        return "DEF_ONLY"
+    if e_reg != "GRIS":
+        return "EX_ONLY"
+    return "BOTH_GRIS"
 
 
 def read_deck(path):
@@ -136,17 +170,65 @@ def self_test():
         ("pt", "Você usa flores e cores.", "VOCE"),
         ("es", "La verdad apenas importa.", "GRIS"),
         ("es", "Usted usa cosas parecidas.", "USTED"),
+        # mesures champ example (grain registre-exemples) : noms pt en
+        # -ais/-eis/-veis, conjonctions/adverbes initiaux -- jamais des
+        # personnes ; et l'infinitif initial reel doit rester ZERO_SUJET.
+        ("pt", "Os animais reais são mortais.", "GRIS"),
+        ("pt", "Gerenciar uma empresa exige cálculo.", "ZERO_SUJET"),
+        ("es", "Cuando llegues, avísame.", "GRIS"),
+        ("es", "Ayer pisé una caca de perro.", "GRIS"),
     ]
     for lang, trap, want in traps:
         got, _, _ = classify(trap, lang)
         assert got == want, ("trap", lang, trap, want, got)
         print("  piege %-4s %-36r -> %s (correct)" % (lang, trap, got))
+    # coherence par carte : paires plantees, dont l'exemple du dispatch
+    # (def « usted » / exemple « tu ») et la normalisation morpho.
+    pairs = [
+        ("USTED", "TU", "DIFFERENT"),          # l'exemple du dispatch
+        ("VOCE", "VOCES", "DIFFERENT"),
+        ("VOS", "VOS_MORPHO", "SAME"),          # base_reg normalise
+        ("VOSOTROS_MORPHO", "VOSOTROS", "SAME"),
+        ("USTED", "GRIS", "DEF_ONLY"),
+        ("GRIS", "TU", "EX_ONLY"),
+        ("GRIS", "GRIS", "BOTH_GRIS"),
+        ("USTED", "VIDE", "VIDE"),
+        ("ZERO_SUJET", "ZERO_SUJET", "SAME"),
+        ("ZERO_SUJET", "VOCE", "DIFFERENT"),    # comptes, jamais juges
+    ]
+    for d_reg, e_reg, want in pairs:
+        got = pair_bucket(d_reg, e_reg)
+        assert got == want, ("pair", d_reg, e_reg, want, got)
+        print("  paire %-14s x %-14s -> %s" % (d_reg, e_reg, got))
     print("SELF-TEST PASS")
+
+
+def write_coherence(deck, lang, out):
+    out.write("## COHERENCE %s -- desc x example, par carte\n\n" % lang.upper())
+    buckets = {}
+    detail = []
+    for r in sorted(deck, key=lambda r: int(r["PK"])):
+        d_reg, d_ev, _ = classify(r.get("desc_%s" % lang), lang)
+        e_reg, e_ev, e_cell = classify(r.get("example_%s" % lang), lang)
+        b = pair_bucket(d_reg, e_reg)
+        buckets.setdefault(b, []).append(r["PK"])
+        if b == "DIFFERENT":
+            detail.append((r["PK"], d_reg, d_ev, e_reg, e_ev, e_cell))
+    out.write("### DIFFERENT -- %d carte(s), preuve mecanique des deux cotes\n" % len(detail))
+    for pk, d_reg, d_ev, e_reg, e_ev, e_cell in detail:
+        out.write("PK=%s\tdesc=%s %r\texample=%s %r\n" % (pk, d_reg, d_ev, e_reg, e_ev))
+    for b in ("SAME", "DEF_ONLY", "EX_ONLY", "BOTH_GRIS", "VIDE"):
+        pks = buckets.get(b, [])
+        out.write("\n### %s -- %d\n%s\n" % (b, len(pks), " ".join(pks)))
+    out.write("\n")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--field", default="desc", choices=["desc", "example"])
+    ap.add_argument("--coherence", action="store_true",
+                    help="jointure par carte desc x example (ignore --field)")
     ap.add_argument("--csv", default=None, help="copie de travail (jamais le depot)")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
@@ -157,19 +239,23 @@ def main():
         raise SystemExit("--out requis hors --self-test")
     deck = read_deck(a.csv or MAIN)
     with io.open(a.out, "w", encoding="utf-8", newline="\n") as out:
-        for lang in ("pt", "es"):
-            dist, by_reg = {}, {}
-            out.write("## %s -- 175 rangees deck\n\n" % lang)
-            for r in sorted(deck, key=lambda r: int(r["PK"])):
-                reg, ev, cell = classify(r.get("desc_%s" % lang), lang)
-                dist[reg] = dist.get(reg, 0) + 1
-                by_reg.setdefault(reg, []).append(r["PK"])
-                extra = " :: %s" % cell[:90] if reg == "GRIS" else ""
-                out.write("PK=%s\t%s\t%r%s\n" % (r["PK"], reg, ev, extra))
-            out.write("\nDISTRIBUTION %s:\n" % lang)
-            for reg in sorted(dist, key=lambda k: -dist[k]):
-                out.write("  %-16s %3d  %s\n" % (reg, dist[reg], " ".join(by_reg[reg])))
-            out.write("\n")
+        if a.coherence:
+            for lang in ("pt", "es"):
+                write_coherence(deck, lang, out)
+        else:
+            for lang in ("pt", "es"):
+                dist, by_reg = {}, {}
+                out.write("## %s -- 175 rangees deck -- champ %s\n\n" % (lang, a.field))
+                for r in sorted(deck, key=lambda r: int(r["PK"])):
+                    reg, ev, cell = classify(r.get("%s_%s" % (a.field, lang)), lang)
+                    dist[reg] = dist.get(reg, 0) + 1
+                    by_reg.setdefault(reg, []).append(r["PK"])
+                    extra = " :: %s" % cell[:90] if reg == "GRIS" else ""
+                    out.write("PK=%s\t%s\t%r%s\n" % (r["PK"], reg, ev, extra))
+                out.write("\nDISTRIBUTION %s:\n" % lang)
+                for reg in sorted(dist, key=lambda k: -dist[k]):
+                    out.write("  %-16s %3d  %s\n" % (reg, dist[reg], " ".join(by_reg[reg])))
+                out.write("\n")
     print("written %s" % a.out)
 
 
