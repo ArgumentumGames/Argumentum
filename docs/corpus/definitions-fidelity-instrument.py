@@ -6,6 +6,9 @@ POURQUOI CE DOCUMENT EXISTE
 Les TITRES ont eu leurs passes de fidélité (grains (8)-(17), 7 langues). Les DÉFINITIONS
 imprimées (`desc_<lang>`) n'ont jamais eu la leur. Cet instrument prépare la lecture
 rangée par rangée : il apparie `desc_fr` et `desc_<lang>`, attache la référence imprimée du
+deck d'époque (archives v3/2022, jointure par nom confirmée -- jamais par position
+seule), et pose des écrans mécaniques (longueur, polarité de négation). Séries :
+⑳-㉕ = `--field desc` (définitions) ; ㉖+ = `--field example` (exemples).
 dépôt, et lève des drapeaux MÉCANIQUES.
 
 ⛔ CE QUE L'INSTRUMENT N'EST PAS. Les drapeaux sont des PRIORITÉS DE LECTURE, pas des
@@ -246,10 +249,10 @@ def archive_headers(bridge):
     return out
 
 
-def build(deck, bridge, lang):
+def build(deck, bridge, lang, field="desc"):
     arch = [(t, r) for t, p in bridge.ARCHIVES for r in bridge.rows(p)]
     hdrs = archive_headers(bridge)
-    desc_col = "desc_%s" % lang
+    desc_col = "%s_%s" % (field, lang)
     col_present = {t: (desc_col in hdrs.get(t, [])) for t in hdrs}
     by_path, by_name = {}, {}
     for t, r in arch:
@@ -308,15 +311,18 @@ def build(deck, bridge, lang):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--lang", default="ru")
+    ap.add_argument("--field", default="desc", choices=["desc", "example"],
+                    help="famille de colonnes mesurée (série ㉖+: example)")
     ap.add_argument("--out")
     ap.add_argument("--csv", default=None, help="copie de travail (contrôle inverse)")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     lang = a.lang
+    field = a.field
 
     rows = read_csv_guarded(a.csv or MAIN,
                             ["path", "carte", "text_fr", "text_%s" % lang,
-                             "desc_fr", "desc_%s" % lang])
+                             "%s_fr" % field, "%s_%s" % (field, lang)])
     deck = [r for r in rows if (r.get("carte") or "").strip()]
     if len(deck) != 175:
         raise SystemExit("ATTENDU 175 cartes imprimees, mesure %d -- instrument suspect"
@@ -327,21 +333,24 @@ def main():
         # mécaniques seuls ne la voient pas (mesuré) : le contrôle établit donc (a) que
         # l'instrument ne casse pas sur une cellule anormale, et (b) que la lecture
         # humaine est la charge utile -- il ne prétend pas détecter le contresens.
-        lens = sorted(len((r.get("desc_fr") or "").strip()) for r in deck)
+        lens = sorted(len((r.get("%s_fr" % field) or "").strip()) for r in deck)
         med = lens[len(lens) // 2]
         victim = dict(deck[min(range(len(deck)),
-                               key=lambda i: abs(len(deck[i]["desc_fr"]) - med))])
-        print("SELF-TEST -- calibré sur la distribution réelle (mediane desc_fr=%d)" % med)
-        victim["desc_%s" % lang] = "Полная противоположность: правило всегда соблюдается."
-        fa = flags_for(victim["desc_fr"], victim["desc_%s" % lang], lang)
+                               key=lambda i: abs(len(deck[i]["%s_fr" % field]) - med))])
+        print("SELF-TEST -- calibré sur la distribution réelle (mediane %s_fr=%d)"
+              % (field, med))
+        victim["%s_%s" % (field, lang)] = \
+            "Полная противоположность: правило всегда соблюдается."
+        fa = flags_for(victim["%s_fr" % field], victim["%s_%s" % (field, lang)], lang)
         print("  (a) cellule tronquée -> %s" % fa)
         assert any(x.startswith("SHORT") for x in fa), "instrument AVEUGLE a une cellule tronquee"
         assert lang in NEG_MARKERS, "langue sans jeu de marqueurs : ecran POLARITY non testable"
-        neg = [r for r in deck if NEG_FR.search(r.get("desc_fr") or "")]
+        neg = [r for r in deck if NEG_FR.search(r.get("%s_fr" % field) or "")]
         assert neg, "aucune carte a marqueur de negation FR -- ecran POLARITY non testable"
         v2 = dict(neg[0])
-        stripped = re.sub(NEG_MARKERS[lang], "", v2["desc_%s" % lang] or "", flags=re.I)
-        fb = flags_for(v2["desc_fr"], stripped, lang)
+        stripped = re.sub(NEG_MARKERS[lang], "",
+                          v2["%s_%s" % (field, lang)] or "", flags=re.I)
+        fb = flags_for(v2["%s_fr" % field], stripped, lang)
         print("  (b) polarité inversée -> %s" % fb)
         assert "POLARITY" in fb, "instrument AVEUGLE a un desaccord de polarite"
 
@@ -381,7 +390,7 @@ def main():
         # rattachait chacune a la MAUVAISE (mesure ai-01 03/10, pool c.5964435596).
         # Exigeance : chacune doit desormais etre attachee CONFIRMEE PAR LE NOM.
         bridge = load_bridge()
-        ref = build(deck, bridge, lang)
+        ref = build(deck, bridge, lang, field)
         tri = [r for r in deck if (r.get("path") or "").strip() in
                ("1.1.1", "1.1.2", "1.1.3")]
         assert len(tri) == 3, \
@@ -404,11 +413,24 @@ def main():
         t55, g55, a55, hc55, ok55 = ref(r55[0])
         assert t55 == 2 and ok55, \
             "PK 55 doit venir du PONT, confirmee par nom (etage=%s)" % t55
-        pl55 = (a55.get("desc_ru") or "").strip()
-        assert pl55 and pl55 == (r55[0].get("desc_ru") or "").strip(), \
-            "PK 55 : l'imprime russe du pont n'est pas IDENTIQUE -- jointure suspecte"
-        print("  (d') PK 55 -> pont, archive « %s », desc_ru IDENTIQUE (%d car.)"
-              % ((a55.get("text_fr") or "").strip(), len(pl55)))
+        # Invariant du pont : PK 55 rattachee a SA carte archive (« Sauvetage ad
+        # hoc »). L'IDENTITE du contenu n'est exigee que pour desc -- pour
+        # example c'est une MESURE (la colonne a pu etre reecrite), pas une
+        # propriete de jointure : l'afficher, ne pas l'asserter.
+        assert bridge.key(a55.get("text_fr")) == bridge.key("Sauvetage ad hoc"), \
+            "PK 55 rattachee a la mauvaise carte archive -- jointure suspecte"
+        pl55 = (a55.get("%s_ru" % field) or "").strip()
+        if field == "desc":
+            assert pl55 and pl55 == (r55[0].get("desc_ru") or "").strip(), \
+                "PK 55 : l'imprime russe du pont n'est pas IDENTIQUE -- jointure suspecte"
+            print("  (d') PK 55 -> pont, archive « %s », desc_ru IDENTIQUE (%d car.)"
+                  % ((a55.get("text_fr") or "").strip(), len(pl55)))
+        else:
+            print("  (d') PK 55 -> pont, archive « %s », %s_ru : %s (%d car.)"
+                  % ((a55.get("text_fr") or "").strip(), field,
+                     "IDENTIQUE" if pl55 == (r55[0].get("%s_ru" % field)
+                                             or "").strip() else "DIFFERE",
+                     len(pl55)))
         print("  PASS. ⚠️ Ce sont des priorités de lecture : le contrôle prouve que")
         print("  l'instrument n'est pas structurellement aveugle, pas qu'il juge.")
         return
@@ -417,23 +439,25 @@ def main():
         raise SystemExit("--out requis hors --self-test")
 
     bridge = load_bridge()
-    reference_for = build(deck, bridge, lang)
+    reference_for = build(deck, bridge, lang, field)
     n_e1nom = n_e1pos = n_pont = 0
     n_flag = n_notice = 0
     usable = 0
     col_missing = set()
-    script_cal = calibrate_script([(len((r.get("desc_fr") or "").strip()),
-                                   len((r.get("desc_%s" % lang) or "").strip()))
-                                  for r in deck if (r.get("desc_%s" % lang) or "").strip()
-                                  and (is_cjk_dominant(r.get("desc_%s" % lang) or "")
-                                        or is_arabic_dominant(r.get("desc_%s" % lang) or ""))])
+    # Fusion post-#1722 : la calibration est multi-script (CJK + arabe, #1722)
+    # MAIS les colonnes mesurees sont parametrees par --field (serie 26+).
+    script_cal = calibrate_script([(len((r.get("%s_fr" % field) or "").strip()),
+                                   len((r.get("%s_%s" % (field, lang)) or "").strip()))
+                                  for r in deck if (r.get("%s_%s" % (field, lang)) or "").strip()
+                                  and (is_cjk_dominant(r.get("%s_%s" % (field, lang)) or "")
+                                       or is_arabic_dominant(r.get("%s_%s" % (field, lang)) or ""))])
     if script_cal:
         print("CALIBRATION script: pente=%.3f ordonnee=%.1f ecart-type=%.1f car."
               % (script_cal[0], script_cal[1], script_cal[2]))
     with open(a.out, "w", encoding="utf-8", newline="\n") as out:
         for i, r in enumerate(deck, 1):
-            fr = (r.get("desc_fr") or "").strip()
-            tg = (r.get("desc_%s" % lang) or "").strip()
+            fr = (r.get("%s_fr" % field) or "").strip()
+            tg = (r.get("%s_%s" % (field, lang)) or "").strip()
             f = flags_for(fr, tg, lang, script_cal)
             prio = [x for x in f if not x.startswith(("LEN-NA", "POL-NA"))]
             if prio:
@@ -480,16 +504,16 @@ def main():
                 elif not has_col:
                     # ⛔ DISTINCT de « cellule vide ». L'archive n'a pas la colonne :
                     # aucun arbitrage imprime n'est possible pour cette langue.
-                    out.write("IMPRIME[%s](%s): <archive SANS colonne desc_%s -- "
-                              "aucun arbitrage imprime>\n" % (via, tag, lang))
+                    out.write("IMPRIME[%s](%s): <archive SANS colonne %s_%s -- "
+                              "aucun arbitrage imprime>\n" % (via, tag, field, lang))
                 else:
-                    pl = (arow.get("desc_%s" % lang) or "").strip()
+                    pl = (arow.get("%s_%s" % (field, lang)) or "").strip()
                     if pl:
                         out.write("IMPRIME[%s](%s) [%s]: %s\n"
                                   % (via, tag, "IDENTIQUE" if pl == tg else "DIFFERE", pl))
                     else:
-                        out.write("IMPRIME[%s](%s): <cellule desc_%s vide>\n"
-                                  % (via, tag, lang))
+                        out.write("IMPRIME[%s](%s): <cellule %s_%s vide>\n"
+                                  % (via, tag, field, lang))
             else:
                 out.write("IMPRIME: <aucune reference, sous aucun nom>\n")
             out.write("FLAGS: %s\n\n" % (", ".join(f) if f else "-"))
@@ -506,10 +530,10 @@ def main():
                      len(deck) - n_att))
         out.write("REFERENCE EXPLOITABLE: %d/%d -- %s\n"
                   % (usable, len(deck),
-                     "colonne desc_%s presente dans toutes les archives" % lang
+                     "colonne %s_%s presente dans toutes les archives" % (field, lang)
                      if not col_missing else
-                     "⛔ AUCUN arbitrage imprime : desc_%s ABSENTE des archives %s"
-                     % (lang, sorted(col_missing))))
+                     "⛔ AUCUN arbitrage imprime : %s_%s ABSENTE des archives %s"
+                     % (field, lang, sorted(col_missing))))
     print("written %s: %d cards, %d flagged, reference %d/%d "
           "(confirmees par le nom %d, position seule %d)"
           % (a.out, len(deck), n_flag, n_att, len(deck), n_e1nom + n_pont, n_e1pos))
