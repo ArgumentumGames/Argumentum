@@ -57,6 +57,13 @@ BRIDGE_PY = os.path.join(HERE, "archive-bridge-instrument.py")
 # ⚠️ Même dans sa propre langue, `\bне\b` ne voit pas la négation PRÉFIXÉE russe
 # (недостаточны, необоснованными, неприменим, невозможность...) : il mesure l'absence d'une
 # PARTICULE, pas d'une NÉGATION. Mesuré sur (20) : 21/21 drapeaux POLARITY faux positifs.
+#
+# ⚠️ Arabe (grain ㉒, 03/10) : le jeu SANS frontières de mot matchait des SOUS-CHAÎNES
+# -- ما à l'intérieur d'أمام (« devant ») a levé POLARITY sur la cellule du contrôle
+# inverse, par accident. Frontières posées + لن (négation du futur, présente sur 12
+# cellules) ajouté : « négation détectée » passe de 130/175 à 78/175, POLARITY de 95
+# à 45. Limite qui RESTE : ما homophone (négation vs pronom indéfini « سلوكًا ما »)
+# est indécidable par frontières -- l'écran reste une priorité de lecture, pas un verdict.
 NEG_MARKERS = {
     "fr": r"(?:\bne\b|\bn'|\bpas\b|\bjamais\b|\baucun|\bsans\b|\brien\b|\bnon\b)",
     "en": r"(?:\bnot\b|\bno\b|\bnever\b|\bnone\b|\bwithout\b|\bnothing\b|\bnor\b)",
@@ -65,7 +72,7 @@ NEG_MARKERS = {
     "es": r"(?:\bno\b|\bnunca\b|\bsin\b|\bnada\b|\bning[uú]n)",
     # Écritures sans séparateur de mot : recherche de sous-chaîne, pas de `\b`.
     "zh": r"(?:不|没|無|无|非|未|別|别)",
-    "ar": r"(?:لا|ما|ليس|ليست|غير|بدون|دون)",
+    "ar": r"(?:\bلا\b|\bلن\b|\bما\b|\bليس(?:ت)?\b|\bغير\b|\bبدون\b|\bدون\b)",
     "fa": r"(?:نه|نیست|نیستم|بدون|هیچ|نمی)",
 }
 NEG_FR = re.compile(NEG_MARKERS["fr"], re.I)
@@ -118,6 +125,21 @@ def is_cjk_dominant(s):
     return cjk / len(s) > 0.3
 
 
+def is_arabic_dominant(s):
+    """Même famille, autre écriture : l'arabe est une ABIJAD -- les voyelles brèves
+    ne s'écrivent pas, les clitiques s'agglutinent (و، ال، بـ). Ratio mesuré
+    desc_ar/desc_fr sur le deck : médiane 0,618, p10 0,505, min 0,389 -- la moitié
+    du corpus saine tombe sous la borne SHORT(0,60) calibrée pour le russe : 76/175
+    drapeaux sur des cellules saines, un écran qui hurle ne trie rien. (Le farsi ㉓
+    s'écrit dans le même bloc avec des lettres supplémentaires : même écran.)
+    Mesure du 03/10, grain ㉒."""
+    s = s or ""
+    if not s:
+        return False
+    ar = sum(1 for c in s if u"؀" <= c <= u"ۿ")
+    return ar / len(s) > 0.3
+
+
 def segments(s):
     """Découpe en phrases. ⚠️ La ponctuation CJK (。！？；) n'est pas ASCII : sans elle,
     une phrase chinoise compte pour 1 et l'écran CLAUSES devient muet par construction."""
@@ -127,16 +149,19 @@ def segments(s):
     return len([x for x in re.split(r"[.;:!?。！？；：]\s*|\n", s) if x.strip()])
 
 
-def calibrate_cjk(pairs):
+def calibrate_script(pairs):
     """Etalonne un ecran de CONTENU sur la langue elle-meme, au lieu de la declarer NA.
 
-    Un ratio brut contre le francais ne veut rien dire en chinois (0,146-0,417 mesure).
-    Mais la COMPRESSION du chinois est stable : `zh_len ~ a * fr_len + b` explique la
-    moitie de la variance (R2=0,498 mesure sur les 175 cartes). Une cellule qui s'ecarte
-    du residu attendu est donc un VRAI signal, calibre sur le chinois et non sur une
-    autre ecriture. Le seuil de 2,5 ecarts-types ne leve qu'UNE carte sur le corpus reel
-    (PK 112, une compression reelle), et attrape 104/175 troncatures a 50 %, 167/175 a
-    35 % (controle inverse). Declarer l'ecran NA laissait 0 % de pouvoir de detection.
+    Un ratio brut contre le francais ne veut rien dire en chinois (0,146-0,417 mesure)
+    ni en arabe (0,389-1,015, médiane 0,618 -- abjad : voyelles brèves non écrites,
+    mesure grain ㉒). Mais la COMPRESSION est stable dans les deux écritures :
+    `len ~ a * fr_len + b` explique la moitié de la variance en chinois (R2=0,498)
+    et les deux tiers en arabe (R2=0,681, mesure sur les 175 cartes). Une cellule qui
+    s'ecarte du residu attendu est donc un VRAI signal, calibre sur l'ecriture
+    mesuree et non sur une autre. Au seuil de 2,5 ecarts-types : 1 carte levee sur le
+    corpus reel zh (PK 112, compression reelle), 2 sur ar ; controle inverse --
+    troncations a 50 % attrapees : 104/175 (zh), 137/175 (ar) ; a 35 % : 167/175 (zh),
+    168/175 (ar). Declarer l'ecran NA laissait 0 % de pouvoir de detection.
     """
     n = len(pairs)
     if n < 30:
@@ -155,7 +180,7 @@ def calibrate_cjk(pairs):
     return a, b, sd
 
 
-def flags_for(fr, tg, lang="ru", cjk_cal=None):
+def flags_for(fr, tg, lang="ru", script_cal=None):
     """Drapeaux mécaniques, bornes calibrées sur ce corpus (phrases uniques, 48-187 car.).
     Chacun est une PRIORITÉ DE LECTURE, jamais un verdict. Les notices (LEN-NA, POL-NA)
     disent qu'un écran n'a PAS tourné -- elles ne comptent pas comme des priorités."""
@@ -167,13 +192,13 @@ def flags_for(fr, tg, lang="ru", cjk_cal=None):
         out.append("EMPTY-source")
     lf, lt = len((fr or "").strip()), len((tg or "").strip())
     if lf:
-        if is_cjk_dominant(tg):
-            if cjk_cal is None:
+        if is_cjk_dominant(tg) or is_arabic_dominant(tg):
+            if script_cal is None:
                 # Nommé, pas silencieux : le lecteur doit savoir que l'écran de longueur
                 # n'a PAS tourné sur cette rangée, et pourquoi.
-                out.append("LEN-NA(CJK)")
+                out.append("LEN-NA(CJK/AR)")
             else:
-                a, b, sd = cjk_cal
+                a, b, sd = script_cal
                 z = (lt - (a * lf + b)) / sd
                 if abs(z) > 2.5:
                     out.append("LENDEV(%+.1f)" % z)
@@ -314,27 +339,35 @@ def main():
         print("  (b) polarité inversée -> %s" % fb)
         assert "POLARITY" in fb, "instrument AVEUGLE a un desaccord de polarite"
 
-        # (c) Ecran de CONTENU sur une ecriture CJK. La version precedente declarait
-        # l'ecran NA (LEN-NA(CJK)) : pouvoir de detection NUL par construction. On exige
-        # ici que l'ecran etalonne attrape une cellule chinoise tronquee.
-        zh = [r for r in deck if is_cjk_dominant(r.get("desc_zh") or "")]
-        if zh:
-            cal = calibrate_cjk([(len(r["desc_fr"].strip()), len(r["desc_zh"].strip()))
-                                 for r in zh])
-            assert cal, "calibration CJK impossible -- ecran de contenu NON testable"
-            a2, b2, sd2 = cal
-            vict = zh[0]
-            tronq = vict["desc_zh"].strip()[: max(1, len(vict["desc_zh"].strip()) // 2)]
-            fc = flags_for(vict["desc_fr"], tronq, "zh", cal)
-            print("  (c) cellule zh tronquee a 50%% -> %s" % fc)
+        # (c) Ecran de CONTENU par ECRITURE (zh : CJK ; ar/fa : abjad). La version
+        # d'avant ㉑ declarait l'ecran NA (LEN-NA(CJK)) -- pouvoir de detection NUL
+        # par construction ; ㉒ etend l'etalonnage a l'abjad. On exige que l'ecran
+        # attrape, pour CHAQUE ecriture, une cellule tronquee a 50 %, et ne crie
+        # pas sur un temoin sain.
+        for col in ("zh", "ar", "fa"):
+            dom = is_cjk_dominant if col == "zh" else is_arabic_dominant
+            cells = [r for r in deck if (r.get("desc_%s" % col) or "").strip()
+                     and dom(r["desc_%s" % col])]
+            if not cells:
+                continue
+            cal = calibrate_script([(len(r["desc_fr"].strip()),
+                                     len(r["desc_%s" % col].strip()))
+                                    for r in cells])
+            assert cal, "calibration %s impossible -- ecran NON testable" % col
+            vict = max(cells, key=lambda r: len(r["desc_%s" % col].strip()))
+            full = vict["desc_%s" % col].strip()
+            tronq = full[: max(1, len(full) // 2)]
+            fc = flags_for(vict["desc_fr"], tronq, col, cal)
+            print("  (c) cellule %s tronquee a 50%% (PK=%s) -> %s"
+                  % (col, vict.get("PK"), fc))
             assert any(x.startswith("LENDEV") for x in fc), \
-                "ecran CJK AVEUGLE a une cellule tronquee"
-            # Temoin negatif : une cellule zh SAINE ne doit pas lever LENDEV.
-            sane = [r for r in zh if len(r["desc_zh"].strip()) > 30][0]
-            fz = flags_for(sane["desc_fr"], sane["desc_zh"].strip(), "zh", cal)
+                "ecran %s AVEUGLE a une cellule tronquee" % col
+            # Temoin negatif : une cellule SAINE ne doit pas lever LENDEV.
+            sane = [r for r in cells if len(r["desc_%s" % col].strip()) > 30][0]
+            fz = flags_for(sane["desc_fr"], sane["desc_%s" % col].strip(), col, cal)
             assert not any(x.startswith("LENDEV") for x in fz), \
-                "ecran CJK crie sur une cellule saine -- borne trop serree"
-            print("  (c') temoin sain (PK=%s) -> aucun LENDEV" % sane.get("PK"))
+                "ecran %s crie sur une cellule saine -- borne trop serree" % col
+            print("  (c') temoin sain %s (PK=%s) -> aucun LENDEV" % (col, sane.get("PK")))
 
         # (d) JOINTURE PAR NOM. `path` seul attache une POSITION, pas une carte :
         # les trois soeurs du triplet path 1.1.1-1.1.3 (PK 3/33/55) ont permute
@@ -383,18 +416,19 @@ def main():
     n_flag = n_notice = 0
     usable = 0
     col_missing = set()
-    cjk_cal = calibrate_cjk([(len((r.get("desc_fr") or "").strip()),
-                              len((r.get("desc_%s" % lang) or "").strip()))
-                             for r in deck if (r.get("desc_%s" % lang) or "").strip()
-                             and is_cjk_dominant(r.get("desc_%s" % lang) or "")])
-    if cjk_cal:
-        print("CALIBRATION CJK: pente=%.3f ordonnee=%.1f ecart-type=%.1f car."
-              % (cjk_cal[0], cjk_cal[1], cjk_cal[2]))
+    script_cal = calibrate_script([(len((r.get("desc_fr") or "").strip()),
+                                   len((r.get("desc_%s" % lang) or "").strip()))
+                                  for r in deck if (r.get("desc_%s" % lang) or "").strip()
+                                  and (is_cjk_dominant(r.get("desc_%s" % lang) or "")
+                                        or is_arabic_dominant(r.get("desc_%s" % lang) or ""))])
+    if script_cal:
+        print("CALIBRATION script: pente=%.3f ordonnee=%.1f ecart-type=%.1f car."
+              % (script_cal[0], script_cal[1], script_cal[2]))
     with open(a.out, "w", encoding="utf-8", newline="\n") as out:
         for i, r in enumerate(deck, 1):
             fr = (r.get("desc_fr") or "").strip()
             tg = (r.get("desc_%s" % lang) or "").strip()
-            f = flags_for(fr, tg, lang, cjk_cal)
+            f = flags_for(fr, tg, lang, script_cal)
             prio = [x for x in f if not x.startswith(("LEN-NA", "POL-NA"))]
             if prio:
                 n_flag += 1
