@@ -15,7 +15,7 @@ Troisième grain de la série des exemples (dispatch c.5968567990). Même fait s
 | État voulu (glose G2-C-W2 restaurée, gate-épinglée) | 1 (796) |
 | Vide structurel (têtes de famille, `example_fr` vide aussi) | 7 (PK 1, 175, 594, 696, 798, 887, 1280 — mêmes que ru/zh) |
 
-**Les 168 rangées non vides ont été lues, aucun échantillonnage** (cellules multi-lignes rejointes — leçon ㉗ appliquée : 6 cellules à sauts de ligne lues entières).
+**Les 168 rangées non vides ont été lues, aucun échantillonnage** (cellules multi-lignes rejointes — leçon ㉗ appliquée : les 3 cellules à sauts de ligne du deck, 813/943/974, lues entières).
 
 ⚠️ Faiblesses structurelles : lecture **unique**, **lecteur non natif** — les deux « accords de genre » ci-dessous sont des probabilités de grammaire, pas des verdicts natifs. **Aucun arbitre imprimé** (ci-dessus).
 
