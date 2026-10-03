@@ -6,6 +6,8 @@ Second grain de la série des exemples (dispatch c.5968567990). Verdict court : 
 
 ## Synthèse — 0 A / 0 M / 16 rangées observées / 152 ✓ (168 non vides)
 
+> **Erratum de périmètre complété (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525)).** L'erratum de périmètre ci-dessous citait 476 parmi les multi-lignes hors deck : sa cellule `example_fr` portait deux sauts de ligne **accidentels** (milieu de phrase, sans tiret de réplique) — **joints en une ligne** par la PR grain 1 du pool. 65 et 1300 restent hors deck, non mesurés.
+
 | Verdict | Rangées |
 |---|---:|
 | **A — sens faux ou inversé** | **0** (aucune candidate) |

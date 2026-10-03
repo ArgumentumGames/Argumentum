@@ -4,7 +4,9 @@
 
 Sixième grain de la série des exemples (dispatch c.5968567990). Comme zh/ar/fa (et contrairement au pt du ㉚), **l'espagnol n'a jamais été imprimé** : `example_es` est absente des archives — REFERENCE EXPLOITABLE **0/175**. Le grain est donc une lecture pure FR↔es, sans arbitre et sans question de générations. Verdict deck : **colonne saine** (0 A, 0 M) — et c'est le grain qui **rattache le plus de cartes au réseau des jumeaux** : 10 rangées, dont un groupe à cinq langues découvert ici.
 
-## Synthèse — 0 A / 0 M / 23 rangées observées / 145 ✓ (168 non vides)
+## Synthèse — 2 A / 0 M / 21 rangées observées / 145 ✓ (168 non vides)
+
+> **Erratum d'arbitrage (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525)).** Deux observations tranchées et **corrigées** (PR grain 1) : 153 « su auto » → « su coche » (régionalisme LatAm, alignement sur le « coche » de toute la colonne — 614, 666, 1174) ; 673 calque « Midamos el punto medio » → idiome « Partamos la diferencia » (l'es jamais imprimé se corrige sur délégation). Verdict courant : **2 A / 0 M / 21 rangées observées / 145 ✓**.
 
 | Verdict | Rangées |
 |---|---:|
