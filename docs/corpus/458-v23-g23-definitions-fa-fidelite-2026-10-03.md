@@ -4,7 +4,9 @@
 
 Quatrième grain de la série ⑳-㉕. Le portage sur `fa` a réparé **un** défaut d'instrument (le jeu de marqueurs, même famille qu'en arabe) — et la lecture a trouvé **la traduction la plus faible de la série à ce jour** : deux cellules dégradées consignées avec frontière, deux typos probables, cinquante-et-une rangées observées sur 175.
 
-## Synthèse — 0 A / 0 M / 51 rangées observées / 124 ✓ (175)
+## Synthèse — 2 A / 0 M / 49 rangées observées / 124 ✓ (175)
+
+> **Erratum d'arbitrage (03/10, ai-01, [c.5966971153](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5966971153)).** Ce dossier a d'abord été publié **0 A / 0 M / 51 rangées observées**. **PK 361 et PK 696 sont tranchées en A** : « un mot faux sur l'élément clé » (361 : بی‌نظیر « inédit » pour « que tout le monde accepte » ; 696 : پایان‌بخشی « mettre fin » pour « aboutir »). ⚠️ **Correction du dossier lui-même sur PK 361** : la structure temporelle n'est **pas** inversée — « énoncer des affirmations avant d'introduire la thèse contestable » rend bien « d'abord… puis… », et l'absence de verbe principal suit l'anglais (« Stating… »). Le seul défaut de la cellule est le mot بی‌نظیر ; l'analyse de frontière sur-vendait le constat. **Les 2 coquilles probables (PK 323 نایسته, PK 362 بدرو آوردن) sont confirmées et corrigées** par la PR d'arbitrage. Règle actée : une langue jamais imprimée (fa) se corrige sur délégation. Verdict courant : **2 A / 0 M / 49 rangées observées / 124 ✓**.
 
 | Verdict | Rangées |
 |---|---:|
