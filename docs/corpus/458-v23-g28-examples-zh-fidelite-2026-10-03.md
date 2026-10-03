@@ -54,9 +54,9 @@ Frontière M douce : sans la glose, la carte 846/847/855 ne démontre plus l'amb
 - **PK 809** — « substance chimique » → « 化学**粉末** » (poudre chimique).
 - **PK 1023** ci-dessus.
 
-### 4. Observation côté FR, hors colonne zh (2 rangées, 1 note)
+### 4. Observation côté FR, hors colonne zh et hors deck (2 rangées, 1 note)
 
-- **PK 476 et 1300** (Répandage / Déluge argumentatif, même exemple) : le **FR lui-même** porte un artefact de découpe — « les impacts sur les personnes vulnérables⟨saut de ligne⟩populations » — la ligne « populations » orpheline tombe au milieu de la phrase. Le zh traduit le texte **cohérent** (弱势群体). Défectueux côté FR, consigné ici sans écriture.
+- **PK 476 et 1300** (Répandage / Déluge argumentatif, même exemple — rangées **hors deck**, `carte` vide, rencontrées au contrôle croisé et non dans la population mesurée) : le **FR lui-même** porte un artefact de découpe — « les impacts sur les personnes vulnérables⟨saut de ligne⟩populations » — la ligne « populations » orpheline tombe au milieu de la phrase. Le zh traduit le texte **cohérent** (弱势群体). Défectueux côté FR, consigné ici sans écriture.
 
 ## Contrôle inverse (copie scratchpad, dépôt jamais touché — `git status Cards/` vide vérifié)
 
@@ -66,7 +66,8 @@ Frontière M douce : sans la glose, la carte 846/847/855 ne démontre plus l'amb
 
 ## L'instrument de lecture a trahi avant le corpus — l'incident du grain
 
-La première passe de lecture (fichier compact généré du rapport d'instrument) **tronquait les cellules multi-lignes** : le lecteur regex s'ancre sur une ligne, une cellule à sauts de ligne n'en montre que la première. Lu ainsi, PK 813 « vrai Écossais » semblait ne porter qu'une réplique sur trois (dialogue amputé = candidat M sérieux). **Contrôle croisé contre le CSV : les 6 cellules multi-lignes (65, 476, 813, 943, 974, 1300) sont complètes** — le défaut était dans l'extracteur, pas dans le corpus. L'alarme est **retractée**, et la leçon consignée : *une cellule CSV lue par extraction de ligne n'est lue que si elle tient sur une ligne* — croiser contre la source avant de conclure « manquant ».
+La première passe de lecture (fichier compact généré du rapport d'instrument) **tronquait les cellules multi-lignes** : le lecteur regex s'ancre sur une ligne, une cellule à sauts de ligne n'en montre que la première. Lu ainsi, PK 813 « vrai Écossais » semblait ne porter qu'une réplique sur trois (dialogue amputé = candidat M sérieux). **Contrôle croisé contre le CSV : les 3 cellules multi-lignes du deck (813, 943, 974) sont complètes** — le défaut était dans l'extracteur, pas dans le corpus. L'alarme est **retractée**, et la leçon consignée : *une cellule CSV lue par extraction de ligne n'est lue que si elle tient sur une ligne* — croiser contre la source avant de conclure « manquant ».
+*(Erratum de périmètre, 03/10 : la rédaction initiale citait « les 6 cellules multi-lignes (65, 476, 813, 943, 974, 1300) » — l'ensemble CSV. **65, 476 et 1300 sont hors deck** (`carte` vide), hors de la population mesurée ; la population multi-lignes du deck est **813/943/974**, toutes trois vérifiées complètes.)*
 
 ## N'établit pas
 
