@@ -377,12 +377,22 @@ def main():
                   % (col, vict.get("PK"), fc))
             assert any(x.startswith("LENDEV") for x in fc), \
                 "ecran %s AVEUGLE a une cellule tronquee" % col
-            # Temoin negatif : une cellule SAINE ne doit pas lever LENDEV.
-            sane = [r for r in cells if len(r["desc_%s" % col].strip()) > 30][0]
+            # Témoin négatif NOMMÉ (grain 5, dispatch c.5971513525) : une cellule SAINE
+            # ne doit pas lever LENDEV. Le témoin est une PK nommée, pas un « [0] » qui
+            # dérive en silence quand le corpus bouge — carte disparue ou devenue
+            # drapeautée, l'assertion casse bruyamment et le témoin se ré-arbitre.
+            SANE_WITNESS = {"zh": "1362", "ar": "108", "fa": "636"}
+            sane = [r for r in cells if r.get("PK") == SANE_WITNESS[col]]
+            assert sane, ("temoin sain %s PK %s introuvable -- re-arbitrer le temoin "
+                          "(c.5971513525 grain 5)" % (col, SANE_WITNESS[col]))
+            sane = sane[0]
+            assert len(sane["desc_%s" % col].strip()) > 30, \
+                "temoin sain %s PK %s devenu trop court -- re-arbitrer" % (col, SANE_WITNESS[col])
             fz = flags_for(sane["desc_fr"], sane["desc_%s" % col].strip(), col, cal)
             assert not any(x.startswith("LENDEV") for x in fz), \
                 "ecran %s crie sur une cellule saine -- borne trop serree" % col
-            print("  (c') temoin sain %s (PK=%s) -> aucun LENDEV" % (col, sane.get("PK")))
+            print("  (c') temoin sain %s (PK=%s, nomme) -> aucun LENDEV"
+                  % (col, sane.get("PK")))
 
         # (d) JOINTURE PAR NOM. `path` seul attache une POSITION, pas une carte :
         # les trois soeurs du triplet path 1.1.1-1.1.3 (PK 3/33/55) ont permute
