@@ -119,7 +119,35 @@ def segments(s):
     return len([x for x in re.split(r"[.;:!?。！？；：]\s*|\n", s) if x.strip()])
 
 
-def flags_for(fr, tg, lang="ru"):
+def calibrate_cjk(pairs):
+    """Etalonne un ecran de CONTENU sur la langue elle-meme, au lieu de la declarer NA.
+
+    Un ratio brut contre le francais ne veut rien dire en chinois (0,146-0,417 mesure).
+    Mais la COMPRESSION du chinois est stable : `zh_len ~ a * fr_len + b` explique la
+    moitie de la variance (R2=0,498 mesure sur les 175 cartes). Une cellule qui s'ecarte
+    du residu attendu est donc un VRAI signal, calibre sur le chinois et non sur une
+    autre ecriture. Le seuil de 2,5 ecarts-types ne leve qu'UNE carte sur le corpus reel
+    (PK 112, une compression reelle), et attrape 104/175 troncatures a 50 %, 167/175 a
+    35 % (controle inverse). Declarer l'ecran NA laissait 0 % de pouvoir de detection.
+    """
+    n = len(pairs)
+    if n < 30:
+        return None
+    mx = sum(p[0] for p in pairs) / n
+    my = sum(p[1] for p in pairs) / n
+    sxx = sum((p[0] - mx) ** 2 for p in pairs)
+    if not sxx:
+        return None
+    a = sum((p[0] - mx) * (p[1] - my) for p in pairs) / sxx
+    b = my - a * mx
+    res = [p[1] - (a * p[0] + b) for p in pairs]
+    sd = (sum(x * x for x in res) / (n - 1)) ** 0.5
+    if not sd:
+        return None
+    return a, b, sd
+
+
+def flags_for(fr, tg, lang="ru", cjk_cal=None):
     """Drapeaux mécaniques, bornes calibrées sur ce corpus (phrases uniques, 48-187 car.).
     Chacun est une PRIORITÉ DE LECTURE, jamais un verdict. Les notices (LEN-NA, POL-NA)
     disent qu'un écran n'a PAS tourné -- elles ne comptent pas comme des priorités."""
@@ -132,9 +160,15 @@ def flags_for(fr, tg, lang="ru"):
     lf, lt = len((fr or "").strip()), len((tg or "").strip())
     if lf:
         if is_cjk_dominant(tg):
-            # Nommé, pas silencieux : le lecteur doit savoir que l'écran de longueur
-            # n'a PAS tourné sur cette rangée, et pourquoi.
-            out.append("LEN-NA(CJK)")
+            if cjk_cal is None:
+                # Nommé, pas silencieux : le lecteur doit savoir que l'écran de longueur
+                # n'a PAS tourné sur cette rangée, et pourquoi.
+                out.append("LEN-NA(CJK)")
+            else:
+                a, b, sd = cjk_cal
+                z = (lt - (a * lf + b)) / sd
+                if abs(z) > 2.5:
+                    out.append("LENDEV(%+.1f)" % z)
         else:
             ratio = lt / lf
             if ratio < 0.60:
@@ -157,8 +191,27 @@ def flags_for(fr, tg, lang="ru"):
     return out
 
 
-def build(deck, bridge):
+def archive_headers(bridge):
+    """L'en-tete de CHAQUE archive. ⛔ Sans lui, `arow.get("desc_zh")` rend None sur une
+    archive qui n'a PAS la colonne, et l'instrument l'affiche comme « cellule vide ».
+    C'est le piege nomme dans la memoire du depot (garde d'en-tete) : un None se lit
+    comme une absence de contenu alors qu'il peut signifier une absence de COLONNE.
+    Mesure du 03/10 sur `zh` : les archives ne portent que desc_fr/en/ru/pt -- le
+    chinois n'y existe pas, donc 168/168 rendaient « <pas de desc_zh> » et le dossier
+    aurait pu conclure « l'imprime n'a jamais eu de definition chinoise » a partir d'un
+    artefact d'instrument."""
+    out = {}
+    for tag, path in bridge.ARCHIVES:
+        with open(path, encoding="utf-8-sig", newline="") as f:
+            out[tag] = [h.strip() for h in next(csv.reader(f))]
+    return out
+
+
+def build(deck, bridge, lang):
     arch = [(t, r) for t, p in bridge.ARCHIVES for r in bridge.rows(p)]
+    hdrs = archive_headers(bridge)
+    desc_col = "desc_%s" % lang
+    col_present = {t: (desc_col in hdrs.get(t, [])) for t in hdrs}
     by_path, by_name = {}, {}
     for t, r in arch:
         p = bridge.n(r.get("path"))
@@ -172,17 +225,19 @@ def build(deck, bridge):
                   if bridge.n(r.get("PK"))}
 
     def reference_for(drow):
-        """(etage, tag, ligne) -- 1 = `path`, 2 = le pont. None si aucune archive."""
+        """(etage, tag, ligne, colonne-presente) -- 1 = `path`, 2 = le pont.
+        None si aucune archive. Le 4e champ distingue une archive SANS la colonne
+        d'une archive dont la cellule est vide : sans lui, les deux se rendent pareil."""
         p = bridge.n(drow.get("path"))
         if p in by_path:
             t, r = by_path[p]
-            return 1, t, r
+            return 1, t, r, col_present.get(t, False)
         b = base_by_pk.get(bridge.n(drow.get("PK")))
         if b:
             hits = by_name.get(bridge.key(b.get("text_fr"))) or []
             if hits:
-                return 2, hits[0][0], hits[0][1]
-        return None, None, None
+                return 2, hits[0][0], hits[0][1], col_present.get(hits[0][0], False)
+        return None, None, None, False
 
     return reference_for
 
@@ -226,6 +281,28 @@ def main():
         fb = flags_for(v2["desc_fr"], stripped, lang)
         print("  (b) polarité inversée -> %s" % fb)
         assert "POLARITY" in fb, "instrument AVEUGLE a un desaccord de polarite"
+
+        # (c) Ecran de CONTENU sur une ecriture CJK. La version precedente declarait
+        # l'ecran NA (LEN-NA(CJK)) : pouvoir de detection NUL par construction. On exige
+        # ici que l'ecran etalonne attrape une cellule chinoise tronquee.
+        zh = [r for r in deck if is_cjk_dominant(r.get("desc_zh") or "")]
+        if zh:
+            cal = calibrate_cjk([(len(r["desc_fr"].strip()), len(r["desc_zh"].strip()))
+                                 for r in zh])
+            assert cal, "calibration CJK impossible -- ecran de contenu NON testable"
+            a2, b2, sd2 = cal
+            vict = zh[0]
+            tronq = vict["desc_zh"].strip()[: max(1, len(vict["desc_zh"].strip()) // 2)]
+            fc = flags_for(vict["desc_fr"], tronq, "zh", cal)
+            print("  (c) cellule zh tronquee a 50%% -> %s" % fc)
+            assert any(x.startswith("LENDEV") for x in fc), \
+                "ecran CJK AVEUGLE a une cellule tronquee"
+            # Temoin negatif : une cellule zh SAINE ne doit pas lever LENDEV.
+            sane = [r for r in zh if len(r["desc_zh"].strip()) > 30][0]
+            fz = flags_for(sane["desc_fr"], sane["desc_zh"].strip(), "zh", cal)
+            assert not any(x.startswith("LENDEV") for x in fz), \
+                "ecran CJK crie sur une cellule saine -- borne trop serree"
+            print("  (c') temoin sain (PK=%s) -> aucun LENDEV" % sane.get("PK"))
         print("  PASS. ⚠️ Ce sont des priorités de lecture : le contrôle prouve que")
         print("  l'instrument n'est pas structurellement aveugle, pas qu'il juge.")
         return
@@ -234,35 +311,55 @@ def main():
         raise SystemExit("--out requis hors --self-test")
 
     bridge = load_bridge()
-    reference_for = build(deck, bridge)
+    reference_for = build(deck, bridge, lang)
     matched = {1: 0, 2: 0}
     n_flag = n_notice = 0
+    usable = 0
+    col_missing = set()
+    cjk_cal = calibrate_cjk([(len((r.get("desc_fr") or "").strip()),
+                              len((r.get("desc_%s" % lang) or "").strip()))
+                             for r in deck if (r.get("desc_%s" % lang) or "").strip()
+                             and is_cjk_dominant(r.get("desc_%s" % lang) or "")])
+    if cjk_cal:
+        print("CALIBRATION CJK: pente=%.3f ordonnee=%.1f ecart-type=%.1f car."
+              % (cjk_cal[0], cjk_cal[1], cjk_cal[2]))
     with open(a.out, "w", encoding="utf-8", newline="\n") as out:
         for i, r in enumerate(deck, 1):
             fr = (r.get("desc_fr") or "").strip()
             tg = (r.get("desc_%s" % lang) or "").strip()
-            f = flags_for(fr, tg, lang)
+            f = flags_for(fr, tg, lang, cjk_cal)
             prio = [x for x in f if not x.startswith(("LEN-NA", "POL-NA"))]
             if prio:
                 n_flag += 1
             elif f:
                 n_notice += 1
-            tier, tag, arow = reference_for(r)
+            tier, tag, arow, has_col = reference_for(r)
             if tier:
                 matched[tier] += 1
+                if has_col:
+                    usable += 1
+                else:
+                    col_missing.add(tag)
             out.write("### [%03d] PK=%s path=%s\n" % (i, r.get("PK"), (r.get("path") or "").strip()))
             out.write("TITRE fr: %s\n" % (r.get("text_fr") or "").strip())
             out.write("TITRE %s: %s\n" % (lang, (r.get("text_%s" % lang) or "").strip()))
             out.write("FR: %s\n" % fr)
             out.write("%s: %s\n" % (lang.upper(), tg))
             if arow is not None:
-                pl = (arow.get("desc_%s" % lang) or "").strip()
                 via = "etage%d" % tier if tier == 1 else "pont"
-                if pl:
-                    out.write("IMPRIME[%s](%s) [%s]: %s\n"
-                              % (via, tag, "IDENTIQUE" if pl == tg else "DIFFERE", pl))
+                if not has_col:
+                    # ⛔ DISTINCT de « cellule vide ». L'archive n'a pas la colonne :
+                    # aucun arbitrage imprime n'est possible pour cette langue.
+                    out.write("IMPRIME[%s](%s): <archive SANS colonne desc_%s -- "
+                              "aucun arbitrage imprime>\n" % (via, tag, lang))
                 else:
-                    out.write("IMPRIME[%s](%s): <pas de desc_%s>\n" % (via, tag, lang))
+                    pl = (arow.get("desc_%s" % lang) or "").strip()
+                    if pl:
+                        out.write("IMPRIME[%s](%s) [%s]: %s\n"
+                                  % (via, tag, "IDENTIQUE" if pl == tg else "DIFFERE", pl))
+                    else:
+                        out.write("IMPRIME[%s](%s): <cellule desc_%s vide>\n"
+                                  % (via, tag, lang))
             else:
                 out.write("IMPRIME: <aucune reference, sous aucun nom>\n")
             out.write("FLAGS: %s\n\n" % (", ".join(f) if f else "-"))
@@ -273,6 +370,12 @@ def main():
         out.write("REFERENCE IMPRIMEE: %d/%d (etage1 `path` %d + pont %d; ⛔ pas %d -- "
                   "cf. docs/corpus/archive-coverage-2026-09-22.md)\n"
                   % (matched[1] + matched[2], len(deck), matched[1], matched[2], matched[1]))
+        out.write("REFERENCE EXPLOITABLE: %d/%d -- %s\n"
+                  % (usable, len(deck),
+                     "colonne desc_%s presente dans toutes les archives" % lang
+                     if not col_missing else
+                     "⛔ AUCUN arbitrage imprime : desc_%s ABSENTE des archives %s"
+                     % (lang, sorted(col_missing))))
     print("written %s: %d cards, %d flagged, reference %d/%d"
           % (a.out, len(deck), n_flag, matched[1] + matched[2], len(deck)))
 
