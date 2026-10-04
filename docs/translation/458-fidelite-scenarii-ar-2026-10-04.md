@@ -51,12 +51,12 @@ structure ne mesure pas une traduction.
 
 | # | Carte | Champ | FR | EN | ar | Nature |
 |---|---|---|---|---|---|---|
-| 1 | **1.1.3** | suggestion | « Voilà un mets de choix pour **mes lions**. » | "…a choice dish for **my lions**." | هممم، يا لها من وجبة فاخرة **لقطتي الصغيرة**. | félidé domestique substitué au lion **+ interjection ajoutée** (هممم) ; **contredit `issue_ar` de la même carte**, qui dit للأسود (les lions) — jumeau exact du défaut zh n° 1 (même carte, même champ) |
+| 1 | **1.1.3** | suggestion | « Voilà un mets de choix pour **mes lions**. » | "Now that is a choice dish for **my lions**." | هممم، يا لها من وجبة فاخرة **لقططي الصغيرة**. | félidé domestique substitué au lion, **au pluriel** (« mes petits chats ») **+ interjection ajoutée** (هممم) ; **contredit `issue_ar` de la même carte**, qui dit للأسود (les lions) — jumeau du défaut zh n° 1 (même carte, même champ) et proche de l'es (« mis gatitos »). ⚠️ Citation corrigée par erratum — voir **§11** |
 | 2 | **3.3.2** | enjeu | « …remplacer le mariage par l'adoption d'un caillou… » | "…replace marriage with adopting a rock…" | …بدلًا من الزواج، **يستطيعان إظهار التزامهما المتبادل** بتبنّي حصاة… | ajout « démontrer leur engagement mutuel », absent du FR **et** de l'EN — défaut trouvé par ai-01 (c.5977925408), confirmé à la lecture |
 | 3 | **7.3.5** | suggestion | « **Le thème de la soirée, c'est Venise.** Pourquoi êtes-vous déguisé en fromage ? » | "**The party theme is Venice.** Why are you dressed as cheese?" | **ما موضوع الحفلة أصلاً؟** أنت تشبه الجبن، بجدية؟ | la punchline est **réécrite en question** (« quel est déjà le thème de la fête ? ») : l'ancrage **Venise** — la mécanique même de la carte (thème vénitien vs costume fromage) — disparaît de la réplique |
 
 Le défaut 1 est le plus solide : incohérence **interne à la carte** (l'enjeu ar dit les lions,
-la suggestion ar dit ma petite chatte), prouvable sans source externe — même structure de
+la suggestion ar dit mes petits chats), prouvable sans source externe — même structure de
 preuve que les défauts zh n° 1, 2, 5.
 
 ---
@@ -89,7 +89,7 @@ candidats sont cumulés depuis le dossier zh + l'erratum #1746 §9.
 | Carte | Nature | zh | ar | autres langues |
 |---|---|---|---|---|
 | **3.3.2** enjeu | ajout « engagement mutuel » | ✓ | ✓ | es · ru · fa (trouvés par ai-01 — à confirmer passe par passe) |
-| **1.1.3** sugg | lions → félidé domestique | ✓ (小猫咪) | ✓ (قطتي الصغيرة) | — |
+| **1.1.3** sugg | lions → félidé domestique (pluriel) | ✓ (小猫咪) | ✓ (لقططي الصغيرة) | es (« mis gatitos ») — relevé par ai-01, **vérifié sur la cellule** |
 | **2.2.9** ctxt | ajout « personnage mythologique » | ✓ | ✓ (شخصية ميثولوجية) | — |
 | **3.2.16** enjeu | modalité affaiblie (« doit » → « tente ») | ✓ (试图) | ✓ (يحاول) | — |
 | **4.2.8** titre | ajout « inattendu » + jeu « compromis » perdu | ✓ | ✓ (استيقاظ غير متوقع) | — |
@@ -204,5 +204,29 @@ falsifie deux affirmations de ce dossier :
 Le noyau partagé **zh·ar·fa** s'étoffe au passage : **3.3.2, 1.1.3, 2.2.9, 3.2.16, 4.2.8**
 et la ponctuation **1.2.3** sont désormais mesurés sur les trois langues, et **4.1.12**
 (ar·fa) complète la famille des modalités affaiblies. Matrice à jour dans le dossier fa.
+
+---
+
+## 11. Erratum — citation corrigée du défaut 1.1.3 (ajouté le 2026-10-04)
+
+Citation fausse relevée par ai-01 au merge (`42ce146d`, c.5979283632), **confirmée ici sur la
+cellule** avant correction.
+
+- **Ce qui était écrit** : « …وجبة فاخرة **لقطتي** الصغيرة », glosé « ma petite chatte ».
+- **Ce que dit la cellule** (`suggestion_ar`, pk 1.1.3, extraite par nom de colonne) :
+  « هممم، يا لها من وجبة فاخرة **لقططي** الصغيرة » — soit « **mes petits chats** », au
+  **pluriel**.
+
+Corrigé en **trois endroits** : la citation du §3 (défaut n° 1), la glose du §3 (« ma petite
+chatte » → « mes petits chats ») et la **matrice du §5** (qui citait « قطتي الصغيرة »).
+
+**Le défaut tient ; la preuve était fausse.** Le pluriel ne l'affaiblit pas, il le
+**rapproche** de ses jumeaux mesurés dans la même passe : l'es dit « mis gatitos », le zh
+« 小猫咪 » — les trois langues remplacent les lions par des **chatons**. La contradiction avec
+`issue_ar` de la même carte (« …بألا يقدمه طعامًا للأسود », les lions) est **inchangée**.
+
+Mesure : les cinq cellules (fr, en, es, zh, ar) relues dans le CSV pour cette correction ;
+`issue_ar` également. Ce dossier est une **mesure datée** : elle est corrigée **sur place**,
+comme celle de #1746, et le motif est écrit ici plutôt que silencieusement appliqué.
 
 *po-2024*
