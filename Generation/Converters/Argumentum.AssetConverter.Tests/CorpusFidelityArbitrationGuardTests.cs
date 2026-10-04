@@ -22,6 +22,10 @@ namespace Argumentum.AssetConverter.Tests
 	/// rendu par l'arbitrage), es 153 « coche » + es 673 idiome « partir la
 	/// diferencia », en 673 coquille « meet up », fr 476 sauts de ligne
 	/// accidentels joints (hors deck).</item>
+	/// <item>1 cellule de définition (coquille) le 04/10 (c.5976781537) :
+	/// fr 197 « inaccessibles » → « inaccessible » — accord du sujet
+	/// « votre discours » (singulier), les 7 autres langues accordent au
+	/// singulier.</item>
 	/// </list>
 	/// NB : exprimé en HaveCount(1) + Be, jamais ContainSingle(valeur, parce-que) —
 	/// cette surcharge résout vers ContainSingle(because) qui n'épingle PAS la valeur
@@ -235,6 +239,18 @@ namespace Argumentum.AssetConverter.Tests
 				+ "(mot orphelin devenu élément de liste) — le FR avait traduit les deux morceaux du "
 				+ "retour à la ligne de mise en forme de l'EN. L'arbitrage (c.5971513525) impose le "
 				+ "texte de PK 1300, même exemple, propre ; hors deck.");
+		}
+
+		// --- Coquille c.5976781537 (pool v23) : desc_fr PK 197 ---
+
+		[Fact]
+		public void DescFr_Pk197_Academese_PluralAgreementFixed()
+		{
+			AssertSingleRowCell("desc_fr", "197",
+				"Vous utilisez un langage formel, spécialisé et souvent complexe, typique du milieu académique, qui peut rendre votre discours inaccessible aux non-initiés.",
+				"c.5976781537 : « inaccessibles » (pluriel) était la coquille d'accord — le sujet est « votre discours » "
+				+ "(singulier) ; les 7 autres langues accordent au singulier (en « inaccessible », pt « inacessível », "
+				+ "es « inaccesible », ru « недоступной »…).");
 		}
 	}
 }
