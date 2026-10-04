@@ -212,7 +212,7 @@ n'est retenue ici**.
 
 | # | Cellule | Défaut |
 |---|---|---|
-| 1 | **Rules_09, 13** | `الحجج المغالِطة` où les **huit autres** cellules disent `المغلوطة` (×24) |
+| 1 | **Rules_09, 13** | `الحجج المغالِطة` où les **huit autres** cellules disent `المغلوطة` (×**22** — compte re-mesuré, erratum §10) |
 | 2 | **Rules_06** | `الرصيد` (**solde, crédit**) pour « la réserve », où Rules_03 dit `المخزون` — et `الرصيد` ×3 dans la même cellule |
 | 3 | **Rules_09** | `حزمة` (×2) et `رزمة` (×2) nomment **le même paquet de cartes dans le même document** — *même famille que `pack`/`package` en EN* |
 | 4 | **Rules_11** | `كومتان` pour les pioches de scénario, où Rules_03/09/13 disent `رُزمتان` |
@@ -222,9 +222,9 @@ n'est retenue ici**.
 
 | # | Cellule | Défaut |
 |---|---|---|
-| 1 | **Rules_14 vs Rules_15** | **Deux mots pour « atout »**, dans deux documents consécutifs : `اتو` (×5, l'emprunt au français) en Rules_14, `حکم` (×6, le terme natif) en Rules_15. **Zéro recouvrement** |
+| 1 | **Rules_14 vs Rules_15** | **Deux mots pour « atout »**, dans deux documents consécutifs : `اَتو` (×5, l'emprunt au français) en Rules_14, `حکم` (×6, le terme natif) en Rules_15. **Zéro recouvrement** — ⚠️ citation corrigée, voir §10 |
 | 2 | **Rules_02, 13** | `مغالطی` là où les **dix autres** cellules disent `مغالطه‌آمیز` — même référent, deux adjectifs |
-| 3 | **Rules_05, 06** | **Chiffres ASCII** là où les **dix autres** cellules écrivent en **chiffres persans** : `3 یا 4` contre `۳ یا ۴` |
+| 3 | **Rules_05, 06** | **Chiffres ASCII** là où les **dix autres** cellules écrivent en **chiffres persans** : `3 یا 4` (×2) contre `۳۲`, `۲۰`… — ⚠️ citation corrigée, voir §10 |
 | 4 | **Rules_02** | En-tête `تجهیزات` où les quatre autres disent `محتویات` |
 | 5 | **Rules_11** | `بسته` pour le paquet, où Rules_02/09/13 disent `دسته` |
 | 6 | **Rules_13** | **Rupture de registre dans la cellule** : passif/impersonnel puis **impératif** (`تشکیل دهید`, `قرار دهید` — ×2) là où Rules_03/09/11 emploient le « nous » (`تشکیل می‌دهیم` — ×15) |
@@ -264,7 +264,7 @@ mesures doivent coexister.
 
 ## 8. Ce que ce dossier **n'établit pas**
 
-- ⛔ **Quel variant est le bon.** Pour `مغلوطة` / `مغالِطة`, `序列` / `阶层`, `اتو` / `حکم` :
+- ⛔ **Quel variant est le bon.** Pour `مغلوطة` / `مغالِطة`, `序列` / `阶层`, `اَتو` / `حکم` :
   c'est un jugement de locuteur natif. Ce dossier dit *où* la continuité rompt, pas *comment* la
   rétablir.
 - ⛔ **La conséquence visuelle de l'écart de structure des blocs** (§3.2). Le rendu conserve les
@@ -288,7 +288,7 @@ mesures doivent coexister.
 ## 9. Reproductibilité
 
 ```bash
-# l'ecran (self-test 14 temoins, PUIS l'ecran) -- PR #1755
+# l'ecran (self-test 17 temoins, PUIS l'ecran, PUIS le controle de citation) -- PR #1755 + grain 9
 python docs/corpus/regles-fidelity-instrument.py
 
 # les axes de ce dossier : structure (titres/puces/emoji), blocs, ponctuation par bloc,
@@ -307,5 +307,43 @@ python docs/corpus/regles-fidelity-instrument.py
 
 ⭐ *Avant de conclure sur un comptage, mesurer que la sonde atteint la bonne chose* — et le
 re-mesurer quand le premier résultat est spectaculaire.
+
+---
+
+## 10. Erratum — trois citations remises sur la cellule, et un compte (ajouté le 2026-10-04)
+
+La première est relevée par ai-01 au merge (`49fdb213`, c.5980906972) ; les deux autres sont
+sorties **de la re-mesure même** qui corrigeait la première — le défaut cité n'était pas seul
+de sa classe. Chaque correction est **mesurée sur le CSV** avant d'être écrite.
+
+1. **L'atout fa (§6.5-1).** Ce dossier citait `اتو` — forme **nue**. La cellule écrit `اَتو`,
+   **avec la fatha** (U+064E), **5 fois** en Rules_14 et nulle part ailleurs ; la forme nue
+   apparaît **0 fois** dans tout le CSV. **Le défaut tient intégralement** : `حکم` (keheh)
+   ×6 en Rules_15, `اَتو` ×0 en Rules_15, zéro recouvrement — seule la citation était fausse.
+2. **Le contraste des chiffres fa (§6.5-3).** La forme de droite « `۳ یا ۴` » était une forme
+   **idéale**, pas une cellule : **0 occurrence** dans le CSV. Le contraste réel : `3 یا 4`
+   (×2, Rules_05 et 06, ASCII) contre les chiffres persans du reste du corpus (`۳۲`, `۲۰`…).
+   Le défaut tient — Rules_05 et 06 restent les seules cellules au corps ASCII.
+3. **Le compte `المغلوطة` (§6.4-1).** « ×24 » → **×22**, re-mesuré cellule par cellule :
+   Rules_02 ×4, 03 ×3, 04 ×2, 07 ×5, 11 ×5, 12 ×1, 14 ×1, 15 ×1. Les **huit cellules**
+   annoncées sont justes ; le total ne l'était pas.
+
+**Le contrôle de citation, dit.** Le contrôle d'alors (corps de la PR #1758) annonçait
+« 56 fragments présents, 0 absent, quatre témoins inverses ». Son script n'a pas survécu à la
+session — le scratchpad de reprise n'en porte aucune trace (mesuré) — et on ne peut donc plus
+établir **s'il retirait les voyelles avant de chercher, ou si la forme nue n'y figurait pas**.
+Les deux hypothèses restent ouvertes ; aucune n'est retenue. Ce qui est mesuré : la forme nue
+= 0 dans le CSV — « 0 absent » ne pouvait donc pas être le résultat d'une comparaison
+mot pour mot qui aurait porté cette forme.
+
+Le contrôle est désormais **committé** dans l'instrument (`docs/corpus/regles-fidelity-instrument.py`,
+grain 9) : **61 fragments** comparés **mot pour mot** — aucune normalisation (harakat, ZWNJ,
+keheh/kaf, script des chiffres). La forme porteuse de fatha et sa forme nue y sont épinglées
+par un témoin dédié, et **deux mutations d'attente** (la forme nue inversée ; `вытазить`
+attendu absent) ont rougi le contrôle **en nommant leur fragment**, code de sortie 1, avant
+restauration vérifiée (sha256).
+
+⭐ *Une citation de cellule se copie depuis la mesure, jamais depuis la mémoire — une fatha
+est invisible à l'œil et fait pourtant toute la différence entre « cité » et « inventé ».*
 
 *po-2024*

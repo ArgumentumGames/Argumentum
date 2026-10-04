@@ -86,15 +86,46 @@ jusqu'au dernier caractere du document.
 caractere cite de memoire n'est pas un caractere mesure, meme quand le COMPTE autour de lui
 est juste -- les deux etaient justes (8 cellules), le detail ne l'etait pas.
 
+LE CONTROLE DE CITATION (grain 9 du pool #458, corrige le 04/10 soir)
+---------------------------------------------------------------------
+Le dossier #1758 citait ses fragments ; au merge, ai-01 a mesure que l'un d'eux -- l'atout
+farsi, cite «اتو» -- n'existe NULLE PART dans le CSV : la cellule ecrit «اَتو», AVEC la fatha
+(U+064E), 5 fois en Rules_14, 0 fois ailleurs ; la forme nue : 0 fois dans tout le fichier.
+Le controle d'alors annoncait « 56 fragments presents, 0 absent » -- il ne comparait donc pas
+mot pour mot. Son script n'a pas survécu a la session (scratchpad vide a la reprise), on ne
+peut plus dire s'il retirait les voyelles ou si la forme nue n'y figurait pas : les deux
+hypoteses restent ouvertes, aucune n'est etablie. Ce qui est etabli : la re-mesure, et le
+controle COMMITTE ici, qui compare **mot pour mot** -- aucune normalisation, ni harakat
+retires, ni chiffres ramenes a l'ASCII, ni ZWNJ confondu avec l'espace.
+
+La re-mesure a sorti deux autres ecarts de la MEME classe, corriges dans le dossier (§10) :
+  * le compte « المغلوطة (×24) » : la mesure donne **22** (8 cellules : 4+3+2+5+5+1+1+1) ;
+  * le contraste « 3 یا 4 contre ۳ یا ۴ » : la forme de droite apparait **0 fois** -- le
+    contraste reel est `3 یا 4` (Rules_05/06, ASCII) contre les chiffres persans du reste du
+    corpus (`۳۲`, `۲۰`...). Le dossier citait une forme ideale, pas une cellule.
+
+⚠️ Les deux formes kaf/keheh coexistent dans le CSV et les DEUX sont presentes : حکm en
+KEHEH (U+06A9, ×6 -- l'atout fa, Rules_15) et حكم en KAF (U+0643, ×12 -- le mot arabe
+« regle »). Un controle de presence ne peut pas les distinguer : l'entree citee est donc
+ecrite en \\uXXXX et le temoin 16 l'epingle.
+
 USAGE
 -----
-    python docs/corpus/regles-fidelity-instrument.py      # self-test, puis l'ecran
+    python docs/corpus/regles-fidelity-instrument.py      # self-test, l'ecran, puis les citations
 Le self-test tourne TOUJOURS avant l'ecran : si un temoin tombe, le code de sortie n'est pas
-nul et l'ecran ne doit pas etre cite.
+nul et l'ecran ne doit pas etre cite. Le controle de citation court ensuite sur le texte du
+CSV ; un ecart (fragment cite absent, ou forme « absente » retrouvee) sort NOMME et met aussi
+le code de sortie a 1.
 """
-import io, csv, re, sys
+import io, csv, os, re, sys
 
-CSV = r'D:\Dev\Argumentum\Cards\Rules\Argumentum Rules - Cards.csv'
+# Chemin derive du script (reprise 1 du merge #1758, c.5980906972) : la constante absolue
+# `D:\Dev\Argumentum\...` ne tenait que sur la machine qui avait ecrit l'outil -- ailleurs il
+# plantait apres le self-test (FileNotFoundError). Le script vit a <racine>/docs/corpus/,
+# donc le CSV est deux niveaux plus haut.
+CSV = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    os.pardir, os.pardir,
+                                    'Cards', 'Rules', 'Argumentum Rules - Cards.csv'))
 LANGS = ['en', 'ru', 'pt', 'ar', 'es', 'zh', 'fa']
 NUM = re.compile(r'[0-9]+')
 TERM = {'ru': set('.!?\u2026\u00bb'), 'pt': set('.!?\u2026\u00bb"'), 'es': set('.!?\u2026\u00bb"'),
@@ -118,6 +149,98 @@ NUMWORD = {'ru': ['один', 'два', 'три', 'четыре', 'пять', '�
            'pt': ['um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'],
            'es': ['uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez'],
            'en': ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']}
+
+# Les fragments PORTANTS cites par le dossier #1758 (§3-§6), re-mesures puis recopies DEPUIS
+# LA MESURE (jamais frappes a la main) : True = attendu PRESENT dans le CSV, False = attendu
+# ABSENT (forme correcte non appliquee, forme citee a tort, ou temoin inverse). Les caracteres
+# invisibles sont ecrits en \uXXXX (ZWNJ) ; le keheh est epingle par le temoin 16.
+CITED = [
+    # --- ru (dossier §6.1) ---
+    ('ые в середине стола.', True, 'fragment orphelin, Rules_11'),
+    ('вытазить', True, 'coquille Rules_12'),
+    ('вытянуть', False, 'forme correcte, absente du CSV'),
+    ('слудующую', True, 'coquille Rules_12'),
+    ('следующую', False, 'forme correcte, absente'),
+    ('набравший на 20 очков', True, 'le NA superflu, Rules_12'),
+    ('набравший 20', False, 'forme sans NA, absente'),
+    ('3 семей', True, 'Rules_09/11 -- sous-chaine de семейства, cf dossier §9.1'),
+    ('семейства', True, 'Rules_02'),
+    ('ложными аргументами', True, 'Rules_14, seule cellule hors софизмы'),
+    ('софизм', True, 'x32 ailleurs'),
+    ('В комплект входит:', True, 'en-tete Rules_02'),
+    ('Потребуется:', True, 'les quatre autres en-tetes'),
+    ('Карты Мемо', True, 'Rules_02, liste'),
+    ('Карты-памятки', True, 'Rules_02, prose -- deux noms, un document'),
+    ('колода из 32 карт', True, 'Rules_13, fusion des deux enonces du FR'),
+    ('✅+1🎴', True, 'Rules_06, sequence emoji duelle'),
+    ('✅ 1🎴', True, 'les 7 autres langues'),
+    # --- pt (dossier §6.2) ---
+    ('do esquete', True, 'Rules_05, masculin fautif'),
+    ('uma esquete', True, 'Rules_02'),
+    ('a esquete', True, 'Rules_04/06'),
+    ('Cartas de ajuda-memória', True, 'Rules_11'),
+    ('Cartas de ajuda', True, 'Rules_02/09/13'),
+    # --- es (dossier §6.3) ---
+    ('Cartas recordatorio', True, 'Rules_02/09'),
+    ('Cartas de ayuda', True, 'Rules_11'),
+    ('Cartas de memo', True, 'Rules_13 -- trois noms, un objet'),
+    ('falacias argumentativas', True, 'ilot lexical Rules_07'),
+    ('argumento falaz', True, 'partout ailleurs'),
+    ('palos de triunfo', True, 'Rules_15'),
+    ('colores de triunfo', True, 'Rules_14'),
+    ('Empieza a robar', True, 'Rules_12, acteur supprime'),
+    # --- ar (dossier §6.4) ---
+    ('المغالِطة', True, 'Rules_09 x6 + Rules_13 x5 = 11 -- kasra U+0650 sous le lam'),
+    ('المغلوطة', True, '8 cellules, x22 MESUREES (le dossier disait x24, erratum §10)'),
+    ('الرصيد', True, 'Rules_06, solde/credit pour la reserve'),
+    ('المخزون', True, 'Rules_03, la reserve'),
+    ('حزمة', True, 'Rules_09, x4 corpus'),
+    ('رزمة', True, 'Rules_09, x7 corpus -- meme paquet, meme document'),
+    ('رُزمتان', True, 'Rules_03/09/13, damma U+064F, x3'),
+    ('كومتان', True, 'Rules_11, kaf'),
+    ('المواد', True, 'en-tete Rules_02'),
+    ('المكوّنات', True, 'les quatre autres en-tetes, shadda U+0651, x4'),
+    # --- fa (dossier §6.5) ---
+    ('اَتو', True, "l'atout fa Rules_14, AVEC fatha U+064E, x5 -- la citation corrigee"),
+    ('اتو', False, 'forme NUE citee par le dossier : 0 fois dans le CSV -- erratum §10'),
+    ('حکم', True, "l'atout fa Rules_15, KEHEH U+06A9 x6 (pas le kaf U+0643 du mot arabe regle, x12)"),
+    ('مغالطی', True, 'Rules_02/13'),
+    ('مغالطه‌آمیز', True, 'ZWNJ U+200C entre he et alef-madda, x25'),
+    ('مغالطه آمیز', False, 'meme forme AVEC ESPACE au lieu du ZWNJ : 0 fois -- temoin inverse'),
+    ('تجهیزات', True, 'en-tete Rules_02'),
+    ('محتویات', True, 'les quatre autres en-tetes'),
+    ('بسته', True, 'Rules_11, le paquet'),
+    ('دسته', True, 'Rules_02/09/13, le paquet ailleurs'),
+    ('قرار دهید', True, 'imperatif Rules_13'),
+    ('می‌دهیم', True, 'le nous, ZWNJ, x11'),
+    ('3 یا 4', True, 'Rules_05/06, chiffres ASCII dans le corps, x2'),
+    ('۳ یا ۴', False, 'forme du contraste citee par le dossier : 0 fois -- erratum §10'),
+    # --- zh (dossier §6.6 + §3.1) ---
+    ('序列', True, 'Rules_09, ordre'),
+    ('阶层', True, 'Rules_02/13, ordre ailleurs'),
+    ('论证谬误', True, 'compose inverse, Rules_11'),
+    ('谬误论证', True, 'partout ailleurs'),
+    ('诡辩者', True, 'le role, 27/27 occurrences suivies de 者'),
+    ('诡辩', True, '33/27 partage lu par les referents, dossier §3.1'),
+]
+
+
+def check_citations(text, cited):
+    """Chaque fragment cite est-il present/absent du CSV, MOT POUR MOT ?
+
+    Aucune normalisation -- c'est le contrat : la fatha de « اَتو », le ZWNJ de
+    « مغالطه‌آمیز », le keheh de « حکم », le script des chiffres : tout fait la
+    difference, et DOIT la faire. Une citation qui ne survive pas a la comparaison
+    character-par-character n'etait pas la citation d'une cellule.
+
+    Retourne la liste des ecarts [(fragment, attendu, obtenu, ou)] ; vide = fidele.
+    """
+    fails = []
+    for frag, want, ou in cited:
+        got = frag in text
+        if got != want:
+            fails.append((frag, want, got, ou))
+    return fails
 
 
 def norm_digits(s):
@@ -339,7 +462,31 @@ def self_test():
     ok_slip = check_scripts(H4 + ['Text_ru'], [['R1', 'a', 'b', 'c', 'русский текст']])
     check('14 pas de faux positif', ok_slip == [],
           'le script attendu est signale a tort -> %s' % ok_slip)
-    print('SELF-TEST:', 'OK (14 temoins)' if ok else 'ECHEC')
+    # 15 : le controle de citation, sur un mini-corpus synthetique. Il doit rendre zero ecart
+    # sur des attentes justes -- dont la paire fatha/nue (اَتو present, اتو absent) et la paire
+    # ZWNJ/espace -- et NOMMER l'ecart quand une attente est inversee (controle falsifiant :
+    # sans lui, un controle toujours-green passerait pour voyant).
+    mini = 'abc اَتو مغالطه‌آمیز def'
+    ok15 = check_citations(mini, [('اَتو', True, 'a'), ('اتو', False, 'a'),
+                                  ('مغالطه‌آمیز', True, 'a'), ('مغالطه آمیز', False, 'a')])
+    bad15 = check_citations(mini, [('اتو', True, 'attente inversee')])
+    check('15 controle de citation', ok15 == [] and len(bad15) == 1 and bad15[0][0] == 'اتو',
+          'le controle de citation ne voit pas la fatha, le ZWNJ, ou ne nomme pas son ecart -> %s / %s'
+          % (ok15, bad15))
+    # 16 : la fatha du temoin. Si un editeur depouille les harakat du present fichier source,
+    # l'entree CITED de l'atout devient la forme nue et ce temoin tombe -- c'est exactement le
+    # defaut qu'a mesure ai-01 au merge de #1758, garde ici en epi.
+    pairs = [(f, w) for f, w, o in CITED]
+    check('16 fatha et keheh epingles',
+          ('اَتو', True) in pairs and ('اتو', False) in pairs
+          and ('حکم', True) in pairs,
+          'CITED ne porte plus la fatha de l atout, sa forme nue, ou son keheh')
+    # 17 : le tableau CITED dit ce qu'il mesure -- chaque entree attendue PRESENTE a bien une
+    # attente booleenne et une localisation ecrite (une entree mal formee serait muette).
+    check('17 entrees CITED bien formees',
+          all(isinstance(w, bool) and ou for _, w, ou in CITED) and len(CITED) >= 50,
+          'entree CITED mal formee ou tableau ampute : %d entrees' % len(CITED))
+    print('SELF-TEST:', 'OK (17 temoins)' if ok else 'ECHEC')
     return ok
 
 
@@ -347,5 +494,13 @@ if __name__ == '__main__':
     if not self_test():
         sys.exit(1)
     print()
-    screen(list(csv.reader(io.StringIO(
-        io.open(CSV, encoding='utf-8-sig', newline='').read()))))
+    text = io.open(CSV, encoding='utf-8-sig', newline='').read()
+    screen(list(csv.reader(io.StringIO(text))))
+    fails = check_citations(text, CITED)
+    print('CITATIONS: %d fragments, %d conformes, %d ecarts'
+          % (len(CITED), len(CITED) - len(fails), len(fails)))
+    for frag, want, got, ou in fails:
+        print('  ECART: %r attendu=%s obtenu=%s (%s)'
+              % (frag, 'present' if want else 'absent', 'present' if got else 'absent', ou))
+    if fails:
+        sys.exit(1)
