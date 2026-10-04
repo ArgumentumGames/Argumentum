@@ -445,7 +445,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			return TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
+			// #458 reprise (c.5977924514) : un export attendu sans SVG est enregistré pour
+			// le résumé de fin de passe — c'est le trou du §6 du dossier #1744 : avant, une
+			// panne FreeMind ici ne laissait aucune trace comptée.
+			if (TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
+			{
+				return true;
+			}
+			RecordMissingSvgExport(destinationSvgPath);
+			return false;
 		}
 
 		/// <summary>
@@ -741,6 +749,54 @@ namespace Argumentum.AssetConverter.Mindmapper
 		{
 			System.Threading.Interlocked.Exchange(ref _xsltFallbackEngagements, 0);
 			System.Threading.Interlocked.Exchange(ref _xsltFallbackArtifacts, 0);
+			_missingSvgExports = new System.Collections.Concurrent.ConcurrentQueue<string>();
+		}
+
+		// #458 reprise (décision c.5977924514) : un export attendu qui n'a pas produit de
+		// SVG fait désormais ÉCHOUER la passe (résumé, puis throw), comme le
+		// [HARVEST-PARTIAL] de #613. Avant : une panne FreeMind côté sophismes ne laissait
+		// AUCUNE trace comptée (§6 du dossier #1744) — la passe sortait verte avec 0 SVG.
+		private static System.Collections.Concurrent.ConcurrentQueue<string> _missingSvgExports
+			= new System.Collections.Concurrent.ConcurrentQueue<string>();
+
+		/// <summary>Exports SVG attendus mais non produits depuis la dernière remise à zéro (noms de fichiers).</summary>
+		public static IReadOnlyList<string> MissingSvgExports => _missingSvgExports.ToArray();
+
+		/// <summary>Enregistre un export attendu sans SVG (appelé par les DEUX créateurs : Sophismes et Vertus).</summary>
+		internal static void RecordMissingSvgExport(string destinationSvgPath)
+		{
+			_missingSvgExports.Enqueue(Path.GetFileName(destinationSvgPath));
+		}
+
+		/// <summary>
+		/// Ligne du résumé de fin de passe (#458 reprise, c.5977924514). Fonction pure, épingleable.
+		/// </summary>
+		internal static string BuildMissingSvgSummaryLine(int count)
+		{
+			return count == 0
+				? "Mindmap pass summary: every expected SVG export was produced (0 missing)."
+				: $"Mindmap pass summary: {count} expected SVG export(s) MISSING — FreeMind GUI produced no SVG (see the warnings above).";
+		}
+
+		/// <summary>
+		/// Termine la passe mindmaps : résume les exports manquants puis, s'il y en a, jette
+		/// <c>[MINDMAP-PARTIAL]</c> en nommant les cartes (jusqu'à 10, puis le compte) — le
+		/// même contrat que le <c>[HARVEST-PARTIAL]</c> de #613 : une passe incomplète ne
+		/// sort pas verte. Appelé par AssetConverterConfig.Apply après LES DEUX créateurs.
+		/// </summary>
+		internal static void ThrowIfMissingSvgExports()
+		{
+			var missing = _missingSvgExports.ToArray();
+			if (missing.Length == 0)
+			{
+				return;
+			}
+			var named = string.Join(", ", missing.Take(10));
+			var more = missing.Length > 10 ? $" (+{missing.Length - 10} more)" : string.Empty;
+			throw new InvalidOperationException(
+				$"[MINDMAP-PARTIAL] {missing.Length} expected mindmap SVG export(s) missing: {named}{more}. "
+				+ "FreeMind GUI export produced no SVG and the XSLT fallback is retired (dead path #184) — "
+				+ "fix FreeMind (ARGUMENTUM_FREEMIND_PATH) and re-run the pass; do not commit absent or degraded SVGs.");
 		}
 
 		/// <summary>
@@ -760,10 +816,13 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		/// <summary>
 		/// Fallback SVG conversion using XSLT stylesheets (mm2svg.xslt from tstephen/mindmap).
-		/// ⚠ Dead path (#184), kept for headless contexts only — its output renders blank
-		/// (measured 04/10: 223 x="NaN" per 223 nodes on the rd3 zh Virtues triplet). #458
-		/// grain 4 makes every engagement and every produced artifact visible (warning +
-		/// pass summary) so a degraded file can no longer leave the pass under a success line.
+		/// ⚠ Dead path (#184): its output renders blank (measured 04/10: 223 x="NaN" per 223
+		/// nodes on the rd3 zh Virtues triplet). #458 reprise (c.5977924514) : PLUS AUCUN
+		/// créateur ne l'appelle — le repli Vertus est retiré (aligné sur les sophismes,
+		/// 75a049d3) ; une panne FreeMind fait échouer la passe ([MINDMAP-PARTIAL]) au lieu
+		/// de produire une page blanche. Conservée pour un usage EXPLICITE hors passe (les
+		/// tests d'intégration l'appellent directement pour épingle la voie morte) : tout
+		/// nouvel appelant doit savoir ce qu'il produit.
 		/// </summary>
 		internal static bool TryXsltSvgConversion(string sourceMmPath, string destinationSvgPath)
 		{
