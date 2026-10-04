@@ -93,11 +93,12 @@ candidats sont cumulés depuis le dossier zh + l'erratum #1746 §9.
 | **2.2.9** ctxt | ajout « personnage mythologique » | ✓ | ✓ (شخصية ميثولوجية) | — |
 | **3.2.16** enjeu | modalité affaiblie (« doit » → « tente ») | ✓ (试图) | ✓ (يحاول) | — |
 | **4.2.8** titre | ajout « inattendu » + jeu « compromis » perdu | ✓ | ✓ (استيقاظ غير متوقع) | — |
-| **4.1.12** enjeu | modalité affaiblie | — | ✓ (يحاول) | — |
+| **4.1.12** enjeu | modalité affaiblie | — | ✓ (يحاول) | **fa ✓** (بکوشد — erratum §10) |
+| **4.3.4** ctxt | enjeu recopié dans le contexte | ✓ | — (fidèle) | **fa ✓** (erratum §10) |
 | **1.2.3** ctxt+enjeu | ponctuation finale absente | ✓ | ✓ | es · fa |
 | **2.1.8** sugg | ponctuation finale absente | ✓ | ✓ | es |
 | **6.1.1 · 3.1.1 · 3.2.2** | suit l'EN contre le FR | ✓ | ✓ | à mesurer |
-| **7.3.5** sugg | punchline réécrite, « Venise » perdu | — | ✓ | à mesurer |
+| **7.3.5** sugg | punchline réécrite, « Venise » perdu | — | ✓ | **fa ✓** (erratum §10) |
 
 À verser au passif **EN** (constaté pendant la passe ar, pour le futur dossier en) :
 7.2.8 sugg *"don't you think you're going to work a bit?"* (contresens — l'ar, lui, suit le
@@ -142,8 +143,9 @@ smurf"* perd le titre (le roi des Schtroumpfs de l'épisode) · 3.2.8 ctxt ajout
 - **Que les défauts zh se généralisent** : sur les 5 défauts de contenu du dossier zh
   (3.2.8, 6.2.1, 4.3.4, 4.3.3, 1.1.3), l'ar en reproduit **un seul** (1.1.3). L'anniversaire
   (3.2.8), le titre inventé (6.2.1), l'enjeu recopié dans le contexte (4.3.4) et le rôle
-  ajouté (4.3.3) sont **fidèles en ar** — les défauts d'incohérence interne zh sont
-  spécifiques zh.
+  ajouté (4.3.3) sont **fidèles en ar** — ⚠️ **corrigé par l'erratum §10** : après la passe
+  fa, « spécifiques zh » ne tient plus pour 4.3.4 (**zh·fa**) ni, autrement, pour 3.2.8
+  (fa dévie sur le concept) ; 6.2.1 et 4.3.3 restent zh-seuls à ce jour.
 - **La fluidité et le registre globaux** : relèvent du jugement d'un locuteur natif ; ce
   dossier ouvre la matière, il ne la tranche pas.
 - **L'absence d'autres substitutions lexicales** du type 1.1.3 : la lecture intégrale n'en a
@@ -179,5 +181,28 @@ smurf"* perd le titre (le roi des Schtroumpfs de l'épisode) · 3.2.8 ctxt ajout
   inter-langues — la passe des 5 langues restantes dira s'ils sont des signatures de lot.
 - **0 écriture** : ce dossier n'a modifié aucune cellule ; la relecture native décidera des
   corrections.
+
+---
+
+## 10. Erratum — portée des défauts après la passe fa (ajouté le 2026-10-04, même journée)
+
+La lecture intégrale **fa** (même méthode, dossier `458-fidelite-scenarii-fa-2026-10-04.md`)
+falsifie deux affirmations de ce dossier :
+
+1. **§3 défaut n° 3 (7.3.5) et §5** — la punchline réécrite en question avec perte de
+   l'ancrage « Venise » n'est **pas propre à l'ar** : le fa porte la même réécriture à deux
+   clauses (تم مهمانی چی بود؟ جدی جدی شبیه پنیر شده‌ای؟ — « quel était le thème ? … tu es
+   vraiment déguisé en fromage ? »). Défaut reclassé **ar·fa**.
+2. **§7** — « les incohérences internes zh sont spécifiques zh » est **faux pour 4.3.4** :
+   le fa recopie lui aussi l'enjeu dans le contexte (و باید کمیته‌ای را قانع کند…). Le
+   défaut 4 du dossier zh est reclassé **zh·fa** (l'ar reste fidèle). À l'inverse **6.2.1**
+   (titre inventé — fa : کناره‌گیری توافقی, « retrait négocié », fidèle) et **4.3.3** (rôle
+   ajouté) restent **zh-seuls** après la passe fa ; **3.2.8** dévie aussi en fa, mais
+   autrement (concept uniformément décalé vers « anniversaire d'événement », pas
+   d'incohérence interne comme en zh).
+
+Le noyau partagé **zh·ar·fa** s'étoffe au passage : **3.3.2, 1.1.3, 2.2.9, 3.2.16, 4.2.8**
+et la ponctuation **1.2.3** sont désormais mesurés sur les trois langues, et **4.1.12**
+(ar·fa) complète la famille des modalités affaiblies. Matrice à jour dans le dossier fa.
 
 *po-2024*
