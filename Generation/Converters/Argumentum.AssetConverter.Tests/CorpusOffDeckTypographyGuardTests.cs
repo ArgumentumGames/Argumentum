@@ -23,6 +23,12 @@ namespace Argumentum.AssetConverter.Tests
 	/// <item>Les doublons hors deck 1055/1341 des cartes 51/121 example_ru
 	/// sont convertis et **synchronisés avec leur jumeau deck** (la garde
 	/// l'épingle par égalité pleine cellule).</item>
+	/// <item>Renvoi #1743 (c.5977925196) : + **9 cellules / 21 marqueurs
+	/// d'ouverture** (65 × 8 langues + 616 example_ar) — le tiret ASCII en
+	/// tête de cellule/ligne échappait au balayage « - » espacé : rien ne le
+	/// précède, l'occurrence ne peut pas se former. Converti selon la norme
+	/// mesurée sur la carte 813 (#1736) : « — » + espace (fr/en/ru/pt/ar/fa),
+	/// collé (es, RAE), « —— » collé (zh). Total : **74 cellules**.</item>
 	/// <item>Le balayage du deck vit dans CorpusDialogueTypographyGuardTests
 	/// (#1736) — non dupliqué ici.</item>
 	/// </list>
@@ -92,6 +98,84 @@ namespace Argumentum.AssetConverter.Tests
 				"1239 text_ru : « - » ASCII → cadratin espacé (grain 3, seule cellule text_ru).");
 			Cell("desc_ru", "1051").Should().Be("Вам трудно представить, каково это — не знать что-то, что вы уже знаете.",
 				"1051 desc_ru : cadratin espacé (grain 3, première des 8 desc_ru hors deck).");
+		}
+
+		[Fact]
+		public void OffDeck_ReplyOpeningDash_NotAscii()
+		{
+			// Renvoi #1743 (c.5977925196) : le tiret d'OUVERTURE de réplique (en
+			// tête de cellule ou de ligne) échappait au balayage « - » espacé —
+			// rien ne le précède, l'occurrence ne peut pas se former. 9 cellules
+			// converties (65 × 8 langues + 616 example_ar, 21 marqueurs).
+			var cartes = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn("carte");
+			var pks = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn("PK");
+			var offenders = new List<string>();
+			foreach (var field in new[] { "text", "desc", "example" })
+			{
+				foreach (var lang in new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" })
+				{
+					var column = field + "_" + lang;
+					var values = new HarvestCardIdsCsv(FallaciesCsv).LoadColumn(column);
+					values.Count.Should().Be(cartes.Count, "les deux colonnes couvrent les mêmes rangées.");
+					for (var i = 0; i < values.Count; i++)
+					{
+						if (!string.IsNullOrWhiteSpace(cartes[i]))
+						{
+							continue; // deck : normé par #1736
+						}
+						var cell = values[i] ?? string.Empty;
+						foreach (var line in cell.Split('\n'))
+						{
+							if (line.StartsWith("- "))
+							{
+								offenders.Add($"{column} PK {pks[i]}");
+								break; // une occurrence par cellule suffit à la nommer
+							}
+						}
+					}
+				}
+			}
+			offenders.Should().BeEmpty(
+				"tirets ASCII d'ouverture interdits hors deck ({0} cellule(s)) — l'ouverture suit la norme "
+				+ "de la carte 813 (#1736) : « — » + espace sauf es collé et zh « —— »",
+				string.Join(" ; ", offenders));
+		}
+
+		[Fact]
+		public void ReplyOpeningPins_Norm813()
+		{
+			// Les 9 cellules converties au renvoi #1743 : chaque ligne à tiret
+			// doit suivre la norme d'ouverture mesurée sur la carte deck 813
+			// (#1736) : cadratin + espace partout, sauf es collé (RAE) et zh
+			// « —— » collé.
+			AssertOpeningNorm("65", "example_fr", "— ", glued: false);
+			AssertOpeningNorm("65", "example_en", "— ", glued: false);
+			AssertOpeningNorm("65", "example_ru", "— ", glued: false);
+			AssertOpeningNorm("65", "example_pt", "— ", glued: false);
+			AssertOpeningNorm("65", "example_es", "—", glued: true);
+			AssertOpeningNorm("65", "example_ar", "— ", glued: false);
+			AssertOpeningNorm("65", "example_fa", "— ", glued: false);
+			AssertOpeningNorm("65", "example_zh", "——", glued: false);
+			AssertOpeningNorm("616", "example_ar", "— ", glued: false);
+		}
+
+		private static void AssertOpeningNorm(string pk, string column, string marker, bool glued)
+		{
+			var cell = Cell(column, pk);
+			var dashLines = cell.Split('\n')
+				.Where(l => l.StartsWith("—") || l.StartsWith("-"))
+				.ToList();
+			dashLines.Should().NotBeEmpty("PK {0} {1} ouvre ses répliques par un tiret.", pk, column);
+			foreach (var line in dashLines)
+			{
+				line.Should().StartWith(marker,
+					"PK {0} {1} : l'ouverture de réplique suit la norme de la carte 813 (#1736).", pk, column);
+				if (glued)
+				{
+					line.Should().NotStartWith("— ",
+						"es colle le cadratin au texte (RAE) — PK {0} {1}.", pk, column);
+				}
+			}
 		}
 	}
 }
