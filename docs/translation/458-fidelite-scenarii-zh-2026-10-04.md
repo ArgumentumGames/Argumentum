@@ -77,7 +77,7 @@ C'est le résultat principal : **la couverture zh des Scénarios est complète**
 | 3 | **6.2.1** | titre | « Retrait négocié » | "Negotiated Withdrawal" | 初选连环跳 | titre **inventé** : ne correspond ni au FR ni à l'EN |
 | 4 | **4.3.4** | contexte | « …sans aucun garde-fou. » | "…with no safeguards at all." | 诡辩者 声称要打造…却不设置任何安全护栏，**还得说服委员会支持他的项目**。 | l'**enjeu est recopié dans le contexte** (ni FR ni EN ne le portent) — la carte dit deux fois la même chose |
 | 5 | **4.3.3** | enjeu | « **il** doit convaincre son fournisseur » | "**he** must convince his supplier" | 这位**转卖商**必须说服供应商 | rôle ajouté ; **`smoothTalker_zh` de la même carte dit 采购商** (acheteur) — incohérence interne |
-| 6 | **1.2.3** (×2), **2.1.8** | context/issue, suggestion | point final présent | point final présent | **pas de ponctuation finale** | 3 cellules ; le témoin EN porte la ponctuation au même endroit |
+| 6 | **1.2.3** (×2), **2.1.8** | context/issue, suggestion | point final présent | point final présent | **pas de ponctuation finale** | 3 cellules — ⚠️ **portée corrigée, voir l'erratum en fin de dossier** : c'est un lot inter-langues, pas un trait du zh |
 | 7 | **4.3.3 – 4.3.6** | context_zh | — | — | espace parasite après 诡辩者 | **4 cellules en run contigu** ; témoins 4.3.1 / 4.3.2 / 4.3.7 / 4.3.9 **sans** espace ⇒ signature de lot, pas une frappe isolée |
 
 Le défaut 7 est d'un autre ordre que les six autres : c'est une **scorie de lot** dans une
@@ -145,5 +145,21 @@ Le dossier serait faux s'il ne portait que des défauts. Relevés notables :
 - Le reste = **choix de rendu** à arbitrer en relecture native, listés en §5.
 - **0 écriture** : ce dossier n'a modifié aucune cellule ; il ouvre la matière pour la
   relecture native, qui décidera des corrections.
+
+---
+
+## 9. Erratum — portée du défaut n° 6 (ajouté le 2026-10-04, même journée)
+
+La campagne a poursuivi sur les **7 autres langues** avec le même instrument. La carte **1.2.3**
+(contexte *et* enjeu) manque la ponctuation finale **en es, ar, fa et zh**, et la carte **2.1.8**
+en **es, ar et zh** — mesuré sur les seules cellules où **FR et EN ponctuent tous deux**.
+
+⇒ La ponctuation manquante n'est **pas un trait du zh** : c'est une **signature de lot**
+partagée par 3 à 4 langues aux mêmes cellules. Le défaut n° 6 est donc **retiré du passif zh**
+et versé à la matrice inter-langues. Par ailleurs `2.2.1`, listée « héritée de l'EN » dans la
+passe zh, est confirmée comme telle : le bloc EN omet lui-même le point final.
+
+Le présent dossier est corrigé sur place (document vivant, PR encore ouverte). Le corps de la
+PR #1746, qui portait la version initiale, a reçu le même erratum en commentaire.
 
 *po-2024*
