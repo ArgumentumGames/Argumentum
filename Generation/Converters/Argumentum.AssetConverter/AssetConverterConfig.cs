@@ -597,6 +597,8 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 			{
 				// #458 grain 4 (dispatch c.5975630522) — fenêtre de comptage du repli XSLT
 				// pour CETTE passe mindmaps ; le résumé est émis après les deux créateurs.
+				// #458 reprise (c.5977924514) — la fenêtre couvre aussi les exports SVG
+				// manquants : la passe ÉCHOUE s'il en manque ([MINDMAP-PARTIAL]).
 				FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
 				if (AsynchronousPipeline)
 				{
@@ -605,18 +607,19 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 					tasks.Add(fallacyMapTask);
 					tasks.Add(virtueMapTask);
 					// Résumé émis d'un seul point, après LES DEUX créateurs (compteurs
-					// process-wide : un résumé par créateur s'entrelacerait ici).
+					// process-wide : un résumé par créateur s'entrelacerait ici), puis
+					// verdict de passe : throw si un export attendu manque.
 					tasks.Add(Task.Run(async () =>
 					{
 						await Task.WhenAll(fallacyMapTask, virtueMapTask);
-						LogMindmapXsltFallbackSummary();
+						CompleteMindmapPass();
 					}));
 				}
 				else
 				{
 					await FallacyMindMapCreatorConfig.Apply(this);
 					await VirtueMindMapCreatorConfig.Apply(this);
-					LogMindmapXsltFallbackSummary();
+					CompleteMindmapPass();
 				}
 			}
 
@@ -785,6 +788,28 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 			{
 				Logger.Log(line);
 			}
+		}
+
+		/// <summary>
+		/// #458 reprise (c.5977924514) — clôture de la passe mindmaps : les deux résumés
+		/// (repli XSLT, exports manquants), puis <c>throw [MINDMAP-PARTIAL]</c> si un export
+		/// attendu n'a pas produit de SVG — le même contrat que le <c>[HARVEST-PARTIAL]</c>
+		/// de #613 : une passe incomplète ne sort pas verte. Appelé après LES DEUX créateurs.
+		/// </summary>
+		private static void CompleteMindmapPass()
+		{
+			LogMindmapXsltFallbackSummary();
+			var missing = FallacyMindMapDocumentConfig.MissingSvgExports;
+			var missingLine = FallacyMindMapDocumentConfig.BuildMissingSvgSummaryLine(missing.Count);
+			if (missing.Count > 0)
+			{
+				Logger.LogWarning(missingLine);
+			}
+			else
+			{
+				Logger.Log(missingLine);
+			}
+			FallacyMindMapDocumentConfig.ThrowIfMissingSvgExports();
 		}
 
 	    public string GetHarvestDirectory(string language)

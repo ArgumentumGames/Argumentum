@@ -305,17 +305,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
+			// #458 reprise (décision c.5977924514) : le repli XSLT est RETIRÉ — aligné sur
+			// les sophismes (75a049d3, même raison). Sa production était la voie morte #184
+			// (NaN ×nœuds, page blanche entrée dans #1740 sous un LogSuccess). Une panne
+			// FreeMind laisse maintenant 0 SVG, enregistré pour le résumé de fin de passe,
+			// et la passe échoue ([MINDMAP-PARTIAL]) au lieu de livrer une page blanche.
 			if (FallacyMindMapDocumentConfig.TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
 				return true;
 
-			// #458 grain 4 : l'entrée dans le repli est un ÉVÉNEMENT — avertissement, pas Information.
-			Logger.LogWarning($"FreeMind GUI unavailable, falling back to XSLT for {Path.GetFileName(sourceMmPath)}");
-			if (FallacyMindMapDocumentConfig.TryXsltSvgConversion(sourceMmPath, destinationSvgPath))
-				return true;
-
-			if (isInteractive && Program.IsInteractive)
-				Logger.LogWarning($"SVG not generated. Please convert manually: {sourceMmPath}");
-
+			FallacyMindMapDocumentConfig.RecordMissingSvgExport(destinationSvgPath);
 			return false;
 		}
 

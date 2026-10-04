@@ -9,29 +9,31 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 {
 	/// <summary>
-	/// #458 grain 4 (dispatch c.5975630522) — <b>contrôle inverse</b> de la visibilité du
-	/// repli XSLT : un export FreeMind simulé SANS fichier produit doit laisser une trace
-	/// d'AVERTISSEMENT dans le journal, et l'artefact dégradé doit être compté pour le
-	/// résumé de fin de passe mindmaps.
+	/// #458 grain 4 (dispatch c.5975630522) — visibilité du repli XSLT ; <b>#458 reprise
+	/// (décision c.5977924514)</b> — le repli Vertus est RETIRÉ et un export attendu sans
+	/// SVG fait <b>échouer la passe</b> : résumé, puis <c>throw [MINDMAP-PARTIAL]</c> en
+	/// nommant la carte, comme le <c>[HARVEST-PARTIAL]</c> de #613.
 	///
-	/// <para><b>Ce qui est éprouvé</b> — le point d'insertion de PRODUCTION (chaîne du
-	/// créateur Virtues : <c>TryFreeMindSvgExport</c> → repli XSLT), pas le repli appelé
-	/// directement : c'est la cascade qui a laissé la carte blanche entrer dans #1740.
-	/// FreeMind est « configuré mais absent du disque » (<c>FreeMindPath</c> vers un
-	/// exécutable inexistant) : l'export échoue sans lancer de GUI ni attendre 90 s, et
-	/// c'est le cas « export sans SVG » du dispatch — même cascade terminale que
-	/// « fenêtre FreeMind introuvable » ou « SVG non détecté après keystrokes ».</para>
+	/// <para><b>Ce qui est éprouvé</b> — les points d'insertion de PRODUCTION (les chaînes
+	/// des DEUX créateurs : <c>TryAutomateSvgConversion</c> Sophismes et Vertus), pas des
+	/// fonctions appelées directement. FreeMind est « configuré mais absent du disque »
+	/// (<c>FreeMindPath</c> vers un exécutable inexistant) : l'export échoue sans lancer de
+	/// GUI ni attendre 90 s, et c'est le cas « export sans SVG » du dispatch — même cascade
+	/// terminale que « fenêtre FreeMind introuvable » ou « SVG non détecté après
+	/// keystrokes ». Le nom de fichier du test porte un GUID pour que les assertions de
+	/// journal ne puissent PAS être satisfaites par une ligne d'une exécution antérieure
+	/// (journal en append).</para>
 	///
-	/// <para><b>Avant #458 grain 4</b> : la cascade sortait sur <c>LogSuccess</c> — un
-	/// artefact aux coordonnées vides (« x="NaN" » ×223 sur les 223 nœuds du triplet zh
-	/// Vertus de la rd3, mesuré 04/10) se lisait comme un succès. Le nom de fichier du
-	/// test porte un GUID pour que les assertions de journal ne puissent PAS être
-	/// satisfaites par une ligne d'une exécution antérieure (journal en append).</para>
+	/// <para><b>Avant la reprise</b> : côté Vertus, le repli XSLT « réussissait » et
+	/// l'artefact dégradé (x="NaN" ×223 sur 223 nœuds, mesuré 04/10) sortait sous un
+	/// LogSuccess — la carte blanche est entrée dans #1740. Côté Sophismes (repli déjà
+	/// retiré par 75a049d3), une panne FreeMind ne laissait <b>aucune trace comptée</b>
+	/// (§6 du dossier #1744) : la passe sortait verte avec 0 SVG. La reprise ferme les
+	/// deux voies.</para>
 	///
 	/// <para><b>Filets voisins</b> : <c>MindmapXsltFallbackGateTests</c> (#1740) garde
-	/// l'ARBRE committé (marqueurs x="NaN" / « Processing node level ») ; ici on garde la
-	/// PASSE — avertissement au journal + comptage pour le résumé. Le chemin Fallacies n'a
-	/// pas de repli (retiré par 75a049d3) : cette garde ne couvre que la voie Virtues.</para>
+	/// l'ARBRE committé ; <c>TryXsltSvgConversion</c> reste appelable HORS PASSE pour un
+	/// usage explicite (épinglé ici même, voie morte #184).</para>
 	/// </summary>
 	[Trait("Category", "Integration")]
 	public class MindmapXsltFallbackSignalTests : IDisposable
@@ -59,74 +61,158 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 			}
 		}
 
-		[Fact]
-		public void SimulatedFreeMindExportWithoutSvg_WarnsInJournal_AndCountsTheDegradedArtifact()
+		private static readonly Type[] ConversionSignature =
+			{ typeof(string), typeof(string), typeof(AssetConverterConfig), typeof(bool) };
+
+		private static bool InvokeConversion(object generator, string mmPath, string svgPath, AssetConverterConfig config)
 		{
-			// Nom unique par exécution : le journal est en append, une assertion « Contain »
-			// sur un nom fixe serait verte à vide dès la deuxième exécution.
-			var fileName = $"fallback-signal-{Guid.NewGuid():N}.mm";
-			var mmPath = Path.Combine(_tempDir, fileName);
-			var svgPath = Path.ChangeExtension(mmPath, ".svg");
+			var method = generator.GetType().GetMethod(
+				"TryAutomateSvgConversion", BindingFlags.NonPublic | BindingFlags.Instance, null, ConversionSignature, null);
+			method.Should().NotBeNull("le point d'insertion de production doit exister ({0}).", generator.GetType().Name);
+			return (bool)method!.Invoke(generator, new object[] { mmPath, svgPath, config, false })!;
+		}
+
+		private static string WriteTempMm(string dir, string fileName)
+		{
+			var mmPath = Path.Combine(dir, fileName);
 			File.WriteAllText(mmPath, "<map version=\"1.0.1\"><node TEXT=\"Racine\"><node TEXT=\"Enfant\"/></node></map>");
+			return mmPath;
+		}
+
+		[Fact]
+		public void VirtuesChain_FreeMindAbsent_NoXsltFallbackAnymore_ExportRecordedMissing()
+		{
+			// Contrôle inverse du retrait (c.5977924514) : FreeMind absent → PLUS AUCUN
+			// repli, plus aucun SVG produit — et l'absence est comptée pour la passe.
+			var fileName = $"virtues-nofallback-{Guid.NewGuid():N}.mm";
+			var mmPath = WriteTempMm(_tempDir, fileName);
+			var svgPath = Path.ChangeExtension(mmPath, ".svg");
 
 			var config = new AssetConverterConfig
 			{
 				OverwriteExistingDocs = true,
 				// « Présent dans la config, absent du disque » : échec d'export immédiat et
-				// déterministe (pas de GUI, pas d'attente de fenêtre), indépendant de la
-				// variable d'environnement de la machine.
+				// déterministe (pas de GUI, pas d'attente de fenêtre).
 				FreeMindPath = Path.Combine(_tempDir, "FreeMind-absent.exe"),
 			};
+
+			FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
+
+			var produced = InvokeConversion(new VirtueMindMapDocumentConfig { DocumentName = fileName }, mmPath, svgPath, config);
+
+			produced.Should().BeFalse(
+				"le repli XSLT est retiré de la chaîne Vertus (c.5977924514) : une panne FreeMind " +
+				"doit laisser 0 SVG, pas un artefact dégradé — s'il revient, la reprise a été défait.");
+			File.Exists(svgPath).Should().BeFalse("aucun SVG ne doit être produit par la voie morte.");
+
+			FallacyMindMapDocumentConfig.MissingSvgExports.Should().Contain(Path.GetFileName(svgPath),
+				"l'export attendu sans SVG doit être enregistré pour le résumé de fin de passe.");
+
+			var journal = File.ReadAllText(Logger.LogFile);
+			journal.Should().Contain("[Warning] FreeMind not found",
+				"l'export doit d'abord dire pourquoi il échoue.");
+			journal.Should().NotContain($"falling back to XSLT for {fileName}",
+				"le repli XSLT est retiré de la chaîne Vertus — cette ligne ne doit plus exister.");
+			journal.Should().NotContain($"Using XSLT fallback for SVG conversion of {fileName}",
+				"l'engagement du repli ne doit plus être atteignable depuis la passe.");
+		}
+
+		[Fact]
+		public void FallaciesChain_FreeMindAbsent_ExportRecordedMissing_PassThrowsNamingTheCard()
+		{
+			// Le trou du §6 du dossier #1744 : côté Sophismes (pas de repli depuis
+			// 75a049d3), une panne FreeMind ne laissait AUCUNE trace comptée. La passe
+			// doit maintenant ÉCHOUER en nommant la carte (contrôle inverse du dispatch).
+			var fileName = $"fallacies-partial-{Guid.NewGuid():N}.mm";
+			var mmPath = WriteTempMm(_tempDir, fileName);
+			var svgPath = Path.ChangeExtension(mmPath, ".svg");
+
+			var config = new AssetConverterConfig
+			{
+				OverwriteExistingDocs = true,
+				FreeMindPath = Path.Combine(_tempDir, "FreeMind-absent.exe"),
+			};
+
+			FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
+
+			var produced = InvokeConversion(new FallacyMindMapDocumentConfig { DocumentName = fileName }, mmPath, svgPath, config);
+
+			produced.Should().BeFalse("FreeMind absent : aucun SVG produit.");
+			FallacyMindMapDocumentConfig.MissingSvgExports.Should().Contain(Path.GetFileName(svgPath),
+				"l'export attendu sans SVG doit être enregistré par la chaîne Sophismes aussi.");
+
+			// Résumé puis throw : le contrat [HARVEST-PARTIAL] (#613) appliqué aux mindmaps.
+			FallacyMindMapDocumentConfig.BuildMissingSvgSummaryLine(FallacyMindMapDocumentConfig.MissingSvgExports.Count)
+				.Should().Contain("MISSING", "le résumé dit l'absence mesurée, il ne la tait pas.");
+
+			var act = () => FallacyMindMapDocumentConfig.ThrowIfMissingSvgExports();
+			act.Should().ThrowExactly<InvalidOperationException>()
+				.Which.Message.Should().Contain("[MINDMAP-PARTIAL]")
+				.And.Contain(Path.GetFileName(svgPath),
+					"la passe échoue en NOMMANT la carte — un échec anonyme ne se répare pas.");
+		}
+
+		[Fact]
+		public void MissingSvgExports_ThrowIsSilentWhenNothingIsMissing()
+		{
+			// Cas sain : fenêtre ouverte sans rien enregistrer → la passe sort verte.
+			FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
+			FallacyMindMapDocumentConfig.MissingSvgExports.Should().BeEmpty(
+				"la remise à zéro ouvre une fenêtre propre pour la passe.");
+			var act = () => FallacyMindMapDocumentConfig.ThrowIfMissingSvgExports();
+			act.Should().NotThrow("aucun export manquant : la passe ne doit pas échouer.");
+		}
+
+		[Fact]
+		public void MissingSummaryLine_StatesOnlyWhatWasMeasured()
+		{
+			FallacyMindMapDocumentConfig.BuildMissingSvgSummaryLine(0)
+				.Should().Be("Mindmap pass summary: every expected SVG export was produced (0 missing).",
+					"cas sain : dit le mesuré (0 manquant), ne prétend pas « tous issus de Batik ».");
+
+			FallacyMindMapDocumentConfig.BuildMissingSvgSummaryLine(3)
+				.Should().Contain("3 expected SVG export(s) MISSING")
+					.And.Contain("FreeMind GUI produced no SVG",
+						"l'absence doit nommer sa cause mesurée (export GUI sans SVG).");
+		}
+
+		[Fact]
+		public void RetiredXsltPath_ExplicitOutOfPassCall_StillMeasuresTheDeadPath()
+		{
+			// TryXsltSvgConversion n'est plus appelée par AUCUNE passe (c.5977924514) ;
+			// elle reste pour un usage EXPLICITE hors passe — ce fait épingle sa nature :
+			// l'appel direct produit toujours la voie morte #184 (coordonnées NaN LUES
+			// DANS LE GABARIT mm2svg.xslt, pas un littéral recopié — réserve #1740
+			// c.5975615062). Si le stylesheet calcule un jour de vraies coordonnées, cette
+			// assertion rougit : le mot « dead path » devra être re-mesuré, pas récité.
+			var fileName = $"explicit-xslt-{Guid.NewGuid():N}.mm";
+			var mmPath = WriteTempMm(_tempDir, fileName);
+			var svgPath = Path.ChangeExtension(mmPath, ".svg");
 
 			FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
 			var engagementsBefore = FallacyMindMapDocumentConfig.XsltFallbackEngagements;
 			var artifactsBefore = FallacyMindMapDocumentConfig.XsltFallbackArtifacts;
 
-			var generator = new VirtueMindMapDocumentConfig { DocumentName = fileName };
-			var method = typeof(VirtueMindMapDocumentConfig).GetMethod(
-				"TryAutomateSvgConversion", BindingFlags.NonPublic | BindingFlags.Instance, null,
-				new[] { typeof(string), typeof(string), typeof(AssetConverterConfig), typeof(bool) }, null);
-			method.Should().NotBeNull("le point d'insertion de production (chaîne Virtues) doit exister.");
+			var produced = FallacyMindMapDocumentConfig.TryXsltSvgConversion(mmPath, svgPath);
 
-			var produced = (bool)method!.Invoke(generator, new object[] { mmPath, svgPath, config, false })!;
-
-			// Le repli « réussit » : c'est précisément le piège que le grain 4 rend visible.
 			produced.Should().BeTrue(
-				"le repli XSLT produit un fichier non vide — c'est son succès apparent qui a laissé " +
-				"une carte blanche entrer dans #1740 ; s'il échoue ici, c'est la chaîne qui a changé.");
+				"le repli produit un fichier non vide — c'est précisément ce succès apparent " +
+				"qui a laissé une carte blanche entrer dans #1740 ; s'il échoue, la voie a changé.");
 
-			// …et ce fichier est bien de la famille « voie morte » : il porte les marqueurs NaN
-			// que le GABARIT lui-même définit — lus dans mm2svg.xslt, plus de littéral
-			// recopié ici (réserve #1740 c.5975615062, pool c.5976781537). Si un jour le
-			// stylesheet calcule de vraies coordonnées, la liste trouvée change et cette
-			// assertion rougit — c'est voulu : le mot « dead path » du résumé devra être
-			// re-mesuré, pas récité.
 			var svgContent = File.ReadAllText(svgPath);
 			var (_, nanMarkers) = MindmapXsltFallbackMarkers.ReadMarkersFromTemplate(
 				MindmapXsltFallbackMarkers.TemplatePath());
 			var found = nanMarkers.Where(m => m.IsMatch(svgContent)).Select(m => m.ToString()).ToList();
 			found.Should().BeEquivalentTo(new[] { "x=\"NaN\"", "y=\"NaN\"" },
-				"l'artefact du repli porte les deux attributs de coordonnées non calculées du gabarit " +
-				"(mesuré le 04/10 sur cette carte minuscule — page blanche aux ids présents)");
+				"l'artefact du repli porte les deux attributs de coordonnées non calculées du gabarit.");
 
-			// Comptage pour le résumé de fin de passe. Delta (pas valeur absolue) : une autre
-			// classe de tests peut appeler TryXsltSvgConversion en parallèle (xUnit parallélise
-			// les collections) — le mutant qui retire l'incrément rend bien delta 0 → rouge.
+			// Comptage (delta : xUnit parallélise les collections, une autre classe peut
+			// appeler TryXsltSvgConversion en parallèle) — le mutant qui retire
+			// l'incrément rend delta 0 → rouge.
 			(FallacyMindMapDocumentConfig.XsltFallbackEngagements - engagementsBefore)
-				.Should().BeGreaterOrEqualTo(1, "l'engagement du repli doit être compté.");
+				.Should().BeGreaterOrEqualTo(1, "l'engagement explicite reste compté pour le résumé.");
 			(FallacyMindMapDocumentConfig.XsltFallbackArtifacts - artifactsBefore)
-				.Should().BeGreaterOrEqualTo(1, "l'artefact dégradé produit doit être compté pour le résumé.");
-
-			// Journal : chaque étape de la cascade au niveau AVERTISSEMENT, nommant le fichier.
-			var journal = File.ReadAllText(Logger.LogFile);
-			journal.Should().Contain("[Warning] FreeMind not found",
-				"l'export simulé sans SVG doit d'abord dire pourquoi il échoue.");
-			journal.Should().Contain($"[Warning] FreeMind GUI unavailable, falling back to XSLT for {fileName}",
-				"l'entrée dans le repli est un événement — Information ne suffisait pas (#458 grain 4).");
-			journal.Should().Contain($"[Warning] Using XSLT fallback for SVG conversion of {fileName}",
-				"l'engagement du repli doit être visible et nommer la carte concernée.");
-			journal.Should().Contain($"[Warning] SVG produced via XSLT fallback (degraded, dead path #184): {svgPath}",
-				"l'artefact dégradé ne doit plus sortir sous une ligne de succès.");
+				.Should().BeGreaterOrEqualTo(1, "l'artefact dégradé reste compté pour le résumé.");
 		}
 
 		[Fact]
