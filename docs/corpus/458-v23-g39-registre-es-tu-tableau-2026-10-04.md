@@ -4,6 +4,8 @@
 **Dispatch** : c.5971513525 item 4 — « pour chaque définition es au vosotros / ustedes / usted (≈ 80 cellules), écrire la forme proposée au « tú » (verbes, possessifs, pronoms), avec le texte avant / après. C'est un tableau à relire, pas une écriture. »
 **Écritures CSV : 0** (`git status --porcelain Cards/` vide après la passe).
 
+> **Erratum d'exécution (04/10, grain 1 du pool c.5975630522, arbitrage c.5975624315).** Le tableau est **exécuté** : **74 cellules `desc_es` écrites** — §2 (39) tel quel · §3+§4 (25) **sans le « Tú » initial** (verbe en majuscule : « Fundamentas tus argumentos… », « Te apoyas… », « Das peso… ») · §5 (10) **tranché au tú** avec la forme proposée. Les tableaux ci-dessous demeurent l'état de la **proposition** : pour §3/§4, la forme écrite retire le « Tú » en tête qu'ils portent encore. Garde : `EsDeckRegisterTuGuardTests` (4 faits — zéro marqueur vosotros/ustedes/usted et zéro désinence -áis/-éis/-ís sur les 175 définitions, zéro « Tú » initial, 5 irrégulières pleine cellule, 4 conservations 3ᵉ personne ; 3 mutations toutes rouges, restauration byte-exacte). L'espagnol n'a jamais été imprimé : le changement entrera dans les PDF es à la prochaine régénération, après le verdict des associés.
+
 ## 1. Recensement mesuré (175 définitions `desc_es` du deck)
 
 | registre | n | statut |
@@ -65,6 +67,8 @@
 
 ## 3. ustedes → tú (20) — pronom + verbe principal + possessifs ; les 3ᵉ personnes objets restent
 
+⚠️ *Arbitrage c.5975624315 : la forme écrite retire le « Tú » initial ci-dessous — verbe en majuscule (« Fundamentas tus argumentos… »), le reste inchangé. Aucune définition du deck ne commence par « Tú » ; le pronom explicite en tête serait emphatique.*
+
 | PK | avant | proposé |
 |---|---|---|
 | 70 | Ustedes fundamentan sus argumentos en ideas recibidas, sin examinarlas de forma crítica. | Tú fundamentas tus argumentos en ideas recibidas, sin examinarlas de forma crítica. |
@@ -90,6 +94,8 @@
 
 ## 4. usted → tú (5)
 
+⚠️ *Même arbitrage que §3 : « Tú » initial retiré à l'écriture (« Consideras… », « Crees… », « Cometes… », « Sacas… », « Das peso… »).*
+
 | PK | avant | proposé |
 |---|---|---|
 | 43 | Usted considera que un comportamiento está justificado porque es comúnmente adoptado. | Tú consideras que un comportamiento está justificado porque es comúnmente adoptado. |
@@ -100,7 +106,7 @@
 
 ## 5. À trancher — 3ᵉ personne descriptive (10)
 
-Ces définitions décrivent le sophiste (« Formula un argumento… ») sans pronom : adressées au lecteur (→ convertir comme §2-4) ou description neutre (→ statu quo) ? Le français utilise l'infinitif (coupe neutre), la colonne es a tranché dans les deux sens selon les cellules. **Proposition mécanique ci-dessous si le choix est l'adresse ; cette question est la seule matière de relecture du §.**
+Ces définitions décrivent le sophiste (« Formula un argumento… ») sans pronom : adressées au lecteur (→ convertir comme §2-4) ou description neutre (→ statu quo) ? **Erratum (c.5975624315) : l'affirmation initiale « le français utilise l'infinitif » est FAUSSE pour ces 10 cartes — le français s'y adresse au lecteur** (2 « Vous construisez un argument… », 108 « Vous supposez… », 653 « Vous croyez que vos succès récents… », 813 « …l'idée générale que vous défendez »). **Tranché au tú, avec la forme proposée** : « Formulas… » se lirait en 3ᵉ personne ou en impératif ; le tú aligne les 10 cartes sur le français et sur le reste de la colonne.
 
 | PK | avant | proposé (si adresse) |
 |---|---|---|
