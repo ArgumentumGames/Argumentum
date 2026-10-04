@@ -8,7 +8,7 @@ namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
 	/// Garde des corrections Scenarii ① — familles inter-langues etablies (#458, pool ai-01).
-	/// <para>24 cellules ecrites sur 5 rangees, dans 5 langues cibles. Chaque epingle porte la
+	/// <para>29 cellules ecrites sur 6 rangees, dans 5 langues cibles. Chaque epingle porte la
 	/// valeur PLEINE de la cellule : une correction qui ne toucherait qu'une partie du texte
 	/// (ou qui en ajouterait) fait rougir ici, nommant la rangee, la colonne et les deux textes.</para>
 	/// <para><b>Trois familles de defaut, une seule cause : un ajout ou une substitution que les
@@ -17,11 +17,13 @@ namespace Argumentum.AssetConverter.Tests
 	/// 4.3.4 : une clause ajoutee (« engagement mutuel », « convaincre un comite ») absente des
 	/// deux sources ; en 4.3.4 la carte dit ainsi deux fois la meme chose. 1.2.3 et 2.1.8 :
 	/// ponctuation finale absente la ou les sources ponctuent.</para>
-	/// <para><b>Hors perimetre, nommement :</b> 7.3.5 <c>suggestion_zh</c>. La lecture a etabli
-	/// que le zh perd lui aussi l'ancrage « Venise » comme ar/fa/es/ru (son <c>context_zh</c>
-	/// porte 威尼斯, sa suggestion non) — mais le dossier zh ne l'avait pas examine, et la
-	/// delegation ① ne nomme que quatre langues sur cette carte. L'ecriture est donc RETENUE,
-	/// pas oubliee : cf. <see cref="Scenarii_7_3_5_Zh_Is_A_Named_Exclusion"/>.</para>
+	/// <para><b>Grain 3 (7.3.5, cinq langues) :</b> la replique « Le theme de la soiree, c'est
+	/// Venise. Pourquoi etes-vous deguise en fromage ? » etait REECRITE en question (« quel
+	/// etait deja le theme de la fete ? ») dans es/ru/ar/fa/zh — l'ancrage Venise, c'est-a-dire
+	/// la mecanique meme de la carte, avait disparu. Restaure par traduction de la source FR,
+	/// en echoyant le vocabulaire du contexte de chaque langue (ru « переодевшись сыром »,
+	/// fa « تم ونیزی », zh « 打扮成…奶酪 »). L'exclusion nommee qui retenait l'ecriture zh
+	/// (delegation ①) est morte AVEC sa raison dans le meme commit.</para>
 	/// </summary>
 	public class ScenariiInterLanguageFamilyGuardTests
 	{
@@ -55,10 +57,15 @@ namespace Argumentum.AssetConverter.Tests
 			("2.1.8", "suggestion_zh", "陛下，请您不要动怒。"),
 			("2.1.8", "suggestion_ar", "سيدي، لا تغضب جلالتكم."),
 			("2.1.8", "suggestion_es", "Señor, que Vuestra Majestad no se enfade."),
+			("7.3.5", "suggestion_zh", "今晚派对的主题是威尼斯。你为什么打扮成奶酪？"),
+			("7.3.5", "suggestion_ar", "موضوع الحفلة هو البندقية. لماذا تنكرت في هيئة جبن؟"),
+			("7.3.5", "suggestion_fa", "تم مهمانی ونیز است. چرا لباس پنیر پوشیده\u200cای؟"),
+			("7.3.5", "suggestion_es", "El tema de la fiesta es Venecia. ¿Por qué estás disfrazado de queso?"),
+			("7.3.5", "suggestion_ru", "Тема вечеринки — Венеция. Почему вы переоделись сыром?"),
 		};
 
-		/// <summary>Les 5 rangees touchees — anti-vacuite du tableau ci-dessus.</summary>
-		private static readonly string[] TouchedPaths = { "1.1.3", "1.2.3", "2.1.8", "3.3.2", "4.3.4" };
+		/// <summary>Les 6 rangees touchees — anti-vacuite du tableau ci-dessus.</summary>
+		private static readonly string[] TouchedPaths = { "1.1.3", "1.2.3", "2.1.8", "3.3.2", "4.3.4", "7.3.5" };
 
 		/// <summary>
 		/// Deteteur, factorise pour etre exerce sur des donnees SYNTHETIQUES par le controle
@@ -93,18 +100,18 @@ namespace Argumentum.AssetConverter.Tests
 		public void Every_Corrected_Cell_Still_Holds_Its_Value()
 		{
 			Mismatches(ReadPinnedCells()).Should().BeEmpty(
-				"#458 ① : les 24 cellules corrigees gardent leur texte — un lion reste un lion, " +
-				"la clause ajoutee ne revient pas, la ponctuation finale est toujours la.");
+				"#458 ① + grain 3 : les 29 cellules corrigees gardent leur texte — un lion reste un lion, " +
+				"la clause ajoutee ne revient pas, la ponctuation finale est toujours la, Venise est ancre.");
 		}
 
 		[Fact]
 		public void Pinned_Table_Is_Complete_And_Not_Vacuous()
 		{
-			Fixed.Should().HaveCount(24, "24 cellules corrigees, mesurees ; le compte est le sujet.");
-			Fixed.Select(f => (f.Path, f.Column)).Distinct().Should().HaveCount(24,
+			Fixed.Should().HaveCount(29, "29 cellules corrigees, mesurees ; le compte est le sujet.");
+			Fixed.Select(f => (f.Path, f.Column)).Distinct().Should().HaveCount(29,
 				"aucune cellule n'est epinglee deux fois (un doublon masquerait une cellule non couverte).");
 			Fixed.Select(f => f.Path).Distinct().OrderBy(p => p, StringComparer.Ordinal)
-				.Should().BeEquivalentTo(TouchedPaths, "les 5 rangees de la famille sont toutes couvertes.");
+				.Should().BeEquivalentTo(TouchedPaths, "les 6 rangees de la famille sont toutes couvertes.");
 		}
 
 		[Fact]
@@ -116,30 +123,17 @@ namespace Argumentum.AssetConverter.Tests
 				("1.1.3", "suggestion_zh", "\u55ef\uff0c\u8fd9\u53ef\u662f\u5582\u6211\u72ee\u5b50\u7684\u4e0a\u7b49\u7f8e\u5473\u3002",
 				 "\u55ef\uff0c\u8fd9\u53ef\u662f\u5582\u6211\u5c0f\u732b\u54aa\u7684\u4e0a\u7b49\u7f8e\u5473\u3002"),
 				("3.3.2", "issue_ru", Fixed[8].Expected, Fixed[8].Expected + " \u0434\u043e\u0431\u0430\u0432\u043a\u0430"),
+				("7.3.5", "suggestion_zh", Fixed[24].Expected,
+				 "今晚派对的主题是什么来着？你看起来像块奶酪，认真的吗？"),
 			};
 			var offenders = Mismatches(reverted);
-			offenders.Should().HaveCount(2, "le deteteur voit exactement les deux ecarts injectes.");
+			offenders.Should().HaveCount(3, "le deteteur voit exactement les trois ecarts injectes.");
 			offenders[0].Should().Contain("1.1.3.suggestion_zh").And.Contain("\u5c0f\u732b\u54aa",
 				"le temoin nomme la cellule ET la valeur fautive relue.");
 			offenders[1].Should().Contain("3.3.2.issue_ru");
+			offenders[2].Should().Contain("7.3.5.suggestion_zh",
+				"la replique reecrite sans Venise est vue comme un ecart, pas comme une variante.");
 		}
 
-		[Fact]
-		public void Scenarii_7_3_5_Zh_Is_A_Named_Exclusion()
-		{
-			// 7.3.5 : le FR et l'EN nomment Venise ; ar/fa/es/ru la remplacent par une question
-			// (defaut etabli, corrige par la PR ①). zh fait la MEME chose — etabli mecaniquement
-			// ici — mais le dossier zh ne l'avait pas examine et la delegation ① ne nomme que
-			// quatre langues : l'ecriture est RETENUE, pas oubliee. Si zh est corrige un jour,
-			// cette assertion rougit -> c'est le signal qu'il faut la retirer AVEC la correction.
-			var csv = new HarvestCardIdsCsv(ScenariiCsv);
-			var suggestion = csv.LoadColumn("suggestion_zh", "path", new[] { "7.3.5" });
-			suggestion.Should().HaveCount(1);
-			suggestion[0].Should().NotContain("\u5a01\u5c3c\u65af",
-				"7.3.5 zh perd encore l'ancrage Venise : exclusion nommee, hors delegation ①.");
-			var context = csv.LoadColumn("context_zh", "path", new[] { "7.3.5" });
-			context[0].Should().Contain("\u5a01\u5c3c\u65af",
-				"et sa context_zh PORTE Venise : c'est l'incoherence interne qui etablit le defaut.");
 		}
-	}
 }
