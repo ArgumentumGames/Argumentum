@@ -308,7 +308,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 			if (FallacyMindMapDocumentConfig.TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
 				return true;
 
-			Logger.Log($"FreeMind GUI unavailable, falling back to XSLT for {Path.GetFileName(sourceMmPath)}");
+			// #458 grain 4 : l'entrée dans le repli est un ÉVÉNEMENT — avertissement, pas Information.
+			Logger.LogWarning($"FreeMind GUI unavailable, falling back to XSLT for {Path.GetFileName(sourceMmPath)}");
 			if (FallacyMindMapDocumentConfig.TryXsltSvgConversion(sourceMmPath, destinationSvgPath))
 				return true;
 

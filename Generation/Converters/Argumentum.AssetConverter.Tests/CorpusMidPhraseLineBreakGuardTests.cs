@@ -78,7 +78,7 @@ namespace Argumentum.AssetConverter.Tests
 		private static readonly Dictionary<string, string> JoinedPins = new()
 		{
 			// 197 : couture intra-phrase française (« typique⏎du milieu académique »)
-			["197|desc_fr"] = "Vous utilisez un langage formel, spécialisé et souvent complexe, typique du milieu académique, qui peut rendre votre discours inaccessibles aux non-initiés.",
+			["197|desc_fr"] = "Vous utilisez un langage formel, spécialisé et souvent complexe, typique du milieu académique, qui peut rendre votre discours inaccessible aux non-initiés.",
 			// 476 zh : couture pleine-largeur SANS espace (« 论点，⏎涵盖 »)
 			["476|example_zh"] = "我的对手现在应该回应我关于各种经济、社会和环境政策的论点，涵盖短期和长期的影响，对弱势群体的影响，地缘政治考虑以及法律和伦理方面。",
 			// 1300 ru : couture latine-cyrillique AVEC espace (« политик,⏎учитывая »)
