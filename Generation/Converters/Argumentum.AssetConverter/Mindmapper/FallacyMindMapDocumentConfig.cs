@@ -719,9 +719,51 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
+		// ── #458 grain 4 (dispatch c.5975630522) — signaux du repli XSLT ─────────────
+		// Le repli est une VOIE MORTE mesurée (#184) : sur le triplet zh Vertus de la
+		// re-dérivation 3 (#1740, commit 6a10c3ca) il a produit 234 631 o contre
+		// 1 148 515 o pour l'export Batik sain, avec 223 x="NaN" sur 223 nœuds — page
+		// blanche portant les ids, donc verte aux portes qui comptent les ids. Jusqu'ici
+		// il sortait sous un LogSuccess : une carte blanche est entrée dans #1740 sans
+		// signal. Compté ici, rendu dans le résumé de fin de passe mindmaps
+		// (AssetConverterConfig.Apply) — la porte d'arbre de #1740 reste l'autre filet.
+		private static int _xsltFallbackEngagements;
+		private static int _xsltFallbackArtifacts;
+
+		/// <summary>Repli XSLT ENGAGÉ (stylesheet mm2svg.xslt trouvée) depuis la dernière remise à zéro.</summary>
+		public static int XsltFallbackEngagements => System.Threading.Volatile.Read(ref _xsltFallbackEngagements);
+
+		/// <summary>SVG DÉGRADÉS produits par le repli XSLT depuis la dernière remise à zéro.</summary>
+		public static int XsltFallbackArtifacts => System.Threading.Volatile.Read(ref _xsltFallbackArtifacts);
+
+		/// <summary>Ouvre la fenêtre de comptage d'une passe mindmaps (appelée par AssetConverterConfig.Apply).</summary>
+		public static void ResetXsltFallbackSignals()
+		{
+			System.Threading.Interlocked.Exchange(ref _xsltFallbackEngagements, 0);
+			System.Threading.Interlocked.Exchange(ref _xsltFallbackArtifacts, 0);
+		}
+
+		/// <summary>
+		/// Ligne du résumé de fin de passe mindmaps (#458 grain 4). Fonction pure, épinglable
+		/// par la garde : elle ne dit que le MESURÉ (engagements, artefacts) — le cas zéro ne
+		/// prétend pas que tous les SVG viennent de Batik (le chemin Fallacies n'a pas de
+		/// repli : une panne FreeMind y laisse simplement aucun SVG, rien à compter ici).
+		/// </summary>
+		internal static string BuildXsltFallbackSummaryLine(int engagements, int artifacts)
+		{
+			if (artifacts > 0)
+				return $"Mindmap pass summary: XSLT fallback engaged {engagements} time(s) and PRODUCED {artifacts} degraded SVG(s) (dead path #184 — NaN coordinates, blank render). Do not copy them into the repository: replace each with a FreeMind/Batik export.";
+			if (engagements > 0)
+				return $"Mindmap pass summary: XSLT fallback engaged {engagements} time(s) but produced no artifact (stylesheet missing or transform failed — see the warnings above).";
+			return "Mindmap pass summary: XSLT fallback never engaged (no degraded fallback artifact).";
+		}
+
 		/// <summary>
 		/// Fallback SVG conversion using XSLT stylesheets (mm2svg.xslt from tstephen/mindmap).
-		/// Lower fidelity than FreeMind/Freeplane native rendering but works without GUI.
+		/// ⚠ Dead path (#184), kept for headless contexts only — its output renders blank
+		/// (measured 04/10: 223 x="NaN" per 223 nodes on the rd3 zh Virtues triplet). #458
+		/// grain 4 makes every engagement and every produced artifact visible (warning +
+		/// pass summary) so a degraded file can no longer leave the pass under a success line.
 		/// </summary>
 		internal static bool TryXsltSvgConversion(string sourceMmPath, string destinationSvgPath)
 		{
@@ -753,7 +795,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 				}
 
 				var xsltPath = Path.Combine(xsltDir, "mm2svg.xslt");
-				Logger.Log($"Using XSLT fallback for SVG conversion: {xsltPath}");
+				System.Threading.Interlocked.Increment(ref _xsltFallbackEngagements);
+				Logger.LogWarning($"Using XSLT fallback for SVG conversion of {Path.GetFileName(sourceMmPath)}: {xsltPath}");
 
 				var xslt = new XslCompiledTransform();
 				var xsltSettings = new XsltSettings(enableDocumentFunction: true, enableScript: false);
@@ -770,7 +813,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				if (File.Exists(destinationSvgPath) && new FileInfo(destinationSvgPath).Length > 0)
 				{
-					Logger.LogSuccess($"SVG via XSLT: {destinationSvgPath} ({new FileInfo(destinationSvgPath).Length / 1024} KB)");
+					System.Threading.Interlocked.Increment(ref _xsltFallbackArtifacts);
+					Logger.LogWarning($"SVG produced via XSLT fallback (degraded, dead path #184): {destinationSvgPath} ({new FileInfo(destinationSvgPath).Length / 1024} KB). Replace with a FreeMind/Batik export before committing.");
 					return true;
 				}
 
