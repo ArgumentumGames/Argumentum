@@ -17,6 +17,11 @@ namespace Argumentum.AssetConverter.Tests
 	/// <item>3 cellules d'exemples russes arbitrées le 03/10 (c.5968567847) :
 	/// 361 coquille + tiret long, 1352 retour au mot imprimé « сосудистая »,
 	/// 848 virgules normatives autour du relatif « которые ».</item>
+	/// <item>7 cellules d'exemples arbitrées le 03/10 (c.5971513525, grain 1) :
+	/// ar 622/900 accords du démonstratif, fa 1330 « billes » (verdict natif
+	/// rendu par l'arbitrage), es 153 « coche » + es 673 idiome « partir la
+	/// diferencia », en 673 coquille « meet up », fr 476 sauts de ligne
+	/// accidentels joints (hors deck).</item>
 	/// </list>
 	/// NB : exprimé en HaveCount(1) + Be, jamais ContainSingle(valeur, parce-que) —
 	/// cette surcharge résout vers ContainSingle(because) qui n'épingle PAS la valeur
@@ -148,6 +153,88 @@ namespace Argumentum.AssetConverter.Tests
 				"Члены комитета, которые утвердили это досье, будут вызваны.",
 				"c.5968567847 : en russe les virgules autour d'une relative en « который » sont "
 				+ "obligatoires dans les deux lectures — l'imprimé portait la même faute.");
+		}
+
+		// --- Arbitrage c.5971513525 : 7 cellules d'exemples (grain 1) ---
+
+		[Fact]
+		public void ExampleAr_Pk622_FadingGarden_DemonstrativeAgreementFixed()
+		{
+			var cell = Cell("example_ar", "622");
+			cell.Should().Contain("هذه الحديقة",
+				"c.5971513525 : الحديقة (jardin) est féminin, le démonstratif doit être هذه");
+			cell.Should().NotContain("هذا الحديقة",
+				"l'accord fautif هذا الحديقة ne doit pas revenir (le cellule contient déjà "
+				+ "هذه النباتات, correct, pour les plantes)");
+		}
+
+		[Fact]
+		public void ExampleAr_Pk900_IgnoredOption_DemonstrativeAgreementFixed()
+		{
+			var cell = Cell("example_ar", "900");
+			cell.Should().Contain("هذا بالتأكيد خيار",
+				"c.5971513525 : خيار (option) est masculin, le démonstratif doit être هذا");
+			cell.Should().NotContain("هذه بالتأكيد خيار",
+				"l'accord fautif هذه بالتأكيد خيار ne doit pas revenir");
+			// review #1735 c.5972921914 : le pronom suffixe suit le démonstratif —
+			// اقتراح (masculin) porte la voyelle hu, pas ha.
+			cell.Should().Contain("اقتراحه",
+				"c.5972921914 : le pronom final suit le masculin خيار — اقتراحها était la forme fautive");
+			cell.Should().NotContain("اقتراحها",
+				"l'accord fautif اقتراحها ne doit pas revenir (review #1735)");
+		}
+
+		[Fact]
+		public void ExampleFa_Pk1330_ChewbaccaDefense_MarblesNotArrows()
+		{
+			var cell = Cell("example_fa", "1330");
+			cell.Should().Contain("تیله‌هایم",
+				"c.5971513525 : le FR dit « mes billes » (تیله) — verdict natif rendu par "
+				+ "l'arbitrage après le dossier ㉙");
+			cell.Should().NotContain("تیرهایم",
+				"« mes flèches » (تیر) était la confusion lexicale arbitrée");
+		}
+
+		[Fact]
+		public void ExampleEs_Pk153_SelfInterest_CocheNotAuto()
+		{
+			var cell = Cell("example_es", "153");
+			cell.Should().Contain("venderme su coche.",
+				"c.5971513525 : la colonne es dit « coche » (Espagne) partout ailleurs "
+				+ "(614, 666, 1174) — « auto » était le régionalisme LatAm");
+			cell.Should().NotContain("su auto",
+				"le régionalisme « auto » ne doit pas revenir dans cette colonne");
+		}
+
+		[Fact]
+		public void ExampleEs_Pk673_MiddleGround_IdiomArbitrated()
+		{
+			var cell = Cell("example_es", "673");
+			cell.Should().Contain("Partamos la diferencia",
+				"c.5971513525 : « partir la diferencia » est l'idiome espagnol de "
+				+ "« couper la poire en deux »");
+			cell.Should().NotContain("Midamos el punto medio",
+				"le calque gauche « Midamos el punto medio » ne doit pas revenir");
+		}
+
+		[Fact]
+		public void ExampleEn_Pk673_MiddleGround_MeetUpSpellingFixed()
+		{
+			AssertSingleRowCell("example_en", "673",
+				"You prefer Monday and I Wednesday: let's meet up on Tuesday.",
+				"c.5971513525 : « meetup » (nom) employé comme verbe était la coquille — "
+				+ "l'en est imprimé et garde son texte (seule la coquille bouge)");
+		}
+
+		[Fact]
+		public void ExampleFr_Pk476_GishGallop_TakesThePk1300Text_Arbitrated()
+		{
+			AssertSingleRowCell("example_fr", "476",
+				"Mon adversaire devrait maintenant répondre à mes arguments sur diverses politiques économiques, sociales et environnementales, en tenant compte des implications à court et à long terme, des effets sur les populations vulnérables, des considérations géopolitiques ainsi que des aspects juridiques et éthiques.",
+				"c.5972921914 : la simple jointure laissait « personnes vulnérables, populations » "
+				+ "(mot orphelin devenu élément de liste) — le FR avait traduit les deux morceaux du "
+				+ "retour à la ligne de mise en forme de l'EN. L'arbitrage (c.5971513525) impose le "
+				+ "texte de PK 1300, même exemple, propre ; hors deck.");
 		}
 	}
 }

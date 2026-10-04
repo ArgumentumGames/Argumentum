@@ -4,7 +4,9 @@
 
 Quatrième grain de la série des exemples (dispatch c.5968567990). Même fait structurel que zh et ar : **`example_fa` ABSENTE de toutes les archives** (REFERENCE EXPLOITABLE 0/175) — pas d'arbitre imprimé. Verdict court : **colonne saine** (0 A, 0 M) — et le grain **raffine la structure des jumeaux** : fa partage **six déviations mot à mot avec zh ET ar**, une avec **zh seul** (699), et reste **fidèle sur trois points où zh et ar dévient ensemble** (79, 154, 595).
 
-## Synthèse — 0 A / 0 M / 16 rangées observées / 152 ✓ (168 non vides)
+## Synthèse — 0 A / 0 M / 15 rangées observées / 152 ✓ · corrigées (coquilles / forme) : 1 (168 non vides)
+
+> **Erratum d'arbitrage (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525) ; requalifié 04/10, review c.5972921914).** Le dossier laissait 1330 au « verdict natif requis » — **l'arbitrage est ce verdict** : تیرهایم (« mes flèches ») était bien la confusion lexicale avec تیله (« billes »), **corrigé** en تیله‌هایم (PR grain 1). **Requalification (review #1735)** : une confusion lexicale dans un détail de l'exemple n'est pas un « A » (sens faux du mécanisme) — le verdict de la colonne reste **0 A / 0 M**, la cellule compte dans les **corrigées (coquilles / forme)**. Verdict courant : **0 A / 0 M / 15 rangées observées / 152 ✓ · corrigées (coquilles / forme) : 1 (1330)**.
 
 | Verdict | Rangées |
 |---|---:|

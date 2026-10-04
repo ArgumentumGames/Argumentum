@@ -6,6 +6,8 @@ Second grain de la série des exemples (dispatch c.5968567990). Verdict court : 
 
 ## Synthèse — 0 A / 0 M / 16 rangées observées / 152 ✓ (168 non vides)
 
+> **Erratum de périmètre complété (03/10, ai-01, [c.5971513525](https://github.com/ArgumentumGames/Argumentum/issues/458#issuecomment-5971513525) ; complété 04/10, review c.5972921914).** L'erratum de périmètre ci-dessous citait 476 parmi les multi-lignes hors deck : sa cellule `example_fr` portait deux sauts de ligne **accidentels** (milieu de phrase, sans tiret de réplique), issus d'un retour à la ligne de mise en forme de l'EN (« impacts on vulnerable⏎populations ») que le FR avait traduit en deux morceaux. La jointure seule laissait « personnes vulnérables, populations » (mot orphelin en élément de liste) — **la review a imposé le texte de PK 1300**, même exemple, propre (PR grain 1, tête reprise). 65 et 1300 restent hors deck, non mesurés.
+
 | Verdict | Rangées |
 |---|---:|
 | **A — sens faux ou inversé** | **0** (aucune candidate) |
