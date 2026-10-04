@@ -951,7 +951,7 @@
 				<path d="M0 0 L0 43 L526 43 L526 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath316">
-				<path d="M0 0 L0 257 L859 257 L859 0 Z" />
+				<path d="M0 0 L0 257 L876 257 L876 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath317">
 				<path d="M0 0 L0 43 L291 43 L291 0 Z" />
@@ -969,10 +969,10 @@
 				<path d="M0 0 L0 37 L348 37 L348 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath322">
-				<path d="M0 0 L0 137 L548 137 L548 0 Z" />
+				<path d="M0 0 L0 137 L565 137 L565 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath323">
-				<path d="M0 0 L0 37 L448 37 L448 0 Z" />
+				<path d="M0 0 L0 37 L465 37 L465 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath324">
 				<path d="M0 0 L0 137 L376 137 L376 0 Z" />
@@ -6086,6 +6086,7 @@
 				<glyph unicode="Э" horiz-adv-x="72.0" d="M30.03125 41.15625 L30.03125 32.71875 L56.640625 32.71875 Q56.109375 20.65625 49.953125 13.6953125 Q43.796875 6.734375 34.171875 6.734375 Q17.09375 6.734375 12.75 24.90625 L3.609375 22.515625 Q9.8125 -1.21875 33.5 -1.21875 Q50.4375 -1.21875 58.7109375 9.6953125 Q66.984375 20.609375 66.453125 36.578125 Q66.453125 46.34375 62.765625 54.3984375 Q59.078125 62.453125 51.4609375 67.625 Q43.84375 72.796875 33.296875 72.796875 Q22.171875 72.796875 14.671875 67.28125 Q7.171875 61.765625 4.546875 51.953125 L13.8125 49.515625 Q17.875 64.5 33.34375 64.5 Q43.796875 64.5 49.7265625 58.203125 Q55.65625 51.90625 56.25 41.15625 L30.03125 41.15625 Z" />
 				<glyph unicode="Ф" horiz-adv-x="76.0" d="M33.59375 62.984375 L33.59375 72.171875 L42.484375 72.171875 L42.484375 62.984375 Q56.15625 62.25 64.0625 54.7578125 Q71.96875 47.265625 71.96875 36.140625 Q71.96875 25.25 64.3046875 17.6328125 Q56.640625 10.015625 42.484375 9.234375 L42.484375 0 L33.59375 0 L33.59375 9.234375 Q20.90625 9.71875 12.453125 16.96875 Q4 24.21875 4 36.140625 Q4 48.09375 12.421875 55.2734375 Q20.84375 62.453125 33.59375 62.984375 ZM42.484375 54.890625 L42.484375 17.390625 Q51.65625 17.828125 56.9296875 22.7109375 Q62.203125 27.59375 62.203125 36.140625 Q62.203125 44.53125 57.03125 49.4375 Q51.859375 54.34375 42.484375 54.890625 ZM33.59375 54.828125 Q24.75 54.4375 19.28125 49.609375 Q13.8125 44.78125 13.8125 36.140625 Q13.8125 27.59375 19.2109375 22.7109375 Q24.609375 17.828125 33.59375 17.4375 L33.59375 54.828125 Z" />
 				<glyph unicode="ъ" horiz-adv-x="63.0" d="M1.953125 51.859375 L25.140625 51.859375 L25.140625 31.59375 L36.328125 31.59375 Q48.1875 31.59375 53.5625 26.9765625 Q58.9375 22.359375 58.9375 15.671875 Q58.9375 8.734375 53.734375 4.3671875 Q48.53125 0 38.375 0 L16.359375 0 L16.359375 44.578125 L1.953125 44.578125 L1.953125 51.859375 ZM25.140625 7.125 L34.375 7.125 Q42.78125 7.125 46.296875 9.15625 Q49.8125 11.1875 49.8125 15.671875 Q49.8125 19.78125 46.8046875 22.0234375 Q43.796875 24.265625 35.546875 24.265625 L25.140625 24.265625 L25.140625 7.125 Z" />
+				<glyph unicode="—" horiz-adv-x="100.0" d="M4.828125 26.515625 L4.828125 33.15625 L95.21875 33.15625 L95.21875 26.515625 L4.828125 26.515625 Z" />
 				<glyph unicode="-" horiz-adv-x="33.0" d="M3.171875 21.484375 L3.171875 30.328125 L30.171875 30.328125 L30.171875 21.484375 L3.171875 21.484375 Z" />
 				<glyph unicode="Е" horiz-adv-x="67.0" d="M7.90625 0 L7.90625 71.578125 L59.671875 71.578125 L59.671875 63.140625 L17.390625 63.140625 L17.390625 41.21875 L56.984375 41.21875 L56.984375 32.8125 L17.390625 32.8125 L17.390625 8.453125 L61.328125 8.453125 L61.328125 0 L7.90625 0 Z" />
 				<glyph unicode=")" horiz-adv-x="33.0" d="M12.359375 -21.046875 L6.0625 -21.046875 Q20.65625 2.390625 20.65625 25.875 Q20.65625 35.0625 18.5625 44.09375 Q16.890625 51.421875 13.921875 58.15625 Q12.015625 62.546875 6.0625 72.796875 L12.359375 72.796875 Q21.53125 60.546875 25.921875 48.1875 Q29.6875 37.546875 29.6875 25.921875 Q29.6875 12.75 24.6328125 0.4453125 Q19.578125 -11.859375 12.359375 -21.046875 Z" />
@@ -7831,11 +7832,11 @@
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath315)" stroke="none">Фиксация на функциональности</text>
 			</g>
 		</a>
-		<g font-size="11" stroke-linecap="butt" transform="translate(1887,18066)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
-			<path fill="none" d="M518 149 C506 149 517 86 497 86" clip-path="url(#clipPath316)" />
-			<path fill="none" d="M518 149 C506 149 517 126 497 126" clip-path="url(#clipPath316)" />
-			<path fill="none" d="M518 149 C506 149 517 166 497 166" clip-path="url(#clipPath316)" />
-			<path fill="none" d="M518 149 C506 149 517 206 497 206" clip-path="url(#clipPath316)" />
+		<g font-size="11" stroke-linecap="butt" transform="translate(1870,18066)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
+			<path fill="none" d="M535 149 C523 149 534 86 514 86" clip-path="url(#clipPath316)" />
+			<path fill="none" d="M535 149 C523 149 534 126 514 126" clip-path="url(#clipPath316)" />
+			<path fill="none" d="M535 149 C523 149 534 166 514 166" clip-path="url(#clipPath316)" />
+			<path fill="none" d="M535 149 C523 149 534 206 514 206" clip-path="url(#clipPath316)" />
 		</g>
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(2405,18173)" stroke="rgb(255,195,7)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath317)" x2="291" y1="42" />
@@ -7861,12 +7862,12 @@
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath321)" stroke="none">Эффект субаддитивности</text>
 			</g>
 		</a>
-		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(1937,18156)" stroke="rgb(255,195,7)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath323)" x2="448" y1="36" />
+		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(1920,18156)" stroke="rgb(255,195,7)">
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath323)" x2="465" y1="36" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Less-is-better_effect" target="_blank">
-			<g font-size="25" transform="translate(1937,18156)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
-				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath323)" stroke="none">Эффект «меньше - значит лучше»</text>
+			<g font-size="25" transform="translate(1920,18156)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)">
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="28" clip-path="url(#clipPath323)" stroke="none">Эффект «меньше — значит лучше»</text>
 			</g>
 		</a>
 		<g fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(2109,18116)" stroke="rgb(255,195,7)">
