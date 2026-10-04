@@ -52,11 +52,12 @@ Beauty` — toutes **traductions justes**. L'instrument mesure *traduit*, pas *d
 été **écarté**, pas resserré. Seul compteur de titres retenu : l'**écart de longueur** (> +12
 caractères), qui isole 4 cartes — dont **une seule** défaillante (« Lendemain difficile »), les
 trois autres étant un idiome rendu par un idiome (3.1.4) ou une explicitation (4.1.11, 6.2.6).
-Les cinq autres titres substitués (§3 A) ont la **même longueur** que le FR : aucun compteur de
-taille ne les voit.
+Les six autres titres substitués (§3 A) **échappent** à ce compteur : cinq ont une longueur
+inférieure ou égale à celle du FR, le sixième ne diffère que par **un accent**. Le compteur de
+taille ne voit donc qu'**un** des sept titres fautifs — et il en voit trois qui ne le sont pas.
 
 ⚠️ **Ce que l'écran ne dit pas.** Il rendrait l'EN quasi propre : 2 points manquants sur 501
-cellules, 1 « - », 3 orthographes GB. La lecture établit **37 écarts**, dont 5 titres
+cellules, 1 « - », 3 orthographes GB. La lecture établit **39 écarts**, dont 7 titres
 substitués, 5 contenus substitués, 2 amputations et 3 contresens. Aucun des gestes de §3 A,
 §3 B, §3 C et §3 D n'est visible à l'écran.
 
@@ -64,7 +65,7 @@ substitués, 5 contenus substitués, 2 amputations et 3 contresens. Aucun des ge
 
 ## 3. Défauts EN établis (lecture FR | EN)
 
-### A. Titres substitués (6)
+### A. Titres substitués (7)
 
 | Carte | FR | EN | Nature |
 |---|---|---|---|
@@ -74,6 +75,7 @@ substitués, 5 contenus substitués, 2 amputations et 3 contresens. Aucun des ge
 | **5.3.1** | « Débat avec un terraplaniste » | `Flat Earth Society` | le titre remplacé par le **nom d'une organisation** (qui n'apparaît pas dans le titre FR) |
 | **5.3.4** | « La conspiration de la 5G » | `5g` | titre **réduit à un sigle minuscule** — sans article, sans mot |
 | **7.1.5** | « La kermesse » | `Kermesse` | mot **français non traduit** dans le titre — alors que la **même carte** traduit `fair` dans le ctxt et l'enjeu (§3 G) |
+| **5.1.2** | « Le coup d'**É**tat » | `The coup d'etat` | **accent retiré d'un emprunt français que l'EN accentue ailleurs** : sur les 5 titres EN qui conservent un mot français, **4 gardent leur accent** (`Déjà Vu`, `Pizzaïolo`, `The ménage à trois`, `Johnny at the Panthéon`) et **celui-ci le perd**. C'est le second défaut de 5.1.2, au **titre** — la perte du jeu de mots est au bara et au sugg (§3 C) |
 
 ### B. Contenus substitués (5)
 
@@ -290,7 +292,7 @@ traduit au titre, contenu de l'enjeu changé) · **7.1.6** titre (faute d'orthog
 - **Le mécanisme de l'héritage** : « suit l'EN » est mesuré comme un fait de cellule ; rien
   n'établit ici si les langues cibles ont traduit **depuis** l'EN ou recopié une version
   intermédiaire.
-- **Le nombre total d'écarts EN** : le §3 en établit 37 par lecture intégrale ; il ne prétend
+- **Le nombre total d'écarts EN** : le §3 en établit 39 par lecture intégrale ; il ne prétend
   pas que 37 soit le total — aucune sonde automatique ne mesure « fidélité » sur ce corpus.
 - **Le jugement natif** sur le registre, l'idiome et la fluidité de l'EN : ce dossier ouvre la
   matière, il ne tranche pas le style.
@@ -339,7 +341,7 @@ traduit au titre, contenu de l'enjeu changé) · **7.1.6** titre (faute d'orthog
 ## 9. Verdict en
 
 - **Couverture : complète** — 1002/1002 cellules, 0 vide, 167 cartes.
-- **37 défauts EN établis** : 6 titres substitués, 5 contenus substitués, 2 amputations,
+- **39 défauts EN établis** : 7 titres substitués, 5 contenus substitués, 2 amputations,
   3 contresens, 3 dilutions, 5 ajouts, 3 incohérences internes à la carte, 6 fautes de
   grammaire ou d'orthographe, 5 écarts de registre ou de modalité.
 - **Le défaut-signal de la campagne est EN** : à **5.1.2**, l'EN est la **seule** langue des
