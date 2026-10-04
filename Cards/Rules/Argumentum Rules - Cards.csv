@@ -802,7 +802,7 @@ Os jogadores que obtiverem a melhor pontuação são declarados vencedores.",,"#
 النتيجة النهائية لكل لاعب هي عدد بطاقاته التي اعتمدتها الجمعية
 إذا تبيّن، عند نهاية أول إحصاء، أن لاعبين آخرين غير مختارين أصبح لديهم عدد بطاقات يفوق أفضل نتيجة معتمدة، تُستكمل عملية التحقق منهم، وهكذا دواليك حتى تصبح أفضل نتيجة معتمدة غير قابلة للطعن.
 
-يُعلَن اللاعبون الذين حققوا أفضل نتيجة فائزين","## Durante el debate
+يُعلَن اللاعبون الذين حققوا أفضل نتيجة فائزين.","## Durante el debate
 
 Cada jugador escucha los argumentos formulados. Si detecta un argumento que corresponde a una de las cartas de su cuadrícula de bingo, anota el tiempo transcurrido, el inicio de una cita que permitirá encontrar el pasaje correcto y el nombre de su carta, acompañado si hace falta de un poco de contexto para poder exponer después oralmente su análisis.
 
@@ -819,7 +819,7 @@ La asamblea vota a mano alzada para validar o no su análisis.
 La puntuación final de los jugadores es el número de sus cartas validadas por la asamblea
 Si, tras un primer recuento, otros jugadores no seleccionados pasan a tener más cartas que la mejor puntuación validada, se procede a su validación, y así sucesivamente hasta que la mejor puntuación validada ya no pueda ser cuestionada.
 
-Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores","## 辩论过程中
+Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.","## 辩论过程中
 
 每位玩家聆听发言内容。如果他识别出某个论证属于自己宾果表中的某张卡牌，就记录下经过的时间、能帮助找到对应片段的引语开头，以及该卡牌的名称；必要时再补充一点上下文，以便之后能够口头复述自己的分析。
 
@@ -836,7 +836,7 @@ Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores"
 玩家的最终得分等于其获得全体认可的卡牌数量。
 如果在第一轮统计后，其他未被选中的玩家如今拥有的卡牌数量超过了最高已确认得分，就对他们进行确认，如此类推，直到最高已确认得分不再存在争议。
 
-获得最高得分的玩家被宣布为胜者","## حین مناظره
+获得最高得分的玩家被宣布为胜者。","## حین مناظره
 
 هر بازیکن به استدلال‌های مطرح‌شده گوش می‌دهد. اگر استدلالی را تشخیص دهد که با یکی از کارت‌های جدول بینگوی او مطابقت دارد، زمانِ سپری‌شده، آغازِ نقل‌قولی را که امکان پیدا کردن بخش درست را می‌دهد، و نام کارت خود را یادداشت می‌کند؛ در صورت نیاز، کمی زمینه نیز اضافه می‌کند تا بعداً بتواند تحلیلش را به‌صورت شفاهی بازگو کند.
 
@@ -853,7 +853,7 @@ Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores"
 امتیاز نهایی بازیکنان برابر است با تعداد کارت‌هایشان که از سوی جمع تأیید شده‌اند.
 اگر پس از نخستین شمارش، بازیکنانِ دیگری که انتخاب نشده‌اند اکنون بیش از بالاترین امتیازِ تأییدشده کارت داشته باشند، تأیید آن‌ها نیز انجام می‌شود، و همین‌طور ادامه می‌یابد تا زمانی که بالاترین امتیازِ تأییدشده دیگر قابلِ اعتراض نباشد.
 
-بازیکنانی که بالاترین امتیاز را کسب کرده‌اند، برنده اعلام می‌شوند"
+بازیکنانی که بالاترین امتیاز را کسب کرده‌اند، برنده اعلام می‌شوند."
 Rules_09,"## Le dernier beau parleur
 
 *Règles du jeu : de 1 à 8 joueurs*
@@ -1253,7 +1253,7 @@ The first reader is the player who most recently conceded an argument through sh
 
 В зависимости от количества игроков и желаемого уровня сложности сформируйте колоду карт с софизмами, последовательно добавляя карты уровней, указанных в правом нижнем углу, от меньшего к большему. 
 
-Выберите максимальное количество трёхминутных раундов на одного игрока. Перетасуйте карты с софизмами и карты сценариев. На середину стола мы кладем 2 стопки карт сценариев для добора и 1 стопку карт с софизмами для добора. ые в середине стола.
+Выберите максимальное количество трёхминутных раундов на одного игрока. Перетасуйте карты с софизмами и карты сценариев. На середину стола мы кладем 2 стопки карт сценариев для добора и 1 стопку карт с софизмами для добора.
 
 Первый Берущий карту — игрок, который последним уступил в споре, не выдержав напора. ","## O moinho de embromação
 
@@ -1418,7 +1418,7 @@ The first player to reach 20 points wins the game.
 
 Игрок слева от берущего карту становится софистом. Таймер ставится на 3 минуты. 
 
-Софист начинает по одной брать карты с софизмами. Для каждой карты с софизмом он должен предложить аргумент, который иллюстрирует карту и позволяет разыграть сценарий. Если у него получилось, он забирает карту, если нет, то в течение трех минут у него есть три «джокера» (не приведя пример, он может вытазить слудующую карту).
+Софист начинает по одной брать карты с софизмами. Для каждой карты с софизмом он должен предложить аргумент, который иллюстрирует карту и позволяет разыграть сценарий. Если у него получилось, он забирает карту, если нет, то в течение трех минут у него есть три «джокера» (не приведя пример, он может вытянуть следующую карту).
 
 ### 3.      Конец раунда
 
@@ -1477,7 +1477,7 @@ O primeiro jogador a atingir 20 pontos ganha a partida.
 ## نهاية اللعبة
 
 
-يفوز بالمباراة أول لاعب يصل إلى 20 نقطة
+يفوز بالمباراة أول لاعب يصل إلى 20 نقطة.
 
 ## تنويعات
 
@@ -1504,7 +1504,7 @@ La ronda termina cuando se agota el tiempo. El embaucador obtiene como puntos el
 ## Fin de partida
 
 
-El primer jugador que llegue a 20 puntos gana la partida
+El primer jugador que llegue a 20 puntos gana la partida.
 
 ## Variantes
 
@@ -1531,7 +1531,7 @@ El primer jugador que llegue a 20 puntos gana la partida
 ## 游戏结束
 
 
-第一个达到20分的玩家赢得本局
+第一个达到20分的玩家赢得本局。
 
 ## 变体
 
@@ -1558,7 +1558,7 @@ El primer jugador que llegue a 20 puntos gana la partida
 ## پایان بازی
 
 
-اولین بازیکنی که به ۲۰ امتیاز برسد، بازی را می‌برد
+اولین بازیکنی که به ۲۰ امتیاز برسد، بازی را می‌برد.
 
 ## گونه‌ها
 
@@ -2009,7 +2009,7 @@ Ganha a equipe que for a primeira a ultrapassar 1000 pontos.",,"### 3.       أ�
 
 ثم تُحتسب نقاط الفريقين.
 بالنسبة إلى البطاقات التي ليست من ألوان الحكم، تساوي كل بطاقة نقطتين مضروبتين في مستوى عمقها.
-بالنسبة إلى البطاقات من ألوان الحكم، تساوي كل بطاقة 12 - (نقطتين مضروبتين في مستوى عمقها)
+بالنسبة إلى البطاقات من ألوان الحكم، تساوي كل بطاقة 12 - (نقطتين مضروبتين في مستوى عمقها).
 
 إذا كان الفريق الذي فاز بمزايدة الحكم قد أوفى بعقده وحقق نتيجة أعلى، فإنه يحرز من النقاط مقدار مزايدته إضافةً إلى النقاط التي ربحها فعليًا.
 إذا كان الفريق الآخر هو الفائز، فإنه يحرز 160 نقطة بالإضافة إلى مقدار المزايدة التي لم يتم الوفاء بها. 
@@ -2018,7 +2018,7 @@ Ganha a equipe que for a primeira a ultrapassar 1000 pontos.",,"### 3.       أ�
 
 ## نهاية اللعبة واحتساب النتيجة
 
-الفريق الفائز هو أول فريق يتجاوز 1000 نقطة","### 3. Los turnos de juego
+الفريق الفائز هو أول فريق يتجاوز 1000 نقطة.","### 3. Los turnos de juego
 
 Durante 7 turnos, cada jugador confronta 1 carta de argumento falaz con el escenario.
 Empezando por el vecino de la izquierda del lector, cada jugador debe proponer una carta y jugar un argumento ilustrativo que responda a la indicación del escenario. 
@@ -2041,7 +2041,7 @@ La ronda termina cuando se han jugado todas las bazas.
 
 A continuación se cuentan los puntos de los dos equipos.
 Para las cartas que no pertenezcan a los palos de triunfo, cada carta vale 2 veces su nivel de profundidad.
-Para las cartas que pertenezcan a los palos de triunfo, cada carta vale 12 - (2 veces su nivel de profundidad)
+Para las cartas que pertenezcan a los palos de triunfo, cada carta vale 12 - (2 veces su nivel de profundidad).
 
 Si el equipo que ganó la subasta de triunfo cumple su contrato con una puntuación superior, obtiene en puntos el importe de su puja más los puntos realmente ganados.
 Si gana el otro equipo, este obtiene 160 puntos más el importe de la puja que no se haya cumplido. 
@@ -2050,7 +2050,7 @@ Si la subasta ha sido contrada, las puntuaciones se duplican.
 
 ## Fin de la partida y recuento
 
-Gana el primer equipo que supera los 1000 puntos","### 3.       出牌回合
+Gana el primer equipo que supera los 1000 puntos.","### 3.       出牌回合
 
 在连续 7 个出牌回合中，玩家将各自用 1 张谬误论证卡来应对该场景。
 从抽牌者左手边的玩家开始，每位玩家必须出一张牌，并提出一个符合场景要求的示例性论证。 
@@ -2073,7 +2073,7 @@ Gana el primer equipo que supera los 1000 puntos","### 3.       出牌回合
 
 随后计算两队的得分。
 对于非王牌颜色的卡牌，每张卡的分值等于其深度等级的 2 倍。
-对于王牌颜色的卡牌，每张卡的分值等于 12 -（其深度等级的 2 倍）
+对于王牌颜色的卡牌，每张卡的分值等于 12 -（其深度等级的 2 倍）。
 
 如果赢得王牌叫价的队伍按要求完成了合约，并且得分更高，则其获得的分数为叫价分数加上实际赢得的分数。
 如果是另一队获胜，则该队获得 160 分加上未能履约的叫价分数。 
@@ -2082,7 +2082,7 @@ Gana el primer equipo que supera los 1000 puntos","### 3.       出牌回合
 
 ## 游戏结束与总计分
 
-率先超过 1000 分的队伍获胜","### 3.       نوبت‌های بازی
+率先超过 1000 分的队伍获胜。","### 3.       نوبت‌های بازی
 
 در طول ۷ نوبتِ پیاپی، هر بازیکن ۱ کارتِ استدلالِ مغالطه‌آمیز را در برابر سناریو قرار می‌دهد.
 با شروع از همسایهٔ سمت چپِ کارت‌کش، هر بازیکن باید یک کارت پیشنهاد کند و یک استدلالِ مثالی بازی کند که به دستورِ سناریو پاسخ می‌دهد. 
@@ -2105,7 +2105,7 @@ Gana el primer equipo que supera los 1000 puntos","### 3.       出牌回合
 
 سپس امتیازهای دو تیم شمرده می‌شود.
 برای کارت‌هایی که از رنگ‌های حکم نیستند، هر کارت به اندازهٔ ۲ برابرِ سطحِ عمقِ خودش امتیاز دارد.
-برای کارت‌های رنگِ حکم، هر کارت برابر است با ۱۲ - (۲ برابرِ سطحِ عمقِ خودش)
+برای کارت‌های رنگِ حکم، هر کارت برابر است با ۱۲ - (۲ برابرِ سطحِ عمقِ خودش).
 
 اگر تیمی که مزایدهٔ حکم را برده است قراردادش را با کسب امتیاز بالاتر انجام دهد، به اندازهٔ مبلغِ مزایده‌اش به‌علاوهٔ امتیازهایی که واقعاً به‌دست آورده، امتیاز می‌گیرد.
 اگر تیم دیگر برنده شود، همان تیم ۱۶۰ امتیاز به‌علاوهٔ مبلغِ مزایده‌ای را که به آن عمل نشده است، به دست می‌آورد. 
@@ -2114,4 +2114,4 @@ Gana el primer equipo que supera los 1000 puntos","### 3.       出牌回合
 
 ## پایان بازی و شمارش امتیاز
 
-تیمی که برنده می‌شود، نخستین تیمی است که از ۱۰۰۰ امتیاز عبور کند"
+تیمی که برنده می‌شود، نخستین تیمی است که از ۱۰۰۰ امتیاز عبور کند."
