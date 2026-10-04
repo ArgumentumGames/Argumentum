@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Argumentum.AssetConverter.Mindmapper;
 using FluentAssertions;
@@ -94,12 +95,19 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				"le repli XSLT produit un fichier non vide — c'est son succès apparent qui a laissé " +
 				"une carte blanche entrer dans #1740 ; s'il échoue ici, c'est la chaîne qui a changé.");
 
-			// …et ce fichier est bien de la famille « voie morte » : la même marque x="NaN" que
-			// celle mesurée ×223 sur le triplet zh Vertus de la rd3. Si un jour le stylesheet
-			// calcule de vraies coordonnées, cette assertion rougit — c'est voulu : le mot
-			// « dead path » du résumé devra alors être re-mesuré, pas récité.
-			File.ReadAllText(svgPath).Should().Contain("x=\"NaN\"",
-				"l'artefact du repli porte la marque de coordonnée non calculée (page blanche aux ids présents).");
+			// …et ce fichier est bien de la famille « voie morte » : il porte les marqueurs NaN
+			// que le GABARIT lui-même définit — lus dans mm2svg.xslt, plus de littéral
+			// recopié ici (réserve #1740 c.5975615062, pool c.5976781537). Si un jour le
+			// stylesheet calcule de vraies coordonnées, la liste trouvée change et cette
+			// assertion rougit — c'est voulu : le mot « dead path » du résumé devra être
+			// re-mesuré, pas récité.
+			var svgContent = File.ReadAllText(svgPath);
+			var (_, nanMarkers) = MindmapXsltFallbackMarkers.ReadMarkersFromTemplate(
+				MindmapXsltFallbackMarkers.TemplatePath());
+			var found = nanMarkers.Where(m => m.IsMatch(svgContent)).Select(m => m.ToString()).ToList();
+			found.Should().BeEquivalentTo(new[] { "x=\"NaN\"", "y=\"NaN\"" },
+				"l'artefact du repli porte les deux attributs de coordonnées non calculées du gabarit " +
+				"(mesuré le 04/10 sur cette carte minuscule — page blanche aux ids présents)");
 
 			// Comptage pour le résumé de fin de passe. Delta (pas valeur absolue) : une autre
 			// classe de tests peut appeler TryXsltSvgConversion en parallèle (xUnit parallélise
