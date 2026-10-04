@@ -107,6 +107,10 @@ LETTERS = {'ru': 'а-яёА-ЯЁ',
            'fa': 'ء-يپچژکگی',
            'pt': 'a-zA-ZÀ-ÿ', 'es': 'a-zA-ZÀ-ÿ', 'en': 'a-zA-Z',
            'zh': ''}
+# Script attendu par langue (cf. check_scripts). pt, es et en sont ABSENTS a dessein : ils
+# s'ecrivent en latin comme le fr, donc le script ne peut pas y decider d'un glissement.
+SCRIPT = {'ru': 'Ѐ-ӿ', 'ar': '؀-ۿ', 'fa': '؀-ۿ',
+          'zh': '㐀-鿿'}
 NUMWORD = {'ru': ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять'],
            'ar': ['واحد', 'اثنان', 'ثلاثة', 'أربعة', 'خمسة', 'ستة', 'سبعة', 'ثمانية', 'تسعة', 'عشرة'],
            'fa': ['یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه', 'ده'],
@@ -187,8 +191,67 @@ def flags_for(v, fr, en, lg):
     return f
 
 
+def check_rows(h, data):
+    """Une rangee courte n'est inoffensive que si le champ manquant est le DERNIER.
+
+    Mesure 2026-10-04 : **10 des 15 rangees** portent **10 champs pour 11 colonnes** declarees
+    (le champ manquant est `variant_class`, en FIN de ligne ; les 5 autres rangees le portent
+    et nomment une couverture). `dict(zip(h, r))` aligne alors correctement le PREFIXE, et
+    l'ecran lit juste -- c'est un faux positif de forme, pas une corruption.
+
+    ⛔ CE QUE CETTE GARDE NE SAIT **PAS** VOIR, et il faut le dire : une suppression d'UN SEUL
+    champ AU MILIEU. La ligne reste « courte d'un », le champ manquant reste le dernier du
+    compte, et **les valeurs glissent d'une colonne** -- `Text_ru` porterait le chinois. Le
+    comptage ne peut pas l'atteindre : le discriminant est le **script**, et c'est
+    `check_scripts()` qui le porte. *Un compteur de champs ne mesure pas une langue.*
+
+    Retourne None si la forme est sure, sinon le message d'erreur.
+    """
+    for r in data:
+        if len(r) == len(h):
+            continue
+        if len(r) > len(h):
+            return "rangee %s : %d champs pour %d colonnes (trop longue)" % (r[0], len(r), len(h))
+        manquants = h[len(r):]
+        if len(manquants) > 1 or manquants[0] != h[-1]:
+            return ("rangee %s : champ manquant AU MILIEU (%s) -- tout ce qui suit est decale"
+                    % (r[0], ','.join(manquants)))
+    return None
+
+
+def check_scripts(h, data):
+    """Le discriminant du glissement de colonnes : le SCRIPT de chaque cellule.
+
+    Un champ supprime au milieu fait glisser les valeurs d'une position, et le comptage n'y
+    voit rien (cf. `check_rows`). Le script, lui, decide -- **pour ru, ar, fa et zh**. Il ne
+    decide **pas** pour pt, es et en, qui s'ecrivent en latin comme le fr : c'est une limite
+    nommee, pas une couverture supposee.
+
+    Retourne la liste des cellules fautives ('pk.colonne').
+    """
+    bad = []
+    for r in data:
+        d = dict(zip(h, r))
+        for lg, rng in SCRIPT.items():
+            col = 'Text_' + lg
+            if col not in d or not d[col].strip():
+                continue
+            if not re.search('[%s]' % rng, d[col]):
+                bad.append('%s.%s' % (r[0], lg))
+    return bad
+
+
 def screen(rows):
     h, data = rows[0], rows[1:]
+    err = check_rows(h, data)
+    if err:
+        print('SHAPE GUARD:', err)
+        sys.exit(1)
+    slip = check_scripts(h, data)
+    for x in slip:
+        print('SCRIPT GUARD: %s ne porte pas l\'ecriture attendue (glissement de colonnes ?)' % x)
+    if slip:
+        sys.exit(1)
     tot = {}
     for r in data:
         d = dict(zip(h, r))
@@ -257,7 +320,26 @@ def self_test():
     check('10 mot-nombre en sous-chaine', any(x.startswith('CHIFFRE?') for x in n)
           and not any(x.startswith('MOT-NOMBRE?') for x in n),
           'le 3 manquant est masque par un morceau de mot -> %s' % n)
-    print('SELF-TEST:', 'OK (10 temoins)' if ok else 'ECHEC')
+    # 11/12 : la forme des rangees. Un champ manquant EN FIN est inoffensif (zip aligne le
+    # prefixe -- mesure : 10 des 15 rangees du corpus sont ainsi) ; il ne faut donc PAS le
+    # refuser, sinon la garde rejette le corpus reel. Un manque de PLUSIEURS champs, lui,
+    # est refuse. Les deux temoins vont ensemble : accepter le premier sans accepter le second.
+    H4 = ['pk', 'Text', 'Text_en', 'variant_class']
+    tail = check_rows(H4, [['R1', 'a', 'b']])
+    check('11 champ manquant en FIN', tail is None,
+          'rangee courte en fin de ligne refusee -> %s' % tail)
+    multi = check_rows(H4, [['R1', 'a']])
+    check('12 deux champs manquants', bool(multi),
+          'un manque de deux champs passe en silence -> %s' % multi)
+    # 13 : le glissement de colonnes, que le comptage NE PEUT PAS voir (cf. check_rows).
+    # Le script, lui, decide : du chinois dans Text_ru est une faute, pas une variante.
+    slip = check_scripts(H4 + ['Text_ru'], [['R1', 'a', 'b', 'c', '中文测试']])
+    check('13 glissement de colonnes', len(slip) == 1 and slip[0].endswith('.ru'),
+          'un glissement de colonnes passe en silence -> %s' % slip)
+    ok_slip = check_scripts(H4 + ['Text_ru'], [['R1', 'a', 'b', 'c', 'русский текст']])
+    check('14 pas de faux positif', ok_slip == [],
+          'le script attendu est signale a tort -> %s' % ok_slip)
+    print('SELF-TEST:', 'OK (14 temoins)' if ok else 'ECHEC')
     return ok
 
 

@@ -4,7 +4,7 @@
 fa #1750, es #1751, ru #1752, pt #1753, en #1754), le corpus des **Règles** restait sans
 instrument : `Cards/Rules/Argumentum Rules - Cards.csv`, **15 rangées** (dont 6 miroirs
 Print&Play), **105 cellules** sur 7 langues cibles.
-**Livrable** : `docs/corpus/regles-fidelity-instrument.py` (écran + self-test 10 témoins).
+**Livrable** : `docs/corpus/regles-fidelity-instrument.py` (écran + self-test **14 témoins**).
 **Statut** : **0 écriture** — aucune cellule CSV modifiée. Ce document mesure un instrument, il
 ne juge pas encore les traductions.
 
@@ -75,14 +75,14 @@ coup d'œil par cellule, et il ne cache rien.
 
 ## 3. Contrôle falsifiant — les témoins ne sont pas vacues
 
-Dix témoins, chacun **muet s'il ne se lève pas**. Le self-test tourne **toujours** avant
+Quatorze témoins, chacun **muet s'il ne se lève pas**. Le self-test tourne **toujours** avant
 l'écran et sort en code non nul à l'échec : l'écran ne peut pas être cité sans que ses gardes
-aient répondu. ⭐ Deux paires sont des **contrôles inverses** — 8/9 (`DUEL?`) et 5/10
-(`MOT-NOMBRE?`) : sans elles, une garde élargie à tout passerait le témoin positif et
-resterait verte en avalant les omissions réelles.
+aient répondu. ⭐ Trois paires sont des **contrôles inverses** — 8/9 (`DUEL?`), 5/10
+(`MOT-NOMBRE?`) et 11/12 (forme des rangées) : sans elles, une garde élargie à tout passerait
+le témoin positif et resterait verte **en avalant les cas réels**.
 
 Mutation de l'instrument committé, **une garde retirée à la fois** (instrument intact : `rc=0`,
-`SELF-TEST: OK (10 temoins)`) :
+`SELF-TEST: OK (14 temoins)`) :
 
 | Garde retirée | `rc` | Témoin qui tombe |
 |---|---|---|
@@ -91,7 +91,9 @@ Mutation de l'instrument committé, **une garde retirée à la fois** (instrumen
 | `whole_word()` (défaut 5) | **1** | `(10 mot-nombre en sous-chaine): le 3 manquant est masque par un morceau de mot -> ['MOT-NOMBRE?3']` |
 | garde `DUEL?` (défaut 4) | **1** | `(8 duel arabe): duel arabe mal classe -> ['CHIFFRE?2']` |
 | table `NUMWORD` débranchée (défaut 3) | **1** | `(5 nombre en mots): nombre en mots non reconnu` |
-| *(aucune — instrument intact)* | **0** | `SELF-TEST: OK (10 temoins)` |
+| `check_rows` débranchée | **1** | `(12 deux champs manquants): un manque de deux champs passe en silence` |
+| `check_scripts` débranchée | **1** | `(13 glissement de colonnes): un glissement passe en silence` |
+| *(aucune — instrument intact)* | **0** | `SELF-TEST: OK (14 temoins)` |
 
 ---
 
@@ -167,10 +169,38 @@ caractère mesuré, même quand le compte autour de lui est juste.*
 
 ---
 
-## 6. Reproductibilité
+## 6. Garde de forme — **dix rangées sur quinze sont courtes d'un champ**
+
+Trouvé en préparant la lecture, par une alarme qui a d'abord ressemblé à une corruption :
+`AssertionError: rangee de 10 champs pour 11 colonnes`.
+
+**Mesure** : l'en-tête déclare **11** colonnes ; **10 des 15 rangées n'en portent que 10**. Le
+champ manquant est **toujours le dernier** (`variant_class`), et les **5** rangées qui le
+portent sont exactement les **couvertures** (`cover-argumentum`, `cover-bingo`,
+`cover-beau-parleur`, `cover-moulin`, `cover-parlote`).
+
+⇒ **Ce n'est pas une corruption, et l'écran lit juste** : `dict(zip(h, r))` apparie le
+**préfixe**, et un champ manquant **en fin** de ligne ne décale rien. Le seul cas dangereux
+serait un champ manquant **au milieu** — tout ce qui suit glisse d'une position et l'écran
+compare des colonnes étrangères. C'est exactement le défaut qui a fait jeter un relevé le même
+jour.
+
+Deux gardes le distinguent, ajoutées après cette mesure :
+
+| Garde | Ce qu'elle fait | Ce qu'elle **ne** fait **pas** |
+|---|---|---|
+| `check_rows` | refuse une rangée **trop longue**, ou à qui il manque **plus d'un** champ — sans refuser le cas réel (10/15) | ⛔ **ne voit pas** la suppression d'**un seul** champ au milieu : la ligne reste « courte d'un » et le champ manquant reste le dernier du compte |
+| `check_scripts` | refuse une cellule dont l'**écriture** n'est pas celle de sa colonne (du chinois dans `Text_ru` = valeurs glissées) | ⛔ ne décide **pas** pour `pt`, `es`, `en` — latins comme le `fr`. Limite **nommée**, pas couverture supposée |
+
+⭐ *Un compteur de champs ne mesure pas une langue* — et une garde de forme qui prétendrait
+couvrir le glissement serait une garde qui se tait au moment précis où elle sert.
+
+---
+
+## 7. Reproductibilité
 
 ```bash
-python docs/corpus/regles-fidelity-instrument.py     # self-test (10 témoins) puis l'écran
+python docs/corpus/regles-fidelity-instrument.py     # self-test (14 témoins) puis l'écran
 ```
 
 Le CSV est lu par **nom de colonne** (`Text`, `Text_en`, `Text_<lang>`), jamais par position.
