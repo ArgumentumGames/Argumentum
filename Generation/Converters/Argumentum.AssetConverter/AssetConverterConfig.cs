@@ -594,19 +594,30 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 			}
 			if (Mode.HasFlag(ConverterMode.Mindmapper))
-		    {
-			    if (AsynchronousPipeline)
-			    {
-				    tasks.Add(Task.Run(() => FallacyMindMapCreatorConfig.Apply(this)));
-				    tasks.Add(Task.Run(() => VirtueMindMapCreatorConfig.Apply(this)));
-				   }
-				   else
-				   {
-				    await FallacyMindMapCreatorConfig.Apply(this);
-				    await VirtueMindMapCreatorConfig.Apply(this);
-				   }
-
-
+			{
+				// #458 grain 4 (dispatch c.5975630522) — fenêtre de comptage du repli XSLT
+				// pour CETTE passe mindmaps ; le résumé est émis après les deux créateurs.
+				FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
+				if (AsynchronousPipeline)
+				{
+					var fallacyMapTask = Task.Run(() => FallacyMindMapCreatorConfig.Apply(this));
+					var virtueMapTask = Task.Run(() => VirtueMindMapCreatorConfig.Apply(this));
+					tasks.Add(fallacyMapTask);
+					tasks.Add(virtueMapTask);
+					// Résumé émis d'un seul point, après LES DEUX créateurs (compteurs
+					// process-wide : un résumé par créateur s'entrelacerait ici).
+					tasks.Add(Task.Run(async () =>
+					{
+						await Task.WhenAll(fallacyMapTask, virtueMapTask);
+						LogMindmapXsltFallbackSummary();
+					}));
+				}
+				else
+				{
+					await FallacyMindMapCreatorConfig.Apply(this);
+					await VirtueMindMapCreatorConfig.Apply(this);
+					LogMindmapXsltFallbackSummary();
+				}
 			}
 
 
@@ -751,6 +762,30 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 	    }
 
 	   
+
+		/// <summary>
+		/// #458 grain 4 (dispatch c.5975630522) — résumé de FIN DE PASSE mindmaps : combien
+		/// de fois le repli XSLT (voie morte #184) a été engagé, combien de SVG dégradés
+		/// il a produits. Émis d'un seul point, après LES DEUX créateurs (les compteurs
+		/// sont process-wide : un résumé par créateur s'entrelacerait en mode asynchrone).
+		/// Niveau avertissement dès qu'un artefact dégradé est sorti — c'est ce résumé qui
+		/// manquait quand la carte blanche est entrée dans #1740 (la porte d'arbre
+		/// MindmapXsltFallbackGateTests de #1740 couvre l'arbre committé ; ceci, la passe).
+		/// </summary>
+		private static void LogMindmapXsltFallbackSummary()
+		{
+			var engagements = FallacyMindMapDocumentConfig.XsltFallbackEngagements;
+			var artifacts = FallacyMindMapDocumentConfig.XsltFallbackArtifacts;
+			var line = FallacyMindMapDocumentConfig.BuildXsltFallbackSummaryLine(engagements, artifacts);
+			if (artifacts > 0)
+			{
+				Logger.LogWarning(line);
+			}
+			else
+			{
+				Logger.Log(line);
+			}
+		}
 
 	    public string GetHarvestDirectory(string language)
 	    {
