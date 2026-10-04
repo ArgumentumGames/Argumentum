@@ -18,6 +18,8 @@ Sixième grain de la série des exemples (dispatch c.5968567990). Comme zh/ar/fa
 
 **Les 168 rangées non vides ont été lues, aucun échantillonnage** (cellules multi-lignes 813/943/974 lues entières — leçon ㉗ ; voir §5 pour ce que la lecture entière révèle sur 974).
 
+> **Erratum d'exécution (03/10, grain 2 du dispatch c.5971513525, PR de typographie des dialogues).** Le défaut de forme du §2 ci-dessous (974 es aplati) est **corrigé** : les trois répliques sont rétablies sur 3 lignes avec le marqueur **collé** `—` (usage RAE, arbitré c.5971513525 pt 2), épinglées par `CorpusDialogueTypographyGuardTests`. Le §6/943 es reçoit aussi sa ponctuation arbitrée : « —¡Deslumbrante por su estupidez! ». Le calque 673 (« Midamos el punto medio ») est corrigé par le grain 1 (#1735, « Partamos la diferencia »).
+
 ## Jumeaux inter-langues — le fait structurel du grain
 
 es rejoint **10** familles de déviations déjà cartographiées — dont le 5-way découvert en croisant es contre les quatre autres langues (134). Il reste **fidèle** exactement là où les familles ne tiennent pas (659, 699, 1330).
