@@ -14,8 +14,16 @@ namespace Argumentum.AssetConverter.Tests
 	/// <para>⚠️ <b>4.3.4 est absente d'ici a dessein</b> : c'est la meme famille zh (run contigu)
 	/// mais la rangee appartient a la PR #1759 (corrections 1). Une rangee = une carte = une
 	/// seule PR de correction.</para>
-	/// <para><b>Les 9 defers</b> (Deferred) sont epingles a leur valeur COURANTE : le jour ou
-	/// l'un est corrige, ce test rougit et demande de retirer son entree en meme temps.</para>
+	/// <para><b>Grain 2 du pool c.5985353780</b> — 2 restaurations <b>chirurgicales</b> sorties
+	/// de la burn-down : 3.2.1 (issue_ru, objet manquant) et 4.3.3 (issue_zh, 转卖商 -> 采购商).
+	/// <b>Trois autres sont ecartables mais laissees</b>, parce que la PR #1769 (grain 1 pt) tient
+	/// des rangees du MEME fichier : 1.2.2 est <i>la meme rangee</i>, 1.3.3 et 3.2.8 sont sur des
+	/// lignes <b>adjacentes</b> a 1.3.2 et 3.2.7 — et `git merge-tree` rend exit 1 sur des
+	/// changements voisins. ⭐ <i>Rangées disjointes n'implique pas lignes disjointes.</i></para>
+	/// <para><b>Les 4 marquees « composer »</b> par le burn-down (titres inventes 6.2.1 zh/ru,
+	/// repliques remplacees 5.3.5 fa et 7.2.7 ru) restent differees pour un autre motif.</para>
+	/// <para><b>Les 7 defers restants</b> (Deferred) sont epingles a leur valeur COURANTE : le jour
+	/// ou l'un est corrige, ce test rougit et demande de retirer son entree en meme temps.</para>
 	/// </summary>
 	public class ScenariiLanguageSpecificCorrectionsGuardTests
 	{
@@ -30,6 +38,9 @@ namespace Argumentum.AssetConverter.Tests
 			("4.3.6", "context_zh", "诡辩者发明了自己的滑雪运动：滑雪者打扮成松鼠，一边下坡一边努力收集橡果。", "espace parasite apres le role (run contigu 4.3.3-4.3.6)"),
 			("7.2.3", "context_es", "El embaucador tiene un perro revoltoso que se ha escapado y ha destrozado el jardín de su vecino.", "point final absent, alors que le FR et l'EN ponctuent tous deux"),
 			("3.2.4", "context_ru", "После долгих отношений Софист и его партнёр решают завести ребёнка. После нескольких попыток беременность наконец начинает успешно развиваться.", "fuite d'interface : «Берущий карту» imprime dans la cellule, les deux sources disent « partenaire »"),
+			// -- grain 2 du pool c.5985353780 : les 5 restaurations chirurgicales, sorties de la burn-down --
+			("3.2.1", "issue_ru", "Софист должен убедить партнёра позволить ему приехать к ней жить.", "grammaire : objet de « убедить » manquant (FR et EN nomment « son partenaire »)"),
+			("4.3.3", "issue_zh", "结果球队第一轮就惨兮兮出局了；这位采购商必须说服供应商：他现在只想买下其中一半球衣。", "coherence interne : 转卖商 contre 采购商, le terme du personnage (smoothTalker_zh et FR « Un acheteur »)"),
 			("5.2.5", "issue_fa", "چرب\u200cزبان باید او را قانع کند که ماجرا این\u200cطور نیست.", "nom du role : 47 cellules du meme champ disent le terme retabli"),
 		};
 
@@ -42,11 +53,9 @@ namespace Argumentum.AssetConverter.Tests
 			("6.2.1", "title_ru", "Рокировка", "titre invente («Рокировка») — composer"),
 			("5.3.5", "suggestion_fa", "زمین ما را از خودش دور می\u200cراند؟ چه فکر کاملاً عجیب\u200cوغریبی!", "replique du physicien remplacee — composer"),
 			("7.2.7", "suggestion_ru", "Слушай, в итоге я не смогу с тобой поехать.", "l'entretien, pivot de la carte, a disparu de la replique — composer"),
-			("1.2.2", "issue_ru", "Софист должен убедить императора в том, индейцев можно сделать рабами.", "grammaire : «в том, индейцев» (что manquant) — le dossier la dit a confirmer en relecture native"),
-			("1.3.3", "suggestion_ru", "Вечная Франция никогда не будет согнется под Тевтонским игом.", "grammaire : «никогда не будет согнется» (double futur) — idem"),
-			("3.2.1", "issue_ru", "Софист должен убедить позволить ему приехать к ней жить.", "grammaire : «убедить позволить» (objet manquant) — idem"),
-			("3.2.8", "title_zh", "被忘掉的纪念日", "coherence interne : 纪念日 (anniversaire d'evenement) contre 生日 dans context_zh"),
-			("4.3.3", "issue_zh", "结果球队第一轮就惨兮兮出局了；这位转卖商必须说服供应商：他现在只想买下其中一半球衣。", "coherence interne : 转卖商 contre 采购商 dans smoothTalker_zh"),
+			("1.2.2", "issue_ru", "Софист должен убедить императора в том, индейцев можно сделать рабами.", "grammaire (« что » manquant apres « в том, ») — la rangee 1.2.2 est partagee avec la PR #1769 (grain 1 pt, smoothTalker_pt) : une rangee = une PR ouverte"),
+			("1.3.3", "suggestion_ru", "Вечная Франция никогда не будет согнется под Тевтонским игом.", "grammaire (« будет согнется ») — merge-tree exit 1 contre #1769 : la rangee est ADJACENTE en ligne a 1.3.2, et git conflit sur des changements voisins"),
+			("3.2.8", "title_zh", "被忘掉的纪念日", "coherence interne (纪念日 contre 生日) — merge-tree exit 1 contre #1769 : rangee ADJACENTE en ligne a 3.2.7, meme cause"),
 		};
 
 		internal static List<string> Mismatches(
@@ -83,9 +92,10 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void Fixed_Table_Is_Not_Vacuous()
 		{
-			Fixed.Should().HaveCount(6);
-			Fixed.Select(f => f.Path).Distinct().Should().HaveCount(6, "6 cellules sur 6 rangees distinctes.");
-			Fixed.Select(f => f.Column).Distinct().Should().BeEquivalentTo(new[] { "context_zh", "context_es", "context_ru", "issue_fa" });
+			Fixed.Should().HaveCount(8, "6 cellules du grain 2 de c.5982328511, plus 2 du grain 2 de c.5985353780 (1.2.2 partagee, 1.3.3 et 3.2.8 adjacentes : 3 laissees a #1769).");
+			Fixed.Select(f => f.Path).Distinct().Should().HaveCount(7, "8 cellules sur 7 rangees : 4.3.3 en porte deux (context_zh, issue_zh).");
+			Fixed.Select(f => f.Column).Distinct().Should().BeEquivalentTo(
+				new[] { "context_zh", "context_es", "context_ru", "issue_fa", "issue_ru", "issue_zh" });
 			Fixed.Should().OnlyContain(f => f.Why.Length > 20, "chaque epingle dit ce qu'elle repare.");
 			Fixed.Should().OnlyContain(f => !f.Expected.Contains("\u0020\u8be1"), "aucun espace ne subsiste devant le role zh.");
 		}
