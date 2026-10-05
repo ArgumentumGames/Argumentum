@@ -16,7 +16,7 @@ Les agents du cluster poussent avec le **token partagé `jsboige`**. Mesure du 2
 |---|---:|---:|
 | `jsboige` | 351 | ~239 |
 
-Un filtre « auteur = Adeline / Thomas / jsboige » ramasse donc surtout **nos propres rapports**. Et dans l'autre sens : **Adeline n'a aucun compte GitHub** parmi les 5 collaborateurs (`lpelleti`, `ynnk`, `jsboige`, `ThomasWatanabeVermorel`, `clusterManager-Myia`) — ses demandes arrivent *par le clavier de jsboige*. Chercher « les commentaires d'Adeline » rendrait **0** en permanence, et ce zéro se lirait à tort comme « elle n'a rien demandé ».
+Un filtre « auteur = jsboige » ramasse donc surtout **nos propres rapports**. En revanche, pour les deux associés, le login **discrimine** : Thomas poste sous `ThomasWatanabeVermorel`, et **Adeline sous son propre compte `addinette` depuis le 05/10/2026** (#1781). `gh search issues --commenter addinette` la trouve, quelle que soit la longueur. ⚠️ Mesuré sur #1781 : ses deux commentaires les plus longs (865 et 1 440 caractères) ont échappé au filet A, et c'est le filet C (issue ouverte) qui l'a vue.
 
 Le discriminateur mesuré qui marche est la **longueur**, doublé de la **mention** :
 
