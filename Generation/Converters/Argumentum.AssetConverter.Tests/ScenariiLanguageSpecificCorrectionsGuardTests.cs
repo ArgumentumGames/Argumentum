@@ -7,7 +7,7 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
-	/// Grain 2 (#458) — corrections PROPRES A UNE LANGUE : les 6 cellules ecrites.
+	/// Grain 2 (#458) — corrections PROPRES A UNE LANGUE : les 12 cellules ecrites.
 	/// <para>Chacune est un defaut qu'aucune autre langue ne partage, etabli a trois voies par
 	/// le dossier de la langue concernee : zh 4.3.3/4.3.5/4.3.6 (espace parasite en run contigu),
 	/// es 7.2.3 (point final), ru 3.2.4 (fuite d'interface de jeu), fa 5.2.5 (nom du role).</para>
@@ -16,13 +16,15 @@ namespace Argumentum.AssetConverter.Tests
 	/// seule PR de correction.</para>
 	/// <para><b>Grain 2 du pool c.5985353780</b> — 2 restaurations <b>chirurgicales</b> sorties
 	/// de la burn-down : 3.2.1 (issue_ru, objet manquant) et 4.3.3 (issue_zh, 转卖商 -> 采购商).
-	/// <b>Trois autres sont ecartables mais laissees</b>, parce que la PR #1769 (grain 1 pt) tient
-	/// des rangees du MEME fichier : 1.2.2 est <i>la meme rangee</i>, 1.3.3 et 3.2.8 sont sur des
-	/// lignes <b>adjacentes</b> a 1.3.2 et 3.2.7 — et `git merge-tree` rend exit 1 sur des
-	/// changements voisins. ⭐ <i>Rangées disjointes n'implique pas lignes disjointes.</i></para>
+	/// ⭐ <i>Rangées disjointes n'implique pas lignes disjointes</i> : 1.2.2, 1.3.3 et 3.2.8 ont
+	/// ete laissees alors parce que #1769 tenait leurs lignes.</para>
+	/// <para><b>Grain 1 du pool c.5988407613</b> — ces 3 restaurations, ecrites depuis le merge
+	/// de #1769 : 1.2.2 (issue_ru, «что» manquant), 1.3.3 (suggestion_ru, double futur) et
+	/// 3.2.8 (title_zh + suggestion_zh, 纪念日 -> 生日 : le context_zh de la carte dit 生日,
+	/// defect etabli sur titre ET suggestion par le dossier zh n°2).</para>
 	/// <para><b>Les 4 marquees « composer »</b> par le burn-down (titres inventes 6.2.1 zh/ru,
 	/// repliques remplacees 5.3.5 fa et 7.2.7 ru) restent differees pour un autre motif.</para>
-	/// <para><b>Les 7 defers restants</b> (Deferred) sont epingles a leur valeur COURANTE : le jour
+	/// <para><b>Les 4 defers restants</b> (Deferred) sont epingles a leur valeur COURANTE : le jour
 	/// ou l'un est corrige, ce test rougit et demande de retirer son entree en meme temps.</para>
 	/// </summary>
 	public class ScenariiLanguageSpecificCorrectionsGuardTests
@@ -42,10 +44,15 @@ namespace Argumentum.AssetConverter.Tests
 			("3.2.1", "issue_ru", "Софист должен убедить партнёра позволить ему приехать к ней жить.", "grammaire : objet de « убедить » manquant (FR et EN nomment « son partenaire »)"),
 			("4.3.3", "issue_zh", "结果球队第一轮就惨兮兮出局了；这位采购商必须说服供应商：他现在只想买下其中一半球衣。", "coherence interne : 转卖商 contre 采购商, le terme du personnage (smoothTalker_zh et FR « Un acheteur »)"),
 			("5.2.5", "issue_fa", "چرب\u200cزبان باید او را قانع کند که ماجرا این\u200cطور نیست.", "nom du role : 47 cellules du meme champ disent le terme retabli"),
+			// -- grain 1 du pool c.5988407613 : les 3 restaurees apres le merge de #1769 --
+			("1.2.2", "issue_ru", "Софист должен убедить императора в том, что индейцев можно сделать рабами.", "grammaire : «что» manquant apres «в том, » — la subordonnee etait coupee"),
+			("1.3.3", "suggestion_ru", "Вечная Франция никогда не согнётся под Тевтонским игом.", "grammaire : double futur «будет согнется» -> futur simple «согнётся» (FR « ne pliera jamais »)"),
+			("3.2.8", "title_zh", "被忘掉的生日", "coherence interne : 纪念日 (jour commémoratif) contre 生日 — les 4 sources disent l'anniversaire de naissance"),
+			("3.2.8", "suggestion_zh", "认真的？你这次真的把我的生日忘了？", "coherence interne : meme cause que le titre — le context_zh de la carte dit 生日"),
 		};
 
 		/// <summary>
-		/// BURN-DOWN : les 9 defauts etablis et NON ecrits, epingles a leur valeur COURANTE.
+		/// BURN-DOWN : les 4 choix « composer » etablis et NON ecrits, epingles a leur valeur COURANTE.
 		/// </summary>
 		private static readonly (string Path, string Column, string Current, string Why)[] Deferred =
 		{
@@ -53,9 +60,6 @@ namespace Argumentum.AssetConverter.Tests
 			("6.2.1", "title_ru", "Рокировка", "titre invente («Рокировка») — composer"),
 			("5.3.5", "suggestion_fa", "زمین ما را از خودش دور می\u200cراند؟ چه فکر کاملاً عجیب\u200cوغریبی!", "replique du physicien remplacee — composer"),
 			("7.2.7", "suggestion_ru", "Слушай, в итоге я не смогу с тобой поехать.", "l'entretien, pivot de la carte, a disparu de la replique — composer"),
-			("1.2.2", "issue_ru", "Софист должен убедить императора в том, индейцев можно сделать рабами.", "grammaire (« что » manquant apres « в том, ») — la rangee 1.2.2 est partagee avec la PR #1769 (grain 1 pt, smoothTalker_pt) : une rangee = une PR ouverte"),
-			("1.3.3", "suggestion_ru", "Вечная Франция никогда не будет согнется под Тевтонским игом.", "grammaire (« будет согнется ») — merge-tree exit 1 contre #1769 : la rangee est ADJACENTE en ligne a 1.3.2, et git conflit sur des changements voisins"),
-			("3.2.8", "title_zh", "被忘掉的纪念日", "coherence interne (纪念日 contre 生日) — merge-tree exit 1 contre #1769 : rangee ADJACENTE en ligne a 3.2.7, meme cause"),
 		};
 
 		internal static List<string> Mismatches(
@@ -86,16 +90,16 @@ namespace Argumentum.AssetConverter.Tests
 		public void Corrected_Cells_Still_Hold_Their_Value()
 		{
 			Mismatches(ReadAll(Fixed)).Should().BeEmpty(
-				"#458 grain 2 : les 6 defauts propres a une langue sont corriges (zh espace, es point, ru fuite d'interface, fa nom du role).");
+				"#458 : les 12 cellules epinglees sont corrigees (grain 2 : zh espace, es point, ru fuite, fa role ; pools : restaurations chirurgicales).");
 		}
 
 		[Fact]
 		public void Fixed_Table_Is_Not_Vacuous()
 		{
-			Fixed.Should().HaveCount(8, "6 cellules du grain 2 de c.5982328511, plus 2 du grain 2 de c.5985353780 (1.2.2 partagee, 1.3.3 et 3.2.8 adjacentes : 3 laissees a #1769).");
-			Fixed.Select(f => f.Path).Distinct().Should().HaveCount(7, "8 cellules sur 7 rangees : 4.3.3 en porte deux (context_zh, issue_zh).");
+			Fixed.Should().HaveCount(12, "6 cellules du grain 2 de c.5982328511, 2 du grain 2 de c.5985353780, 4 du grain 1 de c.5988407613 (les 3 laissees a #1769 : 1.2.2, 1.3.3, 3.2.8 x2).");
+			Fixed.Select(f => f.Path).Distinct().Should().HaveCount(10, "12 cellules sur 10 rangees : 4.3.3 et 3.2.8 en portent deux chacune.");
 			Fixed.Select(f => f.Column).Distinct().Should().BeEquivalentTo(
-				new[] { "context_zh", "context_es", "context_ru", "issue_fa", "issue_ru", "issue_zh" });
+				new[] { "context_zh", "context_es", "context_ru", "issue_fa", "issue_ru", "issue_zh", "suggestion_ru", "title_zh", "suggestion_zh" });
 			Fixed.Should().OnlyContain(f => f.Why.Length > 20, "chaque epingle dit ce qu'elle repare.");
 			Fixed.Should().OnlyContain(f => !f.Expected.Contains("\u0020\u8be1"), "aucun espace ne subsiste devant le role zh.");
 		}
