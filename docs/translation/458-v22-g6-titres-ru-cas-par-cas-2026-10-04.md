@@ -125,7 +125,7 @@ L'arbitrage ai-01 (c.5980960236, repris tel quel par le pool c.5985353780 grain 
 titres ru marqués "candidat" s'appliquent ; 6.3.2 et 3.1.1 sont gardés, avec leur raison »*. La règle
 d'écriture : **entre deux termes proposés, prendre celui qui tient ensemble le FR et l'EN**.
 
-### 5.1 Écrits — 5 des 7 candidats
+### 5.1 Écrits — 4 des 7 candidats (7.1.5 retiré en review, §5.4)
 
 Les deux autres (2.2.7, 5.3.1) sont **bloqués par la PR #1769** ouverte sur le même CSV (§5.2).
 
@@ -135,9 +135,9 @@ Les deux autres (2.2.7, 5.3.1) sont **bloqués par la PR #1769** ouverte sur le 
 | 3.3.10 | Свадьба или нет? | **Свадьба? Нет, спасибо** | « Non merci » / « No Thanks » / « Não, obrigado » — le refus, que la question neutre ru effaçait |
 | 4.1.1 | Уловки продавца | **Понты** | FR, EN et pt disent la **frime du client** ; ru décrivait le vendeur. Entre les deux proposés : **понты** = frime ostensible ; **пыль в глаза** déplace vers la duperie — les sources ne disent pas « tromper » |
 | 4.1.2 | Телесные наказания | **Розги** | la carte parle de punition scolaire ; entre les deux proposés : **розги** = l'instrument russe de cette punition et le répondant exact du « cane » EN ; **кнут** déplace vers la torture historique |
-| 7.1.5 | Праздник | **Кермесса** | FR/EN/pt **gardent tous trois le mot** (kermesse / Kermesse / quermesse) ; entre les deux proposés, seul le calque tient les trois ensemble — « ярмарка » perd le mot que même l'EN a gardé. Attesté en russe : dictionnaire historique des gallicismes, musées (Ermitage, Pouchkine : tableaux « Кермесса »), Википедия « Героическая кермесса » |
 
-Chirurgie par span de champ, **delta octets −20 = somme exacte des 5 cellules**, `--numstat 5 5`,
+Chirurgie par span de champ, **delta octets −20 = somme exacte des 4 cellules** (la cellule 7.1.5
+retirée en review était à delta nul : 8 caractères cyrilliques → 8), `--numstat 4 4`,
 167 enregistrements intacts, ni BOM ni LF brut introduits (le CSV Scenarii n'en porte aucun).
 
 ### 5.2 Bloqués par la PR #1769 (reprise en un seul lot après son merge)
@@ -154,13 +154,29 @@ Chirurgie par span de champ, **delta octets −20 = somme exacte des 5 cellules*
 - **6.3.2** — aucun rendu russe de « vingt ans » ne reste neutre ; relecture native si un rendu est
   proposé.
 
+### 5.4 Retiré en review (05/10, c.5990865284) — 7.1.5
+
+« Кермесса » a été écrite le matin même puis **retirée le jour même** : sa raison écrite — *« seul
+le calque tient FR+EN+pt ensemble ; « ярмарка » perd le mot que **même l'EN a gardé** »* — est tombée
+avec la réponse de l'owner (« oui à tout » au dossier du texte imprimé) : le titre EN « Kermesse »
+passe à « **The Fair** ». Le motif de l'owner s'applique tel quel au russe : *le titre doit dire ce
+que dit le corps de la carte* — or le `context_ru` dit « **праздник** своего ребёнка ». « Кермесса »
+créerait en russe exactement le défaut qu'on retire en anglais, avec en prime un risque de lecture
+(la fête flamande des tableaux, pas la fête de l'école). Le CSV est **revenu à « Праздник »** et la
+cellule est ré-épinglée au burn-down ; elle part dans la PR du **grain 3** (même rangée que
+« Kermesse → The Fair »), forme recommandée **« Школьный праздник »** — le mot du corps, le sens
+scolaire que l'es porte déjà (« Fiesta escolar »), et la généricité levée.
+
 ## 6. Reste à faire
 
-- **2.2.7 et 5.3.1** (§5.2) : un lot unique **après le merge de #1769**, même protocole que §2.
-- La garde `ScenariiRuTitleSpecificityGuardTests` épingle les **7 écrits** (valeur pleine) et le
-  **burn-down des 4 restants** (2 bloqués, 2 gardés), chacun avec son motif : une exclusion meurt
-  avec sa raison.
-- Les 7 cellules écrites changent les **PokerCards ru** à la prochaine régénération ; rien n'est
+- **2.2.7 et 5.3.1** (§5.2) : un lot unique après le merge de #1769 (passé) — reprise dès que la
+  garde n'est plus tenue par une PR ouverte.
+- **7.1.5 `title_ru`** (§5.4) : dans la PR du grain 3, même rangée que l'EN « Kermesse → The Fair » ;
+  forme recommandée « Школьный праздник ».
+- La garde `ScenariiRuTitleSpecificityGuardTests` épingle les **6 écrits** (valeur pleine) et le
+  **burn-down des 5 restants** (2 ex-bloqués, 2 gardés, 1 retiré en review), chacun avec son
+  motif : une exclusion meurt avec sa raison.
+- Les 6 cellules écrites changent les **PokerCards ru** à la prochaine régénération ; rien n'est
   republié avant le verdict des associés (gel `v2.0.0-review`).
 
 *po-2024*
