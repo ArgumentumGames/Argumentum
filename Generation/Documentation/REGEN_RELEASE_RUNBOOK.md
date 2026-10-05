@@ -81,6 +81,17 @@ $p = Start-Process -FilePath $exe -ArgumentList "--pdf-cmyk" -WorkingDirectory "
 - Échantillon minimal : TarotCards fr 1 face Fallacies (impaire, p.31+) + 1 dos partagé (paire, p.30+), PokerCards fr 1 face, Virtues 1 face. PNG ~150 dpi, pas de PDF (4 Go ne passent pas en pièces jointes).
 - Signaler provenance complète : commit de base, horodatage PDFs, RGB/CMYK, dpi, géométries.
 
+## Phase H — Vignettes `cards_fr` : ce qu'une passe mindmap seule ne met pas à jour
+
+La variante `cards_fr` de la carte mentale des sophismes (FR seul par config, `FallacyMindMapCreatorConfig.cs:106` et `114-115` : `InsertCardsThumbnails = true`, `ThumbnailsCardSetName = Fallacies-Web-Thumbnails`) **embarque les vignettes des 175 cartes** — et ces vignettes sont des **sorties de harvest**, pas des sorties du mindmapper.
+
+- **Provenance** : `Target/{lang}/Images/density-0/Fallacies-Web-Thumbnails/`, résolue par `ResolveThumbnailPathForItem` (`FallacyMindMapDocumentConfig.cs:1170`) via `MatchThumbnailsName` (motif `_{item.Path}..`), puis bornée par `MindMapThumbnailVariant.EnsureBoundedVariant` à **120 px d'arête max** (#1197 : FreeMind décode le PNG référencé à sa résolution réelle — du 590×590 en OOM JVM 32 bits à l'export).
+- **Conséquence structurelle** : une passe mindmap seule (`Mode = Mindmapper | OwlGenerator`, ex. la re-dérivation #1767) **consomme** ces PNG, elle ne les régénère pas. La fraîcheur des vignettes embarquées est exactement celle du dernier harvest `Fallacies-Web-Thumbnails` présent sur le disque au moment de la passe.
+- **Mesuré (re-dérivation 4, merge `6a071b98`)** : sur les 175 vignettes embarquées dans `Fallacies_cards_fr.html`, **62 différaient** de la génération précédente (comparaison positionnelle des PNG embarqués rd3 → rd4). Ai-01 en a compté **87/175** par une autre méthode et relevé qu'au moins deux vignettes (PK 834, 848) portaient encore des exemples d'avant #1032 (août) : les deux chiffres disent la même chose — **les vignettes traînent le corpus du dernier harvest, pas celui du dernier CSV**.
+- **Erratum** (corrige une affirmation de la PR #1767) : la même passe a corrigé **20 littéraux** dans `argumentum.owl`, pas « un tiret cadratin » — le « seule divergence » venait d'une sonde de première différence, qui localise la première divergence mais ne compte pas les suivantes.
+
+**Ordre après la régénération PDF post-verdict** (elle re-harvest les 8 langues) : re-dériver la variante `cards_fr` **après** le harvest frais, sinon ses 175 vignettes gardent l'état du run précédent. La passe mindmap exige par ailleurs une fenêtre bureau interactive (FreeMind `SendKeys`) — cf. runbook mindmap. Jamais l'ordre inverse.
+
 ## Index des pièges
 
 | # | Piège | Symptôme | Réf |
@@ -95,6 +106,7 @@ $p = Start-Process -FilePath $exe -ArgumentList "--pdf-cmyk" -WorkingDirectory "
 | 8 | `dotnet clean` pour « vider » | Détruit les bundles (Target/ dans bin/) | triage worktrees |
 | 9 | GitHub Pages comme source CardPen | 404 → 0 images → 0 PDF | #629, `UseLocalCardpen=true` |
 | 10 | JSON de config édité à la main | Source de vérité = C# (`SkipConfigFile=true` délibéré) | CLAUDE.md |
+| 11 | Vignettes `cards_fr` crues fraîches après passe mindmap seule | La passe lit `Target/.../Fallacies-Web-Thumbnails/` tel quel — vignettes du **dernier harvest** embarquées | #1767, Phase H |
 
 ---
 *Dernière validation : run E 06/09/2026 @ `2a2e7b32` (deck 175 + #1295) — 379 pages ×8, 80 PDFs, témoins vérifiés. Parité recto-verso corrigée le 07/09 après mesure page par page : la v1 du tableau inversait faces/dos.*
