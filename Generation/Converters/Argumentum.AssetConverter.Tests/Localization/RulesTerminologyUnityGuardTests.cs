@@ -76,8 +76,13 @@ namespace Argumentum.AssetConverter.Tests.Localization
             (MainRulesCsv, "Rules_02",  "Text_ru", "a23bfc05251d0538630e2be5b6310f771812f0176d3804fa32c1b131498cca7e"),
             (MainRulesCsv, "Rules_09",  "Text_ar", "735a7ab8017508431287f23c5a513e8c04b258a18c42aa6a49382107f3902c42"),
             (MainRulesCsv, "Rules_11",  "Text_es", "653fc8262b038a2384a03c67c057c13ca6e0eb763624a3cd813b8d179884355d"),
-            (MainRulesCsv, "Rules_13",  "Text_ar", "30b10993ebf8ccd7e03f86da2b4454df7b09a2071bc925d4b6708b3d8d954520"),
-            (MainRulesCsv, "Rules_13",  "Text_es", "af2b6e42a828d4dc197b8803e50ef270b4c8f9c96cb55a3cbb398c583b1f829f"),
+            // Rules_13 ar/es re-pinned 05/10 in the same commit as the 32 -> 28 fix (grain 4 of
+            // pool c.5988407613, GO owner): the full-cell pin reddens on ANY byte change, which
+            // is its job — these two cells legitimately changed (« 32 cartes » -> 28, the source
+            // contradiction of dossier regles-sources-fr-en §4.1). Re-derived from the corrected
+            // CSV, cross-checked against RulesEnCorrectionsGuardTests' own pins (identical).
+            (MainRulesCsv, "Rules_13",  "Text_ar", "3ea7636d8980c0799acd99b1cb1a442679fe0428e7e18dac2cca52432368bf0b"),
+            (MainRulesCsv, "Rules_13",  "Text_es", "1f2ffdd998fcdfc05d80451fa7cdd6f522a03b4a7b0a60a11c6f4a93acd269be"),
             (PpRulesCsv,   "RulesPP_02", "Text_ru", "a23bfc05251d0538630e2be5b6310f771812f0176d3804fa32c1b131498cca7e"),
         };
 
