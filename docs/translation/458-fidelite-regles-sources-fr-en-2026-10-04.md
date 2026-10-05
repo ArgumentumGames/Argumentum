@@ -218,4 +218,49 @@ ponctue**. Elle ne peut donc pas être imputée à la source.
 - **Reste dû** : les **6 langues cibles** (ru, pt, ar, es, zh, fa), lues **contre cette
   référence-ci**, puis le dossier de fidélité complet.
 
+---
+
+## 8. Écrit — grain 4 du pool c.5988407613 (05/10)
+
+**11 cellules écrites** dans `Argumentum Rules - Cards.csv` (chirurgie de fragments uniques avec
+comptes assertés, jamais de round-trip CSV — le fichier porte un BOM et des cellules multi-lignes ;
+delta 0, `numstat 15/16`, la ligne de moins = la ligne vide retirée dans Rules_10).
+
+### 8.1 Rules_13 — 32 → 28, les 8 langues (GO owner 05/10 « oui à tout »)
+
+La contradiction interne du §4.1 sort du corpus : la ligne de Matériel dit **28** comme
+l'Installation (7 couleurs × 4), dans les 8 colonnes — `Text` («Une sélection de 28 cartes»),
+`Text_en` ("A selection of 28 cards"), `Text_ru` («колода из 28 карт»), `Text_pt`, `Text_ar`,
+`Text_es`, `Text_zh` (共选用28张牌) et `Text_fa` (chiffres persans ۳۲ → ۲۸). L'imprimé 2022 porte
+le « 32 » FR et EN : la correction était **soumise à l'owner** (dossier #1773 volet 1.3) et il a
+dit oui. **Le CSV Print&Play est mesuré** : il ne porte aucune ligne de sélection — rien à y
+écrire (le GO disait « mesure aussi le CSV PP »).
+
+### 8.2 EN — les défauts §3.3/§3.4/§3.2/§3.1 + deux cosmétiques §3.6
+
+| Cellule | Avant | Après |
+|---|---|---|
+| Rules_09 `Text_en` | `1 pack of…` · `1 package of…` · `7 classes of colors` | `1 deck of…` ×2 · `7 color classes` |
+| Rules_11 `Text_en` | idem Rules_09 + `on a scenario drawn` | idem + `from a randomly drawn scenario` (comme Rules_02/03) |
+| Rules_10 `Text_en` | `all his cards, he wins` · `Otherwise the game stops` · ligne vide double | `all their cards, they win` · `Otherwise, the game stops` · une ligne vide |
+
+« his/he » : la phrase n'a **jamais été imprimée** (vérifié par ai-01 sur l'archive 2022,
+c.5988397998) et la même cellule dit déjà `they` plus haut — correction libre. **Le 3ᵉ
+cosmétique du §3.6 (majuscules « The smooth talker ») n'existe pas dans la cellule mesurée** :
+la liste réelle est « The Reader / The round of arguments / End of the round » — l'item est un
+écart de mesure, consigné ici, non corrigé.
+
+### 8.3 Gardé
+
+- **Rules_05 `tied`** — GARDE (arbitrage ai-01 05/10) : le FR dit « tous déclarés vainqueurs »,
+  donc plusieurs vainqueurs à égalité ; `tied` est **fidèle**. ⚠️ Ce n'est **pas** de la
+  typographie. Épinglé par la garde (`Tied_Is_Kept_By_Arbitration`).
+
+Aucune langue cible ne reproduit les défauts 8.2 : re-mesuré sur les lignes de Matériel de
+Rules_09 — ru «колода», pt «baralho», es «mazo», zh 卡牌 uniformes dans la cellule ; ar unifié
+par #1768 (رزمة) ; «он» en Rules_10 ru est la grammaire russe fidèle au « il » source, pas
+l'incohérence interne EN. Garde : `RulesEnCorrectionsGuardTests` (7 faits, 11 épingles SHA-256,
+écran des 15 formes déviantes couvrant **les deux** CSV, présence des formes restaurées,
+mutation mesurée). Suite : 1477 + 7 = **1484 attendu**.
+
 *po-2024*
