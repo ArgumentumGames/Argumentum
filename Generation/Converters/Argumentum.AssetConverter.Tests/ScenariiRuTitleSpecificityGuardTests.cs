@@ -12,12 +12,11 @@ namespace Argumentum.AssetConverter.Tests
 	/// (cycle S) a ecrit les 2 restaurations informationnelles non ambigues ; l'arbitrage
 	/// ai-01 (c.5980960236, repris par le pool c.5985353780 grain 3) a statue : « les 7 titres
 	/// marques candidats s'appliquent ; 6.3.2 et 3.1.1 sont gardes ». Ce fichier epingle les
-	/// 6 ecrites (2 + 4) et le burn-down des 5 restantes. Le lot post-#1769 (file profonde
-	/// c.5993735448 grain 1, 06/10) a ecrit 2.2.7 et 5.3.1 : 8 ecrites, restent 3.1.1 et
-	/// 6.3.2 gardees par arbitrage, et 7.1.5 RETIREE
-	/// en review (c.5990865284) : sa raison (« l'EN garde Kermesse ») est tombee avec le
-	/// « The Fair » accepte par l'owner ; la cellule part au grain 3, meme rangee. Voir le
-	/// dossier <c>docs/translation/458-v22-g6-titres-ru-cas-par-cas-2026-10-04.md</c> (§6).</para>
+	/// ecritures et le burn-down. Le lot post-#1769 (file profonde c.5993735448 grain 1,
+	/// 06/10) a ecrit 2.2.7 et 5.3.1 ; le grain 3a (07/10, meme PR que l'EN « Kermesse ->
+	/// The Fair » du GO owner c.5990803984) a ecrit 7.1.5 («Школьный праздник») : 9 ecrites,
+	/// restent les 2 gardees par arbitrage (3.1.1, 6.3.2). Voir le dossier
+	/// <c>docs/translation/458-v22-g6-titres-ru-cas-par-cas-2026-10-04.md</c> (§6).</para>
 	/// </summary>
 	public class ScenariiRuTitleSpecificityGuardTests
 	{
@@ -35,24 +34,24 @@ namespace Argumentum.AssetConverter.Tests
 		("4.1.2", "Розги", "fr «Le martinet» / en \"The Cane\" / pt «O chicote» — l'instrument de la punition scolaire ; ru disait l'abstraction. Розги repond au cane, кнут eut deplace vers la torture"),
 		("2.2.7", "Претендент на Пенелопу", "fr «Le prétendant» / en \"suitor\" / pt «O pretendente» — la PERSONNE ; ru disait l'action («Завоевать» = conquérir)"),
 		("5.3.1", "Дебаты с плоскоземельцем", "fr «Débat avec un terraplaniste» / pt «Debate com um terraplanista» / en \"Flat Earth Society\" — le DÉBAT ; ru disait la théorie, le context_ru dit «на дебаты»"),
-			// 7.1.5 retiree ci-dessus en review c.5990865284 : raison tombee, partie au grain 3.
+			// grain 3a (07/10, file c.5993735448) : 7.1.5 ecrite dans la meme PR que l'EN
+			// «Kermesse -> The Fair» (GO owner c.5990803984) — ajout EN FIN, index du detecteur valides.
+			("7.1.5", "Школьный праздник", "fr «La kermesse» / pt «A quermesse» / en The Fair — la fête scolaire ; ru disait le générique «Праздник» (fête). Le context_ru dit «праздник своего ребёнка», l'es porte déjà «Fiesta escolar»"),
 		};
 
 		/// <summary>
-		/// BURN-DOWN : les 3 titres non ecrits, epingles a leur valeur COURANTE, avec leur motif.
+		/// BURN-DOWN : les 2 titres non ecrits, epingles a leur valeur COURANTE, avec leur motif.
 		/// Deux GARDES par arbitrage ai-01 (c.5980960236) : 3.1.1 (jeu de mots sans
 		/// equivalent russe, regle C) et 6.3.2 (aucun rendu russe neutre pour la duree).
-		/// Et 7.1.5 RETIREE de cette PR en review (c.5990865284) : la raison « l'EN garde
-		/// Kermesse » est tombee avec le « The Fair » accepte par l'owner ; meme rangee que
-		/// la cellule EN du grain 3, forme recommandee «Школьный праздник». Le jour ou l'un
-		/// est corrige, ce test rougit : retirer son entree AVEC la correction — jamais
-		/// laisser une exclusion survivre a sa raison.
+		/// 7.1.5, retiree en review le 05/10 puis re-bloquee, a ete ECRITE le 07/10 (grain 3a,
+		/// meme PR que l'EN du GO owner) : son entree est morte avec sa raison. Le jour ou un
+		/// titre garde est corrige, ce test rougit : retirer son entree AVEC la correction —
+		/// jamais laisser une exclusion survivre a sa raison.
 		/// </summary>
 		private static readonly (string Path, string Current, string Why)[] HandedOff =
 		{
 			("3.1.1", "Второй парень на свидании", "GARDE par arbitrage (c.5980960236) : jeu de mots a double sens sans equivalent russe — regle C (absence d'equivalent, pas acceptation du nivellement)"),
 			("6.3.2", "Старый друг", "GARDE par arbitrage (c.5980960236) : aucun rendu russe de «vingt ans» ne reste neutre (autre duree ou lecture « age de »), relecture native"),
-			("7.1.5", "Праздник", "BLOQUE : retire en review (c.5990865284) — meme rangee que la cellule EN «Kermesse -> The Fair» du grain 3 ; forme recommandee «Школьный праздник» (le context_ru dit «праздник», la raison « l'EN garde Kermesse » est tombee avec le oui-a-tout de l'owner)"),
 		};
 
 		internal static List<string> Mismatches(
@@ -89,10 +88,10 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void Restored_Table_Is_Not_Vacuous()
 		{
-			Restored.Should().HaveCount(8, "2 ecritures du grain 6 + 4 du grain 3 + 2 du lot post-#1769 (file c.5993735448 grain 1) ; 7.1.5 retiree en review, partie au grain 3.");
-			Restored.Select(r => r.Path).Distinct().Should().HaveCount(8, "8 cellules sur 8 rangees distinctes.");
+			Restored.Should().HaveCount(9, "2 ecritures du grain 6 + 4 du grain 3 + 2 du lot post-#1769 (file c.5993735448 grain 1) + 7.1.5 du grain 3a (07/10, meme PR que l'EN).");
+			Restored.Select(r => r.Path).Distinct().Should().HaveCount(9, "9 cellules sur 9 rangees distinctes.");
 			Restored.Should().OnlyContain(r => r.Lost.Length > 20, "chaque epingle dit ce qui etait perdu.");
-			Restored.Select(r => r.Lost).Distinct().Should().HaveCount(8, "8 libelles distincts, pas un copier-coller.");
+			Restored.Select(r => r.Lost).Distinct().Should().HaveCount(9, "9 libelles distincts, pas un copier-coller.");
 		}
 
 		[Fact]
@@ -130,11 +129,10 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void Handed_Off_Table_Is_Not_Vacuous_And_Reasoned()
 		{
-			HandedOff.Should().HaveCount(3, "2 gardees par arbitrage + 7.1.5 retiree en review (meme rangee que le grain 3) ; 2.2.7 et 5.3.1 sont ecrites depuis le lot post-#1769.");
-			HandedOff.Select(h => h.Path).Distinct().Should().HaveCount(3);
+			HandedOff.Should().HaveCount(2, "les 2 gardees par arbitrage ; 2.2.7 et 5.3.1 ecrites au lot post-#1769, 7.1.5 ecrite au grain 3a — une exclusion meurt avec sa raison.");
+			HandedOff.Select(h => h.Path).Distinct().Should().HaveCount(2);
 			HandedOff.Should().OnlyContain(h => h.Why.Contains("BLOQUE") || h.Why.Contains("GARDE"),
 				"chaque entree du burn-down porte son motif : bloquee par une PR ou gardee par arbitrage.");
-			HandedOff.Should().Contain(h => h.Why.Contains("BLOQUE") && h.Why.Contains("meme rangee"), "7.1.5 : meme rangee que la cellule EN du grain 3.");
 		}
 	}
 }
