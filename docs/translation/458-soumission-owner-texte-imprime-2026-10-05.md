@@ -80,6 +80,37 @@ Imprimé EN : « **What's up?** » · FR : « **Alors ?** » — registre famili
 **2.14 — « Une fiction pulp », suggestion — approuvé : rendre le nom divin**
 Imprimé EN : « my name is **eternal** » · FR : « mon nom est **l'Éternel** ». Le nom divin (avec capitale, en apposition) devient un adjectif — le sens change de registre.
 
+## Écrit (07/10 — file profonde c.5993735448, grain 2 « 3a »)
+
+Les 11 cellules approuvées sont **écrites**, formes choisies dans la PR, une raison par cellule — plus le titre « coup d'État » (Annexe B 2.8, même rangée 5.1.2 que le superlatif) et les 3 siblings ru que la règle du GO couvre (*même défaut, même rangée, même PR*). Garde : `ScenariiEnPrintedCorrectionsGuardTests` — 15 épingles pleine-cellule, écran d'éradication corpus, mutation M1 mesurée (le revert de l'accent rougit nommément `5.1.2.title` **et** l'écran d'éradication — c'est son cas le plus fin : l'accent était le seul delta).
+
+| # | Carte | Cellule | Avant | Écrit | Raison de la forme |
+|---|---|---|---|---|---|
+| 2.1 | Truman et la bombe A | 1.3.2.smoothTalker | Truman | **The President of the United States** | le FR porte le rôle (« Le président des États-Unis ») ; le titre nomme déjà Truman |
+| 2.2 | Salomon | 2.2.5.smoothTalker | Salomon | **A family court judge** | le FR (« Un juge des affaires familiales ») ; le titre garde le nom |
+| 2.3 | Don Juan | 2.3.5.drawer | the statue of the governor | **the specter** | le contexte et l'enjeu de la carte disent `the specter` (US) |
+| 2.4 | The last cigarette | 7.3.2.drawer | A relative | **A parent** | le FR dit « Un parent », l'enjeu dit `the parents` |
+| 2.5 | La kermesse | 7.1.5.title | Kermesse | **The Fair** | le corps de la carte traduit déjà `fair` |
+| 2.6 | Online dating | 3.1.6.drawer | A person I met online | **A person met online** | nominal, comme le FR « Une personne rencontrée en ligne » |
+| 2.7 | Le coup d'État | 5.1.2.smoothTalker | the smurf | **the Smurfiest** | le superlatif forgé, comme le FR « shtroumphissime » |
+| 2.8 | Le coup d'État | 5.1.2.title | The coup d'etat | **The coup d'État** | typographie (Annexe B, même rangée que 2.7) |
+| 2.10 | Rouler des mécaniques | 4.1.1.title | Rolling mechanics | **Showing off** | l'idiome, pas le calque mot à mot |
+| 2.11 | Ergo sum | 4.3.1.suggestion_en | My God, I'm so dizzy! | **My God, I'm seeing things!** | la berlue = *voir ce qui n'existe pas* |
+| 2.13 | L'escalier | 7.1.2.suggestion_en | What's up? Why did you push him? | **So? Why did you push him?** | registre neutre tendu, comme le FR « Alors ? » |
+| 2.14 | Une fiction pulp | 5.2.1.suggestion_en | my name is eternal | **my name is the Lord** | la formule biblique anglaise rend le nom divin comme **nom** — « the Eternal » serait un gallicisme |
+
+**Siblings ru** (règle du GO). ⚠️ Le dossier §2.7 disait « les six autres langues **forgent** le superlatif » : **mesuré faux pour le ru**, qui portait «Смурфик-бунтарь» (*schtroumpf rebelle* — un autre personnage). Le fait mesuré prime : la cellule ru est corrigée dans la même PR.
+
+| Carte | Cellule | Avant | Écrit |
+|---|---|---|---|
+| La kermesse | 7.1.5.title_ru | Праздник | **Школьный праздник** |
+| Le coup d'État | 5.1.2.smoothTalker_ru | Смурфик-бунтарь | **Смурфиейший** |
+| Une fiction pulp | 5.2.1.suggestion_ru | Имя мое вечно | **Имя мое — Вечный** |
+
+**Siblings non corrigées, épinglées** : pt « A quermesse » (7.1.5) = mot portugais assimilé, pas du français oublié ; fa/zh/ar de 5.2.1 ne peuvent **structurellement** pas porter le défaut du nom divin (ni article ni copule nominale équivalents). Gardées en l'état, la garde les protège d'un balayage futur.
+
+Chirurgie par **span de champ** — l'ancienne valeur de 2.2.5.smoothTalker (« Salomon ») existe aussi dans le titre de la même rangée : un remplacement par sous-chaîne était **impossible**. 15 cellules exactement (re-parse complet), delta **+36 octets**, 167 enregistrements, pas de BOM.
+
 ---
 
 ## Annexe A — Ce qui a **déjà** changé sur du texte imprimé (à savoir, pas à arbitrer)

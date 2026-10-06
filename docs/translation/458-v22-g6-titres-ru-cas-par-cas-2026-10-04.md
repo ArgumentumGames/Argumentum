@@ -169,15 +169,19 @@ cellule est ré-épinglée au burn-down ; elle part dans la PR du **grain 3** (m
 « Kermesse → The Fair »), forme recommandée **« Школьный праздник »** — le mot du corps, le sens
 scolaire que l'es porte déjà (« Fiesta escolar »), et la généricité levée.
 
+**Écrite le 07/10** (file profonde c.5993735448, grain 2 « 3a ») : `Праздник` → **`Школьный праздник`**, dans la même PR que les 11 cellules EN du GO owner. L'épingle quitte le
+burn-down avec sa correction — `Restored` 8→9, `HandedOff` 3→2.
+
 ## 6. Reste à faire
 
 - ~~**2.2.7 et 5.3.1** (§5.2) : un lot unique après le merge de #1769~~ **ÉCRITS le 06/10**
   (file profonde c.5993735448, grain 1) : la garde n'est plus tenue par une PR ouverte depuis le
   merge de #1774.
-- **7.1.5 `title_ru`** (§5.4) : dans la PR du grain 3a/3b, même rangée que l'EN « Kermesse → The Fair » ;
-  forme recommandée « Школьный праздник ».
-- La garde `ScenariiRuTitleSpecificityGuardTests` épingle les **8 écrits** (valeur pleine) et le
-  **burn-down des 3 restants** (2 gardés, 1 retiré en review), chacun avec son
+- ~~**7.1.5 `title_ru`** (§5.4) : dans la PR du grain 3a/3b, même rangée que l'EN « Kermesse → The Fair » ;
+  forme recommandée « Школьный праздник ».~~ **ÉCRIT le 07/10** (grain 3a, file c.5993735448) :
+  même PR que les 11 cellules EN du GO owner.
+- La garde `ScenariiRuTitleSpecificityGuardTests` épingle les **9 écrits** (valeur pleine) et le
+  **burn-down des 2 restants** (les 2 gardés par arbitrage), chacun avec son
   motif : une exclusion meurt avec sa raison.
 - Les 8 cellules écrites changent les **PokerCards ru** à la prochaine régénération ; rien n'est
   republié avant le verdict des associés (gel `v2.0.0-review`).
