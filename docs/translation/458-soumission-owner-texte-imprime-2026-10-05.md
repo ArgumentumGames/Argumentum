@@ -134,7 +134,7 @@ Chirurgie par **span de champ** — l'ancienne valeur de 2.2.5.smoothTalker (« 
 ## Annexe C — Ce qui **ne** sera **pas** soumis (pour ne pas alerter à tort)
 
 - Les **4 restaurations libres** des Règles EN (`deck`, `color classes`, `randomly drawn`, cosmétique) : l'imprimé fournit lui-même la forme correcte — retour à l'imprimé, aucun arbitrage.
-- Les **15 cellules EN jamais imprimées** (cartes sans texte EN à l'édition ou hors édition) : correction libre.
+- Les **15 cellules EN jamais imprimées** (cartes sans texte EN à l'édition ou hors édition) : correction libre. **Écrites le 07/10** (file profonde c.5993735448, grain 3b) — avec les 23 siblings que la règle du GO couvre, soit 38 cellules sur 14 rangées ; garde `ScenariiNeverPrintedCorrectionsGuardTests` ; détail au §12 du dossier d'axe imprimé.
 - Les singularités FR **consignées sans action** (registre « vous »/impératif, point après « Cartes mémo »).
 
 ## Coût global — acté par la réponse owner

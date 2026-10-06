@@ -82,6 +82,19 @@ Les trois écarts connus depuis zh sont **confirmés en fa** (3e langue), plus t
 7 écarts suivent l'EN, **0 cas inverse** — après trois langues, le motif est stable : ces
 écarts relèvent d'une passe sur le **bloc EN**.
 
+**Écrit le 07/10 (file profonde c.5993735448, grain 3b)** — quatre des écarts du tableau
+ci-dessus sont **portés à leur référent FR** dans la même PR que les cellules EN jamais
+imprimées (règle du GO : même défaut, même rangée) : **6.1.1** (suggestion : le mécanisme de
+la prescription), **5.2.5** (enjeu : Rachel nommée, forme du contexte fa), **5.3.2** (enjeu : le
+vaccin), **3.2.8** (contexte : le superlatif retiré). Détail au §12 du dossier d'axe imprimé.
+
+⚠️ **Un écart du tableau reste ouvert et est désormais ÉPINGLÉ** : **4.3.1** (suggestion
+« mes yeux se noircissent » = évanouissement) suit l'EN *d'avant* sa correction — l'EN a été
+corrigé au grain 3a (« I'm seeing things! ») et son sibling fa n'a pas suivi, le grain 3a ne
+portant que ses siblings ru. Épinglé dans `ScenariiLanguageSpecificCorrectionsGuardTests.Deferred`
+à sa valeur courante : le jour où la cellule est écrite, la garde rougit et demande de retirer
+l'entrée. **3.1.1**, **3.2.2** et **6.1.1**-hors-3b restent hors du présent grain.
+
 ---
 
 ## 5. Matrice inter-langues (état après la passe fa)

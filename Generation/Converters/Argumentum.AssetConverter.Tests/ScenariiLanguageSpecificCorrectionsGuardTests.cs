@@ -24,7 +24,7 @@ namespace Argumentum.AssetConverter.Tests
 	/// defect etabli sur titre ET suggestion par le dossier zh n°2).</para>
 	/// <para><b>Les 4 marquees « composer »</b> par le burn-down (titres inventes 6.2.1 zh/ru,
 	/// repliques remplacees 5.3.5 fa et 7.2.7 ru) restent differees pour un autre motif.</para>
-	/// <para><b>Les 4 defers restants</b> (Deferred) sont epingles a leur valeur COURANTE : le jour
+	/// <para><b>Les 5 defers restants</b> (Deferred) sont epingles a leur valeur COURANTE (le 5e, 4.3.1.suggestion_fa, est un constat MESURE du grain 3b du 07/10) : le jour
 	/// ou l'un est corrige, ce test rougit et demande de retirer son entree en meme temps.</para>
 	/// </summary>
 	public class ScenariiLanguageSpecificCorrectionsGuardTests
@@ -43,7 +43,7 @@ namespace Argumentum.AssetConverter.Tests
 			// -- grain 2 du pool c.5985353780 : les 5 restaurations chirurgicales, sorties de la burn-down --
 			("3.2.1", "issue_ru", "Софист должен убедить партнёра позволить ему приехать к ней жить.", "grammaire : objet de « убедить » manquant (FR et EN nomment « son partenaire »)"),
 			("4.3.3", "issue_zh", "结果球队第一轮就惨兮兮出局了；这位采购商必须说服供应商：他现在只想买下其中一半球衣。", "coherence interne : 转卖商 contre 采购商, le terme du personnage (smoothTalker_zh et FR « Un acheteur »)"),
-			("5.2.5", "issue_fa", "چرب\u200cزبان باید او را قانع کند که ماجرا این\u200cطور نیست.", "nom du role : 47 cellules du meme champ disent le terme retabli"),
+			("5.2.5", "issue_fa", "چرب\u200cزبان باید ریچل را قانع کند که به او خیانت نکرده است.", "grain 3b (07/10) : la 2e moitie est ecrite — le dossier fa n°5 etablissait «majara in-towr nist» comme dilution de l'EN ; le NOM DU ROLE (correction du grain 2) est PRESERVE ; les siblings zh/ar/es nomment Rachel"),
 			// -- grain 1 du pool c.5988407613 : les 3 restaurees apres le merge de #1769 --
 			("1.2.2", "issue_ru", "Софист должен убедить императора в том, что индейцев можно сделать рабами.", "grammaire : «что» manquant apres «в том, » — la subordonnee etait coupee"),
 			("1.3.3", "suggestion_ru", "Вечная Франция никогда не согнётся под Тевтонским игом.", "grammaire : double futur «будет согнется» -> futur simple «согнётся» (FR « ne pliera jamais »)"),
@@ -60,6 +60,7 @@ namespace Argumentum.AssetConverter.Tests
 			("6.2.1", "title_ru", "Рокировка", "titre invente («Рокировка») — composer"),
 			("5.3.5", "suggestion_fa", "زمین ما را از خودش دور می\u200cراند؟ چه فکر کاملاً عجیب\u200cوغریبی!", "replique du physicien remplacee — composer"),
 			("7.2.7", "suggestion_ru", "Слушай, в итоге я не смогу с тобой поехать.", "l'entretien, pivot de la carte, a disparu de la replique — composer"),
+			("4.3.1", "suggestion_fa", "\u06CC\u0627 \u062D\u0636\u0631\u062A \u0639\u062C\u0628\u060C \u0646\u06A9\u0646\u062F \u0686\u0634\u0645\u200c\u0647\u0627\u06CC\u0645 \u0633\u06CC\u0627\u0647\u06CC \u0645\u06CC\u200c\u0631\u0648\u062F!", "meme defaut que l'EN corrige au grain 3a (\u00AB I'm seeing things! \u00BB / FR \u00AB la berlue \u00BB) : le fa dit l'evanouissement (\u00AB mes yeux se noircissent \u00BB). La regle du GO couvre la rangee, mais le grain 3a ne portait que ses siblings ru. Constat MESURE le 07/10 (grain 3b) \u2014 hors perimetre de ce grain, epingle ici pour qu'un futur balayage le voie et que l'exclusion meure avec sa raison."),
 		};
 
 		internal static List<string> Mismatches(
