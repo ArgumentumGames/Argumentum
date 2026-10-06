@@ -97,3 +97,67 @@ Il n'y a donc pas de page à améliorer : **il y a un fichier brut servi à la p
 **Point de vigilance levé.** Le fichier servi est la version **corrigée** : son fragment d'IRI est `#callingCards`, sans guillemet. Le défaut d'IRI illégale (`calling"Cards"`, rejeté par OWLAPI) a été corrigé par #1651 (clos le 30/09) et **n'est plus dans l'artefact servi**. Il subsiste uniquement dans les **copies locales en retard** — dont celle de cette machine (6,52 Mo contre 5,72 Mo) — ce qui en fait un piège de mesure : travailler sur la copie locale fait croire à un défaut qui n'existe plus en production.
 
 *Rédigé par po-2023, 06/10. Aucune écriture site/base pour D, E et F.*
+
+---
+
+# Grain I — lien Fanny Bénard : **POSÉ et vérifié**
+
+**Lien** : `https://mairie18.paris.fr/pages/fanny-benard-12740` → **HTTP 404** (mesuré). Le site de la mairie, lui, répond 200 : c'est la page qui a disparu, pas le site.
+
+**Copie archivée : elle existe.** Index CDX de Wayback, sur l'URL exacte — deux captures, toutes deux en HTTP 200 :
+
+| Capture | Poids | Nom présent | Fonction présente |
+|---|---:|---|---|
+| **20251215104931** (15/12/2025) | 313 Ko | oui | oui |
+| 20250125053453 (25/01/2025) | 135 Ko | oui | oui |
+
+La règle owner (« Wayback si copie existe, sinon retirer le lien en gardant nom et fonction ») s'applique donc dans sa **première branche**.
+
+**Pose** — entité E10080 (`Content`, V27402), article « Lancement d'Argumentum - Table ronde ». Backup de l'entité avant écriture (`Logs/1781-eav-backup-20261006-1120-grainI/`). Remplacement ciblé de la seule URL, dry-run (chaîne présente ×1), UPDATE 1 ligne, recycle d'app-domain, puis contrôle sur la page **servie** :
+
+| Contrôle | Attendu | Mesuré |
+|---|---:|---:|
+| lien mort en `href` | 0 | **0** |
+| lien Wayback en `href` | 1 | **1** |
+
+Page de contrôle : `https://dnn.argumentum.myia.io/actus/details/lancement-d-argumentum-table-ronde` (la page `/Actus/<clé>` rend la **liste**, pas le détail — piège d'instrument rencontré et corrigé).
+
+**Précision d'écriture** : la base interrogée est celle de la **préprod seule** — vérifié par contrôle indépendant sur le pied de page (`Retrouvez-nous` en préprod, `Retrouvez nous` encore en prod). Recoupé par DNS : `dnn.argumentum.myia.io` → **127.0.0.1** (IIS local), `www.argumentum.games` → **51.75.200.22** (serveur distant). La prod n'est pas sur cette machine.
+
+**Point non modifié, signalé** : dans ce même lien, le point final est **à l'intérieur** de l'hyperlien (`…participation citoyenne.</a>`). Correction typographique hors du périmètre approuvé — signalée, pas posée.
+
+---
+
+# Grain C — liens « Retrouvez-nous », contact, newsletter : **mesuré, aucun envoi**
+
+### Liens du pied de page — tous sains
+
+| Lien | Statut |
+|---|---|
+| GitHub `ArgumentumGames/Argumentum` | 200 |
+| Twitter `argumenteam` | 200 |
+| Facebook `argumenteam` | 200 |
+| Youtube (chaîne) | 200 |
+| Twitch `argumenteam` | **200 en GET** |
+
+> ⚠️ Twitch renvoie **405 à une requête HEAD** et **200 à une requête GET**. Une sonde HEAD l'aurait déclaré cassé à tort : ce 405 est une limite de l'instrument, pas du lien.
+
+### Newsletter — formulaire présent et joignable
+
+Formulaire hébergé **Brevo/Sendinblue** (`<form id="sib-form" method="POST" action="https://d426a943.sibforms.com/serve/MUIE…">`), endpoint joignable (HTTP 200). Champs : `EMAIL`, `email_address_check`, `locale`, `OPT_IN`, `ScrollTop`, `Terms-600`.
+
+**Aucun envoi effectué** (consigne). Un vrai test d'inscription est le seul probant — il est proposé à Adeline, marqué « TEST ».
+
+### Contact — accordéon, pas une page
+
+« Contactez-nous » n'est pas une page (`/Contact`, `/contact`, `/Contactez-nous` → 404) mais un **accordéon** de la page d'accueil (`data-accordion-parent="10182"`), portant trois champs — `Subject`, `SenderName`, `SenderMail` — et une case « J'accepte les termes et conditions » **obligatoire**.
+
+Le formulaire n'a **pas de balise `<form>`** : la soumission est gérée en JavaScript par un module Form **2sxc**, endpoint identifié `…/app/auto/live/api/Form/ProcessForm?workflowId=ContactDefault`. **Non sollicité** (aucun envoi).
+
+### `/terms` — sert un vrai texte, mais générique
+
+La case d'acceptation pointe vers `/terms`, qui **sert bien un contenu réel** (16 156 caractères : « CONCESSION DE LICENCE LIMITEE », clauses de copyright et de propriété intellectuelle) — ce n'est pas une page vide.
+
+Réserve à porter à l'owner : c'est un **modèle générique de site web**, non adapté à la vente d'un jeu — **0 occurrence** de `vente`, `livraison`, `prix`, `commande`, `remboursement`. Décision éditoriale/juridique, pas une correction technique.
+
+*(Les apostrophes manquantes dans les extraits ci-dessus viennent du retrait des entités `&#39;` par l'instrument de lecture, pas du site.)*
