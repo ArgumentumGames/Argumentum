@@ -104,8 +104,10 @@ Les 11 cellules approuvées sont **écrites**, formes choisies dans la PR, une r
 | Carte | Cellule | Avant | Écrit |
 |---|---|---|---|
 | La kermesse | 7.1.5.title_ru | Праздник | **Школьный праздник** |
-| Le coup d'État | 5.1.2.smoothTalker_ru | Смурфик-бунтарь | **Смурфиейший** |
+| Le coup d'État | 5.1.2.smoothTalker_ru | Смурфик-бунтарь | **Смурфейший** |
 | Une fiction pulp | 5.2.1.suggestion_ru | Имя мое вечно | **Имя мое — Вечный** |
+
+> **Erratum 07/10 (relecture ai-01, c.6027007896)** : le superlatif ru a d’abord été écrit «Смурфиейший» ; la règle russe («основа + -ейш-») colle le suffixe au thème смурф- sans voyelle de liaison — corrigé en **Смурфейший** dans une micro-PR suivant le merge #1788. Aucune des deux formes n’est attestée (néologisme) ; la morphologie décide.
 
 **Siblings non corrigées, épinglées** : pt « A quermesse » (7.1.5) = mot portugais assimilé, pas du français oublié ; fa/zh/ar de 5.2.1 ne peuvent **structurellement** pas porter le défaut du nom divin (ni article ni copule nominale équivalents). Gardées en l'état, la garde les protège d'un balayage futur.
 
