@@ -19,7 +19,7 @@
 | 1 | `lesinne` | `lésine` | addinette | E10050 `Text` (V27511) | orthographe |
 | 2 | `ce qui le rendant` | `ce qui le rend` | addinette | E10050 `Text` (V27511) | grammaire |
 | 3 | `nouveaute /et` | `nouveauté et` | addinette | E10050 `Text` (V27511) | accent + espace parasite |
-| 4 | `Etudiant ou passionné` | `Étudiant ou passionné` | addinette | E10015 `Title` (V22913) | **seul le É manque** — « passionné » est déjà accentué (re-mesuré) |
+| 4 | `Etudiant ou passionné` | `Étudiant ou passionné` | addinette | E10015 + E10012 `Title` (doublon) ; **+ 6 autres titres** (E9996, E9999, E10017, E10025, E10032, E10035) | seul le É manquait — « passionné » était déjà accentué ; étendu aux 7 titres « Etudiant » du site (même règle) |
 | 5 | `philosophiques? argumentum` | `philosophiques ? Argumentum` | addinette | E10015 `Text` (V22914) | espace insécable + majuscule |
 | 6 | `puis aptes` | `plus aptes` | addinette | E10015 `Text` (V22914) | orthographe |
 | 7 | `en tout genre` (fin du corps « Sociologue ») | `en tout genre.` | addinette | E10045 `Text` (V23008) | point final manquant — le titre accordéon `Sociologue` (E10042/E10045 `Title`) reste sans point |
@@ -27,7 +27,7 @@
 | 9 | `Retrouvez nous` | `Retrouvez-nous` | addinette | E10065 `Title` (V27676) | trait d'union (pied de page commun, toutes pages) |
 | 10 | `? argumentum` (×6) / `?Argumentum` (×1) | `? Argumentum` | addinette | E9999, E10010, E10015, E10025, E10030, E10040 (`? argumentum`) + E10055 (`?Argumentum`) `Text` | majuscule au nom propre + insécable (6 occurrences servies ; E10050 utilise déjà `? Argumentum`) |
 | 11 | `égalament` | `également` | ai-01 | E10081 `Content` (News, App 52) | ⚠️ **vit dans l'article « Lancement d'Argumentum — Interview des co-créateurs »**, pas sur l'Accueil |
-| 12 | `Schtroumpf costaux` | `Schtroumpfs costaux` | ai-01 | E10206 `Content` (News, App 52) | pluriel — vit dans l'article « Argumentum aux Rencontres de l'esprit critique 2022 ». ⚠️ À **re-vérifier à l'owner** : la forme d'Adeline est « le Schtroumpf costaux » (le pluriel donnerait « les Schtroumpfs costaux ») — corriger seul le nom sans l'article produit « le Schtroumpfs costaux » |
+| 12 | `le Schtroumpf costaux` | `le Schtroumpf costaud` | ai-01 | E10206 `Content` (News, App 52) | ⚠️ **corrigé** : c'est une liste de **personnages à incarner** (« …pour Jules César, le Schtroumpf costaud, ou un mari adultère ») — le singulier est correct, la coquille est `costaux` → `costaud`, pas le pluriel |
 | 13 | `l'extension que nous avons choisi` | `l'extension que nous avons choisie` | ai-01 | E11897 `Content` (News, App 52) | accord du participe — vit dans l'article « On peut commander le jeu de cartes sur ce site » |
 
 ## Page Actus (`/Actus`) — les corrections 14-16 vivent dans les **articles détail**, pas la liste
