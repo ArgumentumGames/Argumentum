@@ -89,7 +89,7 @@ Ces fautes sont dans le **même texte** que les corrections 1-18 mais **hors du 
 | E | Lien « code de conduite intellectuel » (Interview) | ouvert | Même URL que McCandless ; proposer 1-2 sources stables (piste : Damer, *Attacking Faulty Reasoning*) |
 | C | Bloc « Retrouvez-nous » / contact / newsletter | à tester | Vérifier chaque lien ; config formulaire/newsletter sans envoyer ; vrai envoi « TEST » proposé à Adeline |
 | D | Page « Acheter le jeu » grisée au chargement | à mesurer | 5 chargements de chaque côté, temps jusqu'à affichage utilisable |
-| A | Ticket Print & Play 404 | **résolu** | 2 zip restaurés depuis prod ; ticket servira après recycle pool (UAC en attente) |
+| A | Ticket Print & Play 404 | **ouvert** | Zips restaurés sur disque, mais le **lien** reste cassé (ticket DES `FileID=-1`) — la correction = régénérer le lien en direct (modèle des 4 autres zips), posée en préprod 06/10 |
 
 ---
 

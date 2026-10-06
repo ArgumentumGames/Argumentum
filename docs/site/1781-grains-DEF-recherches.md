@@ -73,18 +73,19 @@ Conversion mesurée : **1,3 s**, sans erreur. Contrôle de proportionnalité : l
 
 ### Faisabilité sur *notre* ontologie — la réserve qui compte
 
-**Mesure sur l'artefact réellement servi** (`/Argumentation/Ontologiefallacieuse`, 302 → GitHub Pages, **5 993 701 o**, récupéré et compté le 06/10) :
+**Mesure sur l'artefact réellement servi** (`/Argumentation/Ontologiefallacieuse`, 302 → GitHub Pages, **5 993 701 o**, récupéré et compté le 06/10) — comptage sur les **déclarations à IRI distincte**, pas les occurrences de balises :
 
 ```
-1 882 classes · 928 propriétés d'objet · 1 760 individus · 38 SubClassOf
+1 495 classes · 10 propriétés d'objet · 719 individus
+hiérarchie : 1 407 liens skos:broader (38 SubClassOf)
 format OWL/XML (racine <Ontology>, et non <rdf:RDF>)
 IRI : https://www.argumentum.games/argumentum_fallacies.owl#
 licence : CC BY-SA 4.0 (dcterms:license)
 ```
 
-⚠️ **Correction d'une mesure antérieure de ce document.** Une première version annonçait « classes 1495 · propriétés d'objet 10 · axiomes 18926 · individus 719 » — chiffres obtenus par conversion **OWL2VOWL d'une copie locale en retard**, sur un **autre instrument** (métriques du VOWL-JSON) et un **autre fichier** que celui servi. Les deux séries ne sont pas comparables. Les chiffres ci-dessus sont ceux de l'artefact publié, comptés directement sur ses éléments.
+⚠️ **Correction d'une mesure antérieure de ce document.** Une première version annonçait « 1 882 classes · 928 propriétés d'objet · 1 760 individus » — chiffres obtenus en comptant des **occurrences de balises** (éléments `<Class>`, etc.), où une classe citée trois fois compte trois. Les chiffres ci-dessus sont ceux des **entités distinctes** (déclarations à IRI unique), mesurés et confirmés par contrôle croisé (ai-01, 06/10).
 
-La réserve reste donc valable, et même **renforcée** : ~1 900 classes et ~930 propriétés d'objet, soit un graphe bien plus relationnel que taxonomique. WebVOWL le rendrait en **pelote** dense et peu navigable (limite connue de l'outil sur les grandes ontologies).
+La réserve reste donc valable, et même **renforcée** : ~1 500 classes, soit un graphe bien plus relationnel que taxonomique. WebVOWL le rendrait en **pelote** dense et peu navigable (limite connue de l'outil sur les grandes ontologies).
 
 **Recommandation pour le grain K.** Le fichier reste le livrable (décision owner). Pour la page lisible :
 1. **Page de présentation** : expliquer en français ce qu'est cette ontologie, à quoi elle sert, comment l'ouvrir (Protégé…), avec le lien de téléchargement. C'est le besoin réel — aujourd'hui il n'y a **aucune page** (voir ci-dessous).
