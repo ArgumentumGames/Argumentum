@@ -25,7 +25,7 @@ Le présent document est donc **réécrit comme ce qu'il est** : un **contrôle*
 |---|---|---|
 | **2a** balises GTM/GA | identifiants présents ; ~~`<noscript>` absent~~ | ✅ **`GTM-TZBQ57M` 18/18 · `G-VHLTL18PEW` 18/18 · `gtm.js` 18/18 · `gtag.js` 9/9 · `<noscript>` 9/9 · `ns.html` 9/9** — **identique à la prod sur 9/9 pages** |
 | **2b** 16 wrappers mindmap | 16/16 en 200 des deux côtés | ✅ présents des deux côtés |
-| **2c** 5 artefacts | déposés le 19/09, à l'octet | ✅ **4 zips identiques prod↔préprod à l'octet** (50 354 291 · 39 423 798 · 14 933 310 · 6 417 247, coquille `Argmentum_` comprise) · OWL identique (4 786 353 des deux côtés) |
+| **2c** 5 artefacts | déposés le 19/09, à l'octet | ✅ **4 zips identiques prod↔préprod à l'octet** (50 354 291 · 39 423 798 · 14 933 310 · 6 417 247, coquille `Argmentum_` comprise) · OWL identique (4 795 192 o des deux côtés) |
 | **CSP** 3 entrées `conditional` | actives depuis le 19/08 | ✅ actives : `script-src … googletagmanager.com` · `frame-src 'self' … googletagmanager.com` · `connect-src … region1.google-analytics.com` |
 | **skin** `2shinebs5` | rendu depuis le fix #1129 | ✅ **rendu** (0 `Xcillion`) |
 
@@ -48,9 +48,15 @@ Mesure du 06/10, 9 pages, cache-bustées, des deux côtés :
 
 **La préprod est désormais rigoureusement identique à la prod sur tous ces marqueurs.** Le résidu du 26/08 ne se reproduit pas. *(Réserve : ce comptage établit la parité de balisage, pas que les beacons partent — le beacon `region1…/g/collect` en 204 avait été constaté le 19/08 après activation de la CSP, et je ne l'ai pas rejoué ici.)*
 
-### Un chiffre qui a bougé, et pourquoi ce n'est pas un écart
+### Un chiffre que j'avais lu de travers, et la cause de l'erreur
 
-L'OWL servi pèse **4 786 353 o** des deux côtés, contre **4 795 192 o** au 19/09. **Les deux environnements ont changé ensemble** — c'est une régénération cohérente, pas une divergence. ⚠️ Piège que j'ai failli produire : j'avais étiqueté « ÉCART » en comparant la préprod à la **valeur enregistrée au 19/09** au lieu de l'**autre hôte**. Un écart ne se mesure pas contre une note ; il se mesure contre son témoin.
+⚠️ **Erratum — contrôle d'ai-01 (06/10).** Mon premier rapport annonçait un « changement » de l'OWL servi : « **4 786 353 o** des deux côtés, contre **4 795 192 o** au 19/09 ». C'était **faux**. Les **4 786 353 sont des caractères** (la valeur `.Length` de ma chaîne lue en PowerShell), pas des octets. Le fichier fait **4 795 192 octets des deux côtés, au sha256 identique** — l'OWL n'a **pas changé** entre le 19/09 et le 06/10. Comparer un nombre de caractères à un nombre d'octets, puis conclure à un « changement », était une erreur d'instrument.
+
+Je n'ai pas fait que mal mesurer : j'avais **inventé une cause** — « une régénération cohérente » — pour un écart qui n'existait pas. La prod est **gelée** : elle ne se régénère pas. Inventer une explication cohérente à une donnée mal lue est exactement l'anti-pattern « conclusions calculées ».
+
+Leçon mesurée : **un écart ne se mesure pas contre une note, et surtout pas en confondant caractères et octets.** Le contrôle à faire était trivial — compter les **octets** du fichier servi (comme pour les 4 zips ci-dessus), pas la longueur d'une chaîne décodée.
+
+La bonne mesure, re-faite le 06/10 : **l'OWL servi est identique prod↔préprod à l'octet** (4 795 192 o des deux côtés), comme les 4 zips. Le volet 2c est donc **intégralement sain** — ce que le tableau ci-dessus aurait dû dire d'emblée.
 
 ---
 
