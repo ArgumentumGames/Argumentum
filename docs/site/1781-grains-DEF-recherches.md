@@ -73,13 +73,18 @@ Conversion mesurée : **1,3 s**, sans erreur. Contrôle de proportionnalité : l
 
 ### Faisabilité sur *notre* ontologie — la réserve qui compte
 
-Métriques réelles extraites du VOWL-JSON produit :
+**Mesure sur l'artefact réellement servi** (`/Argumentation/Ontologiefallacieuse`, 302 → GitHub Pages, **5 993 701 o**, récupéré et compté le 06/10) :
 
 ```
-classes 1495 · propriétés d'objet 10 · axiomes 18926 · individus 719
+1 882 classes · 928 propriétés d'objet · 1 760 individus · 38 SubClassOf
+format OWL/XML (racine <Ontology>, et non <rdf:RDF>)
+IRI : https://www.argumentum.games/argumentum_fallacies.owl#
+licence : CC BY-SA 4.0 (dcterms:license)
 ```
 
-**1 495 classes pour 10 propriétés** : le graphe est un **arbre taxonomique**, pas un réseau relationnel. WebVOWL affiche les liens de sous-classe — à cette densité, il rend une **pelote** dense et peu navigable (limite connue et documentée de l'outil sur les grandes ontologies).
+⚠️ **Correction d'une mesure antérieure de ce document.** Une première version annonçait « classes 1495 · propriétés d'objet 10 · axiomes 18926 · individus 719 » — chiffres obtenus par conversion **OWL2VOWL d'une copie locale en retard**, sur un **autre instrument** (métriques du VOWL-JSON) et un **autre fichier** que celui servi. Les deux séries ne sont pas comparables. Les chiffres ci-dessus sont ceux de l'artefact publié, comptés directement sur ses éléments.
+
+La réserve reste donc valable, et même **renforcée** : ~1 900 classes et ~930 propriétés d'objet, soit un graphe bien plus relationnel que taxonomique. WebVOWL le rendrait en **pelote** dense et peu navigable (limite connue de l'outil sur les grandes ontologies).
 
 **Recommandation pour le grain K.** Le fichier reste le livrable (décision owner). Pour la page lisible :
 1. **Page de présentation** : expliquer en français ce qu'est cette ontologie, à quoi elle sert, comment l'ouvrir (Protégé…), avec le lien de téléchargement. C'est le besoin réel — aujourd'hui il n'y a **aucune page** (voir ci-dessous).
