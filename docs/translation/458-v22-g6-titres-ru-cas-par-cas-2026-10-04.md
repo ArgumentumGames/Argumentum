@@ -125,9 +125,7 @@ L'arbitrage ai-01 (c.5980960236, repris tel quel par le pool c.5985353780 grain 
 titres ru marqués "candidat" s'appliquent ; 6.3.2 et 3.1.1 sont gardés, avec leur raison »*. La règle
 d'écriture : **entre deux termes proposés, prendre celui qui tient ensemble le FR et l'EN**.
 
-### 5.1 Écrits — 4 des 7 candidats (7.1.5 retiré en review, §5.4)
-
-Les deux autres (2.2.7, 5.3.1) sont **bloqués par la PR #1769** ouverte sur le même CSV (§5.2).
+### 5.1 Écrits — 6 des 7 candidats (7.1.5 retiré en review, §5.4 ; lot post-#1769 livré 06/10)
 
 | path | ru avant | ru écrit | pourquoi ce terme |
 |---|---|---|---|
@@ -135,12 +133,16 @@ Les deux autres (2.2.7, 5.3.1) sont **bloqués par la PR #1769** ouverte sur le 
 | 3.3.10 | Свадьба или нет? | **Свадьба? Нет, спасибо** | « Non merci » / « No Thanks » / « Não, obrigado » — le refus, que la question neutre ru effaçait |
 | 4.1.1 | Уловки продавца | **Понты** | FR, EN et pt disent la **frime du client** ; ru décrivait le vendeur. Entre les deux proposés : **понты** = frime ostensible ; **пыль в глаза** déplace vers la duperie — les sources ne disent pas « tromper » |
 | 4.1.2 | Телесные наказания | **Розги** | la carte parle de punition scolaire ; entre les deux proposés : **розги** = l'instrument russe de cette punition et le répondant exact du « cane » EN ; **кнут** déplace vers la torture historique |
+| 2.2.7 | Завоевать Пенелопу | **Претендент на Пенелопу** | les trois sources portent la **personne** (« Le prétendant » / « suitor » / « O pretendente ») ; ru disait l'action (« conquérir »). Écrit le 06/10, lot post-#1769 (§5.2) |
+| 5.3.1 | Теория плоской земли | **Дебаты с плоскоземельцем** | les sources portent le **débat** (« Débat avec un terraplaniste » / « Debate com um terraplanista » / « Flat Earth Society ») ; ru disait la théorie — le `context_ru` dit « на дебаты ». Écrit le 06/10, lot post-#1769 (§5.2) |
 
-Chirurgie par span de champ, **delta octets −20 = somme exacte des 4 cellules** (la cellule 7.1.5
-retirée en review était à delta nul : 8 caractères cyrilliques → 8), `--numstat 4 4`,
+Chirurgie par span de champ, **delta octets −20 = somme exacte des 4 cellules** de #1774 (la
+cellule 7.1.5 retirée en review était à delta nul : 8 caractères cyrilliques → 8), `--numstat 4 4`,
 167 enregistrements intacts, ni BOM ni LF brut introduits (le CSV Scenarii n'en porte aucun).
+Le lot post-#1769 (06/10) : **delta +15**, `--numstat 2 2`, mêmes invariants, sha256 vérifié
+après restauration de la mutation de contrôle.
 
-### 5.2 Bloqués par la PR #1769 (reprise en un seul lot après son merge)
+### 5.2 Ex-bloqués par la PR #1769 — lot livré le 06/10 (file profonde c.5993735448, grain 1)
 
 - **2.2.7** → `Претендент на Пенелопу` — **même rangée** que le `title_pt` « Penélope » de #1769
   (ligne 35) ;
@@ -169,14 +171,15 @@ scolaire que l'es porte déjà (« Fiesta escolar »), et la généricité levé
 
 ## 6. Reste à faire
 
-- **2.2.7 et 5.3.1** (§5.2) : un lot unique après le merge de #1769 (passé) — reprise dès que la
-  garde n'est plus tenue par une PR ouverte.
-- **7.1.5 `title_ru`** (§5.4) : dans la PR du grain 3, même rangée que l'EN « Kermesse → The Fair » ;
+- ~~**2.2.7 et 5.3.1** (§5.2) : un lot unique après le merge de #1769~~ **ÉCRITS le 06/10**
+  (file profonde c.5993735448, grain 1) : la garde n'est plus tenue par une PR ouverte depuis le
+  merge de #1774.
+- **7.1.5 `title_ru`** (§5.4) : dans la PR du grain 3a/3b, même rangée que l'EN « Kermesse → The Fair » ;
   forme recommandée « Школьный праздник ».
-- La garde `ScenariiRuTitleSpecificityGuardTests` épingle les **6 écrits** (valeur pleine) et le
-  **burn-down des 5 restants** (2 ex-bloqués, 2 gardés, 1 retiré en review), chacun avec son
+- La garde `ScenariiRuTitleSpecificityGuardTests` épingle les **8 écrits** (valeur pleine) et le
+  **burn-down des 3 restants** (2 gardés, 1 retiré en review), chacun avec son
   motif : une exclusion meurt avec sa raison.
-- Les 6 cellules écrites changent les **PokerCards ru** à la prochaine régénération ; rien n'est
+- Les 8 cellules écrites changent les **PokerCards ru** à la prochaine régénération ; rien n'est
   republié avant le verdict des associés (gel `v2.0.0-review`).
 
 *po-2024*
