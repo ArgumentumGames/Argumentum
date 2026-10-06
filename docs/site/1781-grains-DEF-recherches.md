@@ -161,3 +161,35 @@ La case d'acceptation pointe vers `/terms`, qui **sert bien un contenu réel** (
 Réserve à porter à l'owner : c'est un **modèle générique de site web**, non adapté à la vente d'un jeu — **0 occurrence** de `vente`, `livraison`, `prix`, `commande`, `remboursement`. Décision éditoriale/juridique, pas une correction technique.
 
 *(Les apostrophes manquantes dans les extraits ci-dessus viennent du retrait des entités `&#39;` par l'instrument de lecture, pas du site.)*
+
+---
+
+# Grain H — encart « Bientôt de retour » : **POSÉ et vérifié**
+
+**Décision owner** : garder le texte de l'article, ajouter par transparence un encart « Bientôt de retour ».
+
+**Le défaut corrigé n'est pas cosmétique.** L'article « On peut commander le jeu de cartes sur ce site » affirme *« Le magasin d'achat en ligne de notre site est enfin opérationnel et nous pouvons à nouveau prendre des commandes »*, alors que la page Acheter sert **« Pas de stock disponible »** (constaté au grain D). Un visiteur qui suit l'article est donc **activement induit en erreur** : l'encart rétablit la vérité au-dessus du texte conservé.
+
+**Pose** — entité E11897 (`Content`, V27785), article « Argumentum est vendu sur argumentum.games ». Backup préalable (`Logs/1781-eav-backup-20261006-1128-grainH/`), dry-run (encart absent ×0 confirmé, 1 626 → 1 891 caractères), UPDATE 1 ligne, recycle, contrôle sur la page servie :
+
+| Contrôle | Mesuré |
+|---|---:|
+| encart présent | **1** |
+| mention « momentanément suspendue » | **1** |
+| fond translucide (`rgba(220,15,10,0.12)`) | **1** |
+
+Insertion **en tête** de l'article, le texte d'origine restant intégralement conservé en dessous.
+
+⚠️ **À retirer à la réouverture de la boutique** — c'est un encart d'état temporaire, pas un contenu permanent. À traiter comme tel dans le suivi.
+
+---
+
+# Récapitulatif des écritures de cette passe (#1781)
+
+| Grain | Cible | Nature | Backup | Contrôle servi |
+|---|---|---|---|---|
+| B (matin) | 24 valeurs EAV | corrections de contenu | ✅ | ✅ |
+| **I** | E10080 / V27402 | lien mort → copie Wayback | ✅ | ✅ |
+| **H** | E11897 / V27785 | encart d'état temporaire | ✅ | ✅ |
+
+Toutes en **préprod seulement** — la prod (`www.argumentum.games`, serveur distant 51.75.200.22) n'est pas servie par cette machine et n'a pas été touchée.
