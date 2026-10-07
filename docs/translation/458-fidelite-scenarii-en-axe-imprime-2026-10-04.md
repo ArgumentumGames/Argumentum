@@ -352,4 +352,49 @@ dossier `en` lui-même, qui ne s'est pas erraté sur les six dossiers antérieur
   un produit papier — c'est une décision éditoriale, pas une correction de fidélité.
 - **0 écriture** : aucune cellule CSV n'a été modifiée par ce grain.
 
+---
+
+## 12. Écrit — les 15 cellules EN jamais imprimées + leurs siblings (07/10)
+
+**File profonde c.5993735448, grain 3 « 3b ».** Les **15 cellules EN jamais imprimées** que
+l'Annexe C du dossier owner déclarait « correction libre » — soit les **5** de la classe F (§7, cartes
+imprimées sans texte EN) et les **10** de la classe G (§8, cartes hors édition) — sont **écrites**, avec
+les **23 siblings** que la règle du GO couvre (*« même défaut, même rangée, même PR »*) : **38 cellules
+sur 14 rangées**.
+
+| Groupe | Cellules | Exemples (EN) |
+|---|---:|---|
+| Jamais imprimées — classe F | 5 | `5.3.1.title` « Flat Earth Society » → **Debate with a Flat Earther** |
+| Jamais imprimées — classe G | 10 | `7.3.4.title` « Gooal! » → **Goal!** · `7.1.6.title` « The inheritence » → **The inheritance** |
+| Siblings (règle du GO) | 23 | `3.2.15` titre ×5 langues · `5.2.5.issue` ×4 (Rachel restaurée, translittération **du contexte de chaque langue**) · `6.1.1.suggestion` ×4 (le mécanisme juridique de l'enjeu FR) |
+
+⭐ **Le défaut-signal du §8 est traité** : `3.2.15` (« Le t-shirt taché ») était un titre décrivant la
+**cause** (spaghetti) au lieu de l'**état** — et les cinq langues suivaient le titre EN. Les six titres
+disent désormais l'état (taché / manchada / manchada / Испачканная / الملطّخ / لکه‌دار).
+
+**Chirurgie par span de champ** : 38 cellules exactement (re-parse complet), 14 lignes touchées,
+**delta +310 octets**, 167 enregistrements, pas de BOM. ⚠️ 3 nouvelles valeurs portent une **virgule**
+(`6.1.1.en`/`es`, `7.2.8.en`) : la cellule est **devenue quotée** — le premier run du script écrivait la
+virgule nue dans un champ non quoté, ce qui coupait le champ et décalait les index suivants ; le
+re-assert fail-closed l'a **attrapé avant toute écriture** (la correction du script est la
+re-sérialisation : quote si `,` `"` CR LF).
+
+**Garde** : `ScenariiNeverPrintedCorrectionsGuardTests` — 38 épingles pleine cellule (valeur **émise
+depuis la mesure**, jamais recopiée), écran d'éradication de **36 formes** (chacune remesurée à zéro à
+l'émission), 2 témoins zh épinglés (`5.3.2.issue_zh`, `7.2.8.suggestion_zh` — **réparés d'origine** : les
+corrections EN/pt/es/ar/fa les ont *rejoints*, la matrice les flaguait à tort), anti-vacuité,
+détecteur synthétique. **Mutation M1 mesurée** : `7.3.4.title` remis à « Gooal! » → la garde rougit
+**nommant la rangée** (`7.3.4.title : attendu «Goal!», lu «Gooal!»`) **et** l'écran d'éradication tire ;
+3 autres tests restent verts ; restauration depuis un `cp` et `sha256` identique
+(`5504a557bb7118d9…`).
+
+⚠️ **Deux exclusions à l'écran, mesurées** : le mot **« 5g »** (trop générique — il vit légitimement
+dans le contexte de `5.3.4`) et le fragment zh de `5.2.5.issue` (« 诡辩者必须说服她 »), qui apparaît
+**deux fois** ailleurs comme **phrase-type** d'autres cartes (« la convaincre de promouvoir le kale »,
+« … que la polyandrie a des avantages »). Les mots simples « spaghetti » et ses écritures sont exclus
+pour la même raison : les **contextes** de `3.2.15` racontent l'incident et les gardent.
+
+**0 cellule imprimée touchée** : les 15 EN sont par définition hors imprimé (§7, §8), et les 23
+siblings vivent sur des rangées dont le texte imprimé ne porte pas ce défaut.
+
 *po-2024*
