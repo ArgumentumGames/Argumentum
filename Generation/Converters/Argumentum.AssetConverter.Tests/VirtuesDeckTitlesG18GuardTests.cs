@@ -76,8 +76,13 @@ namespace Argumentum.AssetConverter.Tests
 				"⑱ pk 175 ru : « Признание » comme 169/172 — ⑯ n'avait pas relevé le ru.");
 
 			// La carte VOISINE 176 garde « tenir compte » : c'est son sens à elle.
-			rows["176"].GetValueOrDefault("title_ar").Should().Be("مراعاة التحيزات الأيديولوجية لدى الخصم",
-				"176 (les biais de l'ADVERSAIRE) garde le verbe « tenir compte » — la correction de 175 ne l'atteint pas.");
+			// ⚠️ grain 10 (2026-10-07) : l'OBJET de ce titre a été élargi — « لدى الخصم »
+			// (l'adversaire) → « لدى الأطراف » (les parties). Motif : la description de 176 dit
+			// elle-même « لأطراف التبادل » (les parties à l'échange) ; « l'adversaire » était un
+			// rétrécissement propre au titre. L'invariant ⑱ que CETTE ligne garde est le VERBE —
+			// « مراعاة » (tenir compte), opposé à « التعرّف » (reconnaître) de 175 — et il est intact.
+			rows["176"].GetValueOrDefault("title_ar").Should().Be("مراعاة التحيزات الأيديولوجية لدى الأطراف",
+				"176 (les biais des PARTIES) garde le VERBE « tenir compte » arbitré en ⑱ ; seul son objet a été élargi par le grain 10 (#458).");
 
 			// pk 167 ar — sourcé.
 			rows["167"].GetValueOrDefault("title_ar").Should().Be("السعي إلى الموضوعية",
