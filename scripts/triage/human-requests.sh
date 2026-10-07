@@ -22,10 +22,27 @@
 #   2. un appel qui échoue CRIE (« ORGANE AVEUGLE ») et fait sortir le script
 #      en 2 — il ne dégrade jamais en « (aucune) ».
 #
-# Trois filets indépendants, aux angles morts différents :
+# Quatre filets indépendants, aux angles morts différents :
 #   A. court (<700 car.) et hors vocabulaire de ménage d'agent  → la demande brève
 #   B. mentionne @myia-*                                        → la demande longue adressée
 #   C. issue OUVERTE sans bannière d'agent                      → le nouveau sujet
+#   D. auteur HORS CLUSTER, quelle que soit la longueur         → l'associé qu'on ne connaît pas
+#
+# ⚠️ Trou MESURÉ que D comble (06/10, DoD c.6005102887) : 2 des 5 commentaires
+# d'Adeline (`addinette`, 865 et 1440 car.) ont échappé au filet A — dont le
+# plafond de longueur est un proxy de « court », jamais de « humain » — et ne
+# mentionnaient aucun agent. Seul C les a vus, et seulement parce que l'issue
+# était ouverte : sur une issue fermée ou sur une PR, ils étaient invisibles.
+# D ne regarde QUE l'auteur, donc la longueur cesse d'être un filtre.
+#
+# ⚠️ Contrepartie déclarée, mesurée les 04/10 et 07/10 : `jsboigeEpita` N'EST PAS
+# dans CLUSTER_LOGINS — c'est précisément là que le filet C attrape la demande
+# externe #1293 — mais des RAPPORTS D'AGENT y sont publiés (po-2023 : livraison
+# du 04/10 sur #458, et sur #1781 « Message de l'agent technique (po-2023), pas
+# de Jesse »). D les remonte donc comme des demandes. Sortir `jsboigeEpita` de D
+# veut dire l'entrer dans CLUSTER_LOGINS, ce qui ÉTEINT la détection de #1293 par
+# C : l'arbitrage appartient au coordinateur, pas au script. Le self-test épingle
+# le comportement ACTUEL pour que ce choix ne change pas en silence.
 #
 # Usage :
 #   ./human-requests.sh [SINCE_ISO [UNTIL_ISO]]   # défaut : il y a 26 h, sans borne haute
@@ -63,6 +80,24 @@ HOUSEKEEPING='Superseded|Closing in favor|Clos : le DoD|Sans objet|Dispatché|Re
 # matche donc la bannière ; le nom nu SANS astérisques ne matche toujours pas
 # (le faux négatif reste le sens dangereux).
 AGENT_BANNER='\[(myia-)?(ai-01|po-20[0-9]{2})[^\]]*\]|\(worker lane[,)]|Coordinator ai-01|\*(ai-01|po-20[0-9]{2}|myia-web2)\*'
+
+# Sélecteur du filet D — extrait de `scan` pour être ÉPROUVÉ par le self-test
+# sur un jeu SYNTHÉTIQUE (un contrôle qui ne peut pas voir le défaut qu'il
+# prétend couvrir n'est pas un contrôle). Lit le JSON des commentaires sur
+# stdin ; $1 = borne haute facultative (vide = sans borne).
+# Trois exclusions, dans l'ordre : le type Bot (GitHub le marque), les logins de
+# bots par nom (un `app/…` entré dans CLUSTER_LOGINS ne doit pas rouvrir la
+# porte), puis l'appartenance au cluster — après strip du préfixe `app/`.
+d_selector() {
+  jq -r --arg u "${1:-}" --arg cl "$CLUSTER_LOGINS" '
+    ($cl|split(",")|map(sub("^app/";""))) as $cluster
+    |.[]|select($u == "" or .created_at < $u)
+    |. as $c
+    |select((($c.user.type // "User") != "Bot")
+            and (($c.user.login|test("dependabot|github-actions|\\[bot\\]"))|not)
+            and (($cluster|index($c.user.login)) == null))
+    |"  #\($c.issue_url|split("/")|last) \($c.created_at|.[0:16]) [\($c.user.login)] <\($c.html_url)>\n    \($c.body|gsub("\n";" ")|.[0:300])"'
+}
 
 # Lit un endpoint REST et écrit le JSON sur stdout. rc=1 + cri sur stderr si
 # l'appel échoue ou ne rend pas du JSON. ⛔ Jamais de `2>/dev/null` ici : c'est
@@ -135,6 +170,15 @@ scan() {
              |select((($cluster|index($it.user.login))==null) or ((($it.body // "")|length) < 1200))
              |"  #\($it.number) \($it.created_at|.[0:16]) [\($it.user.login)] \($it.title)\n    \($it.html_url)"' \
     <<<"$issues" | grep . || echo "  (aucune)"
+
+  echo
+  echo "### Filet D — commentaires d'un auteur hors cluster (toute longueur)"
+  # L'angle mort de A était la LONGUEUR (proxy), celui de B l'ADRESSE explicite,
+  # celui de C le fait que l'issue soit ouverte. D ne regarde qu'une chose :
+  # l'auteur n'est ni le token partagé (jsboige), ni une machine myia-*, ni un
+  # bot — donc c'est un humain qu'on n'a pas déjà entendu, et sa demande mérite
+  # d'être vue même longue, même sur une PR, même sur une issue fermée.
+  d_selector "$until" <<<"$comments" | grep . || echo "  (aucun)"
 }
 
 self_test() {
@@ -195,7 +239,59 @@ self_test() {
   dead="$(REPO=ArgumentumGames/__triage_selftest_no_such_repo__ scan 2026-08-26T14:00:00Z 2>&1)"
   grep -q "ORGANE AVEUGLE" <<<"$dead" || { echo "FAIL: une panne d'API se déguise en backlog propre"; rc=1; }
   grep -q "(aucune)"       <<<"$dead" && { echo "FAIL: une panne d'API rend encore '(aucune)'"; rc=1; }
-  [ $rc -eq 0 ] && echo "OK — l'organe voit les 3 demandes humaines, rejette le ménage d'agent (crochets, worker lane, pied italique), fenêtre figée, et crie quand l'API tombe"
+
+  # ---- Filet D (07/10, DoD c.6005102887) -------------------------------------
+  # (a) Contrôle UNITAIRE du sélecteur sur un jeu SYNTHÉTIQUE — indépendant de
+  #     toute fenêtre GitHub : un long commentaire d'`addinette` sort, un long
+  #     rapport publié sous `jsboige` ne sort pas, un worker et un bot non plus.
+  #     Le corps d'addinette dépasse VOLONTAIREMENT le plafond de A (750 + 56
+  #     car. de texte utile) : le contrôle prouve que D ne regarde pas la
+  #     longueur, et le marqueur « lesinne » est dans les 300 premiers caractères
+  #     parce que D tronque à 300.
+  local fix du long_body
+  long_body="concernant la tache de comparaison : lesinne --> lesine. $(printf 'a%.0s' $(seq 1 750))"
+  fix='[
+    {"user":{"login":"addinette","type":"User"},"created_at":"2026-10-06T10:00:00Z","issue_url":"https://api.github.com/repos/o/r/issues/1781","html_url":"https://github.com/o/r/issues/1781","body":"__LONG__"},
+    {"user":{"login":"jsboige","type":"User"},"created_at":"2026-10-06T10:01:00Z","issue_url":"https://api.github.com/repos/o/r/issues/458","html_url":"https://github.com/o/r/issues/458","body":"Rapport long publie sous le login de l owner par un agent du cluster : il ne doit PAS sortir du filet D."},
+    {"user":{"login":"myia-po-2023","type":"User"},"created_at":"2026-10-06T10:02:00Z","issue_url":"https://api.github.com/repos/o/r/issues/458","html_url":"https://github.com/o/r/issues/458","body":"Rapport de worker, long lui aussi."},
+    {"user":{"login":"dependabot[bot]","type":"Bot"},"created_at":"2026-10-06T10:03:00Z","issue_url":"https://api.github.com/repos/o/r/issues/1633","html_url":"https://github.com/o/r/issues/1633","body":"Bump de dependance."}
+  ]'
+  fix="${fix/__LONG__/$long_body}"
+  du="$(d_selector "" <<<"$fix")"
+  grep -q "\[addinette\]" <<<"$du" || { echo "FAIL: filet D ne voit pas un commentaire LONG d'auteur hors cluster (unitaire)"; rc=1; }
+  grep -q "lesinne"       <<<"$du" || { echo "FAIL: le marqueur du commentaire long n'est pas rendu (troncature à revoir)"; rc=1; }
+  grep -q "\[jsboige\]"   <<<"$du" && { echo "FAIL: filet D ramasse un rapport publié sous jsboige (unitaire)"; rc=1; }
+  grep -q "myia-po-2023"  <<<"$du" && { echo "FAIL: filet D ramasse un worker du cluster (unitaire)"; rc=1; }
+  grep -q "dependabot"    <<<"$du" && { echo "FAIL: filet D ramasse un bot (unitaire)"; rc=1; }
+  # (b) le MÉCANISME du trou, à l'unitaire : ce même corps dépasse le plafond
+  #     du filet A — c'est exactement pourquoi les deux commentaires d'Adeline
+  #     du 06/10 (865 et 1440 car.) lui ont échappé. A ne peut PAS le voir par
+  #     construction ; D le voit par (a). Déterministe, sans dépendre du quota.
+  jq -e --argjson m "$MAXLEN" 'length < $m' <<<"\"$long_body\"" >/dev/null \
+    && { echo "FAIL: le corps de contrôle ne dépasse pas le plafond du filet A — le contrôle ne prouve plus rien"; rc=1; }
+  # (c) Fenêtre FIGÉE contenant #1781 — les faits MESURÉS du 06/10 : les
+  #     commentaires d'Adeline y sont, dont les longs (1440 et 865 car.), et le
+  #     rapport long de myia-ai-01 (5425 car. sur #458, 06/10 11:01) y est.
+  #     Borne haute 01:00Z le 07/10 : elle inclut le commentaire de 00:03
+  #     (`jsboigeEpita`, cf. témoin (f) ci-dessous).
+  local outd dsec
+  outd="$(scan 2026-10-05T00:00:00Z 2026-10-07T01:00:00Z)"
+  dsec="$(sed -n '/Filet D/,$p' <<<"$outd")"
+  # (d) le commentaire LONG RÉEL (1440 car.) est vu par D — repère « lesinne »,
+  #     choisi dans les 300 premiers caractères du corps réel (D tronque).
+  grep -q "lesinne" <<<"$dsec" || { echo "FAIL: commentaire long hors cluster manqué (filet D, #1781)"; rc=1; }
+  # (e) contrôle INVERSE : un rapport LONG du cluster (myia-ai-01, 5425 car.)
+  #     ne sort pas de D — D n'est pas « tout ce qui est long ». Et le bot reste
+  #     dehors (dependabot a commenté dans la fenêtre).
+  grep -q "\[myia-ai-01\]" <<<"$dsec" && { echo "FAIL: filet D ramasse un rapport d'agent du cluster"; rc=1; }
+  grep -q "dependabot"    <<<"$dsec" && { echo "FAIL: filet D ramasse un bot"; rc=1; }
+  # (f) TÉMOIN de la contrepartie déclarée (cf. tête du script) : `jsboigeEpita`
+  #     sort de D aujourd'hui — il porte à la fois la demande externe #1293 (que
+  #     C ne détecte QUE parce qu'il est hors cluster) et des rapports po-2023.
+  #     Si on l'entre un jour dans CLUSTER_LOGINS, cette assertion ROUGIT : le
+  #     rouge nommera ce qu'on achète (le silence sur #1293 côté C).
+  grep -q "\[jsboigeEpita\]" <<<"$dsec" || { echo "FAIL: le comportement déclaré de jsboigeEpita a changé — relire la contrepartie en tête de script"; rc=1; }
+  [ $rc -eq 0 ] && echo "OK — l'organe voit les 3 demandes humaines, rejette le ménage d'agent (crochets, worker lane, pied italique), fenêtre figée, et crie quand l'API tombe ; filet D : auteur hors cluster vu à toute longueur (unitaire + #1781 réel), rapports du cluster et bots rejetés, contrepartie jsboigeEpita épinglée"
   return $rc
 }
 
