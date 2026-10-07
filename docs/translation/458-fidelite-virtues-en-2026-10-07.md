@@ -35,8 +35,14 @@ passé que les écrans mécaniques. Un écran borné se lit comme une énumérat
   `…based on facts or solid reasoning` (2), `…rather than on opinions or assumptions` (3),
   `…reach a rigorous conclusion` (89), `…attentive listening` (220),
   `…to express one's point of view` (221).
-- **Aucun FR jumeau de ces 13 pks n'est sans point** — l'asymétrie est EN-only : la
-  description FR ponctue systématiquement, l'EN oublie le point sur 13 cartes.
+- **Aucun FR jumeau de ces 13 pks n'est sans point** — sur la paire FR↔EN, le FR ponctue
+  systématiquement et l'EN oublie le point sur 13 cartes.
+  ⚠️ **Erratum (07/10, mesure inter-langues du dossier ru #458-g7)** : la formule « l'asymétrie
+  est EN-only » publiée ici était bornée à la paire FR↔EN et se lit à tort comme « seule l'EN ».
+  La mesure sur les 8 langues (jeu de ponctuation par langue) donne : fr 0 · ru 4 · zh 8 · ar 8 ·
+  en 13 · pt 13 · es 13 · fa 18 — **chaque langue a sa propre famille ; le FR est le seul zéro**.
+  Les remarks, eux, sont ponctués dans les 8 langues (0 manquant) et les titres n'en portent
+  jamais (223/223 dans les 8) : le titre est structurellement exempt.
 - Les remarks finissant par `.”` (guillemet bouclé U+201D) étaient des **faux positifs** de
   la première exclusion (ASCII `"` seul) — corrigée avant classification ; pks 99/100/138
   sont sains.
