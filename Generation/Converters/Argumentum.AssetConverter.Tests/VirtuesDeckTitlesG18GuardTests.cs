@@ -27,6 +27,16 @@ namespace Argumentum.AssetConverter.Tests
 	/// « تکاپوی جهان شمولی »). pk 162/164 fa : retrait du kasra d'ezafe isolé (U+0650) —
 	/// 129 des 131 titres fa n'en portent pas.</para>
 	///
+	/// <para><b>Grain 2 (08/10/2026) — l'extension à pt et es.</b> La famille ⑱ n'avait été
+	/// vérifiée que sur <b>ar/fa/ru</b> : la garde ne citait que ces trois langues, et le
+	/// même défaut y était resté intact. Mesure : « Reconhec » en pt et « Reconocim » en es
+	/// ne listaient que 169, 172, 181, 194, 210 — <b>175 absent</b>, tandis que fr, ar, fa et
+	/// zh l'y portaient déjà. Corrigé par permutation de la TÊTE seule
+	/// (« Consideração » → « Reconhecimento », « Consideración » → « Reconocimiento »), les
+	/// deux formes nouvelles existant déjà dans le corpus (sœurs 169/172 et la propre
+	/// <c>description_pt</c>/<c>description_es</c> de 175). Le discriminant ajouté plus bas
+	/// garde l'autre sens : <b>176 conserve</b> le verbe de SA carte.</para>
+	///
 	/// <para><b>La cascade.</b> 11 subfamily_ar sous le rang 6.3, 3 subsubfamily_fa sous
 	/// 6.3.1, 3 subsubfamily_fa sous 6.2.3 (+1 hors deck découverte par la garde ⑲w) :
 	/// sans elles, le bandeau imprimé aurait continué de dire « effort objectif » et
@@ -74,6 +84,13 @@ namespace Argumentum.AssetConverter.Tests
 				"⑱ pk 175 fa : idem, « بازشناسی » comme 169/172.");
 			rows["175"].GetValueOrDefault("title_ru").Should().Be("Признание личных идеологических искажений",
 				"⑱ pk 175 ru : « Признание » comme 169/172 — ⑯ n'avait pas relevé le ru.");
+
+			// Grain 2 (08/10/2026) — pt et es : les deux langues que ⑱ n'avait jamais
+			// couvertes (la garde ne citait que ar/fa/ru). Le défaut y était resté intact.
+			rows["175"].GetValueOrDefault("title_pt").Should().Be("Reconhecimento dos próprios enviesamentos ideológicos",
+				"grain 2 pk 175 pt : « Reconhecimento » comme 169/172 ET comme sa propre description_pt — pas « Consideração », le verbe de 176.");
+			rows["175"].GetValueOrDefault("title_es").Should().Be("Reconocimiento de los propios sesgos ideológicos",
+				"grain 2 pk 175 es : « Reconocimiento » comme 169/172 ET comme sa propre description_es — pas « Consideración », le verbe de 176.");
 
 			// La carte VOISINE 176 garde « tenir compte » : c'est son sens à elle.
 			// ⚠️ grain 10 (2026-10-07) : l'OBJET de ce titre a été élargi — « لدى الخصم »
@@ -131,6 +148,14 @@ namespace Argumentum.AssetConverter.Tests
 			// « مراعاة … الخاصة » (tenir compte de ses propres biais) : le titre 175 ar retiré.
 			rows["175"].GetValueOrDefault("title_ar").Should().NotBe("مراعاة التحيزات الأيديولوجية الخاصة",
 				"l'ancien titre de 175 ar (le verbe de la voisine) est retiré.");
+
+			// Grain 2 : le verbe de la voisine a quitté le TITRE 175 pt/es. On teste la TÊTE et
+			// non la phrase entière : « Consideração » est légitime ailleurs (176 et 4 autres
+			// rangées), donc la seule forme interdite ici est celle qui ouvre le titre de 175.
+			rows["175"].GetValueOrDefault("title_pt").Should().NotStartWith("Considera",
+				"grain 2 : le verbe de la voisine 176 a quitté le titre 175 pt.");
+			rows["175"].GetValueOrDefault("title_es").Should().NotStartWith("Considera",
+				"grain 2 : idem en es.");
 		}
 
 		[Fact]
@@ -146,6 +171,13 @@ namespace Argumentum.AssetConverter.Tests
 				("ar", "التعرّف إلى التحيزات", new[] { "169", "172", "175" }),
 				("fa", "بازشناسی سوگیری", new[] { "169", "172", "175" }),
 				("ru", "Признание", new[] { "169", "172", "175" }),
+				// Grain 2 (08/10/2026) : pt et es n'avaient JAMAIS été vérifiés — la garde ne
+				// couvrait que ar/fa/ru, et 175 y portait « Consideração » / « Consideración »,
+				// le VERBE DE LA VOISINE 176 (« tenir compte »), alors que ses sœurs 169/172 et
+				// sa propre description disaient déjà « reconnaître ». Mesure : « Reconhec » /
+				// « Reconocim » ne listait que 169, 172, 181, 194, 210 — 175 absent.
+				("pt", "Reconhecimento", new[] { "169", "172", "175" }),
+				("es", "Reconocimiento", new[] { "169", "172", "175" }),
 			};
 			foreach (var (lang, head, pks) in cases)
 			{
@@ -156,6 +188,23 @@ namespace Argumentum.AssetConverter.Tests
 						$"pk {pk} [{lang}] : la famille « reconnaître ses biais » commence par « {head} » — " +
 						"le verbe de la carte voisine 176 (tenir compte) n'y pénètre pas.");
 				}
+			}
+
+			// Le DISCRIMINANT, dans l'autre sens : 176 garde le verbe de SA carte. Sans cette
+			// boucle, un grain qui alignerait 176 sur 175 passerait la boucle ci-dessus sans
+			// être vu — les deux familles se ressemblent mot pour mot à une tête près.
+			foreach (var (lang, own, sister) in new[]
+			{
+				("pt", "Consideração", "Reconhecimento"),
+				("es", "Consideración", "Reconocimiento"),
+			})
+			{
+				var t176 = (rows["176"].GetValueOrDefault("title_" + lang) ?? "").Trim();
+				t176.Should().StartWith(own,
+					$"176 [{lang}] garde le verbe de SA carte (« tenir compte »).");
+				t176.Should().NotStartWith(sister,
+					$"176 [{lang}] ne doit pas emprunter le verbe de 175 (« reconnaître ») — " +
+					"c'est le défaut que le grain 2 a retiré, dans l'autre sens.");
 			}
 		}
 	}
