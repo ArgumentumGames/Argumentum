@@ -37,6 +37,7 @@ Chaque ligne du manifeste donne **l'entité/la valeur à modifier** — le contr
 | **N** | `## En Rupture ##` brut retiré + point sorti du lien Fanny Bénard | 06/10 | NBrightBuy 131 · E10080 / V27402 | ✅ |
 | **O** | cache des `.html` aligné sur la prod (1 an → 10 min) | 07/10 | `web.config` (17 blocs) + TabID 171 | ✅ |
 | **P** | les 5 pages de règles cessent d'afficher une erreur 2sxc (`Kit.Convert`) + 8 coquilles du texte de règles | 07/10 | `_RulesExplorer_RuleDetail.cshtml` (webroot + PR #1791) · 6 valeurs EAV | ✅ |
+| **L-ter** | deux-points des Actus (bloc Brevo), typographie `/terms` **+ `/privacy`**, traduction de « Success! » | 07/10 | 5 valeurs EAV · `GlobalResources.fr-FR.resx` (webroot + dépôt, ×2 fichiers) | ✅ |
 
 ---
 
@@ -176,7 +177,7 @@ Cinq **libellés de catégorie** sont rendus sur l'accueil et la page Actus, ave
 
 ### Ce qui reste volontairement hors périmètre
 
-1. **Six pages affichent « Success! If you are not registered yet… »** — message **en anglais** du module d'inscription (EAV), pas du texte français : la règle d'espace insécable ne s'y applique pas. Traduire est une décision de contenu.
+1. ~~**Six pages affichent « Success! If you are not registered yet… »**~~ — **traité par le grain L-ter (07/10, dispatch ai-01)** : traduction posée dans les deux valeurs EAV du module, vérifiée servie. Voir le grain L-ter ci-dessous.
 2. **La page « Carte mentale fallacieuse »** reprend le contenu des cartes du jeu : ses accents se corrigent dans le **corpus des cartes**, pas dans le site — et ce corpus est aussi imprimé, donc cela revient à l'owner.
 3. **La page Ontologie** affiche les noms des sophismes tels qu'ils figurent dans le corpus, même remarque.
 4. Les jetons tronqués (`tudiant`, `chantillon`, `cossais`, `quivalence`…) sur la page Ontologie sont un **artefact de l'instrument de relecture** (la classe de caractères exclut les majuscules accentuées, donc « Étudiant » se découpe en « tudiant ») : ces pages sont correctes.
@@ -318,6 +319,64 @@ Sur l'article « Interview des co-créateurs », les liens « classification de 
 
 ---
 
+## Grain L-ter — deux-points des Actus, typographie des pages légales, « Success! » (07/10)
+
+Trois résidus de la passe L, dispatchés par ai-01 (07/10, item 2 du dispatch 0710b). Tous posés puis vérifiés sur le **texte servi** (6 pages + 2 spot-checks flotte).
+
+### 1. Deux-points des Actus — le bloc newsletter Brevo (toutes pages)
+
+Le défaut était servi sur **toutes les pages** : le bloc d'inscription Brevo/Sendinblue embarqué porte le libellé `Veuillez renseigner votre adresse email pour vous inscrire. Ex. : abc@xyz.com` avec un **deux-points sécable**. Le bloc vit en **deux exemplaires EAV** (générations différentes du même embed — l'une sert, l'autre est un doublon) :
+
+| ValueId | Entité / attribut | App | Remplacement |
+|---|---|---|---|
+| V23431 | E10176 `Text` | 33 | `Ex. :` → `Ex.&nbsp;:` |
+| V23452 | E10181 `Html` | 48 | `Ex. :` → `Ex.&nbsp;:` |
+
+S'y ajoute la seule insécable manquante des articles : le teaser de l'article REC 2022 (V27595, E10206 `Teaser`, App 52) `tester Argumentum !` → `tester Argumentum !` (insécable) — servi sur la liste Actus **et** la page article.
+
+### 2. Typographie de `/terms` — et `/privacy` derrière (resx, pas HtmlText)
+
+`MENTIONS LEGALES :`, `édité par :`, `hébergé par :` ne vivent **ni dans l'EAV ni dans HtmlText** (0 occurrence mesurée dans les deux magasins) : `/terms` est servi depuis la clé `MESSAGE_PORTAL_TERMS.Text` du `GlobalResources.fr-FR.resx` (mécanisme du grain M). L'écran étendu à `/privacy` (`MESSAGE_PORTAL_PRIVACY.Text`) y a trouvé la même famille — au total **8 remplacements × 2 fichiers** (le resx du webroot qui sert la préprod + la copie du dépôt, pour la durabilité ; markup de générations différentes, chaque motif compté ×1 dans les deux avant remplacement) :
+
+| Clé | Avant | Après |
+|---|---|---|
+| TERMS | `MENTIONS LEGALES :` | `MENTIONS LÉGALES :` (insécable + accent) |
+| TERMS | `édité par :` · `hébergé par :` | insécables |
+| TERMS | `CONDITIONS INHERENTES` | `CONDITIONS INHÉRENTES` |
+| PRIVACY | `sur le site :` | insécable |
+| PRIVACY | `site ; elle` · `recherches ; les volumes` | insécables |
+| PRIVACY | `mise</b></a> : le` | `mise</b></a> :` (insécable collé à la balise) |
+
+**Observations non touchées** (contenu, pas typographie — restent à l'owner) : la date « 30/01/2005 » du bloc privacy (« Date de dernière mise ») est celle du modèle DNN d'origine, pas du site ; `SIREN: 922020276` n'a pas d'espace avant le deux-points (style étiquette, inchangé volontairement).
+
+### 3. Traduction de « Success! » — la seule chaîne anglaise du module
+
+`Success! If you are not registered yet, you will get an e-mail with which you can finalize your registration.` = message de confirmation d'inscription (les trois messages frères — envoi en cours, erreur, confirmation de contact — sont déjà en français). **Deux valeurs EAV entières** (109 caractères chacune) :
+
+| ValueId | Entité | App | Attribut |
+|---|---|---|---|
+| V3867 | E1263 | 3 | `MessageNewsletterSuccess` |
+| V23890 | E9169 | 50 | `MessageNewsletterSuccess` |
+
+**Après** (identique dans les deux, apostrophe droite comme ses messages frères, insécable) : `Succès ! Si vous n'êtes pas encore inscrit, vous recevrez un e-mail avec lequel vous pourrez finaliser votre inscription.` La réserve de la passe L (« traduire est une décision de contenu ») est levée par le dispatch ai-01 du 07/10 — chaîne standard de module, pas du contenu éditorial.
+
+### Vérification (texte servi)
+
+| Contrôle | Mesuré |
+|---|---|
+| `Ex. :` sécable | **0** sur /Actus, article REC, /, /Règles |
+| `Success!` EN | **0** sur les 6 pages testées + 2 spot-checks |
+| `Succès !` FR | présent ×1 partout |
+| `/terms` : 3 `:` sécables + `LEGALES` + `INHERENTES` | **0** sécable · `LÉGALES :` et `INHÉRENTES` servis |
+| `/privacy` : 2 `:` + 2 `;` sécables | **0** sécable, insécables servis |
+| `Argumentum !` | insécable servi (liste + article) |
+
+⚠️ **Instrument** : le contrôle du `mise :</a>` doit se faire **dans le HTML brut servi** (`</a>` + insécable + `:`) — un textifier qui remplace les balises par des espaces insère un espace entre la balise et l'insécable et déclare l'après absent (faux négatif mesuré une fois avant correction du contrôle).
+
+Backups : `Portals/_default/Logs/20261007-lter/` (les deux resx avant + sha256, dump des 5 valeurs EAV avant). Recycle app-domain effectué (web.config touché, sha inchangé). Le resx corrigé est aussi porté au dépôt (PR de ce grain) — la correction ne vit pas qu'au webroot.
+
+---
+
 ## Ce qui reste ouvert (owner)
 
 | Objet | État | Proposition |
@@ -331,6 +390,8 @@ Sur l'article « Interview des co-créateurs », les liens « classification de 
 | **Les 5 mêmes coquilles dans le gabarit CardPen** (`Cards/Rules/Argumentum_Rules_fr.json` : `sont petit objet`, `revisionage`, `son cour`, `à l'issu`, `commançant`) | **non posé — gel du gabarit** | Le site a été corrigé (grain P), ce qui **crée une divergence** avec les cartes imprimées tant que le gabarit n'est pas aligné. Corriger le gabarit implique une régénération, donc un arbitrage owner. Le CSV des cartes, lui, est déjà propre sur ces 5 fautes |
 
 ---
+
+*v3.2 (07/10, po-2023) : ajout du **grain L-ter** (dispatch ai-01 item 2) — deux-points du bloc Brevo (2 valeurs EAV, toutes pages), typographie de `/terms` et `/privacy` (8 remplacements × 2 fichiers resx — les pages légales sont servies depuis `GlobalResources.fr-FR.resx`, pas depuis HtmlText), traduction de « Success! » en français (2 valeurs EAV), + 1 insécable teaser article. La réserve « traduire = décision de contenu » sur « Success! » est levée par le dispatch ; la carte de stockage reste valable (le resx était déjà répertorié par le grain M).*
 
 *v3.1 (07/10, po-2023) : ajout du **grain P** — les 5 pages de règles ne compilaient plus (`Convert.Json` sur Razor14, défaut source depuis #418, journalisé depuis le 09/09, corrigé au webroot et au dépôt par PR #1791) et 8 coquilles du texte de règles, retrouvées une fois les pages rendues. Consigne aussi la limite de l'instrument de la passe L (`fr.dic` = radicaux seuls, canal « absent du dictionnaire » non concluant) et le signalement des 5 mêmes coquilles dans le gabarit CardPen sous gel.*
 
