@@ -205,6 +205,8 @@ Insertion **en tête** de l'article, le texte d'origine restant intégralement c
 | **L** (06/10) | EAV | 8 fautes d'accent + `au sciences` | ⚠️ dump illisible | ✅ |
 | **L-bis** (07/10) | 32 lignes (28 EAV, 3 HtmlText, 1 NBrightBuy) | 95 remplacements, 15 insécables | ✅ | ✅ |
 | **O** (07/10) | `web.config` + TabID 171 | cache `.html` 1 an → 10 min | ✅ | ✅ (17/17 `max-age=600`) |
+| **P** (07/10) | `_RulesExplorer_RuleDetail.cshtml` | vue qui ne compilait plus (`Convert.Json` sur Razor14) → 5 pages d'erreur | ✅ | ✅ (5/5 pages servent les règles ; PR #1791) |
+| **P** (07/10) | 6 valeurs EAV (7 attributs d'entité) | 8 coquilles du texte de règles | ✅ | ✅ (7/7 graphies fautives disparues, formes corrigées servies) |
 
 ⚠️ **Les exports pris le 06/10 sont inutilisables** (sorties console : entête `JSON_F52E2B61-…` puis des lignes de 8 000 caractères d'espaces) : l'état d'avant de ces grains n'est pas rejouable depuis ces fichiers. Les exports du 07/10 (passe L-bis), eux, sont complets. Le détail ligne par ligne est dans le manifeste.
 

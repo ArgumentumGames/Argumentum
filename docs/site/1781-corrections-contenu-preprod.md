@@ -36,6 +36,7 @@ Chaque ligne du manifeste donne **l'entité/la valeur à modifier** — le contr
 | **M** | mentions légales de `/terms` rétablies depuis la prod | 06/10 | `GlobalResources.fr-FR.resx` | ✅ |
 | **N** | `## En Rupture ##` brut retiré + point sorti du lien Fanny Bénard | 06/10 | NBrightBuy 131 · E10080 / V27402 | ✅ |
 | **O** | cache des `.html` aligné sur la prod (1 an → 10 min) | 07/10 | `web.config` (17 blocs) + TabID 171 | ✅ |
+| **P** | les 5 pages de règles cessent d'afficher une erreur 2sxc (`Kit.Convert`) + 8 coquilles du texte de règles | 07/10 | `_RulesExplorer_RuleDetail.cshtml` (webroot + PR #1791) · 6 valeurs EAV | ✅ |
 
 ---
 
@@ -182,6 +183,65 @@ Cinq **libellés de catégorie** sont rendus sur l'accueil et la page Actus, ave
 
 ---
 
+## Grain P — les 5 pages de règles (07/10) : l'angle mort de la passe L, et ce qu'il cachait
+
+La passe L n'avait jamais pu scanner les pages `/Règles/details/<jeu>/mid/602` : elles servaient une **page d'erreur**, pas les règles. Un scan d'accents sur ces pages était donc impossible — et c'est ce qui a conduit à les ranger trop vite dans « hors périmètre ».
+
+### P.1 — Les 5 pages ne compilaient plus (cause racine)
+
+`_RulesExplorer_RuleDetail.cshtml` a été migré vers `@inherits Custom.Hybrid.Razor14` par **#418** (02/06/2026, « upgrade 2sxc 15→21.07 + Razor14 migration ») mais a gardé son appel `Convert.Json.ToJson(...)` de 2023 (`73b92cfed`).
+
+| Classe de base | Expose |
+|---|---|
+| `Custom.Hybrid.Razor12` | `prop Convert : IConvertService` ← ce sur quoi le code de 2023 s'appuyait |
+| `Custom.Hybrid.Razor14` | `prop Kit : ServiceKit14` — **aucune propriété `Convert`** |
+
+Sur Razor14, l'identifiant nu `Convert` retombe donc sur `System.Convert`, qui n'a pas de membre `Json` :
+
+```text
+_RulesExplorer_RuleDetail.cshtml(98): error CS0117: 'Convert' does not contain a definition for 'Json'
+```
+
+La vue ne compile pas → DNN rend « Error Showing Content - please login as admin for details. » La page d'atterrissage `/Règles` n'a jamais été touchée : sa vue sœur `_RulesExplorer_RuleList.cshtml` ne fait aucun appel JSON.
+
+**Correctif** : `Convert.Json.ToJson(...)` → `Kit.Convert.Json.ToJson(...)` — la traduction littérale que la migration devait faire (`ServiceKit14.Convert : IConvertService` → `.Json : IJsonService` → `ToJson(object)`). Un identifiant ajouté, aucun autre octet de la vue modifié. Posé au webroot (sauvegarde + empreinte) **et** au dépôt ([PR #1791](https://github.com/ArgumentumGames/Argumentum/pull/1791)) pour qu'il ne soit pas perdu à la prochaine mise en service.
+
+**Ce n'est pas la récupération du 06/10.** Le fichier avait bien été réécrit pendant l'incident 4 (mtime 01:28), ce qui a fait croire à une régression fraîche. Le journal DNN dit le contraire : l'erreur de compilation est journalisée **depuis le 09/09 19:23:55** (même événement que l'entrée IIS du 09/09 17:23:55 UTC — le journal DNN est en heure locale, IIS en UTC), et le défaut est au niveau du source depuis #418. Une recompilation ne l'a que **révélé**. Le mention « runtime pending » des PR de migration Razor14 (#418, #596) est exactement cette faille : rien ne pointait vers ces pages, donc leur validation à l'exécution n'a jamais eu lieu.
+
+### P.2 — Les coquilles que ces pages cachaient
+
+Une fois les pages rendues, les 5 fautes que #1502 (T7) listait ont toutes été retrouvées — et le contexte en a fait apparaître 2 de plus. Corrigées par remplacement chirurgical (garde : identifiant **et** présence de la forme ancienne ; sauvegarde de 7 valeurs).
+
+| # | Valeur | Entité | Attribut | Avant (tel que stocké) | Après | Page servie |
+|---|---|---|---|---|---|---|
+| 1 | V27687 | 11378 L'école des menteurs | `Content` | `en y posant **sont** petit objet` | `son petit objet` | école |
+| 2 | V27687 | 11378 | `Content` | `les jur&eacute;s **plebicit&eacute;s**` | `pl&eacute;biscit&eacute;s` (×10) | école |
+| 3 | V27688 | 11378 | `Installation` | `7 minutes **environs**` | `environ` | école |
+| 4 | V27541 | 11380 Le Bingo mixologie | `Content` | `Si à **l'issu** d'un premier décompte` | `l'issue` | bingo |
+| 5 | V27686 | 11378 | `Variants` | `la partie reprend **son cour**.` | `son cours.` | école |
+| 6 | V27545 | 11380 | `Material` | `l'objet d'un **revisionage**` | `revisionnage` | bingo |
+| 7 | V27568 | 11387 Le dernier beau parleur | `Content` | `En **comman&ccedil;ant** par le voisin` | `commen&ccedil;ant` | beau parleur |
+| 8 | V27586 | 11389 La parlote coinchée | `Content` | `En **comman&ccedil;ant** par le voisin` | `commen&ccedil;ant` | parlote |
+
+Deux remarques de méthode :
+
+- **La valeur V27687 contient la même phrase 10 fois** : c'est un export Google-Sheets qui duplique le texte (bloc visible + `data-sheets-value` + `data-sheets-formula`). Les 10 occurrences sont la même faute ; le remplacement les corrige toutes, ce qui est le comportement voulu. Une garde « exactement 1 occurrence » aurait bloqué à tort — la garde compare donc au compte **attendu**.
+- **La coquille `à l'issu` n'était pas là où l'entité le suggérait** : elle vit dans l'entité du **Bingo**, pas dans celle de l'école, et elle est stockée avec une apostrophe **droite littérale** (`l'issu`), pas `&rsquo;`. La chercher avec l'entité `&rsquo;` rendait 0 — un faux « absent ».
+
+**Vérification (texte servi, page par page)** : les 7 graphies fautives ont disparu, les 7 formes corrigées sont servies sur la bonne page.
+
+### P.3 — Les 5 mêmes coquilles sont dans le gabarit CardPen — non touché (gel)
+
+Le gabarit `Cards/Rules/Argumentum_Rules_fr.json` porte **5 des 7** coquilles (`sont petit objet`, `revisionage`, `son cour`, `à l'issu`, `commançant`). Le CSV des cartes (`Argumentum Rules - Cards.csv`), lui, est **propre** pour ces fautes.
+
+Le gabarit étant **sous gel** (⛔ PR CSV/gabarit/moteur CardPen), il n'a pas été touché : corriger le site sans le gabarit **crée une divergence** entre la page servie et les cartes imprimées. C'est un choix d'owner, car il implique une régénération. Signalé ci-dessous.
+
+### P.4 — Ce que l'instrument ne couvrait pas (à savoir avant de conclure)
+
+Le balayage par lexique de la passe L s'appuie sur `fr.dic`, qui est **compressé par affixes** : il contient les **radicaux**, pas les formes fléchies (`joueurs`, `sont`, `vont` sont absents ; `école`, `être` sont présents). Le « 82 156 formes » annoncé en passe L-bis est donc un compte de **radicaux**, et le canal « mot absent du dictionnaire » sur-détecte massivement (`joueurs`, `autres`, `appris`…). Les conclusions de la passe L n'en dépendent pas — elles sont prouvées par le différentiel avant/après de chaque remplacement et par le contrôle du texte servi — mais **aucune conclusion de type « 0 faute restante » ne peut s'appuyer sur ce canal**. Les 8 corrections ci-dessus viennent d'une liste de fautes **déjà relevées** (#1502 T7) et d'une recherche par motif, pas du dictionnaire.
+
+---
+
 ## Grains H / I / J / K — posés
 
 | Grain | Objet | Posé le | Cible | Contrôle servi |
@@ -268,7 +328,10 @@ Sur l'article « Interview des co-créateurs », les liens « classification de 
 | Encart « Bientôt de retour » (grain H) | **posé, temporaire** | À retirer à la réouverture de la boutique |
 | Visualiseur WebVOWL derrière la page d'ontologie (grain K, option) | non posé | Possible (MIT, 1,24 Mo + 3,73 Mo pour le JSON) mais rendrait une « pelote » sur ~1 500 classes ; à charger **derrière un clic**, jamais au chargement. Les cartes mentales SVG déjà générées couvrent le besoin |
 | Import de la passe d'accents dans le **corpus des cartes** (page Carte mentale, page Ontologie) | ouvert | Les accents de ces deux pages viennent du corpus imprimé : la correction touche les CSV et une régénération |
+| **Les 5 mêmes coquilles dans le gabarit CardPen** (`Cards/Rules/Argumentum_Rules_fr.json` : `sont petit objet`, `revisionage`, `son cour`, `à l'issu`, `commançant`) | **non posé — gel du gabarit** | Le site a été corrigé (grain P), ce qui **crée une divergence** avec les cartes imprimées tant que le gabarit n'est pas aligné. Corriger le gabarit implique une régénération, donc un arbitrage owner. Le CSV des cartes, lui, est déjà propre sur ces 5 fautes |
 
 ---
+
+*v3.1 (07/10, po-2023) : ajout du **grain P** — les 5 pages de règles ne compilaient plus (`Convert.Json` sur Razor14, défaut source depuis #418, journalisé depuis le 09/09, corrigé au webroot et au dépôt par PR #1791) et 8 coquilles du texte de règles, retrouvées une fois les pages rendues. Consigne aussi la limite de l'instrument de la passe L (`fr.dic` = radicaux seuls, canal « absent du dictionnaire » non concluant) et le signalement des 5 mêmes coquilles dans le gabarit CardPen sous gel.*
 
 *v3 (07/10, po-2023) : le manifeste devient la **trace de tout ce qui est posé** — grains B, L (3 passes : 95 remplacements détaillés ligne par ligne + 4 libellés de catégorie), H, I, J, K, A, M, N et O, chacun avec sa date et son entité. Les mentions « décision owner » sur la typographie sont retirées (la règle s'applique sans arbitrage) ; les grains C, D et E renvoient à leurs mesures ; l'incident de dump du 06/10 est consigné. v2 (06/10) : carte de stockage EAV (entité + attribut par correction), périmètre corrigé (11-16 vivent dans les articles Actus détail ; 4 = seul le É manque ; 12 à re-valider pour l'accord de l'article), et signalement de 3 coquilles adjacentes.*
