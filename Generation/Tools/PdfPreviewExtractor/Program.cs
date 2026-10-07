@@ -2,9 +2,7 @@
 using System.IO;
 using Docnet.Core;
 using Docnet.Core.Models;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
+using ImageMagick;
 
 namespace PdfPreviewExtractor
 {
@@ -141,16 +139,26 @@ namespace PdfPreviewExtractor
                              continue;
                          }
 
-                         // Load BGRA pixel data
-                         using (var image = Image.LoadPixelData<Bgra32>(rawBytes, width, height))
+                         // Load BGRA pixel data (Docnet emits 8-bit-per-channel BGRA bytes; raw
+                         // reads need Width/Height, and Depth=8 states the input sample depth —
+                         // Magick's Q16 build would otherwise expect 16-bit samples)
+                         var readSettings = new MagickReadSettings
+                         {
+                             Format = MagickFormat.Bgra,
+                             Width = (uint)width,
+                             Height = (uint)height,
+                             Depth = 8,
+                         };
+                         using (var image = new MagickImage(rawBytes, readSettings))
                          {
                              string suffix = isLastPage ? $"_Page{pageCount}_Last" : $"_Page{pageNum}";
                              // If page 10 was requested and it IS page 10 (and not last because <10), name it Page10
                              if (pageNum == 10 && !isLastPage) suffix = "_Page10";
 
                              string outPath = Path.Combine(outputDir, $"{fileName}{suffix}.png");
-                             
-                             image.SaveAsPng(outPath);
+
+                             image.Depth = 8; // match the previous 8-bit PNG output
+                             image.Write(outPath, MagickFormat.Png);
                              Console.WriteLine($"  -> Saved: {Path.GetFileName(outPath)}");
                          }
                      }
