@@ -42,7 +42,7 @@ namespace Argumentum.AssetConverter.Tests
 			("5.2.1", "suggestion_en", "Then I will bring down the arm of terrible anger, of furious and fearful vengeance on the ungodly hordes that chase and destroy the sheep of God. And you will know why my name is the Lord when the vengeance of the Almighty will fall upon you!", "Then I will bring down the arm of terrible anger, of furious and fearful vengeance on the ungodly hordes that chase and destroy the sheep of God. And you will know why my name is eternal when the vengeance of the Almighty will fall upon you!", "la formule biblique dit que le NOM divin EST le Seigneur ; «my name is eternal» transforme le nom en adjectif ; FR «mon nom est l'Éternel» (§2.14)"),
 			// siblings ru — regle du GO : meme defaut, meme rangee, meme PR
 			("7.1.5", "title_ru", "Школьный праздник", "Праздник", "generique («fete») — le meme defaut que l'EN «Kermesse» ; le context_ru dit «праздник своего ребёнка», l'es dit deja «Fiesta escolar»"),
-			("5.1.2", "smoothTalker_ru", "Смурфиейший", "Смурфик-бунтарь", "«Смурфик-бунтарь» (schtroumpf rebelle) forge un AUTRE personnage ; le superlatif russe est «Смурфиейший» (le plus schtroumpf)"),
+			("5.1.2", "smoothTalker_ru", "Смурфейший", "Смурфик-бунтарь", "«Смурфик-бунтарь» (schtroumpf rebelle) forge un AUTRE personnage ; le superlatif russe. RELECTURE ai-01 (c.6027007896, 07/10) : -ейш- se colle au theme смурф- sans voyelle de liaison («основа + -ейш-») — la forme au -и- est retiree, «Смурфейший» ecrite"),
 			("5.2.1", "suggestion_ru", "И поражу я дланью ужасного гнева и яростной мести бесчестные орды тех, кто истребляет овец Божиих. И познаешь ты, почему Имя мое — Вечный, когда и на тебя обрушится возмездие Всевышнего.", "И поражу я дланью ужасного гнева и яростной мести бесчестные орды тех, кто истребляет овец Божиих. И познаешь ты, почему Имя мое вечно, когда и на тебя обрушится возмездие Всевышнего.", "«Имя мое вечно» = le meme defaut que l'EN : le nom divin rendu comme adjectif ; «Имя мое — Вечный» rend le NOM"),
 		};
 
@@ -67,6 +67,7 @@ namespace Argumentum.AssetConverter.Tests
 			("What's up?", "7.1.2.suggestion_en — le registre familier"),
 			("my name is eternal", "5.2.1.suggestion_en — le nom divin comme adjectif"),
 			("Смурфик-бунтарь", "5.1.2.smoothTalker_ru — le personnage forge"),
+			("Смурфиейший", "5.1.2.smoothTalker_ru — la forme au -и- epenthetique sans base morphologique, retiree en relecture ai-01 (c.6027007896)"),
 			("Имя мое вечно", "5.2.1.suggestion_ru — le nom divin comme adjectif"),
 		};
 
@@ -137,8 +138,8 @@ namespace Argumentum.AssetConverter.Tests
 			Restored.Count(r => r.Column.EndsWith("_ru")).Should().Be(3, "3 siblings ru (regle du GO).");
 			Restored.Should().OnlyContain(r => r.Was.Length > 0 && r.Why.Length > 20, "chaque epingle porte son avant et sa raison.");
 			Restored.Select(r => r.Why).Distinct().Should().HaveCount(15, "15 raisons distinctes, pas un copier-coller.");
-			Eradicated.Should().HaveCount(12);
-			Eradicated.Select(e => e.Form).Distinct().Should().HaveCount(12);
+			Eradicated.Should().HaveCount(13);
+			Eradicated.Select(e => e.Form).Distinct().Should().HaveCount(13);
 		}
 
 		[Fact]
