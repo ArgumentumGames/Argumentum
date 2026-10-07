@@ -1,6 +1,6 @@
-# Grains D / E / F — mesures et recherches (#1781, 06/10)
+# Grains D / E / F — mesures et recherches, puis grains I / C / H posés (#1781, 06/10)
 
-**Statut** : mesures et recommandations. **Aucune écriture** ni sur le site ni en base n'a été faite pour ces trois grains.
+**Statut** : mesures et recommandations. **Aucune écriture** ni sur le site ni en base n'a été faite **pour D, E et F** (E reste une recommandation : le lien n'est pas modifié). Les sections I, C, H, puis N / L / A / M / K / O ajoutées ensuite sont, elles, **posées** — la trace complète est dans [`1781-corrections-contenu-preprod.md`](1781-corrections-contenu-preprod.md).
 **Méthode** : chaque chiffre ci-dessous est mesuré à l'instant de la rédaction, avec son instrument cité. Les estimations sont explicitement marquées comme telles.
 
 ---
@@ -130,7 +130,7 @@ Page de contrôle : `https://dnn.argumentum.myia.io/actus/details/lancement-d-ar
 
 **Précision d'écriture** : la base interrogée est celle de la **préprod seule** — vérifié par contrôle indépendant sur le pied de page (`Retrouvez-nous` en préprod, `Retrouvez nous` encore en prod). Recoupé par DNS : `dnn.argumentum.myia.io` → **127.0.0.1** (IIS local), `www.argumentum.games` → **51.75.200.22** (serveur distant). La prod n'est pas sur cette machine.
 
-**Point non modifié, signalé** : dans ce même lien, le point final est **à l'intérieur** de l'hyperlien (`…participation citoyenne.</a>`). Correction typographique hors du périmètre approuvé — signalée, pas posée.
+**Point final — POSÉ (grain N, 06/10)** : dans ce même lien, le point final était **à l'intérieur** de l'hyperlien (`…participation citoyenne.</a>`). Il en est sorti (`…citoyenne</a>.`), vérifié dans le HTML servi. *Correction de la v1 de ce document, qui le donnait « signalé, pas posé ».*
 
 ---
 
@@ -197,5 +197,15 @@ Insertion **en tête** de l'article, le texte d'origine restant intégralement c
 | B (matin) | 24 valeurs EAV | corrections de contenu | ✅ | ✅ |
 | **I** | E10080 / V27402 | lien mort → copie Wayback | ✅ | ✅ |
 | **H** | E11897 / V27785 | encart d'état temporaire | ✅ | ✅ |
+| **J** | E10155, E10164, E10166 `Details` | logos en ligne, « en savoir plus » retirés | ✅ | ✅ (PR #1785) |
+| **K** | TabID 171 | page de présentation (le menu servait le fichier brut) | ✅ | ✅ (PR #1786) |
+| **A** | E10072 / V23152 | ticket DNN illisible → lien direct | ✅ | ✅ (93 587 869 o, sha256 prod) |
+| **M** | `GlobalResources.fr-FR.resx` | mentions légales rétablies depuis la prod | ✅ | ✅ (15 655 car.) |
+| **N** | NBrightBuy 131 · E10080 / V27402 | `##` bruts retirés + point sorti du lien | ✅ | ✅ |
+| **L** (06/10) | EAV | 8 fautes d'accent + `au sciences` | ⚠️ dump illisible | ✅ |
+| **L-bis** (07/10) | 32 lignes (28 EAV, 3 HtmlText, 1 NBrightBuy) | 95 remplacements, 15 insécables | ✅ | ✅ |
+| **O** (07/10) | `web.config` + TabID 171 | cache `.html` 1 an → 10 min | ✅ | ✅ (17/17 `max-age=600`) |
+
+⚠️ **Les exports pris le 06/10 sont inutilisables** (sorties console : entête `JSON_F52E2B61-…` puis des lignes de 8 000 caractères d'espaces) : l'état d'avant de ces grains n'est pas rejouable depuis ces fichiers. Les exports du 07/10 (passe L-bis), eux, sont complets. Le détail ligne par ligne est dans le manifeste.
 
 Toutes en **préprod seulement** — la prod (`www.argumentum.games`, serveur distant 51.75.200.22) n'est pas servie par cette machine et n'a pas été touchée.
