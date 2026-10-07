@@ -229,4 +229,17 @@ Mesure : les cinq cellules (fr, en, es, zh, ar) relues dans le CSV pour cette co
 `issue_ar` également. Ce dossier est une **mesure datée** : elle est corrigée **sur place**,
 comme celle de #1746, et le motif est écrit ici plutôt que silencieusement appliqué.
 
+
+## Écrit — grain 5 (07/10, file profonde c.5993735448)
+
+Les compositions différées de ce dossier sont **écrites, sur délégation** (langues jamais imprimées) :
+
+- **4.2.8 `title_ar`** → **استيقاظ محرج** — le jeu « compromis » rendu (محرج, compromettant, modèle pt/es
+  « Despertar comprometido ») ; « غير متوقع » (inattendu) retiré — il était ajouté sans source.
+- **3.1.5 `drawer_ar` + `context_ar`** → **آخر فتوحاته من الليلة السابقة** (فتوحات au sens figuré romantique) ;
+  le contexte suit (règle du GO : même défaut, même rangée) avec l'accord verbal تدخل → يدخل (فتوح masculin).
+  حبيبته (« sa bien-aimée ») adoucissait le registre familier du FR « sa conquête ».
+
+Garde : `ScenariiComposedCorrectionsGuardTests` (épingles pleine cellule + écran d'eradication).
+
 *po-2024*

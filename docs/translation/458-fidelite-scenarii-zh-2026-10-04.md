@@ -162,4 +162,16 @@ passe zh, est confirmée comme telle : le bloc EN omet lui-même le point final.
 Le présent dossier est corrigé sur place (document vivant, PR encore ouverte). Le corps de la
 PR #1746, qui portait la version initiale, a reçu le même erratum en commentaire.
 
+
+## Écrit — grain 5 (07/10, file profonde c.5993735448)
+
+Les compositions différées de ce dossier sont **écrites, sur délégation** (langues jamais imprimées) :
+
+- **4.2.8 `title_zh`** → **尴尬的苏醒** — 尴尬 rend le sens « compromettant » du FR ; 妥协 lisait « compromis »
+  comme un accord négocié (sens faux ici) ; 意外 (inattendu) retiré — ajouté sans source.
+- **6.2.1 `title_zh`** → **协商退选** — négocié + retrait de candidature ; le contexte zh de la carte dit
+  déjà 谈妥退选 : le titre inventé 初选连环跳 est remplacé par ce que la carte dit elle-même.
+
+Garde : `ScenariiComposedCorrectionsGuardTests`.
+
 *po-2024*

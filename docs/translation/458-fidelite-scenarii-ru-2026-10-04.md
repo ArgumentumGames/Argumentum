@@ -251,4 +251,20 @@ leurs PR :
    contrôle » : la moitié **6.2.1** tombe (4.3.3 tient, renforcé à quatre contrôles).
 3. **#1749 (ar)** — si sa matrice porte la même ligne 6.2.1 zh-seul, même erratum.
 
+
+## Écrit — grain 5 (07/10, file profonde c.5993735448)
+
+Les compositions différées touchant ru sont **écrites, sur délégation** (langues jamais imprimées) :
+
+- **3.1.5 `drawer_ru` + `context_ru`** → **Его вчерашняя пассия** / **его пассия вошла** — пассия est
+  l'équivalence **établie par le corpus lui-même** : 3.1.2 (« Lendemain difficile ») traduit déjà
+  « Sa conquête » par « Его пассия » et son contexte dit « вчерашней пассией ». Le choix du dossier
+  (победа/завоевание/добыча) est ainsi tranché par un précédent interne, pas par goût.
+- **6.2.1 `title_ru`** → **Уход по договорённости** — уход (le retrait politique usuel) + по договорённости
+  (négocié) ; le contexte ru dit déjà « договорился снять свою кандидатуру ». « Рокировка » était inventé.
+- **7.2.7 `suggestion_ru`** → **Ох, извини, но у меня наконец-то собеседование!** — l'entretien (pivot de la
+  carte, déjà nommé au contexte et à l'enjeu) ET l'excuse restaurés ; « Слушай, в итоге… » amputait les deux.
+
+Garde : `ScenariiComposedCorrectionsGuardTests`.
+
 *po-2024*

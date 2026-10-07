@@ -204,4 +204,19 @@ signalé).
   la matrice — les passes es · ru diront si le lot traverse les écritures latines.
 - **0 écriture** : la relecture native décidera des corrections.
 
+
+## Écrit — grain 5 (07/10, file profonde c.5993735448)
+
+Les compositions différées de ce dossier sont **écrites, sur délégation** (langues jamais imprimées) :
+
+- **4.2.8 `title_fa`** → **بیداری خفت‌آور** — خفت‌آور (compromettant/gênant), calque du modèle pt/es ;
+  « غیرمنتظره » (inattendu) retiré — ajouté sans source.
+- **3.1.5 `drawer_fa` + `context_fa`** → **شکار دیشبی‌اش** / **شکارش وارد** — شکار (la prise) était le candidat
+  nommé par ce dossier ; دلبر (la dulcinée) adoucissait. Le contexte suit (règle du GO, même rangée).
+- **5.3.5 `suggestion_fa`** → la question « et si » du physicien **restaurée** avec **گرانش** = le terme du
+  TITRE fa de la carte (گرانش وارونه) — l'exclamation générique avait remplacé la riposte.
+  *(6.2.1 `title_fa` کناره‌گیری توافقی était déjà fidèle — inchangé.)*
+
+Garde : `ScenariiComposedCorrectionsGuardTests`. Résidu 4.3.1 `suggestion_fa` : toujours différé (burn-down).
+
 *po-2024*

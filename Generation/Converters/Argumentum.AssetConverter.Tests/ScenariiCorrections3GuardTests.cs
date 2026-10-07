@@ -21,10 +21,10 @@ namespace Argumentum.AssetConverter.Tests
 	/// ajoute et concept dedouble.</para>
 	/// <para>Les langues cibles <b>portent</b> l'ecart : aucune n'est imprimee (l'edition de
 	/// fevrier 2022 porte le FR et l'EN), aucune cellule FR ni EN n'est touchee ici.</para>
-	/// <para><b>Les 6 choix differes</b> (<see cref="Deferred"/>) sont epingles a leur valeur
-	/// COURANTE : le FR ne fournit pas la forme cible (il faut choisir entre des synonymes de
-	/// registre different), donc composer n'est pas restaurer. Le jour ou l'un est ecrit, ce test
-	/// rougit et demande de retirer son entree <b>en meme temps</b>.</para>
+	/// <para><b>Les 6 choix differes</b> ont ete <b>ecrits le 07/10</b> (grain 5 de la file profonde
+	/// c.5993735448) : composer n'etait pas restaurer, chaque forme est ancree sur un modele fidele
+	/// de la rangee ou un precedent du corpus — voir
+	/// <see cref="ScenariiComposedCorrectionsGuardTests"/>. Le burn-down est vide et doit le rester.</para>
 	/// </summary>
 	public class ScenariiCorrections3GuardTests
 	{
@@ -103,18 +103,12 @@ namespace Argumentum.AssetConverter.Tests
 		};
 
 		/// <summary>
-		/// BURN-DOWN : les 6 choix differes, epingles a leur valeur COURANTE. Le FR ne donne pas la
-		/// forme cible — il faudrait choisir entre des synonymes de registre different, ce qui est
-		/// <b>composer</b>, pas restaurer.
+		/// BURN-DOWN : VIDE depuis le 07/10 — les 6 compositions (4.2.8 titles ar/fa/zh, 3.1.5
+		/// piocheurs ar/fa/ru) sont ecrites par le grain 5 (ScenariiComposedCorrectionsGuardTests).
+		/// Un nouveau report se declare deliberement, jamais en silence.
 		/// </summary>
 		private static readonly (string Path, string Column, string Current, string Why)[] Deferred =
 		{
-			("4.2.8", "title_ar", "استيقاظ غير متوقع ومأزق حساس", "«compromis» n'a pas d'equivalent unique en ar (محرج/فاضح ...) — composer"),
-			("4.2.8", "title_fa", "بیداریِ غیرمنتظره و مصالحه‌ای حساس", "«compromis» n'a pas d'equivalent unique en fa — composer"),
-			("4.2.8", "title_zh", "意外醒来与微妙妥协", "«compromis» n'a pas d'equivalent unique en zh (尴尬/微妙) — composer"),
-			("3.1.5", "drawer_ar", "حبيبته من الليلة السابقة", "«conquete» romantique : le registre familier du FR (une conquete = une personne) manque en ar — composer"),
-			("3.1.5", "drawer_fa", "دلبر دیشبی‌اش", "«conquete» romantique : idem en fa (شکار/معشوقه) — composer"),
-			("3.1.5", "drawer_ru", "Новая избранница", "«conquete» romantique : choix entre победа/завоевание/добыча, nuances differentes — composer"),
 		};
 
 		private static string Sha256Hex(string cell)
@@ -186,17 +180,8 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void Deferred_Choices_Are_Still_Unwritten()
 		{
-			var csv = new HarvestCardIdsCsv(ScenariiCsv);
-			var offenders = new List<string>();
-			foreach (var (path, column, current, _) in Deferred)
-			{
-				var v = csv.LoadColumn(column, "path", new[] { path });
-				v.Should().HaveCount(1, $"la rangee {path} existe et est unique.");
-				if (!string.Equals(current, v[0], StringComparison.Ordinal))
-					offenders.Add($"{path}.{column} : «{current}» -> «{v[0]}»");
-			}
-			offenders.Should().BeEmpty(
-				"un choix differe a ete ecrit : retirer son entree EN MEME TEMPS que la correction, sinon l'exclusion survit a sa raison.");
+			Deferred.Should().BeEmpty(
+				"les 6 compositions sont ecrites le 07/10 (grain 5) : ce burn-down reste vide — un retour en arriere passe par ScenariiComposedCorrectionsGuardTests, qui epingle les formes.");
 		}
 
 		[Fact]

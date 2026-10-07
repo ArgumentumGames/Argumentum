@@ -22,10 +22,12 @@ namespace Argumentum.AssetConverter.Tests
 	/// de #1769 : 1.2.2 (issue_ru, «что» manquant), 1.3.3 (suggestion_ru, double futur) et
 	/// 3.2.8 (title_zh + suggestion_zh, 纪念日 -> 生日 : le context_zh de la carte dit 生日,
 	/// defect etabli sur titre ET suggestion par le dossier zh n°2).</para>
-	/// <para><b>Les 4 marquees « composer »</b> par le burn-down (titres inventes 6.2.1 zh/ru,
-	/// repliques remplacees 5.3.5 fa et 7.2.7 ru) restent differees pour un autre motif.</para>
-	/// <para><b>Les 5 defers restants</b> (Deferred) sont epingles a leur valeur COURANTE (le 5e, 4.3.1.suggestion_fa, est un constat MESURE du grain 3b du 07/10) : le jour
-	/// ou l'un est corrige, ce test rougit et demande de retirer son entree en meme temps.</para>
+	/// <para><b>Les 4 marquees « composer »</b> (titres inventes 6.2.1 zh/ru, repliques remplacees
+	/// 5.3.5 fa et 7.2.7 ru) sont <b>ecrites le 07/10</b> — grain 5 de la file profonde c.5993735448,
+	/// voir <see cref="ScenariiComposedCorrectionsGuardTests"/>.</para>
+	/// <para>Le burn-down (<see cref="Deferred"/>) ne retient plus que les reports VIVANTS, epingles
+	/// a leur valeur COURANTE (dont 4.3.1.suggestion_fa, constat MESURE du grain 3b du 07/10) : le
+	/// jour ou l'un est corrige, ce test rougit et demande de retirer son entree en meme temps.</para>
 	/// </summary>
 	public class ScenariiLanguageSpecificCorrectionsGuardTests
 	{
@@ -52,14 +54,12 @@ namespace Argumentum.AssetConverter.Tests
 		};
 
 		/// <summary>
-		/// BURN-DOWN : les 4 choix « composer » etablis et NON ecrits, epingles a leur valeur COURANTE.
+		/// BURN-DOWN : les 4 « composer » sont ecrites le 07/10 (grain 5 de la file profonde
+		/// c.5993735448, <see cref="ScenariiComposedCorrectionsGuardTests"/>). Ne restent epinglees
+		/// ici que les reports vivants, a leur valeur COURANTE.
 		/// </summary>
 		private static readonly (string Path, string Column, string Current, string Why)[] Deferred =
 		{
-			("6.2.1", "title_zh", "初选连环跳", "titre invente : ne correspond ni au FR ni a l'EN — composer"),
-			("6.2.1", "title_ru", "Рокировка", "titre invente («Рокировка») — composer"),
-			("5.3.5", "suggestion_fa", "زمین ما را از خودش دور می\u200cراند؟ چه فکر کاملاً عجیب\u200cوغریبی!", "replique du physicien remplacee — composer"),
-			("7.2.7", "suggestion_ru", "Слушай, в итоге я не смогу с тобой поехать.", "l'entretien, pivot de la carte, a disparu de la replique — composer"),
 			("4.3.1", "suggestion_fa", "\u06CC\u0627 \u062D\u0636\u0631\u062A \u0639\u062C\u0628\u060C \u0646\u06A9\u0646\u062F \u0686\u0634\u0645\u200c\u0647\u0627\u06CC\u0645 \u0633\u06CC\u0627\u0647\u06CC \u0645\u06CC\u200c\u0631\u0648\u062F!", "meme defaut que l'EN corrige au grain 3a (\u00AB I'm seeing things! \u00BB / FR \u00AB la berlue \u00BB) : le fa dit l'evanouissement (\u00AB mes yeux se noircissent \u00BB). La regle du GO couvre la rangee, mais le grain 3a ne portait que ses siblings ru. Constat MESURE le 07/10 (grain 3b) \u2014 hors perimetre de ce grain, epingle ici pour qu'un futur balayage le voie et que l'exclusion meure avec sa raison."),
 		};
 
