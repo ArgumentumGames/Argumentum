@@ -120,7 +120,7 @@
 
 </div>
 
-<turnOn turn-on='{ "run": "window.appQr2.init()", "data": { "domId": "@qrDomId", "options": @Html.Raw(Convert.Json.ToJson(qrCodeOptions)) }}'></turnOn>
+<turnOn turn-on='{ "run": "window.appQr2.init()", "data": { "domId": "@qrDomId", "options": @Html.Raw(Kit.Convert.Json.ToJson(qrCodeOptions)) }}'></turnOn>
 <script type="text/javascript" src="@App.Path/dist/appQr2.min.js" data-enableoptimizations="bottom"></script>
 <script type="text/javascript" src="@App.Path/dist/dom-to-image-more.js" data-enableoptimizations="bottom"></script>
 <script type="text/javascript" src="@App.Path/dist/FileSaver.js" data-enableoptimizations="bottom"></script>
