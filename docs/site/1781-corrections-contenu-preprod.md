@@ -27,7 +27,7 @@ Chaque ligne du manifeste donne **l'entité/la valeur à modifier** — le contr
 | Grain | Objet | Posé le | Cible | Contrôle servi |
 |---|---|---|---|---|
 | **B** | 18 corrections de contenu relevées par Adeline + 3 coquilles adjacentes | 06/10 | 24 valeurs EAV (Accueil, Actus, Amis, pied de page) | ✅ |
-| **L** | accents et ponctuation, 2 passes : 8 fautes + `au sciences` (06/10), puis 95 remplacements sur 32 lignes (07/10) | 06/10 et 07/10 | EAV + HtmlText (`/terms`) + NBrightBuy | ✅ |
+| **L** | accents et ponctuation, 3 passes : 8 fautes + `au sciences` (06/10), puis 95 remplacements sur 32 lignes (07/10), puis 4 libellés de catégorie (07/10) | 06/10 et 07/10 | EAV + HtmlText (`/terms`) + NBrightBuy | ✅ |
 | **H** | encart « Bientôt de retour » au-dessus de l'article de vente | 06/10 | E11897 / V27785 | ✅ |
 | **I** | lien mairie 404 → copie Wayback | 06/10 | E10080 / V27402 | ✅ |
 | **J** | logos des 3 fiches Amis en ligne, « en savoir plus » retirés | 06/10 | E10155, E10164, E10166 (`Details`) | ✅ |
@@ -105,9 +105,25 @@ Le correctif précédent cherchait **une liste de mots fixée à l'avance** : il
 
 **Contrôle inverse** — la garantie que l'instrument n'est pas aveugle : l'outil devait retrouver **tous** les défauts déjà signalés. Résultat : **42 sur 42**. Sans ce contrôle, on ne saurait pas si l'outil voit ; c'est précisément ce qui manquait à la passe du 06/10.
 
-**Décisions au cas par cas, jamais en bloc** : les formes ambiguës (accent ou non) sont tranchées par le contexte. Exemple écarté volontairement : `facilite` ×3 — « il facilite leur mémorisation », verbe, **pas d'accent**. Exemple corrigé : `arme` → `armé` dans « être armé » (participe, pas le nom).
+**Décisions au cas par cas, jamais en bloc** : les formes ambiguës (accent ou non) sont tranchées par le contexte. Exemple écarté volontairement : `facilite` ×3 — les trois contextes servis sont **le verbe** (« il facilite leur mémorisation », « facilite leur reconnaissance », « facilite la prise de connaissance ») : **pas d'accent**. Exemple corrigé : `arme` → `armé` dans « être armé » (participe, pas le nom).
 
-### Ce qui est posé — 95 remplacements sur 32 lignes
+### Résidu fermé le 07/10 — les libellés de catégorie
+
+Cinq **libellés de catégorie** sont rendus sur l'accueil et la page Actus, avec leur lien de filtre. Deux d'entre eux étaient des mots français sans accent. Ils vivent dans l'EAV (App 52 News, entités de catégorie), attributs **`Name`** (affichage) et **`PageTitle`** (titre d'onglet) — le troisième, **`UrlKey`**, est le **slug d'URL** et n'a **pas** été touché.
+
+| Id | Entité | Attribut | Avant | Après |
+|---|---|---|---|---|
+| V23207 | 10078 | `Name` | `Video` | `Vidéo` |
+| V23208 | 10078 | `PageTitle` | `Video` | `Vidéo` |
+| V27735 | 11896 | `Name` | `Evolution` | `Évolution` |
+| V27736 | 11896 | `PageTitle` | `Evolution` | `Évolution` |
+| V23209 · V27737 | — | **`UrlKey`** | `video` · `evolution` | **inchangés** (le filtre `?category=video` continue de fonctionner) |
+
+**Pourquoi le slug n'est pas touché** : le lien servi est `?category=video` en minuscules alors que le libellé est `Video` — le filtre porte donc sur `UrlKey`, pas sur `Name`. Accentuer la clé aurait cassé les liens existants sans rien apporter.
+
+**Contrôle** : les 5 libellés servis sont désormais `À l'affiche`, `Sorties`, `Évènements`, `Vidéo`, `Évolution` · **0** libellé nu (`>Video<`, `>Evolution<`) dans le HTML servi · les deux filtres rendent **le même nombre d'articles qu'avant** (2 pour `video`, 1 pour `evolution`) · `UrlKey` relu en base, inchangé.
+
+### Ce qui est posé — 95 remplacements sur 32 lignes, plus 4 libellés de catégorie
 
 `~` = espace insécable. Tailles = caractères, avant → après.
 
@@ -255,4 +271,4 @@ Sur l'article « Interview des co-créateurs », les liens « classification de 
 
 ---
 
-*v3 (07/10, po-2023) : le manifeste devient la **trace de tout ce qui est posé** — grains B, L (2 passes, 95 remplacements détaillés ligne par ligne), H, I, J, K, A, M, N et O, chacun avec sa date et son entité. Les mentions « décision owner » sur la typographie sont retirées (la règle s'applique sans arbitrage) ; les grains C, D et E renvoient à leurs mesures ; l'incident de dump du 06/10 est consigné. v2 (06/10) : carte de stockage EAV (entité + attribut par correction), périmètre corrigé (11-16 vivent dans les articles Actus détail ; 4 = seul le É manque ; 12 à re-valider pour l'accord de l'article), et signalement de 3 coquilles adjacentes.*
+*v3 (07/10, po-2023) : le manifeste devient la **trace de tout ce qui est posé** — grains B, L (3 passes : 95 remplacements détaillés ligne par ligne + 4 libellés de catégorie), H, I, J, K, A, M, N et O, chacun avec sa date et son entité. Les mentions « décision owner » sur la typographie sont retirées (la règle s'applique sans arbitrage) ; les grains C, D et E renvoient à leurs mesures ; l'incident de dump du 06/10 est consigné. v2 (06/10) : carte de stockage EAV (entité + attribut par correction), périmètre corrigé (11-16 vivent dans les articles Actus détail ; 4 = seul le É manque ; 12 à re-valider pour l'accord de l'article), et signalement de 3 coquilles adjacentes.*
