@@ -753,14 +753,14 @@ LE LOGICIEL EST FOURNI "EN L'ÉTAT" SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU IM
   </data>
   <data name="MESSAGE_PORTAL_PRIVACY.Text" xml:space="preserve">
     <value xml:space="preserve">&lt;div style="padding: 0px 15px 0px 20px"&gt;&lt;h1 align="center"&gt;
-Déclaration de confidentialité sur le site :&lt;/h1&gt;
+Déclaration de confidentialité sur le site :&lt;/h1&gt;
 	&lt;h1 align="center"&gt;
 [Portal:PortalName]&lt;/h1&gt;&lt;p align="left"&gt;
-	&lt;a name="AAAA"&gt;&lt;b&gt;Date de dernière mise&lt;/b&gt;&lt;/a&gt; : le 30/01/2005&lt;/p&gt;
+	&lt;a name="AAAA"&gt;&lt;b&gt;Date de dernière mise&lt;/b&gt;&lt;/a&gt; : le 30/01/2005&lt;/p&gt;
 	&lt;p align="justify"&gt;
 	Sur le site [Portal:PortalName] (si après dénommé le &amp;quot;Site&amp;quot;), nous nous 
 	attachons à protéger vos données personnelles. Cette déclaration de 
-	confidentialité s’applique uniquement à ce site ; elle ne peut pas s&amp;#8217;appliquer à d&amp;#8217;autres sites, 
+	confidentialité s’applique uniquement à ce site ; elle ne peut pas s&amp;#8217;appliquer à d&amp;#8217;autres sites, 
 	en ligne ou non, ni à d&amp;#8217;autres produits ou services. En accédant au Site, 
 	vous acceptez l'enregistrement de vos informations et les conditions 
 	d'utilisation décrites dans cette déclaration de confidentialité. &lt;/p&gt;
@@ -825,7 +825,7 @@ Déclaration de confidentialité sur le site :&lt;/h1&gt;
 	&lt;p align="justify"&gt;
 	Nous pouvons utiliser vos informations personnelles pour vous faire parvenir 
 	des informations importantes sur le produit ou le service que vous utilisez.&lt;/p&gt;&lt;p align="justify"&gt;Nous combinons les données de visites du site avec des données 
-	démographiques anonymes dans le but d’effectuer des recherches ; les volumes 
+	démographiques anonymes dans le but d’effectuer des recherches ; les volumes 
 	d’informations obtenus sont utilisés de manière à vous fournir le contenu 
 	que vous attendez. Dans certaines zones d’accès limité de notre Site, avec votre accord, nous 
 	combinerons les données de visite du site avec vos données personnelles de 
@@ -976,7 +976,7 @@ Déclaration de confidentialité sur le site :&lt;/h1&gt;
   </data>
   <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
     <value xml:space="preserve">&lt;div style="padding: 0px 15px 0px 20px"&gt;
-	&lt;P align=left&gt;&lt;STRONG&gt;MENTIONS LEGALES :&lt;/STRONG&gt;&lt;/P&gt;
+	&lt;P align=left&gt;&lt;STRONG&gt;MENTIONS LÉGALES :&lt;/STRONG&gt;&lt;/P&gt;
 &lt;P align=center&gt;&lt;STRONG&gt;IDENTIFICATION DU SITE&lt;br&gt;
 &lt;/STRONG&gt;Les informations suivantes sont fournies en vertu de l&amp;#146;Article 
 6 de LOI n° 2004-575 du 21 juin 2004
@@ -985,7 +985,7 @@ pour la&lt;br&gt;
 Numérique&lt;/b&gt;&lt;br&gt;
 (&lt;a target="_blank" href="http://www.legifrance.gouv.fr/affichTexte.do;jsessionid=82B8753F7B5E01BDD97D7DC3B1593F8D.tpdjo09v_2?cidTexte=JORFTEXT000000801164&amp;amp;dateTexte=20080116"&gt;Accéder 
 au texte de loi en vigueur&lt;/a&gt;) &lt;/P&gt;
-&lt;P align=center&gt;&lt;B&gt;Le site Internet &amp;quot;[Portal:PortalName]&amp;quot; est édité par :&lt;/B&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;B&gt;Le site Internet &amp;quot;[Portal:PortalName]&amp;quot; est édité par :&lt;/B&gt;&lt;/P&gt;
 &lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;Vous devez indiquer les 
 		informations relatives au propriétaire du site en éditant la ressource &amp;quot;MESSAGE_PORTAL_TERMS.Text&amp;quot; 
 		que vous trouverez en allant dans :&lt;br&gt;
@@ -1000,11 +1000,11 @@ au texte de loi en vigueur&lt;/a&gt;) &lt;/P&gt;
 Site&amp;quot;&lt;/STRONG&gt;&lt;/P&gt;
 &lt;P align=center&gt;
 (Propriétaire et exploitant du site &amp;quot;[Portal:PortalName]&amp;quot;)&lt;br&gt;&lt;/P&gt;
-&lt;p align="center"&gt;&lt;B&gt;Le site Internet &amp;quot;[Portal:PortalName]&amp;quot; est hébergé par :&lt;/B&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;B&gt;Le site Internet &amp;quot;[Portal:PortalName]&amp;quot; est hébergé par :&lt;/B&gt;&lt;/p&gt;
 &lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;Vous devez donner les coordonnées de l'hébergeur du site.&lt;/em&gt;&lt;/div&gt;
 &lt;p align="center"&gt;&lt;b&gt;ci-après dénommé &amp;quot;Hébergeur&amp;quot;&lt;/b&gt;&lt;/p&gt;
 	&lt;p align="center"&gt;&amp;nbsp;&lt;/p&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;ACCEPTATION DES CONDITIONS INHERENTES À L&amp;#146;UTILISATION &lt;/STRONG&gt;&lt;/P&gt;
+&lt;P align=left&gt;&lt;STRONG&gt;ACCEPTATION DES CONDITIONS INHÉRENTES À L&amp;#146;UTILISATION &lt;/STRONG&gt;&lt;/P&gt;
 &lt;P align=justify&gt;L&amp;#39;Editeur du Site détient et exploite ce site. Son 
 utilisation implique que vous acceptez l’ensemble des termes, conditions et 
 notifications contenus et cités dans ce document (les «conditions 
