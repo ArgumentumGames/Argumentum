@@ -116,9 +116,16 @@ def parse_rows(text, pk_col):
     return rows
 
 
-def diff_deck(ref_base, ref_head, deck):
-    base = parse_rows(git_show(ref_base, deck["file"]), deck["pk"])
-    head = parse_rows(git_show(ref_head, deck["file"]), deck["pk"])
+def diff_deck_rows(base, head, deck):
+    """Comparaison pure de deux jeux de rangées déjà lues — AUCUNE lecture git.
+
+    C'est LE chemin de production : `diff_deck` lit les deux révisions puis
+    l'appelle, et le `--self-test` l'appelle directement sur ses fixtures. Un
+    self-test qui **recopie** cette logique au lieu de l'appeler ne valide que sa
+    copie — celle-ci avait divergé sur deux discriminants (`is_card(h) or
+    is_card(b)` vs tête seule ; cellules comptées sous la garde vs hors d'elle),
+    et son assertion passait *grâce à* l'écart. Mesuré les 08-09/10/2026.
+    """
     # cartes = rangées porteuses (discriminant census) dans l'un ou l'autre
     def is_card(row):
         if not deck["card_col"]:
@@ -150,14 +157,29 @@ def diff_deck(ref_base, ref_head, deck):
             "base_rows": len(base), "head_rows": len(head)}
 
 
+def diff_deck(ref_base, ref_head, deck):
+    """Lit les deux révisions (git) puis délègue la comparaison à `diff_deck_rows`."""
+    base = parse_rows(git_show(ref_base, deck["file"]), deck["pk"])
+    head = parse_rows(git_show(ref_head, deck["file"]), deck["pk"])
+    return diff_deck_rows(base, head, deck)
+
+
 def self_test():
     """Mutations falsifiantes sur CSV de fixture — aucun dépôt requis pour la logique.
+
+    ⚠️ Les points 2 à 5 exercent **`diff_deck_rows`**, le chemin de production :
+    le self-test ne recopie **aucune** logique. Il l'a fait jusqu'au 09/10/2026, et
+    sa copie avait divergé sur deux discriminants — ses assertions passaient alors
+    *grâce à* l'écart.
 
     1. CLASSIFICATION : une cellule _es -> espagnol ; une FR explicite Scenarii -> fr ;
        une colonne structurelle (carte/nom_vulgarisé) -> ignorée.
     2. DIFF          : une cellule changée -> exactement 1 carte, 1 langue, 1 champ.
     3. TEMOIN        : rangée intacte -> absente de tout listing.
-    4. DISCRIMINANT  : rangée sans `carte` changée -> cellule comptée, carte NON listée.
+    4. DISCRIMINANT  : rangée sans `carte` changée -> ni cellule ni carte comptée
+                       (sémantique production ; la copie, elle, comptait la cellule).
+    5. DISCRIMINANT  : « carte » = porteuse en BASE **ou** en TÊTE — une rangée dont
+                       la tête a vidé `carte` reste comptée (la copie lisait la tête seule).
     """
     import tempfile
     import os
@@ -199,29 +221,32 @@ def self_test():
             paths[tag] = p
         b = parse_rows(open(paths["b"], encoding="utf-8-sig").read(), fal["pk"])
         h = parse_rows(open(paths["h"], encoding="utf-8-sig").read(), fal["pk"])
-        # diff inline (même logique que diff_deck, sans git)
-        cells = defaultdict(int); cards = defaultdict(set); detail = {}
-        for pk in sorted(set(b) | set(h)):
-            rb, rh = b.get(pk), h.get(pk)
-            if not rb or not rh:
-                continue
-            card = bool((rh.get(fal["card_col"]) or "").strip())
-            for col in rb:
-                if col not in rh or rb[col] == rh.get(col):
-                    continue
-                lang = lang_of_column(fal, col)
-                if not lang:
-                    continue
-                cells[lang] += 1
-                if card:
-                    cards[lang].add(pk)
-                    detail.setdefault(lang, {}).setdefault(pk, []).append(field_label(col, lang))
-        assert_(cells == {"es": 1, "fr": 1} or cells == {"es": 1}, "cellules comptées (es=1 ; fr selon fixture ancre)",
-                f"cells={dict(cells)}")
+        # LE CHEMIN DE PRODUCTION : les fixtures passent par la fonction que le
+        # rapport utilise réellement. Recopier la logique ici validerait une copie.
+        res = diff_deck_rows(b, h, fal)
+        cells, cards, detail = res["cells"], res["cards"], res["detail"]
+        # L'assertion qui casse si l'on ressort le comptage des cellules de la garde.
+        # La version antérieure tolérait `{"es":1,"fr":1}` en alternative (« ou ») :
+        # elle ne pouvait donc PAS échouer sur ce point.
+        assert_(cells == {"es": 1},
+                "cellules = {'es': 1} seul : rangée carte comptée, rangée SANS carte ignorée",
+                f"cells={cells}")
         assert_("1" in cards.get("es", []), "carte 1 listée en es")
         assert_("2" not in cards.get("es", []) and "2" not in cards.get("fr", []), "rangée 2 : ancre FR mutée = structurelle, pas listée")
-        assert_("3" not in {p for v in cards.values() for p in v}, "discriminant : rangée sans carte comptée en cellules mais pas en cartes")
+        assert_("3" not in {p for v in cards.values() for p in v}, "rangée sans carte absente des deux listings")
         assert_(detail.get("es", {}).get("1") == ["texte"], f"champ affiché = 'texte' (lu {detail.get('es', {}).get('1')})")
+
+    print("== 5. discriminant « carte » : porteuse en BASE **ou** en TÊTE")
+    hdr = "PK,path,carte,nom_vulgarisé,text_fr,text_es\n"
+    b2 = parse_rows(hdr + "4,4.1,oui,Porteuse,C4,D4\n", fal["pk"])
+    h2 = parse_rows(hdr + "4,4.1,,Porteuse,C4,D4-mute\n", fal["pk"])
+    r2 = diff_deck_rows(b2, h2, fal)
+    assert_(r2["cells"] == {"es": 1},
+            "cellule comptée : la rangée était porteuse en BASE",
+            f"cells={r2['cells']}")
+    assert_("4" in r2["cards"].get("es", []),
+            "carte 4 listée : porteuse en base, même si la tête a vidé `carte`",
+            f"cards={r2['cards']}")
 
     print("SELF-TEST " + ("PASS" if ok else "FAIL"))
     return ok
