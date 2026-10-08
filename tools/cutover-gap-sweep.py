@@ -20,6 +20,10 @@ Methode
      - les deux < 400                  -> sain
      - demande par un hote et en echec CHEZ LUI -> CASSE_CHEZ_LE_DEMANDEUR
      - tout le reste                   -> indetermine
+5. Chaque ressource est rattachee aux pages qui la referencent (``referenced_by``,
+   par hote).  Sans cette moitie, le verdict ci-dessus est inverifiable : un 404
+   sur un chemin de DOSSIER, un ``<a href>`` casse et une URL construite par JS
+   se ressemblent au statut pres, et n'ont pas la meme gravite.
 
 ⚠️ Deux angles morts de la comparaison inter-hotes, mesures le 08/10/2026 (grain
 L-login, #1781) — le crawl COLLECTE la provenance, les verdicts ne s'en servaient
@@ -130,10 +134,11 @@ def fetch(session: requests.Session, url: str, *, bust: bool, timeout: int):
         return exc
 
 
-def crawl(root: str, label: str, session: requests.Session, args) -> tuple[dict, set]:
-    """BFS depuis ``/``.  Renvoie (pages, ressources)."""
+def crawl(root: str, label: str, session: requests.Session, args) -> tuple[dict, set, dict]:
+    """BFS depuis ``/``.  Renvoie (pages, ressources, provenance ressource -> pages)."""
     pages: dict[str, dict] = {}
     resources: set[str] = set()
+    sources: dict[str, set[str]] = {}
     host = urlparse(root).netloc
     queue = deque([(root + "/", 0)])
     seen = {"/"}
@@ -170,18 +175,19 @@ def crawl(root: str, label: str, session: requests.Session, args) -> tuple[dict,
         for ref in extract_resources(resp.text, resp.url):
             if urlparse(ref).netloc != host:
                 continue
-            resources.add(norm(ref))
+            ref_key = norm(ref)
+            resources.add(ref_key)
+            sources.setdefault(ref_key, set()).add(path)
             if depth + 1 <= args.max_depth and not SKIP_CRAWL.search(urlparse(ref).path):
-                candidate = norm(ref)
-                if candidate not in seen:
-                    seen.add(candidate)
+                if ref_key not in seen:
+                    seen.add(ref_key)
                     queue.append((urljoin(root, ref), depth + 1))
         time.sleep(args.sleep)
 
     sys.stderr.write(
         f"  [{label}] TERMINE : {len(pages)} pages, {len(resources)} ressources\n"
     )
-    return pages, resources
+    return pages, resources, sources
 
 
 def classify(path: str, paths_by_host: dict[str, set[str]], row: dict) -> tuple[str, list[str]]:
@@ -287,17 +293,20 @@ def main(argv: list[str] | None = None) -> int:
 
     # --- crawl ---------------------------------------------------------------
     paths_by_host: dict[str, set[str]] = {}
+    sources_by_host: dict[str, dict[str, set[str]]] = {}
     for label, root in hosts.items():
         sys.stderr.write(f"[crawl] {label} <- {root}\n")
         sys.stderr.flush()
-        pages, resources = crawl(root, label, sessions[label], args)
+        pages, resources, sources = crawl(root, label, sessions[label], args)
         report["crawl"][label] = {
             "pages": pages,
             "n_pages": len(pages),
             "n_resources": len(resources),
             "resources": sorted(resources),
+            "sources": {key: sorted(value) for key, value in sorted(sources.items())},
         }
         paths_by_host[label] = set(pages) | resources
+        sources_by_host[label] = sources
 
     # --- sonde de l'union des chemins, des deux cotes ------------------------
     union = sorted(paths_by_host["prod"] | paths_by_host["preprod"])
@@ -320,6 +329,13 @@ def main(argv: list[str] | None = None) -> int:
         row["broken_on"] = broken_on
         row["in_prod_crawl"] = path in paths_by_host["prod"]
         row["in_preprod_crawl"] = path in paths_by_host["preprod"]
+        # Qui rend ce chemin : distingue un lien casse d'un chemin de dossier ou
+        # d'une URL construite par JS (cf. en-tete du module, etape 5).
+        row["referenced_by"] = {
+            label: sorted(sources_by_host[label][path])
+            for label in hosts
+            if path in sources_by_host[label]
+        }
         verdicts[path] = row
 
     report["verdicts"] = verdicts
