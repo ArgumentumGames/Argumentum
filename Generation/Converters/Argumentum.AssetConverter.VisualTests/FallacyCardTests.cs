@@ -20,7 +20,8 @@ namespace Argumentum.AssetConverter.VisualTests
     /// 1 carte* test, but it relied on the network (CardPen local IIS), Chromium, and a
     /// CardPen template loaded by name. Every link in that chain was a *vector for a crash*,
     /// not a *control*: the very incident that triggered #1067 (Verify.ImageSharp version
-    /// conflict, fixed in #1069 / PR #1069 by swapping to SixLabors.ImageSharp) blew up
+    /// conflict, fixed in #1069 / PR #1069 by swapping to SixLabors.ImageSharp — itself since
+    /// removed again by #1809, 2026-10-08, which migrated the harness to Magick.NET) blew up
     /// precisely here.
     /// </para>
     /// <para>
