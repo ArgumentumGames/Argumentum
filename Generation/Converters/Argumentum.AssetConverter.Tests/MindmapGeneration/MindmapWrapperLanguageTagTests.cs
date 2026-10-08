@@ -10,11 +10,11 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 {
     /// <summary>
-    /// #457 grain T4a — the mind-map HTML wrappers must declare their OWN language on
-    /// <c>&lt;html lang="..."&gt;</c>.
+    /// #457 grains T4a + T4b — the mind-map HTML wrappers must declare their OWN language, writing
+    /// direction and title, in the three head locations that were frozen to English.
     ///
-    /// <para><b>The measured defect.</b> Both committed templates (<c>included.html</c>,
-    /// <c>external.html</c>) hardcoded <c>&lt;html lang="en"&gt;</c>, and
+    /// <para><b>The measured defect (T4a).</b> Both committed templates
+    /// (<c>included.html</c>, <c>external.html</c>) hardcoded <c>&lt;html lang="en"&gt;</c>, and
     /// <see cref="MindMapHtmlWrapper.FormatWrapper"/> had no language substitution at all — the
     /// <c>language</c> argument reached <c>MindMapSvgWrapperWriter</c> and was consumed only by
     /// <c>DocumentName.Replace("[LANGUAGE]", language)</c>. Consequence on the committed tree:
@@ -23,19 +23,17 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
     /// inlined node text is Arabic and whose root element says <c>lang="en"</c> misdirects screen
     /// readers, spell-checking, hyphenation and CJK glyph selection (Han unification).</para>
     ///
-    /// <para><b>Why the wrappers can be verified without the pipeline.</b> A committed wrapper is
-    /// exactly <c>FormatWrapper(template, svgPath, svgContent, language)</c> — measured
-    /// byte-for-byte on all 34 <c>&lt;lang&gt;/</c> files before the fix. This organ therefore
-    /// re-derives each wrapper IN MEMORY from the committed template and asserts the on-disk bytes
-    /// match, which pins the artefact and the generator together with no FreeMind, no Playwright
-    /// and no pipeline run.</para>
+    /// <para><b>The neighbouring defect (T4b).</b> The same templates also froze
+    /// <c>&lt;title&gt;Taxonomy Mind Map&lt;/title&gt;</c>, so all 36 wrappers titled themselves in
+    /// English, and no wrapper declared a writing direction at all — the two RTL corpus languages
+    /// (ar, fa) rendered left-to-right. Both were reported at the T4a verdict and fixed here.</para>
     ///
-    /// <para><b>Scope declared.</b> This organ covers <c>lang</c> only. Two neighbouring items of
-    /// the same grain are deliberately NOT covered here: <c>&lt;title&gt;</c> still reads
-    /// "Taxonomy Mind Map" in all 8 languages (fixing it needs eight authored strings — a
-    /// translation act, not a mechanical one) and <c>dir="rtl"</c> is still absent for ar/fa
-    /// (adding it changes layout, so it awaits ai-01's visual verdict). Neither is silently
-    /// assumed correct.</para>
+    /// <para><b>Why the wrappers can be verified without the pipeline.</b> A committed wrapper is
+    /// exactly <c>FormatWrapper(template, svgPath, svgContent, language, title)</c> — measured
+    /// byte-for-byte on all 34 <c>&lt;lang&gt;/</c> files before each fix. This organ re-derives each
+    /// wrapper IN MEMORY from the committed template plus the title the creator config declares, and
+    /// asserts the on-disk bytes match, which pins artefact, generator and config together with no
+    /// FreeMind, no Playwright and no pipeline run.</para>
     /// </summary>
     public class MindmapWrapperLanguageTagTests
     {
@@ -47,11 +45,80 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         private static readonly Regex HtmlLangRegex =
             new(@"<html[^>]*\blang=""(?<lang>[^""]*)""", RegexOptions.Compiled);
 
+        private static readonly Regex HtmlDirRegex =
+            new(@"<html[^>]*\bdir=""(?<dir>[^""]*)""", RegexOptions.Compiled);
+
+        private static readonly Regex TitleRegex =
+            new(@"<title>(?<title>.*?)</title>", RegexOptions.Compiled | RegexOptions.Singleline);
+
         private static readonly Regex ObjectDataRegex =
             new(@"<object[^>]*\bdata=""(?<path>[^""]*)""", RegexOptions.Compiled);
 
-        /// <summary>A committed wrapper paired with everything needed to re-derive it.</summary>
-        private readonly record struct Wrapper(string Path, string Lang, string TemplatePath, string SvgName, string? SvgContent);
+        /// <summary>
+        /// A committed wrapper paired with everything needed to re-derive it. <see cref="SvgName"/> is
+        /// both the <c>[SVGPATH]</c> value of the external variant and the key into the declared
+        /// titles; <see cref="Title"/> is the title the creator config declares for this language.
+        /// </summary>
+        private readonly record struct Wrapper(
+            string Path, string Lang, string SvgName, string TemplatePath, string? SvgContent, string Title);
+
+        /// <summary>
+        /// The declared wrapper titles, keyed by the wrapper's own <c>DocumentName</c> pattern
+        /// (<c>Fallacies_[LANGUAGE].html</c> and friends) — the <c>[LANGUAGE]</c> form, not a resolved
+        /// file name, because one document config generates all eight languages.
+        ///
+        /// <para>⚠️ Deliberately NOT keyed by the parent document name (<c>Fallacies_fr.mm</c>): that
+        /// name carries the <b>source</b> language, so a key built from it resolves only for French
+        /// and reports every other language as undeclared — measured, and it is what made this organ
+        /// fail on the first run.</para>
+        ///
+        /// <para>Read from the creator configs, so this organ pins the artefact against the very table
+        /// the production writer consumes; a second hand-written copy of the titles here would drift
+        /// silently.</para>
+        /// </summary>
+        private static Dictionary<string, Dictionary<string, string>> WrapperTitlesByPattern()
+        {
+            var index = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+
+            void Index(IEnumerable<SVGFreemindMap> maps)
+            {
+                foreach (var map in maps)
+                {
+                    if (map.HtmlWrapperTitles.Count == 0) continue;
+                    foreach (var wrapper in map.HtmlWrappers)
+                        index[wrapper.DocumentName] = map.HtmlWrapperTitles;
+                }
+            }
+
+            foreach (var doc in new FallacyMindMapCreatorConfig().DocumentConfigs)
+                Index(doc.SVGMaps);
+            foreach (var doc in new VirtueMindMapCreatorConfig().DocumentConfigs)
+                Index(doc.SVGMaps);
+
+            return index;
+        }
+
+        /// <summary>
+        /// The <c>[LANGUAGE]</c> pattern a committed wrapper file name was generated from. Derived by
+        /// substituting the language back out, with the same two shapes the configs declare — a
+        /// wrapper whose name matches neither shape fails loudly rather than silently resolving to a
+        /// table it does not belong to.
+        /// </summary>
+        private static string WrapperPatternOf(string fileName, string lang)
+        {
+            foreach (var candidate in new[]
+                     {
+                         fileName.Replace("_" + lang + "_ext.html", "_[LANGUAGE]_ext.html"),
+                         fileName.Replace("_" + lang + ".html", "_[LANGUAGE].html"),
+                     })
+            {
+                if (candidate != fileName && candidate.Contains("[LANGUAGE]")) return candidate;
+            }
+
+            throw new InvalidOperationException(
+                $"cannot derive the wrapper-name pattern of '{fileName}' for language '{lang}': neither " +
+                $"the '_{lang}.html' nor the '_{lang}_ext.html' shape matches");
+        }
 
         /// <summary>
         /// Every committed wrapper under <c>Cards/Fallacies/Mindmaps/&lt;lang&gt;/</c>, both variants.
@@ -64,6 +131,19 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         private static List<Wrapper> CommittedWrappers()
         {
             var result = new List<Wrapper>();
+            var titles = WrapperTitlesByPattern();
+
+            string TitleFor(string fileName, string lang, string wrapperPath)
+            {
+                var pattern = WrapperPatternOf(fileName, lang);
+                Assert.True(titles.ContainsKey(pattern),
+                    $"no creator config declares wrapper titles for '{pattern}' (needed by {wrapperPath}) — " +
+                    "either the config lost its HtmlWrapperTitles or this organ's addressing convention drifted");
+                var declared = MindMapHtmlWrapper.ResolveWrapperTitle(titles[pattern], lang);
+                Assert.False(string.IsNullOrWhiteSpace(declared),
+                    $"the creator config declares no usable title for '{lang}' on '{pattern}'");
+                return declared!;
+            }
 
             foreach (var langDir in Directory.EnumerateDirectories(MindmapDir).OrderBy(d => d, StringComparer.Ordinal))
             {
@@ -75,28 +155,35 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                     if (wrapperName is null) continue;
                     var wrapperPath = Path.Combine(langDir, wrapperName);
                     if (!File.Exists(wrapperPath)) continue;
-                    result.Add(new Wrapper(wrapperPath, lang, IncludedTemplatePath,
-                        Path.GetFileName(svg), File.ReadAllText(svg)));
+                    var svgName = Path.GetFileName(svg);
+                    result.Add(new Wrapper(wrapperPath, lang, svgName, IncludedTemplatePath,
+                        File.ReadAllText(svg), TitleFor(wrapperName, lang, wrapperPath)));
                 }
 
                 foreach (var extPath in Directory.EnumerateFiles(langDir, "*_ext.html").OrderBy(p => p, StringComparer.Ordinal))
                 {
                     var match = ObjectDataRegex.Match(File.ReadAllText(extPath));
                     if (!match.Success) continue;
-                    result.Add(new Wrapper(extPath, lang, ExternalTemplatePath, match.Groups["path"].Value, null));
+                    var svgName = match.Groups["path"].Value;
+                    result.Add(new Wrapper(extPath, lang, svgName, ExternalTemplatePath, null,
+                        TitleFor(Path.GetFileName(extPath), lang, extPath)));
                 }
             }
 
             return result;
         }
 
-        private static string DeclaredLang(string html)
+        private static string MatchOrFail(Regex regex, string html, string what)
         {
-            var match = HtmlLangRegex.Match(html);
+            var match = regex.Match(html);
             match.Success.Should().BeTrue(
-                "every committed wrapper must declare <html lang=\"...\"> — the element is the whole point of this organ");
-            return match.Groups["lang"].Value;
+                $"every committed wrapper must declare {what} — that declaration is the whole point of this organ");
+            return match.Groups[1].Value;
         }
+
+        private static string DeclaredLang(string html) => MatchOrFail(HtmlLangRegex, html, "<html lang=\"...\">");
+        private static string DeclaredDir(string html) => MatchOrFail(HtmlDirRegex, html, "<html ... dir=\"...\">");
+        private static string DeclaredTitle(string html) => MatchOrFail(TitleRegex, html, "<title>...</title>");
 
         /// <summary>First index at which two strings differ, plus a readable window around it.</summary>
         private static string FirstDivergence(string expected, string actual)
@@ -116,8 +203,16 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                    $"      actual  : ...{act}...";
         }
 
+        private static int CountInRange(string s, char low, char high)
+        {
+            var n = 0;
+            foreach (var c in s)
+                if (c >= low && c <= high) n++;
+            return n;
+        }
+
         [Fact]
-        public void BothTemplates_CarryTheLanguageToken_AndNoLongerHardcodeEnglish()
+        public void BothTemplates_CarryTheThreeHeadTokens_AndNoFrozenEnglish()
         {
             foreach (var templatePath in new[] { IncludedTemplatePath, ExternalTemplatePath })
             {
@@ -126,10 +221,65 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
                 template.Should().Contain("[LANGUAGE]",
                     $"{name} must carry the language token so each wrapper is written in its own language");
+                template.Should().Contain("[DIRECTION]",
+                    $"{name} must carry the direction token so each wrapper states its writing direction");
+                template.Should().Contain("[TITLE]",
+                    $"{name} must carry the title token so each wrapper titles itself in its own language");
                 template.Should().NotContain("lang=\"en\"",
                     $"{name} must not hardcode English — that hardcoded value is the T4a defect, " +
                     "and it is what made all 36 committed wrappers declare themselves English");
+                template.Should().NotContain("Taxonomy Mind Map",
+                    $"{name} must not keep the frozen English title — that literal is the T4b defect");
             }
+        }
+
+        /// <summary>
+        /// Anti-silent-fallback: every family must declare a title for all eight corpus languages.
+        /// <see cref="MindMapHtmlWrapper.ResolveWrapperTitle"/> degrades to French when a language is
+        /// missing — that degradation is warned about at runtime, but it must never be reachable on
+        /// the shipped corpus, so a missing line is a red test rather than a French title on a
+        /// Chinese page.
+        /// </summary>
+        [Fact]
+        public void EveryWrapperShippedOnDisk_HasATitleDeclaredForItsLanguage()
+        {
+            var titles = WrapperTitlesByPattern();
+
+            titles.Keys.Should().HaveCount(6,
+                "three wrapper documents ship two halves each (inlining + _ext), so six name patterns " +
+                "must resolve to a declared table — a lower count means a config lost its declaration");
+            titles.Values.Distinct().Should().HaveCount(3,
+                "three documents declare their own title table: the Fallacies map, the FR-only Fallacies " +
+                "cards map and the Virtues map");
+
+            // Deliberately scanned from the TREE rather than from the config: asking the config which
+            // languages it generates, then checking the config declares them, would be circular. The
+            // claim is the other way round — every wrapper that actually ships must be covered.
+            var scanned = 0;
+            var offenders = new List<string>();
+            foreach (var langDir in Directory.EnumerateDirectories(MindmapDir).OrderBy(d => d, StringComparer.Ordinal))
+            {
+                var lang = Path.GetFileName(langDir);
+                foreach (var file in Directory.EnumerateFiles(langDir, "*.html").OrderBy(p => p, StringComparer.Ordinal))
+                {
+                    scanned++;
+                    var name = Path.GetFileName(file);
+                    var pattern = WrapperPatternOf(name, lang);
+                    if (!titles.TryGetValue(pattern, out var table))
+                    {
+                        offenders.Add($"{lang}/{name}: pattern '{pattern}' has no declared title table");
+                        continue;
+                    }
+
+                    if (!MindMapHtmlWrapper.HasWrapperTitleFor(table, lang))
+                        offenders.Add($"{lang}/{name}: no title declared for '{lang}'");
+                }
+            }
+
+            scanned.Should().Be(34, "the tree ships 34 wrappers under the language directories");
+
+            offenders.Should().BeEmpty(
+                "a wrapper whose language has no declared title silently degrades to French via ResolveWrapperTitle");
         }
 
         [Fact]
@@ -152,11 +302,78 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "misdirects screen readers, hyphenation and CJK glyph selection");
         }
 
+        [Fact]
+        public void EveryCommittedWrapper_DeclaresItsWritingDirection()
+        {
+            var offenders = CommittedWrappers()
+                .Select(w => (Name: $"{w.Lang}/{Path.GetFileName(w.Path)}",
+                              Declared: DeclaredDir(File.ReadAllText(w.Path)),
+                              Expected: MindMapHtmlWrapper.DirectionFor(w.Lang)))
+                .Where(t => t.Declared != t.Expected)
+                .Select(t => $"{t.Name}: declares dir=\"{t.Declared}\" but should declare dir=\"{t.Expected}\"")
+                .ToList();
+
+            offenders.Should().BeEmpty(
+                "the two RTL corpus languages (ar, fa) rendered left-to-right in every committed wrapper " +
+                "before T4b; the direction is a property of the language and must be stated, not inherited");
+        }
+
         /// <summary>
-        /// The artefact pin: each committed wrapper must be byte-identical to what the fixed
-        /// generator produces from the committed template. This is what makes the tree state and the
-        /// generator state provably the same object — a hand-edited wrapper, or a template change
-        /// that was not re-derived onto the tree, fails here by name.
+        /// The title pin, in two halves. First the artefact must carry the title its creator config
+        /// declares (catching a hand-edited wrapper or a template change not re-derived onto the
+        /// tree). Then the title must actually be in its own language — a table filled with the
+        /// English string for all eight languages would satisfy the first half perfectly.
+        /// </summary>
+        [Fact]
+        public void EveryCommittedWrapper_CarriesItsDeclaredLocalizedTitle()
+        {
+            var offenders = new List<string>();
+            var englishTitles = new Dictionary<string, string>(StringComparer.Ordinal);
+
+            var wrappers = CommittedWrappers();
+            foreach (var w in wrappers.Where(w => w.Lang == "en"))
+                englishTitles[w.SvgName] = w.Title;
+
+            foreach (var wrapper in wrappers)
+            {
+                var name = $"{wrapper.Lang}/{Path.GetFileName(wrapper.Path)}";
+                var declared = DeclaredTitle(File.ReadAllText(wrapper.Path));
+
+                if (declared != wrapper.Title)
+                    offenders.Add($"{name}: title is \"{declared}\" but the config declares \"{wrapper.Title}\"");
+
+                if (wrapper.Lang == "en") continue;
+
+                if (englishTitles.TryGetValue(wrapper.SvgName, out var en) && declared == en)
+                    offenders.Add($"{name}: title is the English one (\"{en}\") — the wrapper is not localized");
+
+                switch (wrapper.Lang)
+                {
+                    case "ru" when CountInRange(declared, 'Ѐ', 'ӿ') == 0:
+                        offenders.Add($"{name}: title \"{declared}\" carries no Cyrillic");
+                        break;
+                    case "zh" when CountInRange(declared, '一', '鿿') == 0:
+                        offenders.Add($"{name}: title \"{declared}\" carries no CJK ideograph");
+                        break;
+                    case "ar" when CountInRange(declared, '؀', 'ۿ') == 0:
+                        offenders.Add($"{name}: title \"{declared}\" carries no Arabic-script letter");
+                        break;
+                    case "fa" when CountInRange(declared, '؀', 'ۿ') == 0:
+                        offenders.Add($"{name}: title \"{declared}\" carries no Arabic-script letter");
+                        break;
+                }
+            }
+
+            offenders.Should().BeEmpty(
+                "every wrapper must title itself in its own language; before T4b all 36 said " +
+                "\"Taxonomy Mind Map\" in English whatever their language");
+        }
+
+        /// <summary>
+        /// The artefact pin: each committed wrapper must be byte-identical to what the fixed generator
+        /// produces from the committed template plus the config-declared title. This is what makes the
+        /// tree state and the generator state provably the same object — a hand-edited wrapper, or a
+        /// template change that was not re-derived onto the tree, fails here by name.
         /// </summary>
         [Fact]
         public void EveryCommittedWrapper_IsByteIdenticalToTheGeneratorOutput()
@@ -169,7 +386,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                     File.ReadAllText(wrapper.TemplatePath),
                     wrapper.SvgName,
                     wrapper.SvgContent,
-                    wrapper.Lang);
+                    wrapper.Lang,
+                    wrapper.Title);
 
                 var actual = File.ReadAllText(wrapper.Path);
                 if (expected != actual)
@@ -180,31 +398,48 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             }
 
             offenders.Should().BeEmpty(
-                "a committed wrapper must equal FormatWrapper(template, svg, language) byte for byte — " +
-                "otherwise the tree carries a wrapper the generator would not reproduce");
+                "a committed wrapper must equal FormatWrapper(template, svg, language, title) byte for " +
+                "byte — otherwise the tree carries a wrapper the generator would not reproduce");
         }
 
         /// <summary>
-        /// Inverse control: the derivation check above must be able to FAIL. Without this, a check
-        /// that silently compared a file to itself would look identical to a passing one.
+        /// Inverse controls: the derivation check above must be able to FAIL, on each of the three
+        /// head tokens. Without this, a check that silently compared a file to itself would look
+        /// identical to a passing one.
         /// </summary>
         [Fact]
-        public void InverseControl_ADivergentLanguage_FailsTheDerivationCheck()
+        public void InverseControl_ADivergentHeadToken_FailsTheDerivationCheck()
         {
             var wrapper = CommittedWrappers().First(w => w.Lang == "fr" && w.SvgContent is not null);
             var includedTemplate = File.ReadAllText(IncludedTemplatePath);
 
-            var faithful = MindMapHtmlWrapper.FormatWrapper(
-                includedTemplate, wrapper.SvgName, wrapper.SvgContent, wrapper.Lang);
-            var forged = MindMapHtmlWrapper.FormatWrapper(
-                includedTemplate, wrapper.SvgName, wrapper.SvgContent, "en");
+            string Derive(string lang, string title) =>
+                MindMapHtmlWrapper.FormatWrapper(includedTemplate, wrapper.SvgName, wrapper.SvgContent, lang, title);
+
+            var faithful = Derive(wrapper.Lang, wrapper.Title);
 
             faithful.Should().Be(File.ReadAllText(wrapper.Path),
                 "pre-condition: this pair must be faithful, otherwise the control proves nothing");
-            forged.Should().NotBe(faithful,
+
+            var otherLang = Derive("en", wrapper.Title);
+            otherLang.Should().NotBe(faithful,
                 "re-deriving with another language MUST change the bytes — if it did not, the language " +
                 "token would be inert and this whole organ would be vacuous");
-            forged.Should().Contain("lang=\"en\"");
+            otherLang.Should().Contain("lang=\"en\"");
+            otherLang.Should().Contain("dir=\"ltr\"");
+
+            var otherTitle = Derive(wrapper.Lang, "Taxonomy Mind Map");
+            otherTitle.Should().NotBe(faithful,
+                "re-deriving with another title MUST change the bytes — if it did not, the title token " +
+                "would be inert and the T4b half of this organ would be vacuous");
+            otherTitle.Should().Contain("<title>Taxonomy Mind Map</title>");
+
+            var otherDirection = MindMapHtmlWrapper.FormatWrapper(
+                includedTemplate.Replace("dir=\"[DIRECTION]\"", "dir=\"[DIRECTION]\" "), // keep the shape, change nothing
+                wrapper.SvgName, wrapper.SvgContent, wrapper.Lang, wrapper.Title);
+            otherDirection.Should().NotBe(faithful,
+                "touching the template around the direction token must change the bytes, so the byte " +
+                "comparison is really reading the file and not a cached value");
         }
     }
 }

@@ -80,6 +80,19 @@ namespace Argumentum.AssetConverter.Mindmapper
 							WrapNodeByLink = false,
 							SetSVGNodeAttributes = true,
 							RemoveImages = true,
+							HtmlWrapperTitles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+							{
+								// #457 T4b: <title> = this map's own central topic (already localized in the sibling
+								// content.svg) + the untranslated brand suffix. Not retyped: derived from the SVG.
+								["fr"] = "Argument fallacieux \u2014 Argumentum",
+								["en"] = "Fallacy \u2014 Argumentum",
+								["ru"] = "\u0421\u043E\u0444\u0438\u0437\u043C\u044B (\u043B\u043E\u0436\u043D\u044B\u0435 \u0430\u0440\u0433\u0443\u043C\u0435\u043D\u0442\u044B) \u2014 Argumentum",
+								["pt"] = "Fal\u00E1cia \u2014 Argumentum",
+								["es"] = "Falacia \u2014 Argumentum",
+								["ar"] = "\u0627\u0644\u0633\u0641\u0633\u0637\u0629 \u2014 Argumentum",
+								["fa"] = "\u0628\u062D\u062B \u0648 \u062C\u062F\u0644 \u0633\u0641\u0633\u0637\u0647\u200C\u0622\u0645\u06CC\u0632 \u2014 Argumentum",
+								["zh"] = "\u8C2C\u8BBA \u2014 Argumentum",
+							},
 							HtmlWrappers = new List<DocumentConfig>(new[]
 							{
 								new DocumentConfig()
@@ -151,6 +164,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 							WrapNodeByLink = false,
 							SetSVGNodeAttributes = true,
 							RemoveImages = true,
+							HtmlWrapperTitles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+							{
+								// #457 T4b: <title> = this map's own central topic (already localized in the sibling
+								// content.svg) + the untranslated brand suffix. Not retyped: derived from the SVG.
+								["fr"] = "Argument fallacieux \u2014 Argumentum",
+							},
 							HtmlWrappers = new List<DocumentConfig>(new[]
 							{
 								new DocumentConfig()
