@@ -139,3 +139,57 @@ python tools/dnn_i18n/verify_game_rule_translations.py \
   write). See `684-translation-run-report.md` for the re-import mapping.
 - ❌ Does not modify `Cards/Rules/` CSV (game-content is a separate lane).
 - ❌ Does not declare a QA verdict — that's ai-01.
+
+---
+
+# #457 T1 — site-content pipeline (2sxc v21 export ⇄ CSV ⇄ import XML with dimensions)
+
+Bricks 1 and 2 of the site chain already existed (the committed export, and
+`translate_game_rules.py`). What did **not** exist was the **CSV pivot** and the **import XML
+carrying language dimensions** — the two the dispatch asks for. Both live in
+`site_content_pipeline.py`. Full detail, measurements and open items:
+[`docs/dnn-localization/457-t1-site-content-pipeline.md`](../../docs/dnn-localization/457-t1-site-content-pipeline.md).
+
+| Brick | What | Status |
+|---|---|---|
+| (1) 2sxc → JSON | committed export, app 60 | ✅ `release-validation/exports/DNN-Argumentum-export-2026-07-07/` |
+| (2) JSON → translations | `translate_game_rules.py` → `684-translations.json` | ✅ DoD-verified 0 violations (28 cells × 7 langs) |
+| **(3) JSON → CSV** | the pivot — a `key` plus `fr` plus the 7 target columns | 🆕 `site_content_pipeline.py to-csv` |
+| **(4) CSV → import XML** | one `<Entity>` per (Guid, Language) | 🆕 `site_content_pipeline.py to-xml` |
+
+## Files
+
+- `site_content_pipeline.py` — `to-csv` / `to-xml` / `self-test` / `list-cultures`.
+- `fixtures/one-entity-game-rule-import.xml` — the *"one entity before volume"* payload
+  ("L'école des menteurs", 8 culture blocks), consumed by
+  `Argumentum.AssetConverter.Tests/SiteContentImportXmlInteropTests.cs`.
+
+## Quick start
+
+```bash
+# export + committed translations -> pivot CSV (52 rows, 28 translated)
+python site_content_pipeline.py to-csv --translations \
+    ../../docs/dnn-localization/684-translations.json --out site-content.csv
+
+# CSV -> import XML for ONE entity (the dispatched proof), PROVISIONAL cultures
+python site_content_pipeline.py to-xml --csv site-content.csv \
+    --entity ae1edefa-6f1b-4593-8230-97fa1edf4f78 --unconfirmed-ok --out one-entity.xml
+
+# offline proof: 2 round-trips + controls, zero network, zero prod write
+python site_content_pipeline.py self-test        # also step [5/5] of test_roundtrip.py
+```
+
+## The dimension axis — attested vs unconfirmed
+
+The dialect expresses a language as one `<Entity>` block per (Guid, `Language`). Attested in
+this repository: **fr-FR** (dimensionId 4) and **en-US** (dimensionId 3). The other six culture
+codes are **not attested anywhere** — their 2sxc dimensions are not provisioned (#682 Path A).
+`to-xml` therefore **refuses** to emit them unless `--unconfirmed-ok` is passed, so a file
+whose culture codes were invented cannot ship silently. `list-cultures` prints the table.
+
+## What is proven, and what is NOT
+
+- ✅ **Proven offline**: the CSV carries the FR source byte-exactly (RT1), and the XML carries
+  every language cell byte-exactly across the dimension axis (RT2) — 17 checks, all named.
+- ❌ **Not proven, and claimed nowhere**: that 2sxc v21 *accepts* this XML on import. That is
+  the T1+I3 unknown and it is settled on the live portal, on one entity, before any volume.
