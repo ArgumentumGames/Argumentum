@@ -30,6 +30,15 @@ DB `PortalSettings.PageHeadText` rend). **Le volet 2a n'est plus « migrer les b
 2 pages ».** (Bruit d'instrument écarté : `G-S` matché une fois sur actus prod = regex sur un fragment de
 texte, pas un ID ; les IDs réels sont les deux ci-dessus.)
 
+⚠️ **Correction du 2026-10-08 — le « gap résiduel = 2 pages » ci-dessus est PÉRIMÉ, et l'item est clos.**
+Re-mesure en lecture seule (préprod *et* prod dans le même passage, cache-buster sur chaque sonde, témoin
+négatif 404/404 — voir `docs/site/1066-2a-ga4-remesure-2026-10-08.md`) : **`/terms` et `/privacy` portent
+`GTM-TZBQ57M` ×2 ET `G-VHLTL18PEW` ×2 sur la préprod**, valeur pour valeur identiques à la prod, et les 3
+entrées CSP `conditional` sont actives (`frame-src … googletagmanager.com`, `connect-src …
+region1.google-analytics.com`). ⇒ **Aucun correctif à poser, aucune fenêtre à consommer** : la cible du
+`Contrôle` de R4 est déjà atteinte. ⛔ La ligne « GTM sans `G-VHLTL18PEW` » de la table pivot ne doit plus
+servir à dispatcher ce geste.
+
 ---
 
 ## Le runbook — un geste, un contrôle, un rollback par item
@@ -75,7 +84,10 @@ texte, pas un ID ; les IDs réels sont les deux ci-dessus.)
   CSP runtime** (sonde navigateur : les 3 entrées `conditional` de PR #1065 doivent être actives —
   `region1.google-analytics.com` est injecté par GTM à l'exécution, invisible au curl).
 - **Rollback** : retirer la ligne ajoutée dans PageHeadText des 2 pages.
-- **État** : 7/9 mesuré ce jour ; les CSP conditional sont actives préprod (2c état 19/08).
+- **État** : ✅ **clos le 2026-10-08 par la mesure** — `/terms` et `/privacy` portent les deux IDs à parité avec la
+  prod, et les 3 entrées CSP `conditional` sont actives. ⛔ **Ne plus rejouer ce geste** : la cible du `Contrôle`
+  ci-dessus est **déjà atteinte** sur le site. La mention « 7/9 mesuré ce jour » datait du 22/09 (correction en
+  tête de document).
 
 ### R5 — Balayage 2c : méthode (rejouable J-1 du cutover)
 
