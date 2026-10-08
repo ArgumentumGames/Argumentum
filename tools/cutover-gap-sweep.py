@@ -116,7 +116,16 @@ def extract_resources(html: str, base: str) -> set[str]:
                 raw = element.get(name)
                 if not raw or raw.startswith(SKIP_SCHEME):
                     continue
-                found.add(urljoin(base, raw.split()[0]))
+                # ``srcset`` porte une liste de candidats (« url 1x, url 2x ») : on
+                # ne garde que le premier.  AILLEURS, NE PAS COUPER SUR L'ESPACE :
+                # un espace est legal dans un chemin servi tel quel, et le couper
+                # fabrique un chemin qui n'existe pas.  Mesure 08/10/2026 (#1066) :
+                # ``/Portals/1/Images/\\tgithub-mark.png`` (12 pages prod) et
+                # ``…/Content/Cours d'IA - Pyramide….png`` etaient tronques a
+                # l'espace -> 6 faux 404, dont 4 classes « casses chez le
+                # demandeur ».  L'instrument fabriquait ce qu'il denoncait.
+                candidate = raw.split()[0] if name == "srcset" else raw.strip()
+                found.add(urljoin(base, candidate))
     for css in re.findall(r"url\(\s*['\"]?([^'\")]+)['\"]?\s*\)", html, re.I):
         if css.startswith(("data:", "#")):
             continue
