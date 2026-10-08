@@ -116,7 +116,7 @@ namespace Argumentum.AssetConverter.VisualTests
             var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(
                 template,
                 svgRelativePath: svgFileName,
-                svgContent: svg);
+                svgContent: svg, lang);
 
             var wrapperPath = Path.Combine(_tempDir, $"included_{lang}.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
@@ -164,7 +164,7 @@ namespace Argumentum.AssetConverter.VisualTests
   </g>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "fr");
             var wrapperPath = Path.Combine(_tempDir, "included_synthetic_click.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 
@@ -224,7 +224,7 @@ namespace Argumentum.AssetConverter.VisualTests
             var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(
                 template,
                 svgRelativePath: svgFileName,
-                svgContent: string.Empty); // external variant ignores SVGCONTENT
+                svgContent: string.Empty, lang); // external variant ignores SVGCONTENT
 
             // Stage both the wrapper AND the SVG side-by-side in the temp dir, mirroring
             // what the pipeline does when writing Cards/Fallacies/Mindmaps/{lang}/.
@@ -260,7 +260,7 @@ namespace Argumentum.AssetConverter.VisualTests
   <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "fr");
             var wrapperPath = Path.Combine(_tempDir, "wheel_zoom_test.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 
@@ -316,7 +316,7 @@ namespace Argumentum.AssetConverter.VisualTests
   <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "fr");
             var wrapperPath = Path.Combine(_tempDir, "keyboard_zoom_test.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 
@@ -371,7 +371,7 @@ namespace Argumentum.AssetConverter.VisualTests
   <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "fr");
             var wrapperPath = Path.Combine(_tempDir, "zoom_clamp_test.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 

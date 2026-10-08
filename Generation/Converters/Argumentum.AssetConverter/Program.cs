@@ -535,12 +535,12 @@ namespace Argumentum.AssetConverter
 							var contentSvg = await File.ReadAllTextAsync(contentSvgPath);
 
 							// Included (inline SVG) wrapper.
-							var includedHtml = MindMapHtmlWrapper.FormatWrapper(includedTemplate, extSvgRelative, contentSvg);
+							var includedHtml = MindMapHtmlWrapper.FormatWrapper(includedTemplate, extSvgRelative, contentSvg, lang);
 							var includedOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}.html");
 							await File.WriteAllTextAsync(includedOutPath, includedHtml, System.Text.Encoding.UTF8);
 
 							// External (<object data="...">) wrapper.
-							var externalHtml = MindMapHtmlWrapper.FormatWrapper(externalTemplate, extSvgRelative, contentSvg);
+							var externalHtml = MindMapHtmlWrapper.FormatWrapper(externalTemplate, extSvgRelative, contentSvg, lang);
 							var externalOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}_ext.html");
 							await File.WriteAllTextAsync(externalOutPath, externalHtml, System.Text.Encoding.UTF8);
 
