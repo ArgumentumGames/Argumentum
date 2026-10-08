@@ -45,7 +45,9 @@ namespace Argumentum.AssetConverter.Mindmapper
 					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Path.GetDirectoryName(htmlFileName));
 
 					// Issue #196: single helper, tested separately (see MindMapHtmlWrapperTests).
-					htmlTemplate = MindMapHtmlWrapper.FormatWrapper(htmlTemplate, svgRelativePath, await svgContent());
+					// #457 T4a: language is now consumed by the helper too (the <html lang> token) —
+					// before that it only reached DocumentName, so every wrapper declared lang="en".
+					htmlTemplate = MindMapHtmlWrapper.FormatWrapper(htmlTemplate, svgRelativePath, await svgContent(), language);
 
 					File.WriteAllText(htmlFileName, htmlTemplate, Encoding.UTF8);
 					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");

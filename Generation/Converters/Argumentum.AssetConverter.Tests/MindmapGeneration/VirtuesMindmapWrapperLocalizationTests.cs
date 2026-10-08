@@ -90,7 +90,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var wrapper = MindMapHtmlWrapper.FormatWrapper(
                 template,
                 svgRelativePath: $"Argumentum_Virtues_MindMap_{lang}.content.svg",
-                svgContent: svg);
+                svgContent: svg,
+                language: lang);
 
             // The two placeholder tokens must both be consumed (no partial substitution).
             Assert.DoesNotContain("[SVGCONTENT]", wrapper);
@@ -145,7 +146,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var template = await File.ReadAllTextAsync(IncludedTemplatePath);
             var svg = await File.ReadAllTextAsync(svgPath);
 
-            var wrapper = MindMapHtmlWrapper.FormatWrapper(template, "x.svg", svg);
+            var wrapper = MindMapHtmlWrapper.FormatWrapper(template, "x.svg", svg, "en");
 
             Assert.Contains("Intellectual honesty", wrapper);
             Assert.DoesNotContain(FrenchFrozenMarker, wrapper);
