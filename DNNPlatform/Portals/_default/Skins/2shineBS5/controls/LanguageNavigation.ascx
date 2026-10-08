@@ -18,15 +18,15 @@
 
     bool ShowLanguageSwitchForLanguage(string language)
     {
+        // Shared-pages model (portal Content Localization disabled): pages carry no per-culture tab,
+        // so the switch shows whenever the language is enabled for the portal and the current page is viewable.
         var locale = new LocaleController().GetLocale(PortalSettings.Current.PortalId, language);
+        if (locale == null)
+            return false;
+
         var permissionProvider = new DotNetNuke.Security.Permissions.PermissionProvider();
-        var defaultLanguageTab = PortalSettings.Current.ActiveTab.IsDefaultLanguage ? PortalSettings.Current.ActiveTab : PortalSettings.Current.ActiveTab.DefaultLanguageTab;
-        var tabForLanguage = new TabController().GetTabByCulture(defaultLanguageTab.TabID, PortalSettings.Current.PortalId, locale);
-
-        if (tabForLanguage != null && permissionProvider.HasTabPermission(permissionProvider.GetTabPermissions(tabForLanguage.TabID, PortalSettings.Current.PortalId), "VIEW"))
-            return true;
-
-        return false;
+        var tab = PortalSettings.Current.ActiveTab;
+        return permissionProvider.HasTabPermission(permissionProvider.GetTabPermissions(tab.TabID, PortalSettings.Current.PortalId), "VIEW");
     }
 
 </script>

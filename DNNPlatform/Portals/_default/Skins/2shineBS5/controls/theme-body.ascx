@@ -38,9 +38,9 @@
 
           <div class="d-flex align-items-center order-lg-first">
             <%
-            if(LocaleController.Instance.GetLocales(0).Count() > 1) {
+            if(LocaleController.Instance.GetLocales(PortalSettings.Current.PortalId).Count() > 1) {
             %>
-              <ToSic:languagenavigation runat="server" Languages="de-DE:DE,en-US:EN,fr-FR:FR,it-IT:IT" />
+              <ToSic:languagenavigation runat="server" Languages="fr-FR:FR,en-US:EN" />
             <%
             }
             %> 
