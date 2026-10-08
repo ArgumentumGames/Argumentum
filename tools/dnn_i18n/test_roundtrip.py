@@ -9,6 +9,9 @@ What it proves:
   2. The extracted key SET matches the expected fixture-derived set (anti-fab assertion).
   3. reimport_dnn_ui_strings.py `verify` reports key-set match vs a reference snapshot.
   4. reimport_dnn_ui_strings.py `reimport` renders the dry-run payload without writing.
+  5. site_content_pipeline.py self-test — the #457 T1 site-content chain (2sxc v21 export ->
+     CSV -> import XML with dimensions) round-trips losslessly and refuses what it cannot
+     vouch for.
 
 Nothing is written outside this tool dir's scratch area (cleaned at the end).
 """
@@ -46,7 +49,7 @@ def main() -> int:
         # 1. Extract from fixture.
         out = _run("extract_dnn_ui_strings.py",
                    "--templates-root", fixture_root, "--out", extracted)
-        print("[1/4] extract OK:", out.strip().splitlines()[0])
+        print("[1/5] extract OK:", out.strip().splitlines()[0])
 
         # 2. Assert the extracted key set is the expected one (anti-fab).
         import csv as _csv
@@ -60,21 +63,28 @@ def main() -> int:
             "res.RuleMemoCardFileNamePrefix", "res.RuleMemoCardDownload",
         }
         assert keys == expected, f"key set drift:\n  expected={sorted(expected)}\n  got={sorted(keys)}"
-        print(f"[2/4] key set OK ({len(keys)} keys): {sorted(keys)}")
+        print(f"[2/5] key set OK ({len(keys)} keys): {sorted(keys)}")
 
         # 3. Verify against the fixture reference snapshot (key-set HARD match).
         vout = _run("reimport_dnn_ui_strings.py",
                     "verify", "--extracted", extracted, "--reference", reference)
         assert "key sets match" in vout, f"verify did not report match:\n{vout}"
-        print("[3/4] verify OK (key sets match, res.* fr empty by design)")
+        print("[3/5] verify OK (key sets match, res.* fr empty by design)")
 
         # 4. Reimport renders the dry-run payload (writes nothing).
         rout = _run("reimport_dnn_ui_strings.py", "reimport", "--csv", extracted)
         assert "RENDERED, NOT APPLIED" in rout and "Nothing was written" in rout
         assert "target: template_patch" in rout and "target: app_resource" in rout
-        print("[4/4] reimport dry-run OK (payload rendered, nothing written)")
+        print("[4/5] reimport dry-run OK (payload rendered, nothing written)")
 
-    print("\nROUND-TRIP DoD PASS: extract -> verify -> reimport on fixture, zero prod mutation.")
+        # 5. The site-content chain (T1): export -> CSV -> import XML with dimensions.
+        sout = _run("site_content_pipeline.py", "self-test")
+        assert "SELF-TEST PASS" in sout, f"site-content self-test failed:\n{sout}"
+        assert "RT1" in sout and "RT2" in sout, "both round-trip axes must be exercised"
+        print("[5/5] site-content pipeline OK (2 round-trips + controls)")
+
+    print("\nROUND-TRIP DoD PASS: extract -> verify -> reimport, and site-content "
+          "export -> CSV -> import XML; zero prod mutation.")
     return 0
 
 
