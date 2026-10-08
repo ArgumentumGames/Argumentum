@@ -79,6 +79,52 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 			return mmPath;
 		}
 
+		/// <summary>
+		/// Longueur observée du journal partagé (0 s'il n'existe pas encore) — sert à ne lire que la
+		/// QUEUE ajoutée par ce test, jamais le contenu déposé par les autres collections.
+		/// </summary>
+		private static long LogLength()
+		{
+			var info = new FileInfo(Logger.LogFile);
+			return info.Exists ? info.Length : 0;
+		}
+
+		/// <summary>
+		/// Lit la queue du journal partagé à partir de <paramref name="offset"/>.
+		///
+		/// <para><b>Pourquoi pas <c>File.ReadAllText</c>.</b> <c>Logger.Log</c> écrit sous
+		/// <c>lock (fileLock)</c> via <c>File.AppendAllText</c>, qui ouvre en <c>FileAccess.Write</c>
+		/// + <c>FileShare.Read</c>. <c>File.ReadAllText</c> ouvre en <c>FileAccess.Read</c> +
+		/// <c>FileShare.Read</c> : un partage qui n'autorise PAS l'écriture concurrente. Si un autre
+		/// fil est <i>dans</i> <c>AppendAllText</c> au même instant, <b>l'ouverture du lecteur
+		/// échoue</b> (violation de partage) et le test tombe par exception au lieu d'assertion —
+		/// le motif « rouge dans la suite complète, vert en isolation » que <c>Logger.cs</c>
+		/// documente déjà pour <c>LogFile</c>. Ici l'ouverture déclare <c>FileShare.ReadWrite</c>
+		/// (l'écrivain concurrent est accepté) et la lecture est bornée à la queue ajoutée depuis
+		/// <paramref name="offset"/> (le texte des autres collections n'entre pas dans l'assertion).</para>
+		///
+		/// <para>⚠️ Ceci <b>retire une classe de risque</b> — ouverture refusée, contamination — ;
+		/// ce n'est <b>pas</b> la démonstration de la cause d'un flake observé une fois.</para>
+		/// </summary>
+		private static string ReadLogTail(long offset)
+		{
+			if (!File.Exists(Logger.LogFile))
+			{
+				return string.Empty;   // rien n'a été écrit : l'assertion le dira, on ne masque rien
+			}
+
+			using var stream = new FileStream(
+				Logger.LogFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+			if (offset > stream.Length)
+			{
+				offset = 0;            // journal archivé/recréé entre les deux mesures : on relit tout
+			}
+
+			stream.Seek(offset, SeekOrigin.Begin);
+			using var reader = new StreamReader(stream);
+			return reader.ReadToEnd();
+		}
+
 		[Fact]
 		public void VirtuesChain_FreeMindAbsent_NoXsltFallbackAnymore_ExportRecordedMissing()
 		{
@@ -98,6 +144,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
 			FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
 
+			// Frontière de lecture : tout ce que le journal gagne À PARTIR D'ICI est de ce test.
+			var logLengthBefore = LogLength();
 			var produced = InvokeConversion(new VirtueMindMapDocumentConfig { DocumentName = fileName }, mmPath, svgPath, config);
 
 			produced.Should().BeFalse(
@@ -108,7 +156,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 			FallacyMindMapDocumentConfig.MissingSvgExports.Should().Contain(Path.GetFileName(svgPath),
 				"l'export attendu sans SVG doit être enregistré pour le résumé de fin de passe.");
 
-			var journal = File.ReadAllText(Logger.LogFile);
+			var journal = ReadLogTail(logLengthBefore);
 			journal.Should().Contain("[Warning] FreeMind not found",
 				"l'export doit d'abord dire pourquoi il échoue.");
 			journal.Should().NotContain($"falling back to XSLT for {fileName}",
