@@ -4,6 +4,12 @@
 [Oo]bj/
 [Dd]ebug/
 [Rr]elease/
+# ⚠️ `[Rr]elease/` est la règle générique du gabarit .NET (sortie de build `bin/Release/`).
+# Elle avale aussi TOUT dossier nommé `release`/`Release`, où qu'il soit : `docs/release/`
+# était donc silencieusement non-committable (constaté le 2026-10-08 — `git add` refusait sans
+# que personne n'ait voulu exclure la documentation). Exception explicite, la règle de build
+# reste intacte pour `bin/`, `obj/`, etc.
+!docs/release/
 x64/
 x86/
 [Ww]in-x64/
