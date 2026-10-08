@@ -1,35 +1,76 @@
 > ### ⚠️ Brouillon daté — **à re-générer au lancement du run**, jamais à citer tel quel
 >
-> Mesuré le **2026-10-08** de `89f78bcd` à `edb39554` (master du jour). Les pools continuent de
+> Mesuré le **2026-10-08** de `89f78bcd` à `b7e89c32` (master du jour). Les pools continuent de
 > vivre : **ce chiffre dérive**. Au lancement de la régénération, rejouer la commande du
 > § Reproductibilité de [`README.md`](README.md) et **remplacer ce fichier**.
 >
 > ⛔ **Sans publication** : ce document n'est pas envoyé aux associés en l'état — il alimente la
 > relecture d'ai-01, qui choisit ce qui sort.
 >
-> **Re-mesuré à la tête ce jour : 418 cellules · 195 cartes**, 4 decks, 8 langues.
+> **Re-mesuré à la tête ce jour : 429 cellules · 196 cartes**, 4 decks, 8 langues.
 >
-> ⚠️ **Réconciliation census OUVERTE, non tranchée ici.** Le status du dashboard déclare un census
-> de régénération de **273 cellules** (F:123 · V:42 · S:78 · R:30) — et se déclare lui-même
-> « à re-mesurer ». Les deux instruments **ne s'accordent pas** au-delà des Sophismes (123 = 123 ✔) :
-> V 42 vs 122 · S 78 vs 145 · R 30 vs 28. Je **ne tranche pas** lequel est juste ; c'est
-> précisément ce que la table de réconciliation ci-dessous sert à établir, avant que le census ne
-> serve à décider quelles pages le verdict visuel doit couvrir.
+> ---
+>
+> ✅ **Réconciliation census — CLOSE (08/10, grain S1).** L'en-tête précédent déclarait cet écart
+> « OUVERTE, non tranchée ». C'était **faux** : les deux nombres mesurent le **même objet à deux
+> dates** — même unité (cellules de texte sur rangées cartes), même base (`89f78bcd`), mêmes
+> discriminants.
+>
+> | Relevé | Tête | F | V | S | R | Total |
+> |---|---|---:|---:|---:|---:|---:|
+> | census manuel n°7, tel que porté au status (soir 05/10) | `2969f4b3` | 123 | 42 | 78 | **30** | 273 |
+> | idem, double-addition retirée | `2969f4b3` | 123 | 42 | 78 | **28** | **271** |
+> | ce brouillon, mesure d'origine | `edb39554` | 123 | 122 | 145 | 28 | 418 |
+> | re-mesure du correctif S1 | `b7e89c32` | 123 | **133** | 145 | 28 | **429** |
+>
+> **Le 273 avait deux défauts, tous deux identifiés.** Son `R:30` = **19 cellules mesurées + les
+> « 11 » de #1778 en vol** — dont **2 cellules `Rules_13` (`Text_ar`, `Text_es`) comptées deux
+> fois** (changées par #1768 « un terme pour un objet », rechangées par #1778 « 32→28 »). `R:30`
+> n'existe à **aucune** tête (plafond outil : 28) ; l'union réelle vaut **28**, donc le total exact
+> à cet instant est **271**. Et `F123/V42/S78` ne tiennent **simultanément** que dans la fenêtre
+> `8103baa6` (05/10 12:49) → `2969f4b3` (06/10 01:08) : c'est bien un **instantané du 05/10**, pas
+> la tête du run.
+>
+> **La dérive est la preuve, et ce correctif l'a rejouée.** Entre `edb39554` (08/10 00:26) et
+> `b7e89c32` (08/10 12:17), le total passe de 418 à **429** — **+11 cellules, toutes sur les
+> Vertus** — et ce sont **nominalement** celles du lot de merges ai-01 de 12:17 : #1807 (pk 205
+> ru/pt/es = 3) + #1808 (pk 175 pt/es = 2) + #1814 (pk 172 ru/pt = 2 ; pk 208 ×4 langues = 4).
+> `3 + 2 + 6 = 11` ✔, et par langue : **ar +1 · es +3 · pt +4 · ru +3**. ⇒ **Contrôle inverse
+> satisfait : la dérive du census égale le diff mergé, au chiffre près.** Un instrument qui suit
+> les merges est un instrument qui mesure.
+>
+> ⇒ **Au lancement du run : re-mesurer à la tête, jamais recopier un chiffre.** Ni 273, ni 418, ni
+> 429 ne sont « le » census — c'est un **instantané vivant** (l'outil documente ~40 cellules/jour
+> tant que les pools vivent). Commande :
+> `python tools/what-changed-associates.py 89f78bcd <tête-du-run>` ; **les pages à couvrir sont le
+> listing de l'outil à cette tête**, pas un total. Les relevés ci-dessus restent valables comme
+> **traces historiques**, jamais comme périmètres.
+>
+> ⚠️ **Un point d'instrument reste ouvert, et il n'est pas tranché ici.** Le chemin `--self-test`
+> de l'outil n'exécute **pas** `diff_deck` : il recopie sa logique (l.202 : « même logique que
+> `diff_deck`, sans git ») — et cette copie a **dérivé sur deux discriminants** : le self-test
+> détermine « carte » sur la **tête seule** (l.208) là où `diff_deck` accepte base **ou** tête
+> (l.134), et il compte les cellules **hors** de la garde `if card:` (l.215) là où `diff_deck` ne
+> les compte que **dedans** (l.143). Son assertion l.223 passe donc **grâce à** la divergence au
+> lieu de la détecter. Sans effet sur les chiffres ci-dessus (mesurés par `diff_deck`, un seul
+> chemin) ; **à trancher par le propriétaire de l'outil**, car un self-test qui valide une copie
+> laisse le chemin de production non vérifié.
 
 ---
+
 # Quoi de neuf — cartes dont le texte change dans votre édition
 
-*Mesuré `89f78bcd → origin/master` par `tools/what-changed-associates.py` — généré à chaque appel, jamais de chiffres gelés. Ancres = titre FR de la tête.*
+*Mesuré `89f78bcd → b7e89c32` par `tools/what-changed-associates.py` — généré à chaque appel, jamais de chiffres gelés. Ancres = titre FR de la tête.*
 
 ## Vue d'ensemble (reconciliation census)
 
 | Deck | Cellules | Cartes | Par langue (cellules/cartes) |
 |---|---:|---:|---|
 | Sophismes (Tarot + Web) | 123 | 89 | ar 6/6 · en 6/6 · es 80/78 · fa 8/8 · pt 3/3 · ru 16/16 · zh 4/4 |
-| Vertus (Tarot) | 122 | 43 | ar 25/22 · en 17/17 · es 14/14 · fa 28/26 · fr 3/3 · pt 15/15 · ru 10/10 · zh 10/10 |
+| Vertus (Tarot) | 133 | 44 | ar 26/23 · en 17/17 · es 17/17 · fa 28/26 · fr 3/3 · pt 19/19 · ru 13/13 · zh 10/10 |
 | Scénarios (Poker) | 145 | 55 | ar 18/16 · en 27/25 · es 17/16 · fa 20/18 · pt 14/14 · ru 28/27 · zh 21/18 |
 | Règles (Tarot) | 28 | 8 | ar 5/5 · en 4/4 · es 5/5 · fa 4/4 · fr 1/1 · pt 1/1 · ru 4/4 · zh 4/4 |
-| **TOTAL** | **418** | **195** | ar 54/49 · en 54/52 · es 116/113 · fa 60/56 · fr 4/4 · pt 33/33 · ru 58/57 · zh 39/36 |
+| **TOTAL** | **429** | **196** | ar 55/50 · en 54/52 · es 119/116 · fa 60/56 · fr 4/4 · pt 37/37 · ru 61/60 · zh 39/36 |
 
 ## Français — 4 carte(s) touchée(s)
 
@@ -109,7 +150,7 @@
 - **Rules_11** (pk Rules_11) : texte
 - **Rules_13** (pk Rules_13) : texte
 
-## Русский — 57 carte(s) touchée(s)
+## Русский — 60 carte(s) touchée(s)
 
 ### Sophismes (Tarot + Web) (16 carte(s))
 
@@ -130,15 +171,18 @@
 - **Monter la barre** (PK 974) : exemple
 - **989** (PK 989) : description
 
-### Vertus (Tarot) (10 carte(s))
+### Vertus (Tarot) (13 carte(s))
 
 - **Prémisses fiables** (pk 12) : description
 - **Logique informelle solide** (pk 128) : titre
 - **Définitions claires** (pk 135) : subfamily
 - **Analogie appropriée** (pk 144) : description
 - **Clarté des enjeux** (pk 159) : subfamily
+- **Reconnaître ses biais culturels** (pk 172) : description
 - **Reconnaître ses biais idéologiques** (pk 175) : titre
 - **Tenir compte des biais idéologiques** (pk 176) : titre
+- **Principe de charité** (pk 205) : description
+- **Évaluation loyale de la position adverse** (pk 208) : remarque
 - **Hypothèse plausible** (pk 24) : description
 - **Sans chantage aux conséquences** (pk 54) : description
 - **Illustrer par des exemples** (pk 8) : description
@@ -180,7 +224,7 @@
 - **Rules_12** (pk Rules_12) : texte
 - **Rules_13** (pk Rules_13) : texte
 
-## Português — 33 carte(s) touchée(s)
+## Português — 37 carte(s) touchée(s)
 
 ### Sophismes (Tarot + Web) (3 carte(s))
 
@@ -188,14 +232,18 @@
 - **Citation hors contexte** (PK 943) : exemple
 - **Monter la barre** (PK 974) : exemple
 
-### Vertus (Tarot) (15 carte(s))
+### Vertus (Tarot) (19 carte(s))
 
 - **Prémisses fiables** (pk 12) : description
 - **Définitions claires** (pk 135) : subfamily
 - **Analogie appropriée** (pk 144) : description
 - **Clarté des enjeux** (pk 159) : subfamily
+- **Reconnaître ses biais culturels** (pk 172) : description
+- **Reconnaître ses biais idéologiques** (pk 175) : titre
 - **Tenir compte des biais idéologiques** (pk 176) : titre
 - **Argument fondé** (pk 2) : description
+- **Principe de charité** (pk 205) : description
+- **Évaluation loyale de la position adverse** (pk 208) : remarque
 - **Critique axée sur les arguments** (pk 209) : description
 - **Hypothèse plausible** (pk 24) : description
 - **Rasoir de Hanlon** (pk 33) : description
@@ -227,7 +275,7 @@
 
 - **Rules_13** (pk Rules_13) : texte
 
-## Español — 113 carte(s) touchée(s)
+## Español — 116 carte(s) touchée(s)
 
 ### Sophismes (Tarot + Web) (78 carte(s))
 
@@ -310,14 +358,17 @@
 - **977** (PK 977) : description
 - **994** (PK 994) : description
 
-### Vertus (Tarot) (14 carte(s))
+### Vertus (Tarot) (17 carte(s))
 
 - **Prémisses fiables** (pk 12) : description
 - **Logique informelle solide** (pk 128) : titre
 - **Définitions claires** (pk 135) : subfamily
 - **Analogie appropriée** (pk 144) : description
+- **Reconnaître ses biais idéologiques** (pk 175) : titre
 - **Tenir compte des biais idéologiques** (pk 176) : titre
 - **Argument fondé** (pk 2) : description
+- **Principe de charité** (pk 205) : description
+- **Évaluation loyale de la position adverse** (pk 208) : remarque
 - **Ne pas interrompre** (pk 220) : description
 - **Ton respectueux** (pk 221) : description
 - **Hypothèse plausible** (pk 24) : description
@@ -354,7 +405,7 @@
 - **Rules_13** (pk Rules_13) : texte
 - **Rules_15** (pk Rules_15) : texte
 
-## العربية — 49 carte(s) touchée(s)
+## العربية — 50 carte(s) touchée(s)
 
 ### Sophismes (Tarot + Web) (6 carte(s))
 
@@ -365,7 +416,7 @@
 - **Citation hors contexte** (PK 943) : exemple
 - **Monter la barre** (PK 974) : exemple
 
-### Vertus (Tarot) (22 carte(s))
+### Vertus (Tarot) (23 carte(s))
 
 - **Citer ses sources** (pk 10) : description
 - **Logique informelle solide** (pk 128) : titre
@@ -382,6 +433,7 @@
 - **Tenir compte des biais idéologiques** (pk 176) : subfamily, titre
 - **Acceptation de l’incertitude** (pk 177) : subfamily
 - **Principe de charité** (pk 205) : description
+- **Évaluation loyale de la position adverse** (pk 208) : remarque
 - **Argument déductif** (pk 4) : description
 - **Argument inductif** (pk 5) : description
 - **Preuves tangibles** (pk 6) : description
