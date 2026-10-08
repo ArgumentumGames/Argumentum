@@ -5,8 +5,10 @@ Ce dossier porte les **deux livrables de sortie du run de régénération** : le
 Les **deux outils existaient déjà** au dépôt ; ce qui manquait, c'était cette documentation — l'item
 demandait explicitement « **Docs plus script**, en PR ».
 
-**État vérifié le 2026-10-08** (master `edb39554`) : les deux outils passent leur `--self-test`
+**État vérifié le 2026-10-08** (master `b7e89c32`) : les deux outils passent leur `--self-test`
 (`SELF-TEST PASS`, sortie 0). Rien à construire — à **faire tourner au bon moment**.
+⚠️ Pour `what-changed-associates.py`, ce self-test **ne couvre pas le chemin de production** —
+voir le §5.
 
 ---
 
@@ -89,7 +91,9 @@ python tools/what-changed-associates.py --self-test
 ```
 
 **Codes** : `0` = rapport écrit — **un périmètre vide est un résultat, pas une erreur** ; `1` =
-self-test rouge ; `2` = erreur (réf git inconnue, CSV illisible). **Self-test PASS le 08/10.**
+self-test rouge ; `2` = erreur (réf git inconnue, CSV illisible). **Self-test PASS le 08/10**
+(rejoué à `b7e89c32`). ⚠️ **Il ne valide pas `diff_deck`** : il en recopie la logique, et cette copie
+a divergé — détail et citations au §5.
 
 ## 4. Ce qui tourne au lancement, et par qui
 
@@ -104,17 +108,49 @@ self-test rouge ; `2` = erreur (réf git inconnue, CSV illisible). **Self-test P
 remplacent pas le regard, et aucun des deux ne rend un verdict de justesse — ils détectent un
 **changement**, jamais une erreur.
 
-## 5. Point ouvert — la réconciliation census
+## 5. Réconciliation census — **close le 08/10** (grain S1)
 
-Le status du dashboard déclare un census de régénération de **273 cellules** (F:123 · V:42 · S:78 ·
-R:30) et **se déclare lui-même « à re-mesurer »**. Re-mesuré le **08/10** par
-`what-changed-associates.py` de `89f78bcd` à `edb39554` : **418 cellules · 195 cartes**. Les deux
-instruments **ne s'accordent pas** au-delà des Sophismes (123 = 123 ✔) — V 42 vs 122, S 78 vs 145,
-R 30 vs 28.
+Le status du dashboard déclarait un census de **273 cellules** (F:123 · V:42 · S:78 · R:30) et
+s'auto-déclarait « à re-mesurer » ; le relevé de ce dossier en donnait **418** à `edb39554`. La
+version précédente de ce paragraphe les présentait comme **deux instruments en désaccord** et se
+refusait à trancher. **C'était une erreur de lecture** : les deux comptent le **même objet à deux
+dates** — même unité, même base (`89f78bcd`), mêmes discriminants.
 
-**Je ne tranche pas lequel est juste**, et aucune source au dépôt ne définit le 273. C'est exactement
-ce que la table de réconciliation du § « Vue d'ensemble » sert à établir — **à faire avant que le
-census ne serve à décider quelles pages le verdict doit couvrir.**
+- Le **273** est le census manuel n°7 du **soir du 05/10** : `F123/V42/S78` sont exacts dans la
+  fenêtre `8103baa6` (05/10 12:49) → `2969f4b3` (06/10 01:08), et son `R:30` = **19 cellules
+  mesurées + les « 11 » de #1778 en vol**, dont **2 cellules `Rules_13` (`Text_ar`, `Text_es`)
+  comptées deux fois** (changées par #1768, rechangées par #1778). `R:30` n'existe à aucune tête
+  (plafond outil : 28) ⇒ valeur exacte à cet instant : **271**.
+- Le **418** est le même diff re-mesuré à `edb39554`.
+- Rejoué pour ce correctif à `b7e89c32` : **429 cellules · 196 cartes** — **+11, toutes sur les
+  Vertus**, soit **exactement** les 11 cellules du lot de merges ai-01 de 12:17 (#1807 = 3,
+  #1808 = 2, #1814 = 6 ; ar +1 · es +3 · pt +4 · ru +3). **Contrôle inverse satisfait : la dérive
+  du census égale le diff mergé, au chiffre près.**
+
+⇒ **Aucun des trois n'est « le » census : c'est un instantané vivant** (~40 cellules/jour tant que
+les pools vivent). Au lancement du run, re-mesurer à la tête —
+`python tools/what-changed-associates.py 89f78bcd <tête-du-run>` — et **couvrir les pages du listing
+rendu à cette tête**, jamais un total. Relevés et détail : en-tête de
+[`quoi-de-neuf-associes-2026-10-08.md`](quoi-de-neuf-associes-2026-10-08.md).
+
+### ⚠️ Un point d'instrument reste ouvert — il ne change pas les chiffres ci-dessus
+
+Le `--self-test` de `what-changed-associates.py` **n'exécute pas** `diff_deck` : il en recopie la
+logique (l.202, « même logique que `diff_deck`, sans git ») — or cette copie a **dérivé sur deux
+discriminants** :
+
+| | `diff_deck` (production) | self-test (copie) |
+|---|---|---|
+| « carte » | `is_card(h) or is_card(b)` — **l.134** | tête seule — **l.208** |
+| comptage des cellules | **sous** la garde `if card:` — **l.143** | **hors** de la garde — **l.215** |
+
+Conséquence : son assertion **l.223** (« rangée sans carte comptée en cellules mais pas en cartes »)
+**passe grâce à** la divergence au lieu de la détecter ⇒ le self-test **valide une copie, pas le
+chemin de production**. Aucun effet sur les chiffres de ce dossier, tous mesurés par `diff_deck`
+(un seul chemin) ; mais un self-test vert ne prouve ici **rien** sur la production.
+**À trancher par le propriétaire de l'outil** : soit la copie se recale sur `diff_deck` (et
+l'assertion s'inverse), soit c'est `diff_deck` qui doit changer — le commentaire **l.141-142**
+tranche aujourd'hui en faveur de « les cellules se comptent sur les rangées cartes **uniquement** ».
 
 ---
 
