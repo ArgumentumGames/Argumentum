@@ -16,9 +16,12 @@ Gardes :
 - aucune écriture CSV/gabarit — ceci est un instrument de dossier d'arbitrage.
 
 Usage :
-  python docs/corpus/rules-site-vs-cards.py [csv_path]
+  python docs/corpus/rules-site-vs-cards.py [csv_path] [--base URL]
     csv_path optionnel : copie du CSV pour le CONTRÔLE INVERSE par mutation
     (ex. compteur de Rules_09 changé ⇒ verdict « beau » doit basculer à ECART).
+    --base : cible des pages (défaut = prod). La préprod se sonde par
+      --base https://dnn.argumentum.myia.io/R%C3%A8gles
+    — DoD du grain R-site (#1502) : rejeu sur la préprod après écriture.
 
 Codes de sortie :
   0  extraction complète et structurelle cohérente (les écarts site↔cartes
@@ -165,14 +168,23 @@ def git_s_count(needle):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    csv_path = argv[1] if len(argv) > 1 else os.path.join("Cards", "Rules", "Argumentum Rules - Cards.csv")
+    args = list(argv[1:])
+    base = BASE
+    if "--base" in args:
+        i = args.index("--base")
+        if i + 1 >= len(args):
+            print("ERREUR: --base exige une URL (ex. https://dnn.argumentum.myia.io/R%C3%A8gles)")
+            return 2
+        base = args.pop(i + 1)
+        args.pop(i)
+    csv_path = args[0] if args else os.path.join("Cards", "Rules", "Argumentum Rules - Cards.csv")
     rows = {r["pk"].strip(): r.get("Text") or "" for r in csv.DictReader(open(csv_path, encoding="utf-8-sig"))}
     if len(rows) != 15:
         print(f"ERREUR: 15 cartes attendues, {len(rows)} lues dans {csv_path}")
         return 2
 
     # ── Compteurs joueurs : MESURÉS des deux côtés, verdict CALCULÉ ──
-    landing = fetch(BASE)
+    landing = fetch(base)
     if landing is None:
         return 2
     landing_txt = re.sub(r"\s+", " ", text_of(landing))
@@ -215,7 +227,7 @@ def main(argv):
     print("\n=== Matrice site↔cartes (appariement intra-variante, similarité SequenceMatcher sur texte normalisé) ===")
     paired = 0
     for slug, (vk, pks, _) in VARIANTS.items():
-        raw = fetch(f"{BASE}/details/{slug}/mid/602")
+        raw = fetch(f"{base}/details/{slug}/mid/602")
         if raw is None:
             return 2
         secs = site_sections(raw)
