@@ -86,12 +86,13 @@ python site_content_pipeline.py to-csv \
     --export <app33-Video-export.json> --out app33-video.csv
 # la preuve sur UNE entité d'abord (le précédent T1), puis le volume :
 python site_content_pipeline.py to-xml --csv app33-content.csv \
-    --entity <guid> --unconfirmed-ok --out one-entity-app33.xml
+    --entity <guid> --out one-entity-app33.xml
 ```
 
-⚠️ Les **6 cultures non confirmées** (ru/pt/es/ar/fa/zh) restent refusées sans
-`--unconfirmed-ok` — inchangé depuis T1 ; leur provision (I1b) est un grain de la lane
-préprod. ⚠️ La traduction elle-même (remplir les 7 colonnes cibles) reste **owner-gated**
+✅ Les **6 cultures non confirmées** (ru/pt/es/ar/fa/zh) sont **provisionnées depuis le
+2026-10-10** (#1781 I1b, [`1781-i1b-culture-dimensions-2026-10-10.md`](1781-i1b-culture-dimensions-2026-10-10.md)) :
+le drapeau `--unconfirmed-ok` n'est plus requis — le garde reste pour toute future culture
+non attestée. ⚠️ La traduction elle-même (remplir les 7 colonnes cibles) reste **owner-gated**
 dans l'attente du choix du traducteur (item ouvert T1 §8.2) — le CSV fr-seul est le
 livrable qui débloque cette décision.
 

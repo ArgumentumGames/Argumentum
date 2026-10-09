@@ -171,9 +171,9 @@ carrying language dimensions** — the two the dispatch asks for. Both live in
 python site_content_pipeline.py to-csv --translations \
     ../../docs/dnn-localization/684-translations.json --out site-content.csv
 
-# CSV -> import XML for ONE entity (the dispatched proof), PROVISIONAL cultures
+# CSV -> import XML for ONE entity (the dispatched proof)
 python site_content_pipeline.py to-xml --csv site-content.csv \
-    --entity ae1edefa-6f1b-4593-8230-97fa1edf4f78 --unconfirmed-ok --out one-entity.xml
+    --entity ae1edefa-6f1b-4593-8230-97fa1edf4f78 --out one-entity.xml
 
 # offline proof: 2 round-trips + controls, zero network, zero prod write
 python site_content_pipeline.py self-test        # also step [5/5] of test_roundtrip.py
@@ -201,10 +201,13 @@ The dialect expresses a language as one `<Entity>` block per (Guid, `Language`).
 zone 3): **fr-FR** (dimensionId **6**) and **en-US** (dimensionId **7**). The first version of
 this table said 4/3, copied from the export's `manifest.json` — those are **zone 2's** IDs (the
 dead portal 0), and the same manifest declares `argumentumAppZoneId: 3` (see
-`1781-i2-zone3-inventory.md` §1). The other six culture codes have **no row anywhere** in
-`TsDynDataDimension` (#682 Path A, now measured). `to-xml` therefore **refuses** to emit them
-unless `--unconfirmed-ok` is passed, so a file whose culture codes were invented cannot ship
-silently. `list-cultures` prints the table.
+`1781-i2-zone3-inventory.md` §1). The other six culture codes were **provisioned on the live
+portal on 2026-10-10** (#1781 I1b, closing #682 Path A): dimensionIds **8-13** under zone 3's
+Culture Root, SELECT-verified post-insert, app-domain recycled — recipe and measurements in
+[`1781-i1b-culture-dimensions-2026-10-10.md`](../../docs/dnn-localization/1781-i1b-culture-dimensions-2026-10-10.md).
+`to-xml` still **refuses** any culture whose dimension is not attested unless
+`--unconfirmed-ok` is passed — dormant with all 8 attested, it guards against a future 9th
+culture being invented here. `list-cultures` prints the table.
 
 ## What is proven, and what is NOT
 

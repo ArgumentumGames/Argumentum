@@ -46,13 +46,18 @@ values:
     fr-FR  dimensionId 6   (TsDynDataDimension, zone 3 — app 60's zone; measured 2026-10-09)
     en-US  dimensionId 7   (TsDynDataDimension, zone 3 — app 60's zone; measured 2026-10-09)
 
-The other six culture codes are **NOT attested anywhere in this repository**: their 2sxc
-dimensions are not provisioned (#682 Path A, recorded in 684-translation-run-report.md
-lines 70-71 and 102-103). `to-xml` therefore REFUSES to emit an XML that uses them unless
-`--unconfirmed-ok` is passed, so that nobody silently ships a file whose culture codes were
-invented. Confirming them is a live step (I3): the portal's real dimensions come from
+The other six culture codes were provisioned on the live portal on 2026-10-10 (#1781 I1b,
+closing #682 Path A — the sink gap recorded in 684-translation-run-report.md lines 70-71
+and 102-103): six rows inserted under zone 3's Culture Root, SELECT-verified, app-domain
+recycled. `to-xml` keeps REFUSING any culture whose dimension is not attested unless
+`--unconfirmed-ok` is passed — with all 8 attested the guard is dormant, but it still
+protects against a future 9th culture being invented here. The portal's real dimensions
+come from (⚠️ the culture code lives in ExternalKey — there is NO CultureCode column;
+the previous revision of this text suggested one and the query fails with "invalid column
+name", measured 2026-10-10):
 
-    SELECT DimensionID, ZoneId, Name, CultureCode FROM TsDynDataDimension
+    SELECT DimensionId, Parent, Name, SystemKey, ExternalKey, Active, ZoneId
+    FROM TsDynDataDimension
 
 WHAT THIS TOOL DOES *NOT* CLAIM
 --------------------------------
@@ -71,7 +76,7 @@ USAGE
 
   # 2. CSV -> import XML with dimensions, for ONE entity first (the dispatched proof)
   python site_content_pipeline.py to-xml --csv site-content.csv \
-      --entity 11378 --unconfirmed-ok --out one-entity.xml
+      --entity 11378 --out one-entity.xml
 
   # 3. offline proof: lossless round-trip + inverse controls, zero network, zero write
   python site_content_pipeline.py self-test
@@ -121,16 +126,18 @@ FIXTURE_XML = os.path.join(HERE, "fixtures", "one-entity-game-rule-import.xml")
 # (the dead portal 0), and that same manifest declares argumentumAppZoneId: 3, i.e. it
 # contradicts itself. Only the culture code is ever emitted into the import XML, so
 # nothing shipped wrong; the dimensionIds here are documentation, now measured instead
-# of copied. The 6 other cultures have no row anywhere in TsDynDataDimension.
+# of copied. The 6 other cultures were provisioned on 2026-10-10 (I1b): IDs 8-13,
+# SELECT-verified post-insert, app-domain recycled (see
+# docs/dnn-localization/1781-i1b-culture-dimensions-2026-10-10.md).
 CULTURES: dict[str, tuple[str, int | None, bool, str]] = {
     "fr": ("fr-FR", 6, True, "TsDynDataDimension zone 3 (app 60's zone), measured 2026-10-09 (#1781 I2)"),
     "en": ("en-US", 7, True, "TsDynDataDimension zone 3 (app 60's zone), measured 2026-10-09 (#1781 I2)"),
-    "ru": ("ru-RU", None, False, "dimension NOT provisioned (#682 Path A)"),
-    "pt": ("pt-PT", None, False, "dimension NOT provisioned (#682 Path A)"),
-    "es": ("es-ES", None, False, "dimension NOT provisioned (#682 Path A)"),
-    "ar": ("ar-SA", None, False, "dimension NOT provisioned (#682 Path A)"),
-    "fa": ("fa-IR", None, False, "dimension NOT provisioned (#682 Path A)"),
-    "zh": ("zh-CN", None, False, "dimension NOT provisioned (#682 Path A)"),
+    "ru": ("ru-RU", 8, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
+    "pt": ("pt-PT", 9, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
+    "es": ("es-ES", 10, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
+    "ar": ("ar-SA", 11, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
+    "fa": ("fa-IR", 12, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
+    "zh": ("zh-CN", 13, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
 }
 
 CSV_FIELDS = ["key", "app", "content_type", "guid", "attribute"] + LANG_COLUMNS
@@ -323,9 +330,10 @@ def rows_to_xml(rows: list[dict], export: dict, *, allow_unconfirmed: bool = Fal
             raise PipelineError(
                 "refusing to emit culture codes that are not attested in this repository: "
                 + ", ".join(f"{l}->{c}" for l, c in bad)
-                + ".\nTheir 2sxc dimensions are not provisioned (#682 Path A). Confirm them "
-                  "on the live portal (SELECT DimensionID, Name, CultureCode FROM "
-                  "TsDynDataDimension — zone-scoped: app 60 is zone 3) or pass --unconfirmed-ok "
+                + ".\nTheir 2sxc dimensions are not provisioned. Confirm them "
+                  "on the live portal (SELECT DimensionId, ExternalKey, ZoneId FROM "
+                  "TsDynDataDimension — the culture code is ExternalKey, and dimensions are "
+                  "zone-scoped: app 60 is zone 3) or pass --unconfirmed-ok "
                   "to emit a PROVISIONAL file.")
 
     schema_order = [a["StaticName"] for a in export["schemaAttributes"]]
@@ -454,12 +462,18 @@ def self_test(export_path: str, translations_path: str) -> int:
                  len(rows_p) == len(rows) and len({r['guid'] for r in rows_p}) == 5,
                  f"{len(rows_p)} rows, {len({r['guid'] for r in rows_p})} guids")
 
-    # IC4: an unconfirmed culture is refused unless explicitly allowed.
+    # IC4: an unconfirmed culture is refused unless explicitly allowed. All 8 are
+    # attested since I1b (2026-10-10), so the guard is exercised by un-attesting
+    # one entry in place and restoring it — the mechanism, not the current data.
+    saved = CULTURES["fr"]
+    CULTURES["fr"] = (saved[0], saved[1], False, saved[3])
     refused = False
     try:
         rows_to_xml(rows, exp, allow_unconfirmed=False)
     except PipelineError:
         refused = True
+    finally:
+        CULTURES["fr"] = saved
     ok &= _check("IC4 unconfirmed cultures are REFUSED by default (fail-closed)", refused)
 
     # IC5: a value for an attribute outside the schema is refused.
