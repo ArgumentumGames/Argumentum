@@ -60,6 +60,13 @@ Les deux portent sur des titres **anglais édités en octobre**, après le derni
 l'artefact (30/09) — cohérent avec les grains de corpus de la période (#1795, #1806-#1808,
 #1814, #1834 touchent le CSV Vertus ; 9 commits depuis le 30/09).
 
+**Cause unique, datée** — `git log -S` sur chaque libellé : un **seul** commit a introduit les
+deux valeurs courantes *et* retiré les anciennes, `371dd730` (grain 10, **2026-10-07 22:45**,
+#1795 : *« 28 cellules de fidélité (pk 54, 162, **128**, **176** …) »*). L'artefact ayant été
+touché pour la dernière fois le **30/09 15:36**, il **précède de 7 jours** l'unique geste qui l'a
+périmé, et il est en retard **exactement** sur les deux cellules que ce geste a déplacées. Une
+péremption à cause unique et nommable — pas une dérive diffuse.
+
 ⚠️ **Ce que cette table ne dit pas** : **lequel des deux états est juste**. Elle constate une
 divergence entre le **corpus versionné** et l'**artefact committé**. L'arbitrage de contenu
 n'appartient pas à cette mesure — et la ligne « pk 128 : *solide* → *acceptable* » du dashboard
