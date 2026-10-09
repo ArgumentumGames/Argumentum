@@ -194,6 +194,27 @@ silently. `list-cultures` prints the table.
 ## What is proven, and what is NOT
 
 - ✅ **Proven offline**: the CSV carries the FR source byte-exactly (RT1), and the XML carries
-  every language cell byte-exactly across the dimension axis (RT2) — 17 checks, all named.
+  every language cell byte-exactly across the dimension axis (RT2) — 17 checks at T1,
+  **21 since T2** (see below), all named.
 - ❌ **Not proven, and claimed nowhere**: that 2sxc v21 *accepts* this XML on import. That is
   the T1+I3 unknown and it is settled on the live portal, on one entity, before any volume.
+
+## T2 — app 33 (first real lot): per-content-type prose sets
+
+The prose (translatable) attribute set is declared **per content type**
+(`TRANSLATE_FIELDS_BY_CONTENT_TYPE`): Game Rule stays the sibling import (IC6/IC15), and the
+app 33 sets are measured in [`1781-i2-zone3-inventory.md` §3](../../docs/dnn-localization/1781-i2-zone3-inventory.md)
+— `Content` = Title/Text/ImageCaption, `Link` = Title/Description/LinkText, `Video` =
+Title/Text. Two fail-closed refusals come with it:
+
+- an **undeclared** content type refuses at `to-csv` — which is how **Person/Location**
+  (the association's public contact block, I2 §5) stay excluded from bulk translation
+  *by the tool*, not by operator discipline;
+- `to-xml` **refuses a CSV whose `content_type` ≠ the export's** — with several content
+  types in existence, a merged or mis-paired CSV would otherwise emit mislabelled `<Entity
+  Type>` blocks with no warning.
+
+Controls IC12–IC15 pin all of this (falsified by mutation: 3 planted defects → 3
+nominative reds). **Blocked on brick 1**: no app 33 export exists in the repo or
+shared-state (measured 2026-10-09) — requested from the préprod lane.
+Detail: [`docs/dnn-localization/457-t2-app33-first-lot.md`](../../docs/dnn-localization/457-t2-app33-first-lot.md).
