@@ -181,11 +181,15 @@ python site_content_pipeline.py self-test        # also step [5/5] of test_round
 
 ## The dimension axis — attested vs unconfirmed
 
-The dialect expresses a language as one `<Entity>` block per (Guid, `Language`). Attested in
-this repository: **fr-FR** (dimensionId 4) and **en-US** (dimensionId 3). The other six culture
-codes are **not attested anywhere** — their 2sxc dimensions are not provisioned (#682 Path A).
-`to-xml` therefore **refuses** to emit them unless `--unconfirmed-ok` is passed, so a file
-whose culture codes were invented cannot ship silently. `list-cultures` prints the table.
+The dialect expresses a language as one `<Entity>` block per (Guid, `Language`). Attested,
+**measured on the live DB** (I2, 2026-10-09 — dimensions are zone-scoped and app 60 lives in
+zone 3): **fr-FR** (dimensionId **6**) and **en-US** (dimensionId **7**). The first version of
+this table said 4/3, copied from the export's `manifest.json` — those are **zone 2's** IDs (the
+dead portal 0), and the same manifest declares `argumentumAppZoneId: 3` (see
+`1781-i2-zone3-inventory.md` §1). The other six culture codes have **no row anywhere** in
+`TsDynDataDimension` (#682 Path A, now measured). `to-xml` therefore **refuses** to emit them
+unless `--unconfirmed-ok` is passed, so a file whose culture codes were invented cannot ship
+silently. `list-cultures` prints the table.
 
 ## What is proven, and what is NOT
 
