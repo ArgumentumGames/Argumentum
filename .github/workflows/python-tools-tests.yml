@@ -1,4 +1,4 @@
-# #1460 -- test du contrat de la garde d'arbre (charpente de la suite de regression).
+# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 (charpente #1460).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -9,12 +9,24 @@
 #   principal ; la mettre dans un workflow dedie lui donne un signal clair.
 #
 # CE QUE CE WORKFLOW FAIT (et ne fait pas)
-#   Il execute **uniquement** le test du contrat de la garde (#1460). Pourquoi pas
-#   tous les test_*.py du depot ? Parce que **certains dependent d'un artefact**
-#   (la garde elle-meme en mode pilot doit avoir un Target/ ; d'autres outils
-#   lisent la base de regeneration). Ce workflow est la **charpente executable** ;
-#   chaque test_*.py sera cable quand sa condition d'execution sera documentee.
-#   C'est la distinction posee en tete de docs/quality/1460-charpente-suite-regression.md.
+#   Il execute les test_*.py **dont la condition d'execution est documentee** et qui
+#   n'exigent AUCUN artefact. Pourquoi pas tous les test_*.py du depot ? Parce que
+#   **certains dependent d'un artefact** (la garde elle-meme en mode pilot doit avoir
+#   un Target/ ; d'autres outils lisent la base de regeneration). Ce workflow est la
+#   **charpente executable** ; chaque test_*.py sera cable quand sa condition
+#   d'execution sera documentee. C'est la distinction posee en tete de
+#   docs/quality/1460-charpente-suite-regression.md.
+#
+#   CABLES A CE JOUR (2), avec la condition qui les autorise ici :
+#     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
+#        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
+#        reel, volontairement NON asserte).
+#     2. tools/dnn_i18n/test_roundtrip.py -- std-lib, offline. Condition d'execution
+#        documentee dans tools/dnn_i18n/README.md §"Execution condition" : toutes les
+#        fixtures sont committeés, aucun bundle, aucun Target/, aucun depot G:, et
+#        **aucun appel d'API paye** (translate_game_rules.py, le traducteur, n'est PAS
+#        execute par ce test). 5 etapes, dont le self-test du pipeline site-content
+#        (2 round-trips + 19 controles).
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master     : AUCUN declencheur declare. ⚠️ Ce n'est PAS obtenu par
@@ -34,7 +46,7 @@
 #   Avant de CABLER un autre test_*.py ici, lire sa docstring : si elle depend d'un
 #   bundle, d'un Target/ peuple, ou d'un depot G:, ce n'est PAS ce workflow.
 
-name: Python tools - tree guard contract
+name: Python tools - offline tests
 
 on:
   workflow_dispatch:
@@ -63,3 +75,18 @@ jobs:
         # Le cas 7 (grounding sur le depot reel) rend un verdict 0 ou 2 selon
         # la machine ; le test ne l'asserte pas, par design (cf. le fichier).
         run: python tools/test_1460-structure-charpente-pilot.py
+
+  dnn-i18n-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the DNN i18n offline suite (#457)
+        # 5 etapes, std-lib, offline : extract -> verify -> reimport (dry-run), puis le
+        # self-test du pipeline site-content (2 round-trips + 19 controles, dont les
+        # sets prose par content-type). Zero reseau, zero ecriture, zero appel paye ;
+        # les fixtures sont committeés, donc la CI est ici un cas NOMINAL.
+        # translate_game_rules.py (le traducteur qui appelle l'API) n'est PAS execute.
+        run: python tools/dnn_i18n/test_roundtrip.py

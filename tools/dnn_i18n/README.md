@@ -179,6 +179,21 @@ python site_content_pipeline.py to-xml --csv site-content.csv \
 python site_content_pipeline.py self-test        # also step [5/5] of test_roundtrip.py
 ```
 
+## Execution condition (CI wiring)
+
+`test_roundtrip.py` — 5 steps: extract → verify → reimport (dry-run) → site-content self-test —
+and `site_content_pipeline.py self-test` are **offline, std-lib only**, and read nothing but
+**committed files** (the fixtures under `fixtures/`, the committed export and
+`684-translations.json`). That is exactly the condition the CI scaffold
+([`python-tools-tests.yml`](../../.github/workflows/python-tools-tests.yml)) requires before
+wiring a `test_*.py`: no bundle, no `Target/`, no `G:` drive, no network. Both run there as the
+`dnn-i18n-offline` job (dispatch + weekly), so the controls have a durable signal instead of
+only a by-hand green.
+
+⛔ `translate_game_rules.py` is **not** wired and must not be — it calls the paid API.
+⛔ A test that reads `bin/*/Target/` belongs to the #1460 artefact suite (post-tag,
+env-gated), not to this workflow.
+
 ## The dimension axis — attested vs unconfirmed
 
 The dialect expresses a language as one `<Entity>` block per (Guid, `Language`). Attested,
