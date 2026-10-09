@@ -55,6 +55,14 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             new(@"<object[^>]*\bdata=""(?<path>[^""]*)""", RegexOptions.Compiled);
 
         /// <summary>
+        /// The <c>#mindmap</c> rule of a wrapper's stylesheet — the SVG's container. Matched as a whole
+        /// block so the pin is read from the rule that actually governs the SVG rather than from any
+        /// <c>direction: ltr</c> anywhere in the file, which a naive substring check would accept.
+        /// </summary>
+        private static readonly Regex MindmapContainerRuleRegex =
+            new(@"#mindmap\s*\{(?<body>[^}]*)\}", RegexOptions.Compiled);
+
+        /// <summary>
         /// A committed wrapper paired with everything needed to re-derive it. <see cref="SvgName"/> is
         /// both the <c>[SVGPATH]</c> value of the external variant and the key into the declared
         /// titles; <see cref="Title"/> is the title the creator config declares for this language.
@@ -316,6 +324,93 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             offenders.Should().BeEmpty(
                 "the two RTL corpus languages (ar, fa) rendered left-to-right in every committed wrapper " +
                 "before T4b; the direction is a property of the language and must be stated, not inherited");
+        }
+
+        private static string MindmapContainerRule(string html)
+        {
+            var match = MindmapContainerRuleRegex.Match(html);
+            match.Success.Should().BeTrue(
+                "the wrapper must carry a '#mindmap { ... }' rule — it is the SVG's container");
+            return match.Groups["body"].Value;
+        }
+
+        /// <summary>
+        /// The other half of the direction work, and the one the byte pin cannot see: stating the
+        /// language's direction on the document must NOT let it reach the inlined SVG. FreeMind/Batik
+        /// computed every coordinate and the anchors left-to-right, so under a rtl base direction
+        /// <c>text-anchor: start</c> resolves to the RIGHT edge and each label is displaced by its own
+        /// width. Measured in Chromium on the committed <c>ar/Fallacies_ar.html</c> (1408 <c>&lt;text&gt;</c>):
+        /// no <c>dir</c> at all -> 1377 anchored left; <c>dir="rtl"</c> alone -> 0 left and 1224 right;
+        /// <c>dir="rtl"</c> plus this container pin -> back to 1377. The document keeps its direction.
+        /// </summary>
+        [Fact]
+        public void InliningTemplate_PinsTheSvgContainerToLtr()
+        {
+            var template = File.ReadAllText(IncludedTemplatePath);
+
+            MindmapContainerRule(template).Should().Contain("direction: ltr",
+                "the inlining template must pin the SVG container to ltr — without it, 'dir=\"rtl\"' on " +
+                "the document flips every text anchor to the right edge and shifts each label by its width");
+
+            template.Should().Contain("[DIRECTION]",
+                "the document must still declare its own language's direction: the container pin is a " +
+                "second, narrower rule, not a replacement for stating the direction");
+        }
+
+        /// <summary>
+        /// The same pin, on the artefacts, plus the reason the <c>_ext</c> half needs none: the external
+        /// wrappers embed the SVG through <c>&lt;object&gt;</c>, whose document is separate, so the host's
+        /// direction cannot reach it. Measured on the real artefacts, not assumed — the host document of
+        /// every <c>_ext</c> wrapper carries zero <c>&lt;svg&gt;</c> elements, and the SVG inside the object
+        /// reports <c>ltr</c> with its anchors on the left.
+        /// </summary>
+        [Fact]
+        public void EveryInliningWrapper_PinsTheContainer_AndNoExtHostDocumentCarriesAnSvg()
+        {
+            var missingPin = new List<string>();
+            var svgInExtHost = new List<string>();
+            var inlinersWithoutSvg = new List<string>();
+            var inliners = 0;
+            var externals = 0;
+
+            foreach (var langDir in Directory.EnumerateDirectories(MindmapDir).OrderBy(d => d, StringComparer.Ordinal))
+            {
+                foreach (var file in Directory.EnumerateFiles(langDir, "*.html").OrderBy(p => p, StringComparer.Ordinal))
+                {
+                    var name = $"{Path.GetFileName(langDir)}/{Path.GetFileName(file)}";
+                    var html = File.ReadAllText(file);
+                    var isExt = Path.GetFileName(file).EndsWith("_ext.html", StringComparison.Ordinal);
+
+                    if (isExt)
+                    {
+                        externals++;
+                        if (html.Contains("<svg", StringComparison.Ordinal))
+                            svgInExtHost.Add(name);
+                        continue;
+                    }
+
+                    inliners++;
+                    if (!MindmapContainerRule(html).Contains("direction: ltr", StringComparison.Ordinal))
+                        missingPin.Add(name);
+                    if (!html.Contains("<svg", StringComparison.Ordinal))
+                        inlinersWithoutSvg.Add(name);
+                }
+            }
+
+            inliners.Should().Be(17, "the tree ships 17 inlining wrappers (8 Fallacies + 8 Virtues + 1 FR cards)");
+            externals.Should().Be(17, "the tree ships the same 17 documents again as _ext wrappers");
+
+            missingPin.Should().BeEmpty(
+                "every inlining wrapper embeds the SVG in its own document, so every one of them must pin " +
+                "the container to ltr — the template change is only real once it is re-derived onto the tree");
+
+            inlinersWithoutSvg.Should().BeEmpty(
+                "an inlining wrapper with no <svg> would mean the [SVGCONTENT] token silently resolved to " +
+                "nothing, and the pin above would then be guarding an empty document");
+
+            svgInExtHost.Should().BeEmpty(
+                "an external wrapper carrying an <svg> in its own document would inherit the document's " +
+                "direction and need the pin too; today the SVG lives only inside the <object>");
         }
 
         /// <summary>
