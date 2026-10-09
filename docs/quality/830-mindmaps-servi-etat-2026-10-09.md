@@ -12,7 +12,7 @@
 
 | # | Critère §5 | Mesure du 09/10 | Verdict |
 |---|---|---|---|
-| 1 | **16 canon** | **50/50 stems attendus répondent 200**. Identité à l'octet sur 2 canon : `Fallacies_fr.html` 2 711 714 o `56a9975d42016c11` · `Virtues_fr.html` 521 917 o `e7895bc080d73be1` | ✅ = blob `9cb615f0` |
+| 1 | **16 canon** | **50/50 stems attendus répondent 200**. Identité à l'octet sur 2 canon : `Fallacies_fr.html` **2 717 114 o** `56a9975d42016c11` · `Virtues_fr.html` 521 917 o `e7895bc080d73be1` | ✅ = blob `9cb615f0` |
 | 2 | **16 `_ext`** | `Fallacies_fr_ext.html` 200 · 91 269 o `0caafb9213dccedc` | ✅ = blob `9cb615f0` |
 | 3 | **16 `.content.svg`** | `Fallacies_fr.content.svg` 2 629 639 o `144d2496381f2e5d` · `Argumentum_Virtues_MindMap_zh.content.svg` 1 148 721 o `1abe32092a94b149` | ✅ = blob `9cb615f0` |
 | 4 | **Contrôle inverse** | `virtues_zz.html` **404** · `fallacies_zz.html` **404** · `Fallacies_fr_ext.svg` **404** | ✅ l'instrument voit l'échec |
@@ -35,6 +35,8 @@ Six fichiers vérifiés **un par un** contre le blob git (`git cat-file -p <ref>
 | **HEAD pour le recensement, GET pour l'identité** | `HEAD` ne rend pas de `Content-Length` exploitable sur cet hôte (les SVG rendent `System.String[]`, le HTML `-`) : un `200` sans taille peut être un *soft-404* DNN. **HEAD ne sert donc que le code HTTP** ; aucun octet, aucun sha n'en vient. |
 | **Contrôle inverse ×3** | Un instrument qui ne peut pas voir un échec ne prouve rien. Trois stems inexistants répondent bien **404**. |
 | **Comparaison au BLOB, pas à l'arbre de travail** | `git cat-file -p <ref>:<chemin>` rend les octets **tels que committés** ; l'arbre de travail est filtré (`core.autocrlf`). Comparer le servi à un fichier de travail produirait un faux écart. |
+| **Schéma d'URL servi : plat, à la racine** | Le site sert ces fichiers **à plat à la racine** (`/Fallacies_fr.html`), pas sous le chemin du dépôt (`/Mindmaps/<lang>/…` → 404, mesuré). L'hôte est **insensible à la casse** (minuscule / capitale / MAJUSCULE → 200 sur les trois). C'est ce schéma plat qui justifie les renommages de cibles du runbook §1 — et il rend le **stem** seul discriminant, pas le chemin. |
+| **⭐ Tailles vérifiées par `git cat-file -s`, pas recopiées** | La taille de chaque fichier cité a été relue sur le **blob** (`git cat-file -s <ref>:<chemin>`), qui est l'arbitre sans réseau : un même sha256 ⇒ une même longueur. *(Une transposition de chiffres dans la première mouture de ce tableau — « 2 711 714 » pour 2 717 114 — a été attrapée par la contre-revue po-2023, c.6087370438, et corrigée ici.)* |
 | **⭐ Contrôle positif du correctif #1831** | Le motif `direction: ltr` rend **0** dans le blob prod servi et **2** dans le blob master. Le **même** motif, sur le **même** instrument, **voit** la valeur quand elle est là. ⇒ le zéro servi est une **absence réelle**, pas une panne de motif. |
 
 ⚠️ Sans ce contrôle positif, `text-anchor = 0` sur un SVG de 2,7 Mo aurait pu se lire « le fichier est vide » — le blob master n'en porte **qu'un**. *Un `0` n'est une absence que si l'instrument pouvait voir un `1`.*
