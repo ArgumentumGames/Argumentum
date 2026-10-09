@@ -22,7 +22,7 @@ Deux précisions que la mesure du 13/09 a imposées (les 9 documents runbook-typ
 | 1 | **Apply Manifests Δ #490/#682** | [`go-live-turnkey-checklist.md`](go-live-turnkey-checklist.md) | ✅ existant (prêt) — B4 (prod VPS go-live) en attente du GO |
 | 2 | **Option C connection-string** | [`option-c-connection-string-runbook.md`](option-c-connection-string-runbook.md) | ✅ **APPLIQUÉ + CERTIFIÉ** (17/07) — cf. note doublon ci-dessous |
 | 3 | **Fix skin `tabid=138` (Opt 1)** | [`skin-tabid138-diagnostic-runbook.md`](skin-tabid138-diagnostic-runbook.md) | ⚠ **diagnostic-only** (fix diff deferred au GO, nécessite stack trace live) |
-| 4 | **Redéploiement mindmaps servi (#830)** | [`redeploy-mindmaps-runbook.md`](redeploy-mindmaps-runbook.md) | ✅ existant (prêt) — ops serveur seul, geste additif fichier par fichier, ⛔ `/MIR` |
+| 4 | **Redéploiement mindmaps servi (#830)** | [`redeploy-mindmaps-runbook.md`](redeploy-mindmaps-runbook.md) | ⚠️ **GESTE DÉJÀ APPLIQUÉ** (mesuré 09/10/2026 : 50 stems servis, couche `9cb615f0` à l'octet) — il ne reste qu'un **rafraîchissement depuis master** ; ops serveur seul, geste additif fichier par fichier, ⛔ `/MIR` |
 | 5 | **Rotation machineKey + scrub** | [`machinekey-rotation-scrub-runbook.md`](machinekey-rotation-scrub-runbook.md) | ⚠ staged — **ZERO exécution sans GO jsboige** (ops server, #415 git-rewrite gated) ; nuance §0.1 dans la table de mesure |
 | 6 | **Go-live gate (jour J, top-to-bottom)** | [`go-live-gate-runbook.md`](go-live-gate-runbook.md) | ✅ existant (prêt) — Step A = rotation machineKey (prod `web.config`) |
 
