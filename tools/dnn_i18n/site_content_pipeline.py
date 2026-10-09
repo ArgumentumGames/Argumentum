@@ -75,6 +75,11 @@ USAGE
 
   # 3. offline proof: lossless round-trip + inverse controls, zero network, zero write
   python site_content_pipeline.py self-test
+
+  # app 33 (T2): the prose set is declared PER CONTENT TYPE (see
+  # TRANSLATE_FIELDS_BY_CONTENT_TYPE); one run per content type, --export per CT file.
+  python site_content_pipeline.py to-csv --export <app33-Content-export.json> \
+      --out app33-content.csv
 """
 from __future__ import annotations
 
@@ -130,9 +135,38 @@ CULTURES: dict[str, tuple[str, int | None, bool, str]] = {
 
 CSV_FIELDS = ["key", "app", "content_type", "guid", "attribute"] + LANG_COLUMNS
 
+# Prose (translatable) attribute sets, per content type. "Game Rule" stays the sibling
+# import (single source of truth, control IC6). The app 33 sets are MEASURED in
+# 1781-i2-zone3-inventory.md §3 (attribute-level inventory, read-only SQL, 2026-10-09):
+# Content = Title/Text/ImageCaption, Link = Title/Description/LinkText, Video = Title/Text.
+#
+# Person and Location are DELIBERATELY absent: they are the association's public contact
+# block (I2 §5, 3 entities to handle by hand) and are excluded from bulk translation —
+# an export of either is REFUSED below, so the exclusion is enforced by the tool, not by
+# operator discipline. Same for any content type not declared here.
+TRANSLATE_FIELDS_BY_CONTENT_TYPE: dict[str, list[str]] = {
+    "Game Rule": TRANSLATE_FIELDS,
+    "Content": ["Title", "Text", "ImageCaption"],
+    "Link": ["Title", "Description", "LinkText"],
+    "Video": ["Title", "Text"],
+}
+
 
 class PipelineError(Exception):
     """Refusal. Raised instead of emitting a payload we cannot vouch for."""
+
+
+def translate_fields_for(content_type: str) -> list[str]:
+    """Fail-closed: an undeclared content type refuses rather than emitting a CSV whose
+    target columns silently encode 'nothing here is translatable' — a file that would
+    stay untranslated-forever with no red anywhere (the stale-trap family)."""
+    try:
+        return TRANSLATE_FIELDS_BY_CONTENT_TYPE[content_type]
+    except KeyError:
+        raise PipelineError(
+            f"content type '{content_type}' has no declared prose set — declare it in "
+            "TRANSLATE_FIELDS_BY_CONTENT_TYPE (from a measured inventory, cf. "
+            "1781-i2-zone3-inventory.md §3) before running to-csv on its export") from None
 
 
 # --------------------------------------------------------------------------------------
@@ -198,6 +232,7 @@ def build_rows(export: dict, translations: dict | None = None,
     translations = translations or {}
     by_id = {e["EntityID"]: e for e in export["entities"]}
     app, ctype = export["appId"], export["contentType"]
+    prose = translate_fields_for(ctype)  # fail-closed on an undeclared content type
     keep = {str(e) for e in by_id}
     if entity_filter:
         keep = {k for k in keep if k == str(entity_filter)}
@@ -219,7 +254,7 @@ def build_rows(export: dict, translations: dict | None = None,
         }
         for lang in TARGETS:
             row[lang] = (translation_value(translations, eid, attr, lang)
-                         if attr in TRANSLATE_FIELDS else "")
+                         if attr in prose else "")
         rows.append(row)
     rows.sort(key=lambda r: (r["guid"], r["attribute"]))
     return rows
@@ -271,6 +306,16 @@ def export_value_tuples(export: dict) -> list[tuple]:
 def rows_to_xml(rows: list[dict], export: dict, *, allow_unconfirmed: bool = False,
                 uniform_attributes: bool = False, entity_filter: str | None = None) -> bytes:
     """Emit the 2sxc import dialect: one <Entity> per (Guid, Language)."""
+    # The <Entity Type> is stamped from the EXPORT while the rows carry their own
+    # content_type — with more than one content type in existence (app 33 era), a CSV
+    # paired with the wrong export (or a merged CSV) would silently emit mislabelled
+    # blocks. Refuse instead: one content type per run.
+    mismatched = sorted({r["content_type"] for r in rows} - {export["contentType"]})
+    if mismatched:
+        raise PipelineError(
+            f"CSV rows carry content_type {mismatched} but the export is "
+            f"'{export['contentType']}' — to-xml handles one content type per run; "
+            "split a merged CSV per content type and point --export at the matching export")
     langs = LANG_COLUMNS
     if not allow_unconfirmed:
         bad = [(l, CULTURES[l][0]) for l in langs if not CULTURES[l][2]]
@@ -437,6 +482,72 @@ def self_test(export_path: str, translations_path: str) -> int:
                  TRANSLATE_FIELDS == ["Title", "Summary", "Material", "Installation",
                                       "Content", "Variants", "Memo"],
                  str(TRANSLATE_FIELDS))
+
+    # ---- app 33 family: per-content-type prose sets (T2) --------------------------------
+    # A synthetic Link export in the measured v21 shape (I2 §3: Link = 8 entities,
+    # Title/Description/LinkText prose; Url is the tech witness). Synthetic by design:
+    # no app 33 export exists yet — these controls pin the PIVOT's behavior, not data.
+    link_export = {
+        "contentType": "Link", "appId": 33, "attributeSetId": 0,
+        "schemaAttributes": [
+            {"StaticName": "Title", "Type": "String"},
+            {"StaticName": "Description", "Type": "String"},
+            {"StaticName": "LinkText", "Type": "String"},
+            {"StaticName": "Url", "Type": "Hyperlink"},
+        ],
+        "entities": [
+            {"EntityID": 501, "EntityGUID": "11111111-1111-4111-8111-111111111111", "IsPublished": True},
+            {"EntityID": 502, "EntityGUID": "22222222-2222-4222-8222-222222222222", "IsPublished": True},
+        ],
+        "values": [
+            {"EntityID": 501, "StaticName": "Title", "Value": "Nos amis", "Type": "String",
+             "Lang": None, "DimensionID": None},
+            {"EntityID": 501, "StaticName": "Description", "Value": "Ils nous soutiennent.",
+             "Type": "String", "Lang": None, "DimensionID": None},
+            {"EntityID": 501, "StaticName": "Url", "Value": "https://example.org", "Type": "Hyperlink",
+             "Lang": None, "DimensionID": None},
+            {"EntityID": 502, "StaticName": "Title", "Value": "Vidéos", "Type": "String",
+             "Lang": None, "DimensionID": None},
+            {"EntityID": 502, "StaticName": "LinkText", "Value": "Regarder", "Type": "String",
+             "Lang": None, "DimensionID": None},
+        ],
+    }
+    # A translation artifact that fills EVERY attribute — including Url — so the control
+    # proves the prose set (not the artifact) gates which columns can carry translations.
+    link_tr = {"entities": {str(eid): {"fields": {
+        attr: {lang: f"{attr}-{lang}" for lang in TARGETS}
+        for attr in ("Title", "Description", "LinkText", "Url")}}
+        for eid in (501, 502)}}
+
+    rows33 = build_rows(link_export, link_tr)
+    filled = {r["attribute"]: r["en"] for r in rows33}
+    # every set-membership question has a witness row: adding Url to the set turns its
+    # cell non-empty, dropping Description turns its cell empty — both mutate this dict.
+    ok &= _check("IC12 app 33 Link: only the declared prose set gets translation slots",
+                 filled == {"Title": "Title-en", "Description": "Description-en",
+                            "Url": "", "LinkText": "LinkText-en"},
+                 f"{len(rows33)} rows, en column: {filled}")
+
+    person_refused = False
+    try:
+        build_rows({**link_export, "contentType": "Person"}, {})
+    except PipelineError:
+        person_refused = True
+    ok &= _check("IC13 undeclared content type (Person: contact block, I2 §5) is REFUSED",
+                 person_refused)
+
+    # IC14: a CSV paired with another content type's export is refused before any XML.
+    cross_refused = False
+    try:
+        rows_to_xml(rows33, exp, allow_unconfirmed=True)  # Link rows vs Game Rule export
+    except PipelineError:
+        cross_refused = True
+    ok &= _check("IC14 to-xml REFUSES a CSV whose content_type != the export's",
+                 cross_refused)
+
+    # IC15: the Game Rule mapping entry cannot drift from the sibling import.
+    ok &= _check("IC15 mapping['Game Rule'] == sibling TRANSLATE_FIELDS (no drift)",
+                 TRANSLATE_FIELDS_BY_CONTENT_TYPE["Game Rule"] == TRANSLATE_FIELDS)
 
     # IC7: the dimension axis is not silently collapsed — 8 distinct cultures emitted.
     cultures = {c for (_, _, c) in back}

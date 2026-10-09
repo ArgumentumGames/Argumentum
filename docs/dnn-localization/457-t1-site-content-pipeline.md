@@ -111,7 +111,8 @@ switches to the legacy dialect shape (every schema attribute in every block, emp
 ## 4. Round-trip proof and controls
 
 `self-test` — **17 checks, all named**, zero network, zero prod write, runnable as step `[5/5]`
-of the existing `test_roundtrip.py` runner.
+of the existing `test_roundtrip.py` runner. *(T2 later extended the suite to 21 checks —
+per-content-type prose sets; see [`457-t2-app33-first-lot.md`](457-t2-app33-first-lot.md).)*
 
 **Two round-trip axes** (both byte-exact):
 
