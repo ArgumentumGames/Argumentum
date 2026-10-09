@@ -1,6 +1,6 @@
 # Runbook — Redéploiement des mindmaps servi (`www.argumentum.games`)
 
-> **Version** : 1.0 (2026-09-12) · **Statut** : PRÊT — en attente de GO owner. **Ops serveur seul** : à exécuter par l'opérateur qui détient l'accès au webroot (ce n'est une lane d'aucun agent).
+> **Version** : 1.1 (2026-10-09) · **Statut** : ⛔ **v1.0 SUPERSEDED — le geste est DÉJÀ APPLIQUÉ en production.** Mesuré le 09/10 sur les octets servis : **50 stems servis**, **6/6 fichiers byte-identiques au blob `9cb615f0`** (canon inliner, `_ext`, `.content.svg` ; langues `fr` et `ar`), **2/2 sentinelles conformes**. Ce runbook n'est donc plus « en attente de GO » — il décrit un geste **déjà fait**, et le prochain geste est un **rafraîchissement**. Mesure, instrument et conséquences : [`docs/quality/830-mindmaps-servi-etat-2026-10-09.md`](../quality/830-mindmaps-servi-etat-2026-10-09.md). ⛔ **Le verdict §5 #7 reste `ai-01`** — l'opérateur de la mesure a mesuré des octets, pas un rendu. **Ops serveur seul** : à exécuter par l'opérateur qui détient l'accès au webroot (ce n'est une lane d'aucun agent).
 > **Sources** : dry-run [#830 c.5646290386](https://github.com/ArgumentumGames/Argumentum/issues/830#issuecomment-5646290386) + balayage exhaustif du servi [#830 c.5646564558](https://github.com/ArgumentumGames/Argumentum/issues/830#issuecomment-5646564558). Base git : master `9cb615f0`.
 > ⚠️ **Dépôt public** : ce runbook ne contient volontairement aucune adresse d'infrastructure ni aucun nom de clé — ces détails vivent sur le dashboard interne.
 
@@ -44,7 +44,7 @@ Les canon **embarquent leur SVG inline** (autoportants, copie simple). Les `_ext
 
 Chaque `*_ext.html` référence exactement un SVG externe, au nom forcé. **Publier un `_ext` sans son SVG = une page 200 qui n'affiche rien** — un faux vert, strictement pire que le 404 actuel (qui est honnête). Règle : chaque `.content.svg` est copié **avant ou en même temps que** le `_ext` correspondant.
 
-Manifeste des 16 SVG @ master `9cb615f0` (aucun n'est servi aujourd'hui — les 16 partent de zéro) :
+Manifeste des 16 SVG @ master `9cb615f0` (⚠️ **correction 09/10/2026** : la mention d'origine — « aucun n'est servi aujourd'hui, les 16 partent de zéro » — est **fausse**. Les 16 `.content.svg` **sont servis**, et 2 d'entre eux ont été vérifiés **byte-identiques aux empreintes ci-dessous**. Le manifeste reste valide comme référence de la couche déployée ; il n'est plus un état à créer) :
 
 | Langue | Famille | Fichier (= nom cible) | Taille (o) | sha256 (16 premiers) |
 |---|---|---|---:|---|
@@ -71,7 +71,7 @@ Manifeste des 16 SVG @ master `9cb615f0` (aucun n'est servi aujourd'hui — les 
 
 ## 3. Sauvegarde préalable (obligatoire, AVANT le geste)
 
-1. Sauvegarde **horodatée** des **16 canon actuellement servis** — les seuls fichiers que le geste écrase. (Ils sont aujourd'hui les blobs de `de763aa9`, déployés le 10/08 16:55 GMT.)
+1. Sauvegarde **horodatée** des **16 canon actuellement servis** — les seuls fichiers que le geste écrase. (⚠️ **correction 09/10/2026** : la parenthèse d'origine — « les blobs de `de763aa9`, déployés le 10/08 » — est **périmée**. La couche servie est `9cb615f0` (vérifié à l'octet). **Re-mesurer le sha des 16 canon avant le geste** et sauvegarder **cette** couche : sauvegarder `de763aa9` sauvegarde une couche qui n'est plus servie, et ferait croire à un retour en arrière possible vers un état qui n'est pas l'état antérieur.)
 2. Consigner l'état des **deux sentinelles orphelines** (tailles exactes, §5) — la preuve d'additivité du §5 se compare à cet instantané.
 3. **Ne pas toucher** au `web.config`.
 
@@ -90,6 +90,8 @@ Manifeste des 16 SVG @ master `9cb615f0` (aucun n'est servi aujourd'hui — les 
 
 Le cache de la racine est `max-age=600` (**10 minutes**, pas un an) — la propagation est rapide, le `Last-Modified` doit dater du geste.
 
+> ⛔ **Les critères 1-3 et 5-6 sont DÉJÀ SATISFAITS (mesuré 09/10/2026).** La production sert les **50 stems** et les **deux sentinelles conformes**. Sur un **rafraîchissement**, cette checklist ne peut donc **pas** distinguer « geste fait » de « geste déjà fait » : elle est verte dans les deux cas, **y compris si l'opérateur ne fait rien**. ⇒ **Un critère d'arrivée doit être relatif à l'état de départ** — relever les sha256 **avant** le geste et exiger qu'ils **changent** vers ceux de la couche cible, jamais se contenter de « N fichiers répondent 200 ». Détail : [`docs/quality/830-mindmaps-servi-etat-2026-10-09.md`](../quality/830-mindmaps-servi-etat-2026-10-09.md) §3.1.
+
 | # | Contrôle | Réussite si |
 |---|---|---|
 | 1 | **16 canon** (`Fallacies_<lang>.html`, `Virtues_<lang>.html`) | 200 **et** taille **et** sha256 = manifeste @ master. La taille seule ne suffit pas (Capacité 0). |
@@ -100,7 +102,9 @@ Le cache de la racine est `max-age=600` (**10 minutes**, pas un an) — la propa
 | 6 | **Sentinelle `virtues_fr.svg`** | reste **200 à exactement 555 208 o** (sha256 `b6df4cab…`) — même règle. Ces deux fichiers n'existent dans **aucun commit** : un miroir les détruirait, seul un geste additif les laisse intacts. |
 | 7 | Passe comportementale des 9 capacités de #830 sur le servi | Capacité 0 verte d'abord. |
 
-Inventaire de référence avant geste (pour comparaison) : **18 fichiers servis** (16 canon + 2 orphelins), **96 stems 404** — tableau complet en [#830 c.5646564558](https://github.com/ArgumentumGames/Argumentum/issues/830#issuecomment-5646564558). Après le geste : **50 servis attendus** — 18 existants dont 16 canon écrasés (contenu nouveau), 2 sentinelles inchangées, + 32 ajoutés (16 `_ext` + 16 `.content.svg`).
+Inventaire de référence **avant** geste (12/09) : **18 fichiers servis** (16 canon + 2 orphelins), **96 stems 404** — tableau complet en [#830 c.5646564558](https://github.com/ArgumentumGames/Argumentum/issues/830#issuecomment-5646564558). Inventaire **attendu après** le geste : **50 servis** — 18 existants dont 16 canon écrasés (contenu nouveau), 2 sentinelles inchangées, + 32 ajoutés (16 `_ext` + 16 `.content.svg`).
+
+> ✅ **Cet « après » est l'état MESURÉ du 09/10/2026** : 50 stems servis, 6/6 fichiers vérifiés byte-identiques au blob `9cb615f0`, 2/2 sentinelles conformes. La prédiction du §5 s'est donc réalisée — et c'est précisément pourquoi elle ne peut plus servir de contrôle d'arrivée (§ note ci-dessus). Les 32 additifs sont **servis** ; ils étaient à 404 le 12/09.
 
 ---
 
