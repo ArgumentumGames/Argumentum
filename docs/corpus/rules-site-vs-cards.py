@@ -16,9 +16,12 @@ Gardes :
 - aucune écriture CSV/gabarit — ceci est un instrument de dossier d'arbitrage.
 
 Usage :
-  python docs/corpus/rules-site-vs-cards.py [csv_path]
+  python docs/corpus/rules-site-vs-cards.py [csv_path] [--base URL]
     csv_path optionnel : copie du CSV pour le CONTRÔLE INVERSE par mutation
     (ex. compteur de Rules_09 changé ⇒ verdict « beau » doit basculer à ECART).
+    --base : cible des pages (défaut = prod). La préprod se sonde par
+      --base https://dnn.argumentum.myia.io/R%C3%A8gles
+    — DoD du grain R-site (#1502) : rejeu sur la préprod après écriture.
 
 Codes de sortie :
   0  extraction complète et structurelle cohérente (les écarts site↔cartes
@@ -82,15 +85,18 @@ def norm(s):
 
 def sim(a, b):
     # autojunk=False (mesuré 2026-10-09, phase écriture R-site) : l'heuristique par
-    # défaut traite comme « junk » tout caractère ≥1 % de b dès que len(b)≥200 — en
-    # pratique TOUTES les lettres fréquentes du français. Deux textes à 94,9 % de
-    # contenu commun dont la divergence est en tête (les 2 items owner de Variants
-    # École : « A 5 joueurs et plus… », « Autant de vainqueurs au nombre de votes… »)
-    # rendaient 0.109 au lieu de 0.949 : les seeds détruites empêchent la recherche
-    # de blocs de retrouver les items 2-4 identiques. Contrôle : une paire quasi
-    # identique divergeant en queue (moulin) rend 0.994 dans les deux modes — le
-    # défaut ne se voit QUE sur une divergence en tête, exactement la configuration
-    # des exceptions nominatives du plan.
+    # défaut marque comme « junk » tout élément de b comptant PLUS de
+    # len(b)//100 + 1 occurrences, et seulement si len(b) ≥ 200 (seuil exact de
+    # difflib : len(idxs) > n//100 + 1 — pas « ≥ 1 % », qui confondrait >3 et ≥2 à
+    # n=200). L'élément de difflib est générique ; sur nos chaînes c'est le
+    # caractère — en pratique TOUTES les lettres fréquentes du français. Deux textes
+    # à 94,9 % de contenu commun dont la divergence est en tête (les 2 items owner
+    # de Variants École : « A 5 joueurs et plus… », « Autant de vainqueurs au nombre
+    # de votes… ») rendaient 0.109 au lieu de 0.949 : les seeds détruites empêchent
+    # la recherche de blocs de retrouver les items 2-4 identiques. Contrôle : une
+    # paire quasi identique divergeant en queue (moulin) rend 0.994 dans les deux
+    # modes — le défaut ne se voit QUE sur une divergence en tête, exactement la
+    # configuration des exceptions nominatives du plan.
     return round(SequenceMatcher(None, a, b, autojunk=False).ratio(), 3) if a and b else 0.0
 
 
@@ -175,14 +181,23 @@ def git_s_count(needle):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    csv_path = argv[1] if len(argv) > 1 else os.path.join("Cards", "Rules", "Argumentum Rules - Cards.csv")
+    args = list(argv[1:])
+    base = BASE
+    if "--base" in args:
+        i = args.index("--base")
+        if i + 1 >= len(args):
+            print("ERREUR: --base exige une URL (ex. https://dnn.argumentum.myia.io/R%C3%A8gles)")
+            return 2
+        base = args.pop(i + 1)
+        args.pop(i)
+    csv_path = args[0] if args else os.path.join("Cards", "Rules", "Argumentum Rules - Cards.csv")
     rows = {r["pk"].strip(): r.get("Text") or "" for r in csv.DictReader(open(csv_path, encoding="utf-8-sig"))}
     if len(rows) != 15:
         print(f"ERREUR: 15 cartes attendues, {len(rows)} lues dans {csv_path}")
         return 2
 
     # ── Compteurs joueurs : MESURÉS des deux côtés, verdict CALCULÉ ──
-    landing = fetch(BASE)
+    landing = fetch(base)
     if landing is None:
         return 2
     landing_txt = re.sub(r"\s+", " ", text_of(landing))
@@ -225,7 +240,7 @@ def main(argv):
     print("\n=== Matrice site↔cartes (appariement intra-variante, similarité SequenceMatcher sur texte normalisé) ===")
     paired = 0
     for slug, (vk, pks, _) in VARIANTS.items():
-        raw = fetch(f"{BASE}/details/{slug}/mid/602")
+        raw = fetch(f"{base}/details/{slug}/mid/602")
         if raw is None:
             return 2
         secs = site_sections(raw)
