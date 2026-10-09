@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxonomy Mind Map</title>
+    <title>有效论证 — Argumentum</title>
     <style>
         body {
             font-family: 'DINPro', sans-serif;
@@ -13,8 +13,22 @@
             display: none;
         }
 
+        /* `direction: ltr` (#457 T4b) — le `dir` du DOCUMENT reste celui de la langue (rtl
+           pour ar/fa : accessibilite, selection, lecteurs d'ecran), mais il ne doit PAS
+           descendre dans le SVG inline : les coordonnees et les ancres de texte viennent de
+           FreeMind/Batik, qui les a calculees en lecture gauche-droite. Sous rtl,
+           `text-anchor: start` se resout au bord DROIT et chaque libelle se decale de sa
+           propre largeur.
+
+           Mesure (Chromium, Fallacies_ar.html, 1408 <text>) :
+             sans `dir`       -> 1377 libelles ancrees a GAUCHE (reference)
+             avec `dir="rtl"` ->    0 a gauche, 1224 a DROITE    (le defaut)
+           L'ecriture arabe reste correcte : le bidi intra-texte suit le script, pas cette
+           propriete. Les wrappers `_ext` n'ont pas besoin de la regle — ils chargent la SVG
+           par <object>, document separe (mesure : hote dir=rtl, enfant ltr). */
         #mindmap {
             position: relative;
+            direction: ltr;
         }
 
         .node:hover {
