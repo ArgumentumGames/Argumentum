@@ -84,7 +84,17 @@ def norm(s):
 
 
 def sim(a, b):
-    return round(SequenceMatcher(None, a, b).ratio(), 3) if a and b else 0.0
+    # autojunk=False (mesuré 2026-10-09, phase écriture R-site) : l'heuristique par
+    # défaut traite comme « junk » tout caractère ≥1 % de b dès que len(b)≥200 — en
+    # pratique TOUTES les lettres fréquentes du français. Deux textes à 94,9 % de
+    # contenu commun dont la divergence est en tête (les 2 items owner de Variants
+    # École : « A 5 joueurs et plus… », « Autant de vainqueurs au nombre de votes… »)
+    # rendaient 0.109 au lieu de 0.949 : les seeds détruites empêchent la recherche
+    # de blocs de retrouver les items 2-4 identiques. Contrôle : une paire quasi
+    # identique divergeant en queue (moulin) rend 0.994 dans les deux modes — le
+    # défaut ne se voit QUE sur une divergence en tête, exactement la configuration
+    # des exceptions nominatives du plan.
+    return round(SequenceMatcher(None, a, b, autojunk=False).ratio(), 3) if a and b else 0.0
 
 
 def text_of(fragment):

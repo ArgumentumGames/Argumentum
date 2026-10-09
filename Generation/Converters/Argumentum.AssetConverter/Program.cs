@@ -519,6 +519,13 @@ namespace Argumentum.AssetConverter
 							throw new InvalidOperationException("Templates do not carry svg-pan-zoom v3.6.2 bundle; abort before regenerating bugged HTML. Apply the template fix first.");
 						}
 
+						// #457 T4b: the wrapper <title> is declared data, resolved from the same
+						// config the production writer reads — never a second hardcoded copy here.
+						var virtueWrapperTitles = regenConfigVirtue.VirtueMindMapCreatorConfig.DocumentConfigs
+							.SelectMany(d => d.SVGMaps)
+							.FirstOrDefault(m => m.HtmlWrapperTitles.Count > 0)?.HtmlWrapperTitles
+							?? new Dictionary<string, string>();
+
 						var regenLanguagesVirtue = new[] { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
 						foreach (var lang in regenLanguagesVirtue)
 						{
@@ -534,13 +541,22 @@ namespace Argumentum.AssetConverter
 
 							var contentSvg = await File.ReadAllTextAsync(contentSvgPath);
 
+							// #457 T4b: dir=<DirectionFor(lang)> and <title> are both applied by the helper.
+							var wrapperTitle = MindMapHtmlWrapper.ResolveWrapperTitle(virtueWrapperTitles, lang);
+							if (!MindMapHtmlWrapper.HasWrapperTitleFor(virtueWrapperTitles, lang))
+							{
+								Logger.LogWarning(
+									$"[{lang}] no wrapper title declared; resolved '{wrapperTitle ?? "<empty>"}' " +
+									$"through the '{MindMapHtmlWrapper.WrapperTitleFallbackLanguage}' fallback (#457 T4b).");
+							}
+
 							// Included (inline SVG) wrapper.
-							var includedHtml = MindMapHtmlWrapper.FormatWrapper(includedTemplate, extSvgRelative, contentSvg, lang);
+							var includedHtml = MindMapHtmlWrapper.FormatWrapper(includedTemplate, extSvgRelative, contentSvg, lang, wrapperTitle);
 							var includedOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}.html");
 							await File.WriteAllTextAsync(includedOutPath, includedHtml, System.Text.Encoding.UTF8);
 
 							// External (<object data="...">) wrapper.
-							var externalHtml = MindMapHtmlWrapper.FormatWrapper(externalTemplate, extSvgRelative, contentSvg, lang);
+							var externalHtml = MindMapHtmlWrapper.FormatWrapper(externalTemplate, extSvgRelative, contentSvg, lang, wrapperTitle);
 							var externalOutPath = Path.Combine(langDir, $"Argumentation_Virtues_{lang}_ext.html");
 							await File.WriteAllTextAsync(externalOutPath, externalHtml, System.Text.Encoding.UTF8);
 

@@ -148,7 +148,7 @@ namespace Argumentum.AssetConverter.VisualTests
 
             var template = await File.ReadAllTextAsync(IncludedTemplatePath);
             var svg = await File.ReadAllTextAsync(svgPath);
-            var wrapper = MindMapHtmlWrapper.FormatWrapper(template, svgFileName, svg, lang);
+            var wrapper = MindMapHtmlWrapper.FormatWrapper(template, svgFileName, svg, lang, "Argumentum");
 
             // Hard guarantee the placeholders never ship.
             Assert.DoesNotContain("[SVGCONTENT]", wrapper);
