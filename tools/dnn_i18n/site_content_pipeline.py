@@ -43,8 +43,8 @@ expresses a language dimension as ONE `<Entity>` block per (Guid, Language) pair
 Guid repeated once per language, each carrying its own `<Language>` culture code. Attested
 values:
 
-    fr-FR  dimensionId 4   (legacy XML + manifest.json dimensions.frFR_dimensionId)
-    en-US  dimensionId 3   (manifest.json dimensions.enUS_dimensionId)
+    fr-FR  dimensionId 6   (TsDynDataDimension, zone 3 — app 60's zone; measured 2026-10-09)
+    en-US  dimensionId 7   (TsDynDataDimension, zone 3 — app 60's zone; measured 2026-10-09)
 
 The other six culture codes are **NOT attested anywhere in this repository**: their 2sxc
 dimensions are not provisioned (#682 Path A, recorded in 684-translation-run-report.md
@@ -52,7 +52,7 @@ lines 70-71 and 102-103). `to-xml` therefore REFUSES to emit an XML that uses th
 `--unconfirmed-ok` is passed, so that nobody silently ships a file whose culture codes were
 invented. Confirming them is a live step (I3): the portal's real dimensions come from
 
-    SELECT DimensionID, Name, CultureCode FROM ToSIC_EAV_Dimensions
+    SELECT DimensionID, ZoneId, Name, CultureCode FROM TsDynDataDimension
 
 WHAT THIS TOOL DOES *NOT* CLAIM
 --------------------------------
@@ -109,9 +109,17 @@ ONE_ENTITY_GUID = "ae1edefa-6f1b-4593-8230-97fa1edf4f78"
 FIXTURE_XML = os.path.join(HERE, "fixtures", "one-entity-game-rule-import.xml")
 
 # lang -> (culture code, dimensionId, attested?, provenance)
+#
+# dimensionId NOTE (I2, measured 2026-10-09): dimensions are ZONE-scoped, and app 60
+# lives in zone 3, whose dimensions are 6 (fr-FR) and 7 (en-US). The IDs this table
+# first carried (4 / 3) were copied from the export's manifest.json — they are ZONE 2's
+# (the dead portal 0), and that same manifest declares argumentumAppZoneId: 3, i.e. it
+# contradicts itself. Only the culture code is ever emitted into the import XML, so
+# nothing shipped wrong; the dimensionIds here are documentation, now measured instead
+# of copied. The 6 other cultures have no row anywhere in TsDynDataDimension.
 CULTURES: dict[str, tuple[str, int | None, bool, str]] = {
-    "fr": ("fr-FR", 4, True, "legacy import XML + manifest.json dimensions.frFR_dimensionId"),
-    "en": ("en-US", 3, True, "manifest.json dimensions.enUS_dimensionId"),
+    "fr": ("fr-FR", 6, True, "TsDynDataDimension zone 3 (app 60's zone), measured 2026-10-09 (#1781 I2)"),
+    "en": ("en-US", 7, True, "TsDynDataDimension zone 3 (app 60's zone), measured 2026-10-09 (#1781 I2)"),
     "ru": ("ru-RU", None, False, "dimension NOT provisioned (#682 Path A)"),
     "pt": ("pt-PT", None, False, "dimension NOT provisioned (#682 Path A)"),
     "es": ("es-ES", None, False, "dimension NOT provisioned (#682 Path A)"),
@@ -272,7 +280,8 @@ def rows_to_xml(rows: list[dict], export: dict, *, allow_unconfirmed: bool = Fal
                 + ", ".join(f"{l}->{c}" for l, c in bad)
                 + ".\nTheir 2sxc dimensions are not provisioned (#682 Path A). Confirm them "
                   "on the live portal (SELECT DimensionID, Name, CultureCode FROM "
-                  "ToSIC_EAV_Dimensions) or pass --unconfirmed-ok to emit a PROVISIONAL file.")
+                  "TsDynDataDimension — zone-scoped: app 60 is zone 3) or pass --unconfirmed-ok "
+                  "to emit a PROVISIONAL file.")
 
     schema_order = [a["StaticName"] for a in export["schemaAttributes"]]
     by_guid: dict[str, dict[str, dict[str, str]]] = {}

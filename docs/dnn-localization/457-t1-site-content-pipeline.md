@@ -151,13 +151,20 @@ ratio > 0.1) — see §6 for the declared scope of that gate.
 
 ## 5. The dimension axis — attested vs unconfirmed
 
-The import dialect encodes a language as a **culture code** on a repeated Guid. What this
-repository can attest:
+The import dialect encodes a language as a **culture code** on a repeated Guid. Measured on the
+live DB (I2, 2026-10-09, `TsDynDataDimension` — dimensions are **zone-scoped** and app 60 lives
+in **zone 3**):
 
 | lang | culture | dimensionId | status |
 |------|---------|------------:|--------|
-| fr | `fr-FR` | **4** | ✅ attested — `manifest.json: dimensions.frFR_dimensionId`, legacy import XML |
-| en | `en-US` | **3** | ✅ attested — `manifest.json: dimensions.enUS_dimensionId` |
+| fr | `fr-FR` | **6** | ✅ measured — `TsDynDataDimension` zone 3 |
+| en | `en-US` | **7** | ✅ measured — `TsDynDataDimension` zone 3 |
+
+⚠️ **Corrected 2026-10-09** — this table first said 4/3, copied from the export's
+`manifest.json: dimensions`. Those are **zone 2's** IDs (the dead portal 0), while the same
+manifest declares `argumentumAppZoneId: 3` — it contradicts itself, and the correction is
+measured in [`1781-i2-zone3-inventory.md`](1781-i2-zone3-inventory.md) §1. Only the culture
+code is ever emitted into the XML, so nothing shipped wrong; the IDs are documentation.
 | ru | `ru-RU` | — | ⚠ **unconfirmed** |
 | pt | `pt-PT` | — | ⚠ **unconfirmed** |
 | es | `es-ES` | — | ⚠ **unconfirmed** |
@@ -175,7 +182,7 @@ file whose culture codes were invented must not ship silently. Confirming them i
 one query:
 
 ```sql
-SELECT DimensionID, Name, CultureCode FROM ToSIC_EAV_Dimensions
+SELECT DimensionID, ZoneId, Name, CultureCode FROM TsDynDataDimension
 ```
 
 ⚠️ The existing report says *"the other 5 langs"* then lists **six** codes (ru/pt/es/ar/fa/zh).
