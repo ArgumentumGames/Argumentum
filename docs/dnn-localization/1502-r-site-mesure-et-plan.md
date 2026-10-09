@@ -18,6 +18,32 @@ exige un rejeu préprod, impossible sans lui) :
   plus **8 sections web-only** sans contrepartie carte (« Contenu » ×5, « Carte Mémo »,
   « Conditions de Victoire », « Nombre de pioches » sur l'École). Les 139 éléments en retard vivent
   dans les 27 réécrits + 9 proches ; relevé complet : sortie de l'instrument, § Reproductibilité.
+  ⚠️ **Lecture pré-écriture à l'instrument d'avant-fix** : le compte « 27 réécrits » est contaminé par
+  le défaut `autojunk` (erratum ci-dessous) — l'**ampleur** ne survit pas telle quelle ; les
+  compteurs, l'appariement et les sections web-only survivent.
+
+### Erratum (09/10 soir) — le « 27 réécrits » était en partie un artefact d'instrument
+
+La ligne ci-dessus a été mesurée **avant l'écriture** et avec `SequenceMatcher(autojunk=True)` —
+défaut corrigé depuis par #1835 (mergée `a9be2d11`) : l'autojunk marque comme « junk » tout élément
+de `b` comptant plus de `len(b)//100 + 1` occurrences dès que `len(b) ≥ 200` — soit, sur nos chaînes,
+toutes les lettres fréquentes du français — et les seeds détruites font rater les blocs identiques
+**quand la divergence est en tête** (mesuré : École `Variants` **0.109** au lieu de **0.949**). Une
+partie des 27 « réécrits » était donc une panne d'outil, pas un écart réel ; la matrice pré-écriture
+corrigée n'est pas re-dérivable du site servi (l'écriture #1835 a changé l'état mesuré).
+
+**Ce qui survit / ce qui ne survit pas** :
+
+- survivent (comparaisons discrètes, insensibles à `sim()`) : les **compteurs 5/5**, les **43 paires**
+  appariées, les **4 ancres**, les **8 sections web-only**, le plan d'écriture et ses exceptions ;
+- ne survit pas : l'**ampleur** « 27 réécrits + 9 proches » comme mesure des 139 éléments en retard
+  (l'analyse #1502, qui a posé le chiffre 139, procédait élément par élément, pas par similarité).
+
+**Rejeu à l'instrument corrigé (cette PR : `autojunk=False` + `--base`), état post-écriture #1835** :
+rc=0, 43 paires, compteurs 5/5 identiques — **34 IDENT · 5 proche · 0 réécrit · 4 ancres**. Les 5
+« proche » résiduels : `Matériel` ×3 (0.983-0.984), `Variantes` École (0.949 — les 2 items owner,
+attendus), `Fin de partie et décompte` (0.984) — écart de ponctuation/liste, mesuré 1.000 sans les
+tirets `<li>`. Cohérent avec le DoD de #1835.
 
 ## 2. Le magasin — mesuré, pas déduit
 
@@ -93,6 +119,10 @@ complexité langue à l'écriture.
 python docs/corpus/rules-site-vs-cards.py --base https://dnn.argumentum.myia.io/R%C3%A8gles
 python docs/corpus/rules-site-vs-cards.py            # défaut = prod, comportement inchangé
 ```
+
+L'instrument embarque ici deux couches : le drapeau `--base` (cette PR) et le correctif
+`autojunk=False` (#1835, mergée — la branche de cette PR est synchronisée sur master). Le rejeu du
+09/10 soir (matrice post-écriture ci-dessus) a été fait avec les deux.
 
 Sondes DB (lecture seule, exécutées via la chaîne `SiteSqlServer` du webroot, secret jamais affiché) :
 module 602 / `ModuleSettings` → app GUID ; `TsDynDataApp` (app 60) ; `TsDynDataContentType`/`TsDynDataAttribute`
