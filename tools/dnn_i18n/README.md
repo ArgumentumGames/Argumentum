@@ -236,3 +236,27 @@ Controls IC12–IC15 pin all of this (falsified by mutation: 3 planted defects �
 nominative reds). **Blocked on brick 1**: no app 33 export exists in the repo or
 shared-state (measured 2026-10-09) — requested from the préprod lane.
 Detail: [`docs/dnn-localization/457-t2-app33-first-lot.md`](../../docs/dnn-localization/457-t2-app33-first-lot.md).
+
+---
+
+# #457 T3 — arbitration-dossier replay instruments
+
+The three read-only instruments behind
+[`457-t3-globalresources-arbitrage-dossier-2026-10-10.md`](../../docs/dnn-localization/457-t3-globalresources-arbitrage-dossier-2026-10-10.md)
+(committed at the counter-review's request — re-derivability by a third party is what makes
+the dossier's figures opposable). Each script declares its instrument definition (scope,
+extensions, binding forms) in its header and **exits 2 when its witness is not seen**.
+
+- `resx_variant_composition.py` — §1 replay: 1 241 base entries, prose/single split, fr-FR
+  coverage + extras (the version-drift warning).
+- `resx_reference_surface_site.py` — §2 Argumentum-side replay: 538 files → 1 key
+  (`Home.Text`). 12 extensions (the one file beyond a 6-extension set is
+  `Portals/1/2sxc/web.config`).
+- `resx_reference_surface_source.py` — §2 source-side replay: 970 files → 8 keys under the
+  **call-literal** binding. ⚠️ The source-side count is instrument-dependent (DNN binds via
+  the `Localization.*ResourceFile` constant, not a literal path): 3 / 8 / 9 / 37 across the
+  four instruments of the dossier §7 addendum. The routing conclusion (< 40/1 241 keys,
+  back-office only) is robust across all of them.
+
+⛔ Not wired into `python-tools-tests.yml`: the scans traverse `DNNPlatform/` (970 + 538
+files) — offline and read-only, but heavy for a per-PR leg; replay is a dossier gesture.

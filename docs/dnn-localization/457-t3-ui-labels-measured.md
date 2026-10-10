@@ -131,7 +131,7 @@ Release — le run réussirait, sur l'ancien contenu.
 | `ui.*` / `res.*` (tranche dépôt, 11 rangées) | ✅ **fait** (#490) | **ne pas dispatcher** |
 | Tâche #487 sur le corpus actuel | ⛔ **no-op** (`SelectEmptyTargets=true`, 0 vide) | **ne pas exécuter** |
 | Valeurs `res.*` (DB-only) | ⏳ bloqué | débloqué par **le même export que T2** |
-| `GlobalResources.<culture>.resx` ×6 | ❓ nommé, volume mesuré, **outillage absent** | **arbitrage avant tout outillage** : paquets de langue amont vs production LLM, et périmètre exact (1 fichier nommé vs 6 familles observées) |
+| `GlobalResources.<culture>.resx` ×6 | ❓ nommé, volume mesuré, **outillage absent** | **dossier d'arbitrage livré le 10/10** : [`457-t3-globalresources-arbitrage-dossier-2026-10-10.md`](457-t3-globalresources-arbitrage-dossier-2026-10-10.md) — composition (5 910 traduisables / 1 536 données), surface référencée quasi nulle côté Argumentum, amont = 8 cultures officielles dont **es et pt**, aucune pour ru/ar/fa/zh. Reco : installs d'amont es + pt, statu quo documenté pour les 4 autres jusqu'à mesure au rendu. GO owner requis pour tout geste |
 
 **Ce que ce document a établi** : T3 n'est pas un grain prêt. Sa tranche dépôt est faite, son
 mécanisme est vacant sur le corpus actuel, et sa tranche restante est soit bloquée sur une
