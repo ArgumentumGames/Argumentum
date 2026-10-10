@@ -45,8 +45,9 @@ Deux balayages, chacun avec témoin positif (un instrument sans témoin n'a aucu
 | **Source DNNPlatform** (hors obj/bin/resx eux-mêmes) | 970 | **8** (5 `GlobalResources` + 3 `SharedResources` ; `admin`, `DesktopModules`, `Portals`) |
 
 Les libellés que les skins affichent (`Privacy.Text`, `ProductView.*`, …) résolvent contre leurs
-**`App_LocalResources` locaux** — une couche différente, dont la seule variante culturelle présent au dépôt est
-**`de-DE`** (skins 2shineBS5 et Bootstrap 4 Instant). ⚠️ Le portail Argumentum lui-même (`Portals/1/2sxc`)
+**`App_LocalResources` locaux** — une couche différente, dont la seule variante culturelle **au niveau de la couche
+`App_LocalResources`** est **`de-DE`** (skins 2shineBS5 et Bootstrap 4 Instant) ; au niveau de la couche
+`App_GlobalResources`, la variante présente est `fr-FR` (§1). ⚠️ Le portail Argumentum lui-même (`Portals/1/2sxc`)
 **ne porte aucun `.resx`** : ses chaînes vivent en DB (App Resources 2sxc) et en dur dans les gabarits —
 c'est la tranche #490/#1849, déjà livrée.
 
@@ -109,17 +110,68 @@ pas mesuré (§2), et les 1 536 cellules `List_Country` ne devraient jamais pass
 
 ## 6. Reproduction
 
+Les trois instruments sont **committés** (demande de la contre-revue, §7) — chaque script
+déclare dans son en-tête sa définition d'instrument (périmètre, extensions, formes de
+liaison) et sort en **2 si son témoin n'est pas vu** :
+
 ```bash
 # composition + couverture fr-FR (parse XML des 6 familles à variante)
-python -I <scratchpad>/resx_compose.py
-# surface référencée Argumentum (538 fichiers, témoin requis)
-python -I <scratchpad>/resx_usage.py     # exit 2 si le témoin n'est pas vu
-# surface référencée source DNNPlatform (970 fichiers, témoin requis)
-python -I <scratchpad>/resx_usage2.py    # exit 2 si le témoin n'est pas vu
+python -I tools/dnn_i18n/resx_variant_composition.py
+# surface référencée Argumentum (538 fichiers, témoin 'Privacy.Text' requis)
+python -I tools/dnn_i18n/resx_reference_surface_site.py      # exit 2 si témoin non vu
+# surface référencée source DNNPlatform (970 fichiers, témoin 'Privacy.Text' requis)
+python -I tools/dnn_i18n/resx_reference_surface_source.py    # exit 2 si témoin non vu
 # amont : repos de paquets officiels par culture
 gh api "search/repositories?q=org:dnnsoftware+Language-Pack&per_page=50" --jq '.items[] | "\(.full_name) [\(.pushed_at)]"'
 gh api "repos/dnnsoftware/Language-Pack-ES-ES/git/trees/HEAD?recursive=1" --jq '[.tree[].path]'
 ```
+
+## 7. Addendum — contre-revue po-2023 du 10/10 08:48Z
+
+La contre-revue a rejoué la composition et les scopes avec trois instruments indépendants
+(parse XML + git grep sur le même sha). Trois apports, intégrés ci-dessus :
+
+**1. Reproductions exactes.** Composition §1 : chaque chiffre tombe identique (1 241 /
+796 / 445 / 5 910 / 1 536, découpage par famille compris). Scope Argumentum §2 : **1 clé,
+la même** (`Home.Text`, `SharedResources`), portée par `theme-body.ascx` — et son jumeau
+tracké `theme-body.ascx.bak`, qu'un sweep ripgrep saute et qu'un sweep git grep voit ;
+le compte de clés **distinctes** reste 1 dans les deux cas. Les trois signatures « `fr-FR`
+= paquet officiel installé » du §3 vérifiées de leur siège.
+
+**2. Le « 8 » du scope source est instrument-dépendant — la conclusion ne l'est pas.**
+DNN lie ses fichiers de ressources via la **constante**
+(`Localization.GetSafeJSString("Yes.Text", Localization.SharedResourceFile)`), pas via un
+chemin littéral : la forme de liaison retenue est un choix d'instrument, et le compte varie
+avec. Le « 8 » publié = l'instrument **call-littéral** committé
+(`resx_reference_surface_source.py` : `Localization.GetString("…")`, `LocalizeString("…")`,
+`ResourceKey = "…"`, 8 extensions). Table consolidée :
+
+| Instrument de liaison | Clés des 6 familles vues |
+|---|---:|
+| Chemin littéral `App_GlobalResources` | 3 (clés absentes de la base — vestiges de version) |
+| **Call-littéral (le « 8 » de ce dossier)** | **8** (5 GlobalResources + 3 SharedResources) |
+| Constante `Localization.(Shared\|Global)ResourceFile` | 9 (8 Shared + 1 WebControls) |
+| Nom de clé brut (borne supérieure) | 37, dont ~6 bruit identifiable |
+
+Ce que **tous** les instruments disent : < 40 clés sur 1 241 (< 3,2 %), et les références
+liées par constante sont de la **UI de back-office** (`Security/EditUser`, `Modulesettings`,
+menus DDR, `CoreMessaging`) — rien qu'un visiteur rend. La conclusion de routage du §4
+(« rien à router », besoin non mesuré côté visiteur) est donc **robuste au choix
+d'instrument**, même si le chiffre exact ne l'est pas.
+
+**3. Le « 538 fichiers » du scope Argumentum : définition d'extensions.** L'instrument
+committé balaie **12 extensions** (`.cs .vb .ascx .aspx .cshtml .vbhtml .js .xml .config
+.master .htm .html`) ; la contre-revue en compte 537 sur 6 — l'écart d'un fichier est
+exactement `Portals/1/2sxc/web.config` (`.config`), mesuré.
+
+**Réparation au commit (déclarée).** L'instrument site du scratchpad original avait un
+témoin void — il surveillait `ui.fallacy.find_out_more`, une clé du CSV qui n'est littérale
+dans **aucun** fichier balayé : il sortait 2 sur son propre arbre. Le chiffre 538/1 n'en
+était pas moins corroboré indépendamment (contre-revue, borne supérieure). L'instrument
+committé surveille `Privacy.Text` — un littéral de liaison **réel** des skins `.ascx`
+balayés, et délibérément hors des 6 familles mesurées pour rester indépendant du compte
+qu'il certifie. Rejoué depuis son emplacement committé : exit 0, 538 fichiers, témoin vu,
+1 clé.
 
 ---
 
