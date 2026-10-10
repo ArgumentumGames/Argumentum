@@ -67,8 +67,8 @@ attendent **une seule et même brique** — ce que la file ne dit pas aujourd'hu
 
 ### 3(b) `GlobalResources.<culture>.resx` — nommé par le plan, **non outillé, non mesuré jusqu'ici**
 
-`DNNPlatform/App_GlobalResources/` — **16 fichiers, 2 707 entrées**, et **une seule culture
-présente, `fr-FR`** :
+`DNNPlatform/App_GlobalResources/` — **15 fichiers `.resx` (+ `TimeZones.xml`), 2 707 entrées**,
+et **une seule culture présente, `fr-FR`** :
 
 | Fichier (base = EN/invariant) | base | `fr-FR` | cultures manquantes |
 |---|---:|---:|---|
@@ -81,12 +81,27 @@ présente, `fr-FR`** :
 | `Prompt` | 145 | — | ru pt es ar fa zh |
 | `SharedResources` | 617 | 628 | ru pt es ar fa zh |
 | `WebControls` | 50 | 55 | ru pt es ar fa zh |
-| **Base des 7 fichiers à variantes** | **1 386** | — | — |
+| **Base des 6 fichiers à variantes** | **1 241** | — | — |
 
 ⇒ Le volume d'une production `<culture>.resx` pour les 6 langues manquantes serait
-**1 386 entrées × 6 = 8 316 cellules** — soit **un ordre de grandeur au-dessus du volume de
+**1 241 entrées × 6 = 7 446 cellules** — soit **un ordre de grandeur au-dessus du volume de
 T2**, que le plan lui-même qualifie de « faible » (« Le volume est mesuré par #1810 et est
 faible »).
+
+> **Erratum 2026-10-10** (contre-revue po-2023 c.6087370744, re-mesure à deux instruments).
+> La v1 de ce tableau disait « 16 fichiers » (le répertoire en compte 16, mais l'un est
+> `TimeZones.xml` : **15 resx**) et « base des 7 fichiers à variantes = 1 386 » — elle
+> additionnait `Prompt.resx` (145 entrées), qui n'a **pas** de variante `fr-FR` (la table
+> elle-même le montrait). Le découpage juste : **6 fichiers à variantes / 1 241 entrées**.
+> Sur le total, les deux instruments se réconcilient exactement : **2 731** en comptage brut
+> `<data ` sur les octets (chiffre de la contre-revue) = 2 707 éléments réels **+ 24 fantômes**
+> — le commentaire de schéma MSDN présent dans 6 fichiers porte 4 littéraux `<data name=`
+> d'exemple chacun (4 × 6 = 24). Ce document compte **après retrait des commentaires**
+> (self-test : un bloc commenté contenant `<data name=` n'incrémenté pas le compteur).
+> Sur les seuls fichiers à variantes, le brut donne 1 261 = 1 241 + 20 fantômes (5 fichiers
+> commentés). À noter enfin : `GlobalResources.fr-FR` (246) **dépasse** sa base (182) — la
+> variante française porte 64 clés absentes de la base, donc le volume réel d'une culture
+> peut excéder le compte de la base. Ordres de grandeur et routage : **inchangés**.
 
 ⚠️ **Trois observations qui ne sont pas des mesures, et qui décident pourtant du grain :**
 
@@ -95,9 +110,9 @@ faible »).
    module sait faire (titres de page, menus, `resx`) ».
 2. **DNN amont publie des paquets de langue officiels.** Les produire au LLM serait une
    seconde source là où il en existe une première — à confronter **avant** d'écrire, pas après.
-3. **Le plan ne nomme que `GlobalResources`**, alors que `fr-FR` existe pour **5** familles
+3. **Le plan ne nomme que `GlobalResources`**, alors que `fr-FR` existe pour **6** familles
    (`Exceptions`, `FileUpload`, `GlobalResources`, `List_Country`, `SharedResources`,
-   `WebControls`). Appliqué à la lettre, T3 laisserait ces cinq-là en anglais : la portée
+   `WebControls`). Appliqué à la lettre, T3 laisserait ces cinq autres en anglais : la portée
    écrite est **plus étroite que la portée observée**. Même forme que le §8.4 de #1810
    (« 16 gabarits » vs 36 fichiers).
 
@@ -131,9 +146,9 @@ cette lane.
   vérifié**.
 - Le rendu : aucune page n'a été ouverte, aucune culture activée. La mesure porte sur des
   fichiers, jamais sur un site servi.
-- Le compte de 1 386 : il additionne **toutes** les entrées des bases, y compris des fichiers
-  dont une partie n'est pas de la prose d'interface (`List_Country` = noms de pays, qu'un
-  paquet amont fournit mieux qu'un LLM).
+- Le compte de 1 241 : il additionne **toutes** les entrées des bases à variante, y compris
+  des fichiers dont une partie n'est pas de la prose d'interface (`List_Country` = noms de
+  pays, qu'un paquet amont fournit mieux qu'un LLM).
 
 ---
 
