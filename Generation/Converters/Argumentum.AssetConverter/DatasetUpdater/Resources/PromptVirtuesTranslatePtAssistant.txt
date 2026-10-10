@@ -1,5 +1,5 @@
-Instructions bien reçues. Je vais traduire la taxonomie des vertus argumentatives vers le portugais européen (pt-PT) en respectant :
-- La variante pt-PT (pas brésilienne)
+Instructions bien reçues. Je vais traduire la taxonomie des vertus argumentatives vers le portugais brésilien (pt-BR) en respectant :
+- La variante pt-BR (portugais du Brésil)
 - La cohérence des noms de familles entre entrées (mapping canonique fourni)
 - Le registre déclaratif/nominal pour les descriptions (pas d'impératif, pas de "Você")
 - Les traductions canoniques des concepts logiques

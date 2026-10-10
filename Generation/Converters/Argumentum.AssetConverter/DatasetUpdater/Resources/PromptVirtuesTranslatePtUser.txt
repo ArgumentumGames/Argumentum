@@ -7,7 +7,7 @@ Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'
 - `link_fr` : lien de référence (souvent Wikipedia FR)
 - Les champs cibles : `family_pt`, `subfamily_pt`, `subsubfamily_pt`, `title_pt`, `description_pt`, `remark_pt`, `link_pt`
 
-Ta tâche consiste à traduire en **portugais européen (pt-PT)** les champs source (suffixe `_fr`) vers les champs cible (suffixe `_pt`), uniquement pour les entrées dont les champs cibles sont vides.
+Ta tâche consiste à traduire en **portugais brésilien (pt-BR)** les champs source (suffixe `_fr`) vers les champs cible (suffixe `_pt`), uniquement pour les entrées dont les champs cibles sont vides.
 
 1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord`. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
 
@@ -36,7 +36,7 @@ Pour les `subfamily_fr`/`subsubfamily_fr` non listés ici, applique la même rig
 
 3. **Format des descriptions :** Les descriptions FR sont **déclaratives/nominales** (style définitionnel), pas à la deuxième personne. Conserve un registre déclaratif/nominal équivalent en PT — pas d'impératif, pas de "Você".
 
-4. **Langue cible :** Portugais européen (pt-PT), **pas** brésilien. Utilise le vocabulaire et les tournures idiomatiques du Portugal.
+4. **Langue cible :** Portugais brésilien moderne (pt-BR), la cible de toute la campagne. Utilise le vocabulaire et les tournures idiomatiques du Brésil.
 
 5. **Noms propres du jeu :** "Argumentum" reste "Argumentum". Les concepts logiques classiques ont des traductions canoniques en portugais.
 
