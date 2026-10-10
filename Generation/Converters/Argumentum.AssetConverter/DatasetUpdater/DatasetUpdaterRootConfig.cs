@@ -2693,16 +2693,17 @@ public class DatasetUpdaterRootConfig
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
 			},
-			// T2 trial (issue #457, dispatch 10/10 c.6096790964 §3): ONE app33 entity x 6 langs
-			// (pt gated on #1855 merge). Credit probe 200 on the in-place key 10/10 (Responses API,
-			// gpt-5.6-sol resolves live). Enabled=false committed; the run flips it as a recipe
-			// edit (never committed). $10 cap structurally satisfied: 2 rows x 6 langs, one chunk,
-			// MaxOutputTokens 4096. TargetPath = scratch sandbox (P5): the committed pivot is never
-			// the write target.
+			// T2 trial re-run (issue #457, review c.6098996342): ONE app33 entity x 7 langs —
+			// pt unlocked by #1855 (305a0ccb), game glossary locked in the prompt (derived from
+			// the cards CSV by tools/1859-app33-glossary-regen.py, guarded by
+			// PromptDnnApp33GlossaryConsistencyTests). Enabled=false committed; the run flips it
+			// as a recipe edit (never committed). $10 cap structurally satisfied: 2 rows x 7
+			// langs, one chunk, MaxOutputTokens 4096. TargetPath = scratch sandbox (P5): the
+			// committed pivot is never the write target.
 			new DatasetUpdaterConfig()
 			{
 				Enabled = false,
-				Name = "T2 trial app33 — one entity (11392) x 6 langs (pt after #1855)",
+				Name = "T2 trial app33 — one entity (11392) x 7 langs (glossary re-run)",
 				SourceDataset = KnownDataSets.DnnApp33Content,
 				FieldsToInclude = new List<string>()
 				{
@@ -2724,6 +2725,7 @@ public class DatasetUpdaterRootConfig
 				{
 					"en",
 					"ru",
+					"pt",
 					"es",
 					"ar",
 					"fa",
@@ -2740,7 +2742,7 @@ public class DatasetUpdaterRootConfig
 						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
 					}
 				},
-				// FR -> 6 languages via OpenAI gpt-5.6-sol on the Responses API (reasoning capped low).
+				// FR -> 7 languages via OpenAI gpt-5.6-sol on the Responses API (reasoning capped low).
 				Model = "gpt-5.6-sol",
 				OpenAIKeyPath = @".keys\openai-key.txt",
 				UseResponsesApi = true,
