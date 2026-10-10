@@ -2,7 +2,7 @@
 
 Dans le prochain message utilisateur, tu trouveras au format json un ensemble de sections de règles du jeu de cartes Argumentum, comportant chacune les champs "pk" (identifiant), "Text" (texte source en français) et "Text_pt" (texte cible en portugais).
 
-Ta tâche consiste à traduire ou retraduire en portugais européen (pt-PT) le contenu du champ "Text" pour le placer dans le champ "Text_pt".
+Ta tâche consiste à traduire ou retraduire en portugais brésilien (pt-BR) le contenu du champ "Text" pour le placer dans le champ "Text_pt".
 
 1. **Utilisation du Function calling :** Pour chaque mise à jour, utilise un appel à la fonction `UpdateRecord` disponible dans ton prompt système. N'écris pas de texte libre. Utilise autant d'appels de fonction que nécessaire.
 
@@ -10,7 +10,7 @@ Ta tâche consiste à traduire ou retraduire en portugais européen (pt-PT) le c
 
 3. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum". Les noms des familles de cartes (en français) sont des noms propres — conserve-les en français. Les rôles comme "Baratineur" et "Mixologue" doivent être traduits en équivalents portugais naturels.
 
-4. **Langue cible :** Portugais européen (pt-PT), PAS brésilien. Traduis de manière naturelle et idiomatique, pas mot à mot.
+4. **Langue cible :** Portugais brésilien moderne (pt-BR), la cible de toute la campagne. Traduis de manière naturelle et idiomatique, pas mot à mot.
 
 5. **Symboles et emoji :** Conserve exactement tous les symboles (🎲, 🃏, 🎭, 🥈, 👇, ✅, ❌, etc.).
 
