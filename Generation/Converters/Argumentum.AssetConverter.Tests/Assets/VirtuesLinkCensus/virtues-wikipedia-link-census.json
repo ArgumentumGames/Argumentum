@@ -1,0 +1,2573 @@
+{
+ "_meta": {
+  "census_date": "2026-10-10",
+  "counts": {
+   "alive": 575,
+   "dead": 204,
+   "dead_existed_removed": 11,
+   "dead_never_existed": 193,
+   "entries": 779,
+   "master_dead_cells": 246,
+   "master_distinct_urls": 774,
+   "master_wiki_cells": 1139,
+   "post1851_dead_cells": 0,
+   "post1851_distinct_urls": 575,
+   "post1851_wiki_cells": 898
+  },
+  "description": "Virtues taxonomy link_* census - URL -> probe verdict. Keys are the RAW CSV strings (no normalization, ordinal comparison in the guard). The guard (VirtuesWikipediaLinkCensusGuardTests) asserts every wikipedia-host link_* value of the corpus appears here with a verdict, and burns the dead-cell budget down to 0.",
+  "probe": "GET, redirects followed, 3 retries, witness fr:Sophisme every 40 URLs (fail-closed) - wiki_census.py",
+  "regeneration": "re-probe per wiki_census.py discipline, then regenerate this file; a re-encoded URL counts as a new key and turns the guard red until probed (fail-closed by design)",
+  "scope_rule": "absolute URI with host == wikipedia.org or host ending .wikipedia.org - host-based, so the #1851 wayback mirror (web.archive.org host) is out of scope by construction",
+  "source_doc": "docs/corpus/458-v23-g40-virtues-wikipedia-deadlinks-2026-10-10.md (PR #1851)"
+ },
+ "urls": {
+  "https://ar.wikipedia.org/wiki/أخذ_العينات_(إحصاء)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/احترام": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/احتمال": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/ارتباط_(إحصاء)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/استدلال_اختطافي": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/استدلال_استنباطي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/استقراء_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/استقلال_(نظرية_الاحتمال)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/استنباط": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/اقتران_منطقي": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/التباس": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/انتحال": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/انحياز_معرفي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/انفتاح_ثقافي": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/برهان": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/برهان_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/بلاغة": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تحليل_البيانات": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تعريف": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تعميم_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تفسير_(فلسفة)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/تفكير_تحليلي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تفكير_نقدي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تقدير_(إحصاء)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/تمثيل_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/توافق_آراء": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/جودة_البيانات": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/حجاج": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/حساب_(رياضيات)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/دراما": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/رطانة": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/رياضيات": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/سببية": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/سخرية_ذاتية": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/سرد": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/سلطة_معرفية": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/سمارت_(إدارة_المشاريع)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/سور_(منطق)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/صورة_بيانية": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/عبء_الإثبات": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/عبء_الإثبات_(فلسفة)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/علم_القياس": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/فكاهة": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قابلية_التكذيب": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قضية_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قياس_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قياس_شرطي_متصل": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/مبدأ_الإحسان": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/مبرهنة_بايز": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مبرهنة_فيثاغورس": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مثال": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مراجعة_الأقران": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مقدمة_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مناظرة": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/منطق_صوري": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/منهج_علمي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/موثوقية": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/موضوعية_(صحافة)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/موضوعية_(فلسفة)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نحو": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نحو_(لغة)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ar.wikipedia.org/wiki/نصل_أوكام": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نقد": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Abductive_reasoning": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Active_listening": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Ambiguity": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Analogy": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Analytical_reasoning": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Argumentation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Argumentation#Language_analysis": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Argumentation#Types_of_arguments": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Argumentation_theory": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Association_fallacy": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Authority": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Bayes'_theorem": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Benevolence": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Burden_of_proof": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Burden_of_proof_(philosophy)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Calculation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Causality": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Citation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Civil_discourse": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Cognitive_bias": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Coherence_(philosophy)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Collusion": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Communication": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Conjectural_reasoning": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Consensus": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Consensus_decision-making": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Constructive_criticism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Constructive_dialogue": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Constructive_discussion": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Credibility#Authorities": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Critical_thinking": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Cultural_bias": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Cultural_open-mindedness": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Data_analysis#Data_interpretation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Data_quality": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Datisi": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Debate": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Deductive_reasoning": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Definition": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Deontology": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Disjunction_(logic)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Distancing": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Double_negation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Dramatization": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Emotional_blackmail": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Evidence": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Example": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Fact-checking": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Falsifiability": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Figure_of_speech": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Finite_probability_space": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Formal_logic": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Framing_(social_sciences)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Generalization": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Grammar": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Hanlon's_razor": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Humour": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Hypothesis": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Impartiality": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Independence_(probability_theory)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Inductive_reasoning": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Intellectual_honesty": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Intercultural_communication": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Interpretation_(philosophy)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Jargon": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Journalism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Logical_conjunction": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/METHOD_PRIOR": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Mathematical_method": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Mathematics": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Metrology": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Modal_logic": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Modus_ponens": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Modus_tollens": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Narrative": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Nonviolent_Communication": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Numerical_precision": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Objectivity": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Objectivity_(philosophy)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Occam's_razor": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Open-mindedness": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/PRIOR_method": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Peer_review": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Plagiarism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Political_neutrality": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Premise": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Principle_of_charity": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Probability": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Proposition_(mathematics)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Punctuation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Pythagorean_theorem": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Quantifier_(logic)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Reasoning#Validation_of_reasoning": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Reliability": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Reliability#In_journalism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Respect": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Respect_for_personhood": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Rhetoric": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Rigorous_language": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/SMART_criteria": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Scientific_method": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Self-deprecation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Statistical_estimation": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Suspension_of_judgment": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#First_figure": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#Fourth_figure_syllogism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#Perfect_syllogisms": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#Second_figure": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#Standard-form_syllogisms": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#The_Baroco_syllogism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#The_Festino_syllogism_(quintessence)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#Third_figure": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism#Types_of_syllogisms": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syllogism_caménien": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://en.wikipedia.org/wiki/Syllogistic_logic": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Syntax": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Synthetic_reasoning": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Technical_terminology": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Testimony": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Transparency_(behavior)": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Truth": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Universalism": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Valid_argument": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Valid_reasoning": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Ambigüedad_lingüística": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Analogía": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Análisis_de_datos#Interpretación_de_los_datos": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Argumentación": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Argumentación#Análisis_del_lenguaje": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Autoderisión": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Autoridad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Calidad_de_datos": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Carga_de_la_prueba": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Causalidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Coherencia_(filosofía)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Conjunción_lógica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Consenso": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Correlación_y_dependencia": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Cuantificador": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Cálculo_(matemáticas)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Debate": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Deducción": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Definición": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Deontología": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Discusión": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Discusión_constructiva": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Distanciamiento_(psicología)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Disyunción_lógica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Dramatización": {
+   "class": "existed-removed",
+   "snapshot": "20080405224712",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Ejemplo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Empatía": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Escucha_activa": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Espacio_probabilizado_finito": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Estimación_estadística": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Evidencia_científica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Falacia_de_asociación": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Falsabilidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Fiabilidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Figura_retórica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Fuente_imparcial": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Generalización#Excepciones_y_flexibilidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Generalización_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Gramática": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Hipótesis": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Honestidad_intelectual": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Humor": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Independencia_(probabilidad)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Interpretación_(filosofía)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Jerga": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Lógica_formal": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Matemáticas": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Metrología": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Modus_ponendo_ponens": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Modus_tollendo_tollens": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Muestreo_(estadística)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Método_PRIOR": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Método_científico": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Método_matemático": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Narración": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Navaja_de_Hanlon": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Navaja_de_Ockham": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Negación_lógica#Doble_negación": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Neutralidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Objetividad_(filosofía)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Objetividad_(periodismo)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Objetivo_SMART": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Participación_ciudadana": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Pensamiento_crítico": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Plagio": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Postura": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Premisa": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Principio_de_caridad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Probabilidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Proposición_(lógica)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Prueba_(derecho)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Prueba_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Razonamiento": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Razonamiento_abductivo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Razonamiento_deductivo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Razonamiento_inductivo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Razonamiento_valido#Estructura_lógica_del_argumento_válido": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Respeto": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Retórica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Revisión_por_pares": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Sesgo_cognitivo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Silogismo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Sintaxis": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Tecnicismo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Teorema_de_Bayes": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Teorema_de_Pitágoras": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Teoría_de_la_argumentación": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Terminología_técnica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Transferencia_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Transparencia_(comportamiento)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Validez_(lógica)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Valores_de_la_República_Francesa#Respeto_de_la_persona_humana": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/SMART_(اهداف)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/آرایه‌های_ادبی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/ابطال‌پذیری": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/ابهام": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/اجماع": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/احترام": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/احتمال": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/ارتباط_بدون_خشونت": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استدلال": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استدلال_استقرایی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استدلال_استنتاجی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استدلال_ربایشی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استدلال_قیاسی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استقلال_(نظریه_احتمالات)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/اصل_حمل_به_صحت": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/اندازه‌شناسی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/انسجام_(فلسفه)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/بار_اثبات": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/برآورد_(آمار)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/برهان": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/بلاغت": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تحلیل_داده‌ها": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تعارض_منافع": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تعریف": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تعمیم_(منطق)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/تفسیر": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تفکر_انتقادی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تفکر_نقادانه": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تمثیل": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تیغ_اوکام": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/داوری_همتا": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/دستبرد_فکری": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/دستور_زبان": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/رفع_تالی": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/روایت": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/روش_علمی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/ریاضیات": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/سور_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/سوگیری_شناختی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/طنز": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/عطف_منطقی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/علیت": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/عینیت_(فلسفه)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/قضیه_بیز": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/قضیه_فیثاغورس": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/قیاس": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/مقدمه_(منطق)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/مناظره": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/منطق_صوری": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/منطق_وجهی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نحو": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نقد": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نمونه‌گیری_(آمار)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/همبستگی_و_وابستگی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/وضع_مقدم": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/پایایی": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/کرامت_انسان": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://fa.wikipedia.org/wiki/گزاره_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/%C3%89chantillonnage_statistique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Ambigu%C3%AFt%C3%A9_(linguistique)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Analogie": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Analyse_des_donn%C3%A9es#Interpr%C3%A9tation_des_donn%C3%A9es": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Argumentation": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Argumentation#Analyse_du_langage": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Argumentation#Types_d'arguments": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Autod%C3%A9rision": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Autorit%C3%A9#Autorit%C3%A9_l%C3%A9gitime": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Autorit%C3%A9_cognitive": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Biais_cognitif": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Calcul_(math%C3%A9matiques)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Causalit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Charge_de_la_preuve": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Coh%C3%A9rence_(philosophie)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Conjonction_(logique)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Conjonction_logique": {
+   "origin": "rewritten-by-#1851",
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Connivence_(psychologie)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Consensus": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Corr%C3%A9lation_et_d%C3%A9pendance#Relation_de_causalit%C3%A9": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Critique#Critique_constructive": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/D%C3%A9bat": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/D%C3%A9duction_logique": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/D%C3%A9finition": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/D%C3%A9ontologie#D%C3%A9ontologie_juridique_et_d%C3%A9ontologie_journalistique": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Discussion_constructive": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Disjonction_(logique)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Disjonction_logique": {
+   "origin": "rewritten-by-#1851",
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Distanciation_(psychologie)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Dramatisation": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Espace_probabilis%C3%A9_fini": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Esprit_critique": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Estimation_statistique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Exemple": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Falsifiabilit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Fiabilit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Fiabilit%C3%A9#En_journalisme": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Fiabilit%C3%A9_des_sources": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Fiabilit%C3%A9_des_sources#M%C3%A9thodes_d'%C3%A9valuation_de_la_fiabilit%C3%A9_des_sources": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Figure_de_style#R%C3%B4le_et_utilit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation#Exceptions_et_flexibilit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation_%28logique%29": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Grammaire": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Honn%C3%AAtet%C3%A9_intellectuelle": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Humour": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Hypoth%C3%A8se": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Ind%C3%A9pendance_(probabilit%C3%A9s)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Interpr%C3%A9tation_(philosophie)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Jargon": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Langage_rigoureux": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Logique_formelle": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/M%C3%A9thode_PRIOR": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/M%C3%A9thode_math%C3%A9matique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/M%C3%A9thode_scientifique": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/M%C3%A9trologie": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Math%C3%A9matiques": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Modalit%C3%A9_(logique)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Modus_ponens": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Modus_tollens": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/N%C3%A9gation_(logique)#Double_n.C3.A9gation": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/N%C3%A9gation_logique": {
+   "origin": "rewritten-by-#1851",
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Objectif_SMART": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(philosophie)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(presse)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Ouverture_culturelle": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Pens%C3%A9e_critique": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Plagiat": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Pr%C3%A9cision_num%C3%A9rique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Preuve": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Preuve_(logique)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Preuve_science": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Principe_de_charit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Probabilit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Probabilit%C3%A9#Introduction": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Proposition_(logique)": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Prémisse": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Qualit%C3%A9_de_la_donn%C3%A9e": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Quantificateur": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/R%C3%A9cit": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement#Validation_du_raisonnement": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_abductif": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_analytique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_conjectural": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_d%C3%A9ductif": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_déductif": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_inductif": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_synth%C3%A9tique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_valide": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Raisonnement_valide#Structure_logique_de_l'argument_valide": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Rasoir_d%27Ockham": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Rasoir_de_Hanlon": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Respect": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Revue_%C3%A0_comit%C3%A9_de_lecture": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Rh%C3%A9torique": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Rh%C3%A9torique#Figure_de_style_et_proc%C3%A9d%C3%A9s_rh%C3%A9toriques_acceptables": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Sophisme_d%27association": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Source_impartiale": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Deuxi%C3%A8me_figure": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#La_troisi%C3%A8me_figure_(le_syllogisme_espieuvre)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Le_syllogisme_Baroco": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Le_syllogisme_Festino_(quinte-essence)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Les_syllogismes_de_mode_parfait": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Les_variantes_du_syllogisme_standard": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Premi%C3%A8re_figure": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Syllogisme_de_quatri%C3%A8me_figure": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Troisi%C3%A8me_figure": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme#Types_de_syllogismes": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme_Datisi": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme_cam%C3%A9nien": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme_de_mode_permis": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Syllogisme_dimaris": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Syntaxe": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/T%C3%A9moignage#Valeur_probatoire": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Terme_technique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Terminologie_technique": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pythagore": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_l%27argumentation": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Transfert_(logique)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Transparence_(droit)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Valeurs_de_la_R%C3%A9publique_fran%C3%A7aise#Respect_de_la_personne_humaine": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Abertura_à_cultura": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Abertura_à_experiência": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Admissão_do_erro": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Ambiguidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Amostragem_estatística": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Analogia": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Análise_de_dados#Interpretação_dos_dados": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Argumentação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Argumentação#Análise_da_linguagem": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Argumento_válido": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Autoridade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Autoridade_cognitiva": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Causalidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Chantagem_emocional": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Citação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Coerência_(filosofia)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Compromisso": {
+   "class": "existed-removed",
+   "snapshot": "20201225225451",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Comunicação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Comunicação_intercultural": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Comunicação_não_violenta": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Conflito_de_interesses": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Conjun%C3%A7%C3%A3o_l%C3%B3gica": {
+   "origin": "rewritten-by-#1851",
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Conjunção_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Connivência": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Consenso": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Correlação_não_implica_causalidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Crítica_construtiva": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Cálculo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Datisi": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Debate": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Dedução_lógica": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Definição": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Deontologia": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Depoimento": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Discurso_cívico": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Disjun%C3%A7%C3%A3o_l%C3%B3gica": {
+   "origin": "rewritten-by-#1851",
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Disjunção_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Distanciamento_psicológico": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Diálogo_construtivo": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Dramatização": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Dupla_negação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Empatia": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Escuta_ativa": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Espaço_de_probabilidade_finito": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Estimação_(estatística)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Evidência": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Exemplo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Falsificabilidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Falácia_de_associação": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Fiabilidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Fiabilidade_das_fontes": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Figura_de_linguagem": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Fonte": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Generalização": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Gramática": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Hipótese": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Honestidade_intelectual": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Humor": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Imparcialidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Independência_(probabilidade)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Interpretação_(filosofia)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Jargão": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Limitações_da_racionalidade": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Linguagem_rigorosa": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Lógica_formal": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Lógica_modal": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Matemática": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Metrologia": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Modus_ponens": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Modus_tollens": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Método_científico": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Método_matemático": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Narrativa": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Navalha_de_Hanlon": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Navalha_de_Ockham": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Neutralidade_política": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Objetividade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Objetividade_(filosofia)": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Objetivos_SMART": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Pensamento_crítico": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Plágio": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Pontuação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Precisão_numérica": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Premissa": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Probabilidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Proposição_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Prova_(lógica)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Prova_empírica": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Qualidade_de_dados": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Quantificador": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio_abdutivo": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio_analítico": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio_dedutivo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio_indutivo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio_sintético": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Raciocínio_válido": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Reliabilidade": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Respeito": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Retórica": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Revisão_por_pares": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Self-deprecation": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Silogismo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Sintaxe": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Suspensão_do_julgamento": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Teorema_de_Bayes": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Teorema_de_Pitágoras": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Teoria_da_argumentação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Terminologia_técnica": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Termo_técnico": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Tomada_de_decisão_por_consenso": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Transparência": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Universalismo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Verdade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Verificação_de_fatos": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Viés_cognitivo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Viés_cultural": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Ônus_da_prova": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Modus_ponens": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Modus_tollens": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/SMART_(критерии)": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Абдукция": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Авторитет": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Анализ_данных#Интерпретация_данных": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Аналитическое_мышление": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Аналогия": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Аргументация": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Аргументация#Анализ_языка": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Беспристрастность": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Бремя_доказательства": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Бремя_доказывания": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Бритва_Оккама": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Бритва_Хэнлона": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Вероятность": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Вероятность#Введение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Высказывание_(логика)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Вычисление": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Гипотеза": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Гипотетико-дедуктивный_метод": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Грамматика": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Дебаты": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Дедуктивное_рассуждение": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Дедукция": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Деонтология": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Дизъюнкция_(логика)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Дискуссия": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Дистанцирование": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Доказательство": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Доказательство_(логика)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Драматизация": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Жаргон": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Идеология": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Индукция_(логика)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Интеллектуальная_честность": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Интерпретация_(философия)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Каменес": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Качество_данных": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Квантор": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Когнитивное_искажение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Когнитивные_искажения#Ошибка_атрибуции": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Конечное_вероятностное_пространство": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Коннивенция": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Консенсус": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Конъюнкция_(логика)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Корреляция_и_зависимость#Причинно-следственная_связь": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Критика#Критическая_критика": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Критическое_мышление": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Культурные_исследования": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Логическая_дедукция": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Математика": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Математический_метод": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Межкультурная_коммуникация": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Метод_PRIOR": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Метод_научного_познания": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Метрология": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Модальность_(логика)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Надёжность": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Надёжность#В_журналистике": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Надёжность_источников": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Надёжность_источников#Методы_оценки_надёжности_источников": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Научное_доказательство": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Научное_познание": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Научный_метод": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Независимость_(теория_вероятностей)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Ненасильственное_общение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Неоднозначность_(лингвистика)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Обобщение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Обобщение_(логика)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Объективность": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Объяснение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Определение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Открытость_культуре": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Отрицание_(логика)#Двойное_отрицание": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Плагиат": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Посылка_(логика)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Права_человека": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Правильное_рассуждение": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Пример": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Принцип_благожелательности": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Причинность": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Прозрачность_(право)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Рассказ": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Рассуждение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Рассуждение#Валидность_рассуждения": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Рецензирование": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Риторика": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Самоирония": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Свидетельство": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Варианты_стандартного_силлогизма": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Вторая_фигура": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Первая_фигура": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Силлогизм_Бароко": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Силлогизм_Фестино_(квинтэссенция)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Силлогизм_четвёртой_фигуры": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Силлогизмы_совершенного_модуса": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Типы_силлогизмов": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм#Третья_фигура": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм_Датиси": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм_Димарис": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Силлогизм_разрешённого_модуса": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Синтаксис": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Синтетическое_мышление": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Синтетическое_рассуждение": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Согласованность_(философия)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Софизм_ассоциации": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Статистическая_выборка": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Статистическая_оценка": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Стилистическая_фигура": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Теорема_Байеса": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Теорема_Пифагора": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Теория_аргументации": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Терминология": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Технический_термин": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Трансфер_(логика)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Уважение": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Факт": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Факт-чекинг": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Фальсифицируемость": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Формальная_логика": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Числовая_точность": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Юмор": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/SMART原则": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/三段论": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/举证责任": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/估计理论": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/例子": {
+   "class": "existed-removed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/修辞学": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/修辞格": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/共識決策": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/关联谬误": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/前提": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/剽窃": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/勾股定理": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/叙事": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/句法学": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/可证伪性": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/可靠性": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/合取": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/同行评审": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/否定后件": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/命题_(逻辑)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/因果性": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/奥卡姆剃刀": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/定义": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/客观性": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/客观性_(哲学)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/宽厚原则": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/尊严": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/尊重": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/幽默": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/归纳推理": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/形式逻辑": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/戏剧化": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/批判性思维": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/批评": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/抽样": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/数学": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/数据分析": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/数据质量": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/新闻客观性": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/有效性_(逻辑)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/术语学": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/概括_(逻辑)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/概率": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/模态逻辑": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/歧义": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/汉隆剃刀": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/溯因推理": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/演绎推理": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/独立_(概率论)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/相关与依赖": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/知性诚实": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/科学方法": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/科学证据": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/类比": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/肯定前件": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/自嘲": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/舉證責任": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/融贯论": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/行话": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/解释_(哲学)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/计量学": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/认知偏误": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/认知权威": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/论证": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/证明": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/证明_(逻辑学)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/语法": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/贝叶斯定理": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/辩论": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/量化_(逻辑)": {
+   "class": "never-existed",
+   "verdict": "dead"
+  },
+  "https://zh.wikipedia.org/wiki/非暴力沟通": {
+   "verdict": "alive"
+  }
+ }
+}
