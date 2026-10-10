@@ -28,10 +28,10 @@ namespace Argumentum.AssetConverter.Tests
     /// par <c>.wikipedia.org</c>. Les 31 valeurs non-wikipedia du corpus (cairn.info, halshs, LSE blogs…)
     /// sont hors périmètre, déclaré ; le miroir wayback de #1851 (hôte <c>web.archive.org</c>) l'est
     /// <b>par construction</b> — une règle par sous-chaîne l'aurait attrapé à tort.</para>
-    /// <para><b>Budget 246 = burn-down à la valeur courante</b> (« une exclusion doit mourir avec sa
-    /// raison ») : 246 est l'état master au moment où cette garde est introduite, #1851 non mergé. La
-    /// garde est donc verte dans les <b>deux ordres de merge</b> (246 avant, 0 après) ; une fois #1851
-    /// mergé, serrer <see cref="DeadCellBudget"/> à 0 dans un grain de suivi d'une ligne.</para>
+    /// <para><b>Budget 0 = burn-down refermé</b> (« une exclusion doit mourir avec sa raison ») : la garde
+    /// fut introduite à 246 (état master, #1851 non mergé) pour rester verte dans les deux ordres de merge ;
+    /// #1851 étant mergé (10/10/2026, `059f219f`), le grain de suivi referme le budget à <b>0</b> — toute
+    /// cellule <c>link_*</c> wikipedia morte qui revient fait maintenant rouge directement.</para>
     /// <para><b>Planchers + sentinelles</b> contre le vert vacue : un lecteur d'en-tête cassé ou une carte
     /// non chargée rend 0 — les planchers (distincts / cellules / entrées de carte) l'attrapent, et les
     /// sentinelles exigent qu'une URL vivante et une morte connues résolvent avec leur verdict attendu
@@ -49,10 +49,11 @@ namespace Argumentum.AssetConverter.Tests
         private const string DeadSentinel = "https://fr.wikipedia.org/wiki/Raisonnement_inductif";
 
         /// <summary>
-        /// Budget de cellules mortes. 246 = valeur master au 10/10/2026 (#1851 non mergé) — mesuré par le
-        /// recensement ET re-dérivé par le générateur de la carte. Après merge de #1851 : 0 (grain de suivi).
+        /// Budget de cellules mortes. 0 depuis le merge de #1851 (10/10/2026, grain de suivi) : les 246
+        /// cellules mortes mesurées au recensement ont été vidées (240) ou réécrites (6). Introduit à 246
+        /// pour rester vert dans les deux ordres de merge — refermé dès #1851 sur master.
         /// </summary>
-        private const int DeadCellBudget = 246;
+        private const int DeadCellBudget = 0;
 
         /// <summary>Plancher anti-vacue : états mesurés 774 distincts (master) / 575 (post-#1851).</summary>
         private const int DistinctUrlFloor = 500;
@@ -95,8 +96,8 @@ namespace Argumentum.AssetConverter.Tests
             // Burn-down : les cellules mortes ne peuvent que décroître, jamais revenir.
             var deadCells = inScope.Where(c => verdicts.TryGetValue(c.Value, out var verdict) && verdict == "dead").ToList();
             deadCells.Count.Should().BeLessThanOrEqualTo(DeadCellBudget,
-                because: $"burn-down des cellules mortes : 246 = valeur master au moment de l'introduction de la garde " +
-                         $"(#1851 non mergé ; serrer à 0 après merge) — lu : {deadCells.Count}. " +
+                because: $"burn-down refermé à 0 depuis le merge de #1851 (246 cellules mortes vidées ou réécrites) " +
+                         $"— lu : {deadCells.Count}. " +
                          $"Exemples : {FormatCells(deadCells.Take(3))}{(deadCells.Count > 3 ? " …" : "")}");
         }
 
