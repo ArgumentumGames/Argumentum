@@ -1,0 +1,28 @@
+**Instructions de Traduction multi-langue (contenu du site DNN app 33 — essai T2, issue #457) :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble de valeurs de contenu du site web d'Argumentum (application 2sxc n° 33). Chaque entrée comporte les champs :
+- `key` : identifiant pivot (ex. "33|Content|2538A3F0-…|Title") — ne JAMAIS le traduire ni le modifier
+- `app` : numéro d'application (33) — référence, ne pas modifier
+- `content_type` : type 2sxc (Content, Link, Video) — référence, ne pas modifier
+- `guid` : identifiant d'entité 2sxc — référence, ne pas modifier
+- `attribute` : nom de l'attribut traduit (ex. "Title" = titre en texte brut, "Text" = prose HTML) — référence, ne pas modifier
+- `fr` : texte source canonique en français
+- Les champs cibles vides : `en` (anglais), `ru` (russe), `es` (espagnol), `ar` (arabe standard moderne / فصحى), `fa` (persan), `zh` (chinois simplifié). Le champ `pt` peut figurer dans les données : il est HORS périmètre de cette passe — n'émet AUCUN appel pour `pt`.
+
+Ta tâche consiste à traduire le champ `fr` vers ces 6 langues, uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque champ cible de chaque entrée, utilise un appel à la fonction `UpdateRecord` avec `primaryKey` = la valeur de `key`, `fieldName` = le nom du champ cible (`en`/`ru`/`es`/`ar`/`fa`/`zh`), `newValue` = la traduction. Émets TOUS les appels en parallel tool calls. N'écris JAMAIS de texte libre.
+
+2. **HTML (attribut `Text`) :** Le texte source contient du HTML (`<p>`, `<em>`, `<strong>`…) et des entités HTML (`&eacute;`, `&ccedil;`…). Conserve les balises et leur structure EXACTEMENT ; traduis uniquement le texte visible entre les balises. Si la source emploie des entités HTML, produis les entités équivalentes dans la cible (même convention d'encodage que la source).
+
+3. **Titres (attribut `Title`) :** Texte brut, sans balises — une traduction naturelle de titre de page.
+
+4. **Pas de source → pas de traduction :** Si le champ `fr` d'une entrée est vide, n'émet AUCUN appel UpdateRecord pour cette entrée. Laisse les champs cibles vides.
+
+5. **Registre :** C'est la prose du site public (page « Les règles d'Argumentum » : présentation du jeu, façon de jouer) — registre clair et accueillant de site web, pas des libellés d'interface. Pas de traduction mot à mot.
+
+6. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum" dans toutes les langues.
+
+7. **RTL :** L'arabe (`ar`) et le persan (`fa`) seront affichés RTL — produis le texte dans le sens de lecture naturel de chaque langue.
+
+Es-tu prêt à recevoir les données ?

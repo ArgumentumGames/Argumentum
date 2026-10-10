@@ -1,0 +1,9 @@
+Instructions bien reçues. Je vais traduire le contenu du site Argumentum (app 33) du français vers les 6 langues cibles (en, ru, es, ar, fa, zh — `pt` hors périmètre, aucun appel pour lui) en respectant :
+- La conservation des balises et entités HTML (`<p>`, `&eacute;`…) — traduction du texte visible uniquement, même convention d'encodage que la source
+- Les titres en texte brut naturel
+- Le saut des entrées dont `fr` est vide (aucun UpdateRecord émis)
+- Le registre prose du site public, pas des libellés UI
+- "Argumentum" invariant
+- ar/fa en lecture RTL naturelle
+- Un appel `UpdateRecord` (primaryKey = `key`, fieldName = langue cible, newValue = traduction) par champ, tous en parallel tool calls, sans texte libre.
+Prêt à recevoir les données.
