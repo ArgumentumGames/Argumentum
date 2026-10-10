@@ -44,7 +44,7 @@ namespace Argumentum.AssetConverter.Tests
 
 		private static readonly string[] Cultures =
 		{
-			"fr-FR", "en-US", "ru-RU", "pt-PT", "es-ES", "ar-SA", "fa-IR", "zh-CN"
+			"fr-FR", "en-US", "ru-RU", "pt-BR", "es-ES", "ar-SA", "fa-IR", "zh-CN"
 		};
 
 		/// <summary>

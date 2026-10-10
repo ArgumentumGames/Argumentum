@@ -225,7 +225,7 @@
   </Entity>
   <Entity Type="Game Rule">
     <Guid>ae1edefa-6f1b-4593-8230-97fa1edf4f78</Guid>
-    <Language>pt-PT</Language>
+    <Language>pt-BR</Language>
     <Title>A escola dos mentirosos</Title>
     <Summary>&lt;p&gt;Os jogadores vão, em turnos, tentar fazer uma maioria dos outros jogadores adivinhar uma carta de argumento falacioso, durante uma pequena cena de improvisação a partir de um cenário sorteado. Enquanto se divertem, os jogadores aprendem assim a reconhecer, a decodificar e, portanto, a desconstruir os argumentos falaciosos.&lt;/p&gt;
 &lt;p&gt;Argumentum baseia-se numa classificação desses argumentos falaciosos, organizados em ordens e em famílias indicadas no topo da carta. Por exemplo, bajulação é uma subcategoria do apelo às emoções. As cartas de memória resumem essa classificação.&lt;/p&gt;</Summary>

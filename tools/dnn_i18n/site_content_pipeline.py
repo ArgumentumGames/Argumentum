@@ -133,7 +133,7 @@ CULTURES: dict[str, tuple[str, int | None, bool, str]] = {
     "fr": ("fr-FR", 6, True, "TsDynDataDimension zone 3 (app 60's zone), measured 2026-10-09 (#1781 I2)"),
     "en": ("en-US", 7, True, "TsDynDataDimension zone 3 (app 60's zone), measured 2026-10-09 (#1781 I2)"),
     "ru": ("ru-RU", 8, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
-    "pt": ("pt-PT", 9, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
+    "pt": ("pt-BR", 9, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (I1b), re-keyed pt-PT->pt-BR 2026-10-11 (#1095)"),
     "es": ("es-ES", 10, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
     "ar": ("ar-SA", 11, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
     "fa": ("fa-IR", 12, True, "TsDynDataDimension zone 3, provisioned 2026-10-10 (#1781 I1b)"),
