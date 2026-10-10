@@ -304,3 +304,13 @@ docs/corpus/*.json
 #  docs/taxonomy/141-aif-fullscale.py, tools/498-*.py). Machine-specific scratch,
 #  never source — root-anchored (/tmp/) so a legit nested tmp/ elsewhere is unaffected.
 /tmp/
+
+# Hygiène des fichiers de travail agent — scratch local ne devant jamais entrer
+# au dépôt. `.tmp/` = répertoire scratch (distinct de `.temp/` et `*.tmp` ci-dessus) ;
+# `scratchpad_*` = brouillons de session ; `C:Users*` est TEXTUEL : il attrape les
+# noms de fichiers « chemin amputé de ses backslashes » (un chemin Windows committé
+# comme un seul nom). Non testable par `git check-ignore` sous Windows (le CLI
+# interprète `C:` comme un lecteur) — c'est attendu, le motif reste effectif.
+.tmp/
+scratchpad_*
+C:Users*
