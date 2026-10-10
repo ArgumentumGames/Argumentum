@@ -87,8 +87,8 @@ culture, dont deux sont des installs d'amont et quatre n'ont **pas de besoin mes
 
 | Culture | Geste | Gate |
 |---|---|---|
-| **es** | installer le paquet officiel `es-ES` (couvre les 7 familles + couche DesktopModules locale, zéro LLM) | GO owner — geste d'install, lane préprod |
-| **pt** | installer `pt-BR` **ou** `pt-PT` | **rejoint la question owner PT-PT/PT-BR déjà ouverte** — le choix de paquet et le dialecte du corpus doivent coïncider |
+| **es** | installer le paquet officiel `es-ES` (couvre les 7 familles + couche DesktopModules locale, zéro LLM) | lane préprod (geste technique réversible) ; production = GO owner au go-live — arbitrage ai-01 10/10 |
+| **pt** | installer `pt-BR` | dialecte **tranché par l'owner le 14/08** (#1095 : pt-BR, cible de toute la campagne) ; install en préprod = lane, production = GO owner au go-live |
 | **ru, ar, fa, zh** | ⛔ **aucun paquet amont n'existe**. Tenir le repli EN (comportement actuel, mesuré nulle part au rendu) **jusqu'à ce qu'une mesure au rendu démontre l'exposition** ; ne produire au LLM qu'alors, scopé aux entrées réellement affichées | mesure au rendu d'abord (culture activée + parcours visiteur), puis GO owner |
 
 **Ce que ce dossier recommande** : la voie (b) — installs d'amont pour es et pt, statu quo documenté pour
