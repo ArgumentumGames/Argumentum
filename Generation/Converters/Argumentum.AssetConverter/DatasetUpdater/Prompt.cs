@@ -339,12 +339,13 @@ public class Prompt
             return;
         }
 
-        PromptUsage.Add(usage.InputTokenCount, usage.OutputTokenCount);
-        var (calls, inputTotal, outputTotal) = PromptUsage.Snapshot();
+        var cached = usage.InputTokenDetails?.CachedTokenCount ?? 0;
+        PromptUsage.Add(usage.InputTokenCount, usage.OutputTokenCount, cached);
+        var (calls, inputTotal, outputTotal, cachedTotal) = PromptUsage.Snapshot();
         log($"Usage: input={usage.InputTokenCount} output={usage.OutputTokenCount} " +
             $"(reasoning={usage.OutputTokenDetails?.ReasoningTokenCount ?? 0}, " +
-            $"cached={usage.InputTokenDetails?.CachedTokenCount ?? 0}) " +
-            $"— run totals: {calls} calls, input={inputTotal}, output={outputTotal}");
+            $"cached={cached}) " +
+            $"— run totals: {calls} calls, input={inputTotal}, output={outputTotal}, cached={cachedTotal}");
     }
 
     private static void LogUsage(ChatTokenUsage? usage, Action<string> log)
@@ -354,12 +355,13 @@ public class Prompt
             return;
         }
 
-        PromptUsage.Add(usage.InputTokenCount, usage.OutputTokenCount);
-        var (calls, inputTotal, outputTotal) = PromptUsage.Snapshot();
+        var cached = usage.InputTokenDetails?.CachedTokenCount ?? 0;
+        PromptUsage.Add(usage.InputTokenCount, usage.OutputTokenCount, cached);
+        var (calls, inputTotal, outputTotal, cachedTotal) = PromptUsage.Snapshot();
         log($"Usage: input={usage.InputTokenCount} output={usage.OutputTokenCount} " +
             $"(reasoning={usage.OutputTokenDetails?.ReasoningTokenCount ?? 0}, " +
-            $"cached={usage.InputTokenDetails?.CachedTokenCount ?? 0}) " +
-            $"— run totals: {calls} calls, input={inputTotal}, output={outputTotal}");
+            $"cached={cached}) " +
+            $"— run totals: {calls} calls, input={inputTotal}, output={outputTotal}, cached={cachedTotal}");
     }
 }
 
@@ -369,30 +371,38 @@ public class Prompt
 /// lines need this shared, thread-safe counter to also report cumulative totals. The campaign
 /// runner resets it before the chunk loop and prints the summary afterwards: tokens always
 /// (measured), cost only when prices are declared — cost is arithmetic on a declared price,
-/// never an estimate (T2 volume condition, #458 c.6107217348).
+/// never an estimate (T2 volume condition, #458 c.6107217348). Cached input tokens are a
+/// SUBSET of input tokens (the provider bills them at the cheaper cached rate, but the input
+/// total already contains them) and are accumulated separately so the run summary can price
+/// them honestly (#1864 review: without a declared cache price, the full-price cost is an
+/// UPPER BOUND, never an exact figure).
 /// </summary>
 public static class PromptUsage
 {
     private static long _inputTokens;
     private static long _outputTokens;
+    private static long _cachedInputTokens;
     private static long _calls;
 
     public static void Reset()
     {
         Interlocked.Exchange(ref _inputTokens, 0);
         Interlocked.Exchange(ref _outputTokens, 0);
+        Interlocked.Exchange(ref _cachedInputTokens, 0);
         Interlocked.Exchange(ref _calls, 0);
     }
 
-    public static void Add(long inputTokens, long outputTokens)
+    public static void Add(long inputTokens, long outputTokens, long cachedInputTokens = 0)
     {
         Interlocked.Add(ref _inputTokens, inputTokens);
         Interlocked.Add(ref _outputTokens, outputTokens);
+        Interlocked.Add(ref _cachedInputTokens, cachedInputTokens);
         Interlocked.Increment(ref _calls);
     }
 
-    public static (long Calls, long InputTokens, long OutputTokens) Snapshot() =>
-        (Interlocked.Read(ref _calls), Interlocked.Read(ref _inputTokens), Interlocked.Read(ref _outputTokens));
+    public static (long Calls, long InputTokens, long OutputTokens, long CachedInputTokens) Snapshot() =>
+        (Interlocked.Read(ref _calls), Interlocked.Read(ref _inputTokens),
+         Interlocked.Read(ref _outputTokens), Interlocked.Read(ref _cachedInputTokens));
 }
 
 public class FunctionToolDef

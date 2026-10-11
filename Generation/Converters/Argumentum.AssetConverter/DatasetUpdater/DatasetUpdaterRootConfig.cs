@@ -2764,6 +2764,206 @@ public class DatasetUpdaterRootConfig
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
 			},
+			// T2 VOLUME (issue #457, volume opened #458 c.6107217348 + 12/10 c.6114818851):
+			// the app33 prose worklists — content 45 / link 20 / video 6 rows, derived from the
+			// 2026-10-09 export with every exclusion auditable (7 demo entities per manifest
+			// markers, trial entity grafted from the reviewed filled pivot at assembly,
+			// non-prose attribute families: file refs, fa-icons, Link/Window/VideoLink).
+			// Same engine settings as the proven trial (glossary-locked prompt, gpt-5.6-sol,
+			// Responses API, effort low, function calling). Enabled=false committed; the run
+			// flips the three tasks as a recipe edit (never committed) and declares the
+			// day's prices at the same time (#1864 review condition). TargetPath = build-output
+			// sandbox — the committed worklist is the READ source, never the write target;
+			// outputs go to ai-01 review BEFORE any préprod injection.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 volume app33 — content (45 rows x 7 langs)",
+				SourceDataset = KnownDataSets.DnnApp33ContentVolume,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-volume-content.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 volume app33 — link (20 rows x 7 langs)",
+				SourceDataset = KnownDataSets.DnnApp33LinkVolume,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-volume-link.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 volume app33 — video (6 rows x 7 langs)",
+				SourceDataset = KnownDataSets.DnnApp33VideoVolume,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-volume-video.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
 			// Owner's Rules 06 lot (issue #1502 c.6098939191, GO c.6098942133): differential
 			// translation of the 2 changed bullets (1a several-cards winner rule, 2a "À 5
 			// joueurs et plus" condition) into the 7 corpus languages, then graft into
