@@ -2821,7 +2821,10 @@ public class DatasetUpdaterRootConfig
 				OpenAIKeyPath = @".keys\openai-key.txt",
 				UseResponsesApi = true,
 				ReasoningEffort = "low",
-				MaxOutputTokens = 4096,
+								// 16384, not the trial's 4096: the volume's two longest Text rows (5.8k/4.5k
+				// source chars — Sendinblue form, L'argumentation) truncate mid-tool-call-sequence
+				// at 4096 output tokens (measured 12/10: 2/45 rows came back 2-3 langs short).
+				MaxOutputTokens = 16384,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 2,
@@ -2884,7 +2887,10 @@ public class DatasetUpdaterRootConfig
 				OpenAIKeyPath = @".keys\openai-key.txt",
 				UseResponsesApi = true,
 				ReasoningEffort = "low",
-				MaxOutputTokens = 4096,
+								// 16384, not the trial's 4096: the volume's two longest Text rows (5.8k/4.5k
+				// source chars — Sendinblue form, L'argumentation) truncate mid-tool-call-sequence
+				// at 4096 output tokens (measured 12/10: 2/45 rows came back 2-3 langs short).
+				MaxOutputTokens = 16384,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 2,
@@ -2947,7 +2953,10 @@ public class DatasetUpdaterRootConfig
 				OpenAIKeyPath = @".keys\openai-key.txt",
 				UseResponsesApi = true,
 				ReasoningEffort = "low",
-				MaxOutputTokens = 4096,
+								// 16384, not the trial's 4096: the volume's two longest Text rows (5.8k/4.5k
+				// source chars — Sendinblue form, L'argumentation) truncate mid-tool-call-sequence
+				// at 4096 output tokens (measured 12/10: 2/45 rows came back 2-3 langs short).
+				MaxOutputTokens = 16384,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 2,
