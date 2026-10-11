@@ -166,12 +166,12 @@ in **zone 3**):
 manifest declares `argumentumAppZoneId: 3` — it contradicts itself, and the correction is
 measured in [`1781-i2-zone3-inventory.md`](1781-i2-zone3-inventory.md) §1. Only the culture
 code is ever emitted into the XML, so nothing shipped wrong; the IDs are documentation.
-| ru | `ru-RU` | — | ⚠ **unconfirmed** |
-| pt | `pt-PT` | — | ⚠ **unconfirmed** |
-| es | `es-ES` | — | ⚠ **unconfirmed** |
-| ar | `ar-SA` | — | ⚠ **unconfirmed** |
-| fa | `fa-IR` | — | ⚠ **unconfirmed** |
-| zh | `zh-CN` | — | ⚠ **unconfirmed** |
+| ru | `ru-RU` | **8** | ✅ provisioned 2026-10-10 (I1b), re-measured |
+| pt | `pt-BR` | **9** | ✅ provisioned 2026-10-10 (I1b), **re-keyed pt-PT → pt-BR 2026-10-11** (norm #1095) |
+| es | `es-ES` | **10** | ✅ provisioned 2026-10-10 (I1b), re-measured |
+| ar | `ar-SA` | **11** | ✅ provisioned 2026-10-10 (I1b), re-measured |
+| fa | `fa-IR` | **12** | ✅ provisioned 2026-10-10 (I1b), re-measured |
+| zh | `zh-CN` | **13** | ✅ provisioned 2026-10-10 (I1b), re-measured |
 
 The six unconfirmed cultures are **not attested anywhere in this repository** — their 2sxc
 dimensions are not provisioned (#682 Path A, recorded in `684-translation-run-report.md` lines

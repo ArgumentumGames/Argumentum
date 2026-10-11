@@ -76,6 +76,23 @@ DELETE FROM TsDynDataDimension WHERE DimensionId BETWEEN 8 AND 13;  -- + recycle
 Aucune rangée `TsDynDataValueDimension` ne référence 8-13 (aucune valeur traduite
 n'existe encore) : le DELETE est complet et sans effet de bord.
 
+## Addendum 2026-10-11 — la dimension 9 est re-cléée `pt-BR`
+
+La dimension 9 a été créée ici sous `pt-PT` : c'était la clé que portait le dictionnaire
+`CULTURES` de l'outillage. Elle est **périmée** — le portugais de référence du projet est
+le **brésilien** depuis la décision owner du 14/08 (#1095), redécouverte par ai-01 le
+10/10 (#458 c.6096790964). La rangée a été re-cléée le 2026-10-11 (UPDATE transactionnel,
+sélectif sur `ExternalKey='pt-PT'`, contrôle post-écriture, recycle) :
+
+| DimensionId | ExternalKey | Name |
+|---|---|---|
+| 9 | **pt-BR** | português (Brasil) |
+
+Aucune valeur ne référençait la dimension 9 au moment du re-cléage (toujours 0 valeur
+dimensionnée en zone 3) : le changement de clé est invisible pour les données. La même
+livraison met à jour `CULTURES`, le fixture `one-entity-game-rule-import.xml` et le test
+C# `SiteContentImportXmlInteropTests` qui portaient `pt-PT`.
+
 ## Ce qui reste ouvert
 
 - **T2** (po-2024) : `to-csv` sur l'export app 33 (#1843, mergé) — puis `to-xml` **sans**
