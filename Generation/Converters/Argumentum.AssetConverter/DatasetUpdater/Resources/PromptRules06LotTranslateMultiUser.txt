@@ -18,7 +18,7 @@ Ta tâche : pour chaque langue, produire la puce mise à jour qui reflète la co
 3. **Format :** conserve la puce markdown entière, y compris le préfixe « * » initial et l'espace qui suit.
 4. **Terminologie :** réutilise TELS QUELS les termes de rôle de `X_current` (l'équivalent de « baratineur », « jury », « réserve », « cartes »). Le terme « cartes » suit le lexique déjà en place dans `X_current`.
 5. **Langues :** `en` anglais, `ru` russe, `pt` portugais du Brésil (pt-BR), `es` espagnol, `ar` arabe standard moderne, `fa` persan, `zh` chinois simplifié.
-6. **Chiffres :** le « 5 » de la condition s'écrit comme dans le corpus de la langue (chiffre arabe « 5 »).
+6. **Chiffres :** le « 5 » de la condition s'écrit comme dans le corpus de la langue — chiffre latin « 5 » partout, SAUF `fa` en chiffre persan « ۵ » (la prose fa du corpus écrit ses nombres en chiffres persans ; les pictogrammes restent en chiffre latin).
 7. **RTL :** `ar` et `fa` en sens de lecture naturel.
 8. "Argumentum" reste "Argumentum".
 

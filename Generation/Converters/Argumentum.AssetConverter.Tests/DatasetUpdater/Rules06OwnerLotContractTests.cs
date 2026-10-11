@@ -208,7 +208,10 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 						"[{0}/{1}/{2}] 6 draw lines + 6 variant bullets — positional lookup needs the full structure",
 						Path.GetFileName(file), pk, lang);
 					var bullet = bullets[UnanimityBulletIndex];
-					if (!bullet.Contains("5"))
+					// fa writes its prose numbers in Persian digits (measured on master, review
+					// c.6107203518: 86 Persian vs 27 Latin, the latter all in Markdown titles or
+					// pictograms) — the 2a player count is '۵' there, ASCII '5' elsewhere.
+					if (!bullet.Contains("5") && !bullet.Contains("۵"))
 					{
 						failures.Add($"[{Path.GetFileName(file)} / {pk} / {lang}] unanimity bullet has no player-count " +
 						             $"condition (expected the '5 players and more' condition from 2a): '{bullet.Truncate(60)}…'");
