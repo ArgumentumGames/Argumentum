@@ -52,6 +52,18 @@ public class DatasetUpdaterConfig
 
 	public int MaxTokensPerMinute { get; set; } = 70000;
 
+	/// <summary>
+	/// Price per MILLION input tokens, in USD, used by the end-of-run usage summary. Null (default)
+	/// = cost is NOT computed and the summary says so — tokens (measured from the API response)
+	/// are always logged. Set alongside <see cref="OutputTokenPricePerMillion"/> from the
+	/// provider's current pricing page at campaign time; a stale price would turn the summary
+	/// into an estimate, which the T2 volume condition forbids.
+	/// </summary>
+	public double? InputTokenPricePerMillion { get; set; }
+
+	/// <summary>Price per MILLION output tokens, in USD — see <see cref="InputTokenPricePerMillion"/>.</summary>
+	public double? OutputTokenPricePerMillion { get; set; }
+
 	public DivisionMode DivisionMode { get; set; }
 
 
@@ -275,6 +287,10 @@ public class DatasetUpdaterConfig
 
 						var answers = new ConcurrentBag<string>();
 
+						// Per-run usage journal (T2 volume condition: usage per call, tokens measured
+						// from the API response; cost computed only when prices are declared below).
+						PromptUsage.Reset();
+
 						var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
 
 						var parallelOptions = new ParallelOptions
@@ -460,6 +476,8 @@ public class DatasetUpdaterConfig
 					Logger.LogSuccess("Completed ChatGPT calls and saved the output to " + csvPath);
 				}
 
+				LogRunUsage();
+
 
 			}
 
@@ -470,6 +488,35 @@ public class DatasetUpdaterConfig
 			Logger.LogException(ex);
 		}
 
+	}
+
+	/// <summary>
+	/// End-of-run usage summary: call count and token totals always (tokens are measured from the
+	/// API responses, accumulated by <see cref="PromptUsage"/>); cost only when both prices are
+	/// declared. An unset price prints an explicit NOT COMPUTED line rather than silently omitting
+	/// the cost — a missing cost line must never read as a zero cost.
+	/// </summary>
+	private void LogRunUsage()
+	{
+		var (calls, inputTokens, outputTokens) = PromptUsage.Snapshot();
+		if (calls == 0)
+		{
+			return;
+		}
+
+		Logger.Log($"Run usage: {calls} calls, input tokens={inputTokens}, output tokens={outputTokens}");
+		if (InputTokenPricePerMillion.HasValue && OutputTokenPricePerMillion.HasValue)
+		{
+			var cost = inputTokens / 1_000_000.0 * InputTokenPricePerMillion.Value
+			           + outputTokens / 1_000_000.0 * OutputTokenPricePerMillion.Value;
+			Logger.Log($"Run cost: ${cost:0.0000} " +
+			           $"(in @ ${InputTokenPricePerMillion.Value:0.####}/MTok, out @ ${OutputTokenPricePerMillion.Value:0.####}/MTok)");
+		}
+		else
+		{
+			Logger.Log("Run cost: NOT COMPUTED — InputTokenPricePerMillion/OutputTokenPricePerMillion unset " +
+			           "(token totals above are the measurement; set the prices from the provider's page to compute cost)");
+		}
 	}
 
 	private async Task DoChatGPTCall(CancellationToken ct, List<Dictionary<string, object>> recordGroup, string openAIKey, string systemPrompt,
